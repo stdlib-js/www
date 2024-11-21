@@ -30,7 +30,7 @@ obj.c = <span class="hljs-string">'beep'</span>; <span class="hljs-comment">// i
 };
 <span class="hljs-keyword">var</span> out = invertBy( obj, opts, transform );
 <span class="hljs-comment">// returns { 'beep': 'c', 'boop': 'b' }</span>
-</code></pre><p>The <code>transform</code> function is provided three arguments:</p><ul><li><code>key</code>: object key</li><li><code>value</code>: object value corresponding to <code>key</code></li><li><code>obj</code>: input object</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, o </span>) </span>{
+</code></pre><p>The <code>transform</code> function is provided three arguments:</p><ul><li><strong>key</strong>: object key.</li><li><strong>value</strong>: object value corresponding to <code>key</code>.</li><li><strong>obj</strong>: input object.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, o </span>) </span>{
     <span class="hljs-keyword">if</span> ( key === <span class="hljs-string">'name'</span> ) {
         <span class="hljs-keyword">return</span> value;
     }
@@ -55,7 +55,7 @@ obj.c = <span class="hljs-string">'beep'</span>; <span class="hljs-comment">// i
 
 <span class="hljs-keyword">var</span> out = invertBy( obj, transform );
 <span class="hljs-comment">// returns { '1,2,3': 'a', '[object Object]': 'b' }</span>
-</code></pre></li><li><p>Insertion order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic inversion.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li><li><p>Insertion order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="https://262.ecma-international.org/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic inversion.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> invertBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/object-inverse-by'</span> );
 

@@ -12,7 +12,7 @@ forEach( arr, log );
     2: 3
     3: 4
 */</span>
-</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log1</span>(<span class="hljs-params"> value, index, collection </span>) </span>{
+</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li><li><strong>collection</strong>: input collection.</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log1</span>(<span class="hljs-params"> value, index, collection </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %d'</span>, index, value );
     <span class="hljs-keyword">if</span> ( index === collection.length-<span class="hljs-number">1</span> &#x26;&#x26; collection.length &#x3C; <span class="hljs-number">10</span> ) {
         collection.push( index+<span class="hljs-number">2</span> );

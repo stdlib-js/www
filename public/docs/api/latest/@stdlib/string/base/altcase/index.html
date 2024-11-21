@@ -1,0 +1,31 @@
+<h1 id="altcase">altcase</h1><blockquote><p>Convert a string to alternate case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> altcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/altcase'</span> );
+</code></pre><h4 id="altcase-str-">altcase( str )</h4><p>Converts a string to alternate case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = altcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'fOo bAr'</span>
+
+str = altcase( <span class="hljs-string">'foo bar baz'</span> );
+<span class="hljs-comment">// returns 'fOo bAr bAz'</span>
+
+str = altcase( <span class="hljs-string">'foo_bar'</span> );
+<span class="hljs-comment">// returns 'fOo_bAr'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> altcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/altcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = altcase( str );
+<span class="hljs-comment">// returns 'hElLo wOrLd!'</span>
+
+str = <span class="hljs-string">'I am a tiny little teapot'</span>;
+out = altcase( str );
+<span class="hljs-comment">// returns 'i aM A TiNy lItTlE TeApOt'</span>
+
+str = <span class="hljs-string">'with big problems'</span>;
+out = altcase( str );
+<span class="hljs-comment">// returns 'wItH BiG PrObLeMs'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = altcase( str );
+<span class="hljs-comment">// returns 'tO Be, Or nOt tO Be: ThAt iS ThE QuEsTiOn.'</span>
+
+str = <span class="hljs-string">'isMobile'</span>;
+out = altcase( str );
+<span class="hljs-comment">// returns 'iSmObIlE'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

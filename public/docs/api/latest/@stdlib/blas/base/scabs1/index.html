@@ -1,0 +1,45 @@
+<h1 id="scabs1">scabs1</h1><blockquote><p>Compute the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real and imaginary components of a single-precision <a href="/docs/api/latest/@stdlib/complex/float32/ctor">complex</a> floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> scabs1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/scabs1'</span> );
+</code></pre><h4 id="scabs1-z-">scabs1( z )</h4><p>Computes the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real and imaginary components of a single-precision <a href="/docs/api/latest/@stdlib/complex/float32/ctor">complex</a> floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+
+<span class="hljs-keyword">var</span> y = scabs1( <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> scabs1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/scabs1'</span> );
+
+<span class="hljs-keyword">var</span> c;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    c = <span class="hljs-keyword">new</span> Complex64( discreteUniform( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> ), discreteUniform( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'scabs1(%s) = %d'</span>, c.toString(), scabs1( c ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/scabs1.h"</span></span>
+</code></pre><h4 id="c_scabs1-c-">c_scabs1( c )</h4><p>Computes the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real and imaginary components of a single-precision <a href="/docs/api/latest/@stdlib/complex/float32/ctor">complex</a> floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> c = stdlib_complex64( <span class="hljs-number">5.0f</span>, <span class="hljs-number">-3.0f</span> );
+
+<span class="hljs-keyword">float</span> y = c_scabs1( c );
+<span class="hljs-comment">// returns 8.0f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>c</strong>: <code>[in] stdlib_complex64_t</code> complex number.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">c_scabs1</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> c )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/scabs1.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/imag.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x[] = {
+        stdlib_complex64( <span class="hljs-number">3.14f</span>, <span class="hljs-number">1.0f</span> ),
+        stdlib_complex64( <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-1.0f</span> ),
+        stdlib_complex64( <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> ),
+        stdlib_complex64( <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> )
+    };
+
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = c_scabs1( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"f(%f + %f) = %f\n"</span>, stdlib_complex64_real( x[ i ] ), stdlib_complex64_imag( x[ i ] ), y );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

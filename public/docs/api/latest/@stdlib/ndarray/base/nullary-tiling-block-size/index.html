@@ -1,0 +1,18 @@
+<h1 id="nullaryblocksize">nullaryBlockSize</h1><blockquote><p>Resolve a loop block size for multi-dimensional array tiled loops.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nullaryBlockSize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nullary-tiling-block-size'</span> );
+</code></pre><h4 id="nullaryblocksize-dtypex-">nullaryBlockSize( dtypeX )</h4><p>Resolves a loop block size according to provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">dtypes</a> for multi-dimensional array tiled loops applying a nullary function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bsize = nullaryBlockSize( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned loop tiling block size is in units of elements.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> nullaryBlockSize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nullary-tiling-block-size'</span> );
+
+<span class="hljs-comment">// Get the list of ndarray dtypes:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Resolve the block size for each dtype...</span>
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'block_size, xdtype'</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    b = nullaryBlockSize( dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d, %s'</span>, b, dt[ i ] );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

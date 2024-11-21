@@ -1,0 +1,37 @@
+<h1 id="endswith">endsWith</h1><blockquote><p>Test if a string ends with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/ends-with'</span> );
+</code></pre><h4 id="endswith-str-search-len-">endsWith( str, search, len )</h4><p>Tests if a string ends with the characters of another string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'boy?'</span>, str.length );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'Boy?'</span>, str.length );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>To search from a specific character position, provide a <code>len</code> argument. If <code>len</code> is positive, the function restricts the search to a substring with length <code>len</code>, beginning with the leftmost character. If <code>len</code> is negative, <code>len</code> indicates to ignore the last <code>len</code> characters (equivalent to <code>str.length + len</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'to be'</span>, <span class="hljs-number">19</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'to be'</span>, -<span class="hljs-number">23</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>In general, exercise caution when operating on substrings containing Unicode characters, as the visual character length may not equal the number of code points. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = <span class="hljs-string">'🏠'</span>.length;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></li><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith"><code>String.prototype.endsWith</code></a> in the following ways:</p><ul><li>The function assumes string values for the first and second arguments and assumes that the <code>len</code> argument is an integer value.</li><li>The function does <strong>not</strong> clamp positive <code>len</code> values to the end of the input string.</li><li>Except when provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>false</code> if <code>len</code> resolves to a starting search position which exceeds the bounds of the input string.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/ends-with'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'air'</span>, str.length );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span>, str.length );
+<span class="hljs-comment">// returns false</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span>, <span class="hljs-number">30</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span>, -<span class="hljs-number">34</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/starts-with"><code>@stdlib/string/base/starts-with</code></a></span><span class="delimiter">: </span><span class="description">test if a string starts with the characters of another string.</span></li></ul></section><section class="links"></section>

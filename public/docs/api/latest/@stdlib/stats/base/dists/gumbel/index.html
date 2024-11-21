@@ -7,8 +7,57 @@
 
 <span class="hljs-keyword">var</span> y = dist.pdf( <span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns ~0.092</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> mean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/mean'</span> );
+<span class="hljs-keyword">var</span> variance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/variance'</span> );
+<span class="hljs-keyword">var</span> stdev = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/stdev'</span> );
+<span class="hljs-keyword">var</span> randGumbel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/gumbel'</span> ).factory;
 <span class="hljs-keyword">var</span> gumbel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/gumbel'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( gumbel ) );
+<span class="hljs-comment">// Set the parameters of the Gumbel distribution:</span>
+<span class="hljs-keyword">var</span> mu = <span class="hljs-number">30.0</span>;   <span class="hljs-comment">// Location parameter (e.g., average annual maximum temperature in °C)</span>
+<span class="hljs-keyword">var</span> beta = <span class="hljs-number">5.0</span>;  <span class="hljs-comment">// Scale parameter</span>
+
+<span class="hljs-comment">// Simulate annual maximum daily temperatures over 1000 years:</span>
+<span class="hljs-keyword">var</span> N = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">var</span> rgumbel = randGumbel( mu, beta );
+<span class="hljs-keyword">var</span> maxTemperatures = filledarrayBy( N, <span class="hljs-string">'float64'</span>, rgumbel );
+
+<span class="hljs-comment">// Compute theoretical statistics of the Gumbel distribution:</span>
+<span class="hljs-keyword">var</span> theoreticalMean = gumbel.mean( mu, beta);
+<span class="hljs-keyword">var</span> theoreticalVariance = gumbel.variance( mu, beta );
+<span class="hljs-keyword">var</span> theoreticalStdev = gumbel.stdev( mu, beta );
+
+<span class="hljs-comment">// Compute sample statistics of the simulated data:</span>
+<span class="hljs-keyword">var</span> sampleMean = mean( N, maxTemperatures, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sampleVariance = variance( N, <span class="hljs-number">1</span>, maxTemperatures, <span class="hljs-number">1</span> ); <span class="hljs-comment">// with Bessel's correction</span>
+<span class="hljs-keyword">var</span> sampleStdev = stdev( N, <span class="hljs-number">1</span>, maxTemperatures, <span class="hljs-number">1</span> ); <span class="hljs-comment">// with Bessel's correction</span>
+
+<span class="hljs-comment">// Display theoretical and sample statistics:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'--- Statistical Comparison ---\n'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mean:'</span>);
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Theoretical: %d°C'</span>, theoreticalMean.toFixed(<span class="hljs-number">2</span>) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Sample:      %d°C\n'</span>, sampleMean.toFixed(<span class="hljs-number">2</span>) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Variance:'</span>);
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Theoretical: %d°C²'</span>, theoreticalVariance.toFixed(<span class="hljs-number">2</span>) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Sample:      %d°C²\n'</span>, sampleVariance.toFixed(<span class="hljs-number">2</span>) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Standard Deviation:'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Theoretical: %d°C'</span>, theoreticalStdev.toFixed(<span class="hljs-number">2</span>) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  Sample:      %d°C\n'</span>, sampleStdev.toFixed(<span class="hljs-number">2</span>) );
+
+<span class="hljs-comment">// Define quantile probabilities:</span>
+<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.25</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.75</span> ] );
+<span class="hljs-keyword">var</span> label = [ <span class="hljs-string">'First Quartile'</span>, <span class="hljs-string">'Median'</span>, <span class="hljs-string">'Third Quartile'</span> ];
+<span class="hljs-keyword">var</span> theoreticalQuantiles = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>([
+    gumbel.quantile( p[<span class="hljs-number">0</span>], mu, beta ),
+    gumbel.quantile( p[<span class="hljs-number">1</span>], mu, beta ),
+    gumbel.quantile( p[<span class="hljs-number">2</span>], mu, beta )
+]);
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Quantiles:'</span> );
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; p.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( label[i] + <span class="hljs-string">': %d°C'</span>, theoreticalQuantiles[i].toFixed(<span class="hljs-number">2</span>) );
+}
 </code></pre></section><section class="related"></section><section class="links"></section>

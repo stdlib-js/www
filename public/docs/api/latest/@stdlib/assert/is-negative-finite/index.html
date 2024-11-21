@@ -1,0 +1,64 @@
+<h1 id="isnegativefinite">isNegativeFinite</h1><blockquote><p>Test if a value is a number having a finite negative value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isNegativeFinite = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-negative-finite'</span> );
+</code></pre><h4 id="isnegativefinite-value-">isNegativeFinite( value )</h4><p>Tests if a value is a number having a finite negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNegativeFinite( -<span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">5.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( -<span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( -<span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="isnegativefiniteisprimitive-value-">isNegativeFinite.isPrimitive( value )</h4><p>Tests if a value is a primitive number having a finite negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNegativeFinite.isPrimitive( -<span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="isnegativefiniteisobject-value-">isNegativeFinite.isObject( value )</h4><p>Tests if a value is a <code>Number</code> object having a finite negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNegativeFinite.isObject( -<span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isNegativeFinite = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-negative-finite'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNegativeFinite( -<span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">5.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( -<span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNegativeFinite( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( <span class="hljs-string">'-5'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( -<span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNegativeFinite( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

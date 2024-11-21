@@ -7,8 +7,49 @@
 
 <span class="hljs-keyword">var</span> y = dist.logpdf( <span class="hljs-number">0.8</span> );
 <span class="hljs-comment">// returns ~-0.907</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randomExponential = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/exponential'</span> );
+<span class="hljs-keyword">var</span> dcusum = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/dcusum'</span> );
 <span class="hljs-keyword">var</span> exponential = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/exponential'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( exponential ) );
+<span class="hljs-comment">// Simulate interarrival times of customers entering a store:</span>
+<span class="hljs-keyword">var</span> lambda = <span class="hljs-number">0.5</span>; <span class="hljs-comment">// Average rate (customers per minute)</span>
+<span class="hljs-keyword">var</span> numCustomers = <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// Generate interarrival times using the exponential distribution:</span>
+<span class="hljs-keyword">var</span> interarrivalTimes = randomExponential( numCustomers, lambda, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+});
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Simulated interarrival times for '</span> + numCustomers + <span class="hljs-string">' customers: '</span> );
+<span class="hljs-built_in">console</span>.log( interarrivalTimes );
+
+<span class="hljs-comment">// Calculate cumulative arrival times by computing the cumulative sum of interarrival times:</span>
+<span class="hljs-keyword">var</span> arrivalTimes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( interarrivalTimes.length );
+dcusum( interarrivalTimes.length, <span class="hljs-number">0.0</span>, interarrivalTimes, <span class="hljs-number">1</span>, arrivalTimes, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nCustomer arrival times: '</span> );
+<span class="hljs-built_in">console</span>.log( arrivalTimes );
+
+<span class="hljs-comment">// Probability that a customer arrives within two minutes:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">2.0</span>;
+<span class="hljs-keyword">var</span> prob = exponential.cdf( x, lambda );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nProbability that a customer arrives within '</span> + x + <span class="hljs-string">' minutes: '</span> + prob.toFixed(<span class="hljs-number">4</span>) );
+
+<span class="hljs-comment">// Expected time until the next customer arrives:</span>
+<span class="hljs-keyword">var</span> mean = exponential.mean( lambda );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Expected interarrival time: '</span> + mean + <span class="hljs-string">' minutes'</span> );
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> exponential.Exponential( lambda );
+
+<span class="hljs-keyword">var</span> median = dist.median;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Median interarrival time: '</span> + median + <span class="hljs-string">' minutes'</span> );
+
+<span class="hljs-comment">// Evaluate the PDF at x = 1.0:</span>
+<span class="hljs-keyword">var</span> out = dist.pdf( <span class="hljs-number">1.0</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF at x = 1: '</span> + out.toFixed(<span class="hljs-number">4</span>) );
+
+<span class="hljs-comment">// Evaluate the MGF at t = 0.1:</span>
+out = dist.mgf( <span class="hljs-number">0.1</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'MGF at t = 0.1: '</span> + out.toFixed(<span class="hljs-number">4</span>) );
 </code></pre></section><section class="related"></section><section class="links"></section>

@@ -10,8 +10,57 @@
 
 y = dist.quantile( <span class="hljs-number">1.9</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> triangular = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/triangular'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( triangular ) );
+<span class="hljs-comment">// Scenario: Modeling completion time for a software development task</span>
+
+<span class="hljs-comment">// Define the distribution parameters (in hours):</span>
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">1.5</span>; <span class="hljs-comment">// Minimum time (best-case scenario)</span>
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">4.5</span>; <span class="hljs-comment">// Maximum time (worst-case scenario)</span>
+<span class="hljs-keyword">var</span> c = discreteUniform( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ); <span class="hljs-comment">// Most likely time (mode)</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'a: %d, b: %d, c: %d'</span>, a, b, c );
+
+<span class="hljs-comment">// Expected (mean) completion time:</span>
+<span class="hljs-keyword">var</span> mean = triangular.mean( a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nExpected completion time: %d hours'</span>, mean );
+
+<span class="hljs-comment">// Median completion time:</span>
+<span class="hljs-keyword">var</span> median = triangular.median( a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Median completion time: %d hours'</span>, median );
+
+<span class="hljs-comment">// Variance in completion time:</span>
+<span class="hljs-keyword">var</span> variance = triangular.variance( a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Variance in completion time: %d hours^2'</span>, variance );
+
+<span class="hljs-comment">// Probability of completing the task within 3 hours:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">3.0</span>;
+<span class="hljs-keyword">var</span> prob = triangular.cdf( x, a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nProbability of completing within %d hours: %d'</span>, x, prob );
+
+<span class="hljs-comment">// 90th percentile of completion time:</span>
+<span class="hljs-keyword">var</span> p = <span class="hljs-number">0.9</span>;
+<span class="hljs-keyword">var</span> percentile = triangular.quantile( p, a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'90% of tasks will be completed within %d hours'</span>, percentile );
+
+<span class="hljs-comment">// Relative likelihood of completing the task in exactly 2.5 hours:</span>
+x = <span class="hljs-number">2.5</span>;
+<span class="hljs-keyword">var</span> likelihood = triangular.pdf( x, a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nRelative likelihood of completing in exactly %d hours: %d'</span>, x, likelihood );
+
+<span class="hljs-comment">// Skewness to understand the distribution's shape:</span>
+<span class="hljs-keyword">var</span> skewness = triangular.skewness( a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nSkewness of completion times: %d'</span>, skewness );
+<span class="hljs-keyword">if</span> ( skewness > <span class="hljs-number">0</span> ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'The distribution is right-skewed, suggesting occasional longer completion times.'</span> );
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( skewness &#x3C; <span class="hljs-number">0</span> ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'The distribution is left-skewed, suggesting occasional shorter completion times.'</span> );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'The distribution is symmetric.'</span> );
+}
+
+<span class="hljs-comment">// Entropy as a measure of uncertainty in the estimate:</span>
+<span class="hljs-keyword">var</span> entropy = triangular.entropy( a, b, c );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nEntropy of the distribution: %d nats'</span>, entropy );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Higher entropy indicates more uncertainty in completion times.'</span> );
 </code></pre></section><section class="related"></section><section class="links"></section>

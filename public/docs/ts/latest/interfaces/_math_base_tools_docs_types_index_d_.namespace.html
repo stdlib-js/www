@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -117,7 +117,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#continuedfraction" class="tsd-kind-icon">continued<wbr>Fraction</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#evalpoly" class="tsd-kind-icon">evalpoly</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#evalpolyf" class="tsd-kind-icon">evalpolyf</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#evalrational" class="tsd-kind-icon">evalrational</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#evalrationalf" class="tsd-kind-icon">evalrationalf</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#fibpoly" class="tsd-kind-icon">fibpoly</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#hermitepoly" class="tsd-kind-icon">hermitepoly</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_math_base_tools_docs_types_index_d_.namespace.html#lucaspoly" class="tsd-kind-icon">lucaspoly</a></li>
@@ -136,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">continued<wbr>Fraction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_continued_fraction_docs_types_index_d_.html#continuedfraction" class="tsd-signature-type">continuedFraction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L65">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L66">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,12 +178,43 @@
 					<div class="tsd-signature tsd-kind-icon">evalpoly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_evalpoly_docs_types_index_d_.html#evalpoly-1" class="tsd-signature-type">evalpoly</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L94">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L95">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Evaluates a polynomial.</p>
+							<p>Evaluates a polynomial using double-precision floating-point arithmetic.</p>
+						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>The implementation uses <a href="https://en.wikipedia.org/wiki/Horner%27s_method">Horner&#39;s rule</a> for efficient computation.</li>
+						</ul>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>polynomial coefficients sorted in ascending degree</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>value at which to evaluate the polynomial</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>evaluated polynomial</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="evalpolyf" class="tsd-anchor"></a>
+					<h3>evalpolyf</h3>
+					<div class="tsd-signature tsd-kind-icon">evalpolyf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_evalpolyf_docs_types_index_d_.html#evalpolyf" class="tsd-signature-type">evalpolyf</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L128">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:128</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Evaluates a polynomial using single-precision floating-point arithmetic.</p>
 						</div>
 						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
 							<h2>Notes</h2>
@@ -207,12 +240,47 @@
 					<div class="tsd-signature tsd-kind-icon">evalrational<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_evalrational_docs_types_index_d_.html#evalrational-1" class="tsd-signature-type">evalrational</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L131">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:131</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L164">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:164</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \(P\) and \(Q\).</p>
+							<p>Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \(P\) and \(Q\)) using double-precision floating-point arithmetic.</p>
+						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>Coefficients should be sorted in ascending degree.</li>
+							<li>The implementation uses <a href="https://en.wikipedia.org/wiki/Horner%27s_method">Horner&#39;s rule</a> for efficient computation.</li>
+						</ul>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>numerator polynomial coefficients sorted in ascending degree</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>denominator polynomial coefficients sorted in ascending degree</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>value at which to evaluate the rational function</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>evaluated rational function</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="evalrationalf" class="tsd-anchor"></a>
+					<h3>evalrationalf</h3>
+					<div class="tsd-signature tsd-kind-icon">evalrationalf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_evalrationalf_docs_types_index_d_.html#evalrationalf" class="tsd-signature-type">evalrationalf</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L204">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:204</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \(P\) and \(Q\)) using single-precision floating-point arithmetic.</p>
 						</div>
 						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
 							<h2>Notes</h2>
@@ -242,7 +310,7 @@
 					<div class="tsd-signature tsd-kind-icon">fibpoly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_fibpoly_docs_types_index_d_.html#fibpoly-1" class="tsd-signature-type">fibpoly</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L153">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:153</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L226">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:226</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -267,7 +335,7 @@
 					<div class="tsd-signature tsd-kind-icon">hermitepoly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_hermitepoly_docs_types_index_d_.html#hermitepoly-1" class="tsd-signature-type">hermitepoly</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L176">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:176</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L249">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:249</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -292,7 +360,7 @@
 					<div class="tsd-signature tsd-kind-icon">lucaspoly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_lucaspoly_docs_types_index_d_.html#lucaspoly-1" class="tsd-signature-type">lucaspoly</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L198">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:198</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L271">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:271</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -317,12 +385,12 @@
 					<div class="tsd-signature tsd-kind-icon">normhermitepoly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_normhermitepoly_docs_types_index_d_.html#normhermitepoly-1" class="tsd-signature-type">normhermitepoly</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L217">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:217</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L290">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:290</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Evaluates a normalized Hermite polynomial.</p>
+							<p>Evaluates a normalized Hermite polynomial using double-precision floating-point arithmetic.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -342,7 +410,7 @@
 					<div class="tsd-signature tsd-kind-icon">sum<wbr>Series<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_math_base_tools_sum_series_docs_types_index_d_.html#sumseries" class="tsd-signature-type">sumSeries</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L243">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:243</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts#L316">lib/node_modules/@stdlib/math/base/tools/docs/types/index.d.ts:316</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -397,7 +465,13 @@
 								<a href="_math_base_tools_docs_types_index_d_.namespace.html#evalpoly" class="tsd-kind-icon">evalpoly</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_math_base_tools_docs_types_index_d_.namespace.html#evalpolyf" class="tsd-kind-icon">evalpolyf</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_math_base_tools_docs_types_index_d_.namespace.html#evalrational" class="tsd-kind-icon">evalrational</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_math_base_tools_docs_types_index_d_.namespace.html#evalrationalf" class="tsd-kind-icon">evalrationalf</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_math_base_tools_docs_types_index_d_.namespace.html#fibpoly" class="tsd-kind-icon">fibpoly</a>
@@ -425,7 +499,13 @@
 						<a href="../modules/_math_base_tools_docs_types_index_d_.html#evalpoly" class="tsd-kind-icon">evalpoly</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_math_base_tools_docs_types_index_d_.html#evalpolyf" class="tsd-kind-icon">evalpolyf</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_math_base_tools_docs_types_index_d_.html#evalrational" class="tsd-kind-icon">evalrational</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_math_base_tools_docs_types_index_d_.html#evalrationalf" class="tsd-kind-icon">evalrationalf</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_math_base_tools_docs_types_index_d_.html#fibpoly" class="tsd-kind-icon">fibpoly</a>
@@ -510,13 +590,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

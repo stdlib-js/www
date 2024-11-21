@@ -1,0 +1,58 @@
+<h1 id="mskrejectmap">mskrejectMap</h1><blockquote><p>Apply a mask to a provided input array and map the unmasked values according to a callback function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mskrejectMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskreject-map'</span> );
+</code></pre><h4 id="mskrejectmap-x-mask-clbk-thisarg--">mskrejectMap( x, mask, clbk[, thisArg ] )</h4><p>Returns a new array by applying a mask and mapping the unmasked values according to a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-keyword">var</span> y = mskrejectMap( x, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], clbk );
+<span class="hljs-comment">// returns [ 2, 6 ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>mask</strong>: mask array.</li><li><strong>clbk</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul><p>The <code>clbk</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current unmasked array element.</li><li><strong>index</strong>: current unmasked array element index.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>clbk</code> function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> mask = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> increase = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value + <span class="hljs-built_in">this</span>;
+}
+
+<span class="hljs-keyword">var</span> out = mskrejectMap( x, mask, clbk, increase );
+<span class="hljs-comment">// returns [ 4, 6 ]</span>
+</code></pre><p>The function <strong>always</strong> returns a new "generic" array.</p><h4 id="mskrejectmapassign-x-mask-out-stride-offset-clbk-thisarg--">mskrejectMap.assign( x, mask, out, stride, offset, clbk[, thisArg ] )</h4><p>Applies a mask to a provided input array, maps the unmasked values according to a callback function, and assigns to elements in a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> mask = [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = mskrejectMap.assign( x, mask, out, -<span class="hljs-number">2</span>, out.length-<span class="hljs-number">1</span>, clbk );
+<span class="hljs-comment">// returns [ 0, 8, 0, 4 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>mask</strong>: mask array.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li><li><strong>clbk</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a <code>mask</code> array element is falsy, the corresponding element in <code>x</code> is <strong>mapped</strong> in the output array; otherwise, the corresponding element in <code>x</code> is "masked" and thus <strong>excluded</strong> from the output array.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> mskrejectMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskreject-map'</span> );
+
+<span class="hljs-comment">// Generate a linearly spaced array:</span>
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">20</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate a random mask:</span>
+<span class="hljs-keyword">var</span> mask = bernoulli( x.length, <span class="hljs-number">0.5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-built_in">console</span>.log( mask );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-comment">// Filter an array using the mask:</span>
+<span class="hljs-keyword">var</span> y = mskrejectMap( x, mask, clbk );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

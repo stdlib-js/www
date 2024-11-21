@@ -1,0 +1,37 @@
+<h1 id="node-api-exports">Node-API Exports</h1><blockquote><p>C utilities for registering Node-API modules.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/export'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/export'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/export.h"</span></span>
+</code></pre><h4 id="stdlib_napi_module_export_fcn-name-">STDLIB_NAPI_MODULE_EXPORT_FCN( name )</h4><p>Macro for registering a Node-API module which exports a function.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_NAPI_MODULE_EXPORT_FCN( addon )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>name</strong>: name of the C function to export.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_napi_module_export_fcn_with_method-fcn_name-prop_name-fcn_method_name-">STDLIB_NAPI_MODULE_EXPORT_FCN_WITH_METHOD( fcn_name, prop_name, fcn_method_name )</h4><p>Macro for registering a Node-API module which exports a function having a method.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon_method</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_NAPI_MODULE_EXPORT_FCN_WITH_METHOD( addon, <span class="hljs-string">"foo"</span>, addon_method )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn_name</strong>: name of the C function to export.</li><li><strong>prop_name</strong>: property name.</li><li><strong>fcn_method_name</strong>: name of the C function to export as a method.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p></section><section class="notes"></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

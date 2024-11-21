@@ -1,0 +1,59 @@
+<h1 id="mskfiltermap">mskfilterMap</h1><blockquote><p>Apply a mask to a provided input array and return a new array after applying a mapping function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mskfilterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskfilter-map'</span> );
+</code></pre><h4 id="mskfiltermap-x-mask-clbk-thisarg-">mskfilterMap( x, mask, clbk[, thisArg] )</h4><p>Applies a mask to a provided input array and returns a new array after applying a mapping function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> m = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> y = mskfilterMap( x, m, clbk );
+<span class="hljs-comment">// returns [ 4, 8 ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>mask</strong>: mask array.</li><li><strong>clbk</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul><p>To set the applied function's execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> x;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> m = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> y = mskfilterMap( x, m, clbk, ctx );
+<span class="hljs-comment">// returns [ 1, 2, 4 ]</span>
+
+<span class="hljs-keyword">var</span> v = ctx.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function <strong>always</strong> returns a new "generic" array.</p><h4 id="mskfiltermapassign-x-mask-out-stride-offset-clbk-thisarg-">mskfilterMap.assign( x, mask, out, stride, offset, clbk[, thisArg] )</h4><p>Applies a mask and mapping function to a provided input array and assigns results to elements in a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> m = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> arr = mskfilterMap.assign( x, m, out, -<span class="hljs-number">2</span>, out.length-<span class="hljs-number">1</span>, clbk );
+<span class="hljs-comment">// returns [ 0, 8, 0, 4 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>mask</strong>: mask array.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li><li><strong>clbk</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a <code>mask</code> array element is truthy, the corresponding element in <code>x</code> is <strong>included</strong> in the output array; otherwise, the corresponding element in <code>x</code> is "masked" and thus <strong>excluded</strong> from the output array.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> abs2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs2'</span> );
+<span class="hljs-keyword">var</span> mskfilterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskfilter-map'</span> );
+
+<span class="hljs-comment">// Generate a linearly spaced array:</span>
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">20</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate a random mask:</span>
+<span class="hljs-keyword">var</span> mask = bernoulli( x.length, <span class="hljs-number">0.5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-built_in">console</span>.log( mask );
+
+<span class="hljs-comment">// Filter an array using the mask:</span>
+<span class="hljs-keyword">var</span> y = mskfilterMap( x, mask, abs2 );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

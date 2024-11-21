@@ -1,0 +1,17 @@
+<h1 id="module">Module</h1><blockquote><p>WebAssembly module wrapper.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Module = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/module-wrapper'</span> );
+</code></pre><h4 id="module-binary-memory-imports-">Module( binary, memory[, imports] )</h4><p>Returns a new WebAssembly module wrapper instance.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// TO-DO: example</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>binary</strong>: WebAssembly binary code.</li><li><strong>memory</strong>: WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">memory</a> instance.</li><li><strong>imports</strong>: WebAssembly module imports object.</li></ul><hr><p><a name="prop-buffer"></a></p><h4 id="moduleprototypebuffer">Module.prototype.buffer</h4><p><strong>Read-only</strong> property which returns a WebAssembly memory buffer as a <code>Uint8Array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// TO-DO: example</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="method-is-view"></a></p><h4 id="moduleprototypeisview-arr-">Module.prototype.isView( arr )</h4><p>Returns a boolean indicating whether a provided list of values is a view of the underlying memory of the WebAssembly module.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// TO-DO: example</span>
+</code></pre></section><hr><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasWebAssemblySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-wasm-support'</span> );
+<span class="hljs-keyword">var</span> Module = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/module-wrapper'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> ( !hasWebAssemblySupport() ) {
+        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Environment does not support WebAssembly.'</span> );
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-keyword">typeof</span> Module ); <span class="hljs-comment">// TO-DO: write example</span>
+}
+
+main();
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

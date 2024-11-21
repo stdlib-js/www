@@ -1,0 +1,27 @@
+<h1 id="iscomplex64vectorlike">isComplex64VectorLike</h1><blockquote><p>Test if a value is a 1-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>-like object containing single-precision complex floating-point numbers.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isComplex64VectorLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex64vector-like'</span> );
+</code></pre><h4 id="iscomplex64vectorlike-value-">isComplex64VectorLike( value )</h4><p>Tests if a value is a 1-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>-like object whose underlying data type is <code>complex64</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'complex64'</span>, <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] ), [ <span class="hljs-number">4</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-keyword">var</span> bool = isComplex64VectorLike( arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> isComplex64VectorLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex64vector-like'</span> );
+
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] );
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'complex64'</span>, buffer, [ <span class="hljs-number">4</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-keyword">var</span> out = isComplex64VectorLike( arr );
+<span class="hljs-comment">// returns true</span>
+
+out = isComplex64VectorLike( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+out = isComplex64VectorLike( {} );
+<span class="hljs-comment">// returns false</span>
+
+out = isComplex64VectorLike( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex128vector-like"><code>@stdlib/assert/is-complex128vector-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 1-dimensional ndarray-like object containing double-precision complex floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-ndarray-like"><code>@stdlib/assert/is-ndarray-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is ndarray-like.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-vector-like"><code>@stdlib/assert/is-vector-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 1-dimensional ndarray-like object.</span></li></ul></section><section class="links"></section>

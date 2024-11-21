@@ -1,0 +1,24 @@
+<h1 id="logeach">logEach</h1><blockquote><p>Insert array element values into a format string and print the result.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+</code></pre><h4 id="logeach-str-args-">logEach( str[, ...args] )</h4><p>Inserts array element values into a format string and prints the result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+logEach( <span class="hljs-string">'%d &#x3C; %d '</span>, x, y );
+<span class="hljs-comment">// e.g., => '1 &#x3C; 4\n2 &#x3C; 5\n3 &#x3C; 6\n'</span>
+</code></pre><p>If an interpolated argument is not an array-like object, the argument is broadcasted for each iteration.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> y = <span class="hljs-number">4</span>;
+
+logEach( <span class="hljs-string">'%d &#x3C; %d'</span>, x, y );
+<span class="hljs-comment">// e.g., => '1 &#x3C; 4\n2 &#x3C; 4\n3 &#x3C; 4\n'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the function is provided array-like objects of unequal lengths, the function throws an error.</li><li>The function supports array-like objects supporting the accessor protocol (e.g., <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>, <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>, etc).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> map = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+
+<span class="hljs-keyword">var</span> rand = discreteUniform( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+<span class="hljs-keyword">var</span> x = filledBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, rand );
+
+<span class="hljs-keyword">var</span> y = map( x, naryFunction( abs, <span class="hljs-number">1</span> ) );
+logEach( <span class="hljs-string">'abs(%d) = %d'</span>, x, y );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

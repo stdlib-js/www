@@ -4,7 +4,8 @@
 
 bool = isSameNativeClass( [], {} );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameNativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-native-class'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isSameNativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-native-class'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSameNativeClass( <span class="hljs-number">3.14</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">3.14</span> ) );
 <span class="hljs-comment">// returns true</span>
@@ -20,4 +21,4 @@ bool = isSameNativeClass( [], {} );
 
 bool = isSameNativeClass( <span class="hljs-literal">null</span>, <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-type"><code>@stdlib/assert/is-same-type</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments have the same type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-strict-equal"><code>@stdlib/assert/is-strict-equal</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are strictly equal.</span></li></ul></section><section class="links"></section>

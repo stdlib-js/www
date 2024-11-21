@@ -1,0 +1,52 @@
+<h1 id="cunonebyright">cunoneByRight</h1><blockquote><p>Cumulatively test whether every array element in a provided array fails a test implemented by a predicate function, while iterating from right-to-left.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cunoneByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cunone-by-right'</span> );
+</code></pre><h4 id="cunonebyright-x-predicate-thisarg--">cunoneByRight( x, predicate[, thisArg ] )</h4><p>Cumulatively tests whether every array element in a provided array fails a test implemented by a <code>predicate</code> function, while iterating from right-to-left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value > <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> y = cunoneByRight( x, fcn );
+<span class="hljs-comment">// returns [ true, true, true, false, false ];</span>
+</code></pre><p>The invoked <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li><li><strong>collection</strong>: input collection.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = cunoneByRight( x, fcn, context );
+<span class="hljs-comment">// returns [ true, true, true, false, false ]</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><h4 id="cunonebyrightassign-x-out-stride-offset-predicate-thisarg--">cunoneByRight.assign( x, out, stride, offset, predicate[, thisArg ] )</h4><p>Cumulatively test whether every array element in a provided array fails a test implemented by a <code>predicate</code> function, while iterating from right-to-left, and assigns the results to the elements in the output array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v > <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span> ];
+
+<span class="hljs-keyword">var</span> out = cunoneByRight.assign( x, y, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, fcn );
+<span class="hljs-comment">// returns [ true, null, true, null, true, null, false, null, false, null ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> cunoneByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cunone-by-right'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-comment">// Create an array of random values:</span>
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.1</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Cumulatively test whether no array element passes a test, while iterating from right-to-left:</span>
+<span class="hljs-keyword">var</span> out = cunoneByRight( x, fcn );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

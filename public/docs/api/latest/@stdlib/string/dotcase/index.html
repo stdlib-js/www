@@ -1,0 +1,45 @@
+<h1 id="dotcase">dotcase</h1><blockquote><p>Convert a string to dot case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dotcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/dotcase'</span> );
+</code></pre><h4 id="dotcase-str-">dotcase( str )</h4><p>Converts a string to dot case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dotcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'foo.bar'</span>
+
+out = dotcase( <span class="hljs-string">'IS_MOBILE'</span> );
+<span class="hljs-comment">// returns 'is.mobile'</span>
+
+out = dotcase( <span class="hljs-string">'Hello World!'</span> );
+<span class="hljs-comment">// returns 'hello.world'</span>
+
+out = dotcase( <span class="hljs-string">'--foo-bar--'</span> );
+<span class="hljs-comment">// returns 'foo.bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dotcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/dotcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = dotcase( str );
+<span class="hljs-comment">// returns 'hello.world'</span>
+
+str = <span class="hljs-string">'HELLO WORLD!'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'hello.world'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'to.be.or.not.to.be.that.is.the.question'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: dotcase [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nfoo_bar'</span> | dotcase --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nfoo_bar'</span> | dotcase --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ dotcase <span class="hljs-string">'hello world!'</span>
+hello.world
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beEp booP'</span> | dotcase
+beep.boop
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\tfoo_bar'</span> | dotcase --split <span class="hljs-string">'\t'</span>
+beep
+foo.bar
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/camelcase"><code>@stdlib/string/camelcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to camel case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/kebabcase"><code>@stdlib/string/kebabcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to kebab case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/pascalcase"><code>@stdlib/string/pascalcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to Pascal case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/snakecase"><code>@stdlib/string/snakecase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to snake case.</span></li></ul></section><section class="links"></section>

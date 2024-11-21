@@ -1,0 +1,53 @@
+<h1 id="data">data</h1><blockquote><p>Return the underlying data buffer of a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/data-buffer'</span> );
+</code></pre><h4 id="data-x-">data( x )</h4><p>Returns the underlying data buffer of a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> out = data( x );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/data-buffer'</span> );
+
+<span class="hljs-comment">// Create a 'float64' array...</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+};
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> buf = data( x );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-comment">// Create a 'float32' array...</span>
+opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+};
+x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+buf = data( x );
+<span class="hljs-comment">// returns &#x3C;Float32Array></span>
+
+<span class="hljs-comment">// Create a 'complex128' array...</span>
+opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'complex128'</span>
+};
+x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+buf = data( x );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-comment">// Create an 'int32' array...</span>
+opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'int32'</span>
+};
+x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+buf = data( x );
+<span class="hljs-comment">// returns &#x3C;Int32Array></span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dtype"><code>@stdlib/ndarray/dtype</code></a></span><span class="delimiter">: </span><span class="description">return the data type of a provided ndarray.</span></li></ul></section><section class="links"></section>

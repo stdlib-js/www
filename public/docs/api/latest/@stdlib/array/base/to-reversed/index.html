@@ -1,0 +1,21 @@
+<h1 id="toreversed">toReversed</h1><blockquote><p>Return a new array with elements in reverse order.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toReversed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/to-reversed'</span> );
+</code></pre><h4 id="toreversed-x-">toReversed( x )</h4><p>Returns a new array with elements in reverse order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = toReversed( x );
+<span class="hljs-comment">// returns [ 6, 5, 4, 3, 2, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having a <code>toReversed</code> method, the function defers execution to that method and assumes that the method API has the following signature:</p><pre><code class="no-highlight language-text">x.toReversed()
+</code></pre></li><li><p>If provided an array-like object without a <code>toReversed</code> method, the function manually reverses elements and copies to a new generic array.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> toReversed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/to-reversed'</span> );
+
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+
+<span class="hljs-keyword">var</span> y = toReversed( x );
+<span class="hljs-comment">// returns [ 5, 4, 3, 2, 1, 0 ]</span>
+
+<span class="hljs-keyword">var</span> z = toReversed( y );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

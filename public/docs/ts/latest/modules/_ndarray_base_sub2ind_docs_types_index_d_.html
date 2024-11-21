@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -115,7 +115,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/sub2ind/docs/types/index.d.ts#L125">lib/node_modules/@stdlib/ndarray/base/sub2ind/docs/types/index.d.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/sub2ind/docs/types/index.d.ts#L126">lib/node_modules/@stdlib/ndarray/base/sub2ind/docs/types/index.d.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -128,9 +128,10 @@
 								<ul>
 									<li><p>The function accepts the following &quot;modes&quot;:</p>
 										<ul>
-											<li><code>throw</code>: throws an error when a subscript exceeds array dimensions.</li>
-											<li><code>wrap</code>: wrap around subscripts exceeding array dimensions using modulo arithmetic.</li>
-											<li><code>clamp</code>: set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li>
+											<li><strong>throw</strong>: throw an error when a subscript exceeds array dimensions.</li>
+											<li><strong>normalize</strong>: normalize negative subscripts and throw an error when a subscript exceeds array dimensions.</li>
+											<li><strong>wrap</strong>: wrap around subscripts exceeding array dimensions using modulo arithmetic.</li>
+											<li><strong>clamp</strong>: set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li>
 										</ul>
 									</li>
 									<li><p>When provided fewer modes than dimensions, the function recycles modes using modulo arithmetic.</p>
@@ -329,13 +330,13 @@ idx = sub2ind( shape, strides, offset, <span class="hljs-number">1</span>, <span
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

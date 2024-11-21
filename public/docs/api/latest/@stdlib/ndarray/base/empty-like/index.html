@@ -1,0 +1,28 @@
+<h1 id="emptylike">emptyLike</h1><blockquote><p>Create an uninitialized ndarray having the same shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty-like'</span> );
+</code></pre><h4 id="emptylike-x-">emptyLike( x )</h4><p>Creates an uninitialized ndarray having the same shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( <span class="hljs-string">'float64'</span>, [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> y = emptyLike( x );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Along with data type, shape, and order, the function infers the "class" of the returned ndarray from the provided ndarray. For example, if provided a "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, the function returns a base <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>. If provided a non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, the function returns a non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li>If the inferred output ndarray data type is <code>'generic'</code>, the function always returns a zero-filled ndarray.</li><li>For returned ndarrays whose underlying memory is <strong>not</strong> initialized, memory contents are unknown and may contain <strong>sensitive</strong> data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty'</span> );
+<span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty-like'</span> );
+
+<span class="hljs-comment">// Get a list of data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate uninitialized arrays...</span>
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    x = empty( dt[ i ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+    y = emptyLike( x );
+    <span class="hljs-built_in">console</span>.log( y.data );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

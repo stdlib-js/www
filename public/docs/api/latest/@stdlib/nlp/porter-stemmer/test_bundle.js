@@ -123,12 +123,12 @@
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":2}],2:[function(require,module,exports){
 /**
@@ -231,12 +231,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":4}],4:[function(require,module,exports){
 /**
@@ -317,12 +317,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":6}],6:[function(require,module,exports){
 /**
@@ -397,560 +397,6 @@ module.exports = hasToStringTagSupport;
 'use strict';
 
 /**
-* Test if a value is an array.
-*
-* @module @stdlib/assert/is-array
-*
-* @example
-* var isArray = require( '@stdlib/assert/is-array' );
-*
-* var bool = isArray( [] );
-* // returns true
-*
-* bool = isArray( {} );
-* // returns false
-*/
-
-// MODULES //
-
-var isArray = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isArray;
-
-},{"./main.js":8}],8:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var nativeClass = require( '@stdlib/utils/native-class' );
-
-
-// VARIABLES //
-
-var f;
-
-
-// FUNCTIONS //
-
-/**
-* Tests if a value is an array.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is an array
-*
-* @example
-* var bool = isArray( [] );
-* // returns true
-*
-* @example
-* var bool = isArray( {} );
-* // returns false
-*/
-function isArray( value ) {
-	return ( nativeClass( value ) === '[object Array]' );
-}
-
-
-// MAIN //
-
-if ( Array.isArray ) {
-	f = Array.isArray;
-} else {
-	f = isArray;
-}
-
-
-// EXPORTS //
-
-module.exports = f;
-
-},{"@stdlib/utils/native-class":99}],9:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a boolean.
-*
-* @module @stdlib/assert/is-boolean
-*
-* @example
-* var isBoolean = require( '@stdlib/assert/is-boolean' );
-*
-* var bool = isBoolean( false );
-* // returns true
-*
-* bool = isBoolean( new Boolean( false ) );
-* // returns true
-*
-* @example
-* // Use interface to check for boolean primitives...
-* var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-*
-* var bool = isBoolean( false );
-* // returns true
-*
-* bool = isBoolean( new Boolean( true ) );
-* // returns false
-*
-* @example
-* // Use interface to check for boolean objects...
-* var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
-*
-* var bool = isBoolean( true );
-* // returns false
-*
-* bool = isBoolean( new Boolean( false ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isBoolean;
-
-},{"./main.js":10,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-nonenumerable-read-only-property":84}],10:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a boolean.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a boolean
-*
-* @example
-* var bool = isBoolean( false );
-* // returns true
-*
-* @example
-* var bool = isBoolean( true );
-* // returns true
-*
-* @example
-* var bool = isBoolean( new Boolean( false ) );
-* // returns true
-*
-* @example
-* var bool = isBoolean( new Boolean( true ) );
-* // returns true
-*/
-function isBoolean( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-}
-
-
-// EXPORTS //
-
-module.exports = isBoolean;
-
-},{"./object.js":11,"./primitive.js":12}],11:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2serialize.js' );
-
-
-// VARIABLES //
-
-var FLG = hasToStringTag();
-
-
-// MAIN //
-
-/**
-* Tests if a value is a boolean object.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a boolean object
-*
-* @example
-* var bool = isBoolean( true );
-* // returns false
-*
-* @example
-* var bool = isBoolean( new Boolean( false ) );
-* // returns true
-*/
-function isBoolean( value ) {
-	if ( typeof value === 'object' ) {
-		if ( value instanceof Boolean ) {
-			return true;
-		}
-		if ( FLG ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object Boolean]' );
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = isBoolean;
-
-},{"./try2serialize.js":14,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":99}],12:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Tests if a value is a boolean primitive.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a boolean primitive
-*
-* @example
-* var bool = isBoolean( true );
-* // returns true
-*
-* @example
-* var bool = isBoolean( false );
-* // returns true
-*
-* @example
-* var bool = isBoolean( new Boolean( true ) );
-* // returns false
-*/
-function isBoolean( value ) {
-	return ( typeof value === 'boolean' );
-}
-
-
-// EXPORTS //
-
-module.exports = isBoolean;
-
-},{}],13:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// eslint-disable-next-line stdlib/no-redeclare
-var toString = Boolean.prototype.toString; // non-generic
-
-
-// EXPORTS //
-
-module.exports = toString;
-
-},{}],14:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
-
-
-// MAIN //
-
-/**
-* Attempts to serialize a value to a string.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value can be serialized
-*/
-function test( value ) {
-	try {
-		toString.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./tostring.js":13}],15:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a Buffer instance.
-*
-* @module @stdlib/assert/is-buffer
-*
-* @example
-* var isBuffer = require( '@stdlib/assert/is-buffer' );
-*
-* var v = isBuffer( new Buffer( 'beep' ) );
-* // returns true
-*
-* v = isBuffer( {} );
-* // returns false
-*/
-
-// MODULES //
-
-var isBuffer = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isBuffer;
-
-},{"./main.js":16}],16:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isObjectLike = require( '@stdlib/assert/is-object-like' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a Buffer instance.
-*
-* @param {*} value - value to validate
-* @returns {boolean} boolean indicating if a value is a Buffer instance
-*
-* @example
-* var v = isBuffer( new Buffer( 'beep' ) );
-* // returns true
-*
-* @example
-* var v = isBuffer( new Buffer( [1,2,3,4] ) );
-* // returns true
-*
-* @example
-* var v = isBuffer( {} );
-* // returns false
-*
-* @example
-* var v = isBuffer( [] );
-* // returns false
-*/
-function isBuffer( value ) {
-	return (
-		isObjectLike( value ) &&
-		(
-			// eslint-disable-next-line no-underscore-dangle
-			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
-			(
-				value.constructor &&
-
-				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
-				typeof value.constructor.isBuffer === 'function' &&
-				value.constructor.isBuffer( value )
-			)
-		)
-	);
-}
-
-
-// EXPORTS //
-
-module.exports = isBuffer;
-
-},{"@stdlib/assert/is-object-like":34}],17:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
 * Test if a value is an empty string.
 *
 * @module @stdlib/assert/is-empty-string
@@ -989,22 +435,22 @@ module.exports = isBuffer;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isEmptyString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isEmptyString, 'isPrimitive', isPrimitive );
-setReadOnly( isEmptyString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isEmptyString;
+module.exports = main;
 
-},{"./main.js":18,"./object.js":19,"./primitive.js":20,"@stdlib/utils/define-nonenumerable-read-only-property":84}],18:[function(require,module,exports){
+},{"./main.js":8,"./object.js":9,"./primitive.js":10,"@stdlib/utils/define-nonenumerable-read-only-property":45}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1060,7 +506,7 @@ function isEmptyString( value ) {
 
 module.exports = isEmptyString;
 
-},{"./object.js":19,"./primitive.js":20}],19:[function(require,module,exports){
+},{"./object.js":9,"./primitive.js":10}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1118,7 +564,7 @@ function isEmptyString( value ) {
 
 module.exports = isEmptyString;
 
-},{"@stdlib/assert/is-string":40}],20:[function(require,module,exports){
+},{"@stdlib/assert/is-string":11}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1168,1004 +614,7 @@ function isEmptyString( value ) {
 
 module.exports = isEmptyString;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a function.
-*
-* @module @stdlib/assert/is-function
-*
-* @example
-* var isFunction = require( '@stdlib/assert/is-function' );
-*
-* function beep() {
-*     return 'beep';
-* }
-*
-* var bool = isFunction( beep );
-* // returns true
-*/
-
-// MODULES //
-
-var isFunction = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isFunction;
-
-},{"./main.js":22}],22:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var typeOf = require( '@stdlib/utils/type-of' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a function.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a function
-*
-* @example
-* function beep() {
-*     return 'beep';
-* }
-*
-* var bool = isFunction( beep );
-* // returns true
-*/
-function isFunction( value ) {
-	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
-	return ( typeOf( value ) === 'function' );
-}
-
-
-// EXPORTS //
-
-module.exports = isFunction;
-
-},{"@stdlib/utils/type-of":108}],23:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is an integer.
-*
-* @module @stdlib/assert/is-integer
-*
-* @example
-* var isInteger = require( '@stdlib/assert/is-integer' );
-*
-* var bool = isInteger( 5.0 );
-* // returns true
-*
-* bool = isInteger( new Number( 5.0 ) );
-* // returns true
-*
-* bool = isInteger( -3.14 );
-* // returns false
-*
-* bool = isInteger( null );
-* // returns false
-*
-* @example
-* // Use interface to check for integer primitives...
-* var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-*
-* var bool = isInteger( -3.0 );
-* // returns true
-*
-* bool = isInteger( new Number( -3.0 ) );
-* // returns false
-*
-* @example
-* // Use interface to check for integer objects...
-* var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
-*
-* var bool = isInteger( 3.0 );
-* // returns false
-*
-* bool = isInteger( new Number( 3.0 ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./main.js":25,"./object.js":26,"./primitive.js":27,"@stdlib/utils/define-nonenumerable-read-only-property":84}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var NINF = require( '@stdlib/constants/float64/ninf' );
-var isInt = require( '@stdlib/math/base/assert/is-integer' );
-
-
-// MAIN //
-
-/**
-* Tests if a number primitive is an integer value.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a number primitive is an integer value
-*/
-function isInteger( value ) {
-	return (
-		value < PINF &&
-		value > NINF &&
-		isInt( value )
-	);
-}
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"@stdlib/constants/float64/ninf":48,"@stdlib/constants/float64/pinf":49,"@stdlib/math/base/assert/is-integer":50}],25:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is an integer.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is an integer
-*
-* @example
-* var bool = isInteger( 5.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( new Number( 5.0 ) );
-* // returns true
-*
-* @example
-* var bool = isInteger( -3.14 );
-* // returns false
-*
-* @example
-* var bool = isInteger( null );
-* // returns false
-*/
-function isInteger( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-}
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./object.js":26,"./primitive.js":27}],26:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isObject;
-var isInt = require( './integer.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number object having an integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number object having an integer value
-*
-* @example
-* var bool = isInteger( 3.0 );
-* // returns false
-*
-* @example
-* var bool = isInteger( new Number( 3.0 ) );
-* // returns true
-*/
-function isInteger( value ) {
-	return (
-		isNumber( value ) &&
-		isInt( value.valueOf() )
-	);
-}
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./integer.js":24,"@stdlib/assert/is-number":28}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-var isInt = require( './integer.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number primitive having an integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number primitive having an integer value
-*
-* @example
-* var bool = isInteger( -3.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( new Number( -3.0 ) );
-* // returns false
-*/
-function isInteger( value ) {
-	return (
-		isNumber( value ) &&
-		isInt( value )
-	);
-}
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./integer.js":24,"@stdlib/assert/is-number":28}],28:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a number.
-*
-* @module @stdlib/assert/is-number
-*
-* @example
-* var isNumber = require( '@stdlib/assert/is-number' );
-*
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*
-* bool = isNumber( NaN );
-* // returns true
-*
-* bool = isNumber( null );
-* // returns false
-*
-* @example
-* var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-*
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* bool = isNumber( NaN );
-* // returns true
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns false
-*
-* @example
-* var isNumber = require( '@stdlib/assert/is-number' ).isObject;
-*
-* var bool = isNumber( 3.14 );
-* // returns false
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./main.js":29,"./object.js":30,"./primitive.js":31,"@stdlib/utils/define-nonenumerable-read-only-property":84}],29:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a number
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* @example
-* var bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*
-* @example
-* var bool = isNumber( NaN );
-* // returns true
-*
-* @example
-* var bool = isNumber( null );
-* // returns false
-*/
-function isNumber( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-}
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./object.js":30,"./primitive.js":31}],30:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var nativeClass = require( '@stdlib/utils/native-class' );
-var Number = require( '@stdlib/number/ctor' );
-var test = require( './try2serialize.js' );
-
-
-// VARIABLES //
-
-var FLG = hasToStringTag();
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number object.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number object
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns false
-*
-* @example
-* var bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*/
-function isNumber( value ) {
-	if ( typeof value === 'object' ) {
-		if ( value instanceof Number ) {
-			return true;
-		}
-		if ( FLG ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object Number]' );
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./try2serialize.js":33,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/number/ctor":58,"@stdlib/utils/native-class":99}],31:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Tests if a value is a number primitive.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number primitive
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* @example
-* var bool = isNumber( NaN );
-* // returns true
-*
-* @example
-* var bool = isNumber( new Number( 3.14 ) );
-* // returns false
-*/
-function isNumber( value ) {
-	return ( typeof value === 'number' );
-}
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{}],32:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var Number = require( '@stdlib/number/ctor' );
-
-
-// MAIN //
-
-// eslint-disable-next-line stdlib/no-redeclare
-var toString = Number.prototype.toString; // non-generic
-
-
-// EXPORTS //
-
-module.exports = toString;
-
-},{"@stdlib/number/ctor":58}],33:[function(require,module,exports){
-arguments[4][14][0].apply(exports,arguments)
-},{"./tostring.js":32,"dup":14}],34:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is object-like.
-*
-* @module @stdlib/assert/is-object-like
-*
-* @example
-* var isObjectLike = require( '@stdlib/assert/is-object-like' );
-*
-* var bool = isObjectLike( {} );
-* // returns true
-*
-* bool = isObjectLike( [] );
-* // returns true
-*
-* bool = isObjectLike( null );
-* // returns false
-*
-* @example
-* var isObjectLike = require( '@stdlib/assert/is-object-like' ).isObjectLikeArray;
-*
-* var bool = isObjectLike( [ {}, [] ] );
-* // returns true
-*
-* bool = isObjectLike( [ {}, '3.0' ] );
-* // returns false
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
-
-
-// MAIN //
-
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
-
-
-// EXPORTS //
-
-module.exports = isObjectLike;
-
-},{"./main.js":35,"@stdlib/assert/tools/array-function":47,"@stdlib/utils/define-nonenumerable-read-only-property":84}],35:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Tests if a value is object-like.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether a value is object-like
-*
-* @example
-* var bool = isObjectLike( {} );
-* // returns true
-*
-* @example
-* var bool = isObjectLike( [] );
-* // returns true
-*
-* @example
-* var bool = isObjectLike( null );
-* // returns false
-*/
-function isObjectLike( value ) {
-	return (
-		value !== null &&
-		typeof value === 'object'
-	);
-}
-
-
-// EXPORTS //
-
-module.exports = isObjectLike;
-
-},{}],36:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-var exec = RegExp.prototype.exec; // non-generic
-
-
-// EXPORTS //
-
-module.exports = exec;
-
-},{}],37:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a regular expression.
-*
-* @module @stdlib/assert/is-regexp
-*
-* @example
-* var isRegExp = require( '@stdlib/assert/is-regexp' );
-*
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* bool = isRegExp( {} );
-* // returns false
-*/
-
-// MODULES //
-
-var isRegExp = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./main.js":38}],38:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2exec.js' );
-
-
-// VARIABLES //
-
-var FLG = hasToStringTag();
-
-
-// MAIN //
-
-/**
-* Tests if a value is a regular expression.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a regular expression
-*
-* @example
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* @example
-* var bool = isRegExp( {} );
-* // returns false
-*/
-function isRegExp( value ) {
-	if ( typeof value === 'object' ) {
-		if ( value instanceof RegExp ) {
-			return true;
-		}
-		if ( FLG ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object RegExp]' );
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./try2exec.js":39,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":99}],39:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var exec = require( './exec.js' );
-
-
-// MAIN //
-
-/**
-* Attempts to call a `RegExp` method.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if able to call a `RegExp` method
-*/
-function test( value ) {
-	try {
-		exec.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./exec.js":36}],40:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2225,22 +674,22 @@ module.exports = test;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":41,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-nonenumerable-read-only-property":84}],41:[function(require,module,exports){
+},{"./main.js":12,"./object.js":13,"./primitive.js":14,"@stdlib/utils/define-nonenumerable-read-only-property":45}],12:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2292,7 +741,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":42,"./primitive.js":43}],42:[function(require,module,exports){
+},{"./object.js":13,"./primitive.js":14}],13:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2359,7 +808,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":44,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":99}],43:[function(require,module,exports){
+},{"./try2valueof.js":15,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":52}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2403,7 +852,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],44:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2452,7 +901,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":45}],45:[function(require,module,exports){
+},{"./valueof.js":16}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2481,464 +930,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],46:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var format = require( '@stdlib/string/format' );
-
-
-// MAIN //
-
-/**
-* Returns a function which tests if every element in an array passes a test condition.
-*
-* @param {Function} predicate - function to apply
-* @throws {TypeError} must provide a function
-* @returns {Function} an array function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-function arrayfcn( predicate ) {
-	if ( typeof predicate !== 'function' ) {
-		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', predicate ) );
-	}
-	return every;
-
-	/**
-	* Tests if every element in an array passes a test condition.
-	*
-	* @private
-	* @param {*} value - value to test
-	* @returns {boolean} boolean indicating whether a value is an array for which all elements pass a test condition
-	*/
-	function every( value ) {
-		var len;
-		var i;
-		if ( !isArray( value ) ) {
-			return false;
-		}
-		len = value.length;
-		if ( len === 0 ) {
-			return false;
-		}
-		for ( i = 0; i < len; i++ ) {
-			if ( predicate( value[ i ] ) === false ) {
-				return false;
-			}
-		}
-		return true;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = arrayfcn;
-
-},{"@stdlib/assert/is-array":7,"@stdlib/string/format":75}],47:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a function which tests if every element in an array passes a test condition.
-*
-* @module @stdlib/assert/tools/array-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arrayfcn = require( './arrayfcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arrayfcn;
-
-},{"./arrayfcn.js":46}],48:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/constants/float64/ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/constants/float64/ninf' );
-* // returns -Infinity
-*/
-
-// MODULES //
-
-var Number = require( '@stdlib/number/ctor' );
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* ## Notes
-*
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ```binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{"@stdlib/number/ctor":58}],49:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/constants/float64/pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/constants/float64/pinf' );
-* // returns Infinity
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* ## Notes
-*
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ```binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],50:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a finite double-precision floating-point number is an integer.
-*
-* @module @stdlib/math/base/assert/is-integer
-*
-* @example
-* var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-*
-* var bool = isInteger( 1.0 );
-* // returns true
-*
-* bool = isInteger( 3.14 );
-* // returns false
-*/
-
-// MODULES //
-
-var isInteger = require( './is_integer.js' );
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./is_integer.js":51}],51:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// MAIN //
-
-/**
-* Tests if a finite double-precision floating-point number is an integer.
-*
-* @param {number} x - value to test
-* @returns {boolean} boolean indicating whether the value is an integer
-*
-* @example
-* var bool = isInteger( 1.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( 3.14 );
-* // returns false
-*/
-function isInteger( x ) {
-	return (floor(x) === x);
-}
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"@stdlib/math/base/special/floor":52}],52:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Round a double-precision floating-point number toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var floor = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{"./main.js":53}],53:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a double-precision floating-point number toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],54:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2979,14 +971,14 @@ module.exports = floor;
 
 // MODULES //
 
-var porterStemmer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = porterStemmer;
+module.exports = main;
 
-},{"./main.js":55}],55:[function(require,module,exports){
+},{"./main.js":18}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3020,9 +1012,9 @@ module.exports = porterStemmer;
 // MODULES //
 
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var endsWith = require( '@stdlib/string/ends-with' );
-var lowercase = require( '@stdlib/string/lowercase' );
-var replace = require( '@stdlib/string/replace' );
+var endsWith = require( '@stdlib/string/base/ends-with' );
+var lowercase = require( '@stdlib/string/base/lowercase' );
+var replace = require( '@stdlib/string/base/replace' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -3085,7 +1077,7 @@ var RE2_STEP4 = /^(.+?)(s|t)(ion)$/;
 var RE_STEP5 = /^(.+?)e$/;
 var RE_LAST = /.$/;
 var RE_ATBLIZ = /(at|bl|iz)$/;
-var RE_DOUBLE = new RegExp( '([^aeiouylsz])\\1$' );
+var RE_DOUBLE = new RegExp( '([^aeiouylsz])\\1$' ); // eslint-disable-line prefer-regex-literals
 
 
 // MAIN //
@@ -3224,7 +1216,7 @@ function porterStemmer( word ) {
 			word = stem;
 		}
 	}
-	if ( endsWith( word, 'll' ) && RE_MGR1.test( word ) ) {
+	if ( endsWith( word, 'll', word.length ) && RE_MGR1.test( word ) ) {
 		word = replace( word, RE_LAST, '' );
 	}
 
@@ -3240,9 +1232,10 @@ function porterStemmer( word ) {
 
 module.exports = porterStemmer;
 
-},{"@stdlib/assert/is-string":40,"@stdlib/string/ends-with":74,"@stdlib/string/format":75,"@stdlib/string/lowercase":78,"@stdlib/string/replace":80}],56:[function(require,module,exports){
+},{"@stdlib/assert/is-string":11,"@stdlib/string/base/ends-with":23,"@stdlib/string/base/lowercase":36,"@stdlib/string/base/replace":38,"@stdlib/string/format":40}],19:[function(require,module,exports){
 module.exports={"stemmed": ["A", "a", "aa", "aal", "aalii", "aam", "aani", "aardvark", "aardwolf", "aaron", "aaron", "aaron", "aaronit", "aaronit", "aaru", "Ab", "aba", "ababdeh", "ababua", "abac", "abaca", "abac", "abacai", "abacin", "abacin", "abaciscu", "abacist", "aback", "abactin", "abactin", "abact", "abactor", "abaculu", "abacu", "abadit", "abaff", "abaft", "abais", "abais", "abaiss", "abalien", "abalien", "abalon", "abama", "abamper", "abandon", "abandon", "abandon", "abandonedli", "abandone", "abandon", "abandon", "aban", "abant", "abaptiston", "abarambo", "abari", "abarthrosi", "abarticular", "abarticul", "aba", "abas", "abas", "abasedli", "abased", "abas", "abas", "abasgi", "abash", "abash", "abashedli", "abashed", "abashless", "abashlessli", "abash", "abasia", "abas", "abask", "abassin", "abastard", "abat", "abat", "abat", "abat", "abati", "abatis", "abaton", "abat", "abattoir", "abatua", "abatur", "abav", "abaxi", "abaxil", "abaz", "abb", "abba", "abbacom", "abbaci", "abbadid", "abba", "abbasi", "abbassi", "abbassid", "abbati", "abbat", "abbess", "abbei", "abbeysted", "abbi", "abbot", "abbotci", "abbotnulliu", "abbotship", "abbrevi", "abbrevi", "abbrevi", "abbrevi", "abbreviatori", "abbreviatur", "abbi", "abcoulomb", "abdal", "abdat", "abderian", "abderit", "abdest", "abdic", "abdic", "abdic", "abdic", "abdic", "abdic", "abdiel", "abdit", "abditori", "abdomen", "abdomin", "abdominal", "abdominalian", "abdomin", "abdominoanterior", "abdominocardiac", "abdominocentesi", "abdominocyst", "abdominogenit", "abdominohysterectomi", "abdominohysterotomi", "abdominoposterior", "abdominoscop", "abdominoscopi", "abdominothorac", "abdomin", "abdominovagin", "abdominoves", "abduc", "abducen", "abduc", "abduct", "abduct", "abductor", "ab", "abeam", "abear", "abear", "abecedarian", "abecedarium", "abecedari", "ab", "abeigh", "abel", "abel", "abelia", "abelian", "abelicea", "abelit", "abelit", "abelmoschu", "abelmosk", "abelonian", "abeltre", "abencerrag", "abenter", "abepithymia", "aberdeen", "aberdevin", "aberdonian", "aberia", "aberr", "aberr", "aberr", "aberr", "aberr", "aberr", "aberr", "aberromet", "aberroscop", "aberunc", "abet", "abet", "abett", "abettor", "abevacu", "abei", "abey", "abey", "abey", "abfarad", "abhenri", "abhiseka", "abhomin", "abhor", "abhorr", "abhorr", "abhorr", "abhorr", "abhorr", "abhorr", "abhor", "abhorson", "abid", "abid", "abid", "abid", "abidi", "abid", "abidingli", "abiding", "abi", "abi", "abiet", "abieten", "abiet", "abietin", "abietinea", "abietin", "abietin", "abiez", "abigail", "abigail", "abigailship", "abigeat", "abigeu", "abilao", "abil", "abilla", "abilo", "abintest", "abiogenesi", "abiogenesist", "abiogenet", "abiogenet", "abiogenet", "abiogenist", "abiogen", "abiogeni", "abiolog", "abiolog", "abiolog", "abiosi", "abiot", "abiotroph", "abiotrophi", "abipon", "abir", "abirrit", "abirrit", "abirrit", "abirrit", "abiston", "abitibi", "abiuret", "abject", "abjected", "abject", "abject", "abjectli", "abject", "abjoint", "abjudg", "abjud", "abjud", "abjunct", "abjunct", "abjur", "abjuratori", "abjur", "abjur", "abjur", "abkar", "abkari", "abkha", "abkhasian", "ablach", "ablact", "ablact", "ablar", "ablastem", "ablast", "ablat", "ablat", "ablatiti", "ablativ", "abl", "ablat", "ablaut", "ablaz", "abl", "ableez", "ableg", "abl", "ablepharia", "ablepharon", "ablephar", "ablepharu", "ablepsia", "ablept", "ablept", "abler", "ablest", "ablewhacket", "ablin", "abloom", "ablow", "ablud", "abluent", "ablush", "ablut", "ablutionari", "abluvion", "abli", "abmho", "abnaki", "abneg", "abneg", "abneg", "abneg", "abner", "abnerv", "abnet", "abneur", "abnorm", "abnorm", "abnormalist", "abnorm", "abnorm", "abnorm", "abnorm", "abnorm", "abnorm", "abnumer", "abo", "aboard", "abobra", "abod", "abod", "abodi", "abohm", "aboil", "abolish", "abolish", "abolish", "abolit", "abolitionari", "abolition", "abolitionist", "abolition", "abolla", "aboma", "abomasum", "abomasu", "abomin", "abomin", "abomin", "abomin", "abomin", "abomin", "abomin", "abongo", "aboon", "aborad", "abor", "abor", "abord", "aborigin", "aborigin", "aborigin", "aboriginari", "aborigin", "abort", "abort", "aborticid", "aborti", "abortifaci", "abortin", "abort", "abort", "abortionist", "abort", "abort", "abort", "abortu", "abouch", "abound", "abound", "abound", "aboundingli", "about", "about", "abov", "aboveboard", "abovedeck", "aboveground", "aboveproof", "abovestair", "abox", "abracadabra", "abrachia", "abrad", "abrad", "abrad", "abraham", "abraham", "abrahamida", "abrahamit", "abrahamit", "abraid", "abram", "abrami", "abranchi", "abranchi", "abranchian", "abranchiata", "abranchi", "abranchi", "abrasax", "abras", "abrash", "abrasiomet", "abras", "abras", "abrastol", "abraum", "abraxa", "abreact", "abreact", "abreast", "abrenounc", "abret", "abrico", "abridg", "abridg", "abridg", "abridgedli", "abridg", "abridg", "abrim", "abrin", "abristl", "abroach", "abroad", "abrocoma", "abrocom", "abrog", "abrog", "abrog", "abrog", "abrog", "abroma", "abronia", "abrook", "abrotanum", "abrotin", "abrupt", "abruptedli", "abrupt", "abruptli", "abrupt", "abru", "absalom", "absamper", "absaroka", "absarokit", "abscess", "abscess", "abscess", "abscessroot", "abscind", "abscis", "abscis", "absciss", "abscissa", "abscissa", "absciss", "absciss", "absconc", "abscond", "abscond", "abscondedli", "abscond", "abscond", "absconsa", "abscoulomb", "absenc", "absent", "absent", "absente", "absente", "absenteeship", "absent", "absent", "absent", "absentmindedli", "absent", "absfarad", "abshenri", "absi", "absinth", "absinthi", "absinthian", "absinthi", "absinth", "absinthin", "absinthin", "absinth", "absinthism", "absinthium", "absinthol", "absit", "absmho", "absohm", "absolut", "absolut", "absolut", "absolut", "absolut", "absolutist", "absolutist", "absolutist", "absolut", "absolut", "absolut", "absolutori", "absolv", "absolvatori", "absolv", "absolv", "absolv", "absolvitor", "absolvitori", "abson", "abson", "absorb", "absorb", "absorb", "absorb", "absorbedli", "absorbed", "absorbefaci", "absorb", "absorb", "absorb", "absorb", "absorbingli", "absorbit", "absorpt", "absorpt", "absorptiomet", "absorptiometr", "absorpt", "absorpt", "absorpt", "absorpt", "absorpt", "absquatul", "abstain", "abstain", "abstain", "abstemi", "abstemi", "abstemi", "abstent", "abstentionist", "abstenti", "absterg", "absterg", "absters", "absters", "absters", "abstin", "abstin", "abstin", "abstinenti", "abstin", "abstract", "abstract", "abstractedli", "abstracted", "abstract", "abstract", "abstract", "abstraction", "abstractionist", "abstractiti", "abstract", "abstract", "abstract", "abstractli", "abstract", "abstractor", "abstrah", "abstrict", "abstrict", "abstrus", "abstrus", "abstrus", "abstrus", "abstrus", "absum", "absumpt", "absurd", "absurd", "absurdli", "absurd", "absvolt", "absyrtu", "abtermin", "abthain", "abthainri", "abthainri", "abthanag", "abu", "abu", "abucco", "abulia", "abul", "abulomania", "abuna", "abund", "abund", "abund", "abundantia", "abundantli", "abura", "aburabozu", "aburban", "aburst", "aburton", "abus", "abus", "abusedli", "abuse", "abus", "abusefulli", "abus", "abus", "abus", "abusi", "abus", "abus", "abus", "abut", "abuta", "abutilon", "abut", "abutt", "abutt", "abut", "abuzz", "abvolt", "abwab", "abi", "abysm", "abysm", "abysm", "abyss", "abyss", "abyssinian", "abyssobenthon", "abyssolith", "abyssopelag", "acacatechin", "acacatechol", "acacetin", "acacia", "acacian", "acaciin", "acacin", "academ", "academi", "academian", "academ", "academ", "academ", "academ", "academ", "academician", "academic", "academ", "academist", "academit", "academ", "academ", "academu", "academi", "acadia", "acadialit", "acadian", "acadi", "acaena", "acaj", "acaleph", "acalepha", "acalepha", "acalephan", "acalephoid", "acalyc", "acalycin", "acalycin", "acalycul", "acalypha", "acalyptera", "acalyptrata", "acalyptrata", "acalyptr", "acamar", "acampsia", "acana", "acanac", "acanon", "acanth", "acantha", "acanthacea", "acanthac", "acanthad", "acantharia", "acanthia", "acanthi", "acanthin", "acanthin", "acanthion", "acanthit", "acanthocarp", "acanthocephala", "acanthocephalan", "acanthocephali", "acanthocephal", "acanthocereu", "acanthoclad", "acanthodea", "acanthodean", "acanthodei", "acanthod", "acanthodian", "acanthodida", "acanthodii", "acanthodini", "acanthoid", "acantholimon", "acantholog", "acantholog", "acantholysi", "acanthoma", "acanthomerida", "acanthon", "acanthopanax", "acanthophi", "acanthophor", "acanthopod", "acanthopod", "acanthopomat", "acanthopor", "acanthopteran", "acanthopteri", "acanthopter", "acanthopterygian", "acanthopterygii", "acanthosi", "acanth", "acanthurida", "acanthuru", "acanthu", "acapnia", "acapni", "acapsular", "acapu", "acapulco", "acara", "acarapi", "acardia", "acardiac", "acari", "acarian", "acariasi", "acaricid", "acaricid", "acarid", "acarida", "acaridea", "acaridean", "acaridomatium", "acariform", "acarina", "acarin", "acarinosi", "acarocecidium", "acarodermat", "acaroid", "acarol", "acarologist", "acarolog", "acarophil", "acarophobia", "acarotox", "acarpel", "acarp", "acaru", "acastu", "acatalect", "acatalepsia", "acatalepsi", "acatalept", "acatallact", "acatamathesia", "acataphasia", "acataposi", "acatastasia", "acatastat", "acat", "acategor", "acateri", "acatharsia", "acatharsi", "acathol", "acaud", "acaud", "acaulesc", "acaulin", "acaulos", "acaul", "acca", "acced", "acced", "acced", "acceler", "accelerando", "acceler", "acceler", "acceler", "acceleratedli", "acceler", "accel", "acceler", "acceleratori", "accelerograph", "acceleromet", "accend", "accend", "accend", "accens", "accensor", "accent", "accentless", "accentor", "accentu", "accentu", "accentu", "accentu", "accentu", "accentu", "accentu", "accentu", "accept", "accept", "accept", "accept", "accept", "accept", "accept", "accept", "accept", "accept", "acceptedli", "accept", "acceptil", "acceptil", "accept", "accept", "acceptor", "acceptress", "accers", "accersit", "accersitor", "access", "accessarili", "accessari", "accessari", "accessaryship", "access", "access", "access", "access", "accession", "accession", "access", "access", "accessless", "accessori", "accessorili", "accessori", "accessoriu", "accessori", "accid", "accid", "accid", "accident", "accident", "accidentalist", "accident", "accident", "accident", "accid", "accidenti", "accidenti", "accid", "accidia", "accidi", "accing", "accipi", "accipit", "accipitr", "accipitrari", "accipitr", "accipitrin", "accismu", "accit", "acclaim", "acclaim", "acclaim", "acclam", "acclam", "acclamatori", "acclimat", "acclimat", "acclim", "acclimat", "acclim", "acclimatiz", "acclimat", "acclimat", "acclimat", "acclimatur", "acclin", "acclin", "acclivit", "accliv", "accliv", "accloi", "accoast", "accoil", "accolad", "accolad", "accol", "accol", "accol", "accombin", "accommod", "accommod", "accommod", "accommod", "accommod", "accommod", "accommodatingli", "accommod", "accommod", "accommod", "accommod", "accommod", "accompani", "accompani", "accompaniment", "accompanist", "accompani", "accompanyist", "accomplet", "accomplic", "accompliceship", "accompl", "accomplish", "accomplish", "accomplish", "accomplish", "accomplish", "accomplisht", "accompt", "accord", "accord", "accord", "accord", "accord", "accordantli", "accord", "accord", "accordingli", "accordion", "accordionist", "accorpor", "accorpor", "accost", "accost", "accost", "accouch", "accouch", "accoucheur", "accoucheus", "account", "account", "account", "account", "account", "account", "account", "accountantship", "account", "account", "accoupl", "accoupl", "accout", "accouter", "accoi", "accredit", "accredit", "accredit", "accredit", "accredit", "accrementiti", "accrementit", "accresc", "accresc", "accresc", "accret", "accret", "accret", "accretionari", "accret", "accroach", "accroid", "accrual", "accru", "accruement", "accruer", "accub", "accubitum", "accubitu", "accultur", "accultur", "accultur", "accultur", "accumb", "accumb", "accumb", "accumul", "accumul", "accumul", "accumulativ", "accumul", "accumul", "accumul", "accumul", "accuraci", "accur", "accur", "accur", "accurs", "accurs", "accursedli", "accursed", "accus", "accus", "accus", "accus", "accus", "accusativ", "accus", "accus", "accusatori", "accusatori", "accusatori", "accusatrix", "accus", "accus", "accus", "accusingli", "accus", "accustom", "accustom", "accustomedli", "accustomed", "ac", "aceacenaphthen", "aceanthren", "aceanthrenequinon", "acecaffin", "aceconit", "acedia", "acediamin", "acediast", "acedi", "aceldama", "acemeta", "acemet", "acenaphthen", "acenaphthenyl", "acenaphthylen", "acentr", "acentr", "aceolog", "aceolog", "aceph", "acephala", "acephalan", "acephali", "acephalia", "acephalina", "acephalin", "aceph", "acephalist", "acephalit", "acephalocyst", "acephal", "acephalu", "acer", "aceracea", "acerac", "acera", "acerata", "acer", "acer", "acerather", "aceratherium", "aceratosi", "acerb", "acerba", "acerb", "acerb", "acerb", "acerdol", "acerin", "aceros", "acer", "acerra", "acertannin", "acerv", "acerv", "acerv", "acerv", "acervos", "acervulin", "acervulu", "acesc", "acesc", "acesc", "aceship", "acesodyn", "acest", "acetabular", "acetabularia", "acetabulifer", "acetabuliform", "acetabul", "acetabulum", "acetacet", "acet", "acetaldehydas", "acetaldehyd", "acetaldehydras", "acet", "acet", "acetamid", "acetamidin", "acetamidin", "acetamido", "acetaminol", "acetanilid", "acetanilid", "acetanion", "acetanisid", "acetanisidid", "acetannin", "acetari", "acetarson", "acet", "acet", "acet", "acetbromamid", "acetenyl", "acethydrazid", "acet", "acetif", "acetifi", "acetifi", "acetimet", "acetimetri", "acetin", "acet", "acetmethylanilid", "acetnaphthalid", "acetoacetanilid", "acetoacet", "acetoacet", "acetoamidophenol", "acetoarsenit", "acetobact", "acetobenzo", "acetobromanilid", "acetochlor", "acetocinnamen", "acetoin", "acetol", "acetolysi", "acetolyt", "acetomet", "acetometr", "acetometr", "acetometri", "acetomorphin", "acetonaphthon", "aceton", "aceton", "aceton", "acetonemia", "acetonem", "aceton", "acetonitril", "aceton", "aceton", "acetonuria", "acetonuromet", "acetonyl", "acetonylaceton", "acetonyliden", "acetophenetid", "acetophenin", "acetophenin", "acetophenon", "acetopiperon", "acetopyrin", "acetosalicyl", "acetos", "acetos", "acetosolubl", "acetothienon", "acetotoluid", "acetotoluidin", "acet", "acetoveratron", "acetoxim", "acetoxyl", "acetoxyphthalid", "acetphenetid", "acetphenetidin", "acetract", "acettoluid", "acetum", "acetur", "acetyl", "acetylaceton", "acetylaceton", "acetylamin", "acetyl", "acetyl", "acetyl", "acetylbenzen", "acetylbenzo", "acetylbenzo", "acetylbiuret", "acetylcarbazol", "acetylcellulos", "acetylcholin", "acetylcyanid", "acetylen", "acetylen", "acetylenediurein", "acetylen", "acetylenyl", "acetylfluorid", "acetylglycin", "acetylhydrazin", "acetyl", "acetylid", "acetyliodid", "acetyliz", "acetyl", "acetyl", "acetyl", "acetylmethylcarbinol", "acetylperoxid", "acetylphenol", "acetylphenylhydrazin", "acetylrosanilin", "acetylsalicyl", "acetylsalol", "acetyltannin", "acetylthymol", "acetyltropein", "acetylurea", "ach", "achaean", "achaemenian", "achaemenid", "achaemenida", "achaemenidian", "achaenodon", "achaeta", "achaet", "achag", "achagua", "achakzai", "achalasia", "achamoth", "achango", "achar", "achariacea", "achariac", "achat", "achat", "achatina", "achatinella", "achatinida", "ach", "acheilia", "acheil", "acheiria", "acheir", "acheiru", "achen", "achen", "acheni", "achenium", "achenocarp", "achenodium", "acher", "achernar", "acheronian", "acheront", "acheront", "achet", "achetida", "acheulean", "achewe", "achiev", "achiev", "achiev", "achiev", "achigan", "achilari", "achil", "achillea", "achillean", "achilleid", "achillein", "achil", "achilloburs", "achillodynia", "achim", "achimen", "achines", "ach", "achingli", "achira", "achitophel", "achlamyd", "achlamydea", "achlamyd", "achlorhydria", "achlorophyl", "achloropsia", "achmetha", "acholia", "achol", "acholo", "achol", "acholuria", "acholur", "achomawi", "achondrit", "achondrit", "achondroplasia", "achondroplast", "achor", "achord", "achordata", "achord", "achorion", "achra", "achre", "achroacyt", "achroanth", "achrodextrin", "achrodextrinas", "achroglobin", "achroiocythaemia", "achroiocythemia", "achroit", "achroma", "achromacyt", "achromasia", "achromat", "achrom", "achromatiacea", "achromat", "achromat", "achromat", "achromatin", "achromatin", "achromat", "achromatium", "achromatiz", "achromat", "achromat", "achromatocyt", "achromatolysi", "achromatop", "achromatophil", "achromatopia", "achromatopsia", "achromatopsi", "achromatosi", "achromat", "achromaturia", "achromia", "achrom", "achromobact", "achromobacteriea", "achromoderma", "achromophil", "achromotrichia", "achrom", "achron", "achroodextrin", "achroodextrinas", "achroou", "achropsia", "achtehalb", "achtel", "achtelthal", "achua", "achi", "achylia", "achyl", "achymia", "achym", "achyranth", "achyrod", "acichlorid", "acicula", "acicular", "acicularli", "acicul", "acicul", "aciculum", "acid", "acidanthera", "acidaspi", "acidemia", "acid", "acid", "acidifer", "acidifi", "acidifi", "acidif", "acidif", "acidifi", "acidifi", "acidimet", "acidimetr", "acidimetr", "acidimetr", "acidimetri", "acidit", "acid", "acid", "acidli", "acid", "acidoid", "acidolog", "acidomet", "acidometri", "acidophil", "acidophil", "acidophil", "acidoproteolyt", "acidosi", "acidosteophyt", "acidot", "acidproof", "acidul", "acidul", "acidul", "acidur", "acidyl", "acier", "acierag", "acier", "acier", "acier", "aciform", "acili", "acili", "aciliu", "acinac", "acinac", "acinacifoli", "acinaciform", "acinar", "acinari", "acinari", "acineta", "acineta", "acinetan", "acinetaria", "acinetarian", "acinet", "acinetiform", "acinetina", "acinetinan", "acin", "aciniform", "acinos", "acinotubular", "acin", "acinu", "acipens", "acipenser", "acipenserid", "acipenserida", "acipenserin", "acipenseroid", "acipenseroidei", "aci", "aciurgi", "acker", "ackei", "ackman", "acknow", "acknowledg", "acknowledg", "acknowledg", "acknowledgedli", "acknowledg", "aclast", "acl", "acleidian", "acleist", "aclemon", "aclidian", "aclin", "aclin", "acloud", "acli", "acmaea", "acmaeida", "acmat", "acm", "acmesthesia", "acmic", "acmispon", "acmit", "acn", "acneform", "acneiform", "acnemia", "acnida", "acnod", "acnod", "acocanthera", "acocantherin", "acock", "acockbil", "acocotl", "acoela", "acoelomata", "acoelom", "acoelomat", "acoelomi", "acoelom", "acoel", "acoemeta", "acoemeti", "acoemet", "acoin", "acoin", "acolapissa", "acold", "acolhua", "acolhuan", "acolog", "acolog", "acol", "acoluth", "acolyt", "acolyth", "acoma", "acoma", "acomia", "acom", "acon", "acondylos", "acondyl", "acon", "acon", "aconin", "aconin", "aconit", "aconit", "aconitia", "aconit", "aconitin", "aconitin", "aconitum", "acontia", "acontium", "acontiu", "aconuresi", "acop", "acopon", "acopyrin", "acopyrin", "acor", "acorea", "acoria", "acorn", "acorn", "acoru", "acosm", "acosm", "acosmist", "acosmist", "acotyledon", "acotyledon", "acouasm", "acouchi", "acouchi", "acoumet", "acoumetri", "acouomet", "acouophonia", "acoupa", "acousmata", "acousmat", "acoust", "acoust", "acoust", "acoustician", "acousticolater", "acousticon", "acoust", "acquaint", "acquaint", "acquaintanceship", "acquaint", "acquaint", "acquaint", "acquainted", "acquest", "acquiesc", "acquiesc", "acquiesc", "acquiesc", "acquiesc", "acquiesc", "acquiesc", "acquiescingli", "acquir", "acquir", "acquir", "acquir", "acquir", "acquirenda", "acquir", "acquis", "acquisit", "acquisit", "acquisit", "acquisit", "acquisit", "acquisit", "acquisitor", "acquisitum", "acquist", "acquit", "acquit", "acquitt", "acquitt", "acquitt", "acrab", "acraci", "acraein", "acraeina", "acraldehyd", "acrania", "acrani", "acrani", "acrasia", "acrasiacea", "acrasial", "acrasida", "acrasiea", "acraspeda", "acraspedot", "acratia", "acraturesi", "acrawl", "acraz", "acr", "acreabl", "acreag", "acreak", "acream", "acr", "acredula", "acreman", "acrestaff", "acrid", "acridan", "acridian", "acrid", "acridida", "acridiida", "acridin", "acridin", "acridinium", "acrid", "acridium", "acridli", "acrid", "acridon", "acridonium", "acridophagu", "acridyl", "acriflavin", "acriflavin", "acrimoni", "acrimoni", "acrimoni", "acrimoni", "acrindolin", "acrinyl", "acrisia", "acrisiu", "acrita", "acritan", "acrit", "acrit", "acritol", "acroa", "acroaesthesia", "acroama", "acroamat", "acroamat", "acroanesthesia", "acroarthr", "acroasphyxia", "acroataxia", "acroat", "acrobaci", "acrobat", "acrob", "acrobatholith", "acrobat", "acrobat", "acrobat", "acrobat", "acrobat", "acroblast", "acrobry", "acrobyst", "acrocarpi", "acrocarp", "acrocephalia", "acrocephal", "acrocephal", "acrocephali", "acrocera", "acroceratida", "acroceraunian", "acrocerida", "acrochordida", "acrochordina", "acrochordon", "acroclinium", "acrocomia", "acroconidium", "acrocontractur", "acrocoracoid", "acrocyanosi", "acrocyst", "acrodactylum", "acrodermat", "acrodont", "acrodont", "acrodrom", "acrodrom", "acrodu", "acrodynia", "acroesthesia", "acrogam", "acrogami", "acrogen", "acrogen", "acrogen", "acrogen", "acrographi", "acrogyna", "acrogyna", "acrogyn", "acrolein", "acrolith", "acrolithan", "acrolith", "acrolog", "acrolog", "acrolog", "acrologu", "acrolog", "acromania", "acromast", "acromegalia", "acromegal", "acromegali", "acromelalgia", "acromet", "acromi", "acromicria", "acromioclavicular", "acromiocoracoid", "acromiodeltoid", "acromiohumer", "acromiohyoid", "acromion", "acromioscapular", "acromiostern", "acromiothorac", "acromonogrammat", "acromphalu", "acromyodi", "acromyodian", "acromyod", "acromyod", "acromyotonia", "acromyotonu", "acron", "acronarcot", "acroneurosi", "acron", "acron", "acronyc", "acronych", "acronycta", "acronyct", "acronym", "acronym", "acronym", "acronym", "acronyx", "acrook", "acroparalysi", "acroparesthesia", "acropatholog", "acropathi", "acropet", "acropet", "acrophobia", "acrophonet", "acrophon", "acrophoni", "acropodium", "acropolei", "acropoli", "acropolitan", "acropora", "acrorhagu", "acrorrheuma", "acrosarc", "acrosarcum", "acroscleriasi", "acroscleroderma", "acroscop", "acros", "acrosom", "acrosphacelu", "acrospir", "acrospor", "acrospor", "across", "acrost", "acrost", "acrost", "acrostich", "acrostichea", "acrostich", "acrostichoid", "acrostichum", "acrostic", "acrostolion", "acrostolium", "acrotarsi", "acrotarsium", "acroteleut", "acroteri", "acroter", "acroterium", "acrothoracica", "acrot", "acrot", "acrotom", "acrotreta", "acrotretida", "acrotroph", "acrotrophoneurosi", "acrux", "acrydium", "acryl", "acrylaldehyd", "acryl", "acryl", "acrylonitril", "acrylyl", "act", "acta", "actabl", "actabl", "actaea", "actaeacea", "actaeon", "actaeonida", "actiad", "actian", "actif", "actifi", "actifi", "actin", "actin", "actin", "actinautograph", "actinautographi", "actin", "actinenchyma", "act", "actinia", "actinian", "actiniaria", "actiniarian", "actin", "actin", "actinidia", "actinidiacea", "actinifer", "actiniform", "actinin", "actiniochrom", "actiniohematin", "actiniomorpha", "actin", "actinistia", "actinium", "actinobacillosi", "actinobacillu", "actinoblast", "actinobranch", "actinobranchia", "actinocarp", "actinocarp", "actinocarp", "actinochemistri", "actinocrinid", "actinocrinida", "actinocrinit", "actinocrinu", "actinocut", "actinodermat", "actinodielectr", "actinodrom", "actinodrom", "actinoelectr", "actinoelectr", "actinoelectr", "actinogonidi", "actinogram", "actinograph", "actinographi", "actinoid", "actinoida", "actinoidea", "actinolit", "actinolit", "actinolog", "actinologu", "actinolog", "actinomer"], "original": ["A", "a", "aa", "aal", "aalii", "aam", "Aani", "aardvark", "aardwolf", "Aaron", "Aaronic", "Aaronical", "Aaronite", "Aaronitic", "Aaru", "Ab", "aba", "Ababdeh", "Ababua", "abac", "abaca", "abacate", "abacay", "abacinate", "abacination", "abaciscus", "abacist", "aback", "abactinal", "abactinally", "abaction", "abactor", "abaculus", "abacus", "Abadite", "abaff", "abaft", "abaisance", "abaiser", "abaissed", "abalienate", "abalienation", "abalone", "Abama", "abampere", "abandon", "abandonable", "abandoned", "abandonedly", "abandonee", "abandoner", "abandonment", "Abanic", "Abantes", "abaptiston", "Abarambo", "Abaris", "abarthrosis", "abarticular", "abarticulation", "abas", "abase", "abased", "abasedly", "abasedness", "abasement", "abaser", "Abasgi", "abash", "abashed", "abashedly", "abashedness", "abashless", "abashlessly", "abashment", "abasia", "abasic", "abask", "Abassin", "abastardize", "abatable", "abate", "abatement", "abater", "abatis", "abatised", "abaton", "abator", "abattoir", "Abatua", "abature", "abave", "abaxial", "abaxile", "abaze", "abb", "Abba", "abbacomes", "abbacy", "Abbadide", "abbas", "abbasi", "abbassi", "Abbasside", "abbatial", "abbatical", "abbess", "abbey", "abbeystede", "Abbie", "abbot", "abbotcy", "abbotnullius", "abbotship", "abbreviate", "abbreviately", "abbreviation", "abbreviator", "abbreviatory", "abbreviature", "Abby", "abcoulomb", "abdal", "abdat", "Abderian", "Abderite", "abdest", "abdicable", "abdicant", "abdicate", "abdication", "abdicative", "abdicator", "Abdiel", "abditive", "abditory", "abdomen", "abdominal", "Abdominales", "abdominalian", "abdominally", "abdominoanterior", "abdominocardiac", "abdominocentesis", "abdominocystic", "abdominogenital", "abdominohysterectomy", "abdominohysterotomy", "abdominoposterior", "abdominoscope", "abdominoscopy", "abdominothoracic", "abdominous", "abdominovaginal", "abdominovesical", "abduce", "abducens", "abducent", "abduct", "abduction", "abductor", "Abe", "abeam", "abear", "abearance", "abecedarian", "abecedarium", "abecedary", "abed", "abeigh", "Abel", "abele", "Abelia", "Abelian", "Abelicea", "Abelite", "abelite", "Abelmoschus", "abelmosk", "Abelonian", "abeltree", "Abencerrages", "abenteric", "abepithymia", "Aberdeen", "aberdevine", "Aberdonian", "Aberia", "aberrance", "aberrancy", "aberrant", "aberrate", "aberration", "aberrational", "aberrator", "aberrometer", "aberroscope", "aberuncator", "abet", "abetment", "abettal", "abettor", "abevacuation", "abey", "abeyance", "abeyancy", "abeyant", "abfarad", "abhenry", "abhiseka", "abhominable", "abhor", "abhorrence", "abhorrency", "abhorrent", "abhorrently", "abhorrer", "abhorrible", "abhorring", "Abhorson", "abidal", "abidance", "abide", "abider", "abidi", "abiding", "abidingly", "abidingness", "Abie", "Abies", "abietate", "abietene", "abietic", "abietin", "Abietineae", "abietineous", "abietinic", "Abiezer", "Abigail", "abigail", "abigailship", "abigeat", "abigeus", "abilao", "ability", "abilla", "abilo", "abintestate", "abiogenesis", "abiogenesist", "abiogenetic", "abiogenetical", "abiogenetically", "abiogenist", "abiogenous", "abiogeny", "abiological", "abiologically", "abiology", "abiosis", "abiotic", "abiotrophic", "abiotrophy", "Abipon", "abir", "abirritant", "abirritate", "abirritation", "abirritative", "abiston", "Abitibi", "abiuret", "abject", "abjectedness", "abjection", "abjective", "abjectly", "abjectness", "abjoint", "abjudge", "abjudicate", "abjudication", "abjunction", "abjunctive", "abjuration", "abjuratory", "abjure", "abjurement", "abjurer", "abkar", "abkari", "Abkhas", "Abkhasian", "ablach", "ablactate", "ablactation", "ablare", "ablastemic", "ablastous", "ablate", "ablation", "ablatitious", "ablatival", "ablative", "ablator", "ablaut", "ablaze", "able", "ableeze", "ablegate", "ableness", "ablepharia", "ablepharon", "ablepharous", "Ablepharus", "ablepsia", "ableptical", "ableptically", "abler", "ablest", "ablewhackets", "ablins", "abloom", "ablow", "ablude", "abluent", "ablush", "ablution", "ablutionary", "abluvion", "ably", "abmho", "Abnaki", "abnegate", "abnegation", "abnegative", "abnegator", "Abner", "abnerval", "abnet", "abneural", "abnormal", "abnormalism", "abnormalist", "abnormality", "abnormalize", "abnormally", "abnormalness", "abnormity", "abnormous", "abnumerable", "Abo", "aboard", "Abobra", "abode", "abodement", "abody", "abohm", "aboil", "abolish", "abolisher", "abolishment", "abolition", "abolitionary", "abolitionism", "abolitionist", "abolitionize", "abolla", "aboma", "abomasum", "abomasus", "abominable", "abominableness", "abominably", "abominate", "abomination", "abominator", "abomine", "Abongo", "aboon", "aborad", "aboral", "aborally", "abord", "aboriginal", "aboriginality", "aboriginally", "aboriginary", "aborigine", "abort", "aborted", "aborticide", "abortient", "abortifacient", "abortin", "abortion", "abortional", "abortionist", "abortive", "abortively", "abortiveness", "abortus", "abouchement", "abound", "abounder", "abounding", "aboundingly", "about", "abouts", "above", "aboveboard", "abovedeck", "aboveground", "aboveproof", "abovestairs", "abox", "abracadabra", "abrachia", "abradant", "abrade", "abrader", "Abraham", "Abrahamic", "Abrahamidae", "Abrahamite", "Abrahamitic", "abraid", "Abram", "Abramis", "abranchial", "abranchialism", "abranchian", "Abranchiata", "abranchiate", "abranchious", "abrasax", "abrase", "abrash", "abrasiometer", "abrasion", "abrasive", "abrastol", "abraum", "abraxas", "abreact", "abreaction", "abreast", "abrenounce", "abret", "abrico", "abridge", "abridgeable", "abridged", "abridgedly", "abridger", "abridgment", "abrim", "abrin", "abristle", "abroach", "abroad", "Abrocoma", "abrocome", "abrogable", "abrogate", "abrogation", "abrogative", "abrogator", "Abroma", "Abronia", "abrook", "abrotanum", "abrotine", "abrupt", "abruptedly", "abruption", "abruptly", "abruptness", "Abrus", "Absalom", "absampere", "Absaroka", "absarokite", "abscess", "abscessed", "abscession", "abscessroot", "abscind", "abscise", "abscision", "absciss", "abscissa", "abscissae", "abscisse", "abscission", "absconce", "abscond", "absconded", "abscondedly", "abscondence", "absconder", "absconsa", "abscoulomb", "absence", "absent", "absentation", "absentee", "absenteeism", "absenteeship", "absenter", "absently", "absentment", "absentmindedly", "absentness", "absfarad", "abshenry", "Absi", "absinthe", "absinthial", "absinthian", "absinthiate", "absinthic", "absinthin", "absinthine", "absinthism", "absinthismic", "absinthium", "absinthol", "absit", "absmho", "absohm", "absolute", "absolutely", "absoluteness", "absolution", "absolutism", "absolutist", "absolutistic", "absolutistically", "absolutive", "absolutization", "absolutize", "absolutory", "absolvable", "absolvatory", "absolve", "absolvent", "absolver", "absolvitor", "absolvitory", "absonant", "absonous", "absorb", "absorbability", "absorbable", "absorbed", "absorbedly", "absorbedness", "absorbefacient", "absorbency", "absorbent", "absorber", "absorbing", "absorbingly", "absorbition", "absorpt", "absorptance", "absorptiometer", "absorptiometric", "absorption", "absorptive", "absorptively", "absorptiveness", "absorptivity", "absquatulate", "abstain", "abstainer", "abstainment", "abstemious", "abstemiously", "abstemiousness", "abstention", "abstentionist", "abstentious", "absterge", "abstergent", "abstersion", "abstersive", "abstersiveness", "abstinence", "abstinency", "abstinent", "abstinential", "abstinently", "abstract", "abstracted", "abstractedly", "abstractedness", "abstracter", "abstraction", "abstractional", "abstractionism", "abstractionist", "abstractitious", "abstractive", "abstractively", "abstractiveness", "abstractly", "abstractness", "abstractor", "abstrahent", "abstricted", "abstriction", "abstruse", "abstrusely", "abstruseness", "abstrusion", "abstrusity", "absume", "absumption", "absurd", "absurdity", "absurdly", "absurdness", "absvolt", "Absyrtus", "abterminal", "abthain", "abthainrie", "abthainry", "abthanage", "Abu", "abu", "abucco", "abulia", "abulic", "abulomania", "abuna", "abundance", "abundancy", "abundant", "Abundantia", "abundantly", "abura", "aburabozu", "aburban", "aburst", "aburton", "abusable", "abuse", "abusedly", "abusee", "abuseful", "abusefully", "abusefulness", "abuser", "abusion", "abusious", "abusive", "abusively", "abusiveness", "abut", "Abuta", "Abutilon", "abutment", "abuttal", "abutter", "abutting", "abuzz", "abvolt", "abwab", "aby", "abysm", "abysmal", "abysmally", "abyss", "abyssal", "Abyssinian", "abyssobenthonic", "abyssolith", "abyssopelagic", "acacatechin", "acacatechol", "acacetin", "Acacia", "Acacian", "acaciin", "acacin", "academe", "academial", "academian", "Academic", "academic", "academical", "academically", "academicals", "academician", "academicism", "academism", "academist", "academite", "academization", "academize", "Academus", "academy", "Acadia", "acadialite", "Acadian", "Acadie", "Acaena", "acajou", "acaleph", "Acalepha", "Acalephae", "acalephan", "acalephoid", "acalycal", "acalycine", "acalycinous", "acalyculate", "Acalypha", "Acalypterae", "Acalyptrata", "Acalyptratae", "acalyptrate", "Acamar", "acampsia", "acana", "acanaceous", "acanonical", "acanth", "acantha", "Acanthaceae", "acanthaceous", "acanthad", "Acantharia", "Acanthia", "acanthial", "acanthin", "acanthine", "acanthion", "acanthite", "acanthocarpous", "Acanthocephala", "acanthocephalan", "Acanthocephali", "acanthocephalous", "Acanthocereus", "acanthocladous", "Acanthodea", "acanthodean", "Acanthodei", "Acanthodes", "acanthodian", "Acanthodidae", "Acanthodii", "Acanthodini", "acanthoid", "Acantholimon", "acanthological", "acanthology", "acantholysis", "acanthoma", "Acanthomeridae", "acanthon", "Acanthopanax", "Acanthophis", "acanthophorous", "acanthopod", "acanthopodous", "acanthopomatous", "acanthopore", "acanthopteran", "Acanthopteri", "acanthopterous", "acanthopterygian", "Acanthopterygii", "acanthosis", "acanthous", "Acanthuridae", "Acanthurus", "acanthus", "acapnia", "acapnial", "acapsular", "acapu", "acapulco", "acara", "Acarapis", "acardia", "acardiac", "acari", "acarian", "acariasis", "acaricidal", "acaricide", "acarid", "Acarida", "Acaridea", "acaridean", "acaridomatium", "acariform", "Acarina", "acarine", "acarinosis", "acarocecidium", "acarodermatitis", "acaroid", "acarol", "acarologist", "acarology", "acarophilous", "acarophobia", "acarotoxic", "acarpelous", "acarpous", "Acarus", "Acastus", "acatalectic", "acatalepsia", "acatalepsy", "acataleptic", "acatallactic", "acatamathesia", "acataphasia", "acataposis", "acatastasia", "acatastatic", "acate", "acategorical", "acatery", "acatharsia", "acatharsy", "acatholic", "acaudal", "acaudate", "acaulescent", "acauline", "acaulose", "acaulous", "acca", "accede", "accedence", "acceder", "accelerable", "accelerando", "accelerant", "accelerate", "accelerated", "acceleratedly", "acceleration", "accelerative", "accelerator", "acceleratory", "accelerograph", "accelerometer", "accend", "accendibility", "accendible", "accension", "accensor", "accent", "accentless", "accentor", "accentuable", "accentual", "accentuality", "accentually", "accentuate", "accentuation", "accentuator", "accentus", "accept", "acceptability", "acceptable", "acceptableness", "acceptably", "acceptance", "acceptancy", "acceptant", "acceptation", "accepted", "acceptedly", "accepter", "acceptilate", "acceptilation", "acception", "acceptive", "acceptor", "acceptress", "accerse", "accersition", "accersitor", "access", "accessarily", "accessariness", "accessary", "accessaryship", "accessibility", "accessible", "accessibly", "accession", "accessional", "accessioner", "accessive", "accessively", "accessless", "accessorial", "accessorily", "accessoriness", "accessorius", "accessory", "accidence", "accidency", "accident", "accidental", "accidentalism", "accidentalist", "accidentality", "accidentally", "accidentalness", "accidented", "accidential", "accidentiality", "accidently", "accidia", "accidie", "accinge", "accipient", "Accipiter", "accipitral", "accipitrary", "Accipitres", "accipitrine", "accismus", "accite", "acclaim", "acclaimable", "acclaimer", "acclamation", "acclamator", "acclamatory", "acclimatable", "acclimatation", "acclimate", "acclimatement", "acclimation", "acclimatizable", "acclimatization", "acclimatize", "acclimatizer", "acclimature", "acclinal", "acclinate", "acclivitous", "acclivity", "acclivous", "accloy", "accoast", "accoil", "accolade", "accoladed", "accolated", "accolent", "accolle", "accombination", "accommodable", "accommodableness", "accommodate", "accommodately", "accommodateness", "accommodating", "accommodatingly", "accommodation", "accommodational", "accommodative", "accommodativeness", "accommodator", "accompanier", "accompaniment", "accompanimental", "accompanist", "accompany", "accompanyist", "accompletive", "accomplice", "accompliceship", "accomplicity", "accomplish", "accomplishable", "accomplished", "accomplisher", "accomplishment", "accomplisht", "accompt", "accord", "accordable", "accordance", "accordancy", "accordant", "accordantly", "accorder", "according", "accordingly", "accordion", "accordionist", "accorporate", "accorporation", "accost", "accostable", "accosted", "accouche", "accouchement", "accoucheur", "accoucheuse", "account", "accountability", "accountable", "accountableness", "accountably", "accountancy", "accountant", "accountantship", "accounting", "accountment", "accouple", "accouplement", "accouter", "accouterment", "accoy", "accredit", "accreditate", "accreditation", "accredited", "accreditment", "accrementitial", "accrementition", "accresce", "accrescence", "accrescent", "accretal", "accrete", "accretion", "accretionary", "accretive", "accroach", "accroides", "accrual", "accrue", "accruement", "accruer", "accubation", "accubitum", "accubitus", "accultural", "acculturate", "acculturation", "acculturize", "accumbency", "accumbent", "accumber", "accumulable", "accumulate", "accumulation", "accumulativ", "accumulative", "accumulatively", "accumulativeness", "accumulator", "accuracy", "accurate", "accurately", "accurateness", "accurse", "accursed", "accursedly", "accursedness", "accusable", "accusably", "accusal", "accusant", "accusation", "accusatival", "accusative", "accusatively", "accusatorial", "accusatorially", "accusatory", "accusatrix", "accuse", "accused", "accuser", "accusingly", "accusive", "accustom", "accustomed", "accustomedly", "accustomedness", "ace", "aceacenaphthene", "aceanthrene", "aceanthrenequinone", "acecaffine", "aceconitic", "acedia", "acediamine", "acediast", "acedy", "Aceldama", "Acemetae", "Acemetic", "acenaphthene", "acenaphthenyl", "acenaphthylene", "acentric", "acentrous", "aceologic", "aceology", "acephal", "Acephala", "acephalan", "Acephali", "acephalia", "Acephalina", "acephaline", "acephalism", "acephalist", "Acephalite", "acephalocyst", "acephalous", "acephalus", "Acer", "Aceraceae", "aceraceous", "Acerae", "Acerata", "acerate", "Acerates", "acerathere", "Aceratherium", "aceratosis", "acerb", "Acerbas", "acerbate", "acerbic", "acerbity", "acerdol", "acerin", "acerose", "acerous", "acerra", "acertannin", "acervate", "acervately", "acervation", "acervative", "acervose", "acervuline", "acervulus", "acescence", "acescency", "acescent", "aceship", "acesodyne", "Acestes", "acetabular", "Acetabularia", "acetabuliferous", "acetabuliform", "acetabulous", "acetabulum", "acetacetic", "acetal", "acetaldehydase", "acetaldehyde", "acetaldehydrase", "acetalization", "acetalize", "acetamide", "acetamidin", "acetamidine", "acetamido", "acetaminol", "acetanilid", "acetanilide", "acetanion", "acetaniside", "acetanisidide", "acetannin", "acetarious", "acetarsone", "acetate", "acetated", "acetation", "acetbromamide", "acetenyl", "acethydrazide", "acetic", "acetification", "acetifier", "acetify", "acetimeter", "acetimetry", "acetin", "acetize", "acetmethylanilide", "acetnaphthalide", "acetoacetanilide", "acetoacetate", "acetoacetic", "acetoamidophenol", "acetoarsenite", "Acetobacter", "acetobenzoic", "acetobromanilide", "acetochloral", "acetocinnamene", "acetoin", "acetol", "acetolysis", "acetolytic", "acetometer", "acetometrical", "acetometrically", "acetometry", "acetomorphine", "acetonaphthone", "acetonate", "acetonation", "acetone", "acetonemia", "acetonemic", "acetonic", "acetonitrile", "acetonization", "acetonize", "acetonuria", "acetonurometer", "acetonyl", "acetonylacetone", "acetonylidene", "acetophenetide", "acetophenin", "acetophenine", "acetophenone", "acetopiperone", "acetopyrin", "acetosalicylic", "acetose", "acetosity", "acetosoluble", "acetothienone", "acetotoluide", "acetotoluidine", "acetous", "acetoveratrone", "acetoxime", "acetoxyl", "acetoxyphthalide", "acetphenetid", "acetphenetidin", "acetract", "acettoluide", "acetum", "aceturic", "acetyl", "acetylacetonates", "acetylacetone", "acetylamine", "acetylate", "acetylation", "acetylator", "acetylbenzene", "acetylbenzoate", "acetylbenzoic", "acetylbiuret", "acetylcarbazole", "acetylcellulose", "acetylcholine", "acetylcyanide", "acetylenation", "acetylene", "acetylenediurein", "acetylenic", "acetylenyl", "acetylfluoride", "acetylglycine", "acetylhydrazine", "acetylic", "acetylide", "acetyliodide", "acetylizable", "acetylization", "acetylize", "acetylizer", "acetylmethylcarbinol", "acetylperoxide", "acetylphenol", "acetylphenylhydrazine", "acetylrosaniline", "acetylsalicylate", "acetylsalol", "acetyltannin", "acetylthymol", "acetyltropeine", "acetylurea", "ach", "Achaean", "Achaemenian", "Achaemenid", "Achaemenidae", "Achaemenidian", "Achaenodon", "Achaeta", "achaetous", "achage", "Achagua", "Achakzai", "achalasia", "Achamoth", "Achango", "achar", "Achariaceae", "Achariaceous", "achate", "Achates", "Achatina", "Achatinella", "Achatinidae", "ache", "acheilia", "acheilous", "acheiria", "acheirous", "acheirus", "Achen", "achene", "achenial", "achenium", "achenocarp", "achenodium", "acher", "Achernar", "Acheronian", "Acherontic", "Acherontical", "achete", "Achetidae", "Acheulean", "acheweed", "achievable", "achieve", "achievement", "achiever", "achigan", "achilary", "achill", "Achillea", "Achillean", "Achilleid", "achilleine", "Achillize", "achillobursitis", "achillodynia", "achime", "Achimenes", "Achinese", "aching", "achingly", "achira", "Achitophel", "achlamydate", "Achlamydeae", "achlamydeous", "achlorhydria", "achlorophyllous", "achloropsia", "Achmetha", "acholia", "acholic", "Acholoe", "acholous", "acholuria", "acholuric", "Achomawi", "achondrite", "achondritic", "achondroplasia", "achondroplastic", "achor", "achordal", "Achordata", "achordate", "Achorion", "Achras", "achree", "achroacyte", "Achroanthes", "achrodextrin", "achrodextrinase", "achroglobin", "achroiocythaemia", "achroiocythemia", "achroite", "achroma", "achromacyte", "achromasia", "achromat", "achromate", "Achromatiaceae", "achromatic", "achromatically", "achromaticity", "achromatin", "achromatinic", "achromatism", "Achromatium", "achromatizable", "achromatization", "achromatize", "achromatocyte", "achromatolysis", "achromatope", "achromatophile", "achromatopia", "achromatopsia", "achromatopsy", "achromatosis", "achromatous", "achromaturia", "achromia", "achromic", "Achromobacter", "Achromobacterieae", "achromoderma", "achromophilous", "achromotrichia", "achromous", "achronical", "achroodextrin", "achroodextrinase", "achroous", "achropsia", "achtehalber", "achtel", "achtelthaler", "Achuas", "achy", "achylia", "achylous", "achymia", "achymous", "Achyranthes", "Achyrodes", "acichloride", "acicula", "acicular", "acicularly", "aciculate", "aciculated", "aciculum", "acid", "Acidanthera", "Acidaspis", "acidemia", "acider", "acidic", "acidiferous", "acidifiable", "acidifiant", "acidific", "acidification", "acidifier", "acidify", "acidimeter", "acidimetric", "acidimetrical", "acidimetrically", "acidimetry", "acidite", "acidity", "acidize", "acidly", "acidness", "acidoid", "acidology", "acidometer", "acidometry", "acidophile", "acidophilic", "acidophilous", "acidoproteolytic", "acidosis", "acidosteophyte", "acidotic", "acidproof", "acidulate", "acidulent", "acidulous", "aciduric", "acidyl", "acier", "acierage", "Acieral", "acierate", "acieration", "aciform", "aciliate", "aciliated", "Acilius", "acinaceous", "acinaces", "acinacifolious", "acinaciform", "acinar", "acinarious", "acinary", "Acineta", "Acinetae", "acinetan", "Acinetaria", "acinetarian", "acinetic", "acinetiform", "Acinetina", "acinetinan", "acinic", "aciniform", "acinose", "acinotubular", "acinous", "acinus", "Acipenser", "Acipenseres", "acipenserid", "Acipenseridae", "acipenserine", "acipenseroid", "Acipenseroidei", "Acis", "aciurgy", "acker", "ackey", "ackman", "acknow", "acknowledge", "acknowledgeable", "acknowledged", "acknowledgedly", "acknowledger", "aclastic", "acle", "acleidian", "acleistous", "Aclemon", "aclidian", "aclinal", "aclinic", "acloud", "aclys", "Acmaea", "Acmaeidae", "acmatic", "acme", "acmesthesia", "acmic", "Acmispon", "acmite", "acne", "acneform", "acneiform", "acnemia", "Acnida", "acnodal", "acnode", "Acocanthera", "acocantherin", "acock", "acockbill", "acocotl", "Acoela", "Acoelomata", "acoelomate", "acoelomatous", "Acoelomi", "acoelomous", "acoelous", "Acoemetae", "Acoemeti", "Acoemetic", "acoin", "acoine", "Acolapissa", "acold", "Acolhua", "Acolhuan", "acologic", "acology", "acolous", "acoluthic", "acolyte", "acolythate", "Acoma", "acoma", "acomia", "acomous", "aconative", "acondylose", "acondylous", "acone", "aconic", "aconin", "aconine", "aconital", "aconite", "aconitia", "aconitic", "aconitin", "aconitine", "Aconitum", "Acontias", "acontium", "Acontius", "aconuresis", "acopic", "acopon", "acopyrin", "acopyrine", "acor", "acorea", "acoria", "acorn", "acorned", "Acorus", "acosmic", "acosmism", "acosmist", "acosmistic", "acotyledon", "acotyledonous", "acouasm", "acouchi", "acouchy", "acoumeter", "acoumetry", "acouometer", "acouophonia", "acoupa", "acousmata", "acousmatic", "acoustic", "acoustical", "acoustically", "acoustician", "acousticolateral", "Acousticon", "acoustics", "acquaint", "acquaintance", "acquaintanceship", "acquaintancy", "acquaintant", "acquainted", "acquaintedness", "acquest", "acquiesce", "acquiescement", "acquiescence", "acquiescency", "acquiescent", "acquiescently", "acquiescer", "acquiescingly", "acquirability", "acquirable", "acquire", "acquired", "acquirement", "acquirenda", "acquirer", "acquisible", "acquisite", "acquisited", "acquisition", "acquisitive", "acquisitively", "acquisitiveness", "acquisitor", "acquisitum", "acquist", "acquit", "acquitment", "acquittal", "acquittance", "acquitter", "Acrab", "acracy", "acraein", "Acraeinae", "acraldehyde", "Acrania", "acranial", "acraniate", "acrasia", "Acrasiaceae", "Acrasiales", "Acrasida", "Acrasieae", "Acraspeda", "acraspedote", "acratia", "acraturesis", "acrawl", "acraze", "acre", "acreable", "acreage", "acreak", "acream", "acred", "Acredula", "acreman", "acrestaff", "acrid", "acridan", "acridian", "acridic", "Acrididae", "Acridiidae", "acridine", "acridinic", "acridinium", "acridity", "Acridium", "acridly", "acridness", "acridone", "acridonium", "acridophagus", "acridyl", "acriflavin", "acriflavine", "acrimonious", "acrimoniously", "acrimoniousness", "acrimony", "acrindoline", "acrinyl", "acrisia", "Acrisius", "Acrita", "acritan", "acrite", "acritical", "acritol", "Acroa", "acroaesthesia", "acroama", "acroamatic", "acroamatics", "acroanesthesia", "acroarthritis", "acroasphyxia", "acroataxia", "acroatic", "acrobacy", "acrobat", "Acrobates", "acrobatholithic", "acrobatic", "acrobatical", "acrobatically", "acrobatics", "acrobatism", "acroblast", "acrobryous", "acrobystitis", "Acrocarpi", "acrocarpous", "acrocephalia", "acrocephalic", "acrocephalous", "acrocephaly", "Acrocera", "Acroceratidae", "Acroceraunian", "Acroceridae", "Acrochordidae", "Acrochordinae", "acrochordon", "Acroclinium", "Acrocomia", "acroconidium", "acrocontracture", "acrocoracoid", "acrocyanosis", "acrocyst", "acrodactylum", "acrodermatitis", "acrodont", "acrodontism", "acrodrome", "acrodromous", "Acrodus", "acrodynia", "acroesthesia", "acrogamous", "acrogamy", "acrogen", "acrogenic", "acrogenous", "acrogenously", "acrography", "Acrogynae", "acrogynae", "acrogynous", "acrolein", "acrolith", "acrolithan", "acrolithic", "acrologic", "acrologically", "acrologism", "acrologue", "acrology", "acromania", "acromastitis", "acromegalia", "acromegalic", "acromegaly", "acromelalgia", "acrometer", "acromial", "acromicria", "acromioclavicular", "acromiocoracoid", "acromiodeltoid", "acromiohumeral", "acromiohyoid", "acromion", "acromioscapular", "acromiosternal", "acromiothoracic", "acromonogrammatic", "acromphalus", "Acromyodi", "acromyodian", "acromyodic", "acromyodous", "acromyotonia", "acromyotonus", "acron", "acronarcotic", "acroneurosis", "acronical", "acronically", "acronyc", "acronych", "Acronycta", "acronyctous", "acronym", "acronymic", "acronymize", "acronymous", "acronyx", "acrook", "acroparalysis", "acroparesthesia", "acropathology", "acropathy", "acropetal", "acropetally", "acrophobia", "acrophonetic", "acrophonic", "acrophony", "acropodium", "acropoleis", "acropolis", "acropolitan", "Acropora", "acrorhagus", "acrorrheuma", "acrosarc", "acrosarcum", "acroscleriasis", "acroscleroderma", "acroscopic", "acrose", "acrosome", "acrosphacelus", "acrospire", "acrospore", "acrosporous", "across", "acrostic", "acrostical", "acrostically", "acrostichal", "Acrosticheae", "acrostichic", "acrostichoid", "Acrostichum", "acrosticism", "acrostolion", "acrostolium", "acrotarsial", "acrotarsium", "acroteleutic", "acroterial", "acroteric", "acroterium", "Acrothoracica", "acrotic", "acrotism", "acrotomous", "Acrotreta", "Acrotretidae", "acrotrophic", "acrotrophoneurosis", "Acrux", "Acrydium", "acryl", "acrylaldehyde", "acrylate", "acrylic", "acrylonitrile", "acrylyl", "act", "acta", "actability", "actable", "Actaea", "Actaeaceae", "Actaeon", "Actaeonidae", "Actiad", "Actian", "actification", "actifier", "actify", "actin", "actinal", "actinally", "actinautographic", "actinautography", "actine", "actinenchyma", "acting", "Actinia", "actinian", "Actiniaria", "actiniarian", "actinic", "actinically", "Actinidia", "Actinidiaceae", "actiniferous", "actiniform", "actinine", "actiniochrome", "actiniohematin", "Actiniomorpha", "actinism", "Actinistia", "actinium", "actinobacillosis", "Actinobacillus", "actinoblast", "actinobranch", "actinobranchia", "actinocarp", "actinocarpic", "actinocarpous", "actinochemistry", "actinocrinid", "Actinocrinidae", "actinocrinite", "Actinocrinus", "actinocutitis", "actinodermatitis", "actinodielectric", "actinodrome", "actinodromous", "actinoelectric", "actinoelectrically", "actinoelectricity", "actinogonidiate", "actinogram", "actinograph", "actinography", "actinoid", "Actinoida", "Actinoidea", "actinolite", "actinolitic", "actinologous", "actinologue", "actinology", "actinomere"]}
-},{}],57:[function(require,module,exports){
+
+},{}],20:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3282,7 +1275,7 @@ var words = require( './fixtures/words.json' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof porterStemmer, 'function', 'main export is a function' );
+	t.strictEqual( typeof porterStemmer, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -3334,141 +1327,11 @@ tape( 'the function returns an empty string if provided an empty string', functi
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/nlp/porter-stemmer/test/test.js")
-},{"./../lib":54,"./fixtures/words.json":56,"@stdlib/assert/is-empty-string":17,"tape":216}],58:[function(require,module,exports){
+},{"./../lib":17,"./fixtures/words.json":19,"@stdlib/assert/is-empty-string":7,"tape":180}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Constructor which returns a `Number` object.
-*
-* @module @stdlib/number/ctor
-*
-* @example
-* var Number = require( '@stdlib/number/ctor' );
-*
-* var v = new Number( 10.0 );
-* // returns <Number>
-*/
-
-// MODULES //
-
-var Number = require( './number.js' );
-
-
-// EXPORTS //
-
-module.exports = Number;
-
-},{"./number.js":59}],59:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// EXPORTS //
-
-module.exports = Number; // eslint-disable-line stdlib/require-globals
-
-},{}],60:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
-*
-* @module @stdlib/regexp/function-name
-*
-* @example
-* var reFunctionName = require( '@stdlib/regexp/function-name' );
-* var RE_FUNCTION_NAME = reFunctionName();
-*
-* function fname( fcn ) {
-*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
-* }
-*
-* var fn = fname( Math.sqrt );
-* // returns 'sqrt'
-*
-* fn = fname( Int8Array );
-* // returns 'Int8Array'
-*
-* fn = fname( Object.prototype.toString );
-* // returns 'toString'
-*
-* fn = fname( function(){} );
-* // returns ''
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
-var REGEXP = require( './regexp.js' );
-
-
-// MAIN //
-
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
-
-
-// EXPORTS //
-
-module.exports = reFunctionName;
-
-},{"./main.js":61,"./regexp.js":62,"@stdlib/utils/define-nonenumerable-read-only-property":84}],61:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3487,44 +1350,113 @@ module.exports = reFunctionName;
 
 // MAIN //
 
+var endsWith = String.prototype.endsWith;
+
+
+// EXPORTS //
+
+module.exports = endsWith;
+
+},{}],22:[function(require,module,exports){
 /**
-* Returns a regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+* @license Apache-2.0
 *
-* @returns {RegExp} regular expression
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.endsWith !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a string ends with the characters of another string.
+*
+* @module @stdlib/string/base/ends-with
 *
 * @example
-* var RE_FUNCTION_NAME = reFunctionName();
+* var endsWith = require( '@stdlib/string/base/ends-with' );
 *
-* function fname( fcn ) {
-*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
-* }
+* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
 *
-* var fn = fname( Math.sqrt );
-* // returns 'sqrt'
+* var bool = endsWith( str, 'air', str.length );
+* // returns true
 *
-* fn = fname( Int8Array );
-* // returns 'Int8Array'
+* bool = endsWith( str, 'fair', str.length );
+* // returns false
 *
-* fn = fname( Object.prototype.toString );
-* // returns 'toString'
+* bool = endsWith( str, 'fair', 30 );
+* // returns true
 *
-* fn = fname( function(){} );
-* // returns ''
+* bool = endsWith( str, 'fair', -34 );
+* // returns true
 */
-function reFunctionName() {
-	return /^\s*function\s*([^(]*)/i;
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var endsWith;
+if ( HAS_BUILTIN ) {
+	endsWith = main;
+} else {
+	endsWith = polyfill;
 }
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = endsWith;
 
-},{}],62:[function(require,module,exports){
+},{"./has_builtin.js":22,"./main.js":24,"./polyfill.js":25}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3543,46 +1475,139 @@ module.exports = reFunctionName;
 
 // MODULES //
 
-var reFunctionName = require( './main.js' );
+var builtin = require( './builtin.js' );
 
 
 // MAIN //
 
 /**
-* Captures everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+* Tests if a string ends with the characters of another string.
 *
-* Regular expression: `/^\s*function\s*([^(]*)/i`
+* ## Notes
 *
-* -   `/^\s*`
-*     -   Match zero or more spaces at beginning
+* -   The last parameter restricts the search to a substring within the input string beginning from the leftmost character. If provided a negative value, `len` indicates to ignore the last `len` characters, and is thus equivalent to `str.length + len`.
 *
-* -   `function`
-*     -   Match the word `function`
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} len - substring length
+* @returns {boolean} boolean indicating if the input string ends with the search string
 *
-* -   `\s*`
-*     -   Match zero or more spaces after the word `function`
+* @example
+* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', 19 );
+* // returns true
 *
-* -   `()`
-*     -   Capture
-*
-* -   `[^(]*`
-*     -   Match anything except a left parenthesis `(` zero or more times
-*
-* -   `/i`
-*     -   ignore case
-*
-* @constant
-* @type {RegExp}
-* @default /^\s*function\s*([^(]*)/i
+* @example
+* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', -23 );
+* // returns true
 */
-var RE_FUNCTION_NAME = reFunctionName();
+function endsWith( str, search, len ) {
+	var idx;
+	var N;
+
+	N = search.length;
+	if ( len === 0 ) {
+		return ( N === 0 );
+	}
+	if ( len < 0 ) {
+		idx = str.length + len;
+	} else {
+		idx = len;
+	}
+	if ( N === 0 ) {
+		// Based on the premise that every string can be "surrounded" by empty strings (e.g., "" + "a" + "" + "b" + "" === "ab"):
+		return true;
+	}
+	if ( idx - N < 0 || idx > str.length ) {
+		return false;
+	}
+	return builtin.call( str, search, idx );
+}
 
 
 // EXPORTS //
 
-module.exports = RE_FUNCTION_NAME;
+module.exports = endsWith;
 
-},{"./main.js":61}],63:[function(require,module,exports){
+},{"./builtin.js":21}],25:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if a string ends with the characters of another string.
+*
+* ## Notes
+*
+* -   The last parameter restricts the search to a substring within the input string beginning from the leftmost character. If provided a negative value, `len` indicates to ignore the last `len` characters, and is thus equivalent to `str.length + len`.
+*
+* @private
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} len - substring length
+* @returns {boolean} boolean indicating if the input string ends with the search string
+*
+* @example
+* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', 19 );
+* // returns true
+*
+* @example
+* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', -23 );
+* // returns true
+*/
+function endsWith( str, search, len ) {
+	var idx;
+	var N;
+	var i;
+
+	N = search.length;
+	if ( len === 0 ) {
+		return ( N === 0 );
+	}
+	if ( len < 0 ) {
+		idx = str.length + len;
+	} else {
+		idx = len;
+	}
+	if ( N === 0 ) {
+		// Based on the premise that every string can be "surrounded" by empty strings (e.g., "" + "a" + "" + "b" + "" === "ab"):
+		return true;
+	}
+	idx -= N;
+	if ( idx < 0 ) {
+		return false;
+	}
+	for ( i = 0; i < N; i++) {
+		if ( str.charCodeAt( idx + i ) !== search.charCodeAt( i ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// EXPORTS //
+
+module.exports = endsWith;
+
+},{}],26:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3668,7 +1693,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -3695,7 +1720,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":66}],64:[function(require,module,exports){
+},{"./is_number.js":29}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3812,7 +1837,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":66,"./zero_pad.js":70}],65:[function(require,module,exports){
+},{"./is_number.js":29,"./zero_pad.js":33}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3848,14 +1873,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":68}],66:[function(require,module,exports){
+},{"./main.js":31}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3903,7 +1928,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],67:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3947,7 +1972,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],68:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3980,11 +2005,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -4115,6 +2158,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -4123,9 +2167,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -4164,7 +2206,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":63,"./format_integer.js":64,"./is_string.js":67,"./space_pad.js":69,"./zero_pad.js":70}],69:[function(require,module,exports){
+},{"./format_double.js":26,"./format_integer.js":27,"./is_string.js":30,"./space_pad.js":32,"./zero_pad.js":33}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4231,7 +2273,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],70:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4317,7 +2359,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],71:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4353,14 +2395,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":72}],72:[function(require,module,exports){
+},{"./main.js":35}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4452,11 +2494,11 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],73:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4473,96 +2515,74 @@ module.exports = formatTokenize;
 
 'use strict';
 
+/**
+* Convert a string to lowercase.
+*
+* @module @stdlib/string/base/lowercase
+*
+* @example
+* var lowercase = require( '@stdlib/string/base/lowercase' );
+*
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
+*/
+
 // MODULES //
 
-var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
+var main = require( './main.js' );
 
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":37}],37:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
 
 // MAIN //
 
 /**
-* Test if a string ends with the characters of another string.
+* Converts a string to lowercase.
 *
-* @param {string} str - input string
-* @param {string} search - search string
-* @param {integer} [len=str.length] - substring length
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument must be a string
-* @throws {TypeError} third argument must be an integer
-* @returns {boolean} boolean indicating if the input string ends with the search string
+* @param {string} str - string to convert
+* @returns {string} lowercase string
 *
 * @example
-* var bool = endsWith( 'Remember the story I used to tell you when you were a boy?', 'boy?' );
-* // returns true
-*
-* @example
-* var bool = endsWith( 'Remember the story I used to tell you when you were a boy?', 'Boy?' );
-* // returns false
-*
-* @example
-* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be' );
-* // returns false
-*
-* @example
-* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', 19 );
-* // returns true
-*
-* @example
-* var bool = endsWith( 'To be, or not to be, that is the question.', 'to be', -23 );
-* // returns true
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
 */
-function endsWith( str, search, len ) {
-	var idx;
-	var i;
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
-	}
-	if ( !isString( search ) ) {
-		throw new TypeError( format( 'invalid argument. Second argument must be a string. Value: `%s`.', search ) );
-	}
-	if ( arguments.length > 2 ) {
-		if ( !isInteger( len ) ) {
-			throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', len ) );
-		}
-		if ( len === 0 ) {
-			return ( search.length === 0 );
-		}
-		if ( len < 0 ) {
-			idx = str.length + len;
-		} else {
-			idx = len;
-		}
-	} else {
-		idx = str.length;
-	}
-	if ( search.length === 0 ) {
-		// Based on the premise that every string can be "surrounded" by empty strings (e.g., "" + "a" + "" + "b" + "" === "ab"):
-		return true;
-	}
-	idx -= search.length;
-	if ( idx < 0 ) {
-		return false;
-	}
-	for ( i = 0; i < search.length; i++) {
-		if ( str.charCodeAt( idx + i ) !== search.charCodeAt( i ) ) {
-			return false;
-		}
-	}
-	return true;
+function lowercase( str ) {
+	return str.toLowerCase();
 }
 
 
 // EXPORTS //
 
-module.exports = endsWith;
+module.exports = lowercase;
 
-},{"@stdlib/assert/is-integer":23,"@stdlib/assert/is-string":40,"@stdlib/string/format":75}],74:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4580,38 +2600,85 @@ module.exports = endsWith;
 'use strict';
 
 /**
-* Test if a string ends with the characters of another string.
+* Replace search occurrences with a replacement string.
 *
-* @module @stdlib/string/ends-with
+* @module @stdlib/string/base/replace
 *
 * @example
-* var endsWith = require( '@stdlib/string/ends-with' );
+* var replace = require( '@stdlib/string/base/replace' );
 *
-* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
-*
-* var bool = endsWith( str, 'air' );
-* // returns true
-*
-* bool = endsWith( str, 'fair' );
-* // returns false
-*
-* bool = endsWith( str, 'fair', 30 );
-* // returns true
-*
-* bool = endsWith( str, 'fair', -34 );
-* // returns true
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
 */
 
 // MODULES //
 
-var endsWith = require( './ends_with.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = endsWith;
+module.exports = main;
 
-},{"./ends_with.js":73}],75:[function(require,module,exports){
+},{"./main.js":39}],39:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Replaces search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {RegExp} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/base/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer );
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+function replace( str, search, newval ) {
+	return str.replace( search, newval );
+}
+
+
+// EXPORTS //
+
+module.exports = replace;
+
+},{}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4649,16 +2716,16 @@ module.exports = endsWith;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":77}],76:[function(require,module,exports){
-arguments[4][67][0].apply(exports,arguments)
-},{"dup":67}],77:[function(require,module,exports){
+},{"./main.js":42}],41:[function(require,module,exports){
+arguments[4][30][0].apply(exports,arguments)
+},{"dup":30}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4706,18 +2773,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -4727,7 +2791,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":76,"@stdlib/string/base/format-interpolate":65,"@stdlib/string/base/format-tokenize":71}],78:[function(require,module,exports){
+},{"./is_string.js":41,"@stdlib/string/base/format-interpolate":28,"@stdlib/string/base/format-tokenize":34}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4749,27 +2813,27 @@ module.exports = format;
 'use strict';
 
 /**
-* Convert a string to lowercase.
+* Symbol factory.
 *
-* @module @stdlib/string/lowercase
+* @module @stdlib/symbol/ctor
 *
 * @example
-* var lowercase = require( '@stdlib/string/lowercase' );
+* var Symbol = require( '@stdlib/symbol/ctor' );
 *
-* var str = lowercase( 'bEEp' );
-* // returns 'beep'
+* var s = Symbol( 'beep' );
+* // returns <symbol>
 */
 
 // MODULES //
 
-var lowercase = require( './lowercase.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = lowercase;
+module.exports = main;
 
-},{"./lowercase.js":79}],79:[function(require,module,exports){
+},{"./main.js":44}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4789,303 +2853,17 @@ module.exports = lowercase;
 */
 
 'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-
 
 // MAIN //
 
-/**
-* Converts a string to lowercase.
-*
-* @param {string} str - string to convert
-* @throws {TypeError} must provide a string
-* @returns {string} lowercase string
-*
-* @example
-* var str = lowercase( 'bEEp' );
-* // returns 'beep'
-*/
-function lowercase( str ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a string. Value: `%s`.', str ) );
-	}
-	return str.toLowerCase();
-}
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = lowercase;
+module.exports = Sym;
 
-},{"@stdlib/assert/is-string":40,"@stdlib/string/format":75}],80:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Replace search occurrences with a replacement string.
-*
-* @module @stdlib/string/replace
-*
-* @example
-* var replace = require( '@stdlib/string/replace' );
-*
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* str = 'Hello World';
-* out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
-*/
-
-// MODULES //
-
-var replace = require( './replace.js' );
-
-
-// EXPORTS //
-
-module.exports = replace;
-
-},{"./replace.js":81}],81:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var rescape = require( '@stdlib/utils/escape-regexp-string' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var isRegExp = require( '@stdlib/assert/is-regexp' );
-var format = require( '@stdlib/string/format' );
-
-
-// MAIN //
-
-/**
-* Replace search occurrences with a replacement string.
-*
-* @param {string} str - input string
-* @param {(string|RegExp)} search - search expression
-* @param {(string|Function)} newval - replacement value or function
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument argument must be a string or regular expression
-* @throws {TypeError} third argument must be a string or function
-* @returns {string} new string containing replacement(s)
-*
-* @example
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* @example
-* var str = 'Hello World';
-* var out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
-*
-* @example
-* var capitalize = require( '@stdlib/string/capitalize' );
-*
-* var str = 'Oranges and lemons say the bells of St. Clement\'s';
-*
-* function replacer( match, p1 ) {
-*     return capitalize( p1 );
-* }
-*
-* var out = replace( str, /([^\s]*)/gi, replacer);
-* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
-*/
-function replace( str, search, newval ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
-	}
-	if ( isString( search ) ) {
-		search = rescape( search );
-		search = new RegExp( search, 'g' );
-	}
-	else if ( !isRegExp( search ) ) {
-		throw new TypeError( format( 'invalid argument. Second argument must be a string or regular expression. Value: `%s`.', search ) );
-	}
-	if ( !isString( newval ) && !isFunction( newval ) ) {
-		throw new TypeError( format( 'invalid argument. Third argument must be a string or replacement function. Value: `%s`.', newval ) );
-	}
-	return str.replace( search, newval );
-}
-
-
-// EXPORTS //
-
-module.exports = replace;
-
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-regexp":37,"@stdlib/assert/is-string":40,"@stdlib/string/format":75,"@stdlib/utils/escape-regexp-string":91}],82:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Determine the name of a value's constructor.
-*
-* @module @stdlib/utils/constructor-name
-*
-* @example
-* var constructorName = require( '@stdlib/utils/constructor-name' );
-*
-* var v = constructorName( 'a' );
-* // returns 'String'
-*
-* v = constructorName( {} );
-* // returns 'Object'
-*
-* v = constructorName( true );
-* // returns 'Boolean'
-*/
-
-// MODULES //
-
-var constructorName = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = constructorName;
-
-},{"./main.js":83}],83:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var nativeClass = require( '@stdlib/utils/native-class' );
-var RE = require( '@stdlib/regexp/function-name' ).REGEXP;
-var isBuffer = require( '@stdlib/assert/is-buffer' );
-
-
-// MAIN //
-
-/**
-* Determines the name of a value's constructor.
-*
-* @param {*} v - input value
-* @returns {string} name of a value's constructor
-*
-* @example
-* var v = constructorName( 'a' );
-* // returns 'String'
-*
-* @example
-* var v = constructorName( 5 );
-* // returns 'Number'
-*
-* @example
-* var v = constructorName( null );
-* // returns 'Null'
-*
-* @example
-* var v = constructorName( undefined );
-* // returns 'Undefined'
-*
-* @example
-* var v = constructorName( function noop() {} );
-* // returns 'Function'
-*/
-function constructorName( v ) {
-	var match;
-	var name;
-	var ctor;
-	name = nativeClass( v ).slice( 8, -1 );
-	if ( (name === 'Object' || name === 'Error') && v.constructor ) {
-		ctor = v.constructor;
-		if ( typeof ctor.name === 'string' ) {
-			return ctor.name;
-		}
-		match = RE.exec( ctor.toString() );
-		if ( match ) {
-			return match[ 1 ];
-		}
-	}
-	if ( isBuffer( v ) ) {
-		return 'Buffer';
-	}
-	return name;
-}
-
-
-// EXPORTS //
-
-module.exports = constructorName;
-
-},{"@stdlib/assert/is-buffer":15,"@stdlib/regexp/function-name":60,"@stdlib/utils/native-class":99}],84:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5127,14 +2905,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":85}],85:[function(require,module,exports){
+},{"./main.js":46}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5194,7 +2972,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":89}],86:[function(require,module,exports){
+},{"@stdlib/utils/define-property":50}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5257,7 +3035,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],87:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5287,7 +3065,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],88:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5340,7 +3118,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":87}],89:[function(require,module,exports){
+},{"./define_property.js":48}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5400,7 +3178,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":86,"./has_define_property_support.js":88,"./polyfill.js":90}],90:[function(require,module,exports){
+},{"./builtin.js":47,"./has_define_property_support.js":49,"./polyfill.js":51}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5524,385 +3302,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":75}],91:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Escape a regular expression string or pattern.
-*
-* @module @stdlib/utils/escape-regexp-string
-*
-* @example
-* var rescape = require( '@stdlib/utils/escape-regexp-string' );
-*
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
-*/
-
-// MODULES //
-
-var rescape = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = rescape;
-
-},{"./main.js":92}],92:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var RE_CHARS = /[-\/\\^$*+?.()|[\]{}]/g; // eslint-disable-line no-useless-escape
-
-
-// MAIN //
-
-/**
-* Escapes a regular expression string.
-*
-* @param {string} str - regular expression string
-* @throws {TypeError} first argument must be a string
-* @returns {string} escaped string
-*
-* @example
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
-*/
-function rescape( str ) {
-	var len;
-	var s;
-	var i;
-
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a regular expression string. Value: `%s`.', str ) );
-	}
-	// Check if the string starts with a forward slash...
-	if ( str[ 0 ] === '/' ) {
-		// Find the last forward slash...
-		len = str.length;
-		for ( i = len-1; i >= 0; i-- ) {
-			if ( str[ i ] === '/' ) {
-				break;
-			}
-		}
-	}
-	// If we searched the string to no avail or if the first letter is not `/`, assume that the string is not of the form `/[...]/[guimy]`:
-	if ( i === void 0 || i <= 0 ) {
-		return str.replace( RE_CHARS, '\\$&' );
-	}
-	// We need to de-construct the string...
-	s = str.substring( 1, i );
-
-	// Only escape the characters between the `/`:
-	s = s.replace( RE_CHARS, '\\$&' );
-
-	// Reassemble:
-	str = str[ 0 ] + s + str.substring( i );
-
-	return str;
-}
-
-
-// EXPORTS //
-
-module.exports = rescape;
-
-},{"@stdlib/assert/is-string":40,"@stdlib/string/format":75}],93:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-/**
-* Returns the global object using code generation.
-*
-* @private
-* @returns {Object} global object
-*/
-function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{}],94:[function(require,module,exports){
-(function (global){(function (){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var obj = ( typeof global === 'object' ) ? global : null;
-
-
-// EXPORTS //
-
-module.exports = obj;
-
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],95:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":96}],96:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":93,"./global.js":94,"./self.js":97,"./window.js":98,"@stdlib/assert/is-boolean":9,"@stdlib/string/format":75}],97:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var obj = ( typeof self === 'object' ) ? self : null;
-
-
-// EXPORTS //
-
-module.exports = obj;
-
-},{}],98:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var obj = ( typeof window === 'object' ) ? window : null;
-
-
-// EXPORTS //
-
-module.exports = obj;
-
-},{}],99:[function(require,module,exports){
+},{"@stdlib/string/format":40}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5947,25 +3347,25 @@ module.exports = obj;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":100,"./polyfill.js":101,"@stdlib/assert/has-tostringtag-support":5}],100:[function(require,module,exports){
+},{"./main.js":53,"./polyfill.js":54,"@stdlib/assert/has-tostringtag-support":5}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6023,7 +3423,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":102}],101:[function(require,module,exports){
+},{"./tostring.js":55}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6106,7 +3506,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":102,"./tostringtag.js":103,"@stdlib/assert/has-own-property":1}],102:[function(require,module,exports){
+},{"./tostring.js":55,"./tostringtag.js":56,"@stdlib/assert/has-own-property":1}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6136,7 +3536,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],103:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6156,6 +3556,11 @@ module.exports = toStr;
 */
 
 'use strict';
+
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
 
 // MAIN //
 
@@ -6166,329 +3571,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],104:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var RE = require( './fixtures/re.js' );
-var nodeList = require( './fixtures/nodelist.js' );
-var typedarray = require( './fixtures/typedarray.js' );
-
-
-// MAIN //
-
-/**
-* Checks whether a polyfill is needed when using the `typeof` operator.
-*
-* @private
-* @returns {boolean} boolean indicating whether a polyfill is needed
-*/
-function check() {
-	if (
-		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
-		typeof RE === 'function' ||
-
-		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
-		typeof typedarray === 'object' ||
-
-		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
-		typeof nodeList === 'function'
-	) {
-		return true;
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = check;
-
-},{"./fixtures/nodelist.js":105,"./fixtures/re.js":106,"./fixtures/typedarray.js":107}],105:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getGlobal = require( '@stdlib/utils/global' );
-
-
-// MAIN //
-
-var root = getGlobal();
-var nodeList = root.document && root.document.childNodes;
-
-
-// EXPORTS //
-
-module.exports = nodeList;
-
-},{"@stdlib/utils/global":95}],106:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-var RE = /./;
-
-
-// EXPORTS //
-
-module.exports = RE;
-
-},{}],107:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = typedarray;
-
-},{}],108:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Determine a value's type.
-*
-* @module @stdlib/utils/type-of
-*
-* @example
-* var typeOf = require( '@stdlib/utils/type-of' );
-*
-* var str = typeOf( 'a' );
-* // returns 'string'
-*
-* str = typeOf( 5 );
-* // returns 'number'
-*/
-
-// MODULES //
-
-var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
-var polyfill = require( './polyfill.js' );
-
-
-// MAIN //
-
-var main = ( usePolyfill() ) ? polyfill : typeOf;
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./check.js":104,"./polyfill.js":109,"./typeof.js":110}],109:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":82}],110:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// NOTES //
-
-/*
-* Built-in `typeof` operator behavior:
-*
-* ```text
-* typeof null => 'object'
-* typeof undefined => 'undefined'
-* typeof 'a' => 'string'
-* typeof 5 => 'number'
-* typeof NaN => 'number'
-* typeof true => 'boolean'
-* typeof false => 'boolean'
-* typeof {} => 'object'
-* typeof [] => 'object'
-* typeof function foo(){} => 'function'
-* typeof function* foo(){} => 'object'
-* typeof Symbol() => 'symbol'
-* ```
-*
-*/
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	var type;
-
-	// Address `typeof null` => `object` (see http://wiki.ecmascript.org/doku.php?id=harmony:typeof_null):
-	if ( v === null ) {
-		return 'null';
-	}
-	type = typeof v;
-
-	// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
-	if ( type === 'object' ) {
-		return ctorName( v ).toLowerCase();
-	}
-	return type;
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":82}],111:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":43}],57:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -6640,11 +3723,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],112:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 
-},{}],113:[function(require,module,exports){
-arguments[4][112][0].apply(exports,arguments)
-},{"dup":112}],114:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
+arguments[4][58][0].apply(exports,arguments)
+},{"dup":58}],60:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -8425,7 +5508,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":111,"buffer":114,"ieee754":202}],115:[function(require,module,exports){
+},{"base64-js":57,"buffer":60,"ieee754":163}],61:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8924,7 +6007,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],116:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -9457,7 +6540,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208}],117:[function(require,module,exports){
+},{"_process":170}],63:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9588,7 +6671,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":115,"inherits":203,"readable-stream/lib/_stream_duplex.js":119,"readable-stream/lib/_stream_passthrough.js":120,"readable-stream/lib/_stream_readable.js":121,"readable-stream/lib/_stream_transform.js":122,"readable-stream/lib/_stream_writable.js":123,"readable-stream/lib/internal/streams/end-of-stream.js":127,"readable-stream/lib/internal/streams/pipeline.js":129}],118:[function(require,module,exports){
+},{"events":61,"inherits":164,"readable-stream/lib/_stream_duplex.js":65,"readable-stream/lib/_stream_passthrough.js":66,"readable-stream/lib/_stream_readable.js":67,"readable-stream/lib/_stream_transform.js":68,"readable-stream/lib/_stream_writable.js":69,"readable-stream/lib/internal/streams/end-of-stream.js":73,"readable-stream/lib/internal/streams/pipeline.js":75}],64:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -9717,7 +6800,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],119:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9859,7 +6942,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":121,"./_stream_writable":123,"_process":208,"inherits":203}],120:[function(require,module,exports){
+},{"./_stream_readable":67,"./_stream_writable":69,"_process":170,"inherits":164}],66:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9899,7 +6982,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":122,"inherits":203}],121:[function(require,module,exports){
+},{"./_stream_transform":68,"inherits":164}],67:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11026,7 +8109,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":118,"./_stream_duplex":119,"./internal/streams/async_iterator":124,"./internal/streams/buffer_list":125,"./internal/streams/destroy":126,"./internal/streams/from":128,"./internal/streams/state":130,"./internal/streams/stream":131,"_process":208,"buffer":114,"events":115,"inherits":203,"string_decoder/":215,"util":112}],122:[function(require,module,exports){
+},{"../errors":64,"./_stream_duplex":65,"./internal/streams/async_iterator":70,"./internal/streams/buffer_list":71,"./internal/streams/destroy":72,"./internal/streams/from":74,"./internal/streams/state":76,"./internal/streams/stream":77,"_process":170,"buffer":60,"events":61,"inherits":164,"string_decoder/":179,"util":58}],68:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11228,7 +8311,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":118,"./_stream_duplex":119,"inherits":203}],123:[function(require,module,exports){
+},{"../errors":64,"./_stream_duplex":65,"inherits":164}],69:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11928,7 +9011,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":118,"./_stream_duplex":119,"./internal/streams/destroy":126,"./internal/streams/state":130,"./internal/streams/stream":131,"_process":208,"buffer":114,"inherits":203,"util-deprecate":224}],124:[function(require,module,exports){
+},{"../errors":64,"./_stream_duplex":65,"./internal/streams/destroy":72,"./internal/streams/state":76,"./internal/streams/stream":77,"_process":170,"buffer":60,"inherits":164,"util-deprecate":188}],70:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -12138,7 +9221,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":127,"_process":208}],125:[function(require,module,exports){
+},{"./end-of-stream":73,"_process":170}],71:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -12349,7 +9432,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":114,"util":112}],126:[function(require,module,exports){
+},{"buffer":60,"util":58}],72:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -12457,7 +9540,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":208}],127:[function(require,module,exports){
+},{"_process":170}],73:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -12562,12 +9645,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":118}],128:[function(require,module,exports){
+},{"../../../errors":64}],74:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],129:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -12665,7 +9748,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":118,"./end-of-stream":127}],130:[function(require,module,exports){
+},{"../../../errors":64,"./end-of-stream":73}],76:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -12693,10 +9776,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":118}],131:[function(require,module,exports){
+},{"../../../errors":64}],77:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":115}],132:[function(require,module,exports){
+},{"events":61}],78:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -12713,43 +9796,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":133,"get-intrinsic":197}],133:[function(require,module,exports){
+},{"./":79,"get-intrinsic":154}],79:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -12762,7 +9833,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":196,"get-intrinsic":197}],134:[function(require,module,exports){
+},{"es-define-property":139,"es-errors/type":145,"function-bind":153,"get-intrinsic":154,"set-function-length":174}],80:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -12858,7 +9929,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":135,"./lib/keys.js":136}],135:[function(require,module,exports){
+},{"./lib/is_arguments.js":81,"./lib/keys.js":82}],81:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -12880,7 +9951,7 @@ function unsupported(object){
     false;
 };
 
-},{}],136:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -12891,7 +9962,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],137:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":139,"es-errors/syntax":144,"es-errors/type":145,"gopd":155}],84:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -12899,29 +10028,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -12940,14 +10069,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":198,"object-keys":206}],138:[function(require,module,exports){
+},{"define-data-property":83,"has-property-descriptors":156,"object-keys":168}],85:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],139:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -12986,13 +10115,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":169,"./ToPrimitive":171,"./Type":176}],140:[function(require,module,exports){
+},{"./ToNumber":117,"./ToPrimitive":119,"./Type":124}],87:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -13000,13 +10129,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -13018,7 +10146,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -13051,28 +10179,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":185,"../helpers/isNaN":187,"../helpers/isPrefixOf":188,"./ToNumber":169,"./ToPrimitive":171,"./Type":176,"get-intrinsic":197}],141:[function(require,module,exports){
+},{"../helpers/isFinite":132,"../helpers/isNaN":133,"../helpers/isPrefixOf":134,"./ToNumber":117,"./ToPrimitive":119,"es-errors/type":145,"get-intrinsic":154}],88:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":78,"es-errors/type":145}],89:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":197}],142:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":147}],90:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -13123,7 +10284,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":145,"./InLeapYear":149,"./MonthFromTime":159,"get-intrinsic":197}],143:[function(require,module,exports){
+},{"./DayWithinYear":93,"./InLeapYear":97,"./MonthFromTime":107,"es-errors/eval":140}],91:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13136,7 +10297,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":192,"./floor":180}],144:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./floor":128}],92:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13148,7 +10309,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":180}],145:[function(require,module,exports){
+},{"./floor":128}],93:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -13161,7 +10322,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":143,"./DayFromYear":144,"./YearFromTime":178}],146:[function(require,module,exports){
+},{"./Day":91,"./DayFromYear":92,"./YearFromTime":126}],94:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -13181,18 +10342,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":181}],147:[function(require,module,exports){
+},{"./modulo":129}],95:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -13201,7 +10359,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -13222,7 +10382,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":184,"./IsAccessorDescriptor":150,"./IsDataDescriptor":152,"./Type":176,"get-intrinsic":197}],148:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":136,"./IsAccessorDescriptor":98,"./IsDataDescriptor":100,"es-errors/type":145}],96:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13238,12 +10398,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":192,"./floor":180,"./modulo":181}],149:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./floor":128,"./modulo":129}],97:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -13261,14 +10419,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":146,"./YearFromTime":178,"get-intrinsic":197}],150:[function(require,module,exports){
+},{"./DaysInYear":94,"./YearFromTime":126,"es-errors/eval":140}],98:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -13277,30 +10435,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":184,"./Type":176,"has":201}],151:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":136,"es-errors/type":145,"hasown":162}],99:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":204}],152:[function(require,module,exports){
+},{"is-callable":165}],100:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -13309,23 +10469,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":184,"./Type":176,"has":201}],153:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":136,"es-errors/type":145,"hasown":162}],101:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -13334,7 +10497,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -13343,28 +10508,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":184,"./IsAccessorDescriptor":150,"./IsDataDescriptor":152,"./Type":176}],154:[function(require,module,exports){
+},{"./IsAccessorDescriptor":98,"./IsDataDescriptor":100,"./IsPropertyDescriptor":102,"es-errors/type":145}],102:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":189,"./IsAccessorDescriptor":150,"./IsDataDescriptor":152,"./Type":176}],155:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":136}],103:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -13379,7 +10536,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":185,"../helpers/timeConstants":192}],156:[function(require,module,exports){
+},{"../helpers/isFinite":132,"../helpers/timeConstants":138}],104:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13414,7 +10571,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":185,"./DateFromTime":142,"./Day":143,"./MonthFromTime":159,"./ToInteger":168,"./YearFromTime":178,"./floor":180,"./modulo":181,"get-intrinsic":197}],157:[function(require,module,exports){
+},{"../helpers/isFinite":132,"./DateFromTime":90,"./Day":91,"./MonthFromTime":107,"./ToInteger":116,"./YearFromTime":126,"./floor":128,"./modulo":129,"get-intrinsic":154}],105:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -13439,7 +10596,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":185,"../helpers/timeConstants":192,"./ToInteger":168}],158:[function(require,module,exports){
+},{"../helpers/isFinite":132,"../helpers/timeConstants":138,"./ToInteger":116}],106:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13455,7 +10612,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":192,"./floor":180,"./modulo":181}],159:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./floor":128,"./modulo":129}],107:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -13504,7 +10661,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":145,"./InLeapYear":149}],160:[function(require,module,exports){
+},{"./DayWithinYear":93,"./InLeapYear":97}],108:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -13519,7 +10676,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":187}],161:[function(require,module,exports){
+},{"../helpers/isNaN":133}],109:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13535,7 +10692,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":192,"./floor":180,"./modulo":181}],162:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./floor":128,"./modulo":129}],110:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -13554,7 +10711,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":176}],163:[function(require,module,exports){
+},{"./Type":124}],111:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13577,7 +10734,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":185,"./ToNumber":169,"./abs":179,"get-intrinsic":197}],164:[function(require,module,exports){
+},{"../helpers/isFinite":132,"./ToNumber":117,"./abs":127,"get-intrinsic":154}],112:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -13590,7 +10747,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":192,"./DayFromYear":144}],165:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./DayFromYear":92}],113:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -13604,14 +10761,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":192,"./modulo":181}],166:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./modulo":129}],114:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],167:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -13622,7 +10779,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":169}],168:[function(require,module,exports){
+},{"./ToNumber":117}],116:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -13642,10 +10799,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":185,"../helpers/isNaN":187,"../helpers/sign":191,"./ToNumber":169,"./abs":179,"./floor":180}],169:[function(require,module,exports){
+},{"../helpers/isFinite":132,"../helpers/isNaN":133,"../helpers/sign":137,"./ToNumber":117,"./abs":127,"./floor":128}],117:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -13655,46 +10820,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":171}],170:[function(require,module,exports){
+},{"./ToPrimitive":119,"call-bind/callBound":78,"safe-regex-test":173}],118:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":141,"get-intrinsic":197}],171:[function(require,module,exports){
+},{"es-object-atoms/ToObject":148}],119:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":193}],172:[function(require,module,exports){
+},{"es-to-primitive/es5":150}],120:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -13708,26 +10866,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -13735,13 +10893,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":151,"./ToBoolean":166,"./Type":176,"get-intrinsic":197,"has":201}],173:[function(require,module,exports){
+},{"./IsCallable":99,"./ToBoolean":114,"./Type":124,"es-errors/type":145,"hasown":162}],121:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13755,7 +10913,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":197}],174:[function(require,module,exports){
+},{"get-intrinsic":154}],122:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -13776,7 +10934,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":185,"../helpers/isNaN":187,"../helpers/sign":191,"./ToNumber":169,"./abs":179,"./floor":180,"./modulo":181}],175:[function(require,module,exports){
+},{"../helpers/isFinite":132,"../helpers/isNaN":133,"../helpers/sign":137,"./ToNumber":117,"./abs":127,"./floor":128,"./modulo":129}],123:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -13787,7 +10945,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":169}],176:[function(require,module,exports){
+},{"./ToNumber":117}],124:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -13813,7 +10971,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],177:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -13825,7 +10983,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":143,"./modulo":181}],178:[function(require,module,exports){
+},{"./Day":91,"./modulo":129}],126:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13843,7 +11001,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":132,"get-intrinsic":197}],179:[function(require,module,exports){
+},{"call-bind/callBound":78,"get-intrinsic":154}],127:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13856,7 +11014,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":197}],180:[function(require,module,exports){
+},{"get-intrinsic":154}],128:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -13869,7 +11027,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],181:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -13880,7 +11038,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":190}],182:[function(require,module,exports){
+},{"../helpers/mod":135}],130:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -13893,7 +11051,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":192,"./modulo":181}],183:[function(require,module,exports){
+},{"../helpers/timeConstants":138,"./modulo":129}],131:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -13904,6 +11062,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -13946,90 +11105,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":139,"./5/AbstractRelationalComparison":140,"./5/CheckObjectCoercible":141,"./5/DateFromTime":142,"./5/Day":143,"./5/DayFromYear":144,"./5/DayWithinYear":145,"./5/DaysInYear":146,"./5/FromPropertyDescriptor":147,"./5/HourFromTime":148,"./5/InLeapYear":149,"./5/IsAccessorDescriptor":150,"./5/IsCallable":151,"./5/IsDataDescriptor":152,"./5/IsGenericDescriptor":153,"./5/IsPropertyDescriptor":154,"./5/MakeDate":155,"./5/MakeDay":156,"./5/MakeTime":157,"./5/MinFromTime":158,"./5/MonthFromTime":159,"./5/SameValue":160,"./5/SecFromTime":161,"./5/StrictEqualityComparison":162,"./5/TimeClip":163,"./5/TimeFromYear":164,"./5/TimeWithinDay":165,"./5/ToBoolean":166,"./5/ToInt32":167,"./5/ToInteger":168,"./5/ToNumber":169,"./5/ToObject":170,"./5/ToPrimitive":171,"./5/ToPropertyDescriptor":172,"./5/ToString":173,"./5/ToUint16":174,"./5/ToUint32":175,"./5/Type":176,"./5/WeekDay":177,"./5/YearFromTime":178,"./5/abs":179,"./5/floor":180,"./5/modulo":181,"./5/msFromTime":182}],184:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":86,"./5/AbstractRelationalComparison":87,"./5/Canonicalize":88,"./5/CheckObjectCoercible":89,"./5/DateFromTime":90,"./5/Day":91,"./5/DayFromYear":92,"./5/DayWithinYear":93,"./5/DaysInYear":94,"./5/FromPropertyDescriptor":95,"./5/HourFromTime":96,"./5/InLeapYear":97,"./5/IsAccessorDescriptor":98,"./5/IsCallable":99,"./5/IsDataDescriptor":100,"./5/IsGenericDescriptor":101,"./5/IsPropertyDescriptor":102,"./5/MakeDate":103,"./5/MakeDay":104,"./5/MakeTime":105,"./5/MinFromTime":106,"./5/MonthFromTime":107,"./5/SameValue":108,"./5/SecFromTime":109,"./5/StrictEqualityComparison":110,"./5/TimeClip":111,"./5/TimeFromYear":112,"./5/TimeWithinDay":113,"./5/ToBoolean":114,"./5/ToInt32":115,"./5/ToInteger":116,"./5/ToNumber":117,"./5/ToObject":118,"./5/ToPrimitive":119,"./5/ToPropertyDescriptor":120,"./5/ToString":121,"./5/ToUint16":122,"./5/ToUint32":123,"./5/Type":124,"./5/WeekDay":125,"./5/YearFromTime":126,"./5/abs":127,"./5/floor":128,"./5/modulo":129,"./5/msFromTime":130}],132:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":186,"get-intrinsic":197,"has":201}],185:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],186:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":201}],187:[function(require,module,exports){
+},{"./isNaN":133}],133:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],188:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -14044,40 +11134,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":132}],189:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":197,"has":201}],190:[function(require,module,exports){
+},{"call-bind/callBound":78}],135:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -14087,14 +11144,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],191:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":145,"hasown":162}],137:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],192:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -14115,7 +11210,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],193:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":154}],140:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],141:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],142:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],143:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],144:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],145:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],146:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],147:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":145}],148:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":149,"./RequireObjectCoercible":147}],149:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],150:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -14162,56 +11348,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":194,"is-callable":204}],194:[function(require,module,exports){
+},{"./helpers/isPrimitive":151,"is-callable":165}],151:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],195:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -14223,21 +11441,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],196:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":195}],197:[function(require,module,exports){
+},{"./implementation":152}],154:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -14276,18 +11500,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -14295,6 +11525,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -14302,9 +11534,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -14315,10 +11547,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -14326,15 +11558,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -14344,11 +11576,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -14365,7 +11607,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -14376,6 +11618,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -14430,11 +11673,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -14490,6 +11734,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -14562,29 +11809,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":196,"has":201,"has-symbols":199}],198:[function(require,module,exports){
+},{"es-errors":141,"es-errors/eval":140,"es-errors/range":142,"es-errors/ref":143,"es-errors/syntax":144,"es-errors/type":145,"es-errors/uri":146,"function-bind":153,"has-proto":157,"has-symbols":158,"hasown":162}],155:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":154}],156:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -14597,7 +11851,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":197}],199:[function(require,module,exports){
+},{"es-define-property":139}],157:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],158:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -14612,7 +11883,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":200}],200:[function(require,module,exports){
+},{"./shams":159}],159:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -14656,14 +11927,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],201:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":159}],161:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":196}],202:[function(require,module,exports){
+},{"function-bind":153}],162:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":153}],163:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -14750,7 +12041,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],203:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -14779,7 +12070,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],204:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -14825,37 +12116,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],205:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":78,"has-tostringtag/shams":160}],167:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -14979,7 +12357,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":207}],206:[function(require,module,exports){
+},{"./isArguments":169}],168:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -15013,7 +12391,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":205,"./isArguments":207}],207:[function(require,module,exports){
+},{"./implementation":167,"./isArguments":169}],169:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -15032,7 +12410,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],208:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -15218,7 +12596,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],209:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -15251,7 +12629,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"through":222,"timers":223}],210:[function(require,module,exports){
+},{"_process":170,"through":186,"timers":187}],172:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -15318,7 +12696,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":114}],211:[function(require,module,exports){
+},{"buffer":60}],173:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":78,"es-errors/type":145,"is-regex":166}],174:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":83,"es-errors/type":145,"get-intrinsic":154,"gopd":155,"has-property-descriptors":156}],175:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -15333,7 +12773,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":183,"function-bind":196}],212:[function(require,module,exports){
+},{"es-abstract/es5":131,"function-bind":153}],176:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -15353,7 +12793,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":211,"./polyfill":213,"./shim":214,"define-properties":137,"function-bind":196}],213:[function(require,module,exports){
+},{"./implementation":175,"./polyfill":177,"./shim":178,"define-properties":84,"function-bind":153}],177:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -15367,7 +12807,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":211}],214:[function(require,module,exports){
+},{"./implementation":175}],178:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -15379,7 +12819,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":213,"define-properties":137}],215:[function(require,module,exports){
+},{"./polyfill":177,"define-properties":84}],179:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15676,7 +13116,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":210}],216:[function(require,module,exports){
+},{"safe-buffer":172}],180:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -15830,7 +13270,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":217,"./lib/results":219,"./lib/test":220,"_process":208,"defined":138,"through":222,"timers":223}],217:[function(require,module,exports){
+},{"./lib/default_stream":181,"./lib/results":183,"./lib/test":184,"_process":170,"defined":85,"through":186,"timers":187}],181:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -15865,7 +13305,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208,"fs":113,"through":222}],218:[function(require,module,exports){
+},{"_process":170,"fs":59,"through":186}],182:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -15873,7 +13313,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"timers":223}],219:[function(require,module,exports){
+},{"_process":170,"timers":187}],183:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -16064,7 +13504,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"events":115,"function-bind":196,"has":201,"inherits":203,"object-inspect":221,"resumer":209,"through":222,"timers":223}],220:[function(require,module,exports){
+},{"_process":170,"events":61,"function-bind":153,"has":161,"inherits":164,"object-inspect":185,"resumer":171,"through":186,"timers":187}],184:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -16565,7 +14005,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":218,"deep-equal":134,"defined":138,"events":115,"has":201,"inherits":203,"path":116,"string.prototype.trim":212}],221:[function(require,module,exports){
+},{"./next_tick":182,"deep-equal":80,"defined":85,"events":61,"has":161,"inherits":164,"path":62,"string.prototype.trim":176}],185:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -16759,7 +14199,7 @@ function inspectString (str) {
     }
 }
 
-},{}],222:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -16871,7 +14311,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208,"stream":117}],223:[function(require,module,exports){
+},{"_process":170,"stream":63}],187:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -16950,7 +14390,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":208,"timers":223}],224:[function(require,module,exports){
+},{"process/browser.js":170,"timers":187}],188:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -17021,4 +14461,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[57]);
+},{}]},{},[20]);

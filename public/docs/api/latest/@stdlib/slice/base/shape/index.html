@@ -1,0 +1,53 @@
+<h1 id="sliceshape">sliceShape</h1><blockquote><p>Compute the shape of a <a href="/docs/api/latest/@stdlib/slice/base/normalize-multi-slice">normalized multi-slice</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/shape'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="sliceshape-slice-">sliceShape( slice )</h4><p>Returns the shape of a <a href="/docs/api/latest/@stdlib/slice/base/normalize-multi-slice">normalized multi-slice</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> normalizeMultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-multi-slice'</span> );
+
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> MultiSlice( S( -<span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), S( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+s = normalizeMultiSlice( s, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> sh = sliceShape( s );
+<span class="hljs-comment">// returns [ 7, 8 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> normalizeMultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-multi-slice'</span> );
+<span class="hljs-keyword">var</span> sliceShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/shape'</span> );
+
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> MultiSlice( S( <span class="hljs-number">3</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), S( <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-keyword">var</span> s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-keyword">var</span> sh = sliceShape( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, sh.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 4, 4 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-literal">null</span>, S( -<span class="hljs-number">1</span>, -<span class="hljs-number">8</span>, -<span class="hljs-number">2</span> ) );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">11</span>, <span class="hljs-number">12</span> ], <span class="hljs-literal">false</span> );
+sh = sliceShape( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, sh.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 11, 4 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">1</span> ), <span class="hljs-literal">null</span> );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">11</span>, <span class="hljs-number">12</span> ], <span class="hljs-literal">false</span> );
+sh = sliceShape( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, sh.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 11, 12 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( S( <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span> ), <span class="hljs-literal">null</span> );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">11</span>, <span class="hljs-number">12</span> ], <span class="hljs-literal">false</span> );
+sh = sliceShape( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, sh.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 0, 12 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( S( <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span> ), S( <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ) );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+sh = sliceShape( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, sh.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 0, 0 ]'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

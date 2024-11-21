@@ -7,8 +7,34 @@
 
 <span class="hljs-keyword">var</span> mu = dist.mean;
 <span class="hljs-comment">// returns 4.0</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
 <span class="hljs-keyword">var</span> chisquare = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/chisquare'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( chisquare ) );
+<span class="hljs-comment">// Define degrees of freedom:</span>
+<span class="hljs-keyword">var</span> k = <span class="hljs-number">5.0</span>;
+
+<span class="hljs-comment">// Calculate distribution properties:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mean: %d'</span>, chisquare.mean( k ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Median: %d'</span>, roundn( chisquare.median( k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mode: %d'</span>, chisquare.mode( k ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Variance: %d'</span>, chisquare.variance( k ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Standard Deviation: %d'</span>, roundn( chisquare.stdev( k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Skewness: %d'</span>, roundn( chisquare.skewness( k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Excess Kurtosis: %d'</span>, roundn( chisquare.kurtosis( k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Entropy: %d'</span>, roundn( chisquare.entropy( k ), -<span class="hljs-number">4</span> ) );
+
+<span class="hljs-comment">// Evaluate probability functions:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">3.0</span>;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nEvaluating at x = %d'</span>, x );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF: %d'</span>, roundn( chisquare.pdf( x, k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'logPDF: %d'</span>, roundn( chisquare.logpdf( x, k ), -<span class="hljs-number">4</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF: %d'</span>, roundn( chisquare.cdf( x, k ), -<span class="hljs-number">4</span> ) );
+
+<span class="hljs-comment">// Calculate quantiles:</span>
+<span class="hljs-keyword">var</span> p = <span class="hljs-number">0.7</span>;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nQuantile at p = %d: %d'</span>, p, roundn( chisquare.quantile( p, k ), -<span class="hljs-number">4</span> ) );
+
+<span class="hljs-comment">// Evaluate moment-generating function:</span>
+<span class="hljs-keyword">var</span> t = <span class="hljs-number">0.1</span>;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'MGF at t = %d: %d'</span>, t, roundn( chisquare.mgf( t, k ), -<span class="hljs-number">4</span> ) );
 </code></pre></section><section class="related"></section><section class="links"></section>

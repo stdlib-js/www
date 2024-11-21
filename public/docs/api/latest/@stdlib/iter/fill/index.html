@@ -74,20 +74,17 @@ v = it.next().value;
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>end</code> exceeds the length of the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> replaces the subsequence of iterated values starting from <code>begin</code> until the last iterated value of the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a>.</li><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
 <span class="hljs-keyword">var</span> iterFill = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/fill'</span> );
 
-<span class="hljs-keyword">var</span> rand;
-<span class="hljs-keyword">var</span> it;
-<span class="hljs-keyword">var</span> r;
-
 <span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
-rand = randu({
+<span class="hljs-keyword">var</span> rand = randu({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
     <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
 });
 
 <span class="hljs-comment">// Create an iterator which replaces a subsequence of 10 generated numbers:</span>
-it = iterFill( rand, <span class="hljs-number">3.14</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
+<span class="hljs-keyword">var</span> it = iterFill( rand, <span class="hljs-number">3.14</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
 
 <span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
     r = it.next();
     <span class="hljs-keyword">if</span> ( r.done ) {

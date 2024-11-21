@@ -34,4 +34,24 @@ v = asinh( <span class="hljs-literal">Infinity</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( asinh( x[ i ] ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a number.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/fast/asinh.h"</span></span>
+</code></pre><h4 id="stdlib_base_fast_asinh-x-">stdlib_base_fast_asinh( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arcsine</a> of double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_fast_asinh( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = stdlib_base_fast_asinh( <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~1.444</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_fast_asinh</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/fast/asinh.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">1.45</span>, <span class="hljs-number">1.89</span>, <span class="hljs-number">2.33</span>, <span class="hljs-number">2.78</span>, <span class="hljs-number">3.22</span>, <span class="hljs-number">3.66</span>, <span class="hljs-number">4.11</span>, <span class="hljs-number">4.55</span>, <span class="hljs-number">5.0</span> };
+    
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_fast_asinh( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"asinh(%lf) = %lf\n"</span>, x[ i ], v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

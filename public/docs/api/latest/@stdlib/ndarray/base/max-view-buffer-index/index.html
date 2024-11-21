@@ -1,4 +1,4 @@
-<h1 id="max-view-buffer-index">Max View Buffer Index</h1><blockquote><p>Compute the maximum linear index in an underlying data buffer accessible to an array view.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maxViewBufferIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/max-view-buffer-index'</span> );
+<h1 id="maxviewbufferindex">maxViewBufferIndex</h1><blockquote><p>Compute the maximum linear index in an underlying data buffer accessible to an array view.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maxViewBufferIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/max-view-buffer-index'</span> );
 </code></pre><h4 id="maxviewbufferindex-shape-strides-offset-">maxViewBufferIndex( shape, strides, offset )</h4><p>Computes the maximum linear index in an underlying data buffer accessible to an array view.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Array shape:</span>
 <span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 
@@ -47,4 +47,39 @@ shape = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
     idx = maxViewBufferIndex( shape, strides, offset );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Shape: %s. Strides: %s. Offset: %d. Max idx: %d.'</span>, shape.join( <span class="hljs-string">'x'</span> ), strides.join( <span class="hljs-string">','</span> ), offset, idx );
 }
-</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/max_view_buffer_index.h"</span></span>
+</code></pre><h4 id="stdlib_ndarray_max_view_buffer_index-ndims-shape-strides-offset-">stdlib_ndarray_max_view_buffer_index( ndims, *shape, *strides, offset )</h4><p>Computes the maximum linear index (in bytes) in an underlying data buffer accessible to an array view.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">int64_t</span> ndims = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">10</span>, <span class="hljs-number">10</span> };
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">10</span>, <span class="hljs-number">1</span> };
+<span class="hljs-keyword">int64_t</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">int64_t</span> idx = stdlib_ndarray_max_view_buffer_index( ndims, shape, strides, offset );
+<span class="hljs-comment">// returns 99</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>ndims</strong>: <code>[in] int64_t</code> number of dimensions.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array shape (dimensions).</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array strides (in bytes).</li><li><strong>offset</strong>: <code>[in] int64_t</code> index offset.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">int64_t</span> <span class="hljs-title">stdlib_ndarray_max_view_buffer_index</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> ndims, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> offset )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/max_view_buffer_index.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Specify the number of dimensions:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> ndims = <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">// Define an array shape:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">10</span>, <span class="hljs-number">10</span> };
+
+    <span class="hljs-comment">// Define array strides:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">-2</span>, <span class="hljs-number">5</span> };
+
+    <span class="hljs-comment">// Define an offset:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> offset = <span class="hljs-number">100</span>;
+
+    <span class="hljs-comment">// Compute the maximum accessible index:</span>
+    <span class="hljs-keyword">int64_t</span> idx = stdlib_ndarray_max_view_buffer_index( ndims, shape, strides, offset );
+
+    <span class="hljs-comment">// Print the results:</span>
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"idx: %"</span>PRId64<span class="hljs-string">"\n"</span>, idx );
+}
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

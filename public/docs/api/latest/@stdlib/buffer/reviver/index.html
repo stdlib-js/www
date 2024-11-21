@@ -1,21 +1,21 @@
-<h1 id="reviver">Reviver</h1><blockquote><p>Revive a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
-</code></pre><h4 id="reviver-key-value-">reviver( key, value )</h4><p>Revives a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<h1 id="revivebuffer">reviveBuffer</h1><blockquote><p>Revive a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviveBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
+</code></pre><h4 id="revivebuffer-key-value-">reviveBuffer( key, value )</h4><p>Revives a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"Buffer","data":[5,3]}'</span>;
 
-<span class="hljs-keyword">var</span> buf = parseJSON( str, reviver );
+<span class="hljs-keyword">var</span> buf = parseJSON( str, reviveBuffer );
 <span class="hljs-comment">// returns &#x3C;Buffer>[ 5, 3 ]</span>
-</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/buffer/to-json"><code>toJSON()</code></a>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/buffer/to-json"><code>@stdlib/buffer/to-json</code></a>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
 <span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
-<span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
-<span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
+<span class="hljs-keyword">var</span> buffer2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
+<span class="hljs-keyword">var</span> reviveBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
 
 <span class="hljs-keyword">var</span> buf = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
-<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( toJSON( buf ) );
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( buffer2json( buf ) );
 <span class="hljs-built_in">console</span>.log( str );
 <span class="hljs-comment">// => '{"type":"Buffer","data":[1,2]}'</span>
 
-<span class="hljs-keyword">var</span> out = parseJSON( str, reviver );
+<span class="hljs-keyword">var</span> out = parseJSON( str, reviveBuffer );
 <span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
     <span class="hljs-keyword">throw</span> out;
 }

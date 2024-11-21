@@ -15,7 +15,7 @@ untilEach( arr, predicate, log );
     1: 2
     2: 3
 */</span>
-</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to apply are provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value </span>) </span>{
+</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to apply are provided three arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li><li><strong>collection</strong>: input collection.</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value </span>) </span>{
     <span class="hljs-keyword">return</span> ( value !== value );
 }
 

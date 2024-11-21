@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":8}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":8}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -240,7 +240,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -258,7 +258,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":5,"./uint32array.js":6,"@stdlib/assert/has-uint32array-support":16}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-uint32array-support":16}],5:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -296,36 +326,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],6:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],7:[function(require,module,exports){
 /**
@@ -466,7 +466,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":7,"@stdlib/assert/is-float32array":31,"@stdlib/constants/float64/pinf":66}],10:[function(require,module,exports){
+},{"./float32array.js":7,"@stdlib/assert/is-float32array":31,"@stdlib/constants/float64/pinf":68}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -508,12 +508,12 @@ module.exports = hasFloat32ArraySupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":11}],11:[function(require,module,exports){
 /**
@@ -616,12 +616,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":13}],13:[function(require,module,exports){
 /**
@@ -702,12 +702,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":15}],15:[function(require,module,exports){
 /**
@@ -871,7 +871,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":18,"@stdlib/assert/is-uint32array":58,"@stdlib/constants/uint32/max":67}],18:[function(require,module,exports){
+},{"./uint32array.js":18,"@stdlib/assert/is-uint32array":58,"@stdlib/constants/uint32/max":69}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -939,12 +939,12 @@ module.exports = main;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":20}],20:[function(require,module,exports){
 /**
@@ -1011,7 +1011,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":131}],21:[function(require,module,exports){
+},{"@stdlib/utils/native-class":143}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1038,6 +1038,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -1047,7 +1048,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -1057,7 +1058,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -1070,22 +1071,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":22,"./object.js":23,"./primitive.js":24,"@stdlib/utils/define-nonenumerable-read-only-property":112}],22:[function(require,module,exports){
+},{"./main.js":22,"./object.js":23,"./primitive.js":24,"@stdlib/utils/define-nonenumerable-read-only-property":125}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1129,10 +1130,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -1170,6 +1175,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -1191,6 +1197,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -1212,7 +1220,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":26,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/utils/native-class":131}],24:[function(require,module,exports){
+},{"./try2serialize.js":26,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/boolean/ctor":62,"@stdlib/utils/native-class":143}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1248,6 +1256,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -1376,12 +1386,12 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":28}],28:[function(require,module,exports){
 /**
@@ -1493,12 +1503,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":30}],30:[function(require,module,exports){
 /**
@@ -1566,7 +1576,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":121,"@stdlib/utils/native-class":131}],31:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":133,"@stdlib/utils/native-class":143}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1670,7 +1680,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":131}],33:[function(require,module,exports){
+},{"@stdlib/utils/native-class":143}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1709,12 +1719,12 @@ module.exports = isFloat32Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":34}],34:[function(require,module,exports){
 /**
@@ -1768,7 +1778,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":142}],35:[function(require,module,exports){
+},{"@stdlib/utils/type-of":154}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1833,22 +1843,22 @@ module.exports = isFunction;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":37,"./object.js":38,"./primitive.js":39,"@stdlib/utils/define-nonenumerable-read-only-property":112}],36:[function(require,module,exports){
+},{"./main.js":37,"./object.js":38,"./primitive.js":39,"@stdlib/utils/define-nonenumerable-read-only-property":125}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1898,7 +1908,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":65,"@stdlib/constants/float64/pinf":66,"@stdlib/math/base/assert/is-integer":68}],37:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":67,"@stdlib/constants/float64/pinf":68,"@stdlib/math/base/assert/is-integer":70}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2134,22 +2144,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":41,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-nonenumerable-read-only-property":112}],41:[function(require,module,exports){
+},{"./main.js":41,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-nonenumerable-read-only-property":125}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2387,22 +2397,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":45,"./object.js":46,"./primitive.js":47,"@stdlib/utils/define-nonenumerable-read-only-property":112}],45:[function(require,module,exports){
+},{"./main.js":45,"./object.js":46,"./primitive.js":47,"@stdlib/utils/define-nonenumerable-read-only-property":125}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2530,7 +2540,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":49,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/number/ctor":74,"@stdlib/utils/native-class":131}],47:[function(require,module,exports){
+},{"./try2serialize.js":49,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/number/ctor":76,"@stdlib/utils/native-class":143}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2614,7 +2624,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":74}],49:[function(require,module,exports){
+},{"@stdlib/number/ctor":76}],49:[function(require,module,exports){
 arguments[4][26][0].apply(exports,arguments)
 },{"./tostring.js":48,"dup":26}],50:[function(require,module,exports){
 /**
@@ -2668,19 +2678,24 @@ arguments[4][26][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":51,"@stdlib/assert/tools/array-function":61,"@stdlib/utils/define-nonenumerable-read-only-property":112}],51:[function(require,module,exports){
+},{"./main.js":51,"@stdlib/assert/tools/array-function":60,"@stdlib/utils/define-nonenumerable-read-only-property":125}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2791,22 +2806,22 @@ module.exports = isObjectLike;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":53,"./object.js":54,"./primitive.js":55,"@stdlib/utils/define-nonenumerable-read-only-property":112}],53:[function(require,module,exports){
+},{"./main.js":53,"./object.js":54,"./primitive.js":55,"@stdlib/utils/define-nonenumerable-read-only-property":125}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2925,7 +2940,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":56,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/utils/native-class":131}],55:[function(require,module,exports){
+},{"./try2valueof.js":56,"@stdlib/assert/has-tostringtag-support":14,"@stdlib/utils/native-class":143}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3151,7 +3166,58 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":131}],60:[function(require,module,exports){
+},{"@stdlib/utils/native-class":143}],60:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":61}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3238,11 +3304,11 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":19,"@stdlib/string/format":103}],61:[function(require,module,exports){
+},{"@stdlib/assert/is-array":19,"@stdlib/string/format":114}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3260,36 +3326,92 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":60}],62:[function(require,module,exports){
+},{"./main.js":63}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3366,7 +3488,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/uint32":4}],63:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/uint32":4}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3443,7 +3565,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/uint32":4}],64:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/uint32":4}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3502,7 +3624,7 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3564,7 +3686,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":74}],66:[function(require,module,exports){
+},{"@stdlib/number/ctor":76}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3622,7 +3744,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],67:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3685,7 +3807,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],68:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3723,14 +3845,14 @@ module.exports = UINT32_MAX;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":69}],69:[function(require,module,exports){
+},{"./main.js":71}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3781,7 +3903,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":72}],70:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":74}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3825,14 +3947,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var ceil = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ceil;
+module.exports = main;
 
-},{"./main.js":71}],71:[function(require,module,exports){
+},{"./main.js":73}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3884,7 +4006,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],72:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3928,14 +4050,14 @@ module.exports = ceil;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":73}],73:[function(require,module,exports){
+},{"./main.js":75}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3987,7 +4109,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4022,14 +4144,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":75}],75:[function(require,module,exports){
+},{"./main.js":77}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4054,7 +4176,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],76:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4094,14 +4216,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var toWordf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = toWordf;
+module.exports = main;
 
-},{"./main.js":77}],77:[function(require,module,exports){
+},{"./main.js":79}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4161,27 +4283,37 @@ function toWordf( x ) {
 
 module.exports = toWordf;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/uint32":4}],78:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/uint32":4}],80:[function(require,module,exports){
 module.exports={"expected":["11111011010000001001011111001110","11111011011001101100110110000110","11111011100001101000000110011111","11111011100110011001110001111011","11111011101011001011011101010110","11111011101111111101001000110010","11111011110100101110110100001110","11111011111001100000011111101010","11111011111110010010001011000110","11111100000001100001111011010001","11111100000011111010110000111111","11111100000110010011100110101100","11111100001000101100011100011010","11111100001011000101010010001000","11111100001101011110000111110110","11111100001111110110111101100100","11111100010010001111110011010010","11111100010100101000101001000000","11111100010111000001011110101110","11111100011001011010010100011100","11111100011011110011001010001010","11111100011110001011111111110111","11111100100000010010011010110011","11111100100001011110110101101010","11111100100010101011010000100001","11111100100011110111101011011000","11111100100101000100000110001110","11111100100110010000100001000101","11111100100111011100111011111100","11111100101000101001010110110011","11111100101001110101110001101010","11111100101011000010001100100001","11111100101100001110100111011000","11111100101101011011000010001111","11111100101110100111011101000110","11111100101111110011110111111101","11111100110001000000010010110100","11111100110010001100101101101011","11111100110011011001001000100010","11111100110100100101100011011001","11111100110101110001111110010000","11111100110110111110011001000111","11111100111000001010110011111110","11111100111001010111001110110101","11111100111010100011101001101100","11111100111011110000000100100010","11111100111100111100011111011001","11111100111110001000111010010000","11111100111111010101010101000111","11111101000000010000110111111111","11111101000000110111000101011011","11111101000001011101010010110110","11111101000010000011100000010010","11111101000010101001101101101101","11111101000011001111111011001001","11111101000011110110001000100100","11111101000100011100010101111111","11111101000101000010100011011011","11111101000101101000110000110110","11111101000110001110111110010010","11111101000110110101001011101101","11111101000111011011011001001001","11111101001000000001100110100100","11111101001000100111110100000000","11111101001001001110000001011011","11111101001001110100001110110111","11111101001010011010011100010010","11111101001011000000101001101110","11111101001011100110110111001001","11111101001100001101000100100101","11111101001100110011010010000000","11111101001101011001011111011100","11111101001101111111101100110111","11111101001110100101111010010011","11111101001111001100000111101110","11111101001111110010010101001001","11111101010000011000100010100101","11111101010000111110110000000000","11111101010001100100111101011100","11111101010010001011001010110111","11111101010010110001011000010011","11111101010011010111100101101110","11111101010011111101110011001010","11111101010100100100000000100101","11111101010101001010001110000001","11111101010101110000011011011100","11111101010110010110101000111000","11111101010110111100110110010011","11111101010111100011000011101111","11111101011000001001010001001010","11111101011000101111011110100110","11111101011001010101101100000001","11111101011001111011111001011101","11111101011010100010000110111000","11111101011011001000010100010011","11111101011011101110100001101111","11111101011100010100101111001010","11111101011100111010111100100110","11111101011101100001001010000001","11111101011110000111010111011101","11111101011110101101100100111000","11111101011111010011110010010100","11111101011111111001111111101111","11111101100000010000000110100101","11111101100000100011001101010011","11111101100000110110010100000001","11111101100001001001011010101111","11111101100001011100100001011100","11111101100001101111101000001010","11111101100010000010101110111000","11111101100010010101110101100110","11111101100010101000111100010011","11111101100010111100000011000001","11111101100011001111001001101111","11111101100011100010010000011100","11111101100011110101010111001010","11111101100100001000011101111000","11111101100100011011100100100110","11111101100100101110101011010011","11111101100101000001110010000001","11111101100101010100111000101111","11111101100101100111111111011101","11111101100101111011000110001010","11111101100110001110001100111000","11111101100110100001010011100110","11111101100110110100011010010100","11111101100111000111100001000001","11111101100111011010100111101111","11111101100111101101101110011101","11111101101000000000110101001011","11111101101000010011111011111000","11111101101000100111000010100110","11111101101000111010001001010100","11111101101001001101010000000001","11111101101001100000010110101111","11111101101001110011011101011101","11111101101010000110100100001011","11111101101010011001101010111000","11111101101010101100110001100110","11111101101010111111111000010100","11111101101011010010111111000010","11111101101011100110000101101111","11111101101011111001001100011101","11111101101100001100010011001011","11111101101100011111011001111001","11111101101100110010100000100110","11111101101101000101100111010100","11111101101101011000101110000010","11111101101101101011110100110000","11111101101101111110111011011101","11111101101110010010000010001011","11111101101110100101001000111001","11111101101110111000001111100110","11111101101111001011010110010100","11111101101111011110011101000010","11111101101111110001100011110000","11111101110000000100101010011101","11111101110000010111110001001011","11111101110000101010110111111001","11111101110000111101111110100111","11111101110001010001000101010100","11111101110001100100001100000010","11111101110001110111010010110000","11111101110010001010011001011110","11111101110010011101100000001011","11111101110010110000100110111001","11111101110011000011101101100111","11111101110011010110110100010101","11111101110011101001111011000010","11111101110011111101000001110000","11111101110100010000001000011110","11111101110100100011001111001011","11111101110100110110010101111001","11111101110101001001011100100111","11111101110101011100100011010101","11111101110101101111101010000010","11111101110110000010110000110000","11111101110110010101110111011110","11111101110110101000111110001100","11111101110110111100000100111001","11111101110111001111001011100111","11111101110111100010010010010101","11111101110111110101011001000011","11111101111000001000011111110000","11111101111000011011100110011110","11111101111000101110101101001100","11111101111001000001110011111010","11111101111001010100111010100111","11111101111001101000000001010101","11111101111001111011001000000011","11111101111010001110001110110000","11111101111010100001010101011110","11111101111010110100011100001100","11111101111011000111100010111010","11111101111011011010101001100111","11111101111011101101110000010101","11111101111100000000110111000011","11111101111100010011111101110001","11111101111100100111000100011110","11111101111100111010001011001100","11111101111101001101010001111010","11111101111101100000011000101000","11111101111101110011011111010101","11111101111110000110100110000011","11111101111110011001101100110001","11111101111110101100110011011111","11111101111110111111111010001100","11111101111111010011000000111010","11111101111111100110000111101000","11111101111111111001001110010110","11111110000000000110001010100010","11111110000000001111101101111000","11111110000000011001010001001111","11111110000000100010110100100110","11111110000000101100010111111101","11111110000000110101111011010100","11111110000000111111011110101011","11111110000001001001000010000010","11111110000001010010100101011001","11111110000001011100001000101111","11111110000001100101101100000110","11111110000001101111001111011101","11111110000001111000110010110100","11111110000010000010010110001011","11111110000010001011111001100010","11111110000010010101011100111001","11111110000010011111000000010000","11111110000010101000100011100110","11111110000010110010000110111101","11111110000010111011101010010100","11111110000011000101001101101011","11111110000011001110110001000010","11111110000011011000010100011001","11111110000011100001110111110000","11111110000011101011011011000110","11111110000011110100111110011101","11111110000011111110100001110100","11111110000100001000000101001011","11111110000100010001101000100010","11111110000100011011001011111001","11111110000100100100101111010000","11111110000100101110010010100111","11111110000100110111110101111101","11111110000101000001011001010100","11111110000101001010111100101011","11111110000101010100100000000010","11111110000101011110000011011001","11111110000101100111100110110000","11111110000101110001001010000111","11111110000101111010101101011101","11111110000110000100010000110100","11111110000110001101110100001011","11111110000110010111010111100010","11111110000110100000111010111001","11111110000110101010011110010000","11111110000110110100000001100111","11111110000110111101100100111110","11111110000111000111001000010100","11111110000111010000101011101011","11111110000111011010001111000010","11111110000111100011110010011001","11111110000111101101010101110000","11111110000111110110111001000111","11111110001000000000011100011110","11111110001000001001111111110101","11111110001000010011100011001011","11111110001000011101000110100010","11111110001000100110101001111001","11111110001000110000001101010000","11111110001000111001110000100111","11111110001001000011010011111110","11111110001001001100110111010101","11111110001001010110011010101011","11111110001001011111111110000010","11111110001001101001100001011001","11111110001001110011000100110000","11111110001001111100101000000111","11111110001010000110001011011110","11111110001010001111101110110101","11111110001010011001010010001100","11111110001010100010110101100010","11111110001010101100011000111001","11111110001010110101111100010000","11111110001010111111011111100111","11111110001011001001000010111110","11111110001011010010100110010101","11111110001011011100001001101100","11111110001011100101101101000010","11111110001011101111010000011001","11111110001011111000110011110000","11111110001100000010010111000111","11111110001100001011111010011110","11111110001100010101011101110101","11111110001100011111000001001100","11111110001100101000100100100011","11111110001100110010000111111001","11111110001100111011101011010000","11111110001101000101001110100111","11111110001101001110110001111110","11111110001101011000010101010101","11111110001101100001111000101100","11111110001101101011011100000011","11111110001101110100111111011010","11111110001101111110100010110000","11111110001110001000000110000111","11111110001110010001101001011110","11111110001110011011001100110101","11111110001110100100110000001100","11111110001110101110010011100011","11111110001110110111110110111010","11111110001111000001011010010000","11111110001111001010111101100111","11111110001111010100100000111110","11111110001111011110000100010101","11111110001111100111100111101100","11111110001111110001001011000011","11111110001111111010101110011010","11111110010000000100010001110001","11111110010000001101110101000111","11111110010000010111011000011110","11111110010000100000111011110101","11111110010000101010011111001100","11111110010000110100000010100011","11111110010000111101100101111010","11111110010001000111001001010001","11111110010001010000101100101000","11111110010001011010001111111110","11111110010001100011110011010101","11111110010001101101010110101100","11111110010001110110111010000011","11111110010010000000011101011010","11111110010010001010000000110001","11111110010010010011100100001000","11111110010010011101000111011110","11111110010010100110101010110101","11111110010010110000001110001100","11111110010010111001110001100011","11111110010011000011010100111010","11111110010011001100111000010001","11111110010011010110011011101000","11111110010011011111111110111111","11111110010011101001100010010101","11111110010011110011000101101100","11111110010011111100101001000011","11111110010100000110001100011010","11111110010100001111101111110001","11111110010100011001010011001000","11111110010100100010110110011111","11111110010100101100011001110101","11111110010100110101111101001100","11111110010100111111100000100011","11111110010101001001000011111010","11111110010101010010100111010001","11111110010101011100001010101000","11111110010101100101101101111111","11111110010101101111010001010110","11111110010101111000110100101100","11111110010110000010011000000011","11111110010110001011111011011010","11111110010110010101011110110001","11111110010110011111000010001000","11111110010110101000100101011111","11111110010110110010001000110110","11111110010110111011101100001101","11111110010111000101001111100011","11111110010111001110110010111010","11111110010111011000010110010001","11111110010111100001111001101000","11111110010111101011011100111111","11111110010111110101000000010110","11111110010111111110100011101101","11111110011000001000000111000011","11111110011000010001101010011010","11111110011000011011001101110001","11111110011000100100110001001000","11111110011000101110010100011111","11111110011000110111110111110110","11111110011001000001011011001101","11111110011001001010111110100100","11111110011001010100100001111010","11111110011001011110000101010001","11111110011001100111101000101000","11111110011001110001001011111111","11111110011001111010101111010110","11111110011010000100010010101101","11111110011010001101110110000100","11111110011010010111011001011010","11111110011010100000111100110001","11111110011010101010100000001000","11111110011010110100000011011111","11111110011010111101100110110110","11111110011011000111001010001101","11111110011011010000101101100100","11111110011011011010010000111011","11111110011011100011110100010001","11111110011011101101010111101000","11111110011011110110111010111111","11111110011100000000011110010110","11111110011100001010000001101101","11111110011100010011100101000100","11111110011100011101001000011011","11111110011100100110101011110010","11111110011100110000001111001000","11111110011100111001110010011111","11111110011101000011010101110110","11111110011101001100111001001101","11111110011101010110011100100100","11111110011101011111111111111011","11111110011101101001100011010010","11111110011101110011000110101000","11111110011101111100101001111111","11111110011110000110001101010110","11111110011110001111110000101101","11111110011110011001010100000100","11111110011110100010110111011011","11111110011110101100011010110010","11111110011110110101111110001001","11111110011110111111100001011111","11111110011111001001000100110110","11111110011111010010101000001101","11111110011111011100001011100100","11111110011111100101101110111011","11111110011111101111010010010010","11111110011111111000110101101001","11111110100000000001001100100000","11111110100000000101111110001011","11111110100000001010101111110111","11111110100000001111100001100010","11111110100000010100010011001101","11111110100000011001000100111001","11111110100000011101110110100100","11111110100000100010101000010000","11111110100000100111011001111011","11111110100000101100001011100111","11111110100000110000111101010010","11111110100000110101101110111110","11111110100000111010100000101001","11111110100000111111010010010100","11111110100001000100000100000000","11111110100001001000110101101011","11111110100001001101100111010111","11111110100001010010011001000010","11111110100001010111001010101110","11111110100001011011111100011001","11111110100001100000101110000100","11111110100001100101011111110000","11111110100001101010010001011011","11111110100001101111000011000111","11111110100001110011110100110010","11111110100001111000100110011110","11111110100001111101011000001001","11111110100010000010001001110100","11111110100010000110111011100000","11111110100010001011101101001011","11111110100010010000011110110111","11111110100010010101010000100010","11111110100010011010000010001110","11111110100010011110110011111001","11111110100010100011100101100101","11111110100010101000010111010000","11111110100010101101001000111011","11111110100010110001111010100111","11111110100010110110101100010010","11111110100010111011011101111110","11111110100011000000001111101001","11111110100011000101000001010101","11111110100011001001110011000000","11111110100011001110100100101011","11111110100011010011010110010111","11111110100011011000001000000010","11111110100011011100111001101110","11111110100011100001101011011001","11111110100011100110011101000101","11111110100011101011001110110000","11111110100011110000000000011011","11111110100011110100110010000111","11111110100011111001100011110010","11111110100011111110010101011110","11111110100100000011000111001001","11111110100100000111111000110101","11111110100100001100101010100000","11111110100100010001011100001011","11111110100100010110001101110111","11111110100100011010111111100010","11111110100100011111110001001110","11111110100100100100100010111001","11111110100100101001010100100101","11111110100100101110000110010000","11111110100100110010110111111100","11111110100100110111101001100111","11111110100100111100011011010010","11111110100101000001001100111110","11111110100101000101111110101001","11111110100101001010110000010101","11111110100101001111100010000000","11111110100101010100010011101100","11111110100101011001000101010111","11111110100101011101110111000010","11111110100101100010101000101110","11111110100101100111011010011001"],"x":[-1.0e36,-1.1983967935871744e36,-1.3967935871743486e36,-1.5951903807615228e36,-1.7935871743486974e36,-1.991983967935872e36,-2.190380761523046e36,-2.3887775551102206e36,-2.5871743486973948e36,-2.785571142284569e36,-2.9839679358717435e36,-3.182364729458918e36,-3.3807615230460926e36,-3.5791583166332665e36,-3.777555110220441e36,-3.9759519038076155e36,-4.1743486973947894e36,-4.372745490981964e36,-4.571142284569138e36,-4.7695390781563124e36,-4.967935871743487e36,-5.166332665330661e36,-5.364729458917835e36,-5.563126252505009e36,-5.761523046092184e36,-5.95991983967936e36,-6.158316633266533e36,-6.356713426853708e36,-6.555110220440881e36,-6.753507014028055e36,-6.95190380761523e36,-7.150300601202404e36,-7.348697394789579e36,-7.547094188376754e36,-7.745490981963928e36,-7.943887775551103e36,-8.142284569138276e36,-8.340681362725451e36,-8.539078156312625e36,-8.7374749498998e36,-8.935871743486973e36,-9.134268537074148e36,-9.332665330661322e36,-9.531062124248497e36,-9.729458917835671e36,-9.927855711422845e36,-1.0126252505010019e37,-1.0324649298597194e37,-1.0523046092184369e37,-1.0721442885771542e37,-1.0919839679358717e37,-1.111823647294589e37,-1.1316633266533065e37,-1.151503006012024e37,-1.1713426853707415e37,-1.1911823647294588e37,-1.2110220440881763e37,-1.2308617234468938e37,-1.250701402805611e37,-1.2705410821643286e37,-1.290380761523046e37,-1.3102204408817636e37,-1.3300601202404809e37,-1.3498997995991984e37,-1.369739478957916e37,-1.3895791583166334e37,-1.4094188376753507e37,-1.429258517034068e37,-1.4490981963927855e37,-1.468937875751503e37,-1.4887775551102205e37,-1.5086172344689378e37,-1.5284569138276553e37,-1.5482965931863728e37,-1.5681362725450903e37,-1.5879759519038076e37,-1.607815631262525e37,-1.6276553106212426e37,-1.64749498997996e37,-1.6673346693386774e37,-1.6871743486973949e37,-1.7070140280561124e37,-1.72685370741483e37,-1.7466933867735472e37,-1.7665330661322642e37,-1.7863727454909817e37,-1.8062124248496992e37,-1.8260521042084167e37,-1.845891783567134e37,-1.8657314629258515e37,-1.885571142284569e37,-1.9054108216432865e37,-1.9252505010020038e37,-1.9450901803607213e37,-1.9649298597194388e37,-1.9847695390781563e37,-2.0046092184368739e37,-2.0244488977955911e37,-2.0442885771543086e37,-2.0641282565130262e37,-2.0839679358717434e37,-2.1038076152304607e37,-2.1236472945891782e37,-2.143486973947896e37,-2.1633266533066135e37,-2.1831663326653305e37,-2.203006012024048e37,-2.2228456913827655e37,-2.2426853707414826e37,-2.2625250501002e37,-2.2823647294589176e37,-2.3022044088176346e37,-2.3220440881763526e37,-2.3418837675350696e37,-2.3617234468937876e37,-2.3815631262525047e37,-2.401402805611222e37,-2.4212424849699397e37,-2.441082164328657e37,-2.4609218436873747e37,-2.480761523046092e37,-2.5006012024048093e37,-2.520440881763527e37,-2.5402805611222443e37,-2.560120240480962e37,-2.5799599198396793e37,-2.599799599198397e37,-2.6196392785571143e37,-2.639478957915832e37,-2.659318637274549e37,-2.679158316633267e37,-2.698997995991984e37,-2.718837675350702e37,-2.738677354709419e37,-2.7585170340681364e37,-2.778356713426854e37,-2.7981963927855714e37,-2.8180360721442885e37,-2.837875751503006e37,-2.8577154308617235e37,-2.877555110220441e37,-2.8973947895791585e37,-2.917234468937875e37,-2.937074148296593e37,-2.95691382765531e37,-2.976753507014028e37,-2.996593186372745e37,-3.0164328657314626e37,-3.03627254509018e37,-3.0561122244488976e37,-3.0759519038076147e37,-3.0957915831663327e37,-3.1156312625250497e37,-3.1354709418837677e37,-3.1553106212424847e37,-3.1751503006012022e37,-3.1949899799599197e37,-3.2148296593186373e37,-3.2346693386773543e37,-3.2545090180360723e37,-3.2743486973947893e37,-3.2941883767535073e37,-3.3140280561122243e37,-3.333867735470942e37,-3.3537074148296594e37,-3.373547094188377e37,-3.3933867735470944e37,-3.413226452905812e37,-3.433066132264529e37,-3.452905811623247e37,-3.472745490981964e37,-3.4925851703406815e37,-3.512424849699399e37,-3.5322645290581165e37,-3.552104208416834e37,-3.571943887775551e37,-3.591783567134268e37,-3.6116232464929856e37,-3.631462925851703e37,-3.6513026052104206e37,-3.671142284569138e37,-3.690981963927855e37,-3.710821643286573e37,-3.73066132264529e37,-3.7505010020040077e37,-3.770340681362725e37,-3.7901803607214427e37,-3.81002004008016e37,-3.8298597194388777e37,-3.8496993987975947e37,-3.8695390781563127e37,-3.88937875751503e37,-3.9092184368737478e37,-3.929058116232465e37,-3.9488977955911823e37,-3.9687374749499e37,-3.9885771543086173e37,-4.0084168336673344e37,-4.0282565130260523e37,-4.0480961923847694e37,-4.0679358717434874e37,-4.0877755511022044e37,-4.107615230460922e37,-4.1274549098196394e37,-4.147294589178357e37,-4.167134268537074e37,-4.186973947895792e37,-4.206813627254509e37,-4.226653306613227e37,-4.246492985971944e37,-4.266332665330661e37,-4.286172344689379e37,-4.306012024048096e37,-4.325851703406814e37,-4.345691382765531e37,-4.365531062124248e37,-4.385370741482966e37,-4.405210420841683e37,-4.425050100200401e37,-4.444889779559118e37,-4.464729458917836e37,-4.484569138276553e37,-4.50440881763527e37,-4.524248496993988e37,-4.544088176352706e37,-4.563927855711423e37,-4.58376753507014e37,-4.603607214428858e37,-4.623446893787576e37,-4.643286573146292e37,-4.66312625250501e37,-4.682965931863728e37,-4.702805611222445e37,-4.722645290581162e37,-4.74248496993988e37,-4.762324649298597e37,-4.782164328657315e37,-4.802004008016032e37,-4.82184368737475e37,-4.841683366733467e37,-4.861523046092185e37,-4.881362725450902e37,-4.901202404809619e37,-4.921042084168337e37,-4.940881763527055e37,-4.960721442885771e37,-4.980561122244489e37,-5.000400801603207e37,-5.020240480961923e37,-5.040080160320641e37,-5.059919839679359e37,-5.079759519038077e37,-5.099599198396793e37,-5.119438877755511e37,-5.139278557114229e37,-5.159118236472946e37,-5.178957915831663e37,-5.198797595190381e37,-5.218637274549098e37,-5.238476953907816e37,-5.258316633266533e37,-5.278156312625249e37,-5.297995991983967e37,-5.317835671342685e37,-5.337675350701402e37,-5.357515030060119e37,-5.377354709418837e37,-5.397194388777555e37,-5.417034068136271e37,-5.436873747494989e37,-5.456713426853707e37,-5.476553106212424e37,-5.4963927855711415e37,-5.516232464929859e37,-5.5360721442885765e37,-5.5559118236472945e37,-5.5757515030060115e37,-5.5955911823647295e37,-5.615430861723447e37,-5.635270541082165e37,-5.655110220440882e37,-5.674949899799599e37,-5.694789579158317e37,-5.714629258517034e37,-5.734468937875751e37,-5.754308617234469e37,-5.774148296593187e37,-5.793987975951903e37,-5.813827655310621e37,-5.833667334669339e37,-5.853507014028057e37,-5.873346693386773e37,-5.893186372745491e37,-5.913026052104209e37,-5.932865731462926e37,-5.952705410821643e37,-5.972545090180361e37,-5.992384769539078e37,-6.012224448897796e37,-6.032064128256513e37,-6.05190380761523e37,-6.071743486973948e37,-6.091583166332666e37,-6.111422845691382e37,-6.1312625250501e37,-6.151102204408818e37,-6.170941883767536e37,-6.190781563126252e37,-6.21062124248497e37,-6.230460921843688e37,-6.250300601202405e37,-6.270140280561122e37,-6.28997995991984e37,-6.309819639278557e37,-6.329659318637275e37,-6.349498997995992e37,-6.369338677354709e37,-6.389178356713427e37,-6.409018036072144e37,-6.428857715430862e37,-6.448697394789579e37,-6.468537074148297e37,-6.488376753507014e37,-6.508216432865731e37,-6.528056112224449e37,-6.547895791583167e37,-6.567735470941883e37,-6.587575150300601e37,-6.607414829659319e37,-6.627254509018035e37,-6.647094188376752e37,-6.66693386773547e37,-6.686773547094188e37,-6.706613226452905e37,-6.726452905811622e37,-6.74629258517034e37,-6.766132264529057e37,-6.785971943887775e37,-6.805811623246492e37,-6.8256513026052095e37,-6.845490981963927e37,-6.865330661322645e37,-6.885170340681362e37,-6.9050100200400795e37,-6.9248496993987975e37,-6.9446893787575155e37,-6.964529058116232e37,-6.98436873747495e37,-7.004208416833668e37,-7.024048096192385e37,-7.043887775551102e37,-7.06372745490982e37,-7.083567134268537e37,-7.103406813627255e37,-7.123246492985972e37,-7.143086172344689e37,-7.162925851703407e37,-7.182765531062124e37,-7.202605210420842e37,-7.222444889779559e37,-7.242284569138277e37,-7.262124248496994e37,-7.281963927855711e37,-7.301803607214429e37,-7.321643286573147e37,-7.341482965931863e37,-7.361322645290581e37,-7.381162324649299e37,-7.401002004008016e37,-7.420841683366733e37,-7.440681362725451e37,-7.460521042084169e37,-7.480360721442886e37,-7.500200400801603e37,-7.520040080160321e37,-7.539879759519038e37,-7.559719438877756e37,-7.579559118236473e37,-7.59939879759519e37,-7.619238476953908e37,-7.639078156312626e37,-7.658917835671342e37,-7.67875751503006e37,-7.698597194388778e37,-7.718436873747496e37,-7.738276553106212e37,-7.75811623246493e37,-7.777955911823648e37,-7.797795591182365e37,-7.817635270541082e37,-7.8374749498998e37,-7.857314629258517e37,-7.877154308617234e37,-7.896993987975952e37,-7.916833667334669e37,-7.936673346693387e37,-7.956513026052103e37,-7.97635270541082e37,-7.996192384769538e37,-8.016032064128256e37,-8.035871743486973e37,-8.05571142284569e37,-8.075551102204408e37,-8.095390781563126e37,-8.115230460921842e37,-8.13507014028056e37,-8.154909819639278e37,-8.174749498997995e37,-8.1945891783567125e37,-8.21442885771543e37,-8.2342685370741475e37,-8.2541082164328655e37,-8.2739478957915825e37,-8.2937875751503005e37,-8.313627254509018e37,-8.333466933867736e37,-8.353306613226453e37,-8.37314629258517e37,-8.392985971943888e37,-8.412825651302606e37,-8.432665330661322e37,-8.45250501002004e37,-8.472344689378758e37,-8.492184368737475e37,-8.512024048096193e37,-8.53186372745491e37,-8.551703406813629e37,-8.571543086172345e37,-8.591382765531063e37,-8.61122244488978e37,-8.631062124248497e37,-8.650901803607213e37,-8.67074148296593e37,-8.690581162324649e37,-8.710420841683367e37,-8.730260521042083e37,-8.7501002004008e37,-8.769939879759519e37,-8.789779559118235e37,-8.809619238476953e37,-8.82945891783567e37,-8.849298597194387e37,-8.869138276553105e37,-8.888977955911823e37,-8.90881763527054e37,-8.928657314629257e37,-8.948496993987975e37,-8.968336673346693e37,-8.988176352705411e37,-9.008016032064127e37,-9.027855711422845e37,-9.047695390781561e37,-9.06753507014028e37,-9.087374749498997e37,-9.107214428857715e37,-9.127054108216433e37,-9.146893787575151e37,-9.166733466933865e37,-9.186573146292583e37,-9.206412825651301e37,-9.22625250501002e37,-9.246092184368737e37,-9.265931863727455e37,-9.285771543086173e37,-9.305611222444887e37,-9.325450901803605e37,-9.345290581162323e37,-9.365130260521041e37,-9.38496993987976e37,-9.404809619238477e37,-9.424649298597193e37,-9.444488977955911e37,-9.464328657314627e37,-9.484168336673345e37,-9.504008016032063e37,-9.523847695390781e37,-9.5436873747495e37,-9.563527054108215e37,-9.583366733466933e37,-9.603206412825651e37,-9.623046092184368e37,-9.642885771543086e37,-9.662725450901804e37,-9.68256513026052e37,-9.702404809619238e37,-9.722244488977956e37,-9.742084168336674e37,-9.761923847695392e37,-9.781763527054108e37,-9.801603206412826e37,-9.821442885771542e37,-9.84128256513026e37,-9.861122244488978e37,-9.880961923847696e37,-9.900801603206414e37,-9.920641282565132e37,-9.940480961923846e37,-9.960320641282564e37,-9.980160320641282e37,-1.0e38]}
-},{}],79:[function(require,module,exports){
-module.exports={"expected":["11000100011110100100000000000000","11000100011110011011111110011101","11000100011110010011111100111011","11000100011110001011111011011000","11000100011110000011111001110110","11000100011101111011111000010011","11000100011101110011110110110001","11000100011101101011110101001110","11000100011101100011110011101100","11000100011101011011110010001001","11000100011101010011110000100111","11000100011101001011101111000100","11000100011101000011101101100010","11000100011100111011101011111111","11000100011100110011101010011101","11000100011100101011101000111010","11000100011100100011100111011000","11000100011100011011100101110101","11000100011100010011100100010011","11000100011100001011100010110000","11000100011100000011100001001110","11000100011011111011011111101011","11000100011011110011011110001001","11000100011011101011011100100110","11000100011011100011011011000100","11000100011011011011011001100001","11000100011011010011010111111111","11000100011011001011010110011100","11000100011011000011010100111010","11000100011010111011010011010111","11000100011010110011010001110101","11000100011010101011010000010010","11000100011010100011001110110000","11000100011010011011001101001101","11000100011010010011001011101011","11000100011010001011001010001000","11000100011010000011001000100110","11000100011001111011000111000011","11000100011001110011000101100001","11000100011001101011000011111110","11000100011001100011000010011100","11000100011001011011000000111001","11000100011001010010111111010111","11000100011001001010111101110100","11000100011001000010111100010010","11000100011000111010111010101111","11000100011000110010111001001101","11000100011000101010110111101010","11000100011000100010110110001000","11000100011000011010110100100101","11000100011000010010110011000011","11000100011000001010110001100000","11000100011000000010101111111110","11000100010111111010101110011011","11000100010111110010101100111001","11000100010111101010101011010110","11000100010111100010101001110100","11000100010111011010101000010001","11000100010111010010100110101111","11000100010111001010100101001100","11000100010111000010100011101010","11000100010110111010100010000111","11000100010110110010100000100101","11000100010110101010011111000010","11000100010110100010011101100000","11000100010110011010011011111101","11000100010110010010011010011011","11000100010110001010011000111000","11000100010110000010010111010110","11000100010101111010010101110011","11000100010101110010010100010001","11000100010101101010010010101110","11000100010101100010010001001100","11000100010101011010001111101001","11000100010101010010001110000111","11000100010101001010001100100100","11000100010101000010001011000010","11000100010100111010001001011111","11000100010100110010000111111101","11000100010100101010000110011010","11000100010100100010000100111000","11000100010100011010000011010101","11000100010100010010000001110011","11000100010100001010000000010000","11000100010100000001111110101110","11000100010011111001111101001011","11000100010011110001111011101001","11000100010011101001111010000110","11000100010011100001111000100100","11000100010011011001110111000001","11000100010011010001110101011111","11000100010011001001110011111100","11000100010011000001110010011010","11000100010010111001110000110111","11000100010010110001101111010101","11000100010010101001101101110010","11000100010010100001101100010000","11000100010010011001101010101101","11000100010010010001101001001011","11000100010010001001100111101000","11000100010010000001100110000110","11000100010001111001100100100011","11000100010001110001100011000001","11000100010001101001100001011110","11000100010001100001011111111100","11000100010001011001011110011001","11000100010001010001011100110111","11000100010001001001011011010100","11000100010001000001011001110010","11000100010000111001011000001111","11000100010000110001010110101101","11000100010000101001010101001010","11000100010000100001010011101000","11000100010000011001010010000101","11000100010000010001010000100011","11000100010000001001001111000000","11000100010000000001001101011110","11000100001111111001001011111011","11000100001111110001001010011001","11000100001111101001001000110110","11000100001111100001000111010100","11000100001111011001000101110001","11000100001111010001000100001111","11000100001111001001000010101100","11000100001111000001000001001010","11000100001110111000111111100111","11000100001110110000111110000101","11000100001110101000111100100010","11000100001110100000111011000000","11000100001110011000111001011101","11000100001110010000110111111011","11000100001110001000110110011000","11000100001110000000110100110110","11000100001101111000110011010011","11000100001101110000110001110001","11000100001101101000110000001110","11000100001101100000101110101100","11000100001101011000101101001001","11000100001101010000101011100111","11000100001101001000101010000100","11000100001101000000101000100010","11000100001100111000100110111111","11000100001100110000100101011101","11000100001100101000100011111010","11000100001100100000100010011000","11000100001100011000100000110101","11000100001100010000011111010011","11000100001100001000011101110000","11000100001100000000011100001110","11000100001011111000011010101011","11000100001011110000011001001001","11000100001011101000010111100110","11000100001011100000010110000100","11000100001011011000010100100001","11000100001011010000010010111111","11000100001011001000010001011100","11000100001011000000001111111010","11000100001010111000001110010111","11000100001010110000001100110101","11000100001010101000001011010010","11000100001010100000001001110000","11000100001010011000001000001101","11000100001010010000000110101011","11000100001010001000000101001000","11000100001010000000000011100110","11000100001001111000000010000011","11000100001001110000000000100001","11000100001001100111111110111110","11000100001001011111111101011100","11000100001001010111111011111001","11000100001001001111111010010111","11000100001001000111111000110100","11000100001000111111110111010010","11000100001000110111110101101111","11000100001000101111110100001101","11000100001000100111110010101010","11000100001000011111110001001000","11000100001000010111101111100101","11000100001000001111101110000011","11000100001000000111101100100000","11000100000111111111101010111110","11000100000111110111101001011011","11000100000111101111100111111001","11000100000111100111100110010110","11000100000111011111100100110100","11000100000111010111100011010001","11000100000111001111100001101111","11000100000111000111100000001100","11000100000110111111011110101010","11000100000110110111011101000111","11000100000110101111011011100101","11000100000110100111011010000010","11000100000110011111011000100000","11000100000110010111010110111101","11000100000110001111010101011011","11000100000110000111010011111000","11000100000101111111010010010110","11000100000101110111010000110011","11000100000101101111001111010001","11000100000101100111001101101110","11000100000101011111001100001100","11000100000101010111001010101001","11000100000101001111001001000111","11000100000101000111000111100100","11000100000100111111000110000010","11000100000100110111000100011111","11000100000100101111000010111101","11000100000100100111000001011010","11000100000100011110111111111000","11000100000100010110111110010101","11000100000100001110111100110011","11000100000100000110111011010000","11000100000011111110111001101110","11000100000011110110111000001011","11000100000011101110110110101001","11000100000011100110110101000110","11000100000011011110110011100100","11000100000011010110110010000001","11000100000011001110110000011111","11000100000011000110101110111100","11000100000010111110101101011010","11000100000010110110101011110111","11000100000010101110101010010101","11000100000010100110101000110010","11000100000010011110100111010000","11000100000010010110100101101101","11000100000010001110100100001011","11000100000010000110100010101000","11000100000001111110100001000110","11000100000001110110011111100011","11000100000001101110011110000001","11000100000001100110011100011110","11000100000001011110011010111100","11000100000001010110011001011001","11000100000001001110010111110111","11000100000001000110010110010100","11000100000000111110010100110010","11000100000000110110010011001111","11000100000000101110010001101101","11000100000000100110010000001010","11000100000000011110001110101000","11000100000000010110001101000101","11000100000000001110001011100011","11000100000000000110001010000000","11000011111111111100010000111100","11000011111111101100001101110111","11000011111111011100001010110010","11000011111111001100000111101101","11000011111110111100000100101000","11000011111110101100000001100011","11000011111110011011111110011101","11000011111110001011111011011000","11000011111101111011111000010011","11000011111101101011110101001110","11000011111101011011110010001001","11000011111101001011101111000100","11000011111100111011101011111111","11000011111100101011101000111010","11000011111100011011100101110101","11000011111100001011100010110000","11000011111011111011011111101011","11000011111011101011011100100110","11000011111011011011011001100001","11000011111011001011010110011100","11000011111010111011010011010111","11000011111010101011010000010010","11000011111010011011001101001101","11000011111010001011001010001000","11000011111001111011000111000011","11000011111001101011000011111110","11000011111001011011000000111001","11000011111001001010111101110100","11000011111000111010111010101111","11000011111000101010110111101010","11000011111000011010110100100101","11000011111000001010110001100000","11000011110111111010101110011011","11000011110111101010101011010110","11000011110111011010101000010001","11000011110111001010100101001100","11000011110110111010100010000111","11000011110110101010011111000010","11000011110110011010011011111101","11000011110110001010011000111000","11000011110101111010010101110011","11000011110101101010010010101110","11000011110101011010001111101001","11000011110101001010001100100100","11000011110100111010001001011111","11000011110100101010000110011010","11000011110100011010000011010101","11000011110100001010000000010000","11000011110011111001111101001011","11000011110011101001111010000110","11000011110011011001110111000001","11000011110011001001110011111100","11000011110010111001110000110111","11000011110010101001101101110010","11000011110010011001101010101101","11000011110010001001100111101000","11000011110001111001100100100011","11000011110001101001100001011110","11000011110001011001011110011001","11000011110001001001011011010100","11000011110000111001011000001111","11000011110000101001010101001010","11000011110000011001010010000101","11000011110000001001001111000000","11000011101111111001001011111011","11000011101111101001001000110110","11000011101111011001000101110001","11000011101111001001000010101100","11000011101110111000111111100111","11000011101110101000111100100010","11000011101110011000111001011101","11000011101110001000110110011000","11000011101101111000110011010011","11000011101101101000110000001110","11000011101101011000101101001001","11000011101101001000101010000100","11000011101100111000100110111111","11000011101100101000100011111010","11000011101100011000100000110101","11000011101100001000011101110000","11000011101011111000011010101011","11000011101011101000010111100110","11000011101011011000010100100001","11000011101011001000010001011100","11000011101010111000001110010111","11000011101010101000001011010010","11000011101010011000001000001101","11000011101010001000000101001000","11000011101001111000000010000011","11000011101001100111111110111110","11000011101001010111111011111001","11000011101001000111111000110100","11000011101000110111110101101111","11000011101000100111110010101010","11000011101000010111101111100101","11000011101000000111101100100000","11000011100111110111101001011011","11000011100111100111100110010110","11000011100111010111100011010001","11000011100111000111100000001100","11000011100110110111011101000111","11000011100110100111011010000010","11000011100110010111010110111101","11000011100110000111010011111000","11000011100101110111010000110011","11000011100101100111001101101110","11000011100101010111001010101001","11000011100101000111000111100100","11000011100100110111000100011111","11000011100100100111000001011010","11000011100100010110111110010101","11000011100100000110111011010000","11000011100011110110111000001011","11000011100011100110110101000110","11000011100011010110110010000001","11000011100011000110101110111100","11000011100010110110101011110111","11000011100010100110101000110010","11000011100010010110100101101101","11000011100010000110100010101000","11000011100001110110011111100011","11000011100001100110011100011110","11000011100001010110011001011001","11000011100001000110010110010100","11000011100000110110010011001111","11000011100000100110010000001010","11000011100000010110001101000101","11000011100000000110001010000000","11000011011111101100001101110111","11000011011111001100000111101101","11000011011110101100000001100011","11000011011110001011111011011000","11000011011101101011110101001110","11000011011101001011101111000100","11000011011100101011101000111010","11000011011100001011100010110000","11000011011011101011011100100110","11000011011011001011010110011100","11000011011010101011010000010010","11000011011010001011001010001000","11000011011001101011000011111110","11000011011001001010111101110100","11000011011000101010110111101010","11000011011000001010110001100000","11000011010111101010101011010110","11000011010111001010100101001100","11000011010110101010011111000010","11000011010110001010011000111000","11000011010101101010010010101110","11000011010101001010001100100100","11000011010100101010000110011010","11000011010100001010000000010000","11000011010011101001111010000110","11000011010011001001110011111100","11000011010010101001101101110010","11000011010010001001100111101000","11000011010001101001100001011110","11000011010001001001011011010100","11000011010000101001010101001010","11000011010000001001001111000000","11000011001111101001001000110110","11000011001111001001000010101100","11000011001110101000111100100010","11000011001110001000110110011000","11000011001101101000110000001110","11000011001101001000101010000100","11000011001100101000100011111010","11000011001100001000011101110000","11000011001011101000010111100110","11000011001011001000010001011100","11000011001010101000001011010010","11000011001010001000000101001000","11000011001001100111111110111110","11000011001001000111111000110100","11000011001000100111110010101010","11000011001000000111101100100000","11000011000111100111100110010110","11000011000111000111100000001100","11000011000110100111011010000010","11000011000110000111010011111000","11000011000101100111001101101110","11000011000101000111000111100100","11000011000100100111000001011010","11000011000100000110111011010000","11000011000011100110110101000110","11000011000011000110101110111100","11000011000010100110101000110010","11000011000010000110100010101000","11000011000001100110011100011110","11000011000001000110010110010100","11000011000000100110010000001010","11000011000000000110001010000000","11000010111111001100000111101101","11000010111110001011111011011000","11000010111101001011101111000100","11000010111100001011100010110000","11000010111011001011010110011100","11000010111010001011001010001000","11000010111001001010111101110100","11000010111000001010110001100000","11000010110111001010100101001100","11000010110110001010011000111000","11000010110101001010001100100100","11000010110100001010000000010000","11000010110011001001110011111100","11000010110010001001100111101000","11000010110001001001011011010100","11000010110000001001001111000000","11000010101111001001000010101100","11000010101110001000110110011000","11000010101101001000101010000100","11000010101100001000011101110000","11000010101011001000010001011100","11000010101010001000000101001000","11000010101001000111111000110100","11000010101000000111101100100000","11000010100111000111100000001100","11000010100110000111010011111000","11000010100101000111000111100100","11000010100100000110111011010000","11000010100011000110101110111100","11000010100010000110100010101000","11000010100001000110010110010100","11000010100000000110001010000000","11000010011110001011111011011000","11000010011100001011100010110000","11000010011010001011001010001000","11000010011000001010110001100000","11000010010110001010011000111000","11000010010100001010000000010000","11000010010010001001100111101000","11000010010000001001001111000000","11000010001110001000110110011000","11000010001100001000011101110000","11000010001010001000000101001000","11000010001000000111101100100000","11000010000110000111010011111000","11000010000100000110111011010000","11000010000010000110100010101000","11000010000000000110001010000000","11000001111100001011100010110000","11000001111000001010110001100000","11000001110100001010000000010000","11000001110000001001001111000000","11000001101100001000011101110000","11000001101000000111101100100000","11000001100100000110111011010000","11000001100000000110001010000000","11000001011000001010110001100000","11000001010000001001001111000000","11000001001000000111101100100000","11000001000000000110001010000000","11000000110000001001001111000000","11000000100000000110001010000000","11000000000000000110001010000000","00000000000000000000000000000000"],"x":[-1001.0,-998.9939879759519,-996.9879759519038,-994.9819639278558,-992.9759519038076,-990.9699398797595,-988.9639278557114,-986.9579158316633,-984.9519038076153,-982.9458917835672,-980.939879759519,-978.9338677354709,-976.9278557114228,-974.9218436873748,-972.9158316633267,-970.9098196392786,-968.9038076152304,-966.8977955911823,-964.8917835671342,-962.8857715430862,-960.8797595190381,-958.87374749499,-956.8677354709419,-954.8617234468937,-952.8557114228457,-950.8496993987976,-948.8436873747495,-946.8376753507014,-944.8316633266533,-942.8256513026053,-940.8196392785571,-938.813627254509,-936.8076152304609,-934.8016032064128,-932.7955911823648,-930.7895791583167,-928.7835671342685,-926.7775551102204,-924.7715430861723,-922.7655310621243,-920.7595190380762,-918.7535070140281,-916.7474949899799,-914.7414829659318,-912.7354709418838,-910.7294589178357,-908.7234468937876,-906.7174348697395,-904.7114228456913,-902.7054108216433,-900.6993987975952,-898.6933867735471,-896.687374749499,-894.6813627254509,-892.6753507014027,-890.6693386773547,-888.6633266533066,-886.6573146292585,-884.6513026052104,-882.6452905811623,-880.6392785571143,-878.6332665330661,-876.627254509018,-874.6212424849699,-872.6152304609218,-870.6092184368738,-868.6032064128257,-866.5971943887776,-864.5911823647294,-862.5851703406813,-860.5791583166333,-858.5731462925852,-856.5671342685371,-854.561122244489,-852.5551102204408,-850.5490981963928,-848.5430861723447,-846.5370741482966,-844.5310621242485,-842.5250501002004,-840.5190380761524,-838.5130260521042,-836.5070140280561,-834.501002004008,-832.4949899799599,-830.4889779559119,-828.4829659318638,-826.4769539078156,-824.4709418837675,-822.4649298597194,-820.4589178356713,-818.4529058116233,-816.4468937875752,-814.440881763527,-812.4348697394789,-810.4288577154308,-808.4228456913828,-806.4168336673347,-804.4108216432866,-802.4048096192384,-800.3987975951903,-798.3927855711423,-796.3867735470942,-794.3807615230461,-792.374749498998,-790.3687374749499,-788.3627254509018,-786.3567134268537,-784.3507014028056,-782.3446893787575,-780.3386773547094,-778.3326653306614,-776.3266533066133,-774.3206412825651,-772.314629258517,-770.3086172344689,-768.3026052104209,-766.2965931863728,-764.2905811623247,-762.2845691382765,-760.2785571142284,-758.2725450901804,-756.2665330661323,-754.2605210420842,-752.2545090180361,-750.2484969939879,-748.2424849699398,-746.2364729458918,-744.2304609218437,-742.2244488977956,-740.2184368737475,-738.2124248496993,-736.2064128256513,-734.2004008016032,-732.1943887775551,-730.188376753507,-728.1823647294589,-726.1763527054109,-724.1703406813627,-722.1643286573146,-720.1583166332665,-718.1523046092184,-716.1462925851704,-714.1402805611223,-712.1342685370741,-710.128256513026,-708.1222444889779,-706.1162324649299,-704.1102204408818,-702.1042084168337,-700.0981963927856,-698.0921843687374,-696.0861723446894,-694.0801603206413,-692.0741482965932,-690.0681362725451,-688.062124248497,-686.056112224449,-684.0501002004008,-682.0440881763527,-680.0380761523046,-678.0320641282565,-676.0260521042084,-674.0200400801604,-672.0140280561122,-670.0080160320641,-668.002004008016,-665.9959919839679,-663.9899799599199,-661.9839679358718,-659.9779559118236,-657.9719438877755,-655.9659318637274,-653.9599198396794,-651.9539078156313,-649.9478957915832,-647.941883767535,-645.9358717434869,-643.9298597194389,-641.9238476953908,-639.9178356713427,-637.9118236472946,-635.9058116232464,-633.8997995991984,-631.8937875751503,-629.8877755511022,-627.8817635270541,-625.875751503006,-623.869739478958,-621.8637274549098,-619.8577154308617,-617.8517034068136,-615.8456913827655,-613.8396793587175,-611.8336673346694,-609.8276553106213,-607.8216432865731,-605.815631262525,-603.8096192384769,-601.8036072144289,-599.7975951903808,-597.7915831663327,-595.7855711422845,-593.7795591182364,-591.7735470941884,-589.7675350701403,-587.7615230460922,-585.7555110220441,-583.7494989979959,-581.7434869739479,-579.7374749498998,-577.7314629258517,-575.7254509018036,-573.7194388777555,-571.7134268537075,-569.7074148296593,-567.7014028056112,-565.6953907815631,-563.689378757515,-561.683366733467,-559.6773547094189,-557.6713426853707,-555.6653306613226,-553.6593186372745,-551.6533066132265,-549.6472945891784,-547.6412825651303,-545.6352705410821,-543.629258517034,-541.623246492986,-539.6172344689379,-537.6112224448898,-535.6052104208417,-533.5991983967936,-531.5931863727454,-529.5871743486974,-527.5811623246493,-525.5751503006012,-523.5691382765531,-521.563126252505,-519.557114228457,-517.5511022044088,-515.5450901803607,-513.5390781563126,-511.53306613226454,-509.5270541082164,-507.52104208416836,-505.51503006012024,-503.5090180360721,-501.50300601202406,-499.49699398797594,-497.4909819639279,-495.48496993987976,-493.47895791583164,-491.4729458917836,-489.46693386773546,-487.4609218436874,-485.4549098196393,-483.44889779559117,-481.4428857715431,-479.436873747495,-477.43086172344687,-475.4248496993988,-473.4188376753507,-471.4128256513026,-469.4068136272545,-467.4008016032064,-465.3947895791583,-463.3887775551102,-461.38276553106215,-459.37675350701403,-457.3707414829659,-455.36472945891785,-453.35871743486973,-451.35270541082167,-449.34669338677355,-447.34068136272543,-445.3346693386774,-443.32865731462925,-441.32264529058114,-439.3166332665331,-437.31062124248496,-435.3046092184369,-433.2985971943888,-431.29258517034066,-429.2865731462926,-427.2805611222445,-425.2745490981964,-423.2685370741483,-421.2625250501002,-419.2565130260521,-417.250501002004,-415.24448897795594,-413.2384769539078,-411.2324649298597,-409.22645290581164,-407.2204408817635,-405.2144288577154,-403.20841683366734,-401.2024048096192,-399.19639278557116,-397.19038076152304,-395.1843687374749,-393.17835671342687,-391.17234468937875,-389.1663326653307,-387.16032064128257,-385.15430861723445,-383.1482965931864,-381.14228456913827,-379.1362725450902,-377.1302605210421,-375.12424849699397,-373.1182364729459,-371.1122244488978,-369.1062124248497,-367.1002004008016,-365.0941883767535,-363.08817635270543,-361.0821643286573,-359.0761523046092,-357.07014028056113,-355.064128256513,-353.05811623246495,-351.05210420841684,-349.0460921843687,-347.04008016032066,-345.03406813627254,-343.0280561122245,-341.02204408817636,-339.01603206412824,-337.0100200400802,-335.00400801603206,-332.99799599198394,-330.9919839679359,-328.98597194388776,-326.9799599198397,-324.9739478957916,-322.96793587174346,-320.9619238476954,-318.9559118236473,-316.9498997995992,-314.9438877755511,-312.937875751503,-310.9318637274549,-308.9258517034068,-306.91983967935874,-304.9138276553106,-302.9078156312625,-300.90180360721445,-298.89579158316633,-296.8897795591182,-294.88376753507015,-292.87775551102203,-290.87174348697397,-288.86573146292585,-286.85971943887773,-284.85370741482967,-282.84769539078155,-280.8416833667335,-278.8356713426854,-276.82965931863725,-274.8236472945892,-272.8176352705411,-270.811623246493,-268.8056112224449,-266.7995991983968,-264.7935871743487,-262.7875751503006,-260.7815631262525,-258.7755511022044,-256.7695390781563,-254.7635270541082,-252.75751503006012,-250.75150300601203,-248.74549098196394,-246.73947895791582,-244.73346693386773,-242.72745490981964,-240.72144288577155,-238.71543086172343,-236.70941883767534,-234.70340681362725,-232.69739478957916,-230.69138276553107,-228.68537074148296,-226.67935871743487,-224.67334669338678,-222.6673346693387,-220.66132264529057,-218.65531062124248,-216.6492985971944,-214.6432865731463,-212.6372745490982,-210.6312625250501,-208.625250501002,-206.6192384769539,-204.61322645290582,-202.6072144288577,-200.6012024048096,-198.59519038076152,-196.58917835671343,-194.58316633266534,-192.57715430861722,-190.57114228456913,-188.56513026052104,-186.55911823647295,-184.55310621242484,-182.54709418837675,-180.54108216432866,-178.53507014028057,-176.52905811623248,-174.52304609218436,-172.51703406813627,-170.51102204408818,-168.5050100200401,-166.49899799599197,-164.49298597194388,-162.4869739478958,-160.4809619238477,-158.4749498997996,-156.4689378757515,-154.4629258517034,-152.4569138276553,-150.45090180360722,-148.4448897795591,-146.43887775551102,-144.43286573146293,-142.42685370741484,-140.42084168336675,-138.41482965931863,-136.40881763527054,-134.40280561122245,-132.39679358717436,-130.39078156312624,-128.38476953907815,-126.37875751503006,-124.37274549098197,-122.36673346693387,-120.36072144288578,-118.35470941883767,-116.34869739478958,-114.34268537074148,-112.33667334669339,-110.33066132264528,-108.3246492985972,-106.3186372745491,-104.312625250501,-102.30661322645291,-100.3006012024048,-98.29458917835672,-96.28857715430861,-94.28256513026052,-92.27655310621242,-90.27054108216433,-88.26452905811624,-86.25851703406813,-84.25250501002004,-82.24649298597194,-80.24048096192385,-78.23446893787575,-76.22845691382766,-74.22244488977955,-72.21643286573146,-70.21042084168337,-68.20440881763527,-66.19839679358718,-64.19238476953907,-62.186372745490985,-60.18036072144289,-58.17434869739479,-56.168336673346694,-54.1623246492986,-52.1563126252505,-50.1503006012024,-48.144288577154306,-46.13827655310621,-44.13226452905812,-42.12625250501002,-40.120240480961925,-38.11422845691383,-36.10821643286573,-34.102204408817634,-32.09619238476954,-30.090180360721444,-28.084168336673347,-26.07815631262525,-24.072144288577153,-22.06613226452906,-20.060120240480963,-18.054108216432866,-16.04809619238477,-14.042084168336673,-12.036072144288577,-10.030060120240481,-8.024048096192384,-6.018036072144288,-4.012024048096192,-2.006012024048096,0.0]}
-},{}],80:[function(require,module,exports){
-module.exports={"expected":["10111111100000000000000000000000","10111111011111110111110010101010","10111111011111101111100101010101","10111111011111100111010111111111","10111111011111011111001010101001","10111111011111010110111101010100","10111111011111001110101111111110","10111111011111000110100010101000","10111111011110111110010101010011","10111111011110110110000111111101","10111111011110101101111010100111","10111111011110100101101101010010","10111111011110011101011111111100","10111111011110010101010010100110","10111111011110001101000101010001","10111111011110000100110111111011","10111111011101111100101010100101","10111111011101110100011101010000","10111111011101101100001111111010","10111111011101100100000010100100","10111111011101011011110101001110","10111111011101010011100111111001","10111111011101001011011010100011","10111111011101000011001101001101","10111111011100111010111111111000","10111111011100110010110010100010","10111111011100101010100101001100","10111111011100100010010111110111","10111111011100011010001010100001","10111111011100010001111101001011","10111111011100001001101111110110","10111111011100000001100010100000","10111111011011111001010101001010","10111111011011110001000111110101","10111111011011101000111010011111","10111111011011100000101101001001","10111111011011011000011111110100","10111111011011010000010010011110","10111111011011001000000101001000","10111111011010111111110111110011","10111111011010110111101010011101","10111111011010101111011101000111","10111111011010100111001111110010","10111111011010011111000010011100","10111111011010010110110101000110","10111111011010001110100111110001","10111111011010000110011010011011","10111111011001111110001101000101","10111111011001110101111111110000","10111111011001101101110010011010","10111111011001100101100101000100","10111111011001011101010111101111","10111111011001010101001010011001","10111111011001001100111101000011","10111111011001000100101111101110","10111111011000111100100010011000","10111111011000110100010101000010","10111111011000101100000111101101","10111111011000100011111010010111","10111111011000011011101101000001","10111111011000010011011111101011","10111111011000001011010010010110","10111111011000000011000101000000","10111111010111111010110111101010","10111111010111110010101010010101","10111111010111101010011100111111","10111111010111100010001111101001","10111111010111011010000010010100","10111111010111010001110100111110","10111111010111001001100111101000","10111111010111000001011010010011","10111111010110111001001100111101","10111111010110110000111111100111","10111111010110101000110010010010","10111111010110100000100100111100","10111111010110011000010111100110","10111111010110010000001010010001","10111111010110000111111100111011","10111111010101111111101111100101","10111111010101110111100010010000","10111111010101101111010100111010","10111111010101100111000111100100","10111111010101011110111010001111","10111111010101010110101100111001","10111111010101001110011111100011","10111111010101000110010010001110","10111111010100111110000100111000","10111111010100110101110111100010","10111111010100101101101010001101","10111111010100100101011100110111","10111111010100011101001111100001","10111111010100010101000010001100","10111111010100001100110100110110","10111111010100000100100111100000","10111111010011111100011010001011","10111111010011110100001100110101","10111111010011101011111111011111","10111111010011100011110010001001","10111111010011011011100100110100","10111111010011010011010111011110","10111111010011001011001010001000","10111111010011000010111100110011","10111111010010111010101111011101","10111111010010110010100010000111","10111111010010101010010100110010","10111111010010100010000111011100","10111111010010011001111010000110","10111111010010010001101100110001","10111111010010001001011111011011","10111111010010000001010010000101","10111111010001111001000100110000","10111111010001110000110111011010","10111111010001101000101010000100","10111111010001100000011100101111","10111111010001011000001111011001","10111111010001010000000010000011","10111111010001000111110100101110","10111111010000111111100111011000","10111111010000110111011010000010","10111111010000101111001100101101","10111111010000100110111111010111","10111111010000011110110010000001","10111111010000010110100100101100","10111111010000001110010111010110","10111111010000000110001010000000","10111111001111111101111100101011","10111111001111110101101111010101","10111111001111101101100001111111","10111111001111100101010100101010","10111111001111011101000111010100","10111111001111010100111001111110","10111111001111001100101100101001","10111111001111000100011111010011","10111111001110111100010001111101","10111111001110110100000100101000","10111111001110101011110111010010","10111111001110100011101001111100","10111111001110011011011100100110","10111111001110010011001111010001","10111111001110001011000001111011","10111111001110000010110100100101","10111111001101111010100111010000","10111111001101110010011001111010","10111111001101101010001100100100","10111111001101100001111111001111","10111111001101011001110001111001","10111111001101010001100100100011","10111111001101001001010111001110","10111111001101000001001001111000","10111111001100111000111100100010","10111111001100110000101111001101","10111111001100101000100001110111","10111111001100100000010100100001","10111111001100011000000111001100","10111111001100001111111001110110","10111111001100000111101100100000","10111111001011111111011111001011","10111111001011110111010001110101","10111111001011101111000100011111","10111111001011100110110111001010","10111111001011011110101001110100","10111111001011010110011100011110","10111111001011001110001111001001","10111111001011000110000001110011","10111111001010111101110100011101","10111111001010110101100111001000","10111111001010101101011001110010","10111111001010100101001100011100","10111111001010011100111111000111","10111111001010010100110001110001","10111111001010001100100100011011","10111111001010000100010111000110","10111111001001111100001001110000","10111111001001110011111100011010","10111111001001101011101111000100","10111111001001100011100001101111","10111111001001011011010100011001","10111111001001010011000111000011","10111111001001001010111001101110","10111111001001000010101100011000","10111111001000111010011111000010","10111111001000110010010001101101","10111111001000101010000100010111","10111111001000100001110111000001","10111111001000011001101001101100","10111111001000010001011100010110","10111111001000001001001111000000","10111111001000000001000001101011","10111111000111111000110100010101","10111111000111110000100110111111","10111111000111101000011001101010","10111111000111100000001100010100","10111111000111010111111110111110","10111111000111001111110001101001","10111111000111000111100100010011","10111111000110111111010110111101","10111111000110110111001001101000","10111111000110101110111100010010","10111111000110100110101110111100","10111111000110011110100001100111","10111111000110010110010100010001","10111111000110001110000110111011","10111111000110000101111001100110","10111111000101111101101100010000","10111111000101110101011110111010","10111111000101101101010001100101","10111111000101100101000100001111","10111111000101011100110110111001","10111111000101010100101001100100","10111111000101001100011100001110","10111111000101000100001110111000","10111111000100111100000001100011","10111111000100110011110100001101","10111111000100101011100110110111","10111111000100100011011001100001","10111111000100011011001100001100","10111111000100010010111110110110","10111111000100001010110001100000","10111111000100000010100100001011","10111111000011111010010110110101","10111111000011110010001001011111","10111111000011101001111100001010","10111111000011100001101110110100","10111111000011011001100001011110","10111111000011010001010100001001","10111111000011001001000110110011","10111111000011000000111001011101","10111111000010111000101100001000","10111111000010110000011110110010","10111111000010101000010001011100","10111111000010100000000100000111","10111111000010010111110110110001","10111111000010001111101001011011","10111111000010000111011100000110","10111111000001111111001110110000","10111111000001110111000001011010","10111111000001101110110100000101","10111111000001100110100110101111","10111111000001011110011001011001","10111111000001010110001100000100","10111111000001001101111110101110","10111111000001000101110001011000","10111111000000111101100100000011","10111111000000110101010110101101","10111111000000101101001001010111","10111111000000100100111100000010","10111111000000011100101110101100","10111111000000010100100001010110","10111111000000001100010100000001","10111111000000000100000110101011","10111110111111110111110010101010","10111110111111100111010111111111","10111110111111010110111101010100","10111110111111000110100010101000","10111110111110110110000111111101","10111110111110100101101101010010","10111110111110010101010010100110","10111110111110000100110111111011","10111110111101110100011101010000","10111110111101100100000010100100","10111110111101010011100111111001","10111110111101000011001101001101","10111110111100110010110010100010","10111110111100100010010111110111","10111110111100010001111101001011","10111110111100000001100010100000","10111110111011110001000111110101","10111110111011100000101101001001","10111110111011010000010010011110","10111110111010111111110111110011","10111110111010101111011101000111","10111110111010011111000010011100","10111110111010001110100111110001","10111110111001111110001101000101","10111110111001101101110010011010","10111110111001011101010111101111","10111110111001001100111101000011","10111110111000111100100010011000","10111110111000101100000111101101","10111110111000011011101101000001","10111110111000001011010010010110","10111110110111111010110111101010","10111110110111101010011100111111","10111110110111011010000010010100","10111110110111001001100111101000","10111110110110111001001100111101","10111110110110101000110010010010","10111110110110011000010111100110","10111110110110000111111100111011","10111110110101110111100010010000","10111110110101100111000111100100","10111110110101010110101100111001","10111110110101000110010010001110","10111110110100110101110111100010","10111110110100100101011100110111","10111110110100010101000010001100","10111110110100000100100111100000","10111110110011110100001100110101","10111110110011100011110010001001","10111110110011010011010111011110","10111110110011000010111100110011","10111110110010110010100010000111","10111110110010100010000111011100","10111110110010010001101100110001","10111110110010000001010010000101","10111110110001110000110111011010","10111110110001100000011100101111","10111110110001010000000010000011","10111110110000111111100111011000","10111110110000101111001100101101","10111110110000011110110010000001","10111110110000001110010111010110","10111110101111111101111100101011","10111110101111101101100001111111","10111110101111011101000111010100","10111110101111001100101100101001","10111110101110111100010001111101","10111110101110101011110111010010","10111110101110011011011100100110","10111110101110001011000001111011","10111110101101111010100111010000","10111110101101101010001100100100","10111110101101011001110001111001","10111110101101001001010111001110","10111110101100111000111100100010","10111110101100101000100001110111","10111110101100011000000111001100","10111110101100000111101100100000","10111110101011110111010001110101","10111110101011100110110111001010","10111110101011010110011100011110","10111110101011000110000001110011","10111110101010110101100111001000","10111110101010100101001100011100","10111110101010010100110001110001","10111110101010000100010111000110","10111110101001110011111100011010","10111110101001100011100001101111","10111110101001010011000111000011","10111110101001000010101100011000","10111110101000110010010001101101","10111110101000100001110111000001","10111110101000010001011100010110","10111110101000000001000001101011","10111110100111110000100110111111","10111110100111100000001100010100","10111110100111001111110001101001","10111110100110111111010110111101","10111110100110101110111100010010","10111110100110011110100001100111","10111110100110001110000110111011","10111110100101111101101100010000","10111110100101101101010001100101","10111110100101011100110110111001","10111110100101001100011100001110","10111110100100111100000001100011","10111110100100101011100110110111","10111110100100011011001100001100","10111110100100001010110001100000","10111110100011111010010110110101","10111110100011101001111100001010","10111110100011011001100001011110","10111110100011001001000110110011","10111110100010111000101100001000","10111110100010101000010001011100","10111110100010010111110110110001","10111110100010000111011100000110","10111110100001110111000001011010","10111110100001100110100110101111","10111110100001010110001100000100","10111110100001000101110001011000","10111110100000110101010110101101","10111110100000100100111100000010","10111110100000010100100001010110","10111110100000000100000110101011","10111110011111100111010111111111","10111110011111000110100010101000","10111110011110100101101101010010","10111110011110000100110111111011","10111110011101100100000010100100","10111110011101000011001101001101","10111110011100100010010111110111","10111110011100000001100010100000","10111110011011100000101101001001","10111110011010111111110111110011","10111110011010011111000010011100","10111110011001111110001101000101","10111110011001011101010111101111","10111110011000111100100010011000","10111110011000011011101101000001","10111110010111111010110111101010","10111110010111011010000010010100","10111110010110111001001100111101","10111110010110011000010111100110","10111110010101110111100010010000","10111110010101010110101100111001","10111110010100110101110111100010","10111110010100010101000010001100","10111110010011110100001100110101","10111110010011010011010111011110","10111110010010110010100010000111","10111110010010010001101100110001","10111110010001110000110111011010","10111110010001010000000010000011","10111110010000101111001100101101","10111110010000001110010111010110","10111110001111101101100001111111","10111110001111001100101100101001","10111110001110101011110111010010","10111110001110001011000001111011","10111110001101101010001100100100","10111110001101001001010111001110","10111110001100101000100001110111","10111110001100000111101100100000","10111110001011100110110111001010","10111110001011000110000001110011","10111110001010100101001100011100","10111110001010000100010111000110","10111110001001100011100001101111","10111110001001000010101100011000","10111110001000100001110111000001","10111110001000000001000001101011","10111110000111100000001100010100","10111110000110111111010110111101","10111110000110011110100001100111","10111110000101111101101100010000","10111110000101011100110110111001","10111110000100111100000001100011","10111110000100011011001100001100","10111110000011111010010110110101","10111110000011011001100001011110","10111110000010111000101100001000","10111110000010010111110110110001","10111110000001110111000001011010","10111110000001010110001100000100","10111110000000110101010110101101","10111110000000010100100001010110","10111101111111100111010111111111","10111101111110100101101101010010","10111101111101100100000010100100","10111101111100100010010111110111","10111101111011100000101101001001","10111101111010011111000010011100","10111101111001011101010111101111","10111101111000011011101101000001","10111101110111011010000010010100","10111101110110011000010111100110","10111101110101010110101100111001","10111101110100010101000010001100","10111101110011010011010111011110","10111101110010010001101100110001","10111101110001010000000010000011","10111101110000001110010111010110","10111101101111001100101100101001","10111101101110001011000001111011","10111101101101001001010111001110","10111101101100000111101100100000","10111101101011000110000001110011","10111101101010000100010111000110","10111101101001000010101100011000","10111101101000000001000001101011","10111101100110111111010110111101","10111101100101111101101100010000","10111101100100111100000001100011","10111101100011111010010110110101","10111101100010111000101100001000","10111101100001110111000001011010","10111101100000110101010110101101","10111101011111100111010111111111","10111101011101100100000010100100","10111101011011100000101101001001","10111101011001011101010111101111","10111101010111011010000010010100","10111101010101010110101100111001","10111101010011010011010111011110","10111101010001010000000010000011","10111101001111001100101100101001","10111101001101001001010111001110","10111101001011000110000001110011","10111101001001000010101100011000","10111101000110111111010110111101","10111101000100111100000001100011","10111101000010111000101100001000","10111101000000110101010110101101","10111100111101100100000010100100","10111100111001011101010111101111","10111100110101010110101100111001","10111100110001010000000010000011","10111100101101001001010111001110","10111100101001000010101100011000","10111100100100111100000001100011","10111100100000110101010110101101","10111100011001011101010111101111","10111100010001010000000010000011","10111100001001000010101100011000","10111100000000110101010110101101","10111011110001010000000010000011","10111011100000110101010110101101","10111011000000110101010110101101","00000000000000000000000000000000"],"x":[-1.0,-0.9979959919839679,-0.9959919839679359,-0.9939879759519038,-0.9919839679358717,-0.9899799599198397,-0.9879759519038076,-0.9859719438877755,-0.9839679358717435,-0.9819639278557114,-0.9799599198396793,-0.9779559118236473,-0.9759519038076152,-0.9739478957915831,-0.9719438877755511,-0.969939879759519,-0.9679358717434869,-0.9659318637274549,-0.9639278557114228,-0.9619238476953907,-0.9599198396793587,-0.9579158316633266,-0.9559118236472945,-0.9539078156312625,-0.9519038076152304,-0.9498997995991983,-0.9478957915831663,-0.9458917835671342,-0.9438877755511023,-0.9418837675350702,-0.9398797595190381,-0.9378757515030061,-0.935871743486974,-0.9338677354709419,-0.9318637274549099,-0.9298597194388778,-0.9278557114228457,-0.9258517034068137,-0.9238476953907816,-0.9218436873747495,-0.9198396793587175,-0.9178356713426854,-0.9158316633266533,-0.9138276553106213,-0.9118236472945892,-0.9098196392785571,-0.9078156312625251,-0.905811623246493,-0.9038076152304609,-0.9018036072144289,-0.8997995991983968,-0.8977955911823647,-0.8957915831663327,-0.8937875751503006,-0.8917835671342685,-0.8897795591182365,-0.8877755511022044,-0.8857715430861723,-0.8837675350701403,-0.8817635270541082,-0.8797595190380761,-0.8777555110220441,-0.875751503006012,-0.87374749498998,-0.8717434869739479,-0.8697394789579158,-0.8677354709418837,-0.8657314629258517,-0.8637274549098196,-0.8617234468937875,-0.8597194388777555,-0.8577154308617234,-0.8557114228456913,-0.8537074148296593,-0.8517034068136272,-0.8496993987975952,-0.8476953907815631,-0.845691382765531,-0.843687374749499,-0.8416833667334669,-0.8396793587174348,-0.8376753507014028,-0.8356713426853707,-0.8336673346693386,-0.8316633266533067,-0.8296593186372746,-0.8276553106212425,-0.8256513026052105,-0.8236472945891784,-0.8216432865731463,-0.8196392785571143,-0.8176352705410822,-0.8156312625250501,-0.8136272545090181,-0.811623246492986,-0.8096192384769539,-0.8076152304609219,-0.8056112224448898,-0.8036072144288577,-0.8016032064128257,-0.7995991983967936,-0.7975951903807615,-0.7955911823647295,-0.7935871743486974,-0.7915831663326653,-0.7895791583166333,-0.7875751503006012,-0.7855711422845691,-0.7835671342685371,-0.781563126252505,-0.779559118236473,-0.7775551102204409,-0.7755511022044088,-0.7735470941883767,-0.7715430861723447,-0.7695390781563126,-0.7675350701402806,-0.7655310621242485,-0.7635270541082164,-0.7615230460921844,-0.7595190380761523,-0.7575150300601202,-0.7555110220440882,-0.7535070140280561,-0.751503006012024,-0.749498997995992,-0.7474949899799599,-0.7454909819639278,-0.7434869739478958,-0.7414829659318637,-0.7394789579158316,-0.7374749498997996,-0.7354709418837675,-0.7334669338677354,-0.7314629258517034,-0.7294589178356713,-0.7274549098196392,-0.7254509018036072,-0.7234468937875751,-0.7214428857715431,-0.7194388777555111,-0.717434869739479,-0.7154308617234469,-0.7134268537074149,-0.7114228456913828,-0.7094188376753507,-0.7074148296593187,-0.7054108216432866,-0.7034068136272545,-0.7014028056112225,-0.6993987975951904,-0.6973947895791583,-0.6953907815631263,-0.6933867735470942,-0.6913827655310621,-0.6893787575150301,-0.687374749498998,-0.685370741482966,-0.6833667334669339,-0.6813627254509018,-0.6793587174348698,-0.6773547094188377,-0.6753507014028056,-0.6733466933867736,-0.6713426853707415,-0.6693386773547094,-0.6673346693386774,-0.6653306613226453,-0.6633266533066132,-0.6613226452905812,-0.6593186372745491,-0.657314629258517,-0.655310621242485,-0.6533066132264529,-0.6513026052104208,-0.6492985971943888,-0.6472945891783567,-0.6452905811623246,-0.6432865731462926,-0.6412825651302605,-0.6392785571142284,-0.6372745490981964,-0.6352705410821643,-0.6332665330661322,-0.6312625250501002,-0.6292585170340681,-0.627254509018036,-0.625250501002004,-0.6232464929859719,-0.6212424849699398,-0.6192384769539078,-0.6172344689378757,-0.6152304609218436,-0.6132264529058116,-0.6112224448897795,-0.6092184368737475,-0.6072144288577155,-0.6052104208416834,-0.6032064128256514,-0.6012024048096193,-0.5991983967935872,-0.5971943887775552,-0.5951903807615231,-0.593186372745491,-0.591182364729459,-0.5891783567134269,-0.5871743486973948,-0.5851703406813628,-0.5831663326653307,-0.5811623246492986,-0.5791583166332666,-0.5771543086172345,-0.5751503006012024,-0.5731462925851704,-0.5711422845691383,-0.5691382765531062,-0.5671342685370742,-0.5651302605210421,-0.56312625250501,-0.561122244488978,-0.5591182364729459,-0.5571142284569138,-0.5551102204408818,-0.5531062124248497,-0.5511022044088176,-0.5490981963927856,-0.5470941883767535,-0.5450901803607214,-0.5430861723446894,-0.5410821643286573,-0.5390781563126252,-0.5370741482965932,-0.5350701402805611,-0.533066132264529,-0.531062124248497,-0.5290581162324649,-0.5270541082164328,-0.5250501002004008,-0.5230460921843687,-0.5210420841683366,-0.5190380761523046,-0.5170340681362725,-0.5150300601202404,-0.5130260521042084,-0.5110220440881763,-0.5090180360721442,-0.5070140280561122,-0.5050100200400801,-0.503006012024048,-0.501002004008016,-0.49899799599198397,-0.4969939879759519,-0.49498997995991983,-0.49298597194388777,-0.4909819639278557,-0.48897795591182364,-0.48697394789579157,-0.4849699398797595,-0.48296593186372744,-0.48096192384769537,-0.4789579158316633,-0.47695390781563124,-0.4749498997995992,-0.4729458917835671,-0.4709418837675351,-0.46893787575150303,-0.46693386773547096,-0.4649298597194389,-0.46292585170340683,-0.46092184368737477,-0.4589178356713427,-0.45691382765531063,-0.45490981963927857,-0.4529058116232465,-0.45090180360721444,-0.44889779559118237,-0.4468937875751503,-0.44488977955911824,-0.44288577154308617,-0.4408817635270541,-0.43887775551102204,-0.43687374749499,-0.4348697394789579,-0.43286573146292584,-0.4308617234468938,-0.4288577154308617,-0.42685370741482964,-0.4248496993987976,-0.4228456913827655,-0.42084168336673344,-0.4188376753507014,-0.4168336673346693,-0.4148296593186373,-0.41282565130260523,-0.41082164328657317,-0.4088176352705411,-0.40681362725450904,-0.40480961923847697,-0.4028056112224449,-0.40080160320641284,-0.39879759519038077,-0.3967935871743487,-0.39478957915831664,-0.3927855711422846,-0.3907815631262525,-0.38877755511022044,-0.3867735470941884,-0.3847695390781563,-0.38276553106212424,-0.3807615230460922,-0.3787575150300601,-0.37675350701402804,-0.374749498997996,-0.3727454909819639,-0.37074148296593185,-0.3687374749498998,-0.3667334669338677,-0.36472945891783565,-0.3627254509018036,-0.36072144288577157,-0.3587174348697395,-0.35671342685370744,-0.35470941883767537,-0.3527054108216433,-0.35070140280561124,-0.3486973947895792,-0.3466933867735471,-0.34468937875751504,-0.342685370741483,-0.3406813627254509,-0.33867735470941884,-0.3366733466933868,-0.3346693386773547,-0.33266533066132264,-0.3306613226452906,-0.3286573146292585,-0.32665330661322645,-0.3246492985971944,-0.3226452905811623,-0.32064128256513025,-0.3186372745490982,-0.3166332665330661,-0.31462925851703405,-0.312625250501002,-0.3106212424849699,-0.30861723446893785,-0.3066132264529058,-0.3046092184368738,-0.3026052104208417,-0.30060120240480964,-0.2985971943887776,-0.2965931863727455,-0.29458917835671344,-0.2925851703406814,-0.2905811623246493,-0.28857715430861725,-0.2865731462925852,-0.2845691382765531,-0.28256513026052105,-0.280561122244489,-0.2785571142284569,-0.27655310621242485,-0.2745490981963928,-0.2725450901803607,-0.27054108216432865,-0.2685370741482966,-0.2665330661322645,-0.26452905811623245,-0.2625250501002004,-0.2605210420841683,-0.25851703406813625,-0.2565130260521042,-0.2545090180360721,-0.25250501002004005,-0.250501002004008,-0.24849699398797595,-0.24649298597194388,-0.24448897795591182,-0.24248496993987975,-0.24048096192384769,-0.23847695390781562,-0.23647294589178355,-0.23446893787575152,-0.23246492985971945,-0.23046092184368738,-0.22845691382765532,-0.22645290581162325,-0.22444889779559118,-0.22244488977955912,-0.22044088176352705,-0.218436873747495,-0.21643286573146292,-0.21442885771543085,-0.2124248496993988,-0.21042084168336672,-0.20841683366733466,-0.20641282565130262,-0.20440881763527055,-0.20240480961923848,-0.20040080160320642,-0.19839679358717435,-0.1963927855711423,-0.19438877755511022,-0.19238476953907815,-0.1903807615230461,-0.18837675350701402,-0.18637274549098196,-0.1843687374749499,-0.18236472945891782,-0.18036072144288579,-0.17835671342685372,-0.17635270541082165,-0.1743486973947896,-0.17234468937875752,-0.17034068136272545,-0.1683366733466934,-0.16633266533066132,-0.16432865731462926,-0.1623246492985972,-0.16032064128256512,-0.15831663326653306,-0.156312625250501,-0.15430861723446893,-0.1523046092184369,-0.15030060120240482,-0.14829659318637275,-0.1462925851703407,-0.14428857715430862,-0.14228456913827656,-0.1402805611222445,-0.13827655310621242,-0.13627254509018036,-0.1342685370741483,-0.13226452905811623,-0.13026052104208416,-0.1282565130260521,-0.12625250501002003,-0.12424849699398798,-0.12224448897795591,-0.12024048096192384,-0.11823647294589178,-0.11623246492985972,-0.11422845691382766,-0.11222444889779559,-0.11022044088176353,-0.10821643286573146,-0.1062124248496994,-0.10420841683366733,-0.10220440881763528,-0.10020040080160321,-0.09819639278557114,-0.09619238476953908,-0.09418837675350701,-0.09218436873747494,-0.09018036072144289,-0.08817635270541083,-0.08617234468937876,-0.0841683366733467,-0.08216432865731463,-0.08016032064128256,-0.0781563126252505,-0.07615230460921844,-0.07414829659318638,-0.07214428857715431,-0.07014028056112225,-0.06813627254509018,-0.06613226452905811,-0.06412825651302605,-0.06212424849699399,-0.06012024048096192,-0.05811623246492986,-0.056112224448897796,-0.05410821643286573,-0.052104208416833664,-0.050100200400801605,-0.04809619238476954,-0.04609218436873747,-0.04408817635270541,-0.04208416833667335,-0.04008016032064128,-0.03807615230460922,-0.036072144288577156,-0.03406813627254509,-0.03206412825651302,-0.03006012024048096,-0.028056112224448898,-0.026052104208416832,-0.02404809619238477,-0.022044088176352707,-0.02004008016032064,-0.018036072144288578,-0.01603206412825651,-0.014028056112224449,-0.012024048096192385,-0.01002004008016032,-0.008016032064128256,-0.006012024048096192,-0.004008016032064128,-0.002004008016032064,0.0]}
+
 },{}],81:[function(require,module,exports){
-module.exports={"expected":["10000000000000010001011011000010","10000000000000010001011000110011","10000000000000010001010110100100","10000000000000010001010100010101","10000000000000010001010010000110","10000000000000010001001111110111","10000000000000010001001101101000","10000000000000010001001011011001","10000000000000010001001001001010","10000000000000010001000110111011","10000000000000010001000100101100","10000000000000010001000010011101","10000000000000010001000000001110","10000000000000010000111101111111","10000000000000010000111011110000","10000000000000010000111001100001","10000000000000010000110111010010","10000000000000010000110101000011","10000000000000010000110010110100","10000000000000010000110000100101","10000000000000010000101110010110","10000000000000010000101100000111","10000000000000010000101001111000","10000000000000010000100111101001","10000000000000010000100101011010","10000000000000010000100011001011","10000000000000010000100000111100","10000000000000010000011110101101","10000000000000010000011100011110","10000000000000010000011010001111","10000000000000010000011000000000","10000000000000010000010101110001","10000000000000010000010011100010","10000000000000010000010001010011","10000000000000010000001111000100","10000000000000010000001100110101","10000000000000010000001010100110","10000000000000010000001000010111","10000000000000010000000110001000","10000000000000010000000011111001","10000000000000010000000001101010","10000000000000001111111111011011","10000000000000001111111101001100","10000000000000001111111010111101","10000000000000001111111000101110","10000000000000001111110110011111","10000000000000001111110100010000","10000000000000001111110010000001","10000000000000001111101111110010","10000000000000001111101101100011","10000000000000001111101011010100","10000000000000001111101001000101","10000000000000001111100110110110","10000000000000001111100100100111","10000000000000001111100010011000","10000000000000001111100000001001","10000000000000001111011101111010","10000000000000001111011011101011","10000000000000001111011001011100","10000000000000001111010111001101","10000000000000001111010100111110","10000000000000001111010010101111","10000000000000001111010000100000","10000000000000001111001110010001","10000000000000001111001100000010","10000000000000001111001001110011","10000000000000001111000111100100","10000000000000001111000101010101","10000000000000001111000011000110","10000000000000001111000000110111","10000000000000001110111110101000","10000000000000001110111100011001","10000000000000001110111010001010","10000000000000001110110111111011","10000000000000001110110101101100","10000000000000001110110011011101","10000000000000001110110001001110","10000000000000001110101110111111","10000000000000001110101100110000","10000000000000001110101010100001","10000000000000001110101000010010","10000000000000001110100110000011","10000000000000001110100011110100","10000000000000001110100001100101","10000000000000001110011111010110","10000000000000001110011101000111","10000000000000001110011010111000","10000000000000001110011000101001","10000000000000001110010110011010","10000000000000001110010100001011","10000000000000001110010001111100","10000000000000001110001111101101","10000000000000001110001101011110","10000000000000001110001011001111","10000000000000001110001001000000","10000000000000001110000110110000","10000000000000001110000100100001","10000000000000001110000010010010","10000000000000001110000000000011","10000000000000001101111101110100","10000000000000001101111011100101","10000000000000001101111001010110","10000000000000001101110111000111","10000000000000001101110100111000","10000000000000001101110010101001","10000000000000001101110000011010","10000000000000001101101110001011","10000000000000001101101011111100","10000000000000001101101001101101","10000000000000001101100111011110","10000000000000001101100101001111","10000000000000001101100011000000","10000000000000001101100000110001","10000000000000001101011110100010","10000000000000001101011100010011","10000000000000001101011010000100","10000000000000001101010111110101","10000000000000001101010101100110","10000000000000001101010011010111","10000000000000001101010001001000","10000000000000001101001110111001","10000000000000001101001100101010","10000000000000001101001010011011","10000000000000001101001000001100","10000000000000001101000101111101","10000000000000001101000011101110","10000000000000001101000001011111","10000000000000001100111111010000","10000000000000001100111101000001","10000000000000001100111010110010","10000000000000001100111000100011","10000000000000001100110110010100","10000000000000001100110100000101","10000000000000001100110001110110","10000000000000001100101111100111","10000000000000001100101101011000","10000000000000001100101011001001","10000000000000001100101000111010","10000000000000001100100110101011","10000000000000001100100100011100","10000000000000001100100010001101","10000000000000001100011111111110","10000000000000001100011101101111","10000000000000001100011011100000","10000000000000001100011001010001","10000000000000001100010111000010","10000000000000001100010100110011","10000000000000001100010010100100","10000000000000001100010000010101","10000000000000001100001110000110","10000000000000001100001011110111","10000000000000001100001001101000","10000000000000001100000111011001","10000000000000001100000101001010","10000000000000001100000010111011","10000000000000001100000000101100","10000000000000001011111110011101","10000000000000001011111100001110","10000000000000001011111001111111","10000000000000001011110111110000","10000000000000001011110101100001","10000000000000001011110011010010","10000000000000001011110001000011","10000000000000001011101110110100","10000000000000001011101100100101","10000000000000001011101010010110","10000000000000001011101000000111","10000000000000001011100101111000","10000000000000001011100011101001","10000000000000001011100001011010","10000000000000001011011111001011","10000000000000001011011100111100","10000000000000001011011010101101","10000000000000001011011000011110","10000000000000001011010110001111","10000000000000001011010100000000","10000000000000001011010001110001","10000000000000001011001111100010","10000000000000001011001101010011","10000000000000001011001011000100","10000000000000001011001000110101","10000000000000001011000110100110","10000000000000001011000100010111","10000000000000001011000010001000","10000000000000001010111111111001","10000000000000001010111101101010","10000000000000001010111011011011","10000000000000001010111001001100","10000000000000001010110110111101","10000000000000001010110100101110","10000000000000001010110010011111","10000000000000001010110000010000","10000000000000001010101110000001","10000000000000001010101011110010","10000000000000001010101001100011","10000000000000001010100111010100","10000000000000001010100101000101","10000000000000001010100010110110","10000000000000001010100000100111","10000000000000001010011110011000","10000000000000001010011100001001","10000000000000001010011001111010","10000000000000001010010111101010","10000000000000001010010101011011","10000000000000001010010011001100","10000000000000001010010000111101","10000000000000001010001110101110","10000000000000001010001100011111","10000000000000001010001010010000","10000000000000001010001000000001","10000000000000001010000101110010","10000000000000001010000011100011","10000000000000001010000001010100","10000000000000001001111111000101","10000000000000001001111100110110","10000000000000001001111010100111","10000000000000001001111000011000","10000000000000001001110110001001","10000000000000001001110011111010","10000000000000001001110001101011","10000000000000001001101111011100","10000000000000001001101101001101","10000000000000001001101010111110","10000000000000001001101000101111","10000000000000001001100110100000","10000000000000001001100100010001","10000000000000001001100010000010","10000000000000001001011111110011","10000000000000001001011101100100","10000000000000001001011011010101","10000000000000001001011001000110","10000000000000001001010110110111","10000000000000001001010100101000","10000000000000001001010010011001","10000000000000001001010000001010","10000000000000001001001101111011","10000000000000001001001011101100","10000000000000001001001001011101","10000000000000001001000111001110","10000000000000001001000100111111","10000000000000001001000010110000","10000000000000001001000000100001","10000000000000001000111110010010","10000000000000001000111100000011","10000000000000001000111001110100","10000000000000001000110111100101","10000000000000001000110101010110","10000000000000001000110011000111","10000000000000001000110000111000","10000000000000001000101110101001","10000000000000001000101100011010","10000000000000001000101010001011","10000000000000001000100111111100","10000000000000001000100101101101","10000000000000001000100011011110","10000000000000001000100001001111","10000000000000001000011111000000","10000000000000001000011100110001","10000000000000001000011010100010","10000000000000001000011000010011","10000000000000001000010110000100","10000000000000001000010011110101","10000000000000001000010001100110","10000000000000001000001111010111","10000000000000001000001101001000","10000000000000001000001010111001","10000000000000001000001000101010","10000000000000001000000110011011","10000000000000001000000100001100","10000000000000001000000001111101","10000000000000000111111111101110","10000000000000000111111101011111","10000000000000000111111011010000","10000000000000000111111001000001","10000000000000000111110110110010","10000000000000000111110100100011","10000000000000000111110010010100","10000000000000000111110000000101","10000000000000000111101101110110","10000000000000000111101011100111","10000000000000000111101001011000","10000000000000000111100111001001","10000000000000000111100100111010","10000000000000000111100010101011","10000000000000000111100000011100","10000000000000000111011110001101","10000000000000000111011011111110","10000000000000000111011001101111","10000000000000000111010111100000","10000000000000000111010101010001","10000000000000000111010011000010","10000000000000000111010000110011","10000000000000000111001110100100","10000000000000000111001100010101","10000000000000000111001010000110","10000000000000000111000111110111","10000000000000000111000101101000","10000000000000000111000011011001","10000000000000000111000001001010","10000000000000000110111110111011","10000000000000000110111100101100","10000000000000000110111010011101","10000000000000000110111000001110","10000000000000000110110101111111","10000000000000000110110011110000","10000000000000000110110001100001","10000000000000000110101111010010","10000000000000000110101101000011","10000000000000000110101010110100","10000000000000000110101000100100","10000000000000000110100110010101","10000000000000000110100100000110","10000000000000000110100001110111","10000000000000000110011111101000","10000000000000000110011101011001","10000000000000000110011011001010","10000000000000000110011000111011","10000000000000000110010110101100","10000000000000000110010100011101","10000000000000000110010010001110","10000000000000000110001111111111","10000000000000000110001101110000","10000000000000000110001011100001","10000000000000000110001001010010","10000000000000000110000111000011","10000000000000000110000100110100","10000000000000000110000010100101","10000000000000000110000000010110","10000000000000000101111110000111","10000000000000000101111011111000","10000000000000000101111001101001","10000000000000000101110111011010","10000000000000000101110101001011","10000000000000000101110010111100","10000000000000000101110000101101","10000000000000000101101110011110","10000000000000000101101100001111","10000000000000000101101010000000","10000000000000000101100111110001","10000000000000000101100101100010","10000000000000000101100011010011","10000000000000000101100001000100","10000000000000000101011110110101","10000000000000000101011100100110","10000000000000000101011010010111","10000000000000000101011000001000","10000000000000000101010101111001","10000000000000000101010011101010","10000000000000000101010001011011","10000000000000000101001111001100","10000000000000000101001100111101","10000000000000000101001010101110","10000000000000000101001000011111","10000000000000000101000110010000","10000000000000000101000100000001","10000000000000000101000001110010","10000000000000000100111111100011","10000000000000000100111101010100","10000000000000000100111011000101","10000000000000000100111000110110","10000000000000000100110110100111","10000000000000000100110100011000","10000000000000000100110010001001","10000000000000000100101111111010","10000000000000000100101101101011","10000000000000000100101011011100","10000000000000000100101001001101","10000000000000000100100110111110","10000000000000000100100100101111","10000000000000000100100010100000","10000000000000000100100000010001","10000000000000000100011110000010","10000000000000000100011011110011","10000000000000000100011001100100","10000000000000000100010111010101","10000000000000000100010101000110","10000000000000000100010010110111","10000000000000000100010000101000","10000000000000000100001110011001","10000000000000000100001100001010","10000000000000000100001001111011","10000000000000000100000111101100","10000000000000000100000101011101","10000000000000000100000011001110","10000000000000000100000000111111","10000000000000000011111110110000","10000000000000000011111100100001","10000000000000000011111010010010","10000000000000000011111000000011","10000000000000000011110101110100","10000000000000000011110011100101","10000000000000000011110001010110","10000000000000000011101111000111","10000000000000000011101100111000","10000000000000000011101010101001","10000000000000000011101000011010","10000000000000000011100110001011","10000000000000000011100011111100","10000000000000000011100001101101","10000000000000000011011111011110","10000000000000000011011101001111","10000000000000000011011011000000","10000000000000000011011000110001","10000000000000000011010110100010","10000000000000000011010100010011","10000000000000000011010010000100","10000000000000000011001111110101","10000000000000000011001101100110","10000000000000000011001011010111","10000000000000000011001001001000","10000000000000000011000110111001","10000000000000000011000100101010","10000000000000000011000010011011","10000000000000000011000000001100","10000000000000000010111101111101","10000000000000000010111011101101","10000000000000000010111001011110","10000000000000000010110111001111","10000000000000000010110101000000","10000000000000000010110010110001","10000000000000000010110000100010","10000000000000000010101110010011","10000000000000000010101100000100","10000000000000000010101001110101","10000000000000000010100111100110","10000000000000000010100101010111","10000000000000000010100011001000","10000000000000000010100000111001","10000000000000000010011110101010","10000000000000000010011100011011","10000000000000000010011010001100","10000000000000000010010111111101","10000000000000000010010101101110","10000000000000000010010011011111","10000000000000000010010001010000","10000000000000000010001111000001","10000000000000000010001100110010","10000000000000000010001010100011","10000000000000000010001000010100","10000000000000000010000110000101","10000000000000000010000011110110","10000000000000000010000001100111","10000000000000000001111111011000","10000000000000000001111101001001","10000000000000000001111010111010","10000000000000000001111000101011","10000000000000000001110110011100","10000000000000000001110100001101","10000000000000000001110001111110","10000000000000000001101111101111","10000000000000000001101101100000","10000000000000000001101011010001","10000000000000000001101001000010","10000000000000000001100110110011","10000000000000000001100100100100","10000000000000000001100010010101","10000000000000000001100000000110","10000000000000000001011101110111","10000000000000000001011011101000","10000000000000000001011001011001","10000000000000000001010111001010","10000000000000000001010100111011","10000000000000000001010010101100","10000000000000000001010000011101","10000000000000000001001110001110","10000000000000000001001011111111","10000000000000000001001001110000","10000000000000000001000111100001","10000000000000000001000101010010","10000000000000000001000011000011","10000000000000000001000000110100","10000000000000000000111110100101","10000000000000000000111100010110","10000000000000000000111010000111","10000000000000000000110111111000","10000000000000000000110101101001","10000000000000000000110011011010","10000000000000000000110001001011","10000000000000000000101110111100","10000000000000000000101100101101","10000000000000000000101010011110","10000000000000000000101000001111","10000000000000000000100110000000","10000000000000000000100011110001","10000000000000000000100001100010","10000000000000000000011111010011","10000000000000000000011101000100","10000000000000000000011010110101","10000000000000000000011000100110","10000000000000000000010110010111","10000000000000000000010100001000","10000000000000000000010001111001","10000000000000000000001111101010","10000000000000000000001101011011","10000000000000000000001011001100","10000000000000000000001000111101","10000000000000000000000110101110","10000000000000000000000100011111","10000000000000000000000010010000","10000000000000000000000000000001"],"x":[-1.0e-40,-9.97996012024048e-41,-9.959920240480963e-41,-9.939880360721443e-41,-9.919840480961923e-41,-9.899800601202407e-41,-9.879760721442887e-41,-9.859720841683367e-41,-9.839680961923847e-41,-9.819641082164329e-41,-9.799601202404809e-41,-9.77956132264529e-41,-9.759521442885772e-41,-9.739481563126252e-41,-9.719441683366732e-41,-9.699401803607214e-41,-9.679361923847696e-41,-9.659322044088176e-41,-9.639282164328656e-41,-9.619242284569138e-41,-9.599202404809618e-41,-9.5791625250501e-41,-9.559122645290582e-41,-9.539082765531062e-41,-9.519042885771542e-41,-9.499003006012023e-41,-9.478963126252505e-41,-9.458923246492985e-41,-9.438883366733467e-41,-9.418843486973947e-41,-9.39880360721443e-41,-9.37876372745491e-41,-9.35872384769539e-41,-9.33868396793587e-41,-9.318644088176353e-41,-9.298604208416833e-41,-9.278564328657315e-41,-9.258524448897797e-41,-9.238484569138277e-41,-9.218444689378756e-41,-9.198404809619238e-41,-9.178364929859718e-41,-9.1583250501002e-41,-9.138285170340681e-41,-9.118245290581162e-41,-9.098205410821643e-41,-9.078165531062124e-41,-9.058125651302605e-41,-9.038085771543086e-41,-9.018045891783567e-41,-8.998006012024048e-41,-8.977966132264529e-41,-8.957926252505009e-41,-8.93788637274549e-41,-8.917846492985971e-41,-8.897806613226452e-41,-8.877766733466933e-41,-8.857726853707414e-41,-8.837686973947895e-41,-8.817647094188376e-41,-8.797607214428857e-41,-8.777567334669338e-41,-8.757527454909819e-41,-8.7374875751503e-41,-8.717447695390781e-41,-8.697407815631262e-41,-8.677367935871742e-41,-8.657328056112223e-41,-8.637288176352705e-41,-8.617248296593186e-41,-8.597208416833667e-41,-8.577168537074148e-41,-8.557128657314629e-41,-8.53708877755511e-41,-8.517048897795591e-41,-8.497009018036072e-41,-8.476969138276553e-41,-8.456929258517034e-41,-8.436889378757515e-41,-8.416849498997995e-41,-8.396809619238476e-41,-8.376769739478957e-41,-8.356729859719438e-41,-8.336689979959919e-41,-8.3166501002004e-41,-8.296610220440881e-41,-8.276570340681362e-41,-8.256530460921843e-41,-8.236490581162324e-41,-8.216450701402805e-41,-8.196410821643286e-41,-8.176370941883767e-41,-8.156331062124248e-41,-8.136291182364728e-41,-8.116251302605209e-41,-8.096211422845691e-41,-8.076171543086172e-41,-8.056131663326653e-41,-8.036091783567134e-41,-8.016051903807615e-41,-7.996012024048096e-41,-7.975972144288577e-41,-7.955932264529058e-41,-7.935892384769539e-41,-7.91585250501002e-41,-7.895812625250501e-41,-7.87577274549098e-41,-7.855732865731462e-41,-7.835692985971943e-41,-7.815653106212424e-41,-7.795613226452905e-41,-7.775573346693386e-41,-7.755533466933867e-41,-7.735493587174348e-41,-7.715453707414829e-41,-7.69541382765531e-41,-7.675373947895791e-41,-7.655334068136272e-41,-7.635294188376753e-41,-7.615254308617234e-41,-7.595214428857714e-41,-7.575174549098196e-41,-7.555134669338677e-41,-7.535094789579158e-41,-7.515054909819639e-41,-7.49501503006012e-41,-7.474975150300601e-41,-7.454935270541082e-41,-7.434895390781563e-41,-7.414855511022043e-41,-7.394815631262525e-41,-7.374775751503006e-41,-7.354735871743487e-41,-7.334695991983968e-41,-7.314656112224448e-41,-7.294616232464929e-41,-7.27457635270541e-41,-7.254536472945891e-41,-7.234496593186372e-41,-7.214456713426853e-41,-7.194416833667334e-41,-7.174376953907815e-41,-7.154337074148296e-41,-7.134297194388777e-41,-7.114257314629258e-41,-7.094217434869739e-41,-7.07417755511022e-41,-7.054137675350699e-41,-7.034097795591182e-41,-7.014057915831663e-41,-6.994018036072144e-41,-6.973978156312625e-41,-6.953938276553105e-41,-6.933898396793587e-41,-6.913858517034068e-41,-6.893818637274549e-41,-6.87377875751503e-41,-6.85373887775551e-41,-6.833698997995992e-41,-6.813659118236473e-41,-6.793619238476954e-41,-6.773579358717434e-41,-6.753539478957915e-41,-6.733499599198396e-41,-6.713459719438877e-41,-6.693419839679358e-41,-6.673379959919839e-41,-6.65334008016032e-41,-6.633300200400801e-41,-6.613260320641282e-41,-6.593220440881762e-41,-6.573180561122244e-41,-6.553140681362725e-41,-6.533100801603207e-41,-6.513060921843688e-41,-6.493021042084167e-41,-6.472981162324649e-41,-6.45294128256513e-41,-6.432901402805611e-41,-6.412861523046092e-41,-6.392821643286572e-41,-6.372781763527054e-41,-6.352741883767535e-41,-6.332702004008016e-41,-6.312662124248497e-41,-6.292622244488978e-41,-6.272582364729459e-41,-6.25254248496994e-41,-6.23250260521042e-41,-6.212462725450901e-41,-6.192422845691382e-41,-6.172382965931863e-41,-6.152343086172344e-41,-6.132303206412824e-41,-6.112263326653306e-41,-6.092223446893787e-41,-6.072183567134268e-41,-6.052143687374749e-41,-6.032103807615229e-41,-6.012063927855711e-41,-5.992024048096193e-41,-5.971984168336674e-41,-5.951944288577154e-41,-5.931904408817634e-41,-5.911864529058116e-41,-5.891824649298597e-41,-5.871784769539078e-41,-5.851744889779559e-41,-5.83170501002004e-41,-5.811665130260521e-41,-5.791625250501002e-41,-5.771585370741483e-41,-5.751545490981964e-41,-5.731505611222445e-41,-5.711465731462926e-41,-5.691425851703406e-41,-5.671385971943886e-41,-5.651346092184368e-41,-5.631306212424849e-41,-5.61126633266533e-41,-5.591226452905811e-41,-5.571186573146291e-41,-5.551146693386773e-41,-5.531106813627254e-41,-5.511066933867735e-41,-5.491027054108216e-41,-5.470987174348696e-41,-5.450947294589179e-41,-5.43090741482966e-41,-5.41086753507014e-41,-5.390827655310621e-41,-5.370787775551102e-41,-5.350747895791583e-41,-5.330708016032064e-41,-5.310668136272544e-41,-5.290628256513026e-41,-5.270588376753507e-41,-5.250548496993988e-41,-5.230508617234469e-41,-5.210468737474949e-41,-5.190428857715431e-41,-5.170388977955912e-41,-5.150349098196392e-41,-5.130309218436873e-41,-5.110269338677353e-41,-5.090229458917835e-41,-5.070189579158316e-41,-5.050149699398797e-41,-5.030109819639278e-41,-5.010069939879758e-41,-4.99003006012024e-41,-4.969990180360721e-41,-4.949950300601203e-41,-4.929910420841684e-41,-4.909870541082164e-41,-4.889830661322646e-41,-4.869790781563126e-41,-4.849750901803606e-41,-4.829711022044088e-41,-4.809671142284569e-41,-4.78963126252505e-41,-4.769591382765531e-41,-4.749551503006011e-41,-4.729511623246493e-41,-4.709471743486973e-41,-4.689431863727454e-41,-4.669391983967936e-41,-4.649352104208417e-41,-4.629312224448898e-41,-4.609272344689379e-41,-4.589232464929859e-41,-4.5691925851703404e-41,-4.549152705410822e-41,-4.529112825651302e-41,-4.509072945891783e-41,-4.4890330661322646e-41,-4.4689931863727455e-41,-4.4489533066132264e-41,-4.428913426853707e-41,-4.408873547094188e-41,-4.388833667334669e-41,-4.36879378757515e-41,-4.3487539078156305e-41,-4.3287140280561115e-41,-4.3086741482965924e-41,-4.2886342685370743e-41,-4.2685943887775553e-41,-4.2485545090180357e-41,-4.2285146292585166e-41,-4.208474749498998e-41,-4.188434869739479e-41,-4.16839498997996e-41,-4.1483551102204403e-41,-4.128315230460921e-41,-4.1082753507014027e-41,-4.0882354709418836e-41,-4.068195591182364e-41,-4.048155711422845e-41,-4.028115831663327e-41,-4.008075951903808e-41,-3.9880360721442887e-41,-3.967996192384769e-41,-3.94795631262525e-41,-3.9279164328657315e-41,-3.9078765531062124e-41,-3.887836673346693e-41,-3.867796793587174e-41,-3.8477569138276547e-41,-3.827717034068136e-41,-3.807677154308617e-41,-3.7876372745490975e-41,-3.7675973947895784e-41,-3.7475575150300603e-41,-3.7275176352705413e-41,-3.7074777555110217e-41,-3.6874378757515026e-41,-3.6673979959919835e-41,-3.647358116232465e-41,-3.627318236472946e-41,-3.6072783567134263e-41,-3.587238476953907e-41,-3.567198597194388e-41,-3.5471587174348696e-41,-3.52711883767535e-41,-3.507078957915831e-41,-3.4870390781563124e-41,-3.466999198396794e-41,-3.4469593186372747e-41,-3.426919438877755e-41,-3.406879559118236e-41,-3.386839679358717e-41,-3.3667997995991984e-41,-3.3467599198396794e-41,-3.32672004008016e-41,-3.3066801603206407e-41,-3.286640280561122e-41,-3.266600400801603e-41,-3.2465605210420835e-41,-3.226520641282565e-41,-3.206480761523046e-41,-3.1864408817635273e-41,-3.166401002004008e-41,-3.1463611222444886e-41,-3.1263212424849696e-41,-3.1062813627254505e-41,-3.086241482965932e-41,-3.0662016032064123e-41,-3.0461617234468933e-41,-3.026121843687374e-41,-3.0060819639278556e-41,-2.9860420841683365e-41,-2.9660022044088175e-41,-2.9459623246492984e-41,-2.9259224448897793e-41,-2.905882565130261e-41,-2.8858426853707417e-41,-2.865802805611222e-41,-2.845762925851703e-41,-2.825723046092184e-41,-2.8056831663326654e-41,-2.785643286573146e-41,-2.7656034068136267e-41,-2.7455635270541077e-41,-2.725523647294589e-41,-2.7054837675350705e-41,-2.685443887775551e-41,-2.665404008016032e-41,-2.645364128256513e-41,-2.625324248496994e-41,-2.6052843687374746e-41,-2.5852444889779556e-41,-2.5652046092184365e-41,-2.545164729458918e-41,-2.525124849699399e-41,-2.5050849699398793e-41,-2.48504509018036e-41,-2.465005210420841e-41,-2.444965330661323e-41,-2.4249254509018035e-41,-2.4048855711422844e-41,-2.3848456913827653e-41,-2.3648058116232463e-41,-2.344765931863727e-41,-2.324726052104208e-41,-2.304686172344689e-41,-2.2846462925851702e-41,-2.264606412825651e-41,-2.2445665330661323e-41,-2.2245266533066133e-41,-2.204486773547094e-41,-2.184446893787575e-41,-2.1644070140280558e-41,-2.144367134268537e-41,-2.1243272545090176e-41,-2.104287374749499e-41,-2.08424749498998e-41,-2.0642076152304607e-41,-2.0441677354709418e-41,-2.0241278557114225e-41,-2.0040879759519037e-41,-1.9840480961923846e-41,-1.9640082164328658e-41,-1.9439683366733465e-41,-1.9239284569138274e-41,-1.9038885771543086e-41,-1.8838486973947892e-41,-1.8638088176352704e-41,-1.8437689378757514e-41,-1.8237290581162325e-41,-1.8036891783567132e-41,-1.7836492985971944e-41,-1.763609418837675e-41,-1.743569539078156e-41,-1.7235296593186374e-41,-1.703489779559118e-41,-1.6834498997995993e-41,-1.66341002004008e-41,-1.643370140280561e-41,-1.6233302605210418e-41,-1.6032903807615227e-41,-1.5832505010020041e-41,-1.5632106212424848e-41,-1.543170741482966e-41,-1.5231308617234467e-41,-1.5030909819639279e-41,-1.4830511022044085e-41,-1.4630112224448897e-41,-1.442971342685371e-41,-1.4229314629258516e-41,-1.4028915831663327e-41,-1.3828517034068134e-41,-1.3628118236472946e-41,-1.3427719438877753e-41,-1.3227320641282564e-41,-1.3026921843687374e-41,-1.2826523046092183e-41,-1.2626124248496995e-41,-1.2425725450901801e-41,-1.2225326653306613e-41,-1.202492785571142e-41,-1.1824529058116232e-41,-1.162413026052104e-41,-1.1423731462925852e-41,-1.1223332665330661e-41,-1.102293386773547e-41,-1.0822535070140279e-41,-1.0622136272545089e-41,-1.0421737474949899e-41,-1.022133867735471e-41,-1.0020939879759519e-41,-9.820541082164328e-42,-9.620142284569139e-42,-9.419743486973947e-42,-9.219344689378756e-42,-9.018945891783566e-42,-8.818547094188376e-42,-8.618148296593186e-42,-8.417749498997995e-42,-8.217350701402806e-42,-8.016951903807614e-42,-7.816553106212423e-42,-7.616154308617234e-42,-7.415755511022043e-42,-7.215356713426854e-42,-7.014957915831664e-42,-6.814559118236473e-42,-6.614160320641283e-42,-6.413761523046092e-42,-6.213362725450901e-42,-6.01296392785571e-42,-5.812565130260521e-42,-5.61216633266533e-42,-5.4117675350701394e-42,-5.21136873747495e-42,-5.010969939879759e-42,-4.810571142284569e-42,-4.610172344689378e-42,-4.4097735470941876e-42,-4.209374749498998e-42,-4.0089759519038074e-42,-3.8085771543086167e-42,-3.608178356713427e-42,-3.4077795591182365e-42,-3.207380761523046e-42,-3.006981963927855e-42,-2.8065831663326652e-42,-2.6061843687374748e-42,-2.4057855711422843e-42,-2.205386773547094e-42,-2.0049879759519038e-42,-1.8045891783567134e-42,-1.604190380761523e-42,-1.4037915831663325e-42,-1.2033927855711421e-42,-1.0029939879759519e-42,-8.025951903807614e-43,-6.021963927855712e-43,-4.0179759519038074e-43,-2.0139879759519036e-43,-1.0e-45]}
+module.exports={"expected":["11000100011110100100000000000000","11000100011110011011111110011101","11000100011110010011111100111011","11000100011110001011111011011000","11000100011110000011111001110110","11000100011101111011111000010011","11000100011101110011110110110001","11000100011101101011110101001110","11000100011101100011110011101100","11000100011101011011110010001001","11000100011101010011110000100111","11000100011101001011101111000100","11000100011101000011101101100010","11000100011100111011101011111111","11000100011100110011101010011101","11000100011100101011101000111010","11000100011100100011100111011000","11000100011100011011100101110101","11000100011100010011100100010011","11000100011100001011100010110000","11000100011100000011100001001110","11000100011011111011011111101011","11000100011011110011011110001001","11000100011011101011011100100110","11000100011011100011011011000100","11000100011011011011011001100001","11000100011011010011010111111111","11000100011011001011010110011100","11000100011011000011010100111010","11000100011010111011010011010111","11000100011010110011010001110101","11000100011010101011010000010010","11000100011010100011001110110000","11000100011010011011001101001101","11000100011010010011001011101011","11000100011010001011001010001000","11000100011010000011001000100110","11000100011001111011000111000011","11000100011001110011000101100001","11000100011001101011000011111110","11000100011001100011000010011100","11000100011001011011000000111001","11000100011001010010111111010111","11000100011001001010111101110100","11000100011001000010111100010010","11000100011000111010111010101111","11000100011000110010111001001101","11000100011000101010110111101010","11000100011000100010110110001000","11000100011000011010110100100101","11000100011000010010110011000011","11000100011000001010110001100000","11000100011000000010101111111110","11000100010111111010101110011011","11000100010111110010101100111001","11000100010111101010101011010110","11000100010111100010101001110100","11000100010111011010101000010001","11000100010111010010100110101111","11000100010111001010100101001100","11000100010111000010100011101010","11000100010110111010100010000111","11000100010110110010100000100101","11000100010110101010011111000010","11000100010110100010011101100000","11000100010110011010011011111101","11000100010110010010011010011011","11000100010110001010011000111000","11000100010110000010010111010110","11000100010101111010010101110011","11000100010101110010010100010001","11000100010101101010010010101110","11000100010101100010010001001100","11000100010101011010001111101001","11000100010101010010001110000111","11000100010101001010001100100100","11000100010101000010001011000010","11000100010100111010001001011111","11000100010100110010000111111101","11000100010100101010000110011010","11000100010100100010000100111000","11000100010100011010000011010101","11000100010100010010000001110011","11000100010100001010000000010000","11000100010100000001111110101110","11000100010011111001111101001011","11000100010011110001111011101001","11000100010011101001111010000110","11000100010011100001111000100100","11000100010011011001110111000001","11000100010011010001110101011111","11000100010011001001110011111100","11000100010011000001110010011010","11000100010010111001110000110111","11000100010010110001101111010101","11000100010010101001101101110010","11000100010010100001101100010000","11000100010010011001101010101101","11000100010010010001101001001011","11000100010010001001100111101000","11000100010010000001100110000110","11000100010001111001100100100011","11000100010001110001100011000001","11000100010001101001100001011110","11000100010001100001011111111100","11000100010001011001011110011001","11000100010001010001011100110111","11000100010001001001011011010100","11000100010001000001011001110010","11000100010000111001011000001111","11000100010000110001010110101101","11000100010000101001010101001010","11000100010000100001010011101000","11000100010000011001010010000101","11000100010000010001010000100011","11000100010000001001001111000000","11000100010000000001001101011110","11000100001111111001001011111011","11000100001111110001001010011001","11000100001111101001001000110110","11000100001111100001000111010100","11000100001111011001000101110001","11000100001111010001000100001111","11000100001111001001000010101100","11000100001111000001000001001010","11000100001110111000111111100111","11000100001110110000111110000101","11000100001110101000111100100010","11000100001110100000111011000000","11000100001110011000111001011101","11000100001110010000110111111011","11000100001110001000110110011000","11000100001110000000110100110110","11000100001101111000110011010011","11000100001101110000110001110001","11000100001101101000110000001110","11000100001101100000101110101100","11000100001101011000101101001001","11000100001101010000101011100111","11000100001101001000101010000100","11000100001101000000101000100010","11000100001100111000100110111111","11000100001100110000100101011101","11000100001100101000100011111010","11000100001100100000100010011000","11000100001100011000100000110101","11000100001100010000011111010011","11000100001100001000011101110000","11000100001100000000011100001110","11000100001011111000011010101011","11000100001011110000011001001001","11000100001011101000010111100110","11000100001011100000010110000100","11000100001011011000010100100001","11000100001011010000010010111111","11000100001011001000010001011100","11000100001011000000001111111010","11000100001010111000001110010111","11000100001010110000001100110101","11000100001010101000001011010010","11000100001010100000001001110000","11000100001010011000001000001101","11000100001010010000000110101011","11000100001010001000000101001000","11000100001010000000000011100110","11000100001001111000000010000011","11000100001001110000000000100001","11000100001001100111111110111110","11000100001001011111111101011100","11000100001001010111111011111001","11000100001001001111111010010111","11000100001001000111111000110100","11000100001000111111110111010010","11000100001000110111110101101111","11000100001000101111110100001101","11000100001000100111110010101010","11000100001000011111110001001000","11000100001000010111101111100101","11000100001000001111101110000011","11000100001000000111101100100000","11000100000111111111101010111110","11000100000111110111101001011011","11000100000111101111100111111001","11000100000111100111100110010110","11000100000111011111100100110100","11000100000111010111100011010001","11000100000111001111100001101111","11000100000111000111100000001100","11000100000110111111011110101010","11000100000110110111011101000111","11000100000110101111011011100101","11000100000110100111011010000010","11000100000110011111011000100000","11000100000110010111010110111101","11000100000110001111010101011011","11000100000110000111010011111000","11000100000101111111010010010110","11000100000101110111010000110011","11000100000101101111001111010001","11000100000101100111001101101110","11000100000101011111001100001100","11000100000101010111001010101001","11000100000101001111001001000111","11000100000101000111000111100100","11000100000100111111000110000010","11000100000100110111000100011111","11000100000100101111000010111101","11000100000100100111000001011010","11000100000100011110111111111000","11000100000100010110111110010101","11000100000100001110111100110011","11000100000100000110111011010000","11000100000011111110111001101110","11000100000011110110111000001011","11000100000011101110110110101001","11000100000011100110110101000110","11000100000011011110110011100100","11000100000011010110110010000001","11000100000011001110110000011111","11000100000011000110101110111100","11000100000010111110101101011010","11000100000010110110101011110111","11000100000010101110101010010101","11000100000010100110101000110010","11000100000010011110100111010000","11000100000010010110100101101101","11000100000010001110100100001011","11000100000010000110100010101000","11000100000001111110100001000110","11000100000001110110011111100011","11000100000001101110011110000001","11000100000001100110011100011110","11000100000001011110011010111100","11000100000001010110011001011001","11000100000001001110010111110111","11000100000001000110010110010100","11000100000000111110010100110010","11000100000000110110010011001111","11000100000000101110010001101101","11000100000000100110010000001010","11000100000000011110001110101000","11000100000000010110001101000101","11000100000000001110001011100011","11000100000000000110001010000000","11000011111111111100010000111100","11000011111111101100001101110111","11000011111111011100001010110010","11000011111111001100000111101101","11000011111110111100000100101000","11000011111110101100000001100011","11000011111110011011111110011101","11000011111110001011111011011000","11000011111101111011111000010011","11000011111101101011110101001110","11000011111101011011110010001001","11000011111101001011101111000100","11000011111100111011101011111111","11000011111100101011101000111010","11000011111100011011100101110101","11000011111100001011100010110000","11000011111011111011011111101011","11000011111011101011011100100110","11000011111011011011011001100001","11000011111011001011010110011100","11000011111010111011010011010111","11000011111010101011010000010010","11000011111010011011001101001101","11000011111010001011001010001000","11000011111001111011000111000011","11000011111001101011000011111110","11000011111001011011000000111001","11000011111001001010111101110100","11000011111000111010111010101111","11000011111000101010110111101010","11000011111000011010110100100101","11000011111000001010110001100000","11000011110111111010101110011011","11000011110111101010101011010110","11000011110111011010101000010001","11000011110111001010100101001100","11000011110110111010100010000111","11000011110110101010011111000010","11000011110110011010011011111101","11000011110110001010011000111000","11000011110101111010010101110011","11000011110101101010010010101110","11000011110101011010001111101001","11000011110101001010001100100100","11000011110100111010001001011111","11000011110100101010000110011010","11000011110100011010000011010101","11000011110100001010000000010000","11000011110011111001111101001011","11000011110011101001111010000110","11000011110011011001110111000001","11000011110011001001110011111100","11000011110010111001110000110111","11000011110010101001101101110010","11000011110010011001101010101101","11000011110010001001100111101000","11000011110001111001100100100011","11000011110001101001100001011110","11000011110001011001011110011001","11000011110001001001011011010100","11000011110000111001011000001111","11000011110000101001010101001010","11000011110000011001010010000101","11000011110000001001001111000000","11000011101111111001001011111011","11000011101111101001001000110110","11000011101111011001000101110001","11000011101111001001000010101100","11000011101110111000111111100111","11000011101110101000111100100010","11000011101110011000111001011101","11000011101110001000110110011000","11000011101101111000110011010011","11000011101101101000110000001110","11000011101101011000101101001001","11000011101101001000101010000100","11000011101100111000100110111111","11000011101100101000100011111010","11000011101100011000100000110101","11000011101100001000011101110000","11000011101011111000011010101011","11000011101011101000010111100110","11000011101011011000010100100001","11000011101011001000010001011100","11000011101010111000001110010111","11000011101010101000001011010010","11000011101010011000001000001101","11000011101010001000000101001000","11000011101001111000000010000011","11000011101001100111111110111110","11000011101001010111111011111001","11000011101001000111111000110100","11000011101000110111110101101111","11000011101000100111110010101010","11000011101000010111101111100101","11000011101000000111101100100000","11000011100111110111101001011011","11000011100111100111100110010110","11000011100111010111100011010001","11000011100111000111100000001100","11000011100110110111011101000111","11000011100110100111011010000010","11000011100110010111010110111101","11000011100110000111010011111000","11000011100101110111010000110011","11000011100101100111001101101110","11000011100101010111001010101001","11000011100101000111000111100100","11000011100100110111000100011111","11000011100100100111000001011010","11000011100100010110111110010101","11000011100100000110111011010000","11000011100011110110111000001011","11000011100011100110110101000110","11000011100011010110110010000001","11000011100011000110101110111100","11000011100010110110101011110111","11000011100010100110101000110010","11000011100010010110100101101101","11000011100010000110100010101000","11000011100001110110011111100011","11000011100001100110011100011110","11000011100001010110011001011001","11000011100001000110010110010100","11000011100000110110010011001111","11000011100000100110010000001010","11000011100000010110001101000101","11000011100000000110001010000000","11000011011111101100001101110111","11000011011111001100000111101101","11000011011110101100000001100011","11000011011110001011111011011000","11000011011101101011110101001110","11000011011101001011101111000100","11000011011100101011101000111010","11000011011100001011100010110000","11000011011011101011011100100110","11000011011011001011010110011100","11000011011010101011010000010010","11000011011010001011001010001000","11000011011001101011000011111110","11000011011001001010111101110100","11000011011000101010110111101010","11000011011000001010110001100000","11000011010111101010101011010110","11000011010111001010100101001100","11000011010110101010011111000010","11000011010110001010011000111000","11000011010101101010010010101110","11000011010101001010001100100100","11000011010100101010000110011010","11000011010100001010000000010000","11000011010011101001111010000110","11000011010011001001110011111100","11000011010010101001101101110010","11000011010010001001100111101000","11000011010001101001100001011110","11000011010001001001011011010100","11000011010000101001010101001010","11000011010000001001001111000000","11000011001111101001001000110110","11000011001111001001000010101100","11000011001110101000111100100010","11000011001110001000110110011000","11000011001101101000110000001110","11000011001101001000101010000100","11000011001100101000100011111010","11000011001100001000011101110000","11000011001011101000010111100110","11000011001011001000010001011100","11000011001010101000001011010010","11000011001010001000000101001000","11000011001001100111111110111110","11000011001001000111111000110100","11000011001000100111110010101010","11000011001000000111101100100000","11000011000111100111100110010110","11000011000111000111100000001100","11000011000110100111011010000010","11000011000110000111010011111000","11000011000101100111001101101110","11000011000101000111000111100100","11000011000100100111000001011010","11000011000100000110111011010000","11000011000011100110110101000110","11000011000011000110101110111100","11000011000010100110101000110010","11000011000010000110100010101000","11000011000001100110011100011110","11000011000001000110010110010100","11000011000000100110010000001010","11000011000000000110001010000000","11000010111111001100000111101101","11000010111110001011111011011000","11000010111101001011101111000100","11000010111100001011100010110000","11000010111011001011010110011100","11000010111010001011001010001000","11000010111001001010111101110100","11000010111000001010110001100000","11000010110111001010100101001100","11000010110110001010011000111000","11000010110101001010001100100100","11000010110100001010000000010000","11000010110011001001110011111100","11000010110010001001100111101000","11000010110001001001011011010100","11000010110000001001001111000000","11000010101111001001000010101100","11000010101110001000110110011000","11000010101101001000101010000100","11000010101100001000011101110000","11000010101011001000010001011100","11000010101010001000000101001000","11000010101001000111111000110100","11000010101000000111101100100000","11000010100111000111100000001100","11000010100110000111010011111000","11000010100101000111000111100100","11000010100100000110111011010000","11000010100011000110101110111100","11000010100010000110100010101000","11000010100001000110010110010100","11000010100000000110001010000000","11000010011110001011111011011000","11000010011100001011100010110000","11000010011010001011001010001000","11000010011000001010110001100000","11000010010110001010011000111000","11000010010100001010000000010000","11000010010010001001100111101000","11000010010000001001001111000000","11000010001110001000110110011000","11000010001100001000011101110000","11000010001010001000000101001000","11000010001000000111101100100000","11000010000110000111010011111000","11000010000100000110111011010000","11000010000010000110100010101000","11000010000000000110001010000000","11000001111100001011100010110000","11000001111000001010110001100000","11000001110100001010000000010000","11000001110000001001001111000000","11000001101100001000011101110000","11000001101000000111101100100000","11000001100100000110111011010000","11000001100000000110001010000000","11000001011000001010110001100000","11000001010000001001001111000000","11000001001000000111101100100000","11000001000000000110001010000000","11000000110000001001001111000000","11000000100000000110001010000000","11000000000000000110001010000000","00000000000000000000000000000000"],"x":[-1001.0,-998.9939879759519,-996.9879759519038,-994.9819639278558,-992.9759519038076,-990.9699398797595,-988.9639278557114,-986.9579158316633,-984.9519038076153,-982.9458917835672,-980.939879759519,-978.9338677354709,-976.9278557114228,-974.9218436873748,-972.9158316633267,-970.9098196392786,-968.9038076152304,-966.8977955911823,-964.8917835671342,-962.8857715430862,-960.8797595190381,-958.87374749499,-956.8677354709419,-954.8617234468937,-952.8557114228457,-950.8496993987976,-948.8436873747495,-946.8376753507014,-944.8316633266533,-942.8256513026053,-940.8196392785571,-938.813627254509,-936.8076152304609,-934.8016032064128,-932.7955911823648,-930.7895791583167,-928.7835671342685,-926.7775551102204,-924.7715430861723,-922.7655310621243,-920.7595190380762,-918.7535070140281,-916.7474949899799,-914.7414829659318,-912.7354709418838,-910.7294589178357,-908.7234468937876,-906.7174348697395,-904.7114228456913,-902.7054108216433,-900.6993987975952,-898.6933867735471,-896.687374749499,-894.6813627254509,-892.6753507014027,-890.6693386773547,-888.6633266533066,-886.6573146292585,-884.6513026052104,-882.6452905811623,-880.6392785571143,-878.6332665330661,-876.627254509018,-874.6212424849699,-872.6152304609218,-870.6092184368738,-868.6032064128257,-866.5971943887776,-864.5911823647294,-862.5851703406813,-860.5791583166333,-858.5731462925852,-856.5671342685371,-854.561122244489,-852.5551102204408,-850.5490981963928,-848.5430861723447,-846.5370741482966,-844.5310621242485,-842.5250501002004,-840.5190380761524,-838.5130260521042,-836.5070140280561,-834.501002004008,-832.4949899799599,-830.4889779559119,-828.4829659318638,-826.4769539078156,-824.4709418837675,-822.4649298597194,-820.4589178356713,-818.4529058116233,-816.4468937875752,-814.440881763527,-812.4348697394789,-810.4288577154308,-808.4228456913828,-806.4168336673347,-804.4108216432866,-802.4048096192384,-800.3987975951903,-798.3927855711423,-796.3867735470942,-794.3807615230461,-792.374749498998,-790.3687374749499,-788.3627254509018,-786.3567134268537,-784.3507014028056,-782.3446893787575,-780.3386773547094,-778.3326653306614,-776.3266533066133,-774.3206412825651,-772.314629258517,-770.3086172344689,-768.3026052104209,-766.2965931863728,-764.2905811623247,-762.2845691382765,-760.2785571142284,-758.2725450901804,-756.2665330661323,-754.2605210420842,-752.2545090180361,-750.2484969939879,-748.2424849699398,-746.2364729458918,-744.2304609218437,-742.2244488977956,-740.2184368737475,-738.2124248496993,-736.2064128256513,-734.2004008016032,-732.1943887775551,-730.188376753507,-728.1823647294589,-726.1763527054109,-724.1703406813627,-722.1643286573146,-720.1583166332665,-718.1523046092184,-716.1462925851704,-714.1402805611223,-712.1342685370741,-710.128256513026,-708.1222444889779,-706.1162324649299,-704.1102204408818,-702.1042084168337,-700.0981963927856,-698.0921843687374,-696.0861723446894,-694.0801603206413,-692.0741482965932,-690.0681362725451,-688.062124248497,-686.056112224449,-684.0501002004008,-682.0440881763527,-680.0380761523046,-678.0320641282565,-676.0260521042084,-674.0200400801604,-672.0140280561122,-670.0080160320641,-668.002004008016,-665.9959919839679,-663.9899799599199,-661.9839679358718,-659.9779559118236,-657.9719438877755,-655.9659318637274,-653.9599198396794,-651.9539078156313,-649.9478957915832,-647.941883767535,-645.9358717434869,-643.9298597194389,-641.9238476953908,-639.9178356713427,-637.9118236472946,-635.9058116232464,-633.8997995991984,-631.8937875751503,-629.8877755511022,-627.8817635270541,-625.875751503006,-623.869739478958,-621.8637274549098,-619.8577154308617,-617.8517034068136,-615.8456913827655,-613.8396793587175,-611.8336673346694,-609.8276553106213,-607.8216432865731,-605.815631262525,-603.8096192384769,-601.8036072144289,-599.7975951903808,-597.7915831663327,-595.7855711422845,-593.7795591182364,-591.7735470941884,-589.7675350701403,-587.7615230460922,-585.7555110220441,-583.7494989979959,-581.7434869739479,-579.7374749498998,-577.7314629258517,-575.7254509018036,-573.7194388777555,-571.7134268537075,-569.7074148296593,-567.7014028056112,-565.6953907815631,-563.689378757515,-561.683366733467,-559.6773547094189,-557.6713426853707,-555.6653306613226,-553.6593186372745,-551.6533066132265,-549.6472945891784,-547.6412825651303,-545.6352705410821,-543.629258517034,-541.623246492986,-539.6172344689379,-537.6112224448898,-535.6052104208417,-533.5991983967936,-531.5931863727454,-529.5871743486974,-527.5811623246493,-525.5751503006012,-523.5691382765531,-521.563126252505,-519.557114228457,-517.5511022044088,-515.5450901803607,-513.5390781563126,-511.53306613226454,-509.5270541082164,-507.52104208416836,-505.51503006012024,-503.5090180360721,-501.50300601202406,-499.49699398797594,-497.4909819639279,-495.48496993987976,-493.47895791583164,-491.4729458917836,-489.46693386773546,-487.4609218436874,-485.4549098196393,-483.44889779559117,-481.4428857715431,-479.436873747495,-477.43086172344687,-475.4248496993988,-473.4188376753507,-471.4128256513026,-469.4068136272545,-467.4008016032064,-465.3947895791583,-463.3887775551102,-461.38276553106215,-459.37675350701403,-457.3707414829659,-455.36472945891785,-453.35871743486973,-451.35270541082167,-449.34669338677355,-447.34068136272543,-445.3346693386774,-443.32865731462925,-441.32264529058114,-439.3166332665331,-437.31062124248496,-435.3046092184369,-433.2985971943888,-431.29258517034066,-429.2865731462926,-427.2805611222445,-425.2745490981964,-423.2685370741483,-421.2625250501002,-419.2565130260521,-417.250501002004,-415.24448897795594,-413.2384769539078,-411.2324649298597,-409.22645290581164,-407.2204408817635,-405.2144288577154,-403.20841683366734,-401.2024048096192,-399.19639278557116,-397.19038076152304,-395.1843687374749,-393.17835671342687,-391.17234468937875,-389.1663326653307,-387.16032064128257,-385.15430861723445,-383.1482965931864,-381.14228456913827,-379.1362725450902,-377.1302605210421,-375.12424849699397,-373.1182364729459,-371.1122244488978,-369.1062124248497,-367.1002004008016,-365.0941883767535,-363.08817635270543,-361.0821643286573,-359.0761523046092,-357.07014028056113,-355.064128256513,-353.05811623246495,-351.05210420841684,-349.0460921843687,-347.04008016032066,-345.03406813627254,-343.0280561122245,-341.02204408817636,-339.01603206412824,-337.0100200400802,-335.00400801603206,-332.99799599198394,-330.9919839679359,-328.98597194388776,-326.9799599198397,-324.9739478957916,-322.96793587174346,-320.9619238476954,-318.9559118236473,-316.9498997995992,-314.9438877755511,-312.937875751503,-310.9318637274549,-308.9258517034068,-306.91983967935874,-304.9138276553106,-302.9078156312625,-300.90180360721445,-298.89579158316633,-296.8897795591182,-294.88376753507015,-292.87775551102203,-290.87174348697397,-288.86573146292585,-286.85971943887773,-284.85370741482967,-282.84769539078155,-280.8416833667335,-278.8356713426854,-276.82965931863725,-274.8236472945892,-272.8176352705411,-270.811623246493,-268.8056112224449,-266.7995991983968,-264.7935871743487,-262.7875751503006,-260.7815631262525,-258.7755511022044,-256.7695390781563,-254.7635270541082,-252.75751503006012,-250.75150300601203,-248.74549098196394,-246.73947895791582,-244.73346693386773,-242.72745490981964,-240.72144288577155,-238.71543086172343,-236.70941883767534,-234.70340681362725,-232.69739478957916,-230.69138276553107,-228.68537074148296,-226.67935871743487,-224.67334669338678,-222.6673346693387,-220.66132264529057,-218.65531062124248,-216.6492985971944,-214.6432865731463,-212.6372745490982,-210.6312625250501,-208.625250501002,-206.6192384769539,-204.61322645290582,-202.6072144288577,-200.6012024048096,-198.59519038076152,-196.58917835671343,-194.58316633266534,-192.57715430861722,-190.57114228456913,-188.56513026052104,-186.55911823647295,-184.55310621242484,-182.54709418837675,-180.54108216432866,-178.53507014028057,-176.52905811623248,-174.52304609218436,-172.51703406813627,-170.51102204408818,-168.5050100200401,-166.49899799599197,-164.49298597194388,-162.4869739478958,-160.4809619238477,-158.4749498997996,-156.4689378757515,-154.4629258517034,-152.4569138276553,-150.45090180360722,-148.4448897795591,-146.43887775551102,-144.43286573146293,-142.42685370741484,-140.42084168336675,-138.41482965931863,-136.40881763527054,-134.40280561122245,-132.39679358717436,-130.39078156312624,-128.38476953907815,-126.37875751503006,-124.37274549098197,-122.36673346693387,-120.36072144288578,-118.35470941883767,-116.34869739478958,-114.34268537074148,-112.33667334669339,-110.33066132264528,-108.3246492985972,-106.3186372745491,-104.312625250501,-102.30661322645291,-100.3006012024048,-98.29458917835672,-96.28857715430861,-94.28256513026052,-92.27655310621242,-90.27054108216433,-88.26452905811624,-86.25851703406813,-84.25250501002004,-82.24649298597194,-80.24048096192385,-78.23446893787575,-76.22845691382766,-74.22244488977955,-72.21643286573146,-70.21042084168337,-68.20440881763527,-66.19839679358718,-64.19238476953907,-62.186372745490985,-60.18036072144289,-58.17434869739479,-56.168336673346694,-54.1623246492986,-52.1563126252505,-50.1503006012024,-48.144288577154306,-46.13827655310621,-44.13226452905812,-42.12625250501002,-40.120240480961925,-38.11422845691383,-36.10821643286573,-34.102204408817634,-32.09619238476954,-30.090180360721444,-28.084168336673347,-26.07815631262525,-24.072144288577153,-22.06613226452906,-20.060120240480963,-18.054108216432866,-16.04809619238477,-14.042084168336673,-12.036072144288577,-10.030060120240481,-8.024048096192384,-6.018036072144288,-4.012024048096192,-2.006012024048096,0.0]}
+
 },{}],82:[function(require,module,exports){
-module.exports={"expected":["10000000001101100111000111110111","10001001001001100111110010100101","10001001101001100111110010010111","10001001111110011011101011011100","10001010001001100111110010010000","10001010010100000001101110110011","10001010011110011011101011010101","10001010100100011010110011111100","10001010101001100111110010001101","10001010101110110100110000011110","10001010110100000001101110101111","10001010111001001110101101000000","10001010111110011011101011010010","10001011000001110100010100110001","10001011000100011010110011111010","10001011000111000001010011000011","10001011001001100111110010001011","10001011001100001110010001010100","10001011001110110100110000011100","10001011010001011011001111100101","10001011010100000001101110101101","10001011010110101000001101110110","10001011011001001110101100111111","10001011011011110101001100000111","10001011011110011011101011010000","10001011100000100001000101001100","10001011100001110100010100110000","10001011100011000111100100010101","10001011100100011010110011111001","10001011100101101110000011011101","10001011100111000001010011000010","10001011101000010100100010100110","10001011101001100111110010001010","10001011101010111011000001101111","10001011101100001110010001010011","10001011101101100001100000110111","10001011101110110100110000011011","10001011110000001000000000000000","10001011110001011011001111100100","10001011110010101110011111001000","10001011110100000001101110101101","10001011110101010100111110010001","10001011110110101000001101110101","10001011110111111011011101011001","10001011111001001110101100111110","10001011111010100001111100100010","10001011111011110101001100000110","10001011111101001000011011101011","10001011111110011011101011001111","10001011111111101110111010110011","10001100000000100001000101001100","10001100000001001010101100111110","10001100000001110100010100110000","10001100000010011101111100100010","10001100000011000111100100010100","10001100000011110001001100000111","10001100000100011010110011111001","10001100000101000100011011101011","10001100000101101110000011011101","10001100000110010111101011001111","10001100000111000001010011000001","10001100000111101010111010110011","10001100001000010100100010100110","10001100001000111110001010011000","10001100001001100111110010001010","10001100001010010001011001111100","10001100001010111011000001101110","10001100001011100100101001100000","10001100001100001110010001010010","10001100001100110111111001000101","10001100001101100001100000110111","10001100001110001011001000101001","10001100001110110100110000011011","10001100001111011110011000001101","10001100010000000111111111111111","10001100010000110001100111110001","10001100010001011011001111100100","10001100010010000100110111010110","10001100010010101110011111001000","10001100010011011000000110111010","10001100010100000001101110101100","10001100010100101011010110011110","10001100010101010100111110010000","10001100010101111110100110000011","10001100010110101000001101110101","10001100010111010001110101100111","10001100010111111011011101011001","10001100011000100101000101001011","10001100011001001110101100111101","10001100011001111000010100101111","10001100011010100001111100100010","10001100011011001011100100010100","10001100011011110101001100000110","10001100011100011110110011111000","10001100011101001000011011101010","10001100011101110010000011011100","10001100011110011011101011001111","10001100011111000101010011000001","10001100011111101110111010110011","10001100100000001100010001010010","10001100100000100001000101001100","10001100100000110101111001000101","10001100100001001010101100111110","10001100100001011111100000110111","10001100100001110100010100110000","10001100100010001001001000101001","10001100100010011101111100100010","10001100100010110010110000011011","10001100100011000111100100010100","10001100100011011100011000001101","10001100100011110001001100000110","10001100100100000101111111111111","10001100100100011010110011111000","10001100100100101111100111110010","10001100100101000100011011101011","10001100100101011001001111100100","10001100100101101110000011011101","10001100100110000010110111010110","10001100100110010111101011001111","10001100100110101100011111001000","10001100100111000001010011000001","10001100100111010110000110111010","10001100100111101010111010110011","10001100100111111111101110101100","10001100101000010100100010100101","10001100101000101001010110011110","10001100101000111110001010010111","10001100101001010010111110010001","10001100101001100111110010001010","10001100101001111100100110000011","10001100101010010001011001111100","10001100101010100110001101110101","10001100101010111011000001101110","10001100101011001111110101100111","10001100101011100100101001100000","10001100101011111001011101011001","10001100101100001110010001010010","10001100101100100011000101001011","10001100101100110111111001000100","10001100101101001100101100111101","10001100101101100001100000110110","10001100101101110110010100110000","10001100101110001011001000101001","10001100101110011111111100100010","10001100101110110100110000011011","10001100101111001001100100010100","10001100101111011110011000001101","10001100101111110011001100000110","10001100110000000111111111111111","10001100110000011100110011111000","10001100110000110001100111110001","10001100110001000110011011101010","10001100110001011011001111100011","10001100110001110000000011011100","10001100110010000100110111010110","10001100110010011001101011001111","10001100110010101110011111001000","10001100110011000011010011000001","10001100110011011000000110111010","10001100110011101100111010110011","10001100110100000001101110101100","10001100110100010110100010100101","10001100110100101011010110011110","10001100110101000000001010010111","10001100110101010100111110010000","10001100110101101001110010001001","10001100110101111110100110000010","10001100110110010011011001111011","10001100110110101000001101110101","10001100110110111101000001101110","10001100110111010001110101100111","10001100110111100110101001100000","10001100110111111011011101011001","10001100111000010000010001010010","10001100111000100101000101001011","10001100111000111001111001000100","10001100111001001110101100111101","10001100111001100011100000110110","10001100111001111000010100101111","10001100111010001101001000101000","10001100111010100001111100100001","10001100111010110110110000011011","10001100111011001011100100010100","10001100111011100000011000001101","10001100111011110101001100000110","10001100111100001001111111111111","10001100111100011110110011111000","10001100111100110011100111110001","10001100111101001000011011101010","10001100111101011101001111100011","10001100111101110010000011011100","10001100111110000110110111010101","10001100111110011011101011001110","10001100111110110000011111000111","10001100111111000101010011000000","10001100111111011010000110111010","10001100111111101110111010110011","10001101000000000001110111010110","10001101000000001100010001010010","10001101000000010110101011001111","10001101000000100001000101001011","10001101000000101011011111001000","10001101000000110101111001000101","10001101000001000000010011000001","10001101000001001010101100111110","10001101000001010101000110111010","10001101000001011111100000110111","10001101000001101001111010110011","10001101000001110100010100110000","10001101000001111110101110101100","10001101000010001001001000101001","10001101000010010011100010100101","10001101000010011101111100100010","10001101000010101000010110011110","10001101000010110010110000011011","10001101000010111101001010011000","10001101000011000111100100010100","10001101000011010001111110010001","10001101000011011100011000001101","10001101000011100110110010001010","10001101000011110001001100000110","10001101000011111011100110000011","10001101000100000101111111111111","10001101000100010000011001111100","10001101000100011010110011111000","10001101000100100101001101110101","10001101000100101111100111110001","10001101000100111010000001101110","10001101000101000100011011101010","10001101000101001110110101100111","10001101000101011001001111100100","10001101000101100011101001100000","10001101000101101110000011011101","10001101000101111000011101011001","10001101000110000010110111010110","10001101000110001101010001010010","10001101000110010111101011001111","10001101000110100010000101001011","10001101000110101100011111001000","10001101000110110110111001000100","10001101000111000001010011000001","10001101000111001011101100111101","10001101000111010110000110111010","10001101000111100000100000110111","10001101000111101010111010110011","10001101000111110101010100110000","10001101000111111111101110101100","10001101001000001010001000101001","10001101001000010100100010100101","10001101001000011110111100100010","10001101001000101001010110011110","10001101001000110011110000011011","10001101001000111110001010010111","10001101001001001000100100010100","10001101001001010010111110010000","10001101001001011101011000001101","10001101001001100111110010001010","10001101001001110010001100000110","10001101001001111100100110000011","10001101001010000110111111111111","10001101001010010001011001111100","10001101001010011011110011111000","10001101001010100110001101110101","10001101001010110000100111110001","10001101001010111011000001101110","10001101001011000101011011101010","10001101001011001111110101100111","10001101001011011010001111100011","10001101001011100100101001100000","10001101001011101111000011011100","10001101001011111001011101011001","10001101001100000011110111010110","10001101001100001110010001010010","10001101001100011000101011001111","10001101001100100011000101001011","10001101001100101101011111001000","10001101001100110111111001000100","10001101001101000010010011000001","10001101001101001100101100111101","10001101001101010111000110111010","10001101001101100001100000110110","10001101001101101011111010110011","10001101001101110110010100101111","10001101001110000000101110101100","10001101001110001011001000101001","10001101001110010101100010100101","10001101001110011111111100100010","10001101001110101010010110011110","10001101001110110100110000011011","10001101001110111111001010010111","10001101001111001001100100010100","10001101001111010011111110010000","10001101001111011110011000001101","10001101001111101000110010001001","10001101001111110011001100000110","10001101001111111101100110000010","10001101010000000111111111111111","10001101010000010010011001111100","10001101010000011100110011111000","10001101010000100111001101110101","10001101010000110001100111110001","10001101010000111100000001101110","10001101010001000110011011101010","10001101010001010000110101100111","10001101010001011011001111100011","10001101010001100101101001100000","10001101010001110000000011011100","10001101010001111010011101011001","10001101010010000100110111010101","10001101010010001111010001010010","10001101010010011001101011001110","10001101010010100100000101001011","10001101010010101110011111001000","10001101010010111000111001000100","10001101010011000011010011000001","10001101010011001101101100111101","10001101010011011000000110111010","10001101010011100010100000110110","10001101010011101100111010110011","10001101010011110111010100101111","10001101010100000001101110101100","10001101010100001100001000101000","10001101010100010110100010100101","10001101010100100000111100100001","10001101010100101011010110011110","10001101010100110101110000011011","10001101010101000000001010010111","10001101010101001010100100010100","10001101010101010100111110010000","10001101010101011111011000001101","10001101010101101001110010001001","10001101010101110100001100000110","10001101010101111110100110000010","10001101010110001000111111111111","10001101010110010011011001111011","10001101010110011101110011111000","10001101010110101000001101110100","10001101010110110010100111110001","10001101010110111101000001101110","10001101010111000111011011101010","10001101010111010001110101100111","10001101010111011100001111100011","10001101010111100110101001100000","10001101010111110001000011011100","10001101010111111011011101011001","10001101011000000101110111010101","10001101011000010000010001010010","10001101011000011010101011001110","10001101011000100101000101001011","10001101011000101111011111000111","10001101011000111001111001000100","10001101011001000100010011000000","10001101011001001110101100111101","10001101011001011001000110111010","10001101011001100011100000110110","10001101011001101101111010110011","10001101011001111000010100101111","10001101011010000010101110101100","10001101011010001101001000101000","10001101011010010111100010100101","10001101011010100001111100100001","10001101011010101100010110011110","10001101011010110110110000011010","10001101011011000001001010010111","10001101011011001011100100010011","10001101011011010101111110010000","10001101011011100000011000001101","10001101011011101010110010001001","10001101011011110101001100000110","10001101011011111111100110000010","10001101011100001001111111111111","10001101011100010100011001111011","10001101011100011110110011111000","10001101011100101001001101110100","10001101011100110011100111110001","10001101011100111110000001101101","10001101011101001000011011101010","10001101011101010010110101100110","10001101011101011101001111100011","10001101011101100111101001100000","10001101011101110010000011011100","10001101011101111100011101011001","10001101011110000110110111010101","10001101011110010001010001010010","10001101011110011011101011001110","10001101011110100110000101001011","10001101011110110000011111000111","10001101011110111010111001000100","10001101011111000101010011000000","10001101011111001111101100111101","10001101011111011010000110111001","10001101011111100100100000110110","10001101011111101110111010110011","10001101011111111001010100101111","10001101100000000001110111010110","10001101100000000111000100010100","10001101100000001100010001010010","10001101100000010001011110010001","10001101100000010110101011001111","10001101100000011011111000001101","10001101100000100001000101001011","10001101100000100110010010001010","10001101100000101011011111001000","10001101100000110000101100000110","10001101100000110101111001000100","10001101100000111011000110000011","10001101100001000000010011000001","10001101100001000101011111111111","10001101100001001010101100111110","10001101100001001111111001111100","10001101100001010101000110111010","10001101100001011010010011111000","10001101100001011111100000110111","10001101100001100100101101110101","10001101100001101001111010110011","10001101100001101111000111110001","10001101100001110100010100110000","10001101100001111001100001101110","10001101100001111110101110101100","10001101100010000011111011101010","10001101100010001001001000101001","10001101100010001110010101100111","10001101100010010011100010100101","10001101100010011000101111100100","10001101100010011101111100100010","10001101100010100011001001100000","10001101100010101000010110011110","10001101100010101101100011011101","10001101100010110010110000011011","10001101100010110111111101011001","10001101100010111101001010010111","10001101100011000010010111010110","10001101100011000111100100010100","10001101100011001100110001010010","10001101100011010001111110010001","10001101100011010111001011001111","10001101100011011100011000001101","10001101100011100001100101001011","10001101100011100110110010001010","10001101100011101011111111001000","10001101100011110001001100000110","10001101100011110110011001000100","10001101100011111011100110000011","10001101100100000000110011000001","10001101100100000101111111111111","10001101100100001011001100111101","10001101100100010000011001111100","10001101100100010101100110111010","10001101100100011010110011111000","10001101100100100000000000110111","10001101100100100101001101110101","10001101100100101010011010110011","10001101100100101111100111110001","10001101100100110100110100110000","10001101100100111010000001101110","10001101100100111111001110101100","10001101100101000100011011101010","10001101100101001001101000101001","10001101100101001110110101100111","10001101100101010100000010100101","10001101100101011001001111100100","10001101100101011110011100100010","10001101100101100011101001100000","10001101100101101000110110011110","10001101100101101110000011011101","10001101100101110011010000011011","10001101100101111000011101011001","10001101100101111101101010010111","10001101100110000010110111010110","10001101100110001000000100010100","10001101100110001101010001010010","10001101100110010010011110010000","10001101100110010111101011001111","10001101100110011100111000001101","10001101100110100010000101001011","10001101100110100111010010001010","10001101100110101100011111001000","10001101100110110001101100000110","10001101100110110110111001000100","10001101100110111100000110000011","10001101100111000001010011000001","10001101100111000110011111111111","10001101100111001011101100111101","10001101100111010000111001111100","10001101100111010110000110111010","10001101100111011011010011111000","10001101100111100000100000110110","10001101100111100101101101110101","10001101100111101010111010110011","10001101100111110000000111110001","10001101100111110101010100110000","10001101100111111010100001101110","10001101100111111111101110101100","10001101101000000100111011101010","10001101101000001010001000101001","10001101101000001111010101100111","10001101101000010100100010100101","10001101101000011001101111100011","10001101101000011110111100100010","10001101101000100100001001100000"],"x":[-5.0e-39,-2.0040130060120242e-33,-4.008021012024049e-33,-6.012029018036073e-33,-8.016037024048097e-33,-1.0020045030060122e-32,-1.2024053036072146e-32,-1.4028061042084168e-32,-1.6032069048096196e-32,-1.803607705410822e-32,-2.0040085060120242e-32,-2.2044093066132267e-32,-2.4048101072144292e-32,-2.605210907815631e-32,-2.805611708416834e-32,-3.006012509018036e-32,-3.206413309619239e-32,-3.4068141102204415e-32,-3.6072149108216437e-32,-3.8076157114228464e-32,-4.0080165120240486e-32,-4.208417312625251e-32,-4.4088181132264536e-32,-4.609218913827656e-32,-4.8096197144288585e-32,-5.01002051503006e-32,-5.210421315631263e-32,-5.410822116232465e-32,-5.611222916833668e-32,-5.81162371743487e-32,-6.012024518036073e-32,-6.212425318637274e-32,-6.412826119238477e-32,-6.613226919839681e-32,-6.813627720440883e-32,-7.014028521042085e-32,-7.214429321643287e-32,-7.41483012224449e-32,-7.615230922845691e-32,-7.815631723446895e-32,-8.016032524048097e-32,-8.2164333246493e-32,-8.416834125250501e-32,-8.617234925851704e-32,-8.817635726452907e-32,-9.01803652705411e-32,-9.218437327655311e-32,-9.418838128256514e-32,-9.619238928857716e-32,-9.819639729458919e-32,-1.0020040530060122e-31,-1.0220441330661325e-31,-1.0420842131262525e-31,-1.0621242931863726e-31,-1.082164373246493e-31,-1.1022044533066134e-31,-1.1222445333667334e-31,-1.1422846134268537e-31,-1.1623246934869742e-31,-1.1823647735470945e-31,-1.2024048536072145e-31,-1.2224449336673346e-31,-1.242485013727455e-31,-1.2625250937875753e-31,-1.2825651738476954e-31,-1.3026052539078157e-31,-1.322645333967936e-31,-1.3426854140280564e-31,-1.3627254940881765e-31,-1.3827655741482968e-31,-1.402805654208417e-31,-1.4228457342685373e-31,-1.4428858143286574e-31,-1.4629258943887776e-31,-1.482965974448898e-31,-1.5030060545090182e-31,-1.5230461345691382e-31,-1.5430862146292585e-31,-1.563126294689379e-31,-1.5831663747494993e-31,-1.6032064548096193e-31,-1.6232465348697396e-31,-1.6432866149298599e-31,-1.6633266949899802e-31,-1.6833667750501002e-31,-1.7034068551102205e-31,-1.7234469351703408e-31,-1.743487015230461e-31,-1.7635270952905813e-31,-1.7835671753507016e-31,-1.8036072554108219e-31,-1.8236473354709421e-31,-1.8436874155310622e-31,-1.8637274955911825e-31,-1.8837675756513027e-31,-1.903807655711423e-31,-1.9238477357715433e-31,-1.9438878158316633e-31,-1.9639278958917836e-31,-1.9839679759519043e-31,-2.004008056012024e-31,-2.0240481360721444e-31,-2.0440882161322647e-31,-2.064128296192385e-31,-2.0841683762525053e-31,-2.104208456312625e-31,-2.124248536372746e-31,-2.144288616432866e-31,-2.1643286964929864e-31,-2.184368776553106e-31,-2.204408856613227e-31,-2.2244489366733467e-31,-2.244489016733467e-31,-2.264529096793587e-31,-2.2845691768537076e-31,-2.3046092569138283e-31,-2.324649336973948e-31,-2.3446894170340684e-31,-2.3647294970941887e-31,-2.384769577154309e-31,-2.4048096572144288e-31,-2.424849737274549e-31,-2.4448898173346693e-31,-2.46492989739479e-31,-2.48496997745491e-31,-2.50501005751503e-31,-2.525050137575151e-31,-2.5450902176352707e-31,-2.565130297695391e-31,-2.5851703777555112e-31,-2.6052104578156315e-31,-2.625250537875752e-31,-2.645290617935872e-31,-2.665330697995992e-31,-2.6853707780561126e-31,-2.705410858116233e-31,-2.7254509381763527e-31,-2.7454910182364734e-31,-2.7655310982965933e-31,-2.785571178356714e-31,-2.805611258416834e-31,-2.825651338476954e-31,-2.8456914185370744e-31,-2.8657314985971946e-31,-2.8857715786573145e-31,-2.905811658717435e-31,-2.9258517387775555e-31,-2.9458918188376757e-31,-2.965931898897796e-31,-2.985971978957916e-31,-3.0060120590180366e-31,-3.0260521390781564e-31,-3.0460922191382767e-31,-3.066132299198397e-31,-3.086172379258517e-31,-3.1062124593186375e-31,-3.1262525393787578e-31,-3.146292619438878e-31,-3.1663326994989983e-31,-3.1863727795591186e-31,-3.206412859619239e-31,-3.226452939679359e-31,-3.246493019739479e-31,-3.2665330997995997e-31,-3.2865731798597195e-31,-3.30661325991984e-31,-3.3266533399799605e-31,-3.3466934200400803e-31,-3.366733500100201e-31,-3.386773580160321e-31,-3.406813660220441e-31,-3.4268537402805614e-31,-3.4468938203406817e-31,-3.4669339004008015e-31,-3.4869739804609223e-31,-3.507014060521042e-31,-3.527054140581163e-31,-3.547094220641283e-31,-3.567134300701403e-31,-3.5871743807615236e-31,-3.6072144608216435e-31,-3.6272545408817637e-31,-3.647294620941884e-31,-3.6673347010020043e-31,-3.6873747810621246e-31,-3.707414861122245e-31,-3.7274549411823647e-31,-3.7474950212424854e-31,-3.7675351013026057e-31,-3.7875751813627255e-31,-3.807615261422846e-31,-3.8276553414829665e-31,-3.8476954215430868e-31,-3.8677355016032066e-31,-3.887775581663327e-31,-3.907815661723447e-31,-3.9278557417835674e-31,-3.947895821843688e-31,-3.967935901903808e-31,-3.987975981963928e-31,-4.008016062024048e-31,-4.028056142084169e-31,-4.048096222144289e-31,-4.068136302204409e-31,-4.08817638226453e-31,-4.108216462324649e-31,-4.128256542384771e-31,-4.1482966224448896e-31,-4.16833670250501e-31,-4.188376782565131e-31,-4.208416862625251e-31,-4.2284569426853715e-31,-4.2484970227454905e-31,-4.268537102805612e-31,-4.288577182865732e-31,-4.308617262925852e-31,-4.328657342985972e-31,-4.348697423046093e-31,-4.368737503106212e-31,-4.388777583166333e-31,-4.408817663226454e-31,-4.428857743286573e-31,-4.448897823346694e-31,-4.468937903406813e-31,-4.488977983466935e-31,-4.5090180635270545e-31,-4.529058143587174e-31,-4.549098223647295e-31,-4.569138303707415e-31,-4.589178383767536e-31,-4.609218463827655e-31,-4.629258543887776e-31,-4.649298623947896e-31,-4.669338704008017e-31,-4.6893787840681365e-31,-4.709418864128257e-31,-4.729458944188378e-31,-4.749499024248497e-31,-4.769539104308618e-31,-4.7895791843687374e-31,-4.809619264428858e-31,-4.829659344488978e-31,-4.849699424549099e-31,-4.869739504609219e-31,-4.889779584669338e-31,-4.909819664729459e-31,-4.92985974478958e-31,-4.9498998248497e-31,-4.9699399049098195e-31,-4.98997998496994e-31,-5.010020065030061e-31,-5.030060145090181e-31,-5.0501002251503014e-31,-5.070140305210421e-31,-5.090180385270542e-31,-5.110220465330661e-31,-5.130260545390782e-31,-5.150300625450903e-31,-5.170340705511022e-31,-5.190380785571143e-31,-5.210420865631263e-31,-5.2304609456913835e-31,-5.250501025751503e-31,-5.270541105811623e-31,-5.290581185871744e-31,-5.310621265931865e-31,-5.330661345991984e-31,-5.350701426052104e-31,-5.370741506112226e-31,-5.390781586172345e-31,-5.4108216662324655e-31,-5.430861746292585e-31,-5.450901826352706e-31,-5.470941906412827e-31,-5.490981986472946e-31,-5.511022066533067e-31,-5.531062146593186e-31,-5.551102226653307e-31,-5.571142306713427e-31,-5.5911823867735475e-31,-5.611222466833667e-31,-5.631262546893788e-31,-5.651302626953909e-31,-5.671342707014029e-31,-5.691382787074149e-31,-5.711422867134268e-31,-5.73146294719439e-31,-5.751503027254509e-31,-5.77154310731463e-31,-5.79158318737475e-31,-5.81162326743487e-31,-5.831663347494991e-31,-5.85170342755511e-31,-5.871743507615231e-31,-5.891783587675351e-31,-5.911823667735471e-31,-5.931863747795592e-31,-5.9519038278557125e-31,-5.971943907915832e-31,-5.991983987975952e-31,-6.012024068036073e-31,-6.032064148096193e-31,-6.052104228156313e-31,-6.072144308216432e-31,-6.092184388276554e-31,-6.112224468336675e-31,-6.132264548396794e-31,-6.152304628456914e-31,-6.172344708517034e-31,-6.192384788577155e-31,-6.212424868637275e-31,-6.2324649486973946e-31,-6.252505028757516e-31,-6.272545108817636e-31,-6.292585188877756e-31,-6.3126252689378765e-31,-6.332665348997997e-31,-6.352705429058116e-31,-6.372745509118237e-31,-6.392785589178358e-31,-6.4128256692384775e-31,-6.432865749298598e-31,-6.452905829358718e-31,-6.472945909418839e-31,-6.492985989478958e-31,-6.513026069539078e-31,-6.533066149599199e-31,-6.553106229659319e-31,-6.57314630971944e-31,-6.5931863897795595e-31,-6.61322646983968e-31,-6.6332665498998e-31,-6.653306629959921e-31,-6.673346710020041e-31,-6.693386790080161e-31,-6.713426870140281e-31,-6.733466950200401e-31,-6.7535070302605226e-31,-6.7735471103206415e-31,-6.793587190380762e-31,-6.813627270440881e-31,-6.833667350501003e-31,-6.8537074305611235e-31,-6.8737475106212425e-31,-6.893787590681364e-31,-6.913827670741484e-31,-6.933867750801604e-31,-6.9539078308617235e-31,-6.973947910921845e-31,-6.993987990981964e-31,-7.014028071042085e-31,-7.034068151102205e-31,-7.054108231162325e-31,-7.074148311222446e-31,-7.094188391282565e-31,-7.114228471342687e-31,-7.134268551402806e-31,-7.154308631462926e-31,-7.174348711523047e-31,-7.194388791583167e-31,-7.2144288716432875e-31,-7.234468951703407e-31,-7.254509031763527e-31,-7.274549111823648e-31,-7.294589191883769e-31,-7.314629271943888e-31,-7.334669352004009e-31,-7.354709432064129e-31,-7.374749512124249e-31,-7.39478959218437e-31,-7.414829672244489e-31,-7.43486975230461e-31,-7.454909832364729e-31,-7.47494991242485e-31,-7.494989992484971e-31,-7.51503007254509e-31,-7.535070152605211e-31,-7.555110232665332e-31,-7.575150312725452e-31,-7.5951903927855714e-31,-7.615230472845692e-31,-7.635270552905813e-31,-7.655310632965933e-31,-7.6753507130260525e-31,-7.695390793086172e-31,-7.715430873146294e-31,-7.735470953206413e-31,-7.755511033266534e-31,-7.7755511133266535e-31,-7.795591193386774e-31,-7.815631273446895e-31,-7.835671353507014e-31,-7.8557114335671354e-31,-7.875751513627255e-31,-7.895791593687375e-31,-7.915831673747496e-31,-7.935871753807617e-31,-7.955911833867736e-31,-7.975951913927856e-31,-7.995991993987977e-31,-8.016032074048098e-31,-8.036072154108217e-31,-8.056112234168337e-31,-8.076152314228458e-31,-8.096192394288577e-31,-8.1162324743487e-31,-8.136272554408818e-31,-8.156312634468937e-31,-8.17635271452906e-31,-8.19639279458918e-31,-8.2164328746493e-31,-8.236472954709418e-31,-8.256513034769541e-31,-8.27655311482966e-31,-8.296593194889779e-31,-8.3166332749499e-31,-8.336673355010022e-31,-8.356713435070141e-31,-8.376753515130262e-31,-8.39679359519038e-31,-8.416833675250501e-31,-8.436873755310622e-31,-8.456913835370741e-31,-8.476953915430864e-31,-8.496993995490982e-31,-8.517034075551103e-31,-8.537074155611222e-31,-8.557114235671343e-31,-8.577154315731464e-31,-8.597194395791583e-31,-8.617234475851705e-31,-8.637274555911826e-31,-8.657314635971945e-31,-8.677354716032064e-31,-8.697394796092186e-31,-8.717434876152305e-31,-8.737474956212424e-31,-8.757515036272548e-31,-8.777555116332667e-31,-8.797595196392786e-31,-8.817635276452907e-31,-8.837675356513028e-31,-8.857715436573147e-31,-8.877755516633265e-31,-8.897795596693388e-31,-8.917835676753509e-31,-8.937875756813628e-31,-8.957915836873748e-31,-8.977955916933869e-31,-8.997995996993988e-31,-9.018036077054109e-31,-9.03807615711423e-31,-9.05811623717435e-31,-9.07815631723447e-31,-9.09819639729459e-31,-9.11823647735471e-31,-9.13827655741483e-31,-9.15831663747495e-31,-9.17835671753507e-31,-9.198396797595192e-31,-9.218436877655312e-31,-9.238476957715431e-31,-9.258517037775552e-31,-9.278557117835673e-31,-9.298597197895792e-31,-9.31863727795591e-31,-9.338677358016033e-31,-9.358717438076154e-31,-9.378757518136273e-31,-9.398797598196395e-31,-9.418837678256514e-31,-9.438877758316633e-31,-9.458917838376754e-31,-9.478957918436875e-31,-9.498997998496995e-31,-9.519038078557114e-31,-9.539078158617237e-31,-9.559118238677356e-31,-9.579158318737475e-31,-9.599198398797595e-31,-9.619238478857716e-31,-9.639278558917837e-31,-9.659318638977957e-31,-9.679358719038078e-31,-9.699398799098197e-31,-9.719438879158318e-31,-9.739478959218437e-31,-9.759519039278558e-31,-9.779559119338677e-31,-9.799599199398799e-31,-9.81963927945892e-31,-9.839679359519039e-31,-9.85971943957916e-31,-9.879759519639278e-31,-9.899799599699399e-31,-9.91983967975952e-31,-9.93987975981964e-31,-9.95991983987976e-31,-9.979959919939882e-31,-1.0e-30]}
+module.exports={"expected":["10111111100000000000000000000000","10111111011111110111110010101010","10111111011111101111100101010101","10111111011111100111010111111111","10111111011111011111001010101001","10111111011111010110111101010100","10111111011111001110101111111110","10111111011111000110100010101000","10111111011110111110010101010011","10111111011110110110000111111101","10111111011110101101111010100111","10111111011110100101101101010010","10111111011110011101011111111100","10111111011110010101010010100110","10111111011110001101000101010001","10111111011110000100110111111011","10111111011101111100101010100101","10111111011101110100011101010000","10111111011101101100001111111010","10111111011101100100000010100100","10111111011101011011110101001110","10111111011101010011100111111001","10111111011101001011011010100011","10111111011101000011001101001101","10111111011100111010111111111000","10111111011100110010110010100010","10111111011100101010100101001100","10111111011100100010010111110111","10111111011100011010001010100001","10111111011100010001111101001011","10111111011100001001101111110110","10111111011100000001100010100000","10111111011011111001010101001010","10111111011011110001000111110101","10111111011011101000111010011111","10111111011011100000101101001001","10111111011011011000011111110100","10111111011011010000010010011110","10111111011011001000000101001000","10111111011010111111110111110011","10111111011010110111101010011101","10111111011010101111011101000111","10111111011010100111001111110010","10111111011010011111000010011100","10111111011010010110110101000110","10111111011010001110100111110001","10111111011010000110011010011011","10111111011001111110001101000101","10111111011001110101111111110000","10111111011001101101110010011010","10111111011001100101100101000100","10111111011001011101010111101111","10111111011001010101001010011001","10111111011001001100111101000011","10111111011001000100101111101110","10111111011000111100100010011000","10111111011000110100010101000010","10111111011000101100000111101101","10111111011000100011111010010111","10111111011000011011101101000001","10111111011000010011011111101011","10111111011000001011010010010110","10111111011000000011000101000000","10111111010111111010110111101010","10111111010111110010101010010101","10111111010111101010011100111111","10111111010111100010001111101001","10111111010111011010000010010100","10111111010111010001110100111110","10111111010111001001100111101000","10111111010111000001011010010011","10111111010110111001001100111101","10111111010110110000111111100111","10111111010110101000110010010010","10111111010110100000100100111100","10111111010110011000010111100110","10111111010110010000001010010001","10111111010110000111111100111011","10111111010101111111101111100101","10111111010101110111100010010000","10111111010101101111010100111010","10111111010101100111000111100100","10111111010101011110111010001111","10111111010101010110101100111001","10111111010101001110011111100011","10111111010101000110010010001110","10111111010100111110000100111000","10111111010100110101110111100010","10111111010100101101101010001101","10111111010100100101011100110111","10111111010100011101001111100001","10111111010100010101000010001100","10111111010100001100110100110110","10111111010100000100100111100000","10111111010011111100011010001011","10111111010011110100001100110101","10111111010011101011111111011111","10111111010011100011110010001001","10111111010011011011100100110100","10111111010011010011010111011110","10111111010011001011001010001000","10111111010011000010111100110011","10111111010010111010101111011101","10111111010010110010100010000111","10111111010010101010010100110010","10111111010010100010000111011100","10111111010010011001111010000110","10111111010010010001101100110001","10111111010010001001011111011011","10111111010010000001010010000101","10111111010001111001000100110000","10111111010001110000110111011010","10111111010001101000101010000100","10111111010001100000011100101111","10111111010001011000001111011001","10111111010001010000000010000011","10111111010001000111110100101110","10111111010000111111100111011000","10111111010000110111011010000010","10111111010000101111001100101101","10111111010000100110111111010111","10111111010000011110110010000001","10111111010000010110100100101100","10111111010000001110010111010110","10111111010000000110001010000000","10111111001111111101111100101011","10111111001111110101101111010101","10111111001111101101100001111111","10111111001111100101010100101010","10111111001111011101000111010100","10111111001111010100111001111110","10111111001111001100101100101001","10111111001111000100011111010011","10111111001110111100010001111101","10111111001110110100000100101000","10111111001110101011110111010010","10111111001110100011101001111100","10111111001110011011011100100110","10111111001110010011001111010001","10111111001110001011000001111011","10111111001110000010110100100101","10111111001101111010100111010000","10111111001101110010011001111010","10111111001101101010001100100100","10111111001101100001111111001111","10111111001101011001110001111001","10111111001101010001100100100011","10111111001101001001010111001110","10111111001101000001001001111000","10111111001100111000111100100010","10111111001100110000101111001101","10111111001100101000100001110111","10111111001100100000010100100001","10111111001100011000000111001100","10111111001100001111111001110110","10111111001100000111101100100000","10111111001011111111011111001011","10111111001011110111010001110101","10111111001011101111000100011111","10111111001011100110110111001010","10111111001011011110101001110100","10111111001011010110011100011110","10111111001011001110001111001001","10111111001011000110000001110011","10111111001010111101110100011101","10111111001010110101100111001000","10111111001010101101011001110010","10111111001010100101001100011100","10111111001010011100111111000111","10111111001010010100110001110001","10111111001010001100100100011011","10111111001010000100010111000110","10111111001001111100001001110000","10111111001001110011111100011010","10111111001001101011101111000100","10111111001001100011100001101111","10111111001001011011010100011001","10111111001001010011000111000011","10111111001001001010111001101110","10111111001001000010101100011000","10111111001000111010011111000010","10111111001000110010010001101101","10111111001000101010000100010111","10111111001000100001110111000001","10111111001000011001101001101100","10111111001000010001011100010110","10111111001000001001001111000000","10111111001000000001000001101011","10111111000111111000110100010101","10111111000111110000100110111111","10111111000111101000011001101010","10111111000111100000001100010100","10111111000111010111111110111110","10111111000111001111110001101001","10111111000111000111100100010011","10111111000110111111010110111101","10111111000110110111001001101000","10111111000110101110111100010010","10111111000110100110101110111100","10111111000110011110100001100111","10111111000110010110010100010001","10111111000110001110000110111011","10111111000110000101111001100110","10111111000101111101101100010000","10111111000101110101011110111010","10111111000101101101010001100101","10111111000101100101000100001111","10111111000101011100110110111001","10111111000101010100101001100100","10111111000101001100011100001110","10111111000101000100001110111000","10111111000100111100000001100011","10111111000100110011110100001101","10111111000100101011100110110111","10111111000100100011011001100001","10111111000100011011001100001100","10111111000100010010111110110110","10111111000100001010110001100000","10111111000100000010100100001011","10111111000011111010010110110101","10111111000011110010001001011111","10111111000011101001111100001010","10111111000011100001101110110100","10111111000011011001100001011110","10111111000011010001010100001001","10111111000011001001000110110011","10111111000011000000111001011101","10111111000010111000101100001000","10111111000010110000011110110010","10111111000010101000010001011100","10111111000010100000000100000111","10111111000010010111110110110001","10111111000010001111101001011011","10111111000010000111011100000110","10111111000001111111001110110000","10111111000001110111000001011010","10111111000001101110110100000101","10111111000001100110100110101111","10111111000001011110011001011001","10111111000001010110001100000100","10111111000001001101111110101110","10111111000001000101110001011000","10111111000000111101100100000011","10111111000000110101010110101101","10111111000000101101001001010111","10111111000000100100111100000010","10111111000000011100101110101100","10111111000000010100100001010110","10111111000000001100010100000001","10111111000000000100000110101011","10111110111111110111110010101010","10111110111111100111010111111111","10111110111111010110111101010100","10111110111111000110100010101000","10111110111110110110000111111101","10111110111110100101101101010010","10111110111110010101010010100110","10111110111110000100110111111011","10111110111101110100011101010000","10111110111101100100000010100100","10111110111101010011100111111001","10111110111101000011001101001101","10111110111100110010110010100010","10111110111100100010010111110111","10111110111100010001111101001011","10111110111100000001100010100000","10111110111011110001000111110101","10111110111011100000101101001001","10111110111011010000010010011110","10111110111010111111110111110011","10111110111010101111011101000111","10111110111010011111000010011100","10111110111010001110100111110001","10111110111001111110001101000101","10111110111001101101110010011010","10111110111001011101010111101111","10111110111001001100111101000011","10111110111000111100100010011000","10111110111000101100000111101101","10111110111000011011101101000001","10111110111000001011010010010110","10111110110111111010110111101010","10111110110111101010011100111111","10111110110111011010000010010100","10111110110111001001100111101000","10111110110110111001001100111101","10111110110110101000110010010010","10111110110110011000010111100110","10111110110110000111111100111011","10111110110101110111100010010000","10111110110101100111000111100100","10111110110101010110101100111001","10111110110101000110010010001110","10111110110100110101110111100010","10111110110100100101011100110111","10111110110100010101000010001100","10111110110100000100100111100000","10111110110011110100001100110101","10111110110011100011110010001001","10111110110011010011010111011110","10111110110011000010111100110011","10111110110010110010100010000111","10111110110010100010000111011100","10111110110010010001101100110001","10111110110010000001010010000101","10111110110001110000110111011010","10111110110001100000011100101111","10111110110001010000000010000011","10111110110000111111100111011000","10111110110000101111001100101101","10111110110000011110110010000001","10111110110000001110010111010110","10111110101111111101111100101011","10111110101111101101100001111111","10111110101111011101000111010100","10111110101111001100101100101001","10111110101110111100010001111101","10111110101110101011110111010010","10111110101110011011011100100110","10111110101110001011000001111011","10111110101101111010100111010000","10111110101101101010001100100100","10111110101101011001110001111001","10111110101101001001010111001110","10111110101100111000111100100010","10111110101100101000100001110111","10111110101100011000000111001100","10111110101100000111101100100000","10111110101011110111010001110101","10111110101011100110110111001010","10111110101011010110011100011110","10111110101011000110000001110011","10111110101010110101100111001000","10111110101010100101001100011100","10111110101010010100110001110001","10111110101010000100010111000110","10111110101001110011111100011010","10111110101001100011100001101111","10111110101001010011000111000011","10111110101001000010101100011000","10111110101000110010010001101101","10111110101000100001110111000001","10111110101000010001011100010110","10111110101000000001000001101011","10111110100111110000100110111111","10111110100111100000001100010100","10111110100111001111110001101001","10111110100110111111010110111101","10111110100110101110111100010010","10111110100110011110100001100111","10111110100110001110000110111011","10111110100101111101101100010000","10111110100101101101010001100101","10111110100101011100110110111001","10111110100101001100011100001110","10111110100100111100000001100011","10111110100100101011100110110111","10111110100100011011001100001100","10111110100100001010110001100000","10111110100011111010010110110101","10111110100011101001111100001010","10111110100011011001100001011110","10111110100011001001000110110011","10111110100010111000101100001000","10111110100010101000010001011100","10111110100010010111110110110001","10111110100010000111011100000110","10111110100001110111000001011010","10111110100001100110100110101111","10111110100001010110001100000100","10111110100001000101110001011000","10111110100000110101010110101101","10111110100000100100111100000010","10111110100000010100100001010110","10111110100000000100000110101011","10111110011111100111010111111111","10111110011111000110100010101000","10111110011110100101101101010010","10111110011110000100110111111011","10111110011101100100000010100100","10111110011101000011001101001101","10111110011100100010010111110111","10111110011100000001100010100000","10111110011011100000101101001001","10111110011010111111110111110011","10111110011010011111000010011100","10111110011001111110001101000101","10111110011001011101010111101111","10111110011000111100100010011000","10111110011000011011101101000001","10111110010111111010110111101010","10111110010111011010000010010100","10111110010110111001001100111101","10111110010110011000010111100110","10111110010101110111100010010000","10111110010101010110101100111001","10111110010100110101110111100010","10111110010100010101000010001100","10111110010011110100001100110101","10111110010011010011010111011110","10111110010010110010100010000111","10111110010010010001101100110001","10111110010001110000110111011010","10111110010001010000000010000011","10111110010000101111001100101101","10111110010000001110010111010110","10111110001111101101100001111111","10111110001111001100101100101001","10111110001110101011110111010010","10111110001110001011000001111011","10111110001101101010001100100100","10111110001101001001010111001110","10111110001100101000100001110111","10111110001100000111101100100000","10111110001011100110110111001010","10111110001011000110000001110011","10111110001010100101001100011100","10111110001010000100010111000110","10111110001001100011100001101111","10111110001001000010101100011000","10111110001000100001110111000001","10111110001000000001000001101011","10111110000111100000001100010100","10111110000110111111010110111101","10111110000110011110100001100111","10111110000101111101101100010000","10111110000101011100110110111001","10111110000100111100000001100011","10111110000100011011001100001100","10111110000011111010010110110101","10111110000011011001100001011110","10111110000010111000101100001000","10111110000010010111110110110001","10111110000001110111000001011010","10111110000001010110001100000100","10111110000000110101010110101101","10111110000000010100100001010110","10111101111111100111010111111111","10111101111110100101101101010010","10111101111101100100000010100100","10111101111100100010010111110111","10111101111011100000101101001001","10111101111010011111000010011100","10111101111001011101010111101111","10111101111000011011101101000001","10111101110111011010000010010100","10111101110110011000010111100110","10111101110101010110101100111001","10111101110100010101000010001100","10111101110011010011010111011110","10111101110010010001101100110001","10111101110001010000000010000011","10111101110000001110010111010110","10111101101111001100101100101001","10111101101110001011000001111011","10111101101101001001010111001110","10111101101100000111101100100000","10111101101011000110000001110011","10111101101010000100010111000110","10111101101001000010101100011000","10111101101000000001000001101011","10111101100110111111010110111101","10111101100101111101101100010000","10111101100100111100000001100011","10111101100011111010010110110101","10111101100010111000101100001000","10111101100001110111000001011010","10111101100000110101010110101101","10111101011111100111010111111111","10111101011101100100000010100100","10111101011011100000101101001001","10111101011001011101010111101111","10111101010111011010000010010100","10111101010101010110101100111001","10111101010011010011010111011110","10111101010001010000000010000011","10111101001111001100101100101001","10111101001101001001010111001110","10111101001011000110000001110011","10111101001001000010101100011000","10111101000110111111010110111101","10111101000100111100000001100011","10111101000010111000101100001000","10111101000000110101010110101101","10111100111101100100000010100100","10111100111001011101010111101111","10111100110101010110101100111001","10111100110001010000000010000011","10111100101101001001010111001110","10111100101001000010101100011000","10111100100100111100000001100011","10111100100000110101010110101101","10111100011001011101010111101111","10111100010001010000000010000011","10111100001001000010101100011000","10111100000000110101010110101101","10111011110001010000000010000011","10111011100000110101010110101101","10111011000000110101010110101101","00000000000000000000000000000000"],"x":[-1.0,-0.9979959919839679,-0.9959919839679359,-0.9939879759519038,-0.9919839679358717,-0.9899799599198397,-0.9879759519038076,-0.9859719438877755,-0.9839679358717435,-0.9819639278557114,-0.9799599198396793,-0.9779559118236473,-0.9759519038076152,-0.9739478957915831,-0.9719438877755511,-0.969939879759519,-0.9679358717434869,-0.9659318637274549,-0.9639278557114228,-0.9619238476953907,-0.9599198396793587,-0.9579158316633266,-0.9559118236472945,-0.9539078156312625,-0.9519038076152304,-0.9498997995991983,-0.9478957915831663,-0.9458917835671342,-0.9438877755511023,-0.9418837675350702,-0.9398797595190381,-0.9378757515030061,-0.935871743486974,-0.9338677354709419,-0.9318637274549099,-0.9298597194388778,-0.9278557114228457,-0.9258517034068137,-0.9238476953907816,-0.9218436873747495,-0.9198396793587175,-0.9178356713426854,-0.9158316633266533,-0.9138276553106213,-0.9118236472945892,-0.9098196392785571,-0.9078156312625251,-0.905811623246493,-0.9038076152304609,-0.9018036072144289,-0.8997995991983968,-0.8977955911823647,-0.8957915831663327,-0.8937875751503006,-0.8917835671342685,-0.8897795591182365,-0.8877755511022044,-0.8857715430861723,-0.8837675350701403,-0.8817635270541082,-0.8797595190380761,-0.8777555110220441,-0.875751503006012,-0.87374749498998,-0.8717434869739479,-0.8697394789579158,-0.8677354709418837,-0.8657314629258517,-0.8637274549098196,-0.8617234468937875,-0.8597194388777555,-0.8577154308617234,-0.8557114228456913,-0.8537074148296593,-0.8517034068136272,-0.8496993987975952,-0.8476953907815631,-0.845691382765531,-0.843687374749499,-0.8416833667334669,-0.8396793587174348,-0.8376753507014028,-0.8356713426853707,-0.8336673346693386,-0.8316633266533067,-0.8296593186372746,-0.8276553106212425,-0.8256513026052105,-0.8236472945891784,-0.8216432865731463,-0.8196392785571143,-0.8176352705410822,-0.8156312625250501,-0.8136272545090181,-0.811623246492986,-0.8096192384769539,-0.8076152304609219,-0.8056112224448898,-0.8036072144288577,-0.8016032064128257,-0.7995991983967936,-0.7975951903807615,-0.7955911823647295,-0.7935871743486974,-0.7915831663326653,-0.7895791583166333,-0.7875751503006012,-0.7855711422845691,-0.7835671342685371,-0.781563126252505,-0.779559118236473,-0.7775551102204409,-0.7755511022044088,-0.7735470941883767,-0.7715430861723447,-0.7695390781563126,-0.7675350701402806,-0.7655310621242485,-0.7635270541082164,-0.7615230460921844,-0.7595190380761523,-0.7575150300601202,-0.7555110220440882,-0.7535070140280561,-0.751503006012024,-0.749498997995992,-0.7474949899799599,-0.7454909819639278,-0.7434869739478958,-0.7414829659318637,-0.7394789579158316,-0.7374749498997996,-0.7354709418837675,-0.7334669338677354,-0.7314629258517034,-0.7294589178356713,-0.7274549098196392,-0.7254509018036072,-0.7234468937875751,-0.7214428857715431,-0.7194388777555111,-0.717434869739479,-0.7154308617234469,-0.7134268537074149,-0.7114228456913828,-0.7094188376753507,-0.7074148296593187,-0.7054108216432866,-0.7034068136272545,-0.7014028056112225,-0.6993987975951904,-0.6973947895791583,-0.6953907815631263,-0.6933867735470942,-0.6913827655310621,-0.6893787575150301,-0.687374749498998,-0.685370741482966,-0.6833667334669339,-0.6813627254509018,-0.6793587174348698,-0.6773547094188377,-0.6753507014028056,-0.6733466933867736,-0.6713426853707415,-0.6693386773547094,-0.6673346693386774,-0.6653306613226453,-0.6633266533066132,-0.6613226452905812,-0.6593186372745491,-0.657314629258517,-0.655310621242485,-0.6533066132264529,-0.6513026052104208,-0.6492985971943888,-0.6472945891783567,-0.6452905811623246,-0.6432865731462926,-0.6412825651302605,-0.6392785571142284,-0.6372745490981964,-0.6352705410821643,-0.6332665330661322,-0.6312625250501002,-0.6292585170340681,-0.627254509018036,-0.625250501002004,-0.6232464929859719,-0.6212424849699398,-0.6192384769539078,-0.6172344689378757,-0.6152304609218436,-0.6132264529058116,-0.6112224448897795,-0.6092184368737475,-0.6072144288577155,-0.6052104208416834,-0.6032064128256514,-0.6012024048096193,-0.5991983967935872,-0.5971943887775552,-0.5951903807615231,-0.593186372745491,-0.591182364729459,-0.5891783567134269,-0.5871743486973948,-0.5851703406813628,-0.5831663326653307,-0.5811623246492986,-0.5791583166332666,-0.5771543086172345,-0.5751503006012024,-0.5731462925851704,-0.5711422845691383,-0.5691382765531062,-0.5671342685370742,-0.5651302605210421,-0.56312625250501,-0.561122244488978,-0.5591182364729459,-0.5571142284569138,-0.5551102204408818,-0.5531062124248497,-0.5511022044088176,-0.5490981963927856,-0.5470941883767535,-0.5450901803607214,-0.5430861723446894,-0.5410821643286573,-0.5390781563126252,-0.5370741482965932,-0.5350701402805611,-0.533066132264529,-0.531062124248497,-0.5290581162324649,-0.5270541082164328,-0.5250501002004008,-0.5230460921843687,-0.5210420841683366,-0.5190380761523046,-0.5170340681362725,-0.5150300601202404,-0.5130260521042084,-0.5110220440881763,-0.5090180360721442,-0.5070140280561122,-0.5050100200400801,-0.503006012024048,-0.501002004008016,-0.49899799599198397,-0.4969939879759519,-0.49498997995991983,-0.49298597194388777,-0.4909819639278557,-0.48897795591182364,-0.48697394789579157,-0.4849699398797595,-0.48296593186372744,-0.48096192384769537,-0.4789579158316633,-0.47695390781563124,-0.4749498997995992,-0.4729458917835671,-0.4709418837675351,-0.46893787575150303,-0.46693386773547096,-0.4649298597194389,-0.46292585170340683,-0.46092184368737477,-0.4589178356713427,-0.45691382765531063,-0.45490981963927857,-0.4529058116232465,-0.45090180360721444,-0.44889779559118237,-0.4468937875751503,-0.44488977955911824,-0.44288577154308617,-0.4408817635270541,-0.43887775551102204,-0.43687374749499,-0.4348697394789579,-0.43286573146292584,-0.4308617234468938,-0.4288577154308617,-0.42685370741482964,-0.4248496993987976,-0.4228456913827655,-0.42084168336673344,-0.4188376753507014,-0.4168336673346693,-0.4148296593186373,-0.41282565130260523,-0.41082164328657317,-0.4088176352705411,-0.40681362725450904,-0.40480961923847697,-0.4028056112224449,-0.40080160320641284,-0.39879759519038077,-0.3967935871743487,-0.39478957915831664,-0.3927855711422846,-0.3907815631262525,-0.38877755511022044,-0.3867735470941884,-0.3847695390781563,-0.38276553106212424,-0.3807615230460922,-0.3787575150300601,-0.37675350701402804,-0.374749498997996,-0.3727454909819639,-0.37074148296593185,-0.3687374749498998,-0.3667334669338677,-0.36472945891783565,-0.3627254509018036,-0.36072144288577157,-0.3587174348697395,-0.35671342685370744,-0.35470941883767537,-0.3527054108216433,-0.35070140280561124,-0.3486973947895792,-0.3466933867735471,-0.34468937875751504,-0.342685370741483,-0.3406813627254509,-0.33867735470941884,-0.3366733466933868,-0.3346693386773547,-0.33266533066132264,-0.3306613226452906,-0.3286573146292585,-0.32665330661322645,-0.3246492985971944,-0.3226452905811623,-0.32064128256513025,-0.3186372745490982,-0.3166332665330661,-0.31462925851703405,-0.312625250501002,-0.3106212424849699,-0.30861723446893785,-0.3066132264529058,-0.3046092184368738,-0.3026052104208417,-0.30060120240480964,-0.2985971943887776,-0.2965931863727455,-0.29458917835671344,-0.2925851703406814,-0.2905811623246493,-0.28857715430861725,-0.2865731462925852,-0.2845691382765531,-0.28256513026052105,-0.280561122244489,-0.2785571142284569,-0.27655310621242485,-0.2745490981963928,-0.2725450901803607,-0.27054108216432865,-0.2685370741482966,-0.2665330661322645,-0.26452905811623245,-0.2625250501002004,-0.2605210420841683,-0.25851703406813625,-0.2565130260521042,-0.2545090180360721,-0.25250501002004005,-0.250501002004008,-0.24849699398797595,-0.24649298597194388,-0.24448897795591182,-0.24248496993987975,-0.24048096192384769,-0.23847695390781562,-0.23647294589178355,-0.23446893787575152,-0.23246492985971945,-0.23046092184368738,-0.22845691382765532,-0.22645290581162325,-0.22444889779559118,-0.22244488977955912,-0.22044088176352705,-0.218436873747495,-0.21643286573146292,-0.21442885771543085,-0.2124248496993988,-0.21042084168336672,-0.20841683366733466,-0.20641282565130262,-0.20440881763527055,-0.20240480961923848,-0.20040080160320642,-0.19839679358717435,-0.1963927855711423,-0.19438877755511022,-0.19238476953907815,-0.1903807615230461,-0.18837675350701402,-0.18637274549098196,-0.1843687374749499,-0.18236472945891782,-0.18036072144288579,-0.17835671342685372,-0.17635270541082165,-0.1743486973947896,-0.17234468937875752,-0.17034068136272545,-0.1683366733466934,-0.16633266533066132,-0.16432865731462926,-0.1623246492985972,-0.16032064128256512,-0.15831663326653306,-0.156312625250501,-0.15430861723446893,-0.1523046092184369,-0.15030060120240482,-0.14829659318637275,-0.1462925851703407,-0.14428857715430862,-0.14228456913827656,-0.1402805611222445,-0.13827655310621242,-0.13627254509018036,-0.1342685370741483,-0.13226452905811623,-0.13026052104208416,-0.1282565130260521,-0.12625250501002003,-0.12424849699398798,-0.12224448897795591,-0.12024048096192384,-0.11823647294589178,-0.11623246492985972,-0.11422845691382766,-0.11222444889779559,-0.11022044088176353,-0.10821643286573146,-0.1062124248496994,-0.10420841683366733,-0.10220440881763528,-0.10020040080160321,-0.09819639278557114,-0.09619238476953908,-0.09418837675350701,-0.09218436873747494,-0.09018036072144289,-0.08817635270541083,-0.08617234468937876,-0.0841683366733467,-0.08216432865731463,-0.08016032064128256,-0.0781563126252505,-0.07615230460921844,-0.07414829659318638,-0.07214428857715431,-0.07014028056112225,-0.06813627254509018,-0.06613226452905811,-0.06412825651302605,-0.06212424849699399,-0.06012024048096192,-0.05811623246492986,-0.056112224448897796,-0.05410821643286573,-0.052104208416833664,-0.050100200400801605,-0.04809619238476954,-0.04609218436873747,-0.04408817635270541,-0.04208416833667335,-0.04008016032064128,-0.03807615230460922,-0.036072144288577156,-0.03406813627254509,-0.03206412825651302,-0.03006012024048096,-0.028056112224448898,-0.026052104208416832,-0.02404809619238477,-0.022044088176352707,-0.02004008016032064,-0.018036072144288578,-0.01603206412825651,-0.014028056112224449,-0.012024048096192385,-0.01002004008016032,-0.008016032064128256,-0.006012024048096192,-0.004008016032064128,-0.002004008016032064,0.0]}
+
 },{}],83:[function(require,module,exports){
-module.exports={"expected":["01111011010000001001011111001110","01111011011001101100110110000110","01111011100001101000000110011111","01111011100110011001110001111011","01111011101011001011011101010110","01111011101111111101001000110010","01111011110100101110110100001110","01111011111001100000011111101010","01111011111110010010001011000110","01111100000001100001111011010001","01111100000011111010110000111111","01111100000110010011100110101100","01111100001000101100011100011010","01111100001011000101010010001000","01111100001101011110000111110110","01111100001111110110111101100100","01111100010010001111110011010010","01111100010100101000101001000000","01111100010111000001011110101110","01111100011001011010010100011100","01111100011011110011001010001010","01111100011110001011111111110111","01111100100000010010011010110011","01111100100001011110110101101010","01111100100010101011010000100001","01111100100011110111101011011000","01111100100101000100000110001110","01111100100110010000100001000101","01111100100111011100111011111100","01111100101000101001010110110011","01111100101001110101110001101010","01111100101011000010001100100001","01111100101100001110100111011000","01111100101101011011000010001111","01111100101110100111011101000110","01111100101111110011110111111101","01111100110001000000010010110100","01111100110010001100101101101011","01111100110011011001001000100010","01111100110100100101100011011001","01111100110101110001111110010000","01111100110110111110011001000111","01111100111000001010110011111110","01111100111001010111001110110101","01111100111010100011101001101100","01111100111011110000000100100010","01111100111100111100011111011001","01111100111110001000111010010000","01111100111111010101010101000111","01111101000000010000110111111111","01111101000000110111000101011011","01111101000001011101010010110110","01111101000010000011100000010010","01111101000010101001101101101101","01111101000011001111111011001001","01111101000011110110001000100100","01111101000100011100010101111111","01111101000101000010100011011011","01111101000101101000110000110110","01111101000110001110111110010010","01111101000110110101001011101101","01111101000111011011011001001001","01111101001000000001100110100100","01111101001000100111110100000000","01111101001001001110000001011011","01111101001001110100001110110111","01111101001010011010011100010010","01111101001011000000101001101110","01111101001011100110110111001001","01111101001100001101000100100101","01111101001100110011010010000000","01111101001101011001011111011100","01111101001101111111101100110111","01111101001110100101111010010011","01111101001111001100000111101110","01111101001111110010010101001001","01111101010000011000100010100101","01111101010000111110110000000000","01111101010001100100111101011100","01111101010010001011001010110111","01111101010010110001011000010011","01111101010011010111100101101110","01111101010011111101110011001010","01111101010100100100000000100101","01111101010101001010001110000001","01111101010101110000011011011100","01111101010110010110101000111000","01111101010110111100110110010011","01111101010111100011000011101111","01111101011000001001010001001010","01111101011000101111011110100110","01111101011001010101101100000001","01111101011001111011111001011101","01111101011010100010000110111000","01111101011011001000010100010011","01111101011011101110100001101111","01111101011100010100101111001010","01111101011100111010111100100110","01111101011101100001001010000001","01111101011110000111010111011101","01111101011110101101100100111000","01111101011111010011110010010100","01111101011111111001111111101111","01111101100000010000000110100101","01111101100000100011001101010011","01111101100000110110010100000001","01111101100001001001011010101111","01111101100001011100100001011100","01111101100001101111101000001010","01111101100010000010101110111000","01111101100010010101110101100110","01111101100010101000111100010011","01111101100010111100000011000001","01111101100011001111001001101111","01111101100011100010010000011100","01111101100011110101010111001010","01111101100100001000011101111000","01111101100100011011100100100110","01111101100100101110101011010011","01111101100101000001110010000001","01111101100101010100111000101111","01111101100101100111111111011101","01111101100101111011000110001010","01111101100110001110001100111000","01111101100110100001010011100110","01111101100110110100011010010100","01111101100111000111100001000001","01111101100111011010100111101111","01111101100111101101101110011101","01111101101000000000110101001011","01111101101000010011111011111000","01111101101000100111000010100110","01111101101000111010001001010100","01111101101001001101010000000001","01111101101001100000010110101111","01111101101001110011011101011101","01111101101010000110100100001011","01111101101010011001101010111000","01111101101010101100110001100110","01111101101010111111111000010100","01111101101011010010111111000010","01111101101011100110000101101111","01111101101011111001001100011101","01111101101100001100010011001011","01111101101100011111011001111001","01111101101100110010100000100110","01111101101101000101100111010100","01111101101101011000101110000010","01111101101101101011110100110000","01111101101101111110111011011101","01111101101110010010000010001011","01111101101110100101001000111001","01111101101110111000001111100110","01111101101111001011010110010100","01111101101111011110011101000010","01111101101111110001100011110000","01111101110000000100101010011101","01111101110000010111110001001011","01111101110000101010110111111001","01111101110000111101111110100111","01111101110001010001000101010100","01111101110001100100001100000010","01111101110001110111010010110000","01111101110010001010011001011110","01111101110010011101100000001011","01111101110010110000100110111001","01111101110011000011101101100111","01111101110011010110110100010101","01111101110011101001111011000010","01111101110011111101000001110000","01111101110100010000001000011110","01111101110100100011001111001011","01111101110100110110010101111001","01111101110101001001011100100111","01111101110101011100100011010101","01111101110101101111101010000010","01111101110110000010110000110000","01111101110110010101110111011110","01111101110110101000111110001100","01111101110110111100000100111001","01111101110111001111001011100111","01111101110111100010010010010101","01111101110111110101011001000011","01111101111000001000011111110000","01111101111000011011100110011110","01111101111000101110101101001100","01111101111001000001110011111010","01111101111001010100111010100111","01111101111001101000000001010101","01111101111001111011001000000011","01111101111010001110001110110000","01111101111010100001010101011110","01111101111010110100011100001100","01111101111011000111100010111010","01111101111011011010101001100111","01111101111011101101110000010101","01111101111100000000110111000011","01111101111100010011111101110001","01111101111100100111000100011110","01111101111100111010001011001100","01111101111101001101010001111010","01111101111101100000011000101000","01111101111101110011011111010101","01111101111110000110100110000011","01111101111110011001101100110001","01111101111110101100110011011111","01111101111110111111111010001100","01111101111111010011000000111010","01111101111111100110000111101000","01111101111111111001001110010110","01111110000000000110001010100010","01111110000000001111101101111000","01111110000000011001010001001111","01111110000000100010110100100110","01111110000000101100010111111101","01111110000000110101111011010100","01111110000000111111011110101011","01111110000001001001000010000010","01111110000001010010100101011001","01111110000001011100001000101111","01111110000001100101101100000110","01111110000001101111001111011101","01111110000001111000110010110100","01111110000010000010010110001011","01111110000010001011111001100010","01111110000010010101011100111001","01111110000010011111000000010000","01111110000010101000100011100110","01111110000010110010000110111101","01111110000010111011101010010100","01111110000011000101001101101011","01111110000011001110110001000010","01111110000011011000010100011001","01111110000011100001110111110000","01111110000011101011011011000110","01111110000011110100111110011101","01111110000011111110100001110100","01111110000100001000000101001011","01111110000100010001101000100010","01111110000100011011001011111001","01111110000100100100101111010000","01111110000100101110010010100111","01111110000100110111110101111101","01111110000101000001011001010100","01111110000101001010111100101011","01111110000101010100100000000010","01111110000101011110000011011001","01111110000101100111100110110000","01111110000101110001001010000111","01111110000101111010101101011101","01111110000110000100010000110100","01111110000110001101110100001011","01111110000110010111010111100010","01111110000110100000111010111001","01111110000110101010011110010000","01111110000110110100000001100111","01111110000110111101100100111110","01111110000111000111001000010100","01111110000111010000101011101011","01111110000111011010001111000010","01111110000111100011110010011001","01111110000111101101010101110000","01111110000111110110111001000111","01111110001000000000011100011110","01111110001000001001111111110101","01111110001000010011100011001011","01111110001000011101000110100010","01111110001000100110101001111001","01111110001000110000001101010000","01111110001000111001110000100111","01111110001001000011010011111110","01111110001001001100110111010101","01111110001001010110011010101011","01111110001001011111111110000010","01111110001001101001100001011001","01111110001001110011000100110000","01111110001001111100101000000111","01111110001010000110001011011110","01111110001010001111101110110101","01111110001010011001010010001100","01111110001010100010110101100010","01111110001010101100011000111001","01111110001010110101111100010000","01111110001010111111011111100111","01111110001011001001000010111110","01111110001011010010100110010101","01111110001011011100001001101100","01111110001011100101101101000010","01111110001011101111010000011001","01111110001011111000110011110000","01111110001100000010010111000111","01111110001100001011111010011110","01111110001100010101011101110101","01111110001100011111000001001100","01111110001100101000100100100011","01111110001100110010000111111001","01111110001100111011101011010000","01111110001101000101001110100111","01111110001101001110110001111110","01111110001101011000010101010101","01111110001101100001111000101100","01111110001101101011011100000011","01111110001101110100111111011010","01111110001101111110100010110000","01111110001110001000000110000111","01111110001110010001101001011110","01111110001110011011001100110101","01111110001110100100110000001100","01111110001110101110010011100011","01111110001110110111110110111010","01111110001111000001011010010000","01111110001111001010111101100111","01111110001111010100100000111110","01111110001111011110000100010101","01111110001111100111100111101100","01111110001111110001001011000011","01111110001111111010101110011010","01111110010000000100010001110001","01111110010000001101110101000111","01111110010000010111011000011110","01111110010000100000111011110101","01111110010000101010011111001100","01111110010000110100000010100011","01111110010000111101100101111010","01111110010001000111001001010001","01111110010001010000101100101000","01111110010001011010001111111110","01111110010001100011110011010101","01111110010001101101010110101100","01111110010001110110111010000011","01111110010010000000011101011010","01111110010010001010000000110001","01111110010010010011100100001000","01111110010010011101000111011110","01111110010010100110101010110101","01111110010010110000001110001100","01111110010010111001110001100011","01111110010011000011010100111010","01111110010011001100111000010001","01111110010011010110011011101000","01111110010011011111111110111111","01111110010011101001100010010101","01111110010011110011000101101100","01111110010011111100101001000011","01111110010100000110001100011010","01111110010100001111101111110001","01111110010100011001010011001000","01111110010100100010110110011111","01111110010100101100011001110101","01111110010100110101111101001100","01111110010100111111100000100011","01111110010101001001000011111010","01111110010101010010100111010001","01111110010101011100001010101000","01111110010101100101101101111111","01111110010101101111010001010110","01111110010101111000110100101100","01111110010110000010011000000011","01111110010110001011111011011010","01111110010110010101011110110001","01111110010110011111000010001000","01111110010110101000100101011111","01111110010110110010001000110110","01111110010110111011101100001101","01111110010111000101001111100011","01111110010111001110110010111010","01111110010111011000010110010001","01111110010111100001111001101000","01111110010111101011011100111111","01111110010111110101000000010110","01111110010111111110100011101101","01111110011000001000000111000011","01111110011000010001101010011010","01111110011000011011001101110001","01111110011000100100110001001000","01111110011000101110010100011111","01111110011000110111110111110110","01111110011001000001011011001101","01111110011001001010111110100100","01111110011001010100100001111010","01111110011001011110000101010001","01111110011001100111101000101000","01111110011001110001001011111111","01111110011001111010101111010110","01111110011010000100010010101101","01111110011010001101110110000100","01111110011010010111011001011010","01111110011010100000111100110001","01111110011010101010100000001000","01111110011010110100000011011111","01111110011010111101100110110110","01111110011011000111001010001101","01111110011011010000101101100100","01111110011011011010010000111011","01111110011011100011110100010001","01111110011011101101010111101000","01111110011011110110111010111111","01111110011100000000011110010110","01111110011100001010000001101101","01111110011100010011100101000100","01111110011100011101001000011011","01111110011100100110101011110010","01111110011100110000001111001000","01111110011100111001110010011111","01111110011101000011010101110110","01111110011101001100111001001101","01111110011101010110011100100100","01111110011101011111111111111011","01111110011101101001100011010010","01111110011101110011000110101000","01111110011101111100101001111111","01111110011110000110001101010110","01111110011110001111110000101101","01111110011110011001010100000100","01111110011110100010110111011011","01111110011110101100011010110010","01111110011110110101111110001001","01111110011110111111100001011111","01111110011111001001000100110110","01111110011111010010101000001101","01111110011111011100001011100100","01111110011111100101101110111011","01111110011111101111010010010010","01111110011111111000110101101001","01111110100000000001001100100000","01111110100000000101111110001011","01111110100000001010101111110111","01111110100000001111100001100010","01111110100000010100010011001101","01111110100000011001000100111001","01111110100000011101110110100100","01111110100000100010101000010000","01111110100000100111011001111011","01111110100000101100001011100111","01111110100000110000111101010010","01111110100000110101101110111110","01111110100000111010100000101001","01111110100000111111010010010100","01111110100001000100000100000000","01111110100001001000110101101011","01111110100001001101100111010111","01111110100001010010011001000010","01111110100001010111001010101110","01111110100001011011111100011001","01111110100001100000101110000100","01111110100001100101011111110000","01111110100001101010010001011011","01111110100001101111000011000111","01111110100001110011110100110010","01111110100001111000100110011110","01111110100001111101011000001001","01111110100010000010001001110100","01111110100010000110111011100000","01111110100010001011101101001011","01111110100010010000011110110111","01111110100010010101010000100010","01111110100010011010000010001110","01111110100010011110110011111001","01111110100010100011100101100101","01111110100010101000010111010000","01111110100010101101001000111011","01111110100010110001111010100111","01111110100010110110101100010010","01111110100010111011011101111110","01111110100011000000001111101001","01111110100011000101000001010101","01111110100011001001110011000000","01111110100011001110100100101011","01111110100011010011010110010111","01111110100011011000001000000010","01111110100011011100111001101110","01111110100011100001101011011001","01111110100011100110011101000101","01111110100011101011001110110000","01111110100011110000000000011011","01111110100011110100110010000111","01111110100011111001100011110010","01111110100011111110010101011110","01111110100100000011000111001001","01111110100100000111111000110101","01111110100100001100101010100000","01111110100100010001011100001011","01111110100100010110001101110111","01111110100100011010111111100010","01111110100100011111110001001110","01111110100100100100100010111001","01111110100100101001010100100101","01111110100100101110000110010000","01111110100100110010110111111100","01111110100100110111101001100111","01111110100100111100011011010010","01111110100101000001001100111110","01111110100101000101111110101001","01111110100101001010110000010101","01111110100101001111100010000000","01111110100101010100010011101100","01111110100101011001000101010111","01111110100101011101110111000010","01111110100101100010101000101110","01111110100101100111011010011001"],"x":[1.0e36,1.1983967935871744e36,1.3967935871743486e36,1.5951903807615228e36,1.7935871743486974e36,1.991983967935872e36,2.190380761523046e36,2.3887775551102206e36,2.5871743486973948e36,2.785571142284569e36,2.9839679358717435e36,3.182364729458918e36,3.3807615230460926e36,3.5791583166332665e36,3.777555110220441e36,3.9759519038076155e36,4.1743486973947894e36,4.372745490981964e36,4.571142284569138e36,4.7695390781563124e36,4.967935871743487e36,5.166332665330661e36,5.364729458917835e36,5.563126252505009e36,5.761523046092184e36,5.95991983967936e36,6.158316633266533e36,6.356713426853708e36,6.555110220440881e36,6.753507014028055e36,6.95190380761523e36,7.150300601202404e36,7.348697394789579e36,7.547094188376754e36,7.745490981963928e36,7.943887775551103e36,8.142284569138276e36,8.340681362725451e36,8.539078156312625e36,8.7374749498998e36,8.935871743486973e36,9.134268537074148e36,9.332665330661322e36,9.531062124248497e36,9.729458917835671e36,9.927855711422845e36,1.0126252505010019e37,1.0324649298597194e37,1.0523046092184369e37,1.0721442885771542e37,1.0919839679358717e37,1.111823647294589e37,1.1316633266533065e37,1.151503006012024e37,1.1713426853707415e37,1.1911823647294588e37,1.2110220440881763e37,1.2308617234468938e37,1.250701402805611e37,1.2705410821643286e37,1.290380761523046e37,1.3102204408817636e37,1.3300601202404809e37,1.3498997995991984e37,1.369739478957916e37,1.3895791583166334e37,1.4094188376753507e37,1.429258517034068e37,1.4490981963927855e37,1.468937875751503e37,1.4887775551102205e37,1.5086172344689378e37,1.5284569138276553e37,1.5482965931863728e37,1.5681362725450903e37,1.5879759519038076e37,1.607815631262525e37,1.6276553106212426e37,1.64749498997996e37,1.6673346693386774e37,1.6871743486973949e37,1.7070140280561124e37,1.72685370741483e37,1.7466933867735472e37,1.7665330661322642e37,1.7863727454909817e37,1.8062124248496992e37,1.8260521042084167e37,1.845891783567134e37,1.8657314629258515e37,1.885571142284569e37,1.9054108216432865e37,1.9252505010020038e37,1.9450901803607213e37,1.9649298597194388e37,1.9847695390781563e37,2.0046092184368739e37,2.0244488977955911e37,2.0442885771543086e37,2.0641282565130262e37,2.0839679358717434e37,2.1038076152304607e37,2.1236472945891782e37,2.143486973947896e37,2.1633266533066135e37,2.1831663326653305e37,2.203006012024048e37,2.2228456913827655e37,2.2426853707414826e37,2.2625250501002e37,2.2823647294589176e37,2.3022044088176346e37,2.3220440881763526e37,2.3418837675350696e37,2.3617234468937876e37,2.3815631262525047e37,2.401402805611222e37,2.4212424849699397e37,2.441082164328657e37,2.4609218436873747e37,2.480761523046092e37,2.5006012024048093e37,2.520440881763527e37,2.5402805611222443e37,2.560120240480962e37,2.5799599198396793e37,2.599799599198397e37,2.6196392785571143e37,2.639478957915832e37,2.659318637274549e37,2.679158316633267e37,2.698997995991984e37,2.718837675350702e37,2.738677354709419e37,2.7585170340681364e37,2.778356713426854e37,2.7981963927855714e37,2.8180360721442885e37,2.837875751503006e37,2.8577154308617235e37,2.877555110220441e37,2.8973947895791585e37,2.917234468937875e37,2.937074148296593e37,2.95691382765531e37,2.976753507014028e37,2.996593186372745e37,3.0164328657314626e37,3.03627254509018e37,3.0561122244488976e37,3.0759519038076147e37,3.0957915831663327e37,3.1156312625250497e37,3.1354709418837677e37,3.1553106212424847e37,3.1751503006012022e37,3.1949899799599197e37,3.2148296593186373e37,3.2346693386773543e37,3.2545090180360723e37,3.2743486973947893e37,3.2941883767535073e37,3.3140280561122243e37,3.333867735470942e37,3.3537074148296594e37,3.373547094188377e37,3.3933867735470944e37,3.413226452905812e37,3.433066132264529e37,3.452905811623247e37,3.472745490981964e37,3.4925851703406815e37,3.512424849699399e37,3.5322645290581165e37,3.552104208416834e37,3.571943887775551e37,3.591783567134268e37,3.6116232464929856e37,3.631462925851703e37,3.6513026052104206e37,3.671142284569138e37,3.690981963927855e37,3.710821643286573e37,3.73066132264529e37,3.7505010020040077e37,3.770340681362725e37,3.7901803607214427e37,3.81002004008016e37,3.8298597194388777e37,3.8496993987975947e37,3.8695390781563127e37,3.88937875751503e37,3.9092184368737478e37,3.929058116232465e37,3.9488977955911823e37,3.9687374749499e37,3.9885771543086173e37,4.0084168336673344e37,4.0282565130260523e37,4.0480961923847694e37,4.0679358717434874e37,4.0877755511022044e37,4.107615230460922e37,4.1274549098196394e37,4.147294589178357e37,4.167134268537074e37,4.186973947895792e37,4.206813627254509e37,4.226653306613227e37,4.246492985971944e37,4.266332665330661e37,4.286172344689379e37,4.306012024048096e37,4.325851703406814e37,4.345691382765531e37,4.365531062124248e37,4.385370741482966e37,4.405210420841683e37,4.425050100200401e37,4.444889779559118e37,4.464729458917836e37,4.484569138276553e37,4.50440881763527e37,4.524248496993988e37,4.544088176352706e37,4.563927855711423e37,4.58376753507014e37,4.603607214428858e37,4.623446893787576e37,4.643286573146292e37,4.66312625250501e37,4.682965931863728e37,4.702805611222445e37,4.722645290581162e37,4.74248496993988e37,4.762324649298597e37,4.782164328657315e37,4.802004008016032e37,4.82184368737475e37,4.841683366733467e37,4.861523046092185e37,4.881362725450902e37,4.901202404809619e37,4.921042084168337e37,4.940881763527055e37,4.960721442885771e37,4.980561122244489e37,5.000400801603207e37,5.020240480961923e37,5.040080160320641e37,5.059919839679359e37,5.079759519038077e37,5.099599198396793e37,5.119438877755511e37,5.139278557114229e37,5.159118236472946e37,5.178957915831663e37,5.198797595190381e37,5.218637274549098e37,5.238476953907816e37,5.258316633266533e37,5.278156312625249e37,5.297995991983967e37,5.317835671342685e37,5.337675350701402e37,5.357515030060119e37,5.377354709418837e37,5.397194388777555e37,5.417034068136271e37,5.436873747494989e37,5.456713426853707e37,5.476553106212424e37,5.4963927855711415e37,5.516232464929859e37,5.5360721442885765e37,5.5559118236472945e37,5.5757515030060115e37,5.5955911823647295e37,5.615430861723447e37,5.635270541082165e37,5.655110220440882e37,5.674949899799599e37,5.694789579158317e37,5.714629258517034e37,5.734468937875751e37,5.754308617234469e37,5.774148296593187e37,5.793987975951903e37,5.813827655310621e37,5.833667334669339e37,5.853507014028057e37,5.873346693386773e37,5.893186372745491e37,5.913026052104209e37,5.932865731462926e37,5.952705410821643e37,5.972545090180361e37,5.992384769539078e37,6.012224448897796e37,6.032064128256513e37,6.05190380761523e37,6.071743486973948e37,6.091583166332666e37,6.111422845691382e37,6.1312625250501e37,6.151102204408818e37,6.170941883767536e37,6.190781563126252e37,6.21062124248497e37,6.230460921843688e37,6.250300601202405e37,6.270140280561122e37,6.28997995991984e37,6.309819639278557e37,6.329659318637275e37,6.349498997995992e37,6.369338677354709e37,6.389178356713427e37,6.409018036072144e37,6.428857715430862e37,6.448697394789579e37,6.468537074148297e37,6.488376753507014e37,6.508216432865731e37,6.528056112224449e37,6.547895791583167e37,6.567735470941883e37,6.587575150300601e37,6.607414829659319e37,6.627254509018035e37,6.647094188376752e37,6.66693386773547e37,6.686773547094188e37,6.706613226452905e37,6.726452905811622e37,6.74629258517034e37,6.766132264529057e37,6.785971943887775e37,6.805811623246492e37,6.8256513026052095e37,6.845490981963927e37,6.865330661322645e37,6.885170340681362e37,6.9050100200400795e37,6.9248496993987975e37,6.9446893787575155e37,6.964529058116232e37,6.98436873747495e37,7.004208416833668e37,7.024048096192385e37,7.043887775551102e37,7.06372745490982e37,7.083567134268537e37,7.103406813627255e37,7.123246492985972e37,7.143086172344689e37,7.162925851703407e37,7.182765531062124e37,7.202605210420842e37,7.222444889779559e37,7.242284569138277e37,7.262124248496994e37,7.281963927855711e37,7.301803607214429e37,7.321643286573147e37,7.341482965931863e37,7.361322645290581e37,7.381162324649299e37,7.401002004008016e37,7.420841683366733e37,7.440681362725451e37,7.460521042084169e37,7.480360721442886e37,7.500200400801603e37,7.520040080160321e37,7.539879759519038e37,7.559719438877756e37,7.579559118236473e37,7.59939879759519e37,7.619238476953908e37,7.639078156312626e37,7.658917835671342e37,7.67875751503006e37,7.698597194388778e37,7.718436873747496e37,7.738276553106212e37,7.75811623246493e37,7.777955911823648e37,7.797795591182365e37,7.817635270541082e37,7.8374749498998e37,7.857314629258517e37,7.877154308617234e37,7.896993987975952e37,7.916833667334669e37,7.936673346693387e37,7.956513026052103e37,7.97635270541082e37,7.996192384769538e37,8.016032064128256e37,8.035871743486973e37,8.05571142284569e37,8.075551102204408e37,8.095390781563126e37,8.115230460921842e37,8.13507014028056e37,8.154909819639278e37,8.174749498997995e37,8.1945891783567125e37,8.21442885771543e37,8.2342685370741475e37,8.2541082164328655e37,8.2739478957915825e37,8.2937875751503005e37,8.313627254509018e37,8.333466933867736e37,8.353306613226453e37,8.37314629258517e37,8.392985971943888e37,8.412825651302606e37,8.432665330661322e37,8.45250501002004e37,8.472344689378758e37,8.492184368737475e37,8.512024048096193e37,8.53186372745491e37,8.551703406813629e37,8.571543086172345e37,8.591382765531063e37,8.61122244488978e37,8.631062124248497e37,8.650901803607213e37,8.67074148296593e37,8.690581162324649e37,8.710420841683367e37,8.730260521042083e37,8.7501002004008e37,8.769939879759519e37,8.789779559118235e37,8.809619238476953e37,8.82945891783567e37,8.849298597194387e37,8.869138276553105e37,8.888977955911823e37,8.90881763527054e37,8.928657314629257e37,8.948496993987975e37,8.968336673346693e37,8.988176352705411e37,9.008016032064127e37,9.027855711422845e37,9.047695390781561e37,9.06753507014028e37,9.087374749498997e37,9.107214428857715e37,9.127054108216433e37,9.146893787575151e37,9.166733466933865e37,9.186573146292583e37,9.206412825651301e37,9.22625250501002e37,9.246092184368737e37,9.265931863727455e37,9.285771543086173e37,9.305611222444887e37,9.325450901803605e37,9.345290581162323e37,9.365130260521041e37,9.38496993987976e37,9.404809619238477e37,9.424649298597193e37,9.444488977955911e37,9.464328657314627e37,9.484168336673345e37,9.504008016032063e37,9.523847695390781e37,9.5436873747495e37,9.563527054108215e37,9.583366733466933e37,9.603206412825651e37,9.623046092184368e37,9.642885771543086e37,9.662725450901804e37,9.68256513026052e37,9.702404809619238e37,9.722244488977956e37,9.742084168336674e37,9.761923847695392e37,9.781763527054108e37,9.801603206412826e37,9.821442885771542e37,9.84128256513026e37,9.861122244488978e37,9.880961923847696e37,9.900801603206414e37,9.920641282565132e37,9.940480961923846e37,9.960320641282564e37,9.980160320641282e37,1.0e38]}
+module.exports={"expected":["10000000000000010001011011000010","10000000000000010001011000110011","10000000000000010001010110100100","10000000000000010001010100010101","10000000000000010001010010000110","10000000000000010001001111110111","10000000000000010001001101101000","10000000000000010001001011011001","10000000000000010001001001001010","10000000000000010001000110111011","10000000000000010001000100101100","10000000000000010001000010011101","10000000000000010001000000001110","10000000000000010000111101111111","10000000000000010000111011110000","10000000000000010000111001100001","10000000000000010000110111010010","10000000000000010000110101000011","10000000000000010000110010110100","10000000000000010000110000100101","10000000000000010000101110010110","10000000000000010000101100000111","10000000000000010000101001111000","10000000000000010000100111101001","10000000000000010000100101011010","10000000000000010000100011001011","10000000000000010000100000111100","10000000000000010000011110101101","10000000000000010000011100011110","10000000000000010000011010001111","10000000000000010000011000000000","10000000000000010000010101110001","10000000000000010000010011100010","10000000000000010000010001010011","10000000000000010000001111000100","10000000000000010000001100110101","10000000000000010000001010100110","10000000000000010000001000010111","10000000000000010000000110001000","10000000000000010000000011111001","10000000000000010000000001101010","10000000000000001111111111011011","10000000000000001111111101001100","10000000000000001111111010111101","10000000000000001111111000101110","10000000000000001111110110011111","10000000000000001111110100010000","10000000000000001111110010000001","10000000000000001111101111110010","10000000000000001111101101100011","10000000000000001111101011010100","10000000000000001111101001000101","10000000000000001111100110110110","10000000000000001111100100100111","10000000000000001111100010011000","10000000000000001111100000001001","10000000000000001111011101111010","10000000000000001111011011101011","10000000000000001111011001011100","10000000000000001111010111001101","10000000000000001111010100111110","10000000000000001111010010101111","10000000000000001111010000100000","10000000000000001111001110010001","10000000000000001111001100000010","10000000000000001111001001110011","10000000000000001111000111100100","10000000000000001111000101010101","10000000000000001111000011000110","10000000000000001111000000110111","10000000000000001110111110101000","10000000000000001110111100011001","10000000000000001110111010001010","10000000000000001110110111111011","10000000000000001110110101101100","10000000000000001110110011011101","10000000000000001110110001001110","10000000000000001110101110111111","10000000000000001110101100110000","10000000000000001110101010100001","10000000000000001110101000010010","10000000000000001110100110000011","10000000000000001110100011110100","10000000000000001110100001100101","10000000000000001110011111010110","10000000000000001110011101000111","10000000000000001110011010111000","10000000000000001110011000101001","10000000000000001110010110011010","10000000000000001110010100001011","10000000000000001110010001111100","10000000000000001110001111101101","10000000000000001110001101011110","10000000000000001110001011001111","10000000000000001110001001000000","10000000000000001110000110110000","10000000000000001110000100100001","10000000000000001110000010010010","10000000000000001110000000000011","10000000000000001101111101110100","10000000000000001101111011100101","10000000000000001101111001010110","10000000000000001101110111000111","10000000000000001101110100111000","10000000000000001101110010101001","10000000000000001101110000011010","10000000000000001101101110001011","10000000000000001101101011111100","10000000000000001101101001101101","10000000000000001101100111011110","10000000000000001101100101001111","10000000000000001101100011000000","10000000000000001101100000110001","10000000000000001101011110100010","10000000000000001101011100010011","10000000000000001101011010000100","10000000000000001101010111110101","10000000000000001101010101100110","10000000000000001101010011010111","10000000000000001101010001001000","10000000000000001101001110111001","10000000000000001101001100101010","10000000000000001101001010011011","10000000000000001101001000001100","10000000000000001101000101111101","10000000000000001101000011101110","10000000000000001101000001011111","10000000000000001100111111010000","10000000000000001100111101000001","10000000000000001100111010110010","10000000000000001100111000100011","10000000000000001100110110010100","10000000000000001100110100000101","10000000000000001100110001110110","10000000000000001100101111100111","10000000000000001100101101011000","10000000000000001100101011001001","10000000000000001100101000111010","10000000000000001100100110101011","10000000000000001100100100011100","10000000000000001100100010001101","10000000000000001100011111111110","10000000000000001100011101101111","10000000000000001100011011100000","10000000000000001100011001010001","10000000000000001100010111000010","10000000000000001100010100110011","10000000000000001100010010100100","10000000000000001100010000010101","10000000000000001100001110000110","10000000000000001100001011110111","10000000000000001100001001101000","10000000000000001100000111011001","10000000000000001100000101001010","10000000000000001100000010111011","10000000000000001100000000101100","10000000000000001011111110011101","10000000000000001011111100001110","10000000000000001011111001111111","10000000000000001011110111110000","10000000000000001011110101100001","10000000000000001011110011010010","10000000000000001011110001000011","10000000000000001011101110110100","10000000000000001011101100100101","10000000000000001011101010010110","10000000000000001011101000000111","10000000000000001011100101111000","10000000000000001011100011101001","10000000000000001011100001011010","10000000000000001011011111001011","10000000000000001011011100111100","10000000000000001011011010101101","10000000000000001011011000011110","10000000000000001011010110001111","10000000000000001011010100000000","10000000000000001011010001110001","10000000000000001011001111100010","10000000000000001011001101010011","10000000000000001011001011000100","10000000000000001011001000110101","10000000000000001011000110100110","10000000000000001011000100010111","10000000000000001011000010001000","10000000000000001010111111111001","10000000000000001010111101101010","10000000000000001010111011011011","10000000000000001010111001001100","10000000000000001010110110111101","10000000000000001010110100101110","10000000000000001010110010011111","10000000000000001010110000010000","10000000000000001010101110000001","10000000000000001010101011110010","10000000000000001010101001100011","10000000000000001010100111010100","10000000000000001010100101000101","10000000000000001010100010110110","10000000000000001010100000100111","10000000000000001010011110011000","10000000000000001010011100001001","10000000000000001010011001111010","10000000000000001010010111101010","10000000000000001010010101011011","10000000000000001010010011001100","10000000000000001010010000111101","10000000000000001010001110101110","10000000000000001010001100011111","10000000000000001010001010010000","10000000000000001010001000000001","10000000000000001010000101110010","10000000000000001010000011100011","10000000000000001010000001010100","10000000000000001001111111000101","10000000000000001001111100110110","10000000000000001001111010100111","10000000000000001001111000011000","10000000000000001001110110001001","10000000000000001001110011111010","10000000000000001001110001101011","10000000000000001001101111011100","10000000000000001001101101001101","10000000000000001001101010111110","10000000000000001001101000101111","10000000000000001001100110100000","10000000000000001001100100010001","10000000000000001001100010000010","10000000000000001001011111110011","10000000000000001001011101100100","10000000000000001001011011010101","10000000000000001001011001000110","10000000000000001001010110110111","10000000000000001001010100101000","10000000000000001001010010011001","10000000000000001001010000001010","10000000000000001001001101111011","10000000000000001001001011101100","10000000000000001001001001011101","10000000000000001001000111001110","10000000000000001001000100111111","10000000000000001001000010110000","10000000000000001001000000100001","10000000000000001000111110010010","10000000000000001000111100000011","10000000000000001000111001110100","10000000000000001000110111100101","10000000000000001000110101010110","10000000000000001000110011000111","10000000000000001000110000111000","10000000000000001000101110101001","10000000000000001000101100011010","10000000000000001000101010001011","10000000000000001000100111111100","10000000000000001000100101101101","10000000000000001000100011011110","10000000000000001000100001001111","10000000000000001000011111000000","10000000000000001000011100110001","10000000000000001000011010100010","10000000000000001000011000010011","10000000000000001000010110000100","10000000000000001000010011110101","10000000000000001000010001100110","10000000000000001000001111010111","10000000000000001000001101001000","10000000000000001000001010111001","10000000000000001000001000101010","10000000000000001000000110011011","10000000000000001000000100001100","10000000000000001000000001111101","10000000000000000111111111101110","10000000000000000111111101011111","10000000000000000111111011010000","10000000000000000111111001000001","10000000000000000111110110110010","10000000000000000111110100100011","10000000000000000111110010010100","10000000000000000111110000000101","10000000000000000111101101110110","10000000000000000111101011100111","10000000000000000111101001011000","10000000000000000111100111001001","10000000000000000111100100111010","10000000000000000111100010101011","10000000000000000111100000011100","10000000000000000111011110001101","10000000000000000111011011111110","10000000000000000111011001101111","10000000000000000111010111100000","10000000000000000111010101010001","10000000000000000111010011000010","10000000000000000111010000110011","10000000000000000111001110100100","10000000000000000111001100010101","10000000000000000111001010000110","10000000000000000111000111110111","10000000000000000111000101101000","10000000000000000111000011011001","10000000000000000111000001001010","10000000000000000110111110111011","10000000000000000110111100101100","10000000000000000110111010011101","10000000000000000110111000001110","10000000000000000110110101111111","10000000000000000110110011110000","10000000000000000110110001100001","10000000000000000110101111010010","10000000000000000110101101000011","10000000000000000110101010110100","10000000000000000110101000100100","10000000000000000110100110010101","10000000000000000110100100000110","10000000000000000110100001110111","10000000000000000110011111101000","10000000000000000110011101011001","10000000000000000110011011001010","10000000000000000110011000111011","10000000000000000110010110101100","10000000000000000110010100011101","10000000000000000110010010001110","10000000000000000110001111111111","10000000000000000110001101110000","10000000000000000110001011100001","10000000000000000110001001010010","10000000000000000110000111000011","10000000000000000110000100110100","10000000000000000110000010100101","10000000000000000110000000010110","10000000000000000101111110000111","10000000000000000101111011111000","10000000000000000101111001101001","10000000000000000101110111011010","10000000000000000101110101001011","10000000000000000101110010111100","10000000000000000101110000101101","10000000000000000101101110011110","10000000000000000101101100001111","10000000000000000101101010000000","10000000000000000101100111110001","10000000000000000101100101100010","10000000000000000101100011010011","10000000000000000101100001000100","10000000000000000101011110110101","10000000000000000101011100100110","10000000000000000101011010010111","10000000000000000101011000001000","10000000000000000101010101111001","10000000000000000101010011101010","10000000000000000101010001011011","10000000000000000101001111001100","10000000000000000101001100111101","10000000000000000101001010101110","10000000000000000101001000011111","10000000000000000101000110010000","10000000000000000101000100000001","10000000000000000101000001110010","10000000000000000100111111100011","10000000000000000100111101010100","10000000000000000100111011000101","10000000000000000100111000110110","10000000000000000100110110100111","10000000000000000100110100011000","10000000000000000100110010001001","10000000000000000100101111111010","10000000000000000100101101101011","10000000000000000100101011011100","10000000000000000100101001001101","10000000000000000100100110111110","10000000000000000100100100101111","10000000000000000100100010100000","10000000000000000100100000010001","10000000000000000100011110000010","10000000000000000100011011110011","10000000000000000100011001100100","10000000000000000100010111010101","10000000000000000100010101000110","10000000000000000100010010110111","10000000000000000100010000101000","10000000000000000100001110011001","10000000000000000100001100001010","10000000000000000100001001111011","10000000000000000100000111101100","10000000000000000100000101011101","10000000000000000100000011001110","10000000000000000100000000111111","10000000000000000011111110110000","10000000000000000011111100100001","10000000000000000011111010010010","10000000000000000011111000000011","10000000000000000011110101110100","10000000000000000011110011100101","10000000000000000011110001010110","10000000000000000011101111000111","10000000000000000011101100111000","10000000000000000011101010101001","10000000000000000011101000011010","10000000000000000011100110001011","10000000000000000011100011111100","10000000000000000011100001101101","10000000000000000011011111011110","10000000000000000011011101001111","10000000000000000011011011000000","10000000000000000011011000110001","10000000000000000011010110100010","10000000000000000011010100010011","10000000000000000011010010000100","10000000000000000011001111110101","10000000000000000011001101100110","10000000000000000011001011010111","10000000000000000011001001001000","10000000000000000011000110111001","10000000000000000011000100101010","10000000000000000011000010011011","10000000000000000011000000001100","10000000000000000010111101111101","10000000000000000010111011101101","10000000000000000010111001011110","10000000000000000010110111001111","10000000000000000010110101000000","10000000000000000010110010110001","10000000000000000010110000100010","10000000000000000010101110010011","10000000000000000010101100000100","10000000000000000010101001110101","10000000000000000010100111100110","10000000000000000010100101010111","10000000000000000010100011001000","10000000000000000010100000111001","10000000000000000010011110101010","10000000000000000010011100011011","10000000000000000010011010001100","10000000000000000010010111111101","10000000000000000010010101101110","10000000000000000010010011011111","10000000000000000010010001010000","10000000000000000010001111000001","10000000000000000010001100110010","10000000000000000010001010100011","10000000000000000010001000010100","10000000000000000010000110000101","10000000000000000010000011110110","10000000000000000010000001100111","10000000000000000001111111011000","10000000000000000001111101001001","10000000000000000001111010111010","10000000000000000001111000101011","10000000000000000001110110011100","10000000000000000001110100001101","10000000000000000001110001111110","10000000000000000001101111101111","10000000000000000001101101100000","10000000000000000001101011010001","10000000000000000001101001000010","10000000000000000001100110110011","10000000000000000001100100100100","10000000000000000001100010010101","10000000000000000001100000000110","10000000000000000001011101110111","10000000000000000001011011101000","10000000000000000001011001011001","10000000000000000001010111001010","10000000000000000001010100111011","10000000000000000001010010101100","10000000000000000001010000011101","10000000000000000001001110001110","10000000000000000001001011111111","10000000000000000001001001110000","10000000000000000001000111100001","10000000000000000001000101010010","10000000000000000001000011000011","10000000000000000001000000110100","10000000000000000000111110100101","10000000000000000000111100010110","10000000000000000000111010000111","10000000000000000000110111111000","10000000000000000000110101101001","10000000000000000000110011011010","10000000000000000000110001001011","10000000000000000000101110111100","10000000000000000000101100101101","10000000000000000000101010011110","10000000000000000000101000001111","10000000000000000000100110000000","10000000000000000000100011110001","10000000000000000000100001100010","10000000000000000000011111010011","10000000000000000000011101000100","10000000000000000000011010110101","10000000000000000000011000100110","10000000000000000000010110010111","10000000000000000000010100001000","10000000000000000000010001111001","10000000000000000000001111101010","10000000000000000000001101011011","10000000000000000000001011001100","10000000000000000000001000111101","10000000000000000000000110101110","10000000000000000000000100011111","10000000000000000000000010010000","10000000000000000000000000000001"],"x":[-1.0e-40,-9.97996012024048e-41,-9.959920240480963e-41,-9.939880360721443e-41,-9.919840480961923e-41,-9.899800601202407e-41,-9.879760721442887e-41,-9.859720841683367e-41,-9.839680961923847e-41,-9.819641082164329e-41,-9.799601202404809e-41,-9.77956132264529e-41,-9.759521442885772e-41,-9.739481563126252e-41,-9.719441683366732e-41,-9.699401803607214e-41,-9.679361923847696e-41,-9.659322044088176e-41,-9.639282164328656e-41,-9.619242284569138e-41,-9.599202404809618e-41,-9.5791625250501e-41,-9.559122645290582e-41,-9.539082765531062e-41,-9.519042885771542e-41,-9.499003006012023e-41,-9.478963126252505e-41,-9.458923246492985e-41,-9.438883366733467e-41,-9.418843486973947e-41,-9.39880360721443e-41,-9.37876372745491e-41,-9.35872384769539e-41,-9.33868396793587e-41,-9.318644088176353e-41,-9.298604208416833e-41,-9.278564328657315e-41,-9.258524448897797e-41,-9.238484569138277e-41,-9.218444689378756e-41,-9.198404809619238e-41,-9.178364929859718e-41,-9.1583250501002e-41,-9.138285170340681e-41,-9.118245290581162e-41,-9.098205410821643e-41,-9.078165531062124e-41,-9.058125651302605e-41,-9.038085771543086e-41,-9.018045891783567e-41,-8.998006012024048e-41,-8.977966132264529e-41,-8.957926252505009e-41,-8.93788637274549e-41,-8.917846492985971e-41,-8.897806613226452e-41,-8.877766733466933e-41,-8.857726853707414e-41,-8.837686973947895e-41,-8.817647094188376e-41,-8.797607214428857e-41,-8.777567334669338e-41,-8.757527454909819e-41,-8.7374875751503e-41,-8.717447695390781e-41,-8.697407815631262e-41,-8.677367935871742e-41,-8.657328056112223e-41,-8.637288176352705e-41,-8.617248296593186e-41,-8.597208416833667e-41,-8.577168537074148e-41,-8.557128657314629e-41,-8.53708877755511e-41,-8.517048897795591e-41,-8.497009018036072e-41,-8.476969138276553e-41,-8.456929258517034e-41,-8.436889378757515e-41,-8.416849498997995e-41,-8.396809619238476e-41,-8.376769739478957e-41,-8.356729859719438e-41,-8.336689979959919e-41,-8.3166501002004e-41,-8.296610220440881e-41,-8.276570340681362e-41,-8.256530460921843e-41,-8.236490581162324e-41,-8.216450701402805e-41,-8.196410821643286e-41,-8.176370941883767e-41,-8.156331062124248e-41,-8.136291182364728e-41,-8.116251302605209e-41,-8.096211422845691e-41,-8.076171543086172e-41,-8.056131663326653e-41,-8.036091783567134e-41,-8.016051903807615e-41,-7.996012024048096e-41,-7.975972144288577e-41,-7.955932264529058e-41,-7.935892384769539e-41,-7.91585250501002e-41,-7.895812625250501e-41,-7.87577274549098e-41,-7.855732865731462e-41,-7.835692985971943e-41,-7.815653106212424e-41,-7.795613226452905e-41,-7.775573346693386e-41,-7.755533466933867e-41,-7.735493587174348e-41,-7.715453707414829e-41,-7.69541382765531e-41,-7.675373947895791e-41,-7.655334068136272e-41,-7.635294188376753e-41,-7.615254308617234e-41,-7.595214428857714e-41,-7.575174549098196e-41,-7.555134669338677e-41,-7.535094789579158e-41,-7.515054909819639e-41,-7.49501503006012e-41,-7.474975150300601e-41,-7.454935270541082e-41,-7.434895390781563e-41,-7.414855511022043e-41,-7.394815631262525e-41,-7.374775751503006e-41,-7.354735871743487e-41,-7.334695991983968e-41,-7.314656112224448e-41,-7.294616232464929e-41,-7.27457635270541e-41,-7.254536472945891e-41,-7.234496593186372e-41,-7.214456713426853e-41,-7.194416833667334e-41,-7.174376953907815e-41,-7.154337074148296e-41,-7.134297194388777e-41,-7.114257314629258e-41,-7.094217434869739e-41,-7.07417755511022e-41,-7.054137675350699e-41,-7.034097795591182e-41,-7.014057915831663e-41,-6.994018036072144e-41,-6.973978156312625e-41,-6.953938276553105e-41,-6.933898396793587e-41,-6.913858517034068e-41,-6.893818637274549e-41,-6.87377875751503e-41,-6.85373887775551e-41,-6.833698997995992e-41,-6.813659118236473e-41,-6.793619238476954e-41,-6.773579358717434e-41,-6.753539478957915e-41,-6.733499599198396e-41,-6.713459719438877e-41,-6.693419839679358e-41,-6.673379959919839e-41,-6.65334008016032e-41,-6.633300200400801e-41,-6.613260320641282e-41,-6.593220440881762e-41,-6.573180561122244e-41,-6.553140681362725e-41,-6.533100801603207e-41,-6.513060921843688e-41,-6.493021042084167e-41,-6.472981162324649e-41,-6.45294128256513e-41,-6.432901402805611e-41,-6.412861523046092e-41,-6.392821643286572e-41,-6.372781763527054e-41,-6.352741883767535e-41,-6.332702004008016e-41,-6.312662124248497e-41,-6.292622244488978e-41,-6.272582364729459e-41,-6.25254248496994e-41,-6.23250260521042e-41,-6.212462725450901e-41,-6.192422845691382e-41,-6.172382965931863e-41,-6.152343086172344e-41,-6.132303206412824e-41,-6.112263326653306e-41,-6.092223446893787e-41,-6.072183567134268e-41,-6.052143687374749e-41,-6.032103807615229e-41,-6.012063927855711e-41,-5.992024048096193e-41,-5.971984168336674e-41,-5.951944288577154e-41,-5.931904408817634e-41,-5.911864529058116e-41,-5.891824649298597e-41,-5.871784769539078e-41,-5.851744889779559e-41,-5.83170501002004e-41,-5.811665130260521e-41,-5.791625250501002e-41,-5.771585370741483e-41,-5.751545490981964e-41,-5.731505611222445e-41,-5.711465731462926e-41,-5.691425851703406e-41,-5.671385971943886e-41,-5.651346092184368e-41,-5.631306212424849e-41,-5.61126633266533e-41,-5.591226452905811e-41,-5.571186573146291e-41,-5.551146693386773e-41,-5.531106813627254e-41,-5.511066933867735e-41,-5.491027054108216e-41,-5.470987174348696e-41,-5.450947294589179e-41,-5.43090741482966e-41,-5.41086753507014e-41,-5.390827655310621e-41,-5.370787775551102e-41,-5.350747895791583e-41,-5.330708016032064e-41,-5.310668136272544e-41,-5.290628256513026e-41,-5.270588376753507e-41,-5.250548496993988e-41,-5.230508617234469e-41,-5.210468737474949e-41,-5.190428857715431e-41,-5.170388977955912e-41,-5.150349098196392e-41,-5.130309218436873e-41,-5.110269338677353e-41,-5.090229458917835e-41,-5.070189579158316e-41,-5.050149699398797e-41,-5.030109819639278e-41,-5.010069939879758e-41,-4.99003006012024e-41,-4.969990180360721e-41,-4.949950300601203e-41,-4.929910420841684e-41,-4.909870541082164e-41,-4.889830661322646e-41,-4.869790781563126e-41,-4.849750901803606e-41,-4.829711022044088e-41,-4.809671142284569e-41,-4.78963126252505e-41,-4.769591382765531e-41,-4.749551503006011e-41,-4.729511623246493e-41,-4.709471743486973e-41,-4.689431863727454e-41,-4.669391983967936e-41,-4.649352104208417e-41,-4.629312224448898e-41,-4.609272344689379e-41,-4.589232464929859e-41,-4.5691925851703404e-41,-4.549152705410822e-41,-4.529112825651302e-41,-4.509072945891783e-41,-4.4890330661322646e-41,-4.4689931863727455e-41,-4.4489533066132264e-41,-4.428913426853707e-41,-4.408873547094188e-41,-4.388833667334669e-41,-4.36879378757515e-41,-4.3487539078156305e-41,-4.3287140280561115e-41,-4.3086741482965924e-41,-4.2886342685370743e-41,-4.2685943887775553e-41,-4.2485545090180357e-41,-4.2285146292585166e-41,-4.208474749498998e-41,-4.188434869739479e-41,-4.16839498997996e-41,-4.1483551102204403e-41,-4.128315230460921e-41,-4.1082753507014027e-41,-4.0882354709418836e-41,-4.068195591182364e-41,-4.048155711422845e-41,-4.028115831663327e-41,-4.008075951903808e-41,-3.9880360721442887e-41,-3.967996192384769e-41,-3.94795631262525e-41,-3.9279164328657315e-41,-3.9078765531062124e-41,-3.887836673346693e-41,-3.867796793587174e-41,-3.8477569138276547e-41,-3.827717034068136e-41,-3.807677154308617e-41,-3.7876372745490975e-41,-3.7675973947895784e-41,-3.7475575150300603e-41,-3.7275176352705413e-41,-3.7074777555110217e-41,-3.6874378757515026e-41,-3.6673979959919835e-41,-3.647358116232465e-41,-3.627318236472946e-41,-3.6072783567134263e-41,-3.587238476953907e-41,-3.567198597194388e-41,-3.5471587174348696e-41,-3.52711883767535e-41,-3.507078957915831e-41,-3.4870390781563124e-41,-3.466999198396794e-41,-3.4469593186372747e-41,-3.426919438877755e-41,-3.406879559118236e-41,-3.386839679358717e-41,-3.3667997995991984e-41,-3.3467599198396794e-41,-3.32672004008016e-41,-3.3066801603206407e-41,-3.286640280561122e-41,-3.266600400801603e-41,-3.2465605210420835e-41,-3.226520641282565e-41,-3.206480761523046e-41,-3.1864408817635273e-41,-3.166401002004008e-41,-3.1463611222444886e-41,-3.1263212424849696e-41,-3.1062813627254505e-41,-3.086241482965932e-41,-3.0662016032064123e-41,-3.0461617234468933e-41,-3.026121843687374e-41,-3.0060819639278556e-41,-2.9860420841683365e-41,-2.9660022044088175e-41,-2.9459623246492984e-41,-2.9259224448897793e-41,-2.905882565130261e-41,-2.8858426853707417e-41,-2.865802805611222e-41,-2.845762925851703e-41,-2.825723046092184e-41,-2.8056831663326654e-41,-2.785643286573146e-41,-2.7656034068136267e-41,-2.7455635270541077e-41,-2.725523647294589e-41,-2.7054837675350705e-41,-2.685443887775551e-41,-2.665404008016032e-41,-2.645364128256513e-41,-2.625324248496994e-41,-2.6052843687374746e-41,-2.5852444889779556e-41,-2.5652046092184365e-41,-2.545164729458918e-41,-2.525124849699399e-41,-2.5050849699398793e-41,-2.48504509018036e-41,-2.465005210420841e-41,-2.444965330661323e-41,-2.4249254509018035e-41,-2.4048855711422844e-41,-2.3848456913827653e-41,-2.3648058116232463e-41,-2.344765931863727e-41,-2.324726052104208e-41,-2.304686172344689e-41,-2.2846462925851702e-41,-2.264606412825651e-41,-2.2445665330661323e-41,-2.2245266533066133e-41,-2.204486773547094e-41,-2.184446893787575e-41,-2.1644070140280558e-41,-2.144367134268537e-41,-2.1243272545090176e-41,-2.104287374749499e-41,-2.08424749498998e-41,-2.0642076152304607e-41,-2.0441677354709418e-41,-2.0241278557114225e-41,-2.0040879759519037e-41,-1.9840480961923846e-41,-1.9640082164328658e-41,-1.9439683366733465e-41,-1.9239284569138274e-41,-1.9038885771543086e-41,-1.8838486973947892e-41,-1.8638088176352704e-41,-1.8437689378757514e-41,-1.8237290581162325e-41,-1.8036891783567132e-41,-1.7836492985971944e-41,-1.763609418837675e-41,-1.743569539078156e-41,-1.7235296593186374e-41,-1.703489779559118e-41,-1.6834498997995993e-41,-1.66341002004008e-41,-1.643370140280561e-41,-1.6233302605210418e-41,-1.6032903807615227e-41,-1.5832505010020041e-41,-1.5632106212424848e-41,-1.543170741482966e-41,-1.5231308617234467e-41,-1.5030909819639279e-41,-1.4830511022044085e-41,-1.4630112224448897e-41,-1.442971342685371e-41,-1.4229314629258516e-41,-1.4028915831663327e-41,-1.3828517034068134e-41,-1.3628118236472946e-41,-1.3427719438877753e-41,-1.3227320641282564e-41,-1.3026921843687374e-41,-1.2826523046092183e-41,-1.2626124248496995e-41,-1.2425725450901801e-41,-1.2225326653306613e-41,-1.202492785571142e-41,-1.1824529058116232e-41,-1.162413026052104e-41,-1.1423731462925852e-41,-1.1223332665330661e-41,-1.102293386773547e-41,-1.0822535070140279e-41,-1.0622136272545089e-41,-1.0421737474949899e-41,-1.022133867735471e-41,-1.0020939879759519e-41,-9.820541082164328e-42,-9.620142284569139e-42,-9.419743486973947e-42,-9.219344689378756e-42,-9.018945891783566e-42,-8.818547094188376e-42,-8.618148296593186e-42,-8.417749498997995e-42,-8.217350701402806e-42,-8.016951903807614e-42,-7.816553106212423e-42,-7.616154308617234e-42,-7.415755511022043e-42,-7.215356713426854e-42,-7.014957915831664e-42,-6.814559118236473e-42,-6.614160320641283e-42,-6.413761523046092e-42,-6.213362725450901e-42,-6.01296392785571e-42,-5.812565130260521e-42,-5.61216633266533e-42,-5.4117675350701394e-42,-5.21136873747495e-42,-5.010969939879759e-42,-4.810571142284569e-42,-4.610172344689378e-42,-4.4097735470941876e-42,-4.209374749498998e-42,-4.0089759519038074e-42,-3.8085771543086167e-42,-3.608178356713427e-42,-3.4077795591182365e-42,-3.207380761523046e-42,-3.006981963927855e-42,-2.8065831663326652e-42,-2.6061843687374748e-42,-2.4057855711422843e-42,-2.205386773547094e-42,-2.0049879759519038e-42,-1.8045891783567134e-42,-1.604190380761523e-42,-1.4037915831663325e-42,-1.2033927855711421e-42,-1.0029939879759519e-42,-8.025951903807614e-43,-6.021963927855712e-43,-4.0179759519038074e-43,-2.0139879759519036e-43,-1.0e-45]}
+
 },{}],84:[function(require,module,exports){
-module.exports={"expected":["00000000000000000000000000000000","01000000000000000110001010000000","01000000100000000110001010000000","01000000110000001001001111000000","01000001000000000110001010000000","01000001001000000111101100100000","01000001010000001001001111000000","01000001011000001010110001100000","01000001100000000110001010000000","01000001100100000110111011010000","01000001101000000111101100100000","01000001101100001000011101110000","01000001110000001001001111000000","01000001110100001010000000010000","01000001111000001010110001100000","01000001111100001011100010110000","01000010000000000110001010000000","01000010000010000110100010101000","01000010000100000110111011010000","01000010000110000111010011111000","01000010001000000111101100100000","01000010001010001000000101001000","01000010001100001000011101110000","01000010001110001000110110011000","01000010010000001001001111000000","01000010010010001001100111101000","01000010010100001010000000010000","01000010010110001010011000111000","01000010011000001010110001100000","01000010011010001011001010001000","01000010011100001011100010110000","01000010011110001011111011011000","01000010100000000110001010000000","01000010100001000110010110010100","01000010100010000110100010101000","01000010100011000110101110111100","01000010100100000110111011010000","01000010100101000111000111100100","01000010100110000111010011111000","01000010100111000111100000001100","01000010101000000111101100100000","01000010101001000111111000110100","01000010101010001000000101001000","01000010101011001000010001011100","01000010101100001000011101110000","01000010101101001000101010000100","01000010101110001000110110011000","01000010101111001001000010101100","01000010110000001001001111000000","01000010110001001001011011010100","01000010110010001001100111101000","01000010110011001001110011111100","01000010110100001010000000010000","01000010110101001010001100100100","01000010110110001010011000111000","01000010110111001010100101001100","01000010111000001010110001100000","01000010111001001010111101110100","01000010111010001011001010001000","01000010111011001011010110011100","01000010111100001011100010110000","01000010111101001011101111000100","01000010111110001011111011011000","01000010111111001100000111101101","01000011000000000110001010000000","01000011000000100110010000001010","01000011000001000110010110010100","01000011000001100110011100011110","01000011000010000110100010101000","01000011000010100110101000110010","01000011000011000110101110111100","01000011000011100110110101000110","01000011000100000110111011010000","01000011000100100111000001011010","01000011000101000111000111100100","01000011000101100111001101101110","01000011000110000111010011111000","01000011000110100111011010000010","01000011000111000111100000001100","01000011000111100111100110010110","01000011001000000111101100100000","01000011001000100111110010101010","01000011001001000111111000110100","01000011001001100111111110111110","01000011001010001000000101001000","01000011001010101000001011010010","01000011001011001000010001011100","01000011001011101000010111100110","01000011001100001000011101110000","01000011001100101000100011111010","01000011001101001000101010000100","01000011001101101000110000001110","01000011001110001000110110011000","01000011001110101000111100100010","01000011001111001001000010101100","01000011001111101001001000110110","01000011010000001001001111000000","01000011010000101001010101001010","01000011010001001001011011010100","01000011010001101001100001011110","01000011010010001001100111101000","01000011010010101001101101110010","01000011010011001001110011111100","01000011010011101001111010000110","01000011010100001010000000010000","01000011010100101010000110011010","01000011010101001010001100100100","01000011010101101010010010101110","01000011010110001010011000111000","01000011010110101010011111000010","01000011010111001010100101001100","01000011010111101010101011010110","01000011011000001010110001100000","01000011011000101010110111101010","01000011011001001010111101110100","01000011011001101011000011111110","01000011011010001011001010001000","01000011011010101011010000010010","01000011011011001011010110011100","01000011011011101011011100100110","01000011011100001011100010110000","01000011011100101011101000111010","01000011011101001011101111000100","01000011011101101011110101001110","01000011011110001011111011011000","01000011011110101100000001100011","01000011011111001100000111101101","01000011011111101100001101110111","01000011100000000110001010000000","01000011100000010110001101000101","01000011100000100110010000001010","01000011100000110110010011001111","01000011100001000110010110010100","01000011100001010110011001011001","01000011100001100110011100011110","01000011100001110110011111100011","01000011100010000110100010101000","01000011100010010110100101101101","01000011100010100110101000110010","01000011100010110110101011110111","01000011100011000110101110111100","01000011100011010110110010000001","01000011100011100110110101000110","01000011100011110110111000001011","01000011100100000110111011010000","01000011100100010110111110010101","01000011100100100111000001011010","01000011100100110111000100011111","01000011100101000111000111100100","01000011100101010111001010101001","01000011100101100111001101101110","01000011100101110111010000110011","01000011100110000111010011111000","01000011100110010111010110111101","01000011100110100111011010000010","01000011100110110111011101000111","01000011100111000111100000001100","01000011100111010111100011010001","01000011100111100111100110010110","01000011100111110111101001011011","01000011101000000111101100100000","01000011101000010111101111100101","01000011101000100111110010101010","01000011101000110111110101101111","01000011101001000111111000110100","01000011101001010111111011111001","01000011101001100111111110111110","01000011101001111000000010000011","01000011101010001000000101001000","01000011101010011000001000001101","01000011101010101000001011010010","01000011101010111000001110010111","01000011101011001000010001011100","01000011101011011000010100100001","01000011101011101000010111100110","01000011101011111000011010101011","01000011101100001000011101110000","01000011101100011000100000110101","01000011101100101000100011111010","01000011101100111000100110111111","01000011101101001000101010000100","01000011101101011000101101001001","01000011101101101000110000001110","01000011101101111000110011010011","01000011101110001000110110011000","01000011101110011000111001011101","01000011101110101000111100100010","01000011101110111000111111100111","01000011101111001001000010101100","01000011101111011001000101110001","01000011101111101001001000110110","01000011101111111001001011111011","01000011110000001001001111000000","01000011110000011001010010000101","01000011110000101001010101001010","01000011110000111001011000001111","01000011110001001001011011010100","01000011110001011001011110011001","01000011110001101001100001011110","01000011110001111001100100100011","01000011110010001001100111101000","01000011110010011001101010101101","01000011110010101001101101110010","01000011110010111001110000110111","01000011110011001001110011111100","01000011110011011001110111000001","01000011110011101001111010000110","01000011110011111001111101001011","01000011110100001010000000010000","01000011110100011010000011010101","01000011110100101010000110011010","01000011110100111010001001011111","01000011110101001010001100100100","01000011110101011010001111101001","01000011110101101010010010101110","01000011110101111010010101110011","01000011110110001010011000111000","01000011110110011010011011111101","01000011110110101010011111000010","01000011110110111010100010000111","01000011110111001010100101001100","01000011110111011010101000010001","01000011110111101010101011010110","01000011110111111010101110011011","01000011111000001010110001100000","01000011111000011010110100100101","01000011111000101010110111101010","01000011111000111010111010101111","01000011111001001010111101110100","01000011111001011011000000111001","01000011111001101011000011111110","01000011111001111011000111000011","01000011111010001011001010001000","01000011111010011011001101001101","01000011111010101011010000010010","01000011111010111011010011010111","01000011111011001011010110011100","01000011111011011011011001100001","01000011111011101011011100100110","01000011111011111011011111101011","01000011111100001011100010110000","01000011111100011011100101110101","01000011111100101011101000111010","01000011111100111011101011111111","01000011111101001011101111000100","01000011111101011011110010001001","01000011111101101011110101001110","01000011111101111011111000010011","01000011111110001011111011011000","01000011111110011011111110011101","01000011111110101100000001100011","01000011111110111100000100101000","01000011111111001100000111101101","01000011111111011100001010110010","01000011111111101100001101110111","01000011111111111100010000111100","01000100000000000110001010000000","01000100000000001110001011100011","01000100000000010110001101000101","01000100000000011110001110101000","01000100000000100110010000001010","01000100000000101110010001101101","01000100000000110110010011001111","01000100000000111110010100110010","01000100000001000110010110010100","01000100000001001110010111110111","01000100000001010110011001011001","01000100000001011110011010111100","01000100000001100110011100011110","01000100000001101110011110000001","01000100000001110110011111100011","01000100000001111110100001000110","01000100000010000110100010101000","01000100000010001110100100001011","01000100000010010110100101101101","01000100000010011110100111010000","01000100000010100110101000110010","01000100000010101110101010010101","01000100000010110110101011110111","01000100000010111110101101011010","01000100000011000110101110111100","01000100000011001110110000011111","01000100000011010110110010000001","01000100000011011110110011100100","01000100000011100110110101000110","01000100000011101110110110101001","01000100000011110110111000001011","01000100000011111110111001101110","01000100000100000110111011010000","01000100000100001110111100110011","01000100000100010110111110010101","01000100000100011110111111111000","01000100000100100111000001011010","01000100000100101111000010111101","01000100000100110111000100011111","01000100000100111111000110000010","01000100000101000111000111100100","01000100000101001111001001000111","01000100000101010111001010101001","01000100000101011111001100001100","01000100000101100111001101101110","01000100000101101111001111010001","01000100000101110111010000110011","01000100000101111111010010010110","01000100000110000111010011111000","01000100000110001111010101011011","01000100000110010111010110111101","01000100000110011111011000100000","01000100000110100111011010000010","01000100000110101111011011100101","01000100000110110111011101000111","01000100000110111111011110101010","01000100000111000111100000001100","01000100000111001111100001101111","01000100000111010111100011010001","01000100000111011111100100110100","01000100000111100111100110010110","01000100000111101111100111111001","01000100000111110111101001011011","01000100000111111111101010111110","01000100001000000111101100100000","01000100001000001111101110000011","01000100001000010111101111100101","01000100001000011111110001001000","01000100001000100111110010101010","01000100001000101111110100001101","01000100001000110111110101101111","01000100001000111111110111010010","01000100001001000111111000110100","01000100001001001111111010010111","01000100001001010111111011111001","01000100001001011111111101011100","01000100001001100111111110111110","01000100001001110000000000100001","01000100001001111000000010000011","01000100001010000000000011100110","01000100001010001000000101001000","01000100001010010000000110101011","01000100001010011000001000001101","01000100001010100000001001110000","01000100001010101000001011010010","01000100001010110000001100110101","01000100001010111000001110010111","01000100001011000000001111111010","01000100001011001000010001011100","01000100001011010000010010111111","01000100001011011000010100100001","01000100001011100000010110000100","01000100001011101000010111100110","01000100001011110000011001001001","01000100001011111000011010101011","01000100001100000000011100001110","01000100001100001000011101110000","01000100001100010000011111010011","01000100001100011000100000110101","01000100001100100000100010011000","01000100001100101000100011111010","01000100001100110000100101011101","01000100001100111000100110111111","01000100001101000000101000100010","01000100001101001000101010000100","01000100001101010000101011100111","01000100001101011000101101001001","01000100001101100000101110101100","01000100001101101000110000001110","01000100001101110000110001110001","01000100001101111000110011010011","01000100001110000000110100110110","01000100001110001000110110011000","01000100001110010000110111111011","01000100001110011000111001011101","01000100001110100000111011000000","01000100001110101000111100100010","01000100001110110000111110000101","01000100001110111000111111100111","01000100001111000001000001001010","01000100001111001001000010101100","01000100001111010001000100001111","01000100001111011001000101110001","01000100001111100001000111010100","01000100001111101001001000110110","01000100001111110001001010011001","01000100001111111001001011111011","01000100010000000001001101011110","01000100010000001001001111000000","01000100010000010001010000100011","01000100010000011001010010000101","01000100010000100001010011101000","01000100010000101001010101001010","01000100010000110001010110101101","01000100010000111001011000001111","01000100010001000001011001110010","01000100010001001001011011010100","01000100010001010001011100110111","01000100010001011001011110011001","01000100010001100001011111111100","01000100010001101001100001011110","01000100010001110001100011000001","01000100010001111001100100100011","01000100010010000001100110000110","01000100010010001001100111101000","01000100010010010001101001001011","01000100010010011001101010101101","01000100010010100001101100010000","01000100010010101001101101110010","01000100010010110001101111010101","01000100010010111001110000110111","01000100010011000001110010011010","01000100010011001001110011111100","01000100010011010001110101011111","01000100010011011001110111000001","01000100010011100001111000100100","01000100010011101001111010000110","01000100010011110001111011101001","01000100010011111001111101001011","01000100010100000001111110101110","01000100010100001010000000010000","01000100010100010010000001110011","01000100010100011010000011010101","01000100010100100010000100111000","01000100010100101010000110011010","01000100010100110010000111111101","01000100010100111010001001011111","01000100010101000010001011000010","01000100010101001010001100100100","01000100010101010010001110000111","01000100010101011010001111101001","01000100010101100010010001001100","01000100010101101010010010101110","01000100010101110010010100010001","01000100010101111010010101110011","01000100010110000010010111010110","01000100010110001010011000111000","01000100010110010010011010011011","01000100010110011010011011111101","01000100010110100010011101100000","01000100010110101010011111000010","01000100010110110010100000100101","01000100010110111010100010000111","01000100010111000010100011101010","01000100010111001010100101001100","01000100010111010010100110101111","01000100010111011010101000010001","01000100010111100010101001110100","01000100010111101010101011010110","01000100010111110010101100111001","01000100010111111010101110011011","01000100011000000010101111111110","01000100011000001010110001100000","01000100011000010010110011000011","01000100011000011010110100100101","01000100011000100010110110001000","01000100011000101010110111101010","01000100011000110010111001001101","01000100011000111010111010101111","01000100011001000010111100010010","01000100011001001010111101110100","01000100011001010010111111010111","01000100011001011011000000111001","01000100011001100011000010011100","01000100011001101011000011111110","01000100011001110011000101100001","01000100011001111011000111000011","01000100011010000011001000100110","01000100011010001011001010001000","01000100011010010011001011101011","01000100011010011011001101001101","01000100011010100011001110110000","01000100011010101011010000010010","01000100011010110011010001110101","01000100011010111011010011010111","01000100011011000011010100111010","01000100011011001011010110011100","01000100011011010011010111111111","01000100011011011011011001100001","01000100011011100011011011000100","01000100011011101011011100100110","01000100011011110011011110001001","01000100011011111011011111101011","01000100011100000011100001001110","01000100011100001011100010110000","01000100011100010011100100010011","01000100011100011011100101110101","01000100011100100011100111011000","01000100011100101011101000111010","01000100011100110011101010011101","01000100011100111011101011111111","01000100011101000011101101100010","01000100011101001011101111000100","01000100011101010011110000100111","01000100011101011011110010001001","01000100011101100011110011101100","01000100011101101011110101001110","01000100011101110011110110110001","01000100011101111011111000010011","01000100011110000011111001110110","01000100011110001011111011011000","01000100011110010011111100111011","01000100011110011011111110011101","01000100011110100100000000000000"],"x":[0.0,2.006012024048096,4.012024048096192,6.018036072144288,8.024048096192384,10.030060120240481,12.036072144288577,14.042084168336673,16.04809619238477,18.054108216432866,20.060120240480963,22.06613226452906,24.072144288577153,26.07815631262525,28.084168336673347,30.090180360721444,32.09619238476954,34.102204408817634,36.10821643286573,38.11422845691383,40.120240480961925,42.12625250501002,44.13226452905812,46.13827655310621,48.144288577154306,50.1503006012024,52.1563126252505,54.1623246492986,56.168336673346694,58.17434869739479,60.18036072144289,62.186372745490985,64.19238476953907,66.19839679358718,68.20440881763527,70.21042084168337,72.21643286573146,74.22244488977955,76.22845691382766,78.23446893787575,80.24048096192385,82.24649298597194,84.25250501002004,86.25851703406813,88.26452905811624,90.27054108216433,92.27655310621242,94.28256513026052,96.28857715430861,98.29458917835672,100.3006012024048,102.30661322645291,104.312625250501,106.3186372745491,108.3246492985972,110.33066132264528,112.33667334669339,114.34268537074148,116.34869739478958,118.35470941883767,120.36072144288578,122.36673346693387,124.37274549098197,126.37875751503006,128.38476953907815,130.39078156312624,132.39679358717436,134.40280561122245,136.40881763527054,138.41482965931863,140.42084168336675,142.42685370741484,144.43286573146293,146.43887775551102,148.4448897795591,150.45090180360722,152.4569138276553,154.4629258517034,156.4689378757515,158.4749498997996,160.4809619238477,162.4869739478958,164.49298597194388,166.49899799599197,168.5050100200401,170.51102204408818,172.51703406813627,174.52304609218436,176.52905811623248,178.53507014028057,180.54108216432866,182.54709418837675,184.55310621242484,186.55911823647295,188.56513026052104,190.57114228456913,192.57715430861722,194.58316633266534,196.58917835671343,198.59519038076152,200.6012024048096,202.6072144288577,204.61322645290582,206.6192384769539,208.625250501002,210.6312625250501,212.6372745490982,214.6432865731463,216.6492985971944,218.65531062124248,220.66132264529057,222.6673346693387,224.67334669338678,226.67935871743487,228.68537074148296,230.69138276553107,232.69739478957916,234.70340681362725,236.70941883767534,238.71543086172343,240.72144288577155,242.72745490981964,244.73346693386773,246.73947895791582,248.74549098196394,250.75150300601203,252.75751503006012,254.7635270541082,256.7695390781563,258.7755511022044,260.7815631262525,262.7875751503006,264.7935871743487,266.7995991983968,268.8056112224449,270.811623246493,272.8176352705411,274.8236472945892,276.82965931863725,278.8356713426854,280.8416833667335,282.84769539078155,284.85370741482967,286.85971943887773,288.86573146292585,290.87174348697397,292.87775551102203,294.88376753507015,296.8897795591182,298.89579158316633,300.90180360721445,302.9078156312625,304.9138276553106,306.91983967935874,308.9258517034068,310.9318637274549,312.937875751503,314.9438877755511,316.9498997995992,318.9559118236473,320.9619238476954,322.96793587174346,324.9739478957916,326.9799599198397,328.98597194388776,330.9919839679359,332.99799599198394,335.00400801603206,337.0100200400802,339.01603206412824,341.02204408817636,343.0280561122245,345.03406813627254,347.04008016032066,349.0460921843687,351.05210420841684,353.05811623246495,355.064128256513,357.07014028056113,359.0761523046092,361.0821643286573,363.08817635270543,365.0941883767535,367.1002004008016,369.1062124248497,371.1122244488978,373.1182364729459,375.12424849699397,377.1302605210421,379.1362725450902,381.14228456913827,383.1482965931864,385.15430861723445,387.16032064128257,389.1663326653307,391.17234468937875,393.17835671342687,395.1843687374749,397.19038076152304,399.19639278557116,401.2024048096192,403.20841683366734,405.2144288577154,407.2204408817635,409.22645290581164,411.2324649298597,413.2384769539078,415.24448897795594,417.250501002004,419.2565130260521,421.2625250501002,423.2685370741483,425.2745490981964,427.2805611222445,429.2865731462926,431.29258517034066,433.2985971943888,435.3046092184369,437.31062124248496,439.3166332665331,441.32264529058114,443.32865731462925,445.3346693386774,447.34068136272543,449.34669338677355,451.35270541082167,453.35871743486973,455.36472945891785,457.3707414829659,459.37675350701403,461.38276553106215,463.3887775551102,465.3947895791583,467.4008016032064,469.4068136272545,471.4128256513026,473.4188376753507,475.4248496993988,477.43086172344687,479.436873747495,481.4428857715431,483.44889779559117,485.4549098196393,487.4609218436874,489.46693386773546,491.4729458917836,493.47895791583164,495.48496993987976,497.4909819639279,499.49699398797594,501.50300601202406,503.5090180360721,505.51503006012024,507.52104208416836,509.5270541082164,511.53306613226454,513.5390781563126,515.5450901803607,517.5511022044088,519.557114228457,521.563126252505,523.5691382765531,525.5751503006012,527.5811623246493,529.5871743486974,531.5931863727454,533.5991983967936,535.6052104208417,537.6112224448898,539.6172344689379,541.623246492986,543.629258517034,545.6352705410821,547.6412825651303,549.6472945891784,551.6533066132265,553.6593186372745,555.6653306613226,557.6713426853707,559.6773547094189,561.683366733467,563.689378757515,565.6953907815631,567.7014028056112,569.7074148296593,571.7134268537075,573.7194388777555,575.7254509018036,577.7314629258517,579.7374749498998,581.7434869739479,583.7494989979959,585.7555110220441,587.7615230460922,589.7675350701403,591.7735470941884,593.7795591182364,595.7855711422845,597.7915831663327,599.7975951903808,601.8036072144289,603.8096192384769,605.815631262525,607.8216432865731,609.8276553106213,611.8336673346694,613.8396793587175,615.8456913827655,617.8517034068136,619.8577154308617,621.8637274549098,623.869739478958,625.875751503006,627.8817635270541,629.8877755511022,631.8937875751503,633.8997995991984,635.9058116232464,637.9118236472946,639.9178356713427,641.9238476953908,643.9298597194389,645.9358717434869,647.941883767535,649.9478957915832,651.9539078156313,653.9599198396794,655.9659318637274,657.9719438877755,659.9779559118236,661.9839679358718,663.9899799599199,665.9959919839679,668.002004008016,670.0080160320641,672.0140280561122,674.0200400801604,676.0260521042084,678.0320641282565,680.0380761523046,682.0440881763527,684.0501002004008,686.056112224449,688.062124248497,690.0681362725451,692.0741482965932,694.0801603206413,696.0861723446894,698.0921843687374,700.0981963927856,702.1042084168337,704.1102204408818,706.1162324649299,708.1222444889779,710.128256513026,712.1342685370741,714.1402805611223,716.1462925851704,718.1523046092184,720.1583166332665,722.1643286573146,724.1703406813627,726.1763527054109,728.1823647294589,730.188376753507,732.1943887775551,734.2004008016032,736.2064128256513,738.2124248496993,740.2184368737475,742.2244488977956,744.2304609218437,746.2364729458918,748.2424849699398,750.2484969939879,752.2545090180361,754.2605210420842,756.2665330661323,758.2725450901804,760.2785571142284,762.2845691382765,764.2905811623247,766.2965931863728,768.3026052104209,770.3086172344689,772.314629258517,774.3206412825651,776.3266533066133,778.3326653306614,780.3386773547094,782.3446893787575,784.3507014028056,786.3567134268537,788.3627254509018,790.3687374749499,792.374749498998,794.3807615230461,796.3867735470942,798.3927855711423,800.3987975951903,802.4048096192384,804.4108216432866,806.4168336673347,808.4228456913828,810.4288577154308,812.4348697394789,814.440881763527,816.4468937875752,818.4529058116233,820.4589178356713,822.4649298597194,824.4709418837675,826.4769539078156,828.4829659318638,830.4889779559119,832.4949899799599,834.501002004008,836.5070140280561,838.5130260521042,840.5190380761524,842.5250501002004,844.5310621242485,846.5370741482966,848.5430861723447,850.5490981963928,852.5551102204408,854.561122244489,856.5671342685371,858.5731462925852,860.5791583166333,862.5851703406813,864.5911823647294,866.5971943887776,868.6032064128257,870.6092184368738,872.6152304609218,874.6212424849699,876.627254509018,878.6332665330661,880.6392785571143,882.6452905811623,884.6513026052104,886.6573146292585,888.6633266533066,890.6693386773547,892.6753507014027,894.6813627254509,896.687374749499,898.6933867735471,900.6993987975952,902.7054108216433,904.7114228456913,906.7174348697395,908.7234468937876,910.7294589178357,912.7354709418838,914.7414829659318,916.7474949899799,918.7535070140281,920.7595190380762,922.7655310621243,924.7715430861723,926.7775551102204,928.7835671342685,930.7895791583167,932.7955911823648,934.8016032064128,936.8076152304609,938.813627254509,940.8196392785571,942.8256513026053,944.8316633266533,946.8376753507014,948.8436873747495,950.8496993987976,952.8557114228457,954.8617234468937,956.8677354709419,958.87374749499,960.8797595190381,962.8857715430862,964.8917835671342,966.8977955911823,968.9038076152304,970.9098196392786,972.9158316633267,974.9218436873748,976.9278557114228,978.9338677354709,980.939879759519,982.9458917835672,984.9519038076153,986.9579158316633,988.9639278557114,990.9699398797595,992.9759519038076,994.9819639278558,996.9879759519038,998.9939879759519,1001.0]}
+module.exports={"expected":["10000000001101100111000111110111","10001001001001100111110010100101","10001001101001100111110010010111","10001001111110011011101011011100","10001010001001100111110010010000","10001010010100000001101110110011","10001010011110011011101011010101","10001010100100011010110011111100","10001010101001100111110010001101","10001010101110110100110000011110","10001010110100000001101110101111","10001010111001001110101101000000","10001010111110011011101011010010","10001011000001110100010100110001","10001011000100011010110011111010","10001011000111000001010011000011","10001011001001100111110010001011","10001011001100001110010001010100","10001011001110110100110000011100","10001011010001011011001111100101","10001011010100000001101110101101","10001011010110101000001101110110","10001011011001001110101100111111","10001011011011110101001100000111","10001011011110011011101011010000","10001011100000100001000101001100","10001011100001110100010100110000","10001011100011000111100100010101","10001011100100011010110011111001","10001011100101101110000011011101","10001011100111000001010011000010","10001011101000010100100010100110","10001011101001100111110010001010","10001011101010111011000001101111","10001011101100001110010001010011","10001011101101100001100000110111","10001011101110110100110000011011","10001011110000001000000000000000","10001011110001011011001111100100","10001011110010101110011111001000","10001011110100000001101110101101","10001011110101010100111110010001","10001011110110101000001101110101","10001011110111111011011101011001","10001011111001001110101100111110","10001011111010100001111100100010","10001011111011110101001100000110","10001011111101001000011011101011","10001011111110011011101011001111","10001011111111101110111010110011","10001100000000100001000101001100","10001100000001001010101100111110","10001100000001110100010100110000","10001100000010011101111100100010","10001100000011000111100100010100","10001100000011110001001100000111","10001100000100011010110011111001","10001100000101000100011011101011","10001100000101101110000011011101","10001100000110010111101011001111","10001100000111000001010011000001","10001100000111101010111010110011","10001100001000010100100010100110","10001100001000111110001010011000","10001100001001100111110010001010","10001100001010010001011001111100","10001100001010111011000001101110","10001100001011100100101001100000","10001100001100001110010001010010","10001100001100110111111001000101","10001100001101100001100000110111","10001100001110001011001000101001","10001100001110110100110000011011","10001100001111011110011000001101","10001100010000000111111111111111","10001100010000110001100111110001","10001100010001011011001111100100","10001100010010000100110111010110","10001100010010101110011111001000","10001100010011011000000110111010","10001100010100000001101110101100","10001100010100101011010110011110","10001100010101010100111110010000","10001100010101111110100110000011","10001100010110101000001101110101","10001100010111010001110101100111","10001100010111111011011101011001","10001100011000100101000101001011","10001100011001001110101100111101","10001100011001111000010100101111","10001100011010100001111100100010","10001100011011001011100100010100","10001100011011110101001100000110","10001100011100011110110011111000","10001100011101001000011011101010","10001100011101110010000011011100","10001100011110011011101011001111","10001100011111000101010011000001","10001100011111101110111010110011","10001100100000001100010001010010","10001100100000100001000101001100","10001100100000110101111001000101","10001100100001001010101100111110","10001100100001011111100000110111","10001100100001110100010100110000","10001100100010001001001000101001","10001100100010011101111100100010","10001100100010110010110000011011","10001100100011000111100100010100","10001100100011011100011000001101","10001100100011110001001100000110","10001100100100000101111111111111","10001100100100011010110011111000","10001100100100101111100111110010","10001100100101000100011011101011","10001100100101011001001111100100","10001100100101101110000011011101","10001100100110000010110111010110","10001100100110010111101011001111","10001100100110101100011111001000","10001100100111000001010011000001","10001100100111010110000110111010","10001100100111101010111010110011","10001100100111111111101110101100","10001100101000010100100010100101","10001100101000101001010110011110","10001100101000111110001010010111","10001100101001010010111110010001","10001100101001100111110010001010","10001100101001111100100110000011","10001100101010010001011001111100","10001100101010100110001101110101","10001100101010111011000001101110","10001100101011001111110101100111","10001100101011100100101001100000","10001100101011111001011101011001","10001100101100001110010001010010","10001100101100100011000101001011","10001100101100110111111001000100","10001100101101001100101100111101","10001100101101100001100000110110","10001100101101110110010100110000","10001100101110001011001000101001","10001100101110011111111100100010","10001100101110110100110000011011","10001100101111001001100100010100","10001100101111011110011000001101","10001100101111110011001100000110","10001100110000000111111111111111","10001100110000011100110011111000","10001100110000110001100111110001","10001100110001000110011011101010","10001100110001011011001111100011","10001100110001110000000011011100","10001100110010000100110111010110","10001100110010011001101011001111","10001100110010101110011111001000","10001100110011000011010011000001","10001100110011011000000110111010","10001100110011101100111010110011","10001100110100000001101110101100","10001100110100010110100010100101","10001100110100101011010110011110","10001100110101000000001010010111","10001100110101010100111110010000","10001100110101101001110010001001","10001100110101111110100110000010","10001100110110010011011001111011","10001100110110101000001101110101","10001100110110111101000001101110","10001100110111010001110101100111","10001100110111100110101001100000","10001100110111111011011101011001","10001100111000010000010001010010","10001100111000100101000101001011","10001100111000111001111001000100","10001100111001001110101100111101","10001100111001100011100000110110","10001100111001111000010100101111","10001100111010001101001000101000","10001100111010100001111100100001","10001100111010110110110000011011","10001100111011001011100100010100","10001100111011100000011000001101","10001100111011110101001100000110","10001100111100001001111111111111","10001100111100011110110011111000","10001100111100110011100111110001","10001100111101001000011011101010","10001100111101011101001111100011","10001100111101110010000011011100","10001100111110000110110111010101","10001100111110011011101011001110","10001100111110110000011111000111","10001100111111000101010011000000","10001100111111011010000110111010","10001100111111101110111010110011","10001101000000000001110111010110","10001101000000001100010001010010","10001101000000010110101011001111","10001101000000100001000101001011","10001101000000101011011111001000","10001101000000110101111001000101","10001101000001000000010011000001","10001101000001001010101100111110","10001101000001010101000110111010","10001101000001011111100000110111","10001101000001101001111010110011","10001101000001110100010100110000","10001101000001111110101110101100","10001101000010001001001000101001","10001101000010010011100010100101","10001101000010011101111100100010","10001101000010101000010110011110","10001101000010110010110000011011","10001101000010111101001010011000","10001101000011000111100100010100","10001101000011010001111110010001","10001101000011011100011000001101","10001101000011100110110010001010","10001101000011110001001100000110","10001101000011111011100110000011","10001101000100000101111111111111","10001101000100010000011001111100","10001101000100011010110011111000","10001101000100100101001101110101","10001101000100101111100111110001","10001101000100111010000001101110","10001101000101000100011011101010","10001101000101001110110101100111","10001101000101011001001111100100","10001101000101100011101001100000","10001101000101101110000011011101","10001101000101111000011101011001","10001101000110000010110111010110","10001101000110001101010001010010","10001101000110010111101011001111","10001101000110100010000101001011","10001101000110101100011111001000","10001101000110110110111001000100","10001101000111000001010011000001","10001101000111001011101100111101","10001101000111010110000110111010","10001101000111100000100000110111","10001101000111101010111010110011","10001101000111110101010100110000","10001101000111111111101110101100","10001101001000001010001000101001","10001101001000010100100010100101","10001101001000011110111100100010","10001101001000101001010110011110","10001101001000110011110000011011","10001101001000111110001010010111","10001101001001001000100100010100","10001101001001010010111110010000","10001101001001011101011000001101","10001101001001100111110010001010","10001101001001110010001100000110","10001101001001111100100110000011","10001101001010000110111111111111","10001101001010010001011001111100","10001101001010011011110011111000","10001101001010100110001101110101","10001101001010110000100111110001","10001101001010111011000001101110","10001101001011000101011011101010","10001101001011001111110101100111","10001101001011011010001111100011","10001101001011100100101001100000","10001101001011101111000011011100","10001101001011111001011101011001","10001101001100000011110111010110","10001101001100001110010001010010","10001101001100011000101011001111","10001101001100100011000101001011","10001101001100101101011111001000","10001101001100110111111001000100","10001101001101000010010011000001","10001101001101001100101100111101","10001101001101010111000110111010","10001101001101100001100000110110","10001101001101101011111010110011","10001101001101110110010100101111","10001101001110000000101110101100","10001101001110001011001000101001","10001101001110010101100010100101","10001101001110011111111100100010","10001101001110101010010110011110","10001101001110110100110000011011","10001101001110111111001010010111","10001101001111001001100100010100","10001101001111010011111110010000","10001101001111011110011000001101","10001101001111101000110010001001","10001101001111110011001100000110","10001101001111111101100110000010","10001101010000000111111111111111","10001101010000010010011001111100","10001101010000011100110011111000","10001101010000100111001101110101","10001101010000110001100111110001","10001101010000111100000001101110","10001101010001000110011011101010","10001101010001010000110101100111","10001101010001011011001111100011","10001101010001100101101001100000","10001101010001110000000011011100","10001101010001111010011101011001","10001101010010000100110111010101","10001101010010001111010001010010","10001101010010011001101011001110","10001101010010100100000101001011","10001101010010101110011111001000","10001101010010111000111001000100","10001101010011000011010011000001","10001101010011001101101100111101","10001101010011011000000110111010","10001101010011100010100000110110","10001101010011101100111010110011","10001101010011110111010100101111","10001101010100000001101110101100","10001101010100001100001000101000","10001101010100010110100010100101","10001101010100100000111100100001","10001101010100101011010110011110","10001101010100110101110000011011","10001101010101000000001010010111","10001101010101001010100100010100","10001101010101010100111110010000","10001101010101011111011000001101","10001101010101101001110010001001","10001101010101110100001100000110","10001101010101111110100110000010","10001101010110001000111111111111","10001101010110010011011001111011","10001101010110011101110011111000","10001101010110101000001101110100","10001101010110110010100111110001","10001101010110111101000001101110","10001101010111000111011011101010","10001101010111010001110101100111","10001101010111011100001111100011","10001101010111100110101001100000","10001101010111110001000011011100","10001101010111111011011101011001","10001101011000000101110111010101","10001101011000010000010001010010","10001101011000011010101011001110","10001101011000100101000101001011","10001101011000101111011111000111","10001101011000111001111001000100","10001101011001000100010011000000","10001101011001001110101100111101","10001101011001011001000110111010","10001101011001100011100000110110","10001101011001101101111010110011","10001101011001111000010100101111","10001101011010000010101110101100","10001101011010001101001000101000","10001101011010010111100010100101","10001101011010100001111100100001","10001101011010101100010110011110","10001101011010110110110000011010","10001101011011000001001010010111","10001101011011001011100100010011","10001101011011010101111110010000","10001101011011100000011000001101","10001101011011101010110010001001","10001101011011110101001100000110","10001101011011111111100110000010","10001101011100001001111111111111","10001101011100010100011001111011","10001101011100011110110011111000","10001101011100101001001101110100","10001101011100110011100111110001","10001101011100111110000001101101","10001101011101001000011011101010","10001101011101010010110101100110","10001101011101011101001111100011","10001101011101100111101001100000","10001101011101110010000011011100","10001101011101111100011101011001","10001101011110000110110111010101","10001101011110010001010001010010","10001101011110011011101011001110","10001101011110100110000101001011","10001101011110110000011111000111","10001101011110111010111001000100","10001101011111000101010011000000","10001101011111001111101100111101","10001101011111011010000110111001","10001101011111100100100000110110","10001101011111101110111010110011","10001101011111111001010100101111","10001101100000000001110111010110","10001101100000000111000100010100","10001101100000001100010001010010","10001101100000010001011110010001","10001101100000010110101011001111","10001101100000011011111000001101","10001101100000100001000101001011","10001101100000100110010010001010","10001101100000101011011111001000","10001101100000110000101100000110","10001101100000110101111001000100","10001101100000111011000110000011","10001101100001000000010011000001","10001101100001000101011111111111","10001101100001001010101100111110","10001101100001001111111001111100","10001101100001010101000110111010","10001101100001011010010011111000","10001101100001011111100000110111","10001101100001100100101101110101","10001101100001101001111010110011","10001101100001101111000111110001","10001101100001110100010100110000","10001101100001111001100001101110","10001101100001111110101110101100","10001101100010000011111011101010","10001101100010001001001000101001","10001101100010001110010101100111","10001101100010010011100010100101","10001101100010011000101111100100","10001101100010011101111100100010","10001101100010100011001001100000","10001101100010101000010110011110","10001101100010101101100011011101","10001101100010110010110000011011","10001101100010110111111101011001","10001101100010111101001010010111","10001101100011000010010111010110","10001101100011000111100100010100","10001101100011001100110001010010","10001101100011010001111110010001","10001101100011010111001011001111","10001101100011011100011000001101","10001101100011100001100101001011","10001101100011100110110010001010","10001101100011101011111111001000","10001101100011110001001100000110","10001101100011110110011001000100","10001101100011111011100110000011","10001101100100000000110011000001","10001101100100000101111111111111","10001101100100001011001100111101","10001101100100010000011001111100","10001101100100010101100110111010","10001101100100011010110011111000","10001101100100100000000000110111","10001101100100100101001101110101","10001101100100101010011010110011","10001101100100101111100111110001","10001101100100110100110100110000","10001101100100111010000001101110","10001101100100111111001110101100","10001101100101000100011011101010","10001101100101001001101000101001","10001101100101001110110101100111","10001101100101010100000010100101","10001101100101011001001111100100","10001101100101011110011100100010","10001101100101100011101001100000","10001101100101101000110110011110","10001101100101101110000011011101","10001101100101110011010000011011","10001101100101111000011101011001","10001101100101111101101010010111","10001101100110000010110111010110","10001101100110001000000100010100","10001101100110001101010001010010","10001101100110010010011110010000","10001101100110010111101011001111","10001101100110011100111000001101","10001101100110100010000101001011","10001101100110100111010010001010","10001101100110101100011111001000","10001101100110110001101100000110","10001101100110110110111001000100","10001101100110111100000110000011","10001101100111000001010011000001","10001101100111000110011111111111","10001101100111001011101100111101","10001101100111010000111001111100","10001101100111010110000110111010","10001101100111011011010011111000","10001101100111100000100000110110","10001101100111100101101101110101","10001101100111101010111010110011","10001101100111110000000111110001","10001101100111110101010100110000","10001101100111111010100001101110","10001101100111111111101110101100","10001101101000000100111011101010","10001101101000001010001000101001","10001101101000001111010101100111","10001101101000010100100010100101","10001101101000011001101111100011","10001101101000011110111100100010","10001101101000100100001001100000"],"x":[-5.0e-39,-2.0040130060120242e-33,-4.008021012024049e-33,-6.012029018036073e-33,-8.016037024048097e-33,-1.0020045030060122e-32,-1.2024053036072146e-32,-1.4028061042084168e-32,-1.6032069048096196e-32,-1.803607705410822e-32,-2.0040085060120242e-32,-2.2044093066132267e-32,-2.4048101072144292e-32,-2.605210907815631e-32,-2.805611708416834e-32,-3.006012509018036e-32,-3.206413309619239e-32,-3.4068141102204415e-32,-3.6072149108216437e-32,-3.8076157114228464e-32,-4.0080165120240486e-32,-4.208417312625251e-32,-4.4088181132264536e-32,-4.609218913827656e-32,-4.8096197144288585e-32,-5.01002051503006e-32,-5.210421315631263e-32,-5.410822116232465e-32,-5.611222916833668e-32,-5.81162371743487e-32,-6.012024518036073e-32,-6.212425318637274e-32,-6.412826119238477e-32,-6.613226919839681e-32,-6.813627720440883e-32,-7.014028521042085e-32,-7.214429321643287e-32,-7.41483012224449e-32,-7.615230922845691e-32,-7.815631723446895e-32,-8.016032524048097e-32,-8.2164333246493e-32,-8.416834125250501e-32,-8.617234925851704e-32,-8.817635726452907e-32,-9.01803652705411e-32,-9.218437327655311e-32,-9.418838128256514e-32,-9.619238928857716e-32,-9.819639729458919e-32,-1.0020040530060122e-31,-1.0220441330661325e-31,-1.0420842131262525e-31,-1.0621242931863726e-31,-1.082164373246493e-31,-1.1022044533066134e-31,-1.1222445333667334e-31,-1.1422846134268537e-31,-1.1623246934869742e-31,-1.1823647735470945e-31,-1.2024048536072145e-31,-1.2224449336673346e-31,-1.242485013727455e-31,-1.2625250937875753e-31,-1.2825651738476954e-31,-1.3026052539078157e-31,-1.322645333967936e-31,-1.3426854140280564e-31,-1.3627254940881765e-31,-1.3827655741482968e-31,-1.402805654208417e-31,-1.4228457342685373e-31,-1.4428858143286574e-31,-1.4629258943887776e-31,-1.482965974448898e-31,-1.5030060545090182e-31,-1.5230461345691382e-31,-1.5430862146292585e-31,-1.563126294689379e-31,-1.5831663747494993e-31,-1.6032064548096193e-31,-1.6232465348697396e-31,-1.6432866149298599e-31,-1.6633266949899802e-31,-1.6833667750501002e-31,-1.7034068551102205e-31,-1.7234469351703408e-31,-1.743487015230461e-31,-1.7635270952905813e-31,-1.7835671753507016e-31,-1.8036072554108219e-31,-1.8236473354709421e-31,-1.8436874155310622e-31,-1.8637274955911825e-31,-1.8837675756513027e-31,-1.903807655711423e-31,-1.9238477357715433e-31,-1.9438878158316633e-31,-1.9639278958917836e-31,-1.9839679759519043e-31,-2.004008056012024e-31,-2.0240481360721444e-31,-2.0440882161322647e-31,-2.064128296192385e-31,-2.0841683762525053e-31,-2.104208456312625e-31,-2.124248536372746e-31,-2.144288616432866e-31,-2.1643286964929864e-31,-2.184368776553106e-31,-2.204408856613227e-31,-2.2244489366733467e-31,-2.244489016733467e-31,-2.264529096793587e-31,-2.2845691768537076e-31,-2.3046092569138283e-31,-2.324649336973948e-31,-2.3446894170340684e-31,-2.3647294970941887e-31,-2.384769577154309e-31,-2.4048096572144288e-31,-2.424849737274549e-31,-2.4448898173346693e-31,-2.46492989739479e-31,-2.48496997745491e-31,-2.50501005751503e-31,-2.525050137575151e-31,-2.5450902176352707e-31,-2.565130297695391e-31,-2.5851703777555112e-31,-2.6052104578156315e-31,-2.625250537875752e-31,-2.645290617935872e-31,-2.665330697995992e-31,-2.6853707780561126e-31,-2.705410858116233e-31,-2.7254509381763527e-31,-2.7454910182364734e-31,-2.7655310982965933e-31,-2.785571178356714e-31,-2.805611258416834e-31,-2.825651338476954e-31,-2.8456914185370744e-31,-2.8657314985971946e-31,-2.8857715786573145e-31,-2.905811658717435e-31,-2.9258517387775555e-31,-2.9458918188376757e-31,-2.965931898897796e-31,-2.985971978957916e-31,-3.0060120590180366e-31,-3.0260521390781564e-31,-3.0460922191382767e-31,-3.066132299198397e-31,-3.086172379258517e-31,-3.1062124593186375e-31,-3.1262525393787578e-31,-3.146292619438878e-31,-3.1663326994989983e-31,-3.1863727795591186e-31,-3.206412859619239e-31,-3.226452939679359e-31,-3.246493019739479e-31,-3.2665330997995997e-31,-3.2865731798597195e-31,-3.30661325991984e-31,-3.3266533399799605e-31,-3.3466934200400803e-31,-3.366733500100201e-31,-3.386773580160321e-31,-3.406813660220441e-31,-3.4268537402805614e-31,-3.4468938203406817e-31,-3.4669339004008015e-31,-3.4869739804609223e-31,-3.507014060521042e-31,-3.527054140581163e-31,-3.547094220641283e-31,-3.567134300701403e-31,-3.5871743807615236e-31,-3.6072144608216435e-31,-3.6272545408817637e-31,-3.647294620941884e-31,-3.6673347010020043e-31,-3.6873747810621246e-31,-3.707414861122245e-31,-3.7274549411823647e-31,-3.7474950212424854e-31,-3.7675351013026057e-31,-3.7875751813627255e-31,-3.807615261422846e-31,-3.8276553414829665e-31,-3.8476954215430868e-31,-3.8677355016032066e-31,-3.887775581663327e-31,-3.907815661723447e-31,-3.9278557417835674e-31,-3.947895821843688e-31,-3.967935901903808e-31,-3.987975981963928e-31,-4.008016062024048e-31,-4.028056142084169e-31,-4.048096222144289e-31,-4.068136302204409e-31,-4.08817638226453e-31,-4.108216462324649e-31,-4.128256542384771e-31,-4.1482966224448896e-31,-4.16833670250501e-31,-4.188376782565131e-31,-4.208416862625251e-31,-4.2284569426853715e-31,-4.2484970227454905e-31,-4.268537102805612e-31,-4.288577182865732e-31,-4.308617262925852e-31,-4.328657342985972e-31,-4.348697423046093e-31,-4.368737503106212e-31,-4.388777583166333e-31,-4.408817663226454e-31,-4.428857743286573e-31,-4.448897823346694e-31,-4.468937903406813e-31,-4.488977983466935e-31,-4.5090180635270545e-31,-4.529058143587174e-31,-4.549098223647295e-31,-4.569138303707415e-31,-4.589178383767536e-31,-4.609218463827655e-31,-4.629258543887776e-31,-4.649298623947896e-31,-4.669338704008017e-31,-4.6893787840681365e-31,-4.709418864128257e-31,-4.729458944188378e-31,-4.749499024248497e-31,-4.769539104308618e-31,-4.7895791843687374e-31,-4.809619264428858e-31,-4.829659344488978e-31,-4.849699424549099e-31,-4.869739504609219e-31,-4.889779584669338e-31,-4.909819664729459e-31,-4.92985974478958e-31,-4.9498998248497e-31,-4.9699399049098195e-31,-4.98997998496994e-31,-5.010020065030061e-31,-5.030060145090181e-31,-5.0501002251503014e-31,-5.070140305210421e-31,-5.090180385270542e-31,-5.110220465330661e-31,-5.130260545390782e-31,-5.150300625450903e-31,-5.170340705511022e-31,-5.190380785571143e-31,-5.210420865631263e-31,-5.2304609456913835e-31,-5.250501025751503e-31,-5.270541105811623e-31,-5.290581185871744e-31,-5.310621265931865e-31,-5.330661345991984e-31,-5.350701426052104e-31,-5.370741506112226e-31,-5.390781586172345e-31,-5.4108216662324655e-31,-5.430861746292585e-31,-5.450901826352706e-31,-5.470941906412827e-31,-5.490981986472946e-31,-5.511022066533067e-31,-5.531062146593186e-31,-5.551102226653307e-31,-5.571142306713427e-31,-5.5911823867735475e-31,-5.611222466833667e-31,-5.631262546893788e-31,-5.651302626953909e-31,-5.671342707014029e-31,-5.691382787074149e-31,-5.711422867134268e-31,-5.73146294719439e-31,-5.751503027254509e-31,-5.77154310731463e-31,-5.79158318737475e-31,-5.81162326743487e-31,-5.831663347494991e-31,-5.85170342755511e-31,-5.871743507615231e-31,-5.891783587675351e-31,-5.911823667735471e-31,-5.931863747795592e-31,-5.9519038278557125e-31,-5.971943907915832e-31,-5.991983987975952e-31,-6.012024068036073e-31,-6.032064148096193e-31,-6.052104228156313e-31,-6.072144308216432e-31,-6.092184388276554e-31,-6.112224468336675e-31,-6.132264548396794e-31,-6.152304628456914e-31,-6.172344708517034e-31,-6.192384788577155e-31,-6.212424868637275e-31,-6.2324649486973946e-31,-6.252505028757516e-31,-6.272545108817636e-31,-6.292585188877756e-31,-6.3126252689378765e-31,-6.332665348997997e-31,-6.352705429058116e-31,-6.372745509118237e-31,-6.392785589178358e-31,-6.4128256692384775e-31,-6.432865749298598e-31,-6.452905829358718e-31,-6.472945909418839e-31,-6.492985989478958e-31,-6.513026069539078e-31,-6.533066149599199e-31,-6.553106229659319e-31,-6.57314630971944e-31,-6.5931863897795595e-31,-6.61322646983968e-31,-6.6332665498998e-31,-6.653306629959921e-31,-6.673346710020041e-31,-6.693386790080161e-31,-6.713426870140281e-31,-6.733466950200401e-31,-6.7535070302605226e-31,-6.7735471103206415e-31,-6.793587190380762e-31,-6.813627270440881e-31,-6.833667350501003e-31,-6.8537074305611235e-31,-6.8737475106212425e-31,-6.893787590681364e-31,-6.913827670741484e-31,-6.933867750801604e-31,-6.9539078308617235e-31,-6.973947910921845e-31,-6.993987990981964e-31,-7.014028071042085e-31,-7.034068151102205e-31,-7.054108231162325e-31,-7.074148311222446e-31,-7.094188391282565e-31,-7.114228471342687e-31,-7.134268551402806e-31,-7.154308631462926e-31,-7.174348711523047e-31,-7.194388791583167e-31,-7.2144288716432875e-31,-7.234468951703407e-31,-7.254509031763527e-31,-7.274549111823648e-31,-7.294589191883769e-31,-7.314629271943888e-31,-7.334669352004009e-31,-7.354709432064129e-31,-7.374749512124249e-31,-7.39478959218437e-31,-7.414829672244489e-31,-7.43486975230461e-31,-7.454909832364729e-31,-7.47494991242485e-31,-7.494989992484971e-31,-7.51503007254509e-31,-7.535070152605211e-31,-7.555110232665332e-31,-7.575150312725452e-31,-7.5951903927855714e-31,-7.615230472845692e-31,-7.635270552905813e-31,-7.655310632965933e-31,-7.6753507130260525e-31,-7.695390793086172e-31,-7.715430873146294e-31,-7.735470953206413e-31,-7.755511033266534e-31,-7.7755511133266535e-31,-7.795591193386774e-31,-7.815631273446895e-31,-7.835671353507014e-31,-7.8557114335671354e-31,-7.875751513627255e-31,-7.895791593687375e-31,-7.915831673747496e-31,-7.935871753807617e-31,-7.955911833867736e-31,-7.975951913927856e-31,-7.995991993987977e-31,-8.016032074048098e-31,-8.036072154108217e-31,-8.056112234168337e-31,-8.076152314228458e-31,-8.096192394288577e-31,-8.1162324743487e-31,-8.136272554408818e-31,-8.156312634468937e-31,-8.17635271452906e-31,-8.19639279458918e-31,-8.2164328746493e-31,-8.236472954709418e-31,-8.256513034769541e-31,-8.27655311482966e-31,-8.296593194889779e-31,-8.3166332749499e-31,-8.336673355010022e-31,-8.356713435070141e-31,-8.376753515130262e-31,-8.39679359519038e-31,-8.416833675250501e-31,-8.436873755310622e-31,-8.456913835370741e-31,-8.476953915430864e-31,-8.496993995490982e-31,-8.517034075551103e-31,-8.537074155611222e-31,-8.557114235671343e-31,-8.577154315731464e-31,-8.597194395791583e-31,-8.617234475851705e-31,-8.637274555911826e-31,-8.657314635971945e-31,-8.677354716032064e-31,-8.697394796092186e-31,-8.717434876152305e-31,-8.737474956212424e-31,-8.757515036272548e-31,-8.777555116332667e-31,-8.797595196392786e-31,-8.817635276452907e-31,-8.837675356513028e-31,-8.857715436573147e-31,-8.877755516633265e-31,-8.897795596693388e-31,-8.917835676753509e-31,-8.937875756813628e-31,-8.957915836873748e-31,-8.977955916933869e-31,-8.997995996993988e-31,-9.018036077054109e-31,-9.03807615711423e-31,-9.05811623717435e-31,-9.07815631723447e-31,-9.09819639729459e-31,-9.11823647735471e-31,-9.13827655741483e-31,-9.15831663747495e-31,-9.17835671753507e-31,-9.198396797595192e-31,-9.218436877655312e-31,-9.238476957715431e-31,-9.258517037775552e-31,-9.278557117835673e-31,-9.298597197895792e-31,-9.31863727795591e-31,-9.338677358016033e-31,-9.358717438076154e-31,-9.378757518136273e-31,-9.398797598196395e-31,-9.418837678256514e-31,-9.438877758316633e-31,-9.458917838376754e-31,-9.478957918436875e-31,-9.498997998496995e-31,-9.519038078557114e-31,-9.539078158617237e-31,-9.559118238677356e-31,-9.579158318737475e-31,-9.599198398797595e-31,-9.619238478857716e-31,-9.639278558917837e-31,-9.659318638977957e-31,-9.679358719038078e-31,-9.699398799098197e-31,-9.719438879158318e-31,-9.739478959218437e-31,-9.759519039278558e-31,-9.779559119338677e-31,-9.799599199398799e-31,-9.81963927945892e-31,-9.839679359519039e-31,-9.85971943957916e-31,-9.879759519639278e-31,-9.899799599699399e-31,-9.91983967975952e-31,-9.93987975981964e-31,-9.95991983987976e-31,-9.979959919939882e-31,-1.0e-30]}
+
 },{}],85:[function(require,module,exports){
-module.exports={"expected":["00000000000000000000000000000000","00111011000000110101010110101101","00111011100000110101010110101101","00111011110001010000000010000011","00111100000000110101010110101101","00111100001001000010101100011000","00111100010001010000000010000011","00111100011001011101010111101111","00111100100000110101010110101101","00111100100100111100000001100011","00111100101001000010101100011000","00111100101101001001010111001110","00111100110001010000000010000011","00111100110101010110101100111001","00111100111001011101010111101111","00111100111101100100000010100100","00111101000000110101010110101101","00111101000010111000101100001000","00111101000100111100000001100011","00111101000110111111010110111101","00111101001001000010101100011000","00111101001011000110000001110011","00111101001101001001010111001110","00111101001111001100101100101001","00111101010001010000000010000011","00111101010011010011010111011110","00111101010101010110101100111001","00111101010111011010000010010100","00111101011001011101010111101111","00111101011011100000101101001001","00111101011101100100000010100100","00111101011111100111010111111111","00111101100000110101010110101101","00111101100001110111000001011010","00111101100010111000101100001000","00111101100011111010010110110101","00111101100100111100000001100011","00111101100101111101101100010000","00111101100110111111010110111101","00111101101000000001000001101011","00111101101001000010101100011000","00111101101010000100010111000110","00111101101011000110000001110011","00111101101100000111101100100000","00111101101101001001010111001110","00111101101110001011000001111011","00111101101111001100101100101001","00111101110000001110010111010110","00111101110001010000000010000011","00111101110010010001101100110001","00111101110011010011010111011110","00111101110100010101000010001100","00111101110101010110101100111001","00111101110110011000010111100110","00111101110111011010000010010100","00111101111000011011101101000001","00111101111001011101010111101111","00111101111010011111000010011100","00111101111011100000101101001001","00111101111100100010010111110111","00111101111101100100000010100100","00111101111110100101101101010010","00111101111111100111010111111111","00111110000000010100100001010110","00111110000000110101010110101101","00111110000001010110001100000100","00111110000001110111000001011010","00111110000010010111110110110001","00111110000010111000101100001000","00111110000011011001100001011110","00111110000011111010010110110101","00111110000100011011001100001100","00111110000100111100000001100011","00111110000101011100110110111001","00111110000101111101101100010000","00111110000110011110100001100111","00111110000110111111010110111101","00111110000111100000001100010100","00111110001000000001000001101011","00111110001000100001110111000001","00111110001001000010101100011000","00111110001001100011100001101111","00111110001010000100010111000110","00111110001010100101001100011100","00111110001011000110000001110011","00111110001011100110110111001010","00111110001100000111101100100000","00111110001100101000100001110111","00111110001101001001010111001110","00111110001101101010001100100100","00111110001110001011000001111011","00111110001110101011110111010010","00111110001111001100101100101001","00111110001111101101100001111111","00111110010000001110010111010110","00111110010000101111001100101101","00111110010001010000000010000011","00111110010001110000110111011010","00111110010010010001101100110001","00111110010010110010100010000111","00111110010011010011010111011110","00111110010011110100001100110101","00111110010100010101000010001100","00111110010100110101110111100010","00111110010101010110101100111001","00111110010101110111100010010000","00111110010110011000010111100110","00111110010110111001001100111101","00111110010111011010000010010100","00111110010111111010110111101010","00111110011000011011101101000001","00111110011000111100100010011000","00111110011001011101010111101111","00111110011001111110001101000101","00111110011010011111000010011100","00111110011010111111110111110011","00111110011011100000101101001001","00111110011100000001100010100000","00111110011100100010010111110111","00111110011101000011001101001101","00111110011101100100000010100100","00111110011110000100110111111011","00111110011110100101101101010010","00111110011111000110100010101000","00111110011111100111010111111111","00111110100000000100000110101011","00111110100000010100100001010110","00111110100000100100111100000010","00111110100000110101010110101101","00111110100001000101110001011000","00111110100001010110001100000100","00111110100001100110100110101111","00111110100001110111000001011010","00111110100010000111011100000110","00111110100010010111110110110001","00111110100010101000010001011100","00111110100010111000101100001000","00111110100011001001000110110011","00111110100011011001100001011110","00111110100011101001111100001010","00111110100011111010010110110101","00111110100100001010110001100000","00111110100100011011001100001100","00111110100100101011100110110111","00111110100100111100000001100011","00111110100101001100011100001110","00111110100101011100110110111001","00111110100101101101010001100101","00111110100101111101101100010000","00111110100110001110000110111011","00111110100110011110100001100111","00111110100110101110111100010010","00111110100110111111010110111101","00111110100111001111110001101001","00111110100111100000001100010100","00111110100111110000100110111111","00111110101000000001000001101011","00111110101000010001011100010110","00111110101000100001110111000001","00111110101000110010010001101101","00111110101001000010101100011000","00111110101001010011000111000011","00111110101001100011100001101111","00111110101001110011111100011010","00111110101010000100010111000110","00111110101010010100110001110001","00111110101010100101001100011100","00111110101010110101100111001000","00111110101011000110000001110011","00111110101011010110011100011110","00111110101011100110110111001010","00111110101011110111010001110101","00111110101100000111101100100000","00111110101100011000000111001100","00111110101100101000100001110111","00111110101100111000111100100010","00111110101101001001010111001110","00111110101101011001110001111001","00111110101101101010001100100100","00111110101101111010100111010000","00111110101110001011000001111011","00111110101110011011011100100110","00111110101110101011110111010010","00111110101110111100010001111101","00111110101111001100101100101001","00111110101111011101000111010100","00111110101111101101100001111111","00111110101111111101111100101011","00111110110000001110010111010110","00111110110000011110110010000001","00111110110000101111001100101101","00111110110000111111100111011000","00111110110001010000000010000011","00111110110001100000011100101111","00111110110001110000110111011010","00111110110010000001010010000101","00111110110010010001101100110001","00111110110010100010000111011100","00111110110010110010100010000111","00111110110011000010111100110011","00111110110011010011010111011110","00111110110011100011110010001001","00111110110011110100001100110101","00111110110100000100100111100000","00111110110100010101000010001100","00111110110100100101011100110111","00111110110100110101110111100010","00111110110101000110010010001110","00111110110101010110101100111001","00111110110101100111000111100100","00111110110101110111100010010000","00111110110110000111111100111011","00111110110110011000010111100110","00111110110110101000110010010010","00111110110110111001001100111101","00111110110111001001100111101000","00111110110111011010000010010100","00111110110111101010011100111111","00111110110111111010110111101010","00111110111000001011010010010110","00111110111000011011101101000001","00111110111000101100000111101101","00111110111000111100100010011000","00111110111001001100111101000011","00111110111001011101010111101111","00111110111001101101110010011010","00111110111001111110001101000101","00111110111010001110100111110001","00111110111010011111000010011100","00111110111010101111011101000111","00111110111010111111110111110011","00111110111011010000010010011110","00111110111011100000101101001001","00111110111011110001000111110101","00111110111100000001100010100000","00111110111100010001111101001011","00111110111100100010010111110111","00111110111100110010110010100010","00111110111101000011001101001101","00111110111101010011100111111001","00111110111101100100000010100100","00111110111101110100011101010000","00111110111110000100110111111011","00111110111110010101010010100110","00111110111110100101101101010010","00111110111110110110000111111101","00111110111111000110100010101000","00111110111111010110111101010100","00111110111111100111010111111111","00111110111111110111110010101010","00111111000000000100000110101011","00111111000000001100010100000001","00111111000000010100100001010110","00111111000000011100101110101100","00111111000000100100111100000010","00111111000000101101001001010111","00111111000000110101010110101101","00111111000000111101100100000011","00111111000001000101110001011000","00111111000001001101111110101110","00111111000001010110001100000100","00111111000001011110011001011001","00111111000001100110100110101111","00111111000001101110110100000101","00111111000001110111000001011010","00111111000001111111001110110000","00111111000010000111011100000110","00111111000010001111101001011011","00111111000010010111110110110001","00111111000010100000000100000111","00111111000010101000010001011100","00111111000010110000011110110010","00111111000010111000101100001000","00111111000011000000111001011101","00111111000011001001000110110011","00111111000011010001010100001001","00111111000011011001100001011110","00111111000011100001101110110100","00111111000011101001111100001010","00111111000011110010001001011111","00111111000011111010010110110101","00111111000100000010100100001011","00111111000100001010110001100000","00111111000100010010111110110110","00111111000100011011001100001100","00111111000100100011011001100001","00111111000100101011100110110111","00111111000100110011110100001101","00111111000100111100000001100011","00111111000101000100001110111000","00111111000101001100011100001110","00111111000101010100101001100100","00111111000101011100110110111001","00111111000101100101000100001111","00111111000101101101010001100101","00111111000101110101011110111010","00111111000101111101101100010000","00111111000110000101111001100110","00111111000110001110000110111011","00111111000110010110010100010001","00111111000110011110100001100111","00111111000110100110101110111100","00111111000110101110111100010010","00111111000110110111001001101000","00111111000110111111010110111101","00111111000111000111100100010011","00111111000111001111110001101001","00111111000111010111111110111110","00111111000111100000001100010100","00111111000111101000011001101010","00111111000111110000100110111111","00111111000111111000110100010101","00111111001000000001000001101011","00111111001000001001001111000000","00111111001000010001011100010110","00111111001000011001101001101100","00111111001000100001110111000001","00111111001000101010000100010111","00111111001000110010010001101101","00111111001000111010011111000010","00111111001001000010101100011000","00111111001001001010111001101110","00111111001001010011000111000011","00111111001001011011010100011001","00111111001001100011100001101111","00111111001001101011101111000100","00111111001001110011111100011010","00111111001001111100001001110000","00111111001010000100010111000110","00111111001010001100100100011011","00111111001010010100110001110001","00111111001010011100111111000111","00111111001010100101001100011100","00111111001010101101011001110010","00111111001010110101100111001000","00111111001010111101110100011101","00111111001011000110000001110011","00111111001011001110001111001001","00111111001011010110011100011110","00111111001011011110101001110100","00111111001011100110110111001010","00111111001011101111000100011111","00111111001011110111010001110101","00111111001011111111011111001011","00111111001100000111101100100000","00111111001100001111111001110110","00111111001100011000000111001100","00111111001100100000010100100001","00111111001100101000100001110111","00111111001100110000101111001101","00111111001100111000111100100010","00111111001101000001001001111000","00111111001101001001010111001110","00111111001101010001100100100011","00111111001101011001110001111001","00111111001101100001111111001111","00111111001101101010001100100100","00111111001101110010011001111010","00111111001101111010100111010000","00111111001110000010110100100101","00111111001110001011000001111011","00111111001110010011001111010001","00111111001110011011011100100110","00111111001110100011101001111100","00111111001110101011110111010010","00111111001110110100000100101000","00111111001110111100010001111101","00111111001111000100011111010011","00111111001111001100101100101001","00111111001111010100111001111110","00111111001111011101000111010100","00111111001111100101010100101010","00111111001111101101100001111111","00111111001111110101101111010101","00111111001111111101111100101011","00111111010000000110001010000000","00111111010000001110010111010110","00111111010000010110100100101100","00111111010000011110110010000001","00111111010000100110111111010111","00111111010000101111001100101101","00111111010000110111011010000010","00111111010000111111100111011000","00111111010001000111110100101110","00111111010001010000000010000011","00111111010001011000001111011001","00111111010001100000011100101111","00111111010001101000101010000100","00111111010001110000110111011010","00111111010001111001000100110000","00111111010010000001010010000101","00111111010010001001011111011011","00111111010010010001101100110001","00111111010010011001111010000110","00111111010010100010000111011100","00111111010010101010010100110010","00111111010010110010100010000111","00111111010010111010101111011101","00111111010011000010111100110011","00111111010011001011001010001000","00111111010011010011010111011110","00111111010011011011100100110100","00111111010011100011110010001001","00111111010011101011111111011111","00111111010011110100001100110101","00111111010011111100011010001011","00111111010100000100100111100000","00111111010100001100110100110110","00111111010100010101000010001100","00111111010100011101001111100001","00111111010100100101011100110111","00111111010100101101101010001101","00111111010100110101110111100010","00111111010100111110000100111000","00111111010101000110010010001110","00111111010101001110011111100011","00111111010101010110101100111001","00111111010101011110111010001111","00111111010101100111000111100100","00111111010101101111010100111010","00111111010101110111100010010000","00111111010101111111101111100101","00111111010110000111111100111011","00111111010110010000001010010001","00111111010110011000010111100110","00111111010110100000100100111100","00111111010110101000110010010010","00111111010110110000111111100111","00111111010110111001001100111101","00111111010111000001011010010011","00111111010111001001100111101000","00111111010111010001110100111110","00111111010111011010000010010100","00111111010111100010001111101001","00111111010111101010011100111111","00111111010111110010101010010101","00111111010111111010110111101010","00111111011000000011000101000000","00111111011000001011010010010110","00111111011000010011011111101011","00111111011000011011101101000001","00111111011000100011111010010111","00111111011000101100000111101101","00111111011000110100010101000010","00111111011000111100100010011000","00111111011001000100101111101110","00111111011001001100111101000011","00111111011001010101001010011001","00111111011001011101010111101111","00111111011001100101100101000100","00111111011001101101110010011010","00111111011001110101111111110000","00111111011001111110001101000101","00111111011010000110011010011011","00111111011010001110100111110001","00111111011010010110110101000110","00111111011010011111000010011100","00111111011010100111001111110010","00111111011010101111011101000111","00111111011010110111101010011101","00111111011010111111110111110011","00111111011011001000000101001000","00111111011011010000010010011110","00111111011011011000011111110100","00111111011011100000101101001001","00111111011011101000111010011111","00111111011011110001000111110101","00111111011011111001010101001010","00111111011100000001100010100000","00111111011100001001101111110110","00111111011100010001111101001011","00111111011100011010001010100001","00111111011100100010010111110111","00111111011100101010100101001100","00111111011100110010110010100010","00111111011100111010111111111000","00111111011101000011001101001101","00111111011101001011011010100011","00111111011101010011100111111001","00111111011101011011110101001110","00111111011101100100000010100100","00111111011101101100001111111010","00111111011101110100011101010000","00111111011101111100101010100101","00111111011110000100110111111011","00111111011110001101000101010001","00111111011110010101010010100110","00111111011110011101011111111100","00111111011110100101101101010010","00111111011110101101111010100111","00111111011110110110000111111101","00111111011110111110010101010011","00111111011111000110100010101000","00111111011111001110101111111110","00111111011111010110111101010100","00111111011111011111001010101001","00111111011111100111010111111111","00111111011111101111100101010101","00111111011111110111110010101010","00111111100000000000000000000000"],"x":[0.0,0.002004008016032064,0.004008016032064128,0.006012024048096192,0.008016032064128256,0.01002004008016032,0.012024048096192385,0.014028056112224449,0.01603206412825651,0.018036072144288578,0.02004008016032064,0.022044088176352707,0.02404809619238477,0.026052104208416832,0.028056112224448898,0.03006012024048096,0.03206412825651302,0.03406813627254509,0.036072144288577156,0.03807615230460922,0.04008016032064128,0.04208416833667335,0.04408817635270541,0.04609218436873747,0.04809619238476954,0.050100200400801605,0.052104208416833664,0.05410821643286573,0.056112224448897796,0.05811623246492986,0.06012024048096192,0.06212424849699399,0.06412825651302605,0.06613226452905811,0.06813627254509018,0.07014028056112225,0.07214428857715431,0.07414829659318638,0.07615230460921844,0.0781563126252505,0.08016032064128256,0.08216432865731463,0.0841683366733467,0.08617234468937876,0.08817635270541083,0.09018036072144289,0.09218436873747494,0.09418837675350701,0.09619238476953908,0.09819639278557114,0.10020040080160321,0.10220440881763528,0.10420841683366733,0.1062124248496994,0.10821643286573146,0.11022044088176353,0.11222444889779559,0.11422845691382766,0.11623246492985972,0.11823647294589178,0.12024048096192384,0.12224448897795591,0.12424849699398798,0.12625250501002003,0.1282565130260521,0.13026052104208416,0.13226452905811623,0.1342685370741483,0.13627254509018036,0.13827655310621242,0.1402805611222445,0.14228456913827656,0.14428857715430862,0.1462925851703407,0.14829659318637275,0.15030060120240482,0.1523046092184369,0.15430861723446893,0.156312625250501,0.15831663326653306,0.16032064128256512,0.1623246492985972,0.16432865731462926,0.16633266533066132,0.1683366733466934,0.17034068136272545,0.17234468937875752,0.1743486973947896,0.17635270541082165,0.17835671342685372,0.18036072144288579,0.18236472945891782,0.1843687374749499,0.18637274549098196,0.18837675350701402,0.1903807615230461,0.19238476953907815,0.19438877755511022,0.1963927855711423,0.19839679358717435,0.20040080160320642,0.20240480961923848,0.20440881763527055,0.20641282565130262,0.20841683366733466,0.21042084168336672,0.2124248496993988,0.21442885771543085,0.21643286573146292,0.218436873747495,0.22044088176352705,0.22244488977955912,0.22444889779559118,0.22645290581162325,0.22845691382765532,0.23046092184368738,0.23246492985971945,0.23446893787575152,0.23647294589178355,0.23847695390781562,0.24048096192384769,0.24248496993987975,0.24448897795591182,0.24649298597194388,0.24849699398797595,0.250501002004008,0.25250501002004005,0.2545090180360721,0.2565130260521042,0.25851703406813625,0.2605210420841683,0.2625250501002004,0.26452905811623245,0.2665330661322645,0.2685370741482966,0.27054108216432865,0.2725450901803607,0.2745490981963928,0.27655310621242485,0.2785571142284569,0.280561122244489,0.28256513026052105,0.2845691382765531,0.2865731462925852,0.28857715430861725,0.2905811623246493,0.2925851703406814,0.29458917835671344,0.2965931863727455,0.2985971943887776,0.30060120240480964,0.3026052104208417,0.3046092184368738,0.3066132264529058,0.30861723446893785,0.3106212424849699,0.312625250501002,0.31462925851703405,0.3166332665330661,0.3186372745490982,0.32064128256513025,0.3226452905811623,0.3246492985971944,0.32665330661322645,0.3286573146292585,0.3306613226452906,0.33266533066132264,0.3346693386773547,0.3366733466933868,0.33867735470941884,0.3406813627254509,0.342685370741483,0.34468937875751504,0.3466933867735471,0.3486973947895792,0.35070140280561124,0.3527054108216433,0.35470941883767537,0.35671342685370744,0.3587174348697395,0.36072144288577157,0.3627254509018036,0.36472945891783565,0.3667334669338677,0.3687374749498998,0.37074148296593185,0.3727454909819639,0.374749498997996,0.37675350701402804,0.3787575150300601,0.3807615230460922,0.38276553106212424,0.3847695390781563,0.3867735470941884,0.38877755511022044,0.3907815631262525,0.3927855711422846,0.39478957915831664,0.3967935871743487,0.39879759519038077,0.40080160320641284,0.4028056112224449,0.40480961923847697,0.40681362725450904,0.4088176352705411,0.41082164328657317,0.41282565130260523,0.4148296593186373,0.4168336673346693,0.4188376753507014,0.42084168336673344,0.4228456913827655,0.4248496993987976,0.42685370741482964,0.4288577154308617,0.4308617234468938,0.43286573146292584,0.4348697394789579,0.43687374749499,0.43887775551102204,0.4408817635270541,0.44288577154308617,0.44488977955911824,0.4468937875751503,0.44889779559118237,0.45090180360721444,0.4529058116232465,0.45490981963927857,0.45691382765531063,0.4589178356713427,0.46092184368737477,0.46292585170340683,0.4649298597194389,0.46693386773547096,0.46893787575150303,0.4709418837675351,0.4729458917835671,0.4749498997995992,0.47695390781563124,0.4789579158316633,0.48096192384769537,0.48296593186372744,0.4849699398797595,0.48697394789579157,0.48897795591182364,0.4909819639278557,0.49298597194388777,0.49498997995991983,0.4969939879759519,0.49899799599198397,0.501002004008016,0.503006012024048,0.5050100200400801,0.5070140280561122,0.5090180360721442,0.5110220440881763,0.5130260521042084,0.5150300601202404,0.5170340681362725,0.5190380761523046,0.5210420841683366,0.5230460921843687,0.5250501002004008,0.5270541082164328,0.5290581162324649,0.531062124248497,0.533066132264529,0.5350701402805611,0.5370741482965932,0.5390781563126252,0.5410821643286573,0.5430861723446894,0.5450901803607214,0.5470941883767535,0.5490981963927856,0.5511022044088176,0.5531062124248497,0.5551102204408818,0.5571142284569138,0.5591182364729459,0.561122244488978,0.56312625250501,0.5651302605210421,0.5671342685370742,0.5691382765531062,0.5711422845691383,0.5731462925851704,0.5751503006012024,0.5771543086172345,0.5791583166332666,0.5811623246492986,0.5831663326653307,0.5851703406813628,0.5871743486973948,0.5891783567134269,0.591182364729459,0.593186372745491,0.5951903807615231,0.5971943887775552,0.5991983967935872,0.6012024048096193,0.6032064128256514,0.6052104208416834,0.6072144288577155,0.6092184368737475,0.6112224448897795,0.6132264529058116,0.6152304609218436,0.6172344689378757,0.6192384769539078,0.6212424849699398,0.6232464929859719,0.625250501002004,0.627254509018036,0.6292585170340681,0.6312625250501002,0.6332665330661322,0.6352705410821643,0.6372745490981964,0.6392785571142284,0.6412825651302605,0.6432865731462926,0.6452905811623246,0.6472945891783567,0.6492985971943888,0.6513026052104208,0.6533066132264529,0.655310621242485,0.657314629258517,0.6593186372745491,0.6613226452905812,0.6633266533066132,0.6653306613226453,0.6673346693386774,0.6693386773547094,0.6713426853707415,0.6733466933867736,0.6753507014028056,0.6773547094188377,0.6793587174348698,0.6813627254509018,0.6833667334669339,0.685370741482966,0.687374749498998,0.6893787575150301,0.6913827655310621,0.6933867735470942,0.6953907815631263,0.6973947895791583,0.6993987975951904,0.7014028056112225,0.7034068136272545,0.7054108216432866,0.7074148296593187,0.7094188376753507,0.7114228456913828,0.7134268537074149,0.7154308617234469,0.717434869739479,0.7194388777555111,0.7214428857715431,0.7234468937875751,0.7254509018036072,0.7274549098196392,0.7294589178356713,0.7314629258517034,0.7334669338677354,0.7354709418837675,0.7374749498997996,0.7394789579158316,0.7414829659318637,0.7434869739478958,0.7454909819639278,0.7474949899799599,0.749498997995992,0.751503006012024,0.7535070140280561,0.7555110220440882,0.7575150300601202,0.7595190380761523,0.7615230460921844,0.7635270541082164,0.7655310621242485,0.7675350701402806,0.7695390781563126,0.7715430861723447,0.7735470941883767,0.7755511022044088,0.7775551102204409,0.779559118236473,0.781563126252505,0.7835671342685371,0.7855711422845691,0.7875751503006012,0.7895791583166333,0.7915831663326653,0.7935871743486974,0.7955911823647295,0.7975951903807615,0.7995991983967936,0.8016032064128257,0.8036072144288577,0.8056112224448898,0.8076152304609219,0.8096192384769539,0.811623246492986,0.8136272545090181,0.8156312625250501,0.8176352705410822,0.8196392785571143,0.8216432865731463,0.8236472945891784,0.8256513026052105,0.8276553106212425,0.8296593186372746,0.8316633266533067,0.8336673346693386,0.8356713426853707,0.8376753507014028,0.8396793587174348,0.8416833667334669,0.843687374749499,0.845691382765531,0.8476953907815631,0.8496993987975952,0.8517034068136272,0.8537074148296593,0.8557114228456913,0.8577154308617234,0.8597194388777555,0.8617234468937875,0.8637274549098196,0.8657314629258517,0.8677354709418837,0.8697394789579158,0.8717434869739479,0.87374749498998,0.875751503006012,0.8777555110220441,0.8797595190380761,0.8817635270541082,0.8837675350701403,0.8857715430861723,0.8877755511022044,0.8897795591182365,0.8917835671342685,0.8937875751503006,0.8957915831663327,0.8977955911823647,0.8997995991983968,0.9018036072144289,0.9038076152304609,0.905811623246493,0.9078156312625251,0.9098196392785571,0.9118236472945892,0.9138276553106213,0.9158316633266533,0.9178356713426854,0.9198396793587175,0.9218436873747495,0.9238476953907816,0.9258517034068137,0.9278557114228457,0.9298597194388778,0.9318637274549099,0.9338677354709419,0.935871743486974,0.9378757515030061,0.9398797595190381,0.9418837675350702,0.9438877755511023,0.9458917835671342,0.9478957915831663,0.9498997995991983,0.9519038076152304,0.9539078156312625,0.9559118236472945,0.9579158316633266,0.9599198396793587,0.9619238476953907,0.9639278557114228,0.9659318637274549,0.9679358717434869,0.969939879759519,0.9719438877755511,0.9739478957915831,0.9759519038076152,0.9779559118236473,0.9799599198396793,0.9819639278557114,0.9839679358717435,0.9859719438877755,0.9879759519038076,0.9899799599198397,0.9919839679358717,0.9939879759519038,0.9959919839679359,0.9979959919839679,1.0]}
+module.exports={"expected":["01111011010000001001011111001110","01111011011001101100110110000110","01111011100001101000000110011111","01111011100110011001110001111011","01111011101011001011011101010110","01111011101111111101001000110010","01111011110100101110110100001110","01111011111001100000011111101010","01111011111110010010001011000110","01111100000001100001111011010001","01111100000011111010110000111111","01111100000110010011100110101100","01111100001000101100011100011010","01111100001011000101010010001000","01111100001101011110000111110110","01111100001111110110111101100100","01111100010010001111110011010010","01111100010100101000101001000000","01111100010111000001011110101110","01111100011001011010010100011100","01111100011011110011001010001010","01111100011110001011111111110111","01111100100000010010011010110011","01111100100001011110110101101010","01111100100010101011010000100001","01111100100011110111101011011000","01111100100101000100000110001110","01111100100110010000100001000101","01111100100111011100111011111100","01111100101000101001010110110011","01111100101001110101110001101010","01111100101011000010001100100001","01111100101100001110100111011000","01111100101101011011000010001111","01111100101110100111011101000110","01111100101111110011110111111101","01111100110001000000010010110100","01111100110010001100101101101011","01111100110011011001001000100010","01111100110100100101100011011001","01111100110101110001111110010000","01111100110110111110011001000111","01111100111000001010110011111110","01111100111001010111001110110101","01111100111010100011101001101100","01111100111011110000000100100010","01111100111100111100011111011001","01111100111110001000111010010000","01111100111111010101010101000111","01111101000000010000110111111111","01111101000000110111000101011011","01111101000001011101010010110110","01111101000010000011100000010010","01111101000010101001101101101101","01111101000011001111111011001001","01111101000011110110001000100100","01111101000100011100010101111111","01111101000101000010100011011011","01111101000101101000110000110110","01111101000110001110111110010010","01111101000110110101001011101101","01111101000111011011011001001001","01111101001000000001100110100100","01111101001000100111110100000000","01111101001001001110000001011011","01111101001001110100001110110111","01111101001010011010011100010010","01111101001011000000101001101110","01111101001011100110110111001001","01111101001100001101000100100101","01111101001100110011010010000000","01111101001101011001011111011100","01111101001101111111101100110111","01111101001110100101111010010011","01111101001111001100000111101110","01111101001111110010010101001001","01111101010000011000100010100101","01111101010000111110110000000000","01111101010001100100111101011100","01111101010010001011001010110111","01111101010010110001011000010011","01111101010011010111100101101110","01111101010011111101110011001010","01111101010100100100000000100101","01111101010101001010001110000001","01111101010101110000011011011100","01111101010110010110101000111000","01111101010110111100110110010011","01111101010111100011000011101111","01111101011000001001010001001010","01111101011000101111011110100110","01111101011001010101101100000001","01111101011001111011111001011101","01111101011010100010000110111000","01111101011011001000010100010011","01111101011011101110100001101111","01111101011100010100101111001010","01111101011100111010111100100110","01111101011101100001001010000001","01111101011110000111010111011101","01111101011110101101100100111000","01111101011111010011110010010100","01111101011111111001111111101111","01111101100000010000000110100101","01111101100000100011001101010011","01111101100000110110010100000001","01111101100001001001011010101111","01111101100001011100100001011100","01111101100001101111101000001010","01111101100010000010101110111000","01111101100010010101110101100110","01111101100010101000111100010011","01111101100010111100000011000001","01111101100011001111001001101111","01111101100011100010010000011100","01111101100011110101010111001010","01111101100100001000011101111000","01111101100100011011100100100110","01111101100100101110101011010011","01111101100101000001110010000001","01111101100101010100111000101111","01111101100101100111111111011101","01111101100101111011000110001010","01111101100110001110001100111000","01111101100110100001010011100110","01111101100110110100011010010100","01111101100111000111100001000001","01111101100111011010100111101111","01111101100111101101101110011101","01111101101000000000110101001011","01111101101000010011111011111000","01111101101000100111000010100110","01111101101000111010001001010100","01111101101001001101010000000001","01111101101001100000010110101111","01111101101001110011011101011101","01111101101010000110100100001011","01111101101010011001101010111000","01111101101010101100110001100110","01111101101010111111111000010100","01111101101011010010111111000010","01111101101011100110000101101111","01111101101011111001001100011101","01111101101100001100010011001011","01111101101100011111011001111001","01111101101100110010100000100110","01111101101101000101100111010100","01111101101101011000101110000010","01111101101101101011110100110000","01111101101101111110111011011101","01111101101110010010000010001011","01111101101110100101001000111001","01111101101110111000001111100110","01111101101111001011010110010100","01111101101111011110011101000010","01111101101111110001100011110000","01111101110000000100101010011101","01111101110000010111110001001011","01111101110000101010110111111001","01111101110000111101111110100111","01111101110001010001000101010100","01111101110001100100001100000010","01111101110001110111010010110000","01111101110010001010011001011110","01111101110010011101100000001011","01111101110010110000100110111001","01111101110011000011101101100111","01111101110011010110110100010101","01111101110011101001111011000010","01111101110011111101000001110000","01111101110100010000001000011110","01111101110100100011001111001011","01111101110100110110010101111001","01111101110101001001011100100111","01111101110101011100100011010101","01111101110101101111101010000010","01111101110110000010110000110000","01111101110110010101110111011110","01111101110110101000111110001100","01111101110110111100000100111001","01111101110111001111001011100111","01111101110111100010010010010101","01111101110111110101011001000011","01111101111000001000011111110000","01111101111000011011100110011110","01111101111000101110101101001100","01111101111001000001110011111010","01111101111001010100111010100111","01111101111001101000000001010101","01111101111001111011001000000011","01111101111010001110001110110000","01111101111010100001010101011110","01111101111010110100011100001100","01111101111011000111100010111010","01111101111011011010101001100111","01111101111011101101110000010101","01111101111100000000110111000011","01111101111100010011111101110001","01111101111100100111000100011110","01111101111100111010001011001100","01111101111101001101010001111010","01111101111101100000011000101000","01111101111101110011011111010101","01111101111110000110100110000011","01111101111110011001101100110001","01111101111110101100110011011111","01111101111110111111111010001100","01111101111111010011000000111010","01111101111111100110000111101000","01111101111111111001001110010110","01111110000000000110001010100010","01111110000000001111101101111000","01111110000000011001010001001111","01111110000000100010110100100110","01111110000000101100010111111101","01111110000000110101111011010100","01111110000000111111011110101011","01111110000001001001000010000010","01111110000001010010100101011001","01111110000001011100001000101111","01111110000001100101101100000110","01111110000001101111001111011101","01111110000001111000110010110100","01111110000010000010010110001011","01111110000010001011111001100010","01111110000010010101011100111001","01111110000010011111000000010000","01111110000010101000100011100110","01111110000010110010000110111101","01111110000010111011101010010100","01111110000011000101001101101011","01111110000011001110110001000010","01111110000011011000010100011001","01111110000011100001110111110000","01111110000011101011011011000110","01111110000011110100111110011101","01111110000011111110100001110100","01111110000100001000000101001011","01111110000100010001101000100010","01111110000100011011001011111001","01111110000100100100101111010000","01111110000100101110010010100111","01111110000100110111110101111101","01111110000101000001011001010100","01111110000101001010111100101011","01111110000101010100100000000010","01111110000101011110000011011001","01111110000101100111100110110000","01111110000101110001001010000111","01111110000101111010101101011101","01111110000110000100010000110100","01111110000110001101110100001011","01111110000110010111010111100010","01111110000110100000111010111001","01111110000110101010011110010000","01111110000110110100000001100111","01111110000110111101100100111110","01111110000111000111001000010100","01111110000111010000101011101011","01111110000111011010001111000010","01111110000111100011110010011001","01111110000111101101010101110000","01111110000111110110111001000111","01111110001000000000011100011110","01111110001000001001111111110101","01111110001000010011100011001011","01111110001000011101000110100010","01111110001000100110101001111001","01111110001000110000001101010000","01111110001000111001110000100111","01111110001001000011010011111110","01111110001001001100110111010101","01111110001001010110011010101011","01111110001001011111111110000010","01111110001001101001100001011001","01111110001001110011000100110000","01111110001001111100101000000111","01111110001010000110001011011110","01111110001010001111101110110101","01111110001010011001010010001100","01111110001010100010110101100010","01111110001010101100011000111001","01111110001010110101111100010000","01111110001010111111011111100111","01111110001011001001000010111110","01111110001011010010100110010101","01111110001011011100001001101100","01111110001011100101101101000010","01111110001011101111010000011001","01111110001011111000110011110000","01111110001100000010010111000111","01111110001100001011111010011110","01111110001100010101011101110101","01111110001100011111000001001100","01111110001100101000100100100011","01111110001100110010000111111001","01111110001100111011101011010000","01111110001101000101001110100111","01111110001101001110110001111110","01111110001101011000010101010101","01111110001101100001111000101100","01111110001101101011011100000011","01111110001101110100111111011010","01111110001101111110100010110000","01111110001110001000000110000111","01111110001110010001101001011110","01111110001110011011001100110101","01111110001110100100110000001100","01111110001110101110010011100011","01111110001110110111110110111010","01111110001111000001011010010000","01111110001111001010111101100111","01111110001111010100100000111110","01111110001111011110000100010101","01111110001111100111100111101100","01111110001111110001001011000011","01111110001111111010101110011010","01111110010000000100010001110001","01111110010000001101110101000111","01111110010000010111011000011110","01111110010000100000111011110101","01111110010000101010011111001100","01111110010000110100000010100011","01111110010000111101100101111010","01111110010001000111001001010001","01111110010001010000101100101000","01111110010001011010001111111110","01111110010001100011110011010101","01111110010001101101010110101100","01111110010001110110111010000011","01111110010010000000011101011010","01111110010010001010000000110001","01111110010010010011100100001000","01111110010010011101000111011110","01111110010010100110101010110101","01111110010010110000001110001100","01111110010010111001110001100011","01111110010011000011010100111010","01111110010011001100111000010001","01111110010011010110011011101000","01111110010011011111111110111111","01111110010011101001100010010101","01111110010011110011000101101100","01111110010011111100101001000011","01111110010100000110001100011010","01111110010100001111101111110001","01111110010100011001010011001000","01111110010100100010110110011111","01111110010100101100011001110101","01111110010100110101111101001100","01111110010100111111100000100011","01111110010101001001000011111010","01111110010101010010100111010001","01111110010101011100001010101000","01111110010101100101101101111111","01111110010101101111010001010110","01111110010101111000110100101100","01111110010110000010011000000011","01111110010110001011111011011010","01111110010110010101011110110001","01111110010110011111000010001000","01111110010110101000100101011111","01111110010110110010001000110110","01111110010110111011101100001101","01111110010111000101001111100011","01111110010111001110110010111010","01111110010111011000010110010001","01111110010111100001111001101000","01111110010111101011011100111111","01111110010111110101000000010110","01111110010111111110100011101101","01111110011000001000000111000011","01111110011000010001101010011010","01111110011000011011001101110001","01111110011000100100110001001000","01111110011000101110010100011111","01111110011000110111110111110110","01111110011001000001011011001101","01111110011001001010111110100100","01111110011001010100100001111010","01111110011001011110000101010001","01111110011001100111101000101000","01111110011001110001001011111111","01111110011001111010101111010110","01111110011010000100010010101101","01111110011010001101110110000100","01111110011010010111011001011010","01111110011010100000111100110001","01111110011010101010100000001000","01111110011010110100000011011111","01111110011010111101100110110110","01111110011011000111001010001101","01111110011011010000101101100100","01111110011011011010010000111011","01111110011011100011110100010001","01111110011011101101010111101000","01111110011011110110111010111111","01111110011100000000011110010110","01111110011100001010000001101101","01111110011100010011100101000100","01111110011100011101001000011011","01111110011100100110101011110010","01111110011100110000001111001000","01111110011100111001110010011111","01111110011101000011010101110110","01111110011101001100111001001101","01111110011101010110011100100100","01111110011101011111111111111011","01111110011101101001100011010010","01111110011101110011000110101000","01111110011101111100101001111111","01111110011110000110001101010110","01111110011110001111110000101101","01111110011110011001010100000100","01111110011110100010110111011011","01111110011110101100011010110010","01111110011110110101111110001001","01111110011110111111100001011111","01111110011111001001000100110110","01111110011111010010101000001101","01111110011111011100001011100100","01111110011111100101101110111011","01111110011111101111010010010010","01111110011111111000110101101001","01111110100000000001001100100000","01111110100000000101111110001011","01111110100000001010101111110111","01111110100000001111100001100010","01111110100000010100010011001101","01111110100000011001000100111001","01111110100000011101110110100100","01111110100000100010101000010000","01111110100000100111011001111011","01111110100000101100001011100111","01111110100000110000111101010010","01111110100000110101101110111110","01111110100000111010100000101001","01111110100000111111010010010100","01111110100001000100000100000000","01111110100001001000110101101011","01111110100001001101100111010111","01111110100001010010011001000010","01111110100001010111001010101110","01111110100001011011111100011001","01111110100001100000101110000100","01111110100001100101011111110000","01111110100001101010010001011011","01111110100001101111000011000111","01111110100001110011110100110010","01111110100001111000100110011110","01111110100001111101011000001001","01111110100010000010001001110100","01111110100010000110111011100000","01111110100010001011101101001011","01111110100010010000011110110111","01111110100010010101010000100010","01111110100010011010000010001110","01111110100010011110110011111001","01111110100010100011100101100101","01111110100010101000010111010000","01111110100010101101001000111011","01111110100010110001111010100111","01111110100010110110101100010010","01111110100010111011011101111110","01111110100011000000001111101001","01111110100011000101000001010101","01111110100011001001110011000000","01111110100011001110100100101011","01111110100011010011010110010111","01111110100011011000001000000010","01111110100011011100111001101110","01111110100011100001101011011001","01111110100011100110011101000101","01111110100011101011001110110000","01111110100011110000000000011011","01111110100011110100110010000111","01111110100011111001100011110010","01111110100011111110010101011110","01111110100100000011000111001001","01111110100100000111111000110101","01111110100100001100101010100000","01111110100100010001011100001011","01111110100100010110001101110111","01111110100100011010111111100010","01111110100100011111110001001110","01111110100100100100100010111001","01111110100100101001010100100101","01111110100100101110000110010000","01111110100100110010110111111100","01111110100100110111101001100111","01111110100100111100011011010010","01111110100101000001001100111110","01111110100101000101111110101001","01111110100101001010110000010101","01111110100101001111100010000000","01111110100101010100010011101100","01111110100101011001000101010111","01111110100101011101110111000010","01111110100101100010101000101110","01111110100101100111011010011001"],"x":[1.0e36,1.1983967935871744e36,1.3967935871743486e36,1.5951903807615228e36,1.7935871743486974e36,1.991983967935872e36,2.190380761523046e36,2.3887775551102206e36,2.5871743486973948e36,2.785571142284569e36,2.9839679358717435e36,3.182364729458918e36,3.3807615230460926e36,3.5791583166332665e36,3.777555110220441e36,3.9759519038076155e36,4.1743486973947894e36,4.372745490981964e36,4.571142284569138e36,4.7695390781563124e36,4.967935871743487e36,5.166332665330661e36,5.364729458917835e36,5.563126252505009e36,5.761523046092184e36,5.95991983967936e36,6.158316633266533e36,6.356713426853708e36,6.555110220440881e36,6.753507014028055e36,6.95190380761523e36,7.150300601202404e36,7.348697394789579e36,7.547094188376754e36,7.745490981963928e36,7.943887775551103e36,8.142284569138276e36,8.340681362725451e36,8.539078156312625e36,8.7374749498998e36,8.935871743486973e36,9.134268537074148e36,9.332665330661322e36,9.531062124248497e36,9.729458917835671e36,9.927855711422845e36,1.0126252505010019e37,1.0324649298597194e37,1.0523046092184369e37,1.0721442885771542e37,1.0919839679358717e37,1.111823647294589e37,1.1316633266533065e37,1.151503006012024e37,1.1713426853707415e37,1.1911823647294588e37,1.2110220440881763e37,1.2308617234468938e37,1.250701402805611e37,1.2705410821643286e37,1.290380761523046e37,1.3102204408817636e37,1.3300601202404809e37,1.3498997995991984e37,1.369739478957916e37,1.3895791583166334e37,1.4094188376753507e37,1.429258517034068e37,1.4490981963927855e37,1.468937875751503e37,1.4887775551102205e37,1.5086172344689378e37,1.5284569138276553e37,1.5482965931863728e37,1.5681362725450903e37,1.5879759519038076e37,1.607815631262525e37,1.6276553106212426e37,1.64749498997996e37,1.6673346693386774e37,1.6871743486973949e37,1.7070140280561124e37,1.72685370741483e37,1.7466933867735472e37,1.7665330661322642e37,1.7863727454909817e37,1.8062124248496992e37,1.8260521042084167e37,1.845891783567134e37,1.8657314629258515e37,1.885571142284569e37,1.9054108216432865e37,1.9252505010020038e37,1.9450901803607213e37,1.9649298597194388e37,1.9847695390781563e37,2.0046092184368739e37,2.0244488977955911e37,2.0442885771543086e37,2.0641282565130262e37,2.0839679358717434e37,2.1038076152304607e37,2.1236472945891782e37,2.143486973947896e37,2.1633266533066135e37,2.1831663326653305e37,2.203006012024048e37,2.2228456913827655e37,2.2426853707414826e37,2.2625250501002e37,2.2823647294589176e37,2.3022044088176346e37,2.3220440881763526e37,2.3418837675350696e37,2.3617234468937876e37,2.3815631262525047e37,2.401402805611222e37,2.4212424849699397e37,2.441082164328657e37,2.4609218436873747e37,2.480761523046092e37,2.5006012024048093e37,2.520440881763527e37,2.5402805611222443e37,2.560120240480962e37,2.5799599198396793e37,2.599799599198397e37,2.6196392785571143e37,2.639478957915832e37,2.659318637274549e37,2.679158316633267e37,2.698997995991984e37,2.718837675350702e37,2.738677354709419e37,2.7585170340681364e37,2.778356713426854e37,2.7981963927855714e37,2.8180360721442885e37,2.837875751503006e37,2.8577154308617235e37,2.877555110220441e37,2.8973947895791585e37,2.917234468937875e37,2.937074148296593e37,2.95691382765531e37,2.976753507014028e37,2.996593186372745e37,3.0164328657314626e37,3.03627254509018e37,3.0561122244488976e37,3.0759519038076147e37,3.0957915831663327e37,3.1156312625250497e37,3.1354709418837677e37,3.1553106212424847e37,3.1751503006012022e37,3.1949899799599197e37,3.2148296593186373e37,3.2346693386773543e37,3.2545090180360723e37,3.2743486973947893e37,3.2941883767535073e37,3.3140280561122243e37,3.333867735470942e37,3.3537074148296594e37,3.373547094188377e37,3.3933867735470944e37,3.413226452905812e37,3.433066132264529e37,3.452905811623247e37,3.472745490981964e37,3.4925851703406815e37,3.512424849699399e37,3.5322645290581165e37,3.552104208416834e37,3.571943887775551e37,3.591783567134268e37,3.6116232464929856e37,3.631462925851703e37,3.6513026052104206e37,3.671142284569138e37,3.690981963927855e37,3.710821643286573e37,3.73066132264529e37,3.7505010020040077e37,3.770340681362725e37,3.7901803607214427e37,3.81002004008016e37,3.8298597194388777e37,3.8496993987975947e37,3.8695390781563127e37,3.88937875751503e37,3.9092184368737478e37,3.929058116232465e37,3.9488977955911823e37,3.9687374749499e37,3.9885771543086173e37,4.0084168336673344e37,4.0282565130260523e37,4.0480961923847694e37,4.0679358717434874e37,4.0877755511022044e37,4.107615230460922e37,4.1274549098196394e37,4.147294589178357e37,4.167134268537074e37,4.186973947895792e37,4.206813627254509e37,4.226653306613227e37,4.246492985971944e37,4.266332665330661e37,4.286172344689379e37,4.306012024048096e37,4.325851703406814e37,4.345691382765531e37,4.365531062124248e37,4.385370741482966e37,4.405210420841683e37,4.425050100200401e37,4.444889779559118e37,4.464729458917836e37,4.484569138276553e37,4.50440881763527e37,4.524248496993988e37,4.544088176352706e37,4.563927855711423e37,4.58376753507014e37,4.603607214428858e37,4.623446893787576e37,4.643286573146292e37,4.66312625250501e37,4.682965931863728e37,4.702805611222445e37,4.722645290581162e37,4.74248496993988e37,4.762324649298597e37,4.782164328657315e37,4.802004008016032e37,4.82184368737475e37,4.841683366733467e37,4.861523046092185e37,4.881362725450902e37,4.901202404809619e37,4.921042084168337e37,4.940881763527055e37,4.960721442885771e37,4.980561122244489e37,5.000400801603207e37,5.020240480961923e37,5.040080160320641e37,5.059919839679359e37,5.079759519038077e37,5.099599198396793e37,5.119438877755511e37,5.139278557114229e37,5.159118236472946e37,5.178957915831663e37,5.198797595190381e37,5.218637274549098e37,5.238476953907816e37,5.258316633266533e37,5.278156312625249e37,5.297995991983967e37,5.317835671342685e37,5.337675350701402e37,5.357515030060119e37,5.377354709418837e37,5.397194388777555e37,5.417034068136271e37,5.436873747494989e37,5.456713426853707e37,5.476553106212424e37,5.4963927855711415e37,5.516232464929859e37,5.5360721442885765e37,5.5559118236472945e37,5.5757515030060115e37,5.5955911823647295e37,5.615430861723447e37,5.635270541082165e37,5.655110220440882e37,5.674949899799599e37,5.694789579158317e37,5.714629258517034e37,5.734468937875751e37,5.754308617234469e37,5.774148296593187e37,5.793987975951903e37,5.813827655310621e37,5.833667334669339e37,5.853507014028057e37,5.873346693386773e37,5.893186372745491e37,5.913026052104209e37,5.932865731462926e37,5.952705410821643e37,5.972545090180361e37,5.992384769539078e37,6.012224448897796e37,6.032064128256513e37,6.05190380761523e37,6.071743486973948e37,6.091583166332666e37,6.111422845691382e37,6.1312625250501e37,6.151102204408818e37,6.170941883767536e37,6.190781563126252e37,6.21062124248497e37,6.230460921843688e37,6.250300601202405e37,6.270140280561122e37,6.28997995991984e37,6.309819639278557e37,6.329659318637275e37,6.349498997995992e37,6.369338677354709e37,6.389178356713427e37,6.409018036072144e37,6.428857715430862e37,6.448697394789579e37,6.468537074148297e37,6.488376753507014e37,6.508216432865731e37,6.528056112224449e37,6.547895791583167e37,6.567735470941883e37,6.587575150300601e37,6.607414829659319e37,6.627254509018035e37,6.647094188376752e37,6.66693386773547e37,6.686773547094188e37,6.706613226452905e37,6.726452905811622e37,6.74629258517034e37,6.766132264529057e37,6.785971943887775e37,6.805811623246492e37,6.8256513026052095e37,6.845490981963927e37,6.865330661322645e37,6.885170340681362e37,6.9050100200400795e37,6.9248496993987975e37,6.9446893787575155e37,6.964529058116232e37,6.98436873747495e37,7.004208416833668e37,7.024048096192385e37,7.043887775551102e37,7.06372745490982e37,7.083567134268537e37,7.103406813627255e37,7.123246492985972e37,7.143086172344689e37,7.162925851703407e37,7.182765531062124e37,7.202605210420842e37,7.222444889779559e37,7.242284569138277e37,7.262124248496994e37,7.281963927855711e37,7.301803607214429e37,7.321643286573147e37,7.341482965931863e37,7.361322645290581e37,7.381162324649299e37,7.401002004008016e37,7.420841683366733e37,7.440681362725451e37,7.460521042084169e37,7.480360721442886e37,7.500200400801603e37,7.520040080160321e37,7.539879759519038e37,7.559719438877756e37,7.579559118236473e37,7.59939879759519e37,7.619238476953908e37,7.639078156312626e37,7.658917835671342e37,7.67875751503006e37,7.698597194388778e37,7.718436873747496e37,7.738276553106212e37,7.75811623246493e37,7.777955911823648e37,7.797795591182365e37,7.817635270541082e37,7.8374749498998e37,7.857314629258517e37,7.877154308617234e37,7.896993987975952e37,7.916833667334669e37,7.936673346693387e37,7.956513026052103e37,7.97635270541082e37,7.996192384769538e37,8.016032064128256e37,8.035871743486973e37,8.05571142284569e37,8.075551102204408e37,8.095390781563126e37,8.115230460921842e37,8.13507014028056e37,8.154909819639278e37,8.174749498997995e37,8.1945891783567125e37,8.21442885771543e37,8.2342685370741475e37,8.2541082164328655e37,8.2739478957915825e37,8.2937875751503005e37,8.313627254509018e37,8.333466933867736e37,8.353306613226453e37,8.37314629258517e37,8.392985971943888e37,8.412825651302606e37,8.432665330661322e37,8.45250501002004e37,8.472344689378758e37,8.492184368737475e37,8.512024048096193e37,8.53186372745491e37,8.551703406813629e37,8.571543086172345e37,8.591382765531063e37,8.61122244488978e37,8.631062124248497e37,8.650901803607213e37,8.67074148296593e37,8.690581162324649e37,8.710420841683367e37,8.730260521042083e37,8.7501002004008e37,8.769939879759519e37,8.789779559118235e37,8.809619238476953e37,8.82945891783567e37,8.849298597194387e37,8.869138276553105e37,8.888977955911823e37,8.90881763527054e37,8.928657314629257e37,8.948496993987975e37,8.968336673346693e37,8.988176352705411e37,9.008016032064127e37,9.027855711422845e37,9.047695390781561e37,9.06753507014028e37,9.087374749498997e37,9.107214428857715e37,9.127054108216433e37,9.146893787575151e37,9.166733466933865e37,9.186573146292583e37,9.206412825651301e37,9.22625250501002e37,9.246092184368737e37,9.265931863727455e37,9.285771543086173e37,9.305611222444887e37,9.325450901803605e37,9.345290581162323e37,9.365130260521041e37,9.38496993987976e37,9.404809619238477e37,9.424649298597193e37,9.444488977955911e37,9.464328657314627e37,9.484168336673345e37,9.504008016032063e37,9.523847695390781e37,9.5436873747495e37,9.563527054108215e37,9.583366733466933e37,9.603206412825651e37,9.623046092184368e37,9.642885771543086e37,9.662725450901804e37,9.68256513026052e37,9.702404809619238e37,9.722244488977956e37,9.742084168336674e37,9.761923847695392e37,9.781763527054108e37,9.801603206412826e37,9.821442885771542e37,9.84128256513026e37,9.861122244488978e37,9.880961923847696e37,9.900801603206414e37,9.920641282565132e37,9.940480961923846e37,9.960320641282564e37,9.980160320641282e37,1.0e38]}
+
 },{}],86:[function(require,module,exports){
-module.exports={"expected":["00000000000000010001011011000010","00000000000000010001011000110011","00000000000000010001010110100100","00000000000000010001010100010101","00000000000000010001010010000110","00000000000000010001001111110111","00000000000000010001001101101000","00000000000000010001001011011001","00000000000000010001001001001010","00000000000000010001000110111011","00000000000000010001000100101100","00000000000000010001000010011101","00000000000000010001000000001110","00000000000000010000111101111111","00000000000000010000111011110000","00000000000000010000111001100001","00000000000000010000110111010010","00000000000000010000110101000011","00000000000000010000110010110100","00000000000000010000110000100101","00000000000000010000101110010110","00000000000000010000101100000111","00000000000000010000101001111000","00000000000000010000100111101001","00000000000000010000100101011010","00000000000000010000100011001011","00000000000000010000100000111100","00000000000000010000011110101101","00000000000000010000011100011110","00000000000000010000011010001111","00000000000000010000011000000000","00000000000000010000010101110001","00000000000000010000010011100010","00000000000000010000010001010011","00000000000000010000001111000100","00000000000000010000001100110101","00000000000000010000001010100110","00000000000000010000001000010111","00000000000000010000000110001000","00000000000000010000000011111001","00000000000000010000000001101010","00000000000000001111111111011011","00000000000000001111111101001100","00000000000000001111111010111101","00000000000000001111111000101110","00000000000000001111110110011111","00000000000000001111110100010000","00000000000000001111110010000001","00000000000000001111101111110010","00000000000000001111101101100011","00000000000000001111101011010100","00000000000000001111101001000101","00000000000000001111100110110110","00000000000000001111100100100111","00000000000000001111100010011000","00000000000000001111100000001001","00000000000000001111011101111010","00000000000000001111011011101011","00000000000000001111011001011100","00000000000000001111010111001101","00000000000000001111010100111110","00000000000000001111010010101111","00000000000000001111010000100000","00000000000000001111001110010001","00000000000000001111001100000010","00000000000000001111001001110011","00000000000000001111000111100100","00000000000000001111000101010101","00000000000000001111000011000110","00000000000000001111000000110111","00000000000000001110111110101000","00000000000000001110111100011001","00000000000000001110111010001010","00000000000000001110110111111011","00000000000000001110110101101100","00000000000000001110110011011101","00000000000000001110110001001110","00000000000000001110101110111111","00000000000000001110101100110000","00000000000000001110101010100001","00000000000000001110101000010010","00000000000000001110100110000011","00000000000000001110100011110100","00000000000000001110100001100101","00000000000000001110011111010110","00000000000000001110011101000111","00000000000000001110011010111000","00000000000000001110011000101001","00000000000000001110010110011010","00000000000000001110010100001011","00000000000000001110010001111100","00000000000000001110001111101101","00000000000000001110001101011110","00000000000000001110001011001111","00000000000000001110001001000000","00000000000000001110000110110000","00000000000000001110000100100001","00000000000000001110000010010010","00000000000000001110000000000011","00000000000000001101111101110100","00000000000000001101111011100101","00000000000000001101111001010110","00000000000000001101110111000111","00000000000000001101110100111000","00000000000000001101110010101001","00000000000000001101110000011010","00000000000000001101101110001011","00000000000000001101101011111100","00000000000000001101101001101101","00000000000000001101100111011110","00000000000000001101100101001111","00000000000000001101100011000000","00000000000000001101100000110001","00000000000000001101011110100010","00000000000000001101011100010011","00000000000000001101011010000100","00000000000000001101010111110101","00000000000000001101010101100110","00000000000000001101010011010111","00000000000000001101010001001000","00000000000000001101001110111001","00000000000000001101001100101010","00000000000000001101001010011011","00000000000000001101001000001100","00000000000000001101000101111101","00000000000000001101000011101110","00000000000000001101000001011111","00000000000000001100111111010000","00000000000000001100111101000001","00000000000000001100111010110010","00000000000000001100111000100011","00000000000000001100110110010100","00000000000000001100110100000101","00000000000000001100110001110110","00000000000000001100101111100111","00000000000000001100101101011000","00000000000000001100101011001001","00000000000000001100101000111010","00000000000000001100100110101011","00000000000000001100100100011100","00000000000000001100100010001101","00000000000000001100011111111110","00000000000000001100011101101111","00000000000000001100011011100000","00000000000000001100011001010001","00000000000000001100010111000010","00000000000000001100010100110011","00000000000000001100010010100100","00000000000000001100010000010101","00000000000000001100001110000110","00000000000000001100001011110111","00000000000000001100001001101000","00000000000000001100000111011001","00000000000000001100000101001010","00000000000000001100000010111011","00000000000000001100000000101100","00000000000000001011111110011101","00000000000000001011111100001110","00000000000000001011111001111111","00000000000000001011110111110000","00000000000000001011110101100001","00000000000000001011110011010010","00000000000000001011110001000011","00000000000000001011101110110100","00000000000000001011101100100101","00000000000000001011101010010110","00000000000000001011101000000111","00000000000000001011100101111000","00000000000000001011100011101001","00000000000000001011100001011010","00000000000000001011011111001011","00000000000000001011011100111100","00000000000000001011011010101101","00000000000000001011011000011110","00000000000000001011010110001111","00000000000000001011010100000000","00000000000000001011010001110001","00000000000000001011001111100010","00000000000000001011001101010011","00000000000000001011001011000100","00000000000000001011001000110101","00000000000000001011000110100110","00000000000000001011000100010111","00000000000000001011000010001000","00000000000000001010111111111001","00000000000000001010111101101010","00000000000000001010111011011011","00000000000000001010111001001100","00000000000000001010110110111101","00000000000000001010110100101110","00000000000000001010110010011111","00000000000000001010110000010000","00000000000000001010101110000001","00000000000000001010101011110010","00000000000000001010101001100011","00000000000000001010100111010100","00000000000000001010100101000101","00000000000000001010100010110110","00000000000000001010100000100111","00000000000000001010011110011000","00000000000000001010011100001001","00000000000000001010011001111010","00000000000000001010010111101010","00000000000000001010010101011011","00000000000000001010010011001100","00000000000000001010010000111101","00000000000000001010001110101110","00000000000000001010001100011111","00000000000000001010001010010000","00000000000000001010001000000001","00000000000000001010000101110010","00000000000000001010000011100011","00000000000000001010000001010100","00000000000000001001111111000101","00000000000000001001111100110110","00000000000000001001111010100111","00000000000000001001111000011000","00000000000000001001110110001001","00000000000000001001110011111010","00000000000000001001110001101011","00000000000000001001101111011100","00000000000000001001101101001101","00000000000000001001101010111110","00000000000000001001101000101111","00000000000000001001100110100000","00000000000000001001100100010001","00000000000000001001100010000010","00000000000000001001011111110011","00000000000000001001011101100100","00000000000000001001011011010101","00000000000000001001011001000110","00000000000000001001010110110111","00000000000000001001010100101000","00000000000000001001010010011001","00000000000000001001010000001010","00000000000000001001001101111011","00000000000000001001001011101100","00000000000000001001001001011101","00000000000000001001000111001110","00000000000000001001000100111111","00000000000000001001000010110000","00000000000000001001000000100001","00000000000000001000111110010010","00000000000000001000111100000011","00000000000000001000111001110100","00000000000000001000110111100101","00000000000000001000110101010110","00000000000000001000110011000111","00000000000000001000110000111000","00000000000000001000101110101001","00000000000000001000101100011010","00000000000000001000101010001011","00000000000000001000100111111100","00000000000000001000100101101101","00000000000000001000100011011110","00000000000000001000100001001111","00000000000000001000011111000000","00000000000000001000011100110001","00000000000000001000011010100010","00000000000000001000011000010011","00000000000000001000010110000100","00000000000000001000010011110101","00000000000000001000010001100110","00000000000000001000001111010111","00000000000000001000001101001000","00000000000000001000001010111001","00000000000000001000001000101010","00000000000000001000000110011011","00000000000000001000000100001100","00000000000000001000000001111101","00000000000000000111111111101110","00000000000000000111111101011111","00000000000000000111111011010000","00000000000000000111111001000001","00000000000000000111110110110010","00000000000000000111110100100011","00000000000000000111110010010100","00000000000000000111110000000101","00000000000000000111101101110110","00000000000000000111101011100111","00000000000000000111101001011000","00000000000000000111100111001001","00000000000000000111100100111010","00000000000000000111100010101011","00000000000000000111100000011100","00000000000000000111011110001101","00000000000000000111011011111110","00000000000000000111011001101111","00000000000000000111010111100000","00000000000000000111010101010001","00000000000000000111010011000010","00000000000000000111010000110011","00000000000000000111001110100100","00000000000000000111001100010101","00000000000000000111001010000110","00000000000000000111000111110111","00000000000000000111000101101000","00000000000000000111000011011001","00000000000000000111000001001010","00000000000000000110111110111011","00000000000000000110111100101100","00000000000000000110111010011101","00000000000000000110111000001110","00000000000000000110110101111111","00000000000000000110110011110000","00000000000000000110110001100001","00000000000000000110101111010010","00000000000000000110101101000011","00000000000000000110101010110100","00000000000000000110101000100100","00000000000000000110100110010101","00000000000000000110100100000110","00000000000000000110100001110111","00000000000000000110011111101000","00000000000000000110011101011001","00000000000000000110011011001010","00000000000000000110011000111011","00000000000000000110010110101100","00000000000000000110010100011101","00000000000000000110010010001110","00000000000000000110001111111111","00000000000000000110001101110000","00000000000000000110001011100001","00000000000000000110001001010010","00000000000000000110000111000011","00000000000000000110000100110100","00000000000000000110000010100101","00000000000000000110000000010110","00000000000000000101111110000111","00000000000000000101111011111000","00000000000000000101111001101001","00000000000000000101110111011010","00000000000000000101110101001011","00000000000000000101110010111100","00000000000000000101110000101101","00000000000000000101101110011110","00000000000000000101101100001111","00000000000000000101101010000000","00000000000000000101100111110001","00000000000000000101100101100010","00000000000000000101100011010011","00000000000000000101100001000100","00000000000000000101011110110101","00000000000000000101011100100110","00000000000000000101011010010111","00000000000000000101011000001000","00000000000000000101010101111001","00000000000000000101010011101010","00000000000000000101010001011011","00000000000000000101001111001100","00000000000000000101001100111101","00000000000000000101001010101110","00000000000000000101001000011111","00000000000000000101000110010000","00000000000000000101000100000001","00000000000000000101000001110010","00000000000000000100111111100011","00000000000000000100111101010100","00000000000000000100111011000101","00000000000000000100111000110110","00000000000000000100110110100111","00000000000000000100110100011000","00000000000000000100110010001001","00000000000000000100101111111010","00000000000000000100101101101011","00000000000000000100101011011100","00000000000000000100101001001101","00000000000000000100100110111110","00000000000000000100100100101111","00000000000000000100100010100000","00000000000000000100100000010001","00000000000000000100011110000010","00000000000000000100011011110011","00000000000000000100011001100100","00000000000000000100010111010101","00000000000000000100010101000110","00000000000000000100010010110111","00000000000000000100010000101000","00000000000000000100001110011001","00000000000000000100001100001010","00000000000000000100001001111011","00000000000000000100000111101100","00000000000000000100000101011101","00000000000000000100000011001110","00000000000000000100000000111111","00000000000000000011111110110000","00000000000000000011111100100001","00000000000000000011111010010010","00000000000000000011111000000011","00000000000000000011110101110100","00000000000000000011110011100101","00000000000000000011110001010110","00000000000000000011101111000111","00000000000000000011101100111000","00000000000000000011101010101001","00000000000000000011101000011010","00000000000000000011100110001011","00000000000000000011100011111100","00000000000000000011100001101101","00000000000000000011011111011110","00000000000000000011011101001111","00000000000000000011011011000000","00000000000000000011011000110001","00000000000000000011010110100010","00000000000000000011010100010011","00000000000000000011010010000100","00000000000000000011001111110101","00000000000000000011001101100110","00000000000000000011001011010111","00000000000000000011001001001000","00000000000000000011000110111001","00000000000000000011000100101010","00000000000000000011000010011011","00000000000000000011000000001100","00000000000000000010111101111101","00000000000000000010111011101101","00000000000000000010111001011110","00000000000000000010110111001111","00000000000000000010110101000000","00000000000000000010110010110001","00000000000000000010110000100010","00000000000000000010101110010011","00000000000000000010101100000100","00000000000000000010101001110101","00000000000000000010100111100110","00000000000000000010100101010111","00000000000000000010100011001000","00000000000000000010100000111001","00000000000000000010011110101010","00000000000000000010011100011011","00000000000000000010011010001100","00000000000000000010010111111101","00000000000000000010010101101110","00000000000000000010010011011111","00000000000000000010010001010000","00000000000000000010001111000001","00000000000000000010001100110010","00000000000000000010001010100011","00000000000000000010001000010100","00000000000000000010000110000101","00000000000000000010000011110110","00000000000000000010000001100111","00000000000000000001111111011000","00000000000000000001111101001001","00000000000000000001111010111010","00000000000000000001111000101011","00000000000000000001110110011100","00000000000000000001110100001101","00000000000000000001110001111110","00000000000000000001101111101111","00000000000000000001101101100000","00000000000000000001101011010001","00000000000000000001101001000010","00000000000000000001100110110011","00000000000000000001100100100100","00000000000000000001100010010101","00000000000000000001100000000110","00000000000000000001011101110111","00000000000000000001011011101000","00000000000000000001011001011001","00000000000000000001010111001010","00000000000000000001010100111011","00000000000000000001010010101100","00000000000000000001010000011101","00000000000000000001001110001110","00000000000000000001001011111111","00000000000000000001001001110000","00000000000000000001000111100001","00000000000000000001000101010010","00000000000000000001000011000011","00000000000000000001000000110100","00000000000000000000111110100101","00000000000000000000111100010110","00000000000000000000111010000111","00000000000000000000110111111000","00000000000000000000110101101001","00000000000000000000110011011010","00000000000000000000110001001011","00000000000000000000101110111100","00000000000000000000101100101101","00000000000000000000101010011110","00000000000000000000101000001111","00000000000000000000100110000000","00000000000000000000100011110001","00000000000000000000100001100010","00000000000000000000011111010011","00000000000000000000011101000100","00000000000000000000011010110101","00000000000000000000011000100110","00000000000000000000010110010111","00000000000000000000010100001000","00000000000000000000010001111001","00000000000000000000001111101010","00000000000000000000001101011011","00000000000000000000001011001100","00000000000000000000001000111101","00000000000000000000000110101110","00000000000000000000000100011111","00000000000000000000000010010000","00000000000000000000000000000001"],"x":[1.0e-40,9.97996012024048e-41,9.959920240480963e-41,9.939880360721443e-41,9.919840480961923e-41,9.899800601202407e-41,9.879760721442887e-41,9.859720841683367e-41,9.839680961923847e-41,9.819641082164329e-41,9.799601202404809e-41,9.77956132264529e-41,9.759521442885772e-41,9.739481563126252e-41,9.719441683366732e-41,9.699401803607214e-41,9.679361923847696e-41,9.659322044088176e-41,9.639282164328656e-41,9.619242284569138e-41,9.599202404809618e-41,9.5791625250501e-41,9.559122645290582e-41,9.539082765531062e-41,9.519042885771542e-41,9.499003006012023e-41,9.478963126252505e-41,9.458923246492985e-41,9.438883366733467e-41,9.418843486973947e-41,9.39880360721443e-41,9.37876372745491e-41,9.35872384769539e-41,9.33868396793587e-41,9.318644088176353e-41,9.298604208416833e-41,9.278564328657315e-41,9.258524448897797e-41,9.238484569138277e-41,9.218444689378756e-41,9.198404809619238e-41,9.178364929859718e-41,9.1583250501002e-41,9.138285170340681e-41,9.118245290581162e-41,9.098205410821643e-41,9.078165531062124e-41,9.058125651302605e-41,9.038085771543086e-41,9.018045891783567e-41,8.998006012024048e-41,8.977966132264529e-41,8.957926252505009e-41,8.93788637274549e-41,8.917846492985971e-41,8.897806613226452e-41,8.877766733466933e-41,8.857726853707414e-41,8.837686973947895e-41,8.817647094188376e-41,8.797607214428857e-41,8.777567334669338e-41,8.757527454909819e-41,8.7374875751503e-41,8.717447695390781e-41,8.697407815631262e-41,8.677367935871742e-41,8.657328056112223e-41,8.637288176352705e-41,8.617248296593186e-41,8.597208416833667e-41,8.577168537074148e-41,8.557128657314629e-41,8.53708877755511e-41,8.517048897795591e-41,8.497009018036072e-41,8.476969138276553e-41,8.456929258517034e-41,8.436889378757515e-41,8.416849498997995e-41,8.396809619238476e-41,8.376769739478957e-41,8.356729859719438e-41,8.336689979959919e-41,8.3166501002004e-41,8.296610220440881e-41,8.276570340681362e-41,8.256530460921843e-41,8.236490581162324e-41,8.216450701402805e-41,8.196410821643286e-41,8.176370941883767e-41,8.156331062124248e-41,8.136291182364728e-41,8.116251302605209e-41,8.096211422845691e-41,8.076171543086172e-41,8.056131663326653e-41,8.036091783567134e-41,8.016051903807615e-41,7.996012024048096e-41,7.975972144288577e-41,7.955932264529058e-41,7.935892384769539e-41,7.91585250501002e-41,7.895812625250501e-41,7.87577274549098e-41,7.855732865731462e-41,7.835692985971943e-41,7.815653106212424e-41,7.795613226452905e-41,7.775573346693386e-41,7.755533466933867e-41,7.735493587174348e-41,7.715453707414829e-41,7.69541382765531e-41,7.675373947895791e-41,7.655334068136272e-41,7.635294188376753e-41,7.615254308617234e-41,7.595214428857714e-41,7.575174549098196e-41,7.555134669338677e-41,7.535094789579158e-41,7.515054909819639e-41,7.49501503006012e-41,7.474975150300601e-41,7.454935270541082e-41,7.434895390781563e-41,7.414855511022043e-41,7.394815631262525e-41,7.374775751503006e-41,7.354735871743487e-41,7.334695991983968e-41,7.314656112224448e-41,7.294616232464929e-41,7.27457635270541e-41,7.254536472945891e-41,7.234496593186372e-41,7.214456713426853e-41,7.194416833667334e-41,7.174376953907815e-41,7.154337074148296e-41,7.134297194388777e-41,7.114257314629258e-41,7.094217434869739e-41,7.07417755511022e-41,7.054137675350699e-41,7.034097795591182e-41,7.014057915831663e-41,6.994018036072144e-41,6.973978156312625e-41,6.953938276553105e-41,6.933898396793587e-41,6.913858517034068e-41,6.893818637274549e-41,6.87377875751503e-41,6.85373887775551e-41,6.833698997995992e-41,6.813659118236473e-41,6.793619238476954e-41,6.773579358717434e-41,6.753539478957915e-41,6.733499599198396e-41,6.713459719438877e-41,6.693419839679358e-41,6.673379959919839e-41,6.65334008016032e-41,6.633300200400801e-41,6.613260320641282e-41,6.593220440881762e-41,6.573180561122244e-41,6.553140681362725e-41,6.533100801603207e-41,6.513060921843688e-41,6.493021042084167e-41,6.472981162324649e-41,6.45294128256513e-41,6.432901402805611e-41,6.412861523046092e-41,6.392821643286572e-41,6.372781763527054e-41,6.352741883767535e-41,6.332702004008016e-41,6.312662124248497e-41,6.292622244488978e-41,6.272582364729459e-41,6.25254248496994e-41,6.23250260521042e-41,6.212462725450901e-41,6.192422845691382e-41,6.172382965931863e-41,6.152343086172344e-41,6.132303206412824e-41,6.112263326653306e-41,6.092223446893787e-41,6.072183567134268e-41,6.052143687374749e-41,6.032103807615229e-41,6.012063927855711e-41,5.992024048096193e-41,5.971984168336674e-41,5.951944288577154e-41,5.931904408817634e-41,5.911864529058116e-41,5.891824649298597e-41,5.871784769539078e-41,5.851744889779559e-41,5.83170501002004e-41,5.811665130260521e-41,5.791625250501002e-41,5.771585370741483e-41,5.751545490981964e-41,5.731505611222445e-41,5.711465731462926e-41,5.691425851703406e-41,5.671385971943886e-41,5.651346092184368e-41,5.631306212424849e-41,5.61126633266533e-41,5.591226452905811e-41,5.571186573146291e-41,5.551146693386773e-41,5.531106813627254e-41,5.511066933867735e-41,5.491027054108216e-41,5.470987174348696e-41,5.450947294589179e-41,5.43090741482966e-41,5.41086753507014e-41,5.390827655310621e-41,5.370787775551102e-41,5.350747895791583e-41,5.330708016032064e-41,5.310668136272544e-41,5.290628256513026e-41,5.270588376753507e-41,5.250548496993988e-41,5.230508617234469e-41,5.210468737474949e-41,5.190428857715431e-41,5.170388977955912e-41,5.150349098196392e-41,5.130309218436873e-41,5.110269338677353e-41,5.090229458917835e-41,5.070189579158316e-41,5.050149699398797e-41,5.030109819639278e-41,5.010069939879758e-41,4.99003006012024e-41,4.969990180360721e-41,4.949950300601203e-41,4.929910420841684e-41,4.909870541082164e-41,4.889830661322646e-41,4.869790781563126e-41,4.849750901803606e-41,4.829711022044088e-41,4.809671142284569e-41,4.78963126252505e-41,4.769591382765531e-41,4.749551503006011e-41,4.729511623246493e-41,4.709471743486973e-41,4.689431863727454e-41,4.669391983967936e-41,4.649352104208417e-41,4.629312224448898e-41,4.609272344689379e-41,4.589232464929859e-41,4.5691925851703404e-41,4.549152705410822e-41,4.529112825651302e-41,4.509072945891783e-41,4.4890330661322646e-41,4.4689931863727455e-41,4.4489533066132264e-41,4.428913426853707e-41,4.408873547094188e-41,4.388833667334669e-41,4.36879378757515e-41,4.3487539078156305e-41,4.3287140280561115e-41,4.3086741482965924e-41,4.2886342685370743e-41,4.2685943887775553e-41,4.2485545090180357e-41,4.2285146292585166e-41,4.208474749498998e-41,4.188434869739479e-41,4.16839498997996e-41,4.1483551102204403e-41,4.128315230460921e-41,4.1082753507014027e-41,4.0882354709418836e-41,4.068195591182364e-41,4.048155711422845e-41,4.028115831663327e-41,4.008075951903808e-41,3.9880360721442887e-41,3.967996192384769e-41,3.94795631262525e-41,3.9279164328657315e-41,3.9078765531062124e-41,3.887836673346693e-41,3.867796793587174e-41,3.8477569138276547e-41,3.827717034068136e-41,3.807677154308617e-41,3.7876372745490975e-41,3.7675973947895784e-41,3.7475575150300603e-41,3.7275176352705413e-41,3.7074777555110217e-41,3.6874378757515026e-41,3.6673979959919835e-41,3.647358116232465e-41,3.627318236472946e-41,3.6072783567134263e-41,3.587238476953907e-41,3.567198597194388e-41,3.5471587174348696e-41,3.52711883767535e-41,3.507078957915831e-41,3.4870390781563124e-41,3.466999198396794e-41,3.4469593186372747e-41,3.426919438877755e-41,3.406879559118236e-41,3.386839679358717e-41,3.3667997995991984e-41,3.3467599198396794e-41,3.32672004008016e-41,3.3066801603206407e-41,3.286640280561122e-41,3.266600400801603e-41,3.2465605210420835e-41,3.226520641282565e-41,3.206480761523046e-41,3.1864408817635273e-41,3.166401002004008e-41,3.1463611222444886e-41,3.1263212424849696e-41,3.1062813627254505e-41,3.086241482965932e-41,3.0662016032064123e-41,3.0461617234468933e-41,3.026121843687374e-41,3.0060819639278556e-41,2.9860420841683365e-41,2.9660022044088175e-41,2.9459623246492984e-41,2.9259224448897793e-41,2.905882565130261e-41,2.8858426853707417e-41,2.865802805611222e-41,2.845762925851703e-41,2.825723046092184e-41,2.8056831663326654e-41,2.785643286573146e-41,2.7656034068136267e-41,2.7455635270541077e-41,2.725523647294589e-41,2.7054837675350705e-41,2.685443887775551e-41,2.665404008016032e-41,2.645364128256513e-41,2.625324248496994e-41,2.6052843687374746e-41,2.5852444889779556e-41,2.5652046092184365e-41,2.545164729458918e-41,2.525124849699399e-41,2.5050849699398793e-41,2.48504509018036e-41,2.465005210420841e-41,2.444965330661323e-41,2.4249254509018035e-41,2.4048855711422844e-41,2.3848456913827653e-41,2.3648058116232463e-41,2.344765931863727e-41,2.324726052104208e-41,2.304686172344689e-41,2.2846462925851702e-41,2.264606412825651e-41,2.2445665330661323e-41,2.2245266533066133e-41,2.204486773547094e-41,2.184446893787575e-41,2.1644070140280558e-41,2.144367134268537e-41,2.1243272545090176e-41,2.104287374749499e-41,2.08424749498998e-41,2.0642076152304607e-41,2.0441677354709418e-41,2.0241278557114225e-41,2.0040879759519037e-41,1.9840480961923846e-41,1.9640082164328658e-41,1.9439683366733465e-41,1.9239284569138274e-41,1.9038885771543086e-41,1.8838486973947892e-41,1.8638088176352704e-41,1.8437689378757514e-41,1.8237290581162325e-41,1.8036891783567132e-41,1.7836492985971944e-41,1.763609418837675e-41,1.743569539078156e-41,1.7235296593186374e-41,1.703489779559118e-41,1.6834498997995993e-41,1.66341002004008e-41,1.643370140280561e-41,1.6233302605210418e-41,1.6032903807615227e-41,1.5832505010020041e-41,1.5632106212424848e-41,1.543170741482966e-41,1.5231308617234467e-41,1.5030909819639279e-41,1.4830511022044085e-41,1.4630112224448897e-41,1.442971342685371e-41,1.4229314629258516e-41,1.4028915831663327e-41,1.3828517034068134e-41,1.3628118236472946e-41,1.3427719438877753e-41,1.3227320641282564e-41,1.3026921843687374e-41,1.2826523046092183e-41,1.2626124248496995e-41,1.2425725450901801e-41,1.2225326653306613e-41,1.202492785571142e-41,1.1824529058116232e-41,1.162413026052104e-41,1.1423731462925852e-41,1.1223332665330661e-41,1.102293386773547e-41,1.0822535070140279e-41,1.0622136272545089e-41,1.0421737474949899e-41,1.022133867735471e-41,1.0020939879759519e-41,9.820541082164328e-42,9.620142284569139e-42,9.419743486973947e-42,9.219344689378756e-42,9.018945891783566e-42,8.818547094188376e-42,8.618148296593186e-42,8.417749498997995e-42,8.217350701402806e-42,8.016951903807614e-42,7.816553106212423e-42,7.616154308617234e-42,7.415755511022043e-42,7.215356713426854e-42,7.014957915831664e-42,6.814559118236473e-42,6.614160320641283e-42,6.413761523046092e-42,6.213362725450901e-42,6.01296392785571e-42,5.812565130260521e-42,5.61216633266533e-42,5.4117675350701394e-42,5.21136873747495e-42,5.010969939879759e-42,4.810571142284569e-42,4.610172344689378e-42,4.4097735470941876e-42,4.209374749498998e-42,4.0089759519038074e-42,3.8085771543086167e-42,3.608178356713427e-42,3.4077795591182365e-42,3.207380761523046e-42,3.006981963927855e-42,2.8065831663326652e-42,2.6061843687374748e-42,2.4057855711422843e-42,2.205386773547094e-42,2.0049879759519038e-42,1.8045891783567134e-42,1.604190380761523e-42,1.4037915831663325e-42,1.2033927855711421e-42,1.0029939879759519e-42,8.025951903807614e-43,6.021963927855712e-43,4.0179759519038074e-43,2.0139879759519036e-43,1.0e-45]}
+module.exports={"expected":["00000000000000000000000000000000","01000000000000000110001010000000","01000000100000000110001010000000","01000000110000001001001111000000","01000001000000000110001010000000","01000001001000000111101100100000","01000001010000001001001111000000","01000001011000001010110001100000","01000001100000000110001010000000","01000001100100000110111011010000","01000001101000000111101100100000","01000001101100001000011101110000","01000001110000001001001111000000","01000001110100001010000000010000","01000001111000001010110001100000","01000001111100001011100010110000","01000010000000000110001010000000","01000010000010000110100010101000","01000010000100000110111011010000","01000010000110000111010011111000","01000010001000000111101100100000","01000010001010001000000101001000","01000010001100001000011101110000","01000010001110001000110110011000","01000010010000001001001111000000","01000010010010001001100111101000","01000010010100001010000000010000","01000010010110001010011000111000","01000010011000001010110001100000","01000010011010001011001010001000","01000010011100001011100010110000","01000010011110001011111011011000","01000010100000000110001010000000","01000010100001000110010110010100","01000010100010000110100010101000","01000010100011000110101110111100","01000010100100000110111011010000","01000010100101000111000111100100","01000010100110000111010011111000","01000010100111000111100000001100","01000010101000000111101100100000","01000010101001000111111000110100","01000010101010001000000101001000","01000010101011001000010001011100","01000010101100001000011101110000","01000010101101001000101010000100","01000010101110001000110110011000","01000010101111001001000010101100","01000010110000001001001111000000","01000010110001001001011011010100","01000010110010001001100111101000","01000010110011001001110011111100","01000010110100001010000000010000","01000010110101001010001100100100","01000010110110001010011000111000","01000010110111001010100101001100","01000010111000001010110001100000","01000010111001001010111101110100","01000010111010001011001010001000","01000010111011001011010110011100","01000010111100001011100010110000","01000010111101001011101111000100","01000010111110001011111011011000","01000010111111001100000111101101","01000011000000000110001010000000","01000011000000100110010000001010","01000011000001000110010110010100","01000011000001100110011100011110","01000011000010000110100010101000","01000011000010100110101000110010","01000011000011000110101110111100","01000011000011100110110101000110","01000011000100000110111011010000","01000011000100100111000001011010","01000011000101000111000111100100","01000011000101100111001101101110","01000011000110000111010011111000","01000011000110100111011010000010","01000011000111000111100000001100","01000011000111100111100110010110","01000011001000000111101100100000","01000011001000100111110010101010","01000011001001000111111000110100","01000011001001100111111110111110","01000011001010001000000101001000","01000011001010101000001011010010","01000011001011001000010001011100","01000011001011101000010111100110","01000011001100001000011101110000","01000011001100101000100011111010","01000011001101001000101010000100","01000011001101101000110000001110","01000011001110001000110110011000","01000011001110101000111100100010","01000011001111001001000010101100","01000011001111101001001000110110","01000011010000001001001111000000","01000011010000101001010101001010","01000011010001001001011011010100","01000011010001101001100001011110","01000011010010001001100111101000","01000011010010101001101101110010","01000011010011001001110011111100","01000011010011101001111010000110","01000011010100001010000000010000","01000011010100101010000110011010","01000011010101001010001100100100","01000011010101101010010010101110","01000011010110001010011000111000","01000011010110101010011111000010","01000011010111001010100101001100","01000011010111101010101011010110","01000011011000001010110001100000","01000011011000101010110111101010","01000011011001001010111101110100","01000011011001101011000011111110","01000011011010001011001010001000","01000011011010101011010000010010","01000011011011001011010110011100","01000011011011101011011100100110","01000011011100001011100010110000","01000011011100101011101000111010","01000011011101001011101111000100","01000011011101101011110101001110","01000011011110001011111011011000","01000011011110101100000001100011","01000011011111001100000111101101","01000011011111101100001101110111","01000011100000000110001010000000","01000011100000010110001101000101","01000011100000100110010000001010","01000011100000110110010011001111","01000011100001000110010110010100","01000011100001010110011001011001","01000011100001100110011100011110","01000011100001110110011111100011","01000011100010000110100010101000","01000011100010010110100101101101","01000011100010100110101000110010","01000011100010110110101011110111","01000011100011000110101110111100","01000011100011010110110010000001","01000011100011100110110101000110","01000011100011110110111000001011","01000011100100000110111011010000","01000011100100010110111110010101","01000011100100100111000001011010","01000011100100110111000100011111","01000011100101000111000111100100","01000011100101010111001010101001","01000011100101100111001101101110","01000011100101110111010000110011","01000011100110000111010011111000","01000011100110010111010110111101","01000011100110100111011010000010","01000011100110110111011101000111","01000011100111000111100000001100","01000011100111010111100011010001","01000011100111100111100110010110","01000011100111110111101001011011","01000011101000000111101100100000","01000011101000010111101111100101","01000011101000100111110010101010","01000011101000110111110101101111","01000011101001000111111000110100","01000011101001010111111011111001","01000011101001100111111110111110","01000011101001111000000010000011","01000011101010001000000101001000","01000011101010011000001000001101","01000011101010101000001011010010","01000011101010111000001110010111","01000011101011001000010001011100","01000011101011011000010100100001","01000011101011101000010111100110","01000011101011111000011010101011","01000011101100001000011101110000","01000011101100011000100000110101","01000011101100101000100011111010","01000011101100111000100110111111","01000011101101001000101010000100","01000011101101011000101101001001","01000011101101101000110000001110","01000011101101111000110011010011","01000011101110001000110110011000","01000011101110011000111001011101","01000011101110101000111100100010","01000011101110111000111111100111","01000011101111001001000010101100","01000011101111011001000101110001","01000011101111101001001000110110","01000011101111111001001011111011","01000011110000001001001111000000","01000011110000011001010010000101","01000011110000101001010101001010","01000011110000111001011000001111","01000011110001001001011011010100","01000011110001011001011110011001","01000011110001101001100001011110","01000011110001111001100100100011","01000011110010001001100111101000","01000011110010011001101010101101","01000011110010101001101101110010","01000011110010111001110000110111","01000011110011001001110011111100","01000011110011011001110111000001","01000011110011101001111010000110","01000011110011111001111101001011","01000011110100001010000000010000","01000011110100011010000011010101","01000011110100101010000110011010","01000011110100111010001001011111","01000011110101001010001100100100","01000011110101011010001111101001","01000011110101101010010010101110","01000011110101111010010101110011","01000011110110001010011000111000","01000011110110011010011011111101","01000011110110101010011111000010","01000011110110111010100010000111","01000011110111001010100101001100","01000011110111011010101000010001","01000011110111101010101011010110","01000011110111111010101110011011","01000011111000001010110001100000","01000011111000011010110100100101","01000011111000101010110111101010","01000011111000111010111010101111","01000011111001001010111101110100","01000011111001011011000000111001","01000011111001101011000011111110","01000011111001111011000111000011","01000011111010001011001010001000","01000011111010011011001101001101","01000011111010101011010000010010","01000011111010111011010011010111","01000011111011001011010110011100","01000011111011011011011001100001","01000011111011101011011100100110","01000011111011111011011111101011","01000011111100001011100010110000","01000011111100011011100101110101","01000011111100101011101000111010","01000011111100111011101011111111","01000011111101001011101111000100","01000011111101011011110010001001","01000011111101101011110101001110","01000011111101111011111000010011","01000011111110001011111011011000","01000011111110011011111110011101","01000011111110101100000001100011","01000011111110111100000100101000","01000011111111001100000111101101","01000011111111011100001010110010","01000011111111101100001101110111","01000011111111111100010000111100","01000100000000000110001010000000","01000100000000001110001011100011","01000100000000010110001101000101","01000100000000011110001110101000","01000100000000100110010000001010","01000100000000101110010001101101","01000100000000110110010011001111","01000100000000111110010100110010","01000100000001000110010110010100","01000100000001001110010111110111","01000100000001010110011001011001","01000100000001011110011010111100","01000100000001100110011100011110","01000100000001101110011110000001","01000100000001110110011111100011","01000100000001111110100001000110","01000100000010000110100010101000","01000100000010001110100100001011","01000100000010010110100101101101","01000100000010011110100111010000","01000100000010100110101000110010","01000100000010101110101010010101","01000100000010110110101011110111","01000100000010111110101101011010","01000100000011000110101110111100","01000100000011001110110000011111","01000100000011010110110010000001","01000100000011011110110011100100","01000100000011100110110101000110","01000100000011101110110110101001","01000100000011110110111000001011","01000100000011111110111001101110","01000100000100000110111011010000","01000100000100001110111100110011","01000100000100010110111110010101","01000100000100011110111111111000","01000100000100100111000001011010","01000100000100101111000010111101","01000100000100110111000100011111","01000100000100111111000110000010","01000100000101000111000111100100","01000100000101001111001001000111","01000100000101010111001010101001","01000100000101011111001100001100","01000100000101100111001101101110","01000100000101101111001111010001","01000100000101110111010000110011","01000100000101111111010010010110","01000100000110000111010011111000","01000100000110001111010101011011","01000100000110010111010110111101","01000100000110011111011000100000","01000100000110100111011010000010","01000100000110101111011011100101","01000100000110110111011101000111","01000100000110111111011110101010","01000100000111000111100000001100","01000100000111001111100001101111","01000100000111010111100011010001","01000100000111011111100100110100","01000100000111100111100110010110","01000100000111101111100111111001","01000100000111110111101001011011","01000100000111111111101010111110","01000100001000000111101100100000","01000100001000001111101110000011","01000100001000010111101111100101","01000100001000011111110001001000","01000100001000100111110010101010","01000100001000101111110100001101","01000100001000110111110101101111","01000100001000111111110111010010","01000100001001000111111000110100","01000100001001001111111010010111","01000100001001010111111011111001","01000100001001011111111101011100","01000100001001100111111110111110","01000100001001110000000000100001","01000100001001111000000010000011","01000100001010000000000011100110","01000100001010001000000101001000","01000100001010010000000110101011","01000100001010011000001000001101","01000100001010100000001001110000","01000100001010101000001011010010","01000100001010110000001100110101","01000100001010111000001110010111","01000100001011000000001111111010","01000100001011001000010001011100","01000100001011010000010010111111","01000100001011011000010100100001","01000100001011100000010110000100","01000100001011101000010111100110","01000100001011110000011001001001","01000100001011111000011010101011","01000100001100000000011100001110","01000100001100001000011101110000","01000100001100010000011111010011","01000100001100011000100000110101","01000100001100100000100010011000","01000100001100101000100011111010","01000100001100110000100101011101","01000100001100111000100110111111","01000100001101000000101000100010","01000100001101001000101010000100","01000100001101010000101011100111","01000100001101011000101101001001","01000100001101100000101110101100","01000100001101101000110000001110","01000100001101110000110001110001","01000100001101111000110011010011","01000100001110000000110100110110","01000100001110001000110110011000","01000100001110010000110111111011","01000100001110011000111001011101","01000100001110100000111011000000","01000100001110101000111100100010","01000100001110110000111110000101","01000100001110111000111111100111","01000100001111000001000001001010","01000100001111001001000010101100","01000100001111010001000100001111","01000100001111011001000101110001","01000100001111100001000111010100","01000100001111101001001000110110","01000100001111110001001010011001","01000100001111111001001011111011","01000100010000000001001101011110","01000100010000001001001111000000","01000100010000010001010000100011","01000100010000011001010010000101","01000100010000100001010011101000","01000100010000101001010101001010","01000100010000110001010110101101","01000100010000111001011000001111","01000100010001000001011001110010","01000100010001001001011011010100","01000100010001010001011100110111","01000100010001011001011110011001","01000100010001100001011111111100","01000100010001101001100001011110","01000100010001110001100011000001","01000100010001111001100100100011","01000100010010000001100110000110","01000100010010001001100111101000","01000100010010010001101001001011","01000100010010011001101010101101","01000100010010100001101100010000","01000100010010101001101101110010","01000100010010110001101111010101","01000100010010111001110000110111","01000100010011000001110010011010","01000100010011001001110011111100","01000100010011010001110101011111","01000100010011011001110111000001","01000100010011100001111000100100","01000100010011101001111010000110","01000100010011110001111011101001","01000100010011111001111101001011","01000100010100000001111110101110","01000100010100001010000000010000","01000100010100010010000001110011","01000100010100011010000011010101","01000100010100100010000100111000","01000100010100101010000110011010","01000100010100110010000111111101","01000100010100111010001001011111","01000100010101000010001011000010","01000100010101001010001100100100","01000100010101010010001110000111","01000100010101011010001111101001","01000100010101100010010001001100","01000100010101101010010010101110","01000100010101110010010100010001","01000100010101111010010101110011","01000100010110000010010111010110","01000100010110001010011000111000","01000100010110010010011010011011","01000100010110011010011011111101","01000100010110100010011101100000","01000100010110101010011111000010","01000100010110110010100000100101","01000100010110111010100010000111","01000100010111000010100011101010","01000100010111001010100101001100","01000100010111010010100110101111","01000100010111011010101000010001","01000100010111100010101001110100","01000100010111101010101011010110","01000100010111110010101100111001","01000100010111111010101110011011","01000100011000000010101111111110","01000100011000001010110001100000","01000100011000010010110011000011","01000100011000011010110100100101","01000100011000100010110110001000","01000100011000101010110111101010","01000100011000110010111001001101","01000100011000111010111010101111","01000100011001000010111100010010","01000100011001001010111101110100","01000100011001010010111111010111","01000100011001011011000000111001","01000100011001100011000010011100","01000100011001101011000011111110","01000100011001110011000101100001","01000100011001111011000111000011","01000100011010000011001000100110","01000100011010001011001010001000","01000100011010010011001011101011","01000100011010011011001101001101","01000100011010100011001110110000","01000100011010101011010000010010","01000100011010110011010001110101","01000100011010111011010011010111","01000100011011000011010100111010","01000100011011001011010110011100","01000100011011010011010111111111","01000100011011011011011001100001","01000100011011100011011011000100","01000100011011101011011100100110","01000100011011110011011110001001","01000100011011111011011111101011","01000100011100000011100001001110","01000100011100001011100010110000","01000100011100010011100100010011","01000100011100011011100101110101","01000100011100100011100111011000","01000100011100101011101000111010","01000100011100110011101010011101","01000100011100111011101011111111","01000100011101000011101101100010","01000100011101001011101111000100","01000100011101010011110000100111","01000100011101011011110010001001","01000100011101100011110011101100","01000100011101101011110101001110","01000100011101110011110110110001","01000100011101111011111000010011","01000100011110000011111001110110","01000100011110001011111011011000","01000100011110010011111100111011","01000100011110011011111110011101","01000100011110100100000000000000"],"x":[0.0,2.006012024048096,4.012024048096192,6.018036072144288,8.024048096192384,10.030060120240481,12.036072144288577,14.042084168336673,16.04809619238477,18.054108216432866,20.060120240480963,22.06613226452906,24.072144288577153,26.07815631262525,28.084168336673347,30.090180360721444,32.09619238476954,34.102204408817634,36.10821643286573,38.11422845691383,40.120240480961925,42.12625250501002,44.13226452905812,46.13827655310621,48.144288577154306,50.1503006012024,52.1563126252505,54.1623246492986,56.168336673346694,58.17434869739479,60.18036072144289,62.186372745490985,64.19238476953907,66.19839679358718,68.20440881763527,70.21042084168337,72.21643286573146,74.22244488977955,76.22845691382766,78.23446893787575,80.24048096192385,82.24649298597194,84.25250501002004,86.25851703406813,88.26452905811624,90.27054108216433,92.27655310621242,94.28256513026052,96.28857715430861,98.29458917835672,100.3006012024048,102.30661322645291,104.312625250501,106.3186372745491,108.3246492985972,110.33066132264528,112.33667334669339,114.34268537074148,116.34869739478958,118.35470941883767,120.36072144288578,122.36673346693387,124.37274549098197,126.37875751503006,128.38476953907815,130.39078156312624,132.39679358717436,134.40280561122245,136.40881763527054,138.41482965931863,140.42084168336675,142.42685370741484,144.43286573146293,146.43887775551102,148.4448897795591,150.45090180360722,152.4569138276553,154.4629258517034,156.4689378757515,158.4749498997996,160.4809619238477,162.4869739478958,164.49298597194388,166.49899799599197,168.5050100200401,170.51102204408818,172.51703406813627,174.52304609218436,176.52905811623248,178.53507014028057,180.54108216432866,182.54709418837675,184.55310621242484,186.55911823647295,188.56513026052104,190.57114228456913,192.57715430861722,194.58316633266534,196.58917835671343,198.59519038076152,200.6012024048096,202.6072144288577,204.61322645290582,206.6192384769539,208.625250501002,210.6312625250501,212.6372745490982,214.6432865731463,216.6492985971944,218.65531062124248,220.66132264529057,222.6673346693387,224.67334669338678,226.67935871743487,228.68537074148296,230.69138276553107,232.69739478957916,234.70340681362725,236.70941883767534,238.71543086172343,240.72144288577155,242.72745490981964,244.73346693386773,246.73947895791582,248.74549098196394,250.75150300601203,252.75751503006012,254.7635270541082,256.7695390781563,258.7755511022044,260.7815631262525,262.7875751503006,264.7935871743487,266.7995991983968,268.8056112224449,270.811623246493,272.8176352705411,274.8236472945892,276.82965931863725,278.8356713426854,280.8416833667335,282.84769539078155,284.85370741482967,286.85971943887773,288.86573146292585,290.87174348697397,292.87775551102203,294.88376753507015,296.8897795591182,298.89579158316633,300.90180360721445,302.9078156312625,304.9138276553106,306.91983967935874,308.9258517034068,310.9318637274549,312.937875751503,314.9438877755511,316.9498997995992,318.9559118236473,320.9619238476954,322.96793587174346,324.9739478957916,326.9799599198397,328.98597194388776,330.9919839679359,332.99799599198394,335.00400801603206,337.0100200400802,339.01603206412824,341.02204408817636,343.0280561122245,345.03406813627254,347.04008016032066,349.0460921843687,351.05210420841684,353.05811623246495,355.064128256513,357.07014028056113,359.0761523046092,361.0821643286573,363.08817635270543,365.0941883767535,367.1002004008016,369.1062124248497,371.1122244488978,373.1182364729459,375.12424849699397,377.1302605210421,379.1362725450902,381.14228456913827,383.1482965931864,385.15430861723445,387.16032064128257,389.1663326653307,391.17234468937875,393.17835671342687,395.1843687374749,397.19038076152304,399.19639278557116,401.2024048096192,403.20841683366734,405.2144288577154,407.2204408817635,409.22645290581164,411.2324649298597,413.2384769539078,415.24448897795594,417.250501002004,419.2565130260521,421.2625250501002,423.2685370741483,425.2745490981964,427.2805611222445,429.2865731462926,431.29258517034066,433.2985971943888,435.3046092184369,437.31062124248496,439.3166332665331,441.32264529058114,443.32865731462925,445.3346693386774,447.34068136272543,449.34669338677355,451.35270541082167,453.35871743486973,455.36472945891785,457.3707414829659,459.37675350701403,461.38276553106215,463.3887775551102,465.3947895791583,467.4008016032064,469.4068136272545,471.4128256513026,473.4188376753507,475.4248496993988,477.43086172344687,479.436873747495,481.4428857715431,483.44889779559117,485.4549098196393,487.4609218436874,489.46693386773546,491.4729458917836,493.47895791583164,495.48496993987976,497.4909819639279,499.49699398797594,501.50300601202406,503.5090180360721,505.51503006012024,507.52104208416836,509.5270541082164,511.53306613226454,513.5390781563126,515.5450901803607,517.5511022044088,519.557114228457,521.563126252505,523.5691382765531,525.5751503006012,527.5811623246493,529.5871743486974,531.5931863727454,533.5991983967936,535.6052104208417,537.6112224448898,539.6172344689379,541.623246492986,543.629258517034,545.6352705410821,547.6412825651303,549.6472945891784,551.6533066132265,553.6593186372745,555.6653306613226,557.6713426853707,559.6773547094189,561.683366733467,563.689378757515,565.6953907815631,567.7014028056112,569.7074148296593,571.7134268537075,573.7194388777555,575.7254509018036,577.7314629258517,579.7374749498998,581.7434869739479,583.7494989979959,585.7555110220441,587.7615230460922,589.7675350701403,591.7735470941884,593.7795591182364,595.7855711422845,597.7915831663327,599.7975951903808,601.8036072144289,603.8096192384769,605.815631262525,607.8216432865731,609.8276553106213,611.8336673346694,613.8396793587175,615.8456913827655,617.8517034068136,619.8577154308617,621.8637274549098,623.869739478958,625.875751503006,627.8817635270541,629.8877755511022,631.8937875751503,633.8997995991984,635.9058116232464,637.9118236472946,639.9178356713427,641.9238476953908,643.9298597194389,645.9358717434869,647.941883767535,649.9478957915832,651.9539078156313,653.9599198396794,655.9659318637274,657.9719438877755,659.9779559118236,661.9839679358718,663.9899799599199,665.9959919839679,668.002004008016,670.0080160320641,672.0140280561122,674.0200400801604,676.0260521042084,678.0320641282565,680.0380761523046,682.0440881763527,684.0501002004008,686.056112224449,688.062124248497,690.0681362725451,692.0741482965932,694.0801603206413,696.0861723446894,698.0921843687374,700.0981963927856,702.1042084168337,704.1102204408818,706.1162324649299,708.1222444889779,710.128256513026,712.1342685370741,714.1402805611223,716.1462925851704,718.1523046092184,720.1583166332665,722.1643286573146,724.1703406813627,726.1763527054109,728.1823647294589,730.188376753507,732.1943887775551,734.2004008016032,736.2064128256513,738.2124248496993,740.2184368737475,742.2244488977956,744.2304609218437,746.2364729458918,748.2424849699398,750.2484969939879,752.2545090180361,754.2605210420842,756.2665330661323,758.2725450901804,760.2785571142284,762.2845691382765,764.2905811623247,766.2965931863728,768.3026052104209,770.3086172344689,772.314629258517,774.3206412825651,776.3266533066133,778.3326653306614,780.3386773547094,782.3446893787575,784.3507014028056,786.3567134268537,788.3627254509018,790.3687374749499,792.374749498998,794.3807615230461,796.3867735470942,798.3927855711423,800.3987975951903,802.4048096192384,804.4108216432866,806.4168336673347,808.4228456913828,810.4288577154308,812.4348697394789,814.440881763527,816.4468937875752,818.4529058116233,820.4589178356713,822.4649298597194,824.4709418837675,826.4769539078156,828.4829659318638,830.4889779559119,832.4949899799599,834.501002004008,836.5070140280561,838.5130260521042,840.5190380761524,842.5250501002004,844.5310621242485,846.5370741482966,848.5430861723447,850.5490981963928,852.5551102204408,854.561122244489,856.5671342685371,858.5731462925852,860.5791583166333,862.5851703406813,864.5911823647294,866.5971943887776,868.6032064128257,870.6092184368738,872.6152304609218,874.6212424849699,876.627254509018,878.6332665330661,880.6392785571143,882.6452905811623,884.6513026052104,886.6573146292585,888.6633266533066,890.6693386773547,892.6753507014027,894.6813627254509,896.687374749499,898.6933867735471,900.6993987975952,902.7054108216433,904.7114228456913,906.7174348697395,908.7234468937876,910.7294589178357,912.7354709418838,914.7414829659318,916.7474949899799,918.7535070140281,920.7595190380762,922.7655310621243,924.7715430861723,926.7775551102204,928.7835671342685,930.7895791583167,932.7955911823648,934.8016032064128,936.8076152304609,938.813627254509,940.8196392785571,942.8256513026053,944.8316633266533,946.8376753507014,948.8436873747495,950.8496993987976,952.8557114228457,954.8617234468937,956.8677354709419,958.87374749499,960.8797595190381,962.8857715430862,964.8917835671342,966.8977955911823,968.9038076152304,970.9098196392786,972.9158316633267,974.9218436873748,976.9278557114228,978.9338677354709,980.939879759519,982.9458917835672,984.9519038076153,986.9579158316633,988.9639278557114,990.9699398797595,992.9759519038076,994.9819639278558,996.9879759519038,998.9939879759519,1001.0]}
+
 },{}],87:[function(require,module,exports){
-module.exports={"expected":["00000000001101100111000111110111","00001001001001100111110010100101","00001001101001100111110010010111","00001001111110011011101011011100","00001010001001100111110010010000","00001010010100000001101110110011","00001010011110011011101011010101","00001010100100011010110011111100","00001010101001100111110010001101","00001010101110110100110000011110","00001010110100000001101110101111","00001010111001001110101101000000","00001010111110011011101011010010","00001011000001110100010100110001","00001011000100011010110011111010","00001011000111000001010011000011","00001011001001100111110010001011","00001011001100001110010001010100","00001011001110110100110000011100","00001011010001011011001111100101","00001011010100000001101110101101","00001011010110101000001101110110","00001011011001001110101100111111","00001011011011110101001100000111","00001011011110011011101011010000","00001011100000100001000101001100","00001011100001110100010100110000","00001011100011000111100100010101","00001011100100011010110011111001","00001011100101101110000011011101","00001011100111000001010011000010","00001011101000010100100010100110","00001011101001100111110010001010","00001011101010111011000001101111","00001011101100001110010001010011","00001011101101100001100000110111","00001011101110110100110000011011","00001011110000001000000000000000","00001011110001011011001111100100","00001011110010101110011111001000","00001011110100000001101110101101","00001011110101010100111110010001","00001011110110101000001101110101","00001011110111111011011101011001","00001011111001001110101100111110","00001011111010100001111100100010","00001011111011110101001100000110","00001011111101001000011011101011","00001011111110011011101011001111","00001011111111101110111010110011","00001100000000100001000101001100","00001100000001001010101100111110","00001100000001110100010100110000","00001100000010011101111100100010","00001100000011000111100100010100","00001100000011110001001100000111","00001100000100011010110011111001","00001100000101000100011011101011","00001100000101101110000011011101","00001100000110010111101011001111","00001100000111000001010011000001","00001100000111101010111010110011","00001100001000010100100010100110","00001100001000111110001010011000","00001100001001100111110010001010","00001100001010010001011001111100","00001100001010111011000001101110","00001100001011100100101001100000","00001100001100001110010001010010","00001100001100110111111001000101","00001100001101100001100000110111","00001100001110001011001000101001","00001100001110110100110000011011","00001100001111011110011000001101","00001100010000000111111111111111","00001100010000110001100111110001","00001100010001011011001111100100","00001100010010000100110111010110","00001100010010101110011111001000","00001100010011011000000110111010","00001100010100000001101110101100","00001100010100101011010110011110","00001100010101010100111110010000","00001100010101111110100110000011","00001100010110101000001101110101","00001100010111010001110101100111","00001100010111111011011101011001","00001100011000100101000101001011","00001100011001001110101100111101","00001100011001111000010100101111","00001100011010100001111100100010","00001100011011001011100100010100","00001100011011110101001100000110","00001100011100011110110011111000","00001100011101001000011011101010","00001100011101110010000011011100","00001100011110011011101011001111","00001100011111000101010011000001","00001100011111101110111010110011","00001100100000001100010001010010","00001100100000100001000101001100","00001100100000110101111001000101","00001100100001001010101100111110","00001100100001011111100000110111","00001100100001110100010100110000","00001100100010001001001000101001","00001100100010011101111100100010","00001100100010110010110000011011","00001100100011000111100100010100","00001100100011011100011000001101","00001100100011110001001100000110","00001100100100000101111111111111","00001100100100011010110011111000","00001100100100101111100111110010","00001100100101000100011011101011","00001100100101011001001111100100","00001100100101101110000011011101","00001100100110000010110111010110","00001100100110010111101011001111","00001100100110101100011111001000","00001100100111000001010011000001","00001100100111010110000110111010","00001100100111101010111010110011","00001100100111111111101110101100","00001100101000010100100010100101","00001100101000101001010110011110","00001100101000111110001010010111","00001100101001010010111110010001","00001100101001100111110010001010","00001100101001111100100110000011","00001100101010010001011001111100","00001100101010100110001101110101","00001100101010111011000001101110","00001100101011001111110101100111","00001100101011100100101001100000","00001100101011111001011101011001","00001100101100001110010001010010","00001100101100100011000101001011","00001100101100110111111001000100","00001100101101001100101100111101","00001100101101100001100000110110","00001100101101110110010100110000","00001100101110001011001000101001","00001100101110011111111100100010","00001100101110110100110000011011","00001100101111001001100100010100","00001100101111011110011000001101","00001100101111110011001100000110","00001100110000000111111111111111","00001100110000011100110011111000","00001100110000110001100111110001","00001100110001000110011011101010","00001100110001011011001111100011","00001100110001110000000011011100","00001100110010000100110111010110","00001100110010011001101011001111","00001100110010101110011111001000","00001100110011000011010011000001","00001100110011011000000110111010","00001100110011101100111010110011","00001100110100000001101110101100","00001100110100010110100010100101","00001100110100101011010110011110","00001100110101000000001010010111","00001100110101010100111110010000","00001100110101101001110010001001","00001100110101111110100110000010","00001100110110010011011001111011","00001100110110101000001101110101","00001100110110111101000001101110","00001100110111010001110101100111","00001100110111100110101001100000","00001100110111111011011101011001","00001100111000010000010001010010","00001100111000100101000101001011","00001100111000111001111001000100","00001100111001001110101100111101","00001100111001100011100000110110","00001100111001111000010100101111","00001100111010001101001000101000","00001100111010100001111100100001","00001100111010110110110000011011","00001100111011001011100100010100","00001100111011100000011000001101","00001100111011110101001100000110","00001100111100001001111111111111","00001100111100011110110011111000","00001100111100110011100111110001","00001100111101001000011011101010","00001100111101011101001111100011","00001100111101110010000011011100","00001100111110000110110111010101","00001100111110011011101011001110","00001100111110110000011111000111","00001100111111000101010011000000","00001100111111011010000110111010","00001100111111101110111010110011","00001101000000000001110111010110","00001101000000001100010001010010","00001101000000010110101011001111","00001101000000100001000101001011","00001101000000101011011111001000","00001101000000110101111001000101","00001101000001000000010011000001","00001101000001001010101100111110","00001101000001010101000110111010","00001101000001011111100000110111","00001101000001101001111010110011","00001101000001110100010100110000","00001101000001111110101110101100","00001101000010001001001000101001","00001101000010010011100010100101","00001101000010011101111100100010","00001101000010101000010110011110","00001101000010110010110000011011","00001101000010111101001010011000","00001101000011000111100100010100","00001101000011010001111110010001","00001101000011011100011000001101","00001101000011100110110010001010","00001101000011110001001100000110","00001101000011111011100110000011","00001101000100000101111111111111","00001101000100010000011001111100","00001101000100011010110011111000","00001101000100100101001101110101","00001101000100101111100111110001","00001101000100111010000001101110","00001101000101000100011011101010","00001101000101001110110101100111","00001101000101011001001111100100","00001101000101100011101001100000","00001101000101101110000011011101","00001101000101111000011101011001","00001101000110000010110111010110","00001101000110001101010001010010","00001101000110010111101011001111","00001101000110100010000101001011","00001101000110101100011111001000","00001101000110110110111001000100","00001101000111000001010011000001","00001101000111001011101100111101","00001101000111010110000110111010","00001101000111100000100000110111","00001101000111101010111010110011","00001101000111110101010100110000","00001101000111111111101110101100","00001101001000001010001000101001","00001101001000010100100010100101","00001101001000011110111100100010","00001101001000101001010110011110","00001101001000110011110000011011","00001101001000111110001010010111","00001101001001001000100100010100","00001101001001010010111110010000","00001101001001011101011000001101","00001101001001100111110010001010","00001101001001110010001100000110","00001101001001111100100110000011","00001101001010000110111111111111","00001101001010010001011001111100","00001101001010011011110011111000","00001101001010100110001101110101","00001101001010110000100111110001","00001101001010111011000001101110","00001101001011000101011011101010","00001101001011001111110101100111","00001101001011011010001111100011","00001101001011100100101001100000","00001101001011101111000011011100","00001101001011111001011101011001","00001101001100000011110111010110","00001101001100001110010001010010","00001101001100011000101011001111","00001101001100100011000101001011","00001101001100101101011111001000","00001101001100110111111001000100","00001101001101000010010011000001","00001101001101001100101100111101","00001101001101010111000110111010","00001101001101100001100000110110","00001101001101101011111010110011","00001101001101110110010100101111","00001101001110000000101110101100","00001101001110001011001000101001","00001101001110010101100010100101","00001101001110011111111100100010","00001101001110101010010110011110","00001101001110110100110000011011","00001101001110111111001010010111","00001101001111001001100100010100","00001101001111010011111110010000","00001101001111011110011000001101","00001101001111101000110010001001","00001101001111110011001100000110","00001101001111111101100110000010","00001101010000000111111111111111","00001101010000010010011001111100","00001101010000011100110011111000","00001101010000100111001101110101","00001101010000110001100111110001","00001101010000111100000001101110","00001101010001000110011011101010","00001101010001010000110101100111","00001101010001011011001111100011","00001101010001100101101001100000","00001101010001110000000011011100","00001101010001111010011101011001","00001101010010000100110111010101","00001101010010001111010001010010","00001101010010011001101011001110","00001101010010100100000101001011","00001101010010101110011111001000","00001101010010111000111001000100","00001101010011000011010011000001","00001101010011001101101100111101","00001101010011011000000110111010","00001101010011100010100000110110","00001101010011101100111010110011","00001101010011110111010100101111","00001101010100000001101110101100","00001101010100001100001000101000","00001101010100010110100010100101","00001101010100100000111100100001","00001101010100101011010110011110","00001101010100110101110000011011","00001101010101000000001010010111","00001101010101001010100100010100","00001101010101010100111110010000","00001101010101011111011000001101","00001101010101101001110010001001","00001101010101110100001100000110","00001101010101111110100110000010","00001101010110001000111111111111","00001101010110010011011001111011","00001101010110011101110011111000","00001101010110101000001101110100","00001101010110110010100111110001","00001101010110111101000001101110","00001101010111000111011011101010","00001101010111010001110101100111","00001101010111011100001111100011","00001101010111100110101001100000","00001101010111110001000011011100","00001101010111111011011101011001","00001101011000000101110111010101","00001101011000010000010001010010","00001101011000011010101011001110","00001101011000100101000101001011","00001101011000101111011111000111","00001101011000111001111001000100","00001101011001000100010011000000","00001101011001001110101100111101","00001101011001011001000110111010","00001101011001100011100000110110","00001101011001101101111010110011","00001101011001111000010100101111","00001101011010000010101110101100","00001101011010001101001000101000","00001101011010010111100010100101","00001101011010100001111100100001","00001101011010101100010110011110","00001101011010110110110000011010","00001101011011000001001010010111","00001101011011001011100100010011","00001101011011010101111110010000","00001101011011100000011000001101","00001101011011101010110010001001","00001101011011110101001100000110","00001101011011111111100110000010","00001101011100001001111111111111","00001101011100010100011001111011","00001101011100011110110011111000","00001101011100101001001101110100","00001101011100110011100111110001","00001101011100111110000001101101","00001101011101001000011011101010","00001101011101010010110101100110","00001101011101011101001111100011","00001101011101100111101001100000","00001101011101110010000011011100","00001101011101111100011101011001","00001101011110000110110111010101","00001101011110010001010001010010","00001101011110011011101011001110","00001101011110100110000101001011","00001101011110110000011111000111","00001101011110111010111001000100","00001101011111000101010011000000","00001101011111001111101100111101","00001101011111011010000110111001","00001101011111100100100000110110","00001101011111101110111010110011","00001101011111111001010100101111","00001101100000000001110111010110","00001101100000000111000100010100","00001101100000001100010001010010","00001101100000010001011110010001","00001101100000010110101011001111","00001101100000011011111000001101","00001101100000100001000101001011","00001101100000100110010010001010","00001101100000101011011111001000","00001101100000110000101100000110","00001101100000110101111001000100","00001101100000111011000110000011","00001101100001000000010011000001","00001101100001000101011111111111","00001101100001001010101100111110","00001101100001001111111001111100","00001101100001010101000110111010","00001101100001011010010011111000","00001101100001011111100000110111","00001101100001100100101101110101","00001101100001101001111010110011","00001101100001101111000111110001","00001101100001110100010100110000","00001101100001111001100001101110","00001101100001111110101110101100","00001101100010000011111011101010","00001101100010001001001000101001","00001101100010001110010101100111","00001101100010010011100010100101","00001101100010011000101111100100","00001101100010011101111100100010","00001101100010100011001001100000","00001101100010101000010110011110","00001101100010101101100011011101","00001101100010110010110000011011","00001101100010110111111101011001","00001101100010111101001010010111","00001101100011000010010111010110","00001101100011000111100100010100","00001101100011001100110001010010","00001101100011010001111110010001","00001101100011010111001011001111","00001101100011011100011000001101","00001101100011100001100101001011","00001101100011100110110010001010","00001101100011101011111111001000","00001101100011110001001100000110","00001101100011110110011001000100","00001101100011111011100110000011","00001101100100000000110011000001","00001101100100000101111111111111","00001101100100001011001100111101","00001101100100010000011001111100","00001101100100010101100110111010","00001101100100011010110011111000","00001101100100100000000000110111","00001101100100100101001101110101","00001101100100101010011010110011","00001101100100101111100111110001","00001101100100110100110100110000","00001101100100111010000001101110","00001101100100111111001110101100","00001101100101000100011011101010","00001101100101001001101000101001","00001101100101001110110101100111","00001101100101010100000010100101","00001101100101011001001111100100","00001101100101011110011100100010","00001101100101100011101001100000","00001101100101101000110110011110","00001101100101101110000011011101","00001101100101110011010000011011","00001101100101111000011101011001","00001101100101111101101010010111","00001101100110000010110111010110","00001101100110001000000100010100","00001101100110001101010001010010","00001101100110010010011110010000","00001101100110010111101011001111","00001101100110011100111000001101","00001101100110100010000101001011","00001101100110100111010010001010","00001101100110101100011111001000","00001101100110110001101100000110","00001101100110110110111001000100","00001101100110111100000110000011","00001101100111000001010011000001","00001101100111000110011111111111","00001101100111001011101100111101","00001101100111010000111001111100","00001101100111010110000110111010","00001101100111011011010011111000","00001101100111100000100000110110","00001101100111100101101101110101","00001101100111101010111010110011","00001101100111110000000111110001","00001101100111110101010100110000","00001101100111111010100001101110","00001101100111111111101110101100","00001101101000000100111011101010","00001101101000001010001000101001","00001101101000001111010101100111","00001101101000010100100010100101","00001101101000011001101111100011","00001101101000011110111100100010","00001101101000100100001001100000"],"x":[5.0e-39,2.0040130060120242e-33,4.008021012024049e-33,6.012029018036073e-33,8.016037024048097e-33,1.0020045030060122e-32,1.2024053036072146e-32,1.4028061042084168e-32,1.6032069048096196e-32,1.803607705410822e-32,2.0040085060120242e-32,2.2044093066132267e-32,2.4048101072144292e-32,2.605210907815631e-32,2.805611708416834e-32,3.006012509018036e-32,3.206413309619239e-32,3.4068141102204415e-32,3.6072149108216437e-32,3.8076157114228464e-32,4.0080165120240486e-32,4.208417312625251e-32,4.4088181132264536e-32,4.609218913827656e-32,4.8096197144288585e-32,5.01002051503006e-32,5.210421315631263e-32,5.410822116232465e-32,5.611222916833668e-32,5.81162371743487e-32,6.012024518036073e-32,6.212425318637274e-32,6.412826119238477e-32,6.613226919839681e-32,6.813627720440883e-32,7.014028521042085e-32,7.214429321643287e-32,7.41483012224449e-32,7.615230922845691e-32,7.815631723446895e-32,8.016032524048097e-32,8.2164333246493e-32,8.416834125250501e-32,8.617234925851704e-32,8.817635726452907e-32,9.01803652705411e-32,9.218437327655311e-32,9.418838128256514e-32,9.619238928857716e-32,9.819639729458919e-32,1.0020040530060122e-31,1.0220441330661325e-31,1.0420842131262525e-31,1.0621242931863726e-31,1.082164373246493e-31,1.1022044533066134e-31,1.1222445333667334e-31,1.1422846134268537e-31,1.1623246934869742e-31,1.1823647735470945e-31,1.2024048536072145e-31,1.2224449336673346e-31,1.242485013727455e-31,1.2625250937875753e-31,1.2825651738476954e-31,1.3026052539078157e-31,1.322645333967936e-31,1.3426854140280564e-31,1.3627254940881765e-31,1.3827655741482968e-31,1.402805654208417e-31,1.4228457342685373e-31,1.4428858143286574e-31,1.4629258943887776e-31,1.482965974448898e-31,1.5030060545090182e-31,1.5230461345691382e-31,1.5430862146292585e-31,1.563126294689379e-31,1.5831663747494993e-31,1.6032064548096193e-31,1.6232465348697396e-31,1.6432866149298599e-31,1.6633266949899802e-31,1.6833667750501002e-31,1.7034068551102205e-31,1.7234469351703408e-31,1.743487015230461e-31,1.7635270952905813e-31,1.7835671753507016e-31,1.8036072554108219e-31,1.8236473354709421e-31,1.8436874155310622e-31,1.8637274955911825e-31,1.8837675756513027e-31,1.903807655711423e-31,1.9238477357715433e-31,1.9438878158316633e-31,1.9639278958917836e-31,1.9839679759519043e-31,2.004008056012024e-31,2.0240481360721444e-31,2.0440882161322647e-31,2.064128296192385e-31,2.0841683762525053e-31,2.104208456312625e-31,2.124248536372746e-31,2.144288616432866e-31,2.1643286964929864e-31,2.184368776553106e-31,2.204408856613227e-31,2.2244489366733467e-31,2.244489016733467e-31,2.264529096793587e-31,2.2845691768537076e-31,2.3046092569138283e-31,2.324649336973948e-31,2.3446894170340684e-31,2.3647294970941887e-31,2.384769577154309e-31,2.4048096572144288e-31,2.424849737274549e-31,2.4448898173346693e-31,2.46492989739479e-31,2.48496997745491e-31,2.50501005751503e-31,2.525050137575151e-31,2.5450902176352707e-31,2.565130297695391e-31,2.5851703777555112e-31,2.6052104578156315e-31,2.625250537875752e-31,2.645290617935872e-31,2.665330697995992e-31,2.6853707780561126e-31,2.705410858116233e-31,2.7254509381763527e-31,2.7454910182364734e-31,2.7655310982965933e-31,2.785571178356714e-31,2.805611258416834e-31,2.825651338476954e-31,2.8456914185370744e-31,2.8657314985971946e-31,2.8857715786573145e-31,2.905811658717435e-31,2.9258517387775555e-31,2.9458918188376757e-31,2.965931898897796e-31,2.985971978957916e-31,3.0060120590180366e-31,3.0260521390781564e-31,3.0460922191382767e-31,3.066132299198397e-31,3.086172379258517e-31,3.1062124593186375e-31,3.1262525393787578e-31,3.146292619438878e-31,3.1663326994989983e-31,3.1863727795591186e-31,3.206412859619239e-31,3.226452939679359e-31,3.246493019739479e-31,3.2665330997995997e-31,3.2865731798597195e-31,3.30661325991984e-31,3.3266533399799605e-31,3.3466934200400803e-31,3.366733500100201e-31,3.386773580160321e-31,3.406813660220441e-31,3.4268537402805614e-31,3.4468938203406817e-31,3.4669339004008015e-31,3.4869739804609223e-31,3.507014060521042e-31,3.527054140581163e-31,3.547094220641283e-31,3.567134300701403e-31,3.5871743807615236e-31,3.6072144608216435e-31,3.6272545408817637e-31,3.647294620941884e-31,3.6673347010020043e-31,3.6873747810621246e-31,3.707414861122245e-31,3.7274549411823647e-31,3.7474950212424854e-31,3.7675351013026057e-31,3.7875751813627255e-31,3.807615261422846e-31,3.8276553414829665e-31,3.8476954215430868e-31,3.8677355016032066e-31,3.887775581663327e-31,3.907815661723447e-31,3.9278557417835674e-31,3.947895821843688e-31,3.967935901903808e-31,3.987975981963928e-31,4.008016062024048e-31,4.028056142084169e-31,4.048096222144289e-31,4.068136302204409e-31,4.08817638226453e-31,4.108216462324649e-31,4.128256542384771e-31,4.1482966224448896e-31,4.16833670250501e-31,4.188376782565131e-31,4.208416862625251e-31,4.2284569426853715e-31,4.2484970227454905e-31,4.268537102805612e-31,4.288577182865732e-31,4.308617262925852e-31,4.328657342985972e-31,4.348697423046093e-31,4.368737503106212e-31,4.388777583166333e-31,4.408817663226454e-31,4.428857743286573e-31,4.448897823346694e-31,4.468937903406813e-31,4.488977983466935e-31,4.5090180635270545e-31,4.529058143587174e-31,4.549098223647295e-31,4.569138303707415e-31,4.589178383767536e-31,4.609218463827655e-31,4.629258543887776e-31,4.649298623947896e-31,4.669338704008017e-31,4.6893787840681365e-31,4.709418864128257e-31,4.729458944188378e-31,4.749499024248497e-31,4.769539104308618e-31,4.7895791843687374e-31,4.809619264428858e-31,4.829659344488978e-31,4.849699424549099e-31,4.869739504609219e-31,4.889779584669338e-31,4.909819664729459e-31,4.92985974478958e-31,4.9498998248497e-31,4.9699399049098195e-31,4.98997998496994e-31,5.010020065030061e-31,5.030060145090181e-31,5.0501002251503014e-31,5.070140305210421e-31,5.090180385270542e-31,5.110220465330661e-31,5.130260545390782e-31,5.150300625450903e-31,5.170340705511022e-31,5.190380785571143e-31,5.210420865631263e-31,5.2304609456913835e-31,5.250501025751503e-31,5.270541105811623e-31,5.290581185871744e-31,5.310621265931865e-31,5.330661345991984e-31,5.350701426052104e-31,5.370741506112226e-31,5.390781586172345e-31,5.4108216662324655e-31,5.430861746292585e-31,5.450901826352706e-31,5.470941906412827e-31,5.490981986472946e-31,5.511022066533067e-31,5.531062146593186e-31,5.551102226653307e-31,5.571142306713427e-31,5.5911823867735475e-31,5.611222466833667e-31,5.631262546893788e-31,5.651302626953909e-31,5.671342707014029e-31,5.691382787074149e-31,5.711422867134268e-31,5.73146294719439e-31,5.751503027254509e-31,5.77154310731463e-31,5.79158318737475e-31,5.81162326743487e-31,5.831663347494991e-31,5.85170342755511e-31,5.871743507615231e-31,5.891783587675351e-31,5.911823667735471e-31,5.931863747795592e-31,5.9519038278557125e-31,5.971943907915832e-31,5.991983987975952e-31,6.012024068036073e-31,6.032064148096193e-31,6.052104228156313e-31,6.072144308216432e-31,6.092184388276554e-31,6.112224468336675e-31,6.132264548396794e-31,6.152304628456914e-31,6.172344708517034e-31,6.192384788577155e-31,6.212424868637275e-31,6.2324649486973946e-31,6.252505028757516e-31,6.272545108817636e-31,6.292585188877756e-31,6.3126252689378765e-31,6.332665348997997e-31,6.352705429058116e-31,6.372745509118237e-31,6.392785589178358e-31,6.4128256692384775e-31,6.432865749298598e-31,6.452905829358718e-31,6.472945909418839e-31,6.492985989478958e-31,6.513026069539078e-31,6.533066149599199e-31,6.553106229659319e-31,6.57314630971944e-31,6.5931863897795595e-31,6.61322646983968e-31,6.6332665498998e-31,6.653306629959921e-31,6.673346710020041e-31,6.693386790080161e-31,6.713426870140281e-31,6.733466950200401e-31,6.7535070302605226e-31,6.7735471103206415e-31,6.793587190380762e-31,6.813627270440881e-31,6.833667350501003e-31,6.8537074305611235e-31,6.8737475106212425e-31,6.893787590681364e-31,6.913827670741484e-31,6.933867750801604e-31,6.9539078308617235e-31,6.973947910921845e-31,6.993987990981964e-31,7.014028071042085e-31,7.034068151102205e-31,7.054108231162325e-31,7.074148311222446e-31,7.094188391282565e-31,7.114228471342687e-31,7.134268551402806e-31,7.154308631462926e-31,7.174348711523047e-31,7.194388791583167e-31,7.2144288716432875e-31,7.234468951703407e-31,7.254509031763527e-31,7.274549111823648e-31,7.294589191883769e-31,7.314629271943888e-31,7.334669352004009e-31,7.354709432064129e-31,7.374749512124249e-31,7.39478959218437e-31,7.414829672244489e-31,7.43486975230461e-31,7.454909832364729e-31,7.47494991242485e-31,7.494989992484971e-31,7.51503007254509e-31,7.535070152605211e-31,7.555110232665332e-31,7.575150312725452e-31,7.5951903927855714e-31,7.615230472845692e-31,7.635270552905813e-31,7.655310632965933e-31,7.6753507130260525e-31,7.695390793086172e-31,7.715430873146294e-31,7.735470953206413e-31,7.755511033266534e-31,7.7755511133266535e-31,7.795591193386774e-31,7.815631273446895e-31,7.835671353507014e-31,7.8557114335671354e-31,7.875751513627255e-31,7.895791593687375e-31,7.915831673747496e-31,7.935871753807617e-31,7.955911833867736e-31,7.975951913927856e-31,7.995991993987977e-31,8.016032074048098e-31,8.036072154108217e-31,8.056112234168337e-31,8.076152314228458e-31,8.096192394288577e-31,8.1162324743487e-31,8.136272554408818e-31,8.156312634468937e-31,8.17635271452906e-31,8.19639279458918e-31,8.2164328746493e-31,8.236472954709418e-31,8.256513034769541e-31,8.27655311482966e-31,8.296593194889779e-31,8.3166332749499e-31,8.336673355010022e-31,8.356713435070141e-31,8.376753515130262e-31,8.39679359519038e-31,8.416833675250501e-31,8.436873755310622e-31,8.456913835370741e-31,8.476953915430864e-31,8.496993995490982e-31,8.517034075551103e-31,8.537074155611222e-31,8.557114235671343e-31,8.577154315731464e-31,8.597194395791583e-31,8.617234475851705e-31,8.637274555911826e-31,8.657314635971945e-31,8.677354716032064e-31,8.697394796092186e-31,8.717434876152305e-31,8.737474956212424e-31,8.757515036272548e-31,8.777555116332667e-31,8.797595196392786e-31,8.817635276452907e-31,8.837675356513028e-31,8.857715436573147e-31,8.877755516633265e-31,8.897795596693388e-31,8.917835676753509e-31,8.937875756813628e-31,8.957915836873748e-31,8.977955916933869e-31,8.997995996993988e-31,9.018036077054109e-31,9.03807615711423e-31,9.05811623717435e-31,9.07815631723447e-31,9.09819639729459e-31,9.11823647735471e-31,9.13827655741483e-31,9.15831663747495e-31,9.17835671753507e-31,9.198396797595192e-31,9.218436877655312e-31,9.238476957715431e-31,9.258517037775552e-31,9.278557117835673e-31,9.298597197895792e-31,9.31863727795591e-31,9.338677358016033e-31,9.358717438076154e-31,9.378757518136273e-31,9.398797598196395e-31,9.418837678256514e-31,9.438877758316633e-31,9.458917838376754e-31,9.478957918436875e-31,9.498997998496995e-31,9.519038078557114e-31,9.539078158617237e-31,9.559118238677356e-31,9.579158318737475e-31,9.599198398797595e-31,9.619238478857716e-31,9.639278558917837e-31,9.659318638977957e-31,9.679358719038078e-31,9.699398799098197e-31,9.719438879158318e-31,9.739478959218437e-31,9.759519039278558e-31,9.779559119338677e-31,9.799599199398799e-31,9.81963927945892e-31,9.839679359519039e-31,9.85971943957916e-31,9.879759519639278e-31,9.899799599699399e-31,9.91983967975952e-31,9.93987975981964e-31,9.95991983987976e-31,9.979959919939882e-31,1.0e-30]}
+module.exports={"expected":["00000000000000000000000000000000","00111011000000110101010110101101","00111011100000110101010110101101","00111011110001010000000010000011","00111100000000110101010110101101","00111100001001000010101100011000","00111100010001010000000010000011","00111100011001011101010111101111","00111100100000110101010110101101","00111100100100111100000001100011","00111100101001000010101100011000","00111100101101001001010111001110","00111100110001010000000010000011","00111100110101010110101100111001","00111100111001011101010111101111","00111100111101100100000010100100","00111101000000110101010110101101","00111101000010111000101100001000","00111101000100111100000001100011","00111101000110111111010110111101","00111101001001000010101100011000","00111101001011000110000001110011","00111101001101001001010111001110","00111101001111001100101100101001","00111101010001010000000010000011","00111101010011010011010111011110","00111101010101010110101100111001","00111101010111011010000010010100","00111101011001011101010111101111","00111101011011100000101101001001","00111101011101100100000010100100","00111101011111100111010111111111","00111101100000110101010110101101","00111101100001110111000001011010","00111101100010111000101100001000","00111101100011111010010110110101","00111101100100111100000001100011","00111101100101111101101100010000","00111101100110111111010110111101","00111101101000000001000001101011","00111101101001000010101100011000","00111101101010000100010111000110","00111101101011000110000001110011","00111101101100000111101100100000","00111101101101001001010111001110","00111101101110001011000001111011","00111101101111001100101100101001","00111101110000001110010111010110","00111101110001010000000010000011","00111101110010010001101100110001","00111101110011010011010111011110","00111101110100010101000010001100","00111101110101010110101100111001","00111101110110011000010111100110","00111101110111011010000010010100","00111101111000011011101101000001","00111101111001011101010111101111","00111101111010011111000010011100","00111101111011100000101101001001","00111101111100100010010111110111","00111101111101100100000010100100","00111101111110100101101101010010","00111101111111100111010111111111","00111110000000010100100001010110","00111110000000110101010110101101","00111110000001010110001100000100","00111110000001110111000001011010","00111110000010010111110110110001","00111110000010111000101100001000","00111110000011011001100001011110","00111110000011111010010110110101","00111110000100011011001100001100","00111110000100111100000001100011","00111110000101011100110110111001","00111110000101111101101100010000","00111110000110011110100001100111","00111110000110111111010110111101","00111110000111100000001100010100","00111110001000000001000001101011","00111110001000100001110111000001","00111110001001000010101100011000","00111110001001100011100001101111","00111110001010000100010111000110","00111110001010100101001100011100","00111110001011000110000001110011","00111110001011100110110111001010","00111110001100000111101100100000","00111110001100101000100001110111","00111110001101001001010111001110","00111110001101101010001100100100","00111110001110001011000001111011","00111110001110101011110111010010","00111110001111001100101100101001","00111110001111101101100001111111","00111110010000001110010111010110","00111110010000101111001100101101","00111110010001010000000010000011","00111110010001110000110111011010","00111110010010010001101100110001","00111110010010110010100010000111","00111110010011010011010111011110","00111110010011110100001100110101","00111110010100010101000010001100","00111110010100110101110111100010","00111110010101010110101100111001","00111110010101110111100010010000","00111110010110011000010111100110","00111110010110111001001100111101","00111110010111011010000010010100","00111110010111111010110111101010","00111110011000011011101101000001","00111110011000111100100010011000","00111110011001011101010111101111","00111110011001111110001101000101","00111110011010011111000010011100","00111110011010111111110111110011","00111110011011100000101101001001","00111110011100000001100010100000","00111110011100100010010111110111","00111110011101000011001101001101","00111110011101100100000010100100","00111110011110000100110111111011","00111110011110100101101101010010","00111110011111000110100010101000","00111110011111100111010111111111","00111110100000000100000110101011","00111110100000010100100001010110","00111110100000100100111100000010","00111110100000110101010110101101","00111110100001000101110001011000","00111110100001010110001100000100","00111110100001100110100110101111","00111110100001110111000001011010","00111110100010000111011100000110","00111110100010010111110110110001","00111110100010101000010001011100","00111110100010111000101100001000","00111110100011001001000110110011","00111110100011011001100001011110","00111110100011101001111100001010","00111110100011111010010110110101","00111110100100001010110001100000","00111110100100011011001100001100","00111110100100101011100110110111","00111110100100111100000001100011","00111110100101001100011100001110","00111110100101011100110110111001","00111110100101101101010001100101","00111110100101111101101100010000","00111110100110001110000110111011","00111110100110011110100001100111","00111110100110101110111100010010","00111110100110111111010110111101","00111110100111001111110001101001","00111110100111100000001100010100","00111110100111110000100110111111","00111110101000000001000001101011","00111110101000010001011100010110","00111110101000100001110111000001","00111110101000110010010001101101","00111110101001000010101100011000","00111110101001010011000111000011","00111110101001100011100001101111","00111110101001110011111100011010","00111110101010000100010111000110","00111110101010010100110001110001","00111110101010100101001100011100","00111110101010110101100111001000","00111110101011000110000001110011","00111110101011010110011100011110","00111110101011100110110111001010","00111110101011110111010001110101","00111110101100000111101100100000","00111110101100011000000111001100","00111110101100101000100001110111","00111110101100111000111100100010","00111110101101001001010111001110","00111110101101011001110001111001","00111110101101101010001100100100","00111110101101111010100111010000","00111110101110001011000001111011","00111110101110011011011100100110","00111110101110101011110111010010","00111110101110111100010001111101","00111110101111001100101100101001","00111110101111011101000111010100","00111110101111101101100001111111","00111110101111111101111100101011","00111110110000001110010111010110","00111110110000011110110010000001","00111110110000101111001100101101","00111110110000111111100111011000","00111110110001010000000010000011","00111110110001100000011100101111","00111110110001110000110111011010","00111110110010000001010010000101","00111110110010010001101100110001","00111110110010100010000111011100","00111110110010110010100010000111","00111110110011000010111100110011","00111110110011010011010111011110","00111110110011100011110010001001","00111110110011110100001100110101","00111110110100000100100111100000","00111110110100010101000010001100","00111110110100100101011100110111","00111110110100110101110111100010","00111110110101000110010010001110","00111110110101010110101100111001","00111110110101100111000111100100","00111110110101110111100010010000","00111110110110000111111100111011","00111110110110011000010111100110","00111110110110101000110010010010","00111110110110111001001100111101","00111110110111001001100111101000","00111110110111011010000010010100","00111110110111101010011100111111","00111110110111111010110111101010","00111110111000001011010010010110","00111110111000011011101101000001","00111110111000101100000111101101","00111110111000111100100010011000","00111110111001001100111101000011","00111110111001011101010111101111","00111110111001101101110010011010","00111110111001111110001101000101","00111110111010001110100111110001","00111110111010011111000010011100","00111110111010101111011101000111","00111110111010111111110111110011","00111110111011010000010010011110","00111110111011100000101101001001","00111110111011110001000111110101","00111110111100000001100010100000","00111110111100010001111101001011","00111110111100100010010111110111","00111110111100110010110010100010","00111110111101000011001101001101","00111110111101010011100111111001","00111110111101100100000010100100","00111110111101110100011101010000","00111110111110000100110111111011","00111110111110010101010010100110","00111110111110100101101101010010","00111110111110110110000111111101","00111110111111000110100010101000","00111110111111010110111101010100","00111110111111100111010111111111","00111110111111110111110010101010","00111111000000000100000110101011","00111111000000001100010100000001","00111111000000010100100001010110","00111111000000011100101110101100","00111111000000100100111100000010","00111111000000101101001001010111","00111111000000110101010110101101","00111111000000111101100100000011","00111111000001000101110001011000","00111111000001001101111110101110","00111111000001010110001100000100","00111111000001011110011001011001","00111111000001100110100110101111","00111111000001101110110100000101","00111111000001110111000001011010","00111111000001111111001110110000","00111111000010000111011100000110","00111111000010001111101001011011","00111111000010010111110110110001","00111111000010100000000100000111","00111111000010101000010001011100","00111111000010110000011110110010","00111111000010111000101100001000","00111111000011000000111001011101","00111111000011001001000110110011","00111111000011010001010100001001","00111111000011011001100001011110","00111111000011100001101110110100","00111111000011101001111100001010","00111111000011110010001001011111","00111111000011111010010110110101","00111111000100000010100100001011","00111111000100001010110001100000","00111111000100010010111110110110","00111111000100011011001100001100","00111111000100100011011001100001","00111111000100101011100110110111","00111111000100110011110100001101","00111111000100111100000001100011","00111111000101000100001110111000","00111111000101001100011100001110","00111111000101010100101001100100","00111111000101011100110110111001","00111111000101100101000100001111","00111111000101101101010001100101","00111111000101110101011110111010","00111111000101111101101100010000","00111111000110000101111001100110","00111111000110001110000110111011","00111111000110010110010100010001","00111111000110011110100001100111","00111111000110100110101110111100","00111111000110101110111100010010","00111111000110110111001001101000","00111111000110111111010110111101","00111111000111000111100100010011","00111111000111001111110001101001","00111111000111010111111110111110","00111111000111100000001100010100","00111111000111101000011001101010","00111111000111110000100110111111","00111111000111111000110100010101","00111111001000000001000001101011","00111111001000001001001111000000","00111111001000010001011100010110","00111111001000011001101001101100","00111111001000100001110111000001","00111111001000101010000100010111","00111111001000110010010001101101","00111111001000111010011111000010","00111111001001000010101100011000","00111111001001001010111001101110","00111111001001010011000111000011","00111111001001011011010100011001","00111111001001100011100001101111","00111111001001101011101111000100","00111111001001110011111100011010","00111111001001111100001001110000","00111111001010000100010111000110","00111111001010001100100100011011","00111111001010010100110001110001","00111111001010011100111111000111","00111111001010100101001100011100","00111111001010101101011001110010","00111111001010110101100111001000","00111111001010111101110100011101","00111111001011000110000001110011","00111111001011001110001111001001","00111111001011010110011100011110","00111111001011011110101001110100","00111111001011100110110111001010","00111111001011101111000100011111","00111111001011110111010001110101","00111111001011111111011111001011","00111111001100000111101100100000","00111111001100001111111001110110","00111111001100011000000111001100","00111111001100100000010100100001","00111111001100101000100001110111","00111111001100110000101111001101","00111111001100111000111100100010","00111111001101000001001001111000","00111111001101001001010111001110","00111111001101010001100100100011","00111111001101011001110001111001","00111111001101100001111111001111","00111111001101101010001100100100","00111111001101110010011001111010","00111111001101111010100111010000","00111111001110000010110100100101","00111111001110001011000001111011","00111111001110010011001111010001","00111111001110011011011100100110","00111111001110100011101001111100","00111111001110101011110111010010","00111111001110110100000100101000","00111111001110111100010001111101","00111111001111000100011111010011","00111111001111001100101100101001","00111111001111010100111001111110","00111111001111011101000111010100","00111111001111100101010100101010","00111111001111101101100001111111","00111111001111110101101111010101","00111111001111111101111100101011","00111111010000000110001010000000","00111111010000001110010111010110","00111111010000010110100100101100","00111111010000011110110010000001","00111111010000100110111111010111","00111111010000101111001100101101","00111111010000110111011010000010","00111111010000111111100111011000","00111111010001000111110100101110","00111111010001010000000010000011","00111111010001011000001111011001","00111111010001100000011100101111","00111111010001101000101010000100","00111111010001110000110111011010","00111111010001111001000100110000","00111111010010000001010010000101","00111111010010001001011111011011","00111111010010010001101100110001","00111111010010011001111010000110","00111111010010100010000111011100","00111111010010101010010100110010","00111111010010110010100010000111","00111111010010111010101111011101","00111111010011000010111100110011","00111111010011001011001010001000","00111111010011010011010111011110","00111111010011011011100100110100","00111111010011100011110010001001","00111111010011101011111111011111","00111111010011110100001100110101","00111111010011111100011010001011","00111111010100000100100111100000","00111111010100001100110100110110","00111111010100010101000010001100","00111111010100011101001111100001","00111111010100100101011100110111","00111111010100101101101010001101","00111111010100110101110111100010","00111111010100111110000100111000","00111111010101000110010010001110","00111111010101001110011111100011","00111111010101010110101100111001","00111111010101011110111010001111","00111111010101100111000111100100","00111111010101101111010100111010","00111111010101110111100010010000","00111111010101111111101111100101","00111111010110000111111100111011","00111111010110010000001010010001","00111111010110011000010111100110","00111111010110100000100100111100","00111111010110101000110010010010","00111111010110110000111111100111","00111111010110111001001100111101","00111111010111000001011010010011","00111111010111001001100111101000","00111111010111010001110100111110","00111111010111011010000010010100","00111111010111100010001111101001","00111111010111101010011100111111","00111111010111110010101010010101","00111111010111111010110111101010","00111111011000000011000101000000","00111111011000001011010010010110","00111111011000010011011111101011","00111111011000011011101101000001","00111111011000100011111010010111","00111111011000101100000111101101","00111111011000110100010101000010","00111111011000111100100010011000","00111111011001000100101111101110","00111111011001001100111101000011","00111111011001010101001010011001","00111111011001011101010111101111","00111111011001100101100101000100","00111111011001101101110010011010","00111111011001110101111111110000","00111111011001111110001101000101","00111111011010000110011010011011","00111111011010001110100111110001","00111111011010010110110101000110","00111111011010011111000010011100","00111111011010100111001111110010","00111111011010101111011101000111","00111111011010110111101010011101","00111111011010111111110111110011","00111111011011001000000101001000","00111111011011010000010010011110","00111111011011011000011111110100","00111111011011100000101101001001","00111111011011101000111010011111","00111111011011110001000111110101","00111111011011111001010101001010","00111111011100000001100010100000","00111111011100001001101111110110","00111111011100010001111101001011","00111111011100011010001010100001","00111111011100100010010111110111","00111111011100101010100101001100","00111111011100110010110010100010","00111111011100111010111111111000","00111111011101000011001101001101","00111111011101001011011010100011","00111111011101010011100111111001","00111111011101011011110101001110","00111111011101100100000010100100","00111111011101101100001111111010","00111111011101110100011101010000","00111111011101111100101010100101","00111111011110000100110111111011","00111111011110001101000101010001","00111111011110010101010010100110","00111111011110011101011111111100","00111111011110100101101101010010","00111111011110101101111010100111","00111111011110110110000111111101","00111111011110111110010101010011","00111111011111000110100010101000","00111111011111001110101111111110","00111111011111010110111101010100","00111111011111011111001010101001","00111111011111100111010111111111","00111111011111101111100101010101","00111111011111110111110010101010","00111111100000000000000000000000"],"x":[0.0,0.002004008016032064,0.004008016032064128,0.006012024048096192,0.008016032064128256,0.01002004008016032,0.012024048096192385,0.014028056112224449,0.01603206412825651,0.018036072144288578,0.02004008016032064,0.022044088176352707,0.02404809619238477,0.026052104208416832,0.028056112224448898,0.03006012024048096,0.03206412825651302,0.03406813627254509,0.036072144288577156,0.03807615230460922,0.04008016032064128,0.04208416833667335,0.04408817635270541,0.04609218436873747,0.04809619238476954,0.050100200400801605,0.052104208416833664,0.05410821643286573,0.056112224448897796,0.05811623246492986,0.06012024048096192,0.06212424849699399,0.06412825651302605,0.06613226452905811,0.06813627254509018,0.07014028056112225,0.07214428857715431,0.07414829659318638,0.07615230460921844,0.0781563126252505,0.08016032064128256,0.08216432865731463,0.0841683366733467,0.08617234468937876,0.08817635270541083,0.09018036072144289,0.09218436873747494,0.09418837675350701,0.09619238476953908,0.09819639278557114,0.10020040080160321,0.10220440881763528,0.10420841683366733,0.1062124248496994,0.10821643286573146,0.11022044088176353,0.11222444889779559,0.11422845691382766,0.11623246492985972,0.11823647294589178,0.12024048096192384,0.12224448897795591,0.12424849699398798,0.12625250501002003,0.1282565130260521,0.13026052104208416,0.13226452905811623,0.1342685370741483,0.13627254509018036,0.13827655310621242,0.1402805611222445,0.14228456913827656,0.14428857715430862,0.1462925851703407,0.14829659318637275,0.15030060120240482,0.1523046092184369,0.15430861723446893,0.156312625250501,0.15831663326653306,0.16032064128256512,0.1623246492985972,0.16432865731462926,0.16633266533066132,0.1683366733466934,0.17034068136272545,0.17234468937875752,0.1743486973947896,0.17635270541082165,0.17835671342685372,0.18036072144288579,0.18236472945891782,0.1843687374749499,0.18637274549098196,0.18837675350701402,0.1903807615230461,0.19238476953907815,0.19438877755511022,0.1963927855711423,0.19839679358717435,0.20040080160320642,0.20240480961923848,0.20440881763527055,0.20641282565130262,0.20841683366733466,0.21042084168336672,0.2124248496993988,0.21442885771543085,0.21643286573146292,0.218436873747495,0.22044088176352705,0.22244488977955912,0.22444889779559118,0.22645290581162325,0.22845691382765532,0.23046092184368738,0.23246492985971945,0.23446893787575152,0.23647294589178355,0.23847695390781562,0.24048096192384769,0.24248496993987975,0.24448897795591182,0.24649298597194388,0.24849699398797595,0.250501002004008,0.25250501002004005,0.2545090180360721,0.2565130260521042,0.25851703406813625,0.2605210420841683,0.2625250501002004,0.26452905811623245,0.2665330661322645,0.2685370741482966,0.27054108216432865,0.2725450901803607,0.2745490981963928,0.27655310621242485,0.2785571142284569,0.280561122244489,0.28256513026052105,0.2845691382765531,0.2865731462925852,0.28857715430861725,0.2905811623246493,0.2925851703406814,0.29458917835671344,0.2965931863727455,0.2985971943887776,0.30060120240480964,0.3026052104208417,0.3046092184368738,0.3066132264529058,0.30861723446893785,0.3106212424849699,0.312625250501002,0.31462925851703405,0.3166332665330661,0.3186372745490982,0.32064128256513025,0.3226452905811623,0.3246492985971944,0.32665330661322645,0.3286573146292585,0.3306613226452906,0.33266533066132264,0.3346693386773547,0.3366733466933868,0.33867735470941884,0.3406813627254509,0.342685370741483,0.34468937875751504,0.3466933867735471,0.3486973947895792,0.35070140280561124,0.3527054108216433,0.35470941883767537,0.35671342685370744,0.3587174348697395,0.36072144288577157,0.3627254509018036,0.36472945891783565,0.3667334669338677,0.3687374749498998,0.37074148296593185,0.3727454909819639,0.374749498997996,0.37675350701402804,0.3787575150300601,0.3807615230460922,0.38276553106212424,0.3847695390781563,0.3867735470941884,0.38877755511022044,0.3907815631262525,0.3927855711422846,0.39478957915831664,0.3967935871743487,0.39879759519038077,0.40080160320641284,0.4028056112224449,0.40480961923847697,0.40681362725450904,0.4088176352705411,0.41082164328657317,0.41282565130260523,0.4148296593186373,0.4168336673346693,0.4188376753507014,0.42084168336673344,0.4228456913827655,0.4248496993987976,0.42685370741482964,0.4288577154308617,0.4308617234468938,0.43286573146292584,0.4348697394789579,0.43687374749499,0.43887775551102204,0.4408817635270541,0.44288577154308617,0.44488977955911824,0.4468937875751503,0.44889779559118237,0.45090180360721444,0.4529058116232465,0.45490981963927857,0.45691382765531063,0.4589178356713427,0.46092184368737477,0.46292585170340683,0.4649298597194389,0.46693386773547096,0.46893787575150303,0.4709418837675351,0.4729458917835671,0.4749498997995992,0.47695390781563124,0.4789579158316633,0.48096192384769537,0.48296593186372744,0.4849699398797595,0.48697394789579157,0.48897795591182364,0.4909819639278557,0.49298597194388777,0.49498997995991983,0.4969939879759519,0.49899799599198397,0.501002004008016,0.503006012024048,0.5050100200400801,0.5070140280561122,0.5090180360721442,0.5110220440881763,0.5130260521042084,0.5150300601202404,0.5170340681362725,0.5190380761523046,0.5210420841683366,0.5230460921843687,0.5250501002004008,0.5270541082164328,0.5290581162324649,0.531062124248497,0.533066132264529,0.5350701402805611,0.5370741482965932,0.5390781563126252,0.5410821643286573,0.5430861723446894,0.5450901803607214,0.5470941883767535,0.5490981963927856,0.5511022044088176,0.5531062124248497,0.5551102204408818,0.5571142284569138,0.5591182364729459,0.561122244488978,0.56312625250501,0.5651302605210421,0.5671342685370742,0.5691382765531062,0.5711422845691383,0.5731462925851704,0.5751503006012024,0.5771543086172345,0.5791583166332666,0.5811623246492986,0.5831663326653307,0.5851703406813628,0.5871743486973948,0.5891783567134269,0.591182364729459,0.593186372745491,0.5951903807615231,0.5971943887775552,0.5991983967935872,0.6012024048096193,0.6032064128256514,0.6052104208416834,0.6072144288577155,0.6092184368737475,0.6112224448897795,0.6132264529058116,0.6152304609218436,0.6172344689378757,0.6192384769539078,0.6212424849699398,0.6232464929859719,0.625250501002004,0.627254509018036,0.6292585170340681,0.6312625250501002,0.6332665330661322,0.6352705410821643,0.6372745490981964,0.6392785571142284,0.6412825651302605,0.6432865731462926,0.6452905811623246,0.6472945891783567,0.6492985971943888,0.6513026052104208,0.6533066132264529,0.655310621242485,0.657314629258517,0.6593186372745491,0.6613226452905812,0.6633266533066132,0.6653306613226453,0.6673346693386774,0.6693386773547094,0.6713426853707415,0.6733466933867736,0.6753507014028056,0.6773547094188377,0.6793587174348698,0.6813627254509018,0.6833667334669339,0.685370741482966,0.687374749498998,0.6893787575150301,0.6913827655310621,0.6933867735470942,0.6953907815631263,0.6973947895791583,0.6993987975951904,0.7014028056112225,0.7034068136272545,0.7054108216432866,0.7074148296593187,0.7094188376753507,0.7114228456913828,0.7134268537074149,0.7154308617234469,0.717434869739479,0.7194388777555111,0.7214428857715431,0.7234468937875751,0.7254509018036072,0.7274549098196392,0.7294589178356713,0.7314629258517034,0.7334669338677354,0.7354709418837675,0.7374749498997996,0.7394789579158316,0.7414829659318637,0.7434869739478958,0.7454909819639278,0.7474949899799599,0.749498997995992,0.751503006012024,0.7535070140280561,0.7555110220440882,0.7575150300601202,0.7595190380761523,0.7615230460921844,0.7635270541082164,0.7655310621242485,0.7675350701402806,0.7695390781563126,0.7715430861723447,0.7735470941883767,0.7755511022044088,0.7775551102204409,0.779559118236473,0.781563126252505,0.7835671342685371,0.7855711422845691,0.7875751503006012,0.7895791583166333,0.7915831663326653,0.7935871743486974,0.7955911823647295,0.7975951903807615,0.7995991983967936,0.8016032064128257,0.8036072144288577,0.8056112224448898,0.8076152304609219,0.8096192384769539,0.811623246492986,0.8136272545090181,0.8156312625250501,0.8176352705410822,0.8196392785571143,0.8216432865731463,0.8236472945891784,0.8256513026052105,0.8276553106212425,0.8296593186372746,0.8316633266533067,0.8336673346693386,0.8356713426853707,0.8376753507014028,0.8396793587174348,0.8416833667334669,0.843687374749499,0.845691382765531,0.8476953907815631,0.8496993987975952,0.8517034068136272,0.8537074148296593,0.8557114228456913,0.8577154308617234,0.8597194388777555,0.8617234468937875,0.8637274549098196,0.8657314629258517,0.8677354709418837,0.8697394789579158,0.8717434869739479,0.87374749498998,0.875751503006012,0.8777555110220441,0.8797595190380761,0.8817635270541082,0.8837675350701403,0.8857715430861723,0.8877755511022044,0.8897795591182365,0.8917835671342685,0.8937875751503006,0.8957915831663327,0.8977955911823647,0.8997995991983968,0.9018036072144289,0.9038076152304609,0.905811623246493,0.9078156312625251,0.9098196392785571,0.9118236472945892,0.9138276553106213,0.9158316633266533,0.9178356713426854,0.9198396793587175,0.9218436873747495,0.9238476953907816,0.9258517034068137,0.9278557114228457,0.9298597194388778,0.9318637274549099,0.9338677354709419,0.935871743486974,0.9378757515030061,0.9398797595190381,0.9418837675350702,0.9438877755511023,0.9458917835671342,0.9478957915831663,0.9498997995991983,0.9519038076152304,0.9539078156312625,0.9559118236472945,0.9579158316633266,0.9599198396793587,0.9619238476953907,0.9639278557114228,0.9659318637274549,0.9679358717434869,0.969939879759519,0.9719438877755511,0.9739478957915831,0.9759519038076152,0.9779559118236473,0.9799599198396793,0.9819639278557114,0.9839679358717435,0.9859719438877755,0.9879759519038076,0.9899799599198397,0.9919839679358717,0.9939879759519038,0.9959919839679359,0.9979959919839679,1.0]}
+
 },{}],88:[function(require,module,exports){
+module.exports={"expected":["00000000000000010001011011000010","00000000000000010001011000110011","00000000000000010001010110100100","00000000000000010001010100010101","00000000000000010001010010000110","00000000000000010001001111110111","00000000000000010001001101101000","00000000000000010001001011011001","00000000000000010001001001001010","00000000000000010001000110111011","00000000000000010001000100101100","00000000000000010001000010011101","00000000000000010001000000001110","00000000000000010000111101111111","00000000000000010000111011110000","00000000000000010000111001100001","00000000000000010000110111010010","00000000000000010000110101000011","00000000000000010000110010110100","00000000000000010000110000100101","00000000000000010000101110010110","00000000000000010000101100000111","00000000000000010000101001111000","00000000000000010000100111101001","00000000000000010000100101011010","00000000000000010000100011001011","00000000000000010000100000111100","00000000000000010000011110101101","00000000000000010000011100011110","00000000000000010000011010001111","00000000000000010000011000000000","00000000000000010000010101110001","00000000000000010000010011100010","00000000000000010000010001010011","00000000000000010000001111000100","00000000000000010000001100110101","00000000000000010000001010100110","00000000000000010000001000010111","00000000000000010000000110001000","00000000000000010000000011111001","00000000000000010000000001101010","00000000000000001111111111011011","00000000000000001111111101001100","00000000000000001111111010111101","00000000000000001111111000101110","00000000000000001111110110011111","00000000000000001111110100010000","00000000000000001111110010000001","00000000000000001111101111110010","00000000000000001111101101100011","00000000000000001111101011010100","00000000000000001111101001000101","00000000000000001111100110110110","00000000000000001111100100100111","00000000000000001111100010011000","00000000000000001111100000001001","00000000000000001111011101111010","00000000000000001111011011101011","00000000000000001111011001011100","00000000000000001111010111001101","00000000000000001111010100111110","00000000000000001111010010101111","00000000000000001111010000100000","00000000000000001111001110010001","00000000000000001111001100000010","00000000000000001111001001110011","00000000000000001111000111100100","00000000000000001111000101010101","00000000000000001111000011000110","00000000000000001111000000110111","00000000000000001110111110101000","00000000000000001110111100011001","00000000000000001110111010001010","00000000000000001110110111111011","00000000000000001110110101101100","00000000000000001110110011011101","00000000000000001110110001001110","00000000000000001110101110111111","00000000000000001110101100110000","00000000000000001110101010100001","00000000000000001110101000010010","00000000000000001110100110000011","00000000000000001110100011110100","00000000000000001110100001100101","00000000000000001110011111010110","00000000000000001110011101000111","00000000000000001110011010111000","00000000000000001110011000101001","00000000000000001110010110011010","00000000000000001110010100001011","00000000000000001110010001111100","00000000000000001110001111101101","00000000000000001110001101011110","00000000000000001110001011001111","00000000000000001110001001000000","00000000000000001110000110110000","00000000000000001110000100100001","00000000000000001110000010010010","00000000000000001110000000000011","00000000000000001101111101110100","00000000000000001101111011100101","00000000000000001101111001010110","00000000000000001101110111000111","00000000000000001101110100111000","00000000000000001101110010101001","00000000000000001101110000011010","00000000000000001101101110001011","00000000000000001101101011111100","00000000000000001101101001101101","00000000000000001101100111011110","00000000000000001101100101001111","00000000000000001101100011000000","00000000000000001101100000110001","00000000000000001101011110100010","00000000000000001101011100010011","00000000000000001101011010000100","00000000000000001101010111110101","00000000000000001101010101100110","00000000000000001101010011010111","00000000000000001101010001001000","00000000000000001101001110111001","00000000000000001101001100101010","00000000000000001101001010011011","00000000000000001101001000001100","00000000000000001101000101111101","00000000000000001101000011101110","00000000000000001101000001011111","00000000000000001100111111010000","00000000000000001100111101000001","00000000000000001100111010110010","00000000000000001100111000100011","00000000000000001100110110010100","00000000000000001100110100000101","00000000000000001100110001110110","00000000000000001100101111100111","00000000000000001100101101011000","00000000000000001100101011001001","00000000000000001100101000111010","00000000000000001100100110101011","00000000000000001100100100011100","00000000000000001100100010001101","00000000000000001100011111111110","00000000000000001100011101101111","00000000000000001100011011100000","00000000000000001100011001010001","00000000000000001100010111000010","00000000000000001100010100110011","00000000000000001100010010100100","00000000000000001100010000010101","00000000000000001100001110000110","00000000000000001100001011110111","00000000000000001100001001101000","00000000000000001100000111011001","00000000000000001100000101001010","00000000000000001100000010111011","00000000000000001100000000101100","00000000000000001011111110011101","00000000000000001011111100001110","00000000000000001011111001111111","00000000000000001011110111110000","00000000000000001011110101100001","00000000000000001011110011010010","00000000000000001011110001000011","00000000000000001011101110110100","00000000000000001011101100100101","00000000000000001011101010010110","00000000000000001011101000000111","00000000000000001011100101111000","00000000000000001011100011101001","00000000000000001011100001011010","00000000000000001011011111001011","00000000000000001011011100111100","00000000000000001011011010101101","00000000000000001011011000011110","00000000000000001011010110001111","00000000000000001011010100000000","00000000000000001011010001110001","00000000000000001011001111100010","00000000000000001011001101010011","00000000000000001011001011000100","00000000000000001011001000110101","00000000000000001011000110100110","00000000000000001011000100010111","00000000000000001011000010001000","00000000000000001010111111111001","00000000000000001010111101101010","00000000000000001010111011011011","00000000000000001010111001001100","00000000000000001010110110111101","00000000000000001010110100101110","00000000000000001010110010011111","00000000000000001010110000010000","00000000000000001010101110000001","00000000000000001010101011110010","00000000000000001010101001100011","00000000000000001010100111010100","00000000000000001010100101000101","00000000000000001010100010110110","00000000000000001010100000100111","00000000000000001010011110011000","00000000000000001010011100001001","00000000000000001010011001111010","00000000000000001010010111101010","00000000000000001010010101011011","00000000000000001010010011001100","00000000000000001010010000111101","00000000000000001010001110101110","00000000000000001010001100011111","00000000000000001010001010010000","00000000000000001010001000000001","00000000000000001010000101110010","00000000000000001010000011100011","00000000000000001010000001010100","00000000000000001001111111000101","00000000000000001001111100110110","00000000000000001001111010100111","00000000000000001001111000011000","00000000000000001001110110001001","00000000000000001001110011111010","00000000000000001001110001101011","00000000000000001001101111011100","00000000000000001001101101001101","00000000000000001001101010111110","00000000000000001001101000101111","00000000000000001001100110100000","00000000000000001001100100010001","00000000000000001001100010000010","00000000000000001001011111110011","00000000000000001001011101100100","00000000000000001001011011010101","00000000000000001001011001000110","00000000000000001001010110110111","00000000000000001001010100101000","00000000000000001001010010011001","00000000000000001001010000001010","00000000000000001001001101111011","00000000000000001001001011101100","00000000000000001001001001011101","00000000000000001001000111001110","00000000000000001001000100111111","00000000000000001001000010110000","00000000000000001001000000100001","00000000000000001000111110010010","00000000000000001000111100000011","00000000000000001000111001110100","00000000000000001000110111100101","00000000000000001000110101010110","00000000000000001000110011000111","00000000000000001000110000111000","00000000000000001000101110101001","00000000000000001000101100011010","00000000000000001000101010001011","00000000000000001000100111111100","00000000000000001000100101101101","00000000000000001000100011011110","00000000000000001000100001001111","00000000000000001000011111000000","00000000000000001000011100110001","00000000000000001000011010100010","00000000000000001000011000010011","00000000000000001000010110000100","00000000000000001000010011110101","00000000000000001000010001100110","00000000000000001000001111010111","00000000000000001000001101001000","00000000000000001000001010111001","00000000000000001000001000101010","00000000000000001000000110011011","00000000000000001000000100001100","00000000000000001000000001111101","00000000000000000111111111101110","00000000000000000111111101011111","00000000000000000111111011010000","00000000000000000111111001000001","00000000000000000111110110110010","00000000000000000111110100100011","00000000000000000111110010010100","00000000000000000111110000000101","00000000000000000111101101110110","00000000000000000111101011100111","00000000000000000111101001011000","00000000000000000111100111001001","00000000000000000111100100111010","00000000000000000111100010101011","00000000000000000111100000011100","00000000000000000111011110001101","00000000000000000111011011111110","00000000000000000111011001101111","00000000000000000111010111100000","00000000000000000111010101010001","00000000000000000111010011000010","00000000000000000111010000110011","00000000000000000111001110100100","00000000000000000111001100010101","00000000000000000111001010000110","00000000000000000111000111110111","00000000000000000111000101101000","00000000000000000111000011011001","00000000000000000111000001001010","00000000000000000110111110111011","00000000000000000110111100101100","00000000000000000110111010011101","00000000000000000110111000001110","00000000000000000110110101111111","00000000000000000110110011110000","00000000000000000110110001100001","00000000000000000110101111010010","00000000000000000110101101000011","00000000000000000110101010110100","00000000000000000110101000100100","00000000000000000110100110010101","00000000000000000110100100000110","00000000000000000110100001110111","00000000000000000110011111101000","00000000000000000110011101011001","00000000000000000110011011001010","00000000000000000110011000111011","00000000000000000110010110101100","00000000000000000110010100011101","00000000000000000110010010001110","00000000000000000110001111111111","00000000000000000110001101110000","00000000000000000110001011100001","00000000000000000110001001010010","00000000000000000110000111000011","00000000000000000110000100110100","00000000000000000110000010100101","00000000000000000110000000010110","00000000000000000101111110000111","00000000000000000101111011111000","00000000000000000101111001101001","00000000000000000101110111011010","00000000000000000101110101001011","00000000000000000101110010111100","00000000000000000101110000101101","00000000000000000101101110011110","00000000000000000101101100001111","00000000000000000101101010000000","00000000000000000101100111110001","00000000000000000101100101100010","00000000000000000101100011010011","00000000000000000101100001000100","00000000000000000101011110110101","00000000000000000101011100100110","00000000000000000101011010010111","00000000000000000101011000001000","00000000000000000101010101111001","00000000000000000101010011101010","00000000000000000101010001011011","00000000000000000101001111001100","00000000000000000101001100111101","00000000000000000101001010101110","00000000000000000101001000011111","00000000000000000101000110010000","00000000000000000101000100000001","00000000000000000101000001110010","00000000000000000100111111100011","00000000000000000100111101010100","00000000000000000100111011000101","00000000000000000100111000110110","00000000000000000100110110100111","00000000000000000100110100011000","00000000000000000100110010001001","00000000000000000100101111111010","00000000000000000100101101101011","00000000000000000100101011011100","00000000000000000100101001001101","00000000000000000100100110111110","00000000000000000100100100101111","00000000000000000100100010100000","00000000000000000100100000010001","00000000000000000100011110000010","00000000000000000100011011110011","00000000000000000100011001100100","00000000000000000100010111010101","00000000000000000100010101000110","00000000000000000100010010110111","00000000000000000100010000101000","00000000000000000100001110011001","00000000000000000100001100001010","00000000000000000100001001111011","00000000000000000100000111101100","00000000000000000100000101011101","00000000000000000100000011001110","00000000000000000100000000111111","00000000000000000011111110110000","00000000000000000011111100100001","00000000000000000011111010010010","00000000000000000011111000000011","00000000000000000011110101110100","00000000000000000011110011100101","00000000000000000011110001010110","00000000000000000011101111000111","00000000000000000011101100111000","00000000000000000011101010101001","00000000000000000011101000011010","00000000000000000011100110001011","00000000000000000011100011111100","00000000000000000011100001101101","00000000000000000011011111011110","00000000000000000011011101001111","00000000000000000011011011000000","00000000000000000011011000110001","00000000000000000011010110100010","00000000000000000011010100010011","00000000000000000011010010000100","00000000000000000011001111110101","00000000000000000011001101100110","00000000000000000011001011010111","00000000000000000011001001001000","00000000000000000011000110111001","00000000000000000011000100101010","00000000000000000011000010011011","00000000000000000011000000001100","00000000000000000010111101111101","00000000000000000010111011101101","00000000000000000010111001011110","00000000000000000010110111001111","00000000000000000010110101000000","00000000000000000010110010110001","00000000000000000010110000100010","00000000000000000010101110010011","00000000000000000010101100000100","00000000000000000010101001110101","00000000000000000010100111100110","00000000000000000010100101010111","00000000000000000010100011001000","00000000000000000010100000111001","00000000000000000010011110101010","00000000000000000010011100011011","00000000000000000010011010001100","00000000000000000010010111111101","00000000000000000010010101101110","00000000000000000010010011011111","00000000000000000010010001010000","00000000000000000010001111000001","00000000000000000010001100110010","00000000000000000010001010100011","00000000000000000010001000010100","00000000000000000010000110000101","00000000000000000010000011110110","00000000000000000010000001100111","00000000000000000001111111011000","00000000000000000001111101001001","00000000000000000001111010111010","00000000000000000001111000101011","00000000000000000001110110011100","00000000000000000001110100001101","00000000000000000001110001111110","00000000000000000001101111101111","00000000000000000001101101100000","00000000000000000001101011010001","00000000000000000001101001000010","00000000000000000001100110110011","00000000000000000001100100100100","00000000000000000001100010010101","00000000000000000001100000000110","00000000000000000001011101110111","00000000000000000001011011101000","00000000000000000001011001011001","00000000000000000001010111001010","00000000000000000001010100111011","00000000000000000001010010101100","00000000000000000001010000011101","00000000000000000001001110001110","00000000000000000001001011111111","00000000000000000001001001110000","00000000000000000001000111100001","00000000000000000001000101010010","00000000000000000001000011000011","00000000000000000001000000110100","00000000000000000000111110100101","00000000000000000000111100010110","00000000000000000000111010000111","00000000000000000000110111111000","00000000000000000000110101101001","00000000000000000000110011011010","00000000000000000000110001001011","00000000000000000000101110111100","00000000000000000000101100101101","00000000000000000000101010011110","00000000000000000000101000001111","00000000000000000000100110000000","00000000000000000000100011110001","00000000000000000000100001100010","00000000000000000000011111010011","00000000000000000000011101000100","00000000000000000000011010110101","00000000000000000000011000100110","00000000000000000000010110010111","00000000000000000000010100001000","00000000000000000000010001111001","00000000000000000000001111101010","00000000000000000000001101011011","00000000000000000000001011001100","00000000000000000000001000111101","00000000000000000000000110101110","00000000000000000000000100011111","00000000000000000000000010010000","00000000000000000000000000000001"],"x":[1.0e-40,9.97996012024048e-41,9.959920240480963e-41,9.939880360721443e-41,9.919840480961923e-41,9.899800601202407e-41,9.879760721442887e-41,9.859720841683367e-41,9.839680961923847e-41,9.819641082164329e-41,9.799601202404809e-41,9.77956132264529e-41,9.759521442885772e-41,9.739481563126252e-41,9.719441683366732e-41,9.699401803607214e-41,9.679361923847696e-41,9.659322044088176e-41,9.639282164328656e-41,9.619242284569138e-41,9.599202404809618e-41,9.5791625250501e-41,9.559122645290582e-41,9.539082765531062e-41,9.519042885771542e-41,9.499003006012023e-41,9.478963126252505e-41,9.458923246492985e-41,9.438883366733467e-41,9.418843486973947e-41,9.39880360721443e-41,9.37876372745491e-41,9.35872384769539e-41,9.33868396793587e-41,9.318644088176353e-41,9.298604208416833e-41,9.278564328657315e-41,9.258524448897797e-41,9.238484569138277e-41,9.218444689378756e-41,9.198404809619238e-41,9.178364929859718e-41,9.1583250501002e-41,9.138285170340681e-41,9.118245290581162e-41,9.098205410821643e-41,9.078165531062124e-41,9.058125651302605e-41,9.038085771543086e-41,9.018045891783567e-41,8.998006012024048e-41,8.977966132264529e-41,8.957926252505009e-41,8.93788637274549e-41,8.917846492985971e-41,8.897806613226452e-41,8.877766733466933e-41,8.857726853707414e-41,8.837686973947895e-41,8.817647094188376e-41,8.797607214428857e-41,8.777567334669338e-41,8.757527454909819e-41,8.7374875751503e-41,8.717447695390781e-41,8.697407815631262e-41,8.677367935871742e-41,8.657328056112223e-41,8.637288176352705e-41,8.617248296593186e-41,8.597208416833667e-41,8.577168537074148e-41,8.557128657314629e-41,8.53708877755511e-41,8.517048897795591e-41,8.497009018036072e-41,8.476969138276553e-41,8.456929258517034e-41,8.436889378757515e-41,8.416849498997995e-41,8.396809619238476e-41,8.376769739478957e-41,8.356729859719438e-41,8.336689979959919e-41,8.3166501002004e-41,8.296610220440881e-41,8.276570340681362e-41,8.256530460921843e-41,8.236490581162324e-41,8.216450701402805e-41,8.196410821643286e-41,8.176370941883767e-41,8.156331062124248e-41,8.136291182364728e-41,8.116251302605209e-41,8.096211422845691e-41,8.076171543086172e-41,8.056131663326653e-41,8.036091783567134e-41,8.016051903807615e-41,7.996012024048096e-41,7.975972144288577e-41,7.955932264529058e-41,7.935892384769539e-41,7.91585250501002e-41,7.895812625250501e-41,7.87577274549098e-41,7.855732865731462e-41,7.835692985971943e-41,7.815653106212424e-41,7.795613226452905e-41,7.775573346693386e-41,7.755533466933867e-41,7.735493587174348e-41,7.715453707414829e-41,7.69541382765531e-41,7.675373947895791e-41,7.655334068136272e-41,7.635294188376753e-41,7.615254308617234e-41,7.595214428857714e-41,7.575174549098196e-41,7.555134669338677e-41,7.535094789579158e-41,7.515054909819639e-41,7.49501503006012e-41,7.474975150300601e-41,7.454935270541082e-41,7.434895390781563e-41,7.414855511022043e-41,7.394815631262525e-41,7.374775751503006e-41,7.354735871743487e-41,7.334695991983968e-41,7.314656112224448e-41,7.294616232464929e-41,7.27457635270541e-41,7.254536472945891e-41,7.234496593186372e-41,7.214456713426853e-41,7.194416833667334e-41,7.174376953907815e-41,7.154337074148296e-41,7.134297194388777e-41,7.114257314629258e-41,7.094217434869739e-41,7.07417755511022e-41,7.054137675350699e-41,7.034097795591182e-41,7.014057915831663e-41,6.994018036072144e-41,6.973978156312625e-41,6.953938276553105e-41,6.933898396793587e-41,6.913858517034068e-41,6.893818637274549e-41,6.87377875751503e-41,6.85373887775551e-41,6.833698997995992e-41,6.813659118236473e-41,6.793619238476954e-41,6.773579358717434e-41,6.753539478957915e-41,6.733499599198396e-41,6.713459719438877e-41,6.693419839679358e-41,6.673379959919839e-41,6.65334008016032e-41,6.633300200400801e-41,6.613260320641282e-41,6.593220440881762e-41,6.573180561122244e-41,6.553140681362725e-41,6.533100801603207e-41,6.513060921843688e-41,6.493021042084167e-41,6.472981162324649e-41,6.45294128256513e-41,6.432901402805611e-41,6.412861523046092e-41,6.392821643286572e-41,6.372781763527054e-41,6.352741883767535e-41,6.332702004008016e-41,6.312662124248497e-41,6.292622244488978e-41,6.272582364729459e-41,6.25254248496994e-41,6.23250260521042e-41,6.212462725450901e-41,6.192422845691382e-41,6.172382965931863e-41,6.152343086172344e-41,6.132303206412824e-41,6.112263326653306e-41,6.092223446893787e-41,6.072183567134268e-41,6.052143687374749e-41,6.032103807615229e-41,6.012063927855711e-41,5.992024048096193e-41,5.971984168336674e-41,5.951944288577154e-41,5.931904408817634e-41,5.911864529058116e-41,5.891824649298597e-41,5.871784769539078e-41,5.851744889779559e-41,5.83170501002004e-41,5.811665130260521e-41,5.791625250501002e-41,5.771585370741483e-41,5.751545490981964e-41,5.731505611222445e-41,5.711465731462926e-41,5.691425851703406e-41,5.671385971943886e-41,5.651346092184368e-41,5.631306212424849e-41,5.61126633266533e-41,5.591226452905811e-41,5.571186573146291e-41,5.551146693386773e-41,5.531106813627254e-41,5.511066933867735e-41,5.491027054108216e-41,5.470987174348696e-41,5.450947294589179e-41,5.43090741482966e-41,5.41086753507014e-41,5.390827655310621e-41,5.370787775551102e-41,5.350747895791583e-41,5.330708016032064e-41,5.310668136272544e-41,5.290628256513026e-41,5.270588376753507e-41,5.250548496993988e-41,5.230508617234469e-41,5.210468737474949e-41,5.190428857715431e-41,5.170388977955912e-41,5.150349098196392e-41,5.130309218436873e-41,5.110269338677353e-41,5.090229458917835e-41,5.070189579158316e-41,5.050149699398797e-41,5.030109819639278e-41,5.010069939879758e-41,4.99003006012024e-41,4.969990180360721e-41,4.949950300601203e-41,4.929910420841684e-41,4.909870541082164e-41,4.889830661322646e-41,4.869790781563126e-41,4.849750901803606e-41,4.829711022044088e-41,4.809671142284569e-41,4.78963126252505e-41,4.769591382765531e-41,4.749551503006011e-41,4.729511623246493e-41,4.709471743486973e-41,4.689431863727454e-41,4.669391983967936e-41,4.649352104208417e-41,4.629312224448898e-41,4.609272344689379e-41,4.589232464929859e-41,4.5691925851703404e-41,4.549152705410822e-41,4.529112825651302e-41,4.509072945891783e-41,4.4890330661322646e-41,4.4689931863727455e-41,4.4489533066132264e-41,4.428913426853707e-41,4.408873547094188e-41,4.388833667334669e-41,4.36879378757515e-41,4.3487539078156305e-41,4.3287140280561115e-41,4.3086741482965924e-41,4.2886342685370743e-41,4.2685943887775553e-41,4.2485545090180357e-41,4.2285146292585166e-41,4.208474749498998e-41,4.188434869739479e-41,4.16839498997996e-41,4.1483551102204403e-41,4.128315230460921e-41,4.1082753507014027e-41,4.0882354709418836e-41,4.068195591182364e-41,4.048155711422845e-41,4.028115831663327e-41,4.008075951903808e-41,3.9880360721442887e-41,3.967996192384769e-41,3.94795631262525e-41,3.9279164328657315e-41,3.9078765531062124e-41,3.887836673346693e-41,3.867796793587174e-41,3.8477569138276547e-41,3.827717034068136e-41,3.807677154308617e-41,3.7876372745490975e-41,3.7675973947895784e-41,3.7475575150300603e-41,3.7275176352705413e-41,3.7074777555110217e-41,3.6874378757515026e-41,3.6673979959919835e-41,3.647358116232465e-41,3.627318236472946e-41,3.6072783567134263e-41,3.587238476953907e-41,3.567198597194388e-41,3.5471587174348696e-41,3.52711883767535e-41,3.507078957915831e-41,3.4870390781563124e-41,3.466999198396794e-41,3.4469593186372747e-41,3.426919438877755e-41,3.406879559118236e-41,3.386839679358717e-41,3.3667997995991984e-41,3.3467599198396794e-41,3.32672004008016e-41,3.3066801603206407e-41,3.286640280561122e-41,3.266600400801603e-41,3.2465605210420835e-41,3.226520641282565e-41,3.206480761523046e-41,3.1864408817635273e-41,3.166401002004008e-41,3.1463611222444886e-41,3.1263212424849696e-41,3.1062813627254505e-41,3.086241482965932e-41,3.0662016032064123e-41,3.0461617234468933e-41,3.026121843687374e-41,3.0060819639278556e-41,2.9860420841683365e-41,2.9660022044088175e-41,2.9459623246492984e-41,2.9259224448897793e-41,2.905882565130261e-41,2.8858426853707417e-41,2.865802805611222e-41,2.845762925851703e-41,2.825723046092184e-41,2.8056831663326654e-41,2.785643286573146e-41,2.7656034068136267e-41,2.7455635270541077e-41,2.725523647294589e-41,2.7054837675350705e-41,2.685443887775551e-41,2.665404008016032e-41,2.645364128256513e-41,2.625324248496994e-41,2.6052843687374746e-41,2.5852444889779556e-41,2.5652046092184365e-41,2.545164729458918e-41,2.525124849699399e-41,2.5050849699398793e-41,2.48504509018036e-41,2.465005210420841e-41,2.444965330661323e-41,2.4249254509018035e-41,2.4048855711422844e-41,2.3848456913827653e-41,2.3648058116232463e-41,2.344765931863727e-41,2.324726052104208e-41,2.304686172344689e-41,2.2846462925851702e-41,2.264606412825651e-41,2.2445665330661323e-41,2.2245266533066133e-41,2.204486773547094e-41,2.184446893787575e-41,2.1644070140280558e-41,2.144367134268537e-41,2.1243272545090176e-41,2.104287374749499e-41,2.08424749498998e-41,2.0642076152304607e-41,2.0441677354709418e-41,2.0241278557114225e-41,2.0040879759519037e-41,1.9840480961923846e-41,1.9640082164328658e-41,1.9439683366733465e-41,1.9239284569138274e-41,1.9038885771543086e-41,1.8838486973947892e-41,1.8638088176352704e-41,1.8437689378757514e-41,1.8237290581162325e-41,1.8036891783567132e-41,1.7836492985971944e-41,1.763609418837675e-41,1.743569539078156e-41,1.7235296593186374e-41,1.703489779559118e-41,1.6834498997995993e-41,1.66341002004008e-41,1.643370140280561e-41,1.6233302605210418e-41,1.6032903807615227e-41,1.5832505010020041e-41,1.5632106212424848e-41,1.543170741482966e-41,1.5231308617234467e-41,1.5030909819639279e-41,1.4830511022044085e-41,1.4630112224448897e-41,1.442971342685371e-41,1.4229314629258516e-41,1.4028915831663327e-41,1.3828517034068134e-41,1.3628118236472946e-41,1.3427719438877753e-41,1.3227320641282564e-41,1.3026921843687374e-41,1.2826523046092183e-41,1.2626124248496995e-41,1.2425725450901801e-41,1.2225326653306613e-41,1.202492785571142e-41,1.1824529058116232e-41,1.162413026052104e-41,1.1423731462925852e-41,1.1223332665330661e-41,1.102293386773547e-41,1.0822535070140279e-41,1.0622136272545089e-41,1.0421737474949899e-41,1.022133867735471e-41,1.0020939879759519e-41,9.820541082164328e-42,9.620142284569139e-42,9.419743486973947e-42,9.219344689378756e-42,9.018945891783566e-42,8.818547094188376e-42,8.618148296593186e-42,8.417749498997995e-42,8.217350701402806e-42,8.016951903807614e-42,7.816553106212423e-42,7.616154308617234e-42,7.415755511022043e-42,7.215356713426854e-42,7.014957915831664e-42,6.814559118236473e-42,6.614160320641283e-42,6.413761523046092e-42,6.213362725450901e-42,6.01296392785571e-42,5.812565130260521e-42,5.61216633266533e-42,5.4117675350701394e-42,5.21136873747495e-42,5.010969939879759e-42,4.810571142284569e-42,4.610172344689378e-42,4.4097735470941876e-42,4.209374749498998e-42,4.0089759519038074e-42,3.8085771543086167e-42,3.608178356713427e-42,3.4077795591182365e-42,3.207380761523046e-42,3.006981963927855e-42,2.8065831663326652e-42,2.6061843687374748e-42,2.4057855711422843e-42,2.205386773547094e-42,2.0049879759519038e-42,1.8045891783567134e-42,1.604190380761523e-42,1.4037915831663325e-42,1.2033927855711421e-42,1.0029939879759519e-42,8.025951903807614e-43,6.021963927855712e-43,4.0179759519038074e-43,2.0139879759519036e-43,1.0e-45]}
+
+},{}],89:[function(require,module,exports){
+module.exports={"expected":["00000000001101100111000111110111","00001001001001100111110010100101","00001001101001100111110010010111","00001001111110011011101011011100","00001010001001100111110010010000","00001010010100000001101110110011","00001010011110011011101011010101","00001010100100011010110011111100","00001010101001100111110010001101","00001010101110110100110000011110","00001010110100000001101110101111","00001010111001001110101101000000","00001010111110011011101011010010","00001011000001110100010100110001","00001011000100011010110011111010","00001011000111000001010011000011","00001011001001100111110010001011","00001011001100001110010001010100","00001011001110110100110000011100","00001011010001011011001111100101","00001011010100000001101110101101","00001011010110101000001101110110","00001011011001001110101100111111","00001011011011110101001100000111","00001011011110011011101011010000","00001011100000100001000101001100","00001011100001110100010100110000","00001011100011000111100100010101","00001011100100011010110011111001","00001011100101101110000011011101","00001011100111000001010011000010","00001011101000010100100010100110","00001011101001100111110010001010","00001011101010111011000001101111","00001011101100001110010001010011","00001011101101100001100000110111","00001011101110110100110000011011","00001011110000001000000000000000","00001011110001011011001111100100","00001011110010101110011111001000","00001011110100000001101110101101","00001011110101010100111110010001","00001011110110101000001101110101","00001011110111111011011101011001","00001011111001001110101100111110","00001011111010100001111100100010","00001011111011110101001100000110","00001011111101001000011011101011","00001011111110011011101011001111","00001011111111101110111010110011","00001100000000100001000101001100","00001100000001001010101100111110","00001100000001110100010100110000","00001100000010011101111100100010","00001100000011000111100100010100","00001100000011110001001100000111","00001100000100011010110011111001","00001100000101000100011011101011","00001100000101101110000011011101","00001100000110010111101011001111","00001100000111000001010011000001","00001100000111101010111010110011","00001100001000010100100010100110","00001100001000111110001010011000","00001100001001100111110010001010","00001100001010010001011001111100","00001100001010111011000001101110","00001100001011100100101001100000","00001100001100001110010001010010","00001100001100110111111001000101","00001100001101100001100000110111","00001100001110001011001000101001","00001100001110110100110000011011","00001100001111011110011000001101","00001100010000000111111111111111","00001100010000110001100111110001","00001100010001011011001111100100","00001100010010000100110111010110","00001100010010101110011111001000","00001100010011011000000110111010","00001100010100000001101110101100","00001100010100101011010110011110","00001100010101010100111110010000","00001100010101111110100110000011","00001100010110101000001101110101","00001100010111010001110101100111","00001100010111111011011101011001","00001100011000100101000101001011","00001100011001001110101100111101","00001100011001111000010100101111","00001100011010100001111100100010","00001100011011001011100100010100","00001100011011110101001100000110","00001100011100011110110011111000","00001100011101001000011011101010","00001100011101110010000011011100","00001100011110011011101011001111","00001100011111000101010011000001","00001100011111101110111010110011","00001100100000001100010001010010","00001100100000100001000101001100","00001100100000110101111001000101","00001100100001001010101100111110","00001100100001011111100000110111","00001100100001110100010100110000","00001100100010001001001000101001","00001100100010011101111100100010","00001100100010110010110000011011","00001100100011000111100100010100","00001100100011011100011000001101","00001100100011110001001100000110","00001100100100000101111111111111","00001100100100011010110011111000","00001100100100101111100111110010","00001100100101000100011011101011","00001100100101011001001111100100","00001100100101101110000011011101","00001100100110000010110111010110","00001100100110010111101011001111","00001100100110101100011111001000","00001100100111000001010011000001","00001100100111010110000110111010","00001100100111101010111010110011","00001100100111111111101110101100","00001100101000010100100010100101","00001100101000101001010110011110","00001100101000111110001010010111","00001100101001010010111110010001","00001100101001100111110010001010","00001100101001111100100110000011","00001100101010010001011001111100","00001100101010100110001101110101","00001100101010111011000001101110","00001100101011001111110101100111","00001100101011100100101001100000","00001100101011111001011101011001","00001100101100001110010001010010","00001100101100100011000101001011","00001100101100110111111001000100","00001100101101001100101100111101","00001100101101100001100000110110","00001100101101110110010100110000","00001100101110001011001000101001","00001100101110011111111100100010","00001100101110110100110000011011","00001100101111001001100100010100","00001100101111011110011000001101","00001100101111110011001100000110","00001100110000000111111111111111","00001100110000011100110011111000","00001100110000110001100111110001","00001100110001000110011011101010","00001100110001011011001111100011","00001100110001110000000011011100","00001100110010000100110111010110","00001100110010011001101011001111","00001100110010101110011111001000","00001100110011000011010011000001","00001100110011011000000110111010","00001100110011101100111010110011","00001100110100000001101110101100","00001100110100010110100010100101","00001100110100101011010110011110","00001100110101000000001010010111","00001100110101010100111110010000","00001100110101101001110010001001","00001100110101111110100110000010","00001100110110010011011001111011","00001100110110101000001101110101","00001100110110111101000001101110","00001100110111010001110101100111","00001100110111100110101001100000","00001100110111111011011101011001","00001100111000010000010001010010","00001100111000100101000101001011","00001100111000111001111001000100","00001100111001001110101100111101","00001100111001100011100000110110","00001100111001111000010100101111","00001100111010001101001000101000","00001100111010100001111100100001","00001100111010110110110000011011","00001100111011001011100100010100","00001100111011100000011000001101","00001100111011110101001100000110","00001100111100001001111111111111","00001100111100011110110011111000","00001100111100110011100111110001","00001100111101001000011011101010","00001100111101011101001111100011","00001100111101110010000011011100","00001100111110000110110111010101","00001100111110011011101011001110","00001100111110110000011111000111","00001100111111000101010011000000","00001100111111011010000110111010","00001100111111101110111010110011","00001101000000000001110111010110","00001101000000001100010001010010","00001101000000010110101011001111","00001101000000100001000101001011","00001101000000101011011111001000","00001101000000110101111001000101","00001101000001000000010011000001","00001101000001001010101100111110","00001101000001010101000110111010","00001101000001011111100000110111","00001101000001101001111010110011","00001101000001110100010100110000","00001101000001111110101110101100","00001101000010001001001000101001","00001101000010010011100010100101","00001101000010011101111100100010","00001101000010101000010110011110","00001101000010110010110000011011","00001101000010111101001010011000","00001101000011000111100100010100","00001101000011010001111110010001","00001101000011011100011000001101","00001101000011100110110010001010","00001101000011110001001100000110","00001101000011111011100110000011","00001101000100000101111111111111","00001101000100010000011001111100","00001101000100011010110011111000","00001101000100100101001101110101","00001101000100101111100111110001","00001101000100111010000001101110","00001101000101000100011011101010","00001101000101001110110101100111","00001101000101011001001111100100","00001101000101100011101001100000","00001101000101101110000011011101","00001101000101111000011101011001","00001101000110000010110111010110","00001101000110001101010001010010","00001101000110010111101011001111","00001101000110100010000101001011","00001101000110101100011111001000","00001101000110110110111001000100","00001101000111000001010011000001","00001101000111001011101100111101","00001101000111010110000110111010","00001101000111100000100000110111","00001101000111101010111010110011","00001101000111110101010100110000","00001101000111111111101110101100","00001101001000001010001000101001","00001101001000010100100010100101","00001101001000011110111100100010","00001101001000101001010110011110","00001101001000110011110000011011","00001101001000111110001010010111","00001101001001001000100100010100","00001101001001010010111110010000","00001101001001011101011000001101","00001101001001100111110010001010","00001101001001110010001100000110","00001101001001111100100110000011","00001101001010000110111111111111","00001101001010010001011001111100","00001101001010011011110011111000","00001101001010100110001101110101","00001101001010110000100111110001","00001101001010111011000001101110","00001101001011000101011011101010","00001101001011001111110101100111","00001101001011011010001111100011","00001101001011100100101001100000","00001101001011101111000011011100","00001101001011111001011101011001","00001101001100000011110111010110","00001101001100001110010001010010","00001101001100011000101011001111","00001101001100100011000101001011","00001101001100101101011111001000","00001101001100110111111001000100","00001101001101000010010011000001","00001101001101001100101100111101","00001101001101010111000110111010","00001101001101100001100000110110","00001101001101101011111010110011","00001101001101110110010100101111","00001101001110000000101110101100","00001101001110001011001000101001","00001101001110010101100010100101","00001101001110011111111100100010","00001101001110101010010110011110","00001101001110110100110000011011","00001101001110111111001010010111","00001101001111001001100100010100","00001101001111010011111110010000","00001101001111011110011000001101","00001101001111101000110010001001","00001101001111110011001100000110","00001101001111111101100110000010","00001101010000000111111111111111","00001101010000010010011001111100","00001101010000011100110011111000","00001101010000100111001101110101","00001101010000110001100111110001","00001101010000111100000001101110","00001101010001000110011011101010","00001101010001010000110101100111","00001101010001011011001111100011","00001101010001100101101001100000","00001101010001110000000011011100","00001101010001111010011101011001","00001101010010000100110111010101","00001101010010001111010001010010","00001101010010011001101011001110","00001101010010100100000101001011","00001101010010101110011111001000","00001101010010111000111001000100","00001101010011000011010011000001","00001101010011001101101100111101","00001101010011011000000110111010","00001101010011100010100000110110","00001101010011101100111010110011","00001101010011110111010100101111","00001101010100000001101110101100","00001101010100001100001000101000","00001101010100010110100010100101","00001101010100100000111100100001","00001101010100101011010110011110","00001101010100110101110000011011","00001101010101000000001010010111","00001101010101001010100100010100","00001101010101010100111110010000","00001101010101011111011000001101","00001101010101101001110010001001","00001101010101110100001100000110","00001101010101111110100110000010","00001101010110001000111111111111","00001101010110010011011001111011","00001101010110011101110011111000","00001101010110101000001101110100","00001101010110110010100111110001","00001101010110111101000001101110","00001101010111000111011011101010","00001101010111010001110101100111","00001101010111011100001111100011","00001101010111100110101001100000","00001101010111110001000011011100","00001101010111111011011101011001","00001101011000000101110111010101","00001101011000010000010001010010","00001101011000011010101011001110","00001101011000100101000101001011","00001101011000101111011111000111","00001101011000111001111001000100","00001101011001000100010011000000","00001101011001001110101100111101","00001101011001011001000110111010","00001101011001100011100000110110","00001101011001101101111010110011","00001101011001111000010100101111","00001101011010000010101110101100","00001101011010001101001000101000","00001101011010010111100010100101","00001101011010100001111100100001","00001101011010101100010110011110","00001101011010110110110000011010","00001101011011000001001010010111","00001101011011001011100100010011","00001101011011010101111110010000","00001101011011100000011000001101","00001101011011101010110010001001","00001101011011110101001100000110","00001101011011111111100110000010","00001101011100001001111111111111","00001101011100010100011001111011","00001101011100011110110011111000","00001101011100101001001101110100","00001101011100110011100111110001","00001101011100111110000001101101","00001101011101001000011011101010","00001101011101010010110101100110","00001101011101011101001111100011","00001101011101100111101001100000","00001101011101110010000011011100","00001101011101111100011101011001","00001101011110000110110111010101","00001101011110010001010001010010","00001101011110011011101011001110","00001101011110100110000101001011","00001101011110110000011111000111","00001101011110111010111001000100","00001101011111000101010011000000","00001101011111001111101100111101","00001101011111011010000110111001","00001101011111100100100000110110","00001101011111101110111010110011","00001101011111111001010100101111","00001101100000000001110111010110","00001101100000000111000100010100","00001101100000001100010001010010","00001101100000010001011110010001","00001101100000010110101011001111","00001101100000011011111000001101","00001101100000100001000101001011","00001101100000100110010010001010","00001101100000101011011111001000","00001101100000110000101100000110","00001101100000110101111001000100","00001101100000111011000110000011","00001101100001000000010011000001","00001101100001000101011111111111","00001101100001001010101100111110","00001101100001001111111001111100","00001101100001010101000110111010","00001101100001011010010011111000","00001101100001011111100000110111","00001101100001100100101101110101","00001101100001101001111010110011","00001101100001101111000111110001","00001101100001110100010100110000","00001101100001111001100001101110","00001101100001111110101110101100","00001101100010000011111011101010","00001101100010001001001000101001","00001101100010001110010101100111","00001101100010010011100010100101","00001101100010011000101111100100","00001101100010011101111100100010","00001101100010100011001001100000","00001101100010101000010110011110","00001101100010101101100011011101","00001101100010110010110000011011","00001101100010110111111101011001","00001101100010111101001010010111","00001101100011000010010111010110","00001101100011000111100100010100","00001101100011001100110001010010","00001101100011010001111110010001","00001101100011010111001011001111","00001101100011011100011000001101","00001101100011100001100101001011","00001101100011100110110010001010","00001101100011101011111111001000","00001101100011110001001100000110","00001101100011110110011001000100","00001101100011111011100110000011","00001101100100000000110011000001","00001101100100000101111111111111","00001101100100001011001100111101","00001101100100010000011001111100","00001101100100010101100110111010","00001101100100011010110011111000","00001101100100100000000000110111","00001101100100100101001101110101","00001101100100101010011010110011","00001101100100101111100111110001","00001101100100110100110100110000","00001101100100111010000001101110","00001101100100111111001110101100","00001101100101000100011011101010","00001101100101001001101000101001","00001101100101001110110101100111","00001101100101010100000010100101","00001101100101011001001111100100","00001101100101011110011100100010","00001101100101100011101001100000","00001101100101101000110110011110","00001101100101101110000011011101","00001101100101110011010000011011","00001101100101111000011101011001","00001101100101111101101010010111","00001101100110000010110111010110","00001101100110001000000100010100","00001101100110001101010001010010","00001101100110010010011110010000","00001101100110010111101011001111","00001101100110011100111000001101","00001101100110100010000101001011","00001101100110100111010010001010","00001101100110101100011111001000","00001101100110110001101100000110","00001101100110110110111001000100","00001101100110111100000110000011","00001101100111000001010011000001","00001101100111000110011111111111","00001101100111001011101100111101","00001101100111010000111001111100","00001101100111010110000110111010","00001101100111011011010011111000","00001101100111100000100000110110","00001101100111100101101101110101","00001101100111101010111010110011","00001101100111110000000111110001","00001101100111110101010100110000","00001101100111111010100001101110","00001101100111111111101110101100","00001101101000000100111011101010","00001101101000001010001000101001","00001101101000001111010101100111","00001101101000010100100010100101","00001101101000011001101111100011","00001101101000011110111100100010","00001101101000100100001001100000"],"x":[5.0e-39,2.0040130060120242e-33,4.008021012024049e-33,6.012029018036073e-33,8.016037024048097e-33,1.0020045030060122e-32,1.2024053036072146e-32,1.4028061042084168e-32,1.6032069048096196e-32,1.803607705410822e-32,2.0040085060120242e-32,2.2044093066132267e-32,2.4048101072144292e-32,2.605210907815631e-32,2.805611708416834e-32,3.006012509018036e-32,3.206413309619239e-32,3.4068141102204415e-32,3.6072149108216437e-32,3.8076157114228464e-32,4.0080165120240486e-32,4.208417312625251e-32,4.4088181132264536e-32,4.609218913827656e-32,4.8096197144288585e-32,5.01002051503006e-32,5.210421315631263e-32,5.410822116232465e-32,5.611222916833668e-32,5.81162371743487e-32,6.012024518036073e-32,6.212425318637274e-32,6.412826119238477e-32,6.613226919839681e-32,6.813627720440883e-32,7.014028521042085e-32,7.214429321643287e-32,7.41483012224449e-32,7.615230922845691e-32,7.815631723446895e-32,8.016032524048097e-32,8.2164333246493e-32,8.416834125250501e-32,8.617234925851704e-32,8.817635726452907e-32,9.01803652705411e-32,9.218437327655311e-32,9.418838128256514e-32,9.619238928857716e-32,9.819639729458919e-32,1.0020040530060122e-31,1.0220441330661325e-31,1.0420842131262525e-31,1.0621242931863726e-31,1.082164373246493e-31,1.1022044533066134e-31,1.1222445333667334e-31,1.1422846134268537e-31,1.1623246934869742e-31,1.1823647735470945e-31,1.2024048536072145e-31,1.2224449336673346e-31,1.242485013727455e-31,1.2625250937875753e-31,1.2825651738476954e-31,1.3026052539078157e-31,1.322645333967936e-31,1.3426854140280564e-31,1.3627254940881765e-31,1.3827655741482968e-31,1.402805654208417e-31,1.4228457342685373e-31,1.4428858143286574e-31,1.4629258943887776e-31,1.482965974448898e-31,1.5030060545090182e-31,1.5230461345691382e-31,1.5430862146292585e-31,1.563126294689379e-31,1.5831663747494993e-31,1.6032064548096193e-31,1.6232465348697396e-31,1.6432866149298599e-31,1.6633266949899802e-31,1.6833667750501002e-31,1.7034068551102205e-31,1.7234469351703408e-31,1.743487015230461e-31,1.7635270952905813e-31,1.7835671753507016e-31,1.8036072554108219e-31,1.8236473354709421e-31,1.8436874155310622e-31,1.8637274955911825e-31,1.8837675756513027e-31,1.903807655711423e-31,1.9238477357715433e-31,1.9438878158316633e-31,1.9639278958917836e-31,1.9839679759519043e-31,2.004008056012024e-31,2.0240481360721444e-31,2.0440882161322647e-31,2.064128296192385e-31,2.0841683762525053e-31,2.104208456312625e-31,2.124248536372746e-31,2.144288616432866e-31,2.1643286964929864e-31,2.184368776553106e-31,2.204408856613227e-31,2.2244489366733467e-31,2.244489016733467e-31,2.264529096793587e-31,2.2845691768537076e-31,2.3046092569138283e-31,2.324649336973948e-31,2.3446894170340684e-31,2.3647294970941887e-31,2.384769577154309e-31,2.4048096572144288e-31,2.424849737274549e-31,2.4448898173346693e-31,2.46492989739479e-31,2.48496997745491e-31,2.50501005751503e-31,2.525050137575151e-31,2.5450902176352707e-31,2.565130297695391e-31,2.5851703777555112e-31,2.6052104578156315e-31,2.625250537875752e-31,2.645290617935872e-31,2.665330697995992e-31,2.6853707780561126e-31,2.705410858116233e-31,2.7254509381763527e-31,2.7454910182364734e-31,2.7655310982965933e-31,2.785571178356714e-31,2.805611258416834e-31,2.825651338476954e-31,2.8456914185370744e-31,2.8657314985971946e-31,2.8857715786573145e-31,2.905811658717435e-31,2.9258517387775555e-31,2.9458918188376757e-31,2.965931898897796e-31,2.985971978957916e-31,3.0060120590180366e-31,3.0260521390781564e-31,3.0460922191382767e-31,3.066132299198397e-31,3.086172379258517e-31,3.1062124593186375e-31,3.1262525393787578e-31,3.146292619438878e-31,3.1663326994989983e-31,3.1863727795591186e-31,3.206412859619239e-31,3.226452939679359e-31,3.246493019739479e-31,3.2665330997995997e-31,3.2865731798597195e-31,3.30661325991984e-31,3.3266533399799605e-31,3.3466934200400803e-31,3.366733500100201e-31,3.386773580160321e-31,3.406813660220441e-31,3.4268537402805614e-31,3.4468938203406817e-31,3.4669339004008015e-31,3.4869739804609223e-31,3.507014060521042e-31,3.527054140581163e-31,3.547094220641283e-31,3.567134300701403e-31,3.5871743807615236e-31,3.6072144608216435e-31,3.6272545408817637e-31,3.647294620941884e-31,3.6673347010020043e-31,3.6873747810621246e-31,3.707414861122245e-31,3.7274549411823647e-31,3.7474950212424854e-31,3.7675351013026057e-31,3.7875751813627255e-31,3.807615261422846e-31,3.8276553414829665e-31,3.8476954215430868e-31,3.8677355016032066e-31,3.887775581663327e-31,3.907815661723447e-31,3.9278557417835674e-31,3.947895821843688e-31,3.967935901903808e-31,3.987975981963928e-31,4.008016062024048e-31,4.028056142084169e-31,4.048096222144289e-31,4.068136302204409e-31,4.08817638226453e-31,4.108216462324649e-31,4.128256542384771e-31,4.1482966224448896e-31,4.16833670250501e-31,4.188376782565131e-31,4.208416862625251e-31,4.2284569426853715e-31,4.2484970227454905e-31,4.268537102805612e-31,4.288577182865732e-31,4.308617262925852e-31,4.328657342985972e-31,4.348697423046093e-31,4.368737503106212e-31,4.388777583166333e-31,4.408817663226454e-31,4.428857743286573e-31,4.448897823346694e-31,4.468937903406813e-31,4.488977983466935e-31,4.5090180635270545e-31,4.529058143587174e-31,4.549098223647295e-31,4.569138303707415e-31,4.589178383767536e-31,4.609218463827655e-31,4.629258543887776e-31,4.649298623947896e-31,4.669338704008017e-31,4.6893787840681365e-31,4.709418864128257e-31,4.729458944188378e-31,4.749499024248497e-31,4.769539104308618e-31,4.7895791843687374e-31,4.809619264428858e-31,4.829659344488978e-31,4.849699424549099e-31,4.869739504609219e-31,4.889779584669338e-31,4.909819664729459e-31,4.92985974478958e-31,4.9498998248497e-31,4.9699399049098195e-31,4.98997998496994e-31,5.010020065030061e-31,5.030060145090181e-31,5.0501002251503014e-31,5.070140305210421e-31,5.090180385270542e-31,5.110220465330661e-31,5.130260545390782e-31,5.150300625450903e-31,5.170340705511022e-31,5.190380785571143e-31,5.210420865631263e-31,5.2304609456913835e-31,5.250501025751503e-31,5.270541105811623e-31,5.290581185871744e-31,5.310621265931865e-31,5.330661345991984e-31,5.350701426052104e-31,5.370741506112226e-31,5.390781586172345e-31,5.4108216662324655e-31,5.430861746292585e-31,5.450901826352706e-31,5.470941906412827e-31,5.490981986472946e-31,5.511022066533067e-31,5.531062146593186e-31,5.551102226653307e-31,5.571142306713427e-31,5.5911823867735475e-31,5.611222466833667e-31,5.631262546893788e-31,5.651302626953909e-31,5.671342707014029e-31,5.691382787074149e-31,5.711422867134268e-31,5.73146294719439e-31,5.751503027254509e-31,5.77154310731463e-31,5.79158318737475e-31,5.81162326743487e-31,5.831663347494991e-31,5.85170342755511e-31,5.871743507615231e-31,5.891783587675351e-31,5.911823667735471e-31,5.931863747795592e-31,5.9519038278557125e-31,5.971943907915832e-31,5.991983987975952e-31,6.012024068036073e-31,6.032064148096193e-31,6.052104228156313e-31,6.072144308216432e-31,6.092184388276554e-31,6.112224468336675e-31,6.132264548396794e-31,6.152304628456914e-31,6.172344708517034e-31,6.192384788577155e-31,6.212424868637275e-31,6.2324649486973946e-31,6.252505028757516e-31,6.272545108817636e-31,6.292585188877756e-31,6.3126252689378765e-31,6.332665348997997e-31,6.352705429058116e-31,6.372745509118237e-31,6.392785589178358e-31,6.4128256692384775e-31,6.432865749298598e-31,6.452905829358718e-31,6.472945909418839e-31,6.492985989478958e-31,6.513026069539078e-31,6.533066149599199e-31,6.553106229659319e-31,6.57314630971944e-31,6.5931863897795595e-31,6.61322646983968e-31,6.6332665498998e-31,6.653306629959921e-31,6.673346710020041e-31,6.693386790080161e-31,6.713426870140281e-31,6.733466950200401e-31,6.7535070302605226e-31,6.7735471103206415e-31,6.793587190380762e-31,6.813627270440881e-31,6.833667350501003e-31,6.8537074305611235e-31,6.8737475106212425e-31,6.893787590681364e-31,6.913827670741484e-31,6.933867750801604e-31,6.9539078308617235e-31,6.973947910921845e-31,6.993987990981964e-31,7.014028071042085e-31,7.034068151102205e-31,7.054108231162325e-31,7.074148311222446e-31,7.094188391282565e-31,7.114228471342687e-31,7.134268551402806e-31,7.154308631462926e-31,7.174348711523047e-31,7.194388791583167e-31,7.2144288716432875e-31,7.234468951703407e-31,7.254509031763527e-31,7.274549111823648e-31,7.294589191883769e-31,7.314629271943888e-31,7.334669352004009e-31,7.354709432064129e-31,7.374749512124249e-31,7.39478959218437e-31,7.414829672244489e-31,7.43486975230461e-31,7.454909832364729e-31,7.47494991242485e-31,7.494989992484971e-31,7.51503007254509e-31,7.535070152605211e-31,7.555110232665332e-31,7.575150312725452e-31,7.5951903927855714e-31,7.615230472845692e-31,7.635270552905813e-31,7.655310632965933e-31,7.6753507130260525e-31,7.695390793086172e-31,7.715430873146294e-31,7.735470953206413e-31,7.755511033266534e-31,7.7755511133266535e-31,7.795591193386774e-31,7.815631273446895e-31,7.835671353507014e-31,7.8557114335671354e-31,7.875751513627255e-31,7.895791593687375e-31,7.915831673747496e-31,7.935871753807617e-31,7.955911833867736e-31,7.975951913927856e-31,7.995991993987977e-31,8.016032074048098e-31,8.036072154108217e-31,8.056112234168337e-31,8.076152314228458e-31,8.096192394288577e-31,8.1162324743487e-31,8.136272554408818e-31,8.156312634468937e-31,8.17635271452906e-31,8.19639279458918e-31,8.2164328746493e-31,8.236472954709418e-31,8.256513034769541e-31,8.27655311482966e-31,8.296593194889779e-31,8.3166332749499e-31,8.336673355010022e-31,8.356713435070141e-31,8.376753515130262e-31,8.39679359519038e-31,8.416833675250501e-31,8.436873755310622e-31,8.456913835370741e-31,8.476953915430864e-31,8.496993995490982e-31,8.517034075551103e-31,8.537074155611222e-31,8.557114235671343e-31,8.577154315731464e-31,8.597194395791583e-31,8.617234475851705e-31,8.637274555911826e-31,8.657314635971945e-31,8.677354716032064e-31,8.697394796092186e-31,8.717434876152305e-31,8.737474956212424e-31,8.757515036272548e-31,8.777555116332667e-31,8.797595196392786e-31,8.817635276452907e-31,8.837675356513028e-31,8.857715436573147e-31,8.877755516633265e-31,8.897795596693388e-31,8.917835676753509e-31,8.937875756813628e-31,8.957915836873748e-31,8.977955916933869e-31,8.997995996993988e-31,9.018036077054109e-31,9.03807615711423e-31,9.05811623717435e-31,9.07815631723447e-31,9.09819639729459e-31,9.11823647735471e-31,9.13827655741483e-31,9.15831663747495e-31,9.17835671753507e-31,9.198396797595192e-31,9.218436877655312e-31,9.238476957715431e-31,9.258517037775552e-31,9.278557117835673e-31,9.298597197895792e-31,9.31863727795591e-31,9.338677358016033e-31,9.358717438076154e-31,9.378757518136273e-31,9.398797598196395e-31,9.418837678256514e-31,9.438877758316633e-31,9.458917838376754e-31,9.478957918436875e-31,9.498997998496995e-31,9.519038078557114e-31,9.539078158617237e-31,9.559118238677356e-31,9.579158318737475e-31,9.599198398797595e-31,9.619238478857716e-31,9.639278558917837e-31,9.659318638977957e-31,9.679358719038078e-31,9.699398799098197e-31,9.719438879158318e-31,9.739478959218437e-31,9.759519039278558e-31,9.779559119338677e-31,9.799599199398799e-31,9.81963927945892e-31,9.839679359519039e-31,9.85971943957916e-31,9.879759519639278e-31,9.899799599699399e-31,9.91983967975952e-31,9.93987975981964e-31,9.95991983987976e-31,9.979959919939882e-31,1.0e-30]}
+
+},{}],90:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -4518,7 +4650,7 @@ tape( 'if provided subnormal negative values, the function returns unsigned 32-b
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/number/float32/base/to-word/test/test.js")
-},{"./../lib":76,"./fixtures/julia/negative_large.json":78,"./fixtures/julia/negative_normal.json":79,"./fixtures/julia/negative_small.json":80,"./fixtures/julia/negative_subnormal.json":81,"./fixtures/julia/negative_tiny.json":82,"./fixtures/julia/positive_large.json":83,"./fixtures/julia/positive_normal.json":84,"./fixtures/julia/positive_small.json":85,"./fixtures/julia/positive_subnormal.json":86,"./fixtures/julia/positive_tiny.json":87,"@stdlib/constants/float32/ninf":62,"@stdlib/constants/float32/pinf":63,"@stdlib/string/repeat":106,"@stdlib/string/right-pad":108,"tape":250}],89:[function(require,module,exports){
+},{"./../lib":78,"./fixtures/julia/negative_large.json":80,"./fixtures/julia/negative_normal.json":81,"./fixtures/julia/negative_small.json":82,"./fixtures/julia/negative_subnormal.json":83,"./fixtures/julia/negative_tiny.json":84,"./fixtures/julia/positive_large.json":85,"./fixtures/julia/positive_normal.json":86,"./fixtures/julia/positive_small.json":87,"./fixtures/julia/positive_subnormal.json":88,"./fixtures/julia/positive_tiny.json":89,"@stdlib/constants/float32/ninf":64,"@stdlib/constants/float32/pinf":65,"@stdlib/string/repeat":117,"@stdlib/string/right-pad":119,"tape":280}],91:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -4861,7 +4993,123 @@ tape( 'if provided subnormal negative values, the function returns unsigned 32-b
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/number/float32/base/to-word/test/test.native.js","/lib/node_modules/@stdlib/number/float32/base/to-word/test")
-},{"./fixtures/julia/negative_large.json":78,"./fixtures/julia/negative_normal.json":79,"./fixtures/julia/negative_small.json":80,"./fixtures/julia/negative_subnormal.json":81,"./fixtures/julia/negative_tiny.json":82,"./fixtures/julia/positive_large.json":83,"./fixtures/julia/positive_normal.json":84,"./fixtures/julia/positive_small.json":85,"./fixtures/julia/positive_subnormal.json":86,"./fixtures/julia/positive_tiny.json":87,"@stdlib/constants/float32/ninf":62,"@stdlib/constants/float32/pinf":63,"@stdlib/string/repeat":106,"@stdlib/string/right-pad":108,"@stdlib/utils/try-require":136,"path":150,"tape":250}],90:[function(require,module,exports){
+},{"./fixtures/julia/negative_large.json":80,"./fixtures/julia/negative_normal.json":81,"./fixtures/julia/negative_small.json":82,"./fixtures/julia/negative_subnormal.json":83,"./fixtures/julia/negative_tiny.json":84,"./fixtures/julia/positive_large.json":85,"./fixtures/julia/positive_normal.json":86,"./fixtures/julia/positive_small.json":87,"./fixtures/julia/positive_subnormal.json":88,"./fixtures/julia/positive_tiny.json":89,"@stdlib/constants/float32/ninf":64,"@stdlib/constants/float32/pinf":65,"@stdlib/string/repeat":117,"@stdlib/string/right-pad":119,"@stdlib/utils/try-require":148,"path":162,"tape":280}],92:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":93}],93:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4911,20 +5159,20 @@ tape( 'if provided subnormal negative values, the function returns unsigned 32-b
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":91,"./regexp.js":92,"@stdlib/utils/define-nonenumerable-read-only-property":112}],91:[function(require,module,exports){
+},{"./main.js":95,"./regexp.js":96,"@stdlib/utils/define-nonenumerable-read-only-property":125}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4980,7 +5228,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],92:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5042,7 +5290,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":91}],93:[function(require,module,exports){
+},{"./main.js":95}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5128,7 +5376,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -5155,7 +5403,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":96}],94:[function(require,module,exports){
+},{"./is_number.js":100}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5272,7 +5520,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":96,"./zero_pad.js":100}],95:[function(require,module,exports){
+},{"./is_number.js":100,"./zero_pad.js":104}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5308,14 +5556,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":98}],96:[function(require,module,exports){
+},{"./main.js":102}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5363,7 +5611,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],97:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5407,7 +5655,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],98:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5440,11 +5688,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -5575,6 +5841,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -5583,9 +5850,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -5624,7 +5889,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":93,"./format_integer.js":94,"./is_string.js":97,"./space_pad.js":99,"./zero_pad.js":100}],99:[function(require,module,exports){
+},{"./format_double.js":97,"./format_integer.js":98,"./is_string.js":101,"./space_pad.js":103,"./zero_pad.js":104}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5691,7 +5956,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],100:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5777,7 +6042,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],101:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5813,14 +6078,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":102}],102:[function(require,module,exports){
+},{"./main.js":106}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5912,7 +6177,404 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],103:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var repeat = String.prototype.repeat;
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],108:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.repeat !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],109:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Repeat a string a specified number of times and return the concatenated result.
+*
+* @module @stdlib/string/base/repeat
+*
+* @example
+* var replace = require( '@stdlib/string/base/repeat' );
+*
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* str = repeat( '', 100 );
+* // returns ''
+*
+* str = repeat( 'beep', 0 );
+* // returns ''
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var repeat;
+if ( HAS_BUILTIN ) {
+	repeat = main;
+} else {
+	repeat = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./has_builtin.js":108,"./main.js":110,"./polyfill.js":111}],110:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	return builtin.call( str, n );
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./builtin.js":107}],111:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* ## Method
+*
+* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
+*
+* For example,
+*
+* ```text
+* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
+* ```
+*
+* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
+*
+* The implementation is then as follows:
+*
+* 1.  Let `s` be the string to be repeated and `o` be an output string.
+*
+* 2.  Initialize an output string `o`.
+*
+* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
+*
+*     -   if the bit is a one, add
+*     -   otherwise, move on
+*
+* 4.  Double the string `s` by adding `s` to `s`.
+*
+* 5.  Right-shift the bits of `n`.
+*
+* 6.  Check if we have shifted off all bits.
+*
+*     -   if yes, done.
+*     -   otherwise, move on
+*
+* 7.  Repeat 3-6.
+*
+* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
+*
+* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
+*
+* @private
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	var rpt;
+	var cnt;
+	if ( str.length === 0 || n === 0 ) {
+		return '';
+	}
+	rpt = '';
+	cnt = n;
+	for ( ; ; ) {
+		// If the count is odd, append the current concatenated string:
+		if ( (cnt&1) === 1 ) {
+			rpt += str;
+		}
+		// Right-shift the bits:
+		cnt >>>= 1;
+		if ( cnt === 0 ) {
+			break;
+		}
+		// Double the string:
+		str += str;
+	}
+	return rpt;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],112:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Right pad a string such that the padded string has a length of at least `len`.
+*
+* @module @stdlib/string/base/right-pad
+*
+* @example
+* var rpad = require( '@stdlib/string/base/right-pad' );
+*
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":113}],113:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var repeat = require( '@stdlib/string/base/repeat' );
+var ceil = require( '@stdlib/math/base/special/ceil' );
+
+
+// MAIN //
+
+/**
+* Right pads a string such that the padded string has a length of at least `len`.
+*
+* @param {string} str - string to pad
+* @param {NonNegativeInteger} len - minimum string length
+* @param {string} pad - string used to pad
+* @returns {string} padded string
+*
+* @example
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* @example
+* var str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* @example
+* var str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+function rpad( str, len, pad ) {
+	var n = ( len - str.length ) / pad.length;
+	if ( n <= 0 ) {
+		return str;
+	}
+	n = ceil( n );
+	return str + repeat( pad, n );
+}
+
+
+// EXPORTS //
+
+module.exports = rpad;
+
+},{"@stdlib/math/base/special/ceil":72,"@stdlib/string/base/repeat":109}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5950,16 +6612,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":105}],104:[function(require,module,exports){
-arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],105:[function(require,module,exports){
+},{"./main.js":116}],115:[function(require,module,exports){
+arguments[4][101][0].apply(exports,arguments)
+},{"dup":101}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6007,18 +6669,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -6028,7 +6687,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":104,"@stdlib/string/base/format-interpolate":95,"@stdlib/string/base/format-tokenize":101}],106:[function(require,module,exports){
+},{"./is_string.js":115,"@stdlib/string/base/format-interpolate":99,"@stdlib/string/base/format-tokenize":105}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6069,14 +6728,14 @@ module.exports = format;
 
 // MODULES //
 
-var repeat = require( './repeat.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = repeat;
+module.exports = main;
 
-},{"./repeat.js":107}],107:[function(require,module,exports){
+},{"./main.js":118}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6101,53 +6760,14 @@ module.exports = repeat;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/repeat' );
 
 
 // MAIN //
 
 /**
 * Repeats a string a specified number of times and returns the concatenated result.
-*
-* ## Method
-*
-* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
-*
-* For example,
-*
-* ```text
-* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
-* ```
-*
-* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
-*
-* The implementation is then as follows:
-*
-* 1.  Let `s` be the string to be repeated and `o` be an output string.
-*
-* 2.  Initialize an output string `o`.
-*
-* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
-*
-*     -   if the bit is a one, add
-*     -   otherwise, move on
-*
-* 4.  Double the string `s` by adding `s` to `s`.
-*
-* 5.  Right-shift the bits of `n`.
-*
-* 6.  Check if we have shifted off all bits.
-*
-*     -   if yes, done.
-*     -   otherwise, move on
-*
-* 7.  Repeat 3-6.
-*
-* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
-*
-* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
-*
 *
 * @param {string} str - string to repeat
 * @param {NonNegativeInteger} n - number of times to repeat the string
@@ -6169,37 +6789,13 @@ var format = require( '@stdlib/string/format' );
 * // returns ''
 */
 function repeat( str, n ) {
-	var rpt;
-	var cnt;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
 	if ( !isNonNegativeInteger( n ) ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', n ) );
 	}
-	if ( str.length === 0 || n === 0 ) {
-		return '';
-	}
-	// Check that output string will not exceed the maximum string length:
-	if ( str.length * n > FLOAT64_MAX_SAFE_INTEGER ) {
-		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', str.length * n ) );
-	}
-	rpt = '';
-	cnt = n;
-	for ( ; ; ) {
-		// If the count is odd, append the current concatenated string:
-		if ( (cnt&1) === 1 ) {
-			rpt += str;
-		}
-		// Right-shift the bits:
-		cnt >>>= 1;
-		if ( cnt === 0 ) {
-			break;
-		}
-		// Double the string:
-		str += str;
-	}
-	return rpt;
+	return base( str, n );
 }
 
 
@@ -6207,7 +6803,7 @@ function repeat( str, n ) {
 
 module.exports = repeat;
 
-},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/is-string":52,"@stdlib/constants/float64/max-safe-integer":64,"@stdlib/string/format":103}],108:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/is-string":52,"@stdlib/string/base/repeat":109,"@stdlib/string/format":114}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6248,14 +6844,14 @@ module.exports = repeat;
 
 // MODULES //
 
-var rpad = require( './right_pad.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rpad;
+module.exports = main;
 
-},{"./right_pad.js":109}],109:[function(require,module,exports){
+},{"./main.js":120}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6280,10 +6876,9 @@ module.exports = rpad;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
 var format = require( '@stdlib/string/format' );
 var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
+var base = require( '@stdlib/string/base/right-pad' );
 
 
 // MAIN //
@@ -6313,7 +6908,6 @@ var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-inte
 * // returns 'beepboopboop'
 */
 function rpad( str, len, pad ) {
-	var n;
 	var p;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
@@ -6335,12 +6929,7 @@ function rpad( str, len, pad ) {
 	if ( len > FLOAT64_MAX_SAFE_INTEGER ) {
 		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', len ) );
 	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return str + repeat( p, n );
+	return base( str, len, p );
 }
 
 
@@ -6348,7 +6937,79 @@ function rpad( str, len, pad ) {
 
 module.exports = rpad;
 
-},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/is-string":52,"@stdlib/constants/float64/max-safe-integer":64,"@stdlib/math/base/special/ceil":70,"@stdlib/string/format":103,"@stdlib/string/repeat":106}],110:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/is-string":52,"@stdlib/constants/float64/max-safe-integer":66,"@stdlib/string/base/right-pad":112,"@stdlib/string/format":114}],121:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":122}],122:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6389,14 +7050,14 @@ module.exports = rpad;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":111}],111:[function(require,module,exports){
+},{"./main.js":124}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6478,7 +7139,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":27,"@stdlib/regexp/function-name":90,"@stdlib/utils/native-class":131}],112:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":27,"@stdlib/regexp/function-name":94,"@stdlib/utils/native-class":143}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6520,14 +7181,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":113}],113:[function(require,module,exports){
+},{"./main.js":126}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6587,7 +7248,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":117}],114:[function(require,module,exports){
+},{"@stdlib/utils/define-property":130}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6650,7 +7311,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],115:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6680,7 +7341,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],116:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6733,7 +7394,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":115}],117:[function(require,module,exports){
+},{"./define_property.js":128}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6793,7 +7454,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":114,"./has_define_property_support.js":116,"./polyfill.js":118}],118:[function(require,module,exports){
+},{"./builtin.js":127,"./has_define_property_support.js":129,"./polyfill.js":131}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6917,7 +7578,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":103}],119:[function(require,module,exports){
+},{"@stdlib/string/format":114}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6959,63 +7620,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":122,"./polyfill.js":123,"@stdlib/assert/is-function":33}],120:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":119}],121:[function(require,module,exports){
+},{"./native.js":135,"./polyfill.js":136,"@stdlib/assert/is-function":33}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7050,14 +7655,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":120}],122:[function(require,module,exports){
+},{"./main.js":134}],134:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":132,"@stdlib/object/ctor":92}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7087,7 +7749,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],123:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7144,7 +7806,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":124,"@stdlib/utils/native-class":131}],124:[function(require,module,exports){
+},{"./proto.js":137,"@stdlib/utils/native-class":143}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7182,7 +7844,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],125:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":139,"./global_this.js":140,"./self.js":141,"./window.js":142,"@stdlib/assert/is-boolean":21,"@stdlib/string/format":114}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7212,7 +7955,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -7220,12 +7963,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],126:[function(require,module,exports){
-(function (global){(function (){
+},{}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7244,137 +7986,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],127:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":128}],128:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":125,"./global.js":126,"./self.js":129,"./window.js":130,"@stdlib/assert/is-boolean":21,"@stdlib/string/format":103}],129:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7404,7 +8023,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],130:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7434,7 +8053,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],131:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7479,25 +8098,25 @@ module.exports = obj;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":132,"./polyfill.js":133,"@stdlib/assert/has-tostringtag-support":14}],132:[function(require,module,exports){
+},{"./main.js":144,"./polyfill.js":145,"@stdlib/assert/has-tostringtag-support":14}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7555,7 +8174,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":134}],133:[function(require,module,exports){
+},{"./tostring.js":146}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7638,7 +8257,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":134,"./tostringtag.js":135,"@stdlib/assert/has-own-property":10}],134:[function(require,module,exports){
+},{"./tostring.js":146,"./tostringtag.js":147,"@stdlib/assert/has-own-property":10}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7668,7 +8287,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],135:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7689,6 +8308,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -7698,7 +8322,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],136:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":121}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7736,14 +8360,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var tryRequire = require( './try_require.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = tryRequire;
+module.exports = main;
 
-},{"./try_require.js":137}],137:[function(require,module,exports){
+},{"./main.js":149}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7804,7 +8428,7 @@ function tryRequire( id ) {
 
 module.exports = tryRequire;
 
-},{"@stdlib/assert/is-error":29}],138:[function(require,module,exports){
+},{"@stdlib/assert/is-error":29}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7861,7 +8485,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":139,"./fixtures/re.js":140,"./fixtures/typedarray.js":141}],139:[function(require,module,exports){
+},{"./fixtures/nodelist.js":151,"./fixtures/re.js":152,"./fixtures/typedarray.js":153}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7897,7 +8521,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":127}],140:[function(require,module,exports){
+},{"@stdlib/utils/global":138}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7925,7 +8549,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],141:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7953,7 +8577,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],142:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7992,63 +8616,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":138,"./polyfill.js":143,"./typeof.js":144}],143:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":110}],144:[function(require,module,exports){
+},{"./check.js":150,"./main.js":155,"./polyfill.js":156}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8126,7 +8707,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":110}],145:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":123}],156:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":123}],157:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -8278,11 +8902,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],146:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 
-},{}],147:[function(require,module,exports){
-arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],148:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],160:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -10063,7 +10687,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":145,"buffer":148,"ieee754":236}],149:[function(require,module,exports){
+},{"base64-js":157,"buffer":160,"ieee754":263}],161:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10562,7 +11186,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -11095,7 +11719,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":242}],151:[function(require,module,exports){
+},{"_process":270}],163:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11226,7 +11850,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":149,"inherits":237,"readable-stream/lib/_stream_duplex.js":153,"readable-stream/lib/_stream_passthrough.js":154,"readable-stream/lib/_stream_readable.js":155,"readable-stream/lib/_stream_transform.js":156,"readable-stream/lib/_stream_writable.js":157,"readable-stream/lib/internal/streams/end-of-stream.js":161,"readable-stream/lib/internal/streams/pipeline.js":163}],152:[function(require,module,exports){
+},{"events":161,"inherits":264,"readable-stream/lib/_stream_duplex.js":165,"readable-stream/lib/_stream_passthrough.js":166,"readable-stream/lib/_stream_readable.js":167,"readable-stream/lib/_stream_transform.js":168,"readable-stream/lib/_stream_writable.js":169,"readable-stream/lib/internal/streams/end-of-stream.js":173,"readable-stream/lib/internal/streams/pipeline.js":175}],164:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -11355,7 +11979,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],153:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11497,7 +12121,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":155,"./_stream_writable":157,"_process":242,"inherits":237}],154:[function(require,module,exports){
+},{"./_stream_readable":167,"./_stream_writable":169,"_process":270,"inherits":264}],166:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11537,7 +12161,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":156,"inherits":237}],155:[function(require,module,exports){
+},{"./_stream_transform":168,"inherits":264}],167:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12664,7 +13288,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":152,"./_stream_duplex":153,"./internal/streams/async_iterator":158,"./internal/streams/buffer_list":159,"./internal/streams/destroy":160,"./internal/streams/from":162,"./internal/streams/state":164,"./internal/streams/stream":165,"_process":242,"buffer":148,"events":149,"inherits":237,"string_decoder/":249,"util":146}],156:[function(require,module,exports){
+},{"../errors":164,"./_stream_duplex":165,"./internal/streams/async_iterator":170,"./internal/streams/buffer_list":171,"./internal/streams/destroy":172,"./internal/streams/from":174,"./internal/streams/state":176,"./internal/streams/stream":177,"_process":270,"buffer":160,"events":161,"inherits":264,"string_decoder/":279,"util":158}],168:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -12866,7 +13490,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":152,"./_stream_duplex":153,"inherits":237}],157:[function(require,module,exports){
+},{"../errors":164,"./_stream_duplex":165,"inherits":264}],169:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -13566,7 +14190,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":152,"./_stream_duplex":153,"./internal/streams/destroy":160,"./internal/streams/state":164,"./internal/streams/stream":165,"_process":242,"buffer":148,"inherits":237,"util-deprecate":258}],158:[function(require,module,exports){
+},{"../errors":164,"./_stream_duplex":165,"./internal/streams/destroy":172,"./internal/streams/state":176,"./internal/streams/stream":177,"_process":270,"buffer":160,"inherits":264,"util-deprecate":288}],170:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -13776,7 +14400,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":161,"_process":242}],159:[function(require,module,exports){
+},{"./end-of-stream":173,"_process":270}],171:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -13987,7 +14611,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":148,"util":146}],160:[function(require,module,exports){
+},{"buffer":160,"util":158}],172:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -14095,7 +14719,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":242}],161:[function(require,module,exports){
+},{"_process":270}],173:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -14200,12 +14824,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":152}],162:[function(require,module,exports){
+},{"../../../errors":164}],174:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],163:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -14303,7 +14927,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":152,"./end-of-stream":161}],164:[function(require,module,exports){
+},{"../../../errors":164,"./end-of-stream":173}],176:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -14331,10 +14955,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":152}],165:[function(require,module,exports){
+},{"../../../errors":164}],177:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":149}],166:[function(require,module,exports){
+},{"events":161}],178:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -14351,43 +14975,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":167,"get-intrinsic":231}],167:[function(require,module,exports){
+},{"./":179,"get-intrinsic":254}],179:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -14400,7 +15012,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":230,"get-intrinsic":231}],168:[function(require,module,exports){
+},{"es-define-property":239,"es-errors/type":245,"function-bind":253,"get-intrinsic":254,"set-function-length":274}],180:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -14496,7 +15108,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":169,"./lib/keys.js":170}],169:[function(require,module,exports){
+},{"./lib/is_arguments.js":181,"./lib/keys.js":182}],181:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -14518,7 +15130,7 @@ function unsupported(object){
     false;
 };
 
-},{}],170:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -14529,7 +15141,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],171:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":239,"es-errors/syntax":244,"es-errors/type":245,"gopd":255}],184:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -14537,29 +15207,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -14578,14 +15248,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":232,"object-keys":240}],172:[function(require,module,exports){
+},{"define-data-property":183,"has-property-descriptors":256,"object-keys":268}],185:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],173:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -14624,13 +15294,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":203,"./ToPrimitive":205,"./Type":210}],174:[function(require,module,exports){
+},{"./ToNumber":217,"./ToPrimitive":219,"./Type":224}],187:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -14638,13 +15308,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -14656,7 +15325,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -14689,28 +15358,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":219,"../helpers/isNaN":221,"../helpers/isPrefixOf":222,"./ToNumber":203,"./ToPrimitive":205,"./Type":210,"get-intrinsic":231}],175:[function(require,module,exports){
+},{"../helpers/isFinite":232,"../helpers/isNaN":233,"../helpers/isPrefixOf":234,"./ToNumber":217,"./ToPrimitive":219,"es-errors/type":245,"get-intrinsic":254}],188:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":178,"es-errors/type":245}],189:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":231}],176:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":247}],190:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -14761,7 +15463,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":179,"./InLeapYear":183,"./MonthFromTime":193,"get-intrinsic":231}],177:[function(require,module,exports){
+},{"./DayWithinYear":193,"./InLeapYear":197,"./MonthFromTime":207,"es-errors/eval":240}],191:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -14774,7 +15476,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":226,"./floor":214}],178:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./floor":228}],192:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -14786,7 +15488,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":214}],179:[function(require,module,exports){
+},{"./floor":228}],193:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -14799,7 +15501,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":177,"./DayFromYear":178,"./YearFromTime":212}],180:[function(require,module,exports){
+},{"./Day":191,"./DayFromYear":192,"./YearFromTime":226}],194:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -14819,18 +15521,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":215}],181:[function(require,module,exports){
+},{"./modulo":229}],195:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -14839,7 +15538,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -14860,7 +15561,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":218,"./IsAccessorDescriptor":184,"./IsDataDescriptor":186,"./Type":210,"get-intrinsic":231}],182:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":236,"./IsAccessorDescriptor":198,"./IsDataDescriptor":200,"es-errors/type":245}],196:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -14876,12 +15577,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":226,"./floor":214,"./modulo":215}],183:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./floor":228,"./modulo":229}],197:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -14899,14 +15598,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":180,"./YearFromTime":212,"get-intrinsic":231}],184:[function(require,module,exports){
+},{"./DaysInYear":194,"./YearFromTime":226,"es-errors/eval":240}],198:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -14915,30 +15614,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":218,"./Type":210,"has":235}],185:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":236,"es-errors/type":245,"hasown":262}],199:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":238}],186:[function(require,module,exports){
+},{"is-callable":265}],200:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -14947,23 +15648,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":218,"./Type":210,"has":235}],187:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":236,"es-errors/type":245,"hasown":262}],201:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -14972,7 +15676,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -14981,28 +15687,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":218,"./IsAccessorDescriptor":184,"./IsDataDescriptor":186,"./Type":210}],188:[function(require,module,exports){
+},{"./IsAccessorDescriptor":198,"./IsDataDescriptor":200,"./IsPropertyDescriptor":202,"es-errors/type":245}],202:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":223,"./IsAccessorDescriptor":184,"./IsDataDescriptor":186,"./Type":210}],189:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":236}],203:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -15017,7 +15715,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":219,"../helpers/timeConstants":226}],190:[function(require,module,exports){
+},{"../helpers/isFinite":232,"../helpers/timeConstants":238}],204:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -15052,7 +15750,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":219,"./DateFromTime":176,"./Day":177,"./MonthFromTime":193,"./ToInteger":202,"./YearFromTime":212,"./floor":214,"./modulo":215,"get-intrinsic":231}],191:[function(require,module,exports){
+},{"../helpers/isFinite":232,"./DateFromTime":190,"./Day":191,"./MonthFromTime":207,"./ToInteger":216,"./YearFromTime":226,"./floor":228,"./modulo":229,"get-intrinsic":254}],205:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -15077,7 +15775,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":219,"../helpers/timeConstants":226,"./ToInteger":202}],192:[function(require,module,exports){
+},{"../helpers/isFinite":232,"../helpers/timeConstants":238,"./ToInteger":216}],206:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -15093,7 +15791,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":226,"./floor":214,"./modulo":215}],193:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./floor":228,"./modulo":229}],207:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -15142,7 +15840,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":179,"./InLeapYear":183}],194:[function(require,module,exports){
+},{"./DayWithinYear":193,"./InLeapYear":197}],208:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -15157,7 +15855,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":221}],195:[function(require,module,exports){
+},{"../helpers/isNaN":233}],209:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -15173,7 +15871,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":226,"./floor":214,"./modulo":215}],196:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./floor":228,"./modulo":229}],210:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -15192,7 +15890,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":210}],197:[function(require,module,exports){
+},{"./Type":224}],211:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -15215,7 +15913,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":219,"./ToNumber":203,"./abs":213,"get-intrinsic":231}],198:[function(require,module,exports){
+},{"../helpers/isFinite":232,"./ToNumber":217,"./abs":227,"get-intrinsic":254}],212:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -15228,7 +15926,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":226,"./DayFromYear":178}],199:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./DayFromYear":192}],213:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -15242,14 +15940,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":226,"./modulo":215}],200:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./modulo":229}],214:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],201:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -15260,7 +15958,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":203}],202:[function(require,module,exports){
+},{"./ToNumber":217}],216:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -15280,10 +15978,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":219,"../helpers/isNaN":221,"../helpers/sign":225,"./ToNumber":203,"./abs":213,"./floor":214}],203:[function(require,module,exports){
+},{"../helpers/isFinite":232,"../helpers/isNaN":233,"../helpers/sign":237,"./ToNumber":217,"./abs":227,"./floor":228}],217:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -15293,46 +15999,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":205}],204:[function(require,module,exports){
+},{"./ToPrimitive":219,"call-bind/callBound":178,"safe-regex-test":273}],218:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":175,"get-intrinsic":231}],205:[function(require,module,exports){
+},{"es-object-atoms/ToObject":248}],219:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":227}],206:[function(require,module,exports){
+},{"es-to-primitive/es5":250}],220:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -15346,26 +16045,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -15373,13 +16072,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":185,"./ToBoolean":200,"./Type":210,"get-intrinsic":231,"has":235}],207:[function(require,module,exports){
+},{"./IsCallable":199,"./ToBoolean":214,"./Type":224,"es-errors/type":245,"hasown":262}],221:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -15393,7 +16092,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":231}],208:[function(require,module,exports){
+},{"get-intrinsic":254}],222:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -15414,7 +16113,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":219,"../helpers/isNaN":221,"../helpers/sign":225,"./ToNumber":203,"./abs":213,"./floor":214,"./modulo":215}],209:[function(require,module,exports){
+},{"../helpers/isFinite":232,"../helpers/isNaN":233,"../helpers/sign":237,"./ToNumber":217,"./abs":227,"./floor":228,"./modulo":229}],223:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -15425,7 +16124,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":203}],210:[function(require,module,exports){
+},{"./ToNumber":217}],224:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -15451,7 +16150,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],211:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -15463,7 +16162,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":177,"./modulo":215}],212:[function(require,module,exports){
+},{"./Day":191,"./modulo":229}],226:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -15481,7 +16180,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":166,"get-intrinsic":231}],213:[function(require,module,exports){
+},{"call-bind/callBound":178,"get-intrinsic":254}],227:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -15494,7 +16193,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":231}],214:[function(require,module,exports){
+},{"get-intrinsic":254}],228:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -15507,7 +16206,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],215:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -15518,7 +16217,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":224}],216:[function(require,module,exports){
+},{"../helpers/mod":235}],230:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -15531,7 +16230,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":226,"./modulo":215}],217:[function(require,module,exports){
+},{"../helpers/timeConstants":238,"./modulo":229}],231:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -15542,6 +16241,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -15584,90 +16284,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":173,"./5/AbstractRelationalComparison":174,"./5/CheckObjectCoercible":175,"./5/DateFromTime":176,"./5/Day":177,"./5/DayFromYear":178,"./5/DayWithinYear":179,"./5/DaysInYear":180,"./5/FromPropertyDescriptor":181,"./5/HourFromTime":182,"./5/InLeapYear":183,"./5/IsAccessorDescriptor":184,"./5/IsCallable":185,"./5/IsDataDescriptor":186,"./5/IsGenericDescriptor":187,"./5/IsPropertyDescriptor":188,"./5/MakeDate":189,"./5/MakeDay":190,"./5/MakeTime":191,"./5/MinFromTime":192,"./5/MonthFromTime":193,"./5/SameValue":194,"./5/SecFromTime":195,"./5/StrictEqualityComparison":196,"./5/TimeClip":197,"./5/TimeFromYear":198,"./5/TimeWithinDay":199,"./5/ToBoolean":200,"./5/ToInt32":201,"./5/ToInteger":202,"./5/ToNumber":203,"./5/ToObject":204,"./5/ToPrimitive":205,"./5/ToPropertyDescriptor":206,"./5/ToString":207,"./5/ToUint16":208,"./5/ToUint32":209,"./5/Type":210,"./5/WeekDay":211,"./5/YearFromTime":212,"./5/abs":213,"./5/floor":214,"./5/modulo":215,"./5/msFromTime":216}],218:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":186,"./5/AbstractRelationalComparison":187,"./5/Canonicalize":188,"./5/CheckObjectCoercible":189,"./5/DateFromTime":190,"./5/Day":191,"./5/DayFromYear":192,"./5/DayWithinYear":193,"./5/DaysInYear":194,"./5/FromPropertyDescriptor":195,"./5/HourFromTime":196,"./5/InLeapYear":197,"./5/IsAccessorDescriptor":198,"./5/IsCallable":199,"./5/IsDataDescriptor":200,"./5/IsGenericDescriptor":201,"./5/IsPropertyDescriptor":202,"./5/MakeDate":203,"./5/MakeDay":204,"./5/MakeTime":205,"./5/MinFromTime":206,"./5/MonthFromTime":207,"./5/SameValue":208,"./5/SecFromTime":209,"./5/StrictEqualityComparison":210,"./5/TimeClip":211,"./5/TimeFromYear":212,"./5/TimeWithinDay":213,"./5/ToBoolean":214,"./5/ToInt32":215,"./5/ToInteger":216,"./5/ToNumber":217,"./5/ToObject":218,"./5/ToPrimitive":219,"./5/ToPropertyDescriptor":220,"./5/ToString":221,"./5/ToUint16":222,"./5/ToUint32":223,"./5/Type":224,"./5/WeekDay":225,"./5/YearFromTime":226,"./5/abs":227,"./5/floor":228,"./5/modulo":229,"./5/msFromTime":230}],232:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":220,"get-intrinsic":231,"has":235}],219:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],220:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":235}],221:[function(require,module,exports){
+},{"./isNaN":233}],233:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],222:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -15682,40 +16313,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":166}],223:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":231,"has":235}],224:[function(require,module,exports){
+},{"call-bind/callBound":178}],235:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -15725,14 +16323,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],225:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":245,"hasown":262}],237:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],226:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -15753,7 +16389,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],227:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":254}],240:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],241:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],242:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],243:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],244:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],245:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],246:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],247:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":245}],248:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":249,"./RequireObjectCoercible":247}],249:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],250:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -15800,56 +16527,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":228,"is-callable":238}],228:[function(require,module,exports){
+},{"./helpers/isPrimitive":251,"is-callable":265}],251:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],229:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -15861,21 +16620,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],230:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":229}],231:[function(require,module,exports){
+},{"./implementation":252}],254:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -15914,18 +16679,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -15933,6 +16704,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -15940,9 +16713,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -15953,10 +16726,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -15964,15 +16737,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -15982,11 +16755,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -16003,7 +16786,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -16014,6 +16797,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -16068,11 +16852,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -16128,6 +16913,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -16200,29 +16988,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":230,"has":235,"has-symbols":233}],232:[function(require,module,exports){
+},{"es-errors":241,"es-errors/eval":240,"es-errors/range":242,"es-errors/ref":243,"es-errors/syntax":244,"es-errors/type":245,"es-errors/uri":246,"function-bind":253,"has-proto":257,"has-symbols":258,"hasown":262}],255:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":254}],256:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -16235,7 +17030,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":231}],233:[function(require,module,exports){
+},{"es-define-property":239}],257:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],258:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -16250,7 +17062,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":234}],234:[function(require,module,exports){
+},{"./shams":259}],259:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -16294,14 +17106,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],235:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":259}],261:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":230}],236:[function(require,module,exports){
+},{"function-bind":253}],262:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":253}],263:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -16388,7 +17220,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],237:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -16417,7 +17249,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],238:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -16463,37 +17295,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],239:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":178,"has-tostringtag/shams":260}],267:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -16617,7 +17536,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":241}],240:[function(require,module,exports){
+},{"./isArguments":269}],268:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -16651,7 +17570,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":239,"./isArguments":241}],241:[function(require,module,exports){
+},{"./implementation":267,"./isArguments":269}],269:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -16670,7 +17589,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],242:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -16856,7 +17775,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],243:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -16889,7 +17808,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":242,"through":256,"timers":257}],244:[function(require,module,exports){
+},{"_process":270,"through":286,"timers":287}],272:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -16956,7 +17875,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":148}],245:[function(require,module,exports){
+},{"buffer":160}],273:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":178,"es-errors/type":245,"is-regex":266}],274:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":183,"es-errors/type":245,"get-intrinsic":254,"gopd":255,"has-property-descriptors":256}],275:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -16971,7 +17952,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":217,"function-bind":230}],246:[function(require,module,exports){
+},{"es-abstract/es5":231,"function-bind":253}],276:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -16991,7 +17972,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":245,"./polyfill":247,"./shim":248,"define-properties":171,"function-bind":230}],247:[function(require,module,exports){
+},{"./implementation":275,"./polyfill":277,"./shim":278,"define-properties":184,"function-bind":253}],277:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -17005,7 +17986,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":245}],248:[function(require,module,exports){
+},{"./implementation":275}],278:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -17017,7 +17998,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":247,"define-properties":171}],249:[function(require,module,exports){
+},{"./polyfill":277,"define-properties":184}],279:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17314,7 +18295,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":244}],250:[function(require,module,exports){
+},{"safe-buffer":272}],280:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -17468,7 +18449,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":251,"./lib/results":253,"./lib/test":254,"_process":242,"defined":172,"through":256,"timers":257}],251:[function(require,module,exports){
+},{"./lib/default_stream":281,"./lib/results":283,"./lib/test":284,"_process":270,"defined":185,"through":286,"timers":287}],281:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -17503,7 +18484,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":242,"fs":147,"through":256}],252:[function(require,module,exports){
+},{"_process":270,"fs":159,"through":286}],282:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -17511,7 +18492,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":242,"timers":257}],253:[function(require,module,exports){
+},{"_process":270,"timers":287}],283:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -17702,7 +18683,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":242,"events":149,"function-bind":230,"has":235,"inherits":237,"object-inspect":255,"resumer":243,"through":256,"timers":257}],254:[function(require,module,exports){
+},{"_process":270,"events":161,"function-bind":253,"has":261,"inherits":264,"object-inspect":285,"resumer":271,"through":286,"timers":287}],284:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -18203,7 +19184,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":252,"deep-equal":168,"defined":172,"events":149,"has":235,"inherits":237,"path":150,"string.prototype.trim":246}],255:[function(require,module,exports){
+},{"./next_tick":282,"deep-equal":180,"defined":185,"events":161,"has":261,"inherits":264,"path":162,"string.prototype.trim":276}],285:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -18397,7 +19378,7 @@ function inspectString (str) {
     }
 }
 
-},{}],256:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -18509,7 +19490,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":242,"stream":151}],257:[function(require,module,exports){
+},{"_process":270,"stream":163}],287:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -18588,7 +19569,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":242,"timers":257}],258:[function(require,module,exports){
+},{"process/browser.js":270,"timers":287}],288:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -18659,4 +19640,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[88,89]);
+},{}]},{},[90,91]);

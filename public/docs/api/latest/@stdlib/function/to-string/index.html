@@ -1,0 +1,31 @@
+<h1 id="function2string">function2string</h1><blockquote><p>Return a string representing the source code of a provided function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> function2string = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/function/to-string'</span> );
+</code></pre><h4 id="function2string-fcn-">function2string( fcn )</h4><p>Returns a string representing the source code of a provided function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">var</span> str = function2string( add );
+<span class="hljs-comment">// e.g., returns 'function add( x, y ) {\n    return x + y;\n}'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If called on built-in functions, functions created by <code>Function.prototype.bind()</code>, or other non-JavaScript functions, the function returns a "native" function string similar to the following:</p><pre><code class="no-highlight language-text">"function foo() { [native code] }"
+</code></pre><p>For intrinsic object methods and functions, <code>foo</code> is the initial name of the function.</p></li><li><p>If called on a function created by the <a href="/docs/api/latest/@stdlib/function/ctor"><code>Function</code></a> constructor, the function returns the source code of a synthesized function declaration having the name "anonymous" and using the provided parameters and function body.</p></li><li><p>Starting in ES2018, the ECMAScript specification requires that the returned string contain the exact same source code as it was declared, including any whitespace and/or comments. If the host is unable to access the source code, the specification requires that the returned string be the native function string.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> erf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/erf'</span> );
+<span class="hljs-keyword">var</span> daxpy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/daxpy'</span> );
+<span class="hljs-keyword">var</span> kebabcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/kebabcase'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+<span class="hljs-keyword">var</span> function2string = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/function/to-string'</span> );
+
+<span class="hljs-keyword">var</span> fcns = [
+    [ <span class="hljs-string">'ndarray'</span>, ndarray ],
+    [ <span class="hljs-string">'erf'</span>, erf ],
+    [ <span class="hljs-string">'daxpy'</span>, daxpy ],
+    [ <span class="hljs-string">'kebabcase'</span>, kebabcase ],
+    [ <span class="hljs-string">'randu'</span>, randu ],
+    [ <span class="hljs-string">'format'</span>, format ],
+    [ <span class="hljs-string">'function2string'</span>, function2string ]
+];
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; fcns.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Function: %s\n\n%s\n'</span>, fcns[ i ][ <span class="hljs-number">0</span> ], function2string( fcns[ i ][ <span class="hljs-number">1</span> ] ) ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/function/ctor"><code>@stdlib/function/ctor</code></a></span><span class="delimiter">: </span><span class="description">function constructor.</span></li></ul></section><section class="links"></section>

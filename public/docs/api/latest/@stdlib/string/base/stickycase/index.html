@@ -1,0 +1,34 @@
+<h1 id="stickycase">stickycase</h1><blockquote><p>Convert a string to sticky case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stickycase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/stickycase'</span> );
+</code></pre><h4 id="stickycase-str-p-">stickycase( str[, p] )</h4><p>Converts a string to sticky case, where each character in the input string is randomly converted to either uppercase or lowercase.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'hello world'</span>;
+<span class="hljs-keyword">var</span> out = stickycase( <span class="hljs-string">'hello world'</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p>By default, the probability for any character to be capitalized is <code>0.5</code>. To set a different probability, provide a <code>p</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'welcome!'</span>;
+<span class="hljs-keyword">var</span> out = stickycase( <span class="hljs-string">'welcome!'</span>, <span class="hljs-number">0.2</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+str = <span class="hljs-string">'good morning'</span>;
+out = stickycase( <span class="hljs-string">'good morning'</span>, <span class="hljs-number">0.8</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stickycase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/stickycase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = stickycase( str );
+<span class="hljs-comment">// returns &#x3C;string></span>
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+str = <span class="hljs-string">'I am a tiny little teapot'</span>;
+out = stickycase( str );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+str = <span class="hljs-string">'with big problems'</span>;
+out = stickycase( str, <span class="hljs-number">0.1</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = stickycase( str, <span class="hljs-number">0.9</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+str = <span class="hljs-string">'isMobile'</span>;
+out = stickycase( str );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="related"></section><section class="links"></section>

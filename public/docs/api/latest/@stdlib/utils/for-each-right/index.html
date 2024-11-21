@@ -12,7 +12,7 @@ forEachRight( arr, log );
     1: 2
     0: 1
 */</span>
-</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li><li><strong>collection</strong>: input collection.</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log1</span>(<span class="hljs-params"> value, index, collection </span>) </span>{

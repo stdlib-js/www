@@ -1,0 +1,28 @@
+<h1 id="castreturn">castReturn</h1><blockquote><p>Wrap a function and cast a function's return value to a complex number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> castReturn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/base/cast-return'</span> );
+</code></pre><h4 id="castreturn-fcn-nargs-ctor-">castReturn( fcn, nargs, ctor )</h4><p>Returns a function which wraps a function and casts a function's return value to a complex number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> addf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/addf'</span> );
+
+<span class="hljs-keyword">var</span> f = castReturn( addf, <span class="hljs-number">2</span>, Complex64 );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>fcn</strong>: the function to wrap.</li><li><strong>nargs</strong>: the number of arguments to be provided to the wrapped function.</li><li><strong>ctor</strong>: complex number constructor for converting real numbers to complex numbers.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned function <strong>assumes</strong> that the wrapped function returns either a real or complex number.</li><li>The returned function <strong>assumes</strong> that, if a return value is non-numeric (i.e., not of type <code>number</code>), then the return value is a complex number. The returned function does <strong>not</strong> verify that non-numeric return values are, in fact, complex number objects. The returned function returns non-numeric return values from the wrapped function without modification.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> addf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/addf'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+<span class="hljs-keyword">var</span> castReturn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/base/cast-return'</span> );
+
+<span class="hljs-keyword">var</span> f = castReturn( addf, <span class="hljs-number">2</span>, Complex64 );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> z = f( <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns 7.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d + %di'</span>, re, im );
+<span class="hljs-comment">// => '7 + 0i'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

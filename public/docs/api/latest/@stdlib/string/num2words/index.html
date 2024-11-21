@@ -1,0 +1,54 @@
+<h1 id="num2words">num2words</h1><blockquote><p>Convert a number to a word representation.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num2words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/num2words'</span> );
+</code></pre><h4 id="num2words-value-options-">num2words( value[, options] )</h4><p>Converts a number to a word representation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = num2words( <span class="hljs-number">87</span> );
+<span class="hljs-comment">// returns 'eighty-seven'</span>
+
+out = num2words( <span class="hljs-number">23101</span> );
+<span class="hljs-comment">// returns 'twenty-three thousand one hundred one'</span>
+
+out = num2words( <span class="hljs-number">0.53</span> );
+<span class="hljs-comment">// returns 'zero point five three'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>lang</strong>: <code>string</code> indicating the language. Default: <code>'en'</code>.</li></ul><p>By default, the function returns a word representation of a number in English. To return a word representation of a number in a different language, set the <code>lang</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = num2words( <span class="hljs-number">22</span>, {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'de'</span>
+});
+<span class="hljs-comment">// returns 'zweiundzwanzig'</span>
+
+out = num2words( <span class="hljs-number">0.53</span>, {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'de'</span>
+});
+<span class="hljs-comment">// returns 'null Komma fünf drei'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The following languages are supported:</p><ul><li><strong>en</strong>: English.</li><li><strong>de</strong>: German.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num2words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/num2words'</span> );
+
+<span class="hljs-keyword">var</span> out = num2words( <span class="hljs-number">29</span> );
+<span class="hljs-comment">// returns 'twenty-nine'</span>
+
+out = num2words( <span class="hljs-number">113</span> );
+<span class="hljs-comment">// returns 'one hundred thirteen'</span>
+
+out = num2words( <span class="hljs-number">13.52</span> );
+<span class="hljs-comment">// returns 'thirteen point five two'</span>
+
+out = num2words( <span class="hljs-number">47</span>, {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'de'</span>
+});
+<span class="hljs-comment">// returns 'siebenundvierzig'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: num2words [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+         --lang lang           Language. Default: 'en'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'15\n23'</span> | num2words --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'15\n23'</span> | num2words --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ num2words <span class="hljs-string">'10'</span>
+ten
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'23'</span> | num2words
+twenty-three
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'10.3\t23.1'</span> | num2words --split <span class="hljs-string">'\t'</span>
+ten point three
+twenty-three point one
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

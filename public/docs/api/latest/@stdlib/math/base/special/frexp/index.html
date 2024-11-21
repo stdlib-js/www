@@ -1,5 +1,5 @@
 <h1 id="frexp">frexp</h1><blockquote><p>Split a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into a normalized fraction and an integer power of two.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> frexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/frexp'</span> );
-</code></pre><h4 id="frexp-out-x-">frexp( [out,] x )</h4><p>Splits a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into a normalized fraction and an integer power of two.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = frexp( <span class="hljs-number">4.0</span> );
+</code></pre><h4 id="frexp-x-">frexp( x )</h4><p>Splits a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into a normalized fraction and an integer power of two.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = frexp( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns [ 0.5, 3 ]</span>
 </code></pre><p>By default, the function returns the normalized fraction and the exponent as a two-element <code>array</code>. The normalized fraction and exponent satisfy the relation <code>x = frac * 2^exp</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
@@ -11,15 +11,6 @@
 <span class="hljs-keyword">var</span> exp = out[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> bool = ( x === frac * pow(<span class="hljs-number">2.0</span>, exp) );
-<span class="hljs-comment">// returns true</span>
-</code></pre><p>To avoid unnecessary memory allocation, the function supports providing an output (destination) object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-
-<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
-
-<span class="hljs-keyword">var</span> y = frexp( out, <span class="hljs-number">4.0</span> );
-<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.5, 3 ]</span>
-
-<span class="hljs-keyword">var</span> bool = ( y === out );
 <span class="hljs-comment">// returns true</span>
 </code></pre><p>If provided positive or negative zero, <code>NaN</code>, or positive or negative <code>infinity</code>, the function returns a two-element <code>array</code> containing the input value and an exponent equal to <code>0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = frexp( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns [ 0.0, 0 ]</span>
@@ -35,7 +26,16 @@ out = frexp( <span class="hljs-literal">Infinity</span> );
 
 out = frexp( -<span class="hljs-literal">Infinity</span> );
 <span class="hljs-comment">// returns [ -Infinity, 0 ]</span>
-</code></pre><p>For all other numeric input values, the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of the normalized fraction resides on the interval <code>[0.5,1)</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Care should be taken when reconstituting a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> from a normalized fraction and an exponent. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+</code></pre><p>For all other numeric input values, the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of the normalized fraction resides on the interval <code>[0.5,1)</code>.</p><h4 id="frexpassign-x-out-stride-offset-">frexp.assign( x, out, stride, offset )</h4><p>Splits a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into a normalized fraction and an integer power of two and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> y = frexp.assign( <span class="hljs-number">4.0</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.5, 3 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( y === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Care should be taken when reconstituting a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> from a normalized fraction and an exponent. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-number">8.988939926493918e+307</span>; <span class="hljs-comment">// x ~ 2^1023</span>
 
@@ -81,4 +81,27 @@ y = out[ <span class="hljs-number">0</span> ] * pow( <span class="hljs-number">2
     }
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d = %d * 2^%d = %d'</span>, x, f[ <span class="hljs-number">0</span> ], f[ <span class="hljs-number">1</span> ], v );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ldexp"><code>@stdlib/math/base/special/ldexp</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point number by an integer power of two.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/frexp.h"</span></span>
+</code></pre><h4 id="stdlib_base_frexp-x-frac-exp-">stdlib_base_frexp( x, frac, exp )</h4><p>Splits a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into a normalized fraction and an integer power of two.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">double</span> frac;
+<span class="hljs-keyword">int32_t</span> <span class="hljs-built_in">exp</span>;
+stdlib_base_frexp( <span class="hljs-number">4.0</span>, &#x26;frac, &#x26;<span class="hljs-built_in">exp</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li><li><strong>frac</strong>: <code>[out] double*</code> destination for the normalized fraction.</li><li><strong>exp</strong>: <code>[out] int32_t*</code> destination for the integer power of two.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_frexp</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">double</span> *frac, <span class="hljs-keyword">int32_t</span> *<span class="hljs-built_in">exp</span> )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/frexp.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">1.0e308</span>, <span class="hljs-number">-1.0e308</span>, <span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> frac;
+    <span class="hljs-keyword">int32_t</span> <span class="hljs-built_in">exp</span>;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">12</span>; i++ ) {
+        stdlib_base_frexp( x[i], &#x26;frac, &#x26;<span class="hljs-built_in">exp</span> );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x: %f => frac: %f, exp: %"</span> PRId32 <span class="hljs-string">"\n"</span>, x[i], frac, <span class="hljs-built_in">exp</span> );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ldexp"><code>@stdlib/math/base/special/ldexp</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point number by an integer power of two.</span></li></ul></section><section class="links"></section>

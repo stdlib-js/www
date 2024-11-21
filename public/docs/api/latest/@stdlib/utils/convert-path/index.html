@@ -36,8 +36,16 @@ Options:
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
   -o,    --out output          Output path convention.
-</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ convert-path /c/foo/bar --out=mixed
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'c:/foo/bar\n./docs/eslint'</span> | convert-path --out=posix --split /\r?\n/
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'c:/foo/bar\n./docs/eslint'</span> | convert-path --out=posix --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ convert-path /c/foo/bar --out=mixed
 c:/foo/bar
 </code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'/c/foo/bar'</span> | convert-path --out=win32
 c:\foo\bar
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'c:/foo/bar\t./docs/eslint'</span> | convert-path  --out=win32 --split <span class="hljs-string">'\t'</span>
+c:\foo\bar
+.\docs\eslint
 </code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

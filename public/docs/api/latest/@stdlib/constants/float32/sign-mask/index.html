@@ -1,0 +1,25 @@
+<h1 id="float32_sign_mask">FLOAT32_SIGN_MASK</h1><blockquote><p>Mask for the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT32_SIGN_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/sign-mask'</span> );
+</code></pre><h4 id="float32_sign_mask-1">FLOAT32_SIGN_MASK</h4><p>Mask for the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// 0x80000000 = 2147483648 => 1 00000000 00000000000000000000000</span>
+<span class="hljs-keyword">var</span> bool = ( FLOAT32_SIGN_MASK === <span class="hljs-number">0x80000000</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The higher order word of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> is a 32-bit integer containing the more significant bits which include the exponent and sign.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/to-word'</span> );
+<span class="hljs-keyword">var</span> fromWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/from-word'</span> );
+<span class="hljs-keyword">var</span> FLOAT32_SIGN_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/sign-mask'</span> );
+
+<span class="hljs-keyword">var</span> x = -<span class="hljs-number">11.5</span>;
+<span class="hljs-keyword">var</span> w = toWord( x ); <span class="hljs-comment">// 1 10000010 01110000000000000000000</span>
+<span class="hljs-comment">// returns 3223781376</span>
+
+<span class="hljs-comment">// Mask off all bits except for the sign bit:</span>
+<span class="hljs-keyword">var</span> out = (w &#x26; FLOAT32_SIGN_MASK)>>><span class="hljs-number">0</span>; <span class="hljs-comment">// 1 00000000 00000000000000000000000</span>
+<span class="hljs-comment">// returns 2147483648</span>
+
+<span class="hljs-comment">// Turn off the sign bit and leave other bits unchanged:</span>
+out = w &#x26; (~FLOAT32_SIGN_MASK); <span class="hljs-comment">// 0 10000010 01110000000000000000000</span>
+<span class="hljs-comment">// returns 1076297728</span>
+
+<span class="hljs-comment">// Generate a new value:</span>
+out = fromWord( out );
+<span class="hljs-comment">// returns 11.5</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/constants/float32/sign_mask.h"</span></span>
+</code></pre><h4 id="stdlib_constant_float32_sign_mask">STDLIB_CONSTANT_FLOAT32_SIGN_MASK</h4><p>Macro for the mask for the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></section><section class="notes"></section><section class="examples"></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/exponent-mask"><code>@stdlib/constants/float32/exponent-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for the exponent of a single-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/significand-mask"><code>@stdlib/constants/float32/significand-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for the significand of a single-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/abs-mask"><code>@stdlib/constants/float32/abs-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for excluding the sign bit of a single-precision floating-point number.</span></li></ul></section><section class="links"></section>

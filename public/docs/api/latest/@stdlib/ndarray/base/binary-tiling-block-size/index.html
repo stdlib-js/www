@@ -1,0 +1,23 @@
+<h1 id="binaryblocksize">binaryBlockSize</h1><blockquote><p>Resolve a loop block size for multi-dimensional array tiled loops.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> binaryBlockSize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/binary-tiling-block-size'</span> );
+</code></pre><h4 id="binaryblocksize-dtypex-dtypey-dtypez-">binaryBlockSize( dtypeX, dtypeY, dtypeZ )</h4><p>Resolves a loop block size according to provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">dtypes</a> for multi-dimensional array tiled loops applying a binary function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bsize = binaryBlockSize( <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned loop tiling block size is in units of elements.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> cartesianSquare = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-square'</span> );
+<span class="hljs-keyword">var</span> promotionRules = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/promotion-rules'</span> );
+<span class="hljs-keyword">var</span> binaryBlockSize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/binary-tiling-block-size'</span> );
+
+<span class="hljs-comment">// Generate a list of input ndarray dtype pairs:</span>
+<span class="hljs-keyword">var</span> dt = cartesianSquare( dtypes() );
+
+<span class="hljs-comment">// Resolve the block size for each dtype pair and its promoted dtype...</span>
+<span class="hljs-keyword">var</span> t;
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'block_size, xdtype, ydtype, zdtype'</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    t = promotionRules.apply( <span class="hljs-literal">null</span>, dt[ i ] );
+    dt[ i ].push( ( t === -<span class="hljs-number">1</span> ) ? <span class="hljs-string">'generic'</span> : t );
+    b = binaryBlockSize.apply( <span class="hljs-literal">null</span>, dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d, %s, %s, %s'</span>, b, dt[i][<span class="hljs-number">0</span>], dt[i][<span class="hljs-number">1</span>], dt[i][<span class="hljs-number">2</span>] );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

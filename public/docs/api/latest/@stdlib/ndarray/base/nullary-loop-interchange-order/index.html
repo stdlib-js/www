@@ -1,0 +1,22 @@
+<h1 id="nullarylooporder">nullaryLoopOrder</h1><blockquote><p>Reorder ndarray dimensions and associated strides for loop interchange.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nullaryLoopOrder = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nullary-loop-interchange-order'</span> );
+</code></pre><h4 id="nullarylooporder-shape-stridesx-">nullaryLoopOrder( shape, stridesX )</h4><p>Reorders <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> dimensions and associated strides for <a href="https://en.wikipedia.org/wiki/Loop_interchange">loop interchange</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Define an array shape:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Define array strides:</span>
+<span class="hljs-keyword">var</span> stridesX = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ]; <span class="hljs-comment">// row-major</span>
+
+<span class="hljs-comment">// Resolve the loop interchange order:</span>
+<span class="hljs-keyword">var</span> o = nullaryLoopOrder( shape, stridesX );
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>The function returns an object having the following properties:</p><ul><li><strong>sh</strong>: ordered dimensions.</li><li><strong>sx</strong>: array strides sorted in loop order.</li><li><strong>idx</strong>: dimension indices sorted in loop order.</li></ul><p>For all returned arrays, the first element corresponds to the innermost loop, and the last element corresponds to the outermost loop.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When iterating over the elements of a multi-dimensional array, accessing elements which are closer in memory can improve performance. To this end, <a href="https://en.wikipedia.org/wiki/Loop_interchange">loop interchange</a> is a technique used in <a href="https://en.wikipedia.org/wiki/Loop_nest_optimization">loop nest optimization</a> to improve locality of reference and take advantage of CPU cache.</p><p>The purpose of this function is to order <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> dimensions according to the magnitude of array strides. By using the ordered dimensions and associated strides, one can construct nested loops (one for each dimension) such that the innermost loop iterates over the dimension in which array elements are closest in memory and the outermost loop iterates over the dimension in which array elements are farthest apart in memory. As a consequence, element iteration is optimized to minimize cache misses and ensure locality of reference.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> loopOrder = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nullary-loop-interchange-order'</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+
+<span class="hljs-comment">// Resolve loop interchange data:</span>
+<span class="hljs-keyword">var</span> o = loopOrder( x.shape, x.strides );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( o );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -124,12 +124,12 @@
 					<div class="tsd-signature tsd-kind-icon">Getter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"data"</span><span class="tsd-signature-symbol">]</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L33">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L34">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Returns an ndarray element.</p>
+							<p>Returns an ndarray buffer element.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -176,12 +176,12 @@
 					<div class="tsd-signature tsd-kind-icon">Setter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>buf<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"data"</span><span class="tsd-signature-symbol">]</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L42">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L43">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Sets an ndarray element.</p>
+							<p>Sets an ndarray buffer element.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -238,12 +238,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L122">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L118">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts an ndarray-like to an object likely to have the same &quot;shape&quot;.</p>
+									<p>Converts an ndarray-like object to an object likely to have the same &quot;shape&quot;.</p>
 								</div>
 								<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
 									<h2>Notes</h2>
@@ -268,7 +268,7 @@
 							</h4>
 							<p>object containing ndarray data</p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/ndarray/array`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ] );
 
@@ -370,13 +370,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

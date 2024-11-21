@@ -11,11 +11,7 @@ out = char2dtype( <span class="hljs-string">'i'</span> );
 </code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypeChar = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/dtype-char'</span> );
 <span class="hljs-keyword">var</span> char2dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/char2dtype'</span> );
 
-<span class="hljs-keyword">var</span> chars;
-<span class="hljs-keyword">var</span> out;
-<span class="hljs-keyword">var</span> i;
-
-chars = [
+<span class="hljs-keyword">var</span> chars = [
     dtypeChar( <span class="hljs-string">'float64'</span> ),
     dtypeChar( <span class="hljs-string">'float32'</span> ),
     dtypeChar( <span class="hljs-string">'int8'</span> ),
@@ -30,8 +26,8 @@ chars = [
     <span class="hljs-string">'('</span>
 ];
 
+<span class="hljs-keyword">var</span> i;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; chars.length; i++ ) {
-    out = char2dtype( chars[ i ] );
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, chars[ i ], out );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, chars[ i ], char2dtype( chars[ i ] ) );
 }
 </code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

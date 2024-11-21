@@ -1,0 +1,15 @@
+<h1 id="cartesiansquare">cartesianSquare</h1><blockquote><p>Return the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian square</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cartesianSquare = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-square'</span> );
+</code></pre><h4 id="cartesiansquare-x-">cartesianSquare( x )</h4><p>Returns the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian square</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> out = cartesianSquare( x );
+<span class="hljs-comment">// returns [ [ 1, 1 ], [ 1, 2 ], [ 2, 1 ], [ 2, 2 ] ]</span>
+</code></pre><p>If provided an empty array, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = cartesianSquare( [] );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> cartesianSquare = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-square'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> );
+
+<span class="hljs-keyword">var</span> out = cartesianSquare( x );
+<span class="hljs-comment">// returns [ [ 0, 0 ], [ 0, 1 ], ..., [ 5, 4 ], [ 5, 5 ] ]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,23 @@
+<h1 id="drotg">drotg</h1><blockquote><p>Construct a Givens plane rotation.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> drotg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/drotg'</span> );
+</code></pre><h4 id="drotg-a-b-">drotg( a, b )</h4><p>Constructs a Givens plane rotation provided two double-precision floating-point values <code>a</code> and <code>b</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = drotg( <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 2.0, 1.0, 0.0, 1.0 ]</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>a</strong>: rotational elimination parameter.</li><li><strong>b</strong>: rotational elimination parameter.</li></ul><h4 id="drotgassign-a-b-out-stride-offset-">drotg.assign( a, b, out, stride, offset )</h4><p>Constructs a Givens plane rotation provided two double-precision floating-point values <code>a</code> and <code>b</code> and assigns results to an output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">4</span> );
+
+<span class="hljs-keyword">var</span> y = drotg.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 2.0, 1.0, 0.0, 1.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( y === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><code>drotg()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="https://www.netlib.org/lapack/explore-html/d7/dc5/group__rotg_gaafa91c51f75df6c3f2182032a221c2db.html#gaafa91c51f75df6c3f2182032a221c2db"><code>drotg</code></a>.</li></ul></section><section class="examples"><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> drotg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/drotg'</span> );
+
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    out = drotg( discreteUniform( -<span class="hljs-number">5</span>, <span class="hljs-number">5</span> ), discreteUniform( -<span class="hljs-number">5</span>, <span class="hljs-number">5</span> ) );
+    <span class="hljs-built_in">console</span>.log( out );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

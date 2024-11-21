@@ -102,26 +102,41 @@
 
 'use strict';
 
-// MAIN //
-
 /**
-* Returns an array element using an accessor method.
+* Return an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @module @stdlib/array/base/accessor-getter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/accessor-getter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x.get( idx );
-}
+
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getter;
+module.exports = main;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -142,18 +157,135 @@ module.exports = getter;
 
 'use strict';
 
+// VARIABLES //
+
+var GETTERS = {
+	'complex128': getComplex128,
+	'complex64': getComplex64,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex128( arr, 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 3.0
+*
+* var im = imag( v );
+* // returns 4.0
+*/
+function getComplex128( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex64( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
+*/
+function getComplex64( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr.get( idx );
+}
+
+
 // MAIN //
 
 /**
-* Returns an array element.
+* Returns an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x[ idx ];
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
 }
 
 
@@ -162,6 +294,230 @@ function getter( x, idx ) {
 module.exports = getter;
 
 },{}],3:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @module @stdlib/array/base/accessor-setter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var setter = require( '@stdlib/array/base/accessor-setter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":4}],4:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'complex128': setComplex128,
+	'complex64': setComplex64,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex128( arr, 1, new Complex128( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 10.0
+*
+* var im = imag( v );
+* // returns 11.0
+*/
+function setComplex128( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex64( arr, 1, new Complex64( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setComplex64( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* setArrayLike( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+function setArrayLike( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = setter;
+
+},{}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -203,7 +559,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":4}],4:[function(require,module,exports){
+},{"./main.js":6}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -226,10 +582,12 @@ module.exports = main;
 
 // MODULES //
 
-var getIndexed = require( './getter.js' );
-var getAccessor = require( './getter.accessor.js' );
-var setIndexed = require( './setter.js' );
-var setAccessor = require( './setter.accessor.js' );
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var getter = require( '@stdlib/array/base/getter' );
+var setter = require( '@stdlib/array/base/setter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
+var dtype = require( '@stdlib/array/dtype' );
 
 
 // MAIN //
@@ -243,10 +601,10 @@ var setAccessor = require( './setter.accessor.js' );
 *
 * -   The returned object has the following properties:
 *
-*     -   **data**: data buffer.
-*     -   **accessors**: `boolean` indicating whether the data buffer uses accessors for getting and setting elements.
-*     -   **getter**: accessor for retrieving a data buffer element.
-*     -   **setter**: accessor for setting a data buffer element.
+*     -   **data**: reference to the input array.
+*     -   **dtype**: array data type.
+*     -   **accessorProtocol**: `boolean` indicating whether the input array uses accessors for getting and setting elements.
+*     -   **accessors**: a two-element array whose first element is an accessor for retrieving an array element and whose second element is an accessor for setting an array element.
 *
 * @param {Collection} x - array-like object
 * @returns {Object} object containing array meta data
@@ -256,12 +614,26 @@ var setAccessor = require( './setter.accessor.js' );
 * // returns {...}
 */
 function arraylike2object( x ) {
-	var bool = Boolean( x.get && x.set ); // Note: intentional weak check, as we don't explicitly check for functions for (perhaps marginally) better performance.
+	var dt = dtype( x );
+	if ( isAccessorArray( x ) ) {
+		return {
+			'data': x,
+			'dtype': dt,
+			'accessorProtocol': true,
+			'accessors': [
+				accessorGetter( dt ),
+				accessorSetter( dt )
+			]
+		};
+	}
 	return {
 		'data': x,
-		'accessors': bool,
-		'getter': ( bool ) ? getAccessor : getIndexed,
-		'setter': ( bool ) ? setAccessor : setIndexed
+		'dtype': dt,
+		'accessorProtocol': false,
+		'accessors': [
+			getter( dt ),
+			setter( dt )
+		]
 	};
 }
 
@@ -270,7 +642,7 @@ function arraylike2object( x ) {
 
 module.exports = arraylike2object;
 
-},{"./getter.accessor.js":1,"./getter.js":2,"./setter.accessor.js":5,"./setter.js":6}],5:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":7,"@stdlib/array/base/getter":13,"@stdlib/array/base/setter":15,"@stdlib/array/dtype":35}],7:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -291,18 +663,977 @@ module.exports = arraylike2object;
 
 'use strict';
 
+/**
+* Test if an array-like object supports the accessor (get/set) protocol.
+*
+* @module @stdlib/array/base/assert/is-accessor-array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128array' );
+* var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isAccessorArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":8}],8:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var TYPE = 'function';
+
+
 // MAIN //
 
 /**
-* Sets an array element using an accessor method.
+* Tests if an array-like object supports the accessor (get/set) protocol.
+*
+* @param {Object} value - value to test
+* @returns {boolean} boolean indicating whether a value is an accessor array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isAccessorArray( [] );
+* // returns false
+*/
+function isAccessorArray( value ) {
+	return ( typeof value.get === TYPE && typeof value.set === TYPE ); // eslint-disable-line valid-typeof
+}
+
+
+// EXPORTS //
+
+module.exports = isAccessorArray;
+
+},{}],9:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex128Array`.
+*
+* @module @stdlib/array/base/assert/is-complex128array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":10}],10:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 16; // 8 bytes per float64 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex128Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex128Array`
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+function isComplex128Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex128Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex128array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex128Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex128Array;
+
+},{}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex64Array`.
+*
+* @module @stdlib/array/base/assert/is-complex64array
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":12}],12:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 8; // 4 bytes per float32 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex64Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+function isComplex64Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex64Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex64array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex64Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex64Array;
+
+},{}],13:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for retrieving an element from an indexed array-like object.
+*
+* @module @stdlib/array/base/getter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/getter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":14}],14:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var GETTERS = {
+	'float64': getFloat64,
+	'float32': getFloat32,
+	'int32': getInt32,
+	'int16': getInt16,
+	'int8': getInt8,
+	'uint32': getUint32,
+	'uint16': getUint16,
+	'uint8': getUint8,
+	'uint8c': getUint8c,
+	'generic': getGeneric,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Float64Array`.
 *
 * @private
-* @param {Collection} x - input array
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat64( arr, 2 );
+* // returns 3.0
+*/
+function getFloat64( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat32( arr, 2 );
+* // returns 3.0
+*/
+function getFloat32( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt32( arr, 2 );
+* // returns 3
+*/
+function getInt32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt16( arr, 2 );
+* // returns 3
+*/
+function getInt16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt8( arr, 2 );
+* // returns 3
+*/
+function getInt8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint32( arr, 2 );
+* // returns 3
+*/
+function getUint32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint16( arr, 2 );
+* // returns 3
+*/
+function getUint16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8( arr, 2 );
+* // returns 3
+*/
+function getUint8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8c( arr, 2 );
+* // returns 3
+*/
+function getUint8c( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getGeneric( arr, 2 );
+* // returns 3
+*/
+function getGeneric( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr[ idx ];
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for retrieving an element from an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = getter;
+
+},{}],15:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an indexed array-like object.
+*
+* @module @stdlib/array/base/setter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var set = require( '@stdlib/array/base/setter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":16}],16:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'float64': setFloat64,
+	'float32': setFloat32,
+	'int32': setInt32,
+	'int16': setInt16,
+	'int8': setInt8,
+	'uint32': setUint32,
+	'uint16': setUint16,
+	'uint8': setUint8,
+	'uint8c': setUint8c,
+	'generic': setGeneric,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( 4 );
+*
+* setFloat64( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat64( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( 4 );
+*
+* setFloat32( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( 4 );
+*
+* setInt32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( 4 );
+*
+* setInt16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( 4 );
+*
+* setInt8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( 4 );
+*
+* setUint32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( 4 );
+*
+* setUint16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( 4 );
+*
+* setUint8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( 4 );
+*
+* setUint8c( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8c( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
 * @param {NonNegativeInteger} idx - element index
 * @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setGeneric( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
 */
-function setter( x, idx, value ) {
-	x.set( value, idx );
+function setGeneric( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setArrayLike( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setArrayLike( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
 }
 
 
@@ -310,11 +1641,11 @@ function setter( x, idx, value ) {
 
 module.exports = setter;
 
-},{}],6:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -331,26 +1662,2743 @@ module.exports = setter;
 
 'use strict';
 
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
 // MAIN //
+
+/**
+* Fills an output array with "boolean" values.
+*
+* @private
+* @param {Uint8Array} buf - output array
+* @param {Array} arr - input array
+* @returns {Uint8Array} output array
+*/
+function fromArray( buf, arr ) {
+	var len;
+	var i;
+
+	len = arr.length;
+	for ( i = 0; i < len; i++ ) {
+		buf[ i ] = Boolean( arr[ i ] );
+	}
+	return buf;
+}
+
+
+// EXPORTS //
+
+module.exports = fromArray;
+
+},{"@stdlib/boolean/ctor":199}],18:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @returns {Array} output array
+*/
+function fromIterator( it ) {
+	var out;
+	var v;
+
+	out = [];
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		out.push( Boolean( v.value ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIterator;
+
+},{"@stdlib/boolean/ctor":199}],19:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @param {Function} clbk - callback to invoke for each iterated value
+* @param {*} thisArg - invocation context
+* @returns {Array} output array
+*/
+function fromIteratorMap( it, clbk, thisArg ) {
+	var out;
+	var v;
+	var i;
+
+	out = [];
+	i = -1;
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		i += 1;
+		out.push( Boolean( clbk.call( thisArg, v.value, i ) ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIteratorMap;
+
+},{"@stdlib/boolean/ctor":199}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean array.
+*
+* @module @stdlib/array/bool
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":21}],21:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable no-restricted-syntax, no-invalid-this */
+
+'use strict';
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isCollection = require( '@stdlib/assert/is-collection' );
+var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
+var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Boolean = require( '@stdlib/boolean/ctor' );
+var getter = require( '@stdlib/array/base/getter' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var format = require( '@stdlib/string/format' );
+var fromIterator = require( './from_iterator.js' );
+var fromIteratorMap = require( './from_iterator_map.js' );
+var fromArray = require( './from_array.js' );
+
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = Uint8Array.BYTES_PER_ELEMENT;
+var HAS_ITERATOR_SYMBOL = hasIteratorSymbolSupport();
+
+
+// FUNCTIONS //
+
+/**
+* Returns a boolean indicating if a value is a `BooleanArray`.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `BooleanArray`
+*/
+function isBooleanArray( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'BooleanArray' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+/**
+* Returns a boolean indicating if a value is a boolean typed array constructor.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean typed array constructor
+*/
+function isBooleanArrayConstructor( value ) {
+	return ( value === BooleanArray );
+}
+
+
+// MAIN //
+
+/**
+* Boolean array constructor.
+*
+* @constructor
+* @param {(NonNegativeInteger|Collection|ArrayBuffer|Iterable)} [arg] - length, typed array, array-like object, buffer, or an iterable
+* @param {NonNegativeInteger} [byteOffset=0] - byte offset
+* @param {NonNegativeInteger} [length] - view length
+* @throws {TypeError} if provided only a single argument, must provide a valid argument
+* @throws {TypeError} byte offset must be a nonnegative integer
+* @throws {RangeError} must provide sufficient memory to accommodate byte offset and view length requirements
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+function BooleanArray() {
+	var byteOffset;
+	var nargs;
+	var buf;
+	var len;
+	var arg;
+
+	nargs = arguments.length;
+	if ( !(this instanceof BooleanArray) ) {
+		if ( nargs === 0 ) {
+			return new BooleanArray();
+		}
+		if ( nargs === 1 ) {
+			return new BooleanArray( arguments[0] );
+		}
+		if ( nargs === 2 ) {
+			return new BooleanArray( arguments[0], arguments[1] );
+		}
+		return new BooleanArray( arguments[0], arguments[1], arguments[2] );
+	}
+	// Create the underlying data buffer...
+	if ( nargs === 0 ) {
+		buf = new Uint8Array( 0 ); // backward-compatibility
+	} else if ( nargs === 1 ) {
+		arg = arguments[ 0 ];
+		if ( isNonNegativeInteger( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isCollection( arg ) ) {
+			buf = fromArray( new Uint8Array( arg.length ), arg );
+		} else if ( isArrayBuffer( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isObject( arg ) ) {
+			if ( HAS_ITERATOR_SYMBOL === false ) {
+				throw new TypeError( format( 'invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.', arg ) );
+			}
+			if ( !isFunction( arg[ ITERATOR_SYMBOL ] ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = arg[ ITERATOR_SYMBOL ]();
+			if ( !isFunction( buf.next ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = new Uint8Array( fromIterator( buf ) );
+		} else {
+			throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+		}
+	} else {
+		buf = arguments[ 0 ];
+		if ( !isArrayBuffer( buf ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an ArrayBuffer. Value: `%s`.', buf ) );
+		}
+		byteOffset = arguments[ 1 ];
+		if ( !isNonNegativeInteger( byteOffset ) ) {
+			throw new TypeError( format( 'invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.', byteOffset ) );
+		}
+		if ( nargs === 2 ) {
+			buf = new Uint8Array( buf, byteOffset );
+		} else {
+			len = arguments[ 2 ];
+			if ( !isNonNegativeInteger( len ) ) {
+				throw new TypeError( format( 'invalid argument. Length must be a nonnegative integer. Value: `%s`.', len ) );
+			}
+			if ( (len*BYTES_PER_ELEMENT) > (buf.byteLength-byteOffset) ) {
+				throw new RangeError( format( 'invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.', len*BYTES_PER_ELEMENT ) );
+			}
+			buf = new Uint8Array( buf, byteOffset, len );
+		}
+	}
+	setReadOnly( this, '_buffer', buf );
+	setReadOnly( this, '_length', buf.length );
+
+	return this;
+}
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var nbytes = BooleanArray.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray, 'BYTES_PER_ELEMENT', BYTES_PER_ELEMENT );
+
+/**
+* Constructor name.
+*
+* @name name
+* @memberof BooleanArray
+* @readonly
+* @type {string}
+* @default 'BooleanArray'
+*
+* @example
+* var str = BooleanArray.name;
+* // returns 'BooleanArray'
+*/
+setReadOnly( BooleanArray, 'name', 'BooleanArray' );
+
+/**
+* Creates a new boolean array from an array-like object or an iterable.
+*
+* @name from
+* @memberof BooleanArray
+* @type {Function}
+* @param {(Collection|Iterable)} src - array-like object or iterable
+* @param {Function} [clbk] - callback to invoke for each source element
+* @param {*} [thisArg] - context
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an array-like object or an iterable
+* @throws {TypeError} second argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.from( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* function clbk( v ) {
+*     return !v;
+* }
+*
+* var arr = BooleanArray.from( [ true, false ], clbk );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+setReadOnly( BooleanArray, 'from', function from( src ) {
+	var thisArg;
+	var nargs;
+	var clbk;
+	var out;
+	var buf;
+	var tmp;
+	var get;
+	var len;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	nargs = arguments.length;
+	if ( nargs > 1 ) {
+		clbk = arguments[ 1 ];
+		if ( !isFunction( clbk ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a function. Value: `%s`.', clbk ) );
+		}
+		if ( nargs > 2 ) {
+			thisArg = arguments[ 2 ];
+		}
+	}
+	if ( isCollection( src ) ) {
+		if ( clbk ) {
+			len = src.length;
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
+			out = new this( len );
+			buf = out._buffer; // eslint-disable-line no-underscore-dangle
+			for ( i = 0; i < len; i++ ) {
+				buf[ i ] = Boolean( clbk.call( thisArg, get( src, i ), i ) );
+			}
+			return out;
+		}
+		return new this( src );
+	}
+	if ( isObject( src ) && HAS_ITERATOR_SYMBOL && isFunction( src[ ITERATOR_SYMBOL ] ) ) { // eslint-disable-line max-len
+		buf = src[ ITERATOR_SYMBOL ]();
+		if ( !isFunction( buf.next ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+		}
+		if ( clbk ) {
+			tmp = fromIteratorMap( buf, clbk, thisArg );
+		} else {
+			tmp = fromIterator( buf );
+		}
+		len = tmp.length;
+		out = new this( len );
+		buf = out._buffer; // eslint-disable-line no-underscore-dangle
+		for ( i = 0; i < len; i++ ) {
+			buf[ i ] = tmp[ i ];
+		}
+		return out;
+	}
+	throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+});
+
+/**
+* Creates a new boolean array from a variable number of arguments.
+*
+* @name of
+* @memberof BooleanArray
+* @type {Function}
+* @param {...*} element - array elements
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.of( true, true, true, true );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 4
+*/
+setReadOnly( BooleanArray, 'of', function of() {
+	var args;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	args = [];
+	for ( i = 0; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
+	}
+	return new this( args );
+});
+
+/**
+* Returns an array element located at integer position (index) `i`, with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide an integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.at( 0 );
+* // returns true
+*
+* v = arr.at( -1 );
+* // returns true
+*
+* v = arr.at( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'at', function at( idx ) {
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	len = this._length;
+	buf = this._buffer;
+	if ( idx < 0 ) {
+		idx += len;
+	}
+	if ( idx < 0 || idx >= len ) {
+		return;
+	}
+	return Boolean( buf[ idx ] );
+});
+
+/**
+* Pointer to the underlying data buffer.
+*
+* @name buffer
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {ArrayBuffer}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var buf = arr.buffer;
+* // returns <ArrayBuffer>
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'buffer', function get() {
+	return this._buffer.buffer;
+});
+
+/**
+* Size (in bytes) of the array.
+*
+* @name byteLength
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteLength = arr.byteLength;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteLength', function get() {
+	return this._buffer.byteLength;
+});
+
+/**
+* Offset (in bytes) of the array from the start of its underlying `ArrayBuffer`.
+*
+* @name byteOffset
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteOffset = arr.byteOffset;
+* // returns 0
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteOffset', function get() {
+	return this._buffer.byteOffset;
+});
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var nbytes = arr.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray.prototype, 'BYTES_PER_ELEMENT', BooleanArray.BYTES_PER_ELEMENT );
+
+/**
+* Copies a sequence of elements within the array to the position starting at `target`.
+*
+* @name copyWithin
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} target - index at which to start copying elements
+* @param {integer} start - source index at which to copy elements from
+* @param {integer} [end] - source index at which to stop copying elements from
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 4 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+* arr.set( true, 3 );
+*
+* // Copy the first two elements to the last two elements:
+* arr.copyWithin( 2, 0, 2 );
+*
+* var v = arr.get( 2 );
+* // returns true
+*
+* v = arr.get( 3 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'copyWithin', function copyWithin( target, start ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	// FIXME: prefer a functional `copyWithin` implementation which addresses lack of universal browser support (e.g., IE11 and Safari) or ensure that typed arrays are polyfilled
+	if ( arguments.length === 2 ) {
+		this._buffer.copyWithin( target, start );
+	} else {
+		this._buffer.copyWithin( target, start, arguments[2] );
+	}
+	return this;
+});
+
+/**
+* Returns an iterator for iterating over array key-value pairs.
+*
+* @name entries
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var it = arr.entries();
+*
+* var v = it.next().value;
+* // returns [ 0, true ]
+*
+* v = it.next().value;
+* // returns [ 1, false ]
+*
+* v = it.next().value;
+* // returns [ 2, true ]
+*
+* var bool = it.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'entries', function entries() {
+	var self;
+	var iter;
+	var len;
+	var buf;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': [ i, Boolean( buf[ i ] ) ],
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.entries();
+	}
+});
+
+/**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.fill( true, 1 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var val;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	if ( value ) {
+		val = 1;
+	} else {
+		val = 0;
+	}
+	for ( i = start; i < end; i++ ) {
+		buf[ i ] = val;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* function predicate( v ) {
+*     return ( v === true );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 2
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var v;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			out.push( v );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.find( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findIndex( predicate );
+* // returns 0
+*/
+setReadOnly( BooleanArray.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLast( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLastIndex( predicate );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( BooleanArray.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		fcn.call( thisArg, Boolean( buf[ i ] ), i, this );
+	}
+});
+
+/**
+* Returns an array element.
+*
+* @name get
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {NonNegativeInteger} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide a nonnegative integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'get', function get( idx ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isNonNegativeInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a nonnegative integer. Value: `%s`.', idx ) );
+	}
+	if ( idx >= this._length ) {
+		return;
+	}
+	return Boolean( this._buffer[ idx ] );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a value
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var bool = arr.includes( true );
+* // returns true
+*
+* bool = arr.includes( false, 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.indexOf( true );
+* // returns 0
+*
+* idx = arr.indexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.indexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.join();
+* // returns 'true,false,true'
+*
+* str = arr.join( '|' );
+* // returns 'true|false|true'
+*/
+setReadOnly( BooleanArray.prototype, 'join', function join( separator ) {
+	var buf;
+	var out;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length > 0 ) {
+		if ( !isString( separator ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+		}
+	} else {
+		separator = ',';
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( separator );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.lastIndexOf( true );
+* // returns 4
+*
+* idx = arr.lastIndexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Number of array elements.
+*
+* @name length
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var len = arr.length;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'length', function get() {
+	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} new boolean array
+*
+* @example
+* function invert( v ) {
+*     return !v;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.map( invert );
+* // returns <BooleanArray>
+*
+* var z = out.get( 0 );
+* // returns false
+*
+* z = out.get( 1 );
+* // returns true
+*
+* z = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( 'invalid argument. First argument must be a function. Value: `%s`.', fcn );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		outbuf[ i ] = Boolean( fcn.call( thisArg, Boolean( buf[ i ] ), i, this ) );
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduce( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ 0 ] );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduceRight( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len - 1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ len-1 ] );
+		i = len - 2;
+	}
+	for ( ; i >= 0; i-- ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.reverse();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ i ];
+		buf[ i ] = buf[ j ];
+		buf[ j ] = tmp;
+	}
+	return this;
+});
 
 /**
 * Sets an array element.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @param {*} value - value to set
+* ## Notes
+*
+* -   When provided a typed array, we must check whether the source array shares the same buffer as the target array and whether the underlying memory overlaps. In particular, we are concerned with the following scenario:
+*
+*     ```text
+*     buf:                ---------------------
+*     src: ---------------------
+*     ```
+*
+*     In the above, as we copy values from `src`, we will overwrite values in the `src` view, resulting in duplicated values copied into the end of `buf`, which is not intended. Hence, to avoid overwriting source values, we must **copy** source values to a temporary array.
+*
+*     In the other overlapping scenario,
+*
+*     ```text
+*     buf: ---------------------
+*     src:                ---------------------
+*     ```
+*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
+*
+* @name set
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(Collection|BooleanArray|*)} value - value(s)
+* @param {NonNegativeInteger} [i=0] - element index at which to start writing values
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} index argument must be a nonnegative integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {RangeError} target array lacks sufficient storage to accommodate source values
+* @returns {void}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
 */
-function setter( x, idx, value ) {
-	x[ idx ] = value;
-}
+setReadOnly( BooleanArray.prototype, 'set', function set( value ) {
+	var sbuf;
+	var idx;
+	var buf;
+	var tmp;
+	var N;
+	var i;
+	var j;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length > 1 ) {
+		idx = arguments[ 1 ];
+		if ( !isNonNegativeInteger( idx ) ) {
+			throw new TypeError( format( 'invalid argument. Index argument must be a nonnegative integer. Value: `%s`.', idx ) );
+		}
+	} else {
+		idx = 0;
+	}
+	if ( isCollection( value ) ) {
+		N = value.length;
+		if ( idx+N > this._length ) {
+			throw new RangeError( 'invalid arguments. Target array lacks sufficient storage to accommodate source values.' );
+		}
+		if ( isBooleanArray( value ) ) {
+			sbuf = value._buffer; // eslint-disable-line no-underscore-dangle
+		} else {
+			sbuf = value;
+		}
+		// Check for overlapping memory...
+		j = buf.byteOffset + (idx*BYTES_PER_ELEMENT);
+		if (
+			sbuf.buffer === buf.buffer &&
+			(
+				sbuf.byteOffset < j &&
+				sbuf.byteOffset+sbuf.byteLength > j
+			)
+		) {
+			// We need to copy source values...
+			tmp = new Uint8Array( sbuf.length );
+			for ( i = 0; i < sbuf.length; i++ ) {
+				tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
+			}
+			sbuf = tmp;
+		}
+		for ( i = 0; i < N; idx++, i++ ) {
+			buf[ idx ] = ( sbuf[ i ] ) ? 1 : 0;
+		}
+		return;
+	}
+	if ( idx >= this._length ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%u`.', idx ) );
+	}
+	buf[ idx ] = ( value ) ? 1 : 0;
+});
+
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be integer
+* @throws {TypeError} second argument must be integer
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var out = arr.slice();
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 5
+*
+* var bool = out.get( 0 );
+* // returns true
+*
+* bool = out.get( len-1 );
+* // returns true
+*
+* out = arr.slice( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = out.length;
+* // returns 2
+*
+* bool = out.get( 0 );
+* // returns false
+*
+* bool = out.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'slice', function slice( begin, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var buf;
+	var len;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin < end ) {
+		outlen = end - begin;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		outbuf[ i ] = buf[ i+begin ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( false, 0 );
+* arr.set( true, 1 );
+* arr.set( false, 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.sort( compare );
+*
+* var v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'sort', function sort( compareFcn ) {
+	var buf;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length === 0 ) {
+		buf.sort();
+		return this;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf.sort( compare );
+	return this;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {BooleanArray} subarray
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var subarr = arr.subarray();
+* // returns <BooleanArray>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var bool = subarr.get( 0 );
+* // returns true
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = subarr.length;
+* // returns 2
+*
+* bool = subarr.get( 0 );
+* // returns false
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toLocaleString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( Boolean( buf[ i ] ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.toReversed();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ len - i - 1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.sort( compare );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*
+* v = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ i ];
+	}
+	if ( arguments.length === 0 ) {
+		outbuf.sort();
+		return out;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	outbuf.sort( compare );
+	return out;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns true
+*
+* v = iter.next().value;
+* // returns false
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': Boolean( buf[ i ] ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {boolean} value - new value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a boolean
+* @returns {BooleanArray} new typed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.with( 0, false );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a boolean. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	if ( value ) {
+		buf[ index ] = 1;
+	} else {
+		buf[ index ] = 0;
+	}
+	return out;
+});
 
 
 // EXPORTS //
 
-module.exports = setter;
+module.exports = BooleanArray;
 
-},{}],7:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-arraybuffer":112,"@stdlib/assert/is-boolean":114,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-function":138,"@stdlib/assert/is-integer":146,"@stdlib/assert/is-nonnegative-integer":154,"@stdlib/assert/is-object":166,"@stdlib/assert/is-string":175,"@stdlib/assert/is-string-array":174,"@stdlib/boolean/ctor":199,"@stdlib/math/base/special/floor":257,"@stdlib/string/format":318,"@stdlib/symbol/iterator":323,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -374,8 +4422,8 @@ module.exports = setter;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -413,7 +4461,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imag":176,"@stdlib/complex/real":180}],8:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float64/imag":213,"@stdlib/complex/float64/real":215}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -439,8 +4487,8 @@ module.exports = fromArray;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -480,7 +4528,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imag":176,"@stdlib/complex/real":180,"@stdlib/string/format":277}],9:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float64/imag":213,"@stdlib/complex/float64/real":215,"@stdlib/string/format":318}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -506,8 +4554,8 @@ module.exports = fromIterator;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -552,7 +4600,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imag":176,"@stdlib/complex/real":180,"@stdlib/string/format":277}],10:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float64/imag":213,"@stdlib/complex/float64/real":215,"@stdlib/string/format":318}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -625,7 +4673,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex128Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -648,13 +4696,13 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":11}],11:[function(require,module,exports){
+},{"./main.js":26}],26:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -679,21 +4727,27 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' );
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float64Array = require( '@stdlib/array/float64' );
-var Complex128 = require( '@stdlib/complex/float64' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var format = require( '@stdlib/string/format' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
@@ -750,35 +4804,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float64Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex128} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT/2
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
+function getComplex128( buf, idx ) {
+	idx *= 2;
+	return new Complex128( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -1019,7 +5054,7 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = Complex128Array.from( [ new Complex128( 1.0, 1.0 ) ] );
 * // returns <Complex128Array>
@@ -1028,9 +5063,9 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * function clbk( v ) {
 *     return new Complex128( real(v)*2.0, imag(v)*2.0 );
@@ -1049,6 +5084,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -1098,11 +5134,14 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -1115,7 +5154,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -1124,7 +5163,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = real( v );
 					buf[ j+1 ] = imag( v );
@@ -1196,6 +5235,76 @@ setReadOnly( Complex128Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex128|void)} array element
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 10 );
+*
+* var z = arr.at( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 0.0
+*
+* var im = imag( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 9.0
+*
+* im = imag( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex128Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1282,9 +5391,9 @@ setReadOnly( Complex128Array.prototype, 'BYTES_PER_ELEMENT', Complex128Array.BYT
 * @returns {Complex128Array} modified array
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 4 );
 *
@@ -1329,7 +5438,7 @@ setReadOnly( Complex128Array.prototype, 'copyWithin', function copyWithin( targe
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = [
 *     new Complex128( 1.0, 1.0 ),
@@ -1437,6 +5546,461 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex128Array} modified array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.fill( new Complex128( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = real( value );
+	im = imag( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns 2.0
+*/
+setReadOnly( Complex128Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex128Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+setReadOnly( Complex128Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex128Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -1449,8 +6013,8 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex128Array( 10 );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex128>
@@ -1476,7 +6040,6 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -1486,9 +6049,7 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
-	buf = this._buffer;
-	idx *= 2;
-	return new Complex128( buf[ idx ], buf[ idx+1 ] );
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1507,6 +6068,638 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex128( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex128( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex128( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex128( 4.0, -4.0 ), -3 );
+* // returns 3
+*/
+setReadOnly( Complex128Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex128( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex128( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex128( 2.0*real( v ), 2.0*imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns -2.0
+*/
+setReadOnly( Complex128Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex128( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = real( v );
+			outbuf[ (2*i)+1 ] = imag( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -1532,7 +6725,6 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 *
 *     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
 *
-*
 * @name set
 * @memberof Complex128Array.prototype
 * @type {Function}
@@ -1547,8 +6739,8 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 10 );
 *
@@ -1701,12 +6893,849 @@ setReadOnly( Complex128Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = real( tmp[i] );
+		buf[ j+1 ] = imag( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex128Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex128Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 1.0
+*
+* var im = imag( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex128>
+*
+* re = real( v );
+* // returns 2.0
+*
+* im = imag( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex128( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex128Array} new typed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex128( 4.0, 4.0 ) );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 4.0
+*
+* var im = imag( z );
+* // returns 4.0
+*/
+setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = real( value );
+	buf[ (2*index)+1 ] = imag( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":7,"./from_iterator.js":8,"./from_iterator_map.js":9,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float64":21,"@stdlib/assert/has-iterator-symbol-support":66,"@stdlib/assert/is-array":90,"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-arraybuffer":92,"@stdlib/assert/is-collection":102,"@stdlib/assert/is-complex-like":104,"@stdlib/assert/is-function":114,"@stdlib/assert/is-nonnegative-integer":130,"@stdlib/assert/is-object":142,"@stdlib/complex/float64":172,"@stdlib/complex/imag":176,"@stdlib/complex/real":180,"@stdlib/math/base/assert/is-even":201,"@stdlib/math/base/assert/is-integer":203,"@stdlib/strided/base/reinterpret-complex128":263,"@stdlib/strided/base/reinterpret-complex64":265,"@stdlib/string/format":277,"@stdlib/symbol/iterator":280,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286}],12:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":110,"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-arraybuffer":112,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-complex-like":126,"@stdlib/assert/is-function":138,"@stdlib/assert/is-nonnegative-integer":154,"@stdlib/assert/is-object":166,"@stdlib/assert/is-string":175,"@stdlib/assert/is-string-array":174,"@stdlib/complex/float64/ctor":209,"@stdlib/complex/float64/imag":213,"@stdlib/complex/float64/real":215,"@stdlib/math/base/assert/is-even":234,"@stdlib/math/base/assert/is-integer":236,"@stdlib/math/base/special/floor":257,"@stdlib/strided/base/reinterpret-complex128":304,"@stdlib/strided/base/reinterpret-complex64":306,"@stdlib/string/format":318,"@stdlib/symbol/iterator":323,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1730,8 +7759,8 @@ module.exports = Complex128Array;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 
 
 // MAIN //
@@ -1769,7 +7798,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imagf":178,"@stdlib/complex/realf":182}],13:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float32/imag":205,"@stdlib/complex/float32/real":207}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1794,8 +7823,8 @@ module.exports = fromArray;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -1836,7 +7865,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imagf":178,"@stdlib/complex/realf":182,"@stdlib/string/format":277}],14:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float32/imag":205,"@stdlib/complex/float32/real":207,"@stdlib/string/format":318}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1861,8 +7890,8 @@ module.exports = fromIterator;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -1908,7 +7937,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-complex-like":104,"@stdlib/complex/imagf":178,"@stdlib/complex/realf":182,"@stdlib/string/format":277}],15:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-complex-like":126,"@stdlib/complex/float32/imag":205,"@stdlib/complex/float32/real":207,"@stdlib/string/format":318}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1970,7 +7999,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex64Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -2004,7 +8033,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":16}],16:[function(require,module,exports){
+},{"./main.js":31}],31:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -2035,22 +8064,28 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float32Array = require( '@stdlib/array/float32' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 var format = require( '@stdlib/string/format' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
 var fromArray = require( './from_array.js' );
@@ -2106,35 +8141,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float32Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex64} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT*2
-	);
+function getComplex64( buf, idx ) {
+	idx *= 2;
+	return new Complex64( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -2274,7 +8290,7 @@ function Complex64Array() {
 			}
 			buf = buf[ ITERATOR_SYMBOL ]();
 			if ( !isFunction( buf.next ) ) {
-				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) );
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) ); // FIXME: `buf` is what is returned from above, NOT the original value
 			}
 			buf = fromIterator( buf );
 			if ( buf instanceof Error ) {
@@ -2375,7 +8391,7 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = Complex64Array.from( [ new Complex64( 1.0, 1.0 ) ] );
 * // returns <Complex64Array>
@@ -2384,9 +8400,9 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function clbk( v ) {
 *     return new Complex64( realf(v)*2.0, imagf(v)*2.0 );
@@ -2405,6 +8421,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -2454,11 +8471,14 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -2466,12 +8486,12 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// If an array does not contain only complex number objects, then we assume interleaved real and imaginary components...
 			if ( flg ) {
 				if ( !isEven( len ) ) {
-					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of two. Length: `%u`.', len ) );
+					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of %u. Length: `%u`.', 2, len ) );
 				}
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -2480,7 +8500,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = realf( v );
 					buf[ j+1 ] = imagf( v );
@@ -2552,6 +8572,75 @@ setReadOnly( Complex64Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex64|void)} array element
+*
+* @example
+* var arr = new Complex64Array( 10 );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z = arr.at( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 0.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 9.0
+*
+* im = imagf( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex64Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex64( this._buffer, idx );
 });
 
 /**
@@ -2638,9 +8727,9 @@ setReadOnly( Complex64Array.prototype, 'BYTES_PER_ELEMENT', Complex64Array.BYTES
 * @returns {Complex64Array} modified array
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 4 );
 *
@@ -2685,7 +8774,7 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = [
 *     new Complex64( 1.0, 1.0 ),
@@ -2711,23 +8800,21 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * // returns true
 */
 setReadOnly( Complex64Array.prototype, 'entries', function entries() {
-	var buffer;
 	var self;
 	var iter;
 	var len;
+	var buf;
 	var FLG;
 	var i;
-	var j;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
 	self = this;
-	buffer = this._buffer;
+	buf = this._buffer;
 	len = this._length;
 
-	// Initialize the iteration indices:
+	// Initialize an iteration index:
 	i = -1;
-	j = -2;
 
 	// Create an iterator protocol-compliant object:
 	iter = {};
@@ -2746,17 +8833,14 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 	* @returns {Object} iterator protocol-compliant object
 	*/
 	function next() {
-		var z;
 		i += 1;
 		if ( FLG || i >= len ) {
 			return {
 				'done': true
 			};
 		}
-		j += 2;
-		z = new Complex64( buffer[ j ], buffer[ j+1 ] );
 		return {
-			'value': [ i, z ],
+			'value': [ i, getComplex64( buf, i ) ],
 			'done': false
 		};
 	}
@@ -2793,6 +8877,465 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex64Array} modified array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.fill( new Complex64( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = realf( value );
+	im = imagf( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2.0
+*
+* var im = imagf( z );
+* // returns 2.0
+*/
+setReadOnly( Complex64Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex64Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*/
+setReadOnly( Complex64Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex64Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -2805,8 +9348,8 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex64Array( 10 );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex64>
@@ -2832,7 +9375,6 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -2842,9 +9384,366 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
+	return getComplex64( this._buffer, idx );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex64( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex64( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex64( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
 	buf = this._buffer;
-	idx *= 2;
-	return new Complex64( buf[ idx ], buf[ idx+1 ] );
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 10 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex64( 4.0, -4.0 ), -3 );
+* // returns -1
+*/
+setReadOnly( Complex64Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex64( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex64( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
 });
 
 /**
@@ -2863,6 +9762,279 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex64( 2.0*realf( v ), 2.0*imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2
+*
+* var im = imagf( z );
+* // returns -2
+*/
+setReadOnly( Complex64Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex64( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = realf( v );
+			outbuf[ (2*i)+1 ] = imagf( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -2886,8 +10058,7 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 *     src:                ---------------------
 *     ```
 *
-*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
-*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
 *
 * @name set
 * @memberof Complex64Array.prototype
@@ -2903,8 +10074,8 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 10 );
 *
@@ -3024,7 +10195,7 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 				// We need to copy source values...
 				tmp = new Float32Array( N );
 				for ( i = 0; i < N; i++ ) {
-					tmp[ i ] = sbuf[ i ];
+					tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
 				}
 				sbuf = tmp;
 			}
@@ -3057,12 +10228,998 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = realf( tmp[i] );
+		buf[ j+1 ] = imagf( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex64Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + (begin*BYTES_PER_ELEMENT);
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex64Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 1.0
+*
+* var im = imagf( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex64>
+*
+* re = realf( v );
+* // returns 2.0
+*
+* im = imagf( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex64( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex64Array} new typed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex64( 4.0, 4.0 ) );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 4.0
+*
+* var im = imagf( z );
+* // returns 4.0
+*/
+setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = realf( value );
+	buf[ (2*index)+1 ] = imagf( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":12,"./from_iterator.js":13,"./from_iterator_map.js":14,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float32":18,"@stdlib/assert/has-iterator-symbol-support":66,"@stdlib/assert/is-array":90,"@stdlib/assert/is-array-like-object":88,"@stdlib/assert/is-arraybuffer":92,"@stdlib/assert/is-collection":102,"@stdlib/assert/is-complex-like":104,"@stdlib/assert/is-function":114,"@stdlib/assert/is-nonnegative-integer":130,"@stdlib/assert/is-object":142,"@stdlib/complex/float32":168,"@stdlib/complex/imagf":178,"@stdlib/complex/realf":182,"@stdlib/math/base/assert/is-even":201,"@stdlib/math/base/assert/is-integer":203,"@stdlib/strided/base/reinterpret-complex128":263,"@stdlib/strided/base/reinterpret-complex64":265,"@stdlib/string/format":277,"@stdlib/symbol/iterator":280,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286}],17:[function(require,module,exports){
+},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":110,"@stdlib/assert/is-array-like-object":108,"@stdlib/assert/is-arraybuffer":112,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-complex-like":126,"@stdlib/assert/is-function":138,"@stdlib/assert/is-nonnegative-integer":154,"@stdlib/assert/is-object":166,"@stdlib/assert/is-string":175,"@stdlib/assert/is-string-array":174,"@stdlib/complex/float32/ctor":201,"@stdlib/complex/float32/imag":205,"@stdlib/complex/float32/real":207,"@stdlib/math/base/assert/is-even":234,"@stdlib/math/base/assert/is-integer":236,"@stdlib/math/base/special/floor":257,"@stdlib/strided/base/reinterpret-complex128":304,"@stdlib/strided/base/reinterpret-complex64":306,"@stdlib/string/format":318,"@stdlib/symbol/iterator":323,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329}],32:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Mapping from array constructors to data types...
+var ctor2dtypes = {
+	'Float32Array': 'float32',
+	'Float64Array': 'float64',
+	'Array': 'generic',
+	'Int16Array': 'int16',
+	'Int32Array': 'int32',
+	'Int8Array': 'int8',
+	'Uint16Array': 'uint16',
+	'Uint32Array': 'uint32',
+	'Uint8Array': 'uint8',
+	'Uint8ClampedArray': 'uint8c',
+	'Complex64Array': 'complex64',
+	'Complex128Array': 'complex128',
+	'BooleanArray': 'bool'
+};
+
+
+// EXPORTS //
+
+module.exports = ctor2dtypes;
+
+},{}],33:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Float64Array = require( '@stdlib/array/float64' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int8Array = require( '@stdlib/array/int8' );
+var Complex64Array = require( '@stdlib/array/complex64' );
+var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
+
+
+// MAIN //
+
+// Note: order should match `dtypes` order
+var CTORS = [
+	Float64Array,
+	Float32Array,
+	Int32Array,
+	Uint32Array,
+	Int16Array,
+	Uint16Array,
+	Int8Array,
+	Uint8Array,
+	Uint8ClampedArray,
+	Complex64Array,
+	Complex128Array,
+	BooleanArray
+];
+
+
+// EXPORTS //
+
+module.exports = CTORS;
+
+},{"@stdlib/array/bool":20,"@stdlib/array/complex128":25,"@stdlib/array/complex64":30,"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],34:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Note: order should match `ctors` order
+var DTYPES = [
+	'float64',
+	'float32',
+	'int32',
+	'uint32',
+	'int16',
+	'uint16',
+	'int8',
+	'uint8',
+	'uint8c',
+	'complex64',
+	'complex128',
+	'bool'
+];
+
+
+// EXPORTS //
+
+module.exports = DTYPES;
+
+},{}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3083,16 +11240,110 @@ module.exports = Complex64Array;
 
 'use strict';
 
-// MAIN //
+/**
+* Return the data type of an array.
+*
+* @module @stdlib/array/dtype
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Float64Array( 10 );
+*
+* var dt = dtype( arr );
+* // returns 'float64'
+*
+* dt = dtype( {} );
+* // returns null
+*
+* dt = dtype( 'beep' );
+* // returns null
+*/
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = main;
 
-},{}],18:[function(require,module,exports){
+},{"./main.js":36}],36:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var isArray = require( '@stdlib/assert/is-array' );
+var constructorName = require( '@stdlib/utils/constructor-name' );
+var ctor2dtype = require( './ctor2dtype.js' );
+var CTORS = require( './ctors.js' );
+var DTYPES = require( './dtypes.js' );
+
+
+// VARIABLES //
+
+var NTYPES = DTYPES.length;
+
+
+// MAIN //
+
+/**
+* Returns the data type of an array.
+*
+* @param {*} value - input value
+* @returns {(string|null)} data type
+*
+* @example
+* var dt = dtype( [ 1, 2, 3 ] );
+* // returns 'generic'
+*
+* var dt = dtype( 'beep' );
+* // returns null
+*/
+function dtype( value ) {
+	var i;
+	if ( isArray( value ) ) {
+		return 'generic';
+	}
+	if ( isBuffer( value ) ) {
+		return null;
+	}
+	for ( i = 0; i < NTYPES; i++ ) {
+		if ( value instanceof CTORS[ i ] ) {
+			return DTYPES[ i ];
+		}
+	}
+	// If the above failed, fall back to a more robust (and significantly slower) means for resolving underlying data types:
+	return ctor2dtype[ constructorName( value ) ] || null;
+}
+
+
+// EXPORTS //
+
+module.exports = dtype;
+
+},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":110,"@stdlib/assert/is-buffer":122,"@stdlib/utils/constructor-name":325}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3128,7 +11379,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3146,7 +11397,37 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float32array.js":17,"./polyfill.js":19,"@stdlib/assert/has-float32array-support":49}],19:[function(require,module,exports){
+},{"./main.js":38,"./polyfill.js":39,"@stdlib/assert/has-float32array-support":69}],38:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3185,37 +11466,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],20:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],21:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3251,7 +11502,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3269,7 +11520,37 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float64array.js":20,"./polyfill.js":22,"@stdlib/assert/has-float64array-support":52}],22:[function(require,module,exports){
+},{"./main.js":41,"./polyfill.js":42,"@stdlib/assert/has-float64array-support":72}],41:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3308,7 +11589,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],23:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3344,7 +11625,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3362,7 +11643,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":24,"./polyfill.js":25,"@stdlib/assert/has-int16array-support":57}],24:[function(require,module,exports){
+},{"./main.js":44,"./polyfill.js":45,"@stdlib/assert/has-int16array-support":77}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3392,7 +11673,7 @@ var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],25:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3431,7 +11712,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],26:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3467,7 +11748,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3485,7 +11766,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":27,"./polyfill.js":28,"@stdlib/assert/has-int32array-support":60}],27:[function(require,module,exports){
+},{"./main.js":47,"./polyfill.js":48,"@stdlib/assert/has-int32array-support":80}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3515,7 +11796,7 @@ var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],28:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3554,7 +11835,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],29:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3590,7 +11871,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3608,7 +11889,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":30,"./polyfill.js":31,"@stdlib/assert/has-int8array-support":63}],30:[function(require,module,exports){
+},{"./main.js":50,"./polyfill.js":51,"@stdlib/assert/has-int8array-support":83}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3638,7 +11919,7 @@ var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : void 0; // eslint-d
 
 module.exports = ctor;
 
-},{}],31:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3677,11 +11958,11 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],32:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3711,6 +11992,7 @@ var Float32Array = require( '@stdlib/array/float32' );
 var Float64Array = require( '@stdlib/array/float64' );
 var Complex64Array = require( '@stdlib/array/complex64' );
 var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
 
 
 // MAIN //
@@ -3726,7 +12008,8 @@ var CTORS = [
 	[ Uint8Array, 'Uint8Array' ],
 	[ Uint8ClampedArray, 'Uint8ClampedArray' ],
 	[ Complex64Array, 'Complex64Array' ],
-	[ Complex128Array, 'Complex128Array' ]
+	[ Complex128Array, 'Complex128Array' ],
+	[ BooleanArray, 'BooleanArray' ]
 ];
 
 
@@ -3734,7 +12017,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/complex128":10,"@stdlib/array/complex64":15,"@stdlib/array/float32":18,"@stdlib/array/float64":21,"@stdlib/array/int16":23,"@stdlib/array/int32":26,"@stdlib/array/int8":29,"@stdlib/array/uint16":36,"@stdlib/array/uint32":39,"@stdlib/array/uint8":42,"@stdlib/array/uint8c":45}],33:[function(require,module,exports){
+},{"@stdlib/array/bool":20,"@stdlib/array/complex128":25,"@stdlib/array/complex64":30,"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3762,10 +12045,10 @@ module.exports = CTORS;
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
-* var toJSON = require( '@stdlib/array/to-json' );
+* var typedarray2json = require( '@stdlib/array/to-json' );
 *
 * var arr = new Float64Array( [ 5.0, 3.0 ] );
-* var json = toJSON( arr );
+* var json = typedarray2json( arr );
 * // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
 */
 
@@ -3778,11 +12061,11 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":34}],34:[function(require,module,exports){
+},{"./main.js":54}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3803,8 +12086,10 @@ module.exports = main;
 
 var isTypedArray = require( '@stdlib/assert/is-typed-array' );
 var isComplexTypedArray = require( '@stdlib/assert/is-complex-typed-array' );
+var isBooleanArray = require( '@stdlib/assert/is-booleanarray' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
+var reinterpretBoolean = require( '@stdlib/strided/base/reinterpret-boolean' );
 var format = require( '@stdlib/string/format' );
 var typeName = require( './type.js' );
 
@@ -3828,10 +12113,10 @@ var typeName = require( './type.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var arr = new Float64Array( [ 5.0, 3.0 ] );
-* var json = toJSON( arr );
+* var json = typedarray2json( arr );
 * // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
 */
-function toJSON( arr ) {
+function typedarray2json( arr ) {
 	var data;
 	var out;
 	var i;
@@ -3844,6 +12129,8 @@ function toJSON( arr ) {
 		} else { // arr.BYTES_PER_ELEMENT === 16
 			data = reinterpret128( arr, 0 );
 		}
+	} else if ( isBooleanArray( arr ) ) {
+		data = reinterpretBoolean( arr, 0 );
 	} else {
 		throw new TypeError( format( 'invalid argument. Must provide a typed array. Value: `%s`.', arr ) );
 	}
@@ -3860,9 +12147,9 @@ function toJSON( arr ) {
 
 // EXPORTS //
 
-module.exports = toJSON;
+module.exports = typedarray2json;
 
-},{"./type.js":35,"@stdlib/assert/is-complex-typed-array":107,"@stdlib/assert/is-typed-array":151,"@stdlib/strided/base/reinterpret-complex128":263,"@stdlib/strided/base/reinterpret-complex64":265,"@stdlib/string/format":277}],35:[function(require,module,exports){
+},{"./type.js":55,"@stdlib/assert/is-booleanarray":120,"@stdlib/assert/is-complex-typed-array":129,"@stdlib/assert/is-typed-array":182,"@stdlib/strided/base/reinterpret-boolean":302,"@stdlib/strided/base/reinterpret-complex128":304,"@stdlib/strided/base/reinterpret-complex64":306,"@stdlib/string/format":318}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3934,7 +12221,7 @@ function typeName( arr ) {
 
 module.exports = typeName;
 
-},{"./ctors.js":32,"@stdlib/assert/instance-of":86,"@stdlib/utils/constructor-name":282,"@stdlib/utils/get-prototype-of":299}],36:[function(require,module,exports){
+},{"./ctors.js":52,"@stdlib/assert/instance-of":106,"@stdlib/utils/constructor-name":325,"@stdlib/utils/get-prototype-of":341}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3970,7 +12257,7 @@ module.exports = typeName;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3988,7 +12275,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":37,"./uint16array.js":38,"@stdlib/assert/has-uint16array-support":74}],37:[function(require,module,exports){
+},{"./main.js":57,"./polyfill.js":58,"@stdlib/assert/has-uint16array-support":94}],57:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4027,37 +12344,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],38:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],39:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4093,7 +12380,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4111,7 +12398,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":40,"./uint32array.js":41,"@stdlib/assert/has-uint32array-support":77}],40:[function(require,module,exports){
+},{"./main.js":60,"./polyfill.js":61,"@stdlib/assert/has-uint32array-support":97}],60:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4150,37 +12467,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],41:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],42:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4216,7 +12503,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4234,7 +12521,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":43,"./uint8array.js":44,"@stdlib/assert/has-uint8array-support":80}],43:[function(require,module,exports){
+},{"./main.js":63,"./polyfill.js":64,"@stdlib/assert/has-uint8array-support":100}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4273,37 +12590,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],44:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],45:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4339,7 +12626,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4357,7 +12644,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":46,"./uint8clampedarray.js":47,"@stdlib/assert/has-uint8clampedarray-support":83}],46:[function(require,module,exports){
+},{"./main.js":66,"./polyfill.js":67,"@stdlib/assert/has-uint8clampedarray-support":103}],66:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4396,37 +12713,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],47:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],48:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4456,7 +12743,7 @@ var main = ( typeof Float32Array === 'function' ) ? Float32Array : null; // esli
 
 module.exports = main;
 
-},{}],49:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4498,7 +12785,7 @@ var hasFloat32ArraySupport = require( './main.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./main.js":50}],50:[function(require,module,exports){
+},{"./main.js":70}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4565,7 +12852,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":48,"@stdlib/assert/is-float32array":110,"@stdlib/constants/float64/pinf":191}],51:[function(require,module,exports){
+},{"./float32array.js":68,"@stdlib/assert/is-float32array":134,"@stdlib/constants/float64/pinf":224}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4595,7 +12882,7 @@ var main = ( typeof Float64Array === 'function' ) ? Float64Array : null; // esli
 
 module.exports = main;
 
-},{}],52:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4637,7 +12924,7 @@ var hasFloat64ArraySupport = require( './main.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./main.js":53}],53:[function(require,module,exports){
+},{"./main.js":73}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4703,7 +12990,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":51,"@stdlib/assert/is-float64array":112}],54:[function(require,module,exports){
+},{"./float64array.js":71,"@stdlib/assert/is-float64array":136}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4738,7 +13025,7 @@ function foo() {
 
 module.exports = foo;
 
-},{}],55:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4773,14 +13060,14 @@ module.exports = foo;
 
 // MODULES //
 
-var hasFunctionNameSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasFunctionNameSupport;
+module.exports = main;
 
-},{"./main.js":56}],56:[function(require,module,exports){
+},{"./main.js":76}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4826,7 +13113,7 @@ function hasFunctionNameSupport() {
 
 module.exports = hasFunctionNameSupport;
 
-},{"./foo.js":54}],57:[function(require,module,exports){
+},{"./foo.js":74}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4868,7 +13155,7 @@ var hasInt16ArraySupport = require( './main.js' );
 
 module.exports = hasInt16ArraySupport;
 
-},{"./main.js":59}],58:[function(require,module,exports){
+},{"./main.js":79}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4898,7 +13185,7 @@ var main = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],59:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4966,7 +13253,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":58,"@stdlib/assert/is-int16array":116,"@stdlib/constants/int16/max":192,"@stdlib/constants/int16/min":193}],60:[function(require,module,exports){
+},{"./int16array.js":78,"@stdlib/assert/is-int16array":140,"@stdlib/constants/int16/max":225,"@stdlib/constants/int16/min":226}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5008,7 +13295,7 @@ var hasInt32ArraySupport = require( './main.js' );
 
 module.exports = hasInt32ArraySupport;
 
-},{"./main.js":62}],61:[function(require,module,exports){
+},{"./main.js":82}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5038,7 +13325,7 @@ var main = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],62:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5106,7 +13393,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":61,"@stdlib/assert/is-int32array":118,"@stdlib/constants/int32/max":194,"@stdlib/constants/int32/min":195}],63:[function(require,module,exports){
+},{"./int32array.js":81,"@stdlib/assert/is-int32array":142,"@stdlib/constants/int32/max":227,"@stdlib/constants/int32/min":228}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5148,7 +13435,7 @@ var hasInt8ArraySupport = require( './main.js' );
 
 module.exports = hasInt8ArraySupport;
 
-},{"./main.js":65}],64:[function(require,module,exports){
+},{"./main.js":85}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5178,7 +13465,7 @@ var main = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-dis
 
 module.exports = main;
 
-},{}],65:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5246,7 +13533,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":64,"@stdlib/assert/is-int8array":120,"@stdlib/constants/int8/max":196,"@stdlib/constants/int8/min":197}],66:[function(require,module,exports){
+},{"./int8array.js":84,"@stdlib/assert/is-int8array":144,"@stdlib/constants/int8/max":229,"@stdlib/constants/int8/min":230}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5281,14 +13568,14 @@ module.exports = hasInt8ArraySupport;
 
 // MODULES //
 
-var hasIteratorSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasIteratorSymbolSupport;
+module.exports = main;
 
-},{"./main.js":67}],67:[function(require,module,exports){
+},{"./main.js":87}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5312,6 +13599,7 @@ module.exports = hasIteratorSymbolSupport;
 // MODULES //
 
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var Symbol = require( '@stdlib/symbol/ctor' );
 
 
 // MAIN //
@@ -5339,7 +13627,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":68}],68:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":88,"@stdlib/symbol/ctor":321}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5381,14 +13669,14 @@ module.exports = hasIteratorSymbolSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
-},{"./main.js":69}],69:[function(require,module,exports){
+},{"./main.js":89}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5454,7 +13742,7 @@ function hasOwnProp( value, property ) {
 
 module.exports = hasOwnProp;
 
-},{}],70:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5489,14 +13777,14 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
-},{"./main.js":71}],71:[function(require,module,exports){
+},{"./main.js":91}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5540,7 +13828,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],72:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5575,14 +13863,14 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
-},{"./main.js":73}],73:[function(require,module,exports){
+},{"./main.js":93}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5633,7 +13921,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/assert/has-symbol-support":70}],74:[function(require,module,exports){
+},{"@stdlib/assert/has-symbol-support":90}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5675,7 +13963,7 @@ var hasUint16ArraySupport = require( './main.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./main.js":75}],75:[function(require,module,exports){
+},{"./main.js":95}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5744,7 +14032,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":76,"@stdlib/assert/is-uint16array":154,"@stdlib/constants/uint16/max":198}],76:[function(require,module,exports){
+},{"./uint16array.js":96,"@stdlib/assert/is-uint16array":185,"@stdlib/constants/uint16/max":231}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5774,7 +14062,7 @@ var main = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint
 
 module.exports = main;
 
-},{}],77:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5816,7 +14104,7 @@ var hasUint32ArraySupport = require( './main.js' );
 
 module.exports = hasUint32ArraySupport;
 
-},{"./main.js":78}],78:[function(require,module,exports){
+},{"./main.js":98}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5885,7 +14173,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":79,"@stdlib/assert/is-uint32array":156,"@stdlib/constants/uint32/max":199}],79:[function(require,module,exports){
+},{"./uint32array.js":99,"@stdlib/assert/is-uint32array":187,"@stdlib/constants/uint32/max":232}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5915,7 +14203,7 @@ var main = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint
 
 module.exports = main;
 
-},{}],80:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5957,7 +14245,7 @@ var hasUint8ArraySupport = require( './main.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./main.js":81}],81:[function(require,module,exports){
+},{"./main.js":101}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6026,7 +14314,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":82,"@stdlib/assert/is-uint8array":158,"@stdlib/constants/uint8/max":200}],82:[function(require,module,exports){
+},{"./uint8array.js":102,"@stdlib/assert/is-uint8array":189,"@stdlib/constants/uint8/max":233}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6056,7 +14344,7 @@ var main = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],83:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6098,7 +14386,7 @@ var hasUint8ClampedArraySupport = require( './main.js' );
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./main.js":84}],84:[function(require,module,exports){
+},{"./main.js":104}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6167,7 +14455,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":85,"@stdlib/assert/is-uint8clampedarray":160}],85:[function(require,module,exports){
+},{"./uint8clampedarray.js":105,"@stdlib/assert/is-uint8clampedarray":191}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6197,7 +14485,7 @@ var main = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : nul
 
 module.exports = main;
 
-},{}],86:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6244,14 +14532,14 @@ module.exports = main;
 
 // MODULES //
 
-var instanceOf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = instanceOf;
+module.exports = main;
 
-},{"./main.js":87}],87:[function(require,module,exports){
+},{"./main.js":107}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6320,7 +14608,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":277}],88:[function(require,module,exports){
+},{"@stdlib/string/format":318}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6361,14 +14649,14 @@ module.exports = instanceOf;
 
 // MODULES //
 
-var isArrayLikeObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLikeObject;
+module.exports = main;
 
-},{"./main.js":89}],89:[function(require,module,exports){
+},{"./main.js":109}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6431,7 +14719,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":184,"@stdlib/math/base/assert/is-integer":203}],90:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":217,"@stdlib/math/base/assert/is-integer":236}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6469,14 +14757,14 @@ module.exports = isArrayLikeObject;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
-},{"./main.js":91}],91:[function(require,module,exports){
+},{"./main.js":111}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6541,7 +14829,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":309}],92:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6580,14 +14868,14 @@ module.exports = f;
 
 // MODULES //
 
-var isArrayBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayBuffer;
+module.exports = main;
 
-},{"./main.js":93}],93:[function(require,module,exports){
+},{"./main.js":113}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6648,7 +14936,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":309}],94:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6675,6 +14963,7 @@ module.exports = isArrayBuffer;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -6684,7 +14973,7 @@ module.exports = isArrayBuffer;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -6694,7 +14983,7 @@ module.exports = isArrayBuffer;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -6707,22 +14996,22 @@ module.exports = isArrayBuffer;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":95,"./object.js":96,"./primitive.js":97,"@stdlib/utils/define-nonenumerable-read-only-property":286}],95:[function(require,module,exports){
+},{"./main.js":115,"./object.js":116,"./primitive.js":117,"@stdlib/utils/define-nonenumerable-read-only-property":329}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6766,10 +15055,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -6782,7 +15075,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":96,"./primitive.js":97}],96:[function(require,module,exports){
+},{"./object.js":116,"./primitive.js":117}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6807,6 +15100,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -6828,6 +15122,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -6849,7 +15145,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":99,"@stdlib/assert/has-tostringtag-support":72,"@stdlib/utils/native-class":309}],97:[function(require,module,exports){
+},{"./try2serialize.js":119,"@stdlib/assert/has-tostringtag-support":92,"@stdlib/boolean/ctor":199,"@stdlib/utils/native-class":351}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6885,6 +15181,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -6897,7 +15195,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],98:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6926,7 +15224,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],99:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6975,7 +15273,110 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":98}],100:[function(require,module,exports){
+},{"./tostring.js":118}],120:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a BooleanArray.
+*
+* @module @stdlib/assert/is-booleanarray
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+* var isBooleanArray = require( '@stdlib/assert/is-booleanarray' );
+*
+* var bool = isBooleanArray( new BooleanArray( 10 ) );
+* // returns true
+*
+* bool = isBooleanArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isBooleanArray = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = isBooleanArray;
+
+},{"./main.js":121}],121:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var BooleanArray = require( '@stdlib/array/bool' );
+var constructorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Complex64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is a BooleanArray
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var bool = isBooleanArray( new BooleanArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isBooleanArray( [] );
+* // returns false
+*/
+function isBooleanArray( value ) {
+	return (
+		value instanceof BooleanArray ||
+		constructorName( value ) === 'BooleanArray'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isBooleanArray;
+
+},{"@stdlib/array/bool":20,"@stdlib/utils/constructor-name":325}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7013,14 +15414,14 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
-},{"./main.js":101}],101:[function(require,module,exports){
+},{"./main.js":123}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7092,7 +15493,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":140}],102:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":164}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7130,14 +15531,14 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
-},{"./main.js":103}],103:[function(require,module,exports){
+},{"./main.js":125}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7196,7 +15597,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":185,"@stdlib/math/base/assert/is-integer":203}],104:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":218,"@stdlib/math/base/assert/is-integer":236}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7223,8 +15624,8 @@ module.exports = isCollection;
 * @module @stdlib/assert/is-complex-like
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 * var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 *
 * var x = new Complex128( 4.0, 2.0 );
@@ -7238,14 +15639,14 @@ module.exports = isCollection;
 
 // MODULES //
 
-var isComplexLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isComplexLike;
+module.exports = main;
 
-},{"./main.js":105}],105:[function(require,module,exports){
+},{"./main.js":127}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7268,8 +15669,8 @@ module.exports = isComplexLike;
 
 // MODULES //
 
-var Complex128 = require( '@stdlib/complex/float64' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 
 
 // MAIN //
@@ -7281,8 +15682,8 @@ var Complex64 = require( '@stdlib/complex/float32' );
 * @returns {boolean} boolean indicating if a value is a complex number-like object.
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var x = new Complex128( 4.0, 2.0 );
 * var bool = isComplexLike( x );
@@ -7309,7 +15710,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32":168,"@stdlib/complex/float64":172}],106:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":201,"@stdlib/complex/float64/ctor":209}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7348,7 +15749,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/complex128":10,"@stdlib/array/complex64":15}],107:[function(require,module,exports){
+},{"@stdlib/array/complex128":25,"@stdlib/array/complex64":30}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7384,14 +15785,14 @@ module.exports = CTORS;
 
 // MODULES //
 
-var isComplexTypedArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isComplexTypedArray;
+module.exports = main;
 
-},{"./main.js":108}],108:[function(require,module,exports){
+},{"./main.js":130}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7466,13 +15867,124 @@ function isComplexTypedArray( value ) {
 
 module.exports = isComplexTypedArray;
 
-},{"./ctors.js":106,"./names.json":109,"@stdlib/utils/constructor-name":282,"@stdlib/utils/get-prototype-of":299}],109:[function(require,module,exports){
+},{"./ctors.js":128,"./names.json":131,"@stdlib/utils/constructor-name":325,"@stdlib/utils/get-prototype-of":341}],131:[function(require,module,exports){
 module.exports=[
 	"Complex64Array",
 	"Complex128Array"
 ]
 
-},{}],110:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is an `Error` object.
+*
+* @module @stdlib/assert/is-error
+*
+* @example
+* var isError = require( '@stdlib/assert/is-error' );
+*
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* bool = isError( {} );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":133}],133:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var getPrototypeOf = require( '@stdlib/utils/get-prototype-of' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an `Error` object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is an `Error` object
+*
+* @example
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isError( {} );
+* // returns false
+*/
+function isError( value ) {
+	if ( typeof value !== 'object' || value === null ) {
+		return false;
+	}
+	// Check for `Error` objects from the same realm (same Node.js `vm` or same `Window` object)...
+	if ( value instanceof Error ) {
+		return true;
+	}
+	// Walk the prototype tree until we find an object having the desired native class...
+	while ( value ) {
+		if ( nativeClass( value ) === '[object Error]' ) {
+			return true;
+		}
+		value = getPrototypeOf( value );
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = isError;
+
+},{"@stdlib/utils/get-prototype-of":341,"@stdlib/utils/native-class":351}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7517,7 +16029,7 @@ var isFloat32Array = require( './main.js' );
 
 module.exports = isFloat32Array;
 
-},{"./main.js":111}],111:[function(require,module,exports){
+},{"./main.js":135}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7576,7 +16088,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":309}],112:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7621,7 +16133,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":113}],113:[function(require,module,exports){
+},{"./main.js":137}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7680,7 +16192,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":309}],114:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7719,14 +16231,14 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
-},{"./main.js":115}],115:[function(require,module,exports){
+},{"./main.js":139}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7778,7 +16290,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":318}],116:[function(require,module,exports){
+},{"@stdlib/utils/type-of":362}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7823,7 +16335,7 @@ var isInt16Array = require( './main.js' );
 
 module.exports = isInt16Array;
 
-},{"./main.js":117}],117:[function(require,module,exports){
+},{"./main.js":141}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7882,7 +16394,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":309}],118:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7927,7 +16439,7 @@ var isInt32Array = require( './main.js' );
 
 module.exports = isInt32Array;
 
-},{"./main.js":119}],119:[function(require,module,exports){
+},{"./main.js":143}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7986,7 +16498,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":309}],120:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8031,7 +16543,7 @@ var isInt8Array = require( './main.js' );
 
 module.exports = isInt8Array;
 
-},{"./main.js":121}],121:[function(require,module,exports){
+},{"./main.js":145}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8090,7 +16602,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":309}],122:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8155,22 +16667,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":124,"./object.js":125,"./primitive.js":126,"@stdlib/utils/define-nonenumerable-read-only-property":286}],123:[function(require,module,exports){
+},{"./main.js":148,"./object.js":149,"./primitive.js":150,"@stdlib/utils/define-nonenumerable-read-only-property":329}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8220,7 +16732,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":190,"@stdlib/constants/float64/pinf":191,"@stdlib/math/base/assert/is-integer":203}],124:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":223,"@stdlib/constants/float64/pinf":224,"@stdlib/math/base/assert/is-integer":236}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8280,7 +16792,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":125,"./primitive.js":126}],125:[function(require,module,exports){
+},{"./object.js":149,"./primitive.js":150}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8335,7 +16847,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":123,"@stdlib/assert/is-number":134}],126:[function(require,module,exports){
+},{"./integer.js":147,"@stdlib/assert/is-number":158}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8390,7 +16902,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":123,"@stdlib/assert/is-number":134}],127:[function(require,module,exports){
+},{"./integer.js":147,"@stdlib/assert/is-number":158}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8429,7 +16941,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/uint16":36,"@stdlib/array/uint8":42}],128:[function(require,module,exports){
+},{"@stdlib/array/uint16":56,"@stdlib/array/uint8":62}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8471,7 +16983,7 @@ var IS_LITTLE_ENDIAN = require( './main.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./main.js":129}],129:[function(require,module,exports){
+},{"./main.js":153}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8544,7 +17056,7 @@ bool = isLittleEndian();
 
 module.exports = bool;
 
-},{"./ctors.js":127}],130:[function(require,module,exports){
+},{"./ctors.js":151}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8610,22 +17122,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":131,"./object.js":132,"./primitive.js":133,"@stdlib/utils/define-nonenumerable-read-only-property":286}],131:[function(require,module,exports){
+},{"./main.js":155,"./object.js":156,"./primitive.js":157,"@stdlib/utils/define-nonenumerable-read-only-property":329}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8689,7 +17201,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":132,"./primitive.js":133}],132:[function(require,module,exports){
+},{"./object.js":156,"./primitive.js":157}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8743,7 +17255,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":122}],133:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":146}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8797,7 +17309,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":122}],134:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":146}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8863,22 +17375,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":135,"./object.js":136,"./primitive.js":137,"@stdlib/utils/define-nonenumerable-read-only-property":286}],135:[function(require,module,exports){
+},{"./main.js":159,"./object.js":160,"./primitive.js":161,"@stdlib/utils/define-nonenumerable-read-only-property":329}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8938,7 +17450,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":136,"./primitive.js":137}],136:[function(require,module,exports){
+},{"./object.js":160,"./primitive.js":161}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9006,7 +17518,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":139,"@stdlib/assert/has-tostringtag-support":72,"@stdlib/number/ctor":231,"@stdlib/utils/native-class":309}],137:[function(require,module,exports){
+},{"./try2serialize.js":163,"@stdlib/assert/has-tostringtag-support":92,"@stdlib/number/ctor":265,"@stdlib/utils/native-class":351}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9054,7 +17566,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],138:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9090,9 +17602,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":231}],139:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./tostring.js":138,"dup":99}],140:[function(require,module,exports){
+},{"@stdlib/number/ctor":265}],163:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./tostring.js":162,"dup":119}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9144,19 +17656,24 @@ arguments[4][99][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":141,"@stdlib/assert/tools/array-function":163,"@stdlib/utils/define-nonenumerable-read-only-property":286}],141:[function(require,module,exports){
+},{"./main.js":165,"@stdlib/assert/tools/array-function":193,"@stdlib/utils/define-nonenumerable-read-only-property":329}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9207,7 +17724,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],142:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9245,14 +17762,14 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
-},{"./main.js":143}],143:[function(require,module,exports){
+},{"./main.js":167}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9307,7 +17824,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":90}],144:[function(require,module,exports){
+},{"@stdlib/assert/is-array":110}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9345,14 +17862,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
-},{"./main.js":145}],145:[function(require,module,exports){
+},{"./main.js":169}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9466,7 +17983,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":68,"@stdlib/assert/is-function":114,"@stdlib/assert/is-object":142,"@stdlib/utils/get-prototype-of":299,"@stdlib/utils/native-class":309}],146:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":88,"@stdlib/assert/is-function":138,"@stdlib/assert/is-object":166,"@stdlib/utils/get-prototype-of":341,"@stdlib/utils/native-class":351}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9532,22 +18049,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveInteger;
+module.exports = main;
 
-},{"./main.js":147,"./object.js":148,"./primitive.js":149,"@stdlib/utils/define-nonenumerable-read-only-property":286}],147:[function(require,module,exports){
+},{"./main.js":171,"./object.js":172,"./primitive.js":173,"@stdlib/utils/define-nonenumerable-read-only-property":329}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9615,7 +18132,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":148,"./primitive.js":149}],148:[function(require,module,exports){
+},{"./object.js":172,"./primitive.js":173}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9669,7 +18186,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":122}],149:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":146}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9723,7 +18240,401 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":122}],150:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":146}],174:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is an array of strings.
+*
+* @module @stdlib/assert/is-string-array
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' );
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', 123 ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', new String( 'def' ) ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).objects;
+*
+* var bool = isStringArray( [ new String( 'abc' ), new String( 'def' ) ] );
+* // returns true
+*
+* bool = isStringArray( [ new String( 'abc' ), 'def' ] );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-function' );
+var isString = require( '@stdlib/assert/is-string' );
+
+
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
+// MAIN //
+
+var isStringArray = arrayfun( isString );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
+
+
+// EXPORTS //
+
+module.exports = isStringArray;
+
+},{"@stdlib/assert/is-string":175,"@stdlib/assert/tools/array-function":193,"@stdlib/utils/define-nonenumerable-read-only-property":329}],175:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a string.
+*
+* @module @stdlib/assert/is-string
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' );
+*
+* var bool = isString( 'beep' );
+* // returns true
+*
+* bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* bool = isString( 5 );
+* // returns false
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' ).isObject;
+*
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* bool = isString( 'beep' );
+* // returns false
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+*
+* var bool = isString( 'beep' );
+* // returns true
+*
+* bool = isString( new String( 'beep' ) );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":176,"./object.js":177,"./primitive.js":178,"@stdlib/utils/define-nonenumerable-read-only-property":329}],176:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a string.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
+*/
+function isString( value ) {
+	return ( isPrimitive( value ) || isObject( value ) );
+}
+
+
+// EXPORTS //
+
+module.exports = isString;
+
+},{"./object.js":177,"./primitive.js":178}],177:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+var test = require( './try2valueof.js' );
+
+
+// VARIABLES //
+
+var FLG = hasToStringTag();
+
+
+// MAIN //
+
+/**
+* Tests if a value is a string object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a string object
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns false
+*/
+function isString( value ) {
+	if ( typeof value === 'object' ) {
+		if ( value instanceof String ) {
+			return true;
+		}
+		if ( FLG ) {
+			return test( value );
+		}
+		return ( nativeClass( value ) === '[object String]' );
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = isString;
+
+},{"./try2valueof.js":179,"@stdlib/assert/has-tostringtag-support":92,"@stdlib/utils/native-class":351}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tests if a value is a string primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a string primitive
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns false
+*/
+function isString( value ) {
+	return ( typeof value === 'string' );
+}
+
+
+// EXPORTS //
+
+module.exports = isString;
+
+},{}],179:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var valueOf = require( './valueof.js' ); // eslint-disable-line stdlib/no-redeclare
+
+
+// MAIN //
+
+/**
+* Attempts to extract a string value.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a string can be extracted
+*/
+function test( value ) {
+	try {
+		valueOf.call( value );
+		return true;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return false;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./valueof.js":180}],180:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// eslint-disable-next-line stdlib/no-redeclare
+var valueOf = String.prototype.valueOf; // non-generic
+
+
+// EXPORTS //
+
+module.exports = valueOf;
+
+},{}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9776,7 +18687,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/float32":18,"@stdlib/array/float64":21,"@stdlib/array/int16":23,"@stdlib/array/int32":26,"@stdlib/array/int8":29,"@stdlib/array/uint16":36,"@stdlib/array/uint32":39,"@stdlib/array/uint8":42,"@stdlib/array/uint8c":45}],151:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9812,14 +18723,14 @@ module.exports = CTORS;
 
 // MODULES //
 
-var isTypedArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isTypedArray;
+module.exports = main;
 
-},{"./main.js":152}],152:[function(require,module,exports){
+},{"./main.js":183}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9920,7 +18831,7 @@ function isTypedArray( value ) {
 
 module.exports = isTypedArray;
 
-},{"./ctors.js":150,"./names.json":153,"@stdlib/array/float64":21,"@stdlib/assert/has-float64array-support":52,"@stdlib/utils/constructor-name":282,"@stdlib/utils/function-name":296,"@stdlib/utils/get-prototype-of":299}],153:[function(require,module,exports){
+},{"./ctors.js":181,"./names.json":184,"@stdlib/array/float64":40,"@stdlib/assert/has-float64array-support":72,"@stdlib/utils/constructor-name":325,"@stdlib/utils/function-name":338,"@stdlib/utils/get-prototype-of":341}],184:[function(require,module,exports){
 module.exports=[
 	"Int8Array",
 	"Uint8Array",
@@ -9933,7 +18844,7 @@ module.exports=[
 	"Float64Array"
 ]
 
-},{}],154:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9978,7 +18889,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":155}],155:[function(require,module,exports){
+},{"./main.js":186}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10037,7 +18948,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":309}],156:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10082,7 +18993,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":157}],157:[function(require,module,exports){
+},{"./main.js":188}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10141,7 +19052,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":309}],158:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10186,7 +19097,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":159}],159:[function(require,module,exports){
+},{"./main.js":190}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10245,7 +19156,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":309}],160:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10290,7 +19201,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":161}],161:[function(require,module,exports){
+},{"./main.js":192}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10349,7 +19260,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":309}],162:[function(require,module,exports){
+},{"@stdlib/utils/native-class":351}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":194}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10436,58 +19398,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":90,"@stdlib/string/format":277}],163:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a function which tests if every element in an array passes a test condition.
-*
-* @module @stdlib/assert/tools/array-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arrayfcn = require( './arrayfcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arrayfcn;
-
-},{"./arrayfcn.js":162}],164:[function(require,module,exports){
+},{"@stdlib/assert/is-array":110,"@stdlib/string/format":318}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10517,19 +19428,19 @@ module.exports = arrayfcn;
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Object} x - input array object
 * @param {Collection} x.data - input array data
-* @param {Function} x.get - getter
+* @param {Array<Function>} x.accessors - array element accessors
 * @param {integer} strideX - `x` stride length
 * @param {NonNegativeInteger} offsetX - starting `x` index
 * @param {Object} y - output array object
 * @param {Collection} y.data - output array data
-* @param {Function} y.set - setter
+* @param {Array<Function>} y.accessors - array element accessors
 * @param {integer} strideY - `y` stride length
 * @param {NonNegativeInteger} offsetY - starting `y` index
 * @returns {Object} output array object
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 * var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 *
 * function setter( data, idx, value ) {
@@ -10542,14 +19453,12 @@ module.exports = arrayfcn;
 *
 * var x = {
 *     'data': new Complex64Array( [ 1.0, 2.0, 3.0, 4.0 ] ),
-*     'setter': setter,
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 *
 * var y = {
 *     'data': new Complex64Array( [ 5.0, 6.0, 7.0, 8.0 ] ),
-*     'setter': setter,
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 *
 * gcopy( x.data.length, x, 1, 0, y, 1, 0 );
@@ -10571,8 +19480,8 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 	ybuf = y.data;
 
 	// Cache a reference to the element accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	ix = offsetX;
 	iy = offsetY;
@@ -10589,7 +19498,7 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcopy;
 
-},{}],165:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10650,7 +19559,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":166,"./ndarray.js":167,"@stdlib/utils/define-nonenumerable-read-only-property":286}],166:[function(require,module,exports){
+},{"./main.js":197,"./ndarray.js":198,"@stdlib/utils/define-nonenumerable-read-only-property":329}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10687,12 +19596,12 @@ var M = 8;
 /**
 * Copies values from `x` into `y`.
 *
-* @param {PositiveInteger} N - number of values to copy
+* @param {PositiveInteger} N - number of indexed elements
 * @param {Collection} x - input array
 * @param {integer} strideX - `x` stride length
-* @param {Collection} y - destination array
+* @param {Collection} y - output array
 * @param {integer} strideY - `y` stride length
-* @returns {Collection} `y`
+* @returns {Collection} output array
 *
 * @example
 * var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
@@ -10714,7 +19623,7 @@ function gcopy( N, x, strideX, y, strideY ) {
 	}
 	ox = arraylike2object( x );
 	oy = arraylike2object( y );
-	if ( ox.accessors || oy.accessors ) {
+	if ( ox.accessorProtocol || oy.accessorProtocol ) {
 		if ( strideX < 0 ) {
 			ix = (1-N) * strideX;
 		} else {
@@ -10776,7 +19685,7 @@ function gcopy( N, x, strideX, y, strideY ) {
 
 module.exports = gcopy;
 
-},{"./accessors.js":164,"@stdlib/array/base/arraylike2object":3}],167:[function(require,module,exports){
+},{"./accessors.js":195,"@stdlib/array/base/arraylike2object":5}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10813,14 +19722,14 @@ var M = 8;
 /**
 * Copies values from `x` into `y`.
 *
-* @param {PositiveInteger} N - number of values to copy
+* @param {PositiveInteger} N - number of indexed elements
 * @param {Collection} x - input array
 * @param {integer} strideX - `x` stride length
 * @param {NonNegativeInteger} offsetX - starting `x` index
-* @param {Collection} y - destination array
+* @param {Collection} y - output array
 * @param {integer} strideY - `y` stride length
 * @param {NonNegativeInteger} offsetY - starting `y` index
-* @returns {Collection} `y`
+* @returns {Collection} output array
 *
 * @example
 * var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
@@ -10842,7 +19751,7 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 	}
 	ox = arraylike2object( x );
 	oy = arraylike2object( y );
-	if ( ox.accessors || oy.accessors ) {
+	if ( ox.accessorProtocol || oy.accessorProtocol ) {
 		accessors( N, ox, strideX, offsetX, oy, strideY, offsetY );
 		return oy.data;
 	}
@@ -10891,7 +19800,114 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcopy;
 
-},{"./accessors.js":164,"@stdlib/array/base/arraylike2object":3}],168:[function(require,module,exports){
+},{"./accessors.js":195,"@stdlib/array/base/arraylike2object":5}],199:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":200}],200:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10915,10 +19931,10 @@ module.exports = gcopy;
 /**
 * 64-bit complex number constructor.
 *
-* @module @stdlib/complex/float32
+* @module @stdlib/complex/float32/ctor
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var z = new Complex64( 5.0, 3.0 );
 * // returns <Complex64>
@@ -10933,7 +19949,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":169}],169:[function(require,module,exports){
+},{"./main.js":202}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11076,7 +20092,6 @@ setReadOnly( Complex64.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex64` instance.
 *
-*
 * @name toJSON
 * @memberof Complex64.prototype
 * @type {Function}
@@ -11095,7 +20110,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":170,"./tostring.js":171,"@stdlib/assert/is-number":134,"@stdlib/number/float64/base/to-float32":239,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-property":293}],170:[function(require,module,exports){
+},{"./tojson.js":203,"./tostring.js":204,"@stdlib/assert/is-number":158,"@stdlib/number/float64/base/to-float32":276,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-property":336}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11136,7 +20151,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],171:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11180,7 +20195,185 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],172:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the imaginary component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/imag
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var imag = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":206}],206:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the imaginary component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} imaginary component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+function imag( z ) {
+	return z.im;
+}
+
+
+// EXPORTS //
+
+module.exports = imag;
+
+},{}],207:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/real
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var real = require( '@stdlib/complex/float32/real' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":208}],208:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the real component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} real component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+function real( z ) {
+	return z.re;
+}
+
+
+// EXPORTS //
+
+module.exports = real;
+
+},{}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11204,10 +20397,10 @@ module.exports = toString;
 /**
 * 128-bit complex number constructor.
 *
-* @module @stdlib/complex/float64
+* @module @stdlib/complex/float64/ctor
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 * // returns <Complex128>
@@ -11222,7 +20415,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":173}],173:[function(require,module,exports){
+},{"./main.js":210}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11364,7 +20557,6 @@ setReadOnly( Complex128.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex128` instance.
 *
-*
 * @name toJSON
 * @memberof Complex128.prototype
 * @type {Function}
@@ -11383,7 +20575,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":174,"./tostring.js":175,"@stdlib/assert/is-number":134,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-property":293}],174:[function(require,module,exports){
+},{"./tojson.js":211,"./tostring.js":212,"@stdlib/assert/is-number":158,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-property":336}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11424,9 +20616,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],175:[function(require,module,exports){
-arguments[4][171][0].apply(exports,arguments)
-},{"dup":171}],176:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
+arguments[4][204][0].apply(exports,arguments)
+},{"dup":204}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11450,11 +20642,11 @@ arguments[4][171][0].apply(exports,arguments)
 /**
 * Return the imaginary component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/imag
+* @module @stdlib/complex/float64/imag
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -11471,7 +20663,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":177}],177:[function(require,module,exports){
+},{"./main.js":214}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11499,7 +20691,7 @@ module.exports = main;
 * @returns {number} imaginary component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -11515,96 +20707,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],178:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the imaginary component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/imagf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var imagf = require( '@stdlib/complex/imagf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":179}],179:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the imaginary component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} imaginary component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-function imagf( z ) {
-	return z.im;
-}
-
-
-// EXPORTS //
-
-module.exports = imagf;
-
-},{}],180:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11628,11 +20731,11 @@ module.exports = imagf;
 /**
 * Return the real component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/real
+* @module @stdlib/complex/float64/real
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -11649,7 +20752,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":181}],181:[function(require,module,exports){
+},{"./main.js":216}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11677,7 +20780,7 @@ module.exports = main;
 * @returns {number} real component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -11693,96 +20796,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],182:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/realf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":183}],183:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the real component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} real component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-function realf( z ) {
-	return z.re;
-}
-
-
-// EXPORTS //
-
-module.exports = realf;
-
-},{}],184:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11833,7 +20847,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],185:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11884,7 +20898,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],186:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11943,7 +20957,7 @@ var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 module.exports = FLOAT64_EPSILON;
 
-},{}],187:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12003,7 +21017,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],188:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12055,7 +21069,7 @@ var HALF_LN2 = 3.46573590279972654709e-01; // 0x3FD62E42 0xFEFA39EF
 
 module.exports = HALF_LN2;
 
-},{}],189:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12114,7 +21128,7 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],190:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12176,7 +21190,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":231}],191:[function(require,module,exports){
+},{"@stdlib/number/ctor":265}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12234,7 +21248,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],192:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12297,7 +21311,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],193:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12360,7 +21374,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],194:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12423,7 +21437,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],195:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12486,7 +21500,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],196:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12549,7 +21563,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],197:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12612,7 +21626,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],198:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12675,7 +21689,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],199:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12738,7 +21752,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],200:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12801,7 +21815,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],201:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12845,14 +21859,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":202}],202:[function(require,module,exports){
+},{"./main.js":235}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12911,7 +21925,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":203}],203:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":236}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12949,14 +21963,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":204}],204:[function(require,module,exports){
+},{"./main.js":237}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13007,7 +22021,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":223}],205:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":257}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13045,14 +22059,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":206}],206:[function(require,module,exports){
+},{"./main.js":239}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13098,7 +22112,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],207:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13136,14 +22150,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var isPositiveZero = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPositiveZero;
+module.exports = main;
 
-},{"./main.js":208}],208:[function(require,module,exports){
+},{"./main.js":241}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13194,7 +22208,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/constants/float64/pinf":191}],209:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":224}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13229,14 +22243,14 @@ module.exports = isPositiveZero;
 
 // MODULES //
 
-var umul = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = umul;
+module.exports = main;
 
-},{"./main.js":210}],210:[function(require,module,exports){
+},{"./main.js":243}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13330,7 +22344,6 @@ var LOW_WORD_MASK = 0x0000ffff>>>0; // asm type annotation
 *
 * -   Lastly, the second term in the above equation contributes to the middle bits and may cause the product to "overflow". However, we can disregard (`>>>0`) overflow bits due to modulo arithmetic, as discussed earlier with regard to the term involving the partial product of high words.
 *
-*
 * @param {uinteger32} a - integer
 * @param {uinteger32} b - integer
 * @returns {uinteger32} product
@@ -13371,7 +22384,7 @@ function umul( a, b ) {
 
 module.exports = umul;
 
-},{}],211:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13418,14 +22431,14 @@ module.exports = umul;
 
 // MODULES //
 
-var abs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = abs;
+module.exports = main;
 
-},{"./main.js":212}],212:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13483,7 +22496,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],213:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13533,14 +22546,14 @@ module.exports = abs;
 
 // MODULES //
 
-var boxcox = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = boxcox;
+module.exports = main;
 
-},{"./main.js":214}],214:[function(require,module,exports){
+},{"./main.js":247}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13628,15 +22641,19 @@ function boxcox( x, lambda ) {
 
 module.exports = boxcox;
 
-},{"@stdlib/constants/float64/ninf":190,"@stdlib/math/base/assert/is-nan":205,"@stdlib/math/base/assert/is-positive-zero":207,"@stdlib/math/base/special/abs":211,"@stdlib/math/base/special/expm1":221,"@stdlib/math/base/special/ln":225}],215:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":223,"@stdlib/math/base/assert/is-nan":238,"@stdlib/math/base/assert/is-positive-zero":240,"@stdlib/math/base/special/abs":244,"@stdlib/math/base/special/expm1":254,"@stdlib/math/base/special/ln":259}],248:[function(require,module,exports){
 module.exports={"expected": [0.0, 0.0051931023381301235, 0.010225701253740428, 0.015104014216776348, 0.01983398336602406, 0.024421289195299286, 0.02887136348800937, 0.03318940154517538, 0.03738037374906855, 0.04144903650189897, 0.04539994257645369, 0.04923745091322781, 0.052965735896390066, 0.056588796138884255, 0.06011046280505368, 0.06353440749740295, 0.06686414973244749, 0.07010306402905993, 0.0732543866312728, 0.07632122188615181, 0.07930654829609175, 0.08221322426371507, 0.08504399354644768, 0.08780149043682368, 0.09048824468360411, 0.0931066861679008, 0.09565914934764926, 0.09814787748299054, 0.10057502665438002, 0.10294266958455427, 0.1052527992748349, 0.10750733246564433, 0.10970811293053583, 0.11185691461251016, 0.11395544461088596, 0.1160053460265238, 0.11800820067276, 0.1199655316589944, 0.12187880585348387, 0.12374943623153035, 0.12557878411490545, 0.12736816130803322, 0.12911883213614614, 0.1308320153903452, 0.13250888618422407, 0.13415057772646635, 0.13575818301358372, 0.13733275644674114, 0.13887531537639997, 0.14038684157831544, 0.1418682826642321, 0.14332055343044764, 0.14474453714724517, 0.14614108679204027, 0.14751102622893714, 0.14885515133724922, 0.15017423109140812, 0.1514690085945585, 0.15274020206801883, 0.1539885057986771, 0.15521459104628352, 0.1564191069125054, 0.15760268117351273, 0.15876592107777457, 0.15990941411066373, 0.1610337287273858, 0.16213941505567356, 0.1632270055696177, 0.16429701573593533, 0.16534994463391592, 0.16638627555022228, 0.16740647654966725, 0.16841100102303272, 0.16940028821294614, 0.1703747637187799, 0.17133483998149485, 0.1722809167493019, 0.17321338152497828, 0.1741326099956317, 0.17503896644567055, 0.17593280415370166, 0.17681446577404414, 0.17768428370351466, 0.17854258043411056, 0.17938966889218616, 0.18022585276469327, 0.18105142681302702, 0.18186667717499674, 0.18267188165541562, 0.1834673100057818, 0.18425322419350168, 0.18502987866108614, 0.18579752057573043, 0.18655639006967145, 0.18730672047169705, 0.18804873853016693, 0.188782664627887, 0.18950871298916627, 0.19022709187936865, 0.19093800379726025, 0.19164164566043823, 0.192338208984116, 0.1930278800535268, 0.19371084009019732, 0.194387265412331, 0.19505732758953187, 0.19572119359208853, 0.19637902593503, 0.19703098281715442, 0.1976772182552252, 0.19831788221351943, 0.1989531207289061, 0.19958307603162495, 0.2002078866619283, 0.20082768758274297, 0.2014426102885021, 0.20205278291029025, 0.2026583303174403, 0.20325937421571397, 0.20385603324219326, 0.20444842305700403, 0.2050366564319893, 0.2056208433364436, 0.2062010910200169, 0.20677750409289047, 0.20735018460332483, 0.20791923211267432, 0.20848474376796058, 0.20904681437209197, 0.20960553645181407, 0.21016100032347226, 0.21071329415666393, 0.21126250403585584, 0.2118087140200386, 0.21235200620048683, 0.2128924607566927, 0.21343015601053592, 0.2139651684787522, 0.21449757292375946, 0.21502744240289862, 0.21555484831614372, 0.21607986045233452, 0.2166025470339816, 0.2171229747606939, 0.21764120885127455, 0.2181573130845312, 0.21867134983884406, 0.21918338013053348, 0.21969346365106793, 0.2202016588031509, 0.22070802273572476, 0.22121261137792683, 0.22171547947203388, 0.22221668060542682, 0.2227162672416099, 0.2232142907503139, 0.22371080143671446, 0.224205848569794, 0.22469948040987545, 0.22519174423535443, 0.22568268636865635, 0.22617235220144297, 0.22666078621909289, 0.22714803202447936, 0.2276341323610678, 0.22811912913535445, 0.22860306343866818, 0.22908597556835408, 0.22956790504835986, 0.23004889064924328, 0.23052897040761836, 0.23100818164505915, 0.23148656098647663, 0.23196414437798654, 0.2324409671042828, 0.2329170638055324, 0.2333924684938068, 0.23386721456906337, 0.2343413348346916, 0.23481486151263628, 0.2352878262581119, 0.2357602601739197, 0.23623219382437982, 0.23670365724889, 0.23717467997512282, 0.237645291031871, 0.23811551896155297, 0.23858539183238742, 0.23905493725024762, 0.23952418237020484, 0.23999315390776974, 0.24046187814984124, 0.24093038096537117, 0.24139868781575294, 0.24186682376494265, 0.24233481348932054, 0.2428026812872998, 0.24327045108869047, 0.24373814646382616, 0.24420579063245898, 0.24467340647243077, 0.24514101652812648, 0.24560864301871588, 0.24607630784618997, 0.24654403260319777, 0.24701183858068906, 0.24747974677536902, 0.24794777789696967, 0.24841595237534353, 0.24888429036738433, 0.24935281176378005, 0.24982153619560238, 0.25029048304073775, 0.25075967143016414, 0.2512291202540778, 0.25169884816787436, 0.25216887359798823, 0.25263921474759415, 0.2531098896021749, 0.2535809159349584, 0.2540523113122288, 0.2545240930985134, 0.2549962784616508, 0.25546888437774135, 0.2559419276359852, 0.2564154248434097, 0.2568893924294889, 0.2573638466506597, 0.2578388035947357, 0.25831427918522254, 0.2587902891855366, 0.2592668492031307, 0.25974397469352856, 0.2602216809642701, 0.26069998317877136, 0.26117889636009944, 0.26165843539466677, 0.2621386150358448, 0.2626194499075008, 0.26310095450745935, 0.26358314321088994, 0.26406603027362346, 0.2645496298353991, 0.2650339559230431, 0.26551902245358205, 0.26600484323729157, 0.26649143198068265, 0.2669788022894267, 0.26746696767122174, 0.2679559415386004, 0.2684457372116819, 0.2689363679208689, 0.2694278468094913, 0.2699201869363978, 0.2704134012784969, 0.2709075027332484, 0.2714025041211069, 0.2718984181879188, 0.272395257607273, 0.2728930349828077, 0.2733917628504737, 0.27389145368075546, 0.27439211988085144, 0.27489377379681385, 0.27539642771564965, 0.2759000938673837, 0.2764047844270847, 0.2769105115168552, 0.277417287207786, 0.27792512352187737, 0.27843403243392545, 0.2789440258733776, 0.2794551157261549, 0.2799673138364448, 0.2804806320084628, 0.2809950820081857, 0.2815106755650555, 0.28202742437365635, 0.28254534009536375, 0.2830644343599677, 0.2835847187672703, 0.2841062048886579, 0.28462890426864923, 0.2851528284264198, 0.28567798885730294, 0.28620439703426853, 0.2867320644093798, 0.2872610024152286, 0.2877912224663502, 0.28832273596061736, 0.28885555428061527, 0.28938968879499694, 0.28992515085982, 0.29046195181986534, 0.2910001030099378, 0.29153961575615034, 0.29208050137719066, 0.2926227711855719, 0.29316643648886753, 0.29371150859093076, 0.29425799879309866, 0.2948059183953822, 0.2953552786976419, 0.2959060910007492, 0.29645836660773534, 0.29701211682492645, 0.2975673529630664, 0.2981240863384271, 0.29868232827390684, 0.29924209010011765, 0.29980338315646027, 0.3003662187921892, 0.30093060836746677, 0.3014965632544067, 0.3020640948381079, 0.302633214517679, 0.3032039337072524, 0.3037762638369905, 0.3043502163540823, 0.30492580272373176, 0.3055030344301378, 0.3060819229774665, 0.30666247989081535, 0.30724471671717046, 0.3078286450263558, 0.3084142764119763, 0.3090016224923538, 0.30959069491145663, 0.31018150533982286, 0.31077406547547765, 0.3113683870448448, 0.3119644818036525, 0.31256236153783434, 0.31316203806442433, 0.3137635232324477, 0.31436682892380674, 0.31497196705416186, 0.3155789495738088, 0.31618778846855145, 0.31679849576057073, 0.31741108350928965, 0.31802556381223523, 0.3186419488058965, 0.31926025066657954, 0.3198804816112597, 0.3205026538984305, 0.3211267798289506, 0.32175287174688716, 0.32238094204035805, 0.32301100314237097, 0.3236430675316612, 0.324277147733527, 0.32491325632066353, 0.3255514059139954, 0.3261916091835073, 0.32683387884907417, 0.32747822768128926, 0.3281246685022924, 0.3287732141865962, 0.32942387766191306, 0.33007667190997997, 0.3307316099673846, 0.33138870492638967, 0.3320479699357582, 0.3327094182015786, 0.3333730629880895, 0.3340389176185052, 0.3347069954758413, 0.3353773100037418, 0.33604987470730513, 0.33672470315391223, 0.3374018089740558, 0.3380812058621695, 0.33876290757745897, 0.3394469279447342, 0.3401332808552431, 0.34082198026750665, 0.34151304020815554, 0.34220647477276883, 0.3429022981267143, 0.34360052450599105, 0.3443011682180737, 0.3450042436427593, 0.3457097652330164, 0.34641774751583637, 0.3471282050930877, 0.3478411526423725, 0.34855660491788604, 0.349274576751279, 0.3499950830525233, 0.35071813881077996, 0.35144375909527104, 0.3521719590561546, 0.3529027539254032, 0.3536361590176857, 0.3543721897312527, 0.3551108615488263, 0.3558521900384927, 0.35659619085459976, 0.35734287973865786, 0.3580922725202452, 0.35884438511791783, 0.35959923354012296, 0.360356833886118, 0.361117202346893, 0.3618803552060987, 0.3626463088409789, 0.36341507972330805, 0.3641866844203329, 0.3649611395957207, 0.3657384620105115, 0.3665186685240761, 0.36730177609507936, 0.36808780178244915, 0.36887676274635073, 0.36966867624916694, 0.37046355965648436, 0.3712614304380848, 0.3720623061689438, 0.37286620453023434, 0.37367314331033713, 0.3744831404058574, 0.3752962138226481, 0.37611238167683925, 0.3769316621958745, 0.3777540737195541, 0.3785796347010848, 0.37940836370813685, 0.3802402794239078, 0.38107540064819395, 0.3819137462984685, 0.3827553354109678, 0.38360018714178445, 0.3844483207679684, 0.3852997556886357, 0.3861545114260851, 0.38701260762692247, 0.38787406406319364, 0.3887389006335248, 0.38960713736427216, 0.3904787944106785, 0.39135389205804, 0.3922324507228804, 0.3931144909541343, 0.39400003343433965, 0.3948890989808385, 0.3957817085469876, 0.3966778832233776, 0.39757764423906194, 0.39848101296279514, 0.39938801090428033, 0.40029865971542694, 0.40121298119161775, 0.4021309972729864, 0.40305273004570413, 0.40397820174327775, 0.4049074347478568, 0.40584045159155197, 0.40677727495776367, 0.40771792768252135, 0.40866243275583386, 0.40961081332305016, 0.41056309268623165, 0.4115192943055353, 0.4124794418006088, 0.4134435589519961, 0.4144116697025551, 0.4153837981588879, 0.41635996859278085, 0.41734020544265893, 0.41832453331505054, 0.41931297698606523, 0.4203055614028843, 0.42130231168526283, 0.4223032531270459, 0.42330841119769597, 0.4243178115438347, 0.425331479990797, 0.4263494425441991, 0.4273717253915193, 0.4283983549036928, 0.4294293576367206, 0.4304647603332909, 0.4315045899244164, 0.4325488735310846, 0.4335976384659229, 0.4346509122348778, 0.4357087225389095, 0.43677109727570085, 0.43783806454138163, 0.4389096526322671, 0.4399858900466136, 0.4410668054863879, 0.4421524278590535, 0.4432427862793722, 0.4443379100712215, 0.4454378287694291, 0.44654257212162274, 0.44765217009009717, 0.44876665285369793, 0.44988605080972177, 0.45101039457583425, 0.45213971499200484, 0.4532740431224593, 0.4544134102576497, 0.4555578479162425, 0.4567073878471244, 0.457862062031427, 0.4590219026845691, 0.4601869422583183, 0.46135721344287134, 0.4625327491689531, 0.4637135826099353, 0.4648997471839745, 0.46609127655616994, 0.46728820464074056, 0.46849056560322355, 0.4696983938626916, 0.4709117240939916, 0.4721305912300042, 0.4733550304639237, 0.4745850772515597, 0.4758207673136599, 0.4770621366382548, 0.47830922148302407, 0.479562058377685, 0.4808206841264036, 0.4820851358102279, 0.4833554507895446, 0.48463166670655844, 0.4859138214877949, 0.48720195334662675, 0.4884961007858244, 0.4897963026001296, 0.49110259787885485, 0.4924150260085064, 0.4937336266754324, 0.49505843986849607, 0.49638950588177494, 0.4977268653172846, 0.4990705590877295, 0.5004206284192794, 0.5017771148543724, 0.503140060254545, 0.5045095068032894, 0.505885497008937, 0.5072680737075717, 0.5086572800659686, 0.5100531595845632, 0.5114557561004481, 0.5128651137903987, 0.5142812771739277, 0.5157042911163702, 0.5171342008319977, 0.5185710518871619, 0.5200148902034709, 0.521465762060993, 0.5229237141014951, 0.5243887933317098, 0.5258610471266357, 0.5273405232328702, 0.5288272697719724, 0.5303213352438622, 0.5318227685302501, 0.5333316188981011, 0.5348479360031334, 0.5363717698933498, 0.5379031710126055, 0.5394421902042091, 0.5409888787145607, 0.542543288196824, 0.5441054707146363, 0.5456754787458542, 0.547253365186335, 0.5488391833537586, 0.5504329869914835, 0.5520348302724434, 0.5536447678030817, 0.5552628546273243, 0.5568891462305928, 0.5585236985438569, 0.5601665679477273, 0.561817811276589, 0.5634774858227759, 0.5651456493407869, 0.5668223600515445, 0.5685076766466952, 0.5702016582929529, 0.5719043646364864, 0.5736158558073498, 0.5753361924239577, 0.5770654355976061, 0.5788036469370366, 0.5805508885530484, 0.5823072230631555, 0.5840727135962915, 0.5858474237975607, 0.5876314178330377, 0.5894247603946153, 0.5912275167049019, 0.5930397525221669, 0.5948615341453368, 0.5966929284190433, 0.598534002738719, 0.6003848250557483, 0.6022454638826688, 0.6041159882984248, 0.605996467953676, 0.6078869730761587, 0.6097875744761021, 0.6116983435516994, 0.6136193522946345, 0.6155506732956665, 0.6174923797502685, 0.6194445454643267, 0.6214072448598957, 0.6233805529810141, 0.6253645454995788, 0.6273592987212789, 0.6293648895915925, 0.6313813957018427, 0.633408895295317, 0.6354474672734494, 0.637497191202066, 0.6395581473176952, 0.6416304165339419, 0.643714080447928, 0.6458092213468002, 0.6479159222143034, 0.6500342667374229, 0.6521643393130954, 0.6543062250549886, 0.6564600098003522, 0.6586257801169385, 0.6608036233099958, 0.662993627429334, 0.6651958812764639, 0.6674104744118097, 0.6696374971619982, 0.6718770406272219, 0.6741291966886805, 0.6763940580160985, 0.678671718075323, 0.6809622711359989, 0.6832658122793255, 0.6855824374058938, 0.6879122432436062, 0.6902553273556782, 0.6926117881487246, 0.6949817248809311, 0.69736523767031, 0.6997624275030443, 0.7021733962419185, 0.7045982466348383, 0.7070370823234393, 0.7094900078517885, 0.7119571286751745, 0.7144385511689932, 0.7169343826377248, 0.7194447313240085, 0.7219697064178097, 0.7245094180656871, 0.7270639773801563, 0.7296334964491531, 0.7322180883455971, 0.7348178671370567, 0.7374329478955169, 0.7400634467072501, 0.7427094806827929, 0.7453711679670284, 0.7480486277493759, 0.7507419802740893, 0.7534513468506656, 0.7561768498643631, 0.758918612786834, 0.7616767601868691, 0.7644514177412572, 0.7672427122457618, 0.7700507716262147, 0.7728757249497284, 0.775717702436029, 0.7785768354689107, 0.781453256607812, 0.7843470995995192, 0.7872584993899923, 0.7901875921363206, 0.793134515218806, 0.7960994072531766, 0.7990824081029325, 0.8020836588918234, 0.8051033020164624, 0.8081414811590769, 0.8111983413003933, 0.8142740287326657, 0.8173686910728435, 0.8204824772758816, 0.8236155376481954, 0.8267680238612617, 0.8299400889653671, 0.8331318874035054, 0.8363435750254278, 0.8395753091018429, 0.8428272483387741, 0.8460995528920728, 0.8493923843820876, 0.8527059059084979, 0.8560402820653047, 0.8593956789559873, 0.8627722642088269, 0.8661702069923958, 0.8695896780312168, 0.8730308496215943, 0.8764938956476191, 0.8799789915973484, 0.8834863145791629, 0.8870160433383047, 0.8905683582735962, 0.8941434414543424, 0.8977414766374212, 0.9013626492845584, 0.9050071465797981, 0.9086751574471599, 0.9123668725684955, 0.91608248440154, 0.9198221871981647, 0.923586177022829, 0.9273746517712389, 0.931187811189211, 0.9350258568917449, 0.9388889923823093, 0.9427774230723385, 0.9466913563009486, 0.9506310013548714, 0.9545965694886084, 0.9585882739448137, 0.9626063299748969, 0.9666509548598607, 0.9707223679313693, 0.974820790593051, 0.9789464463420402, 0.9830995607907567, 0.9872803616889324, 0.9914890789458822, 0.9957259446530232, 0.9999911931066477, 1.004285060830951, 1.0086077866013166, 1.0129596114678632, 1.017340778779257, 1.0217515342067878, 1.026192125768721, 1.0306628038549186, 1.0351638212517418, 1.0396954331672292, 1.044257897256563, 1.0488514736478198, 1.0534764249680137, 1.0581330163694307, 1.0628215155562648, 1.0675421928115503, 1.0722953210244042, 1.0770811757175704, 1.0819000350752852, 1.086752179971447, 1.091637893998115, 1.0965574634943274, 1.1015111775752469, 1.1064993281616382, 1.1115222100096802, 1.1165801207411172, 1.121673360873755, 1.126802233852301, 1.1319670460795592, 1.1371681069479815, 1.142405728871574, 1.1476802273181737, 1.15299192084209, 1.1583411311171246, 1.1637281829699597, 1.16915340441394, 1.174617126683233, 1.1801196842673858, 1.1856614149462763, 1.1912426598254664, 1.1968637633719592, 1.2025250734503716, 1.2082269413595188, 1.2139697218694205, 1.2197537732587358, 1.2255794573526266, 1.231447139561057, 1.237357188917541, 1.2433099781183272, 1.2493058835620436, 1.2553452853897997, 1.2614285675257506, 1.2675561177181298, 1.273728327580761, 1.2799455926350467, 1.2862083123524464, 1.2925168901974462, 1.298871733671028, 1.305273254354642, 1.3117218679546945, 1.3182179943475454, 1.3247620576250405, 1.3313544861405622, 1.3379957125556239, 1.3446861738870064, 1.3514263115544434, 1.358216571428864, 1.365057403881199, 1.3719492638317559, 1.3788926108001744, 1.3858879089559624, 1.39293562716963, 1.4000362390644132, 1.4071902230686142, 1.4143980624685462, 1.4216602454621112, 1.4289772652129913, 1.4363496199054924, 1.4437778128000216, 1.4512623522892245, 1.4588037519547807, 1.4664025306248663, 1.4740592124322949, 1.4817743268733488, 1.4895484088672986, 1.4973819988166257, 1.5052756426679639, 1.5132298919737477, 1.5212453039546079, 1.5293224415624862, 1.5374618735445174, 1.5456641745076487, 1.5539299249840408, 1.5622597114972374, 1.570654126629121, 1.5791137690876678, 1.5876392437755018, 1.5962311618592695, 1.6048901408398384, 1.6136168046233301, 1.6224117835930025, 1.6312757146819852, 1.6402092414468863, 1.649213014142274, 1.6582876897960546, 1.6674339322857399, 1.6766524124156357, 1.685943807994954, 1.6953088039168511, 1.7047480922384253, 1.714262372261661, 1.723852350615352, 1.7335187413380053, 1.7432622659617372, 1.7530836535971823, 1.7629836410194182, 1.7729629727549299, 1.7830224011696096, 1.7931626865578345, 1.8033845972325953, 1.8136889096167288, 1.8240764083352397, 1.8345478863087497, 1.8451041448480594, 1.8557459937498597, 1.8664742513936103, 1.877289744839568, 1.888193309928023, 1.899185791379725, 1.91026804289753, 1.921440927269278, 1.9327053164719206, 1.9440620917769125, 1.9555121438568797, 1.9670563728935884, 1.9786956886872231, 1.9904310107669976, 2.0022632685031114, 2.0141934012200653, 2.0262223583113648, 2.03835109935562, 2.050580594234059, 2.06291182324948, 2.0753457772466506, 2.087883457734189, 2.1005258770079216, 2.1132740582757683, 2.1261290357841336, 2.1390918549458644, 2.152163572469769, 2.1653452564917286, 2.1786379867074093, 2.19204285450661, 2.2055609631092596, 2.219193427703089, 2.2329413755829846, 2.246805946292068, 2.260788291764511, 2.2748895764701054, 2.2891109775606147, 2.303453685017939, 2.3179189018040978, 2.332507844013067, 2.347221741024498, 2.362061835659327, 2.377029384337317, 2.392125657236544, 2.4073519384548594, 2.4227095261733536, 2.4381997328218428, 2.453823885246409, 2.469583324879022, 2.4854794079092604, 2.501513505458173, 2.517687003754293, 2.5340013043118548, 2.5504578241112066, 2.5670579957814894, 2.58380326778558, 2.6006951046073405, 2.6177349869412065, 2.634924411884137, 2.652264893129961, 2.669757961166151, 2.687405163473057, 2.7052080647256287, 2.7231682469976666, 2.7412873099686226, 2.7595668711329915, 2.778008566012342, 2.7966140483699755, 2.815384990428301, 2.8343230830889343, 2.8534300361555576, 2.8727075785595764, 2.8921574585886214, 2.911781444117915, 2.931581322844557, 2.951558902524756, 2.9717160112140526, 2.992054497510564, 3.012576230801303, 3.0332831015116044, 3.0541770213577006, 3.0752599236024762, 3.0965337633144743, 3.1180005176301613, 3.139662186019522, 3.1615207905550045, 3.1835783761838874, 3.205837011004076, 3.2282987865434247, 3.25096581804257, 3.273840244741376, 3.2969242301690143, 3.3202199624377187, 3.3437296545402853, 3.3674555446513574, 3.3913998964325285, 3.4155649993413437, 3.43995316894424, 3.464566747233466, 3.4894081029480444, 3.5144796318988374, 3.5397837572977493, 3.565322930091144, 3.591099629297521, 3.6171163623495044, 3.6433756654402107, 3.669880103874048, 3.6966322724220095, 3.7236347956815123, 3.7508903284408666, 3.7784015560483906, 3.8061711947862857, 3.8342019922493034, 3.862496727728279, 3.8910582125985886, 3.9198892907136043, 3.9489928388032145, 3.978371766877468, 4.00802901863542, 4.037967571879247, 4.068190438933696, 4.098700667070947, 4.129501338940949, 4.160595573007349, 4.191986523988986, 4.22367738330715, 4.255671379538601, 4.287971778874447, 4.320581885584976, 4.3535050424904815, 4.386744631438223, 4.420304073785534, 4.454186830889231, 4.488396404601347, 4.522936337771308, 4.557810214754644, 4.593021661928292, 4.628574348212637, 4.664471985600276, 4.70071832969174, 4.737317180238149, 4.774272381690947, 4.811587823758803, 4.849267441971782, 4.887315218252865, 4.9257351814969415, 4.964531408157361, 5.003708022840146, 5.043269198905982, 5.083219159080073, 5.123562176069983, 5.164302573191592, 5.205444725003188, 5.2469930579479405, 5.288952051004765, 5.3313262363477225, 5.374120200014102, 5.4173385825812375, 5.460986079852263, 5.5050674435508435, 5.549587482025065, 5.594551060960586, 5.639963104103163, 5.685828593990723, 5.732152572695046, 5.7789401425732425, 5.826196467029187, 5.873926771284903, 5.922136343162228, 5.970830533874758, 6.0200147588302695, 6.069694498443751, 6.119875298961193, 6.170562773294284, 6.221762601866144, 6.273480533468295, 6.3257223861289615, 6.37849404799289, 6.431801478212865, 6.485650707853022, 6.540047840804234, 6.59499905471152, 6.650510601913945, 6.7065888103969, 6.763240084757129, 6.820470907180548, 6.878287838433135, 6.936697518864979, 6.995706669427765, 7.055322092705787, 7.115550673960746, 7.17639938219047, 7.237875271201827, 7.299985480697903, 7.362737237379818, 7.426137856063142, 7.490194740809383, 7.554915386072553, 7.6203073778611135, 7.686378394915488, 7.753136209901373, 7.820588690619036, 7.888743801228868, 7.957609603493366, 8.027194258035834, 8.097506025615973, 8.168553268422603, 8.24034445138384, 8.312888143494874, 8.386193019163562, 8.46026785957426, 8.53512155406996, 8.610763101553085, 8.687201611905193, 8.764446307425816, 8.842506524290739, 8.921391714029992, 9.001111445025797, 9.08167540403077, 9.163093397706696, 9.245375354184064, 9.32853132464278, 9.412571484914254, 9.497506137105255, 9.583345711243682, 9.67010076694675, 9.757781995111781, 9.846400219629981, 9.935966399123428, 10.026491628705749, 10.117987141766662, 10.210464311780855, 10.303934654141438, 10.398409828018368, 10.493901638242187, 10.59042203721346, 10.687983126838155, 10.786597160489588, 10.886276544996935, 10.987033842661031, 11.088881773297661, 11.191833216308778, 11.295901212782024, 11.40109896761895, 11.507439851692414, 11.614937404033437, 11.723605334048061, 11.833457523764555, 11.944508030111432, 12.056771087226727, 12.170261108798906, 12.284992690439955, 12.40098061209103, 12.518239840461154, 12.63678553149946, 12.756633032901375, 12.877797886649352, 13.000295831588506, 13.124142806037732, 13.24935495043682, 13.375948610029965, 13.503940337586437, 13.63334689615855, 13.764185261877893, 13.896472626790045, 14.030226401728536, 14.165464219228358, 14.302203936479922, 14.440463638323797, 14.580261640286853, 14.721616491660473, 14.86454697862138, 15.0090721273957, 15.155211207466834, 15.302983734827919, 15.452409475279273, 15.603508447771683, 15.756300927796117, 15.91080745082046, 16.06704881577412, 16.22504608858085, 16.384820605741, 16.546393977963422, 16.709788093847916, 16.875025123619107, 17.042127522912217, 17.211118036611612, 17.38201970274297, 17.554855856419618, 17.72965013384403, 17.906426476365176, 18.085209134592517, 18.266022672567544, 18.448891971993554, 18.633842236524732, 18.820898996115005, 19.010088111428, 19.201435778308696, 19.39496853231759, 19.590713253328662, 19.788697170191586, 19.98894786545943, 20.19149328018274, 20.396361718770876, 20.60358185392162, 20.813182731620163, 21.02519377620818, 21.239644795524324, 21.456565986117138, 21.675987938531026, 21.897941642666932, 22.122458493218527, 22.34957029518482, 22.57930926946067, 22.811708058506092, 23.046799732095533, 23.28461779314835, 23.525196183641572, 23.768569290606322, 24.01477195220885, 24.26383946391764, 24.51580758475769, 24.770712543653524, 25.02859104586157, 25.289480279494096, 25.55341792213534, 25.82044214755149, 26.090591632495798, 26.363905563610334, 26.640423644425546, 26.920186102459258, 27.203233696416675, 27.48960772349239, 27.779350026776495, 28.07250300276584, 28.36910960898223, 28.669213371699204, 28.972858393778335, 29.280089362617883, 29.5909515582142, 29.905490861338283, 30.223753761828753, 30.545787367003612, 30.871639410191403, 31.201358259384932, 31.534992926017985, 31.872593073867908, 32.21420902808524, 32.55989178435265, 32.90969301817481, 33.26366509430137, 33.62186107628486, 33.98433473617522, 34.35114056435399, 34.72233377950861, 35.09797033875062, 35.47810694787839, 35.8628010717876, 36.25211094503113, 36.646095582530464, 37.04481479044136, 37.44832917717563, 37.85670016458123, 38.26998999928362, 38.68826176419, 39.11157939015987, 39.54000766784276, 39.973612259687265, 40.41245971212331, 40.85661746791968, 41.30615387872001, 41.76113821776015, 42.22164069276846, 42.687732459053045, 43.159485632778186, 43.636973304432104, 44.12026955249024, 44.60944945727576, 45.104589115020914, 45.60576565213207, 46.11305723966117, 46.62654310798705, 47.14630356170992, 47.67241999476103, 48.20497490573258, 48.74405191342954, 49.28973577264732, 49.84211239017896, 50.401268841054396, 50.9672933850167, 51.54027548323677, 52.12030581527211, 52.70747629627213, 53.30188009443431, 53.903611648713486, 54.51276668679086, 55.129442243303394, 55.75373667834041, 56.38574969620871, 57.0255823644726, 57.67333713327153, 58.329117854919325, 58.99302980379107, 59.665179696499195, 60.345675712365455, 61.03462751419265, 61.73214626933882, 62.43834467110231, 63.15333696041722, 63.87723894786913, 64.610168036032, 65.35224324213328, 66.10358522105084, 66.86431628864783, 67.63456044545012, 68.41444340067065, 69.2040925965874, 70.0036372332796, 70.81320829372672, 71.63293856927766, 72.46296268549393, 73.30341712837301, 74.15444027095873, 75.01617240034236, 75.88875574506201, 76.77233450290616, 77.6670548691271, 78.57306506506957, 79.49051536722307, 80.41955813670253, 81.36034784916366, 82.31304112516113, 83.27779676095507, 84.25477575977291, 85.24414136353299, 86.24605908503841, 87.26069674064728, 88.28822448342521, 89.32881483679078, 90.38264272865798, 91.44988552608531, 92.530723070439, 93.62533771307632, 94.73391435156061, 95.8566404664113, 96.9937061584012, 98.14530418640803, 99.31163000582687, 100.49288180755528, 101.68926055755637, 102.90097003701305, 104.12821688307635, 105.37121063022276, 106.6301637522273, 107.90529170476076, 109.19681296862257, 110.50494909361777, 111.82992474308902, 113.17196773911195, 114.53130910836587, 115.90818312868873, 117.3028273763276, 118.71548277389593, 120.14639363904492, 121.59580773386699, 123.0639763150331, 124.55115418468412, 126.05759974208213, 127.58357503603531, 129.1293458181081, 130.69518159662894, 132.28135569150723, 133.88814528987174, 135.51583150254513, 137.1646994213633, 138.83503817735797, 140.52714099981105, 142.24130527619607, 143.97783261302123, 145.73702889758715, 147.51920436067113, 149.32467364015713, 151.1537558456216, 153.006774623891, 154.8840582255889, 156.78593957268262, 158.71275632704987, 160.66485096007688, 162.64257082330923, 164.64626822016433, 166.67630047872962, 168.7330300256576, 170.81682446117736, 172.92805663523984, 175.06710472481194, 177.23435231234083, 179.4301884654041, 181.65500781756433, 183.90921065044938, 186.1932029770694, 188.50739662640498, 190.85220932926623, 193.2280648054611, 195.63539285227932, 198.07462943432333, 200.54621677469567, 203.05060344757692, 205.5882444722029, 208.15960140827266, 210.76514245280393, 213.40534253846195, 216.08068343338024, 218.79165384250243, 221.5387495104621, 224.3224733260338, 227.14333542816516, 230.00185331363159, 232.89855194632656, 235.83396386821863, 238.80862931199968, 241.8230963154485, 244.87792083754277, 247.97366687633877, 251.11090658865302, 254.29022041156895, 257.5121971858019, 260.7774342809468, 264.0865377226408, 267.4401223216705, 270.83881180505296, 274.28323894912353, 277.77404571465894, 281.31188338406884, 284.89741270069163, 288.531304010219, 292.21423740429304, 295.94690286630015, 299.73000041940594, 303.56424027685455, 307.4503429945811, 311.3890396261599, 315.3810718801395, 319.42719227979114, 323.52816432530585, 327.68476265849756, 331.897773230026, 336.16799346920106, 340.49623245639407, 344.8833110981064, 349.33006230473006, 353.837331171051, 358.4059751595271, 363.0368642863957, 367.73088131065015, 372.48892192592865, 377.3118949553635, 382.20072254943886, 387.15634038690314, 392.1796978787824, 397.27175837554523, 402.43349937747297, 407.6659127482735, 412.97000493200716, 418.34679717336314, 423.7973257413439, 429.32264215641385, 434.9238134211665, 440.6019222545558, 446.35806732977, 452.1933635157795, 458.10894212263514, 464.10595115057595, 470.1855555429884, 476.3489374432987, 482.59729645586157, 488.93184991087855, 495.35383313345613, 501.8644997168259, 508.46512179981795, 515.1569903486552, 521.9414154431167, 528.8197265671663, 535.7932729040967, 542.8634236362733, 550.0315682495395, 557.299116842375, 564.6675004398579, 572.1381713125356, 579.7126033002554, 587.3922921410552, 595.1787558051808, 603.0735348343218, 611.0781926861365, 619.1943160841663, 627.4235153732088, 635.7674248802559, 644.2277032810574, 652.8060339724378, 661.504125450414, 670.3237116942653, 679.2665525565609, 688.3344341593547, 697.5291692965379, 706.8525978425281, 716.3065871673398, 725.8930325581844, 735.6138576476593, 745.4710148486736, 755.4664857961892, 765.6022817958966, 775.8804442799384, 786.3030452697909, 796.872187846416, 807.5900066278069, 818.458668254037, 829.4803718799411, 840.6573496755448, 851.9918673343732, 863.4862245897509, 875.1427557392485, 886.9638301773767, 898.9518529366716, 911.1092652373266, 923.438545045467, 935.9422076402484, 948.6228061898838, 961.4829323367774, 974.5252167918815, 987.7523299384593, 1001.1669824453476, 1014.7719258899483, 1028.5699533910445, 1042.5639002516275, 1056.7566446118813, 1071.151108112522, 1085.7502565686027, 1100.5571006539963, 1115.5746965967326, 1130.8061468853266, 1146.2546009863038, 1161.923256073104, 1177.8153577665378, 1193.9342008869792, 1210.2831302184984, 1226.8655412851226, 1243.6848811393995, 1260.744649163498, 1278.048397883048, 1295.5997337938568, 1313.4023182018266, 1331.459868076178, 1349.776156916263, 1368.3550156321649, 1387.2003334392984, 1406.316058767254, 1425.706200183127, 1445.3748273295284, 1465.3260718775387, 1485.5641284948647, 1506.0932558294312, 1526.9177775086218, 1548.0420831544916, 1569.4706294151647, 1591.2079410127028, 1613.2586118076633, 1635.6273058807149, 1658.3187586314684, 1681.3377778949289, 1704.6892450757414, 1728.3781163005763, 1752.4094235889843, 1776.788276042927, 1801.519861055385, 1826.609445538282, 1852.0623771700837, 1877.884085663392, 1904.080084052805, 1930.6559700034682, 1957.6174271405453, 1984.97022640007, 2012.7202274014087, 2040.8733798417743, 2069.435724913101, 2098.4133967416997, 2127.8126238509885, 2157.639730647756, 2187.9011389322654, 2218.6033694326807, 2249.753043364107, 2281.356884012756, 2313.42171834555, 2345.9544786456695, 2378.9622041743733, 2412.452042859622, 2446.4312530118896, 2480.9072050675827, 2515.887383360599, 2551.3793879224118, 2587.3909363111866, 2623.9298654704185, 2661.0041336175022, 2698.6218221628556, 2736.7911376599654, 2775.5204137869127, 2814.818113359987, 2854.6928303797017, 2895.1532921100284, 2936.208361191096, 2977.8670377861513, 3020.138461763219, 3063.031914912048, 3106.5568231969687, 3150.7227590461403, 3195.5394436780275, 3241.016749465381, 3287.1647023376263, 3333.9934842221755, 3381.5134355252985, 3429.735057653254, 3478.6690155742726, 3528.3261404221666, 3578.7174321421203, 3629.854062179525, 3681.7473762124237, 3734.408896928343, 3787.85032684627, 3842.083551184471, 3897.1206407749446, 3952.973855025297, 4009.6556449287605, 4067.1786561231847, 4125.555731999878, 4184.799916862973, 4244.924459140344, 4305.942814646758, 4367.868649900193, 4430.715845492301, 4494.4984995136565, 4559.230931035062, 4624.927683645527, 4691.603529047912, 4759.273470713458, 4827.952747595832, 4897.65683790579, 4968.401462947705, 5040.2025910185175, 5113.076441370631, 5187.0394882395285, 5262.108464937165, 5338.300368012457, 5415.632461479783, 5494.122281116655, 5573.787638831849, 5654.6466271049685, 5736.717623498823, 5820.019295245633, 5904.570603908555, 5990.390810119427, 6077.499478394425, 6165.916482028519, 6255.662008070415, 6346.756562378966, 6439.220974762716, 6533.076404203863, 6628.344344167874, 6725.046628000532, 6823.205434413527, 6922.843293060295, 7023.9830902035665, 7126.64807447608, 7230.861862736157, 7336.648446019458, 7444.032195588971, 7553.037869084433, 7663.690616773054, 7776.015987903345, 7890.039937163515, 8005.78883124636, 8123.289455522462, 8242.569020823339, 8363.655170336611, 8486.575986614891, 8611.359998700338, 8738.036189366869, 8866.634002481993, 8997.183350490224, 9129.714622020208, 9264.258689617476, 9400.846917605131, 9539.511170074533, 9680.283819008022, 9823.197752536282, 9968.286383332088, 10115.583657143292, 10265.12406146683, 10416.942634366618, 10571.074973437437, 10727.557244917361, 10886.426192951296, 11047.719149008168, 11211.47404145406, 11377.729405284465, 11546.524392017818, 11717.898779753414, 11891.892983396161, 12068.548065051262, 12247.905744591482, 12430.008410400158, 12614.899130292442, 12802.621662618525, 12993.22046755111, 13186.740718561105, 13383.228314083502, 13582.729889378343, 13785.29282858831, 13990.965276997671, 14199.796153494886, 14411.835163243411, 14627.132810563116, 14845.740412026822, 15067.710109774884, 15293.094885052094, 15521.94857197005, 15754.325871499708, 15990.282365696832, 16229.874532165419, 16473.159758762373, 16720.19635854803, 16971.04358498612, 17225.76164739808, 17484.411726675604, 17747.055991255744, 18013.757613363436, 18284.58078552567, 18559.59073736187, 18838.853752655457, 19122.437186711155, 19410.409484003027, 19702.84019611798, 19999.80000000004], "y": [-5.0, -4.9941383352872215, -4.988276670574443, -4.9824150058616645, -4.976553341148886, -4.9706916764361075, -4.964830011723329, -4.958968347010551, -4.953106682297773, -4.9472450175849945, -4.941383352872216, -4.9355216881594375, -4.929660023446659, -4.9237983587338805, -4.917936694021102, -4.9120750293083235, -4.906213364595545, -4.9003516998827665, -4.894490035169988, -4.8886283704572095, -4.882766705744431, -4.876905041031653, -4.871043376318875, -4.8651817116060965, -4.859320046893318, -4.8534583821805395, -4.847596717467761, -4.8417350527549825, -4.835873388042204, -4.8300117233294255, -4.824150058616647, -4.8182883939038685, -4.81242672919109, -4.8065650644783116, -4.800703399765533, -4.794841735052755, -4.788980070339977, -4.7831184056271985, -4.77725674091442, -4.7713950762016415, -4.765533411488863, -4.7596717467760845, -4.753810082063306, -4.7479484173505275, -4.742086752637749, -4.7362250879249705, -4.730363423212192, -4.724501758499414, -4.718640093786635, -4.712778429073857, -4.706916764361079, -4.7010550996483005, -4.695193434935522, -4.6893317702227435, -4.683470105509965, -4.6776084407971865, -4.671746776084408, -4.6658851113716295, -4.660023446658851, -4.6541617819460726, -4.648300117233294, -4.642438452520516, -4.636576787807737, -4.630715123094959, -4.62485345838218, -4.6189917936694025, -4.613130128956624, -4.6072684642438455, -4.601406799531067, -4.5955451348182885, -4.58968347010551, -4.5838218053927315, -4.577960140679953, -4.572098475967175, -4.566236811254396, -4.560375146541618, -4.554513481828839, -4.548651817116061, -4.542790152403283, -4.5369284876905045, -4.531066822977726, -4.5252051582649475, -4.519343493552169, -4.5134818288393905, -4.507620164126612, -4.5017584994138335, -4.495896834701055, -4.490035169988277, -4.484173505275498, -4.47831184056272, -4.472450175849941, -4.466588511137163, -4.460726846424384, -4.454865181711606, -4.449003516998828, -4.4431418522860495, -4.437280187573271, -4.4314185228604925, -4.425556858147714, -4.4196951934349356, -4.413833528722157, -4.407971864009379, -4.4021101992966, -4.396248534583822, -4.390386869871043, -4.384525205158265, -4.378663540445487, -4.3728018757327085, -4.36694021101993, -4.3610785463071515, -4.355216881594373, -4.3493552168815945, -4.343493552168816, -4.337631887456038, -4.331770222743259, -4.325908558030481, -4.320046893317702, -4.314185228604924, -4.308323563892145, -4.302461899179367, -4.296600234466588, -4.29073856975381, -4.284876905041032, -4.2790152403282535, -4.273153575615475, -4.2672919109026966, -4.261430246189918, -4.25556858147714, -4.249706916764361, -4.243845252051583, -4.237983587338804, -4.232121922626026, -4.226260257913247, -4.220398593200469, -4.21453692848769, -4.2086752637749125, -4.202813599062134, -4.1969519343493555, -4.191090269636577, -4.185228604923799, -4.17936694021102, -4.173505275498242, -4.167643610785463, -4.161781946072685, -4.155920281359906, -4.150058616647128, -4.144196951934349, -4.138335287221571, -4.132473622508792, -4.126611957796014, -4.120750293083235, -4.1148886283704575, -4.109026963657679, -4.103165298944901, -4.097303634232122, -4.091441969519344, -4.085580304806565, -4.079718640093787, -4.073856975381008, -4.06799531066823, -4.062133645955451, -4.056271981242673, -4.050410316529894, -4.0445486518171165, -4.038686987104338, -4.0328253223915596, -4.026963657678781, -4.021101992966003, -4.015240328253224, -4.009378663540446, -4.003516998827667, -3.9976553341148886, -3.99179366940211, -3.9859320046893316, -3.980070339976553, -3.9742086752637746, -3.9683470105509966, -3.962485345838218, -3.9566236811254396, -3.950762016412661, -3.944900351699883, -3.9390386869871046, -3.933177022274326, -3.9273153575615476, -3.921453692848769, -3.9155920281359906, -3.909730363423212, -3.9038686987104336, -3.898007033997655, -3.8921453692848766, -3.886283704572098, -3.88042203985932, -3.8745603751465416, -3.868698710433763, -3.862837045720985, -3.8569753810082066, -3.851113716295428, -3.8452520515826496, -3.839390386869871, -3.8335287221570926, -3.827667057444314, -3.8218053927315356, -3.815943728018757, -3.8100820633059787, -3.8042203985932, -3.798358733880422, -3.7924970691676436, -3.786635404454865, -3.7807737397420866, -3.7749120750293086, -3.76905041031653, -3.7631887456037516, -3.757327080890973, -3.7514654161781946, -3.745603751465416, -3.7397420867526376, -3.733880422039859, -3.7280187573270807, -3.722157092614302, -3.716295427901524, -3.7104337631887456, -3.704572098475967, -3.6987104337631886, -3.6928487690504106, -3.686987104337632, -3.6811254396248536, -3.675263774912075, -3.6694021101992966, -3.663540445486518, -3.6576787807737396, -3.651817116060961, -3.6459554513481827, -3.640093786635404, -3.634232121922626, -3.6283704572098476, -3.622508792497069, -3.6166471277842906, -3.6107854630715126, -3.604923798358734, -3.5990621336459556, -3.593200468933177, -3.5873388042203986, -3.58147713950762, -3.5756154747948417, -3.569753810082063, -3.5638921453692847, -3.558030480656506, -3.5521688159437277, -3.5463071512309496, -3.540445486518171, -3.5345838218053927, -3.5287221570926146, -3.522860492379836, -3.5169988276670576, -3.511137162954279, -3.5052754982415006, -3.499413833528722, -3.4935521688159437, -3.487690504103165, -3.4818288393903867, -3.475967174677608, -3.4701055099648297, -3.4642438452520516, -3.458382180539273, -3.4525205158264947, -3.4466588511137166, -3.440797186400938, -3.4349355216881596, -3.429073856975381, -3.4232121922626026, -3.417350527549824, -3.4114888628370457, -3.405627198124267, -3.3997655334114887, -3.39390386869871, -3.3880422039859317, -3.3821805392731537, -3.376318874560375, -3.3704572098475967, -3.364595545134818, -3.35873388042204, -3.3528722157092616, -3.347010550996483, -3.3411488862837047, -3.335287221570926, -3.3294255568581477, -3.323563892145369, -3.3177022274325907, -3.311840562719812, -3.3059788980070337, -3.3001172332942557, -3.294255568581477, -3.2883939038686987, -3.28253223915592, -3.276670574443142, -3.2708089097303636, -3.264947245017585, -3.2590855803048067, -3.253223915592028, -3.2473622508792497, -3.241500586166471, -3.2356389214536927, -3.229777256740914, -3.2239155920281357, -3.2180539273153577, -3.212192262602579, -3.2063305978898007, -3.200468933177022, -3.194607268464244, -3.1887456037514657, -3.182883939038687, -3.1770222743259087, -3.17116060961313, -3.1652989449003517, -3.159437280187573, -3.1535756154747947, -3.147713950762016, -3.1418522860492377, -3.1359906213364592, -3.130128956623681, -3.1242672919109027, -3.118405627198124, -3.112543962485346, -3.1066822977725677, -3.100820633059789, -3.0949589683470107, -3.089097303634232, -3.0832356389214537, -3.077373974208675, -3.0715123094958967, -3.065650644783118, -3.0597889800703397, -3.0539273153575612, -3.048065650644783, -3.0422039859320047, -3.036342321219226, -3.0304806565064477, -3.0246189917936697, -3.018757327080891, -3.0128956623681127, -3.007033997655334, -3.0011723329425557, -2.995310668229777, -2.9894490035169987, -2.9835873388042202, -2.977725674091442, -2.9718640093786637, -2.966002344665885, -2.9601406799531067, -2.954279015240328, -2.9484173505275497, -2.9425556858147712, -2.936694021101993, -2.9308323563892147, -2.924970691676436, -2.9191090269636577, -2.913247362250879, -2.9073856975381007, -2.9015240328253222, -2.8956623681125437, -2.8898007033997657, -2.883939038686987, -2.8780773739742087, -2.87221570926143, -2.8663540445486517, -2.8604923798358732, -2.8546307151230947, -2.8487690504103167, -2.842907385697538, -2.8370457209847597, -2.831184056271981, -2.8253223915592027, -2.8194607268464242, -2.8135990621336457, -2.8077373974208677, -2.801875732708089, -2.7960140679953107, -2.7901524032825322, -2.7842907385697537, -2.7784290738569752, -2.7725674091441967, -2.7667057444314187, -2.76084407971864, -2.7549824150058617, -2.7491207502930832, -2.7432590855803047, -2.7373974208675262, -2.7315357561547478, -2.7256740914419697, -2.719812426729191, -2.7139507620164127, -2.7080890973036342, -2.7022274325908557, -2.6963657678780772, -2.6905041031652988, -2.6846424384525207, -2.678780773739742, -2.6729191090269637, -2.6670574443141852, -2.6611957796014067, -2.6553341148886282, -2.6494724501758498, -2.6436107854630717, -2.637749120750293, -2.6318874560375147, -2.6260257913247362, -2.6201641266119577, -2.6143024618991793, -2.6084407971864008, -2.6025791324736227, -2.5967174677608442, -2.5908558030480657, -2.5849941383352872, -2.5791324736225087, -2.5732708089097303, -2.5674091441969518, -2.5615474794841733, -2.5556858147713952, -2.5498241500586167, -2.5439624853458382, -2.5381008206330598, -2.5322391559202813, -2.5263774912075028, -2.5205158264947243, -2.5146541617819462, -2.5087924970691677, -2.5029308323563892, -2.4970691676436108, -2.4912075029308323, -2.4853458382180538, -2.4794841735052753, -2.4736225087924972, -2.4677608440797187, -2.4618991793669402, -2.4560375146541618, -2.4501758499413833, -2.4443141852286048, -2.4384525205158263, -2.4325908558030482, -2.4267291910902697, -2.4208675263774913, -2.4150058616647128, -2.4091441969519343, -2.4032825322391558, -2.3974208675263773, -2.3915592028135992, -2.3856975381008207, -2.3798358733880423, -2.3739742086752638, -2.3681125439624853, -2.362250879249707, -2.3563892145369283, -2.3505275498241502, -2.3446658851113718, -2.3388042203985933, -2.3329425556858148, -2.3270808909730363, -2.321219226260258, -2.3153575615474793, -2.3094958968347012, -2.3036342321219228, -2.2977725674091443, -2.2919109026963658, -2.2860492379835873, -2.280187573270809, -2.2743259085580303, -2.2684642438452522, -2.2626025791324738, -2.2567409144196953, -2.2508792497069168, -2.2450175849941383, -2.23915592028136, -2.2332942555685813, -2.2274325908558033, -2.2215709261430248, -2.2157092614302463, -2.2098475967174678, -2.2039859320046893, -2.198124267291911, -2.1922626025791323, -2.1864009378663543, -2.1805392731535758, -2.1746776084407973, -2.168815943728019, -2.1629542790152403, -2.157092614302462, -2.1512309495896833, -2.145369284876905, -2.1395076201641268, -2.1336459554513483, -2.12778429073857, -2.1219226260257913, -2.116060961313013, -2.1101992966002343, -2.104337631887456, -2.0984759671746778, -2.0926143024618993, -2.086752637749121, -2.0808909730363423, -2.075029308323564, -2.0691676436107853, -2.063305978898007, -2.0574443141852288, -2.0515826494724503, -2.045720984759672, -2.0398593200468933, -2.033997655334115, -2.0281359906213363, -2.022274325908558, -2.0164126611957798, -2.0105509964830013, -2.004689331770223, -1.9988276670574443, -1.9929660023446658, -1.9871043376318873, -1.9812426729191088, -1.9753810082063308, -1.9695193434935523, -1.9636576787807738, -1.9577960140679953, -1.9519343493552168, -1.9460726846424383, -1.9402110199296598, -1.9343493552168818, -1.9284876905041033, -1.9226260257913248, -1.9167643610785463, -1.9109026963657678, -1.9050410316529893, -1.8991793669402108, -1.8933177022274328, -1.8874560375146543, -1.8815943728018758, -1.8757327080890973, -1.8698710433763188, -1.8640093786635403, -1.8581477139507618, -1.8522860492379838, -1.8464243845252053, -1.8405627198124268, -1.8347010550996483, -1.8288393903868698, -1.8229777256740913, -1.8171160609613128, -1.8112543962485343, -1.8053927315357563, -1.7995310668229778, -1.7936694021101993, -1.7878077373974208, -1.7819460726846423, -1.7760844079718638, -1.7702227432590854, -1.7643610785463073, -1.7584994138335288, -1.7526377491207503, -1.7467760844079718, -1.7409144196951933, -1.7350527549824148, -1.7291910902696364, -1.7233294255568583, -1.7174677608440798, -1.7116060961313013, -1.7057444314185228, -1.6998827667057443, -1.6940211019929658, -1.6881594372801874, -1.6822977725674093, -1.6764361078546308, -1.6705744431418523, -1.6647127784290738, -1.6588511137162953, -1.6529894490035169, -1.6471277842907384, -1.6412661195779603, -1.6354044548651818, -1.6295427901524033, -1.6236811254396248, -1.6178194607268463, -1.6119577960140679, -1.6060961313012894, -1.6002344665885113, -1.5943728018757328, -1.5885111371629543, -1.5826494724501758, -1.5767878077373974, -1.5709261430246189, -1.5650644783118404, -1.5592028135990623, -1.5533411488862838, -1.5474794841735053, -1.5416178194607268, -1.5357561547479484, -1.5298944900351699, -1.5240328253223914, -1.5181711606096133, -1.5123094958968348, -1.5064478311840563, -1.5005861664712778, -1.4947245017584994, -1.4888628370457209, -1.4830011723329424, -1.4771395076201643, -1.4712778429073858, -1.4654161781946073, -1.4595545134818289, -1.4536928487690504, -1.4478311840562719, -1.4419695193434934, -1.4361078546307153, -1.4302461899179368, -1.4243845252051583, -1.4185228604923799, -1.4126611957796014, -1.4067995310668229, -1.4009378663540444, -1.395076201641266, -1.3892145369284878, -1.3833528722157094, -1.3774912075029309, -1.3716295427901524, -1.3657678780773739, -1.3599062133645954, -1.354044548651817, -1.3481828839390388, -1.3423212192262604, -1.3364595545134819, -1.3305978898007034, -1.3247362250879249, -1.3188745603751464, -1.313012895662368, -1.3071512309495898, -1.3012895662368114, -1.2954279015240329, -1.2895662368112544, -1.2837045720984759, -1.2778429073856974, -1.271981242672919, -1.2661195779601409, -1.2602579132473624, -1.2543962485345839, -1.2485345838218054, -1.2426729191090269, -1.2368112543962484, -1.23094958968347, -1.2250879249706919, -1.2192262602579134, -1.2133645955451349, -1.2075029308323564, -1.2016412661195779, -1.1957796014067994, -1.189917936694021, -1.1840562719812429, -1.1781946072684644, -1.1723329425556859, -1.1664712778429074, -1.160609613130129, -1.1547479484173504, -1.148886283704572, -1.1430246189917939, -1.1371629542790154, -1.1313012895662369, -1.1254396248534584, -1.11957796014068, -1.1137162954279014, -1.107854630715123, -1.1019929660023449, -1.0961313012895664, -1.0902696365767879, -1.0844079718640094, -1.078546307151231, -1.0726846424384524, -1.066822977725674, -1.0609613130128954, -1.0550996483001174, -1.0492379835873389, -1.0433763188745604, -1.037514654161782, -1.0316529894490034, -1.025791324736225, -1.0199296600234464, -1.0140679953106684, -1.0082063305978899, -1.0023446658851114, -0.9964830011723329, -0.9906213364595544, -0.9847596717467759, -0.9788980070339974, -0.9730363423212189, -0.9671746776084404, -0.961313012895662, -0.9554513481828844, -0.9495896834701059, -0.9437280187573274, -0.9378663540445489, -0.9320046893317704, -0.9261430246189919, -0.9202813599062134, -0.9144196951934349, -0.9085580304806564, -0.9026963657678779, -0.8968347010550994, -0.890973036342321, -0.8851113716295425, -0.879249706916764, -0.8733880422039864, -0.8675263774912079, -0.8616647127784294, -0.8558030480656509, -0.8499413833528724, -0.8440797186400939, -0.8382180539273154, -0.8323563892145369, -0.8264947245017584, -0.8206330597889799, -0.8147713950762014, -0.808909730363423, -0.8030480656506445, -0.797186400937866, -0.7913247362250875, -0.7854630715123099, -0.7796014067995314, -0.7737397420867529, -0.7678780773739744, -0.7620164126611959, -0.7561547479484174, -0.7502930832356389, -0.7444314185228604, -0.7385697538100819, -0.7327080890973034, -0.726846424384525, -0.7209847596717465, -0.715123094958968, -0.7092614302461895, -0.7033997655334119, -0.6975381008206334, -0.6916764361078549, -0.6858147713950764, -0.6799531066822979, -0.6740914419695194, -0.6682297772567409, -0.6623681125439624, -0.656506447831184, -0.6506447831184055, -0.644783118405627, -0.6389214536928485, -0.63305978898007, -0.6271981242672915, -0.6213364595545139, -0.6154747948417354, -0.6096131301289569, -0.6037514654161784, -0.5978898007033999, -0.5920281359906214, -0.5861664712778429, -0.5803048065650644, -0.574443141852286, -0.5685814771395075, -0.562719812426729, -0.5568581477139505, -0.550996483001172, -0.5451348182883935, -0.5392731535756159, -0.5334114888628374, -0.5275498241500589, -0.5216881594372804, -0.5158264947245019, -0.5099648300117234, -0.5041031652989449, -0.49824150058616645, -0.49237983587338796, -0.48651817116060947, -0.480656506447831, -0.4747948417350525, -0.468933177022274, -0.4630715123094955, -0.457209847596717, -0.4513481828839394, -0.4454865181711609, -0.4396248534583824, -0.43376318874560393, -0.42790152403282544, -0.42203985932004695, -0.41617819460726846, -0.41031652989448997, -0.4044548651817115, -0.398593200468933, -0.3927315357561545, -0.386869871043376, -0.3810082063305975, -0.375146541617819, -0.3692848769050414, -0.3634232121922629, -0.35756154747948443, -0.35169988276670594, -0.34583821805392745, -0.33997655334114896, -0.33411488862837047, -0.328253223915592, -0.3223915592028135, -0.316529894490035, -0.3106682297772565, -0.304806565064478, -0.2989449003516995, -0.293083235638921, -0.2872215709261434, -0.28135990621336493, -0.27549824150058644, -0.26963657678780795, -0.26377491207502946, -0.25791324736225096, -0.25205158264947247, -0.24618991793669398, -0.2403282532239155, -0.234466588511137, -0.2286049237983585, -0.22274325908558001, -0.21688159437280152, -0.21101992966002303, -0.20515826494724543, -0.19929660023446694, -0.19343493552168844, -0.18757327080890995, -0.18171160609613146, -0.17584994138335297, -0.16998827667057448, -0.164126611957796, -0.1582649472450175, -0.152403282532239, -0.1465416178194605, -0.14067995310668202, -0.13481828839390353, -0.12895662368112504, -0.12309495896834655, -0.11723329425556894, -0.11137162954279045, -0.10550996483001196, -0.09964830011723347, -0.09378663540445498, -0.08792497069167649, -0.082063305978898, -0.0762016412661195, -0.07033997655334101, -0.06447831184056252, -0.05861664712778403, -0.052754982415005536, -0.046893317702227044, -0.04103165298944855, -0.03516998827667095, -0.029308323563892458, -0.023446658851113966, -0.017584994138335475, -0.011723329425556983, -0.0058616647127784915, 0.0, 0.0058616647127784915, 0.011723329425556983, 0.017584994138335475, 0.023446658851113966, 0.029308323563892458, 0.03516998827667095, 0.04103165298944944, 0.046893317702227044, 0.052754982415005536, 0.05861664712778403, 0.06447831184056252, 0.07033997655334101, 0.0762016412661195, 0.082063305978898, 0.08792497069167649, 0.09378663540445498, 0.09964830011723347, 0.10550996483001196, 0.11137162954279045, 0.11723329425556894, 0.12309495896834743, 0.12895662368112504, 0.13481828839390353, 0.14067995310668202, 0.1465416178194605, 0.152403282532239, 0.1582649472450175, 0.164126611957796, 0.16998827667057448, 0.17584994138335297, 0.18171160609613146, 0.18757327080890995, 0.19343493552168844, 0.19929660023446694, 0.20515826494724543, 0.21101992966002303, 0.21688159437280152, 0.22274325908558001, 0.2286049237983585, 0.234466588511137, 0.2403282532239155, 0.24618991793669398, 0.25205158264947247, 0.25791324736225096, 0.26377491207502946, 0.26963657678780795, 0.27549824150058644, 0.28135990621336493, 0.2872215709261434, 0.2930832356389219, 0.2989449003516995, 0.304806565064478, 0.3106682297772565, 0.316529894490035, 0.3223915592028135, 0.328253223915592, 0.33411488862837047, 0.33997655334114896, 0.34583821805392745, 0.35169988276670594, 0.35756154747948443, 0.3634232121922629, 0.3692848769050414, 0.3751465416178199, 0.3810082063305975, 0.386869871043376, 0.3927315357561545, 0.398593200468933, 0.4044548651817115, 0.41031652989448997, 0.41617819460726846, 0.42203985932004695, 0.42790152403282544, 0.43376318874560393, 0.4396248534583824, 0.4454865181711609, 0.4513481828839394, 0.4572098475967179, 0.4630715123094955, 0.468933177022274, 0.4747948417350525, 0.480656506447831, 0.48651817116060947, 0.49237983587338796, 0.49824150058616645, 0.5041031652989449, 0.5099648300117234, 0.5158264947245019, 0.5216881594372804, 0.5275498241500589, 0.5334114888628374, 0.5392731535756159, 0.5451348182883935, 0.550996483001172, 0.5568581477139505, 0.562719812426729, 0.5685814771395075, 0.574443141852286, 0.5803048065650644, 0.5861664712778429, 0.5920281359906214, 0.5978898007033999, 0.6037514654161784, 0.6096131301289569, 0.6154747948417354, 0.6213364595545139, 0.6271981242672915, 0.63305978898007, 0.6389214536928485, 0.644783118405627, 0.6506447831184055, 0.656506447831184, 0.6623681125439624, 0.6682297772567409, 0.6740914419695194, 0.6799531066822979, 0.6858147713950764, 0.6916764361078549, 0.6975381008206334, 0.7033997655334119, 0.7092614302461904, 0.715123094958968, 0.7209847596717465, 0.726846424384525, 0.7327080890973034, 0.7385697538100819, 0.7444314185228604, 0.7502930832356389, 0.7561547479484174, 0.7620164126611959, 0.7678780773739744, 0.7737397420867529, 0.7796014067995314, 0.7854630715123099, 0.7913247362250884, 0.797186400937866, 0.8030480656506445, 0.808909730363423, 0.8147713950762014, 0.8206330597889799, 0.8264947245017584, 0.8323563892145369, 0.8382180539273154, 0.8440797186400939, 0.8499413833528724, 0.8558030480656509, 0.8616647127784294, 0.8675263774912079, 0.8733880422039864, 0.879249706916764, 0.8851113716295425, 0.890973036342321, 0.8968347010550994, 0.9026963657678779, 0.9085580304806564, 0.9144196951934349, 0.9202813599062134, 0.9261430246189919, 0.9320046893317704, 0.9378663540445489, 0.9437280187573274, 0.9495896834701059, 0.9554513481828844, 0.961313012895662, 0.9671746776084404, 0.9730363423212189, 0.9788980070339974, 0.9847596717467759, 0.9906213364595544, 0.9964830011723329, 1.0023446658851114, 1.0082063305978899, 1.0140679953106684, 1.0199296600234469, 1.0257913247362254, 1.0316529894490039, 1.0375146541617823, 1.0433763188745608, 1.0492379835873384, 1.055099648300117, 1.0609613130128954, 1.066822977725674, 1.0726846424384524, 1.078546307151231, 1.0844079718640094, 1.0902696365767879, 1.0961313012895664, 1.1019929660023449, 1.1078546307151234, 1.1137162954279018, 1.1195779601406803, 1.1254396248534588, 1.1313012895662364, 1.137162954279015, 1.1430246189917934, 1.148886283704572, 1.1547479484173504, 1.160609613130129, 1.1664712778429074, 1.1723329425556859, 1.1781946072684644, 1.1840562719812429, 1.1899179366940213, 1.1957796014067998, 1.2016412661195783, 1.2075029308323568, 1.2133645955451344, 1.219226260257913, 1.2250879249706914, 1.23094958968347, 1.2368112543962484, 1.2426729191090269, 1.2485345838218054, 1.2543962485345839, 1.2602579132473624, 1.2661195779601409, 1.2719812426729193, 1.2778429073856978, 1.2837045720984763, 1.2895662368112548, 1.2954279015240324, 1.301289566236811, 1.3071512309495894, 1.313012895662368, 1.3188745603751464, 1.3247362250879249, 1.3305978898007034, 1.3364595545134819, 1.3423212192262604, 1.3481828839390388, 1.3540445486518173, 1.3599062133645958, 1.3657678780773743, 1.3716295427901528, 1.3774912075029313, 1.383352872215709, 1.3892145369284874, 1.395076201641266, 1.4009378663540444, 1.4067995310668229, 1.4126611957796014, 1.4185228604923799, 1.4243845252051583, 1.4302461899179368, 1.4361078546307153, 1.4419695193434938, 1.4478311840562723, 1.4536928487690508, 1.4595545134818293, 1.465416178194607, 1.4712778429073854, 1.4771395076201639, 1.4830011723329424, 1.4888628370457209, 1.4947245017584994, 1.5005861664712778, 1.5064478311840563, 1.5123094958968348, 1.5181711606096133, 1.5240328253223918, 1.5298944900351703, 1.5357561547479488, 1.5416178194607273, 1.547479484173505, 1.5533411488862834, 1.5592028135990619, 1.5650644783118404, 1.5709261430246189, 1.5767878077373974, 1.5826494724501758, 1.5885111371629543, 1.5943728018757328, 1.6002344665885113, 1.6060961313012898, 1.6119577960140683, 1.6178194607268468, 1.6236811254396253, 1.6295427901524029, 1.6354044548651814, 1.6412661195779599, 1.6471277842907384, 1.6529894490035169, 1.6588511137162953, 1.6647127784290738, 1.6705744431418523, 1.6764361078546308, 1.6822977725674093, 1.6881594372801878, 1.6940211019929663, 1.6998827667057448, 1.7057444314185233, 1.7116060961313009, 1.7174677608440794, 1.7233294255568579, 1.7291910902696364, 1.7350527549824148, 1.7409144196951933, 1.7467760844079718, 1.7526377491207503, 1.7584994138335288, 1.7643610785463073, 1.7702227432590858, 1.7760844079718643, 1.7819460726846428, 1.7878077373974213, 1.7936694021101998, 1.7995310668229774, 1.8053927315357559, 1.8112543962485343, 1.8171160609613128, 1.8229777256740913, 1.8288393903868698, 1.8347010550996483, 1.8405627198124268, 1.8464243845252053, 1.8522860492379838, 1.8581477139507623, 1.8640093786635408, 1.8698710433763193, 1.8757327080890978, 1.8815943728018754, 1.8874560375146539, 1.8933177022274323, 1.8991793669402108, 1.9050410316529893, 1.9109026963657678, 1.9167643610785463, 1.9226260257913248, 1.9284876905041033, 1.9343493552168818, 1.9402110199296603, 1.9460726846424388, 1.9519343493552173, 1.9577960140679957, 1.9636576787807734, 1.9695193434935518, 1.9753810082063303, 1.9812426729191088, 1.9871043376318873, 1.9929660023446658, 1.9988276670574443, 2.004689331770223, 2.0105509964830013, 2.0164126611957798, 2.0222743259085583, 2.0281359906213368, 2.0339976553341153, 2.0398593200468937, 2.0457209847596713, 2.05158264947245, 2.0574443141852283, 2.063305978898007, 2.0691676436107853, 2.075029308323564, 2.0808909730363423, 2.086752637749121, 2.0926143024618993, 2.0984759671746778, 2.1043376318874563, 2.1101992966002348, 2.1160609613130132, 2.1219226260257917, 2.1277842907385693, 2.133645955451348, 2.1395076201641263, 2.145369284876905, 2.1512309495896833, 2.157092614302462, 2.1629542790152403, 2.168815943728019, 2.1746776084407973, 2.1805392731535758, 2.1864009378663543, 2.1922626025791327, 2.1981242672919112, 2.2039859320046897, 2.209847596717468, 2.215709261430246, 2.2215709261430243, 2.227432590855803, 2.2332942555685813, 2.23915592028136, 2.2450175849941383, 2.2508792497069168, 2.2567409144196953, 2.2626025791324738, 2.2684642438452522, 2.2743259085580307, 2.2801875732708092, 2.2860492379835877, 2.291910902696366, 2.297772567409144, 2.3036342321219223, 2.309495896834701, 2.3153575615474793, 2.321219226260258, 2.3270808909730363, 2.3329425556858148, 2.3388042203985933, 2.3446658851113718, 2.3505275498241502, 2.3563892145369287, 2.3622508792497072, 2.3681125439624857, 2.373974208675264, 2.379835873388042, 2.3856975381008203, 2.391559202813599, 2.3974208675263773, 2.4032825322391558, 2.4091441969519343, 2.4150058616647128, 2.4208675263774913, 2.4267291910902697, 2.4325908558030482, 2.4384525205158267, 2.444314185228605, 2.4501758499413837, 2.456037514654162, 2.46189917936694, 2.4677608440797183, 2.473622508792497, 2.4794841735052753, 2.4853458382180538, 2.4912075029308323, 2.4970691676436108, 2.5029308323563892, 2.5087924970691677, 2.5146541617819462, 2.5205158264947247, 2.526377491207503, 2.5322391559202817, 2.53810082063306, 2.5439624853458387, 2.5498241500586163, 2.555685814771395, 2.5615474794841733, 2.5674091441969518, 2.5732708089097303, 2.5791324736225087, 2.5849941383352872, 2.5908558030480657, 2.5967174677608442, 2.6025791324736227, 2.608440797186401, 2.6143024618991797, 2.620164126611958, 2.6260257913247367, 2.6318874560375143, 2.6377491207502928, 2.6436107854630713, 2.6494724501758498, 2.6553341148886282, 2.6611957796014067, 2.6670574443141852, 2.6729191090269637, 2.678780773739742, 2.6846424384525207, 2.690504103165299, 2.6963657678780777, 2.702227432590856, 2.7080890973036347, 2.7139507620164123, 2.7198124267291908, 2.7256740914419693, 2.7315357561547478, 2.7373974208675262, 2.7432590855803047, 2.7491207502930832, 2.7549824150058617, 2.76084407971864, 2.7667057444314187, 2.772567409144197, 2.7784290738569757, 2.784290738569754, 2.7901524032825327, 2.7960140679953103, 2.8018757327080888, 2.8077373974208673, 2.8135990621336457, 2.8194607268464242, 2.8253223915592027, 2.831184056271981, 2.8370457209847597, 2.842907385697538, 2.8487690504103167, 2.854630715123095, 2.8604923798358737, 2.866354044548652, 2.8722157092614307, 2.878077373974209, 2.8839390386869868, 2.8898007033997652, 2.8956623681125437, 2.9015240328253222, 2.9073856975381007, 2.913247362250879, 2.9191090269636577, 2.924970691676436, 2.9308323563892147, 2.936694021101993, 2.9425556858147717, 2.94841735052755, 2.9542790152403287, 2.960140679953107, 2.9660023446658847, 2.9718640093786632, 2.9777256740914417, 2.9835873388042202, 2.9894490035169987, 2.995310668229777, 3.0011723329425557, 3.007033997655334, 3.0128956623681127, 3.018757327080891, 3.0246189917936697, 3.030480656506448, 3.0363423212192266, 3.042203985932005, 3.0480656506447836, 3.053927315357562, 3.0597889800703406, 3.065650644783119, 3.0715123094958976, 3.077373974208676, 3.0832356389214546, 3.0890973036342313, 3.09495896834701, 3.1008206330597883, 3.1066822977725668, 3.1125439624853453, 3.1184056271981238, 3.1242672919109022, 3.1301289566236807, 3.1359906213364592, 3.1418522860492377, 3.147713950762016, 3.1535756154747947, 3.159437280187573, 3.1652989449003517, 3.17116060961313, 3.1770222743259087, 3.182883939038687, 3.1887456037514657, 3.194607268464244, 3.2004689331770226, 3.206330597889801, 3.2121922626025796, 3.218053927315358, 3.2239155920281366, 3.229777256740915, 3.2356389214536936, 3.241500586166472, 3.2473622508792506, 3.2532239155920273, 3.2590855803048058, 3.2649472450175843, 3.2708089097303628, 3.2766705744431412, 3.2825322391559197, 3.2883939038686982, 3.2942555685814767, 3.300117233294255, 3.3059788980070337, 3.311840562719812, 3.3177022274325907, 3.323563892145369, 3.3294255568581477, 3.335287221570926, 3.3411488862837047, 3.347010550996483, 3.3528722157092616, 3.35873388042204, 3.3645955451348186, 3.370457209847597, 3.3763188745603756, 3.382180539273154, 3.3880422039859326, 3.393903868698711, 3.3997655334114896, 3.405627198124268, 3.4114888628370466, 3.417350527549825, 3.4232121922626018, 3.4290738569753803, 3.4349355216881587, 3.4407971864009372, 3.4466588511137157, 3.452520515826494, 3.4583821805392727, 3.464243845252051, 3.4701055099648297, 3.475967174677608, 3.4818288393903867, 3.487690504103165, 3.4935521688159437, 3.499413833528722, 3.5052754982415006, 3.511137162954279, 3.5169988276670576, 3.522860492379836, 3.5287221570926146, 3.534583821805393, 3.5404454865181716, 3.54630715123095, 3.5521688159437286, 3.558030480656507, 3.5638921453692856, 3.569753810082064, 3.5756154747948425, 3.581477139507621, 3.5873388042203977, 3.5932004689331762, 3.5990621336459547, 3.6049237983587332, 3.6107854630715117, 3.61664712778429, 3.6225087924970687, 3.628370457209847, 3.6342321219226257, 3.640093786635404, 3.6459554513481827, 3.651817116060961, 3.6576787807737396, 3.663540445486518, 3.6694021101992966, 3.675263774912075, 3.6811254396248536, 3.686987104337632, 3.6928487690504106, 3.698710433763189, 3.7045720984759676, 3.710433763188746, 3.7162954279015246, 3.722157092614303, 3.7280187573270815, 3.73388042203986, 3.7397420867526385, 3.745603751465417, 3.7514654161781955, 3.7573270808909722, 3.7631887456037507, 3.769050410316529, 3.7749120750293077, 3.780773739742086, 3.7866354044548647, 3.792497069167643, 3.7983587338804217, 3.8042203985932, 3.8100820633059787, 3.815943728018757, 3.8218053927315356, 3.827667057444314, 3.8335287221570926, 3.839390386869871, 3.8452520515826496, 3.851113716295428, 3.8569753810082066, 3.862837045720985, 3.8686987104337636, 3.874560375146542, 3.8804220398593205, 3.886283704572099, 3.8921453692848775, 3.898007033997656, 3.9038686987104345, 3.909730363423213, 3.9155920281359915, 3.921453692848768, 3.9273153575615467, 3.933177022274325, 3.9390386869871037, 3.944900351699882, 3.9507620164126607, 3.956623681125439, 3.9624853458382177, 3.968347010550996, 3.9742086752637746, 3.980070339976553, 3.9859320046893316, 3.99179366940211, 3.9976553341148886, 4.003516998827667, 4.009378663540446, 4.015240328253224, 4.021101992966003, 4.026963657678781, 4.0328253223915596, 4.038686987104338, 4.0445486518171165, 4.050410316529895, 4.0562719812426735, 4.062133645955452, 4.0679953106682305, 4.073856975381009, 4.0797186400937875, 4.085580304806566, 4.091441969519343, 4.097303634232121, 4.1031652989449, 4.109026963657678, 4.114888628370457, 4.120750293083235, 4.126611957796014, 4.132473622508792, 4.138335287221571, 4.144196951934349, 4.150058616647128, 4.155920281359906, 4.161781946072685, 4.167643610785463, 4.173505275498242, 4.17936694021102, 4.185228604923799, 4.191090269636577, 4.1969519343493555, 4.202813599062134, 4.2086752637749125, 4.214536928487691, 4.2203985932004695, 4.226260257913248, 4.2321219226260265, 4.237983587338805, 4.2438452520515835, 4.249706916764362, 4.255568581477139, 4.261430246189917, 4.267291910902696, 4.273153575615474, 4.279015240328253, 4.284876905041031, 4.29073856975381, 4.296600234466588, 4.302461899179367, 4.308323563892145, 4.314185228604924, 4.320046893317702, 4.325908558030481, 4.331770222743259, 4.337631887456038, 4.343493552168816, 4.3493552168815945, 4.355216881594373, 4.3610785463071515, 4.36694021101993, 4.3728018757327085, 4.378663540445487, 4.3845252051582655, 4.390386869871044, 4.3962485345838225, 4.402110199296601, 4.4079718640093795, 4.413833528722158, 4.419695193434936, 4.425556858147713, 4.431418522860492, 4.43728018757327, 4.443141852286049, 4.449003516998827, 4.454865181711606, 4.460726846424384, 4.466588511137163, 4.472450175849941, 4.47831184056272, 4.484173505275498, 4.490035169988277, 4.495896834701055, 4.5017584994138335, 4.507620164126612, 4.5134818288393905, 4.519343493552169, 4.5252051582649475, 4.531066822977726, 4.5369284876905045, 4.542790152403283, 4.5486518171160615, 4.55451348182884, 4.5603751465416185, 4.566236811254397, 4.5720984759671754, 4.577960140679954, 4.583821805392732, 4.589683470105509, 4.595545134818288, 4.601406799531066, 4.607268464243845, 4.613130128956623, 4.618991793669402, 4.62485345838218, 4.630715123094959, 4.636576787807737, 4.642438452520516, 4.648300117233294, 4.6541617819460726, 4.660023446658851, 4.6658851113716295, 4.671746776084408, 4.6776084407971865, 4.683470105509965, 4.6893317702227435, 4.695193434935522, 4.7010550996483005, 4.706916764361079, 4.7127784290738575, 4.718640093786636, 4.7245017584994144, 4.730363423212193, 4.736225087924971, 4.74208675263775, 4.747948417350528, 4.753810082063307, 4.759671746776084, 4.765533411488862, 4.771395076201641, 4.777256740914419, 4.783118405627198, 4.788980070339976, 4.794841735052755, 4.800703399765533, 4.8065650644783116, 4.81242672919109, 4.8182883939038685, 4.824150058616647, 4.8300117233294255, 4.835873388042204, 4.8417350527549825, 4.847596717467761, 4.8534583821805395, 4.859320046893318, 4.8651817116060965, 4.871043376318875, 4.8769050410316535, 4.882766705744432, 4.88862837045721, 4.894490035169989, 4.900351699882767, 4.906213364595546, 4.912075029308324, 4.917936694021103, 4.92379835873388, 4.929660023446658, 4.935521688159437, 4.941383352872215, 4.947245017584994, 4.953106682297772, 4.958968347010551, 4.964830011723329, 4.9706916764361075, 4.976553341148886, 4.9824150058616645, 4.988276670574443, 4.9941383352872215, 5.0], "x": [1.0, 1.0052754982415006, 1.010550996483001, 1.0158264947245017, 1.0211019929660023, 1.026377491207503, 1.0316529894490034, 1.036928487690504, 1.0422039859320047, 1.0474794841735053, 1.0527549824150058, 1.0580304806565064, 1.063305978898007, 1.0685814771395077, 1.073856975381008, 1.0791324736225087, 1.0844079718640094, 1.08968347010551, 1.0949589683470105, 1.100234466588511, 1.1055099648300117, 1.1107854630715124, 1.1160609613130128, 1.1213364595545134, 1.126611957796014, 1.1318874560375147, 1.1371629542790151, 1.1424384525205158, 1.1477139507620164, 1.152989449003517, 1.1582649472450175, 1.1635404454865181, 1.1688159437280188, 1.1740914419695194, 1.1793669402110198, 1.1846424384525205, 1.1899179366940211, 1.1951934349355218, 1.2004689331770222, 1.2057444314185228, 1.2110199296600235, 1.2162954279015241, 1.2215709261430245, 1.2268464243845252, 1.2321219226260258, 1.2373974208675265, 1.2426729191090269, 1.2479484173505275, 1.2532239155920282, 1.2584994138335288, 1.2637749120750292, 1.2690504103165299, 1.2743259085580305, 1.279601406799531, 1.2848769050410316, 1.2901524032825322, 1.2954279015240329, 1.3007033997655335, 1.305978898007034, 1.3112543962485346, 1.3165298944900352, 1.3218053927315356, 1.3270808909730363, 1.332356389214537, 1.3376318874560376, 1.3429073856975382, 1.3481828839390386, 1.3534583821805393, 1.35873388042204, 1.3640093786635403, 1.369284876905041, 1.3745603751465416, 1.3798358733880423, 1.385111371629543, 1.3903868698710433, 1.395662368112544, 1.4009378663540446, 1.406213364595545, 1.4114888628370457, 1.4167643610785463, 1.422039859320047, 1.4273153575615476, 1.432590855803048, 1.4378663540445487, 1.4431418522860493, 1.4484173505275497, 1.4536928487690504, 1.458968347010551, 1.4642438452520516, 1.4695193434935523, 1.4747948417350527, 1.4800703399765534, 1.485345838218054, 1.4906213364595544, 1.495896834701055, 1.5011723329425557, 1.5064478311840563, 1.511723329425557, 1.5169988276670574, 1.522274325908558, 1.5275498241500585, 1.532825322391559, 1.5381008206330598, 1.5433763188745604, 1.548651817116061, 1.5539273153575617, 1.559202813599062, 1.5644783118405627, 1.5697538100820632, 1.5750293083235638, 1.5803048065650644, 1.585580304806565, 1.5908558030480657, 1.5961313012895664, 1.6014067995310668, 1.6066822977725674, 1.6119577960140679, 1.6172332942555685, 1.6225087924970691, 1.6277842907385698, 1.6330597889800704, 1.638335287221571, 1.6436107854630715, 1.6488862837045721, 1.6541617819460726, 1.6594372801875732, 1.6647127784290738, 1.6699882766705745, 1.6752637749120751, 1.6805392731535755, 1.6858147713950762, 1.6910902696365766, 1.6963657678780772, 1.7016412661195779, 1.7069167643610785, 1.7121922626025792, 1.7174677608440798, 1.7227432590855802, 1.7280187573270809, 1.7332942555685813, 1.738569753810082, 1.7438452520515826, 1.7491207502930832, 1.7543962485345839, 1.7596717467760845, 1.764947245017585, 1.7702227432590856, 1.775498241500586, 1.7807737397420866, 1.7860492379835873, 1.791324736225088, 1.7966002344665886, 1.8018757327080892, 1.8071512309495896, 1.8124267291910903, 1.8177022274325907, 1.8229777256740913, 1.828253223915592, 1.8335287221570926, 1.8388042203985933, 1.844079718640094, 1.8493552168815943, 1.854630715123095, 1.8599062133645954, 1.865181711606096, 1.8704572098475967, 1.8757327080890973, 1.881008206330598, 1.8862837045720986, 1.891559202813599, 1.8968347010550997, 1.9021101992966, 1.9073856975381007, 1.9126611957796014, 1.917936694021102, 1.9232121922626026, 1.9284876905041033, 1.9337631887456037, 1.9390386869871044, 1.9443141852286048, 1.9495896834701054, 1.954865181711606, 1.9601406799531067, 1.9654161781946073, 1.970691676436108, 1.9759671746776084, 1.981242672919109, 1.9865181711606095, 1.9917936694021101, 1.9970691676436108, 2.0023446658851114, 2.007620164126612, 2.0128956623681127, 2.0181711606096133, 2.023446658851114, 2.028722157092614, 2.033997655334115, 2.0392731535756154, 2.044548651817116, 2.0498241500586163, 2.055099648300117, 2.0603751465416176, 2.065650644783118, 2.070926143024619, 2.0762016412661195, 2.08147713950762, 2.086752637749121, 2.0920281359906214, 2.097303634232122, 2.1025791324736227, 2.1078546307151234, 2.1131301289566236, 2.118405627198124, 2.123681125439625, 2.1289566236811255, 2.1342321219226257, 2.1395076201641263, 2.144783118405627, 2.1500586166471276, 2.1553341148886282, 2.160609613130129, 2.1658851113716295, 2.17116060961313, 2.176436107854631, 2.1817116060961315, 2.186987104337632, 2.1922626025791327, 2.197538100820633, 2.2028135990621336, 2.2080890973036342, 2.213364595545135, 2.218640093786635, 2.2239155920281357, 2.2291910902696364, 2.234466588511137, 2.2397420867526376, 2.2450175849941383, 2.250293083235639, 2.2555685814771396, 2.26084407971864, 2.266119577960141, 2.2713950762016415, 2.276670574443142, 2.2819460726846423, 2.287221570926143, 2.2924970691676436, 2.2977725674091443, 2.3030480656506445, 2.308323563892145, 2.3135990621336457, 2.3188745603751464, 2.324150058616647, 2.3294255568581477, 2.3347010550996483, 2.339976553341149, 2.3452520515826496, 2.3505275498241502, 2.355803048065651, 2.361078546307151, 2.3663540445486517, 2.3716295427901524, 2.376905041031653, 2.382180539273153, 2.387456037514654, 2.3927315357561545, 2.398007033997655, 2.4032825322391558, 2.4085580304806564, 2.413833528722157, 2.4191090269636577, 2.4243845252051583, 2.429660023446659, 2.4349355216881596, 2.4402110199296603, 2.4454865181711605, 2.450762016412661, 2.4560375146541618, 2.4613130128956624, 2.4665885111371626, 2.4718640093786632, 2.477139507620164, 2.4824150058616645, 2.487690504103165, 2.492966002344666, 2.4982415005861665, 2.503516998827667, 2.5087924970691677, 2.5140679953106684, 2.519343493552169, 2.5246189917936697, 2.52989449003517, 2.5351699882766705, 2.540445486518171, 2.545720984759672, 2.550996483001172, 2.5562719812426726, 2.5615474794841733, 2.566822977725674, 2.5720984759671746, 2.577373974208675, 2.582649472450176, 2.5879249706916765, 2.593200468933177, 2.5984759671746778, 2.6037514654161784, 2.609026963657679, 2.6143024618991793, 2.61957796014068, 2.6248534583821805, 2.630128956623681, 2.6354044548651814, 2.640679953106682, 2.6459554513481827, 2.6512309495896833, 2.656506447831184, 2.6617819460726846, 2.6670574443141852, 2.672332942555686, 2.6776084407971865, 2.682883939038687, 2.688159437280188, 2.693434935521688, 2.6987104337631886, 2.7039859320046893, 2.70926143024619, 2.71453692848769, 2.7198124267291908, 2.7250879249706914, 2.730363423212192, 2.7356389214536927, 2.7409144196951933, 2.746189917936694, 2.7514654161781946, 2.7567409144196953, 2.762016412661196, 2.7672919109026966, 2.772567409144197, 2.7778429073856974, 2.783118405627198, 2.7883939038686987, 2.7936694021101993, 2.7989449003516995, 2.8042203985932, 2.809495896834701, 2.8147713950762014, 2.820046893317702, 2.8253223915592027, 2.8305978898007034, 2.835873388042204, 2.8411488862837047, 2.8464243845252053, 2.851699882766706, 2.8569753810082066, 2.862250879249707, 2.8675263774912074, 2.872801875732708, 2.8780773739742087, 2.883352872215709, 2.8886283704572095, 2.89390386869871, 2.899179366940211, 2.9044548651817115, 2.909730363423212, 2.9150058616647128, 2.9202813599062134, 2.925556858147714, 2.9308323563892147, 2.9361078546307153, 2.941383352872216, 2.946658851113716, 2.951934349355217, 2.9572098475967175, 2.962485345838218, 2.9677608440797183, 2.973036342321219, 2.9783118405627196, 2.9835873388042202, 2.988862837045721, 2.9941383352872215, 2.999413833528722, 3.004689331770223, 3.0099648300117234, 3.015240328253224, 3.0205158264947243, 3.025791324736225, 3.0310668229777256, 3.036342321219226, 3.041617819460727, 3.0468933177022275, 3.052168815943728, 3.0574443141852283, 3.062719812426729, 3.0679953106682296, 3.0732708089097303, 3.078546307151231, 3.0838218053927315, 3.089097303634232, 3.094372801875733, 3.099648300117233, 3.1049237983587337, 3.1101992966002343, 3.115474794841735, 3.1207502930832356, 3.1260257913247362, 3.131301289566237, 3.1365767878077375, 3.1418522860492377, 3.1471277842907384, 3.152403282532239, 3.1576787807737396, 3.1629542790152403, 3.168229777256741, 3.1735052754982416, 3.178780773739742, 3.1840562719812424, 3.189331770222743, 3.1946072684642437, 3.1998827667057443, 3.205158264947245, 3.2104337631887456, 3.2157092614302463, 3.220984759671747, 3.226260257913247, 3.2315357561547478, 3.2368112543962484, 3.242086752637749, 3.2473622508792497, 3.2526377491207503, 3.257913247362251, 3.2631887456037516, 3.268464243845252, 3.2737397420867524, 3.279015240328253, 3.2842907385697537, 3.2895662368112544, 3.294841735052755, 3.3001172332942557, 3.3053927315357563, 3.3106682297772565, 3.315943728018757, 3.321219226260258, 3.3264947245017584, 3.331770222743259, 3.3370457209847597, 3.3423212192262604, 3.347596717467761, 3.352872215709261, 3.358147713950762, 3.3634232121922625, 3.368698710433763, 3.3739742086752638, 3.3792497069167644, 3.384525205158265, 3.3898007033997652, 3.395076201641266, 3.4003516998827665, 3.405627198124267, 3.410902696365768, 3.4161781946072685, 3.421453692848769, 3.4267291910902697, 3.43200468933177, 3.4372801875732706, 3.4425556858147712, 3.447831184056272, 3.4531066822977725, 3.458382180539273, 3.463657678780774, 3.4689331770222744, 3.4742086752637746, 3.4794841735052753, 3.484759671746776, 3.4900351699882766, 3.495310668229777, 3.500586166471278, 3.5058616647127785, 3.511137162954279, 3.5164126611957793, 3.52168815943728, 3.5269636576787806, 3.5322391559202813, 3.537514654161782, 3.5427901524032825, 3.548065650644783, 3.553341148886284, 3.558616647127784, 3.5638921453692847, 3.5691676436107853, 3.574443141852286, 3.5797186400937866, 3.5849941383352872, 3.590269636576788, 3.5955451348182885, 3.6008206330597887, 3.6060961313012894, 3.61137162954279, 3.6166471277842906, 3.6219226260257913, 3.627198124267292, 3.6324736225087926, 3.637749120750293, 3.6430246189917934, 3.648300117233294, 3.6535756154747947, 3.6588511137162953, 3.664126611957796, 3.6694021101992966, 3.6746776084407973, 3.679953106682298, 3.685228604923798, 3.6905041031652988, 3.6957796014067994, 3.7010550996483, 3.7063305978898007, 3.7116060961313013, 3.716881594372802, 3.722157092614302, 3.727432590855803, 3.7327080890973034, 3.737983587338804, 3.7432590855803047, 3.7485345838218054, 3.753810082063306, 3.7590855803048067, 3.764361078546307, 3.7696365767878075, 3.774912075029308, 3.780187573270809, 3.7854630715123094, 3.79073856975381, 3.7960140679953107, 3.8012895662368114, 3.8065650644783116, 3.811840562719812, 3.817116060961313, 3.8223915592028135, 3.827667057444314, 3.8329425556858148, 3.8382180539273154, 3.843493552168816, 3.8487690504103163, 3.854044548651817, 3.8593200468933175, 3.864595545134818, 3.869871043376319, 3.8751465416178195, 3.88042203985932, 3.8856975381008207, 3.890973036342321, 3.8962485345838216, 3.9015240328253222, 3.906799531066823, 3.9120750293083235, 3.917350527549824, 3.922626025791325, 3.9279015240328254, 3.9331770222743256, 3.9384525205158263, 3.943728018757327, 3.9490035169988276, 3.954279015240328, 3.959554513481829, 3.9648300117233295, 3.97010550996483, 3.9753810082063303, 3.980656506447831, 3.9859320046893316, 3.9912075029308323, 3.996483001172333, 4.0017584994138335, 4.007033997655334, 4.012309495896835, 4.0175849941383355, 4.022860492379836, 4.028135990621337, 4.033411488862837, 4.038686987104338, 4.043962485345839, 4.049237983587339, 4.054513481828839, 4.05978898007034, 4.06506447831184, 4.070339976553341, 4.075615474794842, 4.080890973036342, 4.086166471277843, 4.091441969519344, 4.096717467760843, 4.101992966002344, 4.107268464243845, 4.112543962485345, 4.117819460726846, 4.1230949589683465, 4.128370457209847, 4.133645955451348, 4.1389214536928485, 4.144196951934349, 4.14947245017585, 4.15474794841735, 4.160023446658851, 4.165298944900352, 4.170574443141852, 4.175849941383353, 4.181125439624854, 4.186400937866354, 4.191676436107855, 4.1969519343493555, 4.202227432590856, 4.207502930832357, 4.2127784290738575, 4.218053927315358, 4.223329425556858, 4.2286049237983585, 4.233880422039859, 4.23915592028136, 4.24443141852286, 4.249706916764361, 4.254982415005862, 4.260257913247362, 4.265533411488862, 4.270808909730363, 4.276084407971863, 4.281359906213364, 4.286635404454865, 4.291910902696365, 4.297186400937866, 4.302461899179367, 4.307737397420867, 4.313012895662368, 4.3182883939038685, 4.323563892145369, 4.32883939038687, 4.3341148886283705, 4.339390386869871, 4.344665885111372, 4.349941383352872, 4.355216881594373, 4.360492379835874, 4.365767878077374, 4.371043376318875, 4.376318874560376, 4.381594372801876, 4.386869871043376, 4.392145369284877, 4.397420867526377, 4.402696365767878, 4.407971864009379, 4.413247362250879, 4.41852286049238, 4.4237983587338805, 4.42907385697538, 4.434349355216881, 4.4396248534583815, 4.444900351699882, 4.450175849941383, 4.4554513481828835, 4.460726846424384, 4.466002344665885, 4.471277842907385, 4.476553341148886, 4.481828839390387, 4.487104337631887, 4.492379835873388, 4.497655334114889, 4.502930832356389, 4.50820633059789, 4.5134818288393905, 4.518757327080891, 4.524032825322392, 4.5293083235638925, 4.534583821805393, 4.539859320046894, 4.545134818288394, 4.550410316529895, 4.555685814771395, 4.560961313012895, 4.566236811254396, 4.571512309495897, 4.576787807737397, 4.582063305978898, 4.587338804220399, 4.592614302461899, 4.597889800703399, 4.6031652989449, 4.6084407971864, 4.613716295427901, 4.618991793669402, 4.624267291910902, 4.629542790152403, 4.6348182883939035, 4.640093786635404, 4.645369284876905, 4.6506447831184055, 4.655920281359906, 4.661195779601407, 4.666471277842907, 4.671746776084408, 4.677022274325909, 4.682297772567409, 4.68757327080891, 4.692848769050411, 4.698124267291911, 4.703399765533412, 4.7086752637749125, 4.713950762016413, 4.719226260257913, 4.724501758499414, 4.729777256740914, 4.735052754982415, 4.7403282532239155, 4.745603751465416, 4.750879249706917, 4.756154747948417, 4.761430246189917, 4.766705744431418, 4.7719812426729185, 4.777256740914419, 4.78253223915592, 4.78780773739742, 4.793083235638921, 4.798358733880422, 4.803634232121922, 4.808909730363423, 4.814185228604924, 4.819460726846424, 4.824736225087925, 4.8300117233294255, 4.835287221570926, 4.840562719812427, 4.8458382180539274, 4.851113716295428, 4.856389214536929, 4.861664712778429, 4.86694021101993, 4.872215709261431, 4.877491207502931, 4.882766705744432, 4.888042203985932, 4.893317702227432, 4.898593200468933, 4.903868698710434, 4.909144196951934, 4.914419695193435, 4.9196951934349356, 4.924970691676436, 4.930246189917936, 4.935521688159437, 4.940797186400937, 4.946072684642438, 4.9513481828839385, 4.956623681125439, 4.96189917936694, 4.9671746776084404, 4.972450175849941, 4.977725674091442, 4.983001172332942, 4.988276670574443, 4.993552168815944, 4.998827667057444, 5.004103165298945, 5.009378663540446, 5.014654161781946, 5.019929660023447, 5.0252051582649475, 5.030480656506448, 5.035756154747948, 5.0410316529894486, 5.046307151230949, 5.05158264947245, 5.0568581477139505, 5.062133645955451, 5.067409144196952, 5.072684642438452, 5.077960140679953, 5.083235638921454, 5.088511137162954, 5.093786635404455, 5.099062133645956, 5.104337631887456, 5.109613130128957, 5.114888628370457, 5.120164126611957, 5.125439624853458, 5.130715123094959, 5.135990621336459, 5.14126611957796, 5.1465416178194605, 5.151817116060961, 5.157092614302462, 5.162368112543962, 5.167643610785463, 5.172919109026964, 5.178194607268464, 5.183470105509965, 5.188745603751466, 5.194021101992966, 5.199296600234466, 5.204572098475967, 5.209847596717467, 5.215123094958968, 5.220398593200469, 5.225674091441969, 5.23094958968347, 5.2362250879249705, 5.241500586166471, 5.246776084407972, 5.2520515826494725, 5.257327080890973, 5.262602579132474, 5.267878077373974, 5.273153575615475, 5.278429073856976, 5.283704572098475, 5.288980070339976, 5.294255568581477, 5.299531066822977, 5.304806565064478, 5.310082063305979, 5.315357561547479, 5.32063305978898, 5.325908558030481, 5.331184056271981, 5.336459554513482, 5.3417350527549825, 5.347010550996483, 5.352286049237984, 5.357561547479484, 5.362837045720985, 5.368112543962485, 5.3733880422039855, 5.378663540445486, 5.383939038686987, 5.389214536928487, 5.394490035169988, 5.399765533411489, 5.405041031652989, 5.41031652989449, 5.415592028135991, 5.420867526377491, 5.426143024618992, 5.4314185228604925, 5.436694021101993, 5.441969519343494, 5.447245017584994, 5.452520515826494, 5.457796014067995, 5.4630715123094955, 5.468347010550996, 5.473622508792497, 5.478898007033997, 5.484173505275498, 5.489449003516999, 5.494724501758499, 5.5, 5.505275498241501, 5.510550996483001, 5.515826494724502, 5.521101992966003, 5.526377491207503, 5.531652989449003, 5.536928487690504, 5.542203985932004, 5.547479484173505, 5.5527549824150055, 5.558030480656506, 5.563305978898007, 5.5685814771395075, 5.573856975381008, 5.579132473622509, 5.584407971864009, 5.58968347010551, 5.594958968347011, 5.600234466588511, 5.605509964830012, 5.610785463071513, 5.616060961313012, 5.621336459554513, 5.626611957796014, 5.631887456037514, 5.637162954279015, 5.642438452520516, 5.647713950762016, 5.652989449003517, 5.6582649472450175, 5.663540445486518, 5.668815943728019, 5.674091441969519, 5.67936694021102, 5.684642438452521, 5.689917936694021, 5.695193434935522, 5.700468933177022, 5.705744431418522, 5.711019929660023, 5.716295427901524, 5.721570926143024, 5.726846424384525, 5.732121922626026, 5.737397420867526, 5.742672919109027, 5.7479484173505275, 5.753223915592028, 5.758499413833529, 5.7637749120750295, 5.76905041031653, 5.774325908558031, 5.7796014067995305, 5.784876905041031, 5.790152403282532, 5.795427901524032, 5.800703399765533, 5.805978898007034, 5.811254396248534, 5.816529894490035, 5.821805392731536, 5.827080890973036, 5.832356389214537, 5.837631887456038, 5.842907385697538, 5.848182883939039, 5.8534583821805395, 5.85873388042204, 5.86400937866354, 5.8692848769050405, 5.874560375146541, 5.879835873388042, 5.8851113716295425, 5.890386869871043, 5.895662368112544, 5.900937866354044, 5.906213364595545, 5.911488862837046, 5.916764361078546, 5.922039859320047, 5.927315357561548, 5.932590855803048, 5.937866354044549, 5.9431418522860495, 5.948417350527549, 5.95369284876905, 5.958968347010551, 5.964243845252051, 5.969519343493552, 5.9747948417350525, 5.980070339976553, 5.985345838218054, 5.990621336459554, 5.995896834701055, 6.001172332942556, 6.006447831184056, 6.011723329425557, 6.016998827667058, 6.022274325908558, 6.027549824150059, 6.032825322391559, 6.038100820633059, 6.04337631887456, 6.048651817116061, 6.053927315357561, 6.059202813599062, 6.0644783118405625, 6.069753810082063, 6.075029308323564, 6.0803048065650644, 6.085580304806565, 6.090855803048066, 6.096131301289566, 6.101406799531067, 6.106682297772568, 6.111957796014067, 6.117233294255568, 6.122508792497069, 6.127784290738569, 6.13305978898007, 6.138335287221571, 6.143610785463071, 6.148886283704572, 6.1541617819460726, 6.159437280187573, 6.164712778429074, 6.1699882766705745, 6.175263774912075, 6.180539273153576, 6.185814771395076, 6.191090269636577, 6.196365767878077, 6.2016412661195774, 6.206916764361078, 6.212192262602579, 6.217467760844079, 6.22274325908558, 6.228018757327081, 6.233294255568581, 6.238569753810082, 6.243845252051583, 6.249120750293083, 6.254396248534584, 6.2596717467760845, 6.264947245017585, 6.270222743259086, 6.275498241500586, 6.280773739742086, 6.286049237983587, 6.2913247362250875, 6.296600234466588, 6.301875732708089, 6.307151230949589, 6.31242672919109, 6.317702227432591, 6.322977725674091, 6.328253223915592, 6.333528722157093, 6.338804220398593, 6.344079718640094, 6.3493552168815945, 6.354630715123095, 6.359906213364596, 6.365181711606096, 6.370457209847596, 6.375732708089097, 6.3810082063305975, 6.386283704572098, 6.391559202813599, 6.396834701055099, 6.4021101992966, 6.407385697538101, 6.412661195779601, 6.417936694021102, 6.423212192262603, 6.428487690504103, 6.433763188745604, 6.439038686987105, 6.444314185228604, 6.449589683470105, 6.454865181711606, 6.460140679953106, 6.465416178194607, 6.4706916764361075, 6.475967174677608, 6.481242672919109, 6.4865181711606095, 6.49179366940211, 6.497069167643611, 6.502344665885111, 6.507620164126612, 6.512895662368113, 6.518171160609613, 6.523446658851114, 6.528722157092614, 6.533997655334114, 6.539273153575615, 6.544548651817116, 6.549824150058616, 6.555099648300117, 6.560375146541618, 6.565650644783118, 6.570926143024619, 6.5762016412661195, 6.58147713950762, 6.586752637749121, 6.592028135990621, 6.597303634232122, 6.602579132473623, 6.607854630715123, 6.613130128956623, 6.618405627198124, 6.623681125439624, 6.628956623681125, 6.634232121922626, 6.639507620164126, 6.644783118405627, 6.650058616647128, 6.655334114888628, 6.660609613130129, 6.6658851113716295, 6.67116060961313, 6.676436107854631, 6.6817116060961315, 6.686987104337632, 6.692262602579133, 6.6975381008206325, 6.702813599062133, 6.708089097303634, 6.713364595545134, 6.718640093786635, 6.723915592028136, 6.729191090269636, 6.734466588511137, 6.739742086752638, 6.745017584994138, 6.750293083235639, 6.75556858147714, 6.76084407971864, 6.766119577960141, 6.7713950762016415, 6.776670574443141, 6.781946072684642, 6.7872215709261425, 6.792497069167643, 6.797772567409144, 6.8030480656506445, 6.808323563892145, 6.813599062133646, 6.818874560375146, 6.824150058616647, 6.829425556858148, 6.834701055099648, 6.839976553341149, 6.84525205158265, 6.85052754982415, 6.855803048065651, 6.861078546307151, 6.866354044548651, 6.871629542790152, 6.876905041031653, 6.882180539273153, 6.887456037514654, 6.8927315357561545, 6.898007033997655, 6.903282532239156, 6.908558030480656, 6.913833528722157, 6.919109026963658, 6.924384525205158, 6.929660023446659, 6.93493552168816, 6.94021101992966, 6.94548651817116, 6.950762016412661, 6.956037514654161, 6.961313012895662, 6.966588511137163, 6.971864009378663, 6.977139507620164, 6.9824150058616645, 6.987690504103165, 6.992966002344666, 6.9982415005861665, 7.003516998827667, 7.008792497069168, 7.014067995310668, 7.019343493552169, 7.02461899179367, 7.029894490035169, 7.03516998827667, 7.040445486518171, 7.045720984759671, 7.050996483001172, 7.056271981242673, 7.061547479484173, 7.066822977725674, 7.072098475967175, 7.077373974208675, 7.082649472450176, 7.0879249706916765, 7.093200468933177, 7.098475967174678, 7.103751465416178, 7.109026963657678, 7.114302461899179, 7.1195779601406795, 7.12485345838218, 7.130128956623681, 7.135404454865181, 7.140679953106682, 7.145955451348183, 7.151230949589683, 7.156506447831184, 7.161781946072685, 7.167057444314185, 7.172332942555686, 7.1776084407971865, 7.182883939038687, 7.188159437280188, 7.193434935521688, 7.198710433763188, 7.203985932004689, 7.2092614302461895, 7.21453692848769, 7.219812426729191, 7.225087924970691, 7.230363423212192, 7.235638921453693, 7.240914419695193, 7.246189917936694, 7.251465416178195, 7.256740914419695, 7.262016412661196, 7.2672919109026966, 7.272567409144197, 7.277842907385697, 7.283118405627198, 7.288393903868698, 7.293669402110199, 7.2989449003516995, 7.3042203985932, 7.309495896834701, 7.314771395076201, 7.320046893317702, 7.325322391559203, 7.330597889800703, 7.335873388042204, 7.341148886283705, 7.346424384525205, 7.351699882766706, 7.356975381008207, 7.362250879249706, 7.367526377491207, 7.372801875732708, 7.378077373974208, 7.383352872215709, 7.3886283704572095, 7.39390386869871, 7.399179366940211, 7.4044548651817115, 7.409730363423212, 7.415005861664713, 7.420281359906213, 7.425556858147714, 7.430832356389215, 7.436107854630715, 7.441383352872215, 7.446658851113716, 7.451934349355216, 7.457209847596717, 7.462485345838218, 7.467760844079718, 7.473036342321219, 7.47831184056272, 7.48358733880422, 7.488862837045721, 7.4941383352872215, 7.499413833528722, 7.504689331770223, 7.509964830011723, 7.515240328253224, 7.520515826494725, 7.5257913247362245, 7.531066822977725, 7.536342321219226, 7.541617819460726, 7.546893317702227, 7.552168815943728, 7.557444314185228, 7.562719812426729, 7.56799531066823, 7.57327080890973, 7.578546307151231, 7.5838218053927315, 7.589097303634232, 7.594372801875733, 7.5996483001172335, 7.604923798358734, 7.610199296600234, 7.6154747948417345, 7.620750293083235, 7.626025791324736, 7.631301289566236, 7.636576787807737, 7.641852286049238, 7.647127784290738, 7.652403282532239, 7.65767878077374, 7.66295427901524, 7.668229777256741, 7.673505275498242, 7.678780773739742, 7.684056271981243, 7.6893317702227435, 7.694607268464243, 7.699882766705744, 7.7051582649472445, 7.710433763188745, 7.715709261430246, 7.7209847596717465, 7.726260257913247, 7.731535756154748, 7.736811254396248, 7.742086752637749, 7.74736225087925, 7.75263774912075, 7.757913247362251, 7.763188745603752, 7.768464243845252, 7.773739742086752, 7.779015240328253, 7.784290738569753, 7.789566236811254, 7.794841735052755, 7.800117233294255, 7.805392731535756, 7.8106682297772565, 7.815943728018757, 7.821219226260258, 7.826494724501758, 7.831770222743259, 7.83704572098476, 7.84232121922626, 7.847596717467761, 7.852872215709262, 7.858147713950761, 7.863423212192262, 7.868698710433763, 7.873974208675263, 7.879249706916764, 7.884525205158265, 7.889800703399765, 7.895076201641266, 7.9003516998827665, 7.905627198124267, 7.910902696365768, 7.9161781946072685, 7.921453692848769, 7.92672919109027, 7.93200468933177, 7.937280187573271, 7.942555685814771, 7.947831184056271, 7.953106682297772, 7.958382180539273, 7.963657678780773, 7.968933177022274, 7.974208675263775, 7.979484173505275, 7.984759671746776, 7.990035169988277, 7.995310668229777, 8.000586166471278, 8.005861664712778, 8.01113716295428, 8.01641266119578, 8.02168815943728, 8.026963657678781, 8.03223915592028, 8.037514654161782, 8.042790152403281, 8.048065650644784, 8.053341148886282, 8.058616647127785, 8.063892145369284, 8.069167643610786, 8.074443141852285, 8.079718640093787, 8.084994138335286, 8.090269636576789, 8.095545134818288, 8.10082063305979, 8.106096131301289, 8.11137162954279, 8.11664712778429, 8.12192262602579, 8.127198124267291, 8.132473622508792, 8.137749120750293, 8.143024618991793, 8.148300117233294, 8.153575615474795, 8.158851113716295, 8.164126611957796, 8.169402110199297, 8.174677608440797, 8.179953106682298, 8.185228604923799, 8.1905041031653, 8.195779601406798, 8.2010550996483, 8.2063305978898, 8.211606096131302, 8.2168815943728, 8.222157092614303, 8.227432590855802, 8.232708089097304, 8.237983587338803, 8.243259085580306, 8.248534583821804, 8.253810082063307, 8.259085580304806, 8.264361078546308, 8.269636576787807, 8.274912075029308, 8.280187573270808, 8.285463071512309, 8.29073856975381, 8.29601406799531, 8.301289566236811, 8.306565064478312, 8.311840562719812, 8.317116060961313, 8.322391559202813, 8.327667057444314, 8.332942555685815, 8.338218053927315, 8.343493552168816, 8.348769050410317, 8.354044548651817, 8.359320046893316, 8.364595545134819, 8.369871043376317, 8.37514654161782, 8.380422039859319, 8.385697538100821, 8.39097303634232, 8.396248534583822, 8.401524032825321, 8.406799531066824, 8.412075029308323, 8.417350527549825, 8.422626025791324, 8.427901524032826, 8.433177022274325, 8.438452520515826, 8.443728018757326, 8.449003516998827, 8.454279015240328, 8.459554513481828, 8.464830011723329, 8.47010550996483, 8.47538100820633, 8.480656506447831, 8.485932004689332, 8.491207502930832, 8.496483001172333, 8.501758499413834, 8.507033997655334, 8.512309495896835, 8.517584994138335, 8.522860492379834, 8.528135990621337, 8.533411488862836, 8.538686987104338, 8.543962485345837, 8.54923798358734, 8.554513481828838, 8.55978898007034, 8.56506447831184, 8.570339976553342, 8.57561547479484, 8.580890973036343, 8.586166471277842, 8.591441969519344, 8.596717467760843, 8.601992966002346, 8.607268464243845, 8.612543962485345, 8.617819460726846, 8.623094958968347, 8.628370457209847, 8.633645955451348, 8.638921453692848, 8.64419695193435, 8.64947245017585, 8.65474794841735, 8.660023446658851, 8.665298944900352, 8.670574443141852, 8.675849941383353, 8.681125439624854, 8.686400937866354, 8.691676436107855, 8.696951934349354, 8.702227432590856, 8.707502930832355, 8.712778429073857, 8.718053927315356, 8.723329425556859, 8.728604923798358, 8.73388042203986, 8.739155920281359, 8.744431418522861, 8.74970691676436, 8.754982415005863, 8.760257913247361, 8.765533411488864, 8.770808909730363, 8.776084407971863, 8.781359906213364, 8.786635404454865, 8.791910902696365, 8.797186400937866, 8.802461899179367, 8.807737397420867, 8.813012895662368, 8.818288393903869, 8.82356389214537, 8.82883939038687, 8.83411488862837, 8.839390386869871, 8.844665885111372, 8.849941383352872, 8.855216881594373, 8.860492379835872, 8.865767878077374, 8.871043376318873, 8.876318874560376, 8.881594372801874, 8.886869871043377, 8.892145369284876, 8.897420867526378, 8.902696365767877, 8.90797186400938, 8.913247362250878, 8.91852286049238, 8.92379835873388, 8.929073856975382, 8.934349355216881, 8.939624853458382, 8.944900351699882, 8.950175849941383, 8.955451348182883, 8.960726846424384, 8.966002344665885, 8.971277842907385, 8.976553341148886, 8.981828839390387, 8.987104337631887, 8.992379835873388, 8.997655334114889, 9.00293083235639, 9.00820633059789, 9.01348182883939, 9.018757327080891, 9.024032825322392, 9.029308323563892, 9.034583821805393, 9.039859320046894, 9.045134818288394, 9.050410316529895, 9.055685814771396, 9.060961313012896, 9.066236811254395, 9.071512309495896, 9.076787807737396, 9.082063305978897, 9.087338804220398, 9.092614302461898, 9.097889800703399, 9.1031652989449, 9.1084407971864, 9.113716295427901, 9.118991793669402, 9.124267291910902, 9.129542790152403, 9.134818288393904, 9.140093786635404, 9.145369284876905, 9.150644783118405, 9.155920281359906, 9.161195779601407, 9.166471277842907, 9.171746776084408, 9.177022274325909, 9.18229777256741, 9.18757327080891, 9.19284876905041, 9.198124267291911, 9.203399765533412, 9.208675263774913, 9.213950762016413, 9.219226260257914, 9.224501758499414, 9.229777256740913, 9.235052754982414, 9.240328253223915, 9.245603751465415, 9.250879249706916, 9.256154747948417, 9.261430246189917, 9.266705744431418, 9.271981242672918, 9.277256740914419, 9.28253223915592, 9.28780773739742, 9.293083235638921, 9.298358733880422, 9.303634232121922, 9.308909730363423, 9.314185228604924, 9.319460726846424, 9.324736225087925, 9.330011723329426, 9.335287221570926, 9.340562719812427, 9.345838218053927, 9.351113716295428, 9.356389214536929, 9.36166471277843, 9.36694021101993, 9.37221570926143, 9.377491207502931, 9.382766705744432, 9.388042203985933, 9.393317702227433, 9.398593200468932, 9.403868698710433, 9.409144196951933, 9.414419695193434, 9.419695193434935, 9.424970691676435, 9.430246189917936, 9.435521688159437, 9.440797186400937, 9.446072684642438, 9.451348182883939, 9.45662368112544, 9.46189917936694, 9.46717467760844, 9.472450175849941, 9.477725674091442, 9.483001172332942, 9.488276670574443, 9.493552168815944, 9.498827667057444, 9.504103165298945, 9.509378663540446, 9.514654161781946, 9.519929660023447, 9.525205158264948, 9.530480656506448, 9.535756154747949, 9.54103165298945, 9.54630715123095, 9.55158264947245, 9.556858147713951, 9.56213364595545, 9.56740914419695, 9.572684642438452, 9.577960140679952, 9.583235638921453, 9.588511137162953, 9.593786635404454, 9.599062133645955, 9.604337631887455, 9.609613130128956, 9.614888628370457, 9.620164126611957, 9.625439624853458, 9.630715123094959, 9.63599062133646, 9.64126611957796, 9.64654161781946, 9.651817116060961, 9.657092614302462, 9.662368112543962, 9.667643610785463, 9.672919109026964, 9.678194607268464, 9.683470105509965, 9.688745603751466, 9.694021101992966, 9.699296600234467, 9.704572098475968, 9.709847596717468, 9.715123094958969, 9.72039859320047, 9.72567409144197, 9.730949589683469, 9.73622508792497, 9.74150058616647, 9.746776084407971, 9.752051582649472, 9.757327080890972, 9.762602579132473, 9.767878077373974, 9.773153575615474, 9.778429073856975, 9.783704572098475, 9.788980070339976, 9.794255568581477, 9.799531066822977, 9.804806565064478, 9.810082063305979, 9.81535756154748, 9.82063305978898, 9.82590855803048, 9.831184056271981, 9.836459554513482, 9.841735052754983, 9.847010550996483, 9.852286049237984, 9.857561547479484, 9.862837045720985, 9.868112543962486, 9.873388042203986, 9.878663540445487, 9.883939038686988, 9.889214536928488, 9.894490035169987, 9.899765533411488, 9.905041031652988, 9.910316529894489, 9.91559202813599, 9.92086752637749, 9.926143024618991, 9.931418522860492, 9.936694021101992, 9.941969519343493, 9.947245017584994, 9.952520515826494, 9.957796014067995, 9.963071512309496, 9.968347010550996, 9.973622508792497, 9.978898007033997, 9.984173505275498, 9.989449003516999, 9.9947245017585, 10.0]}
-},{}],216:[function(require,module,exports){
+
+},{}],249:[function(require,module,exports){
 module.exports={"expected": [-3.7942751801283457e+80, -2355737143794724.0, -71067091115641.3, -9063170279450.127, -2087124176271.5586, -664698880284.7725, -259941384340.27194, -117149121804.33531, -58580672512.73183, -31717351446.54188, -18285548410.84235, -11091928843.435862, -7017246881.016294, -4599161873.874481, -3106567749.036201, -2153668521.926893, -1527303830.2789602, -1104933195.2204509, -813633404.2542384, -608668392.3174516, -461844024.25647455, -354958478.59680694, -276003918.57458067, -216902373.68288428, -172122291.2280759, -137814010.29680032, -111258351.77365969, -90508278.33168176, -74151988.17246735, -61153791.80942287, -50745657.39383356, -42352280.06223629, -35538654.951229975, -29972960.946660027, -25399993.01634245, -21621948.06907162, -18484393.820299745, -15865928.818236005, -13670496.92409935, -11821628.330230037, -10258090.999696258, -8930583.19130861, -7799200.451719615, -6831483.005973276, -6000901.170799601, -5285673.554931432, -4667839.706887117, -4132528.4958278937, -3667377.934182938, -3262072.823642428, -2907974.5558947814, -2597823.358173924, -2325497.76686984, -2085819.5201281852, -1874394.659080449, -1687483.6196771513, -1521894.6323368668, -1374895.9354490226, -1244143.2336943012, -1127619.5550279748, -1023585.227621528, -930536.1453799801, -847168.8447163439, -772351.1966170521, -705097.7424565434, -644548.8816928682, -589953.2639347113, -540652.8542543616, -496070.2347652766, -455697.7818826515, -419088.4208799286, -385847.7101383721, -355627.0490763504, -328117.83790219424, -303046.44546536735, -280169.8647112608, -259271.95447900737, -240160.18234758038, -222662.7965213086, -206626.3658284055, -191913.63617232442, -178401.65954113385, -165980.15820227677, -154550.09219996596, -144022.40290326686, -134316.90926715962, -125361.33678405845, -117090.46191666568, -109445.35719513397, -102372.72419926307, -95824.30338547575, -89756.35120510739, -84129.17623387814, -78906.72712481693, -74056.22613564334, -69547.8427896356, -65354.40292561027, -61451.12899413896, -57815.407977293406, -54426.58375971893, -51265.771169593354, -48315.68924743451, -45560.51159595156, -42985.731921281855, -40578.04310025255, -38325.22830418234, -36216.06288104766, -34240.225847827365, -32388.219976337074, -30651.299571298263, -29021.405140821917, -27491.104248746473, -26053.537916894868, -24702.372014649074, -23431.75313446421, -22236.26850604611, -21110.909549792206, -20051.038712497942, -19052.359265928186, -18110.887782221413, -17222.929029743962, -16385.053059375514, -15594.074274678567, -14847.032300318806, -14141.17448175341, -13473.939865858234, -12842.944527038386, -12245.968116676062, -11680.941525674902, -11145.935560532173, -10639.150542934542, -10158.906751458242, -9703.635631665184, -9271.871707814505, -8862.245135645497, -8473.474841298437, -8104.362196497239, -7753.785184676551, -7420.693016850828, -7104.101159736661, -6803.08674199791, -6516.784307518428, -6244.381887354614, -5985.117364508349, -5738.275107914884, -5503.182854085722, -5279.208816700876, -5065.759006130773, -4862.274742397574, -4668.230346478738, -4483.130996121085, -4306.510733486761, -4137.9306130026525, -3976.9769787415676, -3823.2598615368306, -3676.4114868284587, -3536.0848849661224, -3401.9525963592628, -3273.705464471742, -3151.051510214193, -3033.714881796074, -2921.4348745645584, -2813.9650157844335, -2711.072209704189, -2612.5359386117952, -2518.147515913331, -2427.7093875693167, -2341.0344785014763, -2257.9455808374946, -2178.2747810961955, -2101.862923630923, -2028.559107847947, -1958.2202168991837, -1890.7104757173136, -1825.901036416435, -1763.669589224674, -1703.8999972473127, -1646.4819534807305, -1591.3106586103409, -1538.2865182293585, -1487.3148582116148, -1438.305657060327, -1391.1732941370988, -1345.8363127512807, -1302.2171971604566, -1260.2421625978602, -1219.8409575030994, -1180.9466771884524, -1143.4955882250176, -1107.426962881163, -1072.6829229903672, -1039.2082926671796, -1006.950459328415, -975.8592425126716, -945.886770024405, -916.9873609598625, -889.1174152008768, -862.2353089893395, -836.3012962201512, -811.2774151135183, -787.1273999492935, -763.816597565991, -741.3118883460556, -719.5816114263669, -698.5954938893565, -678.3245837053055, -658.7411862106596, -639.8188039204305, -621.5320794852078, -603.8567416148437, -586.7695538017354, -570.2482656867385, -554.2715669202274, -538.8190433796545, -523.8711356132658, -509.40909938738304, -495.41496822192363, -481.8715178056321, -468.7622321888775, -456.0712716578373, -443.7834421994917, -431.8841664720968, -420.3594562007427, -409.19588592221277, -398.38056800768675, -387.9011288959398, -377.7456864734623, -367.9028285415497, -358.36159231377945, -349.1114448904498, -340.14226465955386, -331.44432357664476, -323.008270278602, -314.82511398877654, -306.88620917332975, -299.1832409107795, -291.7082109388281, -284.45342434450214, -277.4114768654615, -270.5752427720711, -263.9378633014495, -257.4927356162467, -251.23350226235453, -245.15404110111834, -239.24845569289792, -233.51106611005312, -227.93640015857062, -222.51918498862912, -217.25433907542583, -212.13696455255624, -207.16233988114283, -202.3259128387739, -197.6232938131358, -193.0502493859773, -188.60269619378633, -184.27669505223938, -180.06844533213902, -175.974279575169, -171.99065833838236, -168.11416525688685, -164.3415023147141, -160.66948531435872, -157.0950395359342, -153.6151955773451, -150.22708536728584, -146.92793834328603, -143.7150777873883, -140.58591731241333, -137.53795749209775, -134.56878262871942, -131.67605765212522, -128.85752514436916, -126.11100248444258, -123.43437910783932, -120.82561387594721, -118.28273255049152, -115.80382536848182, -113.38704471332113, -111.03060287794476, -108.73276991604183, -106.49187157759796, -104.30628732516955, -102.17444842746498, -100.09483612696472, -98.06597987846023, -96.08645565553498, -94.15488432214336, -92.2699300665738, -90.43029889520197, -88.634737183558, -86.88203028234085, -85.17100117612038, -83.5005091925637, -81.86944876012345, -80.27674821221143, -78.72136863597088, -77.2023027638432, -75.718573906201, -74.26923492339733, -72.85336723565143, -71.47007986925925, -70.11850853768219, -68.79781475612998, -67.50718498831228, -66.24582982409079, -65.01298318681671, -63.80790156919085, -62.62986329653149, -61.47816781638341, -60.352135013445995, -59.25110454883936, -58.17443522277149, -57.12150435970554, -56.09170721516454, -55.084456403348305, -54.09918134476763, -53.13532773313762, -52.19235702079921, -51.26974592197119, -50.366985933160635, -49.48358287008876, -48.61905642051433, -47.772939712361925, -46.94477889658631, -46.13413274422652, -45.34057225712561, -44.56368029181262, -43.80305119606345, -43.05829045767628, -42.32901436501539, -41.61484967889574, -40.915433315395916, -40.23041203920447, -39.55944216711972, -38.90218928133706, -38.25832795217415, -37.627541469894666, -37.00952158530789, -36.40396825883081, -35.81058941771353, -35.229100721139154, -34.659225332920606, -34.10069370152733, -33.55324334718515, -33.016618655802006, -32.49057067948183, -31.974856943397448, -31.469241258802487, -30.973493541969866, -30.487389638852957, -30.01071115527279, -29.54324529244161, -29.084784687641022, -28.635127259879074, -28.194076060356345, -27.761439127579347, -27.33702934696328, -26.920664314773223, -26.512166206258083, -26.111361647836834, -25.718081593201237, -25.332161203205153, -24.953439729414203, -24.581760401194522, -24.21697031622372, -23.85892033431135, -23.507464974419722, -23.162462314780655, -22.82377389600641, -22.491264627097745, -22.164802694254224, -21.84425947239656, -21.529509439312708, -21.220430092343488, -20.916901867525635, -20.618808061113793, -20.3260347534051, -20.038470734792774, -19.756007433978056, -19.478538848271555, -19.205961475918276, -18.938174250381923, -18.67507847652722, -18.416577768640128, -18.162577990228844, -17.912987195549462, -17.667715572802827, -17.42667538895044, -17.18978093609924, -16.95694847940678, -16.728096206459668, -16.503144178080213, -16.28201428051712, -16.064630178978057, -15.850917272463043, -15.640802649858882, -15.434215047256565, -15.23108480645424, -15.031343834610192, -14.834925565010991, -14.641764918921194, -14.451798268482209, -14.264963400628996, -14.081199481993918, -13.900447024768697, -13.722647853495618, -13.5477450727608, -13.375683035762515, -13.20640731372895, -13.039864666160364, -12.876003011871369, -12.714771400810012, -12.556119986630828, -12.399999999999995, -12.246363722611253, -12.095164461891995, -11.94635652637951, -11.79989520174811, -11.655736727468295, -11.513838274079905, -11.374157921061615, -11.23665463527962, -11.10128824999926, -10.968019444443204, -10.836809723881016, -10.707621400234792, -10.580417573186445, -10.4551621117725, -10.331819636452488, -10.210355501637972, -10.090735778668977, -9.97292723922565, -9.856897339162728, -9.742614202755282, -9.630046607344214, -9.519163968370506, -9.409936324787427, -9.302334324840377, -9.196329212204166, -9.091892812468036, -8.988997519958845, -8.887616284893122, -8.787722600849275, -8.689290492550946, -8.592294503953323, -8.496709686624111, -8.402511588411192, -8.30967624238936, -8.21818015607852, -8.128000300926116, -8.039114102046806, -7.951499428212372, -7.865134582085337, -7.7799982906897265, -7.696069696112736, -7.613328346431249, -7.531754186857079, -7.451327551095493, -7.3720291529111, -7.293840077895854, -7.216741775433862, -7.1407160508578205, -7.0657450577921095, -6.991811290677706, -6.918897577474207, -6.846987072534358, -6.776063249646658, -6.706109895241711, -6.637111101758101, -6.5690512611637075, -6.501915058628517, -6.435687466344994, -6.370353737492326, -6.305899400340855, -6.2423102524930965, -6.17957235525801, -6.117672028154986, -6.056595843544457, -5.9963306213818015, -5.936863424091552, -5.878181551558827, -5.820272536235094, -5.763124138355424, -5.706724341264385, -5.651061346848003, -5.596123571069069, -5.541899639603236, -5.4883783835734805, -5.4355488353804695, -5.3834002246264605, -5.331921974130497, -5.2811036960325755, -5.230935187984711, -5.181406429426752, -5.132507577944809, -5.084228965710415, -5.036561095998383, -4.989494639781462, -4.9430204323999964, -4.897129470304705, -4.8518129078708805, -4.807062054282297, -4.762868370483112, -4.7192234661961905, -4.676119097006244, -4.63354716150625, -4.59149969850565, -4.549968884298863, -4.50894702999269, -4.468426578891228, -4.428400103936903, -4.388860305206403, -4.349800007460069, -4.311212157743656, -4.273089823041114, -4.235426187977285, -4.198214552569318, -4.161448330025664, -4.125121044591565, -4.089226329439994, -4.0537579246069075, -4.018709674969902, -3.9840755282691735, -3.9498495331699095, -3.916025837365071, -3.882598685717712, -3.8495624184419066, -3.8169114693213992, -3.7846403639651394, -3.7527437180988645, -3.721216235891882, -3.6900527083183157, -3.659248011551986, -3.6287971053941854, -3.5986950317336404, -3.5689369130378834, -3.539517950875373, -3.5104334244676876, -3.4816786892710576, -3.4532491755866705, -3.4251403871990456, -3.397347900041881, -3.369867360890778, -3.3426944860822156, -3.3158250602582364, -3.2892549351362588, -3.2629800283034585, -3.2369963220351963, -3.211299862136959, -3.1858867568093094, -3.1607531755353206, -3.135895347990053, -3.1113095629715315, -3.0869921673528222, -3.062939565054711, -3.0391482160385532, -3.0156146353188595, -2.9923353919952027, -2.969307108303012, -2.946526458682869, -2.9239901688679066, -2.9016950149889085, -2.87963782269676, -2.857815466301861, -2.8362248679301474, -2.8148629966953784, -2.793726867887321, -2.772813542175538, -2.7521201248284, -2.7316437649470546, -2.7113816547139984, -2.6913310286559557, -2.671489162920791, -2.6518533745681223, -2.632421020873382, -2.6131894986450317, -2.594156243554654, -2.5753187294796738, -2.5566744678584246, -2.5382210070573223, -2.5199559317498927, -2.5018768623074004, -2.4839814542008614, -2.466267397414183, -2.4487324158682124, -2.431374266855492, -2.414190740485454, -2.3971796591399093, -2.3803388769385534, -2.3636662792143377, -2.3471597819984784, -2.3308173315149268, -2.3146369036840895, -2.2986165036356354, -2.2827541652301866, -2.267047950589735, -2.251495949636586, -2.2360962796406874, -2.220847084775151, -2.205746535679819, -2.190792829032714, -2.1759841871292034, -2.1613188574687467, -2.146795112349059, -2.132411248467547, -2.1181655865298885, -2.104056470865588, -2.090082269050404, -2.0762413715354855, -2.062532191283101, -2.0489531634088283, -2.0355027448300826, -2.022179413920849, -2.008981670172514, -1.9959080338606643, -1.9829570457177446, -1.9701272666114622, -1.9574172772288219, -1.944825677765688, -1.9323510876217618, -1.9199921451008797, -1.907747507116522, -1.8956158489024315, -1.8835958637282564, -1.8716862626201018, -1.859885774085922, -1.8481931438456372, -1.8366071345658992, -1.8251265255994154, -1.8137501127287452, -1.802476707914477, -1.7913051390477222, -1.7802342497068167, -1.7692628989181813, -1.7583899609212406, -1.7476143249373353, -1.73693489494255, -1.726350589444383, -1.715860341262192, -1.7054630973113356, -1.6951578183909528, -1.6849434789753055, -1.6748190670086203, -1.6647835837033695, -1.654836043341918, -1.644975473081486, -1.6352009127623575, -1.6255114147192768, -1.6159060435959853, -1.6063838761628193, -1.5969440011373326, -1.5875855190078854, -1.5783075418601369, -1.5691091932063954, -1.5599896078177757, -1.550947931559105, -1.5419833212265401, -1.5330949443878328, -1.524281979225209, -1.515543614380805, -1.5068790488046169, -1.4982874916049276, -1.489768161901147, -1.481320288679048, -1.4729431106483304, -1.4646358761024925, -1.4563978427809519, -1.4482282777333901, -1.44012645718627, -1.4320916664114989, -1.4241231995971848, -1.4162203597204652, -1.4083824584223603, -1.40060881588462, -1.3928987607085268, -1.3852516297956254, -1.3776667682303414, -1.37014352916445, -1.362681273703381, -1.35527937079431, -1.3479371971160066, -1.340654136970426, -1.333429582175985, -1.326262931962528, -1.31915359286792, -1.3121009786362638, -1.3051045101177006, -1.298163615169766, -1.2912777285602883, -1.2844462918717838, -1.2776687534073392, -1.2709445680979417, -1.2642731974112493, -1.2576541092617606, -1.2510867779223667, -1.2445706839372683, -1.238105314036221, -1.2316901610500948, -1.2253247238277327, -1.2190085071540682, -1.2127410216694965, -1.2065217837904705, -1.200350315631304, -1.194226144927161, -1.1881488049582114, -1.1821178344749328, -1.1761327776245394, -1.1701931838785191, -1.164298607961268, -1.1584486097797846, -1.1526427543544302, -1.1468806117507204, -1.1411617570121362, -1.1354857700939411, -1.129852235797985, -1.124260743708473, -1.1187108881286962, -1.1132022680186944, -1.107734486933847, -1.1023071529643695, -1.0969198786757057, -1.0915722810497943, -1.086263981427205, -1.0809946054501236, -1.075763783006173, -1.0705711481730562, -1.0654163391640121, -1.0602989982740654, -1.0552187718270623, -1.0501753101234772, -1.0451682673889748, -1.040197301723725, -1.0352620750524482, -1.0303622530751815, -1.025497505218764, -1.0206675045890152, -1.0158719279236017, -1.0111104555455905, -1.0063827713176574, -1.0016885625969605, -0.9970275201906572, -0.9923993383120584, -0.9878037145374047, -0.9832403497632608, -0.9787089481645188, -0.9742092171529954, -0.9697408673366168, -0.9653036124791796, -0.9608971694606863, -0.9565212582382356, -0.9521756018074692, -0.9478599261645543, -0.9435739602687088, -0.9393174360052449, -0.9350900881491382, -0.9308916543291006, -0.9267218749921554, -0.922580493368714, -0.918467255438128, -0.9143819098947303, -0.9103242081143428, -0.906293904121249, -0.9022907545556254, -0.8983145186414205, -0.8943649581546844, -0.8904418373923246, -0.8865449231412994, -0.8826739846482337, -0.8788287935894477, -0.8750091240414034, -0.8712147524515483, -0.8674454576095623, -0.8637010206189953, -0.8599812248692896, -0.8562858560081871, -0.8526147019145066, -0.8489675526712938, -0.8453442005393335, -0.8417444399310178, -0.8381680673845736, -0.8346148815386305, -0.8310846831071348, -0.8275772748546008, -0.8240924615716929, -0.8206300500511355, -0.8171898490639473, -0.813771669335989, -0.8103753235248291, -0.8070006261969144, -0.8036473938050445, -0.8003154446661482, -0.7970045989393522, -0.7937146786043409, -0.7904455074400042, -0.7871969110033643, -0.783968716608784, -0.7807607533074469, -0.7775728518671055, -0.7744048447521021, -0.7712565661036419, -0.768127851720334, -0.765018539038981, -0.7619284671156213, -0.7588574766068189, -0.7558054097511956, -0.7527721103512047, -0.7497574237551415, -0.7467611968393859, -0.7437832779908752, -0.7408235170898025, -0.7378817654925436, -0.734957876014796, -0.732051702914941, -0.7291631018776183, -0.7262919299975094, -0.7234380457633309, -0.7206013090420337, -0.7177815810632012, -0.7149787244036476, -0.7121926029722145, -0.7094230819947595, -0.7066700279993346, -0.7039333088015546, -0.7012127934901505, -0.6985083524127038, -0.6958198571615648, -0.6931471805599453, -0.6904901966481874, -0.6878487806702077, -0.6852228090601064, -0.6826121594289511, -0.6800167105517199, -0.6774363423544135, -0.6748709359013252, -0.6723203733824675, -0.6697845381011626, -0.6672633144617803, -0.6647565879576325, -0.6622642451590142, -0.659786173701397, -0.6573222622737669, -0.6548724006071028, -0.6524364794630056, -0.6500143906224578, -0.6476060268747289, -0.6452112820064095, -0.642830050790592, -0.6404622289761701, -0.6381077132772793, -0.6357664013628608, -0.6334381918463562, -0.631122984275527, -0.6288206791223953, -0.6265311777733115, -0.6242543825191387, -0.6219901965455584, -0.6197385239234904, -0.617499269599634, -0.6152723393871186, -0.6130576399562672, -0.6108550788254743, -0.6086645643521921, -0.606486005724023, -0.6043193129499199, -0.6021643968514948, -0.6000211690544263, -0.5978895419799749, -0.5957694288365938, -0.5936607436116448, -0.5915634010632116, -0.5894773167120052, -0.5874024068333744, -0.5853385884494028, -0.5832857793211037, -0.5812438979407049, -0.5792128635240269, -0.5771925960029495, -0.5751830160179654, -0.5731840449108252, -0.5711956047172655, -0.5692176181598226, -0.5672500086407316, -0.565292700234908, -0.5633456176830108, -0.5614086863845857, -0.5594818323912903, -0.5575649824001965, -0.5556580637471704, -0.5537610044003295, -0.5518737329535766, -0.5499961786202061, -0.5481282712265867, -0.5462699412059144, -0.5444211195920402, -0.5425817380133667, -0.540751728686815, -0.5389310244118616, -0.5371195585646436, -0.535317265092131, -0.533524078506364, -0.53173993387876, -0.5299647668344809, -0.5281985135468682, -0.5264411107319383, -0.5246924956429435, -0.5229526060649915, -0.5212213803097265, -0.5194987572100734, -0.5177846761150376, -0.5160790768845648, -0.5143818998844581, -0.5126930859813548, -0.5110125765377561, -0.5093403134071139, -0.5076762389289743, -0.5060202959241726, -0.5043724276900838, -0.5027325779959249, -0.501100691078112, -0.49947671163566515, -0.49786058482566814, -0.49625225625877495, -0.4946516719947706, -0.49305877853817626, -0.4914735228339055, -0.4898958522629694, -0.4883257146382265, -0.4867630582001817, -0.4852078316128292, -0.4836599839595438, -0.4821194647390157, -0.48058622386122796, -0.4790602116434823, -0.47754137880646524, -0.47602967647035765, -0.4745250561509861, -0.47302746975601817, -0.4715368695811978, -0.47005320830662006, -0.46857643899305, -0.46710651507827716, -0.4656433903735122, -0.4641870190598216, -0.4627373556846013, -0.4612943551580871, -0.4598579727499044, -0.4584281640856526, -0.4570048851435289, -0.4555880922509863, -0.4541777420814274, -0.45277379165093523, -0.45137619831503734, -0.4499849197655043, -0.4485999140271834, -0.4472211394548653, -0.44584855473018464, -0.4444821188585517, -0.4431217911661187, -0.4417675312967776, -0.44041929920918865, -0.4390770551738409, -0.4377407597701442, -0.43641037388355086, -0.43508585870270866, -0.4337671757166419, -0.43245428671196484, -0.43114715377012125, -0.42984573926465436, -0.4285500058585059, -0.4272599165013423, -0.4259754344269091, -0.42469652315041145, -0.42342314646592527, -0.4221552684438319, -0.42089285342828026, -0.41963586603467684, -0.4183842711471991, -0.4171380339163369, -0.4158971197564565, -0.4146614943433933, -0.41343112361206635, -0.4122059737541176, -0.41098601121557765, -0.40977120269455286, -0.4085615151389375, -0.4073569157441478, -0.4061573719508818, -0.40496285144289945, -0.4037733221448268, -0.4025887522199807, -0.40140911006821844, -0.4002343643238072, -0.399064483853314, -0.3978994377535203, -0.39673919534935514, -0.3955837261918497, -0.39443300005611204, -0.39328698693932346, -0.392145657058754, -0.39100898084979785, -0.3898769289640291, -0.3887494722672761, -0.387626581837716, -0.3865082289639865, -0.38539438514331975, -0.38428502207969095, -0.38318011168198873, -0.38207962606220053, -0.3809835375336187, -0.3798918186090637, -0.3788044419991227, -0.37772138061040944, -0.3766426075438377, -0.37556809609291375, -0.3744978197420447, -0.3734317521648646, -0.37236986722257615, -0.3713121389623073, -0.3702585416154873, -0.3692090495962359, -0.36816363749976927, -0.3671222801008201, -0.36608495235207655, -0.3650516293826319, -0.36402228649645324, -0.3629968991708614, -0.36197544305502927, -0.36095789396849204, -0.3599442278996718, -0.35893442100441875, -0.357928449604564, -0.3569262901864874, -0.35592791939969887, -0.3549333140554334, -0.35394245112526007, -0.35295530773970335, -0.3519718611868782, -0.35099208891113814, -0.35001596851173683, -0.34904347774150024, -0.34807459450551465, -0.3471092968598247, -0.34614756301014454, -0.3451893713105806, -0.34423470026236835, -0.3432835285126192, -0.34233583485307845, -0.34139159821889825, -0.3404507976874186, -0.33951341247696215, -0.3385794219456382, -0.33764880559016097, -0.33672154304467583, -0.3357976140795977, -0.33487699860046116, -0.3339596766467802, -0.3330456283909191, -0.33213483413697265, -0.3312272743196591, -0.33032292950322123, -0.32942178038033854, -0.3285238077710494, -0.327628992621683, -0.3267373160038017, -0.3258487591131515, -0.324963303268625, -0.3240809299112312, -0.32320162060307617, -0.322325357026352, -0.3214521209823369, -0.3205818943904022, -0.31971465928702986, -0.31885039782483854, -0.3179890922716185, -0.31713072500937534, -0.31627527853338167, -0.3154227354512392, -0.31457307848194777, -0.31372629045498246, -0.31288235430938066, -0.3120412530928366, -0.31120296996080316, -0.3103674881756028, -0.30953479110554666, -0.3087048622240603, -0.3078776851088191, -0.3070532434408888, -0.3062315210038768, -0.3054125016830888, -0.3045961694646931, -0.3037825084348937, -0.30297150277910956, -0.3021631367811618, -0.30135739482246643, -0.30055426138123725, -0.2997537210316934, -0.29895575844327377, -0.29816035837986027, -0.2973675056990065, -0.29657718535117306, -0.29578938237896973, -0.29500408191640554, -0.2942212691881434, -0.2934409295087629, -0.29266304828202777, -0.29188761100016186, -0.29111460324313004, -0.2903440106779248, -0.289575819057861, -0.2888100142218747, -0.28804658209382944, -0.28728550868182706, -0.28652678007752647, -0.28577038245546665, -0.2850163020723954, -0.2842645252666051, -0.28351503845727344, -0.28276782814380935, -0.28202288090520494, -0.28128018339939354, -0.2805397223626117, -0.2798014846087687, -0.27906545702881874, -0.27833162659014127, -0.27759998033592465, -0.27687050538455493, -0.2761431889290119, -0.27541801823626716, -0.2746949806466902, -0.27397406357345655, -0.2732552545019638, -0.2725385409892504, -0.27182391066342, -0.27111135122307084, -0.2704008504367294, -0.26969239614228935, -0.268985976246454, -0.2682815787241851, -0.2675791916181548, -0.2668788030382024, -0.2661804011607956, -0.26548397422849707, -0.26478951054943417, -0.26409699849677304, -0.2634064265081982, -0.26271778308539506, -0.26203105679353783, -0.2613462362607801, -0.26066331017775113, -0.25998226729705554, -0.25930309643277605, -0.25862578645998285, -0.2579503263142439, -0.25727670499114136, -0.2566049115457902, -0.25593493509236287, -0.2552667648036153, -0.25460038991041906, -0.25393579970129426, -0.25327298352195005, -0.25261193077482547, -0.2519526309186348, -0.2512950734679183, -0.25063924799259363, -0.24998514411751335, -0.24933275152202364, -0.24868205993952877, -0.24803305915705737, -0.24738573901483227, -0.2467400894058446, -0.24609610027543025, -0.24545376162085036, -0.24481306349087384, -0.2441739959853651, -0.24353654925487322, -0.24290071350022532, -0.2422664789721217, -0.2416338359707364, -0.24100277484531882, -0.24037328599379862, -0.23974535986239506, -0.23911898694522749, -0.23849415778393043, -0.23787086296726956, -0.23724909313076328, -0.23662883895630488, -0.23601009117178823, -0.23539284055073703, -0.23477707791193586, -0.23416279411906468, -0.233549980080335, -0.2329386267481306, -0.23232872511864924, -0.23172026623154734, -0.2311132411695886, -0.23050764105829316, -0.22990345706559118, -0.2293006804014774, -0.22869930231766986, -0.22809931410726983, -0.22750070710442477, -0.2269034726839934, -0.22630760226121405, -0.22571308729137438, -0.22511991926948374, -0.22452808972994887, -0.22393759024625035, -0.22334841243062273, -0.22276054793373581, -0.22217398844437952, -0.22158872568915017, -0.221004751432138, -0.22042205747461974, -0.21984063565475043, -0.21926047784725916, -0.21868157596314564, -0.21810392194938094, -0.2175275077886078, -0.2169523254988453, -0.21637836713319325, -0.2158056247795416, -0.21523409056027898, -0.21466375663200463, -0.2140946151852427, -0.21352665844415755, -0.21295987866627167, -0.21239426814218465, -0.21182981919529548, -0.21126652418152564, -0.21070437548904403, -0.21014336553799454, -0.20958348678022487, -0.20902473169901725, -0.20846709280882053, -0.20791056265498553, -0.20735513381350035, -0.2068007988907286, -0.20624755052314844, -0.2056953813770947, -0.2051442841485013, -0.20459425156264582, -0.2040452763738963, -0.20349735136545896, -0.2029504693491278, -0.20240462316503566, -0.20185980568140732, -0.2013160097943141, -0.20077322842742884, -0.2002314545317845, -0.19969068108553303, -0.1991509010937054, -0.1986121075879738, -0.19807429362641568, -0.19753745229327863, -0.19700157669874674, -0.19646665997870816, -0.1959326952945253, -0.19539967583280538, -0.194867594805172, -0.19433644544803963, -0.19380622102238812, -0.1932769148135392, -0.19274852013093363, -0.19222103030791118, -0.19169443870149036, -0.1911687386921498, -0.19064392368361183, -0.1901199871026264, -0.18959692239875675, -0.1890747230441655, -0.18855338253340362, -0.18803289438319906, -0.18751325213224737, -0.1869944493410029, -0.18647647959147243, -0.1859593364870088, -0.18544301365210564, -0.1849275047321945, -0.18441280339344202, -0.18389890332254846, -0.1833857982265472, -0.18287348183260635, -0.1823619478878302, -0.1818511901590617, -0.18134120243268792, -0.18083197851444402, -0.18032351222922036, -0.1798157974208687, -0.17930882795201158, -0.17880259770385137, -0.17829710057597978, -0.17779233048619036, -0.17728828137029018, -0.17678494718191323, -0.17628232189233436, -0.17578039949028515, -0.1752791739817695, -0.17477863938988128, -0.1742787897546213, -0.17377961913271756, -0.17328112159744433, -0.1727832912384426, -0.1722861221615426, -0.17178960848858557, -0.17129374435724742, -0.17079852392086262, -0.1703039413482496, -0.1698099908235369, -0.16931666654598873, -0.168823962729834, -0.16833187360409366, -0.1678403934124104, -0.16734951641287782, -0.16685923687787205, -0.16636954909388285, -0.16588044736134586, -0.16539192599447533, -0.16490397932109838, -0.1644166016824894, -0.16392978743320466, -0.1634435309409191, -0.1629578265862624, -0.16247266876265676, -0.16198805187615417, -0.16150397034527608, -0.16102041860085245, -0.1605373910858611, -0.16005488225526984, -0.15957288657587662, -0.15909139852615242, -0.15861041259608297, -0.15812992328701303, -0.15764992511148973, -0.15717041259310738, -0.15669138026635201, -0.15621282267644795, -0.15573473437920368, -0.15525710994085834, -0.15477994393793007, -0.1543032309570634, -0.1538269655948781, -0.1533511424578179, -0.15287575616200083, -0.15240080133306919, -0.15192627260603975, -0.15145216462515584, -0.1509784720437387, -0.15050518952404, -0.15003231173709378, -0.1495598333625711, -0.14908774908863273, -0.14861605361178415, -0.14814474163672908, -0.1476738078762261, -0.1472032470509435, -0.1467330538893151, -0.14626322312739737, -0.14579374950872626, -0.14532462778417435, -0.1448558527118085, -0.14438741905674873, -0.14391932159102647, -0.14345155509344304, -0.14298411434943026, -0.14251699415090927, -0.14205018929615143, -0.14158369458963796, -0.14111750484192204, -0.14065161486948927, -0.14018601949461995, -0.1397207135452502, -0.13925569185483544, -0.13879094926221233, -0.1383264806114618, -0.13786228075177293, -0.13739834453730615, -0.13693466682705754, -0.13647124248472253, -0.1360080663785613, -0.13554513338126334, -0.13508243836981207, -0.1346199762253513, -0.1341577418330502, -0.13369573008196975, -0.13323393586492835, -0.13277235407836926, -0.13231097962222688, -0.13184980739979335, -0.1313888323175867, -0.13092804928521784, -0.13046745321525835, -0.13000703902310812, -0.12954680162686416, -0.1290867359471885, -0.12862683690717716, -0.12816709943222807, -0.12770751844991124, -0.12724808888983716, -0.126788805683526, -0.12632966376427784, -0.1258706580670418, -0.1254117835282863, -0.12495303508586826, -0.12449440767890443, -0.12403589624764101, -0.12357749573332397, -0.12311920107807021, -0.12266100722473793, -0.1222029091167978, -0.12174490169820316, -0.12128697991326226, -0.12082913870650859, -0.12037137302257278, -0.11991367780605325, -0.11945604800138873, -0.11899847855272923, -0.11854096440380746, -0.11808350049781148, -0.11762608177725577, -0.11716870318385364, -0.11671135965838846, -0.11625404614058664, -0.11579675756898919, -0.1153394888808236, -0.11488223501187655, -0.11442499089636587, -0.11396775146681283, -0.11351051165391395, -0.11305326638641397, -0.11259601059097793, -0.11213873919206323, -0.11168144711179186, -0.11122412926982327, -0.11076678058322632, -0.11030939596635128, -0.10985197033070265, -0.1093944985848112, -0.1089369756341062, -0.10847939638078724, -0.10802175572369714, -0.10756404855819371, -0.1071062697760213, -0.1066484142651838, -0.10619047690981592, -0.10573245259005551, -0.10527433618191466, -0.10481612255715246, -0.1043578065831461, -0.10389938312276269, -0.10344084703423023, -0.10298219317100993, -0.10252341638166715, -0.10206451150974205, -0.10160547339362166, -0.10114629686641041, -0.1006869767558011, -0.10022750788394529, -0.09976788506732456, -0.09930810311662097, -0.09884815683658651, -0.09838804102591465, -0.09792775047710951, -0.09746727997635629, -0.09700662430339017, -0.09654577823136724, -0.0960847365267329, -0.09562349394909167, -0.09516204525107566, -0.09470038517821426, -0.09423850846880251, -0.09377640985376907, -0.09331408405654562, -0.09285152579293404, -0.09238872977097512, -0.09192569069081513, -0.09146240324457448, -0.09099886211621466, -0.09053506198140437, -0.09007099750738763, -0.08960666335284954, -0.08914205416778295, -0.08867716459335379, -0.0882119892617679, -0.08774652279613608, -0.08728075981033934, -0.08681469490889357, -0.08634832268681514, -0.08588163772948477, -0.08541463461251149, -0.08494730790159716, -0.08447965215239951, -0.084011661910396, -0.08354333171074575, -0.08307465607815338, -0.08260562952673102, -0.08213624655985943, -0.08166650167005114, -0.0811963893388109, -0.08072590403649707, -0.0802550402221817, -0.07978379234351184, -0.07931215483656905, -0.07884012212572847, -0.07836768862351919, -0.0778948487304824, -0.07742159683503025, -0.0769479273133034, -0.07647383452902966, -0.07599931283338081, -0.07552435656482984, -0.07504896004900687, -0.07457311759855637, -0.0740968235129923, -0.07362007207855306, -0.07314285756805737, -0.07266517424075807, -0.07218701634219649, -0.07170837810405548, -0.07122925374401351, -0.07074963746559694, -0.07026952345803172, -0.06978890589609629, -0.06930777893997214, -0.06882613673509508, -0.06834397341200502, -0.06786128308619668, -0.0673780598579686, -0.06689429781227219, -0.06640999101855956, -0.06592513353063242, -0.06543971938648908, -0.06495374260817068, -0.06446719720160864, -0.06398007715646983, -0.06349237644600222, -0.06300408902687891, -0.06251520883904348, -0.06202572980555287, -0.061535645832420334, -0.06104495080845878, -0.06055363860512212, -0.06006170307634698, -0.05956913805839285, -0.05907593736968333, -0.05858209481064511, -0.058087604163547336, -0.05759245919233935, -0.05709665364248941, -0.05660018124082169, -0.056103035695351966, -0.055605210695124856, -0.05510669991004841, -0.054607496990728956, -0.05410759556830462, -0.053606989254279626, -0.05310567164035654, -0.05260363629826773, -0.05210087677960777, -0.051597386615663515, -0.05109315931724439, -0.05058818837451094, -0.05008246725680458, -0.04957598941247474, -0.049068748268706476, -0.04856073723134609, -0.048051949684728104, -0.04754237899149964, -0.04703201849244421, -0.04652086150630626, -0.046008901329613314, -0.045496131236498295, -0.0449825444785201, -0.044468134284485115, -0.043952893860266476, -0.04343681638862233, -0.04291989502901515, -0.04240212291742829, -0.04188349316618291, -0.04136399886375289, -0.04084363307458094, -0.04032238883889183, -0.039800259172506035, -0.03927723706665136, -0.038753315487775664, -0.038228487377356915, -0.03770274565171249, -0.03717608320180931, -0.03664849289307106, -0.036119967565185866, -0.035590500031911776, -0.03506008308088337, -0.03452870947341563, -0.03399637194430699, -0.033463063201643176, -0.03292877592659812, -0.03239350277323518, -0.03185723636830624, -0.03131996931105178, -0.03078169417299819, -0.030242403497754256, -0.029702089800808264, -0.029160745569322286, -0.02861836326192663, -0.028074935308511996, -0.027530454110022824, -0.026984912038247415, -0.02643830143560839, -0.025890614614950822, -0.02534184385933139, -0.024791981421804655, -0.02424101952520828, -0.023688950361949002, -0.023135766093785554, -0.02258145885161164, -0.02202602073523667, -0.021469443813167427, -0.020911720122386797, -0.020352841668131314, -0.019792800423669543, -0.019231588330077196, -0.018669197296012376, -0.01810561919748843, -0.01754084587764771, -0.01697486914653212, -0.016407680780853667, -0.015839272523762694, -0.015269636084616893, -0.014698763138747292, -0.014126645327223053, -0.013553274256616885, -0.012978641498767153, -0.012402738590540039, -0.011825557033589144, -0.011247088294115963, -0.010667323802627224, -0.010086254953690902, -0.00950387310569287, -0.00892016958059019, -0.008335135663664261, -0.0077487626032715085, -0.0071610416105947795, -0.006571963859391317, -0.005981520485740681, -0.005389702587790005, -0.004796501225500052, -0.004201907420387966, -0.003605912155268632, -0.0030085063739965887, -0.0024096809812043825, -0.0018094268420408015, -0.0012077347819063767, -0.0006045955861896467, 0.0], "y": [-5.0, -4.993946731234867, -4.987893462469733, -4.981840193704601, -4.9757869249394675, -4.969733656174334, -4.963680387409201, -4.9576271186440675, -4.951573849878935, -4.945520581113802, -4.939467312348668, -4.933414043583535, -4.927360774818402, -4.921307506053269, -4.915254237288136, -4.9092009685230025, -4.903147699757869, -4.897094430992736, -4.891041162227603, -4.88498789346247, -4.878934624697337, -4.872881355932203, -4.86682808716707, -4.8607748184019375, -4.854721549636804, -4.848668280871671, -4.842615012106537, -4.836561743341404, -4.830508474576272, -4.824455205811138, -4.818401937046005, -4.812348668280872, -4.806295399515738, -4.800242130750605, -4.7941888619854724, -4.788135593220339, -4.782082324455206, -4.776029055690072, -4.769975786924939, -4.763922518159807, -4.757869249394673, -4.75181598062954, -4.745762711864407, -4.739709443099273, -4.733656174334141, -4.727602905569007, -4.721549636803874, -4.715496368038741, -4.709443099273607, -4.703389830508475, -4.697336561743342, -4.691283292978208, -4.685230024213075, -4.6791767554479415, -4.673123486682809, -4.667070217917676, -4.661016949152542, -4.654963680387409, -4.648910411622276, -4.642857142857143, -4.63680387409201, -4.6307506053268765, -4.624697336561743, -4.61864406779661, -4.612590799031477, -4.606537530266344, -4.600484261501211, -4.594430992736077, -4.588377723970944, -4.5823244552058116, -4.576271186440678, -4.570217917675545, -4.5641646489104115, -4.558111380145278, -4.552058111380145, -4.546004842615012, -4.539951573849879, -4.533898305084746, -4.527845036319612, -4.521791767554479, -4.5157384987893465, -4.509685230024213, -4.50363196125908, -4.4975786924939465, -4.491525423728813, -4.485472154963681, -4.479418886198547, -4.473365617433414, -4.467312348668281, -4.461259079903147, -4.455205811138015, -4.4491525423728815, -4.443099273607748, -4.437046004842615, -4.4309927360774815, -4.424939467312349, -4.418886198547216, -4.412832929782082, -4.406779661016949, -4.400726392251816, -4.394673123486683, -4.38861985472155, -4.3825665859564165, -4.376513317191283, -4.37046004842615, -4.364406779661017, -4.358353510895884, -4.352300242130751, -4.346246973365617, -4.340193704600484, -4.3341404358353515, -4.328087167070218, -4.322033898305085, -4.315980629539951, -4.309927360774818, -4.303874092009686, -4.297820823244552, -4.291767554479419, -4.285714285714286, -4.279661016949152, -4.27360774818402, -4.267554479418886, -4.261501210653753, -4.25544794188862, -4.249394673123486, -4.243341404358354, -4.237288135593221, -4.231234866828087, -4.225181598062954, -4.219128329297821, -4.213075060532688, -4.207021791767555, -4.200968523002421, -4.194915254237288, -4.188861985472155, -4.182808716707022, -4.176755447941889, -4.170702179176756, -4.164648910411622, -4.158595641646489, -4.152542372881356, -4.146489104116223, -4.14043583535109, -4.134382566585956, -4.128329297820823, -4.122276029055691, -4.116222760290557, -4.110169491525424, -4.1041162227602905, -4.098062953995157, -4.092009685230025, -4.085956416464891, -4.079903147699758, -4.073849878934625, -4.067796610169491, -4.061743341404358, -4.0556900726392255, -4.049636803874092, -4.043583535108959, -4.0375302663438255, -4.031476997578692, -4.02542372881356, -4.019370460048426, -4.013317191283293, -4.00726392251816, -4.001210653753026, -3.9951573849878934, -3.9891041162227605, -3.983050847457627, -3.976997578692494, -3.9709443099273605, -3.9648910411622276, -3.9588377723970947, -3.9527845036319613, -3.946731234866828, -3.9406779661016946, -3.9346246973365617, -3.928571428571429, -3.9225181598062955, -3.916464891041162, -3.910411622276029, -3.904358353510896, -3.898305084745763, -3.8922518159806296, -3.8861985472154963, -3.880145278450363, -3.87409200968523, -3.868038740920097, -3.861985472154964, -3.8559322033898304, -3.849878934624697, -3.843825665859564, -3.8377723970944313, -3.831719128329298, -3.8256658595641646, -3.8196125907990313, -3.8135593220338984, -3.8075060532687655, -3.801452784503632, -3.7953995157384988, -3.7893462469733654, -3.7832929782082325, -3.7772397094430996, -3.7711864406779663, -3.765133171912833, -3.7590799031476996, -3.7530266343825667, -3.7469733656174338, -3.7409200968523004, -3.734866828087167, -3.7288135593220337, -3.722760290556901, -3.7167070217917675, -3.7106537530266346, -3.7046004842615012, -3.698547215496368, -3.692493946731235, -3.6864406779661016, -3.6803874092009687, -3.6743341404358354, -3.668280871670702, -3.662227602905569, -3.656174334140436, -3.650121065375303, -3.6440677966101696, -3.638014527845036, -3.631961259079903, -3.62590799031477, -3.619854721549637, -3.6138014527845037, -3.6077481840193704, -3.601694915254237, -3.595641646489104, -3.589588377723971, -3.583535108958838, -3.5774818401937045, -3.571428571428571, -3.5653753026634383, -3.5593220338983054, -3.553268765133172, -3.5472154963680387, -3.5411622276029053, -3.5351089588377724, -3.5290556900726395, -3.523002421307506, -3.516949152542373, -3.5108958837772395, -3.5048426150121066, -3.4987893462469737, -3.4927360774818403, -3.486682808716707, -3.4806295399515736, -3.4745762711864407, -3.468523002421308, -3.4624697336561745, -3.456416464891041, -3.450363196125908, -3.444309927360775, -3.438256658595642, -3.4322033898305087, -3.4261501210653753, -3.420096852300242, -3.414043583535109, -3.4079903147699757, -3.401937046004843, -3.3958837772397095, -3.389830508474576, -3.383777239709443, -3.37772397094431, -3.371670702179177, -3.3656174334140436, -3.3595641646489103, -3.3535108958837774, -3.347457627118644, -3.341404358353511, -3.335351089588378, -3.3292978208232444, -3.323244552058111, -3.317191283292978, -3.3111380145278453, -3.305084745762712, -3.2990314769975786, -3.2929782082324452, -3.2869249394673123, -3.2808716707021794, -3.274818401937046, -3.2687651331719128, -3.2627118644067794, -3.2566585956416465, -3.2506053268765136, -3.2445520581113803, -3.238498789346247, -3.2324455205811136, -3.2263922518159807, -3.2203389830508478, -3.2142857142857144, -3.208232445520581, -3.2021791767554477, -3.196125907990315, -3.190072639225182, -3.1840193704600486, -3.1779661016949152, -3.171912832929782, -3.165859564164649, -3.159806295399516, -3.1537530266343827, -3.1476997578692494, -3.141646489104116, -3.135593220338983, -3.1295399515738502, -3.123486682808717, -3.1174334140435835, -3.11138014527845, -3.1053268765133173, -3.0992736077481844, -3.093220338983051, -3.0871670702179177, -3.0811138014527844, -3.0750605326876514, -3.069007263922518, -3.062953995157385, -3.056900726392252, -3.0508474576271185, -3.0447941888619856, -3.0387409200968523, -3.0326876513317194, -3.026634382566586, -3.0205811138014527, -3.0145278450363198, -3.0084745762711864, -3.0024213075060535, -2.99636803874092, -2.990314769975787, -2.984261501210654, -2.9782082324455206, -2.9721549636803877, -2.9661016949152543, -2.960048426150121, -2.953995157384988, -2.9479418886198547, -2.9418886198547214, -2.9358353510895885, -2.929782082324455, -2.9237288135593222, -2.917675544794189, -2.9116222760290555, -2.9055690072639226, -2.8995157384987893, -2.8934624697336564, -2.887409200968523, -2.8813559322033897, -2.875302663438257, -2.8692493946731235, -2.8631961259079906, -2.857142857142857, -2.851089588377724, -2.845036319612591, -2.8389830508474576, -2.8329297820823247, -2.8268765133171914, -2.820823244552058, -2.814769975786925, -2.8087167070217918, -2.802663438256659, -2.7966101694915255, -2.790556900726392, -2.7845036319612593, -2.778450363196126, -2.7723970944309926, -2.7663438256658597, -2.7602905569007263, -2.7542372881355934, -2.74818401937046, -2.7421307506053267, -2.736077481840194, -2.7300242130750605, -2.7239709443099276, -2.7179176755447942, -2.711864406779661, -2.705811138014528, -2.6997578692493946, -2.6937046004842617, -2.6876513317191284, -2.681598062953995, -2.675544794188862, -2.669491525423729, -2.663438256658596, -2.6573849878934626, -2.651331719128329, -2.6452784503631963, -2.639225181598063, -2.6331719128329296, -2.6271186440677967, -2.6210653753026634, -2.6150121065375305, -2.608958837772397, -2.6029055690072638, -2.596852300242131, -2.5907990314769975, -2.5847457627118646, -2.5786924939467313, -2.572639225181598, -2.566585956416465, -2.5605326876513317, -2.554479418886199, -2.5484261501210654, -2.542372881355932, -2.536319612590799, -2.530266343825666, -2.524213075060533, -2.5181598062953996, -2.5121065375302662, -2.5060532687651333, -2.5, -2.493946731234867, -2.4878934624697338, -2.4818401937046004, -2.4757869249394675, -2.469733656174334, -2.463680387409201, -2.457627118644068, -2.4515738498789346, -2.4455205811138017, -2.4394673123486683, -2.433414043583535, -2.427360774818402, -2.4213075060532687, -2.415254237288136, -2.4092009685230025, -2.403147699757869, -2.3970944309927362, -2.391041162227603, -2.38498789346247, -2.3789346246973366, -2.3728813559322033, -2.3668280871670704, -2.360774818401937, -2.354721549636804, -2.348668280871671, -2.3426150121065374, -2.3365617433414045, -2.330508474576271, -2.3244552058111383, -2.318401937046005, -2.3123486682808716, -2.3062953995157387, -2.3002421307506054, -2.294188861985472, -2.288135593220339, -2.2820823244552058, -2.276029055690073, -2.2699757869249395, -2.263922518159806, -2.2578692493946733, -2.25181598062954, -2.245762711864407, -2.2397094430992737, -2.2336561743341403, -2.2276029055690074, -2.221549636803874, -2.215496368038741, -2.209443099273608, -2.2033898305084745, -2.1973365617433416, -2.1912832929782082, -2.1852300242130753, -2.179176755447942, -2.1731234866828086, -2.1670702179176757, -2.1610169491525424, -2.1549636803874095, -2.148910411622276, -2.142857142857143, -2.13680387409201, -2.1307506053268765, -2.124697336561743, -2.1186440677966103, -2.112590799031477, -2.106537530266344, -2.1004842615012107, -2.0944309927360774, -2.0883777239709445, -2.082324455205811, -2.076271186440678, -2.070217917675545, -2.0641646489104115, -2.0581113801452786, -2.0520581113801453, -2.0460048426150124, -2.039951573849879, -2.0338983050847457, -2.0278450363196128, -2.0217917675544794, -2.0157384987893465, -2.009685230024213, -2.00363196125908, -1.997578692493947, -1.9915254237288136, -1.9854721549636807, -1.9794188861985473, -1.973365617433414, -1.967312348668281, -1.9612590799031477, -1.9552058111380144, -1.9491525423728815, -1.9430992736077481, -1.9370460048426152, -1.930992736077482, -1.9249394673123486, -1.9188861985472156, -1.9128329297820823, -1.9067796610169494, -1.900726392251816, -1.8946731234866827, -1.8886198547215498, -1.8825665859564165, -1.8765133171912836, -1.8704600484261502, -1.8644067796610169, -1.858353510895884, -1.8523002421307506, -1.8462469733656177, -1.8401937046004844, -1.834140435835351, -1.8280871670702181, -1.8220338983050848, -1.8159806295399514, -1.8099273607748185, -1.8038740920096852, -1.7978208232445523, -1.791767554479419, -1.7857142857142856, -1.7796610169491527, -1.7736077481840193, -1.7675544794188864, -1.761501210653753, -1.7554479418886197, -1.7493946731234868, -1.7433414043583535, -1.7372881355932206, -1.7312348668280872, -1.725181598062954, -1.719128329297821, -1.7130750605326877, -1.7070217917675548, -1.7009685230024214, -1.694915254237288, -1.6888619854721552, -1.6828087167070218, -1.676755447941889, -1.6707021791767556, -1.6646489104116222, -1.6585956416464893, -1.652542372881356, -1.6464891041162226, -1.6404358353510897, -1.6343825665859564, -1.6283292978208235, -1.6222760290556901, -1.6162227602905568, -1.6101694915254239, -1.6041162227602905, -1.5980629539951576, -1.5920096852300243, -1.585956416464891, -1.579903147699758, -1.5738498789346247, -1.5677966101694918, -1.5617433414043584, -1.555690072639225, -1.5496368038740922, -1.5435835351089588, -1.537530266343826, -1.5314769975786926, -1.5254237288135593, -1.5193704600484264, -1.513317191283293, -1.50726392251816, -1.5012106537530268, -1.4951573849878934, -1.4891041162227605, -1.4830508474576272, -1.4769975786924938, -1.470944309927361, -1.4648910411622276, -1.4588377723970947, -1.4527845036319613, -1.446731234866828, -1.440677966101695, -1.4346246973365617, -1.4285714285714288, -1.4225181598062955, -1.4164648910411621, -1.4104116222760292, -1.4043583535108959, -1.398305084745763, -1.3922518159806296, -1.3861985472154963, -1.3801452784503634, -1.37409200968523, -1.3680387409200971, -1.3619854721549638, -1.3559322033898304, -1.3498789346246975, -1.3438256658595642, -1.3377723970944313, -1.331719128329298, -1.3256658595641646, -1.3196125907990317, -1.3135593220338984, -1.307506053268765, -1.301452784503632, -1.2953995157384988, -1.2893462469733659, -1.2832929782082325, -1.2772397094430992, -1.2711864406779663, -1.265133171912833, -1.2590799031477, -1.2530266343825667, -1.2469733656174333, -1.2409200968523004, -1.234866828087167, -1.2288135593220342, -1.2227602905569008, -1.2167070217917675, -1.2106537530266346, -1.2046004842615012, -1.1985472154963683, -1.192493946731235, -1.1864406779661016, -1.1803874092009687, -1.1743341404358354, -1.1682808716707025, -1.1622276029055691, -1.1561743341404358, -1.150121065375303, -1.1440677966101696, -1.1380145278450362, -1.1319612590799033, -1.12590799031477, -1.119854721549637, -1.1138014527845037, -1.1077481840193704, -1.1016949152542375, -1.0956416464891041, -1.0895883777239712, -1.0835351089588379, -1.0774818401937045, -1.0714285714285716, -1.0653753026634383, -1.0593220338983054, -1.053268765133172, -1.0472154963680387, -1.0411622276029058, -1.0351089588377724, -1.0290556900726395, -1.0230024213075062, -1.0169491525423728, -1.01089588377724, -1.0048426150121066, -0.9987893462469737, -0.9927360774818403, -0.986682808716707, -0.9806295399515736, -0.9745762711864412, -0.9685230024213078, -0.9624697336561745, -0.9564164648910412, -0.9503631961259078, -0.9443099273607753, -0.938256658595642, -0.9322033898305087, -0.9261501210653753, -0.920096852300242, -0.9140435835351086, -0.9079903147699762, -0.9019370460048428, -0.8958837772397095, -0.8898305084745761, -0.8837772397094428, -0.8777239709443103, -0.871670702179177, -0.8656174334140436, -0.8595641646489103, -0.8535108958837769, -0.8474576271186445, -0.8414043583535111, -0.8353510895883778, -0.8292978208232444, -0.8232445520581111, -0.8171912832929786, -0.8111380145278453, -0.8050847457627119, -0.7990314769975786, -0.7929782082324452, -0.7869249394673128, -0.7808716707021794, -0.7748184019370461, -0.7687651331719128, -0.7627118644067794, -0.756658595641647, -0.7506053268765136, -0.7445520581113803, -0.7384987893462469, -0.7324455205811136, -0.7263922518159811, -0.7203389830508478, -0.7142857142857144, -0.7082324455205811, -0.7021791767554477, -0.6961259079903153, -0.6900726392251819, -0.6840193704600486, -0.6779661016949152, -0.6719128329297819, -0.6658595641646494, -0.6598062953995161, -0.6537530266343827, -0.6476997578692494, -0.641646489104116, -0.6355932203389836, -0.6295399515738502, -0.6234866828087169, -0.6174334140435835, -0.6113801452784502, -0.6053268765133177, -0.5992736077481844, -0.593220338983051, -0.5871670702179177, -0.5811138014527844, -0.575060532687651, -0.5690072639225185, -0.5629539951573852, -0.5569007263922519, -0.5508474576271185, -0.5447941888619852, -0.5387409200968527, -0.5326876513317194, -0.526634382566586, -0.5205811138014527, -0.5145278450363193, -0.5084745762711869, -0.5024213075060535, -0.49636803874092017, -0.4903147699757868, -0.4842615012106535, -0.478208232445521, -0.4721549636803877, -0.4661016949152543, -0.460048426150121, -0.45399515738498764, -0.4479418886198552, -0.44188861985472183, -0.4358353510895885, -0.42978208232445514, -0.4237288135593218, -0.41767554479418934, -0.411622276029056, -0.40556900726392264, -0.3995157384987893, -0.39346246973365595, -0.3874092009685235, -0.38135593220339015, -0.3753026634382568, -0.36924939467312345, -0.3631961259079901, -0.35714285714285765, -0.3510895883777243, -0.34503631961259096, -0.3389830508474576, -0.33292978208232427, -0.3268765133171918, -0.32082324455205846, -0.3147699757869251, -0.30871670702179177, -0.3026634382566584, -0.29661016949152597, -0.2905569007263926, -0.2845036319612593, -0.2784503631961259, -0.2723970944309926, -0.26634382566585924, -0.2602905569007268, -0.25423728813559343, -0.24818401937046008, -0.24213075060532674, -0.2360774818401934, -0.23002421307506093, -0.2239709443099276, -0.21791767554479424, -0.2118644067796609, -0.20581113801452755, -0.1997578692493951, -0.19370460048426175, -0.1876513317191284, -0.18159806295399505, -0.1755447941888617, -0.16949152542372925, -0.1634382566585959, -0.15738498789346256, -0.1513317191283292, -0.14527845036319587, -0.1392251815980634, -0.13317191283293006, -0.12711864406779672, -0.12106537530266337, -0.11501210653753002, -0.10895883777239757, -0.10290556900726422, -0.09685230024213087, -0.09079903147699753, -0.08474576271186418, -0.07869249394673172, -0.07263922518159838, -0.06658595641646503, -0.060532687651331685, -0.05447941888619834, -0.04842615012106588, -0.042372881355932535, -0.03631961259079919, -0.030266343825665842, -0.024213075060532496, -0.01815980629540004, -0.012106537530266692, -0.006053268765133346, 0.0, 0.006053268765133346, 0.012106537530265804, 0.01815980629539915, 0.024213075060532496, 0.030266343825665842, 0.03631961259079919, 0.042372881355931646, 0.04842615012106499, 0.05447941888619834, 0.060532687651331685, 0.06658595641646503, 0.07263922518159838, 0.07869249394673083, 0.08474576271186418, 0.09079903147699753, 0.09685230024213087, 0.10290556900726422, 0.10895883777239668, 0.11501210653753002, 0.12106537530266337, 0.12711864406779672, 0.13317191283293006, 0.13922518159806252, 0.14527845036319587, 0.1513317191283292, 0.15738498789346256, 0.1634382566585959, 0.16949152542372836, 0.1755447941888617, 0.18159806295399505, 0.1876513317191284, 0.19370460048426175, 0.1997578692493942, 0.20581113801452755, 0.2118644067796609, 0.21791767554479424, 0.2239709443099276, 0.23002421307506005, 0.2360774818401934, 0.24213075060532674, 0.24818401937046008, 0.25423728813559343, 0.2602905569007259, 0.26634382566585924, 0.2723970944309926, 0.2784503631961259, 0.2845036319612593, 0.29055690072639173, 0.2966101694915251, 0.3026634382566584, 0.30871670702179177, 0.3147699757869251, 0.3208232445520576, 0.3268765133171909, 0.33292978208232427, 0.3389830508474576, 0.34503631961259096, 0.3510895883777234, 0.35714285714285676, 0.3631961259079901, 0.36924939467312345, 0.3753026634382568, 0.38135593220338926, 0.3874092009685226, 0.39346246973365595, 0.3995157384987893, 0.40556900726392264, 0.411622276029056, 0.41767554479418845, 0.4237288135593218, 0.42978208232445514, 0.4358353510895885, 0.44188861985472183, 0.4479418886198543, 0.45399515738498764, 0.460048426150121, 0.4661016949152543, 0.4721549636803877, 0.47820823244552013, 0.4842615012106535, 0.4903147699757868, 0.49636803874092017, 0.5024213075060535, 0.508474576271186, 0.5145278450363193, 0.5205811138014527, 0.526634382566586, 0.5326876513317194, 0.5387409200968518, 0.5447941888619852, 0.5508474576271185, 0.5569007263922519, 0.5629539951573852, 0.5690072639225177, 0.575060532687651, 0.5811138014527844, 0.5871670702179177, 0.593220338983051, 0.5992736077481835, 0.6053268765133168, 0.6113801452784502, 0.6174334140435835, 0.6234866828087169, 0.6295399515738493, 0.6355932203389827, 0.641646489104116, 0.6476997578692494, 0.6537530266343827, 0.6598062953995152, 0.6658595641646485, 0.6719128329297819, 0.6779661016949152, 0.6840193704600486, 0.690072639225181, 0.6961259079903144, 0.7021791767554477, 0.7082324455205811, 0.7142857142857144, 0.7203389830508478, 0.7263922518159802, 0.7324455205811136, 0.7384987893462469, 0.7445520581113803, 0.7506053268765136, 0.7566585956416461, 0.7627118644067794, 0.7687651331719128, 0.7748184019370461, 0.7808716707021794, 0.7869249394673119, 0.7929782082324452, 0.7990314769975786, 0.8050847457627119, 0.8111380145278453, 0.8171912832929777, 0.8232445520581111, 0.8292978208232444, 0.8353510895883778, 0.8414043583535111, 0.8474576271186436, 0.8535108958837769, 0.8595641646489103, 0.8656174334140436, 0.871670702179177, 0.8777239709443094, 0.8837772397094428, 0.8898305084745761, 0.8958837772397095, 0.9019370460048428, 0.9079903147699753, 0.9140435835351086, 0.920096852300242, 0.9261501210653753, 0.9322033898305087, 0.9382566585956411, 0.9443099273607745, 0.9503631961259078, 0.9564164648910412, 0.9624697336561745, 0.968523002421307, 0.9745762711864403, 0.9806295399515736, 0.986682808716707, 0.9927360774818403, 0.9987893462469728, 1.0048426150121061, 1.0108958837772395, 1.0169491525423728, 1.0230024213075062, 1.0290556900726386, 1.035108958837772, 1.0411622276029053, 1.0472154963680387, 1.053268765133172, 1.0593220338983054, 1.0653753026634378, 1.0714285714285712, 1.0774818401937045, 1.0835351089588379, 1.0895883777239712, 1.0956416464891037, 1.101694915254237, 1.1077481840193704, 1.1138014527845037, 1.119854721549637, 1.1259079903147695, 1.1319612590799029, 1.1380145278450362, 1.1440677966101696, 1.150121065375303, 1.1561743341404354, 1.1622276029055687, 1.168280871670702, 1.1743341404358354, 1.1803874092009687, 1.1864406779661012, 1.1924939467312345, 1.198547215496368, 1.2046004842615012, 1.2106537530266346, 1.216707021791767, 1.2227602905569004, 1.2288135593220337, 1.234866828087167, 1.2409200968523004, 1.2469733656174329, 1.2530266343825662, 1.2590799031476996, 1.265133171912833, 1.2711864406779663, 1.2772397094430987, 1.283292978208232, 1.2893462469733654, 1.2953995157384988, 1.301452784503632, 1.3075060532687646, 1.313559322033898, 1.3196125907990313, 1.3256658595641646, 1.331719128329298, 1.3377723970944304, 1.3438256658595638, 1.349878934624697, 1.3559322033898304, 1.3619854721549638, 1.3680387409200971, 1.3740920096852296, 1.380145278450363, 1.3861985472154963, 1.3922518159806296, 1.398305084745763, 1.4043583535108954, 1.4104116222760288, 1.4164648910411621, 1.4225181598062955, 1.4285714285714288, 1.4346246973365613, 1.4406779661016946, 1.446731234866828, 1.4527845036319613, 1.4588377723970947, 1.4648910411622271, 1.4709443099273605, 1.4769975786924938, 1.4830508474576272, 1.4891041162227605, 1.495157384987893, 1.5012106537530263, 1.5072639225181597, 1.513317191283293, 1.5193704600484264, 1.5254237288135588, 1.5314769975786922, 1.5375302663438255, 1.5435835351089588, 1.5496368038740922, 1.5556900726392247, 1.561743341404358, 1.5677966101694913, 1.5738498789346247, 1.579903147699758, 1.5859564164648905, 1.5920096852300238, 1.5980629539951572, 1.6041162227602905, 1.6101694915254239, 1.6162227602905563, 1.6222760290556897, 1.628329297820823, 1.6343825665859564, 1.6404358353510897, 1.6464891041162222, 1.6525423728813555, 1.6585956416464889, 1.6646489104116222, 1.6707021791767556, 1.676755447941888, 1.6828087167070214, 1.6888619854721547, 1.694915254237288, 1.7009685230024214, 1.7070217917675548, 1.7130750605326872, 1.7191283292978206, 1.725181598062954, 1.7312348668280872, 1.7372881355932206, 1.743341404358353, 1.7493946731234864, 1.7554479418886197, 1.761501210653753, 1.7675544794188864, 1.773607748184019, 1.7796610169491522, 1.7857142857142856, 1.791767554479419, 1.7978208232445523, 1.8038740920096847, 1.809927360774818, 1.8159806295399514, 1.8220338983050848, 1.8280871670702181, 1.8341404358353506, 1.840193704600484, 1.8462469733656173, 1.8523002421307506, 1.858353510895884, 1.8644067796610164, 1.8704600484261498, 1.8765133171912831, 1.8825665859564165, 1.8886198547215498, 1.8946731234866823, 1.9007263922518156, 1.906779661016949, 1.9128329297820823, 1.9188861985472156, 1.924939467312348, 1.9309927360774815, 1.9370460048426148, 1.9430992736077481, 1.9491525423728815, 1.955205811138014, 1.9612590799031473, 1.9673123486682806, 1.973365617433414, 1.9794188861985473, 1.9854721549636798, 1.9915254237288131, 1.9975786924939465, 2.00363196125908, 2.009685230024213, 2.0157384987893465, 2.021791767554479, 2.0278450363196123, 2.0338983050847457, 2.039951573849879, 2.0460048426150124, 2.052058111380145, 2.058111380145278, 2.0641646489104115, 2.070217917675545, 2.076271186440678, 2.0823244552058107, 2.088377723970944, 2.0944309927360774, 2.1004842615012107, 2.106537530266344, 2.1125907990314765, 2.11864406779661, 2.124697336561743, 2.1307506053268765, 2.13680387409201, 2.1428571428571423, 2.1489104116222757, 2.154963680387409, 2.1610169491525424, 2.1670702179176757, 2.173123486682808, 2.1791767554479415, 2.185230024213075, 2.1912832929782082, 2.1973365617433416, 2.203389830508474, 2.2094430992736074, 2.2154963680387407, 2.221549636803874, 2.2276029055690074, 2.23365617433414, 2.2397094430992732, 2.2457627118644066, 2.25181598062954, 2.2578692493946733, 2.2639225181598057, 2.269975786924939, 2.2760290556900724, 2.2820823244552058, 2.288135593220339, 2.2941888619854716, 2.300242130750605, 2.3062953995157383, 2.3123486682808716, 2.318401937046005, 2.3244552058111374, 2.3305084745762707, 2.336561743341404, 2.3426150121065374, 2.348668280871671, 2.354721549636804, 2.3607748184019366, 2.36682808716707, 2.3728813559322033, 2.3789346246973366, 2.38498789346247, 2.3910411622276024, 2.397094430992736, 2.403147699757869, 2.4092009685230025, 2.415254237288136, 2.4213075060532683, 2.4273607748184016, 2.433414043583535, 2.4394673123486683, 2.4455205811138017, 2.451573849878934, 2.4576271186440675, 2.463680387409201, 2.469733656174334, 2.4757869249394675, 2.4818401937046, 2.4878934624697333, 2.4939467312348667, 2.5, 2.5060532687651333, 2.512106537530266, 2.518159806295399, 2.5242130750605325, 2.530266343825666, 2.536319612590799, 2.5423728813559316, 2.548426150121065, 2.5544794188861983, 2.5605326876513317, 2.566585956416465, 2.5726392251815975, 2.578692493946731, 2.584745762711864, 2.5907990314769975, 2.596852300242131, 2.6029055690072633, 2.6089588377723967, 2.61501210653753, 2.6210653753026634, 2.6271186440677967, 2.633171912832929, 2.6392251815980625, 2.645278450363196, 2.651331719128329, 2.6573849878934626, 2.663438256658595, 2.6694915254237284, 2.6755447941888617, 2.681598062953995, 2.6876513317191284, 2.6937046004842617, 2.699757869249394, 2.7058111380145276, 2.711864406779661, 2.7179176755447942, 2.7239709443099276, 2.73002421307506, 2.7360774818401934, 2.7421307506053267, 2.74818401937046, 2.7542372881355934, 2.760290556900726, 2.7663438256658592, 2.7723970944309926, 2.778450363196126, 2.7845036319612593, 2.7905569007263917, 2.796610169491525, 2.8026634382566584, 2.8087167070217918, 2.814769975786925, 2.8208232445520576, 2.826876513317191, 2.8329297820823243, 2.8389830508474576, 2.845036319612591, 2.8510895883777234, 2.8571428571428568, 2.86319612590799, 2.8692493946731235, 2.875302663438257, 2.8813559322033893, 2.8874092009685226, 2.893462469733656, 2.8995157384987893, 2.9055690072639226, 2.911622276029055, 2.9176755447941884, 2.923728813559322, 2.929782082324455, 2.9358353510895885, 2.941888619854721, 2.9479418886198543, 2.9539951573849876, 2.960048426150121, 2.9661016949152543, 2.972154963680387, 2.97820823244552, 2.9842615012106535, 2.990314769975787, 2.99636803874092, 3.0024213075060526, 3.008474576271187, 3.0145278450363193, 3.020581113801452, 3.026634382566586, 3.0326876513317185, 3.0387409200968527, 3.044794188861985, 3.0508474576271176, 3.056900726392252, 3.0629539951573843, 3.0690072639225185, 3.075060532687651, 3.0811138014527835, 3.0871670702179177, 3.09322033898305, 3.0992736077481844, 3.105326876513317, 3.1113801452784493, 3.1174334140435835, 3.123486682808716, 3.1295399515738502, 3.1355932203389827, 3.141646489104115, 3.1476997578692494, 3.153753026634382, 3.159806295399516, 3.1658595641646485, 3.1719128329297828, 3.1779661016949152, 3.1840193704600477, 3.190072639225182, 3.1961259079903144, 3.2021791767554486, 3.208232445520581, 3.2142857142857135, 3.2203389830508478, 3.22639225181598, 3.2324455205811145, 3.238498789346247, 3.2445520581113794, 3.2506053268765136, 3.256658595641646, 3.2627118644067803, 3.2687651331719128, 3.274818401937045, 3.2808716707021794, 3.286924939467312, 3.292978208232446, 3.2990314769975786, 3.305084745762711, 3.3111380145278453, 3.3171912832929777, 3.323244552058112, 3.3292978208232444, 3.335351089588377, 3.341404358353511, 3.3474576271186436, 3.353510895883778, 3.3595641646489103, 3.3656174334140427, 3.371670702179177, 3.3777239709443094, 3.3837772397094437, 3.389830508474576, 3.3958837772397086, 3.401937046004843, 3.4079903147699753, 3.4140435835351095, 3.420096852300242, 3.4261501210653744, 3.4322033898305087, 3.438256658595641, 3.4443099273607753, 3.450363196125908, 3.4564164648910403, 3.4624697336561745, 3.468523002421307, 3.474576271186441, 3.4806295399515736, 3.486682808716706, 3.4927360774818403, 3.498789346246973, 3.504842615012107, 3.5108958837772395, 3.516949152542372, 3.523002421307506, 3.5290556900726386, 3.535108958837773, 3.5411622276029053, 3.547215496368038, 3.553268765133172, 3.5593220338983045, 3.5653753026634387, 3.571428571428571, 3.5774818401937036, 3.583535108958838, 3.5895883777239703, 3.5956416464891046, 3.601694915254237, 3.6077481840193695, 3.6138014527845037, 3.619854721549636, 3.6259079903147704, 3.631961259079903, 3.6380145278450353, 3.6440677966101696, 3.650121065375302, 3.6561743341404362, 3.6622276029055687, 3.668280871670701, 3.6743341404358354, 3.680387409200968, 3.686440677966102, 3.6924939467312345, 3.698547215496367, 3.7046004842615012, 3.7106537530266337, 3.716707021791768, 3.7227602905569004, 3.728813559322033, 3.734866828087167, 3.7409200968522995, 3.7469733656174338, 3.7530266343825662, 3.7590799031476987, 3.765133171912833, 3.7711864406779654, 3.7772397094430996, 3.783292978208232, 3.7893462469733645, 3.7953995157384988, 3.801452784503631, 3.8075060532687655, 3.813559322033898, 3.819612590799032, 3.8256658595641646, 3.831719128329297, 3.8377723970944313, 3.8438256658595638, 3.849878934624698, 3.8559322033898304, 3.861985472154963, 3.868038740920097, 3.8740920096852296, 3.880145278450364, 3.8861985472154963, 3.8922518159806287, 3.898305084745763, 3.9043583535108954, 3.9104116222760297, 3.916464891041162, 3.9225181598062946, 3.928571428571429, 3.9346246973365613, 3.9406779661016955, 3.946731234866828, 3.9527845036319604, 3.9588377723970947, 3.964891041162227, 3.9709443099273614, 3.976997578692494, 3.9830508474576263, 3.9891041162227605, 3.995157384987893, 4.001210653753027, 4.00726392251816, 4.013317191283292, 4.019370460048426, 4.025423728813559, 4.031476997578693, 4.0375302663438255, 4.043583535108958, 4.049636803874092, 4.055690072639225, 4.061743341404359, 4.067796610169491, 4.073849878934624, 4.079903147699758, 4.0859564164648905, 4.092009685230025, 4.098062953995157, 4.10411622276029, 4.110169491525424, 4.116222760290556, 4.122276029055691, 4.128329297820823, 4.1343825665859555, 4.14043583535109, 4.146489104116222, 4.152542372881356, 4.158595641646489, 4.164648910411621, 4.170702179176756, 4.176755447941888, 4.182808716707022, 4.188861985472155, 4.194915254237287, 4.200968523002421, 4.207021791767554, 4.213075060532688, 4.219128329297821, 4.225181598062953, 4.231234866828087, 4.23728813559322, 4.243341404358354, 4.249394673123486, 4.255447941888619, 4.261501210653753, 4.2675544794188855, 4.27360774818402, 4.279661016949152, 4.285714285714285, 4.291767554479419, 4.297820823244551, 4.303874092009686, 4.309927360774818, 4.3159806295399505, 4.322033898305085, 4.328087167070217, 4.3341404358353515, 4.340193704600484, 4.346246973365616, 4.352300242130751, 4.358353510895883, 4.364406779661017, 4.37046004842615, 4.376513317191282, 4.3825665859564165, 4.388619854721549, 4.394673123486683, 4.400726392251816, 4.406779661016948, 4.412832929782082, 4.418886198547215, 4.424939467312349, 4.4309927360774815, 4.437046004842614, 4.443099273607748, 4.449152542372881, 4.455205811138015, 4.461259079903147, 4.4673123486682815, 4.473365617433414, 4.4794188861985464, 4.485472154963681, 4.491525423728813, 4.497578692493947, 4.50363196125908, 4.509685230024212, 4.5157384987893465, 4.521791767554479, 4.527845036319613, 4.533898305084746, 4.539951573849878, 4.546004842615012, 4.552058111380145, 4.558111380145279, 4.5641646489104115, 4.570217917675544, 4.576271186440678, 4.582324455205811, 4.588377723970945, 4.594430992736077, 4.60048426150121, 4.606537530266344, 4.6125907990314765, 4.618644067796611, 4.624697336561743, 4.630750605326876, 4.63680387409201, 4.642857142857142, 4.648910411622277, 4.654963680387409, 4.6610169491525415, 4.667070217917676, 4.673123486682808, 4.679176755447942, 4.685230024213075, 4.691283292978207, 4.697336561743342, 4.703389830508474, 4.709443099273608, 4.715496368038741, 4.721549636803873, 4.727602905569007, 4.73365617433414, 4.739709443099274, 4.745762711864407, 4.751815980629539, 4.757869249394673, 4.763922518159806, 4.76997578692494, 4.776029055690072, 4.782082324455205, 4.788135593220339, 4.794188861985472, 4.800242130750606, 4.806295399515738, 4.812348668280871, 4.818401937046005, 4.824455205811137, 4.830508474576272, 4.836561743341404, 4.8426150121065366, 4.848668280871671, 4.854721549636803, 4.8607748184019375, 4.86682808716707, 4.872881355932202, 4.878934624697337, 4.884987893462469, 4.891041162227603, 4.897094430992736, 4.903147699757868, 4.9092009685230025, 4.915254237288135, 4.921307506053269, 4.927360774818402, 4.933414043583534, 4.939467312348668, 4.945520581113801, 4.951573849878935, 4.9576271186440675, 4.9636803874092, 4.969733656174334, 4.975786924939467, 4.981840193704601, 4.987893462469733, 4.993946731234866, 5.0], "x": [5.551115123125783e-17, 0.0006053268765133727, 0.00121065375302669, 0.0018159806295400072, 0.0024213075060533244, 0.003026634382566642, 0.003631961259079959, 0.004237288135593276, 0.004842615012106593, 0.005447941888619911, 0.006053268765133228, 0.006658595641646545, 0.007263922518159862, 0.00786924939467318, 0.008474576271186496, 0.009079903147699814, 0.009685230024213131, 0.010290556900726448, 0.010895883777239766, 0.011501210653753082, 0.0121065375302664, 0.012711864406779717, 0.013317191283293034, 0.013922518159806352, 0.014527845036319669, 0.015133171912832985, 0.015738498789346304, 0.01634382566585962, 0.016949152542372937, 0.017554479418886253, 0.018159806295399573, 0.01876513317191289, 0.019370460048426207, 0.019975786924939523, 0.02058111380145284, 0.02118644067796616, 0.021791767554479476, 0.022397094430992793, 0.02300242130750611, 0.023607748184019426, 0.024213075060532746, 0.024818401937046063, 0.02542372881355938, 0.026029055690072696, 0.026634382566586012, 0.02723970944309933, 0.02784503631961265, 0.028450363196125966, 0.029055690072639282, 0.0296610169491526, 0.030266343825665915, 0.030871670702179235, 0.03147699757869255, 0.03208232445520587, 0.032687651331719185, 0.0332929782082325, 0.03389830508474582, 0.034503631961259135, 0.03510895883777245, 0.035714285714285775, 0.03631961259079909, 0.03692493946731241, 0.037530266343825724, 0.03813559322033904, 0.03874092009685236, 0.039346246973365674, 0.03995157384987899, 0.04055690072639231, 0.041162227602905624, 0.04176755447941894, 0.042372881355932264, 0.04297820823244558, 0.0435835351089589, 0.044188861985472214, 0.04479418886198553, 0.04539951573849885, 0.04600484261501216, 0.04661016949152548, 0.047215496368038797, 0.04782082324455211, 0.04842615012106544, 0.04903147699757875, 0.04963680387409207, 0.050242130750605386, 0.0508474576271187, 0.05145278450363202, 0.052058111380145336, 0.05266343825665865, 0.05326876513317197, 0.053874092009685286, 0.0544794188861986, 0.055084745762711926, 0.05569007263922524, 0.05629539951573856, 0.056900726392251876, 0.05750605326876519, 0.05811138014527851, 0.058716707021791825, 0.05932203389830514, 0.05992736077481846, 0.060532687651331775, 0.06113801452784509, 0.061743341404358415, 0.06234866828087173, 0.06295399515738505, 0.06355932203389836, 0.06416464891041168, 0.064769975786925, 0.06537530266343831, 0.06598062953995164, 0.06658595641646495, 0.06719128329297827, 0.06779661016949158, 0.0684019370460049, 0.06900726392251821, 0.06961259079903154, 0.07021791767554485, 0.07082324455205817, 0.0714285714285715, 0.0720338983050848, 0.07263922518159813, 0.07324455205811144, 0.07384987893462476, 0.07445520581113807, 0.0750605326876514, 0.0756658595641647, 0.07627118644067803, 0.07687651331719134, 0.07748184019370466, 0.07808716707021798, 0.07869249394673129, 0.07929782082324462, 0.07990314769975793, 0.08050847457627125, 0.08111380145278456, 0.08171912832929788, 0.08232445520581119, 0.08292978208232452, 0.08353510895883783, 0.08414043583535115, 0.08474576271186447, 0.08535108958837778, 0.0859564164648911, 0.08656174334140442, 0.08716707021791774, 0.08777239709443105, 0.08837772397094437, 0.08898305084745768, 0.089588377723971, 0.09019370460048431, 0.09079903147699764, 0.09140435835351096, 0.09200968523002427, 0.0926150121065376, 0.0932203389830509, 0.09382566585956423, 0.09443099273607754, 0.09503631961259086, 0.09564164648910417, 0.0962469733656175, 0.09685230024213082, 0.09745762711864413, 0.09806295399515745, 0.09866828087167076, 0.09927360774818408, 0.0998789346246974, 0.10048426150121072, 0.10108958837772403, 0.10169491525423735, 0.10230024213075066, 0.10290556900726398, 0.1035108958837773, 0.10411622276029062, 0.10472154963680394, 0.10532687651331725, 0.10593220338983057, 0.10653753026634388, 0.1071428571428572, 0.10774818401937052, 0.10835351089588384, 0.10895883777239715, 0.10956416464891047, 0.1101694915254238, 0.1107748184019371, 0.11138014527845043, 0.11198547215496374, 0.11259079903147706, 0.11319612590799037, 0.1138014527845037, 0.114406779661017, 0.11501210653753033, 0.11561743341404364, 0.11622276029055696, 0.11682808716707029, 0.1174334140435836, 0.11803874092009692, 0.11864406779661023, 0.11924939467312355, 0.11985472154963686, 0.12046004842615018, 0.1210653753026635, 0.12167070217917682, 0.12227602905569013, 0.12288135593220345, 0.12348668280871677, 0.12409200968523008, 0.12469733656174341, 0.12530266343825672, 0.12590799031477004, 0.12651331719128336, 0.12711864406779666, 0.12772397094430998, 0.1283292978208233, 0.12893462469733663, 0.12953995157384995, 0.13014527845036325, 0.13075060532687657, 0.1313559322033899, 0.13196125907990322, 0.13256658595641652, 0.13317191283292984, 0.13377723970944316, 0.1343825665859565, 0.13498789346246978, 0.1355932203389831, 0.13619854721549643, 0.13680387409200975, 0.13740920096852308, 0.13801452784503637, 0.1386198547215497, 0.13922518159806302, 0.13983050847457634, 0.14043583535108964, 0.14104116222760296, 0.14164648910411629, 0.1422518159806296, 0.14285714285714293, 0.14346246973365623, 0.14406779661016955, 0.14467312348668288, 0.1452784503631962, 0.1458837772397095, 0.14648910411622282, 0.14709443099273614, 0.14769975786924947, 0.14830508474576276, 0.14891041162227608, 0.1495157384987894, 0.15012106537530273, 0.15072639225181605, 0.15133171912832935, 0.15193704600484267, 0.152542372881356, 0.15314769975786932, 0.15375302663438262, 0.15435835351089594, 0.15496368038740926, 0.1555690072639226, 0.1561743341404359, 0.1567796610169492, 0.15738498789346253, 0.15799031476997585, 0.15859564164648918, 0.15920096852300247, 0.1598062953995158, 0.16041162227602912, 0.16101694915254244, 0.16162227602905577, 0.16222760290556906, 0.1628329297820824, 0.1634382566585957, 0.16404358353510903, 0.16464891041162233, 0.16525423728813565, 0.16585956416464898, 0.1664648910411623, 0.1670702179176756, 0.16767554479418892, 0.16828087167070224, 0.16888619854721557, 0.1694915254237289, 0.17009685230024219, 0.1707021791767555, 0.17130750605326883, 0.17191283292978216, 0.17251815980629545, 0.17312348668280877, 0.1737288135593221, 0.17433414043583542, 0.17493946731234875, 0.17554479418886204, 0.17615012106537536, 0.1767554479418887, 0.177360774818402, 0.1779661016949153, 0.17857142857142863, 0.17917675544794195, 0.17978208232445528, 0.18038740920096857, 0.1809927360774819, 0.18159806295399522, 0.18220338983050854, 0.18280871670702187, 0.18341404358353516, 0.1840193704600485, 0.1846246973365618, 0.18523002421307513, 0.18583535108958843, 0.18644067796610175, 0.18704600484261508, 0.1876513317191284, 0.18825665859564172, 0.18886198547215502, 0.18946731234866834, 0.19007263922518167, 0.190677966101695, 0.19128329297820829, 0.1918886198547216, 0.19249394673123493, 0.19309927360774826, 0.19370460048426158, 0.19430992736077488, 0.1949152542372882, 0.19552058111380152, 0.19612590799031485, 0.19673123486682814, 0.19733656174334147, 0.1979418886198548, 0.1985472154963681, 0.1991525423728814, 0.19975786924939473, 0.20036319612590806, 0.20096852300242138, 0.2015738498789347, 0.202179176755448, 0.20278450363196132, 0.20338983050847464, 0.20399515738498797, 0.20460048426150126, 0.2052058111380146, 0.2058111380145279, 0.20641646489104123, 0.20702179176755456, 0.20762711864406785, 0.20823244552058118, 0.2088377723970945, 0.20944309927360782, 0.21004842615012112, 0.21065375302663444, 0.21125907990314777, 0.2118644067796611, 0.2124697336561744, 0.2130750605326877, 0.21368038740920103, 0.21428571428571436, 0.21489104116222768, 0.21549636803874098, 0.2161016949152543, 0.21670702179176762, 0.21731234866828095, 0.21791767554479424, 0.21852300242130757, 0.2191283292978209, 0.2197336561743342, 0.22033898305084754, 0.22094430992736083, 0.22154963680387416, 0.22215496368038748, 0.2227602905569008, 0.2233656174334141, 0.22397094430992742, 0.22457627118644075, 0.22518159806295407, 0.22578692493946736, 0.2263922518159807, 0.226997578692494, 0.22760290556900734, 0.22820823244552066, 0.22881355932203395, 0.22941888619854728, 0.2300242130750606, 0.23062953995157393, 0.23123486682808722, 0.23184019370460054, 0.23244552058111387, 0.2330508474576272, 0.23365617433414052, 0.2342615012106538, 0.23486682808716713, 0.23547215496368046, 0.23607748184019378, 0.23668280871670708, 0.2372881355932204, 0.23789346246973372, 0.23849878934624705, 0.23910411622276037, 0.23970944309927367, 0.240314769975787, 0.24092009685230031, 0.24152542372881364, 0.24213075060532693, 0.24273607748184026, 0.24334140435835358, 0.2439467312348669, 0.2445520581113802, 0.24515738498789352, 0.24576271186440685, 0.24636803874092017, 0.2469733656174335, 0.2475786924939468, 0.2481840193704601, 0.24878934624697344, 0.24939467312348676, 0.25000000000000006, 0.2506053268765134, 0.2512106537530267, 0.25181598062954, 0.25242130750605335, 0.2530266343825667, 0.25363196125908, 0.25423728813559326, 0.2548426150121066, 0.2554479418886199, 0.25605326876513324, 0.25665859564164656, 0.2572639225181599, 0.2578692493946732, 0.25847457627118653, 0.25907990314769985, 0.2596852300242131, 0.26029055690072644, 0.26089588377723977, 0.2615012106537531, 0.2621065375302664, 0.26271186440677974, 0.26331719128329306, 0.2639225181598064, 0.26452784503631965, 0.265133171912833, 0.2657384987893463, 0.2663438256658596, 0.26694915254237295, 0.26755447941888627, 0.2681598062953996, 0.2687651331719129, 0.26937046004842624, 0.2699757869249395, 0.27058111380145283, 0.27118644067796616, 0.2717917675544795, 0.2723970944309928, 0.2730024213075061, 0.27360774818401945, 0.2742130750605328, 0.2748184019370461, 0.27542372881355937, 0.2760290556900727, 0.276634382566586, 0.27723970944309934, 0.27784503631961266, 0.278450363196126, 0.2790556900726393, 0.27966101694915263, 0.28026634382566595, 0.2808716707021792, 0.28147699757869254, 0.28208232445520587, 0.2826876513317192, 0.2832929782082325, 0.28389830508474584, 0.28450363196125916, 0.2851089588377725, 0.2857142857142858, 0.2863196125907991, 0.2869249394673124, 0.2875302663438257, 0.28813559322033905, 0.28874092009685237, 0.2893462469733657, 0.289951573849879, 0.29055690072639234, 0.29116222760290567, 0.29176755447941893, 0.29237288135593226, 0.2929782082324456, 0.2935835351089589, 0.2941888619854722, 0.29479418886198555, 0.2953995157384989, 0.2960048426150122, 0.29661016949152547, 0.2972154963680388, 0.2978208232445521, 0.29842615012106544, 0.29903147699757876, 0.2996368038740921, 0.3002421307506054, 0.30084745762711873, 0.30145278450363205, 0.3020581113801453, 0.30266343825665865, 0.30326876513317197, 0.3038740920096853, 0.3044794188861986, 0.30508474576271194, 0.30569007263922526, 0.3062953995157386, 0.3069007263922519, 0.3075060532687652, 0.3081113801452785, 0.3087167070217918, 0.30932203389830515, 0.30992736077481847, 0.3105326876513318, 0.3111380145278451, 0.31174334140435844, 0.31234866828087177, 0.31295399515738503, 0.31355932203389836, 0.3141646489104117, 0.314769975786925, 0.31537530266343833, 0.31598062953995165, 0.316585956416465, 0.3171912832929783, 0.3177966101694916, 0.3184019370460049, 0.3190072639225182, 0.31961259079903154, 0.32021791767554486, 0.3208232445520582, 0.3214285714285715, 0.32203389830508483, 0.32263922518159815, 0.3232445520581115, 0.32384987893462475, 0.32445520581113807, 0.3250605326876514, 0.3256658595641647, 0.32627118644067804, 0.32687651331719136, 0.3274818401937047, 0.328087167070218, 0.3286924939467313, 0.3292978208232446, 0.3299031476997579, 0.33050847457627125, 0.3311138014527846, 0.3317191283292979, 0.3323244552058112, 0.33292978208232454, 0.33353510895883787, 0.33414043583535114, 0.33474576271186446, 0.3353510895883778, 0.3359564164648911, 0.33656174334140443, 0.33716707021791775, 0.3377723970944311, 0.3383777239709444, 0.3389830508474577, 0.339588377723971, 0.3401937046004843, 0.34079903147699764, 0.34140435835351096, 0.3420096852300243, 0.3426150121065376, 0.34322033898305093, 0.34382566585956426, 0.3444309927360776, 0.34503631961259085, 0.34564164648910417, 0.3462469733656175, 0.3468523002421308, 0.34745762711864414, 0.34806295399515746, 0.3486682808716708, 0.3492736077481841, 0.34987893462469744, 0.3504842615012107, 0.351089588377724, 0.35169491525423735, 0.3523002421307507, 0.352905569007264, 0.3535108958837773, 0.35411622276029064, 0.35472154963680397, 0.3553268765133173, 0.35593220338983056, 0.3565375302663439, 0.3571428571428572, 0.35774818401937053, 0.35835351089588385, 0.3589588377723972, 0.3595641646489105, 0.3601694915254238, 0.3607748184019371, 0.3613801452784504, 0.36198547215496374, 0.36259079903147706, 0.3631961259079904, 0.3638014527845037, 0.36440677966101703, 0.36501210653753036, 0.3656174334140437, 0.36622276029055695, 0.36682808716707027, 0.3674334140435836, 0.3680387409200969, 0.36864406779661024, 0.36924939467312357, 0.3698547215496369, 0.3704600484261502, 0.37106537530266354, 0.3716707021791768, 0.3722760290556901, 0.37288135593220345, 0.3734866828087168, 0.3740920096852301, 0.3746973365617434, 0.37530266343825675, 0.37590799031477007, 0.3765133171912834, 0.37711864406779666, 0.37772397094431, 0.3783292978208233, 0.37893462469733663, 0.37953995157384995, 0.3801452784503633, 0.3807506053268766, 0.3813559322033899, 0.38196125907990325, 0.3825665859564165, 0.38317191283292984, 0.38377723970944316, 0.3843825665859565, 0.3849878934624698, 0.38559322033898313, 0.38619854721549646, 0.3868038740920098, 0.3874092009685231, 0.38801452784503637, 0.3886198547215497, 0.389225181598063, 0.38983050847457634, 0.39043583535108967, 0.391041162227603, 0.3916464891041163, 0.39225181598062964, 0.3928571428571429, 0.39346246973365623, 0.39406779661016955, 0.3946731234866829, 0.3952784503631962, 0.3958837772397095, 0.39648910411622285, 0.39709443099273617, 0.3976997578692495, 0.39830508474576276, 0.3989104116222761, 0.3995157384987894, 0.40012106537530273, 0.40072639225181605, 0.4013317191283294, 0.4019370460048427, 0.402542372881356, 0.40314769975786935, 0.4037530266343826, 0.40435835351089594, 0.40496368038740926, 0.4055690072639226, 0.4061743341404359, 0.40677966101694923, 0.40738498789346256, 0.4079903147699759, 0.4085956416464892, 0.4092009685230025, 0.4098062953995158, 0.4104116222760291, 0.41101694915254244, 0.41162227602905577, 0.4122276029055691, 0.4128329297820824, 0.41343825665859574, 0.41404358353510906, 0.41464891041162233, 0.41525423728813565, 0.415859564164649, 0.4164648910411623, 0.4170702179176756, 0.41767554479418895, 0.41828087167070227, 0.4188861985472156, 0.41949152542372886, 0.4200968523002422, 0.4207021791767555, 0.42130750605326883, 0.42191283292978216, 0.4225181598062955, 0.4231234866828088, 0.4237288135593221, 0.42433414043583545, 0.4249394673123487, 0.42554479418886204, 0.42615012106537536, 0.4267554479418887, 0.427360774818402, 0.42796610169491534, 0.42857142857142866, 0.429176755447942, 0.4297820823244553, 0.4303874092009686, 0.4309927360774819, 0.4315980629539952, 0.43220338983050854, 0.43280871670702187, 0.4334140435835352, 0.4340193704600485, 0.43462469733656184, 0.43523002421307516, 0.43583535108958843, 0.43644067796610175, 0.4370460048426151, 0.4376513317191284, 0.4382566585956417, 0.43886198547215505, 0.43946731234866837, 0.4400726392251817, 0.440677966101695, 0.4412832929782083, 0.4418886198547216, 0.44249394673123493, 0.44309927360774826, 0.4437046004842616, 0.4443099273607749, 0.4449152542372882, 0.44552058111380155, 0.4461259079903149, 0.44673123486682814, 0.44733656174334147, 0.4479418886198548, 0.4485472154963681, 0.44915254237288144, 0.44975786924939476, 0.4503631961259081, 0.4509685230024214, 0.4515738498789347, 0.452179176755448, 0.4527845036319613, 0.45338983050847464, 0.45399515738498797, 0.4546004842615013, 0.4552058111380146, 0.45581113801452794, 0.45641646489104126, 0.45702179176755453, 0.45762711864406785, 0.4582324455205812, 0.4588377723970945, 0.4594430992736078, 0.46004842615012115, 0.46065375302663447, 0.4612590799031478, 0.4618644067796611, 0.4624697336561744, 0.4630750605326877, 0.46368038740920103, 0.46428571428571436, 0.4648910411622277, 0.465496368038741, 0.4661016949152543, 0.46670702179176765, 0.467312348668281, 0.46791767554479424, 0.46852300242130757, 0.4691283292978209, 0.4697336561743342, 0.47033898305084754, 0.47094430992736086, 0.4715496368038742, 0.4721549636803875, 0.47276029055690083, 0.4733656174334141, 0.4739709443099274, 0.47457627118644075, 0.47518159806295407, 0.4757869249394674, 0.4763922518159807, 0.47699757869249404, 0.47760290556900736, 0.4782082324455207, 0.47881355932203395, 0.4794188861985473, 0.4800242130750606, 0.4806295399515739, 0.48123486682808725, 0.4818401937046006, 0.4824455205811139, 0.4830508474576272, 0.4836561743341405, 0.4842615012106538, 0.48486682808716713, 0.48547215496368046, 0.4860774818401938, 0.4866828087167071, 0.48728813559322043, 0.48789346246973375, 0.4884987893462471, 0.48910411622276034, 0.48970944309927367, 0.490314769975787, 0.4909200968523003, 0.49152542372881364, 0.49213075060532696, 0.4927360774818403, 0.4933414043583536, 0.49394673123486693, 0.4945520581113802, 0.4951573849878935, 0.49576271186440685, 0.49636803874092017, 0.4969733656174335, 0.4975786924939468, 0.49818401937046014, 0.49878934624697346, 0.4993946731234868, 0.5, 0.5006053268765134, 0.5012106537530268, 0.5018159806295401, 0.5024213075060533, 0.5030266343825667, 0.50363196125908, 0.5042372881355932, 0.5048426150121066, 0.50544794188862, 0.5060532687651333, 0.5066585956416465, 0.5072639225181599, 0.5078692493946733, 0.5084745762711864, 0.5090799031476998, 0.5096852300242132, 0.5102905569007266, 0.5108958837772397, 0.5115012106537531, 0.5121065375302665, 0.5127118644067798, 0.513317191283293, 0.5139225181598064, 0.5145278450363198, 0.5151331719128329, 0.5157384987893463, 0.5163438256658597, 0.5169491525423731, 0.5175544794188862, 0.5181598062953996, 0.518765133171913, 0.5193704600484261, 0.5199757869249395, 0.5205811138014529, 0.5211864406779663, 0.5217917675544794, 0.5223970944309928, 0.5230024213075062, 0.5236077481840196, 0.5242130750605327, 0.5248184019370461, 0.5254237288135595, 0.5260290556900726, 0.526634382566586, 0.5272397094430994, 0.5278450363196128, 0.5284503631961259, 0.5290556900726393, 0.5296610169491527, 0.5302663438256658, 0.5308716707021792, 0.5314769975786926, 0.532082324455206, 0.5326876513317191, 0.5332929782082325, 0.5338983050847459, 0.534503631961259, 0.5351089588377724, 0.5357142857142858, 0.5363196125907992, 0.5369249394673123, 0.5375302663438257, 0.5381355932203391, 0.5387409200968525, 0.5393462469733656, 0.539951573849879, 0.5405569007263924, 0.5411622276029056, 0.5417675544794189, 0.5423728813559323, 0.5429782082324457, 0.5435835351089588, 0.5441888619854722, 0.5447941888619856, 0.5453995157384988, 0.5460048426150121, 0.5466101694915255, 0.5472154963680389, 0.5478208232445521, 0.5484261501210654, 0.5490314769975788, 0.5496368038740922, 0.5502421307506054, 0.5508474576271187, 0.5514527845036321, 0.5520581113801453, 0.5526634382566586, 0.553268765133172, 0.5538740920096854, 0.5544794188861986, 0.5550847457627119, 0.5556900726392253, 0.5562953995157385, 0.5569007263922519, 0.5575060532687652, 0.5581113801452786, 0.5587167070217918, 0.5593220338983051, 0.5599273607748185, 0.5605326876513319, 0.5611380145278451, 0.5617433414043584, 0.5623486682808718, 0.562953995157385, 0.5635593220338984, 0.5641646489104117, 0.5647699757869251, 0.5653753026634383, 0.5659806295399517, 0.566585956416465, 0.5671912832929782, 0.5677966101694916, 0.568401937046005, 0.5690072639225183, 0.5696125907990315, 0.5702179176755449, 0.5708232445520582, 0.5714285714285716, 0.5720338983050848, 0.5726392251815982, 0.5732445520581115, 0.5738498789346247, 0.5744552058111381, 0.5750605326876514, 0.5756658595641648, 0.576271186440678, 0.5768765133171914, 0.5774818401937047, 0.5780871670702179, 0.5786924939467313, 0.5792978208232447, 0.579903147699758, 0.5805084745762712, 0.5811138014527846, 0.581719128329298, 0.5823244552058113, 0.5829297820823245, 0.5835351089588379, 0.5841404358353512, 0.5847457627118644, 0.5853510895883778, 0.5859564164648912, 0.5865617433414045, 0.5871670702179177, 0.5877723970944311, 0.5883777239709445, 0.5889830508474576, 0.589588377723971, 0.5901937046004844, 0.5907990314769977, 0.5914043583535109, 0.5920096852300243, 0.5926150121065377, 0.5932203389830508, 0.5938256658595642, 0.5944309927360776, 0.595036319612591, 0.5956416464891041, 0.5962469733656175, 0.5968523002421309, 0.5974576271186443, 0.5980629539951574, 0.5986682808716708, 0.5992736077481842, 0.5998789346246973, 0.6004842615012107, 0.6010895883777241, 0.6016949152542375, 0.6023002421307506, 0.602905569007264, 0.6035108958837774, 0.6041162227602905, 0.6047215496368039, 0.6053268765133173, 0.6059322033898307, 0.6065375302663438, 0.6071428571428572, 0.6077481840193706, 0.608353510895884, 0.6089588377723971, 0.6095641646489105, 0.6101694915254239, 0.610774818401937, 0.6113801452784504, 0.6119854721549638, 0.6125907990314772, 0.6131961259079903, 0.6138014527845037, 0.6144067796610171, 0.6150121065375302, 0.6156174334140436, 0.616222760290557, 0.6168280871670704, 0.6174334140435835, 0.6180387409200969, 0.6186440677966103, 0.6192493946731237, 0.6198547215496368, 0.6204600484261502, 0.6210653753026636, 0.6216707021791767, 0.6222760290556901, 0.6228813559322035, 0.6234866828087169, 0.62409200968523, 0.6246973365617434, 0.6253026634382568, 0.62590799031477, 0.6265133171912833, 0.6271186440677967, 0.6277239709443101, 0.6283292978208233, 0.6289346246973366, 0.62953995157385, 0.6301452784503634, 0.6307506053268765, 0.6313559322033899, 0.6319612590799033, 0.6325665859564165, 0.6331719128329298, 0.6337772397094432, 0.6343825665859566, 0.6349878934624698, 0.6355932203389831, 0.6361985472154965, 0.6368038740920097, 0.637409200968523, 0.6380145278450364, 0.6386198547215498, 0.639225181598063, 0.6398305084745763, 0.6404358353510897, 0.6410411622276031, 0.6416464891041163, 0.6422518159806296, 0.642857142857143, 0.6434624697336562, 0.6440677966101696, 0.6446731234866829, 0.6452784503631963, 0.6458837772397095, 0.6464891041162228, 0.6470944309927362, 0.6476997578692494, 0.6483050847457628, 0.6489104116222761, 0.6495157384987895, 0.6501210653753027, 0.650726392251816, 0.6513317191283294, 0.6519370460048426, 0.652542372881356, 0.6531476997578693, 0.6537530266343827, 0.6543583535108959, 0.6549636803874093, 0.6555690072639226, 0.656174334140436, 0.6567796610169492, 0.6573849878934626, 0.6579903147699759, 0.6585956416464891, 0.6592009685230025, 0.6598062953995159, 0.6604116222760292, 0.6610169491525424, 0.6616222760290558, 0.6622276029055691, 0.6628329297820823, 0.6634382566585957, 0.6640435835351091, 0.6646489104116224, 0.6652542372881356, 0.665859564164649, 0.6664648910411624, 0.6670702179176757, 0.6676755447941889, 0.6682808716707023, 0.6688861985472156, 0.6694915254237288, 0.6700968523002422, 0.6707021791767556, 0.6713075060532689, 0.6719128329297821, 0.6725181598062955, 0.6731234866828089, 0.673728813559322, 0.6743341404358354, 0.6749394673123488, 0.6755447941888622, 0.6761501210653753, 0.6767554479418887, 0.6773607748184021, 0.6779661016949154, 0.6785714285714286, 0.679176755447942, 0.6797820823244554, 0.6803874092009685, 0.6809927360774819, 0.6815980629539953, 0.6822033898305087, 0.6828087167070218, 0.6834140435835352, 0.6840193704600486, 0.6846246973365617, 0.6852300242130751, 0.6858353510895885, 0.6864406779661019, 0.687046004842615, 0.6876513317191284, 0.6882566585956418, 0.6888619854721552, 0.6894673123486683, 0.6900726392251817, 0.6906779661016951, 0.6912832929782082, 0.6918886198547216, 0.692493946731235, 0.6930992736077484, 0.6937046004842615, 0.6943099273607749, 0.6949152542372883, 0.6955205811138014, 0.6961259079903148, 0.6967312348668282, 0.6973365617433416, 0.6979418886198547, 0.6985472154963681, 0.6991525423728815, 0.6997578692493949, 0.700363196125908, 0.7009685230024214, 0.7015738498789348, 0.7021791767554479, 0.7027845036319613, 0.7033898305084747, 0.7039951573849881, 0.7046004842615012, 0.7052058111380146, 0.705811138014528, 0.7064164648910412, 0.7070217917675545, 0.7076271186440679, 0.7082324455205813, 0.7088377723970944, 0.7094430992736078, 0.7100484261501212, 0.7106537530266346, 0.7112590799031477, 0.7118644067796611, 0.7124697336561745, 0.7130750605326877, 0.713680387409201, 0.7142857142857144, 0.7148910411622278, 0.715496368038741, 0.7161016949152543, 0.7167070217917677, 0.7173123486682809, 0.7179176755447942, 0.7185230024213076, 0.719128329297821, 0.7197336561743342, 0.7203389830508475, 0.7209443099273609, 0.7215496368038741, 0.7221549636803875, 0.7227602905569008, 0.7233656174334142, 0.7239709443099274, 0.7245762711864407, 0.7251815980629541, 0.7257869249394675, 0.7263922518159807, 0.726997578692494, 0.7276029055690074, 0.7282082324455206, 0.728813559322034, 0.7294188861985473, 0.7300242130750607, 0.7306295399515739, 0.7312348668280872, 0.7318401937046006, 0.7324455205811138, 0.7330508474576272, 0.7336561743341405, 0.7342615012106539, 0.7348668280871671, 0.7354721549636805, 0.7360774818401938, 0.7366828087167072, 0.7372881355932204, 0.7378934624697338, 0.7384987893462471, 0.7391041162227603, 0.7397094430992737, 0.740314769975787, 0.7409200968523004, 0.7415254237288136, 0.742130750605327, 0.7427360774818403, 0.7433414043583535, 0.7439467312348669, 0.7445520581113803, 0.7451573849878936, 0.7457627118644068, 0.7463680387409202, 0.7469733656174335, 0.7475786924939469, 0.7481840193704601, 0.7487893462469735, 0.7493946731234868, 0.75, 0.7506053268765134, 0.7512106537530268, 0.7518159806295401, 0.7524213075060533, 0.7530266343825667, 0.75363196125908, 0.7542372881355932, 0.7548426150121066, 0.75544794188862, 0.7560532687651333, 0.7566585956416465, 0.7572639225181599, 0.7578692493946733, 0.7584745762711866, 0.7590799031476998, 0.7596852300242132, 0.7602905569007266, 0.7608958837772397, 0.7615012106537531, 0.7621065375302665, 0.7627118644067798, 0.763317191283293, 0.7639225181598064, 0.7645278450363198, 0.7651331719128329, 0.7657384987893463, 0.7663438256658597, 0.7669491525423731, 0.7675544794188862, 0.7681598062953996, 0.768765133171913, 0.7693704600484264, 0.7699757869249395, 0.7705811138014529, 0.7711864406779663, 0.7717917675544794, 0.7723970944309928, 0.7730024213075062, 0.7736077481840196, 0.7742130750605327, 0.7748184019370461, 0.7754237288135595, 0.7760290556900726, 0.776634382566586, 0.7772397094430994, 0.7778450363196128, 0.7784503631961259, 0.7790556900726393, 0.7796610169491527, 0.7802663438256658, 0.7808716707021792, 0.7814769975786926, 0.782082324455206, 0.7826876513317191, 0.7832929782082325, 0.7838983050847459, 0.7845036319612593, 0.7851089588377724, 0.7857142857142858, 0.7863196125907992, 0.7869249394673123, 0.7875302663438257, 0.7881355932203391, 0.7887409200968525, 0.7893462469733656, 0.789951573849879, 0.7905569007263924, 0.7911622276029056, 0.7917675544794189, 0.7923728813559323, 0.7929782082324457, 0.7935835351089588, 0.7941888619854722, 0.7947941888619856, 0.795399515738499, 0.7960048426150121, 0.7966101694915255, 0.7972154963680389, 0.7978208232445521, 0.7984261501210654, 0.7990314769975788, 0.7996368038740922, 0.8002421307506054, 0.8008474576271187, 0.8014527845036321, 0.8020581113801453, 0.8026634382566586, 0.803268765133172, 0.8038740920096854, 0.8044794188861986, 0.8050847457627119, 0.8056900726392253, 0.8062953995157387, 0.8069007263922519, 0.8075060532687652, 0.8081113801452786, 0.8087167070217918, 0.8093220338983051, 0.8099273607748185, 0.8105326876513319, 0.8111380145278451, 0.8117433414043584, 0.8123486682808718, 0.812953995157385, 0.8135593220338984, 0.8141646489104117, 0.8147699757869251, 0.8153753026634383, 0.8159806295399517, 0.816585956416465, 0.8171912832929784, 0.8177966101694916, 0.818401937046005, 0.8190072639225183, 0.8196125907990315, 0.8202179176755449, 0.8208232445520582, 0.8214285714285716, 0.8220338983050848, 0.8226392251815982, 0.8232445520581115, 0.8238498789346247, 0.8244552058111381, 0.8250605326876514, 0.8256658595641648, 0.826271186440678, 0.8268765133171914, 0.8274818401937047, 0.8280871670702181, 0.8286924939467313, 0.8292978208232447, 0.829903147699758, 0.8305084745762712, 0.8311138014527846, 0.831719128329298, 0.8323244552058113, 0.8329297820823245, 0.8335351089588379, 0.8341404358353512, 0.8347457627118644, 0.8353510895883778, 0.8359564164648912, 0.8365617433414045, 0.8371670702179177, 0.8377723970944311, 0.8383777239709445, 0.8389830508474576, 0.839588377723971, 0.8401937046004844, 0.8407990314769977, 0.8414043583535109, 0.8420096852300243, 0.8426150121065377, 0.843220338983051, 0.8438256658595642, 0.8444309927360776, 0.845036319612591, 0.8456416464891041, 0.8462469733656175, 0.8468523002421309, 0.8474576271186443, 0.8480629539951574, 0.8486682808716708, 0.8492736077481842, 0.8498789346246973, 0.8504842615012107, 0.8510895883777241, 0.8516949152542375, 0.8523002421307506, 0.852905569007264, 0.8535108958837774, 0.8541162227602908, 0.8547215496368039, 0.8553268765133173, 0.8559322033898307, 0.8565375302663438, 0.8571428571428572, 0.8577481840193706, 0.858353510895884, 0.8589588377723971, 0.8595641646489105, 0.8601694915254239, 0.860774818401937, 0.8613801452784504, 0.8619854721549638, 0.8625907990314772, 0.8631961259079903, 0.8638014527845037, 0.8644067796610171, 0.8650121065375305, 0.8656174334140436, 0.866222760290557, 0.8668280871670704, 0.8674334140435835, 0.8680387409200969, 0.8686440677966103, 0.8692493946731237, 0.8698547215496368, 0.8704600484261502, 0.8710653753026636, 0.8716707021791767, 0.8722760290556901, 0.8728813559322035, 0.8734866828087169, 0.87409200968523, 0.8746973365617434, 0.8753026634382568, 0.8759079903147702, 0.8765133171912833, 0.8771186440677967, 0.8777239709443101, 0.8783292978208233, 0.8789346246973366, 0.87953995157385, 0.8801452784503634, 0.8807506053268765, 0.8813559322033899, 0.8819612590799033, 0.8825665859564165, 0.8831719128329298, 0.8837772397094432, 0.8843825665859566, 0.8849878934624698, 0.8855932203389831, 0.8861985472154965, 0.8868038740920099, 0.887409200968523, 0.8880145278450364, 0.8886198547215498, 0.889225181598063, 0.8898305084745763, 0.8904358353510897, 0.8910411622276031, 0.8916464891041163, 0.8922518159806296, 0.892857142857143, 0.8934624697336562, 0.8940677966101696, 0.8946731234866829, 0.8952784503631963, 0.8958837772397095, 0.8964891041162228, 0.8970944309927362, 0.8976997578692496, 0.8983050847457628, 0.8989104116222761, 0.8995157384987895, 0.9001210653753027, 0.900726392251816, 0.9013317191283294, 0.9019370460048428, 0.902542372881356, 0.9031476997578693, 0.9037530266343827, 0.9043583535108959, 0.9049636803874093, 0.9055690072639226, 0.906174334140436, 0.9067796610169492, 0.9073849878934626, 0.9079903147699759, 0.9085956416464891, 0.9092009685230025, 0.9098062953995159, 0.9104116222760292, 0.9110169491525424, 0.9116222760290558, 0.9122276029055691, 0.9128329297820825, 0.9134382566585957, 0.9140435835351091, 0.9146489104116224, 0.9152542372881356, 0.915859564164649, 0.9164648910411624, 0.9170702179176757, 0.9176755447941889, 0.9182808716707023, 0.9188861985472156, 0.9194915254237288, 0.9200968523002422, 0.9207021791767556, 0.9213075060532689, 0.9219128329297821, 0.9225181598062955, 0.9231234866828089, 0.9237288135593222, 0.9243341404358354, 0.9249394673123488, 0.9255447941888622, 0.9261501210653753, 0.9267554479418887, 0.9273607748184021, 0.9279661016949154, 0.9285714285714286, 0.929176755447942, 0.9297820823244554, 0.9303874092009685, 0.9309927360774819, 0.9315980629539953, 0.9322033898305087, 0.9328087167070218, 0.9334140435835352, 0.9340193704600486, 0.934624697336562, 0.9352300242130751, 0.9358353510895885, 0.9364406779661019, 0.937046004842615, 0.9376513317191284, 0.9382566585956418, 0.9388619854721552, 0.9394673123486683, 0.9400726392251817, 0.9406779661016951, 0.9412832929782082, 0.9418886198547216, 0.942493946731235, 0.9430992736077484, 0.9437046004842615, 0.9443099273607749, 0.9449152542372883, 0.9455205811138017, 0.9461259079903148, 0.9467312348668282, 0.9473365617433416, 0.9479418886198547, 0.9485472154963681, 0.9491525423728815, 0.9497578692493949, 0.950363196125908, 0.9509685230024214, 0.9515738498789348, 0.9521791767554479, 0.9527845036319613, 0.9533898305084747, 0.9539951573849881, 0.9546004842615012, 0.9552058111380146, 0.955811138014528, 0.9564164648910414, 0.9570217917675545, 0.9576271186440679, 0.9582324455205813, 0.9588377723970944, 0.9594430992736078, 0.9600484261501212, 0.9606537530266346, 0.9612590799031477, 0.9618644067796611, 0.9624697336561745, 0.9630750605326877, 0.963680387409201, 0.9642857142857144, 0.9648910411622278, 0.965496368038741, 0.9661016949152543, 0.9667070217917677, 0.9673123486682809, 0.9679176755447942, 0.9685230024213076, 0.969128329297821, 0.9697336561743342, 0.9703389830508475, 0.9709443099273609, 0.9715496368038743, 0.9721549636803875, 0.9727602905569008, 0.9733656174334142, 0.9739709443099274, 0.9745762711864407, 0.9751815980629541, 0.9757869249394675, 0.9763922518159807, 0.976997578692494, 0.9776029055690074, 0.9782082324455206, 0.978813559322034, 0.9794188861985473, 0.9800242130750607, 0.9806295399515739, 0.9812348668280872, 0.9818401937046006, 0.982445520581114, 0.9830508474576272, 0.9836561743341405, 0.9842615012106539, 0.9848668280871671, 0.9854721549636805, 0.9860774818401938, 0.9866828087167072, 0.9872881355932204, 0.9878934624697338, 0.9884987893462471, 0.9891041162227603, 0.9897094430992737, 0.990314769975787, 0.9909200968523004, 0.9915254237288136, 0.992130750605327, 0.9927360774818403, 0.9933414043583537, 0.9939467312348669, 0.9945520581113803, 0.9951573849878936, 0.9957627118644068, 0.9963680387409202, 0.9969733656174335, 0.9975786924939469, 0.9981840193704601, 0.9987893462469735, 0.9993946731234868, 1.0]}
-},{}],217:[function(require,module,exports){
+
+},{}],250:[function(require,module,exports){
 module.exports={"expected": [-3.6686159755220206e+74, -2.892466278406279e+74, -2.2805109233235176e+74, -1.798017066195088e+74, -1.4175985573975903e+74, -1.1176620774529495e+74, -8.811819000617772e+73, -6.947337858439236e+73, -5.4773320594952276e+73, -4.3183468314839056e+73, -3.404581760697637e+73, -2.684156380516652e+73, -2.1161656412770318e+73, -1.668358202057266e+73, -1.3153058154282278e+73, -1.0369599353754933e+73, -8.175136462869919e+72, -6.445043329103551e+72, -5.081061699060847e+72, -4.005722797212042e+72, -3.1579489984378465e+72, -2.4895859675844692e+72, -1.9626684393967105e+72, -1.5472644450632593e+72, -1.2197756188700385e+72, -9.615971024556635e+71, -7.580609733364926e+71, -5.976032166480453e+71, -4.711069474650152e+71, -3.713845955528987e+71, -2.9276965265127534e+71, -2.3079480200758157e+71, -1.8193815381494943e+71, -1.4342317675922413e+71, -1.1306096447808792e+71, -8.912587940543117e+70, -7.025751163878582e+70, -5.538338469640977e+70, -4.3658018138077344e+70, -3.441488588441413e+70, -2.7128541411647173e+70, -2.138475839680009e+70, -1.6856990621871683e+70, -1.3287813860290155e+70, -1.047429544241389e+70, -8.256460296214186e+69, -6.508198152262084e+69, -5.130095276612927e+69, -4.043783425958701e+69, -3.187484915194015e+69, -2.5125006434887817e+69, -1.9804415005155204e+69, -1.5610458125057201e+69, -1.230458787377971e+69, -9.698761707005201e+68, -7.644750209726141e+68, -6.0257082931038745e+68, -4.7495307201943445e+68, -3.7436142550668725e+68, -2.9507286766273253e+68, -2.3257619245650156e+68, -1.8331543312415959e+68, -1.444876063251319e+68, -1.138832775531102e+68, -8.976088239928817e+67, -7.074765730609011e+67, -5.57615462801764e+67, -4.394964263193333e+67, -3.4639664956112123e+67, -2.7301707700102367e+67, -2.1518090908240077e+67, -1.6959594292383957e+67, -1.336672384085731e+67, -1.0534945379065503e+67, -8.303045105902198e+66, -6.54395497685649e+66, -5.1575209990189234e+66, -4.0648030158097444e+66, -3.2035816740126394e+66, -2.5248169360178172e+66, -1.9898566309563792e+66, -1.5682362078838154e+66, -1.235944488916496e+66, -9.740567330887292e+65, -7.676572205813169e+65, -6.049900405255613e+65, -4.767897508023046e+65, -3.7575381375370665e+65, -2.961267797367784e+65, -2.3337254993107706e+65, -1.8391606255071008e+65, -1.4493969778185778e+65, -1.1422281116913408e+65, -9.001526000169305e+64, -7.093772218085789e+64, -5.590313218311126e+64, -4.405476085087885e+64, -3.4717413256319756e+64, -2.7358965710999637e+64, -2.1560051639726278e+64, -1.699017000134156e+64, -1.3388855629671913e+64, -1.055083909854287e+64, -8.314350891903438e+63, -6.5519037152649076e+63, -5.163027910612013e+63, -4.068546167624983e+63, -3.20606139188971e+63, -2.5264006868752445e+63, -1.9908128648587618e+63, -1.5687598233569061e+63, -1.2361759519563174e+63, -9.740963959657365e+62, -7.675760162796054e+62, -6.048374458857174e+62, -4.765996957008999e+62, -3.755490492423588e+62, -2.9592209291597854e+62, -2.3317711819033697e+62, -1.837351675726439e+62, -1.4477596494666327e+62, -1.1407709854547746e+62, -8.988728978920567e+61, -7.082652384605548e+61, -5.58073487488681e+61, -4.3972856445090237e+61, -3.4647810019620305e+61, -2.7300130687467486e+61, -2.1510548705109397e+61, -1.694868774833586e+61, -1.3354219071343152e+61, -1.0522010798473591e+61, -8.290425478848426e+60, -6.532098537172861e+60, -5.146671712061955e+60, -4.0550670493494e+60, -3.1949748661403946e+60, -2.517298329566191e+60, -1.9833518486550614e+60, -1.562653468520141e+60, -1.2311853341084141e+60, -9.700229875461683e+59, -7.642553007809877e+59, -6.021334232916662e+59, -4.744001883917248e+59, -3.7376171602958075e+59, -2.9447106202260274e+59, -2.320001559662117e+59, -1.827813071839805e+59, -1.4400352731237192e+59, -1.1345204582703934e+59, -8.938185941398123e+58, -7.041809814766348e+58, -5.547752173945489e+58, -4.3706664957941533e+58, -3.443310148807763e+58, -2.7127044194949836e+58, -2.1371089704447342e+58, -1.6836380067005504e+58, -1.3263820554238674e+58, -1.0449281251903483e+58, -8.231937524855834e+57, -6.485083617496464e+57, -5.1088948423203224e+57, -4.0247250570335034e+57, -3.170613786336579e+57, -2.497746410750181e+57, -1.9676652637672095e+57, -1.5500723563330289e+57, -1.2210982316624414e+57, -9.619380722084388e+56, -7.577771537557331e+56, -5.969442664331142e+56, -4.702447423432015e+56, -3.7043498783160123e+56, -2.9180850086625922e+56, -2.2986972206141965e+56, -1.810770851741084e+56, -1.426405859269713e+56, -1.1236230250489884e+56, -8.851075489599968e+55, -6.972192353636202e+55, -5.492127088739107e+55, -4.3262309619189e+55, -3.407820653642064e+55, -2.684365626842613e+55, -2.1144845602310674e+55, -1.6655791689776193e+55, -1.3119701618388887e+55, -1.0334287815283041e+55, -8.140199841563944e+54, -6.411911256133558e+54, -5.0505405554594786e+54, -3.9781957490362935e+54, -3.133519226056877e+54, -2.468178184021612e+54, -1.94409994575933e+54, -1.5312940767462741e+54, -1.206136763488055e+54, -9.500193434655105e+53, -7.482836983393333e+53, -5.893836248408324e+53, -4.64224219627906e+53, -3.6564149399230904e+53, -2.8799245358443527e+53, -2.268321957067682e+53, -1.7865955338075962e+53, -1.4071673583585715e+53, -1.108315034507195e+53, -8.729284807899305e+52, -6.875306622345331e+52, -5.415062227420897e+52, -4.264938832987884e+52, -3.359078398763568e+52, -2.6456077495673967e+52, -2.083669101715755e+52, -1.641081070747473e+52, -1.2924963049134649e+52, -1.0179503054533026e+52, -8.017183790318821e+51, -6.314153002485362e+51, -4.972861515205485e+51, -3.9164774845291524e+51, -3.084486769434313e+51, -2.429227568009322e+51, -1.913160939649375e+51, -1.5067209546358314e+51, -1.1866213903836222e+51, -9.34522027453002e+50, -7.359781835900609e+50, -5.796133385735074e+50, -4.564674744219473e+50, -3.5948381548810667e+50, -2.831045768848907e+50, -2.2295257107733375e+50, -1.7558043857162767e+50, -1.3827314082975174e+50, -1.0889240348758904e+50, -8.575420024462293e+49, -6.753225994749525e+49, -5.318206972953846e+49, -4.188102091713015e+49, -3.298126897763342e+49, -2.597260699864558e+49, -2.045322575022927e+49, -1.6106685132582397e+49, -1.2683777619461742e+49, -9.988244547656883e+48, -7.865526823272278e+48, -6.193905456930444e+48, -4.8775242583439e+48, -3.840894857742808e+48, -3.024569153863344e+48, -2.3817311803003552e+48, -1.8755130655986557e+48, -1.4768812553401127e+48, -1.1629718435697371e+48, -9.157795982849085e+47, -7.211255358461009e+47, -5.678438633605292e+47, -4.4714168098941875e+47, -3.5209473809950598e+47, -2.772503355911187e+47, -2.1831460843289488e+47, -1.7190625935211694e+47, -1.3536262394863376e+47, -1.065869475167841e+47, -8.392811650330059e+46, -6.608594820467362e+46, -5.203660765681546e+46, -4.097387468034761e+46, -3.2262892861633917e+46, -2.5403747966046866e+46, -2.0002786922483279e+46, -1.5750032396882853e+46, -1.240139753373715e+46, -9.764680728022446e+45, -7.688537077830321e+45, -6.053793889411166e+45, -4.766612049587481e+45, -3.753100954211268e+45, -2.955078056260525e+45, -2.326729754097285e+45, -1.8319820444106355e+45, -1.442430080395504e+45, -1.1357078387908731e+45, -8.942043483139474e+44, -7.040528148694415e+44, -5.5433463605196795e+44, -4.364526269259441e+44, -3.4363748806698295e+44, -2.7055919229133922e+44, -2.1302098695051756e+44, -1.6771844948864275e+44, -1.3204976711530256e+44, -1.039663511050076e+44, -8.185521104622781e+43, -6.444633713677089e+43, -5.073977393971414e+43, -3.9948199229644877e+43, -3.145171152382304e+43, -2.476223067412938e+43, -1.9495467706692632e+43, -1.5348854602704315e+43, -1.2084166851373575e+43, -9.51384100934155e+42, -7.490201631613025e+42, -5.896978972128321e+42, -4.6426303743909043e+42, -3.655081833193766e+42, -2.8775877517383165e+42, -2.2654711250493963e+42, -1.7835569362239008e+42, -1.404151358889692e+42, -1.1054507025030971e+42, -8.702887161714269e+41, -6.851502984185212e+41, -5.393949603500681e+41, -4.246454364810179e+41, -3.3430632275361606e+41, -2.6318508963781576e+41, -2.0719369850703434e+41, -1.6311367938706496e+41, -1.2841117355571973e+41, -1.0109131466885127e+41, -7.958358193618097e+40, -6.265153815269545e+40, -4.932176629686075e+40, -3.882792139584833e+40, -3.0566682781876757e+40, -2.406307560342733e+40, -1.8943168784441207e+40, -1.491258046638336e+40, -1.1739555669232848e+40, -9.241643637788862e+39, -7.275209192224201e+39, -5.72717526019675e+39, -4.5085219883660626e+39, -3.549168780503735e+39, -2.793945087561535e+39, -2.1994183485729862e+39, -1.7313967455028738e+39, -1.3629632208251583e+39, -1.0729277424120225e+39, -8.446088409420441e+38, -6.648743719841823e+38, -5.2338635586741195e+38, -4.120064797350827e+38, -3.243280820174563e+38, -2.5530771073459724e+38, -2.0097507146998943e+38, -1.5820468754687724e+38, -1.2453614292697144e+38, -9.803257156938025e+37, -7.716925599232552e+37, -6.074592897507069e+37, -4.781773523857765e+37, -3.764088289776204e+37, -2.9629859166892526e+37, -2.3323749783018873e+37, -1.8359725120311123e+37, -1.4452168098470208e+37, -1.1376243435816585e+37, -8.95496321634601e+36, -7.049004815822106e+36, -5.548695526288203e+36, -4.3677028331834454e+36, -3.438067400037765e+36, -2.706293043595448e+36, -2.1302687781171223e+36, -1.6768458676639163e+36, -1.319930501689714e+36, -1.0389823689855265e+36, -8.178327536851041e+35, -6.437541574730175e+35, -5.067279214570626e+35, -3.988677115766428e+35, -3.1396569804730535e+35, -2.4713531793106386e+35, -1.945300664730198e+35, -1.5312213697382698e+35, -1.2052817228082505e+35, -9.487210154923865e+34, -7.467716967230688e+34, -5.878094645128205e+34, -4.62684247995427e+34, -3.6419358114962004e+34, -2.86668062906701e+34, -2.256450480337611e+34, -1.7761179027220902e+34, -1.3980325579965832e+34, -1.1004297111389242e+34, -8.661774592204699e+33, -6.817906104515011e+33, -5.366544588569069e+33, -4.2241377950014294e+33, -3.324918777448838e+33, -2.6171201088628304e+33, -2.0599939229772303e+33, -1.621466260651795e+33, -1.2762907080480028e+33, -1.0045950506560639e+33, -7.907372878406336e+32, -6.224051585828907e+32, -4.899073452039886e+32, -3.8561555469353134e+32, -3.0352536179471264e+32, -2.3891053403464282e+32, -1.880509398714046e+32, -1.4801837676048823e+32, -1.1650799000541596e+32, -9.170557764889932e+31, -7.2183142433883155e+31, -5.681667792153495e+31, -4.472145578986415e+31, -3.5201088825664945e+31, -2.770743715564096e+31, -2.1809049488565673e+31, -1.716632249090403e+31, -1.3511948177479336e+31, -1.0635523629837243e+31, -8.371436982506944e+30, -6.589332235730531e+30, -5.186603920410073e+30, -4.082489503895397e+30, -3.213419411286593e+30, -2.529356941637764e+30, -1.990917350115693e+30, -1.5671002267362056e+30, -1.2335046123758856e+30, -9.709240861483756e+29, -7.64240935046999e+29, -6.0155573647971965e+29, -4.735022383340706e+29, -3.727080898525079e+29, -2.9337037410132974e+29, -2.3092150265353944e+29, -1.8176623583351968e+29, -1.4307468703321661e+29, -1.1261939298456535e+29, -8.864706904728242e+28, -6.9777665623920155e+28, -5.4924913727664e+28, -4.323378500680942e+28, -3.4031265411572937e+28, -2.67876082464872e+28, -2.1085835720899465e+28, -1.6597733031357142e+28, -1.3064952827392784e+28, -1.0284142149781572e+28, -8.095235529212483e+27, -6.372240228246982e+27, -5.015983096565829e+27, -3.948401450396908e+27, -3.108049284553102e+27, -2.4465600981328074e+27, -1.9258626915060477e+27, -1.5159896438683424e+27, -1.1933523034459115e+27, -9.393829810760093e+26, -7.394661787822932e+26, -5.820973253459133e+26, -4.582205888192648e+26, -3.6070764557440086e+26, -2.8394740040022627e+26, -2.2352303958377077e+26, -1.759578265846873e+26, -1.3851500730420105e+26, -1.0904030690334837e+26, -8.583795197918725e+25, -6.757308182216302e+25, -5.3194931563366845e+25, -4.187636573325923e+25, -3.296628193250417e+25, -2.5952145145059937e+25, -2.0430496353144607e+25, -1.6083738113409332e+25, -1.2661861047610052e+25, -9.968059588002293e+24, -7.847409168969373e+24, -6.177953258164651e+24, -4.863687315809512e+24, -3.8290359436170116e+24, -3.014505419416632e+24, -2.3732614565341144e+24, -1.8684352719242219e+24, -1.4710029587362842e+24, -1.1581161498069164e+24, -9.117879273825326e+23, -7.178583758548069e+23, -5.651802649508895e+23, -4.4497801673849805e+23, -3.503430799348411e+23, -2.758366831410135e+23, -2.1717711641510604e+23, -1.709935535678176e+23, -1.346322555611826e+23, -1.0600400869522335e+23, -8.346402327469547e+22, -6.571738564751863e+22, -5.174462633620549e+22, -4.074312401502479e+22, -3.2080975889656636e+22, -2.5260682015475208e+22, -1.989055549469166e+22, -1.5662214791917403e+22, -1.2332864161984746e+22, -9.711343513198265e+21, -7.647145771653904e+21, -6.021770435265634e+21, -4.741916323892449e+21, -3.734122270029263e+21, -2.9405477344551727e+21, -2.3156508603415336e+21, -1.82357306621017e+21, -1.4360798894135428e+21, -1.130939762841355e+21, -8.90647576741693e+20, -7.014196920944773e+20, -5.524026711631507e+20, -4.350502715313069e+20, -3.426329181335541e+20, -2.698514793175943e+20, -2.1253316537620575e+20, -1.6739208571521486e+20, -1.318407150463463e+20, -1.0384144318710574e+20, -8.178968527258603e+19, -6.442184174232086e+19, -5.0742824517048975e+19, -3.996898932658149e+19, -3.1483198747302932e+19, -2.4799436979971867e+19, -1.9534945758210548e+19, -1.5388282526611913e+19, -1.2122041965631912e+19, -9.54924959393432e+18, -7.52264692018839e+18, -5.92625354843791e+18, -4.668722292905253e+18, -3.678106231740611e+18, -2.897737631488752e+18, -2.2829824555180585e+18, -1.7986843919088166e+18, -1.4171518822800233e+18, -1.1165727726273025e+18, -8.797657276868645e+17, -6.931968588235354e+17, -5.4620521996916045e+17, -4.303927991262009e+17, -3.391440613317476e+17, -2.6724752364133872e+17, -2.1059768953646886e+17, -1.6596027454459898e+17, -1.307872808539857e+17, -1.0307133424298811e+17, -8.12309454612862e+16, -6.40201292319434e+16, -5.0457208818069064e+16, -3.97687325666804e+16, -3.1345293964436556e+16, -2.470672809434891e+16, -1.947469401258963e+16, -1.5351075216782666e+16, -1.2100963264863932e+16, -9539251795301600.0, -7520074712132153.0, -5928484958459201.0, -4673898423770675.0, -3684928449021286.0, -2905315886047538.5, -2290722284510751.5, -1806203103754212.0, -1424216701143395.8, -1123055455636475.2, -885609496406745.6, -698392500398326.1, -550773985990240.9, -434374318066628.2, -342587926690263.94, -270207558105498.53, -213128141119971.8, -168113393425276.06, -132611870588979.86, -104611979687253.17, -82527700866092.47, -65108510368617.46, -51368377674769.68, -40529796093023.516, -31979662442756.957, -25234496233427.086, -19913020478984.605, -15714545313710.533, -12401925795306.486, -9788125521211.059, -7725622779846.428, -6098057599033.543, -4813645449768.773, -3799983772520.825, -2999956634208.4062, -2368505203624.933, -1870080902610.04, -1476636848353.2837, -1166043754323.1265, -920840541574.2292, -727248898413.4045, -574395994188.8182, -453701353195.3557, -358393197989.4579, -283126906375.6815, -223684009603.7728, -176734719311.0321, -139650566334.9838, -110356569771.01353, -87214590423.94478, -68931285918.55182, -54485475166.08484, -43070816451.71204, -34050568252.28748, -26921884008.96755, -21287630095.09965, -16834140595.105652, -13313657262.386229, -10530467092.089886, -8329958262.310006, -6589979542.265711, -5214017926.034315, -4125811550.472483, -3265095673.1650643, -2584243177.082573, -2045611327.1052165, -1619446164.5116656, -1282227225.1422927, -1015359969.2423288, -804142807.57351, -636950997.130037, -504591826.87096375, -399795102.6869711, -316810510.5835154, -251089413.26272094, -199033353.67914423, -157795264.68455946, -125122325.66395526, -99231730.12741819, -78712462.80945762, -62447633.747739874, -49553061.21847359, -39328699.35674648, -31220220.359885547, -24788625.286278106, -19686203.14468226, -15637510.109974109, -12424318.954599801, -9873708.671357648, -7848638.039417804, -6240484.232199236, -4963136.128782178, -3948317.8093809406, -3141885.560921375, -2500895.359926899, -1991280.21442799, -1586010.2872532278, -1263635.2489034845, -1007129.2884049024, -802975.8061320384, -640441.9412481919, -511003.473482027, -407888.8578265263, -325717.6547143349, -260213.76568615873, -207977.95891174197, -166307.39424464953, -133052.41101794512, -106502.8636945932, -85297.8916530221, -68354.277530209, -54809.553060767365, -43976.80715149123, -35308.78147088416, -28369.338502548748, -22810.78303038626, -18355.83194064317, -14783.276100271672, -11916.575410792037, -9614.784638539768, -7765.331757626732, -6278.269021707078, -5081.6951208118835, -4118.108792117653, -3341.5034763219737, -2715.0516895533806, -2209.258811280696, -1800.4906337996476, -1469.798596594016, -1201.9821844511143, -984.8403306804397, -808.5734938186362, -665.3058896108106, -548.7035739269226, -453.6690152765773, -376.0967286368446, -312.67767257955956, -260.742603703255, -218.13656682813703, -183.11828013328795, -154.27943391203635, -130.47992547774913, -110.79585310657191, -94.47773021645807, -80.91689023106215, -69.61845899894479, -60.1795961113917, -52.27196560557316, -45.62760358564672, -40.02751578155409, -35.29247038916138, -31.275557386257987, -27.856170229948543, -24.935133664380217, -22.43075569550434, -20.27562532797297, -18.41401256837756, -16.799755203642356, -15.39453934100657, -14.166498747459354, -13.089072531584636, -12.14007237310594, -11.300919887897443, -10.556022269289558, -9.892260430856574, -9.298568780449093, -8.76558971156737, -8.285389091927827, -7.8512216091850595, -7.457336919762981, -7.098819234626416, -6.771454342702134, -6.4716191805500545, -6.1961899556666875, -5.9424655606152275, -5.7081036083617755, -5.491066901804708, -5.289578543534445, -5.102084212311857, -4.927220394298186, -4.763787570781853, -4.610727538974938, -4.46710418564431, -4.332087150768907, -4.204937914832804, -4.0849979226390545, -3.9716784217949135, -3.864451747827221, -3.7628438323118405, -3.6664277471320306, -3.574818128396471, -3.4876663487729664, -3.404656327945751, -3.325500888336854, -3.249938577757979, -3.1777308927848527, -3.1086598467848394, -3.0425258350198705, -2.979145756372262, -2.918351357229494, -2.8599877681069654, -2.803912207842122, -2.749992833788258, -2.6981077194808925, -2.6481439438317045, -2.5999967780997393, -2.553568958758567, -2.508770035972005, -2.4655157887539945, -2.423727699054917, -2.383332478017817, -2.3442616385087653, -2.3064511087666006, -2.2698408826568297, -2.2343747025674423, -2.199999771462921, -2.1666664910283977, -2.1343282231968193, -2.1029410726664417, -2.0724636882903846, -2.0428570814594758, -2.0140844598096526, -1.9861110747690653, -1.9589040816216412, -1.93243241090622, -1.9066666500954732, -1.8815789346096576, -1.85714284731792, -1.833333325766474, -1.8101265764498837, -1.7874999955097222, -1.7654320953057054, -1.7439024363583457, -1.7228915642103586, -1.7023809507972087, -1.6823529399555903, -1.66279069673315, -1.6436781601937642, -1.6249999994403197, -1.6067415726020633, -1.5888888885559562, -1.5714285711717482, -1.5543478258888257, -1.5376344084492843, -1.5212765956267253, -1.5052631578037126, -1.4895833332630832, -1.474226804069491, -1.4591836734275363, -1.4444444444121358, -1.4299999999750577, -1.4158415841391574, -1.4019607842988557, -1.3883495145516251, -1.3749999999911322, -1.3619047618979139, -1.3490566037682947, -1.3364485981267555, -1.3240740740709185, -1.3119266055021486, -1.2999999999981167, -1.2882882882868338, -1.2767857142845898, -1.2654867256628484, -1.2543859649116087, -1.2434782608690464, -1.2327586206892547, -1.2222222222219121, -1.2118644067794218, -1.2016806722687219, -1.1916666666665234, -1.1818181818180717, -1.1721311475408978, -1.1626016260161942, -1.1532258064515613, -1.1439999999999604, -1.1349206349206047, -1.12598425196848, -1.117187499999982, -1.108527131782931, -1.099999999999989, -1.0916030534351064, -1.0833333333333266, -1.075187969924807, -1.0671641791044741, -1.059259259259256, -1.051470588235292, -1.043795620437954, -1.0362318840579696, -1.0287769784172656, -1.0214285714285705, -1.0141843971631201, -1.0070422535211259, -0.9999999999999997, -0.9930555555555556, -0.9862068965517238, -0.9794520547945205, -0.972789115646258, -0.9662162162162161, -0.9597315436241612, -0.953333333333333, -0.9470198675496689, -0.9407894736842102, -0.9346405228758169, -0.9285714285714288, -0.9225806451612901, -0.9166666666666667, -0.9108280254777074, -0.9050632911392404, -0.8993710691823902, -0.8937499999999997, -0.8881987577639752, -0.8827160493827163, -0.8773006134969324, -0.8719512195121952, -0.8666666666666664, -0.8614457831325302, -0.8562874251497009, -0.851190476190476, -0.8461538461538463, -0.8411764705882351, -0.8362573099415205, -0.8313953488372096, -0.8265895953757224, -0.8218390804597702, -0.8171428571428568, -0.8125, -0.8079096045197742, -0.8033707865168538, -0.7988826815642459, -0.7944444444444447, -0.7900552486187845, -0.7857142857142858, -0.7814207650273223, -0.7771739130434783, -0.7729729729729732, -0.7688172043010751, -0.7647058823529413, -0.7606382978723403, -0.7566137566137566, -0.7526315789473687, -0.7486910994764396, -0.7447916666666667, -0.7409326424870464, -0.7371134020618556, -0.7333333333333335, -0.7295918367346937, -0.7258883248730965, -0.722222222222222, -0.7185929648241206, -0.7150000000000002, -0.7114427860696516, -0.707920792079208, -0.7044334975369461, -0.7009803921568627, -0.6975609756097563, -0.6941747572815533, -0.6908212560386474, -0.6875000000000002, -0.6842105263157894, -0.6809523809523811, -0.6777251184834122, -0.6745283018867925, -0.671361502347418, -0.6682242990654205, -0.6651162790697676, -0.6620370370370369, -0.6589861751152074, -0.6559633027522938, -0.6529680365296803, -0.65, -0.6470588235294116, -0.6441441441441441, -0.641255605381166, -0.6383928571428571, -0.6355555555555555, -0.6327433628318586, -0.6299559471365639, -0.6271929824561404, -0.6244541484716156, -0.6217391304347827, -0.6190476190476192, -0.6163793103448275, -0.6137339055793992, -0.6111111111111109, -0.6085106382978723, -0.6059322033898307, -0.6033755274261603, -0.6008403361344539, -0.5983263598326358, -0.5958333333333333, -0.5933609958506225, -0.5909090909090908, -0.5884773662551441, -0.5860655737704916, -0.5836734693877551, -0.5813008130081302, -0.5789473684210525, -0.5766129032258065, -0.5742971887550199, -0.572, -0.5697211155378487, -0.5674603174603173, -0.5652173913043479, -0.5629921259842521, -0.5607843137254902, -0.5585937500000001, -0.5564202334630349, -0.5542635658914729, -0.5521235521235522, -0.5499999999999999, -0.5478927203065135, -0.5458015267175571, -0.5437262357414449, -0.5416666666666667, -0.539622641509434, -0.5375939849624061, -0.5355805243445692, -0.5335820895522388, -0.5315985130111525, -0.5296296296296296, -0.5276752767527676, -0.525735294117647, -0.5238095238095238, -0.5218978102189782, -0.5199999999999999, -0.5181159420289855, -0.5162454873646211, -0.5143884892086331, -0.5125448028673836, -0.5107142857142857, -0.5088967971530249, -0.5070921985815604, -0.5053003533568904, -0.5035211267605634, -0.5017543859649122, -0.5, -0.4982578397212544, -0.49652777777777773, -0.4948096885813149, -0.493103448275862, -0.49140893470790376, -0.48972602739726034, -0.48805460750853236, -0.4863945578231293, -0.4847457627118643, -0.4831081081081081, -0.48148148148148157, -0.47986577181208045, -0.4782608695652174, -0.47666666666666674, -0.47508305647840526, -0.47350993377483447, -0.4719471947194719, -0.47039473684210525, -0.46885245901639355, -0.46732026143790845, -0.4657980456026059, -0.4642857142857142, -0.4627831715210356, -0.46129032258064523, -0.4598070739549839, -0.45833333333333337, -0.4568690095846645, -0.4554140127388535, -0.453968253968254, -0.4525316455696202, -0.45110410094637227, -0.44968553459119487, -0.4482758620689655, -0.4468750000000001, -0.44548286604361365, -0.4440993788819876, -0.4427244582043344, -0.441358024691358, -0.44000000000000006, -0.4386503067484662, -0.43730886850152906, -0.4359756097560976, -0.43465045592705165, -0.43333333333333335, -0.43202416918429, -0.4307228915662651, -0.4294294294294295, -0.4281437125748503, -0.42686567164179107, -0.425595238095238, -0.42433234421364985, -0.42307692307692313, -0.4218289085545722, -0.42058823529411765, -0.4193548387096773, -0.41812865497076024, -0.41690962099125367, -0.4156976744186046, -0.41449275362318844, -0.41329479768786137, -0.4121037463976945, -0.4109195402298851, -0.4097421203438395, -0.4085714285714286, -0.4074074074074075, -0.40625, -0.4050991501416431, -0.40395480225988695, -0.4028169014084507, -0.401685393258427, -0.4005602240896358, -0.39944134078212296, -0.39832869080779937, -0.3972222222222222, -0.39612188365650974, -0.39502762430939226, -0.393939393939394, -0.3928571428571428, -0.3917808219178082, -0.39071038251366125, -0.3896457765667575, -0.38858695652173914, -0.38753387533875344, -0.3864864864864865, -0.38544474393531003, -0.38440860215053757, -0.3833780160857909, -0.3823529411764707, -0.3813333333333333, -0.38031914893617025, -0.3793103448275862, -0.3783068783068783, -0.3773087071240106, -0.37631578947368416, -0.37532808398950135, -0.3743455497382198, -0.3733681462140992, -0.37239583333333337, -0.3714285714285714, -0.37046632124352336, -0.36950904392764855, -0.3685567010309278, -0.3676092544987147, -0.36666666666666664, -0.3657289002557545, -0.36479591836734687, -0.3638676844783715, -0.36294416243654826, -0.3620253164556962, -0.3611111111111111, -0.36020151133501266, -0.3592964824120603, -0.3583959899749374, -0.3575, -0.3566084788029925, -0.3557213930348259, -0.3548387096774193, -0.353960396039604, -0.35308641975308636, -0.3522167487684729, -0.35135135135135137, -0.35049019607843135, -0.34963325183374083, -0.348780487804878, -0.34793187347931875, -0.3470873786407767, -0.3462469733656174, -0.3454106280193237, -0.34457831325301197, -0.34375, -0.3429256594724221, -0.3421052631578947, -0.34128878281622915, -0.34047619047619054, -0.339667458432304, -0.33886255924170616, -0.3380614657210402, -0.33726415094339623, -0.3364705882352942, -0.3356807511737089, -0.3348946135831382, -0.33411214953271023, -0.3333333333333333, -0.3325581395348838, -0.33178654292343396, -0.33101851851851843, -0.33025404157043875, -0.3294930875576037, -0.32873563218390806, -0.3279816513761469, -0.3272311212814644, -0.32648401826484014, -0.32574031890660593, -0.325, -0.3242630385487529, -0.3235294117647058, -0.3227990970654627, -0.32207207207207206, -0.32134831460674157, -0.320627802690583, -0.3199105145413869, -0.31919642857142855, -0.3184855233853007, -0.31777777777777777, -0.3170731707317074, -0.3163716814159293, -0.3156732891832229, -0.31497797356828194, -0.3142857142857143, -0.3135964912280702, -0.31291028446389507, -0.3122270742358078, -0.31154684095860563, -0.31086956521739134, -0.3101952277657267, -0.3095238095238096, -0.3088552915766738, -0.30818965517241376, -0.30752688172043013, -0.3068669527896996, -0.3062098501070665, -0.30555555555555547, -0.30490405117270786, -0.30425531914893617, -0.3036093418259024, -0.30296610169491534, -0.30232558139534876, -0.30168776371308015, -0.30105263157894735, -0.30042016806722693, -0.29979035639413004, -0.2991631799163179, -0.29853862212943627, -0.29791666666666666, -0.2972972972972973, -0.29668049792531126, -0.29606625258799163, -0.2954545454545454, -0.2948453608247423, -0.29423868312757206, -0.29363449691991794, -0.2930327868852458, -0.2924335378323108, -0.29183673469387755, -0.29124236252545826, -0.2906504065040651, -0.2900608519269776, -0.28947368421052627, -0.28888888888888886, -0.28830645161290325, -0.2877263581488934, -0.28714859437750995, -0.2865731462925851, -0.286, -0.28542914171656686, -0.2848605577689243, -0.2842942345924454, -0.28373015873015867, -0.28316831683168314, -0.28260869565217395, -0.2820512820512821, -0.28149606299212604, -0.280943025540275, -0.2803921568627451, -0.27984344422700586, -0.27929687500000006, -0.27875243664717353, -0.27821011673151747, -0.27766990291262134, -0.2771317829457364, -0.2765957446808511, -0.2760617760617761, -0.2755298651252408, -0.27499999999999997, -0.2744721689059501, -0.27394636015325674, -0.27342256214149147, -0.27290076335877855, -0.27238095238095233, -0.2718631178707224, -0.2713472485768501, -0.27083333333333337, -0.2703213610586011, -0.269811320754717, -0.2693032015065913, -0.26879699248120303, -0.26829268292682934, -0.2677902621722846, -0.2672897196261682, -0.2667910447761194, -0.26629422718808193, -0.26579925650557623, -0.26530612244897955, -0.2648148148148148, -0.2643253234750462, -0.2638376383763838, -0.2633517495395949, -0.2628676470588235, -0.2623853211009174, -0.2619047619047619, -0.2614259597806216, -0.2609489051094891, -0.2604735883424409, -0.25999999999999995, -0.2595281306715063, -0.25905797101449274, -0.25858951175406875, -0.25812274368231053, -0.25765765765765763, -0.25719424460431656, -0.25673249551166966, -0.2562724014336918, -0.25581395348837216, -0.25535714285714284, -0.2549019607843137, -0.25444839857651247, -0.25399644760213147, -0.2535460992907802, -0.25309734513274335, -0.2526501766784452, -0.25220458553791886, -0.2517605633802817, -0.25131810193321624, -0.2508771929824561, -0.2504378283712784, -0.25, -0.24956369982547996, -0.2491289198606272, -0.24869565217391298, -0.24826388888888887, -0.24783362218370883, -0.24740484429065746, -0.24697754749568226, -0.246551724137931, -0.2461273666092943, -0.24570446735395188, -0.24528301886792456, -0.24486301369863017, -0.2444444444444444, -0.24402730375426618, -0.24361158432708688, -0.24319727891156465, -0.24278438030560276, -0.24237288135593216, -0.24196277495769877, -0.24155405405405406, -0.24114671163575044, -0.24074074074074078, -0.24033613445378157, -0.23993288590604023, -0.23953098827470687, -0.2391304347826087, -0.23873121869782973, -0.23833333333333337, -0.23793677204658897, -0.23754152823920263, -0.23714759535655058, -0.23675496688741723, -0.23636363636363641, -0.23597359735973594, -0.2355848434925865, -0.23519736842105263, -0.23481116584564862, -0.23442622950819678, -0.23404255319148934, -0.23366013071895422, -0.233278955954323, -0.23289902280130295, -0.23252032520325208, -0.2321428571428571, -0.23176661264181522, -0.2313915857605178, -0.23101777059773831, -0.23064516129032261, -0.23027375201288242, -0.22990353697749194, -0.22953451043338682, -0.22916666666666669, -0.22880000000000003, -0.22843450479233224, -0.22807017543859648, -0.22770700636942676, -0.2273449920508744, -0.226984126984127, -0.22662440570522976, -0.2262658227848101, -0.2259083728278041, -0.22555205047318613, -0.22519685039370083, -0.22484276729559743, -0.22448979591836732, -0.22413793103448276, -0.2237871674491393, -0.22343750000000004, -0.22308892355694224, -0.22274143302180682, -0.22239502332814928, -0.2220496894409938, -0.22170542635658919, -0.2213622291021672, -0.22102009273570322, -0.220679012345679, -0.22033898305084745, -0.22000000000000003, -0.21966205837173583, -0.2193251533742331, -0.21898928024502295, -0.21865443425076453, -0.2183206106870229, -0.2179878048780488, -0.21765601217656008, -0.21732522796352582, -0.21699544764795145, -0.21666666666666667, -0.216338880484115, -0.216012084592145, -0.2156862745098039, -0.21536144578313254, -0.21503759398496242, -0.21471471471471476, -0.21439280359820087, -0.21407185628742514, -0.21375186846038863, -0.21343283582089553, -0.2131147540983607, -0.212797619047619, -0.212481426448737, -0.21216617210682492, -0.21185185185185187, -0.21153846153846156, -0.2112259970457902, -0.2109144542772861, -0.2106038291605302, -0.21029411764705883, -0.20998531571218798, -0.20967741935483866, -0.20937042459736455, -0.20906432748538012, -0.20875912408759126, -0.20845481049562684, -0.20815138282387188, -0.2078488372093023, -0.20754716981132074, -0.20724637681159422, -0.20694645441389292, -0.20664739884393069, -0.20634920634920634, -0.20605187319884724, -0.20575539568345325, -0.20545977011494254, -0.20516499282639888, -0.20487106017191975, -0.20457796852646637, -0.2042857142857143, -0.20399429386590587, -0.20370370370370375, -0.2034139402560455, -0.203125, -0.20283687943262413, -0.20254957507082155, -0.2022630834512023, -0.20197740112994347, -0.2016925246826516, -0.20140845070422536, -0.20112517580872014, -0.2008426966292135, -0.20056100981767178, -0.2002801120448179, -0.2], "y": [-5.0, -4.993006993006993, -4.986013986013986, -4.979020979020979, -4.972027972027972, -4.965034965034965, -4.958041958041958, -4.951048951048951, -4.944055944055944, -4.937062937062937, -4.93006993006993, -4.923076923076923, -4.916083916083916, -4.909090909090909, -4.9020979020979025, -4.895104895104895, -4.888111888111888, -4.881118881118881, -4.874125874125874, -4.8671328671328675, -4.86013986013986, -4.853146853146853, -4.846153846153846, -4.839160839160839, -4.8321678321678325, -4.825174825174825, -4.818181818181818, -4.811188811188811, -4.804195804195804, -4.7972027972027975, -4.79020979020979, -4.783216783216783, -4.776223776223776, -4.769230769230769, -4.7622377622377625, -4.755244755244755, -4.748251748251748, -4.741258741258742, -4.734265734265734, -4.7272727272727275, -4.72027972027972, -4.713286713286713, -4.706293706293707, -4.699300699300699, -4.6923076923076925, -4.685314685314685, -4.678321678321678, -4.671328671328672, -4.664335664335664, -4.6573426573426575, -4.65034965034965, -4.643356643356643, -4.636363636363637, -4.629370629370629, -4.6223776223776225, -4.615384615384615, -4.608391608391608, -4.601398601398602, -4.594405594405594, -4.5874125874125875, -4.58041958041958, -4.573426573426573, -4.566433566433567, -4.559440559440559, -4.5524475524475525, -4.545454545454546, -4.538461538461538, -4.531468531468532, -4.524475524475524, -4.5174825174825175, -4.510489510489511, -4.503496503496503, -4.496503496503497, -4.489510489510489, -4.4825174825174825, -4.475524475524476, -4.468531468531468, -4.461538461538462, -4.454545454545455, -4.4475524475524475, -4.440559440559441, -4.433566433566433, -4.426573426573427, -4.41958041958042, -4.4125874125874125, -4.405594405594406, -4.398601398601398, -4.391608391608392, -4.384615384615385, -4.3776223776223775, -4.370629370629371, -4.363636363636363, -4.356643356643357, -4.34965034965035, -4.3426573426573425, -4.335664335664336, -4.328671328671328, -4.321678321678322, -4.314685314685315, -4.3076923076923075, -4.300699300699301, -4.293706293706293, -4.286713286713287, -4.27972027972028, -4.2727272727272725, -4.265734265734266, -4.258741258741258, -4.251748251748252, -4.244755244755245, -4.2377622377622375, -4.230769230769231, -4.223776223776223, -4.216783216783217, -4.20979020979021, -4.2027972027972025, -4.195804195804196, -4.188811188811189, -4.181818181818182, -4.174825174825175, -4.1678321678321675, -4.160839160839161, -4.153846153846154, -4.146853146853147, -4.13986013986014, -4.132867132867133, -4.125874125874126, -4.118881118881119, -4.111888111888112, -4.104895104895105, -4.097902097902098, -4.090909090909091, -4.083916083916084, -4.076923076923077, -4.06993006993007, -4.062937062937063, -4.055944055944056, -4.048951048951049, -4.041958041958042, -4.034965034965035, -4.027972027972028, -4.020979020979021, -4.013986013986014, -4.006993006993007, -4.0, -3.993006993006993, -3.986013986013986, -3.979020979020979, -3.972027972027972, -3.965034965034965, -3.9580419580419584, -3.951048951048951, -3.944055944055944, -3.937062937062937, -3.93006993006993, -3.9230769230769234, -3.916083916083916, -3.909090909090909, -3.902097902097902, -3.895104895104895, -3.8881118881118883, -3.881118881118881, -3.874125874125874, -3.867132867132867, -3.86013986013986, -3.8531468531468533, -3.8461538461538463, -3.839160839160839, -3.832167832167832, -3.825174825174825, -3.8181818181818183, -3.8111888111888113, -3.804195804195804, -3.7972027972027975, -3.79020979020979, -3.7832167832167833, -3.7762237762237763, -3.769230769230769, -3.7622377622377625, -3.755244755244755, -3.7482517482517483, -3.7412587412587412, -3.734265734265734, -3.7272727272727275, -3.72027972027972, -3.7132867132867133, -3.7062937062937062, -3.699300699300699, -3.6923076923076925, -3.6853146853146854, -3.6783216783216783, -3.6713286713286712, -3.664335664335664, -3.6573426573426575, -3.6503496503496504, -3.6433566433566433, -3.6363636363636367, -3.629370629370629, -3.6223776223776225, -3.6153846153846154, -3.6083916083916083, -3.6013986013986017, -3.594405594405594, -3.5874125874125875, -3.5804195804195804, -3.5734265734265733, -3.5664335664335667, -3.559440559440559, -3.5524475524475525, -3.5454545454545454, -3.5384615384615383, -3.5314685314685317, -3.524475524475524, -3.5174825174825175, -3.5104895104895104, -3.5034965034965033, -3.4965034965034967, -3.4895104895104896, -3.4825174825174825, -3.475524475524476, -3.4685314685314683, -3.4615384615384617, -3.4545454545454546, -3.4475524475524475, -3.440559440559441, -3.4335664335664333, -3.4265734265734267, -3.4195804195804196, -3.4125874125874125, -3.405594405594406, -3.3986013986013983, -3.3916083916083917, -3.3846153846153846, -3.3776223776223775, -3.370629370629371, -3.3636363636363633, -3.3566433566433567, -3.3496503496503496, -3.3426573426573425, -3.335664335664336, -3.3286713286713288, -3.3216783216783217, -3.3146853146853146, -3.3076923076923075, -3.300699300699301, -3.2937062937062938, -3.2867132867132867, -3.27972027972028, -3.2727272727272725, -3.265734265734266, -3.2587412587412588, -3.2517482517482517, -3.244755244755245, -3.2377622377622375, -3.230769230769231, -3.2237762237762237, -3.2167832167832167, -3.20979020979021, -3.2027972027972025, -3.195804195804196, -3.1888111888111887, -3.1818181818181817, -3.174825174825175, -3.167832167832168, -3.160839160839161, -3.1538461538461537, -3.1468531468531467, -3.13986013986014, -3.132867132867133, -3.125874125874126, -3.118881118881119, -3.1118881118881117, -3.104895104895105, -3.097902097902098, -3.090909090909091, -3.083916083916084, -3.0769230769230766, -3.06993006993007, -3.062937062937063, -3.055944055944056, -3.048951048951049, -3.0419580419580416, -3.034965034965035, -3.027972027972028, -3.020979020979021, -3.013986013986014, -3.006993006993007, -3.0, -2.993006993006993, -2.986013986013986, -2.979020979020979, -2.972027972027972, -2.965034965034965, -2.958041958041958, -2.9510489510489513, -2.944055944055944, -2.937062937062937, -2.93006993006993, -2.923076923076923, -2.9160839160839163, -2.909090909090909, -2.902097902097902, -2.895104895104895, -2.888111888111888, -2.8811188811188813, -2.874125874125874, -2.867132867132867, -2.86013986013986, -2.8531468531468533, -2.8461538461538463, -2.839160839160839, -2.832167832167832, -2.825174825174825, -2.8181818181818183, -2.8111888111888113, -2.804195804195804, -2.797202797202797, -2.7902097902097904, -2.7832167832167833, -2.7762237762237763, -2.769230769230769, -2.762237762237762, -2.7552447552447554, -2.7482517482517483, -2.7412587412587412, -2.734265734265734, -2.727272727272727, -2.7202797202797204, -2.7132867132867133, -2.7062937062937062, -2.699300699300699, -2.6923076923076925, -2.6853146853146854, -2.6783216783216783, -2.6713286713286712, -2.664335664335664, -2.6573426573426575, -2.6503496503496504, -2.6433566433566433, -2.6363636363636362, -2.629370629370629, -2.6223776223776225, -2.6153846153846154, -2.6083916083916083, -2.6013986013986012, -2.5944055944055946, -2.5874125874125875, -2.5804195804195804, -2.5734265734265733, -2.5664335664335662, -2.5594405594405596, -2.5524475524475525, -2.5454545454545454, -2.5384615384615383, -2.5314685314685317, -2.5244755244755246, -2.5174825174825175, -2.5104895104895104, -2.5034965034965033, -2.4965034965034967, -2.4895104895104896, -2.4825174825174825, -2.4755244755244754, -2.4685314685314683, -2.4615384615384617, -2.4545454545454546, -2.4475524475524475, -2.4405594405594404, -2.4335664335664338, -2.4265734265734267, -2.4195804195804196, -2.4125874125874125, -2.4055944055944054, -2.3986013986013988, -2.3916083916083917, -2.3846153846153846, -2.3776223776223775, -2.370629370629371, -2.3636363636363638, -2.3566433566433567, -2.3496503496503496, -2.3426573426573425, -2.335664335664336, -2.3286713286713288, -2.3216783216783217, -2.3146853146853146, -2.3076923076923075, -2.300699300699301, -2.2937062937062938, -2.2867132867132867, -2.2797202797202796, -2.272727272727273, -2.265734265734266, -2.2587412587412588, -2.2517482517482517, -2.2447552447552446, -2.237762237762238, -2.230769230769231, -2.2237762237762237, -2.2167832167832167, -2.20979020979021, -2.202797202797203, -2.195804195804196, -2.1888111888111887, -2.1818181818181817, -2.174825174825175, -2.167832167832168, -2.160839160839161, -2.1538461538461537, -2.1468531468531467, -2.13986013986014, -2.132867132867133, -2.125874125874126, -2.1188811188811187, -2.111888111888112, -2.104895104895105, -2.097902097902098, -2.090909090909091, -2.0839160839160837, -2.076923076923077, -2.06993006993007, -2.062937062937063, -2.055944055944056, -2.0489510489510487, -2.041958041958042, -2.034965034965035, -2.027972027972028, -2.020979020979021, -2.013986013986014, -2.006993006993007, -2.0, -1.993006993006993, -1.9860139860139858, -1.9790209790209792, -1.972027972027972, -1.965034965034965, -1.958041958041958, -1.9510489510489513, -1.9440559440559442, -1.937062937062937, -1.93006993006993, -1.923076923076923, -1.9160839160839163, -1.9090909090909092, -1.902097902097902, -1.895104895104895, -1.888111888111888, -1.8811188811188813, -1.8741258741258742, -1.867132867132867, -1.86013986013986, -1.8531468531468533, -1.8461538461538463, -1.8391608391608392, -1.832167832167832, -1.825174825174825, -1.8181818181818183, -1.8111888111888113, -1.8041958041958042, -1.797202797202797, -1.7902097902097904, -1.7832167832167833, -1.7762237762237763, -1.7692307692307692, -1.762237762237762, -1.7552447552447554, -1.7482517482517483, -1.7412587412587412, -1.7342657342657342, -1.727272727272727, -1.7202797202797204, -1.7132867132867133, -1.7062937062937062, -1.6993006993006992, -1.6923076923076925, -1.6853146853146854, -1.6783216783216783, -1.6713286713286712, -1.6643356643356642, -1.6573426573426575, -1.6503496503496504, -1.6433566433566433, -1.6363636363636362, -1.6293706293706292, -1.6223776223776225, -1.6153846153846154, -1.6083916083916083, -1.6013986013986012, -1.5944055944055946, -1.5874125874125875, -1.5804195804195804, -1.5734265734265733, -1.5664335664335662, -1.5594405594405596, -1.5524475524475525, -1.5454545454545454, -1.5384615384615383, -1.5314685314685317, -1.5244755244755246, -1.5174825174825175, -1.5104895104895104, -1.5034965034965033, -1.4965034965034967, -1.4895104895104896, -1.4825174825174825, -1.4755244755244754, -1.4685314685314683, -1.4615384615384617, -1.4545454545454546, -1.4475524475524475, -1.4405594405594404, -1.4335664335664338, -1.4265734265734267, -1.4195804195804196, -1.4125874125874125, -1.4055944055944054, -1.3986013986013988, -1.3916083916083917, -1.3846153846153846, -1.3776223776223775, -1.3706293706293708, -1.3636363636363638, -1.3566433566433567, -1.3496503496503496, -1.3426573426573425, -1.3356643356643358, -1.3286713286713288, -1.3216783216783217, -1.3146853146853146, -1.3076923076923075, -1.3006993006993008, -1.2937062937062938, -1.2867132867132867, -1.2797202797202796, -1.272727272727273, -1.2657342657342658, -1.2587412587412588, -1.2517482517482517, -1.2447552447552446, -1.237762237762238, -1.2307692307692308, -1.2237762237762237, -1.2167832167832167, -1.20979020979021, -1.202797202797203, -1.1958041958041958, -1.1888111888111887, -1.1818181818181817, -1.174825174825175, -1.167832167832168, -1.1608391608391608, -1.1538461538461537, -1.1468531468531467, -1.13986013986014, -1.132867132867133, -1.1258741258741258, -1.1188811188811187, -1.111888111888112, -1.104895104895105, -1.097902097902098, -1.0909090909090908, -1.0839160839160837, -1.076923076923077, -1.06993006993007, -1.062937062937063, -1.0559440559440558, -1.0489510489510487, -1.041958041958042, -1.034965034965035, -1.027972027972028, -1.0209790209790208, -1.0139860139860142, -1.006993006993007, -1.0, -0.9930069930069934, -0.9860139860139858, -0.9790209790209792, -0.9720279720279716, -0.965034965034965, -0.9580419580419584, -0.9510489510489508, -0.9440559440559442, -0.9370629370629366, -0.93006993006993, -0.9230769230769234, -0.9160839160839158, -0.9090909090909092, -0.9020979020979025, -0.895104895104895, -0.8881118881118883, -0.8811188811188808, -0.8741258741258742, -0.8671328671328675, -0.86013986013986, -0.8531468531468533, -0.8461538461538458, -0.8391608391608392, -0.8321678321678325, -0.825174825174825, -0.8181818181818183, -0.8111888111888108, -0.8041958041958042, -0.7972027972027975, -0.79020979020979, -0.7832167832167833, -0.7762237762237758, -0.7692307692307692, -0.7622377622377625, -0.755244755244755, -0.7482517482517483, -0.7412587412587417, -0.7342657342657342, -0.7272727272727275, -0.72027972027972, -0.7132867132867133, -0.7062937062937067, -0.6993006993006992, -0.6923076923076925, -0.685314685314685, -0.6783216783216783, -0.6713286713286717, -0.6643356643356642, -0.6573426573426575, -0.65034965034965, -0.6433566433566433, -0.6363636363636367, -0.6293706293706292, -0.6223776223776225, -0.615384615384615, -0.6083916083916083, -0.6013986013986017, -0.5944055944055942, -0.5874125874125875, -0.5804195804195809, -0.5734265734265733, -0.5664335664335667, -0.5594405594405591, -0.5524475524475525, -0.5454545454545459, -0.5384615384615383, -0.5314685314685317, -0.5244755244755241, -0.5174825174825175, -0.5104895104895109, -0.5034965034965033, -0.4965034965034967, -0.48951048951048914, -0.4825174825174825, -0.47552447552447585, -0.4685314685314683, -0.4615384615384617, -0.45454545454545414, -0.4475524475524475, -0.44055944055944085, -0.4335664335664333, -0.4265734265734267, -0.41958041958042, -0.4125874125874125, -0.40559440559440585, -0.3986013986013983, -0.39160839160839167, -0.384615384615385, -0.3776223776223775, -0.37062937062937085, -0.3636363636363633, -0.35664335664335667, -0.34965034965035, -0.3426573426573425, -0.33566433566433584, -0.3286713286713283, -0.32167832167832167, -0.314685314685315, -0.3076923076923075, -0.30069930069930084, -0.2937062937062933, -0.28671328671328666, -0.27972027972028, -0.2727272727272725, -0.26573426573426584, -0.2587412587412583, -0.25174825174825166, -0.24475524475524502, -0.23776223776223748, -0.23076923076923084, -0.2237762237762242, -0.21678321678321666, -0.20979020979021, -0.20279720279720248, -0.19580419580419584, -0.1888111888111892, -0.18181818181818166, -0.174825174825175, -0.16783216783216748, -0.16083916083916083, -0.1538461538461542, -0.14685314685314665, -0.13986013986014, -0.13286713286713248, -0.12587412587412583, -0.11888111888111919, -0.11188811188811165, -0.104895104895105, -0.09790209790209747, -0.09090909090909083, -0.08391608391608418, -0.07692307692307665, -0.06993006993007, -0.06293706293706336, -0.055944055944055826, -0.04895104895104918, -0.04195804195804165, -0.034965034965035, -0.027972027972028357, -0.020979020979020824, -0.013986013986014179, -0.006993006993006645, 0.0, 0.006993006993006645, 0.013986013986014179, 0.020979020979020824, 0.027972027972028357, 0.034965034965035, 0.04195804195804165, 0.04895104895104918, 0.055944055944055826, 0.06293706293706336, 0.06993006993007, 0.07692307692307665, 0.08391608391608418, 0.09090909090909083, 0.09790209790209747, 0.104895104895105, 0.11188811188811165, 0.11888111888111919, 0.12587412587412583, 0.13286713286713248, 0.13986013986014, 0.14685314685314665, 0.1538461538461542, 0.16083916083916083, 0.16783216783216748, 0.174825174825175, 0.18181818181818166, 0.1888111888111892, 0.19580419580419584, 0.20279720279720248, 0.20979020979021, 0.21678321678321666, 0.2237762237762242, 0.23076923076923084, 0.23776223776223748, 0.24475524475524502, 0.25174825174825166, 0.2587412587412583, 0.26573426573426584, 0.2727272727272725, 0.27972027972028, 0.28671328671328666, 0.2937062937062933, 0.30069930069930084, 0.3076923076923075, 0.314685314685315, 0.32167832167832167, 0.3286713286713283, 0.33566433566433584, 0.3426573426573425, 0.34965034965035, 0.35664335664335667, 0.3636363636363633, 0.37062937062937085, 0.3776223776223775, 0.384615384615385, 0.39160839160839167, 0.3986013986013983, 0.40559440559440585, 0.4125874125874125, 0.41958041958041914, 0.4265734265734267, 0.4335664335664333, 0.44055944055944085, 0.4475524475524475, 0.45454545454545414, 0.4615384615384617, 0.4685314685314683, 0.47552447552447585, 0.4825174825174825, 0.48951048951048914, 0.4965034965034967, 0.5034965034965033, 0.5104895104895109, 0.5174825174825175, 0.5244755244755241, 0.5314685314685317, 0.5384615384615383, 0.5454545454545459, 0.5524475524475525, 0.5594405594405591, 0.5664335664335667, 0.5734265734265733, 0.58041958041958, 0.5874125874125875, 0.5944055944055942, 0.6013986013986017, 0.6083916083916083, 0.615384615384615, 0.6223776223776225, 0.6293706293706292, 0.6363636363636367, 0.6433566433566433, 0.65034965034965, 0.6573426573426575, 0.6643356643356642, 0.6713286713286717, 0.6783216783216783, 0.685314685314685, 0.6923076923076925, 0.6993006993006992, 0.7062937062937067, 0.7132867132867133, 0.72027972027972, 0.7272727272727275, 0.7342657342657342, 0.7412587412587417, 0.7482517482517483, 0.755244755244755, 0.7622377622377625, 0.7692307692307692, 0.7762237762237758, 0.7832167832167833, 0.79020979020979, 0.7972027972027975, 0.8041958041958042, 0.8111888111888108, 0.8181818181818183, 0.825174825174825, 0.8321678321678325, 0.8391608391608392, 0.8461538461538458, 0.8531468531468533, 0.86013986013986, 0.8671328671328675, 0.8741258741258742, 0.8811188811188808, 0.8881118881118883, 0.895104895104895, 0.9020979020979025, 0.9090909090909092, 0.9160839160839158, 0.9230769230769234, 0.93006993006993, 0.9370629370629366, 0.9440559440559442, 0.9510489510489508, 0.9580419580419584, 0.965034965034965, 0.9720279720279716, 0.9790209790209792, 0.9860139860139858, 0.9930069930069934, 1.0, 1.0069930069930066, 1.0139860139860142, 1.0209790209790208, 1.0279720279720284, 1.034965034965035, 1.0419580419580416, 1.0489510489510492, 1.0559440559440558, 1.0629370629370634, 1.06993006993007, 1.0769230769230766, 1.0839160839160842, 1.0909090909090908, 1.0979020979020975, 1.104895104895105, 1.1118881118881117, 1.1188811188811192, 1.1258741258741258, 1.1328671328671325, 1.13986013986014, 1.1468531468531467, 1.1538461538461542, 1.1608391608391608, 1.1678321678321675, 1.174825174825175, 1.1818181818181817, 1.1888111888111892, 1.1958041958041958, 1.2027972027972025, 1.20979020979021, 1.2167832167832167, 1.2237762237762242, 1.2307692307692308, 1.2377622377622375, 1.244755244755245, 1.2517482517482517, 1.2587412587412583, 1.2657342657342658, 1.2727272727272725, 1.27972027972028, 1.2867132867132867, 1.2937062937062933, 1.3006993006993008, 1.3076923076923075, 1.314685314685315, 1.3216783216783217, 1.3286713286713283, 1.3356643356643358, 1.3426573426573425, 1.34965034965035, 1.3566433566433567, 1.3636363636363633, 1.3706293706293708, 1.3776223776223775, 1.384615384615385, 1.3916083916083917, 1.3986013986013983, 1.4055944055944058, 1.4125874125874125, 1.4195804195804191, 1.4265734265734267, 1.4335664335664333, 1.4405594405594409, 1.4475524475524475, 1.4545454545454541, 1.4615384615384617, 1.4685314685314683, 1.4755244755244759, 1.4825174825174825, 1.4895104895104891, 1.4965034965034967, 1.5034965034965033, 1.5104895104895109, 1.5174825174825175, 1.5244755244755241, 1.5314685314685317, 1.5384615384615383, 1.5454545454545459, 1.5524475524475525, 1.5594405594405591, 1.5664335664335667, 1.5734265734265733, 1.58041958041958, 1.5874125874125875, 1.5944055944055942, 1.6013986013986017, 1.6083916083916083, 1.615384615384615, 1.6223776223776225, 1.6293706293706292, 1.6363636363636367, 1.6433566433566433, 1.65034965034965, 1.6573426573426575, 1.6643356643356642, 1.6713286713286717, 1.6783216783216783, 1.685314685314685, 1.6923076923076925, 1.6993006993006992, 1.7062937062937067, 1.7132867132867133, 1.72027972027972, 1.7272727272727275, 1.7342657342657342, 1.7412587412587417, 1.7482517482517483, 1.755244755244755, 1.7622377622377625, 1.7692307692307692, 1.7762237762237758, 1.7832167832167833, 1.79020979020979, 1.7972027972027975, 1.8041958041958042, 1.8111888111888108, 1.8181818181818183, 1.825174825174825, 1.8321678321678325, 1.8391608391608392, 1.8461538461538458, 1.8531468531468533, 1.86013986013986, 1.8671328671328675, 1.8741258741258742, 1.8811188811188808, 1.8881118881118883, 1.895104895104895, 1.9020979020979025, 1.9090909090909092, 1.9160839160839158, 1.9230769230769234, 1.93006993006993, 1.9370629370629366, 1.9440559440559442, 1.9510489510489508, 1.9580419580419584, 1.965034965034965, 1.9720279720279716, 1.9790209790209792, 1.9860139860139858, 1.9930069930069934, 2.0, 2.0069930069930066, 2.013986013986014, 2.020979020979021, 2.0279720279720284, 2.034965034965035, 2.0419580419580416, 2.048951048951049, 2.055944055944056, 2.0629370629370634, 2.06993006993007, 2.0769230769230766, 2.083916083916084, 2.090909090909091, 2.0979020979020975, 2.104895104895105, 2.1118881118881117, 2.118881118881119, 2.125874125874126, 2.1328671328671325, 2.13986013986014, 2.1468531468531467, 2.153846153846154, 2.160839160839161, 2.1678321678321675, 2.174825174825175, 2.1818181818181817, 2.188811188811189, 2.195804195804196, 2.2027972027972025, 2.20979020979021, 2.2167832167832167, 2.223776223776224, 2.230769230769231, 2.2377622377622375, 2.244755244755245, 2.2517482517482517, 2.2587412587412583, 2.265734265734266, 2.2727272727272725, 2.27972027972028, 2.2867132867132867, 2.2937062937062933, 2.300699300699301, 2.3076923076923075, 2.314685314685315, 2.3216783216783217, 2.3286713286713283, 2.335664335664336, 2.3426573426573425, 2.34965034965035, 2.3566433566433567, 2.3636363636363633, 2.370629370629371, 2.3776223776223775, 2.384615384615385, 2.3916083916083917, 2.3986013986013983, 2.405594405594406, 2.4125874125874125, 2.419580419580419, 2.4265734265734267, 2.4335664335664333, 2.440559440559441, 2.4475524475524475, 2.454545454545454, 2.4615384615384617, 2.4685314685314683, 2.475524475524476, 2.4825174825174825, 2.489510489510489, 2.4965034965034967, 2.5034965034965033, 2.510489510489511, 2.5174825174825175, 2.524475524475524, 2.5314685314685317, 2.5384615384615383, 2.545454545454546, 2.5524475524475525, 2.559440559440559, 2.5664335664335667, 2.5734265734265733, 2.58041958041958, 2.5874125874125875, 2.594405594405594, 2.6013986013986017, 2.6083916083916083, 2.615384615384615, 2.6223776223776225, 2.629370629370629, 2.6363636363636367, 2.6433566433566433, 2.65034965034965, 2.6573426573426575, 2.664335664335664, 2.6713286713286717, 2.6783216783216783, 2.685314685314685, 2.6923076923076925, 2.699300699300699, 2.7062937062937067, 2.7132867132867133, 2.72027972027972, 2.7272727272727275, 2.734265734265734, 2.7412587412587417, 2.7482517482517483, 2.755244755244755, 2.7622377622377625, 2.769230769230769, 2.776223776223776, 2.7832167832167833, 2.79020979020979, 2.7972027972027975, 2.804195804195804, 2.811188811188811, 2.8181818181818183, 2.825174825174825, 2.8321678321678325, 2.839160839160839, 2.846153846153846, 2.8531468531468533, 2.86013986013986, 2.8671328671328675, 2.874125874125874, 2.881118881118881, 2.8881118881118883, 2.895104895104895, 2.9020979020979025, 2.909090909090909, 2.916083916083916, 2.9230769230769234, 2.93006993006993, 2.9370629370629366, 2.944055944055944, 2.951048951048951, 2.9580419580419584, 2.965034965034965, 2.9720279720279716, 2.979020979020979, 2.986013986013986, 2.9930069930069934, 3.0, 3.0069930069930066, 3.0139860139860133, 3.0209790209790217, 3.0279720279720284, 3.034965034965035, 3.0419580419580416, 3.0489510489510483, 3.0559440559440567, 3.0629370629370634, 3.06993006993007, 3.0769230769230766, 3.0839160839160833, 3.0909090909090917, 3.0979020979020984, 3.104895104895105, 3.1118881118881117, 3.1188811188811183, 3.1258741258741267, 3.1328671328671334, 3.13986013986014, 3.1468531468531467, 3.1538461538461533, 3.16083916083916, 3.1678321678321684, 3.174825174825175, 3.1818181818181817, 3.1888111888111883, 3.195804195804195, 3.2027972027972034, 3.20979020979021, 3.2167832167832167, 3.2237762237762233, 3.23076923076923, 3.2377622377622384, 3.244755244755245, 3.2517482517482517, 3.2587412587412583, 3.265734265734265, 3.2727272727272734, 3.27972027972028, 3.2867132867132867, 3.2937062937062933, 3.3006993006993, 3.3076923076923084, 3.314685314685315, 3.3216783216783217, 3.3286713286713283, 3.335664335664335, 3.3426573426573434, 3.34965034965035, 3.3566433566433567, 3.3636363636363633, 3.37062937062937, 3.3776223776223784, 3.384615384615385, 3.3916083916083917, 3.3986013986013983, 3.405594405594405, 3.4125874125874134, 3.41958041958042, 3.4265734265734267, 3.4335664335664333, 3.44055944055944, 3.4475524475524484, 3.454545454545455, 3.4615384615384617, 3.4685314685314683, 3.475524475524475, 3.4825174825174834, 3.48951048951049, 3.4965034965034967, 3.5034965034965033, 3.51048951048951, 3.5174825174825166, 3.524475524475525, 3.5314685314685317, 3.5384615384615383, 3.545454545454545, 3.5524475524475516, 3.55944055944056, 3.5664335664335667, 3.5734265734265733, 3.58041958041958, 3.5874125874125866, 3.594405594405595, 3.6013986013986017, 3.6083916083916083, 3.615384615384615, 3.6223776223776216, 3.62937062937063, 3.6363636363636367, 3.6433566433566433, 3.65034965034965, 3.6573426573426566, 3.664335664335665, 3.6713286713286717, 3.6783216783216783, 3.685314685314685, 3.6923076923076916, 3.6993006993007, 3.7062937062937067, 3.7132867132867133, 3.72027972027972, 3.7272727272727266, 3.734265734265735, 3.7412587412587417, 3.7482517482517483, 3.755244755244755, 3.7622377622377616, 3.76923076923077, 3.7762237762237767, 3.7832167832167833, 3.79020979020979, 3.7972027972027966, 3.804195804195805, 3.8111888111888117, 3.8181818181818183, 3.825174825174825, 3.8321678321678316, 3.8391608391608383, 3.8461538461538467, 3.8531468531468533, 3.86013986013986, 3.8671328671328666, 3.8741258741258733, 3.8811188811188817, 3.8881118881118883, 3.895104895104895, 3.9020979020979016, 3.9090909090909083, 3.9160839160839167, 3.9230769230769234, 3.93006993006993, 3.9370629370629366, 3.9440559440559433, 3.9510489510489517, 3.9580419580419584, 3.965034965034965, 3.9720279720279716, 3.9790209790209783, 3.9860139860139867, 3.9930069930069934, 4.0, 4.006993006993007, 4.013986013986013, 4.020979020979022, 4.027972027972028, 4.034965034965035, 4.041958041958042, 4.048951048951048, 4.055944055944057, 4.062937062937063, 4.06993006993007, 4.076923076923077, 4.083916083916083, 4.090909090909092, 4.097902097902098, 4.104895104895105, 4.111888111888112, 4.118881118881118, 4.125874125874127, 4.132867132867133, 4.13986013986014, 4.146853146853147, 4.153846153846153, 4.16083916083916, 4.167832167832168, 4.174825174825175, 4.181818181818182, 4.188811188811188, 4.195804195804195, 4.202797202797203, 4.20979020979021, 4.216783216783217, 4.223776223776223, 4.23076923076923, 4.237762237762238, 4.244755244755245, 4.251748251748252, 4.258741258741258, 4.265734265734265, 4.272727272727273, 4.27972027972028, 4.286713286713287, 4.293706293706293, 4.3006993006993, 4.307692307692308, 4.314685314685315, 4.321678321678322, 4.328671328671328, 4.335664335664335, 4.342657342657343, 4.34965034965035, 4.356643356643357, 4.363636363636363, 4.37062937062937, 4.377622377622378, 4.384615384615385, 4.391608391608392, 4.398601398601398, 4.405594405594405, 4.412587412587413, 4.41958041958042, 4.426573426573427, 4.433566433566433, 4.44055944055944, 4.447552447552448, 4.454545454545455, 4.461538461538462, 4.468531468531468, 4.475524475524475, 4.482517482517483, 4.48951048951049, 4.496503496503497, 4.503496503496503, 4.51048951048951, 4.517482517482517, 4.524475524475525, 4.531468531468532, 4.538461538461538, 4.545454545454545, 4.552447552447552, 4.55944055944056, 4.566433566433567, 4.573426573426573, 4.58041958041958, 4.587412587412587, 4.594405594405595, 4.601398601398602, 4.608391608391608, 4.615384615384615, 4.622377622377622, 4.62937062937063, 4.636363636363637, 4.643356643356643, 4.65034965034965, 4.657342657342657, 4.664335664335665, 4.671328671328672, 4.678321678321678, 4.685314685314685, 4.692307692307692, 4.6993006993007, 4.706293706293707, 4.713286713286713, 4.72027972027972, 4.727272727272727, 4.734265734265735, 4.741258741258742, 4.748251748251748, 4.755244755244755, 4.762237762237762, 4.76923076923077, 4.776223776223777, 4.783216783216783, 4.79020979020979, 4.797202797202797, 4.804195804195805, 4.811188811188812, 4.818181818181818, 4.825174825174825, 4.832167832167832, 4.839160839160838, 4.846153846153847, 4.853146853146853, 4.86013986013986, 4.867132867132867, 4.874125874125873, 4.881118881118882, 4.888111888111888, 4.895104895104895, 4.902097902097902, 4.909090909090908, 4.916083916083917, 4.923076923076923, 4.93006993006993, 4.937062937062937, 4.944055944055943, 4.951048951048952, 4.958041958041958, 4.965034965034965, 4.972027972027972, 4.979020979020978, 4.986013986013987, 4.993006993006993, 5.0], "x": [8.8573855338315595e-16, 8.851579747802525e-16, 8.845773961773491e-16, 8.839968175744456e-16, 8.834162389715423e-16, 8.828356603686388e-16, 8.822550817657354e-16, 8.81674503162832e-16, 8.810939245599286e-16, 8.805133459570251e-16, 8.799327673541216e-16, 8.793521887512183e-16, 8.787716101483148e-16, 8.781910315454114e-16, 8.77610452942508e-16, 8.770298743396046e-16, 8.764492957367011e-16, 8.758687171337978e-16, 8.752881385308943e-16, 8.747075599279909e-16, 8.741269813250874e-16, 8.73546402722184e-16, 8.729658241192806e-16, 8.723852455163771e-16, 8.718046669134738e-16, 8.712240883105703e-16, 8.706435097076669e-16, 8.700629311047635e-16, 8.694823525018601e-16, 8.689017738989566e-16, 8.683211952960531e-16, 8.677406166931498e-16, 8.671600380902463e-16, 8.665794594873429e-16, 8.659988808844395e-16, 8.654183022815361e-16, 8.648377236786326e-16, 8.642571450757293e-16, 8.636765664728258e-16, 8.630959878699224e-16, 8.625154092670189e-16, 8.619348306641155e-16, 8.613542520612121e-16, 8.607736734583086e-16, 8.601930948554053e-16, 8.596125162525018e-16, 8.590319376495984e-16, 8.58451359046695e-16, 8.578707804437916e-16, 8.572902018408881e-16, 8.567096232379846e-16, 8.561290446350813e-16, 8.555484660321778e-16, 8.549678874292744e-16, 8.54387308826371e-16, 8.538067302234676e-16, 8.532261516205641e-16, 8.5264557301766075e-16, 8.520649944147573e-16, 8.514844158118538e-16, 8.509038372089504e-16, 8.50323258606047e-16, 8.497426800031436e-16, 8.491621014002401e-16, 8.485815227973368e-16, 8.480009441944333e-16, 8.474203655915299e-16, 8.4683978698862645e-16, 8.462592083857231e-16, 8.456786297828196e-16, 8.450980511799161e-16, 8.445174725770128e-16, 8.439368939741093e-16, 8.433563153712059e-16, 8.427757367683025e-16, 8.421951581653991e-16, 8.416145795624956e-16, 8.410340009595922e-16, 8.404534223566888e-16, 8.398728437537854e-16, 8.392922651508819e-16, 8.387116865479785e-16, 8.381311079450751e-16, 8.375505293421716e-16, 8.369699507392683e-16, 8.363893721363648e-16, 8.358087935334614e-16, 8.352282149305579e-16, 8.346476363276546e-16, 8.340670577247511e-16, 8.334864791218476e-16, 8.329059005189443e-16, 8.323253219160408e-16, 8.317447433131374e-16, 8.31164164710234e-16, 8.305835861073306e-16, 8.300030075044271e-16, 8.294224289015237e-16, 8.288418502986203e-16, 8.282612716957168e-16, 8.276806930928134e-16, 8.2710011448991e-16, 8.265195358870066e-16, 8.259389572841031e-16, 8.253583786811998e-16, 8.247778000782963e-16, 8.241972214753929e-16, 8.236166428724894e-16, 8.23036064269586e-16, 8.224554856666826e-16, 8.218749070637791e-16, 8.212943284608758e-16, 8.207137498579723e-16, 8.201331712550689e-16, 8.195525926521655e-16, 8.189720140492621e-16, 8.183914354463586e-16, 8.178108568434551e-16, 8.172302782405518e-16, 8.166496996376484e-16, 8.160691210347449e-16, 8.154885424318415e-16, 8.149079638289381e-16, 8.143273852260346e-16, 8.1374680662313125e-16, 8.131662280202278e-16, 8.125856494173244e-16, 8.120050708144209e-16, 8.114244922115176e-16, 8.108439136086141e-16, 8.102633350057106e-16, 8.096827564028073e-16, 8.091021777999038e-16, 8.085215991970004e-16, 8.0794102059409695e-16, 8.073604419911936e-16, 8.067798633882901e-16, 8.061992847853867e-16, 8.056187061824833e-16, 8.050381275795798e-16, 8.044575489766764e-16, 8.03876970373773e-16, 8.032963917708696e-16, 8.027158131679661e-16, 8.021352345650627e-16, 8.015546559621593e-16, 8.009740773592559e-16, 8.003934987563524e-16, 7.99812920153449e-16, 7.992323415505456e-16, 7.986517629476421e-16, 7.980711843447388e-16, 7.974906057418353e-16, 7.969100271389319e-16, 7.963294485360284e-16, 7.957488699331251e-16, 7.951682913302216e-16, 7.945877127273181e-16, 7.940071341244148e-16, 7.934265555215113e-16, 7.928459769186079e-16, 7.922653983157045e-16, 7.916848197128011e-16, 7.911042411098976e-16, 7.905236625069942e-16, 7.899430839040908e-16, 7.893625053011874e-16, 7.887819266982839e-16, 7.882013480953806e-16, 7.876207694924771e-16, 7.870401908895736e-16, 7.864596122866703e-16, 7.858790336837668e-16, 7.852984550808634e-16, 7.847178764779599e-16, 7.841372978750566e-16, 7.835567192721531e-16, 7.829761406692497e-16, 7.823955620663463e-16, 7.818149834634428e-16, 7.812344048605394e-16, 7.80653826257636e-16, 7.800732476547326e-16, 7.794926690518291e-16, 7.789120904489257e-16, 7.783315118460223e-16, 7.777509332431189e-16, 7.771703546402154e-16, 7.76589776037312e-16, 7.760091974344086e-16, 7.754286188315051e-16, 7.7484804022860175e-16, 7.742674616256983e-16, 7.736868830227949e-16, 7.731063044198914e-16, 7.725257258169881e-16, 7.719451472140846e-16, 7.713645686111811e-16, 7.707839900082778e-16, 7.702034114053744e-16, 7.696228328024709e-16, 7.690422541995674e-16, 7.684616755966641e-16, 7.678810969937606e-16, 7.673005183908572e-16, 7.667199397879538e-16, 7.661393611850503e-16, 7.655587825821469e-16, 7.649782039792436e-16, 7.643976253763401e-16, 7.638170467734366e-16, 7.632364681705332e-16, 7.626558895676298e-16, 7.620753109647264e-16, 7.614947323618229e-16, 7.609141537589195e-16, 7.603335751560161e-16, 7.597529965531127e-16, 7.591724179502093e-16, 7.585918393473058e-16, 7.580112607444024e-16, 7.574306821414989e-16, 7.568501035385956e-16, 7.562695249356921e-16, 7.556889463327886e-16, 7.551083677298853e-16, 7.545277891269819e-16, 7.539472105240784e-16, 7.53366631921175e-16, 7.527860533182716e-16, 7.522054747153681e-16, 7.516248961124647e-16, 7.510443175095613e-16, 7.504637389066579e-16, 7.498831603037544e-16, 7.493025817008511e-16, 7.487220030979476e-16, 7.481414244950441e-16, 7.475608458921408e-16, 7.469802672892373e-16, 7.463996886863339e-16, 7.458191100834304e-16, 7.452385314805271e-16, 7.446579528776236e-16, 7.440773742747202e-16, 7.434967956718168e-16, 7.429162170689133e-16, 7.423356384660099e-16, 7.4175505986310655e-16, 7.411744812602031e-16, 7.405939026572996e-16, 7.400133240543962e-16, 7.394327454514928e-16, 7.388521668485894e-16, 7.382715882456859e-16, 7.376910096427825e-16, 7.371104310398791e-16, 7.365298524369757e-16, 7.3594927383407225e-16, 7.353686952311688e-16, 7.347881166282654e-16, 7.342075380253619e-16, 7.336269594224586e-16, 7.330463808195551e-16, 7.324658022166516e-16, 7.318852236137483e-16, 7.313046450108449e-16, 7.307240664079414e-16, 7.301434878050379e-16, 7.295629092021346e-16, 7.289823305992311e-16, 7.284017519963277e-16, 7.278211733934243e-16, 7.272405947905209e-16, 7.266600161876174e-16, 7.260794375847141e-16, 7.254988589818106e-16, 7.249182803789071e-16, 7.243377017760037e-16, 7.237571231731003e-16, 7.231765445701969e-16, 7.225959659672934e-16, 7.220153873643901e-16, 7.214348087614866e-16, 7.208542301585832e-16, 7.202736515556798e-16, 7.196930729527763e-16, 7.191124943498729e-16, 7.185319157469695e-16, 7.179513371440661e-16, 7.173707585411626e-16, 7.167901799382592e-16, 7.162096013353558e-16, 7.156290227324524e-16, 7.150484441295489e-16, 7.144678655266455e-16, 7.138872869237421e-16, 7.133067083208387e-16, 7.127261297179352e-16, 7.121455511150318e-16, 7.115649725121284e-16, 7.109843939092249e-16, 7.104038153063216e-16, 7.098232367034181e-16, 7.092426581005146e-16, 7.086620794976113e-16, 7.080815008947079e-16, 7.075009222918044e-16, 7.069203436889009e-16, 7.063397650859976e-16, 7.057591864830941e-16, 7.051786078801907e-16, 7.045980292772873e-16, 7.040174506743838e-16, 7.034368720714804e-16, 7.0285629346857705e-16, 7.022757148656736e-16, 7.016951362627701e-16, 7.011145576598667e-16, 7.005339790569633e-16, 6.999534004540599e-16, 6.993728218511564e-16, 6.987922432482531e-16, 6.982116646453496e-16, 6.976310860424462e-16, 6.970505074395427e-16, 6.964699288366393e-16, 6.958893502337359e-16, 6.953087716308324e-16, 6.947281930279291e-16, 6.941476144250256e-16, 6.935670358221222e-16, 6.929864572192188e-16, 6.924058786163154e-16, 6.918253000134119e-16, 6.912447214105084e-16, 6.906641428076051e-16, 6.900835642047017e-16, 6.895029856017982e-16, 6.889224069988948e-16, 6.883418283959914e-16, 6.877612497930879e-16, 6.871806711901846e-16, 6.866000925872811e-16, 6.860195139843776e-16, 6.854389353814742e-16, 6.848583567785709e-16, 6.842777781756674e-16, 6.836971995727639e-16, 6.831166209698606e-16, 6.825360423669571e-16, 6.819554637640537e-16, 6.813748851611503e-16, 6.807943065582468e-16, 6.802137279553434e-16, 6.7963314935244e-16, 6.790525707495366e-16, 6.784719921466331e-16, 6.778914135437297e-16, 6.773108349408263e-16, 6.767302563379229e-16, 6.761496777350194e-16, 6.75569099132116e-16, 6.749885205292126e-16, 6.744079419263092e-16, 6.738273633234057e-16, 6.732467847205023e-16, 6.726662061175989e-16, 6.720856275146954e-16, 6.715050489117921e-16, 6.709244703088886e-16, 6.703438917059852e-16, 6.697633131030818e-16, 6.691827345001784e-16, 6.686021558972749e-16, 6.680215772943714e-16, 6.674409986914681e-16, 6.668604200885646e-16, 6.662798414856612e-16, 6.656992628827578e-16, 6.651186842798544e-16, 6.645381056769509e-16, 6.6395752707404755e-16, 6.633769484711441e-16, 6.627963698682406e-16, 6.622157912653372e-16, 6.616352126624339e-16, 6.610546340595304e-16, 6.604740554566269e-16, 6.598934768537235e-16, 6.593128982508201e-16, 6.587323196479167e-16, 6.581517410450132e-16, 6.575711624421098e-16, 6.569905838392064e-16, 6.56410005236303e-16, 6.558294266333996e-16, 6.552488480304961e-16, 6.546682694275927e-16, 6.540876908246893e-16, 6.535071122217859e-16, 6.529265336188824e-16, 6.523459550159789e-16, 6.517653764130756e-16, 6.511847978101722e-16, 6.506042192072687e-16, 6.500236406043653e-16, 6.494430620014619e-16, 6.488624833985585e-16, 6.482819047956551e-16, 6.477013261927516e-16, 6.471207475898481e-16, 6.465401689869447e-16, 6.459595903840414e-16, 6.453790117811379e-16, 6.447984331782344e-16, 6.442178545753311e-16, 6.436372759724277e-16, 6.430566973695242e-16, 6.424761187666208e-16, 6.418955401637173e-16, 6.413149615608139e-16, 6.407343829579105e-16, 6.401538043550071e-16, 6.395732257521036e-16, 6.389926471492002e-16, 6.384120685462969e-16, 6.378314899433934e-16, 6.372509113404899e-16, 6.366703327375865e-16, 6.360897541346831e-16, 6.355091755317797e-16, 6.349285969288762e-16, 6.343480183259728e-16, 6.337674397230694e-16, 6.33186861120166e-16, 6.326062825172626e-16, 6.320257039143591e-16, 6.314451253114557e-16, 6.308645467085523e-16, 6.302839681056489e-16, 6.297033895027454e-16, 6.291228108998419e-16, 6.285422322969386e-16, 6.279616536940352e-16, 6.273810750911317e-16, 6.268004964882283e-16, 6.262199178853249e-16, 6.256393392824214e-16, 6.2505876067951805e-16, 6.244781820766146e-16, 6.238976034737111e-16, 6.233170248708077e-16, 6.227364462679044e-16, 6.221558676650009e-16, 6.215752890620974e-16, 6.209947104591941e-16, 6.204141318562907e-16, 6.198335532533872e-16, 6.192529746504837e-16, 6.186723960475803e-16, 6.180918174446769e-16, 6.175112388417735e-16, 6.169306602388701e-16, 6.163500816359666e-16, 6.157695030330632e-16, 6.151889244301599e-16, 6.146083458272564e-16, 6.140277672243529e-16, 6.134471886214494e-16, 6.128666100185461e-16, 6.122860314156427e-16, 6.117054528127392e-16, 6.111248742098358e-16, 6.105442956069324e-16, 6.09963717004029e-16, 6.093831384011256e-16, 6.088025597982221e-16, 6.082219811953186e-16, 6.076414025924152e-16, 6.070608239895119e-16, 6.064802453866084e-16, 6.058996667837049e-16, 6.053190881808016e-16, 6.047385095778982e-16, 6.041579309749947e-16, 6.035773523720913e-16, 6.029967737691879e-16, 6.024161951662844e-16, 6.01835616563381e-16, 6.012550379604776e-16, 6.006744593575741e-16, 6.000938807546707e-16, 5.995133021517674e-16, 5.989327235488639e-16, 5.983521449459604e-16, 5.977715663430571e-16, 5.971909877401537e-16, 5.966104091372502e-16, 5.960298305343467e-16, 5.954492519314433e-16, 5.948686733285399e-16, 5.942880947256365e-16, 5.937075161227331e-16, 5.931269375198296e-16, 5.925463589169262e-16, 5.9196578031402285e-16, 5.913852017111194e-16, 5.908046231082159e-16, 5.902240445053124e-16, 5.896434659024091e-16, 5.890628872995057e-16, 5.884823086966022e-16, 5.879017300936988e-16, 5.873211514907954e-16, 5.86740572887892e-16, 5.861599942849885e-16, 5.855794156820851e-16, 5.849988370791816e-16, 5.844182584762782e-16, 5.838376798733749e-16, 5.832571012704714e-16, 5.826765226675679e-16, 5.820959440646646e-16, 5.815153654617612e-16, 5.809347868588577e-16, 5.803542082559542e-16, 5.797736296530508e-16, 5.791930510501474e-16, 5.78612472447244e-16, 5.780318938443406e-16, 5.774513152414371e-16, 5.768707366385337e-16, 5.762901580356304e-16, 5.757095794327269e-16, 5.751290008298234e-16, 5.7454842222692e-16, 5.739678436240166e-16, 5.733872650211132e-16, 5.728066864182097e-16, 5.722261078153063e-16, 5.716455292124029e-16, 5.710649506094995e-16, 5.704843720065961e-16, 5.699037934036926e-16, 5.693232148007892e-16, 5.687426361978858e-16, 5.681620575949824e-16, 5.675814789920789e-16, 5.670009003891754e-16, 5.664203217862721e-16, 5.658397431833687e-16, 5.652591645804652e-16, 5.646785859775618e-16, 5.640980073746584e-16, 5.63517428771755e-16, 5.629368501688515e-16, 5.623562715659481e-16, 5.617756929630446e-16, 5.611951143601412e-16, 5.606145357572379e-16, 5.600339571543344e-16, 5.594533785514309e-16, 5.588727999485276e-16, 5.582922213456242e-16, 5.577116427427207e-16, 5.571310641398172e-16, 5.565504855369138e-16, 5.559699069340104e-16, 5.55389328331107e-16, 5.548087497282036e-16, 5.542281711253001e-16, 5.536475925223967e-16, 5.5306701391949335e-16, 5.524864353165899e-16, 5.519058567136864e-16, 5.51325278110783e-16, 5.507446995078796e-16, 5.501641209049762e-16, 5.495835423020727e-16, 5.490029636991693e-16, 5.484223850962659e-16, 5.478418064933625e-16, 5.47261227890459e-16, 5.466806492875556e-16, 5.461000706846522e-16, 5.455194920817487e-16, 5.449389134788454e-16, 5.443583348759419e-16, 5.437777562730384e-16, 5.431971776701351e-16, 5.426165990672317e-16, 5.420360204643282e-16, 5.414554418614247e-16, 5.408748632585214e-16, 5.40294284655618e-16, 5.397137060527145e-16, 5.391331274498111e-16, 5.385525488469076e-16, 5.379719702440042e-16, 5.373913916411009e-16, 5.368108130381974e-16, 5.362302344352939e-16, 5.356496558323905e-16, 5.350690772294872e-16, 5.344884986265837e-16, 5.339079200236802e-16, 5.333273414207768e-16, 5.327467628178734e-16, 5.3216618421497e-16, 5.315856056120666e-16, 5.310050270091631e-16, 5.304244484062597e-16, 5.298438698033563e-16, 5.292632912004529e-16, 5.286827125975494e-16, 5.281021339946459e-16, 5.275215553917426e-16, 5.269409767888392e-16, 5.263603981859357e-16, 5.257798195830323e-16, 5.251992409801289e-16, 5.246186623772255e-16, 5.24038083774322e-16, 5.234575051714186e-16, 5.228769265685152e-16, 5.222963479656117e-16, 5.217157693627084e-16, 5.211351907598049e-16, 5.205546121569014e-16, 5.199740335539981e-16, 5.193934549510947e-16, 5.188128763481912e-16, 5.182322977452877e-16, 5.176517191423844e-16, 5.17071140539481e-16, 5.164905619365775e-16, 5.159099833336741e-16, 5.153294047307706e-16, 5.147488261278672e-16, 5.1416824752496385e-16, 5.135876689220604e-16, 5.130070903191569e-16, 5.124265117162535e-16, 5.118459331133502e-16, 5.112653545104467e-16, 5.106847759075432e-16, 5.101041973046398e-16, 5.095236187017364e-16, 5.08943040098833e-16, 5.083624614959295e-16, 5.077818828930261e-16, 5.072013042901227e-16, 5.066207256872193e-16, 5.060401470843159e-16, 5.054595684814124e-16, 5.048789898785089e-16, 5.042984112756056e-16, 5.037178326727022e-16, 5.031372540697987e-16, 5.025566754668952e-16, 5.019760968639919e-16, 5.013955182610885e-16, 5.00814939658185e-16, 5.002343610552816e-16, 4.996537824523781e-16, 4.990732038494747e-16, 4.984926252465714e-16, 4.979120466436679e-16, 4.973314680407644e-16, 4.96750889437861e-16, 4.961703108349577e-16, 4.955897322320542e-16, 4.950091536291507e-16, 4.944285750262474e-16, 4.938479964233439e-16, 4.932674178204405e-16, 4.926868392175371e-16, 4.921062606146336e-16, 4.915256820117302e-16, 4.909451034088268e-16, 4.903645248059234e-16, 4.897839462030199e-16, 4.892033676001165e-16, 4.886227889972132e-16, 4.880422103943097e-16, 4.874616317914062e-16, 4.868810531885028e-16, 4.863004745855994e-16, 4.85719895982696e-16, 4.851393173797925e-16, 4.845587387768891e-16, 4.839781601739857e-16, 4.833975815710823e-16, 4.828170029681789e-16, 4.822364243652754e-16, 4.816558457623719e-16, 4.810752671594686e-16, 4.804946885565652e-16, 4.799141099536617e-16, 4.793335313507582e-16, 4.787529527478549e-16, 4.781723741449515e-16, 4.77591795542048e-16, 4.770112169391446e-16, 4.764306383362411e-16, 4.758500597333377e-16, 4.752694811304343e-16, 4.746889025275309e-16, 4.741083239246274e-16, 4.73527745321724e-16, 4.729471667188207e-16, 4.723665881159172e-16, 4.717860095130137e-16, 4.712054309101103e-16, 4.706248523072069e-16, 4.700442737043035e-16, 4.694636951014e-16, 4.688831164984966e-16, 4.683025378955932e-16, 4.677219592926898e-16, 4.671413806897864e-16, 4.665608020868829e-16, 4.659802234839795e-16, 4.653996448810761e-16, 4.648190662781727e-16, 4.642384876752692e-16, 4.636579090723657e-16, 4.630773304694624e-16, 4.62496751866559e-16, 4.619161732636555e-16, 4.613355946607521e-16, 4.607550160578487e-16, 4.601744374549453e-16, 4.595938588520419e-16, 4.590132802491384e-16, 4.584327016462349e-16, 4.578521230433315e-16, 4.572715444404282e-16, 4.566909658375247e-16, 4.561103872346212e-16, 4.555298086317179e-16, 4.549492300288145e-16, 4.54368651425911e-16, 4.537880728230076e-16, 4.532074942201041e-16, 4.526269156172007e-16, 4.520463370142973e-16, 4.514657584113939e-16, 4.508851798084904e-16, 4.50304601205587e-16, 4.497240226026837e-16, 4.491434439997802e-16, 4.485628653968767e-16, 4.479822867939733e-16, 4.474017081910699e-16, 4.468211295881665e-16, 4.46240550985263e-16, 4.456599723823596e-16, 4.450793937794562e-16, 4.444988151765528e-16, 4.4391823657364936e-16, 4.4333765797074594e-16, 4.427570793678425e-16, 4.4217650076493905e-16, 4.415959221620357e-16, 4.410153435591322e-16, 4.4043476495622884e-16, 4.3985418635332537e-16, 4.392736077504219e-16, 4.3869302914751853e-16, 4.3811245054461506e-16, 4.375318719417117e-16, 4.369512933388082e-16, 4.3637071473590485e-16, 4.357901361330014e-16, 4.35209557530098e-16, 4.3462897892719454e-16, 4.3404840032429107e-16, 4.334678217213877e-16, 4.3288724311848423e-16, 4.3230666451558086e-16, 4.317260859126774e-16, 4.31145507309774e-16, 4.3056492870687055e-16, 4.299843501039672e-16, 4.294037715010637e-16, 4.2882319289816034e-16, 4.2824261429525687e-16, 4.276620356923534e-16, 4.2708145708945003e-16, 4.2650087848654656e-16, 4.259202998836432e-16, 4.253397212807397e-16, 4.2475914267783635e-16, 4.241785640749329e-16, 4.235979854720295e-16, 4.2301740686912604e-16, 4.2243682826622257e-16, 4.218562496633192e-16, 4.2127567106041573e-16, 4.2069509245751235e-16, 4.201145138546089e-16, 4.195339352517055e-16, 4.1895335664880204e-16, 4.1837277804589867e-16, 4.177921994429952e-16, 4.1721162084009183e-16, 4.1663104223718836e-16, 4.160504636342849e-16, 4.154698850313815e-16, 4.1488930642847805e-16, 4.143087278255747e-16, 4.137281492226712e-16, 4.1314757061976784e-16, 4.1256699201686437e-16, 4.11986413413961e-16, 4.1140583481105753e-16, 4.1082525620815406e-16, 4.102446776052507e-16, 4.096640990023472e-16, 4.0908352039944385e-16, 4.085029417965404e-16, 4.07922363193637e-16, 4.0734178459073354e-16, 4.0676120598783017e-16, 4.061806273849267e-16, 4.0560004878202333e-16, 4.0501947017911986e-16, 4.044388915762164e-16, 4.03858312973313e-16, 4.0327773437040955e-16, 4.026971557675062e-16, 4.021165771646027e-16, 4.0153599856169934e-16, 4.0095541995879587e-16, 4.003748413558925e-16, 3.9979426275298903e-16, 3.9921368415008556e-16, 3.986331055471822e-16, 3.980525269442787e-16, 3.9747194834137535e-16, 3.968913697384719e-16, 3.963107911355685e-16, 3.9573021253266504e-16, 3.9514963392976167e-16, 3.945690553268582e-16, 3.9398847672395473e-16, 3.9340789812105136e-16, 3.928273195181479e-16, 3.922467409152445e-16, 3.9166616231234105e-16, 3.910855837094377e-16, 3.905050051065342e-16, 3.8992442650363084e-16, 3.8934384790072737e-16, 3.88763269297824e-16, 3.8818269069492053e-16, 3.8760211209201706e-16, 3.870215334891137e-16, 3.864409548862102e-16, 3.8586037628330685e-16, 3.852797976804034e-16, 3.846992190775e-16, 3.8411864047459654e-16, 3.8353806187169316e-16, 3.829574832687897e-16, 3.8237690466588623e-16, 3.8179632606298285e-16, 3.812157474600794e-16, 3.80635168857176e-16, 3.8005459025427254e-16, 3.7947401165136917e-16, 3.788934330484657e-16, 3.7831285444556233e-16, 3.7773227584265886e-16, 3.771516972397555e-16, 3.76571118636852e-16, 3.7599054003394855e-16, 3.754099614310452e-16, 3.748293828281417e-16, 3.7424880422523834e-16, 3.7366822562233487e-16, 3.730876470194315e-16, 3.7250706841652803e-16, 3.7192648981362466e-16, 3.713459112107212e-16, 3.707653326078177e-16, 3.7018475400491435e-16, 3.696041754020109e-16, 3.690235967991075e-16, 3.6844301819620404e-16, 3.6786243959330067e-16, 3.672818609903972e-16, 3.6670128238749383e-16, 3.6612070378459036e-16, 3.655401251816869e-16, 3.649595465787835e-16, 3.6437896797588005e-16, 3.637983893729767e-16, 3.632178107700732e-16, 3.6263723216716984e-16, 3.6205665356426637e-16, 3.61476074961363e-16, 3.6089549635845953e-16, 3.6031491775555616e-16, 3.597343391526527e-16, 3.591537605497492e-16, 3.5857318194684585e-16, 3.579926033439424e-16, 3.57412024741039e-16, 3.5683144613813554e-16, 3.5625086753523217e-16, 3.556702889323287e-16, 3.5508971032942533e-16, 3.5450913172652186e-16, 3.539285531236184e-16, 3.53347974520715e-16, 3.5276739591781155e-16, 3.521868173149082e-16, 3.516062387120047e-16, 3.5102566010910134e-16, 3.5044508150619787e-16, 3.498645029032945e-16, 3.4928392430039103e-16, 3.4870334569748765e-16, 3.481227670945842e-16, 3.475421884916807e-16, 3.4696160988877734e-16, 3.4638103128587388e-16, 3.458004526829705e-16, 3.4521987408006703e-16, 3.4463929547716366e-16, 3.440587168742602e-16, 3.434781382713568e-16, 3.4289755966845335e-16, 3.423169810655499e-16, 3.417364024626465e-16, 3.4115582385974304e-16, 3.4057524525683967e-16, 3.399946666539362e-16, 3.3941408805103283e-16, 3.3883350944812936e-16, 3.38252930845226e-16, 3.376723522423225e-16, 3.3709177363941915e-16, 3.365111950365157e-16, 3.359306164336122e-16, 3.3535003783070884e-16, 3.3476945922780537e-16, 3.34188880624902e-16, 3.3360830202199853e-16, 3.3302772341909516e-16, 3.324471448161917e-16, 3.318665662132883e-16, 3.3128598761038485e-16, 3.307054090074814e-16, 3.30124830404578e-16, 3.2954425180167454e-16, 3.2896367319877117e-16, 3.283830945958677e-16, 3.2780251599296433e-16, 3.2722193739006086e-16, 3.266413587871575e-16, 3.26060780184254e-16, 3.2548020158135055e-16, 3.248996229784472e-16, 3.243190443755437e-16, 3.2373846577264034e-16, 3.2315788716973687e-16, 3.225773085668335e-16, 3.2199672996393003e-16, 3.2141615136102666e-16, 3.208355727581232e-16, 3.202549941552198e-16, 3.1967441555231635e-16, 3.190938369494129e-16, 3.185132583465095e-16, 3.1793267974360604e-16, 3.1735210114070267e-16, 3.167715225377992e-16, 3.1619094393489583e-16, 3.1561036533199236e-16, 3.15029786729089e-16, 3.144492081261855e-16, 3.1386862952328205e-16, 3.132880509203787e-16, 3.127074723174752e-16, 3.1212689371457184e-16, 3.1154631511166837e-16, 3.10965736508765e-16, 3.1038515790586153e-16, 3.0980457930295815e-16, 3.092240007000547e-16, 3.086434220971513e-16, 3.0806284349424784e-16, 3.0748226489134437e-16, 3.06901686288441e-16, 3.0632110768553753e-16, 3.0574052908263416e-16, 3.051599504797307e-16, 3.045793718768273e-16, 3.0399879327392385e-16, 3.034182146710205e-16, 3.02837636068117e-16, 3.0225705746521354e-16, 3.0167647886231017e-16, 3.010959002594067e-16, 3.0051532165650333e-16, 2.9993474305359986e-16, 2.993541644506965e-16, 2.98773585847793e-16, 2.9819300724488965e-16, 2.976124286419862e-16, 2.970318500390828e-16, 2.9645127143617934e-16, 2.9587069283327587e-16, 2.952901142303725e-16, 2.9470953562746903e-16, 2.9412895702456566e-16, 2.935483784216622e-16, 2.929677998187588e-16, 2.9238722121585535e-16, 2.91806642612952e-16, 2.912260640100485e-16, 2.9064548540714504e-16, 2.9006490680424167e-16, 2.894843282013382e-16, 2.8890374959843483e-16, 2.8832317099553136e-16, 2.87742592392628e-16, 2.871620137897245e-16, 2.8658143518682115e-16, 2.860008565839177e-16, 2.854202779810142e-16, 2.8483969937811084e-16, 2.8425912077520737e-16, 2.83678542172304e-16, 2.8309796356940053e-16, 2.8251738496649716e-16, 2.819368063635937e-16, 2.813562277606903e-16, 2.8077564915778685e-16, 2.801950705548835e-16, 2.7961449195198e-16, 2.7903391334907654e-16, 2.7845333474617317e-16, 2.778727561432697e-16, 2.7729217754036633e-16, 2.7671159893746286e-16, 2.761310203345595e-16, 2.75550441731656e-16, 2.7496986312875265e-16, 2.743892845258492e-16, 2.738087059229457e-16, 2.7322812732004234e-16, 2.7264754871713887e-16, 2.720669701142355e-16, 2.7148639151133203e-16, 2.7090581290842865e-16, 2.703252343055252e-16, 2.697446557026218e-16, 2.6916407709971834e-16, 2.6858349849681497e-16, 2.680029198939115e-16, 2.6742234129100803e-16, 2.6684176268810466e-16, 2.662611840852012e-16, 2.656806054822978e-16, 2.6510002687939435e-16, 2.64519448276491e-16, 2.639388696735875e-16, 2.6335829107068414e-16, 2.6277771246778067e-16, 2.621971338648772e-16, 2.6161655526197383e-16, 2.6103597665907036e-16, 2.60455398056167e-16, 2.598748194532635e-16, 2.5929424085036015e-16, 2.587136622474567e-16, 2.581330836445533e-16, 2.5755250504164984e-16, 2.5697192643874647e-16, 2.56391347835843e-16, 2.5581076923293953e-16, 2.5523019063003616e-16, 2.546496120271327e-16, 2.540690334242293e-16, 2.5348845482132585e-16, 2.529078762184225e-16, 2.52327297615519e-16, 2.5174671901261564e-16, 2.5116614040971217e-16, 2.505855618068087e-16, 2.5000498320390533e-16, 2.4942440460100186e-16, 2.488438259980985e-16, 2.48263247395195e-16, 2.4768266879229165e-16, 2.471020901893882e-16, 2.465215115864848e-16, 2.4594093298358134e-16, 2.4536035438067787e-16, 2.447797757777745e-16, 2.4419919717487103e-16, 2.4361861857196766e-16, 2.430380399690642e-16, 2.424574613661608e-16, 2.4187688276325735e-16, 2.41296304160354e-16, 2.407157255574505e-16, 2.4013514695454714e-16, 2.3955456835164367e-16, 2.389739897487402e-16, 2.3839341114583683e-16, 2.3781283254293336e-16, 2.3723225394003e-16, 2.366516753371265e-16, 2.3607109673422314e-16, 2.3549051813131968e-16, 2.349099395284163e-16, 2.3432936092551283e-16, 2.3374878232260937e-16, 2.33168203719706e-16, 2.3258762511680252e-16, 2.3200704651389915e-16, 2.314264679109957e-16, 2.308458893080923e-16, 2.3026531070518884e-16, 2.2968473210228547e-16, 2.29104153499382e-16, 2.2852357489647863e-16, 2.2794299629357516e-16, 2.273624176906717e-16, 2.267818390877683e-16, 2.2620126048486485e-16, 2.256206818819615e-16, 2.25040103279058e-16, 2.2445952467615464e-16, 2.2387894607325117e-16, 2.232983674703478e-16, 2.2271778886744433e-16, 2.2213721026454086e-16, 2.215566316616375e-16, 2.2097605305873402e-16, 2.2039547445583065e-16, 2.1981489585292718e-16, 2.192343172500238e-16, 2.1865373864712034e-16, 2.1807316004421697e-16, 2.174925814413135e-16, 2.1691200283841013e-16, 2.1633142423550666e-16, 2.157508456326032e-16, 2.1517026702969982e-16, 2.1458968842679635e-16, 2.1400910982389298e-16, 2.134285312209895e-16, 2.1284795261808614e-16, 2.1226737401518267e-16, 2.116867954122793e-16, 2.1110621680937583e-16, 2.1052563820647236e-16, 2.09945059603569e-16, 2.0936448100066552e-16, 2.0878390239776215e-16, 2.0820332379485868e-16, 2.076227451919553e-16, 2.0704216658905184e-16, 2.0646158798614847e-16, 2.05881009383245e-16, 2.0530043078034153e-16, 2.0471985217743816e-16, 2.0413927357453469e-16, 2.0355869497163132e-16, 2.0297811636872785e-16, 2.0239753776582448e-16, 2.01816959162921e-16, 2.0123638056001764e-16, 2.0065580195711417e-16, 2.000752233542108e-16, 1.9949464475130733e-16, 1.9891406614840386e-16, 1.9833348754550048e-16, 1.9775290894259702e-16, 1.9717233033969364e-16, 1.9659175173679017e-16, 1.960111731338868e-16, 1.9543059453098333e-16, 1.9485001592807996e-16, 1.942694373251765e-16, 1.9368885872227302e-16, 1.9310828011936965e-16, 1.9252770151646618e-16, 1.9194712291356281e-16, 1.9136654431065934e-16, 1.9078596570775597e-16, 1.902053871048525e-16, 1.8962480850194913e-16, 1.8904422989904566e-16, 1.884636512961423e-16, 1.8788307269323882e-16, 1.8730249409033535e-16, 1.8672191548743198e-16, 1.861413368845285e-16, 1.8556075828162514e-16, 1.8498017967872167e-16, 1.843996010758183e-16, 1.8381902247291483e-16, 1.8323844387001146e-16, 1.82657865267108e-16, 1.8207728666420452e-16, 1.8149670806130115e-16, 1.8091612945839768e-16, 1.803355508554943e-16, 1.7975497225259084e-16, 1.7917439364968747e-16, 1.78593815046784e-16, 1.7801323644388063e-16, 1.7743265784097716e-16, 1.768520792380737e-16, 1.7627150063517032e-16, 1.7569092203226685e-16, 1.7511034342936348e-16, 1.7452976482646e-16, 1.7394918622355664e-16, 1.7336860762065317e-16, 1.727880290177498e-16, 1.7220745041484633e-16, 1.7162687181194296e-16, 1.7104629320903949e-16, 1.7046571460613602e-16, 1.6988513600323265e-16, 1.6930455740032918e-16, 1.687239787974258e-16, 1.6814340019452234e-16, 1.6756282159161897e-16, 1.669822429887155e-16, 1.6640166438581213e-16, 1.6582108578290866e-16, 1.6524050718000519e-16, 1.6465992857710182e-16, 1.6407934997419835e-16, 1.6349877137129498e-16, 1.629181927683915e-16, 1.6233761416548813e-16, 1.6175703556258467e-16, 1.611764569596813e-16, 1.6059587835677782e-16, 1.6001529975387445e-16, 1.5943472115097098e-16, 1.5885414254806751e-16, 1.5827356394516414e-16, 1.5769298534226067e-16, 1.571124067393573e-16, 1.5653182813645383e-16, 1.5595124953355046e-16, 1.55370670930647e-16, 1.5479009232774362e-16, 1.5420951372484015e-16, 1.5362893512193668e-16, 1.5304835651903331e-16, 1.5246777791612984e-16, 1.5188719931322647e-16, 1.51306620710323e-16, 1.5072604210741963e-16, 1.5014546350451616e-16, 1.495648849016128e-16, 1.4898430629870932e-16, 1.4840372769580595e-16, 1.4782314909290248e-16, 1.47242570489999e-16, 1.4666199188709564e-16, 1.4608141328419217e-16, 1.455008346812888e-16, 1.4492025607838533e-16, 1.4433967747548196e-16, 1.437590988725785e-16, 1.4317852026967512e-16, 1.4259794166677165e-16, 1.4201736306386818e-16, 1.414367844609648e-16, 1.4085620585806134e-16, 1.4027562725515797e-16, 1.396950486522545e-16, 1.3911447004935113e-16, 1.3853389144644766e-16, 1.379533128435443e-16, 1.3737273424064082e-16, 1.3679215563773735e-16, 1.3621157703483398e-16, 1.356309984319305e-16, 1.3505041982902714e-16, 1.3446984122612367e-16, 1.338892626232203e-16, 1.3330868402031683e-16, 1.3272810541741346e-16, 1.3214752681450999e-16, 1.3156694821160662e-16, 1.3098636960870315e-16, 1.3040579100579968e-16, 1.298252124028963e-16, 1.2924463379999284e-16, 1.2866405519708947e-16, 1.28083476594186e-16, 1.2750289799128263e-16, 1.2692231938837916e-16, 1.2634174078547578e-16, 1.2576116218257232e-16, 1.2518058357966885e-16, 1.2460000497676547e-16, 1.24019426373862e-16, 1.2343884777095863e-16, 1.2285826916805517e-16, 1.222776905651518e-16, 1.2169711196224832e-16, 1.2111653335934495e-16, 1.2053595475644148e-16, 1.1995537615353811e-16, 1.1937479755063464e-16, 1.1879421894773117e-16, 1.182136403448278e-16, 1.1763306174192433e-16, 1.1705248313902096e-16, 1.164719045361175e-16, 1.1589132593321412e-16, 1.1531074733031065e-16, 1.1473016872740728e-16, 1.141495901245038e-16, 1.1356901152160034e-16, 1.1298843291869697e-16, 1.124078543157935e-16, 1.1182727571289013e-16, 1.1124669710998666e-16, 1.1066611850708329e-16, 1.1008553990417982e-16, 1.0950496130127645e-16, 1.0892438269837298e-16, 1.0834380409546961e-16, 1.0776322549256614e-16, 1.0718264688966267e-16, 1.066020682867593e-16, 1.0602148968385583e-16, 1.0544091108095246e-16, 1.0486033247804899e-16, 1.0427975387514562e-16, 1.0369917527224215e-16, 1.0311859666933878e-16, 1.0253801806643531e-16, 1.0195743946353184e-16, 1.0137686086062847e-16, 1.00796282257725e-16, 1.0021570365482163e-16, 9.963512505191816e-17, 9.905454644901479e-17, 9.847396784611132e-17, 9.789338924320795e-17, 9.731281064030448e-17, 9.673223203740101e-17, 9.615165343449764e-17, 9.557107483159417e-17, 9.49904962286908e-17, 9.440991762578733e-17, 9.382933902288396e-17, 9.324876041998049e-17, 9.266818181707712e-17, 9.208760321417365e-17, 9.150702461127028e-17, 9.09264460083668e-17, 9.034586740546334e-17, 8.976528880255997e-17, 8.91847101996565e-17, 8.860413159675313e-17, 8.802355299384966e-17, 8.744297439094628e-17, 8.686239578804282e-17, 8.628181718513944e-17, 8.570123858223597e-17, 8.51206599793325e-17, 8.454008137642913e-17, 8.395950277352566e-17, 8.337892417062229e-17, 8.279834556771882e-17, 8.221776696481545e-17, 8.163718836191198e-17, 8.105660975900861e-17, 8.047603115610514e-17, 7.989545255320177e-17, 7.93148739502983e-17, 7.873429534739483e-17, 7.815371674449146e-17, 7.757313814158799e-17, 7.699255953868462e-17, 7.641198093578115e-17, 7.583140233287778e-17, 7.525082372997431e-17, 7.467024512707094e-17, 7.408966652416747e-17, 7.3509087921264e-17, 7.292850931836063e-17, 7.234793071545716e-17, 7.176735211255379e-17, 7.118677350965032e-17, 7.060619490674695e-17, 7.002561630384348e-17, 6.944503770094011e-17, 6.886445909803664e-17, 6.828388049513317e-17, 6.77033018922298e-17, 6.712272328932633e-17, 6.654214468642296e-17, 6.596156608351949e-17, 6.538098748061612e-17, 6.480040887771265e-17, 6.421983027480928e-17, 6.363925167190581e-17, 6.305867306900244e-17, 6.247809446609897e-17, 6.18975158631955e-17, 6.131693726029213e-17, 6.073635865738866e-17, 6.015578005448529e-17, 5.957520145158182e-17, 5.899462284867845e-17, 5.841404424577498e-17, 5.783346564287161e-17, 5.725288703996814e-17, 5.667230843706467e-17, 5.60917298341613e-17, 5.551115123125783e-17]}
-},{}],218:[function(require,module,exports){
+
+},{}],251:[function(require,module,exports){
 module.exports={"expected": [0.0, 0.005261631548415919, 0.01049572317201387, 0.0157025616639816, 0.02088242936082368, 0.02603560423422748, 0.031162359980572936, 0.0362629661081608, 0.04133768802222547, 0.046386787107803674, 0.05141052081052039, 0.056409142715356825, 0.06138290262345749, 0.06633204662703868, 0.07125681718245105, 0.0761574531814534, 0.08103419002074609, 0.08588725966981965, 0.09071689073716341, 0.09552330853488436, 0.10030673514177839, 0.10506738946490236, 0.10980548729968612, 0.11452124138862842, 0.11921486147861339, 0.12388655437689008, 0.1285365240057493, 0.13316497145593637, 0.13777209503883128, 0.1423580903374347, 0.14692315025618863, 0.15146746506966632, 0.15599122247015923, 0.1604946076141939, 0.16497780316800534, 0.16944098935199656, 0.1738843439842086, 0.1783080425228308, 0.18271225810777392, 0.18709716160133272, 0.19146292162795944, 0.19580970461317432, 0.20013767482163305, 0.20444699439437528, 0.20873782338527203, 0.21301031979669624, 0.21726463961443365, 0.22150093684185504, 0.22571936353336614, 0.22992006982715668, 0.23410320397726328, 0.23826891238496578, 0.24241733962953035, 0.24654862849831938, 0.25066292001628165, 0.2547603534748372, 0.25884106646017413, 0.2629051948809696, 0.26695287299555015, 0.2709842334385052, 0.2749994072467641, 0.2789985238851542, 0.28298171127144905, 0.28694909580091876, 0.29090080237039656, 0.2948369544018712, 0.2987576738656166, 0.30266308130287095, 0.3065532958480726, 0.3104284352506672, 0.3142886158964932, 0.3181339528287553, 0.3219645597685976, 0.3257805491352835, 0.3295820320659916, 0.33336911843523837, 0.33714191687393197, 0.3409005347880701, 0.3446450783770872, 0.3483756526518586, 0.35209236145237105, 0.3557953074650658, 0.35948459223986146, 0.3631603162068649, 0.36682257869277446, 0.3704714779369856, 0.3741071111074034, 0.3777295743159676, 0.3813389626338986, 0.38493537010666906, 0.3885188897687067, 0.3920896136578358, 0.39564763282945997, 0.39919303737049516, 0.40272591641305605, 0.40624635814790083, 0.4097544498376411, 0.41325027782972046, 0.4167339275691667, 0.42020548361112403, 0.4236650296331659, 0.42711264844739877, 0.4305484220123552, 0.433972431444685, 0.4373847570306463, 0.4407854782374012, 0.4441746737241203, 0.44755242135289974, 0.4509187981994933, 0.45427388056386675, 0.4576177439805732, 0.4609504632289575, 0.46427211234319005, 0.46758276462213527, 0.47088249263905624, 0.4741713682511614, 0.47744946260899246, 0.4807168461656616, 0.48397358868593576, 0.48721975925517513, 0.49045542628812666, 0.4936806575375752, 0.49689552010285626, 0.5001000804382324, 0.5032944043611348, 0.5064785570602751, 0.5096526031036273, 0.5128166064462839, 0.5159706304381884, 0.5191147378317453, 0.5222489907893129, 0.5253734508905754, 0.5284881791398046, 0.5315932359730055, 0.5346886812649522, 0.5377745743361165, 0.5408509739594887, 0.5439179383672929, 0.5469755252576027, 0.5500237918008527, 0.5530627946462529, 0.5560925899281056, 0.559113233272027, 0.5621247798010746, 0.5651272841417829, 0.5681208004301094, 0.5711053823172909, 0.5740810829756128, 0.5770479551040937, 0.5800060509340846, 0.5829554222347867, 0.5858961203186874, 0.5888281960469168, 0.5917516998345259, 0.5946666816556881, 0.5975731910488244, 0.6004712771216554, 0.6033609885561788, 0.6062423736135772, 0.6091154801390537, 0.6119803555665988, 0.6148370469236891, 0.6176856008359201, 0.620526063531571, 0.6233584808461077, 0.6261828982266191, 0.6289993607361934, 0.6318079130582325, 0.6346085995007041, 0.6374014640003374, 0.6401865501267578, 0.6429639010865659, 0.6457335597273586, 0.6484955685416962, 0.6512499696710132, 0.6539968049094772, 0.6567361157077932, 0.659467943176957, 0.6621923280919575, 0.6649093108954279, 0.6676189317012485, 0.6703212302980996, 0.6730162461529678, 0.6757040184146041, 0.6783845859169365, 0.6810579871824363, 0.6837242604254401, 0.6863834435554268, 0.6890355741802529, 0.6916806896093421, 0.6943188268568361, 0.6969500226447013, 0.6995743134057965, 0.7021917352868994, 0.7048023241516943, 0.7074061155837198, 0.7100031448892804, 0.7125934471003176, 0.7151770569772459, 0.7177540090117512, 0.7203243374295553, 0.7228880761931408, 0.7254452590044456, 0.7279959193075207, 0.7305400902911544, 0.7330778048914635, 0.7356090957944518, 0.738133995438536, 0.7406525360170401, 0.7431647494806582, 0.7456706675398865, 0.7481703216674249, 0.7506637431005494, 0.7531509628434528, 0.7556320116695595, 0.7581069201238089, 0.7605757185249126, 0.7630384369675822, 0.765495105324731, 0.7679457532496475, 0.7703904101781441, 0.7728291053306777, 0.7752618677144456, 0.7776887261254557, 0.7801097091505718, 0.7825248451695335, 0.7849341623569533, 0.7873376886842876, 0.7897354519217862, 0.7921274796404166, 0.7945137992137669, 0.7968944378199245, 0.799269422443335, 0.8016387798766351, 0.8040025367224682, 0.8063607193952754, 0.8087133541230672, 0.8110604669491733, 0.8134020837339727, 0.8157382301566034, 0.8180689317166518, 0.820394213735823, 0.8227141013595912, 0.8250286195588312, 0.8273377931314321, 0.8296416467038897, 0.8319402047328838, 0.8342334915068352, 0.8365215311474463, 0.8388043476112226, 0.8410819646909783, 0.8433544060173239, 0.8456216950601377, 0.8478838551300198, 0.8501409093797302, 0.8523928808056107, 0.8546397922489906, 0.8568816663975768, 0.8591185257868285, 0.8613503928013163, 0.8635772896760663, 0.8657992384978889, 0.8680162612066933, 0.870228379596788, 0.8724356153181656, 0.8746379898777741, 0.8768355246407746, 0.8790282408317853, 0.8812161595361103, 0.8833993017009574, 0.8855776881366406, 0.887751339517771, 0.8899202763844333, 0.8920845191433511, 0.8942440880690385, 0.8963990033049406, 0.898549284864559, 0.9006949526325688, 0.9028360263659212, 0.9049725256949354, 0.9071044701243774, 0.9092318790345303, 0.9113547716822493, 0.9134731672020091, 0.915587084606938, 0.917696542789842, 0.9198015605242181, 0.9219021564652561, 0.9239983491508315, 0.9260901570024862, 0.9281775983264008, 0.9302606913143553, 0.9323394540446799, 0.9344139044831975, 0.936484060484154, 0.9385499397911419, 0.9406115600380113, 0.9426689387497739, 0.9447220933434964, 0.9467710411291856, 0.948815799310664, 0.950856384986436, 0.9528928151505464, 0.9549251066934291, 0.9569532764027484, 0.95897734096423, 0.9609973169624852, 0.9630132208818271, 0.9650250691070758, 0.967032877924359, 0.9690366635219024, 0.9710364419908137, 0.9730322293258565, 0.9750240414262187, 0.9770118940962724, 0.9789958030463267, 0.9809757838933717, 0.982951852161817, 0.9849240232842218, 0.9868923126020177, 0.9888567353662254, 0.9908173067381629, 0.9927740417901488, 0.994726955506196, 0.9966760627827016, 0.9986213784291273, 1.0005629171686765, 1.0025006936389602, 1.0044347223926617, 1.006365017898191, 1.0082915945403346, 1.010214466620898, 1.0121336483593444, 1.0140491538934235, 1.0159609972797983, 1.0178691924946623, 1.0197737534343543, 1.0216746939159638, 1.023572027677934, 1.025465768380657, 1.0273559296070631, 1.029242524863206, 1.031125567578843, 1.0330050711080068, 1.034881048729574, 1.0367535136478292, 1.0386224789930216, 1.0404879578219175, 1.0423499631183482, 1.0442085077937515, 1.0460636046877099, 1.047915266568481, 1.049763506133527, 1.051608336010036, 1.0534497687554385, 1.0552878168579232, 1.0571224927369418, 1.0589538087437154, 1.0607817771617312, 1.0626064102072383, 1.064427720029737, 1.0662457187124639, 1.0680604182728735, 1.069871830663114, 1.0716799677705013, 1.073484841417985, 1.075286463364613, 1.0770848453059925, 1.0788799988747433, 1.0806719356409509, 1.0824606671126134, 1.0842462047360848, 1.0860285598965151, 1.0878077439182847, 1.0895837680654372, 1.0913566435421074, 1.093126381492944, 1.0948929930035314, 1.0966564891008055, 1.0984168807534673, 1.100174178872392, 1.1019283943110343, 1.1036795378658308, 1.1054276202765998, 1.1071726522269347, 1.108914644344597, 1.1106536072019042, 1.1123895513161153, 1.1141224871498112, 1.1158524251112747, 1.1175793755548644, 1.1193033487813873, 1.1210243550384666, 1.1227424045209082, 1.1244575073710623, 1.1261696736791829, 1.1278789134837837, 1.1295852367719919, 1.1312886534798976, 1.1329891734929023, 1.1346868066460605, 1.1363815627244238, 1.138073451463378, 1.1397624825489778, 1.1414486656182818, 1.1431320102596803, 1.1448125260132231, 1.146490222370945, 1.1481651087771856, 1.1498371946289092, 1.151506489276022, 1.1531730020216842, 1.154836742122622, 1.1564977187894363, 1.1581559411869076, 1.159811418434301, 1.1614641596056652, 1.1631141737301331, 1.1647614697922157, 1.1664060567320969, 1.168047943445924, 1.1696871387860974, 1.171323651561555, 1.172957490538059, 1.1745886644384753, 1.1762171819430536, 1.1778430516897052, 1.1794662822742767, 1.1810868822508247, 1.1827048601318835, 1.1843202243887354, 1.1859329834516765, 1.1875431457102805, 1.1891507195136601, 1.1907557131707271, 1.1923581349504506, 1.1939579930821116, 1.1955552957555577, 1.1971500511214535, 1.1987422672915313, 1.2003319523388374, 1.201919114297979, 1.2035037611653667, 1.2050859008994574, 1.2066655414209928, 1.2082426906132386, 1.209817356322219, 1.2113895463569533, 1.2129592684896857, 1.214526530456117, 1.216091339955634, 1.217653704651535, 1.2192136321712561, 1.2207711301065938, 1.2223262060139277, 1.2238788674144399, 1.2254291217943325, 1.2269769766050456, 1.228522439263471, 1.2300655171521666, 1.2316062176195668, 1.2331445479801932, 1.234680515514863, 1.236214127470895, 1.237745391062316, 1.239274313470063, 1.2408009018421864, 1.2423251632940502, 1.2438471049085305, 1.2453667337362138, 1.2468840567955919, 1.2483990810732577, 1.2499118135240972, 1.2514222610714814, 1.2529304306074567, 1.2544363289929326, 1.2559399630578707, 1.2574413396014685, 1.2589404653923462, 1.2604373471687274, 1.261931991638622, 1.2634244054800075, 1.2649145953410057, 1.2664025678400628, 1.267888329566124, 1.2693718870788095, 1.2708532469085883, 1.2723324155569495, 1.2738093994965756, 1.2752842051715103, 1.2767568389973285, 1.2782273073613033, 1.2796956166225724, 1.2811617731123028, 1.2826257831338554, 1.2840876529629461, 1.285547388847809, 1.2870049970093551, 1.2884604836413323, 1.2899138549104832, 1.291365116956701, 1.292814275893187, 1.294261337806603, 1.295706308757226, 1.2971491947791003, 1.298590001880188, 1.3000287360425198, 1.301465403222344, 1.3029000093502745, 1.3043325603314366, 1.3057630620456147, 1.3071915203473954, 1.3086179410663126, 1.3100423300069888, 1.3114646929492784, 1.3128850356484072, 1.314303363835113, 1.3157196832157834, 1.3171339994725946, 1.3185463182636472, 1.3199566452231029, 1.3213649859613186, 1.3227713460649808, 1.3241757310972386, 1.3255781465978347, 1.3269785980832387, 1.328377091046775, 1.329773630958753, 1.331168223266596, 1.3325608733949683, 1.3339515867459013, 1.3353403686989198, 1.3367272246111668, 1.3381121598175274, 1.3394951796307517, 1.3408762893415778, 1.3422554942188523, 1.3436327995096515, 1.345008210439401, 1.346381732211995, 1.3477533700099136, 1.3491231289943408, 1.3504910143052813, 1.351857031061675, 1.3532211843615138, 1.3545834792819538, 1.3559439208794295, 1.3573025141897672, 1.3586592642282955, 1.3600141759899573, 1.36136725444942, 1.3627185045611845, 1.3640679312596948, 1.3654155394594456, 1.3667613340550901, 1.3681053199215463, 1.369447501914103, 1.3707878848685255, 1.3721264736011596, 1.3734632729090355, 1.3747982875699711, 1.3761315223426749, 1.3774629819668465, 1.3787926711632792, 1.3801205946339594, 1.381446757062167, 1.3827711631125736, 1.3840938174313422, 1.385414724646224, 1.3867338893666559, 1.388051316183857, 1.389367009670925, 1.3906809743829298, 1.3919932148570102, 1.393303735612467, 1.3946125411508554, 1.39591963595608, 1.3972250244944844, 1.398528711214945, 1.3998307005489603, 1.4011309969107428, 1.4024296046973075, 1.4037265282885616, 1.4050217720473934, 1.4063153403197597, 1.4076072374347743, 1.4088974677047938, 1.4101860354255045, 1.4114729448760088, 1.4127582003189094, 1.4140418060003943, 1.415323766150322, 1.4166040849823032, 1.4178827666937859, 1.4191598154661362, 1.4204352354647223, 1.421709030838994, 1.4229812057225648, 1.4242517642332924, 1.4255207104733585, 1.426788048529348, 1.4280537824723283, 1.429317916357928, 1.4305804542264138, 1.4318414001027693, 1.4331007579967716, 1.434358531903067, 1.435614725801248, 1.4368693436559283, 1.4381223894168182, 1.4393738670187994, 1.440623780381998, 1.4418721334118598, 1.4431189299992224, 1.444364174020388, 1.4456078693371963, 1.446850019797096, 1.4480906292332163, 1.4493297014644373, 1.450567240295462, 1.4518032495168844, 1.4530377329052615, 1.4542706942231798, 1.4555021372193266, 1.456732065628557, 1.4579604831719621, 1.4591873935569368, 1.4604128004772468, 1.4616367076130952, 1.4628591186311892, 1.4640800371848053, 1.4652994669138557, 1.4665174114449528, 1.4677338743914738, 1.468948859353626, 1.4701623699185091, 1.4713744096601804, 1.472584982139717, 1.4737940909052787, 1.4750017394921704, 1.4762079314229049, 1.477412670207263, 1.4786159593423558, 1.4798178023126862, 1.481018202590208, 1.4822171636343873, 1.483414688892261, 1.484610781798498, 1.4858054457754564, 1.486998684233244, 1.4881905005697755, 1.4893808981708316, 1.4905698804101155, 1.491757450649311, 1.4929436122381392, 1.494128368514416, 1.495311722804107, 1.4964936784213851, 1.4976742386686852, 1.4988534068367596, 1.5000311862047335, 1.5012075800401596, 1.502382591599072, 1.5035562241260407, 1.5047284808542256, 1.5058993650054293, 1.5070688797901508, 1.5082370284076378, 1.5094038140459396, 1.5105692398819595, 1.511733309081506, 1.5128960247993446, 1.51405739017925, 1.515217408354056, 1.5163760824457062, 1.5175334155653057, 1.5186894108131694, 1.5198440712788737, 1.520997400041304, 1.522149400168706, 1.5233000747187333, 1.5244494267384967, 1.5255974592646122, 1.52674417532325, 1.527889577930181, 1.5290336700908256, 1.5301764548003003, 1.5313179350434651, 1.5324581137949702, 1.5335969940193026, 1.534734578670832, 1.5358708706938569, 1.537005873022651, 1.5381395885815077, 1.5392720202847856, 1.5404031710369537, 1.5415330437326362, 1.5426616412566565, 1.5437889664840814, 1.5449150222802654, 1.5460398115008946, 1.547163336992029, 1.5482856015901472, 1.5494066081221882, 1.550526359405595, 1.5516448582483562, 1.5527621074490494, 1.5538781097968821, 1.5549928680717338, 1.5561063850441976, 1.5572186634756224, 1.558329706118152, 1.559439515714768, 1.5605480949993293, 1.5616554466966126, 1.5627615735223532, 1.5638664781832838, 1.5649701633771758, 1.566072631792877, 1.5671738861103528, 1.5682739290007237, 1.5693727631263055, 1.5704703911406468, 1.5715668156885678, 1.5726620394061992, 1.5737560649210196, 1.574848894851893, 1.5759405318091073, 1.5770309783944112, 1.5781202372010512, 1.5792083108138093, 1.5802952018090388, 1.5813809127547023, 1.5824654462104062, 1.583548804727439, 1.5846309908488057, 1.585712007109264, 1.5867918560353609, 1.587870540145467, 1.5889480619498118, 1.5900244239505192, 1.5910996286416428, 1.5921736785091989, 1.5932465760312031, 1.594318323677703, 1.5953889239108128, 1.5964583791847478, 1.5975266919458575, 1.5985938646326594, 1.5996598996758722, 1.600724799498449, 1.601788566515611, 1.60285120313488, 1.6039127117561103, 1.6049730947715222, 1.6060323545657345, 1.6070904935157955, 1.608147513991216, 1.6092034183540014, 1.6102582089586819, 1.6113118881523458, 1.6123644582746695, 1.6134159216579491, 1.6144662806271315, 1.6155155374998456, 1.616563694586432, 1.6176107541899747, 1.61865671860633, 1.6197015901241587, 1.6207453710249542, 1.6217880635830735, 1.6228296700657665, 1.6238701927332055, 1.6249096338385158, 1.6259479956278031, 1.6269852803401836, 1.6280214902078134, 1.6290566274559164, 1.6300906943028137, 1.6311236929599517, 1.6321556256319303, 1.6331864945165324, 1.63421630180475, 1.6352450496808135, 1.6362727403222193, 1.6372993758997572, 1.638324958577538, 1.6393494905130208, 1.6403729738570407, 1.641395410753835, 1.6424168033410713, 1.643437153749873, 1.6444564641048474, 1.6454747365241107, 1.646491973119316, 1.647508175995678, 1.6485233472520007, 1.6495374889807022, 1.6505506032678414, 1.6515626921931428, 1.6525737578300232, 1.6535838022456164, 1.6545928275007986, 1.6556008356502145, 1.6566078287423014, 1.6576138088193144, 1.6586187779173518, 1.6596227380663786, 1.660625691290253, 1.661627639606749, 1.662628585027582, 1.663628529558432, 1.6646274751989691, 1.6656254239428763, 1.6666223777778735, 1.667618338685742, 1.6686133086423474, 1.6696072896176632, 1.6706002835757952, 1.6715922924750028, 1.672583318267724, 1.6735733629005982, 1.6745624283144878, 1.6755505164445024, 1.6765376292200214, 1.6775237685647157, 1.6785089363965713, 1.679493134627911, 1.6804763651654162, 1.681458629910151, 1.6824399307575821, 1.6834202695976015, 1.684399648314549, 1.6853780687872324, 1.6863555328889515, 1.687332042487517, 1.6883075994452734, 1.6892822056191208, 1.6902558628605342, 1.691228573015587, 1.6922003379249693, 1.6931711594240115, 1.6941410393427032, 1.6951099795057147, 1.6960779817324179, 1.6970450478369052, 1.6980111796280124, 1.6989763789093366, 1.6999406474792578, 1.700903987130959, 1.7018663996524452, 1.7028278868265645, 1.703788450431027, 1.7047480922384253, 1.7057068140162532, 1.7066646175269264, 1.707621504527801, 1.7085774767711928, 1.7095325360043974, 1.7104866839697086, 1.7114399224044379, 1.7123922530409335, 1.7133436776065982, 1.71429419782391, 1.7152438154104392, 1.7161925320788678, 1.7171403495370077, 1.7180872694878198, 1.7190332936294312, 1.719978423655155, 1.7209226612535067, 1.7218660081082235, 1.7228084658982827, 1.7237500362979183, 1.7246907209766396, 1.725630521599249, 1.7265694398258593, 1.7275074773119123, 1.728444635708195, 1.7293809166608574, 1.7303163218114301, 1.7312508527968422, 1.7321845112494372, 1.7331172987969907, 1.7340492170627275, 1.7349802676653387, 1.7359104522189983, 1.7368397723333797, 1.7377682296136732, 1.738695825660602, 1.7396225620704386, 1.7405484404350224, 1.7414734623417751, 1.7423976293737167, 1.743320943109483, 1.7442434051233406, 1.745165016985204, 1.7460857802606506, 1.7470056965109377, 1.7479247672930178, 1.748842994159554, 1.749760378658937, 1.7506769223352994, 1.7515926267285318, 1.7525074933742992, 1.7534215238040547, 1.7543347195450565, 1.7552470821203827, 1.7561586130489457, 1.7570693138455085, 1.7579791860206992, 1.7588882310810268, 1.7597964505288948, 1.760703845862617, 1.7616104185764327, 1.7625161701605208, 1.763421102101014, 1.7643252158800151, 1.76522851297561, 1.7661309948618829, 1.7670326630089301, 1.767933518882876, 1.7688335639458852, 1.7697327996561782, 1.7706312274680454, 1.7715288488318606, 1.7724256651940957, 1.7733216779973342, 1.7742168886802856, 1.7751112986777988, 1.7760049094208763, 1.7768977223366877, 1.7777897388485833, 1.7786809603761078, 1.7795713883350142, 1.7804610241372767, 1.7813498691911047, 1.7822379249009555, 1.783125192667548, 1.7840116738878766, 1.7848973699552233, 1.7857822822591713, 1.786666412185618, 1.7875497611167883, 1.7884323304312475, 1.7893141215039134, 1.790195135706071, 1.791075374405383, 1.7919548389659041, 1.7928335307480936, 1.7937114511088268, 1.7945886014014096, 1.7954649829755889, 1.7963405971775663, 1.7972154453500102, 1.7980895288320689, 1.7989628489593812, 1.7998354070640898, 1.800707204474854, 1.8015782425168603, 1.8024485225118358, 1.80331804577806, 1.8041868136303763, 1.8050548273802036, 1.80592208833555, 1.8067885978010223, 1.8076543570778396, 1.808519367463844, 1.8093836302535125, 1.8102471467379686, 1.8111099182049946, 1.8119719459390418, 1.8128332312212427, 1.8136937753294229, 1.8145535795381114, 1.8154126451185528, 1.8162709733387183, 1.817128565463317, 1.8179854227538061, 1.818841546468404, 1.8196969378620997, 1.820551598186665, 1.821405528690664, 1.8222587306194657, 1.823111205215254, 1.8239629537170385, 1.824813977360666, 1.8256642773788299, 1.8265138550010829, 1.8273627114538458, 1.8282108479604189, 1.829058265740993, 1.8299049660126594, 1.83075094998942, 1.8315962188821984, 1.8324407738988506, 1.8332846162441747, 1.8341277471199209, 1.8349701677248025, 1.8358118792545064, 1.8366528829017021, 1.837493179856053, 1.8383327713042255, 1.8391716584298998, 1.84000984241378, 1.8408473244336037, 1.8416841056641509, 1.8425201872772565, 1.8433555704418176, 1.8441902563238046, 1.845024246086271, 1.8458575408893618, 1.8466901418903257, 1.847522050243522, 1.848353267100432, 1.8491837936096673, 1.8500136309169812, 1.850842780165276, 1.8516712424946138, 1.8524990190422257, 1.8533261109425208, 1.8541525193270958, 1.854978245324744, 1.8558032900614654, 1.8566276546604745, 1.857451340242211, 1.8582743479243478, 1.8590966788218004, 1.8599183340467367, 1.8607393147085844, 1.861559621914042, 1.8623792567670863, 1.8631982203689812, 1.8640165138182883, 1.8648341382108735, 1.8656510946399174, 1.8664673841959236, 1.8672830079667273, 1.8680979670375035, 1.8689122624907772, 1.8697258954064306, 1.870538866861712, 1.8713511779312446, 1.8721628296870352, 1.8729738231984823, 1.8737841595323843, 1.874593839752949, 1.8754028649218006, 1.8762112360979895, 1.877018954337999, 1.877826020695755, 1.8786324362226337, 1.8794382019674696, 1.880243318976564, 1.8810477882936927, 1.881851610960115, 1.8826547880145812, 1.8834573204933402, 1.8842592094301487, 1.885060455856278, 1.8858610608005226, 1.8866610252892082, 1.8874603503461993, 1.8882590369929069, 1.889057086248297, 1.8898544991288977, 1.8906512766488075, 1.8914474198197024, 1.8922429296508447, 1.8930378071490892, 1.893832053318892, 1.8946256691623176, 1.895418655679047, 1.8962110138663846, 1.8970027447192659, 1.8977938492302653, 1.8985843283896033, 1.8993741831851543, 1.9001634146024529, 1.9009520236247028, 1.9017400112327834, 1.902527378405257, 1.9033141261183764, 1.9041002553460917, 1.9048857670600583, 1.905670662229643, 1.906454941821933, 1.9072386068017404, 1.9080216581316118, 1.908804096771834, 1.909585923680442, 1.910367139813225, 1.9111477461237336, 1.9119277435632878, 1.912707133080983, 1.9134859156236972, 1.9142640921360978, 1.9150416635606486, 1.9158186308376166, 1.9165949949050787, 1.917370756698929, 1.918145917152885, 1.9189204771984945, 1.919694437765142, 1.9204677997800563, 1.9212405641683168, 1.922012731852859, 1.922784303754483, 1.9235552807918586, 1.9243256638815327, 1.9250954539379352, 1.9258646518733866, 1.926633258598103, 1.9274012750202039, 1.9281687020457172, 1.9289355405785873, 1.9297017915206804, 1.9304674557717914, 1.931232534229649, 1.931997027789924, 1.9327609373462342, 1.933524263790151, 1.9342870080112056, 1.9350491708968955, 1.9358107533326905, 1.9365717562020384, 1.9373321803863723, 1.9380920267651154, 1.9388512962156885, 1.9396099896135146, 1.9403681078320258, 1.9411256517426698, 1.9418826222149146, 1.9426390201162553, 1.9433948463122204, 1.9441501016663771, 1.9449047870403373, 1.945658903293764, 1.946412451284376, 1.9471654318679557, 1.9479178458983526, 1.9486696942274915, 1.9494209777053764, 1.9501716971800966, 1.9509218534978336, 1.9516714475028658, 1.9524204800375742, 1.9531689519424482, 1.9539168640560916, 1.9546642172152282, 1.955411012254707, 1.9561572500075077, 1.956902931304747, 1.9576480569756838, 1.9583926278477242, 1.959136644746428, 1.9598801084955135, 1.960623019916863, 1.9613653798305284, 1.962107189054737, 1.9628484484058961, 1.9635891586985992, 1.9643293207456307, 1.9650689353579718, 1.9658080033448055, 1.9665465255135217, 1.9672845026697234, 1.968021935617231, 1.9687588251580879, 1.9694951720925657, 1.9702309772191697, 1.9709662413346436, 1.9717009652339754, 1.9724351497104016, 1.973168795555413, 1.9739019035587595, 1.974634474508456, 1.975366509190786, 1.976098008390308, 1.9768289728898598, 1.977559403470564, 1.9782893009118325, 1.9790186659913722, 1.9797474994851894, 1.9804758021675941, 1.9812035748112071, 1.9819308181869626, 1.9826575330641145, 1.9833837202102402, 1.984109380391247, 1.9848345143713755, 1.985559122913205, 1.9862832067776584, 1.9870067667240068, 1.9877298035098743, 1.988452317891243, 1.9891743106224578, 1.9898957824562298, 1.9906167341436436, 1.9913371664341593, 1.9920570800756188, 1.99277647581425, 1.9934953543946718, 1.9942137165598979, 1.9949315630513418, 1.9956488946088218, 1.9963657119705651, 1.997082015873213, 1.997797807051824, 1.9985130862398806, 1.9992278541692907, 1.9999421115703957, 2.000655859171972, 2.0013690977012373, 2.0020818278838535, 2.002794050443933, 2.003505766104042, 2.0042169755852037, 2.004927679606906, 2.0056378788871023, 2.006347574142218, 2.007056766087154, 2.0077654554352926, 2.008473642898498, 2.009181329187125, 2.009888515010021, 2.01059520107453, 2.0113013880864976, 2.012007076750276, 2.0127122677687264, 2.013416961843224, 2.0141211596736626, 2.0148248619584583, 2.0155280693945548, 2.0162307826774244, 2.016933002501076, 2.0176347295580577, 2.018335964539459, 2.0190367081349185, 2.0197369610326246, 2.020436723919321, 2.0211359974803123, 2.021834782399465, 2.022533079359213, 2.0232308890405624, 2.0239282121230944, 2.0246250492849684, 2.025321401202929, 2.026017268552306, 2.026712652007023, 2.0274075522395956, 2.0281019699211402, 2.0287959057213762, 2.029489360308629, 2.030182334349835, 2.030874828510544, 2.0315668434549266, 2.0322583798457727, 2.0329494383444997, 2.033640019611154, 2.0343301243044167, 2.0350197530816048, 2.0357089065986766, 2.0363975855102354, 2.0370857904695336, 2.0377735221284747, 2.0384607811376183, 2.039147568146185, 2.039833883802056, 2.040519728751783, 2.041205103640585, 2.041890009112357, 2.042574445809672, 2.043258414373783, 2.0439419154446306, 2.0446249496608413, 2.0453075176597357, 2.04598962007733, 2.0466712575483395, 2.0473524307061823, 2.048033140182983, 2.048713386609577, 2.0493931706155126, 2.050072492829054, 2.0507513538771884, 2.051429754385625, 2.0521076949788, 2.052785176279883, 2.053462198910776, 2.054138763492118, 2.054814870643291, 2.055490520982421, 2.056165715126381, 2.0568404536907963, 2.0575147372900466, 2.0581885665372694, 2.0588619420443646, 2.059534864421995, 2.060207334279593, 2.0608793522253612, 2.0615509188662786, 2.0622220348081, 2.062892700655363, 2.0635629170113887, 2.0642326844782866, 2.064902003656957, 2.0655708751470945, 2.0662392995471905, 2.066907277454538, 2.067574809465233, 2.0682418961741798, 2.0689085381750916, 2.0695747360604955, 2.0702404904217353, 2.0709058018489745, 2.0715706709312, 2.0722350982562223, 2.0728990844106847, 2.07356262998006, 2.074225735548657, 2.074888401699623, 2.0755506290149466, 2.0762124180754618, 2.076873769460849, 2.077534683749639, 2.0781951615192185, 2.0788552033458285, 2.079514809804571, 2.08017398146941, 2.080832718913176, 2.0814910227075676, 2.082148893423155, 2.0828063316293837, 2.0834633378945764, 2.0841199127859364, 2.0847760568695506, 2.085431770710392, 2.0860870548723236, 2.0867419099181, 2.087396336409371, 2.088050334906685, 2.0887039059694907, 2.089357050156141, 2.0900097680238954, 2.0906620601289228, 2.091313927026304, 2.0919653692700364, 2.0926163874130337, 2.093266982007132, 2.0939171536030896, 2.094566902750592, 2.095216229998254, 2.095865135893622, 2.096513620983178, 2.09716168581234, 2.097809330925468, 2.098456556865864, 2.099103364175776, 2.0997497533964005, 2.100395725067885, 2.1010412797293316, 2.101686417918798, 2.1023311401733022, 2.1029754470288236, 2.1036193390203057, 2.1042628166816617, 2.104905880545771, 2.1055485311444895, 2.1061907690086454, 2.106832594668047, 2.107474008651481, 2.1081150114867198, 2.1087556037005184, 2.109395785818623, 2.1100355583657695, 2.1106749218656873, 2.1113138768411015, 2.1119524238137366, 2.1125905633043183, 2.113228295832575, 2.113865621917243, 2.114502542076066, 2.1151390568258, 2.1157751666822144, 2.116410872160095, 2.1170461737732458, 2.117681072034494, 2.118315567455689, 2.118949660547707, 2.1195833518204528, 2.120216641782863, 2.120849530942907, 2.121482019807592, 2.1221141088829616, 2.122745798674102, 2.1233770896851425, 2.1240079824192577, 2.124638477378671, 2.125268575064656, 2.1258982759775398, 2.1265275806167048, 2.127156489480591, 2.127785003066699, 2.128413121871591, 2.129040846390896, 2.1296681771193073, 2.130295114550591, 2.130921659177582, 2.1315478114921924, 2.1321735719854087, 2.1327989411472967, 2.1334239194670044, 2.134048507432762, 2.134672705531886, 2.1352965142507805, 2.135919934074941, 2.1365429654889536, 2.1371656089765017, 2.137787865020364, 2.138409734102419, 2.1390312167036467, 2.1396523133041314, 2.1402730243830628, 2.1408933504187386, 2.1415132918885678, 2.1421328492690717, 2.142752023035886, 2.1433708136637644, 2.143989221626579, 2.1446072473973232, 2.145224891448115, 2.1458421542501975, 2.146459036273941, 2.1470755379888473, 2.1476916598635487, 2.1483074023658135, 2.1489227659625456, 2.1495377511197873, 2.150152358302722, 2.1507665879756765, 2.15138044060212, 2.151993916644673, 2.1526070165651006, 2.153219740824322, 2.1538320898824086, 2.154444064198587, 2.155055664231243, 2.1556668904379186, 2.15627774327532, 2.1568882231993163, 2.157498330664942, 2.1581080661263985, 2.1587174300370586, 2.1593264228494653, 2.1599350450153363, 2.1605432969855642, 2.1611511792102203, 2.161758692138554, 2.1623658362189984, 2.162972611899169, 2.163579019625868, 2.1641850598450834, 2.1647907330019955, 2.1653960395409735, 2.1660009799055824, 2.1666055545385805, 2.1672097638819263, 2.1678136083767745, 2.1684170884634844, 2.1690202045816154, 2.1696229571699344, 2.1702253466664136, 2.1708273735082364, 2.171429038131795, 2.172030340972695, 2.1726312824657574, 2.173231863045019, 2.173832083143735, 2.1744319431943815, 2.175031443628656, 2.1756305848774815, 2.176229367371005, 2.1768277915386025, 2.1774258578088794, 2.1780235666096726, 2.178620918368052, 2.1792179135103225, 2.179814552462027, 2.1804108356479457, 2.1810067634921007, 2.181602336417755, 2.1821975548474177, 2.1827924192028423, 2.1833869299050312, 2.183981087374235, 2.1845748920299575, 2.1851683442909535, 2.1857614445752347, 2.1863541933000685, 2.186946590881981, 2.1875386377367576, 2.188130334279447, 2.188721680924361, 2.1893126780850767, 2.1899033261744383, 2.1904936256045593, 2.1910835767868235, 2.191673180131887, 2.1922624360496807, 2.1928513449494096, 2.193439907239558, 2.194028123327888, 2.1946159936214444, 2.1952035185265517, 2.195790698448821, 2.196377533793149, 2.1969640249637186, 2.1975501723640036, 2.198135976396768, 2.1987214374640685, 2.1993065559672558, 2.199891332306976, 2.200475766883175, 2.2010598600950955, 2.2016436123412815, 2.2022270240195803, 2.2028100955271426, 2.2033928272604255, 2.203975219615192, 2.204557272986515, 2.205138987768779, 2.2057203643556784, 2.2063014031402233, 2.2068821045147375, 2.207462468870863, 2.20804249659956, 2.208622188091108, 2.2092015437351096, 2.2097805639204893, 2.210359249035497, 2.210937599467709, 2.2115156156040294, 2.212093297830692, 2.212670646533261, 2.213247662096634, 2.213824344905042, 2.2144006953420523, 2.214976713790569, 2.215552400632835, 2.2161277562504327, 2.2167027810242876, 2.217277475334668, 2.2178518395611855, 2.2184258740828002, 2.2189995792778188, 2.219572955523897, 2.2201460031980425, 2.2207187226766134, 2.2212911143353233, 2.22186317854924, 2.222434915692788, 2.2230063261397506, 2.2235774102632697, 2.2241481684358497, 2.224718601029356, 2.2252887084150186, 2.2258584909634336, 2.226427949044563, 2.226997083027738, 2.2275658932816587, 2.2281343801743967, 2.2287025440733967, 2.2292703853454765, 2.2298379043568306, 2.2304051014730297, 2.230971977059022, 2.231538531479137, 2.2321047650970844, 2.232670678275957, 2.23323627137823, 2.2338015447657655, 2.234366498799812, 2.2349311338410063, 2.235495450249373, 2.2360594483843297, 2.236623128604685, 2.237186491268641, 2.237749536733796, 2.238312265357143, 2.238874677495073, 2.2394367735033773, 2.239998553737246, 2.2405600185512724, 2.2411211682994514, 2.2416820033351827, 2.2422425240112727, 2.2428027306799336, 2.243362623692787, 2.2439222034008637, 2.244481470154605, 2.2450404243038657, 2.2455990661979137, 2.2461573961854318, 2.2467154146145196, 2.247273121832693, 2.2478305181868885, 2.248387604023462, 2.24894437968819, 2.2495008455262733, 2.250057001882336, 2.250612849100427, 2.2511683875240234, 2.2517236174960282, 2.2522785393587745, 2.2528331534540262, 2.2533874601229784, 2.253941459706259, 2.2544951525439307, 2.255048538975491, 2.255601619339874, 2.2561543939754523, 2.2567068632200376, 2.2572590274108815, 2.2578108868846782, 2.2583624419775634, 2.258913693025119, 2.2594646403623693, 2.260015284323788, 2.260565625243295, 2.2611156634542593, 2.261665399289501, 2.2622148330812903, 2.2627639651613514, 2.263312795860861, 2.2638613255104523, 2.264409554440213, 2.2649574829796895, 2.265505111457886, 2.2660524402032673, 2.2665994695437583, 2.267146199806747, 2.2676926313190835, 2.2682387644070836, 2.2687845993965277, 2.269330136612664, 2.269875376380208, 2.2704203190233447, 2.270964964865729, 2.2715093142304874, 2.2720533674402197, 2.2725971248169987, 2.2731405866823717, 2.2736837533573633, 2.2742266251624743, 2.274769202417684, 2.2753114854424514, 2.275853474555716, 2.2763951700758986, 2.2769365723209036, 2.277477681608118, 2.278018498254416, 2.2785590225761556, 2.2790992548891835, 2.2796391955088344, 2.2801788447499325, 2.280718202926793, 2.281257270353222, 2.2817960473425187, 2.282334534207477, 2.282872731260384, 2.283410638813025, 2.2839482571766805, 2.2844855866621305, 2.2850226275796532, 2.285559380239029, 2.2860958449495374, 2.2866320220199623, 2.2871679117585897, 2.287703514473212, 2.2882388304711254, 2.2887738600591345, 2.2893086035435504, 2.289843061230194, 2.2903772334243957, 2.2909111204309967, 2.2914447225543504, 2.2919780400983236, 2.292511073366297, 2.293043822661166, 2.293576288285342, 2.294108470540755, 2.2946403697288513, 2.295171986150598, 2.295703320106482, 2.2962343718965106, 2.2967651418202144, 2.2972956301766474, 2.297825837264387, 2.2983557633815375, 2.298885408825727, 2.2994147738941133, 2.2999438588833816, 2.3004726640897464, 2.301001189808953, 2.301529436336277, 2.3020574039665274, 2.302585092994046], "y": [-5e-30, -4.994138335287221e-30, -4.988276670574443e-30, -4.982415005861664e-30, -4.976553341148886e-30, -4.9706916764361074e-30, -4.964830011723329e-30, -4.9589683470105505e-30, -4.953106682297772e-30, -4.9472450175849936e-30, -4.941383352872215e-30, -4.935521688159437e-30, -4.929660023446659e-30, -4.9237983587338804e-30, -4.917936694021102e-30, -4.9120750293083235e-30, -4.906213364595545e-30, -4.9003516998827666e-30, -4.894490035169988e-30, -4.88862837045721e-30, -4.882766705744431e-30, -4.876905041031653e-30, -4.871043376318874e-30, -4.865181711606096e-30, -4.8593200468933174e-30, -4.853458382180539e-30, -4.8475967174677605e-30, -4.841735052754982e-30, -4.8358733880422035e-30, -4.830011723329425e-30, -4.8241500586166466e-30, -4.818288393903868e-30, -4.81242672919109e-30, -4.806565064478311e-30, -4.800703399765533e-30, -4.794841735052755e-30, -4.7889800703399766e-30, -4.783118405627198e-30, -4.7772567409144196e-30, -4.771395076201641e-30, -4.765533411488863e-30, -4.759671746776084e-30, -4.753810082063306e-30, -4.747948417350527e-30, -4.742086752637749e-30, -4.7362250879249704e-30, -4.730363423212192e-30, -4.7245017584994135e-30, -4.718640093786635e-30, -4.7127784290738566e-30, -4.706916764361078e-30, -4.7010550996483e-30, -4.695193434935521e-30, -4.689331770222743e-30, -4.683470105509964e-30, -4.677608440797186e-30, -4.671746776084408e-30, -4.6658851113716296e-30, -4.660023446658851e-30, -4.654161781946073e-30, -4.648300117233294e-30, -4.642438452520516e-30, -4.636576787807737e-30, -4.630715123094959e-30, -4.6248534583821804e-30, -4.618991793669402e-30, -4.6131301289566235e-30, -4.607268464243845e-30, -4.6014067995310665e-30, -4.595545134818288e-30, -4.5896834701055096e-30, -4.583821805392731e-30, -4.577960140679953e-30, -4.572098475967174e-30, -4.566236811254396e-30, -4.560375146541617e-30, -4.554513481828839e-30, -4.548651817116061e-30, -4.542790152403282e-30, -4.536928487690504e-30, -4.531066822977726e-30, -4.525205158264947e-30, -4.519343493552169e-30, -4.51348182883939e-30, -4.507620164126612e-30, -4.5017584994138334e-30, -4.495896834701055e-30, -4.4900351699882765e-30, -4.484173505275498e-30, -4.4783118405627196e-30, -4.472450175849941e-30, -4.466588511137163e-30, -4.460726846424384e-30, -4.454865181711606e-30, -4.449003516998827e-30, -4.443141852286049e-30, -4.4372801875732704e-30, -4.431418522860492e-30, -4.4255568581477134e-30, -4.419695193434935e-30, -4.413833528722157e-30, -4.407971864009378e-30, -4.4021101992966e-30, -4.396248534583822e-30, -4.3903868698710434e-30, -4.384525205158265e-30, -4.3786635404454865e-30, -4.372801875732708e-30, -4.3669402110199295e-30, -4.361078546307151e-30, -4.3552168815943726e-30, -4.349355216881594e-30, -4.343493552168816e-30, -4.337631887456037e-30, -4.331770222743259e-30, -4.32590855803048e-30, -4.320046893317702e-30, -4.3141852286049234e-30, -4.308323563892145e-30, -4.3024618991793665e-30, -4.296600234466588e-30, -4.2907385697538096e-30, -4.284876905041031e-30, -4.279015240328253e-30, -4.273153575615475e-30, -4.2672919109026964e-30, -4.261430246189918e-30, -4.2555685814771395e-30, -4.249706916764361e-30, -4.2438452520515826e-30, -4.237983587338804e-30, -4.232121922626026e-30, -4.226260257913247e-30, -4.220398593200469e-30, -4.21453692848769e-30, -4.208675263774912e-30, -4.2028135990621334e-30, -4.196951934349355e-30, -4.1910902696365764e-30, -4.185228604923798e-30, -4.1793669402110195e-30, -4.173505275498241e-30, -4.167643610785463e-30, -4.161781946072684e-30, -4.1559202813599064e-30, -4.150058616647127e-30, -4.1441969519343495e-30, -4.13833528722157e-30, -4.1324736225087925e-30, -4.126611957796014e-30, -4.1207502930832356e-30, -4.114888628370457e-30, -4.109026963657679e-30, -4.1031652989449e-30, -4.097303634232122e-30, -4.091441969519343e-30, -4.085580304806565e-30, -4.0797186400937864e-30, -4.073856975381008e-30, -4.0679953106682295e-30, -4.062133645955451e-30, -4.0562719812426726e-30, -4.050410316529894e-30, -4.0445486518171156e-30, -4.038686987104337e-30, -4.0328253223915594e-30, -4.02696365767878e-30, -4.0211019929660025e-30, -4.015240328253223e-30, -4.0093786635404456e-30, -4.003516998827667e-30, -3.997655334114889e-30, -3.99179366940211e-30, -3.985932004689332e-30, -3.980070339976553e-30, -3.974208675263775e-30, -3.9683470105509964e-30, -3.962485345838218e-30, -3.9566236811254394e-30, -3.950762016412661e-30, -3.9449003516998825e-30, -3.939038686987104e-30, -3.9331770222743256e-30, -3.927315357561547e-30, -3.921453692848769e-30, -3.91559202813599e-30, -3.909730363423212e-30, -3.903868698710433e-30, -3.8980070339976556e-30, -3.8921453692848764e-30, -3.8862837045720986e-30, -3.8804220398593195e-30, -3.874560375146542e-30, -3.868698710433763e-30, -3.862837045720985e-30, -3.856975381008206e-30, -3.851113716295428e-30, -3.8452520515826494e-30, -3.839390386869871e-30, -3.8335287221570925e-30, -3.827667057444314e-30, -3.8218053927315356e-30, -3.815943728018757e-30, -3.810082063305979e-30, -3.8042203985932e-30, -3.798358733880422e-30, -3.792497069167643e-30, -3.786635404454865e-30, -3.7807737397420864e-30, -3.7749120750293086e-30, -3.7690504103165294e-30, -3.763188745603752e-30, -3.7573270808909725e-30, -3.751465416178195e-30, -3.7456037514654156e-30, -3.739742086752638e-30, -3.7338804220398594e-30, -3.728018757327081e-30, -3.7221570926143025e-30, -3.716295427901524e-30, -3.7104337631887455e-30, -3.704572098475967e-30, -3.6987104337631886e-30, -3.69284876905041e-30, -3.686987104337632e-30, -3.681125439624853e-30, -3.675263774912075e-30, -3.669402110199296e-30, -3.663540445486518e-30, -3.6576787807737394e-30, -3.651817116060961e-30, -3.6459554513481825e-30, -3.640093786635405e-30, -3.6342321219226256e-30, -3.628370457209848e-30, -3.6225087924970686e-30, -3.616647127784291e-30, -3.6107854630715124e-30, -3.604923798358734e-30, -3.5990621336459555e-30, -3.593200468933177e-30, -3.5873388042203986e-30, -3.58147713950762e-30, -3.575615474794842e-30, -3.569753810082063e-30, -3.563892145369285e-30, -3.558030480656506e-30, -3.552168815943728e-30, -3.5463071512309494e-30, -3.540445486518171e-30, -3.5345838218053924e-30, -3.528722157092614e-30, -3.5228604923798355e-30, -3.516998827667057e-30, -3.5111371629542786e-30, -3.505275498241501e-30, -3.499413833528722e-30, -3.493552168815944e-30, -3.487690504103165e-30, -3.481828839390387e-30, -3.4759671746776085e-30, -3.47010550996483e-30, -3.4642438452520516e-30, -3.458382180539273e-30, -3.452520515826495e-30, -3.446658851113716e-30, -3.440797186400938e-30, -3.434935521688159e-30, -3.429073856975381e-30, -3.4232121922626024e-30, -3.417350527549824e-30, -3.4114888628370455e-30, -3.405627198124267e-30, -3.3997655334114886e-30, -3.393903868698711e-30, -3.3880422039859316e-30, -3.382180539273154e-30, -3.376318874560375e-30, -3.370457209847597e-30, -3.364595545134818e-30, -3.35873388042204e-30, -3.352872215709261e-30, -3.347010550996483e-30, -3.341148886283704e-30, -3.335287221570926e-30, -3.329425556858148e-30, -3.323563892145369e-30, -3.317702227432591e-30, -3.3118405627198124e-30, -3.305978898007034e-30, -3.3001172332942554e-30, -3.294255568581477e-30, -3.2883939038686985e-30, -3.28253223915592e-30, -3.2766705744431416e-30, -3.270808909730364e-30, -3.264947245017585e-30, -3.259085580304807e-30, -3.253223915592028e-30, -3.24736225087925e-30, -3.241500586166471e-30, -3.235638921453693e-30, -3.229777256740914e-30, -3.223915592028136e-30, -3.218053927315357e-30, -3.212192262602579e-30, -3.2063305978898e-30, -3.200468933177022e-30, -3.194607268464244e-30, -3.1887456037514654e-30, -3.182883939038687e-30, -3.1770222743259085e-30, -3.17116060961313e-30, -3.1652989449003516e-30, -3.159437280187573e-30, -3.1535756154747946e-30, -3.1477139507620162e-30, -3.1418522860492377e-30, -3.1359906213364596e-30, -3.130128956623681e-30, -3.1242672919109027e-30, -3.1184056271981242e-30, -3.1125439624853458e-30, -3.1066822977725673e-30, -3.100820633059789e-30, -3.0949589683470104e-30, -3.089097303634232e-30, -3.0832356389214535e-30, -3.077373974208675e-30, -3.071512309495897e-30, -3.0656506447831184e-30, -3.05978898007034e-30, -3.0539273153575615e-30, -3.048065650644783e-30, -3.0422039859320046e-30, -3.036342321219226e-30, -3.0304806565064477e-30, -3.0246189917936692e-30, -3.0187573270808908e-30, -3.0128956623681123e-30, -3.0070339976553342e-30, -3.0011723329425557e-30, -2.9953106682297773e-30, -2.9894490035169988e-30, -2.9835873388042204e-30, -2.977725674091442e-30, -2.9718640093786634e-30, -2.966002344665885e-30, -2.9601406799531065e-30, -2.954279015240328e-30, -2.9484173505275496e-30, -2.9425556858147715e-30, -2.936694021101993e-30, -2.9308323563892146e-30, -2.924970691676436e-30, -2.9191090269636576e-30, -2.9132473622508792e-30, -2.9073856975381007e-30, -2.9015240328253223e-30, -2.8956623681125438e-30, -2.8898007033997653e-30, -2.883939038686987e-30, -2.8780773739742088e-30, -2.8722157092614303e-30, -2.866354044548652e-30, -2.8604923798358734e-30, -2.854630715123095e-30, -2.8487690504103165e-30, -2.842907385697538e-30, -2.8370457209847596e-30, -2.831184056271981e-30, -2.8253223915592026e-30, -2.819460726846424e-30, -2.813599062133646e-30, -2.8077373974208676e-30, -2.801875732708089e-30, -2.7960140679953107e-30, -2.7901524032825322e-30, -2.7842907385697538e-30, -2.7784290738569753e-30, -2.772567409144197e-30, -2.7667057444314184e-30, -2.76084407971864e-30, -2.7549824150058615e-30, -2.749120750293083e-30, -2.743259085580305e-30, -2.7373974208675264e-30, -2.731535756154748e-30, -2.7256740914419695e-30, -2.719812426729191e-30, -2.7139507620164126e-30, -2.708089097303634e-30, -2.7022274325908557e-30, -2.6963657678780772e-30, -2.6905041031652988e-30, -2.6846424384525203e-30, -2.6787807737397422e-30, -2.6729191090269637e-30, -2.6670574443141853e-30, -2.6611957796014068e-30, -2.6553341148886283e-30, -2.64947245017585e-30, -2.6436107854630714e-30, -2.637749120750293e-30, -2.6318874560375145e-30, -2.626025791324736e-30, -2.6201641266119576e-30, -2.6143024618991795e-30, -2.608440797186401e-30, -2.6025791324736226e-30, -2.596717467760844e-30, -2.5908558030480656e-30, -2.5849941383352872e-30, -2.5791324736225087e-30, -2.5732708089097303e-30, -2.5674091441969518e-30, -2.5615474794841733e-30, -2.555685814771395e-30, -2.5498241500586168e-30, -2.5439624853458383e-30, -2.53810082063306e-30, -2.5322391559202814e-30, -2.526377491207503e-30, -2.5205158264947245e-30, -2.514654161781946e-30, -2.5087924970691675e-30, -2.502930832356389e-30, -2.4970691676436106e-30, -2.491207502930832e-30, -2.485345838218054e-30, -2.4794841735052756e-30, -2.473622508792497e-30, -2.4677608440797187e-30, -2.4618991793669402e-30, -2.4560375146541618e-30, -2.4501758499413833e-30, -2.444314185228605e-30, -2.4384525205158264e-30, -2.432590855803048e-30, -2.4267291910902695e-30, -2.4208675263774913e-30, -2.415005861664713e-30, -2.4091441969519344e-30, -2.403282532239156e-30, -2.3974208675263775e-30, -2.391559202813599e-30, -2.3856975381008206e-30, -2.379835873388042e-30, -2.3739742086752637e-30, -2.3681125439624852e-30, -2.3622508792497067e-30, -2.3563892145369286e-30, -2.3505275498241502e-30, -2.3446658851113717e-30, -2.3388042203985933e-30, -2.3329425556858148e-30, -2.3270808909730363e-30, -2.321219226260258e-30, -2.3153575615474794e-30, -2.309495896834701e-30, -2.3036342321219225e-30, -2.297772567409144e-30, -2.291910902696366e-30, -2.2860492379835875e-30, -2.280187573270809e-30, -2.2743259085580306e-30, -2.268464243845252e-30, -2.2626025791324736e-30, -2.256740914419695e-30, -2.2508792497069167e-30, -2.2450175849941383e-30, -2.2391559202813598e-30, -2.2332942555685813e-30, -2.227432590855803e-30, -2.2215709261430248e-30, -2.2157092614302463e-30, -2.209847596717468e-30, -2.2039859320046894e-30, -2.198124267291911e-30, -2.1922626025791325e-30, -2.186400937866354e-30, -2.1805392731535755e-30, -2.174677608440797e-30, -2.1688159437280186e-30, -2.16295427901524e-30, -2.157092614302462e-30, -2.1512309495896836e-30, -2.145369284876905e-30, -2.1395076201641267e-30, -2.1336459554513482e-30, -2.1277842907385698e-30, -2.1219226260257913e-30, -2.116060961313013e-30, -2.1101992966002344e-30, -2.104337631887456e-30, -2.0984759671746775e-30, -2.0926143024618993e-30, -2.086752637749121e-30, -2.0808909730363424e-30, -2.075029308323564e-30, -2.0691676436107855e-30, -2.063305978898007e-30, -2.0574443141852286e-30, -2.05158264947245e-30, -2.0457209847596717e-30, -2.0398593200468932e-30, -2.0339976553341147e-30, -2.0281359906213366e-30, -2.022274325908558e-30, -2.0164126611957797e-30, -2.0105509964830013e-30, -2.0046893317702228e-30, -1.9988276670574443e-30, -1.992966002344666e-30, -1.9871043376318874e-30, -1.981242672919109e-30, -1.9753810082063305e-30, -1.969519343493552e-30, -1.963657678780774e-30, -1.9577960140679955e-30, -1.951934349355217e-30, -1.9460726846424385e-30, -1.94021101992966e-30, -1.9343493552168816e-30, -1.928487690504103e-30, -1.9226260257913247e-30, -1.9167643610785462e-30, -1.9109026963657678e-30, -1.9050410316529893e-30, -1.8991793669402112e-30, -1.8933177022274328e-30, -1.8874560375146543e-30, -1.881594372801876e-30, -1.8757327080890974e-30, -1.869871043376319e-30, -1.8640093786635405e-30, -1.858147713950762e-30, -1.8522860492379835e-30, -1.846424384525205e-30, -1.8405627198124266e-30, -1.834701055099648e-30, -1.8288393903868697e-30, -1.8229777256740912e-30, -1.8171160609613128e-30, -1.8112543962485343e-30, -1.805392731535756e-30, -1.799531066822978e-30, -1.7936694021101996e-30, -1.7878077373974212e-30, -1.7819460726846427e-30, -1.7760844079718643e-30, -1.7702227432590858e-30, -1.7643610785463073e-30, -1.758499413833529e-30, -1.7526377491207504e-30, -1.746776084407972e-30, -1.7409144196951935e-30, -1.735052754982415e-30, -1.7291910902696366e-30, -1.723329425556858e-30, -1.7174677608440797e-30, -1.7116060961313012e-30, -1.7057444314185227e-30, -1.6998827667057443e-30, -1.6940211019929658e-30, -1.6881594372801874e-30, -1.682297772567409e-30, -1.6764361078546304e-30, -1.6705744431418527e-30, -1.6647127784290742e-30, -1.6588511137162958e-30, -1.6529894490035173e-30, -1.647127784290739e-30, -1.6412661195779604e-30, -1.635404454865182e-30, -1.6295427901524035e-30, -1.623681125439625e-30, -1.6178194607268465e-30, -1.611957796014068e-30, -1.6060961313012896e-30, -1.600234466588511e-30, -1.5943728018757327e-30, -1.5885111371629542e-30, -1.5826494724501758e-30, -1.5767878077373973e-30, -1.5709261430246189e-30, -1.5650644783118404e-30, -1.559202813599062e-30, -1.5533411488862835e-30, -1.547479484173505e-30, -1.5416178194607273e-30, -1.5357561547479488e-30, -1.5298944900351703e-30, -1.5240328253223919e-30, -1.5181711606096134e-30, -1.512309495896835e-30, -1.5064478311840565e-30, -1.500586166471278e-30, -1.4947245017584996e-30, -1.4888628370457211e-30, -1.4830011723329427e-30, -1.4771395076201642e-30, -1.4712778429073857e-30, -1.4654161781946073e-30, -1.4595545134818288e-30, -1.4536928487690504e-30, -1.4478311840562719e-30, -1.4419695193434934e-30, -1.436107854630715e-30, -1.4302461899179365e-30, -1.424384525205158e-30, -1.4185228604923796e-30, -1.4126611957796011e-30, -1.4067995310668234e-30, -1.400937866354045e-30, -1.3950762016412665e-30, -1.389214536928488e-30, -1.3833528722157095e-30, -1.377491207502931e-30, -1.3716295427901526e-30, -1.3657678780773742e-30, -1.3599062133645957e-30, -1.3540445486518172e-30, -1.3481828839390388e-30, -1.3423212192262603e-30, -1.3364595545134819e-30, -1.3305978898007034e-30, -1.324736225087925e-30, -1.3188745603751465e-30, -1.313012895662368e-30, -1.3071512309495896e-30, -1.3012895662368111e-30, -1.2954279015240326e-30, -1.2895662368112542e-30, -1.2837045720984757e-30, -1.277842907385698e-30, -1.2719812426729195e-30, -1.266119577960141e-30, -1.2602579132473626e-30, -1.2543962485345841e-30, -1.2485345838218057e-30, -1.2426729191090272e-30, -1.2368112543962487e-30, -1.2309495896834703e-30, -1.2250879249706918e-30, -1.2192262602579134e-30, -1.2133645955451349e-30, -1.2075029308323564e-30, -1.201641266119578e-30, -1.1957796014067995e-30, -1.189917936694021e-30, -1.1840562719812426e-30, -1.1781946072684641e-30, -1.1723329425556857e-30, -1.1664712778429072e-30, -1.1606096131301288e-30, -1.1547479484173503e-30, -1.1488862837045725e-30, -1.143024618991794e-30, -1.1371629542790156e-30, -1.1313012895662372e-30, -1.1254396248534587e-30, -1.1195779601406802e-30, -1.1137162954279018e-30, -1.1078546307151233e-30, -1.1019929660023449e-30, -1.0961313012895664e-30, -1.090269636576788e-30, -1.0844079718640095e-30, -1.078546307151231e-30, -1.0726846424384526e-30, -1.0668229777256741e-30, -1.0609613130128956e-30, -1.0550996483001172e-30, -1.0492379835873387e-30, -1.0433763188745603e-30, -1.0375146541617818e-30, -1.0316529894490033e-30, -1.0257913247362249e-30, -1.0199296600234471e-30, -1.0140679953106687e-30, -1.0082063305978902e-30, -1.0023446658851117e-30, -9.964830011723333e-31, -9.906213364595548e-31, -9.847596717467764e-31, -9.788980070339979e-31, -9.730363423212194e-31, -9.67174677608441e-31, -9.613130128956625e-31, -9.55451348182884e-31, -9.495896834701056e-31, -9.437280187573271e-31, -9.378663540445487e-31, -9.320046893317702e-31, -9.261430246189918e-31, -9.202813599062133e-31, -9.144196951934348e-31, -9.085580304806564e-31, -9.02696365767878e-31, -8.968347010550995e-31, -8.90973036342321e-31, -8.851113716295432e-31, -8.792497069167648e-31, -8.733880422039863e-31, -8.675263774912079e-31, -8.616647127784294e-31, -8.55803048065651e-31, -8.499413833528725e-31, -8.44079718640094e-31, -8.382180539273156e-31, -8.323563892145371e-31, -8.264947245017586e-31, -8.206330597889802e-31, -8.147713950762017e-31, -8.089097303634233e-31, -8.030480656506448e-31, -7.971864009378663e-31, -7.913247362250879e-31, -7.854630715123094e-31, -7.79601406799531e-31, -7.737397420867525e-31, -7.6787807737397405e-31, -7.620164126611956e-31, -7.561547479484178e-31, -7.502930832356394e-31, -7.444314185228609e-31, -7.3856975381008245e-31, -7.32708089097304e-31, -7.268464243845255e-31, -7.209847596717471e-31, -7.151230949589686e-31, -7.0926143024619015e-31, -7.033997655334117e-31, -6.975381008206332e-31, -6.916764361078548e-31, -6.858147713950763e-31, -6.7995310668229785e-31, -6.740914419695194e-31, -6.682297772567409e-31, -6.623681125439625e-31, -6.56506447831184e-31, -6.5064478311840555e-31, -6.447831184056271e-31, -6.389214536928486e-31, -6.330597889800702e-31, -6.271981242672924e-31, -6.2133645955451395e-31, -6.154747948417355e-31, -6.09613130128957e-31, -6.037514654161786e-31, -5.978898007034001e-31, -5.9202813599062165e-31, -5.861664712778432e-31, -5.803048065650647e-31, -5.744431418522863e-31, -5.685814771395078e-31, -5.6271981242672935e-31, -5.568581477139509e-31, -5.509964830011724e-31, -5.45134818288394e-31, -5.392731535756155e-31, -5.3341148886283705e-31, -5.275498241500586e-31, -5.216881594372801e-31, -5.158264947245017e-31, -5.099648300117232e-31, -5.0410316529894475e-31, -4.982415005861663e-31, -4.923798358733885e-31, -4.865181711606101e-31, -4.806565064478316e-31, -4.7479484173505315e-31, -4.689331770222747e-31, -4.630715123094962e-31, -4.572098475967178e-31, -4.513481828839393e-31, -4.4548651817116085e-31, -4.396248534583824e-31, -4.337631887456039e-31, -4.279015240328255e-31, -4.22039859320047e-31, -4.1617819460726855e-31, -4.103165298944901e-31, -4.044548651817116e-31, -3.985932004689332e-31, -3.927315357561547e-31, -3.8686987104337626e-31, -3.810082063305978e-31, -3.7514654161781934e-31, -3.6928487690504088e-31, -3.634232121922631e-31, -3.5756154747948466e-31, -3.516998827667062e-31, -3.4583821805392774e-31, -3.3997655334114928e-31, -3.341148886283708e-31, -3.2825322391559236e-31, -3.223915592028139e-31, -3.1652989449003544e-31, -3.1066822977725698e-31, -3.048065650644785e-31, -2.9894490035170006e-31, -2.930832356389216e-31, -2.8722157092614314e-31, -2.8135990621336468e-31, -2.754982415005862e-31, -2.6963657678780776e-31, -2.637749120750293e-31, -2.5791324736225084e-31, -2.5205158264947238e-31, -2.461899179366939e-31, -2.4032825322391546e-31, -2.344665885111377e-31, -2.2860492379835924e-31, -2.2274325908558078e-31, -2.168815943728023e-31, -2.1101992966002386e-31, -2.051582649472454e-31, -1.9929660023446694e-31, -1.9343493552168848e-31, -1.8757327080891002e-31, -1.8171160609613156e-31, -1.758499413833531e-31, -1.6998827667057464e-31, -1.6412661195779618e-31, -1.5826494724501772e-31, -1.5240328253223926e-31, -1.465416178194608e-31, -1.4067995310668234e-31, -1.3481828839390388e-31, -1.2895662368112542e-31, -1.2309495896834696e-31, -1.172332942555685e-31, -1.1137162954279004e-31, -1.0550996483001228e-31, -9.964830011723382e-32, -9.378663540445536e-32, -8.79249706916769e-32, -8.206330597889844e-32, -7.620164126611998e-32, -7.033997655334152e-32, -6.447831184056306e-32, -5.86166471277846e-32, -5.275498241500614e-32, -4.689331770222768e-32, -4.103165298944922e-32, -3.516998827667076e-32, -2.93083235638923e-32, -2.344665885111384e-32, -1.758499413833538e-32, -1.172332942555692e-32, -5.86166471277846e-33, 0.0, 5.86166471277846e-33, 1.172332942555692e-32, 1.758499413833538e-32, 2.344665885111384e-32, 2.93083235638916e-32, 3.516998827667006e-32, 4.103165298944852e-32, 4.689331770222698e-32, 5.275498241500544e-32, 5.86166471277839e-32, 6.447831184056236e-32, 7.033997655334082e-32, 7.620164126611928e-32, 8.206330597889774e-32, 8.79249706916762e-32, 9.378663540445466e-32, 9.964830011723312e-32, 1.0550996483001158e-31, 1.1137162954279004e-31, 1.172332942555685e-31, 1.2309495896834696e-31, 1.2895662368112542e-31, 1.3481828839390388e-31, 1.4067995310668234e-31, 1.465416178194608e-31, 1.5240328253223926e-31, 1.5826494724501702e-31, 1.6412661195779548e-31, 1.6998827667057394e-31, 1.758499413833524e-31, 1.8171160609613086e-31, 1.8757327080890932e-31, 1.9343493552168778e-31, 1.9929660023446624e-31, 2.051582649472447e-31, 2.1101992966002316e-31, 2.168815943728016e-31, 2.2274325908558008e-31, 2.2860492379835854e-31, 2.34466588511137e-31, 2.4032825322391546e-31, 2.461899179366939e-31, 2.5205158264947238e-31, 2.5791324736225084e-31, 2.637749120750293e-31, 2.6963657678780776e-31, 2.754982415005862e-31, 2.8135990621336468e-31, 2.8722157092614244e-31, 2.930832356389209e-31, 2.9894490035169936e-31, 3.048065650644778e-31, 3.1066822977725628e-31, 3.1652989449003474e-31, 3.223915592028132e-31, 3.2825322391559166e-31, 3.341148886283701e-31, 3.3997655334114858e-31, 3.4583821805392704e-31, 3.516998827667055e-31, 3.5756154747948396e-31, 3.634232121922624e-31, 3.6928487690504088e-31, 3.7514654161781934e-31, 3.810082063305978e-31, 3.8686987104337626e-31, 3.927315357561547e-31, 3.985932004689332e-31, 4.044548651817116e-31, 4.103165298944901e-31, 4.1617819460726785e-31, 4.220398593200463e-31, 4.279015240328248e-31, 4.337631887456032e-31, 4.396248534583817e-31, 4.4548651817116015e-31, 4.513481828839386e-31, 4.572098475967171e-31, 4.630715123094955e-31, 4.68933177022274e-31, 4.7479484173505245e-31, 4.806565064478309e-31, 4.865181711606094e-31, 4.923798358733878e-31, 4.982415005861663e-31, 5.0410316529894475e-31, 5.099648300117232e-31, 5.158264947245017e-31, 5.216881594372801e-31, 5.275498241500586e-31, 5.3341148886283705e-31, 5.392731535756155e-31, 5.45134818288394e-31, 5.509964830011717e-31, 5.568581477139502e-31, 5.6271981242672865e-31, 5.685814771395071e-31, 5.744431418522856e-31, 5.80304806565064e-31, 5.861664712778425e-31, 5.9202813599062095e-31, 5.978898007033994e-31, 6.037514654161779e-31, 6.096131301289563e-31, 6.154747948417348e-31, 6.2133645955451325e-31, 6.271981242672917e-31, 6.330597889800702e-31, 6.389214536928486e-31, 6.447831184056271e-31, 6.5064478311840555e-31, 6.56506447831184e-31, 6.623681125439625e-31, 6.682297772567409e-31, 6.740914419695194e-31, 6.7995310668229715e-31, 6.858147713950756e-31, 6.916764361078541e-31, 6.975381008206325e-31, 7.03399765533411e-31, 7.0926143024618945e-31, 7.151230949589679e-31, 7.209847596717464e-31, 7.268464243845248e-31, 7.327080890973033e-31, 7.3856975381008175e-31, 7.444314185228602e-31, 7.502930832356387e-31, 7.561547479484171e-31, 7.620164126611956e-31, 7.6787807737397405e-31, 7.737397420867525e-31, 7.79601406799531e-31, 7.854630715123094e-31, 7.913247362250879e-31, 7.971864009378663e-31, 8.030480656506448e-31, 8.089097303634226e-31, 8.14771395076201e-31, 8.206330597889795e-31, 8.26494724501758e-31, 8.323563892145364e-31, 8.382180539273149e-31, 8.440797186400933e-31, 8.499413833528718e-31, 8.558030480656502e-31, 8.616647127784287e-31, 8.675263774912072e-31, 8.733880422039856e-31, 8.792497069167641e-31, 8.851113716295425e-31, 8.90973036342321e-31, 8.968347010550995e-31, 9.02696365767878e-31, 9.085580304806564e-31, 9.144196951934348e-31, 9.202813599062133e-31, 9.261430246189918e-31, 9.320046893317702e-31, 9.37866354044548e-31, 9.437280187573264e-31, 9.495896834701049e-31, 9.554513481828834e-31, 9.613130128956618e-31, 9.671746776084403e-31, 9.730363423212187e-31, 9.788980070339972e-31, 9.847596717467757e-31, 9.906213364595541e-31, 9.964830011723326e-31, 1.002344665885111e-30, 1.0082063305978895e-30, 1.014067995310668e-30, 1.0199296600234464e-30, 1.0257913247362249e-30, 1.0316529894490033e-30, 1.0375146541617818e-30, 1.0433763188745603e-30, 1.0492379835873387e-30, 1.0550996483001172e-30, 1.0609613130128956e-30, 1.0668229777256741e-30, 1.0726846424384519e-30, 1.0785463071512303e-30, 1.0844079718640088e-30, 1.0902696365767872e-30, 1.0961313012895657e-30, 1.1019929660023442e-30, 1.1078546307151226e-30, 1.113716295427901e-30, 1.1195779601406795e-30, 1.125439624853458e-30, 1.1313012895662365e-30, 1.137162954279015e-30, 1.1430246189917934e-30, 1.1488862837045718e-30, 1.1547479484173503e-30, 1.1606096131301288e-30, 1.1664712778429072e-30, 1.1723329425556857e-30, 1.1781946072684641e-30, 1.1840562719812426e-30, 1.189917936694021e-30, 1.1957796014067995e-30, 1.2016412661195773e-30, 1.2075029308323557e-30, 1.2133645955451342e-30, 1.2192262602579127e-30, 1.2250879249706911e-30, 1.2309495896834696e-30, 1.236811254396248e-30, 1.2426729191090265e-30, 1.248534583821805e-30, 1.2543962485345834e-30, 1.2602579132473619e-30, 1.2661195779601403e-30, 1.2719812426729188e-30, 1.2778429073856973e-30, 1.2837045720984757e-30, 1.2895662368112542e-30, 1.2954279015240326e-30, 1.3012895662368111e-30, 1.3071512309495896e-30, 1.3130128956623673e-30, 1.3188745603751465e-30, 1.3247362250879242e-30, 1.3305978898007034e-30, 1.3364595545134812e-30, 1.3423212192262603e-30, 1.348182883939038e-30, 1.3540445486518172e-30, 1.359906213364595e-30, 1.3657678780773742e-30, 1.371629542790152e-30, 1.377491207502931e-30, 1.3833528722157088e-30, 1.389214536928488e-30, 1.3950762016412658e-30, 1.4009378663540435e-30, 1.4067995310668227e-30, 1.4126611957796004e-30, 1.4185228604923796e-30, 1.4243845252051574e-30, 1.4302461899179365e-30, 1.4361078546307143e-30, 1.4419695193434934e-30, 1.4478311840562712e-30, 1.4536928487690504e-30, 1.4595545134818281e-30, 1.4654161781946073e-30, 1.471277842907385e-30, 1.4771395076201642e-30, 1.483001172332942e-30, 1.4888628370457211e-30, 1.4947245017584989e-30, 1.500586166471278e-30, 1.5064478311840558e-30, 1.512309495896835e-30, 1.5181711606096127e-30, 1.5240328253223919e-30, 1.5298944900351696e-30, 1.5357561547479474e-30, 1.5416178194607266e-30, 1.5474794841735043e-30, 1.5533411488862835e-30, 1.5592028135990612e-30, 1.5650644783118404e-30, 1.5709261430246182e-30, 1.5767878077373973e-30, 1.582649472450175e-30, 1.5885111371629542e-30, 1.594372801875732e-30, 1.600234466588511e-30, 1.606096131301289e-30, 1.611957796014068e-30, 1.617819460726846e-30, 1.623681125439625e-30, 1.6295427901524028e-30, 1.635404454865182e-30, 1.6412661195779597e-30, 1.647127784290739e-30, 1.6529894490035166e-30, 1.6588511137162944e-30, 1.6647127784290735e-30, 1.6705744431418513e-30, 1.6764361078546304e-30, 1.6822977725674082e-30, 1.6881594372801874e-30, 1.694021101992965e-30, 1.6998827667057443e-30, 1.705744431418522e-30, 1.7116060961313012e-30, 1.717467760844079e-30, 1.723329425556858e-30, 1.729191090269636e-30, 1.735052754982415e-30, 1.7409144196951928e-30, 1.746776084407972e-30, 1.7526377491207497e-30, 1.758499413833529e-30, 1.7643610785463066e-30, 1.7702227432590858e-30, 1.7760844079718636e-30, 1.7819460726846427e-30, 1.7878077373974205e-30, 1.7936694021101982e-30, 1.7995310668229774e-30, 1.805392731535755e-30, 1.8112543962485343e-30, 1.817116060961312e-30, 1.8229777256740912e-30, 1.828839390386869e-30, 1.834701055099648e-30, 1.840562719812426e-30, 1.846424384525205e-30, 1.852286049237983e-30, 1.858147713950762e-30, 1.8640093786635398e-30, 1.869871043376319e-30, 1.8757327080890967e-30, 1.881594372801876e-30, 1.8874560375146536e-30, 1.8933177022274328e-30, 1.8991793669402105e-30, 1.9050410316529897e-30, 1.9109026963657674e-30, 1.9167643610785452e-30, 1.9226260257913244e-30, 1.928487690504102e-30, 1.9343493552168813e-30, 1.940211019929659e-30, 1.9460726846424382e-30, 1.951934349355216e-30, 1.957796014067995e-30, 1.963657678780773e-30, 1.969519343493552e-30, 1.9753810082063298e-30, 1.981242672919109e-30, 1.9871043376318867e-30, 1.992966002344666e-30, 1.9988276670574436e-30, 2.0046893317702228e-30, 2.0105509964830006e-30, 2.0164126611957797e-30, 2.0222743259085575e-30, 2.0281359906213366e-30, 2.0339976553341144e-30, 2.0398593200468936e-30, 2.0457209847596713e-30, 2.051582649472449e-30, 2.0574443141852282e-30, 2.063305978898006e-30, 2.069167643610785e-30, 2.075029308323563e-30, 2.080890973036342e-30, 2.08675263774912e-30, 2.092614302461899e-30, 2.0984759671746768e-30, 2.104337631887456e-30, 2.1101992966002337e-30, 2.116060961313013e-30, 2.1219226260257906e-30, 2.1277842907385698e-30, 2.1336459554513475e-30, 2.1395076201641267e-30, 2.1453692848769044e-30, 2.1512309495896836e-30, 2.1570926143024614e-30, 2.1629542790152405e-30, 2.1688159437280183e-30, 2.1746776084407974e-30, 2.1805392731535752e-30, 2.186400937866353e-30, 2.192262602579132e-30, 2.19812426729191e-30, 2.203985932004689e-30, 2.2098475967174668e-30, 2.215709261430246e-30, 2.2215709261430237e-30, 2.227432590855803e-30, 2.2332942555685806e-30, 2.2391559202813598e-30, 2.2450175849941376e-30, 2.2508792497069167e-30, 2.2567409144196945e-30, 2.2626025791324736e-30, 2.2684642438452514e-30, 2.2743259085580306e-30, 2.2801875732708083e-30, 2.2860492379835875e-30, 2.2919109026963652e-30, 2.2977725674091444e-30, 2.303634232121922e-30, 2.3094958968347e-30, 2.315357561547479e-30, 2.321219226260257e-30, 2.327080890973036e-30, 2.3329425556858137e-30, 2.338804220398593e-30, 2.3446658851113707e-30, 2.35052754982415e-30, 2.3563892145369276e-30, 2.3622508792497067e-30, 2.3681125439624845e-30, 2.3739742086752637e-30, 2.3798358733880414e-30, 2.3856975381008206e-30, 2.3915592028135983e-30, 2.3974208675263775e-30, 2.4032825322391553e-30, 2.4091441969519344e-30, 2.4150058616647122e-30, 2.4208675263774913e-30, 2.426729191090269e-30, 2.4325908558030483e-30, 2.438452520515826e-30, 2.4443141852286038e-30, 2.450175849941383e-30, 2.4560375146541607e-30, 2.46189917936694e-30, 2.4677608440797176e-30, 2.4736225087924968e-30, 2.4794841735052745e-30, 2.4853458382180537e-30, 2.4912075029308315e-30, 2.4970691676436106e-30, 2.5029308323563884e-30, 2.5087924970691675e-30, 2.5146541617819453e-30, 2.5205158264947245e-30, 2.5263774912075022e-30, 2.5322391559202814e-30, 2.538100820633059e-30, 2.5439624853458383e-30, 2.549824150058616e-30, 2.5556858147713952e-30, 2.561547479484173e-30, 2.567409144196952e-30, 2.57327080890973e-30, 2.5791324736225077e-30, 2.584994138335287e-30, 2.5908558030480646e-30, 2.5967174677608437e-30, 2.6025791324736215e-30, 2.6084407971864007e-30, 2.6143024618991784e-30, 2.6201641266119576e-30, 2.6260257913247353e-30, 2.6318874560375145e-30, 2.6377491207502923e-30, 2.6436107854630714e-30, 2.6494724501758492e-30, 2.6553341148886283e-30, 2.661195779601406e-30, 2.6670574443141853e-30, 2.672919109026963e-30, 2.6787807737397422e-30, 2.68464243845252e-30, 2.690504103165299e-30, 2.696365767878077e-30, 2.7022274325908546e-30, 2.7080890973036338e-30, 2.7139507620164115e-30, 2.7198124267291907e-30, 2.7256740914419685e-30, 2.7315357561547476e-30, 2.7373974208675254e-30, 2.7432590855803045e-30, 2.7491207502930823e-30, 2.7549824150058615e-30, 2.7608440797186392e-30, 2.7667057444314184e-30, 2.772567409144196e-30, 2.7784290738569753e-30, 2.784290738569753e-30, 2.7901524032825322e-30, 2.79601406799531e-30, 2.801875732708089e-30, 2.807737397420867e-30, 2.813599062133646e-30, 2.8194607268464238e-30, 2.825322391559203e-30, 2.8311840562719807e-30, 2.8370457209847585e-30, 2.8429073856975377e-30, 2.8487690504103154e-30, 2.8546307151230946e-30, 2.8604923798358723e-30, 2.8663540445486515e-30, 2.8722157092614293e-30, 2.8780773739742084e-30, 2.8839390386869862e-30, 2.8898007033997653e-30, 2.895662368112543e-30, 2.9015240328253223e-30, 2.9073856975381e-30, 2.9132473622508792e-30, 2.919109026963657e-30, 2.924970691676436e-30, 2.930832356389214e-30, 2.936694021101993e-30, 2.9425556858147708e-30, 2.94841735052755e-30, 2.9542790152403277e-30, 2.9601406799531055e-30, 2.9660023446658846e-30, 2.9718640093786624e-30, 2.9777256740914415e-30, 2.9835873388042193e-30, 2.9894490035169985e-30, 2.9953106682297762e-30, 3.0011723329425554e-30, 3.007033997655333e-30, 3.0128956623681123e-30, 3.01875732708089e-30, 3.0246189917936692e-30, 3.030480656506447e-30, 3.036342321219226e-30, 3.042203985932004e-30, 3.048065650644783e-30, 3.0539273153575608e-30, 3.05978898007034e-30, 3.0656506447831177e-30, 3.071512309495897e-30, 3.0773739742086747e-30, 3.0832356389214538e-30, 3.0890973036342316e-30, 3.0949589683470093e-30, 3.1008206330597885e-30, 3.1066822977725663e-30, 3.1125439624853454e-30, 3.1184056271981232e-30, 3.1242672919109023e-30, 3.13012895662368e-30, 3.1359906213364593e-30, 3.141852286049237e-30, 3.1477139507620162e-30, 3.153575615474794e-30, 3.159437280187573e-30, 3.165298944900351e-30, 3.17116060961313e-30, 3.177022274325908e-30, 3.182883939038687e-30, 3.188745603751465e-30, 3.194607268464244e-30, 3.2004689331770216e-30, 3.206330597889801e-30, 3.2121922626025785e-30, 3.218053927315358e-30, 3.2239155920281355e-30, 3.229777256740913e-30, 3.2356389214536924e-30, 3.24150058616647e-30, 3.247362250879249e-30, 3.253223915592027e-30, 3.259085580304806e-30, 3.264947245017584e-30, 3.270808909730363e-30, 3.276670574443141e-30, 3.28253223915592e-30, 3.288393903868698e-30, 3.294255568581477e-30, 3.300117233294255e-30, 3.305978898007034e-30, 3.311840562719812e-30, 3.317702227432591e-30, 3.3235638921453686e-30, 3.329425556858148e-30, 3.3352872215709255e-30, 3.341148886283705e-30, 3.3470105509964824e-30, 3.35287221570926e-30, 3.358733880422039e-30, 3.364595545134817e-30, 3.370457209847596e-30, 3.376318874560374e-30, 3.382180539273153e-30, 3.388042203985931e-30, 3.39390386869871e-30, 3.399765533411488e-30, 3.405627198124267e-30, 3.411488862837045e-30, 3.417350527549824e-30, 3.423212192262602e-30, 3.429073856975381e-30, 3.4349355216881586e-30, 3.440797186400938e-30, 3.4466588511137155e-30, 3.452520515826495e-30, 3.4583821805392725e-30, 3.4642438452520516e-30, 3.4701055099648294e-30, 3.4759671746776085e-30, 3.481828839390386e-30, 3.487690504103164e-30, 3.493552168815943e-30, 3.499413833528721e-30, 3.5052754982415e-30, 3.511137162954278e-30, 3.516998827667057e-30, 3.522860492379835e-30, 3.528722157092614e-30, 3.534583821805392e-30, 3.540445486518171e-30, 3.546307151230949e-30, 3.552168815943728e-30, 3.5580304806565056e-30, 3.563892145369285e-30, 3.5697538100820625e-30, 3.575615474794842e-30, 3.5814771395076194e-30, 3.5873388042203986e-30, 3.593200468933176e-30, 3.5990621336459555e-30, 3.604923798358733e-30, 3.6107854630715124e-30, 3.61664712778429e-30, 3.622508792497068e-30, 3.628370457209847e-30, 3.634232121922625e-30, 3.640093786635404e-30, 3.645955451348182e-30, 3.651817116060961e-30, 3.657678780773739e-30, 3.663540445486518e-30, 3.6694021101992956e-30, 3.675263774912075e-30, 3.6811254396248525e-30, 3.686987104337632e-30, 3.6928487690504095e-30, 3.6987104337631886e-30, 3.7045720984759664e-30, 3.7104337631887455e-30, 3.716295427901523e-30, 3.7221570926143025e-30, 3.72801875732708e-30, 3.7338804220398594e-30, 3.739742086752637e-30, 3.745603751465415e-30, 3.751465416178194e-30, 3.757327080890972e-30, 3.763188745603751e-30, 3.769050410316529e-30, 3.774912075029308e-30, 3.780773739742086e-30, 3.786635404454865e-30, 3.7924970691676426e-30, 3.798358733880422e-30, 3.8042203985931995e-30, 3.810082063305979e-30, 3.8159437280187564e-30, 3.8218053927315356e-30, 3.827667057444313e-30, 3.8335287221570925e-30, 3.83939038686987e-30, 3.8452520515826494e-30, 3.851113716295427e-30, 3.856975381008206e-30, 3.862837045720984e-30, 3.868698710433763e-30, 3.874560375146541e-30, 3.880422039859319e-30, 3.886283704572098e-30, 3.892145369284876e-30, 3.898007033997655e-30, 3.9038686987104326e-30, 3.909730363423212e-30, 3.9155920281359895e-30, 3.921453692848769e-30, 3.9273153575615464e-30, 3.9331770222743256e-30, 3.9390386869871034e-30, 3.9449003516998825e-30, 3.95076201641266e-30, 3.9566236811254394e-30, 3.962485345838217e-30, 3.9683470105509964e-30, 3.974208675263774e-30, 3.980070339976553e-30, 3.985932004689331e-30, 3.99179366940211e-30, 3.997655334114888e-30, 4.003516998827667e-30, 4.009378663540445e-30, 4.0152403282532226e-30, 4.021101992966002e-30, 4.0269636576787796e-30, 4.032825322391559e-30, 4.0386869871043365e-30, 4.0445486518171156e-30, 4.0504103165298934e-30, 4.0562719812426726e-30, 4.06213364595545e-30, 4.0679953106682295e-30, 4.073856975381007e-30, 4.0797186400937864e-30, 4.085580304806564e-30, 4.091441969519343e-30, 4.097303634232121e-30, 4.1031652989449e-30, 4.109026963657678e-30, 4.114888628370457e-30, 4.120750293083235e-30, 4.126611957796014e-30, 4.132473622508792e-30, 4.1383352872215696e-30, 4.144196951934349e-30, 4.1500586166471265e-30, 4.155920281359906e-30, 4.1617819460726834e-30, 4.1676436107854626e-30, 4.1735052754982404e-30, 4.1793669402110195e-30, 4.185228604923797e-30, 4.1910902696365764e-30, 4.196951934349354e-30, 4.2028135990621334e-30, 4.208675263774911e-30, 4.21453692848769e-30, 4.220398593200468e-30, 4.226260257913247e-30, 4.232121922626025e-30, 4.237983587338804e-30, 4.243845252051582e-30, 4.249706916764361e-30, 4.255568581477139e-30, 4.261430246189918e-30, 4.267291910902696e-30, 4.2731535756154735e-30, 4.2790152403282526e-30, 4.2848769050410304e-30, 4.2907385697538096e-30, 4.296600234466587e-30, 4.3024618991793665e-30, 4.308323563892144e-30, 4.3141852286049234e-30, 4.320046893317701e-30, 4.32590855803048e-30, 4.331770222743258e-30, 4.337631887456037e-30, 4.343493552168815e-30, 4.349355216881594e-30, 4.355216881594372e-30, 4.361078546307151e-30, 4.366940211019929e-30, 4.372801875732708e-30, 4.378663540445486e-30, 4.384525205158265e-30, 4.390386869871043e-30, 4.3962485345838204e-30, 4.4021101992965996e-30, 4.4079718640093774e-30, 4.4138335287221565e-30, 4.419695193434934e-30, 4.4255568581477134e-30, 4.431418522860491e-30, 4.4372801875732704e-30, 4.443141852286048e-30, 4.449003516998827e-30, 4.454865181711605e-30, 4.460726846424384e-30, 4.466588511137162e-30, 4.472450175849941e-30, 4.478311840562719e-30, 4.484173505275498e-30, 4.490035169988276e-30, 4.495896834701055e-30, 4.501758499413833e-30, 4.507620164126612e-30, 4.5134818288393896e-30, 4.519343493552169e-30, 4.5252051582649466e-30, 4.531066822977724e-30, 4.5369284876905035e-30, 4.542790152403281e-30, 4.5486518171160604e-30, 4.554513481828838e-30, 4.560375146541617e-30, 4.566236811254395e-30, 4.572098475967174e-30, 4.577960140679952e-30, 4.583821805392731e-30, 4.589683470105509e-30, 4.595545134818288e-30, 4.601406799531066e-30, 4.607268464243845e-30, 4.613130128956623e-30, 4.618991793669402e-30, 4.62485345838218e-30, 4.630715123094959e-30, 4.6365767878077366e-30, 4.642438452520516e-30, 4.6483001172332935e-30, 4.654161781946073e-30, 4.6600234466588504e-30, 4.665885111371628e-30, 4.6717467760844074e-30, 4.677608440797185e-30, 4.683470105509964e-30, 4.689331770222742e-30, 4.695193434935521e-30, 4.701055099648299e-30, 4.706916764361078e-30, 4.712778429073856e-30, 4.718640093786635e-30, 4.724501758499413e-30, 4.730363423212192e-30, 4.73622508792497e-30, 4.742086752637749e-30, 4.7479484173505266e-30, 4.753810082063306e-30, 4.7596717467760836e-30, 4.765533411488863e-30, 4.7713950762016405e-30, 4.7772567409144196e-30, 4.7831184056271974e-30, 4.788980070339975e-30, 4.794841735052754e-30, 4.800703399765532e-30, 4.806565064478311e-30, 4.812426729191089e-30, 4.818288393903868e-30, 4.824150058616646e-30, 4.830011723329425e-30, 4.835873388042203e-30, 4.841735052754982e-30, 4.84759671746776e-30, 4.853458382180539e-30, 4.859320046893317e-30, 4.865181711606096e-30, 4.8710433763188736e-30, 4.876905041031653e-30, 4.8827667057444305e-30, 4.88862837045721e-30, 4.8944900351699874e-30, 4.9003516998827666e-30, 4.9062133645955444e-30, 4.9120750293083235e-30, 4.917936694021101e-30, 4.923798358733879e-30, 4.929660023446658e-30, 4.935521688159436e-30, 4.941383352872215e-30, 4.947245017584993e-30, 4.953106682297772e-30, 4.95896834701055e-30, 4.964830011723329e-30, 4.970691676436107e-30, 4.976553341148886e-30, 4.9824150058616636e-30, 4.988276670574443e-30, 4.9941383352872206e-30, 5e-30], "x": [1.0, 1.0052754982415006, 1.010550996483001, 1.0158264947245017, 1.0211019929660023, 1.026377491207503, 1.0316529894490034, 1.036928487690504, 1.0422039859320047, 1.0474794841735053, 1.0527549824150058, 1.0580304806565064, 1.063305978898007, 1.0685814771395077, 1.073856975381008, 1.0791324736225087, 1.0844079718640094, 1.08968347010551, 1.0949589683470105, 1.100234466588511, 1.1055099648300117, 1.1107854630715124, 1.1160609613130128, 1.1213364595545134, 1.126611957796014, 1.1318874560375147, 1.1371629542790151, 1.1424384525205158, 1.1477139507620164, 1.152989449003517, 1.1582649472450175, 1.1635404454865181, 1.1688159437280188, 1.1740914419695194, 1.1793669402110198, 1.1846424384525205, 1.1899179366940211, 1.1951934349355218, 1.2004689331770222, 1.2057444314185228, 1.2110199296600235, 1.2162954279015241, 1.2215709261430245, 1.2268464243845252, 1.2321219226260258, 1.2373974208675265, 1.2426729191090269, 1.2479484173505275, 1.2532239155920282, 1.2584994138335288, 1.2637749120750292, 1.2690504103165299, 1.2743259085580305, 1.279601406799531, 1.2848769050410316, 1.2901524032825322, 1.2954279015240329, 1.3007033997655335, 1.305978898007034, 1.3112543962485346, 1.3165298944900352, 1.3218053927315356, 1.3270808909730363, 1.332356389214537, 1.3376318874560376, 1.3429073856975382, 1.3481828839390386, 1.3534583821805393, 1.35873388042204, 1.3640093786635403, 1.369284876905041, 1.3745603751465416, 1.3798358733880423, 1.385111371629543, 1.3903868698710433, 1.395662368112544, 1.4009378663540446, 1.406213364595545, 1.4114888628370457, 1.4167643610785463, 1.422039859320047, 1.4273153575615476, 1.432590855803048, 1.4378663540445487, 1.4431418522860493, 1.4484173505275497, 1.4536928487690504, 1.458968347010551, 1.4642438452520516, 1.4695193434935523, 1.4747948417350527, 1.4800703399765534, 1.485345838218054, 1.4906213364595544, 1.495896834701055, 1.5011723329425557, 1.5064478311840563, 1.511723329425557, 1.5169988276670574, 1.522274325908558, 1.5275498241500585, 1.532825322391559, 1.5381008206330598, 1.5433763188745604, 1.548651817116061, 1.5539273153575617, 1.559202813599062, 1.5644783118405627, 1.5697538100820632, 1.5750293083235638, 1.5803048065650644, 1.585580304806565, 1.5908558030480657, 1.5961313012895664, 1.6014067995310668, 1.6066822977725674, 1.6119577960140679, 1.6172332942555685, 1.6225087924970691, 1.6277842907385698, 1.6330597889800704, 1.638335287221571, 1.6436107854630715, 1.6488862837045721, 1.6541617819460726, 1.6594372801875732, 1.6647127784290738, 1.6699882766705745, 1.6752637749120751, 1.6805392731535755, 1.6858147713950762, 1.6910902696365766, 1.6963657678780772, 1.7016412661195779, 1.7069167643610785, 1.7121922626025792, 1.7174677608440798, 1.7227432590855802, 1.7280187573270809, 1.7332942555685813, 1.738569753810082, 1.7438452520515826, 1.7491207502930832, 1.7543962485345839, 1.7596717467760845, 1.764947245017585, 1.7702227432590856, 1.775498241500586, 1.7807737397420866, 1.7860492379835873, 1.791324736225088, 1.7966002344665886, 1.8018757327080892, 1.8071512309495896, 1.8124267291910903, 1.8177022274325907, 1.8229777256740913, 1.828253223915592, 1.8335287221570926, 1.8388042203985933, 1.844079718640094, 1.8493552168815943, 1.854630715123095, 1.8599062133645954, 1.865181711606096, 1.8704572098475967, 1.8757327080890973, 1.881008206330598, 1.8862837045720986, 1.891559202813599, 1.8968347010550997, 1.9021101992966, 1.9073856975381007, 1.9126611957796014, 1.917936694021102, 1.9232121922626026, 1.9284876905041033, 1.9337631887456037, 1.9390386869871044, 1.9443141852286048, 1.9495896834701054, 1.954865181711606, 1.9601406799531067, 1.9654161781946073, 1.970691676436108, 1.9759671746776084, 1.981242672919109, 1.9865181711606095, 1.9917936694021101, 1.9970691676436108, 2.0023446658851114, 2.007620164126612, 2.0128956623681127, 2.0181711606096133, 2.023446658851114, 2.028722157092614, 2.033997655334115, 2.0392731535756154, 2.044548651817116, 2.0498241500586163, 2.055099648300117, 2.0603751465416176, 2.065650644783118, 2.070926143024619, 2.0762016412661195, 2.08147713950762, 2.086752637749121, 2.0920281359906214, 2.097303634232122, 2.1025791324736227, 2.1078546307151234, 2.1131301289566236, 2.118405627198124, 2.123681125439625, 2.1289566236811255, 2.1342321219226257, 2.1395076201641263, 2.144783118405627, 2.1500586166471276, 2.1553341148886282, 2.160609613130129, 2.1658851113716295, 2.17116060961313, 2.176436107854631, 2.1817116060961315, 2.186987104337632, 2.1922626025791327, 2.197538100820633, 2.2028135990621336, 2.2080890973036342, 2.213364595545135, 2.218640093786635, 2.2239155920281357, 2.2291910902696364, 2.234466588511137, 2.2397420867526376, 2.2450175849941383, 2.250293083235639, 2.2555685814771396, 2.26084407971864, 2.266119577960141, 2.2713950762016415, 2.276670574443142, 2.2819460726846423, 2.287221570926143, 2.2924970691676436, 2.2977725674091443, 2.3030480656506445, 2.308323563892145, 2.3135990621336457, 2.3188745603751464, 2.324150058616647, 2.3294255568581477, 2.3347010550996483, 2.339976553341149, 2.3452520515826496, 2.3505275498241502, 2.355803048065651, 2.361078546307151, 2.3663540445486517, 2.3716295427901524, 2.376905041031653, 2.382180539273153, 2.387456037514654, 2.3927315357561545, 2.398007033997655, 2.4032825322391558, 2.4085580304806564, 2.413833528722157, 2.4191090269636577, 2.4243845252051583, 2.429660023446659, 2.4349355216881596, 2.4402110199296603, 2.4454865181711605, 2.450762016412661, 2.4560375146541618, 2.4613130128956624, 2.4665885111371626, 2.4718640093786632, 2.477139507620164, 2.4824150058616645, 2.487690504103165, 2.492966002344666, 2.4982415005861665, 2.503516998827667, 2.5087924970691677, 2.5140679953106684, 2.519343493552169, 2.5246189917936697, 2.52989449003517, 2.5351699882766705, 2.540445486518171, 2.545720984759672, 2.550996483001172, 2.5562719812426726, 2.5615474794841733, 2.566822977725674, 2.5720984759671746, 2.577373974208675, 2.582649472450176, 2.5879249706916765, 2.593200468933177, 2.5984759671746778, 2.6037514654161784, 2.609026963657679, 2.6143024618991793, 2.61957796014068, 2.6248534583821805, 2.630128956623681, 2.6354044548651814, 2.640679953106682, 2.6459554513481827, 2.6512309495896833, 2.656506447831184, 2.6617819460726846, 2.6670574443141852, 2.672332942555686, 2.6776084407971865, 2.682883939038687, 2.688159437280188, 2.693434935521688, 2.6987104337631886, 2.7039859320046893, 2.70926143024619, 2.71453692848769, 2.7198124267291908, 2.7250879249706914, 2.730363423212192, 2.7356389214536927, 2.7409144196951933, 2.746189917936694, 2.7514654161781946, 2.7567409144196953, 2.762016412661196, 2.7672919109026966, 2.772567409144197, 2.7778429073856974, 2.783118405627198, 2.7883939038686987, 2.7936694021101993, 2.7989449003516995, 2.8042203985932, 2.809495896834701, 2.8147713950762014, 2.820046893317702, 2.8253223915592027, 2.8305978898007034, 2.835873388042204, 2.8411488862837047, 2.8464243845252053, 2.851699882766706, 2.8569753810082066, 2.862250879249707, 2.8675263774912074, 2.872801875732708, 2.8780773739742087, 2.883352872215709, 2.8886283704572095, 2.89390386869871, 2.899179366940211, 2.9044548651817115, 2.909730363423212, 2.9150058616647128, 2.9202813599062134, 2.925556858147714, 2.9308323563892147, 2.9361078546307153, 2.941383352872216, 2.946658851113716, 2.951934349355217, 2.9572098475967175, 2.962485345838218, 2.9677608440797183, 2.973036342321219, 2.9783118405627196, 2.9835873388042202, 2.988862837045721, 2.9941383352872215, 2.999413833528722, 3.004689331770223, 3.0099648300117234, 3.015240328253224, 3.0205158264947243, 3.025791324736225, 3.0310668229777256, 3.036342321219226, 3.041617819460727, 3.0468933177022275, 3.052168815943728, 3.0574443141852283, 3.062719812426729, 3.0679953106682296, 3.0732708089097303, 3.078546307151231, 3.0838218053927315, 3.089097303634232, 3.094372801875733, 3.099648300117233, 3.1049237983587337, 3.1101992966002343, 3.115474794841735, 3.1207502930832356, 3.1260257913247362, 3.131301289566237, 3.1365767878077375, 3.1418522860492377, 3.1471277842907384, 3.152403282532239, 3.1576787807737396, 3.1629542790152403, 3.168229777256741, 3.1735052754982416, 3.178780773739742, 3.1840562719812424, 3.189331770222743, 3.1946072684642437, 3.1998827667057443, 3.205158264947245, 3.2104337631887456, 3.2157092614302463, 3.220984759671747, 3.226260257913247, 3.2315357561547478, 3.2368112543962484, 3.242086752637749, 3.2473622508792497, 3.2526377491207503, 3.257913247362251, 3.2631887456037516, 3.268464243845252, 3.2737397420867524, 3.279015240328253, 3.2842907385697537, 3.2895662368112544, 3.294841735052755, 3.3001172332942557, 3.3053927315357563, 3.3106682297772565, 3.315943728018757, 3.321219226260258, 3.3264947245017584, 3.331770222743259, 3.3370457209847597, 3.3423212192262604, 3.347596717467761, 3.352872215709261, 3.358147713950762, 3.3634232121922625, 3.368698710433763, 3.3739742086752638, 3.3792497069167644, 3.384525205158265, 3.3898007033997652, 3.395076201641266, 3.4003516998827665, 3.405627198124267, 3.410902696365768, 3.4161781946072685, 3.421453692848769, 3.4267291910902697, 3.43200468933177, 3.4372801875732706, 3.4425556858147712, 3.447831184056272, 3.4531066822977725, 3.458382180539273, 3.463657678780774, 3.4689331770222744, 3.4742086752637746, 3.4794841735052753, 3.484759671746776, 3.4900351699882766, 3.495310668229777, 3.500586166471278, 3.5058616647127785, 3.511137162954279, 3.5164126611957793, 3.52168815943728, 3.5269636576787806, 3.5322391559202813, 3.537514654161782, 3.5427901524032825, 3.548065650644783, 3.553341148886284, 3.558616647127784, 3.5638921453692847, 3.5691676436107853, 3.574443141852286, 3.5797186400937866, 3.5849941383352872, 3.590269636576788, 3.5955451348182885, 3.6008206330597887, 3.6060961313012894, 3.61137162954279, 3.6166471277842906, 3.6219226260257913, 3.627198124267292, 3.6324736225087926, 3.637749120750293, 3.6430246189917934, 3.648300117233294, 3.6535756154747947, 3.6588511137162953, 3.664126611957796, 3.6694021101992966, 3.6746776084407973, 3.679953106682298, 3.685228604923798, 3.6905041031652988, 3.6957796014067994, 3.7010550996483, 3.7063305978898007, 3.7116060961313013, 3.716881594372802, 3.722157092614302, 3.727432590855803, 3.7327080890973034, 3.737983587338804, 3.7432590855803047, 3.7485345838218054, 3.753810082063306, 3.7590855803048067, 3.764361078546307, 3.7696365767878075, 3.774912075029308, 3.780187573270809, 3.7854630715123094, 3.79073856975381, 3.7960140679953107, 3.8012895662368114, 3.8065650644783116, 3.811840562719812, 3.817116060961313, 3.8223915592028135, 3.827667057444314, 3.8329425556858148, 3.8382180539273154, 3.843493552168816, 3.8487690504103163, 3.854044548651817, 3.8593200468933175, 3.864595545134818, 3.869871043376319, 3.8751465416178195, 3.88042203985932, 3.8856975381008207, 3.890973036342321, 3.8962485345838216, 3.9015240328253222, 3.906799531066823, 3.9120750293083235, 3.917350527549824, 3.922626025791325, 3.9279015240328254, 3.9331770222743256, 3.9384525205158263, 3.943728018757327, 3.9490035169988276, 3.954279015240328, 3.959554513481829, 3.9648300117233295, 3.97010550996483, 3.9753810082063303, 3.980656506447831, 3.9859320046893316, 3.9912075029308323, 3.996483001172333, 4.0017584994138335, 4.007033997655334, 4.012309495896835, 4.0175849941383355, 4.022860492379836, 4.028135990621337, 4.033411488862837, 4.038686987104338, 4.043962485345839, 4.049237983587339, 4.054513481828839, 4.05978898007034, 4.06506447831184, 4.070339976553341, 4.075615474794842, 4.080890973036342, 4.086166471277843, 4.091441969519344, 4.096717467760843, 4.101992966002344, 4.107268464243845, 4.112543962485345, 4.117819460726846, 4.1230949589683465, 4.128370457209847, 4.133645955451348, 4.1389214536928485, 4.144196951934349, 4.14947245017585, 4.15474794841735, 4.160023446658851, 4.165298944900352, 4.170574443141852, 4.175849941383353, 4.181125439624854, 4.186400937866354, 4.191676436107855, 4.1969519343493555, 4.202227432590856, 4.207502930832357, 4.2127784290738575, 4.218053927315358, 4.223329425556858, 4.2286049237983585, 4.233880422039859, 4.23915592028136, 4.24443141852286, 4.249706916764361, 4.254982415005862, 4.260257913247362, 4.265533411488862, 4.270808909730363, 4.276084407971863, 4.281359906213364, 4.286635404454865, 4.291910902696365, 4.297186400937866, 4.302461899179367, 4.307737397420867, 4.313012895662368, 4.3182883939038685, 4.323563892145369, 4.32883939038687, 4.3341148886283705, 4.339390386869871, 4.344665885111372, 4.349941383352872, 4.355216881594373, 4.360492379835874, 4.365767878077374, 4.371043376318875, 4.376318874560376, 4.381594372801876, 4.386869871043376, 4.392145369284877, 4.397420867526377, 4.402696365767878, 4.407971864009379, 4.413247362250879, 4.41852286049238, 4.4237983587338805, 4.42907385697538, 4.434349355216881, 4.4396248534583815, 4.444900351699882, 4.450175849941383, 4.4554513481828835, 4.460726846424384, 4.466002344665885, 4.471277842907385, 4.476553341148886, 4.481828839390387, 4.487104337631887, 4.492379835873388, 4.497655334114889, 4.502930832356389, 4.50820633059789, 4.5134818288393905, 4.518757327080891, 4.524032825322392, 4.5293083235638925, 4.534583821805393, 4.539859320046894, 4.545134818288394, 4.550410316529895, 4.555685814771395, 4.560961313012895, 4.566236811254396, 4.571512309495897, 4.576787807737397, 4.582063305978898, 4.587338804220399, 4.592614302461899, 4.597889800703399, 4.6031652989449, 4.6084407971864, 4.613716295427901, 4.618991793669402, 4.624267291910902, 4.629542790152403, 4.6348182883939035, 4.640093786635404, 4.645369284876905, 4.6506447831184055, 4.655920281359906, 4.661195779601407, 4.666471277842907, 4.671746776084408, 4.677022274325909, 4.682297772567409, 4.68757327080891, 4.692848769050411, 4.698124267291911, 4.703399765533412, 4.7086752637749125, 4.713950762016413, 4.719226260257913, 4.724501758499414, 4.729777256740914, 4.735052754982415, 4.7403282532239155, 4.745603751465416, 4.750879249706917, 4.756154747948417, 4.761430246189917, 4.766705744431418, 4.7719812426729185, 4.777256740914419, 4.78253223915592, 4.78780773739742, 4.793083235638921, 4.798358733880422, 4.803634232121922, 4.808909730363423, 4.814185228604924, 4.819460726846424, 4.824736225087925, 4.8300117233294255, 4.835287221570926, 4.840562719812427, 4.8458382180539274, 4.851113716295428, 4.856389214536929, 4.861664712778429, 4.86694021101993, 4.872215709261431, 4.877491207502931, 4.882766705744432, 4.888042203985932, 4.893317702227432, 4.898593200468933, 4.903868698710434, 4.909144196951934, 4.914419695193435, 4.9196951934349356, 4.924970691676436, 4.930246189917936, 4.935521688159437, 4.940797186400937, 4.946072684642438, 4.9513481828839385, 4.956623681125439, 4.96189917936694, 4.9671746776084404, 4.972450175849941, 4.977725674091442, 4.983001172332942, 4.988276670574443, 4.993552168815944, 4.998827667057444, 5.004103165298945, 5.009378663540446, 5.014654161781946, 5.019929660023447, 5.0252051582649475, 5.030480656506448, 5.035756154747948, 5.0410316529894486, 5.046307151230949, 5.05158264947245, 5.0568581477139505, 5.062133645955451, 5.067409144196952, 5.072684642438452, 5.077960140679953, 5.083235638921454, 5.088511137162954, 5.093786635404455, 5.099062133645956, 5.104337631887456, 5.109613130128957, 5.114888628370457, 5.120164126611957, 5.125439624853458, 5.130715123094959, 5.135990621336459, 5.14126611957796, 5.1465416178194605, 5.151817116060961, 5.157092614302462, 5.162368112543962, 5.167643610785463, 5.172919109026964, 5.178194607268464, 5.183470105509965, 5.188745603751466, 5.194021101992966, 5.199296600234466, 5.204572098475967, 5.209847596717467, 5.215123094958968, 5.220398593200469, 5.225674091441969, 5.23094958968347, 5.2362250879249705, 5.241500586166471, 5.246776084407972, 5.2520515826494725, 5.257327080890973, 5.262602579132474, 5.267878077373974, 5.273153575615475, 5.278429073856976, 5.283704572098475, 5.288980070339976, 5.294255568581477, 5.299531066822977, 5.304806565064478, 5.310082063305979, 5.315357561547479, 5.32063305978898, 5.325908558030481, 5.331184056271981, 5.336459554513482, 5.3417350527549825, 5.347010550996483, 5.352286049237984, 5.357561547479484, 5.362837045720985, 5.368112543962485, 5.3733880422039855, 5.378663540445486, 5.383939038686987, 5.389214536928487, 5.394490035169988, 5.399765533411489, 5.405041031652989, 5.41031652989449, 5.415592028135991, 5.420867526377491, 5.426143024618992, 5.4314185228604925, 5.436694021101993, 5.441969519343494, 5.447245017584994, 5.452520515826494, 5.457796014067995, 5.4630715123094955, 5.468347010550996, 5.473622508792497, 5.478898007033997, 5.484173505275498, 5.489449003516999, 5.494724501758499, 5.5, 5.505275498241501, 5.510550996483001, 5.515826494724502, 5.521101992966003, 5.526377491207503, 5.531652989449003, 5.536928487690504, 5.542203985932004, 5.547479484173505, 5.5527549824150055, 5.558030480656506, 5.563305978898007, 5.5685814771395075, 5.573856975381008, 5.579132473622509, 5.584407971864009, 5.58968347010551, 5.594958968347011, 5.600234466588511, 5.605509964830012, 5.610785463071513, 5.616060961313012, 5.621336459554513, 5.626611957796014, 5.631887456037514, 5.637162954279015, 5.642438452520516, 5.647713950762016, 5.652989449003517, 5.6582649472450175, 5.663540445486518, 5.668815943728019, 5.674091441969519, 5.67936694021102, 5.684642438452521, 5.689917936694021, 5.695193434935522, 5.700468933177022, 5.705744431418522, 5.711019929660023, 5.716295427901524, 5.721570926143024, 5.726846424384525, 5.732121922626026, 5.737397420867526, 5.742672919109027, 5.7479484173505275, 5.753223915592028, 5.758499413833529, 5.7637749120750295, 5.76905041031653, 5.774325908558031, 5.7796014067995305, 5.784876905041031, 5.790152403282532, 5.795427901524032, 5.800703399765533, 5.805978898007034, 5.811254396248534, 5.816529894490035, 5.821805392731536, 5.827080890973036, 5.832356389214537, 5.837631887456038, 5.842907385697538, 5.848182883939039, 5.8534583821805395, 5.85873388042204, 5.86400937866354, 5.8692848769050405, 5.874560375146541, 5.879835873388042, 5.8851113716295425, 5.890386869871043, 5.895662368112544, 5.900937866354044, 5.906213364595545, 5.911488862837046, 5.916764361078546, 5.922039859320047, 5.927315357561548, 5.932590855803048, 5.937866354044549, 5.9431418522860495, 5.948417350527549, 5.95369284876905, 5.958968347010551, 5.964243845252051, 5.969519343493552, 5.9747948417350525, 5.980070339976553, 5.985345838218054, 5.990621336459554, 5.995896834701055, 6.001172332942556, 6.006447831184056, 6.011723329425557, 6.016998827667058, 6.022274325908558, 6.027549824150059, 6.032825322391559, 6.038100820633059, 6.04337631887456, 6.048651817116061, 6.053927315357561, 6.059202813599062, 6.0644783118405625, 6.069753810082063, 6.075029308323564, 6.0803048065650644, 6.085580304806565, 6.090855803048066, 6.096131301289566, 6.101406799531067, 6.106682297772568, 6.111957796014067, 6.117233294255568, 6.122508792497069, 6.127784290738569, 6.13305978898007, 6.138335287221571, 6.143610785463071, 6.148886283704572, 6.1541617819460726, 6.159437280187573, 6.164712778429074, 6.1699882766705745, 6.175263774912075, 6.180539273153576, 6.185814771395076, 6.191090269636577, 6.196365767878077, 6.2016412661195774, 6.206916764361078, 6.212192262602579, 6.217467760844079, 6.22274325908558, 6.228018757327081, 6.233294255568581, 6.238569753810082, 6.243845252051583, 6.249120750293083, 6.254396248534584, 6.2596717467760845, 6.264947245017585, 6.270222743259086, 6.275498241500586, 6.280773739742086, 6.286049237983587, 6.2913247362250875, 6.296600234466588, 6.301875732708089, 6.307151230949589, 6.31242672919109, 6.317702227432591, 6.322977725674091, 6.328253223915592, 6.333528722157093, 6.338804220398593, 6.344079718640094, 6.3493552168815945, 6.354630715123095, 6.359906213364596, 6.365181711606096, 6.370457209847596, 6.375732708089097, 6.3810082063305975, 6.386283704572098, 6.391559202813599, 6.396834701055099, 6.4021101992966, 6.407385697538101, 6.412661195779601, 6.417936694021102, 6.423212192262603, 6.428487690504103, 6.433763188745604, 6.439038686987105, 6.444314185228604, 6.449589683470105, 6.454865181711606, 6.460140679953106, 6.465416178194607, 6.4706916764361075, 6.475967174677608, 6.481242672919109, 6.4865181711606095, 6.49179366940211, 6.497069167643611, 6.502344665885111, 6.507620164126612, 6.512895662368113, 6.518171160609613, 6.523446658851114, 6.528722157092614, 6.533997655334114, 6.539273153575615, 6.544548651817116, 6.549824150058616, 6.555099648300117, 6.560375146541618, 6.565650644783118, 6.570926143024619, 6.5762016412661195, 6.58147713950762, 6.586752637749121, 6.592028135990621, 6.597303634232122, 6.602579132473623, 6.607854630715123, 6.613130128956623, 6.618405627198124, 6.623681125439624, 6.628956623681125, 6.634232121922626, 6.639507620164126, 6.644783118405627, 6.650058616647128, 6.655334114888628, 6.660609613130129, 6.6658851113716295, 6.67116060961313, 6.676436107854631, 6.6817116060961315, 6.686987104337632, 6.692262602579133, 6.6975381008206325, 6.702813599062133, 6.708089097303634, 6.713364595545134, 6.718640093786635, 6.723915592028136, 6.729191090269636, 6.734466588511137, 6.739742086752638, 6.745017584994138, 6.750293083235639, 6.75556858147714, 6.76084407971864, 6.766119577960141, 6.7713950762016415, 6.776670574443141, 6.781946072684642, 6.7872215709261425, 6.792497069167643, 6.797772567409144, 6.8030480656506445, 6.808323563892145, 6.813599062133646, 6.818874560375146, 6.824150058616647, 6.829425556858148, 6.834701055099648, 6.839976553341149, 6.84525205158265, 6.85052754982415, 6.855803048065651, 6.861078546307151, 6.866354044548651, 6.871629542790152, 6.876905041031653, 6.882180539273153, 6.887456037514654, 6.8927315357561545, 6.898007033997655, 6.903282532239156, 6.908558030480656, 6.913833528722157, 6.919109026963658, 6.924384525205158, 6.929660023446659, 6.93493552168816, 6.94021101992966, 6.94548651817116, 6.950762016412661, 6.956037514654161, 6.961313012895662, 6.966588511137163, 6.971864009378663, 6.977139507620164, 6.9824150058616645, 6.987690504103165, 6.992966002344666, 6.9982415005861665, 7.003516998827667, 7.008792497069168, 7.014067995310668, 7.019343493552169, 7.02461899179367, 7.029894490035169, 7.03516998827667, 7.040445486518171, 7.045720984759671, 7.050996483001172, 7.056271981242673, 7.061547479484173, 7.066822977725674, 7.072098475967175, 7.077373974208675, 7.082649472450176, 7.0879249706916765, 7.093200468933177, 7.098475967174678, 7.103751465416178, 7.109026963657678, 7.114302461899179, 7.1195779601406795, 7.12485345838218, 7.130128956623681, 7.135404454865181, 7.140679953106682, 7.145955451348183, 7.151230949589683, 7.156506447831184, 7.161781946072685, 7.167057444314185, 7.172332942555686, 7.1776084407971865, 7.182883939038687, 7.188159437280188, 7.193434935521688, 7.198710433763188, 7.203985932004689, 7.2092614302461895, 7.21453692848769, 7.219812426729191, 7.225087924970691, 7.230363423212192, 7.235638921453693, 7.240914419695193, 7.246189917936694, 7.251465416178195, 7.256740914419695, 7.262016412661196, 7.2672919109026966, 7.272567409144197, 7.277842907385697, 7.283118405627198, 7.288393903868698, 7.293669402110199, 7.2989449003516995, 7.3042203985932, 7.309495896834701, 7.314771395076201, 7.320046893317702, 7.325322391559203, 7.330597889800703, 7.335873388042204, 7.341148886283705, 7.346424384525205, 7.351699882766706, 7.356975381008207, 7.362250879249706, 7.367526377491207, 7.372801875732708, 7.378077373974208, 7.383352872215709, 7.3886283704572095, 7.39390386869871, 7.399179366940211, 7.4044548651817115, 7.409730363423212, 7.415005861664713, 7.420281359906213, 7.425556858147714, 7.430832356389215, 7.436107854630715, 7.441383352872215, 7.446658851113716, 7.451934349355216, 7.457209847596717, 7.462485345838218, 7.467760844079718, 7.473036342321219, 7.47831184056272, 7.48358733880422, 7.488862837045721, 7.4941383352872215, 7.499413833528722, 7.504689331770223, 7.509964830011723, 7.515240328253224, 7.520515826494725, 7.5257913247362245, 7.531066822977725, 7.536342321219226, 7.541617819460726, 7.546893317702227, 7.552168815943728, 7.557444314185228, 7.562719812426729, 7.56799531066823, 7.57327080890973, 7.578546307151231, 7.5838218053927315, 7.589097303634232, 7.594372801875733, 7.5996483001172335, 7.604923798358734, 7.610199296600234, 7.6154747948417345, 7.620750293083235, 7.626025791324736, 7.631301289566236, 7.636576787807737, 7.641852286049238, 7.647127784290738, 7.652403282532239, 7.65767878077374, 7.66295427901524, 7.668229777256741, 7.673505275498242, 7.678780773739742, 7.684056271981243, 7.6893317702227435, 7.694607268464243, 7.699882766705744, 7.7051582649472445, 7.710433763188745, 7.715709261430246, 7.7209847596717465, 7.726260257913247, 7.731535756154748, 7.736811254396248, 7.742086752637749, 7.74736225087925, 7.75263774912075, 7.757913247362251, 7.763188745603752, 7.768464243845252, 7.773739742086752, 7.779015240328253, 7.784290738569753, 7.789566236811254, 7.794841735052755, 7.800117233294255, 7.805392731535756, 7.8106682297772565, 7.815943728018757, 7.821219226260258, 7.826494724501758, 7.831770222743259, 7.83704572098476, 7.84232121922626, 7.847596717467761, 7.852872215709262, 7.858147713950761, 7.863423212192262, 7.868698710433763, 7.873974208675263, 7.879249706916764, 7.884525205158265, 7.889800703399765, 7.895076201641266, 7.9003516998827665, 7.905627198124267, 7.910902696365768, 7.9161781946072685, 7.921453692848769, 7.92672919109027, 7.93200468933177, 7.937280187573271, 7.942555685814771, 7.947831184056271, 7.953106682297772, 7.958382180539273, 7.963657678780773, 7.968933177022274, 7.974208675263775, 7.979484173505275, 7.984759671746776, 7.990035169988277, 7.995310668229777, 8.000586166471278, 8.005861664712778, 8.01113716295428, 8.01641266119578, 8.02168815943728, 8.026963657678781, 8.03223915592028, 8.037514654161782, 8.042790152403281, 8.048065650644784, 8.053341148886282, 8.058616647127785, 8.063892145369284, 8.069167643610786, 8.074443141852285, 8.079718640093787, 8.084994138335286, 8.090269636576789, 8.095545134818288, 8.10082063305979, 8.106096131301289, 8.11137162954279, 8.11664712778429, 8.12192262602579, 8.127198124267291, 8.132473622508792, 8.137749120750293, 8.143024618991793, 8.148300117233294, 8.153575615474795, 8.158851113716295, 8.164126611957796, 8.169402110199297, 8.174677608440797, 8.179953106682298, 8.185228604923799, 8.1905041031653, 8.195779601406798, 8.2010550996483, 8.2063305978898, 8.211606096131302, 8.2168815943728, 8.222157092614303, 8.227432590855802, 8.232708089097304, 8.237983587338803, 8.243259085580306, 8.248534583821804, 8.253810082063307, 8.259085580304806, 8.264361078546308, 8.269636576787807, 8.274912075029308, 8.280187573270808, 8.285463071512309, 8.29073856975381, 8.29601406799531, 8.301289566236811, 8.306565064478312, 8.311840562719812, 8.317116060961313, 8.322391559202813, 8.327667057444314, 8.332942555685815, 8.338218053927315, 8.343493552168816, 8.348769050410317, 8.354044548651817, 8.359320046893316, 8.364595545134819, 8.369871043376317, 8.37514654161782, 8.380422039859319, 8.385697538100821, 8.39097303634232, 8.396248534583822, 8.401524032825321, 8.406799531066824, 8.412075029308323, 8.417350527549825, 8.422626025791324, 8.427901524032826, 8.433177022274325, 8.438452520515826, 8.443728018757326, 8.449003516998827, 8.454279015240328, 8.459554513481828, 8.464830011723329, 8.47010550996483, 8.47538100820633, 8.480656506447831, 8.485932004689332, 8.491207502930832, 8.496483001172333, 8.501758499413834, 8.507033997655334, 8.512309495896835, 8.517584994138335, 8.522860492379834, 8.528135990621337, 8.533411488862836, 8.538686987104338, 8.543962485345837, 8.54923798358734, 8.554513481828838, 8.55978898007034, 8.56506447831184, 8.570339976553342, 8.57561547479484, 8.580890973036343, 8.586166471277842, 8.591441969519344, 8.596717467760843, 8.601992966002346, 8.607268464243845, 8.612543962485345, 8.617819460726846, 8.623094958968347, 8.628370457209847, 8.633645955451348, 8.638921453692848, 8.64419695193435, 8.64947245017585, 8.65474794841735, 8.660023446658851, 8.665298944900352, 8.670574443141852, 8.675849941383353, 8.681125439624854, 8.686400937866354, 8.691676436107855, 8.696951934349354, 8.702227432590856, 8.707502930832355, 8.712778429073857, 8.718053927315356, 8.723329425556859, 8.728604923798358, 8.73388042203986, 8.739155920281359, 8.744431418522861, 8.74970691676436, 8.754982415005863, 8.760257913247361, 8.765533411488864, 8.770808909730363, 8.776084407971863, 8.781359906213364, 8.786635404454865, 8.791910902696365, 8.797186400937866, 8.802461899179367, 8.807737397420867, 8.813012895662368, 8.818288393903869, 8.82356389214537, 8.82883939038687, 8.83411488862837, 8.839390386869871, 8.844665885111372, 8.849941383352872, 8.855216881594373, 8.860492379835872, 8.865767878077374, 8.871043376318873, 8.876318874560376, 8.881594372801874, 8.886869871043377, 8.892145369284876, 8.897420867526378, 8.902696365767877, 8.90797186400938, 8.913247362250878, 8.91852286049238, 8.92379835873388, 8.929073856975382, 8.934349355216881, 8.939624853458382, 8.944900351699882, 8.950175849941383, 8.955451348182883, 8.960726846424384, 8.966002344665885, 8.971277842907385, 8.976553341148886, 8.981828839390387, 8.987104337631887, 8.992379835873388, 8.997655334114889, 9.00293083235639, 9.00820633059789, 9.01348182883939, 9.018757327080891, 9.024032825322392, 9.029308323563892, 9.034583821805393, 9.039859320046894, 9.045134818288394, 9.050410316529895, 9.055685814771396, 9.060961313012896, 9.066236811254395, 9.071512309495896, 9.076787807737396, 9.082063305978897, 9.087338804220398, 9.092614302461898, 9.097889800703399, 9.1031652989449, 9.1084407971864, 9.113716295427901, 9.118991793669402, 9.124267291910902, 9.129542790152403, 9.134818288393904, 9.140093786635404, 9.145369284876905, 9.150644783118405, 9.155920281359906, 9.161195779601407, 9.166471277842907, 9.171746776084408, 9.177022274325909, 9.18229777256741, 9.18757327080891, 9.19284876905041, 9.198124267291911, 9.203399765533412, 9.208675263774913, 9.213950762016413, 9.219226260257914, 9.224501758499414, 9.229777256740913, 9.235052754982414, 9.240328253223915, 9.245603751465415, 9.250879249706916, 9.256154747948417, 9.261430246189917, 9.266705744431418, 9.271981242672918, 9.277256740914419, 9.28253223915592, 9.28780773739742, 9.293083235638921, 9.298358733880422, 9.303634232121922, 9.308909730363423, 9.314185228604924, 9.319460726846424, 9.324736225087925, 9.330011723329426, 9.335287221570926, 9.340562719812427, 9.345838218053927, 9.351113716295428, 9.356389214536929, 9.36166471277843, 9.36694021101993, 9.37221570926143, 9.377491207502931, 9.382766705744432, 9.388042203985933, 9.393317702227433, 9.398593200468932, 9.403868698710433, 9.409144196951933, 9.414419695193434, 9.419695193434935, 9.424970691676435, 9.430246189917936, 9.435521688159437, 9.440797186400937, 9.446072684642438, 9.451348182883939, 9.45662368112544, 9.46189917936694, 9.46717467760844, 9.472450175849941, 9.477725674091442, 9.483001172332942, 9.488276670574443, 9.493552168815944, 9.498827667057444, 9.504103165298945, 9.509378663540446, 9.514654161781946, 9.519929660023447, 9.525205158264948, 9.530480656506448, 9.535756154747949, 9.54103165298945, 9.54630715123095, 9.55158264947245, 9.556858147713951, 9.56213364595545, 9.56740914419695, 9.572684642438452, 9.577960140679952, 9.583235638921453, 9.588511137162953, 9.593786635404454, 9.599062133645955, 9.604337631887455, 9.609613130128956, 9.614888628370457, 9.620164126611957, 9.625439624853458, 9.630715123094959, 9.63599062133646, 9.64126611957796, 9.64654161781946, 9.651817116060961, 9.657092614302462, 9.662368112543962, 9.667643610785463, 9.672919109026964, 9.678194607268464, 9.683470105509965, 9.688745603751466, 9.694021101992966, 9.699296600234467, 9.704572098475968, 9.709847596717468, 9.715123094958969, 9.72039859320047, 9.72567409144197, 9.730949589683469, 9.73622508792497, 9.74150058616647, 9.746776084407971, 9.752051582649472, 9.757327080890972, 9.762602579132473, 9.767878077373974, 9.773153575615474, 9.778429073856975, 9.783704572098475, 9.788980070339976, 9.794255568581477, 9.799531066822977, 9.804806565064478, 9.810082063305979, 9.81535756154748, 9.82063305978898, 9.82590855803048, 9.831184056271981, 9.836459554513482, 9.841735052754983, 9.847010550996483, 9.852286049237984, 9.857561547479484, 9.862837045720985, 9.868112543962486, 9.873388042203986, 9.878663540445487, 9.883939038686988, 9.889214536928488, 9.894490035169987, 9.899765533411488, 9.905041031652988, 9.910316529894489, 9.91559202813599, 9.92086752637749, 9.926143024618991, 9.931418522860492, 9.936694021101992, 9.941969519343493, 9.947245017584994, 9.952520515826494, 9.957796014067995, 9.963071512309496, 9.968347010550996, 9.973622508792497, 9.978898007033997, 9.984173505275498, 9.989449003516999, 9.9947245017585, 10.0]}
-},{}],219:[function(require,module,exports){
+
+},{}],252:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -13681,14 +22698,14 @@ var tinyLambda = require( './fixtures/python/tiny_lambda.json' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof boxcox, 'function', 'main export is a function' );
+	t.strictEqual( typeof boxcox, 'function', 'main export is a function' );
 	t.end();
 });
 
 tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 	var b;
 
-	b = boxcox( NaN, 1.0);
+	b = boxcox( NaN, 1.0 );
 	t.equal( isnan( b ), true, 'returns NaN' );
 
 	b = boxcox( 1.0, NaN );
@@ -13833,7 +22850,264 @@ tape( 'the function computes a one-parameter Box-Cox transformation for tiny lam
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/math/base/special/boxcox/test/test.js")
-},{"./../lib":213,"./fixtures/python/medium_positive.json":215,"./fixtures/python/small_positive.json":216,"./fixtures/python/tiny.json":217,"./fixtures/python/tiny_lambda.json":218,"@stdlib/constants/float64/eps":186,"@stdlib/constants/float64/ninf":190,"@stdlib/math/base/assert/is-nan":205,"@stdlib/math/base/special/abs":211,"@stdlib/random/base/randu":257,"tape":426}],220:[function(require,module,exports){
+},{"./../lib":246,"./fixtures/python/medium_positive.json":248,"./fixtures/python/small_positive.json":249,"./fixtures/python/tiny.json":250,"./fixtures/python/tiny_lambda.json":251,"@stdlib/constants/float64/eps":219,"@stdlib/constants/float64/ninf":223,"@stdlib/math/base/assert/is-nan":238,"@stdlib/math/base/special/abs":244,"@stdlib/random/base/randu":296,"tape":488}],253:[function(require,module,exports){
+(function (__filename,__dirname){(function (){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var resolve = require( 'path' ).resolve;
+var tape = require( 'tape' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var randu = require( '@stdlib/random/base/randu' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var NINF = require( '@stdlib/constants/float64/ninf' );
+var EPS = require( '@stdlib/constants/float64/eps' );
+var tryRequire = require( '@stdlib/utils/try-require' );
+
+
+// VARIABLES //
+
+var boxcox = tryRequire( resolve( __dirname, './../lib/native.js' ) );
+var opts = {
+	'skip': ( boxcox instanceof Error )
+};
+
+
+// FIXTURES //
+
+var mediumPositive = require( './fixtures/python/medium_positive.json' );
+var smallPositive = require( './fixtures/python/small_positive.json' );
+var tiny = require( './fixtures/python/tiny.json' );
+var tinyLambda = require( './fixtures/python/tiny_lambda.json' );
+
+
+// TESTS //
+
+tape( 'main export is a function', opts, function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof boxcox, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function returns `NaN` if provided `NaN`', opts, function test( t ) {
+	var b;
+
+	b = boxcox( NaN, 1.0 );
+	t.equal( isnan( b ), true, 'returns NaN' );
+
+	b = boxcox( 1.0, NaN );
+	t.equal( isnan( b ), true, 'returns NaN' );
+
+	b = boxcox( NaN, NaN );
+	t.equal( isnan( b ), true, 'returns NaN' );
+
+	t.end();
+});
+
+tape( 'the function returns `-Infinity` if lambda is negative and `x` is +-0', opts, function test( t ) {
+	var lambda;
+	var b;
+	var i;
+
+	for ( i = 0; i < 1e3; i++ ) {
+		lambda = -1.0 * ( (randu()*100.0) + 1.0 );
+
+		b = boxcox( +0.0, lambda );
+		t.equal( b, NINF, 'returns -Infinity when lambda is negative and `x` is positive zero' );
+
+		b = boxcox( -0.0, lambda );
+		t.equal( b, NINF, 'returns -Infinity when lambda is negative and `x` is negative zero' );
+	}
+	t.end();
+});
+
+tape( 'the function returns `NaN` if `x` is negative', opts, function test( t ) {
+	var b;
+	var x;
+	var y;
+	var i;
+
+	for ( i = 0; i < 1e3; i++ ) {
+		x = -1.0 * ( (randu()*100.0) + 1.0 );
+		y = randu() * 10.0;
+		b = boxcox( x, y );
+		t.equal( isnan( b ), true, 'returns NaN' );
+	}
+	t.end();
+});
+
+tape( 'the function computes a one-parameter Box-Cox transformation for positive medium numbers', opts, function test( t ) {
+	var expected;
+	var delta;
+	var tol;
+	var x;
+	var y;
+	var b;
+	var i;
+
+	expected = mediumPositive.expected;
+	x = mediumPositive.x;
+	y = mediumPositive.y;
+	for ( i = 0; i < expected.length; i++ ) {
+		b = boxcox( x[ i ], y[ i ] );
+		if ( b === expected[ i ] ) {
+			t.equal( b, expected[ i ], 'returns '+b+' when provided '+x[i]+' and '+y[i]+'.' );
+		} else {
+			delta = abs( expected[ i ] - b );
+			tol = 16.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. returns '+b+' when provided '+x[i]+' and '+y[i]+'. expected: '+expected[i]+'. delta: '+delta+'. tol: ' +tol+'.' );
+		}
+	}
+	t.end();
+});
+
+tape( 'the function computes a one-parameter Box-Cox transformation for positive small numbers', opts, function test( t ) {
+	var expected;
+	var delta;
+	var tol;
+	var x;
+	var y;
+	var b;
+	var i;
+
+	expected = smallPositive.expected;
+	x = smallPositive.x;
+	y = smallPositive.y;
+	for ( i = 0; i < expected.length; i++ ) {
+		b = boxcox( x[ i ], y[ i ] );
+		if ( b === expected[ i ] ) {
+			t.equal( b, expected[ i ], 'returns '+b+' when provided '+x[i]+' and '+y[i]+'.' );
+		} else {
+			delta = abs( expected[ i ] - b );
+			tol = 16.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. returns '+b+' when provided '+x[i]+' and '+y[i]+'. expected: '+expected[i]+'. delta: '+delta+'. tol: ' +tol+'.' );
+		}
+	}
+	t.end();
+});
+
+tape( 'the function computes a one-parameter Box-Cox transformation for tiny numbers', opts, function test( t ) {
+	var expected;
+	var delta;
+	var tol;
+	var x;
+	var y;
+	var b;
+	var i;
+
+	expected = tiny.expected;
+	x = tiny.x;
+	y = tiny.y;
+	for ( i = 0; i < expected.length; i++ ) {
+		b = boxcox( x[ i ], y[ i ] );
+		if ( b === expected[ i ] ) {
+			t.equal( b, expected[ i ], 'returns '+b+' when provided '+x[i]+' and '+y[i]+'.' );
+		} else {
+			delta = abs( expected[ i ] - b );
+			tol = 70.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. returns '+b+' when provided '+x[i]+' and '+y[i]+'. expected: '+expected[i]+'. delta: '+delta+'. tol: ' +tol+'.' );
+		}
+	}
+	t.end();
+});
+
+tape( 'the function computes a one-parameter Box-Cox transformation for tiny lambda', opts, function test( t ) {
+	var expected;
+	var delta;
+	var tol;
+	var x;
+	var y;
+	var b;
+	var i;
+
+	expected = tinyLambda.expected;
+	x = tinyLambda.x;
+	y = tinyLambda.y;
+	for ( i = 0; i < expected.length; i++ ) {
+		b = boxcox( x[ i ], y[ i ] );
+		if ( b === expected[ i ] ) {
+			t.equal( b, expected[ i ], 'returns '+b+' when provided '+x[i]+' and '+y[i]+'.' );
+		} else {
+			delta = abs( expected[ i ] - b );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. returns '+b+' when provided '+x[i]+' and '+y[i]+'. expected: '+expected[i]+'. delta: '+delta+'. tol: ' +tol+'.' );
+		}
+	}
+	t.end();
+});
+
+}).call(this)}).call(this,"/lib/node_modules/@stdlib/math/base/special/boxcox/test/test.native.js","/lib/node_modules/@stdlib/math/base/special/boxcox/test")
+},{"./fixtures/python/medium_positive.json":248,"./fixtures/python/small_positive.json":249,"./fixtures/python/tiny.json":250,"./fixtures/python/tiny_lambda.json":251,"@stdlib/constants/float64/eps":219,"@stdlib/constants/float64/ninf":223,"@stdlib/math/base/assert/is-nan":238,"@stdlib/math/base/special/abs":244,"@stdlib/random/base/randu":296,"@stdlib/utils/try-require":356,"path":370,"tape":488}],254:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Compute `exp(x) - 1`.
+*
+* @module @stdlib/math/base/special/expm1
+*
+* @example
+* var expm1 = require( '@stdlib/math/base/special/expm1' );
+*
+* var v = expm1( 0.2 );
+* // returns ~0.221
+*
+* v = expm1( -9.0 );
+* // returns ~-0.999
+*
+* v = expm1( 0.0 );
+* // returns 0.0
+*
+* v = expm1( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var expm1 = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = expm1;
+
+},{"./main.js":255}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13854,7 +23128,7 @@ tape( 'the function computes a one-parameter Box-Cox transformation for tiny lam
 *
 * ## Notice
 *
-* The following copyright, license, and long comment were part of the original implementation available as part of [FDLIBM]{@link http://www.netlib.org/fdlibm/s_expm1.c}. The implementation follows the original, but has been modified for JavaScript.
+* The following copyright, license, and long comment were part of the original implementation available as part of [FDLIBM]{@link http://www.netlib.org/fdlibm/s_expm1.c} and [FreeBSD]{@link https://svnweb.freebsd.org/base/release/12.2.0/lib/msun/src/s_expm1.c}. The implementation follows the original, but has been modified for JavaScript.
 *
 * ```text
 * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
@@ -13873,6 +23147,7 @@ tape( 'the function computes a one-parameter Box-Cox transformation for tiny lam
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
+var fromWords = require( '@stdlib/number/float64/base/from-words' );
 var PINF = require( '@stdlib/constants/float64/pinf' );
 var NINF = require( '@stdlib/constants/float64/ninf' );
 var FLOAT64_EXPONENT_BIAS = require( '@stdlib/constants/float64/exponent-bias' );
@@ -14012,7 +23287,6 @@ var LN2_HALFX3 = 1.03972077083991796413e+00; // 0x3FF0A2B2 0x3F3BAB73
 * \end{align*}
 * ```
 *
-*
 * ## Notes
 *
 * -   For finite arguments, only \\(\operatorname{expm1}(0) = 0\\) is exact.
@@ -14044,7 +23318,6 @@ var LN2_HALFX3 = 1.03972077083991796413e+00; // 0x3FF0A2B2 0x3F3BAB73
 *
 * -   According to an error analysis, the error is always less than \\(1\\) ulp (unit in the last place).
 *
-*
 * @param {number} x - input value
 * @returns {number} function value
 *
@@ -14066,6 +23339,7 @@ var LN2_HALFX3 = 1.03972077083991796413e+00; // 0x3FF0A2B2 0x3F3BAB73
 */
 function expm1( x ) {
 	var halfX;
+	var twopk;
 	var sign;
 	var hi;
 	var lo;
@@ -14133,11 +23407,10 @@ function expm1( x ) {
 		x = hi - lo;
 		c = (hi-x) - lo;
 	}
-	// if |x| < 2**-54 => high word: 0 01111001001 00000000000000000000 => 0x3c900000 = 1016070144  => exponent = 01111001001 = 969 = 1023-54
+	// If |x| < 2**-54 => high word: 0 01111001001 00000000000000000000 => 0x3c900000 = 1016070144  => exponent = 01111001001 = 969 = 1023-54
 	else if ( hx < 1016070144 ) {
 		return x;
-	}
-	else {
+	} else {
 		k = 0;
 	}
 	// x is now in primary range...
@@ -14151,29 +23424,32 @@ function expm1( x ) {
 	if ( k === 0 ) {
 		return x - ( (x*e) - z );	// c is 0
 	}
+	twopk = fromWords( (FLOAT64_EXPONENT_BIAS+k)<<20, 0 ); // 2^k
 	e = ( x * (e-c) ) - c;
 	e -= z;
 	if ( k === -1 ) {
-		return ( 0.5*(x-e) )- 0.5;
+		return ( 0.5*(x-e) ) - 0.5;
 	}
 	if ( k === 1 ) {
 		if ( x < -0.25 ) {
 			return -2.0 * ( e - (x+0.5) );
 		}
-		return 1 + ( 2.0 * (x-e) );
+		return 1.0 + ( 2.0 * (x-e) );
 	}
 	if ( k <= -2 || k > 56 ) { // suffice to return exp(x)-1
 		y = 1.0 - (e-x);
-
-		// Add k to y's exponent:
-		hi = (getHighWord( y ) + (k<<20))|0; // asm type annotation
-		y = setHighWord( y, hi );
-
+		if ( k === 1024 ) {
+			// Add k to y's exponent:
+			hi = (getHighWord( y ) + (k<<20))|0; // asm type annotation
+			y = setHighWord( y, hi );
+		} else {
+			y *= twopk;
+		}
 		return y - 1.0;
 	}
 	t = 1.0;
 	if ( k < 20 ) {
-		// 0x3ff00000 - (0x200000>>k) = 1072693248 - (0x200000>>k) => 0x200000 = 0 00000000010 00000000000000000000
+		// 0x3ff00000 - (0x200000>>k) = 1072693248 - (0x200000>>k) => 0x3ff00000 = 00111111111100000000000000000000 and 0x200000 = 0 00000000010 00000000000000000000
 		hi = (1072693248 - (0x200000>>k))|0; // asm type annotation
 		t = setHighWord( t, hi ); // t=1-2^-k
 		y = t - (e-x);
@@ -14183,9 +23459,8 @@ function expm1( x ) {
 		y = x - (e+t);
 		y += 1.0;
 	}
-	// Add k to y's exponent:
-	hi = (getHighWord( y ) + (k<<20))|0; // asm type annotation
-	return setHighWord( y, hi );
+	y *= twopk;
+	return y;
 }
 
 
@@ -14193,62 +23468,11 @@ function expm1( x ) {
 
 module.exports = expm1;
 
-},{"./polyval_q.js":222,"@stdlib/constants/float64/exponent-bias":187,"@stdlib/constants/float64/half-ln-two":188,"@stdlib/constants/float64/ninf":190,"@stdlib/constants/float64/pinf":191,"@stdlib/math/base/assert/is-nan":205,"@stdlib/number/float64/base/get-high-word":234,"@stdlib/number/float64/base/set-high-word":237}],221:[function(require,module,exports){
+},{"./polyval_q.js":256,"@stdlib/constants/float64/exponent-bias":220,"@stdlib/constants/float64/half-ln-two":221,"@stdlib/constants/float64/ninf":223,"@stdlib/constants/float64/pinf":224,"@stdlib/math/base/assert/is-nan":238,"@stdlib/number/float64/base/from-words":267,"@stdlib/number/float64/base/get-high-word":271,"@stdlib/number/float64/base/set-high-word":274}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Compute `exp(x) - 1`.
-*
-* @module @stdlib/math/base/special/expm1
-*
-* @example
-* var expm1 = require( '@stdlib/math/base/special/expm1' );
-*
-* var v = expm1( 0.2 );
-* // returns ~0.221
-*
-* v = expm1( -9.0 );
-* // returns ~-0.999
-*
-* v = expm1( 0.0 );
-* // returns 0.0
-*
-* v = expm1( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var expm1 = require( './expm1.js' );
-
-
-// EXPORTS //
-
-module.exports = expm1;
-
-},{"./expm1.js":220}],222:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14277,7 +23501,6 @@ module.exports = expm1;
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
 *
-*
 * @private
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
@@ -14294,7 +23517,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],223:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14338,14 +23561,14 @@ module.exports = evalpoly;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":224}],224:[function(require,module,exports){
+},{"./main.js":258}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14397,7 +23620,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],225:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14419,7 +23642,7 @@ module.exports = floor;
 'use strict';
 
 /**
-* Evaluate the natural logarithm.
+* Evaluate the natural logarithm of a double-precision floating-point number.
 *
 * @module @stdlib/math/base/special/ln
 *
@@ -14444,14 +23667,14 @@ module.exports = floor;
 
 // MODULES //
 
-var ln = require( './ln.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ln;
+module.exports = main;
 
-},{"./ln.js":226}],226:[function(require,module,exports){
+},{"./main.js":260}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14520,7 +23743,7 @@ var HIGH_BIASED_EXP_0 = 0x3ff00000|0; // asm type annotation
 // MAIN //
 
 /**
-* Evaluates the natural logarithm.
+* Evaluates the natural logarithm of a double-precision floating-point number.
 *
 * @param {NonNegativeNumber} x - input value
 * @returns {number} function value
@@ -14627,11 +23850,11 @@ function ln( x ) {
 
 module.exports = ln;
 
-},{"./polyval_p.js":227,"./polyval_q.js":228,"@stdlib/constants/float64/exponent-bias":187,"@stdlib/constants/float64/ninf":190,"@stdlib/math/base/assert/is-nan":205,"@stdlib/number/float64/base/get-high-word":234,"@stdlib/number/float64/base/set-high-word":237}],227:[function(require,module,exports){
+},{"./polyval_p.js":261,"./polyval_q.js":262,"@stdlib/constants/float64/exponent-bias":220,"@stdlib/constants/float64/ninf":223,"@stdlib/math/base/assert/is-nan":238,"@stdlib/number/float64/base/get-high-word":271,"@stdlib/number/float64/base/set-high-word":274}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14659,7 +23882,6 @@ module.exports = ln;
 * -   The implementation uses [Horner's rule][horners-method] for efficient computation.
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
 *
 * @private
 * @param {number} x - value at which to evaluate the polynomial
@@ -14677,11 +23899,11 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],228:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14710,7 +23932,6 @@ module.exports = evalpoly;
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
 *
-*
 * @private
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
@@ -14727,7 +23948,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],229:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14759,9 +23980,6 @@ module.exports = evalpoly;
 * var v = max( 3.14, 4.2 );
 * // returns 4.2
 *
-* v = max( 5.9, 3.14, 4.2 );
-* // returns 5.9
-*
 * v = max( 3.14, NaN );
 * // returns NaN
 *
@@ -14771,14 +23989,14 @@ module.exports = evalpoly;
 
 // MODULES //
 
-var max = require( './max.js' );
+var max = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = max;
 
-},{"./max.js":230}],230:[function(require,module,exports){
+},{"./main.js":264}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14803,7 +24021,6 @@ module.exports = max;
 
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var NINF = require( '@stdlib/constants/float64/ninf' );
 var PINF = require( '@stdlib/constants/float64/pinf' );
 
 
@@ -14812,18 +24029,13 @@ var PINF = require( '@stdlib/constants/float64/pinf' );
 /**
 * Returns the maximum value.
 *
-* @param {number} [x] - first number
-* @param {number} [y] - second number
-* @param {...number} [args] - numbers
+* @param {number} x - first number
+* @param {number} y - second number
 * @returns {number} maximum value
 *
 * @example
 * var v = max( 3.14, 4.2 );
 * // returns 4.2
-*
-* @example
-* var v = max( 5.9, 3.14, 4.2 );
-* // returns 5.9
 *
 * @example
 * var v = max( 3.14, NaN );
@@ -14834,47 +24046,22 @@ var PINF = require( '@stdlib/constants/float64/pinf' );
 * // returns +0.0
 */
 function max( x, y ) {
-	var len;
-	var m;
-	var v;
-	var i;
-
-	len = arguments.length;
-	if ( len === 2 ) {
-		if ( isnan( x ) || isnan( y ) ) {
-			return NaN;
-		}
-		if ( x === PINF || y === PINF ) {
-			return PINF;
-		}
-		if ( x === y && x === 0.0 ) {
-			if ( isPositiveZero( x ) ) {
-				return x;
-			}
-			return y;
-		}
-		if ( x > y ) {
+	if ( isnan( x ) || isnan( y ) ) {
+		return NaN;
+	}
+	if ( x === PINF || y === PINF ) {
+		return PINF;
+	}
+	if ( x === y && x === 0.0 ) {
+		if ( isPositiveZero( x ) ) {
 			return x;
 		}
 		return y;
 	}
-	m = NINF;
-	for ( i = 0; i < len; i++ ) {
-		v = arguments[ i ];
-		if ( isnan( v ) || v === PINF ) {
-			return v;
-		}
-		if ( v > m ) {
-			m = v;
-		} else if (
-			v === m &&
-			v === 0.0 &&
-			isPositiveZero( v )
-		) {
-			m = v;
-		}
+	if ( x > y ) {
+		return x;
 	}
-	return m;
+	return y;
 }
 
 
@@ -14882,7 +24069,7 @@ function max( x, y ) {
 
 module.exports = max;
 
-},{"@stdlib/constants/float64/ninf":190,"@stdlib/constants/float64/pinf":191,"@stdlib/math/base/assert/is-nan":205,"@stdlib/math/base/assert/is-positive-zero":207}],231:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":224,"@stdlib/math/base/assert/is-nan":238,"@stdlib/math/base/assert/is-positive-zero":240}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14917,14 +24104,14 @@ module.exports = max;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":232}],232:[function(require,module,exports){
+},{"./main.js":266}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14949,7 +24136,238 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],233:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/from-words
+*
+* @example
+* var fromWords = require( '@stdlib/number/float64/base/from-words' );
+*
+* var v = fromWords( 1774486211, 2479577218 );
+* // returns 3.14e201
+*
+* v = fromWords( 3221823995, 1413754136 );
+* // returns -3.141592653589793
+*
+* v = fromWords( 0, 0 );
+* // returns 0.0
+*
+* v = fromWords( 2147483648, 0 );
+* // returns -0.0
+*
+* v = fromWords( 2146959360, 0 );
+* // returns NaN
+*
+* v = fromWords( 2146435072, 0 );
+* // returns Infinity
+*
+* v = fromWords( 4293918720, 0 );
+* // returns -Infinity
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":269}],268:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
+
+
+// MAIN //
+
+var indices;
+var HIGH;
+var LOW;
+
+if ( isLittleEndian === true ) {
+	HIGH = 1; // second index
+	LOW = 0; // first index
+} else {
+	HIGH = 0; // first index
+	LOW = 1; // second index
+}
+indices = {
+	'HIGH': HIGH,
+	'LOW': LOW
+};
+
+
+// EXPORTS //
+
+module.exports = indices;
+
+},{"@stdlib/assert/is-little-endian":152}],269:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
+var indices = require( './indices.js' );
+
+
+// VARIABLES //
+
+var FLOAT64_VIEW = new Float64Array( 1 );
+var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
+
+var HIGH = indices.HIGH;
+var LOW = indices.LOW;
+
+
+// MAIN //
+
+/**
+* Creates a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* ## Notes
+*
+* ```text
+* float64 (64 bits)
+* f := fraction (significand/mantissa) (52 bits)
+* e := exponent (11 bits)
+* s := sign bit (1 bit)
+*
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |                                Float64                                |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |              Uint32               |               Uint32              |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* ```
+*
+* If little endian (more significant bits last):
+*
+* ```text
+*                         <-- lower      higher -->
+* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
+* ```
+*
+* If big endian (more significant bits first):
+*
+* ```text
+*                         <-- higher      lower -->
+* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
+* ```
+*
+* In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
+*
+* ## References
+*
+* -   [Open Group][1]
+*
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
+*
+* @param {uinteger32} high - higher order word (unsigned 32-bit integer)
+* @param {uinteger32} low - lower order word (unsigned 32-bit integer)
+* @returns {number} floating-point number
+*
+* @example
+* var v = fromWords( 1774486211, 2479577218 );
+* // returns 3.14e201
+*
+* @example
+* var v = fromWords( 3221823995, 1413754136 );
+* // returns -3.141592653589793
+*
+* @example
+* var v = fromWords( 0, 0 );
+* // returns 0.0
+*
+* @example
+* var v = fromWords( 2147483648, 0 );
+* // returns -0.0
+*
+* @example
+* var v = fromWords( 2146959360, 0 );
+* // returns NaN
+*
+* @example
+* var v = fromWords( 2146435072, 0 );
+* // returns Infinity
+*
+* @example
+* var v = fromWords( 4293918720, 0 );
+* // returns -Infinity
+*/
+function fromWords( high, low ) {
+	UINT32_VIEW[ HIGH ] = high;
+	UINT32_VIEW[ LOW ] = low;
+	return FLOAT64_VIEW[ 0 ];
+}
+
+
+// EXPORTS //
+
+module.exports = fromWords;
+
+},{"./indices.js":268,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14989,7 +24407,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":128}],234:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":152}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15024,14 +24442,14 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getHighWord;
+module.exports = main;
 
-},{"./main.js":235}],235:[function(require,module,exports){
+},{"./main.js":272}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15101,7 +24519,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -15125,9 +24542,9 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":233,"@stdlib/array/float64":21,"@stdlib/array/uint32":39}],236:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":128,"dup":233}],237:[function(require,module,exports){
+},{"./high.js":270,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],273:[function(require,module,exports){
+arguments[4][270][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":152,"dup":270}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15162,26 +24579,26 @@ arguments[4][233][0].apply(exports,arguments)
 * // returns 1.18350528745e-313
 *
 * @example
+* var PINF = require( '@stdlib/constants/float64/pinf' ); // => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 * var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
-* var PINF = require( '@stdlib/constants/float64/pinf' ); //  => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 *
 * var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
 *
 * // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
+* var y = setHighWord( PINF, high ); // => 0 01111111111 0000000000000000000000000000000000000000000000000000
 * // returns 1.0
 */
 
 // MODULES //
 
-var setHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setHighWord;
+module.exports = main;
 
-},{"./main.js":238}],238:[function(require,module,exports){
+},{"./main.js":275}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15251,7 +24668,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -15265,7 +24681,7 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 * @example
 * var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
 *
-* var y = setHighWord( 3.14e201, high ); //  => 0 00000000000 0000000000000000010110010011110010110101100010000010
+* var y = setHighWord( 3.14e201, high ); // => 0 00000000000 0000000000000000010110010011110010110101100010000010
 * // returns 1.18350528745e-313
 *
 * @example
@@ -15288,7 +24704,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":236,"@stdlib/array/float64":21,"@stdlib/array/uint32":39}],239:[function(require,module,exports){
+},{"./high.js":273,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15323,13 +24739,16 @@ module.exports = setHighWord;
 
 // MODULES //
 
-var float64ToFloat32 = require( './main.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-if ( typeof float64ToFloat32 !== 'function' ) {
+var float64ToFloat32;
+if ( typeof builtin === 'function' ) {
+	float64ToFloat32 = builtin;
+} else {
 	float64ToFloat32 = polyfill;
 }
 
@@ -15338,7 +24757,7 @@ if ( typeof float64ToFloat32 !== 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":240,"./polyfill.js":241}],240:[function(require,module,exports){
+},{"./main.js":277,"./polyfill.js":278}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15368,7 +24787,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],241:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15421,7 +24840,123 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":18}],242:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],279:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":280}],280:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15489,7 +25024,7 @@ function createTable( rand, table, N ) {
 
 module.exports = createTable;
 
-},{"@stdlib/math/base/assert/is-nan":205}],243:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":238}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15963,7 +25498,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./create_table.js":242,"./rand_int32.js":246,"@stdlib/array/int32":26,"@stdlib/array/to-json":33,"@stdlib/assert/has-own-property":68,"@stdlib/assert/is-boolean":94,"@stdlib/assert/is-collection":102,"@stdlib/assert/is-int32array":118,"@stdlib/assert/is-plain-object":144,"@stdlib/assert/is-positive-integer":146,"@stdlib/blas/base/gcopy":165,"@stdlib/constants/int32/max":194,"@stdlib/math/base/special/floor":223,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-nonenumerable-read-write-accessor":288}],244:[function(require,module,exports){
+},{"./create_table.js":281,"./rand_int32.js":285,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":88,"@stdlib/assert/is-boolean":114,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-int32array":142,"@stdlib/assert/is-plain-object":168,"@stdlib/assert/is-positive-integer":170,"@stdlib/blas/base/gcopy":196,"@stdlib/constants/int32/max":227,"@stdlib/math/base/special/floor":257,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-nonenumerable-read-write-accessor":331}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16009,20 +25544,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var minstd = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( minstd, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = minstd;
+module.exports = main;
 
-},{"./factory.js":243,"./main.js":245,"@stdlib/utils/define-nonenumerable-read-only-property":286}],245:[function(require,module,exports){
+},{"./factory.js":282,"./main.js":284,"@stdlib/utils/define-nonenumerable-read-only-property":329}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16102,18 +25637,15 @@ var randint32 = require( './rand_int32.js' );
 *
 * This implementation subsequently shuffles the output of a linear congruential pseudorandom number generator (LCG) using a shuffle table in accordance with the Bays-Durham algorithm.
 *
-*
 * ## Notes
 *
 * -   The generator has a period of approximately \\(2.1\mbox{e}9\\) (see [Numerical Recipes in C, 2nd Edition](#references), p. 279).
-*
 *
 * ## References
 *
 * -   Bays, Carter, and S. D. Durham. 1976. "Improving a Poor Random Number Generator." _ACM Transactions on Mathematical Software_ 2 (1). New York, NY, USA: ACM: 59–64. doi:[10.1145/355666.355670](http://dx.doi.org/10.1145/355666.355670).
 * -   Herzog, T.N., and G. Lord. 2002. _Applications of Monte Carlo Methods to Finance and Insurance_. ACTEX Publications. [https://books.google.com/books?id=vC7I\\\_gdX-A0C](https://books.google.com/books?id=vC7I\_gdX-A0C).
 * -   Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. _Numerical Recipes in C: The Art of Scientific Computing, Second Edition_. Cambridge University Press.
-*
 *
 * @function minstd
 * @type {PRNG}
@@ -16132,7 +25664,7 @@ var minstd = factory({
 
 module.exports = minstd;
 
-},{"./factory.js":243,"./rand_int32.js":246}],246:[function(require,module,exports){
+},{"./factory.js":282,"./rand_int32.js":285}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16186,7 +25718,7 @@ function randint32() {
 
 module.exports = randint32;
 
-},{"@stdlib/constants/int32/max":194,"@stdlib/math/base/special/floor":223}],247:[function(require,module,exports){
+},{"@stdlib/constants/int32/max":227,"@stdlib/math/base/special/floor":257}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16604,7 +26136,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_int32.js":250,"@stdlib/array/int32":26,"@stdlib/array/to-json":33,"@stdlib/assert/has-own-property":68,"@stdlib/assert/is-boolean":94,"@stdlib/assert/is-collection":102,"@stdlib/assert/is-int32array":118,"@stdlib/assert/is-plain-object":144,"@stdlib/assert/is-positive-integer":146,"@stdlib/blas/base/gcopy":165,"@stdlib/constants/int32/max":194,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-nonenumerable-read-write-accessor":288}],248:[function(require,module,exports){
+},{"./rand_int32.js":289,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":88,"@stdlib/assert/is-boolean":114,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-int32array":142,"@stdlib/assert/is-plain-object":168,"@stdlib/assert/is-positive-integer":170,"@stdlib/blas/base/gcopy":196,"@stdlib/constants/int32/max":227,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-nonenumerable-read-write-accessor":331}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16650,20 +26182,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var minstd = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( minstd, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = minstd;
+module.exports = main;
 
-},{"./factory.js":247,"./main.js":249,"@stdlib/utils/define-nonenumerable-read-only-property":286}],249:[function(require,module,exports){
+},{"./factory.js":286,"./main.js":288,"@stdlib/utils/define-nonenumerable-read-only-property":329}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16770,9 +26302,9 @@ var minstd = factory({
 
 module.exports = minstd;
 
-},{"./factory.js":247,"./rand_int32.js":250}],250:[function(require,module,exports){
-arguments[4][246][0].apply(exports,arguments)
-},{"@stdlib/constants/int32/max":194,"@stdlib/math/base/special/floor":223,"dup":246}],251:[function(require,module,exports){
+},{"./factory.js":286,"./rand_int32.js":289}],289:[function(require,module,exports){
+arguments[4][285][0].apply(exports,arguments)
+},{"@stdlib/constants/int32/max":227,"@stdlib/math/base/special/floor":257,"dup":285}],290:[function(require,module,exports){
 /* eslint-disable max-lines, max-len */
 
 /**
@@ -16795,7 +26327,7 @@ arguments[4][246][0].apply(exports,arguments)
 *
 * ## Notice
 *
-* The original C code and copyright notice are from the [source implementation]{@link http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/CODES/mt19937ar.c}. The implementation has been modified for JavaScript.
+* The original C code and copyright notice are from the [source implementation][mt19937]. The implementation has been modified for JavaScript.
 *
 * ```text
 * Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
@@ -16828,6 +26360,8 @@ arguments[4][246][0].apply(exports,arguments)
 * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * ```
+*
+* [mt19937]: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/CODES/mt19937ar.c
 */
 
 'use strict';
@@ -17264,7 +26798,7 @@ function factory( options ) {
 	setReadOnlyAccessor( mt19937, 'stateLength', getStateLength );
 	setReadOnlyAccessor( mt19937, 'byteLength', getStateSize );
 	setReadOnly( mt19937, 'toJSON', toJSON );
-	setReadOnly( mt19937, 'MIN', 1 );
+	setReadOnly( mt19937, 'MIN', 0 );
 	setReadOnly( mt19937, 'MAX', UINT32_MAX );
 	setReadOnly( mt19937, 'normalized', normalized );
 
@@ -17410,7 +26944,7 @@ function factory( options ) {
 	}
 
 	/**
-	* Generates a pseudorandom integer on the interval \\( [1,2^{32}-1) \\).
+	* Generates a pseudorandom integer on the interval \\( [0, 2^{32}) \\).
 	*
 	* @private
 	* @returns {uinteger32} pseudorandom integer
@@ -17447,7 +26981,7 @@ function factory( options ) {
 	}
 
 	/**
-	* Generates a pseudorandom number on the interval \\( [0,1) \\).
+	* Generates a pseudorandom number on the interval \\( [0, 1) \\).
 	*
 	* ## Notes
 	*
@@ -17472,7 +27006,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_uint32.js":254,"@stdlib/array/to-json":33,"@stdlib/array/uint32":39,"@stdlib/assert/has-own-property":68,"@stdlib/assert/is-boolean":94,"@stdlib/assert/is-collection":102,"@stdlib/assert/is-plain-object":144,"@stdlib/assert/is-positive-integer":146,"@stdlib/assert/is-uint32array":156,"@stdlib/blas/base/gcopy":165,"@stdlib/constants/float64/max-safe-integer":189,"@stdlib/constants/uint32/max":199,"@stdlib/math/base/ops/umul":209,"@stdlib/math/base/special/max":229,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-nonenumerable-read-write-accessor":288}],252:[function(require,module,exports){
+},{"./rand_uint32.js":293,"@stdlib/array/to-json":53,"@stdlib/array/uint32":59,"@stdlib/assert/has-own-property":88,"@stdlib/assert/is-boolean":114,"@stdlib/assert/is-collection":124,"@stdlib/assert/is-plain-object":168,"@stdlib/assert/is-positive-integer":170,"@stdlib/assert/is-uint32array":187,"@stdlib/blas/base/gcopy":196,"@stdlib/constants/float64/max-safe-integer":222,"@stdlib/constants/uint32/max":232,"@stdlib/math/base/ops/umul":242,"@stdlib/math/base/special/max":263,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-nonenumerable-read-write-accessor":331}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17518,20 +27052,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var mt19937 = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( mt19937, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = mt19937;
+module.exports = main;
 
-},{"./factory.js":251,"./main.js":253,"@stdlib/utils/define-nonenumerable-read-only-property":286}],253:[function(require,module,exports){
+},{"./factory.js":290,"./main.js":292,"@stdlib/utils/define-nonenumerable-read-only-property":329}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17561,11 +27095,11 @@ var randuint32 = require( './rand_uint32.js' );
 // MAIN //
 
 /**
-* Generates a pseudorandom integer on the interval \\( [1,2^{32}-1) \\).
+* Generates a pseudorandom integer on the interval \\( [0, 2^{32}) \\).
 *
 * ## Method
 *
-* -   When generating normalized double-precision floating-point numbers, we first generate two pseudorandom integers \\( x \\) and \\( y \\) on the interval \\( [1,2^{32}-1) \\) for a combined \\( 64 \\) random bits.
+* -   When generating normalized double-precision floating-point numbers, we first generate two pseudorandom integers \\( x \\) and \\( y \\) on the interval \\( [0, 2^{32}) \\) for a combined \\( 64 \\) random bits.
 *
 * -   We would like \\( 53 \\) random bits to generate a 53-bit precision integer and, thus, want to discard \\( 11 \\) of the generated bits.
 *
@@ -17613,14 +27147,12 @@ var randuint32 = require( './rand_uint32.js' );
 *
 * -   As different combinations of \\( x \\) and \\( y \\) are generated, different combinations of double-precision floating-point exponent and significand bits will be toggled, thus generating pseudorandom double-precision floating-point numbers.
 *
-*
 * ## References
 *
 * -   Matsumoto, Makoto, and Takuji Nishimura. 1998. "Mersenne Twister: A 623-dimensionally Equidistributed Uniform Pseudo-random Number Generator." _ACM Transactions on Modeling and Computer Simulation_ 8 (1). New York, NY, USA: ACM: 3–30. doi:[10.1145/272991.272995][@matsumoto:1998a].
 * -   Harase, Shin. 2017. "Conversion of Mersenne Twister to double-precision floating-point numbers." _ArXiv_ abs/1708.06018 (September). <https://arxiv.org/abs/1708.06018>.
 *
 * [@matsumoto:1998a]: https://doi.org/10.1145/272991.272995
-*
 *
 * @function mt19937
 * @type {PRNG}
@@ -17639,7 +27171,7 @@ var mt19937 = factory({
 
 module.exports = mt19937;
 
-},{"./factory.js":251,"./rand_uint32.js":254}],254:[function(require,module,exports){
+},{"./factory.js":290,"./rand_uint32.js":293}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17674,7 +27206,7 @@ var MAX = UINT32_MAX - 1;
 // MAIN //
 
 /**
-* Returns a pseudorandom integer on the interval \\([1, 2^{32}-1)\\).
+* Returns a pseudorandom integer on the interval \\( [1, 2^{32}-1) \\).
 *
 * @private
 * @returns {PositiveInteger} pseudorandom integer
@@ -17693,13 +27225,13 @@ function randuint32() {
 
 module.exports = randuint32;
 
-},{"@stdlib/constants/uint32/max":199,"@stdlib/math/base/special/floor":223}],255:[function(require,module,exports){
+},{"@stdlib/constants/uint32/max":232,"@stdlib/math/base/special/floor":257}],294:[function(require,module,exports){
 module.exports={
 	"name": "mt19937",
 	"copy": true
 }
 
-},{}],256:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17941,7 +27473,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./defaults.json":255,"./prngs.js":259,"@stdlib/array/to-json":33,"@stdlib/assert/has-own-property":68,"@stdlib/assert/is-boolean":94,"@stdlib/assert/is-plain-object":144,"@stdlib/string/format":277,"@stdlib/utils/define-nonenumerable-read-only-accessor":284,"@stdlib/utils/define-nonenumerable-read-only-property":286,"@stdlib/utils/define-nonenumerable-read-write-accessor":288}],257:[function(require,module,exports){
+},{"./defaults.json":294,"./prngs.js":298,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":88,"@stdlib/assert/is-boolean":114,"@stdlib/assert/is-plain-object":168,"@stdlib/string/format":318,"@stdlib/utils/define-nonenumerable-read-only-accessor":327,"@stdlib/utils/define-nonenumerable-read-only-property":329,"@stdlib/utils/define-nonenumerable-read-write-accessor":331}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17988,20 +27520,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var randu = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( randu, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = randu;
+module.exports = main;
 
-},{"./factory.js":256,"./main.js":258,"@stdlib/utils/define-nonenumerable-read-only-property":286}],258:[function(require,module,exports){
+},{"./factory.js":295,"./main.js":297,"@stdlib/utils/define-nonenumerable-read-only-property":329}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18047,7 +27579,7 @@ var randu = factory();
 
 module.exports = randu;
 
-},{"./factory.js":256}],259:[function(require,module,exports){
+},{"./factory.js":295}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18068,20 +27600,27 @@ module.exports = randu;
 
 'use strict';
 
+// MODULES //
+
+var minstd = require( '@stdlib/random/base/minstd' );
+var minstdShuffle = require( '@stdlib/random/base/minstd-shuffle' );
+var mt19937 = require( '@stdlib/random/base/mt19937' );
+
+
 // MAIN //
 
 var prngs = {};
 
-prngs[ 'minstd' ] = require( '@stdlib/random/base/minstd' );
-prngs[ 'minstd-shuffle' ] = require( '@stdlib/random/base/minstd-shuffle' );
-prngs[ 'mt19937' ] = require( '@stdlib/random/base/mt19937' );
+prngs[ 'minstd' ] = minstd;
+prngs[ 'minstd-shuffle' ] = minstdShuffle;
+prngs[ 'mt19937' ] = mt19937;
 
 
 // EXPORTS //
 
 module.exports = prngs;
 
-},{"@stdlib/random/base/minstd":248,"@stdlib/random/base/minstd-shuffle":244,"@stdlib/random/base/mt19937":252}],260:[function(require,module,exports){
+},{"@stdlib/random/base/minstd":287,"@stdlib/random/base/minstd-shuffle":283,"@stdlib/random/base/mt19937":291}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18131,20 +27670,20 @@ module.exports = prngs;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":261,"./regexp.js":262,"@stdlib/utils/define-nonenumerable-read-only-property":286}],261:[function(require,module,exports){
+},{"./main.js":300,"./regexp.js":301,"@stdlib/utils/define-nonenumerable-read-only-property":329}],300:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18200,7 +27739,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],262:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18262,7 +27801,110 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":261}],263:[function(require,module,exports){
+},{"./main.js":300}],302:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Reinterpret a `BooleanArray` as a `Uint8Array`.
+*
+* @module @stdlib/strided/base/reinterpret-boolean
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+* var reinterpret = require( '@stdlib/strided/base/reinterpret-boolean' );
+*
+* var x = new BooleanArray( 10 );
+*
+* var out = reinterpret( x, 0 );
+* // returns <Uint8Array>
+*
+* var bool = ( out.buffer === x.buffer );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":303}],303:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Uint8Array = require( '@stdlib/array/uint8' );
+
+
+// MAIN //
+
+/**
+* Reinterprets a `BooleanArray` as a `Uint8Array`.
+*
+* @param {BooleanArray} x - input array
+* @param {NonNegativeInteger} offset - starting index
+* @returns {Uint8Array} `Uint8Array` view
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var x = new BooleanArray( 10 );
+*
+* var out = reinterpret( x, 0 );
+* // returns <Uint8Array>
+*
+* var bool = ( out.buffer === x.buffer );
+* // returns true
+*/
+function reinterpret( x, offset ) {
+	return new Uint8Array( x.buffer, x.byteOffset+(x.BYTES_PER_ELEMENT*offset), x.length-offset ); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = reinterpret;
+
+},{"@stdlib/array/uint8":62}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18310,7 +27952,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":264}],264:[function(require,module,exports){
+},{"./main.js":305}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18365,7 +28007,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":21}],265:[function(require,module,exports){
+},{"@stdlib/array/float64":40}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18413,7 +28055,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":266}],266:[function(require,module,exports){
+},{"./main.js":307}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18468,7 +28110,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":18}],267:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18554,7 +28196,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -18581,7 +28223,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":270}],268:[function(require,module,exports){
+},{"./is_number.js":311}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18698,7 +28340,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":270,"./zero_pad.js":274}],269:[function(require,module,exports){
+},{"./is_number.js":311,"./zero_pad.js":315}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18734,14 +28376,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":272}],270:[function(require,module,exports){
+},{"./main.js":313}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18789,7 +28431,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],271:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18833,7 +28475,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],272:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18866,11 +28508,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -19001,6 +28661,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -19009,9 +28670,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -19050,7 +28709,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":267,"./format_integer.js":268,"./is_string.js":271,"./space_pad.js":273,"./zero_pad.js":274}],273:[function(require,module,exports){
+},{"./format_double.js":308,"./format_integer.js":309,"./is_string.js":312,"./space_pad.js":314,"./zero_pad.js":315}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19117,7 +28776,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],274:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19203,7 +28862,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],275:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19239,14 +28898,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":276}],276:[function(require,module,exports){
+},{"./main.js":317}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19338,7 +28997,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],277:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19376,16 +29035,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":279}],278:[function(require,module,exports){
-arguments[4][271][0].apply(exports,arguments)
-},{"dup":271}],279:[function(require,module,exports){
+},{"./main.js":320}],319:[function(require,module,exports){
+arguments[4][312][0].apply(exports,arguments)
+},{"dup":312}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19433,18 +29092,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -19454,7 +29110,79 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":278,"@stdlib/string/base/format-interpolate":269,"@stdlib/string/base/format-tokenize":275}],280:[function(require,module,exports){
+},{"./is_string.js":319,"@stdlib/string/base/format-interpolate":310,"@stdlib/string/base/format-tokenize":316}],321:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":322}],322:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19524,14 +29252,14 @@ module.exports = format;
 
 // MAIN //
 
-var IteratorSymbol = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = IteratorSymbol;
+module.exports = main;
 
-},{"./main.js":281}],281:[function(require,module,exports){
+},{"./main.js":324}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19612,7 +29340,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":66}],282:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":86}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19653,14 +29381,14 @@ module.exports = IteratorSymbol;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":283}],283:[function(require,module,exports){
+},{"./main.js":326}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19742,7 +29470,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":100,"@stdlib/regexp/function-name":260,"@stdlib/utils/native-class":309}],284:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":122,"@stdlib/regexp/function-name":299,"@stdlib/utils/native-class":351}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19788,14 +29516,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnlyAccessor = require( './main.js' ); // eslint-disable-line id-length
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnlyAccessor;
+module.exports = main;
 
-},{"./main.js":285}],285:[function(require,module,exports){
+},{"./main.js":328}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19858,7 +29586,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":293}],286:[function(require,module,exports){
+},{"@stdlib/utils/define-property":336}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19900,14 +29628,14 @@ module.exports = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":287}],287:[function(require,module,exports){
+},{"./main.js":330}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19967,7 +29695,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":293}],288:[function(require,module,exports){
+},{"@stdlib/utils/define-property":336}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20020,14 +29748,14 @@ module.exports = setNonEnumerableReadOnly;
 
 // MODULES //
 
-var setNonEnumerableReadWriteAccessor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadWriteAccessor;
+module.exports = main;
 
-},{"./main.js":289}],289:[function(require,module,exports){
+},{"./main.js":332}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20099,7 +29827,7 @@ function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // esl
 
 module.exports = setNonEnumerableReadWriteAccessor;
 
-},{"@stdlib/utils/define-property":293}],290:[function(require,module,exports){
+},{"@stdlib/utils/define-property":336}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20162,7 +29890,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],291:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20192,7 +29920,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],292:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20245,7 +29973,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":291}],293:[function(require,module,exports){
+},{"./define_property.js":334}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20305,7 +30033,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":290,"./has_define_property_support.js":292,"./polyfill.js":294}],294:[function(require,module,exports){
+},{"./builtin.js":333,"./has_define_property_support.js":335,"./polyfill.js":337}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20429,7 +30157,55 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":277}],295:[function(require,module,exports){
+},{"@stdlib/string/format":318}],338:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the name of a function.
+*
+* @module @stdlib/utils/function-name
+*
+* @example
+* var functionName = require( '@stdlib/utils/function-name' );
+*
+* var v = functionName( String );
+* // returns 'String'
+*
+* v = functionName( function foo(){} );
+* // returns 'foo'
+*
+* v = functionName( function(){} );
+* // returns '' || 'anonymous'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":339}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20504,55 +30280,7 @@ function functionName( fcn ) {
 
 module.exports = functionName;
 
-},{"@stdlib/assert/has-function-name-support":55,"@stdlib/assert/is-function":114,"@stdlib/regexp/function-name":260,"@stdlib/string/format":277}],296:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the name of a function.
-*
-* @module @stdlib/utils/function-name
-*
-* @example
-* var functionName = require( '@stdlib/utils/function-name' );
-*
-* var v = functionName( String );
-* // returns 'String'
-*
-* v = functionName( function foo(){} );
-* // returns 'foo'
-*
-* v = functionName( function(){} );
-* // returns '' || 'anonymous'
-*/
-
-// MODULES //
-
-var functionName = require( './function_name.js' );
-
-
-// EXPORTS //
-
-module.exports = functionName;
-
-},{"./function_name.js":295}],297:[function(require,module,exports){
+},{"@stdlib/assert/has-function-name-support":75,"@stdlib/assert/is-function":138,"@stdlib/regexp/function-name":299,"@stdlib/string/format":318}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20594,63 +30322,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":300,"./polyfill.js":301,"@stdlib/assert/is-function":114}],298:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":297}],299:[function(require,module,exports){
+},{"./native.js":343,"./polyfill.js":344,"@stdlib/assert/is-function":138}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20685,14 +30357,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":298}],300:[function(require,module,exports){
+},{"./main.js":342}],342:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":340,"@stdlib/object/ctor":279}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20722,7 +30451,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],301:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20779,7 +30508,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":302,"@stdlib/utils/native-class":309}],302:[function(require,module,exports){
+},{"./proto.js":345,"@stdlib/utils/native-class":351}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20817,7 +30546,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],303:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":347,"./global_this.js":348,"./self.js":349,"./window.js":350,"@stdlib/assert/is-boolean":114,"@stdlib/string/format":318}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20847,7 +30657,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -20855,12 +30665,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],304:[function(require,module,exports){
-(function (global){(function (){
+},{}],348:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20879,137 +30688,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],305:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":306}],306:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":303,"./global.js":304,"./self.js":307,"./window.js":308,"@stdlib/assert/is-boolean":94,"@stdlib/string/format":277}],307:[function(require,module,exports){
+},{}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21039,7 +30725,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],308:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21069,7 +30755,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],309:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21114,25 +30800,25 @@ module.exports = obj;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":310,"./polyfill.js":311,"@stdlib/assert/has-tostringtag-support":72}],310:[function(require,module,exports){
+},{"./main.js":352,"./polyfill.js":353,"@stdlib/assert/has-tostringtag-support":92}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21190,7 +30876,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":312}],311:[function(require,module,exports){
+},{"./tostring.js":354}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21273,7 +30959,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":312,"./tostringtag.js":313,"@stdlib/assert/has-own-property":68}],312:[function(require,module,exports){
+},{"./tostring.js":354,"./tostringtag.js":355,"@stdlib/assert/has-own-property":88}],354:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21303,7 +30989,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],313:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21324,6 +31010,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -21333,7 +31024,113 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],314:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":321}],356:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Wrap `require` in a try/catch block.
+*
+* @module @stdlib/utils/try-require
+*
+* @example
+* var tryRequire = require( '@stdlib/utils/try-require' );
+*
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.log( out.message );
+* }
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":357}],357:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isError = require( '@stdlib/assert/is-error' );
+
+
+// MAIN //
+
+/**
+* Wraps `require` in a try/catch block.
+*
+* @param {string} id - module id
+* @returns {*|Error} `module.exports` of the resolved module or an error
+*
+* @example
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.error( out.message );
+* }
+*/
+function tryRequire( id ) {
+	try {
+		return require( id ); // eslint-disable-line stdlib/no-dynamic-require
+	} catch ( error ) {
+		if ( isError( error ) ) {
+			return error;
+		}
+		// Handle case where a literal is thrown...
+		if ( typeof error === 'object' ) {
+			return new Error( JSON.stringify( error ) );
+		}
+		return new Error( error.toString() );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = tryRequire;
+
+},{"@stdlib/assert/is-error":132}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21390,7 +31187,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":315,"./fixtures/re.js":316,"./fixtures/typedarray.js":317}],315:[function(require,module,exports){
+},{"./fixtures/nodelist.js":359,"./fixtures/re.js":360,"./fixtures/typedarray.js":361}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21426,7 +31223,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":305}],316:[function(require,module,exports){
+},{"@stdlib/utils/global":346}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21454,7 +31251,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],317:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21482,7 +31279,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],318:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21521,63 +31318,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":314,"./polyfill.js":319,"./typeof.js":320}],319:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":282}],320:[function(require,module,exports){
+},{"./check.js":358,"./main.js":363,"./polyfill.js":364}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21655,7 +31409,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":282}],321:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":325}],364:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":325}],365:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -21807,11 +31604,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],322:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 
-},{}],323:[function(require,module,exports){
-arguments[4][322][0].apply(exports,arguments)
-},{"dup":322}],324:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
+arguments[4][366][0].apply(exports,arguments)
+},{"dup":366}],368:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -23592,7 +33389,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":321,"buffer":324,"ieee754":412}],325:[function(require,module,exports){
+},{"base64-js":365,"buffer":368,"ieee754":471}],369:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -24091,7 +33888,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],326:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -24624,7 +34421,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":418}],327:[function(require,module,exports){
+},{"_process":478}],371:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -24755,7 +34552,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":325,"inherits":413,"readable-stream/lib/_stream_duplex.js":329,"readable-stream/lib/_stream_passthrough.js":330,"readable-stream/lib/_stream_readable.js":331,"readable-stream/lib/_stream_transform.js":332,"readable-stream/lib/_stream_writable.js":333,"readable-stream/lib/internal/streams/end-of-stream.js":337,"readable-stream/lib/internal/streams/pipeline.js":339}],328:[function(require,module,exports){
+},{"events":369,"inherits":472,"readable-stream/lib/_stream_duplex.js":373,"readable-stream/lib/_stream_passthrough.js":374,"readable-stream/lib/_stream_readable.js":375,"readable-stream/lib/_stream_transform.js":376,"readable-stream/lib/_stream_writable.js":377,"readable-stream/lib/internal/streams/end-of-stream.js":381,"readable-stream/lib/internal/streams/pipeline.js":383}],372:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -24884,7 +34681,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],329:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -25026,7 +34823,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":331,"./_stream_writable":333,"_process":418,"inherits":413}],330:[function(require,module,exports){
+},{"./_stream_readable":375,"./_stream_writable":377,"_process":478,"inherits":472}],374:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25066,7 +34863,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":332,"inherits":413}],331:[function(require,module,exports){
+},{"./_stream_transform":376,"inherits":472}],375:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -26193,7 +35990,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":328,"./_stream_duplex":329,"./internal/streams/async_iterator":334,"./internal/streams/buffer_list":335,"./internal/streams/destroy":336,"./internal/streams/from":338,"./internal/streams/state":340,"./internal/streams/stream":341,"_process":418,"buffer":324,"events":325,"inherits":413,"string_decoder/":425,"util":322}],332:[function(require,module,exports){
+},{"../errors":372,"./_stream_duplex":373,"./internal/streams/async_iterator":378,"./internal/streams/buffer_list":379,"./internal/streams/destroy":380,"./internal/streams/from":382,"./internal/streams/state":384,"./internal/streams/stream":385,"_process":478,"buffer":368,"events":369,"inherits":472,"string_decoder/":487,"util":366}],376:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -26395,7 +36192,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":328,"./_stream_duplex":329,"inherits":413}],333:[function(require,module,exports){
+},{"../errors":372,"./_stream_duplex":373,"inherits":472}],377:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -27095,7 +36892,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":328,"./_stream_duplex":329,"./internal/streams/destroy":336,"./internal/streams/state":340,"./internal/streams/stream":341,"_process":418,"buffer":324,"inherits":413,"util-deprecate":434}],334:[function(require,module,exports){
+},{"../errors":372,"./_stream_duplex":373,"./internal/streams/destroy":380,"./internal/streams/state":384,"./internal/streams/stream":385,"_process":478,"buffer":368,"inherits":472,"util-deprecate":496}],378:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -27305,7 +37102,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":337,"_process":418}],335:[function(require,module,exports){
+},{"./end-of-stream":381,"_process":478}],379:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -27516,7 +37313,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":324,"util":322}],336:[function(require,module,exports){
+},{"buffer":368,"util":366}],380:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -27624,7 +37421,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":418}],337:[function(require,module,exports){
+},{"_process":478}],381:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -27729,12 +37526,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":328}],338:[function(require,module,exports){
+},{"../../../errors":372}],382:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],339:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -27832,7 +37629,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":328,"./end-of-stream":337}],340:[function(require,module,exports){
+},{"../../../errors":372,"./end-of-stream":381}],384:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -27860,10 +37657,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":328}],341:[function(require,module,exports){
+},{"../../../errors":372}],385:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":325}],342:[function(require,module,exports){
+},{"events":369}],386:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -27880,43 +37677,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":343,"get-intrinsic":407}],343:[function(require,module,exports){
+},{"./":387,"get-intrinsic":462}],387:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -27929,7 +37714,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":406,"get-intrinsic":407}],344:[function(require,module,exports){
+},{"es-define-property":447,"es-errors/type":453,"function-bind":461,"get-intrinsic":462,"set-function-length":482}],388:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -28025,7 +37810,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":345,"./lib/keys.js":346}],345:[function(require,module,exports){
+},{"./lib/is_arguments.js":389,"./lib/keys.js":390}],389:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -28047,7 +37832,7 @@ function unsupported(object){
     false;
 };
 
-},{}],346:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -28058,7 +37843,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],347:[function(require,module,exports){
+},{}],391:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":447,"es-errors/syntax":452,"es-errors/type":453,"gopd":463}],392:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -28066,29 +37909,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -28107,14 +37950,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":408,"object-keys":416}],348:[function(require,module,exports){
+},{"define-data-property":391,"has-property-descriptors":464,"object-keys":476}],393:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],349:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -28153,13 +37996,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":379,"./ToPrimitive":381,"./Type":386}],350:[function(require,module,exports){
+},{"./ToNumber":425,"./ToPrimitive":427,"./Type":432}],395:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -28167,13 +38010,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -28185,7 +38027,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -28218,28 +38060,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":395,"../helpers/isNaN":397,"../helpers/isPrefixOf":398,"./ToNumber":379,"./ToPrimitive":381,"./Type":386,"get-intrinsic":407}],351:[function(require,module,exports){
+},{"../helpers/isFinite":440,"../helpers/isNaN":441,"../helpers/isPrefixOf":442,"./ToNumber":425,"./ToPrimitive":427,"es-errors/type":453,"get-intrinsic":462}],396:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":386,"es-errors/type":453}],397:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":407}],352:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":455}],398:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -28290,7 +38165,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":355,"./InLeapYear":359,"./MonthFromTime":369,"get-intrinsic":407}],353:[function(require,module,exports){
+},{"./DayWithinYear":401,"./InLeapYear":405,"./MonthFromTime":415,"es-errors/eval":448}],399:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -28303,7 +38178,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":402,"./floor":390}],354:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./floor":436}],400:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -28315,7 +38190,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":390}],355:[function(require,module,exports){
+},{"./floor":436}],401:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -28328,7 +38203,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":353,"./DayFromYear":354,"./YearFromTime":388}],356:[function(require,module,exports){
+},{"./Day":399,"./DayFromYear":400,"./YearFromTime":434}],402:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -28348,18 +38223,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":391}],357:[function(require,module,exports){
+},{"./modulo":437}],403:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -28368,7 +38240,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -28389,7 +38263,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":394,"./IsAccessorDescriptor":360,"./IsDataDescriptor":362,"./Type":386,"get-intrinsic":407}],358:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":444,"./IsAccessorDescriptor":406,"./IsDataDescriptor":408,"es-errors/type":453}],404:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -28405,12 +38279,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":402,"./floor":390,"./modulo":391}],359:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./floor":436,"./modulo":437}],405:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -28428,14 +38300,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":356,"./YearFromTime":388,"get-intrinsic":407}],360:[function(require,module,exports){
+},{"./DaysInYear":402,"./YearFromTime":434,"es-errors/eval":448}],406:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -28444,30 +38316,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":394,"./Type":386,"has":411}],361:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":444,"es-errors/type":453,"hasown":470}],407:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":414}],362:[function(require,module,exports){
+},{"is-callable":473}],408:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -28476,23 +38350,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":394,"./Type":386,"has":411}],363:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":444,"es-errors/type":453,"hasown":470}],409:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -28501,7 +38378,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -28510,28 +38389,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":394,"./IsAccessorDescriptor":360,"./IsDataDescriptor":362,"./Type":386}],364:[function(require,module,exports){
+},{"./IsAccessorDescriptor":406,"./IsDataDescriptor":408,"./IsPropertyDescriptor":410,"es-errors/type":453}],410:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":399,"./IsAccessorDescriptor":360,"./IsDataDescriptor":362,"./Type":386}],365:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":444}],411:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -28546,7 +38417,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":395,"../helpers/timeConstants":402}],366:[function(require,module,exports){
+},{"../helpers/isFinite":440,"../helpers/timeConstants":446}],412:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -28581,7 +38452,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":395,"./DateFromTime":352,"./Day":353,"./MonthFromTime":369,"./ToInteger":378,"./YearFromTime":388,"./floor":390,"./modulo":391,"get-intrinsic":407}],367:[function(require,module,exports){
+},{"../helpers/isFinite":440,"./DateFromTime":398,"./Day":399,"./MonthFromTime":415,"./ToInteger":424,"./YearFromTime":434,"./floor":436,"./modulo":437,"get-intrinsic":462}],413:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -28606,7 +38477,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":395,"../helpers/timeConstants":402,"./ToInteger":378}],368:[function(require,module,exports){
+},{"../helpers/isFinite":440,"../helpers/timeConstants":446,"./ToInteger":424}],414:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -28622,7 +38493,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":402,"./floor":390,"./modulo":391}],369:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./floor":436,"./modulo":437}],415:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -28671,7 +38542,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":355,"./InLeapYear":359}],370:[function(require,module,exports){
+},{"./DayWithinYear":401,"./InLeapYear":405}],416:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -28686,7 +38557,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":397}],371:[function(require,module,exports){
+},{"../helpers/isNaN":441}],417:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -28702,7 +38573,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":402,"./floor":390,"./modulo":391}],372:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./floor":436,"./modulo":437}],418:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -28721,7 +38592,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":386}],373:[function(require,module,exports){
+},{"./Type":432}],419:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -28744,7 +38615,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":395,"./ToNumber":379,"./abs":389,"get-intrinsic":407}],374:[function(require,module,exports){
+},{"../helpers/isFinite":440,"./ToNumber":425,"./abs":435,"get-intrinsic":462}],420:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -28757,7 +38628,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":402,"./DayFromYear":354}],375:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./DayFromYear":400}],421:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -28771,14 +38642,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":402,"./modulo":391}],376:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./modulo":437}],422:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],377:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -28789,7 +38660,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":379}],378:[function(require,module,exports){
+},{"./ToNumber":425}],424:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -28809,10 +38680,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":395,"../helpers/isNaN":397,"../helpers/sign":401,"./ToNumber":379,"./abs":389,"./floor":390}],379:[function(require,module,exports){
+},{"../helpers/isFinite":440,"../helpers/isNaN":441,"../helpers/sign":445,"./ToNumber":425,"./abs":435,"./floor":436}],425:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -28822,46 +38701,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":381}],380:[function(require,module,exports){
+},{"./ToPrimitive":427,"call-bind/callBound":386,"safe-regex-test":481}],426:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":351,"get-intrinsic":407}],381:[function(require,module,exports){
+},{"es-object-atoms/ToObject":456}],427:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":403}],382:[function(require,module,exports){
+},{"es-to-primitive/es5":458}],428:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -28875,26 +38747,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -28902,13 +38774,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":361,"./ToBoolean":376,"./Type":386,"get-intrinsic":407,"has":411}],383:[function(require,module,exports){
+},{"./IsCallable":407,"./ToBoolean":422,"./Type":432,"es-errors/type":453,"hasown":470}],429:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -28922,7 +38794,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":407}],384:[function(require,module,exports){
+},{"get-intrinsic":462}],430:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -28943,7 +38815,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":395,"../helpers/isNaN":397,"../helpers/sign":401,"./ToNumber":379,"./abs":389,"./floor":390,"./modulo":391}],385:[function(require,module,exports){
+},{"../helpers/isFinite":440,"../helpers/isNaN":441,"../helpers/sign":445,"./ToNumber":425,"./abs":435,"./floor":436,"./modulo":437}],431:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -28954,7 +38826,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":379}],386:[function(require,module,exports){
+},{"./ToNumber":425}],432:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -28980,7 +38852,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],387:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -28992,7 +38864,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":353,"./modulo":391}],388:[function(require,module,exports){
+},{"./Day":399,"./modulo":437}],434:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -29010,7 +38882,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":342,"get-intrinsic":407}],389:[function(require,module,exports){
+},{"call-bind/callBound":386,"get-intrinsic":462}],435:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -29023,7 +38895,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":407}],390:[function(require,module,exports){
+},{"get-intrinsic":462}],436:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -29036,7 +38908,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],391:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -29047,7 +38919,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":400}],392:[function(require,module,exports){
+},{"../helpers/mod":443}],438:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -29060,7 +38932,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":402,"./modulo":391}],393:[function(require,module,exports){
+},{"../helpers/timeConstants":446,"./modulo":437}],439:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -29071,6 +38943,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -29113,90 +38986,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":349,"./5/AbstractRelationalComparison":350,"./5/CheckObjectCoercible":351,"./5/DateFromTime":352,"./5/Day":353,"./5/DayFromYear":354,"./5/DayWithinYear":355,"./5/DaysInYear":356,"./5/FromPropertyDescriptor":357,"./5/HourFromTime":358,"./5/InLeapYear":359,"./5/IsAccessorDescriptor":360,"./5/IsCallable":361,"./5/IsDataDescriptor":362,"./5/IsGenericDescriptor":363,"./5/IsPropertyDescriptor":364,"./5/MakeDate":365,"./5/MakeDay":366,"./5/MakeTime":367,"./5/MinFromTime":368,"./5/MonthFromTime":369,"./5/SameValue":370,"./5/SecFromTime":371,"./5/StrictEqualityComparison":372,"./5/TimeClip":373,"./5/TimeFromYear":374,"./5/TimeWithinDay":375,"./5/ToBoolean":376,"./5/ToInt32":377,"./5/ToInteger":378,"./5/ToNumber":379,"./5/ToObject":380,"./5/ToPrimitive":381,"./5/ToPropertyDescriptor":382,"./5/ToString":383,"./5/ToUint16":384,"./5/ToUint32":385,"./5/Type":386,"./5/WeekDay":387,"./5/YearFromTime":388,"./5/abs":389,"./5/floor":390,"./5/modulo":391,"./5/msFromTime":392}],394:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":394,"./5/AbstractRelationalComparison":395,"./5/Canonicalize":396,"./5/CheckObjectCoercible":397,"./5/DateFromTime":398,"./5/Day":399,"./5/DayFromYear":400,"./5/DayWithinYear":401,"./5/DaysInYear":402,"./5/FromPropertyDescriptor":403,"./5/HourFromTime":404,"./5/InLeapYear":405,"./5/IsAccessorDescriptor":406,"./5/IsCallable":407,"./5/IsDataDescriptor":408,"./5/IsGenericDescriptor":409,"./5/IsPropertyDescriptor":410,"./5/MakeDate":411,"./5/MakeDay":412,"./5/MakeTime":413,"./5/MinFromTime":414,"./5/MonthFromTime":415,"./5/SameValue":416,"./5/SecFromTime":417,"./5/StrictEqualityComparison":418,"./5/TimeClip":419,"./5/TimeFromYear":420,"./5/TimeWithinDay":421,"./5/ToBoolean":422,"./5/ToInt32":423,"./5/ToInteger":424,"./5/ToNumber":425,"./5/ToObject":426,"./5/ToPrimitive":427,"./5/ToPropertyDescriptor":428,"./5/ToString":429,"./5/ToUint16":430,"./5/ToUint32":431,"./5/Type":432,"./5/WeekDay":433,"./5/YearFromTime":434,"./5/abs":435,"./5/floor":436,"./5/modulo":437,"./5/msFromTime":438}],440:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":396,"get-intrinsic":407,"has":411}],395:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],396:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":411}],397:[function(require,module,exports){
+},{"./isNaN":441}],441:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],398:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -29211,40 +39015,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":342}],399:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":407,"has":411}],400:[function(require,module,exports){
+},{"call-bind/callBound":386}],443:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -29254,14 +39025,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],401:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":453,"hasown":470}],445:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],402:[function(require,module,exports){
+},{}],446:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -29282,7 +39091,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],403:[function(require,module,exports){
+},{}],447:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":462}],448:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],449:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],450:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],451:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],452:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],453:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],454:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],455:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":453}],456:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":457,"./RequireObjectCoercible":455}],457:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],458:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -29329,56 +39229,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":404,"is-callable":414}],404:[function(require,module,exports){
+},{"./helpers/isPrimitive":459,"is-callable":473}],459:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],405:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -29390,21 +39322,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],406:[function(require,module,exports){
+},{}],461:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":405}],407:[function(require,module,exports){
+},{"./implementation":460}],462:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -29443,18 +39381,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -29462,6 +39406,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -29469,9 +39415,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -29482,10 +39428,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -29493,15 +39439,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -29511,11 +39457,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -29532,7 +39488,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -29543,6 +39499,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -29597,11 +39554,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -29657,6 +39615,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -29729,29 +39690,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":406,"has":411,"has-symbols":409}],408:[function(require,module,exports){
+},{"es-errors":449,"es-errors/eval":448,"es-errors/range":450,"es-errors/ref":451,"es-errors/syntax":452,"es-errors/type":453,"es-errors/uri":454,"function-bind":461,"has-proto":465,"has-symbols":466,"hasown":470}],463:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":462}],464:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -29764,7 +39732,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":407}],409:[function(require,module,exports){
+},{"es-define-property":447}],465:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],466:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -29779,7 +39764,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":410}],410:[function(require,module,exports){
+},{"./shams":467}],467:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -29823,14 +39808,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],411:[function(require,module,exports){
+},{}],468:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":467}],469:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":406}],412:[function(require,module,exports){
+},{"function-bind":461}],470:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":461}],471:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -29917,7 +39922,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],413:[function(require,module,exports){
+},{}],472:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -29946,7 +39951,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],414:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -29992,37 +39997,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],415:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":386,"has-tostringtag/shams":468}],475:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -30146,7 +40238,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":417}],416:[function(require,module,exports){
+},{"./isArguments":477}],476:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -30180,7 +40272,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":415,"./isArguments":417}],417:[function(require,module,exports){
+},{"./implementation":475,"./isArguments":477}],477:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -30199,7 +40291,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],418:[function(require,module,exports){
+},{}],478:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -30385,7 +40477,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],419:[function(require,module,exports){
+},{}],479:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -30418,7 +40510,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":418,"through":432,"timers":433}],420:[function(require,module,exports){
+},{"_process":478,"through":494,"timers":495}],480:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -30485,7 +40577,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":324}],421:[function(require,module,exports){
+},{"buffer":368}],481:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":386,"es-errors/type":453,"is-regex":474}],482:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":391,"es-errors/type":453,"get-intrinsic":462,"gopd":463,"has-property-descriptors":464}],483:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -30500,7 +40654,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":393,"function-bind":406}],422:[function(require,module,exports){
+},{"es-abstract/es5":439,"function-bind":461}],484:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -30520,7 +40674,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":421,"./polyfill":423,"./shim":424,"define-properties":347,"function-bind":406}],423:[function(require,module,exports){
+},{"./implementation":483,"./polyfill":485,"./shim":486,"define-properties":392,"function-bind":461}],485:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -30534,7 +40688,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":421}],424:[function(require,module,exports){
+},{"./implementation":483}],486:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -30546,7 +40700,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":423,"define-properties":347}],425:[function(require,module,exports){
+},{"./polyfill":485,"define-properties":392}],487:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -30843,7 +40997,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":420}],426:[function(require,module,exports){
+},{"safe-buffer":480}],488:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -30997,7 +41151,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":427,"./lib/results":429,"./lib/test":430,"_process":418,"defined":348,"through":432,"timers":433}],427:[function(require,module,exports){
+},{"./lib/default_stream":489,"./lib/results":491,"./lib/test":492,"_process":478,"defined":393,"through":494,"timers":495}],489:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -31032,7 +41186,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":418,"fs":323,"through":432}],428:[function(require,module,exports){
+},{"_process":478,"fs":367,"through":494}],490:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -31040,7 +41194,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":418,"timers":433}],429:[function(require,module,exports){
+},{"_process":478,"timers":495}],491:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -31231,7 +41385,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":418,"events":325,"function-bind":406,"has":411,"inherits":413,"object-inspect":431,"resumer":419,"through":432,"timers":433}],430:[function(require,module,exports){
+},{"_process":478,"events":369,"function-bind":461,"has":469,"inherits":472,"object-inspect":493,"resumer":479,"through":494,"timers":495}],492:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -31732,7 +41886,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":428,"deep-equal":344,"defined":348,"events":325,"has":411,"inherits":413,"path":326,"string.prototype.trim":422}],431:[function(require,module,exports){
+},{"./next_tick":490,"deep-equal":388,"defined":393,"events":369,"has":469,"inherits":472,"path":370,"string.prototype.trim":484}],493:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -31926,7 +42080,7 @@ function inspectString (str) {
     }
 }
 
-},{}],432:[function(require,module,exports){
+},{}],494:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -32038,7 +42192,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":418,"stream":327}],433:[function(require,module,exports){
+},{"_process":478,"stream":371}],495:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -32117,7 +42271,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":418,"timers":433}],434:[function(require,module,exports){
+},{"process/browser.js":478,"timers":495}],496:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -32188,4 +42342,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[219]);
+},{}]},{},[252,253]);

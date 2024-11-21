@@ -294,16 +294,40 @@ module.exports = zeros;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],6:[function(require,module,exports){
+},{"./main.js":6,"./polyfill.js":7,"@stdlib/assert/has-float64array-support":18}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -324,40 +348,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":5,"./polyfill.js":7,"@stdlib/assert/has-float64array-support":18}],7:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -432,7 +432,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -450,7 +450,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":9,"./uint16array.js":10,"@stdlib/assert/has-uint16array-support":26}],9:[function(require,module,exports){
+},{"./main.js":9,"./polyfill.js":10,"@stdlib/assert/has-uint16array-support":26}],9:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -489,36 +519,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],10:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -555,7 +555,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -573,7 +573,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":12,"./uint32array.js":13,"@stdlib/assert/has-uint32array-support":29}],12:[function(require,module,exports){
+},{"./main.js":12,"./polyfill.js":13,"@stdlib/assert/has-uint32array-support":29}],12:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],13:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -612,36 +642,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],13:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -678,7 +678,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -696,7 +696,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":15,"./uint8array.js":16,"@stdlib/assert/has-uint8array-support":32}],15:[function(require,module,exports){
+},{"./main.js":15,"./polyfill.js":16,"@stdlib/assert/has-uint8array-support":32}],15:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -734,36 +764,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],16:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],17:[function(require,module,exports){
 /**
@@ -945,12 +945,12 @@ module.exports = hasFloat64ArraySupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":21}],21:[function(require,module,exports){
 /**
@@ -1053,12 +1053,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":23}],23:[function(require,module,exports){
 /**
@@ -1139,12 +1139,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":25}],25:[function(require,module,exports){
 /**
@@ -1308,7 +1308,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":28,"@stdlib/assert/is-uint16array":40,"@stdlib/constants/uint16/max":60}],28:[function(require,module,exports){
+},{"./uint16array.js":28,"@stdlib/assert/is-uint16array":40,"@stdlib/constants/uint16/max":64}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1449,7 +1449,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":31,"@stdlib/assert/is-uint32array":42,"@stdlib/constants/uint32/max":61}],31:[function(require,module,exports){
+},{"./uint32array.js":31,"@stdlib/assert/is-uint32array":42,"@stdlib/constants/uint32/max":65}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1590,7 +1590,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":34,"@stdlib/assert/is-uint8array":44,"@stdlib/constants/uint8/max":62}],34:[function(require,module,exports){
+},{"./uint8array.js":34,"@stdlib/assert/is-uint8array":44,"@stdlib/constants/uint8/max":66}],34:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1724,7 +1724,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":158}],37:[function(require,module,exports){
+},{"@stdlib/utils/native-class":184}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1982,7 +1982,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":158}],42:[function(require,module,exports){
+},{"@stdlib/utils/native-class":184}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2086,7 +2086,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":158}],44:[function(require,module,exports){
+},{"@stdlib/utils/native-class":184}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2190,7 +2190,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":158}],46:[function(require,module,exports){
+},{"@stdlib/utils/native-class":184}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2364,6 +2364,64 @@ module.exports = FLOAT64_EXPONENT_BIAS;
 /**
 * @license Apache-2.0
 *
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-abs-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for excluding the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483647 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 11111111111 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x7fffffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_ABS_MASK = 0x7fffffff>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_ABS_MASK;
+
+},{}],50:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
 * Copyright (c) 2018 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2418,7 +2476,123 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-sign-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+* // returns 2147483648
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483648 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 1 00000000000 00000000000000000000
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x80000000
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGN_MASK = 0x80000000>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGN_MASK;
+
+},{}],52:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-significand-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+* // returns 1048575
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the significand of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 1048575 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 00000000000 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x000fffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
+
+},{}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2471,7 +2645,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],51:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2527,7 +2701,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],52:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2583,7 +2757,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],53:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2639,7 +2813,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2701,7 +2875,56 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":124}],55:[function(require,module,exports){
+},{"@stdlib/number/ctor":128}],58:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/num-high-word-significand-bits
+* @type {integer32}
+*
+* @example
+* var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
+* // returns 20
+*/
+
+
+// MAIN //
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @constant
+* @type {integer32}
+* @default 20
+*/
+var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = 20|0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS;
+
+},{}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2751,7 +2974,7 @@ var PI = 3.141592653589793238462643383279502884197169399375105820974944592307816
 
 module.exports = PI;
 
-},{}],56:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2809,7 +3032,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],57:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2873,7 +3096,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],58:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2923,7 +3146,7 @@ var SQRT_TWO_PI = 2.506628274631000502415765284811045253e+00;
 
 module.exports = SQRT_TWO_PI;
 
-},{}],59:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2976,7 +3199,7 @@ var SQRT2 = 1.414213562373095048801688724209698078569671875376948073176679737990
 
 module.exports = SQRT2;
 
-},{}],60:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3039,7 +3262,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],61:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3102,7 +3325,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],62:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3165,7 +3388,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],63:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3209,14 +3432,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":64}],64:[function(require,module,exports){
+},{"./main.js":68}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3275,7 +3498,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":67}],65:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":71}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3319,14 +3542,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInfinite = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInfinite;
+module.exports = main;
 
-},{"./main.js":66}],66:[function(require,module,exports){
+},{"./main.js":70}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3386,7 +3609,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pinf":56}],67:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pinf":60}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3424,14 +3647,14 @@ module.exports = isInfinite;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":68}],68:[function(require,module,exports){
+},{"./main.js":72}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3482,7 +3705,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":85}],69:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":89}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3520,14 +3743,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":70}],70:[function(require,module,exports){
+},{"./main.js":74}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3573,7 +3796,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],71:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3611,14 +3834,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var isNegativeZero = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNegativeZero;
+module.exports = main;
 
-},{"./main.js":72}],72:[function(require,module,exports){
+},{"./main.js":76}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3669,7 +3892,7 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/constants/float64/ninf":54}],73:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":57}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3691,7 +3914,7 @@ module.exports = isNegativeZero;
 'use strict';
 
 /**
-* Test if a finite numeric value is an odd number.
+* Test if a finite double-precision floating-point number is an odd number.
 *
 * @module @stdlib/math/base/assert/is-odd
 *
@@ -3713,14 +3936,14 @@ module.exports = isNegativeZero;
 
 // MODULES //
 
-var isOdd = require( './is_odd.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isOdd;
+module.exports = main;
 
-},{"./is_odd.js":74}],74:[function(require,module,exports){
+},{"./main.js":78}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3749,7 +3972,7 @@ var isEven = require( '@stdlib/math/base/assert/is-even' );
 // MAIN //
 
 /**
-* Tests if a finite numeric value is an odd number.
+* Tests if a finite double-precision floating-point number is an odd number.
 *
 * @param {number} x - value to test
 * @returns {boolean} boolean indicating whether the value is an odd number
@@ -3783,7 +4006,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":63}],75:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":67}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3830,14 +4053,14 @@ module.exports = isOdd;
 
 // MODULES //
 
-var abs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = abs;
+module.exports = main;
 
-},{"./main.js":76}],76:[function(require,module,exports){
+},{"./main.js":80}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3895,7 +4118,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],77:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3939,14 +4162,14 @@ module.exports = abs;
 
 // MODULES //
 
-var ceil = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ceil;
+module.exports = main;
 
-},{"./main.js":78}],78:[function(require,module,exports){
+},{"./main.js":82}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3998,7 +4221,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],79:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4052,7 +4275,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":80}],80:[function(require,module,exports){
+},{"./main.js":84}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4075,18 +4298,14 @@ module.exports = main;
 
 // MODULES //
 
+var SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
-
-// 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000>>>0; // asm type annotation
-
-// 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff|0; // asm type annotation
 
 // High/low words workspace:
 var WORDS = [ 0, 0 ];
@@ -4126,11 +4345,11 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
-	hx &= MAGNITUDE_MASK;
+	hx &= ABS_MASK;
 
 	// Extract the higher order word from `y`:
 	hy = getHighWord( y );
@@ -4150,7 +4369,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/number/float64/base/from-words":128,"@stdlib/number/float64/base/get-high-word":132,"@stdlib/number/float64/base/to-words":146}],81:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/constants/float64/high-word-sign-mask":51,"@stdlib/number/float64/base/from-words":132,"@stdlib/number/float64/base/get-high-word":136,"@stdlib/number/float64/base/to-words":151}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4171,7 +4390,189 @@ module.exports = copysign;
 *
 * ## Notice
 *
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_exp.c}. The implementation follows the original, but has been modified for JavaScript.
+* The following copyrights, licenses, and long comment were part of the original implementation available as part of [Go]{@link https://github.com/golang/go/blob/cb07765045aed5104a3df31507564ac99e6ddce8/src/math/exp.go}, which in turn was based on an implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_exp.c}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright (c) 2009 The Go Authors. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are
+* met:
+*
+*    * Redistributions of source code must retain the above copyright
+* notice, this list of conditions and the following disclaimer.
+*    * Redistributions in binary form must reproduce the above
+* copyright notice, this list of conditions and the following disclaimer
+* in the documentation and/or other materials provided with the
+* distribution.
+*    * Neither the name of Google Inc. nor the names of its
+* contributors may be used to endorse or promote products derived from
+* this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+* A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+* OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+* THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* ```
+*
+* ```text
+* Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+*
+* Developed at SunPro, a Sun Microsystems, Inc. business.
+* Permission to use, copy, modify, and distribute this
+* software is freely granted, provided that this notice
+* is preserved.
+* ```
+*/
+
+'use strict';
+
+// MODULES //
+
+var ldexp = require( '@stdlib/math/base/special/ldexp' );
+var polyvalP = require( './polyval_p.js' );
+
+
+// MAIN //
+
+/**
+* Computes \\(e^{r} 2^k\\) where \\(r = \mathrm{hi} - \mathrm{lo}\\) and \\(|r| \leq \ln(2)/2\\).
+*
+* @private
+* @param {number} hi - upper bound
+* @param {number} lo - lower bound
+* @param {integer} k - power of 2
+* @returns {number} function value
+*/
+function expmulti( hi, lo, k ) {
+	var r;
+	var t;
+	var c;
+	var y;
+
+	r = hi - lo;
+	t = r * r;
+	c = r - ( t*polyvalP( t ) );
+	y = 1.0 - ( lo - ( (r*c)/(2.0-c) ) - hi );
+
+	return ldexp( y, k );
+}
+
+
+// EXPORTS //
+
+module.exports = expmulti;
+
+},{"./polyval_p.js":88,"@stdlib/math/base/special/ldexp":103}],86:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the natural exponential function.
+*
+* @module @stdlib/math/base/special/exp
+*
+* @example
+* var exp = require( '@stdlib/math/base/special/exp' );
+*
+* var v = exp( 4.0 );
+* // returns ~54.5982
+*
+* v = exp( -9.0 );
+* // returns ~1.234e-4
+*
+* v = exp( 0.0 );
+* // returns 1.0
+*
+* v = exp( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":87}],87:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The following copyrights, licenses, and long comment were part of the original implementation available as part of [Go]{@link https://github.com/golang/go/blob/cb07765045aed5104a3df31507564ac99e6ddce8/src/math/exp.go}, which in turn was based on an implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_exp.c}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright (c) 2009 The Go Authors. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are
+* met:
+*
+*    * Redistributions of source code must retain the above copyright
+* notice, this list of conditions and the following disclaimer.
+*    * Redistributions in binary form must reproduce the above
+* copyright notice, this list of conditions and the following disclaimer
+* in the documentation and/or other materials provided with the
+* distribution.
+*    * Neither the name of Google Inc. nor the names of its
+* contributors may be used to endorse or promote products derived from
+* this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+* A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+* OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+* LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+* THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* ```
 *
 * ```text
 * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
@@ -4201,7 +4602,7 @@ var LN2_LO = 1.90821492927058770002e-10;
 var LOG2_E = 1.44269504088896338700e+00;
 var OVERFLOW = 7.09782712893383973096e+02;
 var UNDERFLOW = -7.45133219101941108420e+02;
-var NEARZERO = 1.0 / (1 << 28); // 2^-28;
+var NEARZERO = 1.0 / (1 << 28); // 2^-28
 var NEG_NEARZERO = -NEARZERO;
 
 
@@ -4275,7 +4676,6 @@ var NEG_NEARZERO = -NEARZERO;
 *     e^{x} = 2^k e^{r}
 *     ```
 *
-*
 * ## Special Cases
 *
 * ```tex
@@ -4297,7 +4697,6 @@ var NEG_NEARZERO = -NEARZERO;
 *     -   if \\(x < -7.45133219101941108420\mbox{e+}02\\), then \\(e^{x}\\) underflows
 *
 * -   The hexadecimal values included in the source code are the intended ones for the used constants. Decimal values may be used, provided that the compiler will convert from decimal to binary accurately enough to produce the intended hexadecimal values.
-*
 *
 * @param {number} x - input value
 * @returns {number} function value
@@ -4341,7 +4740,7 @@ function exp( x ) {
 	) {
 		return 1.0 + x;
 	}
-	// Reduce and compute `r = hi - lo` for extra precision.
+	// Reduce and compute `r = hi - lo` for extra precision...
 	if ( x < 0.0 ) {
 		k = trunc( (LOG2_E*x) - 0.5 );
 	} else {
@@ -4358,133 +4757,11 @@ function exp( x ) {
 
 module.exports = exp;
 
-},{"./expmulti.js":82,"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/trunc":122}],82:[function(require,module,exports){
+},{"./expmulti.js":85,"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/trunc":126}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*
-* ## Notice
-*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_exp.c}. The implementation follows the original, but has been modified for JavaScript.
-*
-* ```text
-* Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunPro, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ```
-*/
-
-'use strict';
-
-// MODULES //
-
-var ldexp = require( '@stdlib/math/base/special/ldexp' );
-var polyvalP = require( './polyval_p.js' );
-
-
-// MAIN //
-
-/**
-* Computes \\(e^{r} 2^k\\) where \\(r = \mathrm{hi} - \mathrm{lo}\\) and \\(|r| \leq \ln(2)/2\\).
-*
-* @private
-* @param {number} hi - upper bound
-* @param {number} lo - lower bound
-* @param {integer} k - power of 2
-* @returns {number} function value
-*/
-function expmulti( hi, lo, k ) {
-	var r;
-	var t;
-	var c;
-	var y;
-
-	r = hi - lo;
-	t = r * r;
-	c = r - ( t*polyvalP( t ) );
-	y = 1.0 - ( lo - ( (r*c)/(2.0-c) ) - hi);
-
-	return ldexp( y, k );
-}
-
-
-// EXPORTS //
-
-module.exports = expmulti;
-
-},{"./polyval_p.js":84,"@stdlib/math/base/special/ldexp":99}],83:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Evaluate the natural exponential function.
-*
-* @module @stdlib/math/base/special/exp
-*
-* @example
-* var exp = require( '@stdlib/math/base/special/exp' );
-*
-* var v = exp( 4.0 );
-* // returns ~54.5982
-*
-* v = exp( -9.0 );
-* // returns ~1.234e-4
-*
-* v = exp( 0.0 );
-* // returns 1.0
-*
-* v = exp( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var exp = require( './exp.js' );
-
-
-// EXPORTS //
-
-module.exports = exp;
-
-},{"./exp.js":81}],84:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4513,7 +4790,6 @@ module.exports = exp;
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
 *
-*
 * @private
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
@@ -4530,7 +4806,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],85:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4574,14 +4850,14 @@ module.exports = evalpoly;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":86}],86:[function(require,module,exports){
+},{"./main.js":90}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4633,7 +4909,67 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],87:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the gamma function.
+*
+* @module @stdlib/math/base/special/gamma
+*
+* @example
+* var gamma = require( '@stdlib/math/base/special/gamma' );
+*
+* var v = gamma( 4.0 );
+* // returns 6.0
+*
+* v = gamma( -1.5 );
+* // returns ~2.363
+*
+* v = gamma( -0.5 );
+* // returns ~-3.545
+*
+* v = gamma( 0.5 );
+* // returns ~1.772
+*
+* v = gamma( 0.0 );
+* // returns Infinity
+*
+* v = gamma( -0.0 );
+* // returns -Infinity
+*
+* v = gamma( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":92}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4695,7 +5031,6 @@ var rateval = require( './rational_pq.js' );
 * 2.  Large negative arguments are made positive using a reflection formula.
 * 3.  Large arguments are handled by Stirling's formula.
 *
-*
 * ## Notes
 *
 * -   Relative error:
@@ -4708,7 +5043,6 @@ var rateval = require( './rational_pq.js' );
 *     | IEEE       | 33, 171.6 | 20000    | 2.3e-15 | 3.2e-16 |
 *
 * -   Error for arguments outside the test range will be larger owing to error amplification by the exponential function.
-*
 *
 * @param {number} x - input value
 * @returns {number} function value
@@ -4818,71 +5152,11 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"./rational_pq.js":90,"./small_approximation.js":91,"./stirling_approximation.js":92,"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pi":55,"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/assert/is-integer":67,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/assert/is-negative-zero":71,"@stdlib/math/base/special/abs":75,"@stdlib/math/base/special/floor":85,"@stdlib/math/base/special/sin":118}],88:[function(require,module,exports){
+},{"./rational_pq.js":94,"./small_approximation.js":95,"./stirling_approximation.js":96,"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pi":59,"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/assert/is-integer":71,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/assert/is-negative-zero":75,"@stdlib/math/base/special/abs":79,"@stdlib/math/base/special/floor":89,"@stdlib/math/base/special/sin":122}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Evaluate the gamma function.
-*
-* @module @stdlib/math/base/special/gamma
-*
-* @example
-* var gamma = require( '@stdlib/math/base/special/gamma' );
-*
-* var v = gamma( 4.0 );
-* // returns 6.0
-*
-* v = gamma( -1.5 );
-* // returns ~2.363
-*
-* v = gamma( -0.5 );
-* // returns ~-3.545
-*
-* v = gamma( 0.5 );
-* // returns ~1.772
-*
-* v = gamma( 0.0 );
-* // returns Infinity
-*
-* v = gamma( -0.0 );
-* // returns -Infinity
-*
-* v = gamma( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var gamma = require( './gamma.js' );
-
-
-// EXPORTS //
-
-module.exports = gamma;
-
-},{"./gamma.js":87}],89:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4911,7 +5185,6 @@ module.exports = gamma;
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
 *
-*
 * @private
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
@@ -4928,11 +5201,11 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],90:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4953,7 +5226,7 @@ module.exports = evalpoly;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -4961,7 +5234,6 @@ module.exports = evalpoly;
 * -   The implementation uses [Horner's rule][horners-method] for efficient computation.
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
 *
 * @private
 * @param {number} x - value at which to evaluate the rational function
@@ -4995,7 +5267,7 @@ function evalrational( x ) {
 
 module.exports = evalrational;
 
-},{}],91:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5054,7 +5326,7 @@ function gamma( x, z ) {
 
 module.exports = gamma;
 
-},{"@stdlib/constants/float64/eulergamma":47}],92:[function(require,module,exports){
+},{"@stdlib/constants/float64/eulergamma":47}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5135,7 +5407,7 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"./polyval_s.js":89,"@stdlib/constants/float64/sqrt-two-pi":58,"@stdlib/math/base/special/exp":83,"@stdlib/math/base/special/pow":101}],93:[function(require,module,exports){
+},{"./polyval_s.js":93,"@stdlib/constants/float64/sqrt-two-pi":62,"@stdlib/math/base/special/exp":86,"@stdlib/math/base/special/pow":105}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5179,14 +5451,14 @@ module.exports = gamma;
 
 // MODULES //
 
-var kernelCos = require( './kernel_cos.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = kernelCos;
+module.exports = main;
 
-},{"./kernel_cos.js":94}],94:[function(require,module,exports){
+},{"./main.js":98}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5207,7 +5479,7 @@ module.exports = kernelCos;
 *
 * ## Notice
 *
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_cos.c}. The implementation follows the original, but has been modified for JavaScript.
+* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/12.2.0/lib/msun/src/k_cos.c}. The implementation follows the original, but has been modified for JavaScript.
 *
 * ```text
 * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
@@ -5276,7 +5548,6 @@ var polyval46 = require( './polyval_c46.js' );
 *
 *     where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
 *
-*
 * @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of `x`
 * @returns {number} cosine
@@ -5317,11 +5588,11 @@ function kernelCos( x, y ) {
 
 module.exports = kernelCos;
 
-},{"./polyval_c13.js":95,"./polyval_c46.js":96}],95:[function(require,module,exports){
+},{"./polyval_c13.js":99,"./polyval_c46.js":100}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -5349,7 +5620,6 @@ module.exports = kernelCos;
 * -   The implementation uses [Horner's rule][horners-method] for efficient computation.
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
 *
 * @private
 * @param {number} x - value at which to evaluate the polynomial
@@ -5367,11 +5637,11 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],96:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -5400,7 +5670,6 @@ module.exports = evalpoly;
 *
 * [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
 *
-*
 * @private
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
@@ -5417,7 +5686,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],97:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5467,14 +5736,14 @@ module.exports = evalpoly;
 
 // MODULES //
 
-var kernelSin = require( './kernel_sin.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = kernelSin;
+module.exports = main;
 
-},{"./kernel_sin.js":98}],98:[function(require,module,exports){
+},{"./main.js":102}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5560,7 +5829,6 @@ var S6 = 1.58969099521155010221e-10;  // 0x3DE5D93A, 0x5ACFD57C
 *     \sin(x) = x + \left( S_1 \cdot x + ( x \cdot (r-y/2) + y ) \right)
 *     ```
 *
-*
 * @param {number} x - input value (in radians, assumed to be bounded by `~pi/4` in magnitude)
 * @param {number} y - tail of `x`
 * @returns {number} sine
@@ -5610,7 +5878,7 @@ function kernelSin( x, y ) {
 
 module.exports = kernelSin;
 
-},{}],99:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5670,7 +5938,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":104}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5709,7 +5977,7 @@ var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/constants/float64/min-base2-expon
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/number/float64/base/normalize' );
+var normalize = require( '@stdlib/number/float64/base/normalize' ).assign;
 var floatExp = require( '@stdlib/number/float64/base/exponent' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
@@ -5724,10 +5992,10 @@ var TWO52_INV = 2.220446049250313e-16;
 var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
 
 // Normalization workspace:
-var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var FRAC = [ 0.0, 0.0 ];
 
 // High/low words workspace:
-var WORDS = [ 0, 0 ]; // WARNING: not thread safe
+var WORDS = [ 0, 0 ];
 
 
 // MAIN //
@@ -5779,7 +6047,7 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	normalize( FRAC, frac );
+	normalize( frac, FRAC, 1, 0 );
 	frac = FRAC[ 0 ];
 	exp += FRAC[ 1 ];
 
@@ -5804,7 +6072,7 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	toWords( WORDS, frac );
+	toWords.assign( frac, WORDS, 1, 0 );
 	high = WORDS[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
@@ -5822,7 +6090,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/max-base2-exponent":52,"@stdlib/constants/float64/max-base2-exponent-subnormal":51,"@stdlib/constants/float64/min-base2-exponent-subnormal":53,"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/assert/is-infinite":65,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/copysign":79,"@stdlib/number/float64/base/exponent":126,"@stdlib/number/float64/base/from-words":128,"@stdlib/number/float64/base/normalize":137,"@stdlib/number/float64/base/to-words":146}],101:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/max-base2-exponent":55,"@stdlib/constants/float64/max-base2-exponent-subnormal":54,"@stdlib/constants/float64/min-base2-exponent-subnormal":56,"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/assert/is-infinite":69,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/copysign":83,"@stdlib/number/float64/base/exponent":130,"@stdlib/number/float64/base/from-words":132,"@stdlib/number/float64/base/normalize":142,"@stdlib/number/float64/base/to-words":151}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5878,14 +6146,14 @@ module.exports = ldexp;
 
 // MODULES //
 
-var pow = require( './pow.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = pow;
+module.exports = main;
 
-},{"./pow.js":107}],102:[function(require,module,exports){
+},{"./main.js":108}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5926,6 +6194,7 @@ var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalL = require( './polyval_l.js' );
 
 
@@ -5945,9 +6214,6 @@ var HIGH_BIASED_EXP_NEG_512 = 0x20000000|0; // asm type annotation
 
 // 0x00080000 = 524288 => 0 00000000000 10000000000000000000
 var HIGH_SIGNIFICAND_HALF = 0x00080000|0; // asm type annotation
-
-// TODO: consider making an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 var TWO53 = 9007199254740992.0;	// 0x43400000, 0x00000000
 
@@ -6101,7 +6367,7 @@ function log2ax( out, ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"./polyval_l.js":104,"@stdlib/constants/float64/exponent-bias":48,"@stdlib/number/float64/base/get-high-word":132,"@stdlib/number/float64/base/set-high-word":141,"@stdlib/number/float64/base/set-low-word":143}],103:[function(require,module,exports){
+},{"./polyval_l.js":109,"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/num-high-word-significand-bits":58,"@stdlib/number/float64/base/get-high-word":136,"@stdlib/number/float64/base/set-high-word":145,"@stdlib/number/float64/base/set-low-word":147}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6194,157 +6460,7 @@ function logx( out, ax ) {
 
 module.exports = logx;
 
-},{"./polyval_w.js":106,"@stdlib/number/float64/base/set-low-word":143}],104:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5999999999999946;
-	}
-	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],105:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.16666666666666602;
-	}
-	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],106:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5;
-	}
-	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],107:[function(require,module,exports){
+},{"./polyval_w.js":111,"@stdlib/number/float64/base/set-low-word":147}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6392,6 +6508,7 @@ var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var NINF = require( '@stdlib/constants/float64/ninf' );
 var PINF = require( '@stdlib/constants/float64/pinf' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var xIsZero = require( './x_is_zero.js' );
 var yIsHuge = require( './y_is_huge.js' );
 var yIsInfinite = require( './y_is_infinite.js' );
@@ -6401,9 +6518,6 @@ var pow2 = require( './pow2.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -6435,10 +6549,10 @@ var TINY = 1.0e-300;
 var OVT = 8.0085662595372944372e-17;
 
 // High/low words workspace:
-var WORDS = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var WORDS = [ 0|0, 0|0 ];
 
 // Log workspace:
-var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var LOG_WORKSPACE = [ 0.0, 0.0 ];
 
 
 // MAIN //
@@ -6506,7 +6620,6 @@ var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
 * -   \\(\operatorname{pow}(x,y)\\) returns \\(x^y\\) nearly rounded. In particular, \\(\operatorname{pow}(<\mathrm{integer}>,<\mathrm{integer}>)\\) **always** returns the correct integer, provided the value is representable.
 * -   The hexadecimal values shown in the source code are the intended values for used constants. Decimal values may be used, provided the compiler will accurately convert decimal to binary in order to produce the hexadecimal values.
 *
-*
 * @param {number} x - base
 * @param {number} y - exponent
 * @returns {number} function value
@@ -6564,7 +6677,7 @@ function pow( x, y ) {
 		return NaN;
 	}
 	// Split `y` into high and low words:
-	toWords( WORDS, y );
+	toWords.assign( y, WORDS, 1, 0 );
 	hy = WORDS[ 0 ];
 	ly = WORDS[ 1 ];
 
@@ -6600,7 +6713,7 @@ function pow( x, y ) {
 		}
 	}
 	// Split `x` into high and low words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 	lx = WORDS[ 1 ];
 
@@ -6694,7 +6807,7 @@ function pow( x, y ) {
 	z = lp + hp;
 
 	// Note: *can* be more performant to use `getHighWord` and `getLowWord` directly, but using `toWords` looks cleaner.
-	toWords( WORDS, z );
+	toWords.assign( z, WORDS, 1, 0 );
 	j = uint32ToInt32( WORDS[0] );
 	i = uint32ToInt32( WORDS[1] );
 
@@ -6714,11 +6827,11 @@ function pow( x, y ) {
 	else if ( (j&ABS_MASK) >= HIGH_1075 ) {
 		// z < -1075
 		if ( ((j-HIGH_NEG_1075)|i) !== 0 ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 		if ( lp <= (z-hp) ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 	}
@@ -6733,7 +6846,154 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":102,"./logx.js":103,"./pow2.js":108,"./x_is_zero.js":109,"./y_is_huge.js":110,"./y_is_infinite.js":111,"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/assert/is-infinite":65,"@stdlib/math/base/assert/is-integer":67,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/assert/is-odd":73,"@stdlib/math/base/special/abs":75,"@stdlib/math/base/special/sqrt":120,"@stdlib/number/float64/base/set-low-word":143,"@stdlib/number/float64/base/to-words":146,"@stdlib/number/uint32/base/to-int32":150}],108:[function(require,module,exports){
+},{"./log2ax.js":106,"./logx.js":107,"./pow2.js":112,"./x_is_zero.js":113,"./y_is_huge.js":114,"./y_is_infinite.js":115,"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/assert/is-infinite":69,"@stdlib/math/base/assert/is-integer":71,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/assert/is-odd":77,"@stdlib/math/base/special/abs":79,"@stdlib/math/base/special/sqrt":124,"@stdlib/number/float64/base/set-low-word":147,"@stdlib/number/float64/base/to-words":151,"@stdlib/number/uint32/base/to-int32":154}],109:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5999999999999946;
+	}
+	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],110:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.16666666666666602;
+	}
+	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],111:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5;
+	}
+	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6777,25 +7037,19 @@ var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var ldexp = require( '@stdlib/math/base/special/ldexp' );
 var LN2 = require( '@stdlib/constants/float64/ln-two' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+var HIGH_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalP = require( './polyval_p.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
-
-// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var HIGH_SIGNIFICAND_MASK = 0x000fffff|0; // asm type annotation
 
 // 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
 var HIGH_MIN_NORMAL_EXP = 0x00100000|0; // asm type annotation
 
 // 0x3fe00000 = 1071644672 => 0 01111111110 00000000000000000000 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_BIASED_EXP_NEG_1 = 0x3fe00000|0; // asm type annotation
-
-// TODO: consider making into an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 // High: LN2
 var LN2_HI = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
@@ -6876,7 +7130,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"./polyval_p.js":105,"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/ln-two":50,"@stdlib/math/base/special/ldexp":99,"@stdlib/number/float64/base/get-high-word":132,"@stdlib/number/float64/base/set-high-word":141,"@stdlib/number/float64/base/set-low-word":143,"@stdlib/number/uint32/base/to-int32":150}],109:[function(require,module,exports){
+},{"./polyval_p.js":110,"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/constants/float64/high-word-significand-mask":52,"@stdlib/constants/float64/ln-two":53,"@stdlib/constants/float64/num-high-word-significand-bits":58,"@stdlib/math/base/special/ldexp":103,"@stdlib/number/float64/base/get-high-word":136,"@stdlib/number/float64/base/set-high-word":145,"@stdlib/number/float64/base/set-low-word":147,"@stdlib/number/uint32/base/to-int32":154}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6978,7 +7232,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/ninf":54,"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/assert/is-odd":73,"@stdlib/math/base/special/copysign":79}],110:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":57,"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/assert/is-odd":77,"@stdlib/math/base/special/copysign":83}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7015,13 +7269,11 @@ module.exports = pow;
 
 // MODULES //
 
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -7057,19 +7309,19 @@ function pow( x, y ) {
 
 	if ( ahx <= HIGH_MAX_NEAR_UNITY ) {
 		if ( y < 0 ) {
-			// signal overflow...
+			// Signal overflow...
 			return HUGE * HUGE;
 		}
-		// signal underflow...
+		// Signal underflow...
 		return TINY * TINY;
 	}
 	// `x` has a biased exponent greater than or equal to `0`...
 
 	if ( y > 0 ) {
-		// signal overflow...
+		// Signal overflow...
 		return HUGE * HUGE;
 	}
-	// signal underflow...
+	// Signal underflow...
 	return TINY * TINY;
 }
 
@@ -7078,7 +7330,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/number/float64/base/get-high-word":132}],111:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/number/float64/base/get-high-word":136}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7168,7 +7420,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/pinf":56,"@stdlib/math/base/special/abs":75}],112:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":60,"@stdlib/math/base/special/abs":79}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7210,14 +7462,14 @@ module.exports = pow;
 
 // MODULES //
 
-var rempio2 = require( './rempio2.js' );
+var rempio2 = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = rempio2;
 
-},{"./rempio2.js":114}],113:[function(require,module,exports){
+},{"./main.js":118}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7426,9 +7678,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 			jz += k;
 			return compute( x, y, jz, q, q0, jk, jv, jx, f );
 		}
-	}
-	// Chop off zero terms...
-	if ( z === 0.0 ) {
+		// Chop off zero terms...
 		jz -= 1;
 		q0 -= 24;
 		while ( IQ[ jz ] === 0 ) {
@@ -7492,7 +7742,105 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 *
 * ## Method
 *
-* -   The method is to compute the integer (`mod 8`) and fraction parts of `2x/π` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals `0 mod 8` ). Thus, the number of operations is independent of the exponent of the input.
+* -   The method is to compute the integer (mod 8) and fraction parts of (2/π) * x without doing the full multiplication. In general, we skip the part of the product that are known to be a huge integer (more accurately, = 0 mod 8 ). Thus the number of operations are independent of the exponent of the input.
+*
+* -   (2/π) is represented by an array of 24-bit integers in `ipio2[]`.
+*
+* -   Input parameters:
+*
+*     -   `x[]` The input value (must be positive) is broken into `nx` pieces of 24-bit integers in double precision format. `x[i]` will be the i-th 24 bit of x. The scaled exponent of `x[0]` is given in input parameter `e0` (i.e., `x[0]*2^e0` match x's up to 24 bits).
+*
+*         Example of breaking a double positive `z` into `x[0]+x[1]+x[2]`:
+*
+*         ```tex
+*         e0 = \mathrm{ilogb}(z) - 23
+*         z = \mathrm{scalbn}(z, -e0)
+*         ```
+*
+*         for `i = 0,1,2`
+*
+*         ```tex
+*         x[i] = \lfloor z \rfloor
+*         z = (z - x[i]) \times 2^{24}
+*         ```
+*
+*     -   `y[]` output result in an array of double precision numbers.
+*
+*         The dimension of `y[]` is:
+*         24-bit precision     1
+*         53-bit precision     2
+*         64-bit precision     2
+*         113-bit precision    3
+*
+*         The actual value is the sum of them. Thus, for 113-bit precision, one may have to do something like:
+*
+*         ```tex
+*         \mathrm{long\ double} \: t, w, r_{\text{head}}, r_{\text{tail}}; \\
+*         t &= (\mathrm{long\ double}) y[2] + (\mathrm{long\ double}) y[1]; \\
+*         w &= (\mathrm{long\ double}) y[0]; \\
+*         r_{\text{head}} &= t + w; \\
+*         r_{\text{tail}} &= w - (r_{\text{head}} - t);
+*         ```
+*
+*     -   `e0` The exponent of `x[0]`. Must be <= 16360 or you need to expand the `ipio2` table.
+*
+*     -   `nx` dimension of `x[]`
+*
+*     -   `prec` an integer indicating the precision:
+*         0 24 bits (single)
+*         1 53 bits (double)
+*         2 64 bits (extended)
+*         3 113 bits (quad)
+*
+* -   External function:
+*
+*     -   double `scalbn()`, `floor()`;
+*
+* -   Here is the description of some local variables:
+*
+*     -   `jk` `jk+1` is the initial number of terms of `ipio2[]` needed in the computation. The minimum and recommended value for `jk` is 3,4,4,6 for single, double, extended, and quad. `jk+1` must be 2 larger than you might expect so that our recomputation test works. (Up to 24 bits in the integer part (the 24 bits of it that we compute) and 23 bits in the fraction part may be lost to cancellation before we recompute.)
+*
+*     -   `jz` local integer variable indicating the number of terms of `ipio2[]` used.
+*
+*     -   `jx` `nx - 1`
+*
+*     -   `jv` index for pointing to the suitable `ipio2[]` for the computation. In general, we want
+*
+*         ```tex
+*         \frac{{2^{e0} \cdot x[0] \cdot \mathrm{ipio2}[jv-1] \cdot 2^{-24jv}}}{{8}}
+*         ```
+*
+*         to be an integer. Thus
+*
+*         ```tex
+*         e0 - 3 - 24 \cdot jv \geq 0 \quad \text{or} \quad \frac{{e0 - 3}}{{24}} \geq jv
+*         ```
+*
+*         Hence
+*
+*         ```tex
+*         jv = \max(0, \frac{{e0 - 3}}{{24}})
+*         ```
+*
+*     -   `jp` `jp+1` is the number of terms in `PIo2[]` needed, `jp = jk`.
+*
+*     -   `q[]` double array with integral value, representing the 24-bits chunk of the product of `x` and `2/π`.
+*
+*     -   `q0` the corresponding exponent of `q[0]`. Note that the exponent for `q[i]` would be `q0-24*i`.
+*
+*     -   `PIo2[]` double precision array, obtained by cutting `π/2` into 24 bits chunks.
+*
+*     -   `f[]` `ipso2[]` in floating point
+*
+*     -   `iq[]` integer array by breaking up `q[]` in 24-bits chunk.
+*
+*     -   `fq[]` final product of `x*(2/π)` in `fq[0],..,fq[jk]`
+*
+*     -   `ih` integer. If >0 it indicates `q[]` is >= 0.5, hence it also indicates the _sign_ of the result.
+*
+* -   Constants:
+*
+*     -   The hexadecimal values are the intended ones for the following constants. The decimal values may be used, provided that the compiler will convert from decimal to binary accurately enough to produce the hexadecimal values shown.
 *
 * @private
 * @param {PositiveNumber} x - input value
@@ -7551,7 +7899,7 @@ function kernelRempio2( x, y, e0, nx ) {
 
 module.exports = kernelRempio2;
 
-},{"@stdlib/array/base/zeros":3,"@stdlib/math/base/special/floor":85,"@stdlib/math/base/special/ldexp":99}],114:[function(require,module,exports){
+},{"@stdlib/array/base/zeros":3,"@stdlib/math/base/special/floor":89,"@stdlib/math/base/special/ldexp":103}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7590,6 +7938,9 @@ module.exports = kernelRempio2;
 
 // MODULES //
 
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+var EXPONENT_MASK = require( '@stdlib/constants/float64/high-word-exponent-mask' );
+var SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var getLowWord = require( '@stdlib/number/float64/base/get-low-word' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
@@ -7610,15 +7961,6 @@ var PIO2_1T = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
 var TWO_PIO2_1T = 2.0 * PIO2_1T;
 var THREE_PIO2_1T = 3.0 * PIO2_1T;
 var FOUR_PIO2_1T = 4.0 * PIO2_1T;
-
-// Absolute value mask: 0x7fffffff = 2147483647 => 01111111111111111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
-
-// Exponent mask: 0x7ff00000 = 2146435072 => 01111111111100000000000000000000
-var EXPONENT_MASK = 0x7ff00000|0; // asm type annotation
-
-// High word significand mask: 0xfffff = 1048575 => 00000000000011111111111111111111
-var SIGNIFICAND_MASK = 0xfffff|0; // asm type annotation
 
 // High word significand for π and π/2: 0x921fb = 598523 => 00000000000010010010000111111011
 var PI_HIGH_WORD_SIGNIFICAND = 0x921fb|0; // asm type annotation
@@ -7648,8 +7990,8 @@ var NINE_PIO4_HIGH_WORD = 0x401c463b|0; // asm type annotation
 var MEDIUM = 0x413921fb|0; // asm type annotation
 
 // Arrays for storing temporary values:
-var TX = [ 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
-var TY = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var TX = [ 0.0, 0.0, 0.0 ];
+var TY = [ 0.0, 0.0 ];
 
 
 // MAIN //
@@ -7660,7 +8002,6 @@ var TY = [ 0.0, 0.0 ]; // WARNING: not thread safe
 * ## Notes
 *
 * -   Returns `n` and stores the remainder `r` as two numbers `y[0]` and `y[1]`, such that `y[0]+y[1] = r`.
-*
 *
 * @param {number} x - input value
 * @param {(Array|TypedArray|Object)} y - remainder elements
@@ -7812,7 +8153,7 @@ function rempio2( x, y ) {
 
 module.exports = rempio2;
 
-},{"./kernel_rempio2.js":113,"./rempio2_medium.js":115,"@stdlib/number/float64/base/from-words":128,"@stdlib/number/float64/base/get-high-word":132,"@stdlib/number/float64/base/get-low-word":134}],115:[function(require,module,exports){
+},{"./kernel_rempio2.js":117,"./rempio2_medium.js":119,"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/constants/float64/high-word-exponent-mask":50,"@stdlib/constants/float64/high-word-significand-mask":52,"@stdlib/number/float64/base/from-words":132,"@stdlib/number/float64/base/get-high-word":136,"@stdlib/number/float64/base/get-low-word":138}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7938,7 +8279,7 @@ function rempio2Medium( x, ix, y ) {
 
 module.exports = rempio2Medium;
 
-},{"@stdlib/math/base/special/round":116,"@stdlib/number/float64/base/get-high-word":132}],116:[function(require,module,exports){
+},{"@stdlib/math/base/special/round":120,"@stdlib/number/float64/base/get-high-word":136}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8005,14 +8346,14 @@ module.exports = rempio2Medium;
 
 // MODULES //
 
-var round = require( './round.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = round;
+module.exports = main;
 
-},{"./round.js":117}],117:[function(require,module,exports){
+},{"./main.js":121}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8033,7 +8374,7 @@ module.exports = round;
 
 'use strict';
 
-// TODO: implementation
+// MAIN //
 
 /**
 * Rounds a numeric value to the nearest integer.
@@ -8092,7 +8433,7 @@ var round = Math.round; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = round;
 
-},{}],118:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8136,14 +8477,14 @@ module.exports = round;
 
 // MODULES //
 
-var sin = require( './sin.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = sin;
+module.exports = main;
 
-},{"./sin.js":119}],119:[function(require,module,exports){
+},{"./main.js":123}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8180,6 +8521,8 @@ module.exports = sin;
 
 // MODULES //
 
+var HIGH_WORD_ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+var HIGH_WORD_EXPONENT_MASK = require( '@stdlib/constants/float64/high-word-exponent-mask' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var kernelCos = require( '@stdlib/math/base/special/kernel-cos' );
 var kernelSin = require( '@stdlib/math/base/special/kernel-sin' );
@@ -8188,12 +8531,6 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 
 // VARIABLES //
 
-// Absolute value mask: 0x7fffffff = 2147483647 => 01111111111111111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
-
-// Exponent mask: 0x7ff00000 = 2146435072 => 01111111111100000000000000000000
-var EXPONENT_MASK = 0x7ff00000|0; // asm type annotation
-
 // High word for PI/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
 var PIO4_HIGH_WORD = 0x3fe921fb|0; // asm type annotation
 
@@ -8201,7 +8538,7 @@ var PIO4_HIGH_WORD = 0x3fe921fb|0; // asm type annotation
 var SMALL_HIGH_WORD = 0x3e500000|0; // asm type annotation
 
 // Array for storing remainder elements:
-var Y = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var Y = [ 0.0, 0.0 ];
 
 
 // MAIN //
@@ -8223,7 +8560,6 @@ var Y = [ 0.0, 0.0 ]; // WARNING: not thread safe
 *     | 1 |   C    |  -S    |  -1/T  |
 *     | 2 |  -S    |  -C    |    T   |
 *     | 3 |  -C    |   S    |  -1/T  |
-*
 *
 * @param {number} x - input value (in radians)
 * @returns {number} sine
@@ -8249,7 +8585,7 @@ function sin( x ) {
 	var n;
 
 	ix = getHighWord( x );
-	ix &= ABS_MASK;
+	ix &= HIGH_WORD_ABS_MASK;
 
 	// Case: |x| ~< π/4
 	if ( ix <= PIO4_HIGH_WORD ) {
@@ -8260,7 +8596,7 @@ function sin( x ) {
 		return kernelSin( x, 0.0 );
 	}
 	// Case: x is NaN or infinity
-	if ( ix >= EXPONENT_MASK ) {
+	if ( ix >= HIGH_WORD_EXPONENT_MASK ) {
 		return NaN;
 	}
 	// Argument reduction...
@@ -8282,7 +8618,7 @@ function sin( x ) {
 
 module.exports = sin;
 
-},{"@stdlib/math/base/special/kernel-cos":93,"@stdlib/math/base/special/kernel-sin":97,"@stdlib/math/base/special/rempio2":112,"@stdlib/number/float64/base/get-high-word":132}],120:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":49,"@stdlib/constants/float64/high-word-exponent-mask":50,"@stdlib/math/base/special/kernel-cos":97,"@stdlib/math/base/special/kernel-sin":101,"@stdlib/math/base/special/rempio2":116,"@stdlib/number/float64/base/get-high-word":136}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8329,14 +8665,14 @@ module.exports = sin;
 
 // MODULES //
 
-var sqrt = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = sqrt;
+module.exports = main;
 
-},{"./main.js":121}],121:[function(require,module,exports){
+},{"./main.js":125}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8389,7 +8725,7 @@ var sqrt = Math.sqrt; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = sqrt;
 
-},{}],122:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8442,14 +8778,14 @@ module.exports = sqrt;
 
 // MODULES //
 
-var trunc = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = trunc;
+module.exports = main;
 
-},{"./main.js":123}],123:[function(require,module,exports){
+},{"./main.js":127}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8524,7 +8860,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":77,"@stdlib/math/base/special/floor":85}],124:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":81,"@stdlib/math/base/special/floor":89}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8559,14 +8895,14 @@ module.exports = trunc;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":125}],125:[function(require,module,exports){
+},{"./main.js":129}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8591,7 +8927,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],126:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8635,14 +8971,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var exponent = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = exponent;
+module.exports = main;
 
-},{"./main.js":127}],127:[function(require,module,exports){
+},{"./main.js":131}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8710,7 +9046,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/high-word-exponent-mask":49,"@stdlib/number/float64/base/get-high-word":132}],128:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":48,"@stdlib/constants/float64/high-word-exponent-mask":50,"@stdlib/number/float64/base/get-high-word":136}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8763,14 +9099,14 @@ module.exports = exponent;
 
 // MODULES //
 
-var fromWords = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWords;
+module.exports = main;
 
-},{"./main.js":130}],129:[function(require,module,exports){
+},{"./main.js":134}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8819,7 +9155,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":38}],130:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":38}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8890,9 +9226,7 @@ var LOW = indices.LOW;
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
 *
-*
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
 *
 * ## References
 *
@@ -8943,7 +9277,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":129,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],131:[function(require,module,exports){
+},{"./indices.js":133,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8983,7 +9317,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":38}],132:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":38}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9018,14 +9352,14 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getHighWord;
+module.exports = main;
 
-},{"./main.js":133}],133:[function(require,module,exports){
+},{"./main.js":137}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9095,7 +9429,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9119,7 +9452,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":131,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],134:[function(require,module,exports){
+},{"./high.js":135,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9154,14 +9487,14 @@ module.exports = getHighWord;
 
 // MODULES //
 
-var getLowWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getLowWord;
+module.exports = main;
 
-},{"./main.js":136}],135:[function(require,module,exports){
+},{"./main.js":140}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9201,7 +9534,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":38}],136:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":38}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9271,7 +9604,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9295,155 +9627,7 @@ function getLowWord( x ) {
 
 module.exports = getLowWord;
 
-},{"./low.js":135,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],137:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @module @stdlib/number/float64/base/normalize
-*
-* @example
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*/
-
-// MODULES //
-
-var normalize = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./main.js":138}],138:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './normalize.js' );
-
-
-// MAIN //
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
-* // returns [ 0.0, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
-* // returns [ Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
-* // returns [ -Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], NaN );
-* // returns [ NaN, 0 ]
-*/
-function normalize( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0.0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./normalize.js":139}],139:[function(require,module,exports){
+},{"./low.js":139,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9481,17 +9665,18 @@ var SCALAR = 4503599627370496;
 // MAIN //
 
 /**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\) and assigns results to a provided output array.
 *
-* @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
+* var out = normalize( 3.14e-319, [ 0.0, 0 ], 1, 0 );
 * // returns [ 1.4141234400356668e-303, -52 ]
 *
 * var y = out[ 0 ];
@@ -9501,34 +9686,38 @@ var SCALAR = 4503599627370496;
 * // returns true
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
+* var out = normalize( 0.0, [ 0.0, 0 ], 1, 0 );
 * // returns [ 0.0, 0 ];
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ -Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], NaN );
+* var out = normalize( NaN, [ 0.0, 0 ], 1, 0 );
 * // returns [ NaN, 0 ]
 */
-function normalize( out, x ) {
+function normalize( x, out, stride, offset ) {
 	if ( isnan( x ) || isInfinite( x ) ) {
-		out[ 0 ] = x;
-		out[ 1 ] = 0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0;
 		return out;
 	}
 	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		out[ 0 ] = x * SCALAR;
-		out[ 1 ] = -52;
+		out[ offset ] = x * SCALAR;
+		out[ offset + stride ] = -52;
 		return out;
 	}
-	out[ 0 ] = x;
-	out[ 1 ] = 0;
+	out[ offset ] = x;
+	out[ offset + stride ] = 0;
 	return out;
 }
 
@@ -9537,9 +9726,152 @@ function normalize( out, x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/constants/float64/smallest-normal":57,"@stdlib/math/base/assert/is-infinite":65,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/abs":75}],140:[function(require,module,exports){
-arguments[4][131][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":131}],141:[function(require,module,exports){
+},{"@stdlib/constants/float64/smallest-normal":61,"@stdlib/math/base/assert/is-infinite":69,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/abs":79}],142:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @module @stdlib/number/float64/base/normalize
+*
+* @example
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0, exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize.assign( 3.14e-319, out, 1, 0 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":141,"./main.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":177}],143:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @param {number} x - input value
+* @returns {NumberArray} output array
+*
+* @example
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var out = normalize( 0.0 );
+* // returns [ 0.0, 0 ]
+*
+* @example
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF );
+* // returns [ Infinity, 0 ]
+*
+* @example
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF );
+* // returns [ -Infinity, 0 ]
+*
+* @example
+* var out = normalize( NaN );
+* // returns [ NaN, 0 ]
+*/
+function normalize( x ) {
+	return fcn( x, [ 0.0, 0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = normalize;
+
+},{"./assign.js":141}],144:[function(require,module,exports){
+arguments[4][135][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":38,"dup":135}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9574,26 +9906,26 @@ arguments[4][131][0].apply(exports,arguments)
 * // returns 1.18350528745e-313
 *
 * @example
+* var PINF = require( '@stdlib/constants/float64/pinf' ); // => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 * var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
-* var PINF = require( '@stdlib/constants/float64/pinf' ); //  => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 *
 * var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
 *
 * // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
+* var y = setHighWord( PINF, high ); // => 0 01111111111 0000000000000000000000000000000000000000000000000000
 * // returns 1.0
 */
 
 // MODULES //
 
-var setHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setHighWord;
+module.exports = main;
 
-},{"./main.js":142}],142:[function(require,module,exports){
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9663,7 +9995,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9677,7 +10008,7 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 * @example
 * var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
 *
-* var y = setHighWord( 3.14e201, high ); //  => 0 00000000000 0000000000000000010110010011110010110101100010000010
+* var y = setHighWord( 3.14e201, high ); // => 0 00000000000 0000000000000000010110010011110010110101100010000010
 * // returns 1.18350528745e-313
 *
 * @example
@@ -9700,7 +10031,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":140,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],143:[function(require,module,exports){
+},{"./high.js":144,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9755,16 +10086,16 @@ module.exports = setHighWord;
 
 // MODULES //
 
-var setLowWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setLowWord;
+module.exports = main;
 
-},{"./main.js":145}],144:[function(require,module,exports){
-arguments[4][135][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":135}],145:[function(require,module,exports){
+},{"./main.js":149}],148:[function(require,module,exports){
+arguments[4][139][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":38,"dup":139}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9834,7 +10165,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9879,125 +10209,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":144,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],146:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/number/float64/base/to-words
-*
-* @example
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-
-// MODULES //
-
-var toWords = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./main.js":148}],147:[function(require,module,exports){
-arguments[4][129][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":129}],148:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './to_words.js' );
-
-
-// MAIN //
-
-/**
-* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-function toWords( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":149}],149:[function(require,module,exports){
+},{"./low.js":148,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10070,34 +10282,34 @@ var LOW = indices.LOW;
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
 *
 * [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
-*
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var Uint32Array = require( '@stdlib/array/uint32' );
 *
 * var out = new Uint32Array( 2 );
 *
-* var w = toWords( out, 3.14e201 );
+* var w = toWords( 3.14e201, out, 1, 0 );
 * // returns <Uint32Array>[ 1774486211, 2479577218 ]
 *
 * var bool = ( w === out );
 * // returns true
 */
-function toWords( out, x ) {
+function toWords( x, out, stride, offset ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	out[ 0 ] = UINT32_VIEW[ HIGH ];
-	out[ 1 ] = UINT32_VIEW[ LOW ];
+	out[ offset ] = UINT32_VIEW[ HIGH ];
+	out[ offset + stride ] = UINT32_VIEW[ LOW ];
 	return out;
 }
 
@@ -10106,7 +10318,117 @@ function toWords( out, x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":147,"@stdlib/array/float64":6,"@stdlib/array/uint32":11}],150:[function(require,module,exports){
+},{"./indices.js":152,"@stdlib/array/float64":5,"@stdlib/array/uint32":11}],151:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/to-words
+*
+* @example
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords.assign( 3.14e201, out, 1, 0 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":150,"./main.js":153,"@stdlib/utils/define-nonenumerable-read-only-property":177}],152:[function(require,module,exports){
+arguments[4][133][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":38,"dup":133}],153:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*/
+function toWords( x ) {
+	return fcn( x, [ 0>>>0, 0>>>0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./assign.js":150}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10152,7 +10474,7 @@ var uint32ToInt32 = require( './main.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./main.js":151}],151:[function(require,module,exports){
+},{"./main.js":155}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10201,7 +10523,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],152:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10239,14 +10561,14 @@ module.exports = uint32ToInt32;
 
 // MODULES //
 
-var mean = require( './mean.js' );
+var mean = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = mean;
 
-},{"./mean.js":153}],153:[function(require,module,exports){
+},{"./main.js":157}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10310,7 +10632,7 @@ function mean( k ) {
 
 module.exports = mean;
 
-},{"@stdlib/constants/float64/sqrt-two":59,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/gamma":88}],154:[function(require,module,exports){
+},{"@stdlib/constants/float64/sqrt-two":63,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/gamma":91}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10348,14 +10670,14 @@ module.exports = mean;
 
 // MODULES //
 
-var stdev = require( './stdev.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = stdev;
+module.exports = main;
 
-},{"./stdev.js":155}],155:[function(require,module,exports){
+},{"./main.js":159}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10421,9 +10743,10 @@ function stdev( k ) {
 
 module.exports = stdev;
 
-},{"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/sqrt":120,"@stdlib/stats/base/dists/chi/mean":152}],156:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/sqrt":124,"@stdlib/stats/base/dists/chi/mean":156}],160:[function(require,module,exports){
 module.exports={"expected": [0.69624247686726393, 0.69585107010678282, 0.69751781431650317, 0.68148677706924143, 0.59661008306029339, 0.68164499350641261, 0.69219520252324718, 0.69569531381400418, 0.64310644374637804, 0.62607606949223416, 0.64607594488883813, 0.69596233159258125, 0.69603790146451128, 0.69621577603221962, 0.69204407374306487, 0.69587536519090687, 0.69661510384881176, 0.69279244922860228, 0.68689650416906955, 0.69688742215246624, 0.69773844649143046, 0.69577665812845713, 0.68654846238269074, 0.68507948369574967, 0.69152550888892206, 0.67243957054364945, 0.1075633286874607, 0.68315120129724693, 0.53330771530370513, 0.59620151263235643, 0.65092955277099862, 0.65763395345430697, 0.69464918492975736, 0.69504043914864977, 0.69325920904909299, 0.69185987506733371, 0.67647256870060846, 0.65434368309983248, 0.67287338910892724, 0.68220149402538466, 0.66415247161361035, 0.39914634250728093, 0.68395798311235922, 0.6873383730844872, 0.67755594465432967, 0.69761658088728951, 0.69507197387319841, 0.69608750001116904, 0.69420766102710418, 0.68188302593298911, 0.68951125921328182, 0.53938271364827062, 0.54947943419400869, 0.68417310307613277, 0.65229248742349522, 0.68581493390924275, 0.67029548807538597, 0.69491392569750365, 0.42462318975847402, 0.69079308996575084, 0.66850930701400824, 0.64873149293517196, 0.69082763129578673, 0.68726694848435266, 0.69616917040283044, 0.69751351856001431, 0.66849042455211627, 0.66680215254788855, 0.5882264944413248, 0.68248375100979708, 0.69118338486928432, 0.67506092207361856, 0.69689381666404082, 0.65493097897436803, 0.69179142869282151, 0.68627232607284394, 0.69530729324777207, 0.69318761390443817, 0.69312232392645023, 0.65623034022407456, 0.69297337113854474, 0.69681614301701822, 0.6743910717455599, 0.68705031182972454, 0.69541547476099752, 0.65971247547837419, 0.69687060252832222, 0.67892299169012604, 0.68712503995162355, 0.69520184059169632, 0.64238165183982943, 0.69769300697135983, 0.6977887014035643, 0.69769342474236262, 0.61863823413651953, 0.68554399741066629, 0.69685945769181534, 0.69293345031236253, 0.69577810251541128, 0.65009490394114511, 0.40124802809186388, 0.68297349784340566, 0.69655961684231327, 0.65558557452908373, 0.56852583391828526, 0.66203648766528334, 0.5888961874134937, 0.69644397402022928, 0.69260539986964531, 0.65937706429018972, 0.64003127303429674, 0.51650252447143108, 0.67448573780332266, 0.69766575769103389, 0.69405018624063508, 0.69770428287523445, 0.66049566319798192, 0.69618298700783809, 0.68377205815033681, 0.5816272602783884, 0.68374673428911148, 0.60148271922992358, 0.67363658624151279, 0.65660347449315826, 0.65970369683170393, 0.45327243682478013, 0.68942874814769584, 0.66633317322409613, 0.69336922140195667, 0.69539879989397924, 0.66891519438359293, 0.67912098842457735, 0.68941606237299824, 0.67798997369246228, 0.64625580682836736, 0.69001386250347663, 0.69406828195602177, 0.69687741075279119, 0.69024985395310234, 0.69236329118541939, 0.69243831013239499, 0.69485988756610895, 0.68397689880959978, 0.36857576813764292, 0.69392669342887603, 0.69509846076396609, 0.62553158744307358, 0.64960769322650092, 0.69088992338244404, 0.69546855951305053, 0.69764918077964411, 0.69491220658226882, 0.67192408734454323, 0.57363412689671933, 0.68497354355104545, 0.6218308235813792, 0.675218131629852, 0.69745120525858584, 0.68557745802758085, 0.69401882975449358, 0.68396177246823286, 0.67521290981818805, 0.65654490670367427, 0.69620604148281429, 0.69485662781605528, 0.67368848754833732, 0.59479023203087633, 0.57929052049730267, 0.69469665829145733, 0.69107640744023613, 0.5396146995107427, 0.66821329785239802, 0.66788642371834517, 0.6697044464424724, 0.69774592480528497, 0.68866185324775431, 0.4710583107620297, 0.68364159549588688, 0.66485586029493215, 0.66997269477129751, 0.66305340456856665, 0.68784634687419854, 0.61211125058340621, 0.37097066306722598, 0.67114773949843975, 0.67275057783454795, 0.6928504090144525, 0.69326330668624281, 0.68594761095301726, 0.69650068450717773, 0.68842039836035418, 0.65938302407675398, 0.69119732983200133, 0.66360893453886649, 0.67879691173680501, 0.6760556169036338, 0.68633933952985049, 0.69681097902084743, 0.65455141100098024, 0.68467162156048955, 0.66174209162655206, 0.69342522056939848, 0.67636817227793189, 0.69405360299860508, 0.68263361334564276, 0.65000331848920567, 0.68577199994540916, 0.68373366415284575, 0.69461907178600923, 0.69149144661807949, 0.64923263569162204, 0.68921558118015236, 0.69607120497147357, 0.68692977508042163, 0.65758947788536604, 0.6963585703398858, 0.68895000448536636, 0.65509945648528933, 0.55903012059623536, 0.69552189490248073, 0.69256697308595228, 0.69743422512874242, 0.69768851397150278, 0.69648785016535608, 0.67926231243583468, 0.5263463498074914, 0.69512986504596375, 0.69223682428311928, 0.69648890066125635, 0.69256828974196472, 0.69605251883533348, 0.64817030102853967, 0.68504240007317441, 0.69058618143138528, 0.69517727738960255, 0.68716430569402154, 0.69711667971604208, 0.68019178839533401, 0.69736894056435228, 0.65958088194690234, 0.27042558234952302, 0.69654859027948723, 0.69774595871190048, 0.69029598122823776, 0.64974619629533759, 0.69422522643887286, 0.49780690365204644, 0.69708745654690107, 0.69772493895648435, 0.69361143281964943, 0.69257968993857966, 0.65238990650843398, 0.68360600797313253, 0.68275865489391718, 0.69073734949047405, 0.69159463788627129, 0.627823236751064, 0.69376269877887864, 0.6909049575221099, 0.69586193295889909, 0.68538803930045544, 0.60604709001517376, 0.63800915344279796, 0.67912226501205386, 0.69641273431713213, 0.69361126101684989, 0.69283332637602779, 0.69369854086809124, 0.69241412352559306, 0.68939001464123217, 0.1746458677687289, 0.67887315137809701, 0.65634634310904572, 0.69673979675346265, 0.69140344989627789, 0.67207884409404406, 0.69628134244034712, 0.69282463435405384, 0.61745259255930041, 0.66182172285790752, 0.66906650617061747, 0.69382356743248041, 0.69413343166676789, 0.64601346212563959, 0.27069142822716302, 0.68978200437837101, 0.69460687191122861, 0.69677595920284507, 0.69584677995242905, 0.65417761989752909, 0.64646289395957335, 0.63638366694404769, 0.63863880928351302, 0.69778395304395535, 0.69163297938644552, 0.69663121541889717, 0.67676595067776224, 0.67167733831972043, 0.69745734484988708, 0.68956605893928657, 0.69760453062866346, 0.68655977850805516, 0.69765540350874644, 0.69591310097640524, 0.69756013693364738, 0.69672332818022153, 0.35299048478398587, 0.68654469199660251, 0.69352834838795863, 0.62967621347608294, 0.69092706459755271, 0.27281145709625609, 0.68987524886656981, 0.68772030539629747, 0.68363787357223416, 0.69328052485896507, 0.68515223313701723, 0.6318137801149496, 0.62437069805218615, 0.69025454850327872, 0.69010394395376251, 0.69459264813975219, 0.69319756371278896, 0.51278373566046187, 0.50874227598488275, 0.69681496221812234, 0.6977866306540027, 0.69693425566814493, 0.60656335441703368, 0.69191530938650903, 0.55159331883373552, 0.67700879214906518, 0.67799055732057978, 0.67441688706878111, 0.55291743230756751, 0.68412908565924802, 0.56209336550421241, 0.67974770889846992, 0.66522227856100369, 0.6818988857526227, 0.6963950842285106, 0.69263052178605855, 0.69246662239793311, 0.69729415909122772, 0.69514672573536096, 0.695669163432175, 0.67855900631569732, 0.69684854653514783, 0.68147466288965386, 0.68376726754680306, 0.69108637177325694, 0.68642153148639018, 0.69377230386978628, 0.67668090289745819, 0.69633783521886383, 0.5383650147325818, 0.69382428433700072, 0.68269452934367891, 0.68089316342810369, 0.65447067797786862, 0.67756974497320466, 0.65558844798329485, 0.6895769285801957, 0.68398445285301779, 0.69534645641900961, 0.69567199232607368, 0.67094180758742805, 0.68951765958024136, 0.68798370333298542, 0.69266001317178227, 0.69731989949893181, 0.69476438459211853, 0.67043370519020651, 0.69719185108724646, 0.6787022489729746, 0.66984045937377068, 0.44604639802419593, 0.69110301684844666, 0.68925846627353027, 0.69162691613486471, 0.6950598638979063, 0.68868385483530636, 0.68588128819035366, 0.68969853186337204, 0.6955712504411462, 0.6849068001608537, 0.69124695701273742, 0.69219502059300586, 0.67620189704945743, 0.65782670699682966, 0.68159757639358809, 0.57832603317906728, 0.58569436776062489, 0.6696102021170689, 0.6955601936756205, 0.69341047440873826, 0.69356046595754184, 0.67709219054553849, 0.69652272789789338, 0.62001702706798123, 0.69456608616013982, 0.69117633161477432, 0.65483562801063155, 0.68158766993416819, 0.65393867232461067, 0.63194530727858145, 0.67346836121876363, 0.66315294447429396, 0.69775627374906657, 0.68856057050819153, 0.68815435127600166, 0.69613330369082527, 0.60811049796135086, 0.53819017992735241, 0.67338368541393767, 0.50973094306775835, 0.68783431752139945, 0.64933716582494294, 0.69529001095605869, 0.69766709092050705, 0.6859170072296803, 0.44066846957761796, 0.69406897096083853, 0.63205336697331405, 0.69761136701105042, 0.66249164828788365, 0.69757146336663112, 0.69758687574832112, 0.67460484865171344, 0.67554876860793178, 0.68290949372562471, 0.69450358324331585, 0.69184468540929811, 0.67773906629979652, 0.65692719053709603, 0.27412139511056632, 0.54789024882871051, 0.68555288567245509, 0.69733922075356825, 0.69271246681665122, 0.68922377509529276, 0.65204037038685547, 0.68601794158139962, 0.65558714299152931, 0.67769862481361576, 0.69613324714158675, 0.69476300725359263, 0.67884751170613922, 0.65615367283385695, 0.68686239740497557, 0.67112840314810551, 0.69692560187828156, 0.69621052577476017, 0.60863180873199385, 0.47723281458698313, 0.64368508486209486, 0.68980280230010027, 0.68358895177428647, 0.6907506207942834, 0.68374703052928065, 0.65811031608862336, 0.69768895669988895, 0.66732508450261585, 0.67815789624886946, 0.33073026599546285, 0.69636428432947306, 0.55185865573084081, 0.69542137998624387, 0.60334560502416068, 0.66242538647618388, 0.69220327541348781, 0.69507825626817477, 0.66405792135218067, 0.69249372353269523, 0.56076200725805914, 0.69726481062503809, 0.68285631732760188, 0.69151517312659649, 0.67789050597046296, 0.69667713196871139, 0.67644614542083481, 0.69176223662853054, 0.68914185104510861, 0.69540148554880488, 0.68904898242191615, 0.68860326045127729, 0.69557238175550684, 0.6960922690650565, 0.69495059497932499, 0.66999184983552995, 0.6954549828503267, 0.68506478661554182, 0.62752065918147737, 0.6969797534895229, 0.66522493808772021, 0.67213793307371039, 0.69352799571799473, 0.6728042671033253, 0.69655462855474115, 0.68569750239919092, 0.68070511950912815, 0.68877164497125121, 0.66857292305120097, 0.68058767019401534, 0.67222450612410345, 0.65308021732621624, 0.11622430705682149, 0.68492511140175105, 0.69606652681463721, 0.67048165273966831, 0.69426631733090938, 0.58459675554997759, 0.50570083414571132, 0.67903225220196495, 0.60967471501792248, 0.695890744251492, 0.69233247580536827, 0.69145953230503476, 0.66933086749868265, 0.68580573409987999, 0.6884505238622437, 0.68055835992049529, 0.61204936162952306, 0.69739935752019799, 0.69556411782308758, 0.69571902599747015, 0.69710341364218753, 0.69483960161314362, 0.69328527661488015, 0.63264252770658747, 0.69669313650977649, 0.65554721633097168, 0.6483050246864257, 0.69719032691726412, 0.69578954167628904, 0.68842138205045078, 0.68813974443066939, 0.69760975277488368, 0.68864864506356493, 0.66668455858720366, 0.68771823680418931, 0.69574438078902734, 0.64890232625042588, 0.69583512486752541, 0.69575242409863491, 0.68658774904924647, 0.541589119141346, 0.69616421782219329, 0.6820266115416973, 0.69596103811719467, 0.69621750521664338, 0.69336070536661731, 0.68724813208965707, 0.68808876395042562, 0.65685556492575337, 0.69737484360928137, 0.6840540540979938, 0.68818911841225572, 0.67873333948461623, 0.68673067133720034, 0.6924462902618761, 0.68977286698467377, 0.69169352054838684, 0.67009435340224854, 0.69281189300998125, 0.6798635705445023, 0.66098672751095577, 0.69686542509234661, 0.69311563222597228, 0.68229370294797409, 0.66319921112642144, 0.6933402646635628, 0.68392635148704717, 0.56312413567674924, 0.69004324805375727, 0.61575373548112733, 0.65716649401964455, 0.69000411245181303, 0.61980848056552607, 0.68894237627435218, 0.69517740972733211, 0.6961567935942421, 0.64303074776994629, 0.67068305771805292, 0.69300887431662295, 0.69525655539320463, 0.59892280823327559, 0.65913226883375076, 0.69460685658117116, 0.69744080792005714, 0.69023780572475169, 0.67776900819823493, 0.69743076389727288, 0.6728621661560199, 0.69482442596835359, 0.67791453209746266, 0.68959513210394663, 0.69299797338771962, 0.68400198896755193, 0.69236570571478107, 0.66738828039544518, 0.6813343488194985, 0.69362737782848927, 0.6715539752482137, 0.62653561888692211, 0.69578369597666856, 0.68294155264914536, 0.69233779058213951, 0.6961264022973811, 0.69545708152070673, 0.69515761842444113, 0.6918942530958887, 0.69756660399529957, 0.69319924386637721, 0.60723803131470422, 0.68501447156812756, 0.69127721419722798, 0.67978018946284124, 0.69388944566019373, 0.69659676586778285, 0.69722013594065291, 0.69639594854285181, 0.69760983607538252, 0.27586295328583288, 0.68478949139109047, 0.69508190471172215, 0.6971335475728424, 0.57955545318059765, 0.68789024694085077, 0.6526172691217057, 0.62151836625076684, 0.69747544083339053, 0.67926190077910109, 0.61023566759328052, 0.67136246646981512, 0.69458365529873023, 0.57492322934410367, 0.69753508981029655, 0.69746940425552362, 0.67127715889831585, 0.68426079017858832, 0.69054140925710372, 0.69660356299101422, 0.6589572167928327, 0.61054540083713382, 0.62252536410574322, 0.69409789264891308, 0.38077303311019872, 0.67983447805995179, 0.6674684522677633, 0.69599472367326098, 0.67308773793024035, 0.6929475473076282, 0.62467002566684016, 0.69013342197619532, 0.67506821059922706, 0.68389114865912204, 0.69752771443065775, 0.69406817168828561, 0.69297825961345427, 0.096199177294190752, 0.69724434032604066, 0.68696515086184573, 0.43624644184049999, 0.66428001919238566, 0.6952129971961214, 0.69530685906351142, 0.68839365250689, 0.63358056558562148, 0.68482549820333849, 0.69657572463642647, 0.51531083032094138, 0.69682796440852979, 0.68551307800714456, 0.69075865433926464, 0.68628999118533662, 0.69556156998678653, 0.68330542906043223, 0.69341583232528969, 0.69732554286348014, 0.69425563240970967, 0.6826587325806085, 0.40573788499892427, 0.68403499903335185, 0.68665733042512711, 0.68482844270757282, 0.69370578549702655, 0.68359470935540767, 0.69392005859051842, 0.6229781825021421, 0.67722368004168587, 0.69168613297021819, 0.69602083523811542, 0.68904223232601247, 0.69697857370276339, 0.69231856046409046, 0.69296505595182445, 0.46895354763431962, 0.6443393435686291, 0.69770050067156264, 0.69565390763849211, 0.65912989907723796, 0.69721744643060257, 0.65699560503165244, 0.69769412551031285, 0.67813941427694335, 0.36597682749277444, 0.69278975114709673, 0.65459444838908731, 0.69699214314013813, 0.69601355410605603, 0.65387323827218058, 0.6948583448734118, 0.68267377000380314, 0.61754346342778943, 0.69659653366265928, 0.63494433884755119, 0.69270504187108584, 0.67968216284334804, 0.46850010961774441, 0.63986449343474727, 0.61740313266493496, 0.66365448184960596, 0.69393356793727579, 0.69652744831193136, 0.67691768413670761, 0.69165652125855748, 0.69708755339939088, 0.67850468634832883, 0.69061213858006332, 0.63385958450010949, 0.6880910452828326, 0.6966340919057018, 0.6498832222039338, 0.69437368886821593, 0.69519239050382042, 0.56606743167614859, 0.68315486099654354, 0.69125753534360634, 0.69441252956721011, 0.68145248827639171, 0.69663778818062438, 0.65420767187506745, 0.55165370829087035, 0.69351583230887337, 0.69688322309353368, 0.54735415821044953, 0.5227273617236573, 0.6924301565273151, 0.6814578607139028, 0.65749906741392028, 0.60775200712808342, 0.69623813626484021, 0.69577021442229137, 0.67167611727427479, 0.68819386534636795, 0.69734531684563617, 0.67537006049055548, 0.69717306249075994, 0.64026495973459485, 0.68623262194929968, 0.69574736293179984, 0.64434943389312149, 0.69632885503338682, 0.65445414950487335, 0.6612752241200659, 0.68699201319769887, 0.67530969263191121, 0.68692466633059579, 0.68897209606198384, 0.69252307440032246, 0.68625809806888127, 0.69750370666160255, 0.68479607069760029, 0.69139580905994857, 0.69279213155666475, 0.69663453163636224, 0.57651820925934205, 0.65543191173050219, 0.69036929261199276, 0.59209112154706989, 0.68792294647775321, 0.68117432871051042, 0.68795508055701515, 0.69739482306541445, 0.56281839256524036, 0.67595549991346826, 0.69270903695330965, 0.69495746599647645, 0.69664718046107144, 0.6555425066134547, 0.69509981766634543, 0.69617439985387242, 0.69422644531478583, 0.6755848465492108, 0.68075127515903044, 0.68807943385222703, 0.69478371578522202, 0.68753836338193497, 0.68808574172011749, 0.47410967242149882, 0.6704195209130428, 0.65512887778264917, 0.6899088698971465, 0.69686577108854786, 0.69696709374039001, 0.69158566880584682, 0.69021759563811369, 0.69386600014750432, 0.68949981038787089, 0.69708095881106213, 0.65423496097002787, 0.69138878233737733, 0.69473187260226388, 0.68481626762879289, 0.69504984187629382, 0.48449680168694526, 0.69632513878386415, 0.46141483891057905, 0.66993655618421788, 0.69536583245161676, 0.30907455244086657, 0.60484036399848506, 0.69716368552039076, 0.69182464464423077, 0.69199773767841122, 0.66708360549867263, 0.68847888022842285, 0.6816581693389242, 0.69179492887893779, 0.69638939535087052, 0.64894701698019308, 0.67200027992430511, 0.68784581810898449, 0.69084747916041278, 0.61081530636205494, 0.69763182629846665, 0.69664585381717981, 0.6970183764529001, 0.69587927955833362, 0.69275637325748829, 0.67623487979446406, 0.68032039843414682, 0.69280325381320351, 0.66718413452661951, 0.58273303174825597, 0.63781754169531213, 0.62317155533635937, 0.68931669326855005, 0.68967899439392932, 0.69505184627121819, 0.66687467760989372, 0.69330486946776493, 0.69544646588877146, 0.68994413144752187, 0.53022058996807275, 0.69140413330846628, 0.69741236075033108, 0.68893628169451815, 0.63423605179686426, 0.67023877830014233, 0.4768781875901002, 0.68950649293782829, 0.62610876155629147, 0.66957597241536759, 0.69698252732723809, 0.60320053962659648, 0.68177730226188604, 0.68005899013338056, 0.69155573048715724, 0.69416061136383678, 0.66828271724815691, 0.69036888787078377, 0.69606023934332462, 0.69295516684913694, 0.69646557276646348, 0.64072232901038262, 0.69437537231268076, 0.56401634305209958, 0.67435542515157232, 0.63293284022680452, 0.69467435812779577, 0.68881675018516586, 0.68017440604136781, 0.68866979888320823, 0.67641024247551496, 0.67935358879950214, 0.68379643241782584, 0.68297488509649285, 0.69515386113696565, 0.67718656961957369, 0.69022027337033454, 0.67878340921615699, 0.69628429305883721, 0.69670728466183685, 0.69572102939817482, 0.69564532270102075, 0.69627912323261432, 0.69519756723025194, 0.61146165418204268, 0.68153467661172795, 0.69182004876989389, 0.68685611327995177, 0.68891009067894438, 0.67328675881027333, 0.65320435115805975, 0.66341356641757976, 0.39931806838725104, 0.66706644348673216, 0.68645704929347029, 0.68508651859822456, 0.69605674489764569, 0.68595690454785307, 0.69240028848878021, 0.69466822314374976, 0.69515757817850532, 0.6976943870186354, 0.69291216709640668, 0.69441373056864419, 0.66064071956166914, 0.68973996620229228, 0.69129150034771814, 0.68690144251177498, 0.69550656812997702, 0.68691859053162518, 0.68778603557909002, 0.69613332209931567, 0.69535277688525898, 0.64171120825631756, 0.69702955087674301, 0.68278612250303705, 0.67722019016685164, 0.69038879353603377, 0.69720726849187542, 0.68769175882097822, 0.69670660100874804, 0.67399931434476434, 0.69314362503439242, 0.53792513969431011, 0.69546832771311173, 0.65438150860658884, 0.69601314209631027, 0.69742900712441236, 0.492231514838325, 0.68214857011396124, 0.69565736782731924, 0.69681980138685851, 0.67607629177514517, 0.69101470633108508, 0.69547103435235413, 0.6953440564048986, 0.38867439708311941, 0.65884209625899781, 0.6897055952098522, 0.67417758097559888, 0.68383295530081412, 0.69752816328720646, 0.34444871959510498, 0.68087083508360235, 0.69544687759986046, 0.69755249518508855, 0.69675403497541233, 0.68468337743621888, 0.69521538121098192, 0.68744382320325736, 0.69514988963956337, 0.69243169243369118, 0.69464485659492814, 0.69550563894908757, 0.39791957640408454, 0.66512288749713677, 0.69542077545044556, 0.67051533156176135, 0.69505586255962337, 0.68415359802701026, 0.69073861408720172, 0.65083938474467518, 0.69353454621209731, 0.69639744813123994, 0.69709437706932109, 0.64328132446137465, 0.69167798380297096, 0.64456297983527477, 0.67947364850319325, 0.67171089234865633, 0.69526052788653359, 0.688714770590104, 0.69387450517419325, 0.69710613809581057, 0.69338836088476319, 0.69641373305430654, 0.69633728055610766, 0.6758977844369215, 0.64138484510954663, 0.67485643930877814, 0.69287474470429011, 0.55983171117691166, 0.69503234030450578, 0.69663448353776725, 0.69236805633590504], "k": [8.63100224913749, 8.345760316340133, 9.720701129489587, 3.8635753474372225, 0.9395472886453948, 3.885818497507251, 6.399122203421552, 8.2376515274711, 1.63902417573764, 1.2989418974327904, 1.715891703757234, 8.424820957609922, 8.479418860513112, 8.610897196886762, 6.338782219809697, 8.362891405999777, 8.922179282445539, 6.649880815802629, 4.8154621393331, 9.148304566819958, 9.939117722321084, 8.293743960611792, 4.739538342403661, 4.444948348651913, 6.140520053483987, 2.919692261095582, 0.0117845027317387, 4.111829190575415, 0.5479371058434335, 0.9357750122514841, 1.8575445088010312, 2.095183494023629, 7.581031351658915, 7.813399079037598, 6.8607190907724815, 6.266834686807262, 3.27415293216521, 1.9715468189343865, 2.953979402590962, 3.9662313855365117, 2.3920067204293516, 0.21503030222445374, 4.244628792444523, 4.915620858554198, 3.3851456232533703, 9.817227713270286, 7.832779475971496, 8.515656783053915, 7.335579554376164, 3.919792317482358, 5.479762084557959, 0.5740404696590584, 0.6213243251178036, 4.281573124456795, 1.9014755158066365, 4.587473768415347, 2.7615719759988364, 7.736645999415122, 0.2557030804241589, 5.881674306017413, 2.6426375263575785, 1.7907022073868917, 5.893366009072559, 4.899135132733101, 8.576037762848426, 9.716547634684048, 2.6414360540103807, 2.5383304868359904, 0.8667705611042009, 4.0083643027465925, 6.016689342343781, 3.140364586029938, 9.153758289060367, 1.9925502331988343, 6.240534769367806, 4.681065671799146, 7.980641417023531, 6.827471961885099, 6.7974461265869195, 2.0406196462093638, 6.7299712725676555, 9.08796810657037, 3.080757934824444, 4.849835726461086, 8.050596187719156, 2.181511260479032, 9.133991834708832, 3.5369064994789277, 4.8667231835810565, 7.913664305584046, 1.6212469273620012, 9.893302271601385, 9.990305775489205, 9.893721495915216, 1.1880823862925427, 4.533864148936766, 9.124533793679621, 6.712125460920618, 8.294747182654266, 1.831602392398053, 0.21813987522242062, 4.083739376465171, 8.877526589545326, 2.016484734077675, 0.7268315766115407, 2.2868332318564812, 0.8722472458722974, 8.785946991130908, 6.569153500385298, 2.1671052356076173, 1.56602375935614, 0.48344939659393793, 3.089039482860726, 9.86603786657911, 7.252012641257636, 9.904630392237863, 2.2159044580334006, 8.586341332021965, 4.213232701704953, 0.8155796423335848, 4.208994045132801, 0.9865260621889826, 3.0163581790166214, 2.054848839988707, 2.1811317838812947, 0.3105451168635609, 5.455855367265496, 2.5111249667872624, 6.912473769324445, 8.039729965712484, 2.6687360918701275, 3.560071342048532, 5.452199231534993, 3.431840498309917, 1.7207686479355133, 5.630283946923952, 7.261513878303235, 9.13977969110309, 5.704003788148175, 6.467667352450265, 6.498759849206742, 7.704341070055861, 4.2478505109959865, 0.17407967407036318, 7.187861461724024, 7.84913554726537, 1.290210282996449, 1.816781196524414, 5.914574886953488, 8.085394571815264, 9.84952816699028, 7.735613914400002, 2.8800004925329104, 0.7596048056965199, 4.425179617117343, 1.233534355954261, 3.154701441690163, 9.656711089766958, 4.540413624719762, 7.235610334362544, 4.2452737843212685, 3.154223058616129, 2.0526024568982937, 8.603591642595562, 7.70240136509549, 3.0206991253600712, 0.9229323585908378, 0.7985771214003423, 7.608452276960422, 5.979038325808515, 0.5750703408512181, 2.6239300365529292, 2.603583024094384, 2.7210227809871013, 9.946700285204319, 5.2437108884816075, 0.35070825803500405, 4.191491341472244, 2.429160713915739, 2.7392742391546046, 2.3361923485853406, 5.036320742217304, 1.1037404290806307, 0.17702071086179605, 2.8222717974675238, 2.9441890426655073, 6.675319825270238, 6.862632221750273, 4.614215197794358, 8.83060928959538, 5.180457101025714, 2.167359556972656, 6.021634064164813, 2.3640722603685926, 3.5223186223540126, 3.2334216108129663, 4.69511627666087, 9.083629114807541, 1.978925904038017, 4.369839070735296, 2.2729321138272587, 6.9391342342425855, 3.2638550141529366, 7.253804629117681, 4.03111787973215, 1.8287984846840666, 4.578889877614326, 4.206809889223305, 7.563744831289265, 6.127951615289236, 1.80552885477554, 5.39509545056951, 8.503715574908888, 4.822854197972566, 2.093410327717656, 8.719570260521493, 5.321357780976632, 1.9986568457164922, 0.6712406848355834, 8.120675672456674, 6.552823146178715, 9.640538725873531, 9.888795979095933, 8.820460153190194, 3.5768001556276943, 0.5199380318892888, 7.868621072392077, 6.415952737818101, 8.821289948705441, 6.553381279446205, 8.490065138715323, 1.7743752820428138, 4.438007378718711, 5.812646928094858, 7.898231786084229, 4.875646305457697, 9.348165212557737, 3.691049005467628, 9.578881918030564, 2.175836594358449, 0.08277752845605502, 8.868708560967807, 9.946734691916573, 5.71865104835727, 1.8209708643723033, 7.345026316433021, 0.4226075898425219, 9.322183967336228, 9.925452349706823, 7.029360398936749, 6.5582180238975285, 1.904693158194306, 4.185601521589911, 4.050311068396129, 5.862909489769136, 6.166194828726924, 1.3276903968125742, 7.104486691960465, 5.919717689105841, 8.353410916935664, 4.5035972968690245, 1.0341687543883238, 1.5212685151233174, 3.5602217242273184, 8.761545060002895, 7.029276019977103, 6.667800910270596, 7.072417907822826, 6.488701186191845, 5.444708204901682, 0.03204542758204476, 3.5311247819265312, 2.0450224511587956, 9.02425644194557, 6.0957310134972245, 2.8917995567355206, 8.660442949209507, 6.663981941061808, 1.1719446653564314, 2.276675487744545, 2.678600617313335, 7.135194608549495, 7.295938227461088, 1.7142036707356278, 0.08296222470515202, 5.559779281208392, 7.55676494268558, 9.054317765263885, 8.342742836064271, 1.965686498240099, 1.7264167554237786, 1.4869881777384197, 1.5349457819547596, 9.985445774522502, 6.180532513493072, 8.93523291803029, 3.303457360733809, 2.861391043683926, 9.662572538258047, 5.495761858169441, 9.805343913325174, 4.741967335806294, 9.855718915914192, 8.389646150656077, 9.761820784323868, 9.01063526694092, 0.15592708022399204, 4.738729613953567, 6.9888008468748355, 1.3594583356215972, 5.927297061607689, 0.08444518152893488, 5.587909294032696, 5.005794031280693, 4.19087454052616, 6.870683401915248, 4.458631355105549, 1.397859169030078, 1.271940143091841, 5.705490890228471, 5.6581863734867515, 7.548644142966131, 6.832072183447283, 0.47052001312761327, 0.4569577434826466, 9.086975571744606, 9.988185733935254, 9.188405441109545, 1.039799523070024, 6.288306145398038, 0.6319063876796305, 3.328128870986029, 3.431904190330984, 3.083011748420134, 0.6386649203435713, 4.273958841973319, 0.6884723103157986, 3.635528043291992, 2.4489812280112213, 3.922078062049945, 8.747820702767497, 6.579875918971828, 6.510575961380186, 9.50925786999374, 7.879124521225038, 8.219787150406637, 3.4951308214058976, 9.115293838877745, 3.8618832246918764, 4.212430173720346, 5.982524378990391, 4.712470826757268, 7.109313982656871, 3.29490646491603, 8.703612353756872, 0.5695520522582131, 7.135557941898983, 4.040444292809516, 3.782441771157706, 1.9760516082276325, 3.3866099821078843, 2.016591045539271, 5.4989471299152735, 4.249138548269903, 8.005818656408186, 8.221715772650928, 2.8073552819103362, 5.481625734640355, 5.07003686472558, 6.592510281415666, 9.533103708090003, 7.6479330490392154, 2.7712337670311538, 9.415696425676959, 3.5114479521890765, 2.7302458133846006, 0.29566271428284274, 5.988357249235809, 5.407204613640156, 6.178260518057915, 7.825325118166665, 5.249555494946834, 4.600806844221676, 5.534848609414417, 8.153612290589484, 4.412819594528473, 6.039300785081656, 6.399048840066492, 3.2475912514635463, 2.102902771867625, 3.8791242059044153, 0.7917184043925662, 0.8465471052225404, 2.7146693698512303, 8.146209470024393, 6.932092877242965, 7.004421434890022, 3.336690294839475, 8.848097781518874, 1.2073444159453361, 7.53352791351249, 6.01419158837124, 1.989110378035155, 3.8777286696312165, 1.9573137922828876, 1.400286606157588, 3.002376153475744, 2.341139112576902, 9.957213386135109, 5.216981168230253, 5.112592012109158, 8.549410765202413, 1.0569869945935217, 0.5687857710113942, 2.995388791144946, 0.4602299011940403, 5.033390395970516, 1.808651368838352, 7.969583577273973, 9.867368195019923, 4.608017911169301, 0.28507051163023434, 7.261876159170098, 1.4022867055692245, 9.812082179807755, 2.3086644115031696, 9.77288682424367, 9.7879869201014, 3.0995251296327098, 3.185300987823587, 4.073720392531943, 7.498206880266203, 6.260978107602332, 3.4046846032428735, 2.0673531842838333, 0.08537048112394197, 0.6135321321327469, 4.535601973192086, 9.551084921947773, 6.6151082010146816, 5.397404700479563, 1.893197365384558, 4.6285238059220415, 2.016542762357294, 3.4003493610091438, 8.549368920136653, 7.647125860513206, 3.528158121731557, 2.037720041160748, 4.807909048980519, 2.820864267459547, 9.18096809314454, 8.606955390760296, 1.0628867199531367, 0.3659655836073272, 1.6534839135359214, 5.5660277752372656, 4.182784827618215, 5.867365800661202, 4.20904357751506, 2.114363621164115, 9.88923982744787, 2.569380707652771, 3.450268135767848, 0.1327019070412827, 8.723978537305468, 0.6332525802854294, 8.054451715501687, 1.005520007036974, 2.305460268969207, 6.402379375143218, 7.836652496121525, 2.387099702147789, 6.5219289506827245, 0.6809049689774649, 9.482220769569079, 4.065435429339858, 6.13670059990053, 3.4210212835415463, 8.972654310517589, 3.271540106548818, 6.229388369289688, 5.374409527134536, 8.041478006344875, 5.348590148639941, 5.228212546893286, 8.154370531534562, 8.519158236878964, 7.758729581110979, 2.7405871290867667, 8.076464811177166, 4.442194760025181, 1.3226300867538343, 9.22771543560719, 2.4491262843960735, 2.896330930636851, 6.988629729120507, 2.9484608470331275, 8.873535150534183, 4.564075186411167, 3.7574776713341462, 5.273013519377497, 2.646693569807147, 3.7420593835872182, 2.902996427370581, 1.9278013136319505, 0.013801679847180726, 4.416203382425596, 8.500293825420405, 2.7746016483792904, 7.3672251097726535, 0.8380108024249355, 0.44707087745697316, 3.5496505560087077, 1.0748583325481798, 8.373773628770554, 6.4549858642977345, 6.11622468702654, 2.6960151843134064, 4.585631583752599, 5.188261353085376, 3.738232232589519, 1.1029904491093268, 9.607506104018073, 8.14883518905386, 8.253920615519903, 9.336352142013059, 7.692286569074938, 6.872908803592709, 1.4132841768814275, 8.985774817297571, 2.0150666216076454, 1.7782686165474948, 9.414317063222883, 8.302701405983594, 5.1807115439533336, 5.1089200685254985, 9.810490241469623, 5.240208771422913, 2.531452791785984, 5.005296270773489, 8.27139121270449, 1.7957299536370674, 8.334556734876253, 8.276949584975583, 4.74798242075974, 0.5839384535143555, 8.572350721304844, 3.940588342876512, 8.423892838438862, 8.61219626563871, 6.908438208998383, 4.89481138682722, 5.0961476680244955, 2.064573528989815, 9.584423131788121, 4.261044898899424, 5.121354317464002, 3.515010537613752, 4.7789700223192035, 6.502085792989824, 5.55703871825454, 6.2033148911433695, 2.747634683955212, 6.658392132950505, 3.649844908653679, 2.238026951085047, 9.129595472192056, 6.794384365326769, 3.9798932094814408, 2.3434455742008597, 6.898771954440546, 4.239252735544382, 0.6944157335482093, 5.639354179053439, 1.1494775714062933, 2.076693998543772, 5.627281239492402, 1.2043959103585622, 5.319271081548743, 7.898314762209624, 8.566829815174112, 1.637150317601238, 2.7888406496206786, 6.745926149527799, 7.948268338985393, 0.9613763318602897, 2.1567101851367774, 7.556756180424511, 9.646801662607594, 5.700190973434532, 3.407901726856817, 9.637249071410134, 2.953081938823839, 7.683294553729621, 3.423628125961801, 5.504290247918139, 6.741018909352922, 4.252131785917821, 6.468663217390219, 2.573185488408818, 3.8423963515745574, 7.037200865555989, 2.8521795309399622, 1.3063943189358695, 8.298634605664839, 4.078732339269293, 6.457169332769263, 8.54430706028224, 8.077843818516083, 7.8859257941578855, 6.280132201022818, 9.768135969964115, 6.832849632240392, 1.047236226910998, 4.432794982517988, 6.050125564708862, 3.639529786420368, 7.168745082384902, 8.907370158529499, 9.441370692992988, 8.74849173084682, 9.810572378151502, 0.08661140398744105, 4.391270216631099, 7.838903557937442, 9.363230660602566, 0.8004771509615838, 5.047045283923769, 1.912244163480783, 1.2289515599959777, 9.67989192525974, 3.576751188906692, 1.0813926597514134, 2.837999653758334, 7.543519272516428, 0.7682274876861572, 9.737441932001218, 9.674107223884718, 2.831729730942669, 4.296826688080516, 5.79793377345948, 8.9128532932346, 2.1493373651602243, 1.0850296682172667, 1.24383019709576, 7.277117525084568, 0.1895091934424986, 3.646238936245809, 2.578028852704609, 8.44813344430585, 2.97122873785169, 6.718415887508375, 1.2766065737554433, 5.667380348326308, 3.141026287133247, 4.233286490005876, 9.730287484246826, 7.261455902702316, 6.732163415371711, 0.009391030570203851, 9.46345728959346, 4.830740121110399, 0.2766533196907306, 2.3986585821757958, 7.9206946182158235, 7.980363216934768, 5.173549029405816, 1.4311236416589113, 4.397861062472568, 8.890441071776566, 0.4792577436883372, 9.09791720399167, 4.527829696003525, 5.870066809598996, 4.6847609059127695, 8.147130183544736, 4.1365386064839935, 6.934649571679027, 9.538348374080147, 7.361439208691718, 4.03495823694786, 0.22492293769715732, 4.257778287987158, 4.763015745521447, 4.398400956203194, 7.076023862789313, 4.1837352012952085, 7.1844484951264, 1.2506251061585127, 3.3502819633816827, 6.2005254067693905, 8.467024253709914, 5.346723646496766, 9.22669167245324, 6.449276365622478, 6.726245926212091, 0.34567118506148575, 1.670127643321374, 9.900827664246512, 8.209402672067572, 2.156610040147795, 9.43892313638907, 2.0700151388453714, 9.894424784713925, 3.448229862536163, 0.17093521000104195, 6.648701562270051, 1.9804614977686374, 9.23848091618807, 8.461747736195138, 1.9550331646995067, 7.703422967688423, 4.037260905010792, 1.1731679349956703, 8.907182966619327, 1.4578100049177956, 6.611899531577237, 3.627480387221068, 0.34459657886652284, 1.5622395105052678, 1.1712797891300308, 2.366387849214272, 7.191401302674018, 8.851852206752268, 3.3188280055563455, 6.189370688374895, 9.322269826631086, 3.4889843214883864, 5.821213041160636, 1.4365099943006576, 5.096717786852252, 8.937567650692488, 1.8251342817625038, 7.425900542590355, 7.907719559039642, 0.7118073096471522, 4.112411941353226, 6.043080647627631, 7.447367863557233, 3.8587898615337046, 8.94056964382975, 1.9667444903075748, 0.6322124190546718, 6.982733338199095, 9.144726978223462, 0.6109343722302263, 0.5061226993656753, 6.495365292394682, 3.859538841823329, 2.089814960123052, 1.0529619831809256, 8.627727212248537, 8.289271470328675, 2.861299568729522, 5.122553130360301, 9.556772895302238, 3.1686861021646884, 9.398722249179848, 1.5713551626549516, 4.672782569649936, 8.273451127778849, 1.6703868250139209, 8.696720048224877, 1.9754641637919457, 2.2512308984265172, 4.836746367176415, 3.163114051777219, 4.821717597398872, 5.327410661378976, 6.5342713676489685, 4.678093870826444, 9.707074528350779, 4.392472973349529, 6.092950056193917, 6.649741947764651, 8.937924675224636, 0.7791037479449181, 2.0108155778725187, 5.742093792878005, 0.899150542828453, 5.055064856887151, 3.8204221496191506, 5.062971897772477, 9.603227607020596, 0.692645014333706, 3.2237973020039847, 6.6136255889935756, 7.762882251088592, 8.948207223721576, 2.0148926374739826, 7.849975381316537, 8.57993452402533, 7.345682779901843, 3.1886771564653884, 3.7635732084287534, 5.093817414741483, 7.659280942305317, 4.962408036038346, 5.095392600764159, 0.35815687595749934, 2.770239055121438, 1.999727021402521, 5.598125653125592, 9.129889133375377, 9.216742259117842, 6.162850948730649, 5.693807253360362, 7.156766893974305, 5.476431752181999, 9.316427518283293, 1.9677061818234365, 6.09039496383054, 7.6289268979114455, 4.39616947870443, 7.81916723246562, 0.3848895456433288, 8.693871155100553, 0.3282740830682307, 2.7368007995200703, 8.018336694947388, 0.11278113179433724, 1.0212050834933695, 9.390274658936894, 6.25326868763578, 6.320520564799416, 2.5549469643497122, 5.195629918618963, 3.887682939823768, 6.241874058848512, 8.743406707256607, 1.7970497308938627, 2.8857972181131784, 5.036191859823802, 5.900106332006071, 1.0882160405806762, 9.832305586337664, 8.947127602423233, 9.261361970145904, 8.365658406560708, 6.634149274540992, 3.25080398909971, 3.707460766563689, 6.654607591009781, 2.560935733154428, 0.8238218566605804, 1.5171513791675006, 1.2535469301234037, 5.423737544429377, 5.529047273332445, 7.820397992167626, 2.542591201317723, 6.882100771083513, 8.070873484711324, 5.608882798175335, 0.5352802883656349, 6.095979878027085, 9.619797396148002, 5.317605143502232, 1.4438369156542008, 2.7576277290290028, 0.3650692960884072, 5.478375112258766, 1.299469535826011, 2.712369304976213, 9.230123374524723, 1.0040191791544706, 3.904626184225446, 3.6742612081870796, 6.151716785515343, 7.310401020748152, 2.6282929972186975, 5.741963814285125, 8.495699502996402, 6.721821069260391, 8.802901346937215, 1.5818889811125014, 7.426828296810396, 0.6996210691874272, 3.0776513919599946, 1.4187615223670291, 7.595545725634799, 5.285151831614479, 3.688842495603425, 5.245820025831911, 3.2679968252288925, 3.5876921457018875, 4.217320881440746, 4.083957104088838, 7.883578398058124, 3.346434331404345, 5.69465219940792, 3.520763763955197, 8.66268661598633, 8.99740685268151, 8.255298241155227, 8.203571038801407, 8.658756250939845, 7.910974913122163, 1.0959117787174433, 3.8702812308196464, 6.251503525200874, 4.806520117969866, 5.310458365755652, 2.987431564191203, 1.9320148954089456, 2.3541914521383145, 0.21528284089011973, 2.553927423567778, 4.720012078175463, 4.44626764971663, 8.493148317064978, 4.61610062837012, 6.482962191767438, 7.592003051681142, 7.885900642433212, 9.89468726042614, 6.702651751729491, 7.448033732206665, 2.22239365080679, 5.547194324734299, 6.055250748353521, 4.816557824254267, 8.110504149887984, 4.820366579354623, 5.021664909587874, 8.549424387130264, 8.009897547260973, 1.6051244012060129, 9.271144396460299, 4.054552874982338, 3.3499197393378544, 5.748363657102998, 9.42967278724408, 4.998934113553584, 8.996844058297116, 3.0469685703576466, 6.807211673095014, 0.5676267940770607, 8.085241937021896, 1.97288646484861, 8.461449364896026, 9.635580278451798, 0.4062990866594607, 3.9584343492845675, 8.211755584314254, 9.091044630384824, 3.2354165273102398, 5.9575467041803085, 8.087024570961077, 8.00427095394639, 0.20013087958637987, 2.144515991238698, 5.536949107566157, 3.0622487787578603, 4.223462288859988, 9.730722582175922, 0.14665977341073444, 3.7794594065028244, 8.071143583921264, 9.75436945281632, 9.036067578336661, 4.371966669483985, 7.922198595999026, 4.940174466701249, 7.8810987620300725, 6.496004445309206, 7.578541569567516, 8.10988836119282, 0.21323413036885785, 2.4435726554594126, 8.054056835946747, 2.7769723008413028, 7.822865336792722, 4.278195565922007, 5.863333816275721, 1.8547076728467982, 6.991809506488283, 8.74965622199353, 9.328323132925254, 1.6433689376136618, 6.197451408486609, 1.6758900040879543, 3.6021246444628376, 2.863907106978334, 7.950793053826465, 5.257791290598374, 7.161107213558662, 9.338775651618985, 6.921561620700768, 8.762323002592902, 8.703186318702071, 3.2182760186823325, 1.5973852126447308, 3.1219171370680856, 6.686061959056011, 0.6756888335046496, 7.808437935757305, 8.93788562173469, 6.46963303298111]}
-},{}],157:[function(require,module,exports){
+
+},{}],161:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -10464,7 +10787,7 @@ var data = require( './fixtures/python/data.json' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof stdev, 'function', 'main export is a function' );
+	t.strictEqual( typeof stdev, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -10510,7 +10833,1518 @@ tape( 'the function returns the standard deviation of a chi distribution', funct
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/chi/stdev/test/test.js")
-},{"./../lib":154,"./fixtures/python/data.json":156,"@stdlib/constants/float64/eps":46,"@stdlib/constants/float64/ninf":54,"@stdlib/math/base/assert/is-nan":69,"@stdlib/math/base/special/abs":75,"tape":268}],158:[function(require,module,exports){
+},{"./../lib":158,"./fixtures/python/data.json":160,"@stdlib/constants/float64/eps":46,"@stdlib/constants/float64/ninf":57,"@stdlib/math/base/assert/is-nan":73,"@stdlib/math/base/special/abs":79,"tape":312}],162:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( './is_number.js' );
+
+// NOTE: for the following, we explicitly avoid using stdlib packages in this particular package in order to avoid circular dependencies.
+var abs = Math.abs; // eslint-disable-line stdlib/no-builtin-math
+var lowercase = String.prototype.toLowerCase;
+var uppercase = String.prototype.toUpperCase;
+var replace = String.prototype.replace;
+
+
+// VARIABLES //
+
+var RE_EXP_POS_DIGITS = /e\+(\d)$/;
+var RE_EXP_NEG_DIGITS = /e-(\d)$/;
+var RE_ONLY_DIGITS = /^(\d+)$/;
+var RE_DIGITS_BEFORE_EXP = /^(\d+)e/;
+var RE_TRAILING_PERIOD_ZERO = /\.0$/;
+var RE_PERIOD_ZERO_EXP = /\.0*e/;
+var RE_ZERO_BEFORE_EXP = /(\..*[^0])0*e/;
+
+
+// MAIN //
+
+/**
+* Formats a token object argument as a floating-point number.
+*
+* @private
+* @param {Object} token - token object
+* @throws {Error} must provide a valid floating-point number
+* @returns {string} formatted token argument
+*/
+function formatDouble( token ) {
+	var digits;
+	var out;
+	var f = parseFloat( token.arg );
+	if ( !isFinite( f ) ) { // NOTE: We use the global `isFinite` function here instead of `@stdlib/math/base/assert/is-finite` in order to avoid circular dependencies.
+		if ( !isNumber( token.arg ) ) {
+			throw new Error( 'invalid floating-point number. Value: ' + out );
+		}
+		// Case: NaN, Infinity, or -Infinity
+		f = token.arg;
+	}
+	switch ( token.specifier ) {
+	case 'e':
+	case 'E':
+		out = f.toExponential( token.precision );
+		break;
+	case 'f':
+	case 'F':
+		out = f.toFixed( token.precision );
+		break;
+	case 'g':
+	case 'G':
+		if ( abs( f ) < 0.0001 ) {
+			digits = token.precision;
+			if ( digits > 0 ) {
+				digits -= 1;
+			}
+			out = f.toExponential( digits );
+		} else {
+			out = f.toPrecision( token.precision );
+		}
+		if ( !token.alternate ) {
+			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
+			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
+		}
+		break;
+	default:
+		throw new Error( 'invalid double notation. Value: ' + token.specifier );
+	}
+	out = replace.call( out, RE_EXP_POS_DIGITS, 'e+0$1' );
+	out = replace.call( out, RE_EXP_NEG_DIGITS, 'e-0$1' );
+	if ( token.alternate ) {
+		out = replace.call( out, RE_ONLY_DIGITS, '$1.' );
+		out = replace.call( out, RE_DIGITS_BEFORE_EXP, '$1.e' );
+	}
+	if ( f >= 0 && token.sign ) {
+		out = token.sign + out;
+	}
+	out = ( token.specifier === uppercase.call( token.specifier ) ) ?
+		uppercase.call( out ) :
+		lowercase.call( out );
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = formatDouble;
+
+},{"./is_number.js":165}],163:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( './is_number.js' );
+var zeroPad = require( './zero_pad.js' );
+
+// NOTE: for the following, we explicitly avoid using stdlib packages in this particular package in order to avoid circular dependencies.
+var lowercase = String.prototype.toLowerCase;
+var uppercase = String.prototype.toUpperCase;
+
+
+// MAIN //
+
+/**
+* Formats a token object argument as an integer.
+*
+* @private
+* @param {Object} token - token object
+* @throws {Error} must provide a valid integer
+* @returns {string} formatted token argument
+*/
+function formatInteger( token ) {
+	var base;
+	var out;
+	var i;
+
+	switch ( token.specifier ) {
+	case 'b':
+		// Case: %b (binary)
+		base = 2;
+		break;
+	case 'o':
+		// Case: %o (octal)
+		base = 8;
+		break;
+	case 'x':
+	case 'X':
+		// Case: %x, %X (hexadecimal)
+		base = 16;
+		break;
+	case 'd':
+	case 'i':
+	case 'u':
+	default:
+		// Case: %d, %i, %u (decimal)
+		base = 10;
+		break;
+	}
+	out = token.arg;
+	i = parseInt( out, 10 );
+	if ( !isFinite( i ) ) { // NOTE: We use the global `isFinite` function here instead of `@stdlib/math/base/assert/is-finite` in order to avoid circular dependencies.
+		if ( !isNumber( out ) ) {
+			throw new Error( 'invalid integer. Value: ' + out );
+		}
+		i = 0;
+	}
+	if ( i < 0 && ( token.specifier === 'u' || base !== 10 ) ) {
+		i = 0xffffffff + i + 1;
+	}
+	if ( i < 0 ) {
+		out = ( -i ).toString( base );
+		if ( token.precision ) {
+			out = zeroPad( out, token.precision, token.padRight );
+		}
+		out = '-' + out;
+	} else {
+		out = i.toString( base );
+		if ( !i && !token.precision ) {
+			out = '';
+		} else if ( token.precision ) {
+			out = zeroPad( out, token.precision, token.padRight );
+		}
+		if ( token.sign ) {
+			out = token.sign + out;
+		}
+	}
+	if ( base === 16 ) {
+		if ( token.alternate ) {
+			out = '0x' + out;
+		}
+		out = ( token.specifier === uppercase.call( token.specifier ) ) ?
+			uppercase.call( out ) :
+			lowercase.call( out );
+	}
+	if ( base === 8 ) {
+		if ( token.alternate && out.charAt( 0 ) !== '0' ) {
+			out = '0' + out;
+		}
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = formatInteger;
+
+},{"./is_number.js":165,"./zero_pad.js":169}],164:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Generate string from a token array by interpolating values.
+*
+* @module @stdlib/string/base/format-interpolate
+*
+* @example
+* var formatInterpolate = require( '@stdlib/string/base/format-interpolate' );
+*
+* var tokens = ['Hello ', { 'specifier': 's' }, '!' ];
+* var out = formatInterpolate( tokens, 'World' );
+* // returns 'Hello World!'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":167}],165:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tests if a value is a number primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive
+*
+* @example
+* var bool = isNumber( 3.14 );
+* // returns true
+*
+* @example
+* var bool = isNumber( NaN );
+* // returns true
+*
+* @example
+* var bool = isNumber( new Number( 3.14 ) );
+* // returns false
+*/
+function isNumber( value ) {
+	return ( typeof value === 'number' );  // NOTE: we inline the `isNumber.isPrimitive` function from `@stdlib/assert/is-number` in order to avoid circular dependencies.
+}
+
+
+// EXPORTS //
+
+module.exports = isNumber;
+
+},{}],166:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tests if a value is a string primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a string primitive
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns false
+*/
+function isString( value ) {
+	return ( typeof value === 'string' ); // NOTE: we inline the `isString.isPrimitive` function from `@stdlib/assert/is-string` in order to avoid circular dependencies.
+}
+
+
+// EXPORTS //
+
+module.exports = isString;
+
+},{}],167:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var formatInteger = require( './format_integer.js' );
+var isString = require( './is_string.js' );
+var formatDouble = require( './format_double.js' );
+var spacePad = require( './space_pad.js' );
+var zeroPad = require( './zero_pad.js' );
+
+
+// VARIABLES //
+
+var fromCharCode = String.fromCharCode;
+var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
+
+
+// FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
+
+/**
+* Initializes token object with properties of supplied format identifier object or default values if not present.
+*
+* @private
+* @param {Object} token - format identifier object
+* @returns {Object} token object
+*/
+function initialize( token ) {
+	var out = {};
+	out.specifier = token.specifier;
+	out.precision = ( token.precision === void 0 ) ? 1 : token.precision;
+	out.width = token.width;
+	out.flags = token.flags || '';
+	out.mapping = token.mapping;
+	return out;
+}
+
+
+// MAIN //
+
+/**
+* Generates string from a token array by interpolating values.
+*
+* @param {Array} tokens - string parts and format identifier objects
+* @param {Array} ...args - variable values
+* @throws {TypeError} first argument must be an array
+* @throws {Error} invalid flags
+* @returns {string} formatted string
+*
+* @example
+* var tokens = [ 'beep ', { 'specifier': 's' } ];
+* var out = formatInterpolate( tokens, 'boop' );
+* // returns 'beep boop'
+*/
+function formatInterpolate( tokens ) {
+	var hasPeriod;
+	var flags;
+	var token;
+	var flag;
+	var num;
+	var out;
+	var pos;
+	var i;
+	var j;
+
+	if ( !isArray( tokens ) ) {
+		throw new TypeError( 'invalid argument. First argument must be an array. Value: `' + tokens + '`.' );
+	}
+	out = '';
+	pos = 1;
+	for ( i = 0; i < tokens.length; i++ ) {
+		token = tokens[ i ];
+		if ( isString( token ) ) {
+			out += token;
+		} else {
+			hasPeriod = token.precision !== void 0;
+			token = initialize( token );
+			if ( !token.specifier ) {
+				throw new TypeError( 'invalid argument. Token is missing `specifier` property. Index: `'+ i +'`. Value: `' + token + '`.' );
+			}
+			if ( token.mapping ) {
+				pos = token.mapping;
+			}
+			flags = token.flags;
+			for ( j = 0; j < flags.length; j++ ) {
+				flag = flags.charAt( j );
+				switch ( flag ) {
+				case ' ':
+					token.sign = ' ';
+					break;
+				case '+':
+					token.sign = '+';
+					break;
+				case '-':
+					token.padRight = true;
+					token.padZeros = false;
+					break;
+				case '0':
+					token.padZeros = flags.indexOf( '-' ) < 0; // NOTE: We use built-in `Array.prototype.indexOf` here instead of `@stdlib/assert/contains` in order to avoid circular dependencies.
+					break;
+				case '#':
+					token.alternate = true;
+					break;
+				default:
+					throw new Error( 'invalid flag: ' + flag );
+				}
+			}
+			if ( token.width === '*' ) {
+				token.width = parseInt( arguments[ pos ], 10 );
+				pos += 1;
+				if ( isnan( token.width ) ) {
+					throw new TypeError( 'the argument for * width at position ' + pos + ' is not a number. Value: `' + token.width + '`.' );
+				}
+				if ( token.width < 0 ) {
+					token.padRight = true;
+					token.width = -token.width;
+				}
+			}
+			if ( hasPeriod ) {
+				if ( token.precision === '*' ) {
+					token.precision = parseInt( arguments[ pos ], 10 );
+					pos += 1;
+					if ( isnan( token.precision ) ) {
+						throw new TypeError( 'the argument for * precision at position ' + pos + ' is not a number. Value: `' + token.precision + '`.' );
+					}
+					if ( token.precision < 0 ) {
+						token.precision = 1;
+						hasPeriod = false;
+					}
+				}
+			}
+			token.arg = arguments[ pos ];
+			switch ( token.specifier ) {
+			case 'b':
+			case 'o':
+			case 'x':
+			case 'X':
+			case 'd':
+			case 'i':
+			case 'u':
+				// Case: %b (binary), %o (octal), %x, %X (hexadecimal), %d, %i (decimal), %u (unsigned decimal)
+				if ( hasPeriod ) {
+					token.padZeros = false;
+				}
+				token.arg = formatInteger( token );
+				break;
+			case 's':
+				// Case: %s (string)
+				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
+				break;
+			case 'c':
+				// Case: %c (character)
+				if ( !isnan( token.arg ) ) {
+					num = parseInt( token.arg, 10 );
+					if ( num < 0 || num > 127 ) {
+						throw new Error( 'invalid character code. Value: ' + token.arg );
+					}
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
+				}
+				break;
+			case 'e':
+			case 'E':
+			case 'f':
+			case 'F':
+			case 'g':
+			case 'G':
+				// Case: %e, %E (scientific notation), %f, %F (decimal floating point), %g, %G (uses the shorter of %e/E or %f/F)
+				if ( !hasPeriod ) {
+					token.precision = 6;
+				}
+				token.arg = formatDouble( token );
+				break;
+			default:
+				throw new Error( 'invalid specifier: ' + token.specifier );
+			}
+			// Fit argument into field width...
+			if ( token.maxWidth >= 0 && token.arg.length > token.maxWidth ) {
+				token.arg = token.arg.substring( 0, token.maxWidth );
+			}
+			if ( token.padZeros ) {
+				token.arg = zeroPad( token.arg, token.width || token.precision, token.padRight ); // eslint-disable-line max-len
+			} else if ( token.width ) {
+				token.arg = spacePad( token.arg, token.width, token.padRight );
+			}
+			out += token.arg || '';
+			pos += 1;
+		}
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = formatInterpolate;
+
+},{"./format_double.js":162,"./format_integer.js":163,"./is_string.js":166,"./space_pad.js":168,"./zero_pad.js":169}],168:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// FUNCTIONS //
+
+/**
+* Returns `n` spaces.
+*
+* @private
+* @param {number} n - number of spaces
+* @returns {string} string of spaces
+*/
+function spaces( n ) {
+	var out = '';
+	var i;
+	for ( i = 0; i < n; i++ ) {
+		out += ' ';
+	}
+	return out;
+}
+
+
+// MAIN //
+
+/**
+* Pads a token with spaces to the specified width.
+*
+* @private
+* @param {string} str - token argument
+* @param {number} width - token width
+* @param {boolean} [right=false] - boolean indicating whether to pad to the right
+* @returns {string} padded token argument
+*/
+function spacePad( str, width, right ) {
+	var pad = width - str.length;
+	if ( pad < 0 ) {
+		return str;
+	}
+	str = ( right ) ?
+		str + spaces( pad ) :
+		spaces( pad ) + str;
+	return str;
+}
+
+
+// EXPORTS //
+
+module.exports = spacePad;
+
+},{}],169:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// FUNCTIONS //
+
+/**
+* Tests if a string starts with a minus sign (`-`).
+*
+* @private
+* @param {string} str - input string
+* @returns {boolean} boolean indicating if a string starts with a minus sign (`-`)
+*/
+function startsWithMinus( str ) {
+	return str[ 0 ] === '-';
+}
+
+/**
+* Returns a string of `n` zeros.
+*
+* @private
+* @param {number} n - number of zeros
+* @returns {string} string of zeros
+*/
+function zeros( n ) {
+	var out = '';
+	var i;
+	for ( i = 0; i < n; i++ ) {
+		out += '0';
+	}
+	return out;
+}
+
+
+// MAIN //
+
+/**
+* Pads a token with zeros to the specified width.
+*
+* @private
+* @param {string} str - token argument
+* @param {number} width - token width
+* @param {boolean} [right=false] - boolean indicating whether to pad to the right
+* @returns {string} padded token argument
+*/
+function zeroPad( str, width, right ) {
+	var negative = false;
+	var pad = width - str.length;
+	if ( pad < 0 ) {
+		return str;
+	}
+	if ( startsWithMinus( str ) ) {
+		negative = true;
+		str = str.substr( 1 );
+	}
+	str = ( right ) ?
+		str + zeros( pad ) :
+		zeros( pad ) + str;
+	if ( negative ) {
+		str = '-' + str;
+	}
+	return str;
+}
+
+
+// EXPORTS //
+
+module.exports = zeroPad;
+
+},{}],170:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tokenize a string into an array of string parts and format identifier objects.
+*
+* @module @stdlib/string/base/format-tokenize
+*
+* @example
+* var formatTokenize = require( '@stdlib/string/base/format-tokenize' );
+*
+* var str = 'Hello %s!';
+* var tokens = formatTokenize( str );
+* // returns [ 'Hello ', {...}, '!' ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":171}],171:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var RE = /%(?:([1-9]\d*)\$)?([0 +\-#]*)(\*|\d+)?(?:(\.)(\*|\d+)?)?[hlL]?([%A-Za-z])/g;
+
+
+// FUNCTIONS //
+
+/**
+* Parses a delimiter.
+*
+* @private
+* @param {Array} match - regular expression match
+* @returns {Object} delimiter token object
+*/
+function parse( match ) {
+	var token = {
+		'mapping': ( match[ 1 ] ) ? parseInt( match[ 1 ], 10 ) : void 0,
+		'flags': match[ 2 ],
+		'width': match[ 3 ],
+		'precision': match[ 5 ],
+		'specifier': match[ 6 ]
+	};
+	if ( match[ 4 ] === '.' && match[ 5 ] === void 0 ) {
+		token.precision = '1';
+	}
+	return token;
+}
+
+
+// MAIN //
+
+/**
+* Tokenizes a string into an array of string parts and format identifier objects.
+*
+* @param {string} str - input string
+* @returns {Array} tokens
+*
+* @example
+* var tokens = formatTokenize( 'Hello %s!' );
+* // returns [ 'Hello ', {...}, '!' ]
+*/
+function formatTokenize( str ) {
+	var content;
+	var tokens;
+	var match;
+	var prev;
+
+	tokens = [];
+	prev = 0;
+	match = RE.exec( str );
+	while ( match ) {
+		content = str.slice( prev, RE.lastIndex - match[ 0 ].length );
+		if ( content.length ) {
+			tokens.push( content );
+		}
+		tokens.push( parse( match ) );
+		prev = RE.lastIndex;
+		match = RE.exec( str );
+	}
+	content = str.slice( prev );
+	if ( content.length ) {
+		tokens.push( content );
+	}
+	return tokens;
+}
+
+
+// EXPORTS //
+
+module.exports = formatTokenize;
+
+},{}],172:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Insert supplied variable values into a format string.
+*
+* @module @stdlib/string/format
+*
+* @example
+* var format = require( '@stdlib/string/format' );
+*
+* var out = format( '%s %s!', 'Hello', 'World' );
+* // returns 'Hello World!'
+*
+* out = format( 'Pi: ~%.2f', 3.141592653589793 );
+* // returns 'Pi: ~3.14'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":174}],173:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],174:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var interpolate = require( '@stdlib/string/base/format-interpolate' );
+var tokenize = require( '@stdlib/string/base/format-tokenize' );
+var isString = require( './is_string.js' );
+
+
+// MAIN //
+
+/**
+* Inserts supplied variable values into a format string.
+*
+* @param {string} str - input string
+* @param {Array} ...args - variable values
+* @throws {TypeError} first argument must be a string
+* @throws {Error} invalid flags
+* @returns {string} formatted string
+*
+* @example
+* var str = format( 'Hello %s!', 'world' );
+* // returns 'Hello world!'
+*
+* @example
+* var str = format( 'Pi: ~%.2f', 3.141592653589793 );
+* // returns 'Pi: ~3.14'
+*/
+function format( str ) {
+	var args;
+	var i;
+
+	if ( !isString( str ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
+	}
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
+	}
+	return interpolate.apply( null, args );
+}
+
+
+// EXPORTS //
+
+module.exports = format;
+
+},{"./is_string.js":173,"@stdlib/string/base/format-interpolate":164,"@stdlib/string/base/format-tokenize":170}],175:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":176}],176:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],177:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Define a non-enumerable read-only property.
+*
+* @module @stdlib/utils/define-nonenumerable-read-only-property
+*
+* @example
+* var setNonEnumerableReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+*
+* var obj = {};
+*
+* setNonEnumerableReadOnly( obj, 'foo', 'bar' );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":178}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var defineProperty = require( '@stdlib/utils/define-property' );
+
+
+// MAIN //
+
+/**
+* Defines a non-enumerable read-only property.
+*
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {*} value - value to set
+*
+* @example
+* var obj = {};
+*
+* setNonEnumerableReadOnly( obj, 'foo', 'bar' );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+function setNonEnumerableReadOnly( obj, prop, value ) {
+	defineProperty( obj, prop, {
+		'configurable': false,
+		'enumerable': false,
+		'writable': false,
+		'value': value
+	});
+}
+
+
+// EXPORTS //
+
+module.exports = setNonEnumerableReadOnly;
+
+},{"@stdlib/utils/define-property":182}],179:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Defines (or modifies) an object property.
+*
+* ## Notes
+*
+* -   Property descriptors come in two flavors: **data descriptors** and **accessor descriptors**. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be one of these two flavors and cannot be both.
+*
+* @name defineProperty
+* @type {Function}
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {Object} descriptor - property descriptor
+* @param {boolean} [descriptor.configurable=false] - boolean indicating if property descriptor can be changed and if the property can be deleted from the provided object
+* @param {boolean} [descriptor.enumerable=false] - boolean indicating if the property shows up when enumerating object properties
+* @param {boolean} [descriptor.writable=false] - boolean indicating if the value associated with the property can be changed with an assignment operator
+* @param {*} [descriptor.value] - property value
+* @param {(Function|void)} [descriptor.get=undefined] - function which serves as a getter for the property, or, if no getter, undefined. When the property is accessed, a getter function is called without arguments and with the `this` context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value.
+* @param {(Function|void)} [descriptor.set=undefined] - function which serves as a setter for the property, or, if no setter, undefined. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the `this` context set to the object through which the property is assigned.
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} third argument must be an object
+* @throws {Error} property descriptor cannot have both a value and a setter and/or getter
+* @returns {Object} object with added property
+*
+* @example
+* var obj = {};
+*
+* defineProperty( obj, 'foo', {
+*     'value': 'bar'
+* });
+*
+* var str = obj.foo;
+* // returns 'bar'
+*/
+var defineProperty = Object.defineProperty;
+
+
+// EXPORTS //
+
+module.exports = defineProperty;
+
+},{}],180:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProperty : null;
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{}],181:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var defineProperty = require( './define_property.js' );
+
+
+// MAIN //
+
+/**
+* Tests for `Object.defineProperty` support.
+*
+* @private
+* @returns {boolean} boolean indicating if an environment has `Object.defineProperty` support
+*
+* @example
+* var bool = hasDefinePropertySupport();
+* // returns <boolean>
+*/
+function hasDefinePropertySupport() {
+	// Test basic support...
+	try {
+		defineProperty( {}, 'x', {} );
+		return true;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return false;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = hasDefinePropertySupport;
+
+},{"./define_property.js":180}],182:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Define (or modify) an object property.
+*
+* @module @stdlib/utils/define-property
+*
+* @example
+* var defineProperty = require( '@stdlib/utils/define-property' );
+*
+* var obj = {};
+* defineProperty( obj, 'foo', {
+*     'value': 'bar',
+*     'writable': false,
+*     'configurable': false,
+*     'enumerable': false
+* });
+* obj.foo = 'boop'; // => throws
+*/
+
+// MODULES //
+
+var hasDefinePropertySupport = require( './has_define_property_support.js' );
+var builtin = require( './builtin.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var defineProperty;
+if ( hasDefinePropertySupport() ) {
+	defineProperty = builtin;
+} else {
+	defineProperty = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = defineProperty;
+
+},{"./builtin.js":179,"./has_define_property_support.js":181,"./polyfill.js":183}],183:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable no-underscore-dangle, no-proto */
+
+'use strict';
+
+// MODULES //
+
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var objectProtoype = Object.prototype;
+var toStr = objectProtoype.toString;
+var defineGetter = objectProtoype.__defineGetter__;
+var defineSetter = objectProtoype.__defineSetter__;
+var lookupGetter = objectProtoype.__lookupGetter__;
+var lookupSetter = objectProtoype.__lookupSetter__;
+
+
+// MAIN //
+
+/**
+* Defines (or modifies) an object property.
+*
+* ## Notes
+*
+* -   Property descriptors come in two flavors: **data descriptors** and **accessor descriptors**. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be one of these two flavors and cannot be both.
+*
+* @param {Object} obj - object on which to define the property
+* @param {string} prop - property name
+* @param {Object} descriptor - property descriptor
+* @param {boolean} [descriptor.configurable=false] - boolean indicating if property descriptor can be changed and if the property can be deleted from the provided object
+* @param {boolean} [descriptor.enumerable=false] - boolean indicating if the property shows up when enumerating object properties
+* @param {boolean} [descriptor.writable=false] - boolean indicating if the value associated with the property can be changed with an assignment operator
+* @param {*} [descriptor.value] - property value
+* @param {(Function|void)} [descriptor.get=undefined] - function which serves as a getter for the property, or, if no getter, undefined. When the property is accessed, a getter function is called without arguments and with the `this` context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value.
+* @param {(Function|void)} [descriptor.set=undefined] - function which serves as a setter for the property, or, if no setter, undefined. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the `this` context set to the object through which the property is assigned.
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} third argument must be an object
+* @throws {Error} property descriptor cannot have both a value and a setter and/or getter
+* @returns {Object} object with added property
+*
+* @example
+* var obj = {};
+*
+* defineProperty( obj, 'foo', {
+*     'value': 'bar'
+* });
+*
+* var str = obj.foo;
+* // returns 'bar'
+*/
+function defineProperty( obj, prop, descriptor ) {
+	var prototype;
+	var hasValue;
+	var hasGet;
+	var hasSet;
+
+	if ( typeof obj !== 'object' || obj === null || toStr.call( obj ) === '[object Array]' ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an object. Value: `%s`.', obj ) );
+	}
+	if ( typeof descriptor !== 'object' || descriptor === null || toStr.call( descriptor ) === '[object Array]' ) {
+		throw new TypeError( format( 'invalid argument. Property descriptor must be an object. Value: `%s`.', descriptor ) );
+	}
+	hasValue = ( 'value' in descriptor );
+	if ( hasValue ) {
+		if (
+			lookupGetter.call( obj, prop ) ||
+			lookupSetter.call( obj, prop )
+		) {
+			// Override `__proto__` to avoid touching inherited accessors:
+			prototype = obj.__proto__;
+			obj.__proto__ = objectProtoype;
+
+			// Delete property as existing getters/setters prevent assigning value to specified property:
+			delete obj[ prop ];
+			obj[ prop ] = descriptor.value;
+
+			// Restore original prototype:
+			obj.__proto__ = prototype;
+		} else {
+			obj[ prop ] = descriptor.value;
+		}
+	}
+	hasGet = ( 'get' in descriptor );
+	hasSet = ( 'set' in descriptor );
+
+	if ( hasValue && ( hasGet || hasSet ) ) {
+		throw new Error( 'invalid argument. Cannot specify one or more accessors and a value or writable attribute in the property descriptor.' );
+	}
+
+	if ( hasGet && defineGetter ) {
+		defineGetter.call( obj, prop, descriptor.get );
+	}
+	if ( hasSet && defineSetter ) {
+		defineSetter.call( obj, prop, descriptor.set );
+	}
+	return obj;
+}
+
+
+// EXPORTS //
+
+module.exports = defineProperty;
+
+},{"@stdlib/string/format":172}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10555,25 +12389,25 @@ tape( 'the function returns the standard deviation of a chi distribution', funct
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":159,"./polyfill.js":160,"@stdlib/assert/has-tostringtag-support":24}],159:[function(require,module,exports){
+},{"./main.js":185,"./polyfill.js":186,"@stdlib/assert/has-tostringtag-support":24}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10631,7 +12465,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":161}],160:[function(require,module,exports){
+},{"./tostring.js":187}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10714,7 +12548,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":161,"./tostringtag.js":162,"@stdlib/assert/has-own-property":20}],161:[function(require,module,exports){
+},{"./tostring.js":187,"./tostringtag.js":188,"@stdlib/assert/has-own-property":20}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10744,7 +12578,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],162:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10765,6 +12599,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -10774,7 +12613,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],163:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":175}],189:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -10926,11 +12765,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],164:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 
-},{}],165:[function(require,module,exports){
-arguments[4][164][0].apply(exports,arguments)
-},{"dup":164}],166:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
+arguments[4][190][0].apply(exports,arguments)
+},{"dup":190}],192:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -12711,7 +14550,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":163,"buffer":166,"ieee754":254}],167:[function(require,module,exports){
+},{"base64-js":189,"buffer":192,"ieee754":295}],193:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13210,7 +15049,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -13743,7 +15582,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":260}],169:[function(require,module,exports){
+},{"_process":302}],195:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13874,7 +15713,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":167,"inherits":255,"readable-stream/lib/_stream_duplex.js":171,"readable-stream/lib/_stream_passthrough.js":172,"readable-stream/lib/_stream_readable.js":173,"readable-stream/lib/_stream_transform.js":174,"readable-stream/lib/_stream_writable.js":175,"readable-stream/lib/internal/streams/end-of-stream.js":179,"readable-stream/lib/internal/streams/pipeline.js":181}],170:[function(require,module,exports){
+},{"events":193,"inherits":296,"readable-stream/lib/_stream_duplex.js":197,"readable-stream/lib/_stream_passthrough.js":198,"readable-stream/lib/_stream_readable.js":199,"readable-stream/lib/_stream_transform.js":200,"readable-stream/lib/_stream_writable.js":201,"readable-stream/lib/internal/streams/end-of-stream.js":205,"readable-stream/lib/internal/streams/pipeline.js":207}],196:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -14003,7 +15842,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],171:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -14145,7 +15984,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":173,"./_stream_writable":175,"_process":260,"inherits":255}],172:[function(require,module,exports){
+},{"./_stream_readable":199,"./_stream_writable":201,"_process":302,"inherits":296}],198:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14185,7 +16024,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":174,"inherits":255}],173:[function(require,module,exports){
+},{"./_stream_transform":200,"inherits":296}],199:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15312,7 +17151,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":170,"./_stream_duplex":171,"./internal/streams/async_iterator":176,"./internal/streams/buffer_list":177,"./internal/streams/destroy":178,"./internal/streams/from":180,"./internal/streams/state":182,"./internal/streams/stream":183,"_process":260,"buffer":166,"events":167,"inherits":255,"string_decoder/":267,"util":164}],174:[function(require,module,exports){
+},{"../errors":196,"./_stream_duplex":197,"./internal/streams/async_iterator":202,"./internal/streams/buffer_list":203,"./internal/streams/destroy":204,"./internal/streams/from":206,"./internal/streams/state":208,"./internal/streams/stream":209,"_process":302,"buffer":192,"events":193,"inherits":296,"string_decoder/":311,"util":190}],200:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15514,7 +17353,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":170,"./_stream_duplex":171,"inherits":255}],175:[function(require,module,exports){
+},{"../errors":196,"./_stream_duplex":197,"inherits":296}],201:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -16214,7 +18053,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":170,"./_stream_duplex":171,"./internal/streams/destroy":178,"./internal/streams/state":182,"./internal/streams/stream":183,"_process":260,"buffer":166,"inherits":255,"util-deprecate":276}],176:[function(require,module,exports){
+},{"../errors":196,"./_stream_duplex":197,"./internal/streams/destroy":204,"./internal/streams/state":208,"./internal/streams/stream":209,"_process":302,"buffer":192,"inherits":296,"util-deprecate":320}],202:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -16424,7 +18263,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":179,"_process":260}],177:[function(require,module,exports){
+},{"./end-of-stream":205,"_process":302}],203:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -16635,7 +18474,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":166,"util":164}],178:[function(require,module,exports){
+},{"buffer":192,"util":190}],204:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -16743,7 +18582,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":260}],179:[function(require,module,exports){
+},{"_process":302}],205:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -16848,12 +18687,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":170}],180:[function(require,module,exports){
+},{"../../../errors":196}],206:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],181:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -16951,7 +18790,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":170,"./end-of-stream":179}],182:[function(require,module,exports){
+},{"../../../errors":196,"./end-of-stream":205}],208:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -16979,10 +18818,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":170}],183:[function(require,module,exports){
+},{"../../../errors":196}],209:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":167}],184:[function(require,module,exports){
+},{"events":193}],210:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -16999,43 +18838,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":185,"get-intrinsic":249}],185:[function(require,module,exports){
+},{"./":211,"get-intrinsic":286}],211:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -17048,7 +18875,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":248,"get-intrinsic":249}],186:[function(require,module,exports){
+},{"es-define-property":271,"es-errors/type":277,"function-bind":285,"get-intrinsic":286,"set-function-length":306}],212:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -17144,7 +18971,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":187,"./lib/keys.js":188}],187:[function(require,module,exports){
+},{"./lib/is_arguments.js":213,"./lib/keys.js":214}],213:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -17166,7 +18993,7 @@ function unsupported(object){
     false;
 };
 
-},{}],188:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -17177,7 +19004,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],189:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":271,"es-errors/syntax":276,"es-errors/type":277,"gopd":287}],216:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -17185,29 +19070,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -17226,14 +19111,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":250,"object-keys":258}],190:[function(require,module,exports){
+},{"define-data-property":215,"has-property-descriptors":288,"object-keys":300}],217:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],191:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17272,13 +19157,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":221,"./ToPrimitive":223,"./Type":228}],192:[function(require,module,exports){
+},{"./ToNumber":249,"./ToPrimitive":251,"./Type":256}],219:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -17286,13 +19171,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -17304,7 +19188,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -17337,28 +19221,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":237,"../helpers/isNaN":239,"../helpers/isPrefixOf":240,"./ToNumber":221,"./ToPrimitive":223,"./Type":228,"get-intrinsic":249}],193:[function(require,module,exports){
+},{"../helpers/isFinite":264,"../helpers/isNaN":265,"../helpers/isPrefixOf":266,"./ToNumber":249,"./ToPrimitive":251,"es-errors/type":277,"get-intrinsic":286}],220:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":210,"es-errors/type":277}],221:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":249}],194:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":279}],222:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -17409,7 +19326,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":197,"./InLeapYear":201,"./MonthFromTime":211,"get-intrinsic":249}],195:[function(require,module,exports){
+},{"./DayWithinYear":225,"./InLeapYear":229,"./MonthFromTime":239,"es-errors/eval":272}],223:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17422,7 +19339,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":244,"./floor":232}],196:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./floor":260}],224:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17434,7 +19351,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":232}],197:[function(require,module,exports){
+},{"./floor":260}],225:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -17447,7 +19364,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":195,"./DayFromYear":196,"./YearFromTime":230}],198:[function(require,module,exports){
+},{"./Day":223,"./DayFromYear":224,"./YearFromTime":258}],226:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17467,18 +19384,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":233}],199:[function(require,module,exports){
+},{"./modulo":261}],227:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -17487,7 +19401,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -17508,7 +19424,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":236,"./IsAccessorDescriptor":202,"./IsDataDescriptor":204,"./Type":228,"get-intrinsic":249}],200:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":268,"./IsAccessorDescriptor":230,"./IsDataDescriptor":232,"es-errors/type":277}],228:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17524,12 +19440,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":244,"./floor":232,"./modulo":233}],201:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./floor":260,"./modulo":261}],229:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -17547,14 +19461,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":198,"./YearFromTime":230,"get-intrinsic":249}],202:[function(require,module,exports){
+},{"./DaysInYear":226,"./YearFromTime":258,"es-errors/eval":272}],230:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -17563,30 +19477,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":236,"./Type":228,"has":253}],203:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":268,"es-errors/type":277,"hasown":294}],231:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":256}],204:[function(require,module,exports){
+},{"is-callable":297}],232:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -17595,23 +19511,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":236,"./Type":228,"has":253}],205:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":268,"es-errors/type":277,"hasown":294}],233:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -17620,7 +19539,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -17629,28 +19550,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":236,"./IsAccessorDescriptor":202,"./IsDataDescriptor":204,"./Type":228}],206:[function(require,module,exports){
+},{"./IsAccessorDescriptor":230,"./IsDataDescriptor":232,"./IsPropertyDescriptor":234,"es-errors/type":277}],234:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":241,"./IsAccessorDescriptor":202,"./IsDataDescriptor":204,"./Type":228}],207:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":268}],235:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17665,7 +19578,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":237,"../helpers/timeConstants":244}],208:[function(require,module,exports){
+},{"../helpers/isFinite":264,"../helpers/timeConstants":270}],236:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17700,7 +19613,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":237,"./DateFromTime":194,"./Day":195,"./MonthFromTime":211,"./ToInteger":220,"./YearFromTime":230,"./floor":232,"./modulo":233,"get-intrinsic":249}],209:[function(require,module,exports){
+},{"../helpers/isFinite":264,"./DateFromTime":222,"./Day":223,"./MonthFromTime":239,"./ToInteger":248,"./YearFromTime":258,"./floor":260,"./modulo":261,"get-intrinsic":286}],237:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17725,7 +19638,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":237,"../helpers/timeConstants":244,"./ToInteger":220}],210:[function(require,module,exports){
+},{"../helpers/isFinite":264,"../helpers/timeConstants":270,"./ToInteger":248}],238:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17741,7 +19654,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":244,"./floor":232,"./modulo":233}],211:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./floor":260,"./modulo":261}],239:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -17790,7 +19703,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":197,"./InLeapYear":201}],212:[function(require,module,exports){
+},{"./DayWithinYear":225,"./InLeapYear":229}],240:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -17805,7 +19718,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":239}],213:[function(require,module,exports){
+},{"../helpers/isNaN":265}],241:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17821,7 +19734,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":244,"./floor":232,"./modulo":233}],214:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./floor":260,"./modulo":261}],242:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -17840,7 +19753,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":228}],215:[function(require,module,exports){
+},{"./Type":256}],243:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17863,7 +19776,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":237,"./ToNumber":221,"./abs":231,"get-intrinsic":249}],216:[function(require,module,exports){
+},{"../helpers/isFinite":264,"./ToNumber":249,"./abs":259,"get-intrinsic":286}],244:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -17876,7 +19789,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":244,"./DayFromYear":196}],217:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./DayFromYear":224}],245:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17890,14 +19803,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":244,"./modulo":233}],218:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./modulo":261}],246:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],219:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17908,7 +19821,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":221}],220:[function(require,module,exports){
+},{"./ToNumber":249}],248:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -17928,10 +19841,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":237,"../helpers/isNaN":239,"../helpers/sign":243,"./ToNumber":221,"./abs":231,"./floor":232}],221:[function(require,module,exports){
+},{"../helpers/isFinite":264,"../helpers/isNaN":265,"../helpers/sign":269,"./ToNumber":249,"./abs":259,"./floor":260}],249:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -17941,46 +19862,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":223}],222:[function(require,module,exports){
+},{"./ToPrimitive":251,"call-bind/callBound":210,"safe-regex-test":305}],250:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":193,"get-intrinsic":249}],223:[function(require,module,exports){
+},{"es-object-atoms/ToObject":280}],251:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":245}],224:[function(require,module,exports){
+},{"es-to-primitive/es5":282}],252:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -17994,26 +19908,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -18021,13 +19935,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":203,"./ToBoolean":218,"./Type":228,"get-intrinsic":249,"has":253}],225:[function(require,module,exports){
+},{"./IsCallable":231,"./ToBoolean":246,"./Type":256,"es-errors/type":277,"hasown":294}],253:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18041,7 +19955,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":249}],226:[function(require,module,exports){
+},{"get-intrinsic":286}],254:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -18062,7 +19976,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":237,"../helpers/isNaN":239,"../helpers/sign":243,"./ToNumber":221,"./abs":231,"./floor":232,"./modulo":233}],227:[function(require,module,exports){
+},{"../helpers/isFinite":264,"../helpers/isNaN":265,"../helpers/sign":269,"./ToNumber":249,"./abs":259,"./floor":260,"./modulo":261}],255:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -18073,7 +19987,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":221}],228:[function(require,module,exports){
+},{"./ToNumber":249}],256:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -18099,7 +20013,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],229:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -18111,7 +20025,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":195,"./modulo":233}],230:[function(require,module,exports){
+},{"./Day":223,"./modulo":261}],258:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18129,7 +20043,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":184,"get-intrinsic":249}],231:[function(require,module,exports){
+},{"call-bind/callBound":210,"get-intrinsic":286}],259:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18142,7 +20056,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":249}],232:[function(require,module,exports){
+},{"get-intrinsic":286}],260:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -18155,7 +20069,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],233:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -18166,7 +20080,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":242}],234:[function(require,module,exports){
+},{"../helpers/mod":267}],262:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -18179,7 +20093,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":244,"./modulo":233}],235:[function(require,module,exports){
+},{"../helpers/timeConstants":270,"./modulo":261}],263:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -18190,6 +20104,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -18232,90 +20147,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":191,"./5/AbstractRelationalComparison":192,"./5/CheckObjectCoercible":193,"./5/DateFromTime":194,"./5/Day":195,"./5/DayFromYear":196,"./5/DayWithinYear":197,"./5/DaysInYear":198,"./5/FromPropertyDescriptor":199,"./5/HourFromTime":200,"./5/InLeapYear":201,"./5/IsAccessorDescriptor":202,"./5/IsCallable":203,"./5/IsDataDescriptor":204,"./5/IsGenericDescriptor":205,"./5/IsPropertyDescriptor":206,"./5/MakeDate":207,"./5/MakeDay":208,"./5/MakeTime":209,"./5/MinFromTime":210,"./5/MonthFromTime":211,"./5/SameValue":212,"./5/SecFromTime":213,"./5/StrictEqualityComparison":214,"./5/TimeClip":215,"./5/TimeFromYear":216,"./5/TimeWithinDay":217,"./5/ToBoolean":218,"./5/ToInt32":219,"./5/ToInteger":220,"./5/ToNumber":221,"./5/ToObject":222,"./5/ToPrimitive":223,"./5/ToPropertyDescriptor":224,"./5/ToString":225,"./5/ToUint16":226,"./5/ToUint32":227,"./5/Type":228,"./5/WeekDay":229,"./5/YearFromTime":230,"./5/abs":231,"./5/floor":232,"./5/modulo":233,"./5/msFromTime":234}],236:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":218,"./5/AbstractRelationalComparison":219,"./5/Canonicalize":220,"./5/CheckObjectCoercible":221,"./5/DateFromTime":222,"./5/Day":223,"./5/DayFromYear":224,"./5/DayWithinYear":225,"./5/DaysInYear":226,"./5/FromPropertyDescriptor":227,"./5/HourFromTime":228,"./5/InLeapYear":229,"./5/IsAccessorDescriptor":230,"./5/IsCallable":231,"./5/IsDataDescriptor":232,"./5/IsGenericDescriptor":233,"./5/IsPropertyDescriptor":234,"./5/MakeDate":235,"./5/MakeDay":236,"./5/MakeTime":237,"./5/MinFromTime":238,"./5/MonthFromTime":239,"./5/SameValue":240,"./5/SecFromTime":241,"./5/StrictEqualityComparison":242,"./5/TimeClip":243,"./5/TimeFromYear":244,"./5/TimeWithinDay":245,"./5/ToBoolean":246,"./5/ToInt32":247,"./5/ToInteger":248,"./5/ToNumber":249,"./5/ToObject":250,"./5/ToPrimitive":251,"./5/ToPropertyDescriptor":252,"./5/ToString":253,"./5/ToUint16":254,"./5/ToUint32":255,"./5/Type":256,"./5/WeekDay":257,"./5/YearFromTime":258,"./5/abs":259,"./5/floor":260,"./5/modulo":261,"./5/msFromTime":262}],264:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":238,"get-intrinsic":249,"has":253}],237:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],238:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":253}],239:[function(require,module,exports){
+},{"./isNaN":265}],265:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],240:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -18330,40 +20176,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":184}],241:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":249,"has":253}],242:[function(require,module,exports){
+},{"call-bind/callBound":210}],267:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -18373,14 +20186,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],243:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":277,"hasown":294}],269:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],244:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -18401,7 +20252,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],245:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":286}],272:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],273:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],274:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],275:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],276:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],277:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],278:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],279:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":277}],280:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":281,"./RequireObjectCoercible":279}],281:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],282:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -18448,56 +20390,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":246,"is-callable":256}],246:[function(require,module,exports){
+},{"./helpers/isPrimitive":283,"is-callable":297}],283:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],247:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -18509,21 +20483,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],248:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":247}],249:[function(require,module,exports){
+},{"./implementation":284}],286:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -18562,18 +20542,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -18581,6 +20567,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -18588,9 +20576,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -18601,10 +20589,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -18612,15 +20600,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -18630,11 +20618,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -18651,7 +20649,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -18662,6 +20660,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -18716,11 +20715,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -18776,6 +20776,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -18848,29 +20851,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":248,"has":253,"has-symbols":251}],250:[function(require,module,exports){
+},{"es-errors":273,"es-errors/eval":272,"es-errors/range":274,"es-errors/ref":275,"es-errors/syntax":276,"es-errors/type":277,"es-errors/uri":278,"function-bind":285,"has-proto":289,"has-symbols":290,"hasown":294}],287:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":286}],288:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -18883,7 +20893,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":249}],251:[function(require,module,exports){
+},{"es-define-property":271}],289:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],290:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -18898,7 +20925,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":252}],252:[function(require,module,exports){
+},{"./shams":291}],291:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -18942,14 +20969,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],253:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":291}],293:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":248}],254:[function(require,module,exports){
+},{"function-bind":285}],294:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":285}],295:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -19036,7 +21083,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],255:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -19065,7 +21112,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],256:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -19111,37 +21158,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],257:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":210,"has-tostringtag/shams":292}],299:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -19265,7 +21399,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":259}],258:[function(require,module,exports){
+},{"./isArguments":301}],300:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -19299,7 +21433,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":257,"./isArguments":259}],259:[function(require,module,exports){
+},{"./implementation":299,"./isArguments":301}],301:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -19318,7 +21452,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],260:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -19504,7 +21638,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],261:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -19537,7 +21671,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":260,"through":274,"timers":275}],262:[function(require,module,exports){
+},{"_process":302,"through":318,"timers":319}],304:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -19604,7 +21738,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":166}],263:[function(require,module,exports){
+},{"buffer":192}],305:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":210,"es-errors/type":277,"is-regex":298}],306:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":215,"es-errors/type":277,"get-intrinsic":286,"gopd":287,"has-property-descriptors":288}],307:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19619,7 +21815,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":235,"function-bind":248}],264:[function(require,module,exports){
+},{"es-abstract/es5":263,"function-bind":285}],308:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19639,7 +21835,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":263,"./polyfill":265,"./shim":266,"define-properties":189,"function-bind":248}],265:[function(require,module,exports){
+},{"./implementation":307,"./polyfill":309,"./shim":310,"define-properties":216,"function-bind":285}],309:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -19653,7 +21849,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":263}],266:[function(require,module,exports){
+},{"./implementation":307}],310:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -19665,7 +21861,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":265,"define-properties":189}],267:[function(require,module,exports){
+},{"./polyfill":309,"define-properties":216}],311:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19962,7 +22158,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":262}],268:[function(require,module,exports){
+},{"safe-buffer":304}],312:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -20116,7 +22312,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":269,"./lib/results":271,"./lib/test":272,"_process":260,"defined":190,"through":274,"timers":275}],269:[function(require,module,exports){
+},{"./lib/default_stream":313,"./lib/results":315,"./lib/test":316,"_process":302,"defined":217,"through":318,"timers":319}],313:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -20151,7 +22347,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":260,"fs":165,"through":274}],270:[function(require,module,exports){
+},{"_process":302,"fs":191,"through":318}],314:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -20159,7 +22355,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":260,"timers":275}],271:[function(require,module,exports){
+},{"_process":302,"timers":319}],315:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -20350,7 +22546,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":260,"events":167,"function-bind":248,"has":253,"inherits":255,"object-inspect":273,"resumer":261,"through":274,"timers":275}],272:[function(require,module,exports){
+},{"_process":302,"events":193,"function-bind":285,"has":293,"inherits":296,"object-inspect":317,"resumer":303,"through":318,"timers":319}],316:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -20851,7 +23047,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":270,"deep-equal":186,"defined":190,"events":167,"has":253,"inherits":255,"path":168,"string.prototype.trim":264}],273:[function(require,module,exports){
+},{"./next_tick":314,"deep-equal":212,"defined":217,"events":193,"has":293,"inherits":296,"path":194,"string.prototype.trim":308}],317:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -21045,7 +23241,7 @@ function inspectString (str) {
     }
 }
 
-},{}],274:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -21157,7 +23353,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":260,"stream":169}],275:[function(require,module,exports){
+},{"_process":302,"stream":195}],319:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -21236,7 +23432,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":260,"timers":275}],276:[function(require,module,exports){
+},{"process/browser.js":302,"timers":319}],320:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -21307,4 +23503,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[157]);
+},{}]},{},[161]);

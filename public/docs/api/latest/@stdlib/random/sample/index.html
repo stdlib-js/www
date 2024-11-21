@@ -111,12 +111,9 @@ out = mysample();
 <span class="hljs-comment">// returns null</span>
 </code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sample = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/sample'</span> );
 
-<span class="hljs-keyword">var</span> out;
-<span class="hljs-keyword">var</span> x;
-
 <span class="hljs-comment">// By default, sample uniformly with replacement:</span>
-x = [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span> ];
-out = sample( x, {
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span> ];
+<span class="hljs-keyword">var</span> out = sample( x, {
     <span class="hljs-string">'size'</span>: <span class="hljs-number">10</span>
 });
 <span class="hljs-comment">// e.g., returns [ 'd', 'c', 'b', 'b', 'b', 'd', 'c', 'c', 'b', 'd' ]</span>

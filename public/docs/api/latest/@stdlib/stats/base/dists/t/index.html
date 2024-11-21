@@ -7,8 +7,21 @@
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.667</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
-<span class="hljs-keyword">var</span> t = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/t'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> t = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/t'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( t ) );
+<span class="hljs-keyword">var</span> dof = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">1.5</span>;
+
+<span class="hljs-comment">// Evaluate the probability density function (PDF) at a specific value:</span>
+<span class="hljs-keyword">var</span> res = t.pdf( x, dof );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF at x = '</span> + x + <span class="hljs-string">': '</span> + res );
+
+<span class="hljs-comment">// Evaluate the cumulative distribution function (CDF) at a specific value:</span>
+res = t.cdf( x, dof );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF at x = '</span> + x + <span class="hljs-string">': '</span> + res );
+
+<span class="hljs-comment">// Get the mean and variance of the t distribution:</span>
+<span class="hljs-keyword">var</span> mu = t.mean( dof );
+<span class="hljs-keyword">var</span> v = t.variance( dof );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mean: '</span> + mu + <span class="hljs-string">', Variance: '</span> + v );
 </code></pre></section><section class="related"></section><section class="links"></section>

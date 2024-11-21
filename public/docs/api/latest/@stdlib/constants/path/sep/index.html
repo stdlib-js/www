@@ -12,15 +12,13 @@
 </code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-windows'</span> );
 <span class="hljs-keyword">var</span> PATH_SEP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep'</span> );
 
-<span class="hljs-keyword">var</span> parts;
 <span class="hljs-keyword">var</span> path;
-
 <span class="hljs-keyword">if</span> ( IS_WINDOWS ) {
     path = <span class="hljs-string">'foo\\bar\\baz'</span>;
 } <span class="hljs-keyword">else</span> {
     path = <span class="hljs-string">'foo/bar/baz'</span>;
 }
-parts = path.split( PATH_SEP );
+<span class="hljs-keyword">var</span> parts = path.split( PATH_SEP );
 <span class="hljs-built_in">console</span>.log( parts );
 <span class="hljs-comment">// => ['foo','bar','baz']</span>
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-posix"><code>@stdlib/constants/path/sep-posix</code></a></span><span class="delimiter">: </span><span class="description">POSIX path segment separator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-win32"><code>@stdlib/constants/path/sep-win32</code></a></span><span class="delimiter">: </span><span class="description">Windows path segment separator.</span></li></ul></section><section class="links"></section>

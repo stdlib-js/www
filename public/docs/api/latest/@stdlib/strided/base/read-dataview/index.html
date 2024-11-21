@@ -1,0 +1,103 @@
+<h1 id="readdataview">readDataView</h1><blockquote><p>Copy elements from an input strided <a href="/docs/api/latest/@stdlib/array/dataview"><code>DataView</code></a> to elements in an output strided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> readDataView = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/read-dataview'</span> );
+</code></pre><h4 id="readdataview-n-view-strideview-out-strideout-littleendian-">readDataView( N, view, strideView, out, strideOut, littleEndian )</h4><p>Copies elements from an input strided <a href="/docs/api/latest/@stdlib/array/dataview"><code>DataView</code></a> to elements in an output strided array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length );
+<span class="hljs-keyword">var</span> out = readDataView( x.length, view, <span class="hljs-number">8</span>, y, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ 1.0, 2.0, 3.0, 4.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>view</strong>: input <a href="/docs/api/latest/@stdlib/array/dataview"><code>DataView</code></a>.</li><li><strong>strideView</strong>: index increment (in bytes) for <code>view</code>.</li><li><strong>out</strong>: output strided array.</li><li><strong>strideOut</strong>: index increment for <code>out</code>.</li><li><strong>littleEndian</strong>: boolean indicating whether to store values in little-endian format.</li></ul><p>The <code>N</code> and stride parameters determine which elements in <code>view</code> and <code>out</code> are accessed at runtime. For example, to index the first <code>N</code> elements of <code>view</code> in reverse order and to index every other value in <code>out</code> ,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length*<span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> out = readDataView( x.length, view, -<span class="hljs-number">8</span>, y, <span class="hljs-number">2</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ 4.0, 0.0, 3.0, 0.0, 2.0, 0.0, 1.0, 0.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use typed array views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-comment">// Initial output array:</span>
+<span class="hljs-keyword">var</span> y0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length+<span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Create an offset view:</span>
+<span class="hljs-keyword">var</span> y1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( y0.buffer, y0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+
+<span class="hljs-keyword">var</span> out = readDataView( x.length, view, <span class="hljs-number">8</span>, y1, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ 1.0, 2.0, 3.0, 4.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y1 );
+<span class="hljs-comment">// returns true</span>
+</code></pre><h4 id="readdataviewndarray-n-view-strideview-offsetview-out-strideout-offsetout-littleendian-">readDataView.ndarray( N, view, strideView, offsetView, out, strideOut, offsetOut, littleEndian )</h4><p>Copies elements from an input strided <a href="/docs/api/latest/@stdlib/array/dataview"><code>DataView</code></a> to elements in an output strided array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length );
+<span class="hljs-keyword">var</span> out = readDataView.ndarray( x.length, view, <span class="hljs-number">8</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ 1.0, 2.0, 3.0, 4.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetView</strong>: starting index (in bytes) for <code>view</code>.</li><li><strong>offsetOut</strong>: starting index for <code>out</code>.</li></ul><p>While typed array views mandate a view offset based on the underlying buffer, the offset parameters support indexing semantics based on starting indices. For example, to index the last <code>N</code> elements in <code>view</code> in reverse order and to index every other value in <code>out</code> starting from the second value,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length*<span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> out = readDataView.ndarray( x.length, view, -<span class="hljs-number">8</span>, <span class="hljs-number">24</span>, y, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ 0.0, 4.0, 0.0, 3.0, 0.0, 2.0, 0.0, 1.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+<span class="hljs-keyword">var</span> typedarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed'</span> );
+<span class="hljs-keyword">var</span> bytesPerElement = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/bytes-per-element'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> readDataView = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/read-dataview'</span> );
+
+<span class="hljs-comment">// Specify the array data type:</span>
+<span class="hljs-keyword">var</span> dtype = <span class="hljs-string">'float64'</span>;
+
+<span class="hljs-comment">// Resolve the number of bytes per element:</span>
+<span class="hljs-keyword">var</span> nbytes = bytesPerElement( dtype );
+
+<span class="hljs-comment">// Generate an array of random numbers:</span>
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, {
+    <span class="hljs-string">'dtype'</span>: dtype
+});
+
+<span class="hljs-comment">// Create a DataView:</span>
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( x.buffer );
+
+<span class="hljs-comment">// Create an output array:</span>
+<span class="hljs-keyword">var</span> out = typedarray( x.length, dtype );
+
+<span class="hljs-comment">// Read elements from the DataView according to host byte order:</span>
+readDataView( out.length, view, nbytes, out, <span class="hljs-number">1</span>, IS_LITTLE_ENDIAN );
+
+<span class="hljs-comment">// Print the results:</span>
+logEach( <span class="hljs-string">'%d -> %d'</span>, x, out );
+
+<span class="hljs-comment">// Read elements from the DataView according to the opposite byte order:</span>
+readDataView( out.length, view, nbytes, out, <span class="hljs-number">1</span>, !IS_LITTLE_ENDIAN );
+
+<span class="hljs-comment">// Print the results:</span>
+logEach( <span class="hljs-string">'%d -> %d'</span>, x, out );
+</code></pre></section><section class="related"></section><section class="links"></section>

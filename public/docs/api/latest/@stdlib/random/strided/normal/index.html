@@ -1,0 +1,81 @@
+<h1 id="normal-random-numbers">Normal Random Numbers</h1><blockquote><p>Fill a strided array with pseudorandom numbers drawn from a <a href="/docs/api/latest/@stdlib/random/base/normal">normal</a> distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/strided/normal'</span> );
+</code></pre><h4 id="normal-n-mu-sm-sigma-ss-out-so-options-">normal( N, mu, sm, sigma, ss, out, so[, options] )</h4><p>Fills a strided array with pseudorandom numbers drawn from a <a href="/docs/api/latest/@stdlib/random/base/normal">normal</a> distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+normal( out.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, out, <span class="hljs-number">1</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>mu</strong>: mean.</li><li><strong>sm</strong>: index increment for <code>mu</code>.</li><li><strong>sigma</strong>: standard deviation.</li><li><strong>ss</strong>: index increment for <code>sigma</code>.</li><li><strong>out</strong>: output array.</li><li><strong>so</strong>: index increment for <code>out</code>.</li></ul><p>The <code>N</code> and stride parameters determine which strided array elements are accessed at runtime. For example, to access every other value in <code>out</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+
+normal( <span class="hljs-number">3</span>, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, out, <span class="hljs-number">2</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> mu0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> sigma0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> mu1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( mu0.buffer, mu0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> sigma1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( sigma0.buffer, sigma0.BYTES_PER_ELEMENT*<span class="hljs-number">3</span> ); <span class="hljs-comment">// start at 4th element</span>
+
+<span class="hljs-comment">// Create an output array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Fill the output array:</span>
+normal( out.length, mu1, -<span class="hljs-number">2</span>, sigma1, <span class="hljs-number">1</span>, out, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the underlying pseudorandom number generator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>state</strong>: a <a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that an underlying generator has exclusive control over its internal state. Default: <code>true</code>.</li></ul><p>To use a custom PRNG as the underlying source of uniformly distributed pseudorandom numbers, set the <code>prng</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'prng'</span>: minstd.normalized
+};
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+normal( out.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, out, <span class="hljs-number">1</span>, opts );
+</code></pre><p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+};
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+normal( out.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, out, <span class="hljs-number">1</span>, opts );
+</code></pre><h4 id="normalndarray-n-mu-sm-om-sigma-ss-os-out-so-oo-options-">normal.ndarray( N, mu, sm, om, sigma, ss, os, out, so, oo[, options] )</h4><p>Fills a strided array with pseudorandom numbers drawn from a <a href="/docs/api/latest/@stdlib/random/base/normal">normal</a> distribution using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+normal.ndarray( out.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>om</strong>: starting index for <code>mu</code>.</li><li><strong>os</strong>: starting index for <code>sigma</code>.</li><li><strong>oo</strong>: starting index for <code>out</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to access every other value in <code>out</code> starting from the second value,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+
+normal.ndarray( <span class="hljs-number">3</span>, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, out, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the same <code>options</code> as documented above for <code>normal()</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions leave the output array unchanged.</li><li>Both functions support array-like objects having getter and setter accessors for array element access.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/strided/normal'</span> );
+
+<span class="hljs-comment">// Specify a PRNG seed:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>
+};
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x1 = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-comment">// Create a list of indices:</span>
+<span class="hljs-keyword">var</span> idx = zeroTo( x1.length );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+normal( x1.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, x1, <span class="hljs-number">1</span>, opts );
+
+<span class="hljs-comment">// Create a second array:</span>
+<span class="hljs-keyword">var</span> x2 = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+
+<span class="hljs-comment">// Fill the array with the same pseudorandom numbers:</span>
+normal( x2.length, [ <span class="hljs-number">2.0</span> ], <span class="hljs-number">0</span>, [ <span class="hljs-number">5.0</span> ], <span class="hljs-number">0</span>, x2, <span class="hljs-number">1</span>, opts );
+
+<span class="hljs-comment">// Print the array contents:</span>
+logEach( <span class="hljs-string">'x1[%d] = %.2f; x2[%d] = %.2f'</span>, idx, x1, idx, x2 );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/normal"><code>@stdlib/random/base/normal</code></a></span><span class="delimiter">: </span><span class="description">normally distributed pseudorandom numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/array/normal"><code>@stdlib/random/array/normal</code></a></span><span class="delimiter">: </span><span class="description">create an array containing pseudorandom numbers drawn from a normal distribution.</span></li></ul></section><section class="links"></section>

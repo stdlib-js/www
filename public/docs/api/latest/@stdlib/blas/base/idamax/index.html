@@ -1,0 +1,84 @@
+<h1 id="idamax">idamax</h1><blockquote><p>Find the index of the first element having the maximum absolute value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idamax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/idamax'</span> );
+</code></pre><h4 id="idamax-n-x-stridex-">idamax( N, x, strideX )</h4><p>Finds the index of the first element having the maximum absolute value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> idx = idamax( x.length, x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>strideX</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to traverse every other value,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> idx = idamax( <span class="hljs-number">4</span>, x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Initial array:</span>
+<span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ] );
+
+<span class="hljs-comment">// Create an offset view:</span>
+<span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+
+<span class="hljs-comment">// Find index of element having the maximum absolute value:</span>
+<span class="hljs-keyword">var</span> idx = idamax( <span class="hljs-number">3</span>, x1, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 2</span>
+</code></pre><h4 id="idamaxndarray-n-x-stridex-offset-">idamax.ndarray( N, x, strideX, offset )</h4><p>Finds the index of the first element having the maximum absolute value using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> idx = idamax.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: starting index.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying buffer, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to start from the second index,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ] );
+
+<span class="hljs-keyword">var</span> idx = idamax.ndarray( <span class="hljs-number">5</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C; 1</code>, both functions return <code>-1</code>.</li><li><code>idamax()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="https://netlib.org/lapack/explore-html/dd/de0/idamax_8f_source.html"><code>idamax</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> idamax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/idamax'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+};
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, opts );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> idx = idamax( x.length, x, <span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( idx );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/idamax.h"</span></span>
+</code></pre><h4 id="c_idamax-n-x-stridex-">c_idamax( N, *X, strideX )</h4><p>Finds the index of the first element having the maximum absolute value.</p><pre><code class="hljs language-c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">-3.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">-1.0</span> };
+
+<span class="hljs-keyword">int</span> idx = c_idamax( <span class="hljs-number">5</span>, x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function">CBLAS_INT <span class="hljs-title">c_idamax</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT strideX )</span></span>;
+</code></pre><h4 id="c_idamax_ndarray-n-x-stridex-offsetx-">c_idamax_ndarray( N, *X, strideX, offsetX )</h4><p>Finds the index of the first element having the maximum absolute value using alternative indexing semantics.</p><pre><code class="hljs language-c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">-3.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">-1.0</span> };
+
+<span class="hljs-keyword">int</span> idx = c_idamax_ndarray( <span class="hljs-number">5</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>X</code>.</li><li><strong>offsetX</strong>: <code>[in] CBLAS_INT</code> starting index for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function">CBLAS_INT <span class="hljs-title">c_idamax_ndarray</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">const</span> CBLAS_INT offsetX )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/idamax.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create strided array:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">-2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">-6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">-8.0</span> };
+
+    <span class="hljs-comment">// Specify the number of element:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">8</span>;
+
+    <span class="hljs-comment">// Specify stride:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideX = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Compute the index of the maximum absolute value:</span>
+    <span class="hljs-keyword">int</span> idx = c_idamax( N, x, strideX );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"index value: %d\n"</span>, idx );
+
+    <span class="hljs-comment">// Compute the index of the maximum absolute value:</span>
+    idx = c_idamax_ndarray( N, x, -strideX, N<span class="hljs-number">-1</span> );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"index value: %d\n"</span>, idx );
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

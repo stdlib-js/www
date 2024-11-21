@@ -41,8 +41,8 @@ z = flipsignf( <span class="hljs-number">0.0</span>, -<span class="hljs-number">
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/flipsignf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.0f</span>, <span class="hljs-number">-3.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.0f</span>, <span class="hljs-number">-3.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
 
     <span class="hljs-keyword">float</span> y;
     <span class="hljs-keyword">int</span> i;
@@ -51,4 +51,4 @@ z = flipsignf( <span class="hljs-number">0.0</span>, -<span class="hljs-number">
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"flipsignf(%f, %f) = %f\n"</span>, x[ i ], <span class="hljs-number">-3.0f</span>, y );
     }
 }
-</code></pre></section></section><section class="related"></section><section class="links"></section>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/copysignf"><code>@stdlib/math/base/special/copysignf</code></a></span><span class="delimiter">: </span><span class="description">return a single-precision floating-point number with the magnitude of x and the sign of y.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/flipsign"><code>@stdlib/math/base/special/flipsign</code></a></span><span class="delimiter">: </span><span class="description">return a double-precision floating-point number with the magnitude of x and the sign of x*y.</span></li></ul></section><section class="links"></section>

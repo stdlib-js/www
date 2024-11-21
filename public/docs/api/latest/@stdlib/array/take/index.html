@@ -1,0 +1,35 @@
+<h1 id="take">take</h1><blockquote><p>Take elements from an array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/take'</span> );
+</code></pre><h4 id="take-x-indices-options-">take( x, indices[, options] )</h4><p>Takes elements from an array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ 2, 4 ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>indices</strong>: list of indices.</li><li><strong>options</strong>: function options.</li></ul><p>The function supports the following options:</p><ul><li><strong>mode</strong>: index <a href="/docs/api/latest/@stdlib/ndarray/base/ind">mode</a>. Default: <code>'normalize'</code>.</li></ul><p>By default, the function normalizes negative integer indices to positive integer index equivalents.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [ -<span class="hljs-number">3</span>, -<span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 2, 4 ]</span>
+</code></pre><p>To specify an alternative index <a href="/docs/api/latest/@stdlib/ndarray/base/ind">mode</a>, provide a <code>mode</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [ -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'clamp'</span>
+});
+<span class="hljs-comment">// returns [ 1, 4 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If <code>indices</code> is an empty array, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [] );
+<span class="hljs-comment">// returns []</span>
+</code></pre></li><li><p>If provided an input array having a recognized <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a>, the function returns an array having the same <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> as the input array. Otherwise, the function <strong>always</strong> returns a "generic" array.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+<span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/take'</span> );
+
+<span class="hljs-comment">// Generate a linearly spaced array:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate an array of random indices:</span>
+<span class="hljs-keyword">var</span> indices = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, x.length-<span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( indices );
+
+<span class="hljs-comment">// Take a random sample of elements from `x`:</span>
+<span class="hljs-keyword">var</span> y = take( x, indices );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/slice"><code>@stdlib/array/slice</code></a></span><span class="delimiter">: </span><span class="description">return a shallow copy of a portion of an array.</span></li></ul></section><section class="links"></section>

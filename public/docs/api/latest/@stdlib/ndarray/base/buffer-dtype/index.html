@@ -11,20 +11,17 @@
 <span class="hljs-keyword">var</span> isFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-function'</span> );
 <span class="hljs-keyword">var</span> dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/buffer-dtype'</span> );
 
-<span class="hljs-keyword">var</span> DTYPES;
-<span class="hljs-keyword">var</span> ctor;
-<span class="hljs-keyword">var</span> buf;
-<span class="hljs-keyword">var</span> len;
-<span class="hljs-keyword">var</span> dt;
-<span class="hljs-keyword">var</span> i;
-
 <span class="hljs-comment">// Get a list of supported ndarray buffer data types:</span>
-DTYPES = dtypes();
+<span class="hljs-keyword">var</span> DTYPES = dtypes();
 
 <span class="hljs-comment">// Buffer length:</span>
-len = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">var</span> len = <span class="hljs-number">10</span>;
 
 <span class="hljs-comment">// For each supported data type, create a buffer and confirm its data type...</span>
+<span class="hljs-keyword">var</span> ctor;
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> dt;
+<span class="hljs-keyword">var</span> i;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; DTYPES.length; i++ ) {
     ctor = bufferCtors( DTYPES[ i ] );
     <span class="hljs-keyword">if</span> ( DTYPES[ i ] === <span class="hljs-string">'binary'</span> &#x26;&#x26; isFunction( ctor.alloc ) ) {

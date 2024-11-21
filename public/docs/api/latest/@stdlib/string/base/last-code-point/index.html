@@ -1,0 +1,32 @@
+<h1 id="lastcodepoint">lastCodePoint</h1><blockquote><p>Return the last <code>n</code> Unicode code points of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lastCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last-code-point'</span> );
+</code></pre><h4 id="lastcodepoint-str-n-">lastCodePoint( str, n )</h4><p>Returns the last <code>n</code> Unicode code points of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = lastCodePoint( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 't'</span>
+
+s = lastCodePoint( <span class="hljs-string">'Hello World'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'World'</span>
+
+s = lastCodePoint( <span class="hljs-string">'Good Evening'</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 'd Evening'</span>
+
+s = lastCodePoint( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lastCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last-code-point'</span> );
+
+<span class="hljs-keyword">var</span> str = lastCodePoint( <span class="hljs-string">'Hello World'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'd'</span>
+
+str = lastCodePoint( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 'Script'</span>
+
+str = lastCodePoint( <span class="hljs-string">'ASCII'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 'II'</span>
+
+str = lastCodePoint( <span class="hljs-string">'index'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'index'</span>
+
+str = lastCodePoint( <span class="hljs-string">'अनुच्छेद'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'द'</span>
+
+str = lastCodePoint( <span class="hljs-string">'六书/六書'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns '/六書'</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/first-code-point"><code>@stdlib/string/base/first-code-point</code></a></span><span class="delimiter">: </span><span class="description">return the first Unicode code point of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/last-grapheme-cluster"><code>@stdlib/string/base/last-grapheme-cluster</code></a></span><span class="delimiter">: </span><span class="description">return the last grapheme cluster (i.e., user-perceived character) of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/last"><code>@stdlib/string/base/last</code></a></span><span class="delimiter">: </span><span class="description">return the last UTF-16 code unit of a string.</span></li></ul></section><section class="links"></section>

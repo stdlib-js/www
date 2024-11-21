@@ -1,0 +1,87 @@
+<h1 id="slicedimensionfrom">sliceDimensionFrom</h1><blockquote><p>Return a read-only shifted view of an input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> along a specified dimension.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceDimensionFrom = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice-dimension-from'</span> );
+</code></pre><h4 id="slicedimensionfrom-x-dim-start-options-">sliceDimensionFrom( x, dim, start[, options] )</h4><p>Returns a <strong>read-only</strong> shifted view of an input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> along a specified dimension.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = x.shape;
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( x );
+<span class="hljs-comment">// returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+
+<span class="hljs-keyword">var</span> y = sliceDimensionFrom( x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>.</li><li><strong>dim</strong>: index of dimension along which to slice. If provided an integer less than zero, the dimension index is resolved relative to the last dimension, with the last dimension corresponding to the value <code>-1</code>.</li><li><strong>start</strong>: starting index (inclusive). If provided an integer less than zero, the corresponding element along the specified dimension is resolved relative to the last element along that dimension. For negative integers, the last element corresponds to the value <code>-1</code>.</li><li><strong>options</strong>: function options.</li></ul><p>The function supports the following <code>options</code>:</p><ul><li><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking.</li></ul><p>By default, the function throws an error when provided a starting index which exceeds array bounds. To return an empty array when a starting index exceeds array bounds, set the <code>strict</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = x.shape;
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( x );
+<span class="hljs-comment">// returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+
+<span class="hljs-keyword">var</span> y = sliceDimensionFrom( x, <span class="hljs-number">1</span>, <span class="hljs-number">20</span>, {
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">false</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 3, 0 ]</span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> sliceDimensionFrom = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice-dimension-from'</span> );
+
+<span class="hljs-comment">// Create a linear ndarray buffer:</span>
+<span class="hljs-keyword">var</span> buf = zeroTo( <span class="hljs-number">27</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( buf, {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Get the last two rows of each matrix:</span>
+<span class="hljs-keyword">var</span> y1 = sliceDimensionFrom( x, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a1 = ndarray2array( y1 );
+<span class="hljs-comment">// returns [ [ [ 3, 4, 5 ], [ 6, 7, 8 ] ], [ [ 12, 13, 14 ], [ 15, 16, 17 ] ], [ [ 21, 22, 23 ], [ 24, 25, 26 ] ] ]</span>
+
+<span class="hljs-comment">// Get the last columns of each matrix:</span>
+<span class="hljs-keyword">var</span> y2 = sliceDimensionFrom( x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a2 = ndarray2array( y2 );
+<span class="hljs-comment">// returns [ [ [ 1, 2 ], [ 4, 5 ], [ 7, 8 ] ], [ [ 10, 11 ], [ 13, 14 ], [ 16, 17 ] ], [ [ 19, 20 ], [ 22, 23 ], [ 25, 26 ] ] ]</span>
+
+<span class="hljs-comment">// Get the last two matrices:</span>
+<span class="hljs-keyword">var</span> y3 = sliceDimensionFrom( x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a3 = ndarray2array( y3 );
+<span class="hljs-comment">// returns [ [ [ 9, 10, 11 ], [ 12, 13, 14 ], [ 15, 16, 17 ] ], [ [ 18, 19, 20 ], [ 21, 22, 23 ], [ 24, 25, 26 ] ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice"><code>@stdlib/ndarray/slice</code></a></span><span class="delimiter">: </span><span class="description">return a read-only view of an input ndarray.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice-dimension"><code>@stdlib/ndarray/slice-dimension</code></a></span><span class="delimiter">: </span><span class="description">return a read-only view of an input ndarray when sliced along a specified dimension.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice-dimension-to"><code>@stdlib/ndarray/slice-dimension-to</code></a></span><span class="delimiter">: </span><span class="description">return a read-only truncated view of an input ndarray along a specific dimension.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice-from"><code>@stdlib/ndarray/slice-from</code></a></span><span class="delimiter">: </span><span class="description">return a read-only shifted view of an input ndarray.</span></li></ul></section><section class="links"></section>

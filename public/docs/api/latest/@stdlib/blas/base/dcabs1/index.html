@@ -1,0 +1,45 @@
+<h1 id="dcabs1">dcabs1</h1><blockquote><p>Compute the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real part and imaginary components of a double-precision <a href="/docs/api/latest/@stdlib/complex/float64/ctor">complex</a> floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dcabs1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/dcabs1'</span> );
+</code></pre><h4 id="dcabs1-z-">dcabs1( z )</h4><p>Computes the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real part and imaginary components of a double-precision <a href="/docs/api/latest/@stdlib/complex/float64/ctor">complex</a> floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> y = dcabs1( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> dcabs1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/dcabs1'</span> );
+
+<span class="hljs-keyword">var</span> z;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    z = <span class="hljs-keyword">new</span> Complex128( discreteUniform( -<span class="hljs-number">5</span>, <span class="hljs-number">5</span> ), discreteUniform( -<span class="hljs-number">5</span>, <span class="hljs-number">5</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'dcabs1(%s) = %d'</span>, z.toString(), dcabs1( z ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/dcabs1.h"</span></span>
+</code></pre><h4 id="c_dcabs1-z-">c_dcabs1( z )</h4><p>Computes the sum of the <a href="https://en.wikipedia.org/wiki/Absolute_value">absolute values</a> of the real and imaginary components of a double-precision <a href="/docs/api/latest/@stdlib/complex/float64/ctor">complex</a> floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> c = stdlib_complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">-3.0</span> );
+
+<span class="hljs-keyword">double</span> y = c_dcabs1( z );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] stdlib_complex128_t</code> complex number.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">c_dcabs1</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> z )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/dcabs1.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x[] = {
+        stdlib_complex128( <span class="hljs-number">3.14</span>, <span class="hljs-number">1.0</span> ),
+        stdlib_complex128( <span class="hljs-number">-3.14</span>, <span class="hljs-number">-1.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+    };
+
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = c_dcabs1( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"f(%lf + %lf) = %lf\n"</span>, stdlib_complex128_real( x[ i ] ), stdlib_complex128_imag( x[ i ] ), y );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

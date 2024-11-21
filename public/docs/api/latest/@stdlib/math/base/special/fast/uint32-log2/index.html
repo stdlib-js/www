@@ -16,4 +16,27 @@ v = log2Uint32( <span class="hljs-number">9</span> >>> <span class="hljs-number"
     v = log2Uint32( i >>> <span class="hljs-number">0</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'log2(%d) ≈ %d'</span>, i, v );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/fast/uint32_log2.h"</span></span>
+</code></pre><h4 id="stdlib_base_fast_uint32_log2-x-">stdlib_base_fast_uint32_log2( x )</h4><p>Returns an <strong>approximate</strong> <a href="https://en.wikipedia.org/wiki/Binary_logarithm">binary logarithm</a> of an unsigned 32-bit integer <code>x</code>.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">uint32_t</span> out = stdlib_base_fast_uint32_log2( <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = stdlib_base_fast_uint32_log2( <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] uint32_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">uint32_t</span> <span class="hljs-title">stdlib_base_fast_uint32_log2</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/fast/uint32_log2.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> x[] = { <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">10</span>, <span class="hljs-number">22</span>, <span class="hljs-number">98</span> };
+
+    <span class="hljs-keyword">uint32_t</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        y = stdlib_base_fast_uint32_log2( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"uint32_log2(%u) = %u\n"</span>, x[ i ], y );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,52 @@
+<h1 id="cuanyby">cuanyBy</h1><blockquote><p>Cumulatively test whether at least one element in a provided array passes a test implemented by a predicate function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cuanyBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cuany-by'</span> );
+</code></pre><h4 id="cuanyby-x-predicate-thisarg-">cuanyBy( x, predicate[, thisArg] )</h4><p>Cumulatively tests whether at least one element in a provided array passes a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> y = cuanyBy( x, isPositive );
+<span class="hljs-comment">// returns [ false, false, false, true, true ]</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>predicate</code> function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = cuanyBy( x, isPositive, context );
+<span class="hljs-comment">// returns [ false, false, false, true, true ]</span>
+
+<span class="hljs-keyword">var</span> cnt = context.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><h4 id="cuanybyassign-x-out-stride-offset-predicate-thisarg-">cuanyBy.assign( x, out, stride, offset, predicate[, thisArg] )</h4><p>Cumulatively tests whether at least one element in a provided array passes a test implemented by a <code>predicate</code> function and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span> ];
+
+<span class="hljs-keyword">var</span> out = cuanyBy.assign( x, y, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, isPositive );
+<span class="hljs-comment">// returns [ false, null, false, null, false, null, true, null, true, null ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li><li><strong>predicate</strong>: test function.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> cuanyBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cuany-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-comment">// Create an array of random values:</span>
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.1</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Cumulatively determine whether at least one element is positive:</span>
+<span class="hljs-keyword">var</span> out = cuanyBy( x, isPositive );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

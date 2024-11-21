@@ -3,6 +3,12 @@
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-built_in">console</span>.log( value );
+        <span class="hljs-comment">/* =>
+            1000
+            2500
+            3000
+        */</span>
+
         next( <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span> );
     }
 }
@@ -12,17 +18,12 @@
         <span class="hljs-keyword">throw</span> error;
     }
     <span class="hljs-built_in">console</span>.log( bool );
+    <span class="hljs-comment">// => true</span>
 }
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
 
 everyByAsync( arr, predicate, done );
-<span class="hljs-comment">/* =>
-    1000
-    2500
-    3000
-    true
-*/</span>
 </code></pre><p>If a <code>predicate</code> function calls the <code>next</code> callback with a non-truthy test argument, the function stops processing any additional <code>collection</code> elements and returns <code>false</code> for the test result.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, index, next </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
@@ -38,16 +39,22 @@ everyByAsync( arr, predicate, done );
         <span class="hljs-keyword">throw</span> error;
     }
     <span class="hljs-built_in">console</span>.log( bool );
+    <span class="hljs-comment">// => false</span>
 }
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
 
 everyByAsync( arr, predicate, done );
-<span class="hljs-comment">// => false</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><code>limit</code>: the maximum number of pending invocations at any one time. Default: <code>infinity</code>.</li><li><code>series</code>: <code>boolean</code> indicating whether to sequentially invoke the <code>predicate</code> function for each <code>collection</code> element. If <code>true</code>, the function sets <code>options.limit=1</code>. Default: <code>false</code>.</li><li><code>thisArg</code>: the execution context for <code>fcn</code>.</li></ul><p>By default, all elements are processed concurrently, which means that the function does <strong>not</strong> guarantee completion order. To process each <code>collection</code> element sequentially, set the <code>series</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, next </span>) </span>{
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><code>limit</code>: the maximum number of pending invocations at any one time. Default: <code>infinity</code>.</li><li><code>series</code>: <code>boolean</code> indicating whether to sequentially invoke the <code>predicate</code> function for each <code>collection</code> element. If <code>true</code>, the function sets <code>options.limit=1</code>. Default: <code>false</code>.</li><li><code>thisArg</code>: the execution context for <code>predicate</code>.</li></ul><p>By default, all elements are processed concurrently, which means that the function does <strong>not</strong> guarantee completion order. To process each <code>collection</code> element sequentially, set the <code>series</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, next </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-built_in">console</span>.log( value );
+        <span class="hljs-comment">/* =>
+            3000
+            2500
+            1000
+        */</span>
+
         next( <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span> );
     }
 }
@@ -57,6 +64,7 @@ everyByAsync( arr, predicate, done );
         <span class="hljs-keyword">throw</span> error;
     }
     <span class="hljs-built_in">console</span>.log( bool );
+    <span class="hljs-comment">// => true</span>
 }
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
@@ -66,16 +74,16 @@ everyByAsync( arr, predicate, done );
 };
 
 everyByAsync( arr, opts, predicate, done );
-<span class="hljs-comment">/* =>
-    3000
-    2500
-    1000
-    true
-*/</span>
 </code></pre><p>To limit the maximum number of pending function invocations, set the <code>limit</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, next </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-built_in">console</span>.log( value );
+        <span class="hljs-comment">/* =>
+            2500
+            3000
+            1000
+        */</span>
+
         next( <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span> );
     }
 }
@@ -85,6 +93,7 @@ everyByAsync( arr, opts, predicate, done );
         <span class="hljs-keyword">throw</span> error;
     }
     <span class="hljs-built_in">console</span>.log( bool );
+    <span class="hljs-comment">// => true</span>
 }
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
@@ -94,12 +103,6 @@ everyByAsync( arr, opts, predicate, done );
 };
 
 everyByAsync( arr, opts, predicate, done );
-<span class="hljs-comment">/* =>
-    2500
-    3000
-    1000
-    true
-*/</span>
 </code></pre><p>To set the execution context of the <code>predicate</code> function, set the <code>thisArg</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, next </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
@@ -132,9 +135,21 @@ everyByAsync( arr, opts, predicate, done );
 }
 </code></pre><p>When invoked, the <code>predicate</code> function is provided a maximum of four arguments:</p><ul><li><code>value</code>: collection value.</li><li><code>index</code>: collection index.</li><li><code>collection</code>: the input <code>collection</code>.</li><li><code>next</code>: a callback which should be called once the <code>predicate</code> function has finished processing a collection <code>value</code>.</li></ul><p>The actual number of provided arguments depends on function <code>length</code>. If the <code>predicate</code> function accepts two arguments, the <code>predicate</code> function is provided <code>value</code> and <code>next</code>. If the <code>predicate</code> function accepts three arguments, the <code>predicate</code> function is provided <code>value</code>, <code>index</code>, and <code>next</code>. For every other <code>predicate</code> function signature, the <code>predicate</code> function is provided all four arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, i, collection, next </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'collection: %s. %d: %d'</span>, collection.join( <span class="hljs-string">','</span> ), i, value );
+    <span class="hljs-comment">/* =>
+        collection: 3000,2500,1000. 0: 3000
+        collection: 3000,2500,1000. 1: 2500
+        collection: 3000,2500,1000. 2: 1000
+    */</span>
+
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-built_in">console</span>.log( value );
+        <span class="hljs-comment">/* =>
+            1000
+            2500
+            3000
+        */</span>
+
         next( <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span> );
     }
 }
@@ -144,20 +159,12 @@ everyByAsync( arr, opts, predicate, done );
         <span class="hljs-keyword">throw</span> error;
     }
     <span class="hljs-built_in">console</span>.log( bool );
+    <span class="hljs-comment">// => true</span>
 }
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
 
 everyByAsync( arr, predicate, done );
-<span class="hljs-comment">/* =>
-    collection: 3000,2500,1000. 0: 3000
-    collection: 3000,2500,1000. 1: 2500
-    collection: 3000,2500,1000. 2: 1000
-    1000
-    2500
-    3000
-    true
-*/</span>
 </code></pre><h4 id="everybyasyncfactory-options-predicate-">everyByAsync.factory( [options,] predicate )</h4><p>Returns a <code>function</code> which invokes a <code>predicate</code> function once for each element in a <code>collection</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value, next </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
@@ -178,7 +185,7 @@ everyByAsync( arr, predicate, done );
 <span class="hljs-keyword">var</span> arr1 = [ <span class="hljs-number">3000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">1000</span> ];
 
 f( arr1, done );
-<span class="hljs-comment">/* =>
+<span class="hljs-comment">/* e.g., =>
     1000
     2500
     3000
@@ -188,7 +195,7 @@ f( arr1, done );
 <span class="hljs-keyword">var</span> arr2 = [ <span class="hljs-number">300</span>, <span class="hljs-number">250</span>, <span class="hljs-number">100</span> ];
 
 f( arr2, done );
-<span class="hljs-comment">/* =>
+<span class="hljs-comment">/* e.g., =>
     100
     250
     300

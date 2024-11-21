@@ -1,0 +1,37 @@
+<h1 id="nan">NAN</h1><blockquote><p>Canonical single-precision complex floating-point <code>NaN</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> COMPLEX64_NAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/complex64/nan'</span> );
+</code></pre><h4 id="complex64_nan">COMPLEX64_NAN</h4><p>Canonical single-precision complex floating-point <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> re = realf( COMPLEX64_NAN );
+<span class="hljs-comment">// returns NaN</span>
+
+<span class="hljs-keyword">var</span> im = imagf( COMPLEX64_NAN );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> COMPLEX64_NAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/complex64/nan'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Complex64Array></span>
+
+<span class="hljs-keyword">var</span> v = x.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( v );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( v );
+<span class="hljs-comment">// returns 2.0</span>
+
+x.fill( COMPLEX64_NAN );
+
+v = x.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( v );
+<span class="hljs-comment">// returns NaN</span>
+
+im = imagf( v );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/complex128/nan"><code>@stdlib/constants/complex128/nan</code></a></span><span class="delimiter">: </span><span class="description">canonical double-precision complex floating-point NaN.</span></li></ul></section><section class="links"></section>

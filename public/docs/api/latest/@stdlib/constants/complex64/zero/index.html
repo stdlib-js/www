@@ -1,0 +1,37 @@
+<h1 id="zero">ZERO</h1><blockquote><p>Single-precision complex floating-point zero.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> COMPLEX64_ZERO = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/complex64/zero'</span> );
+</code></pre><h4 id="complex64_zero">COMPLEX64_ZERO</h4><p>Single-precision complex floating-point zero.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> re = realf( COMPLEX64_ZERO );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( COMPLEX64_ZERO );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> COMPLEX64_ZERO = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/complex64/zero'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Complex64Array></span>
+
+<span class="hljs-keyword">var</span> v = x.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( v );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( v );
+<span class="hljs-comment">// returns 2.0</span>
+
+x.fill( COMPLEX64_ZERO );
+
+v = x.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( v );
+<span class="hljs-comment">// returns 0.0</span>
+
+im = imagf( v );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/complex128/zero"><code>@stdlib/constants/complex128/zero</code></a></span><span class="delimiter">: </span><span class="description">double-precision complex floating-point zero.</span></li></ul></section><section class="links"></section>

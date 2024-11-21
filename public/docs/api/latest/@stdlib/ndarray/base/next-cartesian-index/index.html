@@ -1,0 +1,39 @@
+<h1 id="nextcartesianindex">nextCartesianIndex</h1><blockquote><p>Return the next Cartesian index (i.e., set of subscripts/dimension indices).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextCartesianIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/next-cartesian-index'</span> );
+</code></pre><h4 id="nextcartesianindex-shape-order-idx-dim-">nextCartesianIndex( shape, order, idx, dim )</h4><p>Returns the next Cartesian index (i.e., set of subscripts/dimension indices).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = nextCartesianIndex( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns [ 0, 1, 0 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>shape</strong>: array shape.</li><li><strong>order</strong>: index iteration order. Must be either <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</li><li><strong>idx</strong>: current dimension indices.</li><li><strong>dim</strong>: index of the dimension from which to start incrementing (inclusive).</li></ul><p>The <code>order</code> parameter specifies the index iteration order. When <code>order</code> is <code>row-major</code>, the last indices change fastest, and, when the <code>order</code> is <code>column-major</code>, the first indices change fastest.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = nextCartesianIndex( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'column-major'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ], <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 1, 0 ]</span>
+</code></pre><p>The <code>dim</code> parameter controls which dimensions are incremented. When <code>order</code> is <code>row-major</code>, if <code>dim</code> equals <code>shape.length-1</code> (or equivalently <code>-1</code>), the function increments over all dimensions from right-to-left (last-to-first). Similarly, when <code>order</code> is <code>column-major</code>, if <code>dim</code> equals <code>0</code>, the function increments over all dimensions from left-to-right (first-to-last). To restrict which dimensions can be incremented, set <code>dim</code> to a value other than the respective end. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Increment starting from the second-to-last dimension:</span>
+<span class="hljs-keyword">var</span> idx = nextCartesianIndex( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 0, 1, 0 ]</span>
+
+idx = nextCartesianIndex( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span>, idx, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 1, 0, 0 ]</span>
+
+idx = nextCartesianIndex( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span>, idx, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 1, 1, 0 ]</span>
+</code></pre><h4 id="nextcartesianindexassign-shape-order-idx-dim-out-">nextCartesianIndex.assign( shape, order, idx, dim, out )</h4><p>Returns the next Cartesian index (i.e., set of subscripts/dimension indices) and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> idx = nextCartesianIndex.assign( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], -<span class="hljs-number">1</span>, out );
+<span class="hljs-comment">// returns [ 0, 1, 0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === idx );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>shape</strong>: array shape.</li><li><strong>order</strong>: index iteration order. Must be either <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</li><li><strong>idx</strong>: current dimension indices.</li><li><strong>dim</strong>: index of the dimension from which to start incrementing (inclusive).</li><li><strong>out</strong>: output array.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function does not check whether the current index is the "last" index. Instead, if the function is provided dimension indices corresponding to the last element, the function will cycle back to the "first" index.</li><li>If provided an empty shape (i.e., a shape corresponding to a zero-dimensional ndarray) or a dimension index <code>dim</code> which is out-of-bounds, the function returns <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> nextCartesianIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/next-cartesian-index'</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( zeroTo( <span class="hljs-number">27</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Initialize a set of indices:</span>
+<span class="hljs-keyword">var</span> idx = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-comment">// Iterate over each element in the array...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x[%s] = %d'</span>, idx.join( <span class="hljs-string">','</span> ), x.get.apply( x, idx ) );
+    idx = nextCartesianIndex.assign( x.shape, x.order, idx, -<span class="hljs-number">1</span>, idx );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,23 @@
+<h1 id="studentized-range">Studentized Range</h1><blockquote><p>Studentized range distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tukey = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range'</span> );
+</code></pre><h4 id="tukey">tukey</h4><p><a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">Studentized range</a> distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = tukey;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/studentized-range/cdf"><code>cdf( x, r, v[, nranges=1] )</code></a></span><span class="delimiter">: </span><span class="description">Studentized range distribution cumulative distribution function (CDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/studentized-range/quantile"><code>quantile( p, r, v[, nranges=1] )</code></a></span><span class="delimiter">: </span><span class="description">Studentized range distribution quantile function.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tukey = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range'</span> );
+
+<span class="hljs-comment">/*
+* Let's consider an example where we are analyzing the test scores of students in a class.
+* We're interested in using the Studentized Range Distribution to analyze the range of scores.
+* The distribution has parameters: r (number of means), v (degrees of freedom), and n (number of ranges).
+*/</span>
+
+<span class="hljs-keyword">var</span> r = <span class="hljs-number">5.0</span>;
+<span class="hljs-keyword">var</span> v = <span class="hljs-number">20.0</span>;
+<span class="hljs-keyword">var</span> n = <span class="hljs-number">3.0</span>;
+
+<span class="hljs-comment">// CDF can be used to calculate the cumulative distribution function at a specific value:</span>
+<span class="hljs-keyword">var</span> out = tukey.cdf( <span class="hljs-number">2.0</span>, r, v, n );
+<span class="hljs-comment">// returns ~0.074</span>
+
+<span class="hljs-comment">// Quantile can also be used to calculate the quantile function at a specific probability:</span>
+out = tukey.quantile( <span class="hljs-number">0.9</span>, r, v, n );
+<span class="hljs-comment">// returns ~4.433</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

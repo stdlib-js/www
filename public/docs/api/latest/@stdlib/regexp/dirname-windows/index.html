@@ -1,19 +1,18 @@
-<h1 id="dirname">Dirname</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
-</code></pre><h4 id="redirnamewindows">reDirnameWindows()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
+<h1 id="redirnamewindows">reDirnameWindows</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
+</code></pre><h4 id="redirnamewindows-1">reDirnameWindows()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
 <span class="hljs-keyword">var</span> dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
-<span class="hljs-comment">// returns 'foo\\bar'</span>
+<span class="hljs-comment">// returns 'foo\bar'</span>
 </code></pre><h4 id="redirnamewindowsregexp">reDirnameWindows.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = reDirnameWindows.REGEXP.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
-<span class="hljs-comment">// returns 'foo\\bar'</span>
+<span class="hljs-comment">// returns 'foo\bar'</span>
 </code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
 
 <span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
-<span class="hljs-keyword">var</span> dir;
 
-dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns ''</span>
 
 dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'C:\\foo\\bar\\home.html'</span> )[ <span class="hljs-number">1</span> ];
-<span class="hljs-comment">// returns 'C:\\foo\\bar'</span>
+<span class="hljs-comment">// returns 'C:\foo\bar'</span>
 
 dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'foo\\file.pdf'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'foo'</span>
@@ -25,8 +24,8 @@ dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">''</span> )[ <span clas
 <span class="hljs-comment">// returns ''</span>
 
 dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'\\foo\\bar\\file'</span> )[ <span class="hljs-number">1</span> ];
-<span class="hljs-comment">// returns '\\foo\\bar'</span>
+<span class="hljs-comment">// returns '\foo\bar'</span>
 
 dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'C:\\foo\\bar\\.gitignore'</span> )[ <span class="hljs-number">1</span> ];
-<span class="hljs-comment">// returns 'C:\\foo\\bar'</span>
+<span class="hljs-comment">// returns 'C:\foo\bar'</span>
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname"><code>@stdlib/regexp/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a path dirname.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname-posix"><code>@stdlib/regexp/dirname-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a POSIX path dirname.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/dirname"><code>@stdlib/utils/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a directory name.</span></li></ul></section><section class="links"></section>

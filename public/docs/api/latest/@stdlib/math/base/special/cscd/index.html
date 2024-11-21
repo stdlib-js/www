@@ -1,0 +1,48 @@
+<h1 id="cscd">cscd</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">cosecant</a> of a degree.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cscd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cscd'</span> );
+</code></pre><h4 id="cscd-x-">cscd( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">cosecant</a> of <code>x</code> (in degrees).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = cscd( <span class="hljs-number">30</span> );
+<span class="hljs-comment">// returns ~2.0</span>
+
+v = cscd( <span class="hljs-number">45</span> );
+<span class="hljs-comment">// returns ~1.41</span>
+
+v = cscd( <span class="hljs-number">60</span> );
+<span class="hljs-comment">// returns ~1.15</span>
+
+v = cscd( <span class="hljs-number">90</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = cscd( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = cscd( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> cscd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cscd'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">1.1</span>, <span class="hljs-number">5.1</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( cscd( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cscd.h"</span></span>
+</code></pre><h4 id="stdlib_base_cscd-x-">stdlib_base_cscd( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">cosecant</a> of <code>x</code> (in degrees).</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_cscd( <span class="hljs-number">30.0</span> );
+<span class="hljs-comment">// returns ~2.0</span>
+
+out = stdlib_base_cscd( <span class="hljs-number">45.0</span> );
+<span class="hljs-comment">// returns ~1.41</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_cscd</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cscd.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_cscd( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cscd(%lf) = %lf\n"</span>, x[ i ], y );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,37 @@
+<h1 id="zeroto">zeroTo</h1><blockquote><p>Generate a linearly spaced numeric array whose elements increment by 1 starting from zero.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+</code></pre><h4 id="zeroto-n-">zeroTo( n )</h4><p>Generates a linearly spaced numeric array whose elements increment by <code>1</code> starting from zero.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = zeroTo( <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+</code></pre><p>If <code>n &#x3C;= 0</code>, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = zeroTo( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns []</span>
+
+arr = zeroTo( -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre><p>If <code>n</code> is a non-integer value greater than zero, the function returns an array having <code>ceil(n)</code> elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = zeroTo( <span class="hljs-number">5.1</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+</code></pre><h4 id="zerotoassign-out-stride-offset-">zeroTo.assign( out, stride, offset )</h4><p>Fills an array with linearly spaced numeric elements which increment by 1 starting from zero.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> arr = zeroTo.assign( out, -<span class="hljs-number">1</span>, out.length-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns [ 5, 4, 3, 2, 1, 0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sort2hp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gsort2hp'</span> );
+<span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+
+<span class="hljs-comment">// Generate an array of random numbers:</span>
+<span class="hljs-keyword">var</span> x = filledBy( <span class="hljs-number">10</span>, randu );
+
+<span class="hljs-comment">// Generate an array of indices:</span>
+<span class="hljs-keyword">var</span> idx = zeroTo( x.length );
+
+<span class="hljs-comment">// Create a temporary array to avoid mutation:</span>
+<span class="hljs-keyword">var</span> tmp = x.slice();
+
+<span class="hljs-comment">// Sort the index array according to the sort order of `x`:</span>
+sort2hp( x.length, <span class="hljs-number">1</span>, tmp, <span class="hljs-number">1</span>, idx, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( x );
+<span class="hljs-built_in">console</span>.log( idx );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/one-to"><code>@stdlib/array/base/one-to</code></a></span><span class="delimiter">: </span><span class="description">generate a linearly spaced numeric array whose elements increment by 1 starting from one.</span></li></ul></section><section class="links"></section>

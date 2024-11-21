@@ -1,0 +1,29 @@
+<h1 id="str2wellformed">str2wellformed</h1><blockquote><p>Create a new well-formed string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str2wellformed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/to-well-formed'</span> );
+</code></pre><h4 id="str2wellformed-str-">str2wellformed( str )</h4><p>Creates a new well-formed string by replacing all lone surrogates with the replacement character <code>\uFFFD</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> result = str2wellformed( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+
+result = str2wellformed( <span class="hljs-string">'\uDBFF'</span> );
+<span class="hljs-comment">// returns '�'</span>
+
+result = str2wellformed( <span class="hljs-string">'\uDBFFFF\uDBFF'</span> );
+<span class="hljs-comment">// returns '�FF�'</span>
+
+result = str2wellformed( <span class="hljs-string">'-5'</span> );
+<span class="hljs-comment">// returns '-5'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str2wellformed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/to-well-formed'</span> );
+
+<span class="hljs-keyword">var</span> result = str2wellformed( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+
+result = str2wellformed( <span class="hljs-string">'\uDBFF'</span> );
+<span class="hljs-comment">// returns '�'</span>
+
+result = str2wellformed( <span class="hljs-string">'\uDBFF\uDBFF'</span> );
+<span class="hljs-comment">// returns '��'</span>
+
+result = str2wellformed( <span class="hljs-string">'5\uDBFF'</span> );
+<span class="hljs-comment">// returns '5�'</span>
+
+result = str2wellformed( <span class="hljs-string">'-5'</span> );
+<span class="hljs-comment">// returns '-5'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

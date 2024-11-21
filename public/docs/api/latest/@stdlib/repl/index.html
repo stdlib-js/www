@@ -6,7 +6,19 @@
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>input</strong>: input (readable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</li><li><strong>output</strong>: output (writable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a>.</li><li><strong>sandbox</strong>: <code>boolean</code> indicating whether to run a REPL in a sandboxed context. Default: <code>false</code>.</li><li><strong>timeout</strong>: number of milliseconds to execute a command before terminating execution. Default: <code>4294967295</code>.</li><li><strong>isTTY</strong>: <code>boolean</code> indicating whether the input and output streams should be treated like a TTY (terminal) and whether the REPL should use ANSI/VT100 escape codes when writing to the output stream.</li><li><strong>inputPrompt</strong>: input prompt. If the input prompt includes the character sequence <code>%d</code>, the input prompt includes line numbers. Default: <code>'In [%d]: '</code>.</li><li><strong>outputPrompt</strong>: output prompt. If the output prompt includes the character sequence <code>%d</code>, the output prompt includes line numbers. Default: <code>'Out[%d]: '</code>.</li><li><strong>welcome</strong>: welcome message.</li><li><strong>padding</strong>: number of empty lines between consecutive commands. Default: <code>1</code>.</li><li><strong>load</strong>: file path specifying a JavaScript file to load and evaluate line-by-line (e.g., a previous REPL history file).</li><li><strong>save</strong>: file path specifying where to save REPL command history.</li><li><strong>log</strong>: file path specifying where to save REPL commands and printed output.</li><li><strong>quiet</strong>: <code>boolean</code> indicating whether log information, confirmation messages, and other possible REPL diagnostics should be silenced. Default: <code>false</code>.</li></ul><h4 id="replprototypecreatecontext">REPL.prototype.createContext()</h4><p>Returns a REPL context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>input</strong>: input (readable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</li><li><strong>output</strong>: output (writable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a>.</li><li><strong>sandbox</strong>: boolean indicating whether to run a REPL in a sandboxed context. Default: <code>false</code>.</li><li><strong>timeout</strong>: number of milliseconds to execute a command before terminating execution. Default: <code>4294967295</code>.</li><li><strong>isTTY</strong>: boolean indicating whether the input and output streams should be treated like a TTY (terminal) and whether the REPL should use ANSI/VT100 escape codes when writing to the output stream.</li><li><strong>inputPrompt</strong>: input prompt. If the input prompt includes the character sequence <code>%d</code>, the input prompt includes line numbers. Default: <code>'In [%d]: '</code>.</li><li><strong>outputPrompt</strong>: output prompt. If the output prompt includes the character sequence <code>%d</code>, the output prompt includes line numbers. Default: <code>'Out[%d]: '</code>.</li><li><strong>welcome</strong>: welcome message.</li><li><strong>padding</strong>: number of empty lines between consecutive commands. Default: <code>1</code>.</li><li><strong>themes</strong>: table containing color themes for syntax highlighting.</li><li><strong>load</strong>: file path specifying a JavaScript file to load and evaluate line-by-line (e.g., a previous REPL history file).</li><li><strong>save</strong>: file path specifying where to save REPL command history.</li><li><strong>log</strong>: file path specifying where to save REPL commands and printed output.</li><li><strong>quiet</strong>: boolean indicating whether log information, confirmation messages, and other possible REPL diagnostics should be silenced. Default: <code>false</code>.</li><li><strong>settings</strong>: object specifying REPL settings.</li></ul><p>The function supports specifying the following settings:</p><ul><li><strong>autoClosePairs</strong>: boolean indicating whether to automatically insert matching brackets, parentheses, and quotes. Default: <code>true</code>.</li><li><strong>autoDeletePairs</strong>: boolean indicating whether to automatically delete adjacent matching brackets, parentheses, and quotes. Default: <code>true</code>.</li><li><strong>autoPage</strong>: boolean indicating whether to automatically page return values having a display size exceeding the visible screen. When streams are TTY, the default is <code>true</code>; otherwise, the default is <code>false</code>.</li><li><strong>bracketedPaste</strong>: boolean indicating whether to enable bracketed-paste mode. When streams are TTY, the default is <code>true</code>; otherwise, the default is <code>false</code>.</li><li><strong>autoDisableBracketedPasteOnExit</strong>: boolean indicating whether to automatically disable bracketed-paste upon exiting the REPL. When streams are TTY and bracketed paste is enabled, the default is <code>true</code>; otherwise, the default is <code>false</code>.</li><li><strong>completionPreviews</strong>: boolean indicating whether to display completion previews for auto-completion. When streams are TTY, the default is <code>true</code>; otherwise, the default is <code>false</code>.</li><li><strong>syntaxHighlighting</strong>: boolean indicating whether to enable syntax highlighting of entered input expressions. When streams are TTY, the default is <code>true</code>; otherwise, the default is <code>false</code>.</li><li><strong>theme</strong>: initial color theme for syntax highlighting. Default: <code>stdlib-ansi-basic</code>.</li></ul><h4 id="replprototypeviewport">REPL.prototype.viewport()</h4><p>Returns the REPL viewport.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// Query the REPL viewport:</span>
+<span class="hljs-keyword">var</span> v = repl.viewport();
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><h4 id="replprototypecreatecontext">REPL.prototype.createContext()</h4><p>Returns a REPL context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -54,7 +66,7 @@ repl.clearHistory();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre><h4 id="replprototypeclearuserdocs">Repl.prototype.clearUserDocs()</h4><p>Clears user-defined documentation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeclearuserdocs">REPL.prototype.clearUserDocs()</h4><p>Clears user-defined documentation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -65,6 +77,114 @@ repl.close();
 
 <span class="hljs-comment">// Clear user-defined documentation:</span>
 repl.clearUserDocs();
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><h4 id="replprototypethemes">REPL.prototype.themes()</h4><p>Returns a list of all available themes for syntax highlighting.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Fetch all available themes:</span>
+<span class="hljs-keyword">var</span> themes = repl.themes();
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><h4 id="replprototypegettheme-name-">REPL.prototype.getTheme( name )</h4><p>Returns a theme's color palette for syntax highlighting.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Add a user-defined theme:</span>
+repl.addTheme( <span class="hljs-string">'myTheme'</span>, {
+    <span class="hljs-string">'keyword'</span>: <span class="hljs-string">'red'</span>
+});
+
+<span class="hljs-comment">// Get a theme's color palette:</span>
+<span class="hljs-keyword">var</span> theme = repl.getTheme( <span class="hljs-string">'myTheme'</span> );
+<span class="hljs-comment">// returns { 'keyword': 'red' }</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><h4 id="replprototypeaddtheme-name-theme-">REPL.prototype.addTheme( name, theme )</h4><p>Adds a syntax highlighting theme.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Add a user-defined theme:</span>
+repl.addTheme( <span class="hljs-string">'myTheme'</span>, {
+    <span class="hljs-string">'keyword'</span>: <span class="hljs-string">'red'</span>,
+    <span class="hljs-string">'variable'</span>: <span class="hljs-string">'green'</span>
+
+    <span class="hljs-comment">// ...</span>
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><p>The syntax-highlighter supports the following tokens and associated theme fields:</p><ul><li><strong>keyword</strong>: keywords (e.g., <code>var</code>, <code>function</code>, <code>let</code>, <code>const</code>, <code>in</code>, and <code>class</code>).</li><li><strong>control</strong>: control flow keywords (e.g., <code>if</code>, <code>else</code>, <code>try</code>, <code>catch</code>, and <code>return</code>).</li><li><strong>specialIdentifier</strong>: special identifiers (e.g., <code>this</code> and <code>super</code>).</li><li><strong>string</strong>: string and template literals.</li><li><strong>number</strong>: numeric literals.</li><li><strong>literal</strong>: reserved literals (e.g., <code>true</code>, <code>false</code>, <code>null</code>, and <code>undefined</code>).</li><li><strong>regexp</strong>: regular expressions.</li><li><strong>command</strong>: built-in REPL commands.</li><li><strong>function</strong>: function identifiers.</li><li><strong>object</strong>: object identifiers.</li><li><strong>variable</strong>: literal identifiers.</li><li><strong>name</strong>: variable names.</li><li><strong>comment</strong>: line comments.</li><li><strong>punctuation</strong>: punctuation symbols (e.g., <code>;</code>, <code>[</code>, <code>{</code>, <code>,</code>, and <code>?</code>).</li><li><strong>operator</strong>: operator symbols (e.g., <code>+</code>, <code>-</code>, <code>*</code>, <code>=</code>, <code>++</code>, <code>>=</code>, and <code>&#x26;&#x26;</code>).</li></ul><h4 id="replprototypedeletetheme-name-">REPL.prototype.deleteTheme( name )</h4><p>Deletes a specified theme from the syntax-highlighter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Add a user-defined theme:</span>
+repl.addTheme( <span class="hljs-string">'myTheme'</span>, {
+    <span class="hljs-string">'keyword'</span>: <span class="hljs-string">'red'</span>,
+    <span class="hljs-string">'variable'</span>: <span class="hljs-string">'green'</span>
+
+    <span class="hljs-comment">// ...</span>
+});
+
+<span class="hljs-comment">// Delete the added theme:</span>
+repl.deleteTheme( <span class="hljs-string">'myTheme'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><h4 id="replprototyperenametheme-oldname-newname-">REPL.prototype.renameTheme( oldName, newName )</h4><p>Renames a specified theme in the syntax-highlighter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Add a user-defined theme:</span>
+repl.addTheme( <span class="hljs-string">'myTheme'</span>, {
+    <span class="hljs-string">'keyword'</span>: <span class="hljs-string">'red'</span>,
+    <span class="hljs-string">'variable'</span>: <span class="hljs-string">'green'</span>
+
+    <span class="hljs-comment">// ...</span>
+});
+
+<span class="hljs-comment">// Rename the added theme:</span>
+repl.renameTheme( <span class="hljs-string">'myTheme'</span>, <span class="hljs-string">'yourTheme'</span> );
 
 <span class="hljs-comment">// ...</span>
 
@@ -150,6 +270,54 @@ repl.clearCommand();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
+</code></pre><h4 id="replprototypesettings-name-value-">REPL.prototype.settings( [name[, value]] )</h4><p>Returns REPL settings.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Retrieve REPL settings:</span>
+<span class="hljs-keyword">var</span> o = repl.settings();
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><p>To retrieve the current value for a specific setting, provide a <code>name</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Retrieve current setting value:</span>
+<span class="hljs-keyword">var</span> v = repl.settings( <span class="hljs-string">'autoClosePairs'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
+</code></pre><p>To update a specific setting, provide a <code>value</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+
+<span class="hljs-comment">// Create a new REPL:</span>
+<span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
+    <span class="hljs-string">'output'</span>: debug()
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Update setting value:</span>
+repl.settings( <span class="hljs-string">'autoClosePairs'</span>, <span class="hljs-literal">false</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Close the REPL:</span>
+repl.close();
 </code></pre><h4 id="replprototypeclose">REPL.prototype.close()</h4><p>Closes a REPL.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -161,7 +329,13 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre><hr><h3 id="commands">Commands</h3><p>REPL instances support the following commands...</p><h4 id="alias2pkg-arg-">alias2pkg( arg )</h4><p>Returns the package name associated with a provided alias or class instance.</p><pre><code class="no-highlight language-text">In [1]: var v = alias2pkg( 'base.sin' )
+</code></pre><hr><h3 id="commands">Commands</h3><p>REPL instances support the following commands...</p><h4 id="addtheme-name-theme-">addTheme( name, theme )</h4><p>Adds a syntax highlighting color theme.</p><pre><code class="no-highlight language-text">// Add color theme:
+In [1]: addTheme( 'myTheme', { 'keyword': 'red' } )
+
+// Check updated list of themes:
+In [2]: themes()
+Out[2]: [ 'stdlib-ansi-basic', 'myTheme' ]
+</code></pre><h4 id="alias2pkg-arg-">alias2pkg( arg )</h4><p>Returns the package name associated with a provided alias or class instance.</p><pre><code class="no-highlight language-text">In [1]: var v = alias2pkg( 'base.sin' )
 Out[1]: '@stdlib/math/base/special/sin'
 </code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="alias2related-arg-">alias2related( arg )</h4><p>Returns aliases related to a specified alias or class instance.</p><pre><code class="no-highlight language-text">In [1]: var v = alias2related( 'base.sin' )
 Out[1]: [...]
@@ -223,6 +397,19 @@ Error: x is not defined
 </code></pre><h4 id="credits">credits()</h4><p>Prints credits.</p><pre><code class="no-highlight language-text">In [1]: credits()
 </code></pre><h4 id="currentworkspace">currentWorkspace</h4><p>Returns the name of the current workspace.</p><pre><code class="no-highlight language-text">In [1]: currentWorkspace
 Out[1]: 'base'
+</code></pre><h4 id="deletetheme-name-">deleteTheme( name )</h4><p>Deletes a syntax highlighting color theme.</p><pre><code class="no-highlight language-text">// Add a color theme:
+In [1]: addTheme( 'myTheme', { 'keyword': 'red' } )
+
+// Check list of themes:
+In [2]: themes()
+Out[2]: [ 'stdlib-ansi-basic', 'myTheme' ]
+
+// Delete the added theme:
+In [3]: deleteTheme( 'myTheme' )
+
+// Check updated list of themes:
+In [4]: themes()
+Out[4]: [ 'stdlib-ansi-basic' ]
 </code></pre><h4 id="deeprerequire-id-">deeprerequire( id )</h4><p>Re-imports a module, JSON, or local file and all of its associated module dependencies.</p><pre><code class="no-highlight language-text">In [1]: var foo = require( './foo.js' );
 
 // Modify `./foo.js` and/or its module dependencies...
@@ -275,7 +462,13 @@ In [5]: workspace( 'foobar' );
 In [6]: x
 Out[6]: 3.14
 </code></pre><h4 id="example-arg-">example( arg )</h4><p>Runs examples for a specified alias, property, or class instance.</p><pre><code class="no-highlight language-text">In [1]: example( base.sin )
-</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="help-arg-">help( [arg] )</h4><p>Prints help text.</p><pre><code class="no-highlight language-text">In [1]: help()
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="gettheme-name-">getTheme( [name] )</h4><p>Returns a syntax highlighting color theme.</p><pre><code class="no-highlight language-text">// Add a color theme:
+In [1]: addTheme( 'myTheme', { 'keyword': 'red' } )
+
+// Get the color theme:
+In [2]: getTheme( 'myTheme' )
+Out[2]: { 'keyword': 'red' }
+</code></pre><p><strong>Note</strong>: if no theme name is provided, the current theme is returned.</p><h4 id="help-arg-">help( [arg] )</h4><p>Prints help text.</p><pre><code class="no-highlight language-text">In [1]: help()
 </code></pre><p>To print help text for an alias,</p><pre><code class="no-highlight language-text">In [1]: help( 'base.sin' )
 
 In [2]: help( base.sin )
@@ -326,6 +519,19 @@ Out[7]: 'undefined'
 
 In [2]: presentationStop();
 </code></pre><p>A few notes:</p><ul><li>If provided a presentation identifier, the corresponding <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped. Otherwise, assuming the function is invoked in a presentation workspace, the current <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped.</li><li>When stopping a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>, the presentation's REPL workspace is both <strong>cleared</strong> and <strong>deleted</strong>.</li></ul><h4 id="quit">quit()</h4><p>Exits the REPL.</p><pre><code class="no-highlight language-text">In [1]: quit()
+</code></pre><h4 id="renametheme-oldname-newname-">renameTheme( oldName, newName )</h4><p>Renames a syntax highlighting color theme.</p><pre><code class="no-highlight language-text">// Add a color theme:
+In [1]: addTheme( 'myTheme', { 'keyword': 'red' } )
+
+// Check list of themes:
+In [2]: themes()
+Out[2]: [ 'stdlib-ansi-basic', 'myTheme' ]
+
+// Rename the added theme:
+In [3]: getTheme( 'myTheme', 'yourTheme' )
+
+// Check updated list of themes:
+In [4]: themes()
+Out[4]: [ 'stdlib-ansi-basic', 'yourTheme' ]
 </code></pre><h4 id="renameworkspace-oldname-newname-">renameWorkspace( oldName, newName )</h4><p>Renames a workspace.</p><pre><code class="no-highlight language-text">// Create a new workspace:
 In [1]: workspace( 'foobar' );
 
@@ -403,6 +609,15 @@ In [4]: rerun( '1:3:2' )
 </code></pre><h4 id="save-fpath-">save( fpath )</h4><p>Saves previous commands to a specified file path.</p><pre><code class="no-highlight language-text">// TODO
 </code></pre><h4 id="savestart-fpath-">saveStart( fpath )</h4><p>Starts saving commands to a specified file path.</p><pre><code class="no-highlight language-text">// TODO
 </code></pre><h4 id="savestop-id-">saveStop( id )</h4><p>Stops saving commands to a file path associated with a specified record identifier.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="settings-name-value-">settings( [name[, value]] )</h4><p>Displays REPL settings.</p><pre><code class="no-highlight language-text">In [1]: settings()
+</code></pre><p>To retrieve the current value for a specific setting, provide a <code>name</code> argument.</p><pre><code class="no-highlight language-text">In [1]: settings( 'autoClosePairs' )
+</code></pre><p>To update a specific setting, provide a <code>value</code> argument.</p><pre><code class="no-highlight language-text">In [1]: settings( 'autoClosePairs', false )
+</code></pre><h4 id="themes">themes()</h4><p>Returns a list of all available syntax highlighting color themes.</p><pre><code class="no-highlight language-text">// Add a color theme:
+In [1]: addTheme( 'myTheme', { 'keyword': 'red' } )
+
+// Check list of themes:
+In [2]: themes()
+Out[2]: [ 'stdlib-ansi-basic', 'myTheme' ]
 </code></pre><h4 id="tutorial-name-options-">tutorial( [name, [options]] )</h4><p>Starts a tutorial.</p><pre><code class="no-highlight language-text">In [1]: var id = tutorial( 'repl' );
 </code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li><li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li><li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li><li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li><li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>progress</code>.</li><li><strong>workspace</strong>: REPL workspace name. A tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing tutorial navigation and interaction. Default: <code>'tutorial-&#x3C;name>-&#x3C;n>'</code>, where <code>name</code> is the tutorial <code>name</code> and <code>n</code> is an assigned tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> identifier.</li><li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered tutorial slide to the REPL. Default: <code>true</code>.</li></ul><p>A few notes:</p><ul><li>When not provided a tutorial <code>name</code>, the function prints a list of available tutorials.</li><li>If a specified workspace already exists, the workspace is silently cleared and a new tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative tutorial workspace name.</li></ul><h4 id="userdoc-alias-ref-doc-">userDoc( alias, [ref,] doc )</h4><p>Adds user-defined documentation.</p><pre><code class="no-highlight language-text">In [1]: function foo() {};
 
@@ -449,7 +664,7 @@ Out[4]: [ 'x' ]
 In [2]: workspace( 'foo' );
 
 In [3]: varsWorkspace( 'base', { 'details': true } )
-</code></pre><h4 id="workspace-name-">workspace( name )</h4><p>Switch to a specified workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><h4 id="workspace-name-">workspace( name )</h4><p>Switches to a specified workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
 

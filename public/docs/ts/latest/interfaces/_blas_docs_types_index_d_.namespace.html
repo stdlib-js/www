@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -136,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">base<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_array_docs_types_index_d_.html#base" class="tsd-signature-type">base</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L40">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L39">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -151,13 +151,25 @@
 					<div class="tsd-signature tsd-kind-icon">ddot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_ddot_docs_types_index_d_.html#ddot" class="tsd-signature-type">ddot</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L62">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L76">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:76</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Computes the dot product of two double-precision floating-point vectors.</p>
 						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>If provided at least one input array having more than one dimension, the input arrays are broadcasted to a common shape.</li>
+							<li>For multi-dimensional input arrays, the function performs batched computation, such that the function computes the dot product for each pair of vectors in <code>x</code> and <code>y</code> according to the specified dimension index.</li>
+							<li>The size of the contracted dimension must be the same for both input arrays.</li>
+							<li>The function resolves the dimension index for which to compute the dot product <strong>before</strong> broadcasting.</li>
+							<li>If provided empty vectors, the dot product is <code>0</code>.</li>
+							<li>Negative indices are resolved relative to the last array dimension, with the last dimension corresponding to <code>-1</code>.</li>
+							<li>The output array has the same data type as the input arrays and has a shape which is determined by broadcasting and excludes the contracted dimension.</li>
+						</ul>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
 							<dd><p>first input array</p>
@@ -165,14 +177,20 @@
 							<dt>param</dt>
 							<dd><p>second input array</p>
 							</dd>
-							<dt>throws</dt>
-							<dd><p>first argument must be a 1-dimensional <code>ndarray</code> containing double-precision floating-point numbers</p>
+							<dt>param</dt>
+							<dd><p>dimension for which to compute the dot product (default: -1)</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>second argument must be a 1-dimensional <code>ndarray</code> containing double-precision floating-point numbers</p>
+							<dd><p>first argument must be a non-zero-dimensional ndarray containing double-precision floating-point numbers</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>input arrays must be the same length</p>
+							<dd><p>second argument must be a non-zero-dimensional ndarray containing double-precision floating-point numbers</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>input arrays must be broadcast-compatible</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>the size of the contracted dimension must be the same for both input arrays</p>
 							</dd>
 							<dt>returns</dt>
 							<dd><p>dot product</p>
@@ -185,13 +203,21 @@
 					<div class="tsd-signature tsd-kind-icon">dswap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_dswap_docs_types_index_d_.html#dswap" class="tsd-signature-type">dswap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L89">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L110">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Interchanges two double-precision floating-point vectors.</p>
 						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>For multi-dimensional input arrays, the function performs batched computation, such that the function interchanges each pair of vectors in <code>x</code> and <code>y</code> according to the specified dimension index.</li>
+							<li>Both input arrays must have the same shape.</li>
+							<li>Negative indices are resolved relative to the last array dimension, with the last dimension corresponding to <code>-1</code>.</li>
+						</ul>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
 							<dd><p>first input array</p>
@@ -199,14 +225,17 @@
 							<dt>param</dt>
 							<dd><p>second input array</p>
 							</dd>
-							<dt>throws</dt>
-							<dd><p>first argument must be a 1-dimensional <code>ndarray</code> containing double-precision floating-point numbers</p>
+							<dt>param</dt>
+							<dd><p>dimension along which to interchange vectors (default: -1)</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>second argument must be a 1-dimensional <code>ndarray</code> containing double-precision floating-point numbers</p>
+							<dd><p>first argument must be a non-zero-dimensional ndarray containing double-precision floating-point numbers</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>input arrays must be the same length</p>
+							<dd><p>second argument must be a non-zero-dimensional ndarray containing double-precision floating-point numbers</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>input arrays must have the same shape</p>
 							</dd>
 							<dt>returns</dt>
 							<dd><p><code>y</code></p>
@@ -219,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">ext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_docs_types_index_d_.html#ext" class="tsd-signature-type">ext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L94">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L115">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:115</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,7 +263,7 @@
 					<div class="tsd-signature tsd-kind-icon">gdot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_gdot_docs_types_index_d_.html#gdot" class="tsd-signature-type">gdot</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L117">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:117</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L138">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:138</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -274,7 +303,7 @@
 					<div class="tsd-signature tsd-kind-icon">gswap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_gswap_docs_types_index_d_.html#gswap" class="tsd-signature-type">gswap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L141">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L162">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:162</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -314,13 +343,25 @@
 					<div class="tsd-signature tsd-kind-icon">sdot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_sdot_docs_types_index_d_.html#sdot" class="tsd-signature-type">sdot</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L163">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:163</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L199">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:199</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Computes the dot product of two single-precision floating-point vectors.</p>
 						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>If provided at least one input array having more than one dimension, the input arrays are broadcasted to a common shape.</li>
+							<li>For multi-dimensional input arrays, the function performs batched computation, such that the function computes the dot product for each pair of vectors in <code>x</code> and <code>y</code> according to the specified dimension index.</li>
+							<li>The size of the contracted dimension must be the same for both input arrays.</li>
+							<li>The function resolves the dimension index for which to compute the dot product <strong>before</strong> broadcasting.</li>
+							<li>If provided empty vectors, the dot product is <code>0</code>.</li>
+							<li>Negative indices are resolved relative to the last array dimension, with the last dimension corresponding to <code>-1</code>.</li>
+							<li>The output array has the same data type as the input arrays and has a shape which is determined by broadcasting and excludes the contracted dimension.</li>
+						</ul>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
 							<dd><p>first input array</p>
@@ -328,14 +369,20 @@
 							<dt>param</dt>
 							<dd><p>second input array</p>
 							</dd>
-							<dt>throws</dt>
-							<dd><p>first argument must be a 1-dimensional <code>ndarray</code> containing single-precision floating-point numbers</p>
+							<dt>param</dt>
+							<dd><p>dimension for which to compute the dot product (default: -1)</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>second argument must be a 1-dimensional <code>ndarray</code> containing single-precision floating-point numbers</p>
+							<dd><p>first argument must be a non-zero-dimensional ndarray containing single-precision floating-point numbers</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>input arrays must be the same length</p>
+							<dd><p>second argument must be a non-zero-dimensional ndarray containing single-precision floating-point numbers</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>input arrays must be broadcast-compatible</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>the size of the contracted dimension must be the same for both input arrays</p>
 							</dd>
 							<dt>returns</dt>
 							<dd><p>dot product</p>
@@ -348,13 +395,21 @@
 					<div class="tsd-signature tsd-kind-icon">sswap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_blas_base_sswap_docs_types_index_d_.html#sswap" class="tsd-signature-type">sswap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L190">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:190</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/docs/types/index.d.ts#L233">lib/node_modules/@stdlib/blas/docs/types/index.d.ts:233</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Interchanges two single-precision floating-point vectors.</p>
 						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>For multi-dimensional input arrays, the function performs batched computation, such that the function interchanges each pair of vectors in <code>x</code> and <code>y</code> according to the specified dimension index.</li>
+							<li>Both input arrays must have the same shape.</li>
+							<li>Negative indices are resolved relative to the last array dimension, with the last dimension corresponding to <code>-1</code>.</li>
+						</ul>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
 							<dd><p>first input array</p>
@@ -362,14 +417,17 @@
 							<dt>param</dt>
 							<dd><p>second input array</p>
 							</dd>
-							<dt>throws</dt>
-							<dd><p>first argument must be a 1-dimensional <code>ndarray</code> containing single-precision floating-point numbers</p>
+							<dt>param</dt>
+							<dd><p>dimension along which to interchange vectors (default: -1)</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>second argument must be a 1-dimensional <code>ndarray</code> containing single-precision floating-point numbers</p>
+							<dd><p>first argument must be a non-zero-dimensional ndarray containing single-precision floating-point numbers</p>
 							</dd>
 							<dt>throws</dt>
-							<dd><p>input arrays must be the same length</p>
+							<dd><p>second argument must be a non-zero-dimensional ndarray containing single-precision floating-point numbers</p>
+							</dd>
+							<dt>throws</dt>
+							<dd><p>input arrays must have the same shape</p>
 							</dd>
 							<dt>returns</dt>
 							<dd><p><code>y</code></p>
@@ -516,13 +574,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

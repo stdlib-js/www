@@ -1,0 +1,82 @@
+<h1 id="append-file">Append File</h1><blockquote><p>Append data to a file.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> appendFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/append-file'</span> );
+</code></pre><h4 id="appendfile-file-data-options-clbk-">appendFile( file, data[, options], clbk )</h4><p>Asynchronously appends <code>data</code> to a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+appendFile( fpath, <span class="hljs-string">'beep boop\n'</span>, onAppend );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAppend</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.log( error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> );
+        <span class="hljs-comment">// => false</span>
+    }
+}
+</code></pre><p>The <code>data</code> argument may be either a <code>string</code> or a <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+appendFile( fpath, string2buffer( <span class="hljs-string">'beep boop\n'</span> ), onAppend );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAppend</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.log( error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> );
+        <span class="hljs-comment">// => false</span>
+    }
+}
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.appendFile()</code></a>.</p><h4 id="appendfilesync-file-data-options-">appendFile.sync( file, data[, options] )</h4><p>Synchronously appends <code>data</code> to a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+<span class="hljs-keyword">var</span> err = appendFile.sync( fpath, <span class="hljs-string">'beep boop\n'</span> );
+<span class="hljs-keyword">if</span> ( err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> err;
+}
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.appendFileSync()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The difference between this <code>appendFile.sync</code> and <a href="https://nodejs.org/api/fs.html"><code>fs.appendFileSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.appendFileSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent directory path) and this API will return an <code>error</code>. Hence, the following anti-pattern</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
+
+<span class="hljs-comment">// Check for directory path existence to prevent an error being thrown...</span>
+<span class="hljs-keyword">if</span> ( fs.existsSync( <span class="hljs-string">'/path/to'</span> ) ) {
+    fs.appendFileSync( <span class="hljs-string">'/path/to/file.txt'</span>, <span class="hljs-string">'beep boop\n'</span> );
+}
+</code></pre><p>can be replaced by an approach which addresses existence via <code>error</code> handling.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> appendFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/append-file'</span> );
+
+<span class="hljs-comment">// Explicitly handle the error...</span>
+<span class="hljs-keyword">var</span> err = appendFile.sync( <span class="hljs-string">'/path/to/file.txt'</span>, <span class="hljs-string">'boop beep\n'</span> );
+<span class="hljs-keyword">if</span> ( err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-comment">// You choose what to do...</span>
+    <span class="hljs-keyword">throw</span> err;
+}
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> appendFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/append-file'</span> );
+
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+<span class="hljs-comment">// Synchronously append data to a file:</span>
+
+<span class="hljs-keyword">var</span> error = appendFile.sync( fpath, <span class="hljs-string">'beep boop\n'</span>, <span class="hljs-string">'utf8'</span> );
+<span class="hljs-comment">// Function successfully executes and returns null</span>
+
+<span class="hljs-built_in">console</span>.log( error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> );
+<span class="hljs-comment">// => false</span>
+
+<span class="hljs-comment">// Asynchronously append data to a file:</span>
+
+appendFile( fpath, <span class="hljs-string">'beep boop\n'</span>, onAppend );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAppend</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
+    }
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Success!!!'</span> );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: append-file [options] &#x3C;filepath>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+  --enc, --encoding encoding   Encoding. Default: 'utf8'.
+         --flag flag           Flag. Default: 'a'.
+         --mode mode           Mode. Default: 0o666.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Relative output file paths are resolved relative to the current working directory.</li><li>Errors are written to <code>stderr</code>.</li><li>File contents should be provided over <code>stdin</code> as part of a <a href="https://en.wikipedia.org/wiki/Pipeline_%28Unix%29">standard stream</a> pipeline.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ <span class="hljs-built_in">printf</span> <span class="hljs-string">'beep boop\n'</span> | append-file ./examples/fixtures/file.txt
+</code></pre></section></section><section class="related"></section><section class="links"></section>

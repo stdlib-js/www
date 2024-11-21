@@ -6,7 +6,7 @@
 
 <span class="hljs-keyword">var</span> entries = objectEntries( obj );
 <span class="hljs-comment">// e.g., returns [ ['a', 1], ['b', 2] ]</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Entry order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic return values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/entries'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Entry order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="https://262.ecma-international.org/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic return values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/entries'</span> );
 
 <span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>,

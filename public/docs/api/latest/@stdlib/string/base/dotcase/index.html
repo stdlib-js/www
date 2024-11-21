@@ -1,0 +1,31 @@
+<h1 id="dotcase">dotcase</h1><blockquote><p>Convert a string to dot case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dotcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/dotcase'</span> );
+</code></pre><h4 id="dotcase-str-">dotcase( str )</h4><p>Converts a string to dot case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = dotcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'foo.bar'</span>
+
+str = dotcase( <span class="hljs-string">'foo bar baz'</span> );
+<span class="hljs-comment">// returns 'foo.bar.baz'</span>
+
+str = dotcase( <span class="hljs-string">'foo_bar'</span> );
+<span class="hljs-comment">// returns 'foo.bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dotcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/dotcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = dotcase( str );
+<span class="hljs-comment">// returns 'hello.world'</span>
+
+str = <span class="hljs-string">'I am a tiny little teapot'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'i.am.a.tiny.little.teapot'</span>
+
+str = <span class="hljs-string">'with big problems'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'with.big.problems'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'to.be.or.not.to.be.that.is.the.question'</span>
+
+str = <span class="hljs-string">'isMobile'</span>;
+out = dotcase( str );
+<span class="hljs-comment">// returns 'is.mobile'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

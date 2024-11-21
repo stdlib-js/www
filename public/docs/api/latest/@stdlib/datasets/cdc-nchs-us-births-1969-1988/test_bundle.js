@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -486,7 +486,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -609,7 +609,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -732,7 +732,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -750,7 +750,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+},{"./main.js":17,"./polyfill.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -789,36 +819,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],18:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -855,7 +855,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -873,7 +873,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+},{"./main.js":20,"./polyfill.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -912,36 +942,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -978,7 +978,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -996,7 +996,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1035,36 +1065,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -1101,7 +1101,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -1119,7 +1119,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1157,36 +1187,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],28:[function(require,module,exports){
 /**
@@ -1327,7 +1327,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":28,"@stdlib/assert/is-float32array":91,"@stdlib/constants/float64/pinf":159}],31:[function(require,module,exports){
+},{"./float32array.js":28,"@stdlib/assert/is-float32array":91,"@stdlib/constants/float64/pinf":161}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1605,7 +1605,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":35,"@stdlib/assert/is-int16array":97,"@stdlib/constants/int16/max":160,"@stdlib/constants/int16/min":161}],37:[function(require,module,exports){
+},{"./int16array.js":35,"@stdlib/assert/is-int16array":97,"@stdlib/constants/int16/max":162,"@stdlib/constants/int16/min":163}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1745,7 +1745,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":38,"@stdlib/assert/is-int32array":99,"@stdlib/constants/int32/max":162,"@stdlib/constants/int32/min":163}],40:[function(require,module,exports){
+},{"./int32array.js":38,"@stdlib/assert/is-int32array":99,"@stdlib/constants/int32/max":164,"@stdlib/constants/int32/min":165}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1885,7 +1885,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":41,"@stdlib/assert/is-int8array":101,"@stdlib/constants/int8/max":164,"@stdlib/constants/int8/min":165}],43:[function(require,module,exports){
+},{"./int8array.js":41,"@stdlib/assert/is-int8array":101,"@stdlib/constants/int8/max":166,"@stdlib/constants/int8/min":167}],43:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -1917,7 +1917,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":286}],44:[function(require,module,exports){
+},{"buffer":291}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,12 +1952,12 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
 },{"./main.js":45}],45:[function(require,module,exports){
 /**
@@ -2071,12 +2071,12 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":47}],47:[function(require,module,exports){
 /**
@@ -2179,12 +2179,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2265,12 +2265,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":51}],51:[function(require,module,exports){
 /**
@@ -2434,7 +2434,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":136,"@stdlib/constants/uint16/max":166}],54:[function(require,module,exports){
+},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":136,"@stdlib/constants/uint16/max":168}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2575,7 +2575,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":138,"@stdlib/constants/uint32/max":167}],57:[function(require,module,exports){
+},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":138,"@stdlib/constants/uint32/max":169}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2716,7 +2716,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":140,"@stdlib/constants/uint8/max":168}],60:[function(require,module,exports){
+},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":140,"@stdlib/constants/uint8/max":170}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2934,12 +2934,12 @@ module.exports = main;
 
 // MODULES //
 
-var instanceOf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = instanceOf;
+module.exports = main;
 
 },{"./main.js":65}],65:[function(require,module,exports){
 /**
@@ -3010,7 +3010,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":209}],66:[function(require,module,exports){
+},{"@stdlib/string/format":213}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3184,7 +3184,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":257}],69:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3254,7 +3254,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-enumerable-property":86,"@stdlib/constants/uint32/max":167,"@stdlib/math/base/assert/is-integer":183}],70:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-enumerable-property":86,"@stdlib/constants/uint32/max":169,"@stdlib/math/base/assert/is-integer":185}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3295,12 +3295,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
 },{"./main.js":71}],71:[function(require,module,exports){
 /**
@@ -3362,7 +3362,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":156,"@stdlib/math/base/assert/is-integer":183}],72:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":158,"@stdlib/math/base/assert/is-integer":185}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3400,12 +3400,12 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":73}],73:[function(require,module,exports){
 /**
@@ -3472,7 +3472,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":257}],74:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3499,6 +3499,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -3508,7 +3509,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -3518,7 +3519,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -3531,22 +3532,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":75,"./object.js":76,"./primitive.js":77,"@stdlib/utils/define-nonenumerable-read-only-property":220}],75:[function(require,module,exports){
+},{"./main.js":75,"./object.js":76,"./primitive.js":77,"@stdlib/utils/define-nonenumerable-read-only-property":226}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3590,10 +3591,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -3631,6 +3636,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -3652,6 +3658,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -3673,7 +3681,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":79,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":257}],77:[function(require,module,exports){
+},{"./try2serialize.js":79,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/boolean/ctor":149,"@stdlib/utils/native-class":262}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3709,6 +3717,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -3862,12 +3872,12 @@ module.exports = true;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":82}],82:[function(require,module,exports){
 /**
@@ -3979,12 +3989,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":84}],84:[function(require,module,exports){
 /**
@@ -4045,7 +4055,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":157,"@stdlib/math/base/assert/is-integer":183}],85:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":159,"@stdlib/math/base/assert/is-integer":185}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4140,12 +4150,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":87}],87:[function(require,module,exports){
 /**
@@ -4323,12 +4333,12 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":90}],90:[function(require,module,exports){
 /**
@@ -4396,7 +4406,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":229,"@stdlib/utils/native-class":257}],91:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/native-class":262}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4500,7 +4510,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":257}],93:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4604,7 +4614,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":257}],95:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4643,12 +4653,12 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":96}],96:[function(require,module,exports){
 /**
@@ -4702,7 +4712,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":280}],97:[function(require,module,exports){
+},{"@stdlib/utils/type-of":285}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4806,7 +4816,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":257}],99:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4910,7 +4920,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":257}],101:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5014,7 +5024,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":257}],103:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5079,22 +5089,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":105,"./object.js":106,"./primitive.js":107,"@stdlib/utils/define-nonenumerable-read-only-property":220}],104:[function(require,module,exports){
+},{"./main.js":105,"./object.js":106,"./primitive.js":107,"@stdlib/utils/define-nonenumerable-read-only-property":226}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5144,7 +5154,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":158,"@stdlib/constants/float64/pinf":159,"@stdlib/math/base/assert/is-integer":183}],105:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":160,"@stdlib/constants/float64/pinf":161,"@stdlib/math/base/assert/is-integer":185}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5380,22 +5390,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":109,"./object.js":110,"./primitive.js":111,"@stdlib/utils/define-nonenumerable-read-only-property":220}],109:[function(require,module,exports){
+},{"./main.js":109,"./object.js":110,"./primitive.js":111,"@stdlib/utils/define-nonenumerable-read-only-property":226}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5510,7 +5520,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":185}],111:[function(require,module,exports){
+},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":187}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5569,7 +5579,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":185}],112:[function(require,module,exports){
+},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":187}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5635,22 +5645,22 @@ module.exports = isnan;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":113,"./object.js":114,"./primitive.js":115,"@stdlib/utils/define-nonenumerable-read-only-property":220}],113:[function(require,module,exports){
+},{"./main.js":113,"./object.js":114,"./primitive.js":115,"@stdlib/utils/define-nonenumerable-read-only-property":226}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5888,22 +5898,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":117,"./object.js":118,"./primitive.js":119,"@stdlib/utils/define-nonenumerable-read-only-property":220}],117:[function(require,module,exports){
+},{"./main.js":117,"./object.js":118,"./primitive.js":119,"@stdlib/utils/define-nonenumerable-read-only-property":226}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6031,7 +6041,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":121,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":189,"@stdlib/utils/native-class":257}],119:[function(require,module,exports){
+},{"./try2serialize.js":121,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":191,"@stdlib/utils/native-class":262}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6115,7 +6125,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":189}],121:[function(require,module,exports){
+},{"@stdlib/number/ctor":191}],121:[function(require,module,exports){
 arguments[4][79][0].apply(exports,arguments)
 },{"./tostring.js":120,"dup":79}],122:[function(require,module,exports){
 /**
@@ -6158,12 +6168,12 @@ arguments[4][79][0].apply(exports,arguments)
 
 // MODULES //
 
-var isObjectArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObjectArray;
+module.exports = main;
 
 },{"./main.js":123}],123:[function(require,module,exports){
 /**
@@ -6219,7 +6229,7 @@ var isObjectArray = arrayfun( isObject );
 
 module.exports = isObjectArray;
 
-},{"@stdlib/assert/is-object":126,"@stdlib/assert/tools/array-like-function":148}],124:[function(require,module,exports){
+},{"@stdlib/assert/is-object":126,"@stdlib/assert/tools/array-like-function":147}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6271,19 +6281,24 @@ module.exports = isObjectArray;
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":125,"@stdlib/assert/tools/array-function":146,"@stdlib/utils/define-nonenumerable-read-only-property":220}],125:[function(require,module,exports){
+},{"./main.js":125,"@stdlib/assert/tools/array-function":145,"@stdlib/utils/define-nonenumerable-read-only-property":226}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6372,12 +6387,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":127}],127:[function(require,module,exports){
 /**
@@ -6472,12 +6487,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":129}],129:[function(require,module,exports){
 /**
@@ -6593,7 +6608,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":95,"@stdlib/assert/is-object":126,"@stdlib/utils/get-prototype-of":229,"@stdlib/utils/native-class":257}],130:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":95,"@stdlib/assert/is-object":126,"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/native-class":262}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6653,22 +6668,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":131,"./object.js":132,"./primitive.js":133,"@stdlib/utils/define-nonenumerable-read-only-property":220}],131:[function(require,module,exports){
+},{"./main.js":131,"./object.js":132,"./primitive.js":133,"@stdlib/utils/define-nonenumerable-read-only-property":226}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6787,7 +6802,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":134,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":257}],133:[function(require,module,exports){
+},{"./try2valueof.js":134,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":262}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7013,7 +7028,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":257}],138:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7117,7 +7132,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":257}],140:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7221,7 +7236,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":257}],142:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7325,7 +7340,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":257}],144:[function(require,module,exports){
+},{"@stdlib/utils/native-class":262}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7383,7 +7398,58 @@ var IS_WINDOWS = ( PLATFORM === 'win32' );
 
 module.exports = IS_WINDOWS;
 
-},{"@stdlib/os/platform":191}],145:[function(require,module,exports){
+},{"@stdlib/os/platform":195}],145:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7470,7 +7536,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":72,"@stdlib/string/format":209}],146:[function(require,module,exports){
+},{"@stdlib/assert/is-array":72,"@stdlib/string/format":213}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7492,18 +7558,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -7514,14 +7580,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":145}],147:[function(require,module,exports){
+},{"./main.js":148}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7608,11 +7674,11 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":70,"@stdlib/string/format":209}],148:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":70,"@stdlib/string/format":213}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7630,40 +7696,43 @@ module.exports = arraylikefcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array-like object passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-like-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arraylikefcn = require( './arraylikefcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arraylikefcn;
+module.exports = main;
 
-},{"./arraylikefcn.js":147}],149:[function(require,module,exports){
+},{"./main.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7682,14 +7751,37 @@ module.exports = arraylikefcn;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":286}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7725,7 +7817,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -7743,7 +7835,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":149,"./polyfill.js":151,"@stdlib/assert/has-node-buffer-support":44}],151:[function(require,module,exports){
+},{"./main.js":152,"./polyfill.js":153,"@stdlib/assert/has-node-buffer-support":44}],152:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":291}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7782,7 +7904,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],152:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7818,7 +7940,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":95,"@stdlib/buffer/ctor":150}],153:[function(require,module,exports){
+},{"@stdlib/assert/is-function":95,"@stdlib/buffer/ctor":151}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7876,7 +7998,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":152,"./main.js":154,"./polyfill.js":155}],154:[function(require,module,exports){
+},{"./has_from.js":154,"./main.js":156,"./polyfill.js":157}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7934,7 +8056,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":150,"@stdlib/string/format":209}],155:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":151,"@stdlib/string/format":213}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7992,7 +8114,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":150,"@stdlib/string/format":209}],156:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":151,"@stdlib/string/format":213}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8043,7 +8165,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],157:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8094,7 +8216,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],158:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8156,7 +8278,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":189}],159:[function(require,module,exports){
+},{"@stdlib/number/ctor":191}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8214,7 +8336,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],160:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8277,7 +8399,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],161:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8340,7 +8462,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],162:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8403,7 +8525,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],163:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8466,7 +8588,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],164:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8529,7 +8651,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],165:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8592,7 +8714,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],166:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8655,7 +8777,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],167:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8718,7 +8840,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],168:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8781,10 +8903,10 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],169:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports=[{"year":1969,"month":1,"date_of_month":1,"day_of_week":3,"births":8486},{"year":1969,"month":1,"date_of_month":2,"day_of_week":4,"births":9002},{"year":1969,"month":1,"date_of_month":3,"day_of_week":5,"births":9542},{"year":1969,"month":1,"date_of_month":4,"day_of_week":6,"births":8960},{"year":1969,"month":1,"date_of_month":5,"day_of_week":7,"births":8390},{"year":1969,"month":1,"date_of_month":6,"day_of_week":1,"births":9560},{"year":1969,"month":1,"date_of_month":7,"day_of_week":2,"births":9738},{"year":1969,"month":1,"date_of_month":8,"day_of_week":3,"births":9734},{"year":1969,"month":1,"date_of_month":9,"day_of_week":4,"births":9434},{"year":1969,"month":1,"date_of_month":10,"day_of_week":5,"births":10042},{"year":1969,"month":1,"date_of_month":11,"day_of_week":6,"births":9178},{"year":1969,"month":1,"date_of_month":12,"day_of_week":7,"births":8450},{"year":1969,"month":1,"date_of_month":13,"day_of_week":1,"births":9834},{"year":1969,"month":1,"date_of_month":14,"day_of_week":2,"births":10366},{"year":1969,"month":1,"date_of_month":15,"day_of_week":3,"births":9894},{"year":1969,"month":1,"date_of_month":16,"day_of_week":4,"births":9662},{"year":1969,"month":1,"date_of_month":17,"day_of_week":5,"births":9974},{"year":1969,"month":1,"date_of_month":18,"day_of_week":6,"births":9312},{"year":1969,"month":1,"date_of_month":19,"day_of_week":7,"births":8622},{"year":1969,"month":1,"date_of_month":20,"day_of_week":1,"births":9808},{"year":1969,"month":1,"date_of_month":21,"day_of_week":2,"births":10474},{"year":1969,"month":1,"date_of_month":22,"day_of_week":3,"births":9884},{"year":1969,"month":1,"date_of_month":23,"day_of_week":4,"births":9454},{"year":1969,"month":1,"date_of_month":24,"day_of_week":5,"births":9798},{"year":1969,"month":1,"date_of_month":25,"day_of_week":6,"births":9022},{"year":1969,"month":1,"date_of_month":26,"day_of_week":7,"births":8568},{"year":1969,"month":1,"date_of_month":27,"day_of_week":1,"births":9910},{"year":1969,"month":1,"date_of_month":28,"day_of_week":2,"births":10032},{"year":1969,"month":1,"date_of_month":29,"day_of_week":3,"births":9380},{"year":1969,"month":1,"date_of_month":30,"day_of_week":4,"births":9674},{"year":1969,"month":1,"date_of_month":31,"day_of_week":5,"births":9692},{"year":1969,"month":2,"date_of_month":1,"day_of_week":6,"births":9130},{"year":1969,"month":2,"date_of_month":2,"day_of_week":7,"births":8814},{"year":1969,"month":2,"date_of_month":3,"day_of_week":1,"births":9988},{"year":1969,"month":2,"date_of_month":4,"day_of_week":2,"births":9996},{"year":1969,"month":2,"date_of_month":5,"day_of_week":3,"births":9676},{"year":1969,"month":2,"date_of_month":6,"day_of_week":4,"births":9728},{"year":1969,"month":2,"date_of_month":7,"day_of_week":5,"births":10102},{"year":1969,"month":2,"date_of_month":8,"day_of_week":6,"births":9262},{"year":1969,"month":2,"date_of_month":9,"day_of_week":7,"births":8694},{"year":1969,"month":2,"date_of_month":10,"day_of_week":1,"births":9954},{"year":1969,"month":2,"date_of_month":11,"day_of_week":2,"births":9856},{"year":1969,"month":2,"date_of_month":12,"day_of_week":3,"births":10008},{"year":1969,"month":2,"date_of_month":13,"day_of_week":4,"births":9606},{"year":1969,"month":2,"date_of_month":14,"day_of_week":5,"births":10354},{"year":1969,"month":2,"date_of_month":15,"day_of_week":6,"births":9310},{"year":1969,"month":2,"date_of_month":16,"day_of_week":7,"births":8534},{"year":1969,"month":2,"date_of_month":17,"day_of_week":1,"births":9822},{"year":1969,"month":2,"date_of_month":18,"day_of_week":2,"births":10176},{"year":1969,"month":2,"date_of_month":19,"day_of_week":3,"births":9816},{"year":1969,"month":2,"date_of_month":20,"day_of_week":4,"births":9982},{"year":1969,"month":2,"date_of_month":21,"day_of_week":5,"births":9916},{"year":1969,"month":2,"date_of_month":22,"day_of_week":6,"births":9152},{"year":1969,"month":2,"date_of_month":23,"day_of_week":7,"births":8704},{"year":1969,"month":2,"date_of_month":24,"day_of_week":1,"births":9966},{"year":1969,"month":2,"date_of_month":25,"day_of_week":2,"births":10566},{"year":1969,"month":2,"date_of_month":26,"day_of_week":3,"births":10048},{"year":1969,"month":2,"date_of_month":27,"day_of_week":4,"births":9618},{"year":1969,"month":2,"date_of_month":28,"day_of_week":5,"births":9756},{"year":1969,"month":3,"date_of_month":1,"day_of_week":6,"births":9186},{"year":1969,"month":3,"date_of_month":2,"day_of_week":7,"births":8580},{"year":1969,"month":3,"date_of_month":3,"day_of_week":1,"births":10068},{"year":1969,"month":3,"date_of_month":4,"day_of_week":2,"births":10264},{"year":1969,"month":3,"date_of_month":5,"day_of_week":3,"births":10046},{"year":1969,"month":3,"date_of_month":6,"day_of_week":4,"births":9704},{"year":1969,"month":3,"date_of_month":7,"day_of_week":5,"births":9948},{"year":1969,"month":3,"date_of_month":8,"day_of_week":6,"births":9334},{"year":1969,"month":3,"date_of_month":9,"day_of_week":7,"births":8394},{"year":1969,"month":3,"date_of_month":10,"day_of_week":1,"births":9892},{"year":1969,"month":3,"date_of_month":11,"day_of_week":2,"births":10188},{"year":1969,"month":3,"date_of_month":12,"day_of_week":3,"births":9776},{"year":1969,"month":3,"date_of_month":13,"day_of_week":4,"births":9640},{"year":1969,"month":3,"date_of_month":14,"day_of_week":5,"births":10034},{"year":1969,"month":3,"date_of_month":15,"day_of_week":6,"births":8838},{"year":1969,"month":3,"date_of_month":16,"day_of_week":7,"births":8336},{"year":1969,"month":3,"date_of_month":17,"day_of_week":1,"births":10128},{"year":1969,"month":3,"date_of_month":18,"day_of_week":2,"births":10136},{"year":1969,"month":3,"date_of_month":19,"day_of_week":3,"births":10064},{"year":1969,"month":3,"date_of_month":20,"day_of_week":4,"births":9812},{"year":1969,"month":3,"date_of_month":21,"day_of_week":5,"births":9902},{"year":1969,"month":3,"date_of_month":22,"day_of_week":6,"births":8962},{"year":1969,"month":3,"date_of_month":23,"day_of_week":7,"births":8602},{"year":1969,"month":3,"date_of_month":24,"day_of_week":1,"births":9802},{"year":1969,"month":3,"date_of_month":25,"day_of_week":2,"births":10272},{"year":1969,"month":3,"date_of_month":26,"day_of_week":3,"births":9818},{"year":1969,"month":3,"date_of_month":27,"day_of_week":4,"births":9698},{"year":1969,"month":3,"date_of_month":28,"day_of_week":5,"births":10326},{"year":1969,"month":3,"date_of_month":29,"day_of_week":6,"births":8908},{"year":1969,"month":3,"date_of_month":30,"day_of_week":7,"births":8186},{"year":1969,"month":3,"date_of_month":31,"day_of_week":1,"births":9592},{"year":1969,"month":4,"date_of_month":1,"day_of_week":2,"births":9960},{"year":1969,"month":4,"date_of_month":2,"day_of_week":3,"births":9978},{"year":1969,"month":4,"date_of_month":3,"day_of_week":4,"births":9530},{"year":1969,"month":4,"date_of_month":4,"day_of_week":5,"births":9572},{"year":1969,"month":4,"date_of_month":5,"day_of_week":6,"births":8748},{"year":1969,"month":4,"date_of_month":6,"day_of_week":7,"births":8008},{"year":1969,"month":4,"date_of_month":7,"day_of_week":1,"births":9374},{"year":1969,"month":4,"date_of_month":8,"day_of_week":2,"births":10176},{"year":1969,"month":4,"date_of_month":9,"day_of_week":3,"births":9852},{"year":1969,"month":4,"date_of_month":10,"day_of_week":4,"births":9708},{"year":1969,"month":4,"date_of_month":11,"day_of_week":5,"births":9920},{"year":1969,"month":4,"date_of_month":12,"day_of_week":6,"births":8940},{"year":1969,"month":4,"date_of_month":13,"day_of_week":7,"births":8134},{"year":1969,"month":4,"date_of_month":14,"day_of_week":1,"births":9566},{"year":1969,"month":4,"date_of_month":15,"day_of_week":2,"births":10428},{"year":1969,"month":4,"date_of_month":16,"day_of_week":3,"births":9840},{"year":1969,"month":4,"date_of_month":17,"day_of_week":4,"births":9876},{"year":1969,"month":4,"date_of_month":18,"day_of_week":5,"births":9872},{"year":1969,"month":4,"date_of_month":19,"day_of_week":6,"births":8994},{"year":1969,"month":4,"date_of_month":20,"day_of_week":7,"births":7928},{"year":1969,"month":4,"date_of_month":21,"day_of_week":1,"births":9610},{"year":1969,"month":4,"date_of_month":22,"day_of_week":2,"births":10226},{"year":1969,"month":4,"date_of_month":23,"day_of_week":3,"births":9868},{"year":1969,"month":4,"date_of_month":24,"day_of_week":4,"births":9472},{"year":1969,"month":4,"date_of_month":25,"day_of_week":5,"births":9646},{"year":1969,"month":4,"date_of_month":26,"day_of_week":6,"births":8922},{"year":1969,"month":4,"date_of_month":27,"day_of_week":7,"births":7966},{"year":1969,"month":4,"date_of_month":28,"day_of_week":1,"births":9518},{"year":1969,"month":4,"date_of_month":29,"day_of_week":2,"births":9700},{"year":1969,"month":4,"date_of_month":30,"day_of_week":3,"births":9138},{"year":1969,"month":5,"date_of_month":1,"day_of_week":4,"births":9206},{"year":1969,"month":5,"date_of_month":2,"day_of_week":5,"births":9736},{"year":1969,"month":5,"date_of_month":3,"day_of_week":6,"births":8768},{"year":1969,"month":5,"date_of_month":4,"day_of_week":7,"births":8094},{"year":1969,"month":5,"date_of_month":5,"day_of_week":1,"births":9930},{"year":1969,"month":5,"date_of_month":6,"day_of_week":2,"births":9964},{"year":1969,"month":5,"date_of_month":7,"day_of_week":3,"births":9626},{"year":1969,"month":5,"date_of_month":8,"day_of_week":4,"births":9484},{"year":1969,"month":5,"date_of_month":9,"day_of_week":5,"births":9362},{"year":1969,"month":5,"date_of_month":10,"day_of_week":6,"births":8516},{"year":1969,"month":5,"date_of_month":11,"day_of_week":7,"births":8122},{"year":1969,"month":5,"date_of_month":12,"day_of_week":1,"births":9306},{"year":1969,"month":5,"date_of_month":13,"day_of_week":2,"births":9862},{"year":1969,"month":5,"date_of_month":14,"day_of_week":3,"births":9184},{"year":1969,"month":5,"date_of_month":15,"day_of_week":4,"births":9524},{"year":1969,"month":5,"date_of_month":16,"day_of_week":5,"births":9824},{"year":1969,"month":5,"date_of_month":17,"day_of_week":6,"births":8946},{"year":1969,"month":5,"date_of_month":18,"day_of_week":7,"births":8028},{"year":1969,"month":5,"date_of_month":19,"day_of_week":1,"births":9494},{"year":1969,"month":5,"date_of_month":20,"day_of_week":2,"births":10388},{"year":1969,"month":5,"date_of_month":21,"day_of_week":3,"births":9766},{"year":1969,"month":5,"date_of_month":22,"day_of_week":4,"births":9406},{"year":1969,"month":5,"date_of_month":23,"day_of_week":5,"births":9584},{"year":1969,"month":5,"date_of_month":24,"day_of_week":6,"births":8558},{"year":1969,"month":5,"date_of_month":25,"day_of_week":7,"births":8226},{"year":1969,"month":5,"date_of_month":26,"day_of_week":1,"births":9840},{"year":1969,"month":5,"date_of_month":27,"day_of_week":2,"births":10352},{"year":1969,"month":5,"date_of_month":28,"day_of_week":3,"births":9938},{"year":1969,"month":5,"date_of_month":29,"day_of_week":4,"births":10190},{"year":1969,"month":5,"date_of_month":30,"day_of_week":5,"births":9154},{"year":1969,"month":5,"date_of_month":31,"day_of_week":6,"births":8640},{"year":1969,"month":6,"date_of_month":1,"day_of_week":7,"births":8426},{"year":1969,"month":6,"date_of_month":2,"day_of_week":1,"births":9862},{"year":1969,"month":6,"date_of_month":3,"day_of_week":2,"births":10158},{"year":1969,"month":6,"date_of_month":4,"day_of_week":3,"births":9838},{"year":1969,"month":6,"date_of_month":5,"day_of_week":4,"births":9588},{"year":1969,"month":6,"date_of_month":6,"day_of_week":5,"births":10006},{"year":1969,"month":6,"date_of_month":7,"day_of_week":6,"births":8814},{"year":1969,"month":6,"date_of_month":8,"day_of_week":7,"births":8226},{"year":1969,"month":6,"date_of_month":9,"day_of_week":1,"births":9738},{"year":1969,"month":6,"date_of_month":10,"day_of_week":2,"births":10320},{"year":1969,"month":6,"date_of_month":11,"day_of_week":3,"births":9950},{"year":1969,"month":6,"date_of_month":12,"day_of_week":4,"births":10220},{"year":1969,"month":6,"date_of_month":13,"day_of_week":5,"births":9852},{"year":1969,"month":6,"date_of_month":14,"day_of_week":6,"births":8920},{"year":1969,"month":6,"date_of_month":15,"day_of_week":7,"births":8402},{"year":1969,"month":6,"date_of_month":16,"day_of_week":1,"births":9744},{"year":1969,"month":6,"date_of_month":17,"day_of_week":2,"births":10294},{"year":1969,"month":6,"date_of_month":18,"day_of_week":3,"births":10220},{"year":1969,"month":6,"date_of_month":19,"day_of_week":4,"births":9756},{"year":1969,"month":6,"date_of_month":20,"day_of_week":5,"births":10424},{"year":1969,"month":6,"date_of_month":21,"day_of_week":6,"births":9034},{"year":1969,"month":6,"date_of_month":22,"day_of_week":7,"births":8612},{"year":1969,"month":6,"date_of_month":23,"day_of_week":1,"births":9880},{"year":1969,"month":6,"date_of_month":24,"day_of_week":2,"births":10624},{"year":1969,"month":6,"date_of_month":25,"day_of_week":3,"births":10466},{"year":1969,"month":6,"date_of_month":26,"day_of_week":4,"births":10344},{"year":1969,"month":6,"date_of_month":27,"day_of_week":5,"births":10776},{"year":1969,"month":6,"date_of_month":28,"day_of_week":6,"births":9566},{"year":1969,"month":6,"date_of_month":29,"day_of_week":7,"births":8800},{"year":1969,"month":6,"date_of_month":30,"day_of_week":1,"births":10588},{"year":1969,"month":7,"date_of_month":1,"day_of_week":2,"births":11146},{"year":1969,"month":7,"date_of_month":2,"day_of_week":3,"births":10758},{"year":1969,"month":7,"date_of_month":3,"day_of_week":4,"births":10562},{"year":1969,"month":7,"date_of_month":4,"day_of_week":5,"births":9168},{"year":1969,"month":7,"date_of_month":5,"day_of_week":6,"births":9248},{"year":1969,"month":7,"date_of_month":6,"day_of_week":7,"births":8860},{"year":1969,"month":7,"date_of_month":7,"day_of_week":1,"births":10634},{"year":1969,"month":7,"date_of_month":8,"day_of_week":2,"births":10842},{"year":1969,"month":7,"date_of_month":9,"day_of_week":3,"births":10576},{"year":1969,"month":7,"date_of_month":10,"day_of_week":4,"births":10562},{"year":1969,"month":7,"date_of_month":11,"day_of_week":5,"births":10686},{"year":1969,"month":7,"date_of_month":12,"day_of_week":6,"births":9472},{"year":1969,"month":7,"date_of_month":13,"day_of_week":7,"births":8978},{"year":1969,"month":7,"date_of_month":14,"day_of_week":1,"births":10242},{"year":1969,"month":7,"date_of_month":15,"day_of_week":2,"births":11296},{"year":1969,"month":7,"date_of_month":16,"day_of_week":3,"births":10698},{"year":1969,"month":7,"date_of_month":17,"day_of_week":4,"births":10668},{"year":1969,"month":7,"date_of_month":18,"day_of_week":5,"births":10632},{"year":1969,"month":7,"date_of_month":19,"day_of_week":6,"births":9674},{"year":1969,"month":7,"date_of_month":20,"day_of_week":7,"births":8940},{"year":1969,"month":7,"date_of_month":21,"day_of_week":1,"births":10196},{"year":1969,"month":7,"date_of_month":22,"day_of_week":2,"births":11040},{"year":1969,"month":7,"date_of_month":23,"day_of_week":3,"births":10468},{"year":1969,"month":7,"date_of_month":24,"day_of_week":4,"births":10430},{"year":1969,"month":7,"date_of_month":25,"day_of_week":5,"births":10688},{"year":1969,"month":7,"date_of_month":26,"day_of_week":6,"births":9786},{"year":1969,"month":7,"date_of_month":27,"day_of_week":7,"births":9408},{"year":1969,"month":7,"date_of_month":28,"day_of_week":1,"births":10548},{"year":1969,"month":7,"date_of_month":29,"day_of_week":2,"births":11102},{"year":1969,"month":7,"date_of_month":30,"day_of_week":3,"births":10634},{"year":1969,"month":7,"date_of_month":31,"day_of_week":4,"births":10346},{"year":1969,"month":8,"date_of_month":1,"day_of_week":5,"births":10730},{"year":1969,"month":8,"date_of_month":2,"day_of_week":6,"births":9982},{"year":1969,"month":8,"date_of_month":3,"day_of_week":7,"births":9082},{"year":1969,"month":8,"date_of_month":4,"day_of_week":1,"births":10450},{"year":1969,"month":8,"date_of_month":5,"day_of_week":2,"births":10944},{"year":1969,"month":8,"date_of_month":6,"day_of_week":3,"births":10852},{"year":1969,"month":8,"date_of_month":7,"day_of_week":4,"births":10382},{"year":1969,"month":8,"date_of_month":8,"day_of_week":5,"births":11302},{"year":1969,"month":8,"date_of_month":9,"day_of_week":6,"births":10092},{"year":1969,"month":8,"date_of_month":10,"day_of_week":7,"births":9106},{"year":1969,"month":8,"date_of_month":11,"day_of_week":1,"births":10706},{"year":1969,"month":8,"date_of_month":12,"day_of_week":2,"births":11138},{"year":1969,"month":8,"date_of_month":13,"day_of_week":3,"births":10802},{"year":1969,"month":8,"date_of_month":14,"day_of_week":4,"births":10726},{"year":1969,"month":8,"date_of_month":15,"day_of_week":5,"births":10910},{"year":1969,"month":8,"date_of_month":16,"day_of_week":6,"births":9772},{"year":1969,"month":8,"date_of_month":17,"day_of_week":7,"births":9124},{"year":1969,"month":8,"date_of_month":18,"day_of_week":1,"births":10650},{"year":1969,"month":8,"date_of_month":19,"day_of_week":2,"births":11410},{"year":1969,"month":8,"date_of_month":20,"day_of_week":3,"births":10918},{"year":1969,"month":8,"date_of_month":21,"day_of_week":4,"births":10184},{"year":1969,"month":8,"date_of_month":22,"day_of_week":5,"births":10586},{"year":1969,"month":8,"date_of_month":23,"day_of_week":6,"births":9660},{"year":1969,"month":8,"date_of_month":24,"day_of_week":7,"births":9084},{"year":1969,"month":8,"date_of_month":25,"day_of_week":1,"births":10586},{"year":1969,"month":8,"date_of_month":26,"day_of_week":2,"births":11082},{"year":1969,"month":8,"date_of_month":27,"day_of_week":3,"births":10638},{"year":1969,"month":8,"date_of_month":28,"day_of_week":4,"births":10616},{"year":1969,"month":8,"date_of_month":29,"day_of_week":5,"births":10714},{"year":1969,"month":8,"date_of_month":30,"day_of_week":6,"births":9708},{"year":1969,"month":8,"date_of_month":31,"day_of_week":7,"births":8986},{"year":1969,"month":9,"date_of_month":1,"day_of_week":1,"births":9012},{"year":1969,"month":9,"date_of_month":2,"day_of_week":2,"births":10686},{"year":1969,"month":9,"date_of_month":3,"day_of_week":3,"births":11044},{"year":1969,"month":9,"date_of_month":4,"day_of_week":4,"births":10506},{"year":1969,"month":9,"date_of_month":5,"day_of_week":5,"births":10610},{"year":1969,"month":9,"date_of_month":6,"day_of_week":6,"births":9710},{"year":1969,"month":9,"date_of_month":7,"day_of_week":7,"births":9196},{"year":1969,"month":9,"date_of_month":8,"day_of_week":1,"births":10508},{"year":1969,"month":9,"date_of_month":9,"day_of_week":2,"births":10598},{"year":1969,"month":9,"date_of_month":10,"day_of_week":3,"births":10450},{"year":1969,"month":9,"date_of_month":11,"day_of_week":4,"births":10408},{"year":1969,"month":9,"date_of_month":12,"day_of_week":5,"births":10752},{"year":1969,"month":9,"date_of_month":13,"day_of_week":6,"births":9534},{"year":1969,"month":9,"date_of_month":14,"day_of_week":7,"births":9204},{"year":1969,"month":9,"date_of_month":15,"day_of_week":1,"births":10728},{"year":1969,"month":9,"date_of_month":16,"day_of_week":2,"births":11142},{"year":1969,"month":9,"date_of_month":17,"day_of_week":3,"births":10864},{"year":1969,"month":9,"date_of_month":18,"day_of_week":4,"births":10876},{"year":1969,"month":9,"date_of_month":19,"day_of_week":5,"births":10832},{"year":1969,"month":9,"date_of_month":20,"day_of_week":6,"births":10040},{"year":1969,"month":9,"date_of_month":21,"day_of_week":7,"births":9368},{"year":1969,"month":9,"date_of_month":22,"day_of_week":1,"births":10970},{"year":1969,"month":9,"date_of_month":23,"day_of_week":2,"births":11300},{"year":1969,"month":9,"date_of_month":24,"day_of_week":3,"births":10898},{"year":1969,"month":9,"date_of_month":25,"day_of_week":4,"births":10840},{"year":1969,"month":9,"date_of_month":26,"day_of_week":5,"births":11154},{"year":1969,"month":9,"date_of_month":27,"day_of_week":6,"births":10170},{"year":1969,"month":9,"date_of_month":28,"day_of_week":7,"births":9198},{"year":1969,"month":9,"date_of_month":29,"day_of_week":1,"births":10708},{"year":1969,"month":9,"date_of_month":30,"day_of_week":2,"births":11138},{"year":1969,"month":10,"date_of_month":1,"day_of_week":3,"births":10910},{"year":1969,"month":10,"date_of_month":2,"day_of_week":4,"births":10656},{"year":1969,"month":10,"date_of_month":3,"day_of_week":5,"births":10922},{"year":1969,"month":10,"date_of_month":4,"day_of_week":6,"births":9710},{"year":1969,"month":10,"date_of_month":5,"day_of_week":7,"births":8972},{"year":1969,"month":10,"date_of_month":6,"day_of_week":1,"births":10318},{"year":1969,"month":10,"date_of_month":7,"day_of_week":2,"births":10654},{"year":1969,"month":10,"date_of_month":8,"day_of_week":3,"births":10510},{"year":1969,"month":10,"date_of_month":9,"day_of_week":4,"births":10710},{"year":1969,"month":10,"date_of_month":10,"day_of_week":5,"births":10748},{"year":1969,"month":10,"date_of_month":11,"day_of_week":6,"births":9566},{"year":1969,"month":10,"date_of_month":12,"day_of_week":7,"births":9014},{"year":1969,"month":10,"date_of_month":13,"day_of_week":1,"births":9996},{"year":1969,"month":10,"date_of_month":14,"day_of_week":2,"births":10618},{"year":1969,"month":10,"date_of_month":15,"day_of_week":3,"births":10120},{"year":1969,"month":10,"date_of_month":16,"day_of_week":4,"births":9918},{"year":1969,"month":10,"date_of_month":17,"day_of_week":5,"births":10338},{"year":1969,"month":10,"date_of_month":18,"day_of_week":6,"births":9172},{"year":1969,"month":10,"date_of_month":19,"day_of_week":7,"births":8586},{"year":1969,"month":10,"date_of_month":20,"day_of_week":1,"births":10148},{"year":1969,"month":10,"date_of_month":21,"day_of_week":2,"births":10674},{"year":1969,"month":10,"date_of_month":22,"day_of_week":3,"births":10300},{"year":1969,"month":10,"date_of_month":23,"day_of_week":4,"births":9814},{"year":1969,"month":10,"date_of_month":24,"day_of_week":5,"births":10010},{"year":1969,"month":10,"date_of_month":25,"day_of_week":6,"births":9258},{"year":1969,"month":10,"date_of_month":26,"day_of_week":7,"births":8864},{"year":1969,"month":10,"date_of_month":27,"day_of_week":1,"births":10372},{"year":1969,"month":10,"date_of_month":28,"day_of_week":2,"births":10640},{"year":1969,"month":10,"date_of_month":29,"day_of_week":3,"births":10104},{"year":1969,"month":10,"date_of_month":30,"day_of_week":4,"births":10110},{"year":1969,"month":10,"date_of_month":31,"day_of_week":5,"births":10144},{"year":1969,"month":11,"date_of_month":1,"day_of_week":6,"births":9342},{"year":1969,"month":11,"date_of_month":2,"day_of_week":7,"births":8904},{"year":1969,"month":11,"date_of_month":3,"day_of_week":1,"births":10338},{"year":1969,"month":11,"date_of_month":4,"day_of_week":2,"births":10772},{"year":1969,"month":11,"date_of_month":5,"day_of_week":3,"births":10020},{"year":1969,"month":11,"date_of_month":6,"day_of_week":4,"births":10240},{"year":1969,"month":11,"date_of_month":7,"day_of_week":5,"births":10660},{"year":1969,"month":11,"date_of_month":8,"day_of_week":6,"births":9678},{"year":1969,"month":11,"date_of_month":9,"day_of_week":7,"births":9022},{"year":1969,"month":11,"date_of_month":10,"day_of_week":1,"births":10342},{"year":1969,"month":11,"date_of_month":11,"day_of_week":2,"births":10878},{"year":1969,"month":11,"date_of_month":12,"day_of_week":3,"births":10324},{"year":1969,"month":11,"date_of_month":13,"day_of_week":4,"births":10100},{"year":1969,"month":11,"date_of_month":14,"day_of_week":5,"births":10396},{"year":1969,"month":11,"date_of_month":15,"day_of_week":6,"births":9298},{"year":1969,"month":11,"date_of_month":16,"day_of_week":7,"births":8660},{"year":1969,"month":11,"date_of_month":17,"day_of_week":1,"births":10286},{"year":1969,"month":11,"date_of_month":18,"day_of_week":2,"births":10698},{"year":1969,"month":11,"date_of_month":19,"day_of_week":3,"births":10260},{"year":1969,"month":11,"date_of_month":20,"day_of_week":4,"births":10258},{"year":1969,"month":11,"date_of_month":21,"day_of_week":5,"births":10168},{"year":1969,"month":11,"date_of_month":22,"day_of_week":6,"births":9438},{"year":1969,"month":11,"date_of_month":23,"day_of_week":7,"births":8866},{"year":1969,"month":11,"date_of_month":24,"day_of_week":1,"births":10462},{"year":1969,"month":11,"date_of_month":25,"day_of_week":2,"births":10864},{"year":1969,"month":11,"date_of_month":26,"day_of_week":3,"births":10074},{"year":1969,"month":11,"date_of_month":27,"day_of_week":4,"births":8248},{"year":1969,"month":11,"date_of_month":28,"day_of_week":5,"births":9948},{"year":1969,"month":11,"date_of_month":29,"day_of_week":6,"births":9332},{"year":1969,"month":11,"date_of_month":30,"day_of_week":7,"births":8966},{"year":1969,"month":12,"date_of_month":1,"day_of_week":1,"births":10648},{"year":1969,"month":12,"date_of_month":2,"day_of_week":2,"births":10736},{"year":1969,"month":12,"date_of_month":3,"day_of_week":3,"births":10300},{"year":1969,"month":12,"date_of_month":4,"day_of_week":4,"births":10254},{"year":1969,"month":12,"date_of_month":5,"day_of_week":5,"births":10428},{"year":1969,"month":12,"date_of_month":6,"day_of_week":6,"births":9420},{"year":1969,"month":12,"date_of_month":7,"day_of_week":7,"births":8740},{"year":1969,"month":12,"date_of_month":8,"day_of_week":1,"births":10646},{"year":1969,"month":12,"date_of_month":9,"day_of_week":2,"births":10730},{"year":1969,"month":12,"date_of_month":10,"day_of_week":3,"births":10348},{"year":1969,"month":12,"date_of_month":11,"day_of_week":4,"births":10300},{"year":1969,"month":12,"date_of_month":12,"day_of_week":5,"births":10758},{"year":1969,"month":12,"date_of_month":13,"day_of_week":6,"births":9602},{"year":1969,"month":12,"date_of_month":14,"day_of_week":7,"births":8762},{"year":1969,"month":12,"date_of_month":15,"day_of_week":1,"births":10898},{"year":1969,"month":12,"date_of_month":16,"day_of_week":2,"births":11022},{"year":1969,"month":12,"date_of_month":17,"day_of_week":3,"births":10646},{"year":1969,"month":12,"date_of_month":18,"day_of_week":4,"births":10426},{"year":1969,"month":12,"date_of_month":19,"day_of_week":5,"births":10912},{"year":1969,"month":12,"date_of_month":20,"day_of_week":6,"births":9822},{"year":1969,"month":12,"date_of_month":21,"day_of_week":7,"births":8864},{"year":1969,"month":12,"date_of_month":22,"day_of_week":1,"births":10492},{"year":1969,"month":12,"date_of_month":23,"day_of_week":2,"births":9856},{"year":1969,"month":12,"date_of_month":24,"day_of_week":3,"births":8978},{"year":1969,"month":12,"date_of_month":25,"day_of_week":4,"births":8284},{"year":1969,"month":12,"date_of_month":26,"day_of_week":5,"births":9910},{"year":1969,"month":12,"date_of_month":27,"day_of_week":6,"births":9304},{"year":1969,"month":12,"date_of_month":28,"day_of_week":7,"births":9004},{"year":1969,"month":12,"date_of_month":29,"day_of_week":1,"births":10980},{"year":1969,"month":12,"date_of_month":30,"day_of_week":2,"births":12232},{"year":1969,"month":12,"date_of_month":31,"day_of_week":3,"births":11122},{"year":1970,"month":1,"date_of_month":1,"day_of_week":4,"births":8372},{"year":1970,"month":1,"date_of_month":2,"day_of_week":5,"births":9234},{"year":1970,"month":1,"date_of_month":3,"day_of_week":6,"births":9162},{"year":1970,"month":1,"date_of_month":4,"day_of_week":7,"births":8620},{"year":1970,"month":1,"date_of_month":5,"day_of_week":1,"births":9852},{"year":1970,"month":1,"date_of_month":6,"day_of_week":2,"births":10202},{"year":1970,"month":1,"date_of_month":7,"day_of_week":3,"births":10020},{"year":1970,"month":1,"date_of_month":8,"day_of_week":4,"births":9756},{"year":1970,"month":1,"date_of_month":9,"day_of_week":5,"births":9844},{"year":1970,"month":1,"date_of_month":10,"day_of_week":6,"births":9270},{"year":1970,"month":1,"date_of_month":11,"day_of_week":7,"births":9158},{"year":1970,"month":1,"date_of_month":12,"day_of_week":1,"births":10474},{"year":1970,"month":1,"date_of_month":13,"day_of_week":2,"births":10580},{"year":1970,"month":1,"date_of_month":14,"day_of_week":3,"births":10244},{"year":1970,"month":1,"date_of_month":15,"day_of_week":4,"births":9946},{"year":1970,"month":1,"date_of_month":16,"day_of_week":5,"births":10276},{"year":1970,"month":1,"date_of_month":17,"day_of_week":6,"births":9598},{"year":1970,"month":1,"date_of_month":18,"day_of_week":7,"births":8948},{"year":1970,"month":1,"date_of_month":19,"day_of_week":1,"births":10124},{"year":1970,"month":1,"date_of_month":20,"day_of_week":2,"births":10524},{"year":1970,"month":1,"date_of_month":21,"day_of_week":3,"births":10096},{"year":1970,"month":1,"date_of_month":22,"day_of_week":4,"births":9686},{"year":1970,"month":1,"date_of_month":23,"day_of_week":5,"births":10202},{"year":1970,"month":1,"date_of_month":24,"day_of_week":6,"births":9470},{"year":1970,"month":1,"date_of_month":25,"day_of_week":7,"births":8792},{"year":1970,"month":1,"date_of_month":26,"day_of_week":1,"births":10160},{"year":1970,"month":1,"date_of_month":27,"day_of_week":2,"births":10602},{"year":1970,"month":1,"date_of_month":28,"day_of_week":3,"births":10188},{"year":1970,"month":1,"date_of_month":29,"day_of_week":4,"births":9816},{"year":1970,"month":1,"date_of_month":30,"day_of_week":5,"births":9912},{"year":1970,"month":1,"date_of_month":31,"day_of_week":6,"births":9012},{"year":1970,"month":2,"date_of_month":1,"day_of_week":7,"births":9042},{"year":1970,"month":2,"date_of_month":2,"day_of_week":1,"births":10542},{"year":1970,"month":2,"date_of_month":3,"day_of_week":2,"births":10712},{"year":1970,"month":2,"date_of_month":4,"day_of_week":3,"births":10086},{"year":1970,"month":2,"date_of_month":5,"day_of_week":4,"births":9766},{"year":1970,"month":2,"date_of_month":6,"day_of_week":5,"births":10220},{"year":1970,"month":2,"date_of_month":7,"day_of_week":6,"births":9562},{"year":1970,"month":2,"date_of_month":8,"day_of_week":7,"births":9016},{"year":1970,"month":2,"date_of_month":9,"day_of_week":1,"births":10226},{"year":1970,"month":2,"date_of_month":10,"day_of_week":2,"births":10620},{"year":1970,"month":2,"date_of_month":11,"day_of_week":3,"births":10288},{"year":1970,"month":2,"date_of_month":12,"day_of_week":4,"births":10058},{"year":1970,"month":2,"date_of_month":13,"day_of_week":5,"births":10110},{"year":1970,"month":2,"date_of_month":14,"day_of_week":6,"births":9558},{"year":1970,"month":2,"date_of_month":15,"day_of_week":7,"births":9136},{"year":1970,"month":2,"date_of_month":16,"day_of_week":1,"births":10260},{"year":1970,"month":2,"date_of_month":17,"day_of_week":2,"births":10676},{"year":1970,"month":2,"date_of_month":18,"day_of_week":3,"births":10472},{"year":1970,"month":2,"date_of_month":19,"day_of_week":4,"births":10072},{"year":1970,"month":2,"date_of_month":20,"day_of_week":5,"births":10544},{"year":1970,"month":2,"date_of_month":21,"day_of_week":6,"births":9314},{"year":1970,"month":2,"date_of_month":22,"day_of_week":7,"births":8986},{"year":1970,"month":2,"date_of_month":23,"day_of_week":1,"births":10168},{"year":1970,"month":2,"date_of_month":24,"day_of_week":2,"births":10782},{"year":1970,"month":2,"date_of_month":25,"day_of_week":3,"births":10574},{"year":1970,"month":2,"date_of_month":26,"day_of_week":4,"births":10408},{"year":1970,"month":2,"date_of_month":27,"day_of_week":5,"births":10264},{"year":1970,"month":2,"date_of_month":28,"day_of_week":6,"births":9720},{"year":1970,"month":3,"date_of_month":1,"day_of_week":7,"births":8882},{"year":1970,"month":3,"date_of_month":2,"day_of_week":1,"births":10170},{"year":1970,"month":3,"date_of_month":3,"day_of_week":2,"births":11306},{"year":1970,"month":3,"date_of_month":4,"day_of_week":3,"births":10600},{"year":1970,"month":3,"date_of_month":5,"day_of_week":4,"births":10258},{"year":1970,"month":3,"date_of_month":6,"day_of_week":5,"births":10504},{"year":1970,"month":3,"date_of_month":7,"day_of_week":6,"births":9460},{"year":1970,"month":3,"date_of_month":8,"day_of_week":7,"births":8926},{"year":1970,"month":3,"date_of_month":9,"day_of_week":1,"births":10340},{"year":1970,"month":3,"date_of_month":10,"day_of_week":2,"births":10744},{"year":1970,"month":3,"date_of_month":11,"day_of_week":3,"births":10410},{"year":1970,"month":3,"date_of_month":12,"day_of_week":4,"births":10180},{"year":1970,"month":3,"date_of_month":13,"day_of_week":5,"births":10140},{"year":1970,"month":3,"date_of_month":14,"day_of_week":6,"births":9450},{"year":1970,"month":3,"date_of_month":15,"day_of_week":7,"births":8596},{"year":1970,"month":3,"date_of_month":16,"day_of_week":1,"births":10058},{"year":1970,"month":3,"date_of_month":17,"day_of_week":2,"births":10694},{"year":1970,"month":3,"date_of_month":18,"day_of_week":3,"births":10278},{"year":1970,"month":3,"date_of_month":19,"day_of_week":4,"births":10100},{"year":1970,"month":3,"date_of_month":20,"day_of_week":5,"births":10206},{"year":1970,"month":3,"date_of_month":21,"day_of_week":6,"births":9390},{"year":1970,"month":3,"date_of_month":22,"day_of_week":7,"births":8784},{"year":1970,"month":3,"date_of_month":23,"day_of_week":1,"births":10334},{"year":1970,"month":3,"date_of_month":24,"day_of_week":2,"births":10556},{"year":1970,"month":3,"date_of_month":25,"day_of_week":3,"births":10148},{"year":1970,"month":3,"date_of_month":26,"day_of_week":4,"births":9886},{"year":1970,"month":3,"date_of_month":27,"day_of_week":5,"births":9792},{"year":1970,"month":3,"date_of_month":28,"day_of_week":6,"births":8764},{"year":1970,"month":3,"date_of_month":29,"day_of_week":7,"births":8314},{"year":1970,"month":3,"date_of_month":30,"day_of_week":1,"births":9766},{"year":1970,"month":3,"date_of_month":31,"day_of_week":2,"births":10172},{"year":1970,"month":4,"date_of_month":1,"day_of_week":3,"births":10002},{"year":1970,"month":4,"date_of_month":2,"day_of_week":4,"births":10134},{"year":1970,"month":4,"date_of_month":3,"day_of_week":5,"births":10116},{"year":1970,"month":4,"date_of_month":4,"day_of_week":6,"births":9234},{"year":1970,"month":4,"date_of_month":5,"day_of_week":7,"births":8522},{"year":1970,"month":4,"date_of_month":6,"day_of_week":1,"births":10052},{"year":1970,"month":4,"date_of_month":7,"day_of_week":2,"births":10474},{"year":1970,"month":4,"date_of_month":8,"day_of_week":3,"births":9950},{"year":1970,"month":4,"date_of_month":9,"day_of_week":4,"births":9898},{"year":1970,"month":4,"date_of_month":10,"day_of_week":5,"births":10072},{"year":1970,"month":4,"date_of_month":11,"day_of_week":6,"births":9040},{"year":1970,"month":4,"date_of_month":12,"day_of_week":7,"births":8214},{"year":1970,"month":4,"date_of_month":13,"day_of_week":1,"births":9470},{"year":1970,"month":4,"date_of_month":14,"day_of_week":2,"births":10100},{"year":1970,"month":4,"date_of_month":15,"day_of_week":3,"births":9824},{"year":1970,"month":4,"date_of_month":16,"day_of_week":4,"births":9668},{"year":1970,"month":4,"date_of_month":17,"day_of_week":5,"births":9706},{"year":1970,"month":4,"date_of_month":18,"day_of_week":6,"births":8786},{"year":1970,"month":4,"date_of_month":19,"day_of_week":7,"births":8174},{"year":1970,"month":4,"date_of_month":20,"day_of_week":1,"births":9574},{"year":1970,"month":4,"date_of_month":21,"day_of_week":2,"births":10098},{"year":1970,"month":4,"date_of_month":22,"day_of_week":3,"births":9714},{"year":1970,"month":4,"date_of_month":23,"day_of_week":4,"births":9518},{"year":1970,"month":4,"date_of_month":24,"day_of_week":5,"births":9860},{"year":1970,"month":4,"date_of_month":25,"day_of_week":6,"births":8824},{"year":1970,"month":4,"date_of_month":26,"day_of_week":7,"births":8278},{"year":1970,"month":4,"date_of_month":27,"day_of_week":1,"births":9910},{"year":1970,"month":4,"date_of_month":28,"day_of_week":2,"births":10300},{"year":1970,"month":4,"date_of_month":29,"day_of_week":3,"births":9728},{"year":1970,"month":4,"date_of_month":30,"day_of_week":4,"births":9684},{"year":1970,"month":5,"date_of_month":1,"day_of_week":5,"births":9946},{"year":1970,"month":5,"date_of_month":2,"day_of_week":6,"births":8740},{"year":1970,"month":5,"date_of_month":3,"day_of_week":7,"births":8036},{"year":1970,"month":5,"date_of_month":4,"day_of_week":1,"births":9752},{"year":1970,"month":5,"date_of_month":5,"day_of_week":2,"births":10136},{"year":1970,"month":5,"date_of_month":6,"day_of_week":3,"births":9712},{"year":1970,"month":5,"date_of_month":7,"day_of_week":4,"births":9632},{"year":1970,"month":5,"date_of_month":8,"day_of_week":5,"births":9836},{"year":1970,"month":5,"date_of_month":9,"day_of_week":6,"births":8996},{"year":1970,"month":5,"date_of_month":10,"day_of_week":7,"births":8428},{"year":1970,"month":5,"date_of_month":11,"day_of_week":1,"births":10080},{"year":1970,"month":5,"date_of_month":12,"day_of_week":2,"births":10436},{"year":1970,"month":5,"date_of_month":13,"day_of_week":3,"births":10026},{"year":1970,"month":5,"date_of_month":14,"day_of_week":4,"births":9812},{"year":1970,"month":5,"date_of_month":15,"day_of_week":5,"births":10214},{"year":1970,"month":5,"date_of_month":16,"day_of_week":6,"births":8946},{"year":1970,"month":5,"date_of_month":17,"day_of_week":7,"births":8030},{"year":1970,"month":5,"date_of_month":18,"day_of_week":1,"births":10022},{"year":1970,"month":5,"date_of_month":19,"day_of_week":2,"births":10436},{"year":1970,"month":5,"date_of_month":20,"day_of_week":3,"births":10044},{"year":1970,"month":5,"date_of_month":21,"day_of_week":4,"births":10244},{"year":1970,"month":5,"date_of_month":22,"day_of_week":5,"births":10362},{"year":1970,"month":5,"date_of_month":23,"day_of_week":6,"births":9424},{"year":1970,"month":5,"date_of_month":24,"day_of_week":7,"births":8718},{"year":1970,"month":5,"date_of_month":25,"day_of_week":1,"births":10076},{"year":1970,"month":5,"date_of_month":26,"day_of_week":2,"births":10598},{"year":1970,"month":5,"date_of_month":27,"day_of_week":3,"births":10034},{"year":1970,"month":5,"date_of_month":28,"day_of_week":4,"births":10040},{"year":1970,"month":5,"date_of_month":29,"day_of_week":5,"births":9984},{"year":1970,"month":5,"date_of_month":30,"day_of_week":6,"births":8868},{"year":1970,"month":5,"date_of_month":31,"day_of_week":7,"births":8388},{"year":1970,"month":6,"date_of_month":1,"day_of_week":1,"births":10124},{"year":1970,"month":6,"date_of_month":2,"day_of_week":2,"births":10882},{"year":1970,"month":6,"date_of_month":3,"day_of_week":3,"births":10270},{"year":1970,"month":6,"date_of_month":4,"day_of_week":4,"births":9964},{"year":1970,"month":6,"date_of_month":5,"day_of_week":5,"births":10060},{"year":1970,"month":6,"date_of_month":6,"day_of_week":6,"births":9516},{"year":1970,"month":6,"date_of_month":7,"day_of_week":7,"births":8500},{"year":1970,"month":6,"date_of_month":8,"day_of_week":1,"births":9946},{"year":1970,"month":6,"date_of_month":9,"day_of_week":2,"births":10764},{"year":1970,"month":6,"date_of_month":10,"day_of_week":3,"births":10330},{"year":1970,"month":6,"date_of_month":11,"day_of_week":4,"births":10518},{"year":1970,"month":6,"date_of_month":12,"day_of_week":5,"births":10774},{"year":1970,"month":6,"date_of_month":13,"day_of_week":6,"births":9212},{"year":1970,"month":6,"date_of_month":14,"day_of_week":7,"births":8614},{"year":1970,"month":6,"date_of_month":15,"day_of_week":1,"births":10216},{"year":1970,"month":6,"date_of_month":16,"day_of_week":2,"births":10878},{"year":1970,"month":6,"date_of_month":17,"day_of_week":3,"births":10610},{"year":1970,"month":6,"date_of_month":18,"day_of_week":4,"births":10520},{"year":1970,"month":6,"date_of_month":19,"day_of_week":5,"births":10390},{"year":1970,"month":6,"date_of_month":20,"day_of_week":6,"births":9600},{"year":1970,"month":6,"date_of_month":21,"day_of_week":7,"births":8568},{"year":1970,"month":6,"date_of_month":22,"day_of_week":1,"births":10352},{"year":1970,"month":6,"date_of_month":23,"day_of_week":2,"births":10678},{"year":1970,"month":6,"date_of_month":24,"day_of_week":3,"births":10644},{"year":1970,"month":6,"date_of_month":25,"day_of_week":4,"births":10326},{"year":1970,"month":6,"date_of_month":26,"day_of_week":5,"births":10622},{"year":1970,"month":6,"date_of_month":27,"day_of_week":6,"births":9672},{"year":1970,"month":6,"date_of_month":28,"day_of_week":7,"births":8728},{"year":1970,"month":6,"date_of_month":29,"day_of_week":1,"births":10506},{"year":1970,"month":6,"date_of_month":30,"day_of_week":2,"births":11378},{"year":1970,"month":7,"date_of_month":1,"day_of_week":3,"births":11108},{"year":1970,"month":7,"date_of_month":2,"day_of_week":4,"births":11234},{"year":1970,"month":7,"date_of_month":3,"day_of_week":5,"births":10516},{"year":1970,"month":7,"date_of_month":4,"day_of_week":6,"births":9380},{"year":1970,"month":7,"date_of_month":5,"day_of_week":7,"births":9020},{"year":1970,"month":7,"date_of_month":6,"day_of_week":1,"births":10518},{"year":1970,"month":7,"date_of_month":7,"day_of_week":2,"births":11292},{"year":1970,"month":7,"date_of_month":8,"day_of_week":3,"births":10896},{"year":1970,"month":7,"date_of_month":9,"day_of_week":4,"births":10716},{"year":1970,"month":7,"date_of_month":10,"day_of_week":5,"births":10862},{"year":1970,"month":7,"date_of_month":11,"day_of_week":6,"births":9690},{"year":1970,"month":7,"date_of_month":12,"day_of_week":7,"births":9184},{"year":1970,"month":7,"date_of_month":13,"day_of_week":1,"births":10568},{"year":1970,"month":7,"date_of_month":14,"day_of_week":2,"births":11828},{"year":1970,"month":7,"date_of_month":15,"day_of_week":3,"births":11078},{"year":1970,"month":7,"date_of_month":16,"day_of_week":4,"births":11048},{"year":1970,"month":7,"date_of_month":17,"day_of_week":5,"births":10938},{"year":1970,"month":7,"date_of_month":18,"day_of_week":6,"births":9966},{"year":1970,"month":7,"date_of_month":19,"day_of_week":7,"births":9520},{"year":1970,"month":7,"date_of_month":20,"day_of_week":1,"births":10982},{"year":1970,"month":7,"date_of_month":21,"day_of_week":2,"births":11448},{"year":1970,"month":7,"date_of_month":22,"day_of_week":3,"births":10682},{"year":1970,"month":7,"date_of_month":23,"day_of_week":4,"births":10844},{"year":1970,"month":7,"date_of_month":24,"day_of_week":5,"births":10956},{"year":1970,"month":7,"date_of_month":25,"day_of_week":6,"births":9866},{"year":1970,"month":7,"date_of_month":26,"day_of_week":7,"births":9466},{"year":1970,"month":7,"date_of_month":27,"day_of_week":1,"births":11052},{"year":1970,"month":7,"date_of_month":28,"day_of_week":2,"births":11858},{"year":1970,"month":7,"date_of_month":29,"day_of_week":3,"births":11354},{"year":1970,"month":7,"date_of_month":30,"day_of_week":4,"births":11056},{"year":1970,"month":7,"date_of_month":31,"day_of_week":5,"births":11300},{"year":1970,"month":8,"date_of_month":1,"day_of_week":6,"births":10416},{"year":1970,"month":8,"date_of_month":2,"day_of_week":7,"births":9282},{"year":1970,"month":8,"date_of_month":3,"day_of_week":1,"births":11180},{"year":1970,"month":8,"date_of_month":4,"day_of_week":2,"births":11180},{"year":1970,"month":8,"date_of_month":5,"day_of_week":3,"births":10872},{"year":1970,"month":8,"date_of_month":6,"day_of_week":4,"births":10836},{"year":1970,"month":8,"date_of_month":7,"day_of_week":5,"births":11022},{"year":1970,"month":8,"date_of_month":8,"day_of_week":6,"births":10232},{"year":1970,"month":8,"date_of_month":9,"day_of_week":7,"births":9458},{"year":1970,"month":8,"date_of_month":10,"day_of_week":1,"births":10846},{"year":1970,"month":8,"date_of_month":11,"day_of_week":2,"births":11566},{"year":1970,"month":8,"date_of_month":12,"day_of_week":3,"births":11484},{"year":1970,"month":8,"date_of_month":13,"day_of_week":4,"births":11060},{"year":1970,"month":8,"date_of_month":14,"day_of_week":5,"births":11538},{"year":1970,"month":8,"date_of_month":15,"day_of_week":6,"births":10236},{"year":1970,"month":8,"date_of_month":16,"day_of_week":7,"births":9616},{"year":1970,"month":8,"date_of_month":17,"day_of_week":1,"births":11032},{"year":1970,"month":8,"date_of_month":18,"day_of_week":2,"births":11648},{"year":1970,"month":8,"date_of_month":19,"day_of_week":3,"births":11134},{"year":1970,"month":8,"date_of_month":20,"day_of_week":4,"births":10868},{"year":1970,"month":8,"date_of_month":21,"day_of_week":5,"births":11050},{"year":1970,"month":8,"date_of_month":22,"day_of_week":6,"births":9958},{"year":1970,"month":8,"date_of_month":23,"day_of_week":7,"births":9274},{"year":1970,"month":8,"date_of_month":24,"day_of_week":1,"births":10456},{"year":1970,"month":8,"date_of_month":25,"day_of_week":2,"births":11384},{"year":1970,"month":8,"date_of_month":26,"day_of_week":3,"births":11306},{"year":1970,"month":8,"date_of_month":27,"day_of_week":4,"births":10664},{"year":1970,"month":8,"date_of_month":28,"day_of_week":5,"births":11004},{"year":1970,"month":8,"date_of_month":29,"day_of_week":6,"births":10042},{"year":1970,"month":8,"date_of_month":30,"day_of_week":7,"births":9392},{"year":1970,"month":8,"date_of_month":31,"day_of_week":1,"births":11078},{"year":1970,"month":9,"date_of_month":1,"day_of_week":2,"births":11350},{"year":1970,"month":9,"date_of_month":2,"day_of_week":3,"births":10936},{"year":1970,"month":9,"date_of_month":3,"day_of_week":4,"births":11088},{"year":1970,"month":9,"date_of_month":4,"day_of_week":5,"births":11366},{"year":1970,"month":9,"date_of_month":5,"day_of_week":6,"births":10216},{"year":1970,"month":9,"date_of_month":6,"day_of_week":7,"births":9486},{"year":1970,"month":9,"date_of_month":7,"day_of_week":1,"births":9564},{"year":1970,"month":9,"date_of_month":8,"day_of_week":2,"births":11310},{"year":1970,"month":9,"date_of_month":9,"day_of_week":3,"births":11860},{"year":1970,"month":9,"date_of_month":10,"day_of_week":4,"births":11654},{"year":1970,"month":9,"date_of_month":11,"day_of_week":5,"births":11592},{"year":1970,"month":9,"date_of_month":12,"day_of_week":6,"births":10218},{"year":1970,"month":9,"date_of_month":13,"day_of_week":7,"births":9544},{"year":1970,"month":9,"date_of_month":14,"day_of_week":1,"births":11304},{"year":1970,"month":9,"date_of_month":15,"day_of_week":2,"births":11904},{"year":1970,"month":9,"date_of_month":16,"day_of_week":3,"births":11704},{"year":1970,"month":9,"date_of_month":17,"day_of_week":4,"births":11472},{"year":1970,"month":9,"date_of_month":18,"day_of_week":5,"births":11546},{"year":1970,"month":9,"date_of_month":19,"day_of_week":6,"births":10492},{"year":1970,"month":9,"date_of_month":20,"day_of_week":7,"births":9976},{"year":1970,"month":9,"date_of_month":21,"day_of_week":1,"births":11614},{"year":1970,"month":9,"date_of_month":22,"day_of_week":2,"births":12466},{"year":1970,"month":9,"date_of_month":23,"day_of_week":3,"births":11798},{"year":1970,"month":9,"date_of_month":24,"day_of_week":4,"births":11448},{"year":1970,"month":9,"date_of_month":25,"day_of_week":5,"births":11916},{"year":1970,"month":9,"date_of_month":26,"day_of_week":6,"births":10404},{"year":1970,"month":9,"date_of_month":27,"day_of_week":7,"births":9816},{"year":1970,"month":9,"date_of_month":28,"day_of_week":1,"births":11340},{"year":1970,"month":9,"date_of_month":29,"day_of_week":2,"births":11564},{"year":1970,"month":9,"date_of_month":30,"day_of_week":3,"births":11244},{"year":1970,"month":10,"date_of_month":1,"day_of_week":4,"births":10782},{"year":1970,"month":10,"date_of_month":2,"day_of_week":5,"births":11210},{"year":1970,"month":10,"date_of_month":3,"day_of_week":6,"births":10492},{"year":1970,"month":10,"date_of_month":4,"day_of_week":7,"births":9372},{"year":1970,"month":10,"date_of_month":5,"day_of_week":1,"births":11048},{"year":1970,"month":10,"date_of_month":6,"day_of_week":2,"births":11582},{"year":1970,"month":10,"date_of_month":7,"day_of_week":3,"births":11020},{"year":1970,"month":10,"date_of_month":8,"day_of_week":4,"births":10772},{"year":1970,"month":10,"date_of_month":9,"day_of_week":5,"births":11196},{"year":1970,"month":10,"date_of_month":10,"day_of_week":6,"births":9790},{"year":1970,"month":10,"date_of_month":11,"day_of_week":7,"births":9214},{"year":1970,"month":10,"date_of_month":12,"day_of_week":1,"births":11016},{"year":1970,"month":10,"date_of_month":13,"day_of_week":2,"births":11236},{"year":1970,"month":10,"date_of_month":14,"day_of_week":3,"births":10882},{"year":1970,"month":10,"date_of_month":15,"day_of_week":4,"births":10644},{"year":1970,"month":10,"date_of_month":16,"day_of_week":5,"births":10704},{"year":1970,"month":10,"date_of_month":17,"day_of_week":6,"births":9490},{"year":1970,"month":10,"date_of_month":18,"day_of_week":7,"births":8924},{"year":1970,"month":10,"date_of_month":19,"day_of_week":1,"births":10500},{"year":1970,"month":10,"date_of_month":20,"day_of_week":2,"births":11138},{"year":1970,"month":10,"date_of_month":21,"day_of_week":3,"births":10716},{"year":1970,"month":10,"date_of_month":22,"day_of_week":4,"births":10478},{"year":1970,"month":10,"date_of_month":23,"day_of_week":5,"births":10654},{"year":1970,"month":10,"date_of_month":24,"day_of_week":6,"births":9598},{"year":1970,"month":10,"date_of_month":25,"day_of_week":7,"births":9266},{"year":1970,"month":10,"date_of_month":26,"day_of_week":1,"births":10616},{"year":1970,"month":10,"date_of_month":27,"day_of_week":2,"births":10956},{"year":1970,"month":10,"date_of_month":28,"day_of_week":3,"births":10262},{"year":1970,"month":10,"date_of_month":29,"day_of_week":4,"births":10122},{"year":1970,"month":10,"date_of_month":30,"day_of_week":5,"births":10614},{"year":1970,"month":10,"date_of_month":31,"day_of_week":6,"births":9592},{"year":1970,"month":11,"date_of_month":1,"day_of_week":7,"births":9070},{"year":1970,"month":11,"date_of_month":2,"day_of_week":1,"births":10568},{"year":1970,"month":11,"date_of_month":3,"day_of_week":2,"births":11146},{"year":1970,"month":11,"date_of_month":4,"day_of_week":3,"births":10622},{"year":1970,"month":11,"date_of_month":5,"day_of_week":4,"births":10454},{"year":1970,"month":11,"date_of_month":6,"day_of_week":5,"births":10722},{"year":1970,"month":11,"date_of_month":7,"day_of_week":6,"births":9460},{"year":1970,"month":11,"date_of_month":8,"day_of_week":7,"births":9132},{"year":1970,"month":11,"date_of_month":9,"day_of_week":1,"births":10562},{"year":1970,"month":11,"date_of_month":10,"day_of_week":2,"births":11328},{"year":1970,"month":11,"date_of_month":11,"day_of_week":3,"births":10612},{"year":1970,"month":11,"date_of_month":12,"day_of_week":4,"births":10704},{"year":1970,"month":11,"date_of_month":13,"day_of_week":5,"births":10850},{"year":1970,"month":11,"date_of_month":14,"day_of_week":6,"births":9828},{"year":1970,"month":11,"date_of_month":15,"day_of_week":7,"births":9282},{"year":1970,"month":11,"date_of_month":16,"day_of_week":1,"births":10690},{"year":1970,"month":11,"date_of_month":17,"day_of_week":2,"births":11182},{"year":1970,"month":11,"date_of_month":18,"day_of_week":3,"births":10914},{"year":1970,"month":11,"date_of_month":19,"day_of_week":4,"births":10828},{"year":1970,"month":11,"date_of_month":20,"day_of_week":5,"births":11126},{"year":1970,"month":11,"date_of_month":21,"day_of_week":6,"births":9926},{"year":1970,"month":11,"date_of_month":22,"day_of_week":7,"births":8926},{"year":1970,"month":11,"date_of_month":23,"day_of_week":1,"births":10940},{"year":1970,"month":11,"date_of_month":24,"day_of_week":2,"births":11152},{"year":1970,"month":11,"date_of_month":25,"day_of_week":3,"births":10542},{"year":1970,"month":11,"date_of_month":26,"day_of_week":4,"births":8712},{"year":1970,"month":11,"date_of_month":27,"day_of_week":5,"births":10038},{"year":1970,"month":11,"date_of_month":28,"day_of_week":6,"births":9670},{"year":1970,"month":11,"date_of_month":29,"day_of_week":7,"births":9190},{"year":1970,"month":11,"date_of_month":30,"day_of_week":1,"births":11126},{"year":1970,"month":12,"date_of_month":1,"day_of_week":2,"births":11328},{"year":1970,"month":12,"date_of_month":2,"day_of_week":3,"births":11180},{"year":1970,"month":12,"date_of_month":3,"day_of_week":4,"births":10368},{"year":1970,"month":12,"date_of_month":4,"day_of_week":5,"births":10872},{"year":1970,"month":12,"date_of_month":5,"day_of_week":6,"births":9610},{"year":1970,"month":12,"date_of_month":6,"day_of_week":7,"births":9272},{"year":1970,"month":12,"date_of_month":7,"day_of_week":1,"births":10720},{"year":1970,"month":12,"date_of_month":8,"day_of_week":2,"births":11220},{"year":1970,"month":12,"date_of_month":9,"day_of_week":3,"births":10708},{"year":1970,"month":12,"date_of_month":10,"day_of_week":4,"births":10756},{"year":1970,"month":12,"date_of_month":11,"day_of_week":5,"births":10704},{"year":1970,"month":12,"date_of_month":12,"day_of_week":6,"births":10040},{"year":1970,"month":12,"date_of_month":13,"day_of_week":7,"births":9204},{"year":1970,"month":12,"date_of_month":14,"day_of_week":1,"births":11070},{"year":1970,"month":12,"date_of_month":15,"day_of_week":2,"births":11884},{"year":1970,"month":12,"date_of_month":16,"day_of_week":3,"births":11586},{"year":1970,"month":12,"date_of_month":17,"day_of_week":4,"births":11234},{"year":1970,"month":12,"date_of_month":18,"day_of_week":5,"births":11708},{"year":1970,"month":12,"date_of_month":19,"day_of_week":6,"births":10518},{"year":1970,"month":12,"date_of_month":20,"day_of_week":7,"births":9322},{"year":1970,"month":12,"date_of_month":21,"day_of_week":1,"births":11372},{"year":1970,"month":12,"date_of_month":22,"day_of_week":2,"births":11008},{"year":1970,"month":12,"date_of_month":23,"day_of_week":3,"births":10070},{"year":1970,"month":12,"date_of_month":24,"day_of_week":4,"births":9120},{"year":1970,"month":12,"date_of_month":25,"day_of_week":5,"births":8490},{"year":1970,"month":12,"date_of_month":26,"day_of_week":6,"births":9366},{"year":1970,"month":12,"date_of_month":27,"day_of_week":7,"births":9314},{"year":1970,"month":12,"date_of_month":28,"day_of_week":1,"births":11640},{"year":1970,"month":12,"date_of_month":29,"day_of_week":2,"births":12448},{"year":1970,"month":12,"date_of_month":30,"day_of_week":3,"births":11932},{"year":1970,"month":12,"date_of_month":31,"day_of_week":4,"births":11210},{"year":1971,"month":1,"date_of_month":1,"day_of_week":5,"births":8848},{"year":1971,"month":1,"date_of_month":2,"day_of_week":6,"births":9226},{"year":1971,"month":1,"date_of_month":3,"day_of_week":7,"births":8798},{"year":1971,"month":1,"date_of_month":4,"day_of_week":1,"births":10044},{"year":1971,"month":1,"date_of_month":5,"day_of_week":2,"births":10538},{"year":1971,"month":1,"date_of_month":6,"day_of_week":3,"births":10146},{"year":1971,"month":1,"date_of_month":7,"day_of_week":4,"births":10030},{"year":1971,"month":1,"date_of_month":8,"day_of_week":5,"births":10486},{"year":1971,"month":1,"date_of_month":9,"day_of_week":6,"births":9280},{"year":1971,"month":1,"date_of_month":10,"day_of_week":7,"births":9116},{"year":1971,"month":1,"date_of_month":11,"day_of_week":1,"births":10824},{"year":1971,"month":1,"date_of_month":12,"day_of_week":2,"births":11064},{"year":1971,"month":1,"date_of_month":13,"day_of_week":3,"births":10664},{"year":1971,"month":1,"date_of_month":14,"day_of_week":4,"births":10364},{"year":1971,"month":1,"date_of_month":15,"day_of_week":5,"births":10874},{"year":1971,"month":1,"date_of_month":16,"day_of_week":6,"births":9590},{"year":1971,"month":1,"date_of_month":17,"day_of_week":7,"births":8806},{"year":1971,"month":1,"date_of_month":18,"day_of_week":1,"births":10974},{"year":1971,"month":1,"date_of_month":19,"day_of_week":2,"births":11020},{"year":1971,"month":1,"date_of_month":20,"day_of_week":3,"births":10598},{"year":1971,"month":1,"date_of_month":21,"day_of_week":4,"births":10492},{"year":1971,"month":1,"date_of_month":22,"day_of_week":5,"births":10730},{"year":1971,"month":1,"date_of_month":23,"day_of_week":6,"births":9802},{"year":1971,"month":1,"date_of_month":24,"day_of_week":7,"births":8994},{"year":1971,"month":1,"date_of_month":25,"day_of_week":1,"births":10558},{"year":1971,"month":1,"date_of_month":26,"day_of_week":2,"births":10996},{"year":1971,"month":1,"date_of_month":27,"day_of_week":3,"births":10442},{"year":1971,"month":1,"date_of_month":28,"day_of_week":4,"births":10392},{"year":1971,"month":1,"date_of_month":29,"day_of_week":5,"births":10274},{"year":1971,"month":1,"date_of_month":30,"day_of_week":6,"births":9772},{"year":1971,"month":1,"date_of_month":31,"day_of_week":7,"births":9064},{"year":1971,"month":2,"date_of_month":1,"day_of_week":1,"births":10410},{"year":1971,"month":2,"date_of_month":2,"day_of_week":2,"births":10804},{"year":1971,"month":2,"date_of_month":3,"day_of_week":3,"births":10296},{"year":1971,"month":2,"date_of_month":4,"day_of_week":4,"births":10170},{"year":1971,"month":2,"date_of_month":5,"day_of_week":5,"births":10868},{"year":1971,"month":2,"date_of_month":6,"day_of_week":6,"births":9478},{"year":1971,"month":2,"date_of_month":7,"day_of_week":7,"births":9038},{"year":1971,"month":2,"date_of_month":8,"day_of_week":1,"births":10266},{"year":1971,"month":2,"date_of_month":9,"day_of_week":2,"births":10778},{"year":1971,"month":2,"date_of_month":10,"day_of_week":3,"births":10354},{"year":1971,"month":2,"date_of_month":11,"day_of_week":4,"births":10372},{"year":1971,"month":2,"date_of_month":12,"day_of_week":5,"births":10786},{"year":1971,"month":2,"date_of_month":13,"day_of_week":6,"births":9314},{"year":1971,"month":2,"date_of_month":14,"day_of_week":7,"births":9068},{"year":1971,"month":2,"date_of_month":15,"day_of_week":1,"births":10056},{"year":1971,"month":2,"date_of_month":16,"day_of_week":2,"births":10514},{"year":1971,"month":2,"date_of_month":17,"day_of_week":3,"births":10442},{"year":1971,"month":2,"date_of_month":18,"day_of_week":4,"births":10228},{"year":1971,"month":2,"date_of_month":19,"day_of_week":5,"births":10472},{"year":1971,"month":2,"date_of_month":20,"day_of_week":6,"births":9502},{"year":1971,"month":2,"date_of_month":21,"day_of_week":7,"births":9194},{"year":1971,"month":2,"date_of_month":22,"day_of_week":1,"births":10752},{"year":1971,"month":2,"date_of_month":23,"day_of_week":2,"births":10782},{"year":1971,"month":2,"date_of_month":24,"day_of_week":3,"births":10532},{"year":1971,"month":2,"date_of_month":25,"day_of_week":4,"births":10402},{"year":1971,"month":2,"date_of_month":26,"day_of_week":5,"births":10738},{"year":1971,"month":2,"date_of_month":27,"day_of_week":6,"births":9586},{"year":1971,"month":2,"date_of_month":28,"day_of_week":7,"births":8810},{"year":1971,"month":3,"date_of_month":1,"day_of_week":1,"births":10280},{"year":1971,"month":3,"date_of_month":2,"day_of_week":2,"births":10398},{"year":1971,"month":3,"date_of_month":3,"day_of_week":3,"births":10634},{"year":1971,"month":3,"date_of_month":4,"day_of_week":4,"births":10326},{"year":1971,"month":3,"date_of_month":5,"day_of_week":5,"births":10452},{"year":1971,"month":3,"date_of_month":6,"day_of_week":6,"births":9460},{"year":1971,"month":3,"date_of_month":7,"day_of_week":7,"births":8744},{"year":1971,"month":3,"date_of_month":8,"day_of_week":1,"births":10156},{"year":1971,"month":3,"date_of_month":9,"day_of_week":2,"births":10766},{"year":1971,"month":3,"date_of_month":10,"day_of_week":3,"births":10470},{"year":1971,"month":3,"date_of_month":11,"day_of_week":4,"births":10300},{"year":1971,"month":3,"date_of_month":12,"day_of_week":5,"births":10474},{"year":1971,"month":3,"date_of_month":13,"day_of_week":6,"births":9408},{"year":1971,"month":3,"date_of_month":14,"day_of_week":7,"births":8838},{"year":1971,"month":3,"date_of_month":15,"day_of_week":1,"births":10348},{"year":1971,"month":3,"date_of_month":16,"day_of_week":2,"births":10438},{"year":1971,"month":3,"date_of_month":17,"day_of_week":3,"births":10234},{"year":1971,"month":3,"date_of_month":18,"day_of_week":4,"births":9798},{"year":1971,"month":3,"date_of_month":19,"day_of_week":5,"births":10476},{"year":1971,"month":3,"date_of_month":20,"day_of_week":6,"births":9164},{"year":1971,"month":3,"date_of_month":21,"day_of_week":7,"births":8688},{"year":1971,"month":3,"date_of_month":22,"day_of_week":1,"births":10142},{"year":1971,"month":3,"date_of_month":23,"day_of_week":2,"births":10340},{"year":1971,"month":3,"date_of_month":24,"day_of_week":3,"births":9808},{"year":1971,"month":3,"date_of_month":25,"day_of_week":4,"births":9954},{"year":1971,"month":3,"date_of_month":26,"day_of_week":5,"births":9870},{"year":1971,"month":3,"date_of_month":27,"day_of_week":6,"births":8796},{"year":1971,"month":3,"date_of_month":28,"day_of_week":7,"births":8672},{"year":1971,"month":3,"date_of_month":29,"day_of_week":1,"births":10220},{"year":1971,"month":3,"date_of_month":30,"day_of_week":2,"births":10416},{"year":1971,"month":3,"date_of_month":31,"day_of_week":3,"births":10224},{"year":1971,"month":4,"date_of_month":1,"day_of_week":4,"births":9756},{"year":1971,"month":4,"date_of_month":2,"day_of_week":5,"births":10266},{"year":1971,"month":4,"date_of_month":3,"day_of_week":6,"births":8876},{"year":1971,"month":4,"date_of_month":4,"day_of_week":7,"births":8334},{"year":1971,"month":4,"date_of_month":5,"day_of_week":1,"births":9982},{"year":1971,"month":4,"date_of_month":6,"day_of_week":2,"births":10442},{"year":1971,"month":4,"date_of_month":7,"day_of_week":3,"births":9746},{"year":1971,"month":4,"date_of_month":8,"day_of_week":4,"births":9762},{"year":1971,"month":4,"date_of_month":9,"day_of_week":5,"births":9756},{"year":1971,"month":4,"date_of_month":10,"day_of_week":6,"births":8662},{"year":1971,"month":4,"date_of_month":11,"day_of_week":7,"births":8090},{"year":1971,"month":4,"date_of_month":12,"day_of_week":1,"births":9706},{"year":1971,"month":4,"date_of_month":13,"day_of_week":2,"births":10296},{"year":1971,"month":4,"date_of_month":14,"day_of_week":3,"births":9944},{"year":1971,"month":4,"date_of_month":15,"day_of_week":4,"births":9610},{"year":1971,"month":4,"date_of_month":16,"day_of_week":5,"births":9934},{"year":1971,"month":4,"date_of_month":17,"day_of_week":6,"births":8914},{"year":1971,"month":4,"date_of_month":18,"day_of_week":7,"births":8180},{"year":1971,"month":4,"date_of_month":19,"day_of_week":1,"births":9918},{"year":1971,"month":4,"date_of_month":20,"day_of_week":2,"births":10272},{"year":1971,"month":4,"date_of_month":21,"day_of_week":3,"births":9948},{"year":1971,"month":4,"date_of_month":22,"day_of_week":4,"births":9712},{"year":1971,"month":4,"date_of_month":23,"day_of_week":5,"births":9784},{"year":1971,"month":4,"date_of_month":24,"day_of_week":6,"births":8838},{"year":1971,"month":4,"date_of_month":25,"day_of_week":7,"births":7984},{"year":1971,"month":4,"date_of_month":26,"day_of_week":1,"births":9956},{"year":1971,"month":4,"date_of_month":27,"day_of_week":2,"births":10472},{"year":1971,"month":4,"date_of_month":28,"day_of_week":3,"births":9664},{"year":1971,"month":4,"date_of_month":29,"day_of_week":4,"births":9712},{"year":1971,"month":4,"date_of_month":30,"day_of_week":5,"births":9752},{"year":1971,"month":5,"date_of_month":1,"day_of_week":6,"births":8826},{"year":1971,"month":5,"date_of_month":2,"day_of_week":7,"births":7910},{"year":1971,"month":5,"date_of_month":3,"day_of_week":1,"births":9372},{"year":1971,"month":5,"date_of_month":4,"day_of_week":2,"births":9840},{"year":1971,"month":5,"date_of_month":5,"day_of_week":3,"births":9310},{"year":1971,"month":5,"date_of_month":6,"day_of_week":4,"births":9156},{"year":1971,"month":5,"date_of_month":7,"day_of_week":5,"births":9754},{"year":1971,"month":5,"date_of_month":8,"day_of_week":6,"births":8610},{"year":1971,"month":5,"date_of_month":9,"day_of_week":7,"births":8258},{"year":1971,"month":5,"date_of_month":10,"day_of_week":1,"births":9636},{"year":1971,"month":5,"date_of_month":11,"day_of_week":2,"births":10000},{"year":1971,"month":5,"date_of_month":12,"day_of_week":3,"births":9718},{"year":1971,"month":5,"date_of_month":13,"day_of_week":4,"births":9402},{"year":1971,"month":5,"date_of_month":14,"day_of_week":5,"births":9654},{"year":1971,"month":5,"date_of_month":15,"day_of_week":6,"births":8424},{"year":1971,"month":5,"date_of_month":16,"day_of_week":7,"births":7932},{"year":1971,"month":5,"date_of_month":17,"day_of_week":1,"births":9796},{"year":1971,"month":5,"date_of_month":18,"day_of_week":2,"births":10342},{"year":1971,"month":5,"date_of_month":19,"day_of_week":3,"births":9818},{"year":1971,"month":5,"date_of_month":20,"day_of_week":4,"births":9568},{"year":1971,"month":5,"date_of_month":21,"day_of_week":5,"births":9480},{"year":1971,"month":5,"date_of_month":22,"day_of_week":6,"births":8380},{"year":1971,"month":5,"date_of_month":23,"day_of_week":7,"births":7822},{"year":1971,"month":5,"date_of_month":24,"day_of_week":1,"births":9798},{"year":1971,"month":5,"date_of_month":25,"day_of_week":2,"births":10234},{"year":1971,"month":5,"date_of_month":26,"day_of_week":3,"births":9622},{"year":1971,"month":5,"date_of_month":27,"day_of_week":4,"births":9552},{"year":1971,"month":5,"date_of_month":28,"day_of_week":5,"births":9776},{"year":1971,"month":5,"date_of_month":29,"day_of_week":6,"births":8592},{"year":1971,"month":5,"date_of_month":30,"day_of_week":7,"births":7884},{"year":1971,"month":5,"date_of_month":31,"day_of_week":1,"births":8424},{"year":1971,"month":6,"date_of_month":1,"day_of_week":2,"births":9912},{"year":1971,"month":6,"date_of_month":2,"day_of_week":3,"births":9826},{"year":1971,"month":6,"date_of_month":3,"day_of_week":4,"births":9932},{"year":1971,"month":6,"date_of_month":4,"day_of_week":5,"births":10328},{"year":1971,"month":6,"date_of_month":5,"day_of_week":6,"births":8944},{"year":1971,"month":6,"date_of_month":6,"day_of_week":7,"births":8362},{"year":1971,"month":6,"date_of_month":7,"day_of_week":1,"births":9780},{"year":1971,"month":6,"date_of_month":8,"day_of_week":2,"births":10032},{"year":1971,"month":6,"date_of_month":9,"day_of_week":3,"births":9832},{"year":1971,"month":6,"date_of_month":10,"day_of_week":4,"births":9424},{"year":1971,"month":6,"date_of_month":11,"day_of_week":5,"births":9814},{"year":1971,"month":6,"date_of_month":12,"day_of_week":6,"births":8824},{"year":1971,"month":6,"date_of_month":13,"day_of_week":7,"births":8096},{"year":1971,"month":6,"date_of_month":14,"day_of_week":1,"births":9810},{"year":1971,"month":6,"date_of_month":15,"day_of_week":2,"births":9938},{"year":1971,"month":6,"date_of_month":16,"day_of_week":3,"births":9750},{"year":1971,"month":6,"date_of_month":17,"day_of_week":4,"births":9388},{"year":1971,"month":6,"date_of_month":18,"day_of_week":5,"births":9944},{"year":1971,"month":6,"date_of_month":19,"day_of_week":6,"births":8702},{"year":1971,"month":6,"date_of_month":20,"day_of_week":7,"births":8194},{"year":1971,"month":6,"date_of_month":21,"day_of_week":1,"births":9720},{"year":1971,"month":6,"date_of_month":22,"day_of_week":2,"births":10122},{"year":1971,"month":6,"date_of_month":23,"day_of_week":3,"births":9600},{"year":1971,"month":6,"date_of_month":24,"day_of_week":4,"births":9684},{"year":1971,"month":6,"date_of_month":25,"day_of_week":5,"births":10286},{"year":1971,"month":6,"date_of_month":26,"day_of_week":6,"births":8936},{"year":1971,"month":6,"date_of_month":27,"day_of_week":7,"births":8050},{"year":1971,"month":6,"date_of_month":28,"day_of_week":1,"births":9986},{"year":1971,"month":6,"date_of_month":29,"day_of_week":2,"births":10132},{"year":1971,"month":6,"date_of_month":30,"day_of_week":3,"births":10126},{"year":1971,"month":7,"date_of_month":1,"day_of_week":4,"births":10130},{"year":1971,"month":7,"date_of_month":2,"day_of_week":5,"births":10014},{"year":1971,"month":7,"date_of_month":3,"day_of_week":6,"births":8696},{"year":1971,"month":7,"date_of_month":4,"day_of_week":7,"births":8126},{"year":1971,"month":7,"date_of_month":5,"day_of_week":1,"births":8646},{"year":1971,"month":7,"date_of_month":6,"day_of_week":2,"births":10180},{"year":1971,"month":7,"date_of_month":7,"day_of_week":3,"births":10542},{"year":1971,"month":7,"date_of_month":8,"day_of_week":4,"births":10176},{"year":1971,"month":7,"date_of_month":9,"day_of_week":5,"births":10496},{"year":1971,"month":7,"date_of_month":10,"day_of_week":6,"births":9160},{"year":1971,"month":7,"date_of_month":11,"day_of_week":7,"births":8474},{"year":1971,"month":7,"date_of_month":12,"day_of_week":1,"births":9928},{"year":1971,"month":7,"date_of_month":13,"day_of_week":2,"births":10506},{"year":1971,"month":7,"date_of_month":14,"day_of_week":3,"births":10494},{"year":1971,"month":7,"date_of_month":15,"day_of_week":4,"births":10064},{"year":1971,"month":7,"date_of_month":16,"day_of_week":5,"births":10550},{"year":1971,"month":7,"date_of_month":17,"day_of_week":6,"births":9424},{"year":1971,"month":7,"date_of_month":18,"day_of_week":7,"births":8608},{"year":1971,"month":7,"date_of_month":19,"day_of_week":1,"births":9974},{"year":1971,"month":7,"date_of_month":20,"day_of_week":2,"births":10460},{"year":1971,"month":7,"date_of_month":21,"day_of_week":3,"births":10414},{"year":1971,"month":7,"date_of_month":22,"day_of_week":4,"births":10264},{"year":1971,"month":7,"date_of_month":23,"day_of_week":5,"births":10540},{"year":1971,"month":7,"date_of_month":24,"day_of_week":6,"births":9454},{"year":1971,"month":7,"date_of_month":25,"day_of_week":7,"births":8650},{"year":1971,"month":7,"date_of_month":26,"day_of_week":1,"births":10256},{"year":1971,"month":7,"date_of_month":27,"day_of_week":2,"births":10786},{"year":1971,"month":7,"date_of_month":28,"day_of_week":3,"births":10330},{"year":1971,"month":7,"date_of_month":29,"day_of_week":4,"births":10274},{"year":1971,"month":7,"date_of_month":30,"day_of_week":5,"births":10572},{"year":1971,"month":7,"date_of_month":31,"day_of_week":6,"births":9308},{"year":1971,"month":8,"date_of_month":1,"day_of_week":7,"births":8574},{"year":1971,"month":8,"date_of_month":2,"day_of_week":1,"births":10324},{"year":1971,"month":8,"date_of_month":3,"day_of_week":2,"births":10940},{"year":1971,"month":8,"date_of_month":4,"day_of_week":3,"births":10532},{"year":1971,"month":8,"date_of_month":5,"day_of_week":4,"births":9980},{"year":1971,"month":8,"date_of_month":6,"day_of_week":5,"births":10258},{"year":1971,"month":8,"date_of_month":7,"day_of_week":6,"births":9448},{"year":1971,"month":8,"date_of_month":8,"day_of_week":7,"births":9104},{"year":1971,"month":8,"date_of_month":9,"day_of_week":1,"births":10336},{"year":1971,"month":8,"date_of_month":10,"day_of_week":2,"births":11164},{"year":1971,"month":8,"date_of_month":11,"day_of_week":3,"births":10846},{"year":1971,"month":8,"date_of_month":12,"day_of_week":4,"births":10282},{"year":1971,"month":8,"date_of_month":13,"day_of_week":5,"births":10368},{"year":1971,"month":8,"date_of_month":14,"day_of_week":6,"births":9620},{"year":1971,"month":8,"date_of_month":15,"day_of_week":7,"births":8836},{"year":1971,"month":8,"date_of_month":16,"day_of_week":1,"births":10178},{"year":1971,"month":8,"date_of_month":17,"day_of_week":2,"births":10626},{"year":1971,"month":8,"date_of_month":18,"day_of_week":3,"births":10442},{"year":1971,"month":8,"date_of_month":19,"day_of_week":4,"births":10386},{"year":1971,"month":8,"date_of_month":20,"day_of_week":5,"births":10870},{"year":1971,"month":8,"date_of_month":21,"day_of_week":6,"births":9654},{"year":1971,"month":8,"date_of_month":22,"day_of_week":7,"births":8866},{"year":1971,"month":8,"date_of_month":23,"day_of_week":1,"births":10398},{"year":1971,"month":8,"date_of_month":24,"day_of_week":2,"births":10704},{"year":1971,"month":8,"date_of_month":25,"day_of_week":3,"births":10334},{"year":1971,"month":8,"date_of_month":26,"day_of_week":4,"births":10544},{"year":1971,"month":8,"date_of_month":27,"day_of_week":5,"births":10394},{"year":1971,"month":8,"date_of_month":28,"day_of_week":6,"births":9524},{"year":1971,"month":8,"date_of_month":29,"day_of_week":7,"births":8720},{"year":1971,"month":8,"date_of_month":30,"day_of_week":1,"births":10068},{"year":1971,"month":8,"date_of_month":31,"day_of_week":2,"births":10766},{"year":1971,"month":9,"date_of_month":1,"day_of_week":3,"births":10416},{"year":1971,"month":9,"date_of_month":2,"day_of_week":4,"births":10218},{"year":1971,"month":9,"date_of_month":3,"day_of_week":5,"births":10788},{"year":1971,"month":9,"date_of_month":4,"day_of_week":6,"births":9566},{"year":1971,"month":9,"date_of_month":5,"day_of_week":7,"births":8852},{"year":1971,"month":9,"date_of_month":6,"day_of_week":1,"births":9252},{"year":1971,"month":9,"date_of_month":7,"day_of_week":2,"births":10854},{"year":1971,"month":9,"date_of_month":8,"day_of_week":3,"births":10988},{"year":1971,"month":9,"date_of_month":9,"day_of_week":4,"births":10982},{"year":1971,"month":9,"date_of_month":10,"day_of_week":5,"births":10910},{"year":1971,"month":9,"date_of_month":11,"day_of_week":6,"births":9542},{"year":1971,"month":9,"date_of_month":12,"day_of_week":7,"births":8916},{"year":1971,"month":9,"date_of_month":13,"day_of_week":1,"births":10582},{"year":1971,"month":9,"date_of_month":14,"day_of_week":2,"births":11034},{"year":1971,"month":9,"date_of_month":15,"day_of_week":3,"births":10716},{"year":1971,"month":9,"date_of_month":16,"day_of_week":4,"births":10780},{"year":1971,"month":9,"date_of_month":17,"day_of_week":5,"births":11004},{"year":1971,"month":9,"date_of_month":18,"day_of_week":6,"births":9882},{"year":1971,"month":9,"date_of_month":19,"day_of_week":7,"births":9110},{"year":1971,"month":9,"date_of_month":20,"day_of_week":1,"births":10702},{"year":1971,"month":9,"date_of_month":21,"day_of_week":2,"births":11064},{"year":1971,"month":9,"date_of_month":22,"day_of_week":3,"births":10586},{"year":1971,"month":9,"date_of_month":23,"day_of_week":4,"births":10708},{"year":1971,"month":9,"date_of_month":24,"day_of_week":5,"births":10862},{"year":1971,"month":9,"date_of_month":25,"day_of_week":6,"births":9584},{"year":1971,"month":9,"date_of_month":26,"day_of_week":7,"births":9380},{"year":1971,"month":9,"date_of_month":27,"day_of_week":1,"births":10786},{"year":1971,"month":9,"date_of_month":28,"day_of_week":2,"births":11472},{"year":1971,"month":9,"date_of_month":29,"day_of_week":3,"births":10990},{"year":1971,"month":9,"date_of_month":30,"day_of_week":4,"births":10908},{"year":1971,"month":10,"date_of_month":1,"day_of_week":5,"births":10922},{"year":1971,"month":10,"date_of_month":2,"day_of_week":6,"births":9606},{"year":1971,"month":10,"date_of_month":3,"day_of_week":7,"births":8800},{"year":1971,"month":10,"date_of_month":4,"day_of_week":1,"births":10606},{"year":1971,"month":10,"date_of_month":5,"day_of_week":2,"births":10874},{"year":1971,"month":10,"date_of_month":6,"day_of_week":3,"births":10344},{"year":1971,"month":10,"date_of_month":7,"day_of_week":4,"births":10292},{"year":1971,"month":10,"date_of_month":8,"day_of_week":5,"births":10396},{"year":1971,"month":10,"date_of_month":9,"day_of_week":6,"births":9070},{"year":1971,"month":10,"date_of_month":10,"day_of_week":7,"births":9060},{"year":1971,"month":10,"date_of_month":11,"day_of_week":1,"births":10266},{"year":1971,"month":10,"date_of_month":12,"day_of_week":2,"births":10530},{"year":1971,"month":10,"date_of_month":13,"day_of_week":3,"births":10210},{"year":1971,"month":10,"date_of_month":14,"day_of_week":4,"births":10186},{"year":1971,"month":10,"date_of_month":15,"day_of_week":5,"births":10180},{"year":1971,"month":10,"date_of_month":16,"day_of_week":6,"births":9150},{"year":1971,"month":10,"date_of_month":17,"day_of_week":7,"births":8504},{"year":1971,"month":10,"date_of_month":18,"day_of_week":1,"births":10198},{"year":1971,"month":10,"date_of_month":19,"day_of_week":2,"births":10490},{"year":1971,"month":10,"date_of_month":20,"day_of_week":3,"births":9870},{"year":1971,"month":10,"date_of_month":21,"day_of_week":4,"births":9990},{"year":1971,"month":10,"date_of_month":22,"day_of_week":5,"births":10042},{"year":1971,"month":10,"date_of_month":23,"day_of_week":6,"births":8732},{"year":1971,"month":10,"date_of_month":24,"day_of_week":7,"births":8416},{"year":1971,"month":10,"date_of_month":25,"day_of_week":1,"births":9566},{"year":1971,"month":10,"date_of_month":26,"day_of_week":2,"births":10054},{"year":1971,"month":10,"date_of_month":27,"day_of_week":3,"births":9896},{"year":1971,"month":10,"date_of_month":28,"day_of_week":4,"births":9802},{"year":1971,"month":10,"date_of_month":29,"day_of_week":5,"births":9922},{"year":1971,"month":10,"date_of_month":30,"day_of_week":6,"births":8614},{"year":1971,"month":10,"date_of_month":31,"day_of_week":7,"births":8616},{"year":1971,"month":11,"date_of_month":1,"day_of_week":1,"births":9636},{"year":1971,"month":11,"date_of_month":2,"day_of_week":2,"births":9966},{"year":1971,"month":11,"date_of_month":3,"day_of_week":3,"births":9794},{"year":1971,"month":11,"date_of_month":4,"day_of_week":4,"births":9516},{"year":1971,"month":11,"date_of_month":5,"day_of_week":5,"births":9862},{"year":1971,"month":11,"date_of_month":6,"day_of_week":6,"births":8700},{"year":1971,"month":11,"date_of_month":7,"day_of_week":7,"births":8232},{"year":1971,"month":11,"date_of_month":8,"day_of_week":1,"births":9740},{"year":1971,"month":11,"date_of_month":9,"day_of_week":2,"births":10166},{"year":1971,"month":11,"date_of_month":10,"day_of_week":3,"births":9690},{"year":1971,"month":11,"date_of_month":11,"day_of_week":4,"births":9560},{"year":1971,"month":11,"date_of_month":12,"day_of_week":5,"births":10108},{"year":1971,"month":11,"date_of_month":13,"day_of_week":6,"births":8848},{"year":1971,"month":11,"date_of_month":14,"day_of_week":7,"births":8358},{"year":1971,"month":11,"date_of_month":15,"day_of_week":1,"births":9860},{"year":1971,"month":11,"date_of_month":16,"day_of_week":2,"births":10138},{"year":1971,"month":11,"date_of_month":17,"day_of_week":3,"births":9726},{"year":1971,"month":11,"date_of_month":18,"day_of_week":4,"births":9838},{"year":1971,"month":11,"date_of_month":19,"day_of_week":5,"births":10136},{"year":1971,"month":11,"date_of_month":20,"day_of_week":6,"births":8932},{"year":1971,"month":11,"date_of_month":21,"day_of_week":7,"births":8286},{"year":1971,"month":11,"date_of_month":22,"day_of_week":1,"births":9894},{"year":1971,"month":11,"date_of_month":23,"day_of_week":2,"births":10132},{"year":1971,"month":11,"date_of_month":24,"day_of_week":3,"births":9586},{"year":1971,"month":11,"date_of_month":25,"day_of_week":4,"births":7566},{"year":1971,"month":11,"date_of_month":26,"day_of_week":5,"births":9142},{"year":1971,"month":11,"date_of_month":27,"day_of_week":6,"births":8562},{"year":1971,"month":11,"date_of_month":28,"day_of_week":7,"births":8240},{"year":1971,"month":11,"date_of_month":29,"day_of_week":1,"births":9748},{"year":1971,"month":11,"date_of_month":30,"day_of_week":2,"births":9766},{"year":1971,"month":12,"date_of_month":1,"day_of_week":3,"births":9634},{"year":1971,"month":12,"date_of_month":2,"day_of_week":4,"births":9166},{"year":1971,"month":12,"date_of_month":3,"day_of_week":5,"births":9292},{"year":1971,"month":12,"date_of_month":4,"day_of_week":6,"births":8792},{"year":1971,"month":12,"date_of_month":5,"day_of_week":7,"births":8254},{"year":1971,"month":12,"date_of_month":6,"day_of_week":1,"births":9732},{"year":1971,"month":12,"date_of_month":7,"day_of_week":2,"births":10026},{"year":1971,"month":12,"date_of_month":8,"day_of_week":3,"births":9564},{"year":1971,"month":12,"date_of_month":9,"day_of_week":4,"births":9526},{"year":1971,"month":12,"date_of_month":10,"day_of_week":5,"births":9878},{"year":1971,"month":12,"date_of_month":11,"day_of_week":6,"births":8588},{"year":1971,"month":12,"date_of_month":12,"day_of_week":7,"births":8102},{"year":1971,"month":12,"date_of_month":13,"day_of_week":1,"births":9502},{"year":1971,"month":12,"date_of_month":14,"day_of_week":2,"births":10186},{"year":1971,"month":12,"date_of_month":15,"day_of_week":3,"births":9886},{"year":1971,"month":12,"date_of_month":16,"day_of_week":4,"births":9770},{"year":1971,"month":12,"date_of_month":17,"day_of_week":5,"births":9936},{"year":1971,"month":12,"date_of_month":18,"day_of_week":6,"births":8522},{"year":1971,"month":12,"date_of_month":19,"day_of_week":7,"births":7952},{"year":1971,"month":12,"date_of_month":20,"day_of_week":1,"births":10102},{"year":1971,"month":12,"date_of_month":21,"day_of_week":2,"births":10306},{"year":1971,"month":12,"date_of_month":22,"day_of_week":3,"births":9018},{"year":1971,"month":12,"date_of_month":23,"day_of_week":4,"births":8266},{"year":1971,"month":12,"date_of_month":24,"day_of_week":5,"births":7826},{"year":1971,"month":12,"date_of_month":25,"day_of_week":6,"births":7240},{"year":1971,"month":12,"date_of_month":26,"day_of_week":7,"births":7620},{"year":1971,"month":12,"date_of_month":27,"day_of_week":1,"births":9692},{"year":1971,"month":12,"date_of_month":28,"day_of_week":2,"births":10494},{"year":1971,"month":12,"date_of_month":29,"day_of_week":3,"births":10180},{"year":1971,"month":12,"date_of_month":30,"day_of_week":4,"births":10156},{"year":1971,"month":12,"date_of_month":31,"day_of_week":5,"births":9174},{"year":1972,"month":1,"date_of_month":1,"day_of_week":6,"births":7693},{"year":1972,"month":1,"date_of_month":2,"day_of_week":7,"births":7795},{"year":1972,"month":1,"date_of_month":3,"day_of_week":1,"births":8936},{"year":1972,"month":1,"date_of_month":4,"day_of_week":2,"births":9241},{"year":1972,"month":1,"date_of_month":5,"day_of_week":3,"births":8952},{"year":1972,"month":1,"date_of_month":6,"day_of_week":4,"births":8738},{"year":1972,"month":1,"date_of_month":7,"day_of_week":5,"births":9330},{"year":1972,"month":1,"date_of_month":8,"day_of_week":6,"births":8242},{"year":1972,"month":1,"date_of_month":9,"day_of_week":7,"births":7911},{"year":1972,"month":1,"date_of_month":10,"day_of_week":1,"births":9347},{"year":1972,"month":1,"date_of_month":11,"day_of_week":2,"births":9788},{"year":1972,"month":1,"date_of_month":12,"day_of_week":3,"births":9312},{"year":1972,"month":1,"date_of_month":13,"day_of_week":4,"births":9285},{"year":1972,"month":1,"date_of_month":14,"day_of_week":5,"births":9622},{"year":1972,"month":1,"date_of_month":15,"day_of_week":6,"births":8035},{"year":1972,"month":1,"date_of_month":16,"day_of_week":7,"births":7664},{"year":1972,"month":1,"date_of_month":17,"day_of_week":1,"births":9422},{"year":1972,"month":1,"date_of_month":18,"day_of_week":2,"births":9872},{"year":1972,"month":1,"date_of_month":19,"day_of_week":3,"births":9426},{"year":1972,"month":1,"date_of_month":20,"day_of_week":4,"births":9341},{"year":1972,"month":1,"date_of_month":21,"day_of_week":5,"births":9368},{"year":1972,"month":1,"date_of_month":22,"day_of_week":6,"births":8810},{"year":1972,"month":1,"date_of_month":23,"day_of_week":7,"births":8148},{"year":1972,"month":1,"date_of_month":24,"day_of_week":1,"births":9646},{"year":1972,"month":1,"date_of_month":25,"day_of_week":2,"births":9778},{"year":1972,"month":1,"date_of_month":26,"day_of_week":3,"births":9156},{"year":1972,"month":1,"date_of_month":27,"day_of_week":4,"births":9056},{"year":1972,"month":1,"date_of_month":28,"day_of_week":5,"births":9177},{"year":1972,"month":1,"date_of_month":29,"day_of_week":6,"births":8232},{"year":1972,"month":1,"date_of_month":30,"day_of_week":7,"births":7926},{"year":1972,"month":1,"date_of_month":31,"day_of_week":1,"births":9271},{"year":1972,"month":2,"date_of_month":1,"day_of_week":2,"births":9663},{"year":1972,"month":2,"date_of_month":2,"day_of_week":3,"births":9370},{"year":1972,"month":2,"date_of_month":3,"day_of_week":4,"births":9227},{"year":1972,"month":2,"date_of_month":4,"day_of_week":5,"births":9359},{"year":1972,"month":2,"date_of_month":5,"day_of_week":6,"births":8323},{"year":1972,"month":2,"date_of_month":6,"day_of_week":7,"births":7965},{"year":1972,"month":2,"date_of_month":7,"day_of_week":1,"births":9295},{"year":1972,"month":2,"date_of_month":8,"day_of_week":2,"births":9598},{"year":1972,"month":2,"date_of_month":9,"day_of_week":3,"births":9000},{"year":1972,"month":2,"date_of_month":10,"day_of_week":4,"births":8945},{"year":1972,"month":2,"date_of_month":11,"day_of_week":5,"births":9357},{"year":1972,"month":2,"date_of_month":12,"day_of_week":6,"births":8571},{"year":1972,"month":2,"date_of_month":13,"day_of_week":7,"births":8009},{"year":1972,"month":2,"date_of_month":14,"day_of_week":1,"births":9864},{"year":1972,"month":2,"date_of_month":15,"day_of_week":2,"births":9667},{"year":1972,"month":2,"date_of_month":16,"day_of_week":3,"births":9574},{"year":1972,"month":2,"date_of_month":17,"day_of_week":4,"births":9425},{"year":1972,"month":2,"date_of_month":18,"day_of_week":5,"births":9652},{"year":1972,"month":2,"date_of_month":19,"day_of_week":6,"births":8350},{"year":1972,"month":2,"date_of_month":20,"day_of_week":7,"births":7936},{"year":1972,"month":2,"date_of_month":21,"day_of_week":1,"births":8807},{"year":1972,"month":2,"date_of_month":22,"day_of_week":2,"births":9715},{"year":1972,"month":2,"date_of_month":23,"day_of_week":3,"births":9357},{"year":1972,"month":2,"date_of_month":24,"day_of_week":4,"births":9239},{"year":1972,"month":2,"date_of_month":25,"day_of_week":5,"births":9495},{"year":1972,"month":2,"date_of_month":26,"day_of_week":6,"births":8601},{"year":1972,"month":2,"date_of_month":27,"day_of_week":7,"births":7591},{"year":1972,"month":2,"date_of_month":28,"day_of_week":1,"births":9297},{"year":1972,"month":2,"date_of_month":29,"day_of_week":2,"births":9582},{"year":1972,"month":3,"date_of_month":1,"day_of_week":3,"births":9621},{"year":1972,"month":3,"date_of_month":2,"day_of_week":4,"births":9275},{"year":1972,"month":3,"date_of_month":3,"day_of_week":5,"births":9605},{"year":1972,"month":3,"date_of_month":4,"day_of_week":6,"births":8424},{"year":1972,"month":3,"date_of_month":5,"day_of_week":7,"births":7720},{"year":1972,"month":3,"date_of_month":6,"day_of_week":1,"births":9126},{"year":1972,"month":3,"date_of_month":7,"day_of_week":2,"births":9482},{"year":1972,"month":3,"date_of_month":8,"day_of_week":3,"births":9231},{"year":1972,"month":3,"date_of_month":9,"day_of_week":4,"births":8905},{"year":1972,"month":3,"date_of_month":10,"day_of_week":5,"births":9110},{"year":1972,"month":3,"date_of_month":11,"day_of_week":6,"births":8243},{"year":1972,"month":3,"date_of_month":12,"day_of_week":7,"births":7865},{"year":1972,"month":3,"date_of_month":13,"day_of_week":1,"births":9267},{"year":1972,"month":3,"date_of_month":14,"day_of_week":2,"births":9593},{"year":1972,"month":3,"date_of_month":15,"day_of_week":3,"births":9246},{"year":1972,"month":3,"date_of_month":16,"day_of_week":4,"births":9046},{"year":1972,"month":3,"date_of_month":17,"day_of_week":5,"births":9489},{"year":1972,"month":3,"date_of_month":18,"day_of_week":6,"births":8076},{"year":1972,"month":3,"date_of_month":19,"day_of_week":7,"births":7658},{"year":1972,"month":3,"date_of_month":20,"day_of_week":1,"births":8805},{"year":1972,"month":3,"date_of_month":21,"day_of_week":2,"births":9060},{"year":1972,"month":3,"date_of_month":22,"day_of_week":3,"births":8921},{"year":1972,"month":3,"date_of_month":23,"day_of_week":4,"births":8878},{"year":1972,"month":3,"date_of_month":24,"day_of_week":5,"births":8893},{"year":1972,"month":3,"date_of_month":25,"day_of_week":6,"births":7926},{"year":1972,"month":3,"date_of_month":26,"day_of_week":7,"births":7549},{"year":1972,"month":3,"date_of_month":27,"day_of_week":1,"births":9083},{"year":1972,"month":3,"date_of_month":28,"day_of_week":2,"births":9267},{"year":1972,"month":3,"date_of_month":29,"day_of_week":3,"births":8881},{"year":1972,"month":3,"date_of_month":30,"day_of_week":4,"births":8644},{"year":1972,"month":3,"date_of_month":31,"day_of_week":5,"births":8740},{"year":1972,"month":4,"date_of_month":1,"day_of_week":6,"births":7558},{"year":1972,"month":4,"date_of_month":2,"day_of_week":7,"births":7359},{"year":1972,"month":4,"date_of_month":3,"day_of_week":1,"births":8704},{"year":1972,"month":4,"date_of_month":4,"day_of_week":2,"births":9321},{"year":1972,"month":4,"date_of_month":5,"day_of_week":3,"births":8887},{"year":1972,"month":4,"date_of_month":6,"day_of_week":4,"births":8971},{"year":1972,"month":4,"date_of_month":7,"day_of_week":5,"births":8970},{"year":1972,"month":4,"date_of_month":8,"day_of_week":6,"births":7891},{"year":1972,"month":4,"date_of_month":9,"day_of_week":7,"births":7535},{"year":1972,"month":4,"date_of_month":10,"day_of_week":1,"births":8698},{"year":1972,"month":4,"date_of_month":11,"day_of_week":2,"births":9180},{"year":1972,"month":4,"date_of_month":12,"day_of_week":3,"births":8967},{"year":1972,"month":4,"date_of_month":13,"day_of_week":4,"births":8987},{"year":1972,"month":4,"date_of_month":14,"day_of_week":5,"births":9192},{"year":1972,"month":4,"date_of_month":15,"day_of_week":6,"births":8107},{"year":1972,"month":4,"date_of_month":16,"day_of_week":7,"births":7565},{"year":1972,"month":4,"date_of_month":17,"day_of_week":1,"births":8859},{"year":1972,"month":4,"date_of_month":18,"day_of_week":2,"births":9301},{"year":1972,"month":4,"date_of_month":19,"day_of_week":3,"births":8827},{"year":1972,"month":4,"date_of_month":20,"day_of_week":4,"births":8828},{"year":1972,"month":4,"date_of_month":21,"day_of_week":5,"births":8719},{"year":1972,"month":4,"date_of_month":22,"day_of_week":6,"births":7833},{"year":1972,"month":4,"date_of_month":23,"day_of_week":7,"births":7335},{"year":1972,"month":4,"date_of_month":24,"day_of_week":1,"births":8906},{"year":1972,"month":4,"date_of_month":25,"day_of_week":2,"births":9313},{"year":1972,"month":4,"date_of_month":26,"day_of_week":3,"births":8644},{"year":1972,"month":4,"date_of_month":27,"day_of_week":4,"births":8719},{"year":1972,"month":4,"date_of_month":28,"day_of_week":5,"births":8852},{"year":1972,"month":4,"date_of_month":29,"day_of_week":6,"births":7807},{"year":1972,"month":4,"date_of_month":30,"day_of_week":7,"births":7212},{"year":1972,"month":5,"date_of_month":1,"day_of_week":1,"births":9045},{"year":1972,"month":5,"date_of_month":2,"day_of_week":2,"births":9333},{"year":1972,"month":5,"date_of_month":3,"day_of_week":3,"births":9100},{"year":1972,"month":5,"date_of_month":4,"day_of_week":4,"births":8754},{"year":1972,"month":5,"date_of_month":5,"day_of_week":5,"births":8919},{"year":1972,"month":5,"date_of_month":6,"day_of_week":6,"births":7789},{"year":1972,"month":5,"date_of_month":7,"day_of_week":7,"births":7607},{"year":1972,"month":5,"date_of_month":8,"day_of_week":1,"births":8976},{"year":1972,"month":5,"date_of_month":9,"day_of_week":2,"births":9274},{"year":1972,"month":5,"date_of_month":10,"day_of_week":3,"births":8908},{"year":1972,"month":5,"date_of_month":11,"day_of_week":4,"births":8746},{"year":1972,"month":5,"date_of_month":12,"day_of_week":5,"births":9080},{"year":1972,"month":5,"date_of_month":13,"day_of_week":6,"births":8026},{"year":1972,"month":5,"date_of_month":14,"day_of_week":7,"births":7529},{"year":1972,"month":5,"date_of_month":15,"day_of_week":1,"births":9059},{"year":1972,"month":5,"date_of_month":16,"day_of_week":2,"births":9373},{"year":1972,"month":5,"date_of_month":17,"day_of_week":3,"births":9107},{"year":1972,"month":5,"date_of_month":18,"day_of_week":4,"births":8809},{"year":1972,"month":5,"date_of_month":19,"day_of_week":5,"births":9016},{"year":1972,"month":5,"date_of_month":20,"day_of_week":6,"births":8032},{"year":1972,"month":5,"date_of_month":21,"day_of_week":7,"births":7368},{"year":1972,"month":5,"date_of_month":22,"day_of_week":1,"births":9248},{"year":1972,"month":5,"date_of_month":23,"day_of_week":2,"births":9655},{"year":1972,"month":5,"date_of_month":24,"day_of_week":3,"births":9146},{"year":1972,"month":5,"date_of_month":25,"day_of_week":4,"births":9293},{"year":1972,"month":5,"date_of_month":26,"day_of_week":5,"births":8986},{"year":1972,"month":5,"date_of_month":27,"day_of_week":6,"births":7975},{"year":1972,"month":5,"date_of_month":28,"day_of_week":7,"births":7607},{"year":1972,"month":5,"date_of_month":29,"day_of_week":1,"births":7852},{"year":1972,"month":5,"date_of_month":30,"day_of_week":2,"births":9202},{"year":1972,"month":5,"date_of_month":31,"day_of_week":3,"births":9451},{"year":1972,"month":6,"date_of_month":1,"day_of_week":4,"births":9177},{"year":1972,"month":6,"date_of_month":2,"day_of_week":5,"births":8857},{"year":1972,"month":6,"date_of_month":3,"day_of_week":6,"births":8075},{"year":1972,"month":6,"date_of_month":4,"day_of_week":7,"births":7587},{"year":1972,"month":6,"date_of_month":5,"day_of_week":1,"births":8727},{"year":1972,"month":6,"date_of_month":6,"day_of_week":2,"births":9273},{"year":1972,"month":6,"date_of_month":7,"day_of_week":3,"births":9083},{"year":1972,"month":6,"date_of_month":8,"day_of_week":4,"births":8764},{"year":1972,"month":6,"date_of_month":9,"day_of_week":5,"births":9117},{"year":1972,"month":6,"date_of_month":10,"day_of_week":6,"births":8135},{"year":1972,"month":6,"date_of_month":11,"day_of_week":7,"births":7338},{"year":1972,"month":6,"date_of_month":12,"day_of_week":1,"births":8697},{"year":1972,"month":6,"date_of_month":13,"day_of_week":2,"births":9204},{"year":1972,"month":6,"date_of_month":14,"day_of_week":3,"births":8860},{"year":1972,"month":6,"date_of_month":15,"day_of_week":4,"births":8931},{"year":1972,"month":6,"date_of_month":16,"day_of_week":5,"births":9198},{"year":1972,"month":6,"date_of_month":17,"day_of_week":6,"births":7780},{"year":1972,"month":6,"date_of_month":18,"day_of_week":7,"births":7438},{"year":1972,"month":6,"date_of_month":19,"day_of_week":1,"births":8850},{"year":1972,"month":6,"date_of_month":20,"day_of_week":2,"births":9169},{"year":1972,"month":6,"date_of_month":21,"day_of_week":3,"births":8832},{"year":1972,"month":6,"date_of_month":22,"day_of_week":4,"births":8539},{"year":1972,"month":6,"date_of_month":23,"day_of_week":5,"births":8787},{"year":1972,"month":6,"date_of_month":24,"day_of_week":6,"births":7905},{"year":1972,"month":6,"date_of_month":25,"day_of_week":7,"births":7587},{"year":1972,"month":6,"date_of_month":26,"day_of_week":1,"births":9199},{"year":1972,"month":6,"date_of_month":27,"day_of_week":2,"births":9415},{"year":1972,"month":6,"date_of_month":28,"day_of_week":3,"births":9275},{"year":1972,"month":6,"date_of_month":29,"day_of_week":4,"births":9215},{"year":1972,"month":6,"date_of_month":30,"day_of_week":5,"births":9179},{"year":1972,"month":7,"date_of_month":1,"day_of_week":6,"births":8493},{"year":1972,"month":7,"date_of_month":2,"day_of_week":7,"births":7725},{"year":1972,"month":7,"date_of_month":3,"day_of_week":1,"births":8752},{"year":1972,"month":7,"date_of_month":4,"day_of_week":2,"births":8093},{"year":1972,"month":7,"date_of_month":5,"day_of_week":3,"births":8920},{"year":1972,"month":7,"date_of_month":6,"day_of_week":4,"births":9253},{"year":1972,"month":7,"date_of_month":7,"day_of_week":5,"births":9510},{"year":1972,"month":7,"date_of_month":8,"day_of_week":6,"births":8622},{"year":1972,"month":7,"date_of_month":9,"day_of_week":7,"births":7656},{"year":1972,"month":7,"date_of_month":10,"day_of_week":1,"births":9262},{"year":1972,"month":7,"date_of_month":11,"day_of_week":2,"births":9635},{"year":1972,"month":7,"date_of_month":12,"day_of_week":3,"births":9738},{"year":1972,"month":7,"date_of_month":13,"day_of_week":4,"births":9390},{"year":1972,"month":7,"date_of_month":14,"day_of_week":5,"births":9657},{"year":1972,"month":7,"date_of_month":15,"day_of_week":6,"births":8746},{"year":1972,"month":7,"date_of_month":16,"day_of_week":7,"births":7968},{"year":1972,"month":7,"date_of_month":17,"day_of_week":1,"births":9534},{"year":1972,"month":7,"date_of_month":18,"day_of_week":2,"births":9719},{"year":1972,"month":7,"date_of_month":19,"day_of_week":3,"births":9235},{"year":1972,"month":7,"date_of_month":20,"day_of_week":4,"births":9548},{"year":1972,"month":7,"date_of_month":21,"day_of_week":5,"births":9664},{"year":1972,"month":7,"date_of_month":22,"day_of_week":6,"births":8595},{"year":1972,"month":7,"date_of_month":23,"day_of_week":7,"births":7954},{"year":1972,"month":7,"date_of_month":24,"day_of_week":1,"births":9485},{"year":1972,"month":7,"date_of_month":25,"day_of_week":2,"births":9662},{"year":1972,"month":7,"date_of_month":26,"day_of_week":3,"births":9146},{"year":1972,"month":7,"date_of_month":27,"day_of_week":4,"births":9493},{"year":1972,"month":7,"date_of_month":28,"day_of_week":5,"births":9506},{"year":1972,"month":7,"date_of_month":29,"day_of_week":6,"births":8441},{"year":1972,"month":7,"date_of_month":30,"day_of_week":7,"births":7710},{"year":1972,"month":7,"date_of_month":31,"day_of_week":1,"births":9140},{"year":1972,"month":8,"date_of_month":1,"day_of_week":2,"births":9836},{"year":1972,"month":8,"date_of_month":2,"day_of_week":3,"births":9380},{"year":1972,"month":8,"date_of_month":3,"day_of_week":4,"births":9300},{"year":1972,"month":8,"date_of_month":4,"day_of_week":5,"births":9492},{"year":1972,"month":8,"date_of_month":5,"day_of_week":6,"births":8509},{"year":1972,"month":8,"date_of_month":6,"day_of_week":7,"births":7962},{"year":1972,"month":8,"date_of_month":7,"day_of_week":1,"births":9290},{"year":1972,"month":8,"date_of_month":8,"day_of_week":2,"births":10055},{"year":1972,"month":8,"date_of_month":9,"day_of_week":3,"births":9481},{"year":1972,"month":8,"date_of_month":10,"day_of_week":4,"births":9386},{"year":1972,"month":8,"date_of_month":11,"day_of_week":5,"births":9330},{"year":1972,"month":8,"date_of_month":12,"day_of_week":6,"births":8708},{"year":1972,"month":8,"date_of_month":13,"day_of_week":7,"births":8065},{"year":1972,"month":8,"date_of_month":14,"day_of_week":1,"births":9539},{"year":1972,"month":8,"date_of_month":15,"day_of_week":2,"births":10129},{"year":1972,"month":8,"date_of_month":16,"day_of_week":3,"births":9698},{"year":1972,"month":8,"date_of_month":17,"day_of_week":4,"births":9602},{"year":1972,"month":8,"date_of_month":18,"day_of_week":5,"births":9798},{"year":1972,"month":8,"date_of_month":19,"day_of_week":6,"births":8620},{"year":1972,"month":8,"date_of_month":20,"day_of_week":7,"births":8287},{"year":1972,"month":8,"date_of_month":21,"day_of_week":1,"births":9669},{"year":1972,"month":8,"date_of_month":22,"day_of_week":2,"births":10160},{"year":1972,"month":8,"date_of_month":23,"day_of_week":3,"births":9494},{"year":1972,"month":8,"date_of_month":24,"day_of_week":4,"births":9410},{"year":1972,"month":8,"date_of_month":25,"day_of_week":5,"births":9716},{"year":1972,"month":8,"date_of_month":26,"day_of_week":6,"births":8718},{"year":1972,"month":8,"date_of_month":27,"day_of_week":7,"births":8022},{"year":1972,"month":8,"date_of_month":28,"day_of_week":1,"births":9744},{"year":1972,"month":8,"date_of_month":29,"day_of_week":2,"births":10034},{"year":1972,"month":8,"date_of_month":30,"day_of_week":3,"births":9583},{"year":1972,"month":8,"date_of_month":31,"day_of_week":4,"births":9529},{"year":1972,"month":9,"date_of_month":1,"day_of_week":5,"births":9543},{"year":1972,"month":9,"date_of_month":2,"day_of_week":6,"births":8408},{"year":1972,"month":9,"date_of_month":3,"day_of_week":7,"births":8067},{"year":1972,"month":9,"date_of_month":4,"day_of_week":1,"births":8194},{"year":1972,"month":9,"date_of_month":5,"day_of_week":2,"births":9660},{"year":1972,"month":9,"date_of_month":6,"day_of_week":3,"births":9819},{"year":1972,"month":9,"date_of_month":7,"day_of_week":4,"births":9824},{"year":1972,"month":9,"date_of_month":8,"day_of_week":5,"births":10143},{"year":1972,"month":9,"date_of_month":9,"day_of_week":6,"births":8826},{"year":1972,"month":9,"date_of_month":10,"day_of_week":7,"births":8233},{"year":1972,"month":9,"date_of_month":11,"day_of_week":1,"births":9771},{"year":1972,"month":9,"date_of_month":12,"day_of_week":2,"births":10019},{"year":1972,"month":9,"date_of_month":13,"day_of_week":3,"births":9794},{"year":1972,"month":9,"date_of_month":14,"day_of_week":4,"births":10035},{"year":1972,"month":9,"date_of_month":15,"day_of_week":5,"births":10279},{"year":1972,"month":9,"date_of_month":16,"day_of_week":6,"births":9201},{"year":1972,"month":9,"date_of_month":17,"day_of_week":7,"births":8539},{"year":1972,"month":9,"date_of_month":18,"day_of_week":1,"births":9905},{"year":1972,"month":9,"date_of_month":19,"day_of_week":2,"births":10073},{"year":1972,"month":9,"date_of_month":20,"day_of_week":3,"births":9922},{"year":1972,"month":9,"date_of_month":21,"day_of_week":4,"births":9724},{"year":1972,"month":9,"date_of_month":22,"day_of_week":5,"births":9782},{"year":1972,"month":9,"date_of_month":23,"day_of_week":6,"births":8777},{"year":1972,"month":9,"date_of_month":24,"day_of_week":7,"births":8455},{"year":1972,"month":9,"date_of_month":25,"day_of_week":1,"births":9835},{"year":1972,"month":9,"date_of_month":26,"day_of_week":2,"births":10153},{"year":1972,"month":9,"date_of_month":27,"day_of_week":3,"births":9912},{"year":1972,"month":9,"date_of_month":28,"day_of_week":4,"births":9594},{"year":1972,"month":9,"date_of_month":29,"day_of_week":5,"births":9676},{"year":1972,"month":9,"date_of_month":30,"day_of_week":6,"births":8851},{"year":1972,"month":10,"date_of_month":1,"day_of_week":7,"births":7982},{"year":1972,"month":10,"date_of_month":2,"day_of_week":1,"births":9631},{"year":1972,"month":10,"date_of_month":3,"day_of_week":2,"births":9520},{"year":1972,"month":10,"date_of_month":4,"day_of_week":3,"births":9523},{"year":1972,"month":10,"date_of_month":5,"day_of_week":4,"births":9443},{"year":1972,"month":10,"date_of_month":6,"day_of_week":5,"births":9729},{"year":1972,"month":10,"date_of_month":7,"day_of_week":6,"births":8409},{"year":1972,"month":10,"date_of_month":8,"day_of_week":7,"births":7904},{"year":1972,"month":10,"date_of_month":9,"day_of_week":1,"births":9155},{"year":1972,"month":10,"date_of_month":10,"day_of_week":2,"births":9766},{"year":1972,"month":10,"date_of_month":11,"day_of_week":3,"births":9160},{"year":1972,"month":10,"date_of_month":12,"day_of_week":4,"births":9496},{"year":1972,"month":10,"date_of_month":13,"day_of_week":5,"births":9283},{"year":1972,"month":10,"date_of_month":14,"day_of_week":6,"births":8226},{"year":1972,"month":10,"date_of_month":15,"day_of_week":7,"births":7884},{"year":1972,"month":10,"date_of_month":16,"day_of_week":1,"births":9104},{"year":1972,"month":10,"date_of_month":17,"day_of_week":2,"births":9403},{"year":1972,"month":10,"date_of_month":18,"day_of_week":3,"births":9057},{"year":1972,"month":10,"date_of_month":19,"day_of_week":4,"births":9007},{"year":1972,"month":10,"date_of_month":20,"day_of_week":5,"births":9124},{"year":1972,"month":10,"date_of_month":21,"day_of_week":6,"births":7980},{"year":1972,"month":10,"date_of_month":22,"day_of_week":7,"births":7705},{"year":1972,"month":10,"date_of_month":23,"day_of_week":1,"births":8991},{"year":1972,"month":10,"date_of_month":24,"day_of_week":2,"births":9348},{"year":1972,"month":10,"date_of_month":25,"day_of_week":3,"births":9052},{"year":1972,"month":10,"date_of_month":26,"day_of_week":4,"births":8839},{"year":1972,"month":10,"date_of_month":27,"day_of_week":5,"births":9030},{"year":1972,"month":10,"date_of_month":28,"day_of_week":6,"births":7995},{"year":1972,"month":10,"date_of_month":29,"day_of_week":7,"births":7907},{"year":1972,"month":10,"date_of_month":30,"day_of_week":1,"births":8934},{"year":1972,"month":10,"date_of_month":31,"day_of_week":2,"births":9292},{"year":1972,"month":11,"date_of_month":1,"day_of_week":3,"births":9021},{"year":1972,"month":11,"date_of_month":2,"day_of_week":4,"births":8837},{"year":1972,"month":11,"date_of_month":3,"day_of_week":5,"births":9318},{"year":1972,"month":11,"date_of_month":4,"day_of_week":6,"births":8099},{"year":1972,"month":11,"date_of_month":5,"day_of_week":7,"births":7465},{"year":1972,"month":11,"date_of_month":6,"day_of_week":1,"births":9256},{"year":1972,"month":11,"date_of_month":7,"day_of_week":2,"births":9429},{"year":1972,"month":11,"date_of_month":8,"day_of_week":3,"births":9240},{"year":1972,"month":11,"date_of_month":9,"day_of_week":4,"births":9064},{"year":1972,"month":11,"date_of_month":10,"day_of_week":5,"births":9241},{"year":1972,"month":11,"date_of_month":11,"day_of_week":6,"births":8524},{"year":1972,"month":11,"date_of_month":12,"day_of_week":7,"births":7808},{"year":1972,"month":11,"date_of_month":13,"day_of_week":1,"births":9000},{"year":1972,"month":11,"date_of_month":14,"day_of_week":2,"births":9446},{"year":1972,"month":11,"date_of_month":15,"day_of_week":3,"births":9051},{"year":1972,"month":11,"date_of_month":16,"day_of_week":4,"births":9052},{"year":1972,"month":11,"date_of_month":17,"day_of_week":5,"births":9291},{"year":1972,"month":11,"date_of_month":18,"day_of_week":6,"births":8082},{"year":1972,"month":11,"date_of_month":19,"day_of_week":7,"births":7806},{"year":1972,"month":11,"date_of_month":20,"day_of_week":1,"births":9506},{"year":1972,"month":11,"date_of_month":21,"day_of_week":2,"births":9546},{"year":1972,"month":11,"date_of_month":22,"day_of_week":3,"births":9157},{"year":1972,"month":11,"date_of_month":23,"day_of_week":4,"births":7403},{"year":1972,"month":11,"date_of_month":24,"day_of_week":5,"births":8603},{"year":1972,"month":11,"date_of_month":25,"day_of_week":6,"births":8307},{"year":1972,"month":11,"date_of_month":26,"day_of_week":7,"births":7790},{"year":1972,"month":11,"date_of_month":27,"day_of_week":1,"births":9374},{"year":1972,"month":11,"date_of_month":28,"day_of_week":2,"births":9663},{"year":1972,"month":11,"date_of_month":29,"day_of_week":3,"births":9178},{"year":1972,"month":11,"date_of_month":30,"day_of_week":4,"births":9056},{"year":1972,"month":12,"date_of_month":1,"day_of_week":5,"births":9060},{"year":1972,"month":12,"date_of_month":2,"day_of_week":6,"births":8109},{"year":1972,"month":12,"date_of_month":3,"day_of_week":7,"births":7883},{"year":1972,"month":12,"date_of_month":4,"day_of_week":1,"births":9296},{"year":1972,"month":12,"date_of_month":5,"day_of_week":2,"births":9677},{"year":1972,"month":12,"date_of_month":6,"day_of_week":3,"births":9279},{"year":1972,"month":12,"date_of_month":7,"day_of_week":4,"births":9126},{"year":1972,"month":12,"date_of_month":8,"day_of_week":5,"births":9010},{"year":1972,"month":12,"date_of_month":9,"day_of_week":6,"births":8241},{"year":1972,"month":12,"date_of_month":10,"day_of_week":7,"births":7882},{"year":1972,"month":12,"date_of_month":11,"day_of_week":1,"births":9439},{"year":1972,"month":12,"date_of_month":12,"day_of_week":2,"births":9902},{"year":1972,"month":12,"date_of_month":13,"day_of_week":3,"births":9356},{"year":1972,"month":12,"date_of_month":14,"day_of_week":4,"births":9277},{"year":1972,"month":12,"date_of_month":15,"day_of_week":5,"births":9706},{"year":1972,"month":12,"date_of_month":16,"day_of_week":6,"births":8676},{"year":1972,"month":12,"date_of_month":17,"day_of_week":7,"births":7770},{"year":1972,"month":12,"date_of_month":18,"day_of_week":1,"births":10101},{"year":1972,"month":12,"date_of_month":19,"day_of_week":2,"births":10264},{"year":1972,"month":12,"date_of_month":20,"day_of_week":3,"births":9800},{"year":1972,"month":12,"date_of_month":21,"day_of_week":4,"births":9431},{"year":1972,"month":12,"date_of_month":22,"day_of_week":5,"births":8767},{"year":1972,"month":12,"date_of_month":23,"day_of_week":6,"births":7566},{"year":1972,"month":12,"date_of_month":24,"day_of_week":7,"births":7177},{"year":1972,"month":12,"date_of_month":25,"day_of_week":1,"births":7241},{"year":1972,"month":12,"date_of_month":26,"day_of_week":2,"births":8785},{"year":1972,"month":12,"date_of_month":27,"day_of_week":3,"births":9832},{"year":1972,"month":12,"date_of_month":28,"day_of_week":4,"births":10023},{"year":1972,"month":12,"date_of_month":29,"day_of_week":5,"births":10026},{"year":1972,"month":12,"date_of_month":30,"day_of_week":6,"births":8557},{"year":1972,"month":12,"date_of_month":31,"day_of_week":7,"births":7812},{"year":1973,"month":1,"date_of_month":1,"day_of_week":1,"births":7391},{"year":1973,"month":1,"date_of_month":2,"day_of_week":2,"births":8242},{"year":1973,"month":1,"date_of_month":3,"day_of_week":3,"births":8966},{"year":1973,"month":1,"date_of_month":4,"day_of_week":4,"births":8879},{"year":1973,"month":1,"date_of_month":5,"day_of_week":5,"births":8859},{"year":1973,"month":1,"date_of_month":6,"day_of_week":6,"births":7766},{"year":1973,"month":1,"date_of_month":7,"day_of_week":7,"births":7309},{"year":1973,"month":1,"date_of_month":8,"day_of_week":1,"births":8586},{"year":1973,"month":1,"date_of_month":9,"day_of_week":2,"births":8706},{"year":1973,"month":1,"date_of_month":10,"day_of_week":3,"births":8679},{"year":1973,"month":1,"date_of_month":11,"day_of_week":4,"births":8950},{"year":1973,"month":1,"date_of_month":12,"day_of_week":5,"births":9185},{"year":1973,"month":1,"date_of_month":13,"day_of_week":6,"births":8184},{"year":1973,"month":1,"date_of_month":14,"day_of_week":7,"births":7560},{"year":1973,"month":1,"date_of_month":15,"day_of_week":1,"births":8903},{"year":1973,"month":1,"date_of_month":16,"day_of_week":2,"births":9349},{"year":1973,"month":1,"date_of_month":17,"day_of_week":3,"births":9196},{"year":1973,"month":1,"date_of_month":18,"day_of_week":4,"births":9064},{"year":1973,"month":1,"date_of_month":19,"day_of_week":5,"births":9387},{"year":1973,"month":1,"date_of_month":20,"day_of_week":6,"births":8022},{"year":1973,"month":1,"date_of_month":21,"day_of_week":7,"births":7619},{"year":1973,"month":1,"date_of_month":22,"day_of_week":1,"births":9039},{"year":1973,"month":1,"date_of_month":23,"day_of_week":2,"births":9272},{"year":1973,"month":1,"date_of_month":24,"day_of_week":3,"births":8886},{"year":1973,"month":1,"date_of_month":25,"day_of_week":4,"births":8959},{"year":1973,"month":1,"date_of_month":26,"day_of_week":5,"births":9037},{"year":1973,"month":1,"date_of_month":27,"day_of_week":6,"births":8022},{"year":1973,"month":1,"date_of_month":28,"day_of_week":7,"births":7827},{"year":1973,"month":1,"date_of_month":29,"day_of_week":1,"births":8989},{"year":1973,"month":1,"date_of_month":30,"day_of_week":2,"births":8759},{"year":1973,"month":1,"date_of_month":31,"day_of_week":3,"births":8837},{"year":1973,"month":2,"date_of_month":1,"day_of_week":4,"births":8495},{"year":1973,"month":2,"date_of_month":2,"day_of_week":5,"births":8877},{"year":1973,"month":2,"date_of_month":3,"day_of_week":6,"births":8127},{"year":1973,"month":2,"date_of_month":4,"day_of_week":7,"births":7487},{"year":1973,"month":2,"date_of_month":5,"day_of_week":1,"births":9013},{"year":1973,"month":2,"date_of_month":6,"day_of_week":2,"births":9232},{"year":1973,"month":2,"date_of_month":7,"day_of_week":3,"births":8828},{"year":1973,"month":2,"date_of_month":8,"day_of_week":4,"births":8799},{"year":1973,"month":2,"date_of_month":9,"day_of_week":5,"births":9005},{"year":1973,"month":2,"date_of_month":10,"day_of_week":6,"births":8121},{"year":1973,"month":2,"date_of_month":11,"day_of_week":7,"births":7411},{"year":1973,"month":2,"date_of_month":12,"day_of_week":1,"births":8905},{"year":1973,"month":2,"date_of_month":13,"day_of_week":2,"births":8896},{"year":1973,"month":2,"date_of_month":14,"day_of_week":3,"births":9123},{"year":1973,"month":2,"date_of_month":15,"day_of_week":4,"births":8905},{"year":1973,"month":2,"date_of_month":16,"day_of_week":5,"births":8941},{"year":1973,"month":2,"date_of_month":17,"day_of_week":6,"births":8154},{"year":1973,"month":2,"date_of_month":18,"day_of_week":7,"births":7409},{"year":1973,"month":2,"date_of_month":19,"day_of_week":1,"births":8613},{"year":1973,"month":2,"date_of_month":20,"day_of_week":2,"births":9140},{"year":1973,"month":2,"date_of_month":21,"day_of_week":3,"births":9342},{"year":1973,"month":2,"date_of_month":22,"day_of_week":4,"births":8816},{"year":1973,"month":2,"date_of_month":23,"day_of_week":5,"births":8933},{"year":1973,"month":2,"date_of_month":24,"day_of_week":6,"births":8350},{"year":1973,"month":2,"date_of_month":25,"day_of_week":7,"births":7893},{"year":1973,"month":2,"date_of_month":26,"day_of_week":1,"births":8867},{"year":1973,"month":2,"date_of_month":27,"day_of_week":2,"births":9027},{"year":1973,"month":2,"date_of_month":28,"day_of_week":3,"births":8934},{"year":1973,"month":3,"date_of_month":1,"day_of_week":4,"births":9049},{"year":1973,"month":3,"date_of_month":2,"day_of_week":5,"births":9250},{"year":1973,"month":3,"date_of_month":3,"day_of_week":6,"births":8431},{"year":1973,"month":3,"date_of_month":4,"day_of_week":7,"births":7834},{"year":1973,"month":3,"date_of_month":5,"day_of_week":1,"births":8982},{"year":1973,"month":3,"date_of_month":6,"day_of_week":2,"births":9410},{"year":1973,"month":3,"date_of_month":7,"day_of_week":3,"births":9087},{"year":1973,"month":3,"date_of_month":8,"day_of_week":4,"births":9036},{"year":1973,"month":3,"date_of_month":9,"day_of_week":5,"births":9100},{"year":1973,"month":3,"date_of_month":10,"day_of_week":6,"births":8215},{"year":1973,"month":3,"date_of_month":11,"day_of_week":7,"births":7675},{"year":1973,"month":3,"date_of_month":12,"day_of_week":1,"births":9191},{"year":1973,"month":3,"date_of_month":13,"day_of_week":2,"births":9411},{"year":1973,"month":3,"date_of_month":14,"day_of_week":3,"births":8913},{"year":1973,"month":3,"date_of_month":15,"day_of_week":4,"births":9092},{"year":1973,"month":3,"date_of_month":16,"day_of_week":5,"births":8899},{"year":1973,"month":3,"date_of_month":17,"day_of_week":6,"births":8060},{"year":1973,"month":3,"date_of_month":18,"day_of_week":7,"births":7573},{"year":1973,"month":3,"date_of_month":19,"day_of_week":1,"births":8728},{"year":1973,"month":3,"date_of_month":20,"day_of_week":2,"births":9052},{"year":1973,"month":3,"date_of_month":21,"day_of_week":3,"births":8797},{"year":1973,"month":3,"date_of_month":22,"day_of_week":4,"births":8804},{"year":1973,"month":3,"date_of_month":23,"day_of_week":5,"births":8970},{"year":1973,"month":3,"date_of_month":24,"day_of_week":6,"births":7848},{"year":1973,"month":3,"date_of_month":25,"day_of_week":7,"births":7603},{"year":1973,"month":3,"date_of_month":26,"day_of_week":1,"births":8968},{"year":1973,"month":3,"date_of_month":27,"day_of_week":2,"births":9110},{"year":1973,"month":3,"date_of_month":28,"day_of_week":3,"births":8752},{"year":1973,"month":3,"date_of_month":29,"day_of_week":4,"births":8836},{"year":1973,"month":3,"date_of_month":30,"day_of_week":5,"births":8919},{"year":1973,"month":3,"date_of_month":31,"day_of_week":6,"births":7887},{"year":1973,"month":4,"date_of_month":1,"day_of_week":7,"births":7495},{"year":1973,"month":4,"date_of_month":2,"day_of_week":1,"births":8906},{"year":1973,"month":4,"date_of_month":3,"day_of_week":2,"births":9035},{"year":1973,"month":4,"date_of_month":4,"day_of_week":3,"births":8766},{"year":1973,"month":4,"date_of_month":5,"day_of_week":4,"births":8507},{"year":1973,"month":4,"date_of_month":6,"day_of_week":5,"births":8615},{"year":1973,"month":4,"date_of_month":7,"day_of_week":6,"births":8060},{"year":1973,"month":4,"date_of_month":8,"day_of_week":7,"births":7355},{"year":1973,"month":4,"date_of_month":9,"day_of_week":1,"births":8449},{"year":1973,"month":4,"date_of_month":10,"day_of_week":2,"births":8843},{"year":1973,"month":4,"date_of_month":11,"day_of_week":3,"births":8781},{"year":1973,"month":4,"date_of_month":12,"day_of_week":4,"births":8613},{"year":1973,"month":4,"date_of_month":13,"day_of_week":5,"births":8616},{"year":1973,"month":4,"date_of_month":14,"day_of_week":6,"births":7445},{"year":1973,"month":4,"date_of_month":15,"day_of_week":7,"births":7167},{"year":1973,"month":4,"date_of_month":16,"day_of_week":1,"births":8659},{"year":1973,"month":4,"date_of_month":17,"day_of_week":2,"births":8917},{"year":1973,"month":4,"date_of_month":18,"day_of_week":3,"births":8891},{"year":1973,"month":4,"date_of_month":19,"day_of_week":4,"births":8672},{"year":1973,"month":4,"date_of_month":20,"day_of_week":5,"births":8540},{"year":1973,"month":4,"date_of_month":21,"day_of_week":6,"births":7579},{"year":1973,"month":4,"date_of_month":22,"day_of_week":7,"births":6954},{"year":1973,"month":4,"date_of_month":23,"day_of_week":1,"births":8372},{"year":1973,"month":4,"date_of_month":24,"day_of_week":2,"births":8757},{"year":1973,"month":4,"date_of_month":25,"day_of_week":3,"births":8352},{"year":1973,"month":4,"date_of_month":26,"day_of_week":4,"births":8508},{"year":1973,"month":4,"date_of_month":27,"day_of_week":5,"births":8537},{"year":1973,"month":4,"date_of_month":28,"day_of_week":6,"births":7390},{"year":1973,"month":4,"date_of_month":29,"day_of_week":7,"births":6757},{"year":1973,"month":4,"date_of_month":30,"day_of_week":1,"births":8514},{"year":1973,"month":5,"date_of_month":1,"day_of_week":2,"births":8846},{"year":1973,"month":5,"date_of_month":2,"day_of_week":3,"births":8501},{"year":1973,"month":5,"date_of_month":3,"day_of_week":4,"births":8321},{"year":1973,"month":5,"date_of_month":4,"day_of_week":5,"births":8296},{"year":1973,"month":5,"date_of_month":5,"day_of_week":6,"births":7546},{"year":1973,"month":5,"date_of_month":6,"day_of_week":7,"births":6892},{"year":1973,"month":5,"date_of_month":7,"day_of_week":1,"births":8274},{"year":1973,"month":5,"date_of_month":8,"day_of_week":2,"births":8980},{"year":1973,"month":5,"date_of_month":9,"day_of_week":3,"births":8626},{"year":1973,"month":5,"date_of_month":10,"day_of_week":4,"births":8438},{"year":1973,"month":5,"date_of_month":11,"day_of_week":5,"births":8619},{"year":1973,"month":5,"date_of_month":12,"day_of_week":6,"births":7439},{"year":1973,"month":5,"date_of_month":13,"day_of_week":7,"births":6989},{"year":1973,"month":5,"date_of_month":14,"day_of_week":1,"births":8236},{"year":1973,"month":5,"date_of_month":15,"day_of_week":2,"births":8776},{"year":1973,"month":5,"date_of_month":16,"day_of_week":3,"births":8545},{"year":1973,"month":5,"date_of_month":17,"day_of_week":4,"births":8549},{"year":1973,"month":5,"date_of_month":18,"day_of_week":5,"births":8584},{"year":1973,"month":5,"date_of_month":19,"day_of_week":6,"births":7699},{"year":1973,"month":5,"date_of_month":20,"day_of_week":7,"births":7165},{"year":1973,"month":5,"date_of_month":21,"day_of_week":1,"births":8661},{"year":1973,"month":5,"date_of_month":22,"day_of_week":2,"births":8767},{"year":1973,"month":5,"date_of_month":23,"day_of_week":3,"births":8506},{"year":1973,"month":5,"date_of_month":24,"day_of_week":4,"births":8429},{"year":1973,"month":5,"date_of_month":25,"day_of_week":5,"births":9097},{"year":1973,"month":5,"date_of_month":26,"day_of_week":6,"births":7708},{"year":1973,"month":5,"date_of_month":27,"day_of_week":7,"births":7179},{"year":1973,"month":5,"date_of_month":28,"day_of_week":1,"births":7303},{"year":1973,"month":5,"date_of_month":29,"day_of_week":2,"births":8909},{"year":1973,"month":5,"date_of_month":30,"day_of_week":3,"births":8785},{"year":1973,"month":5,"date_of_month":31,"day_of_week":4,"births":8588},{"year":1973,"month":6,"date_of_month":1,"day_of_week":5,"births":8855},{"year":1973,"month":6,"date_of_month":2,"day_of_week":6,"births":7846},{"year":1973,"month":6,"date_of_month":3,"day_of_week":7,"births":7209},{"year":1973,"month":6,"date_of_month":4,"day_of_week":1,"births":8505},{"year":1973,"month":6,"date_of_month":5,"day_of_week":2,"births":8898},{"year":1973,"month":6,"date_of_month":6,"day_of_week":3,"births":8706},{"year":1973,"month":6,"date_of_month":7,"day_of_week":4,"births":8786},{"year":1973,"month":6,"date_of_month":8,"day_of_week":5,"births":8801},{"year":1973,"month":6,"date_of_month":9,"day_of_week":6,"births":7930},{"year":1973,"month":6,"date_of_month":10,"day_of_week":7,"births":7330},{"year":1973,"month":6,"date_of_month":11,"day_of_week":1,"births":8896},{"year":1973,"month":6,"date_of_month":12,"day_of_week":2,"births":9026},{"year":1973,"month":6,"date_of_month":13,"day_of_week":3,"births":8730},{"year":1973,"month":6,"date_of_month":14,"day_of_week":4,"births":8625},{"year":1973,"month":6,"date_of_month":15,"day_of_week":5,"births":8822},{"year":1973,"month":6,"date_of_month":16,"day_of_week":6,"births":8025},{"year":1973,"month":6,"date_of_month":17,"day_of_week":7,"births":7405},{"year":1973,"month":6,"date_of_month":18,"day_of_week":1,"births":8959},{"year":1973,"month":6,"date_of_month":19,"day_of_week":2,"births":9046},{"year":1973,"month":6,"date_of_month":20,"day_of_week":3,"births":8702},{"year":1973,"month":6,"date_of_month":21,"day_of_week":4,"births":8782},{"year":1973,"month":6,"date_of_month":22,"day_of_week":5,"births":8928},{"year":1973,"month":6,"date_of_month":23,"day_of_week":6,"births":7782},{"year":1973,"month":6,"date_of_month":24,"day_of_week":7,"births":7281},{"year":1973,"month":6,"date_of_month":25,"day_of_week":1,"births":8790},{"year":1973,"month":6,"date_of_month":26,"day_of_week":2,"births":9081},{"year":1973,"month":6,"date_of_month":27,"day_of_week":3,"births":9012},{"year":1973,"month":6,"date_of_month":28,"day_of_week":4,"births":9068},{"year":1973,"month":6,"date_of_month":29,"day_of_week":5,"births":9008},{"year":1973,"month":6,"date_of_month":30,"day_of_week":6,"births":7931},{"year":1973,"month":7,"date_of_month":1,"day_of_week":7,"births":7561},{"year":1973,"month":7,"date_of_month":2,"day_of_week":1,"births":9003},{"year":1973,"month":7,"date_of_month":3,"day_of_week":2,"births":9829},{"year":1973,"month":7,"date_of_month":4,"day_of_week":3,"births":7910},{"year":1973,"month":7,"date_of_month":5,"day_of_week":4,"births":9168},{"year":1973,"month":7,"date_of_month":6,"day_of_week":5,"births":9450},{"year":1973,"month":7,"date_of_month":7,"day_of_week":6,"births":8352},{"year":1973,"month":7,"date_of_month":8,"day_of_week":7,"births":7787},{"year":1973,"month":7,"date_of_month":9,"day_of_week":1,"births":9326},{"year":1973,"month":7,"date_of_month":10,"day_of_week":2,"births":9627},{"year":1973,"month":7,"date_of_month":11,"day_of_week":3,"births":9197},{"year":1973,"month":7,"date_of_month":12,"day_of_week":4,"births":8939},{"year":1973,"month":7,"date_of_month":13,"day_of_week":5,"births":9028},{"year":1973,"month":7,"date_of_month":14,"day_of_week":6,"births":8445},{"year":1973,"month":7,"date_of_month":15,"day_of_week":7,"births":7551},{"year":1973,"month":7,"date_of_month":16,"day_of_week":1,"births":9090},{"year":1973,"month":7,"date_of_month":17,"day_of_week":2,"births":9639},{"year":1973,"month":7,"date_of_month":18,"day_of_week":3,"births":9272},{"year":1973,"month":7,"date_of_month":19,"day_of_week":4,"births":9290},{"year":1973,"month":7,"date_of_month":20,"day_of_week":5,"births":9470},{"year":1973,"month":7,"date_of_month":21,"day_of_week":6,"births":8295},{"year":1973,"month":7,"date_of_month":22,"day_of_week":7,"births":7644},{"year":1973,"month":7,"date_of_month":23,"day_of_week":1,"births":9236},{"year":1973,"month":7,"date_of_month":24,"day_of_week":2,"births":9450},{"year":1973,"month":7,"date_of_month":25,"day_of_week":3,"births":9493},{"year":1973,"month":7,"date_of_month":26,"day_of_week":4,"births":9332},{"year":1973,"month":7,"date_of_month":27,"day_of_week":5,"births":9416},{"year":1973,"month":7,"date_of_month":28,"day_of_week":6,"births":8424},{"year":1973,"month":7,"date_of_month":29,"day_of_week":7,"births":7745},{"year":1973,"month":7,"date_of_month":30,"day_of_week":1,"births":9225},{"year":1973,"month":7,"date_of_month":31,"day_of_week":2,"births":9702},{"year":1973,"month":8,"date_of_month":1,"day_of_week":3,"births":9437},{"year":1973,"month":8,"date_of_month":2,"day_of_week":4,"births":9399},{"year":1973,"month":8,"date_of_month":3,"day_of_week":5,"births":9421},{"year":1973,"month":8,"date_of_month":4,"day_of_week":6,"births":8095},{"year":1973,"month":8,"date_of_month":5,"day_of_week":7,"births":7616},{"year":1973,"month":8,"date_of_month":6,"day_of_week":1,"births":9444},{"year":1973,"month":8,"date_of_month":7,"day_of_week":2,"births":9770},{"year":1973,"month":8,"date_of_month":8,"day_of_week":3,"births":9598},{"year":1973,"month":8,"date_of_month":9,"day_of_week":4,"births":9418},{"year":1973,"month":8,"date_of_month":10,"day_of_week":5,"births":9829},{"year":1973,"month":8,"date_of_month":11,"day_of_week":6,"births":8192},{"year":1973,"month":8,"date_of_month":12,"day_of_week":7,"births":7908},{"year":1973,"month":8,"date_of_month":13,"day_of_week":1,"births":9208},{"year":1973,"month":8,"date_of_month":14,"day_of_week":2,"births":9842},{"year":1973,"month":8,"date_of_month":15,"day_of_week":3,"births":9540},{"year":1973,"month":8,"date_of_month":16,"day_of_week":4,"births":9283},{"year":1973,"month":8,"date_of_month":17,"day_of_week":5,"births":9309},{"year":1973,"month":8,"date_of_month":18,"day_of_week":6,"births":8280},{"year":1973,"month":8,"date_of_month":19,"day_of_week":7,"births":7781},{"year":1973,"month":8,"date_of_month":20,"day_of_week":1,"births":9467},{"year":1973,"month":8,"date_of_month":21,"day_of_week":2,"births":9641},{"year":1973,"month":8,"date_of_month":22,"day_of_week":3,"births":9417},{"year":1973,"month":8,"date_of_month":23,"day_of_week":4,"births":9049},{"year":1973,"month":8,"date_of_month":24,"day_of_week":5,"births":9348},{"year":1973,"month":8,"date_of_month":25,"day_of_week":6,"births":8320},{"year":1973,"month":8,"date_of_month":26,"day_of_week":7,"births":7978},{"year":1973,"month":8,"date_of_month":27,"day_of_week":1,"births":9497},{"year":1973,"month":8,"date_of_month":28,"day_of_week":2,"births":9701},{"year":1973,"month":8,"date_of_month":29,"day_of_week":3,"births":9408},{"year":1973,"month":8,"date_of_month":30,"day_of_week":4,"births":9556},{"year":1973,"month":8,"date_of_month":31,"day_of_week":5,"births":9391},{"year":1973,"month":9,"date_of_month":1,"day_of_week":6,"births":8400},{"year":1973,"month":9,"date_of_month":2,"day_of_week":7,"births":7707},{"year":1973,"month":9,"date_of_month":3,"day_of_week":1,"births":7781},{"year":1973,"month":9,"date_of_month":4,"day_of_week":2,"births":9514},{"year":1973,"month":9,"date_of_month":5,"day_of_week":3,"births":9897},{"year":1973,"month":9,"date_of_month":6,"day_of_week":4,"births":9211},{"year":1973,"month":9,"date_of_month":7,"day_of_week":5,"births":9417},{"year":1973,"month":9,"date_of_month":8,"day_of_week":6,"births":8257},{"year":1973,"month":9,"date_of_month":9,"day_of_week":7,"births":7961},{"year":1973,"month":9,"date_of_month":10,"day_of_week":1,"births":9165},{"year":1973,"month":9,"date_of_month":11,"day_of_week":2,"births":9701},{"year":1973,"month":9,"date_of_month":12,"day_of_week":3,"births":9303},{"year":1973,"month":9,"date_of_month":13,"day_of_week":4,"births":9106},{"year":1973,"month":9,"date_of_month":14,"day_of_week":5,"births":9669},{"year":1973,"month":9,"date_of_month":15,"day_of_week":6,"births":8507},{"year":1973,"month":9,"date_of_month":16,"day_of_week":7,"births":7994},{"year":1973,"month":9,"date_of_month":17,"day_of_week":1,"births":9538},{"year":1973,"month":9,"date_of_month":18,"day_of_week":2,"births":9625},{"year":1973,"month":9,"date_of_month":19,"day_of_week":3,"births":9364},{"year":1973,"month":9,"date_of_month":20,"day_of_week":4,"births":9768},{"year":1973,"month":9,"date_of_month":21,"day_of_week":5,"births":9617},{"year":1973,"month":9,"date_of_month":22,"day_of_week":6,"births":8731},{"year":1973,"month":9,"date_of_month":23,"day_of_week":7,"births":8256},{"year":1973,"month":9,"date_of_month":24,"day_of_week":1,"births":9611},{"year":1973,"month":9,"date_of_month":25,"day_of_week":2,"births":10089},{"year":1973,"month":9,"date_of_month":26,"day_of_week":3,"births":9795},{"year":1973,"month":9,"date_of_month":27,"day_of_week":4,"births":9597},{"year":1973,"month":9,"date_of_month":28,"day_of_week":5,"births":9547},{"year":1973,"month":9,"date_of_month":29,"day_of_week":6,"births":8433},{"year":1973,"month":9,"date_of_month":30,"day_of_week":7,"births":8014},{"year":1973,"month":10,"date_of_month":1,"day_of_week":1,"births":9297},{"year":1973,"month":10,"date_of_month":2,"day_of_week":2,"births":9676},{"year":1973,"month":10,"date_of_month":3,"day_of_week":3,"births":9069},{"year":1973,"month":10,"date_of_month":4,"day_of_week":4,"births":8949},{"year":1973,"month":10,"date_of_month":5,"day_of_week":5,"births":9247},{"year":1973,"month":10,"date_of_month":6,"day_of_week":6,"births":8174},{"year":1973,"month":10,"date_of_month":7,"day_of_week":7,"births":7616},{"year":1973,"month":10,"date_of_month":8,"day_of_week":1,"births":9056},{"year":1973,"month":10,"date_of_month":9,"day_of_week":2,"births":9309},{"year":1973,"month":10,"date_of_month":10,"day_of_week":3,"births":9127},{"year":1973,"month":10,"date_of_month":11,"day_of_week":4,"births":8822},{"year":1973,"month":10,"date_of_month":12,"day_of_week":5,"births":8928},{"year":1973,"month":10,"date_of_month":13,"day_of_week":6,"births":7928},{"year":1973,"month":10,"date_of_month":14,"day_of_week":7,"births":7443},{"year":1973,"month":10,"date_of_month":15,"day_of_week":1,"births":8823},{"year":1973,"month":10,"date_of_month":16,"day_of_week":2,"births":9105},{"year":1973,"month":10,"date_of_month":17,"day_of_week":3,"births":8714},{"year":1973,"month":10,"date_of_month":18,"day_of_week":4,"births":8702},{"year":1973,"month":10,"date_of_month":19,"day_of_week":5,"births":8853},{"year":1973,"month":10,"date_of_month":20,"day_of_week":6,"births":7637},{"year":1973,"month":10,"date_of_month":21,"day_of_week":7,"births":7046},{"year":1973,"month":10,"date_of_month":22,"day_of_week":1,"births":8430},{"year":1973,"month":10,"date_of_month":23,"day_of_week":2,"births":9255},{"year":1973,"month":10,"date_of_month":24,"day_of_week":3,"births":8805},{"year":1973,"month":10,"date_of_month":25,"day_of_week":4,"births":8507},{"year":1973,"month":10,"date_of_month":26,"day_of_week":5,"births":8753},{"year":1973,"month":10,"date_of_month":27,"day_of_week":6,"births":7746},{"year":1973,"month":10,"date_of_month":28,"day_of_week":7,"births":7374},{"year":1973,"month":10,"date_of_month":29,"day_of_week":1,"births":8564},{"year":1973,"month":10,"date_of_month":30,"day_of_week":2,"births":8728},{"year":1973,"month":10,"date_of_month":31,"day_of_week":3,"births":8695},{"year":1973,"month":11,"date_of_month":1,"day_of_week":4,"births":8763},{"year":1973,"month":11,"date_of_month":2,"day_of_week":5,"births":8759},{"year":1973,"month":11,"date_of_month":3,"day_of_week":6,"births":7741},{"year":1973,"month":11,"date_of_month":4,"day_of_week":7,"births":7245},{"year":1973,"month":11,"date_of_month":5,"day_of_week":1,"births":8712},{"year":1973,"month":11,"date_of_month":6,"day_of_week":2,"births":8608},{"year":1973,"month":11,"date_of_month":7,"day_of_week":3,"births":8716},{"year":1973,"month":11,"date_of_month":8,"day_of_week":4,"births":8646},{"year":1973,"month":11,"date_of_month":9,"day_of_week":5,"births":8997},{"year":1973,"month":11,"date_of_month":10,"day_of_week":6,"births":7859},{"year":1973,"month":11,"date_of_month":11,"day_of_week":7,"births":7420},{"year":1973,"month":11,"date_of_month":12,"day_of_week":1,"births":8684},{"year":1973,"month":11,"date_of_month":13,"day_of_week":2,"births":9149},{"year":1973,"month":11,"date_of_month":14,"day_of_week":3,"births":8839},{"year":1973,"month":11,"date_of_month":15,"day_of_week":4,"births":8721},{"year":1973,"month":11,"date_of_month":16,"day_of_week":5,"births":9139},{"year":1973,"month":11,"date_of_month":17,"day_of_week":6,"births":7877},{"year":1973,"month":11,"date_of_month":18,"day_of_week":7,"births":7420},{"year":1973,"month":11,"date_of_month":19,"day_of_week":1,"births":8875},{"year":1973,"month":11,"date_of_month":20,"day_of_week":2,"births":9399},{"year":1973,"month":11,"date_of_month":21,"day_of_week":3,"births":8596},{"year":1973,"month":11,"date_of_month":22,"day_of_week":4,"births":7049},{"year":1973,"month":11,"date_of_month":23,"day_of_week":5,"births":8242},{"year":1973,"month":11,"date_of_month":24,"day_of_week":6,"births":7760},{"year":1973,"month":11,"date_of_month":25,"day_of_week":7,"births":7379},{"year":1973,"month":11,"date_of_month":26,"day_of_week":1,"births":9052},{"year":1973,"month":11,"date_of_month":27,"day_of_week":2,"births":9345},{"year":1973,"month":11,"date_of_month":28,"day_of_week":3,"births":8592},{"year":1973,"month":11,"date_of_month":29,"day_of_week":4,"births":8552},{"year":1973,"month":11,"date_of_month":30,"day_of_week":5,"births":8590},{"year":1973,"month":12,"date_of_month":1,"day_of_week":6,"births":7667},{"year":1973,"month":12,"date_of_month":2,"day_of_week":7,"births":7312},{"year":1973,"month":12,"date_of_month":3,"day_of_week":1,"births":8739},{"year":1973,"month":12,"date_of_month":4,"day_of_week":2,"births":9104},{"year":1973,"month":12,"date_of_month":5,"day_of_week":3,"births":8799},{"year":1973,"month":12,"date_of_month":6,"day_of_week":4,"births":8649},{"year":1973,"month":12,"date_of_month":7,"day_of_week":5,"births":8481},{"year":1973,"month":12,"date_of_month":8,"day_of_week":6,"births":7682},{"year":1973,"month":12,"date_of_month":9,"day_of_week":7,"births":7456},{"year":1973,"month":12,"date_of_month":10,"day_of_week":1,"births":8892},{"year":1973,"month":12,"date_of_month":11,"day_of_week":2,"births":9058},{"year":1973,"month":12,"date_of_month":12,"day_of_week":3,"births":8794},{"year":1973,"month":12,"date_of_month":13,"day_of_week":4,"births":8751},{"year":1973,"month":12,"date_of_month":14,"day_of_week":5,"births":9177},{"year":1973,"month":12,"date_of_month":15,"day_of_week":6,"births":7821},{"year":1973,"month":12,"date_of_month":16,"day_of_week":7,"births":7664},{"year":1973,"month":12,"date_of_month":17,"day_of_week":1,"births":9410},{"year":1973,"month":12,"date_of_month":18,"day_of_week":2,"births":9536},{"year":1973,"month":12,"date_of_month":19,"day_of_week":3,"births":9317},{"year":1973,"month":12,"date_of_month":20,"day_of_week":4,"births":8981},{"year":1973,"month":12,"date_of_month":21,"day_of_week":5,"births":8931},{"year":1973,"month":12,"date_of_month":22,"day_of_week":6,"births":7585},{"year":1973,"month":12,"date_of_month":23,"day_of_week":7,"births":7012},{"year":1973,"month":12,"date_of_month":24,"day_of_week":1,"births":7300},{"year":1973,"month":12,"date_of_month":25,"day_of_week":2,"births":6964},{"year":1973,"month":12,"date_of_month":26,"day_of_week":3,"births":8136},{"year":1973,"month":12,"date_of_month":27,"day_of_week":4,"births":9509},{"year":1973,"month":12,"date_of_month":28,"day_of_week":5,"births":9950},{"year":1973,"month":12,"date_of_month":29,"day_of_week":6,"births":8320},{"year":1973,"month":12,"date_of_month":30,"day_of_week":7,"births":7365},{"year":1973,"month":12,"date_of_month":31,"day_of_week":1,"births":8966},{"year":1974,"month":1,"date_of_month":1,"day_of_week":2,"births":7002},{"year":1974,"month":1,"date_of_month":2,"day_of_week":3,"births":7809},{"year":1974,"month":1,"date_of_month":3,"day_of_week":4,"births":8377},{"year":1974,"month":1,"date_of_month":4,"day_of_week":5,"births":8851},{"year":1974,"month":1,"date_of_month":5,"day_of_week":6,"births":7827},{"year":1974,"month":1,"date_of_month":6,"day_of_week":7,"births":7093},{"year":1974,"month":1,"date_of_month":7,"day_of_week":1,"births":8623},{"year":1974,"month":1,"date_of_month":8,"day_of_week":2,"births":8786},{"year":1974,"month":1,"date_of_month":9,"day_of_week":3,"births":8346},{"year":1974,"month":1,"date_of_month":10,"day_of_week":4,"births":8682},{"year":1974,"month":1,"date_of_month":11,"day_of_week":5,"births":9044},{"year":1974,"month":1,"date_of_month":12,"day_of_week":6,"births":7769},{"year":1974,"month":1,"date_of_month":13,"day_of_week":7,"births":7352},{"year":1974,"month":1,"date_of_month":14,"day_of_week":1,"births":8796},{"year":1974,"month":1,"date_of_month":15,"day_of_week":2,"births":8939},{"year":1974,"month":1,"date_of_month":16,"day_of_week":3,"births":8732},{"year":1974,"month":1,"date_of_month":17,"day_of_week":4,"births":8604},{"year":1974,"month":1,"date_of_month":18,"day_of_week":5,"births":8971},{"year":1974,"month":1,"date_of_month":19,"day_of_week":6,"births":7751},{"year":1974,"month":1,"date_of_month":20,"day_of_week":7,"births":7479},{"year":1974,"month":1,"date_of_month":21,"day_of_week":1,"births":9058},{"year":1974,"month":1,"date_of_month":22,"day_of_week":2,"births":8767},{"year":1974,"month":1,"date_of_month":23,"day_of_week":3,"births":8457},{"year":1974,"month":1,"date_of_month":24,"day_of_week":4,"births":8692},{"year":1974,"month":1,"date_of_month":25,"day_of_week":5,"births":8690},{"year":1974,"month":1,"date_of_month":26,"day_of_week":6,"births":7799},{"year":1974,"month":1,"date_of_month":27,"day_of_week":7,"births":7541},{"year":1974,"month":1,"date_of_month":28,"day_of_week":1,"births":8462},{"year":1974,"month":1,"date_of_month":29,"day_of_week":2,"births":8911},{"year":1974,"month":1,"date_of_month":30,"day_of_week":3,"births":8439},{"year":1974,"month":1,"date_of_month":31,"day_of_week":4,"births":8620},{"year":1974,"month":2,"date_of_month":1,"day_of_week":5,"births":8768},{"year":1974,"month":2,"date_of_month":2,"day_of_week":6,"births":7853},{"year":1974,"month":2,"date_of_month":3,"day_of_week":7,"births":7432},{"year":1974,"month":2,"date_of_month":4,"day_of_week":1,"births":8651},{"year":1974,"month":2,"date_of_month":5,"day_of_week":2,"births":8892},{"year":1974,"month":2,"date_of_month":6,"day_of_week":3,"births":8792},{"year":1974,"month":2,"date_of_month":7,"day_of_week":4,"births":8705},{"year":1974,"month":2,"date_of_month":8,"day_of_week":5,"births":8822},{"year":1974,"month":2,"date_of_month":9,"day_of_week":6,"births":7692},{"year":1974,"month":2,"date_of_month":10,"day_of_week":7,"births":7150},{"year":1974,"month":2,"date_of_month":11,"day_of_week":1,"births":8766},{"year":1974,"month":2,"date_of_month":12,"day_of_week":2,"births":8924},{"year":1974,"month":2,"date_of_month":13,"day_of_week":3,"births":8808},{"year":1974,"month":2,"date_of_month":14,"day_of_week":4,"births":8895},{"year":1974,"month":2,"date_of_month":15,"day_of_week":5,"births":9034},{"year":1974,"month":2,"date_of_month":16,"day_of_week":6,"births":7939},{"year":1974,"month":2,"date_of_month":17,"day_of_week":7,"births":7456},{"year":1974,"month":2,"date_of_month":18,"day_of_week":1,"births":8637},{"year":1974,"month":2,"date_of_month":19,"day_of_week":2,"births":9016},{"year":1974,"month":2,"date_of_month":20,"day_of_week":3,"births":8909},{"year":1974,"month":2,"date_of_month":21,"day_of_week":4,"births":8748},{"year":1974,"month":2,"date_of_month":22,"day_of_week":5,"births":9060},{"year":1974,"month":2,"date_of_month":23,"day_of_week":6,"births":8151},{"year":1974,"month":2,"date_of_month":24,"day_of_week":7,"births":7558},{"year":1974,"month":2,"date_of_month":25,"day_of_week":1,"births":8512},{"year":1974,"month":2,"date_of_month":26,"day_of_week":2,"births":8856},{"year":1974,"month":2,"date_of_month":27,"day_of_week":3,"births":8710},{"year":1974,"month":2,"date_of_month":28,"day_of_week":4,"births":8534},{"year":1974,"month":3,"date_of_month":1,"day_of_week":5,"births":8917},{"year":1974,"month":3,"date_of_month":2,"day_of_week":6,"births":8083},{"year":1974,"month":3,"date_of_month":3,"day_of_week":7,"births":7650},{"year":1974,"month":3,"date_of_month":4,"day_of_week":1,"births":8890},{"year":1974,"month":3,"date_of_month":5,"day_of_week":2,"births":9270},{"year":1974,"month":3,"date_of_month":6,"day_of_week":3,"births":8686},{"year":1974,"month":3,"date_of_month":7,"day_of_week":4,"births":8640},{"year":1974,"month":3,"date_of_month":8,"day_of_week":5,"births":8964},{"year":1974,"month":3,"date_of_month":9,"day_of_week":6,"births":7950},{"year":1974,"month":3,"date_of_month":10,"day_of_week":7,"births":7417},{"year":1974,"month":3,"date_of_month":11,"day_of_week":1,"births":8837},{"year":1974,"month":3,"date_of_month":12,"day_of_week":2,"births":8884},{"year":1974,"month":3,"date_of_month":13,"day_of_week":3,"births":8507},{"year":1974,"month":3,"date_of_month":14,"day_of_week":4,"births":8402},{"year":1974,"month":3,"date_of_month":15,"day_of_week":5,"births":8890},{"year":1974,"month":3,"date_of_month":16,"day_of_week":6,"births":7834},{"year":1974,"month":3,"date_of_month":17,"day_of_week":7,"births":7226},{"year":1974,"month":3,"date_of_month":18,"day_of_week":1,"births":8694},{"year":1974,"month":3,"date_of_month":19,"day_of_week":2,"births":8978},{"year":1974,"month":3,"date_of_month":20,"day_of_week":3,"births":8455},{"year":1974,"month":3,"date_of_month":21,"day_of_week":4,"births":8400},{"year":1974,"month":3,"date_of_month":22,"day_of_week":5,"births":8668},{"year":1974,"month":3,"date_of_month":23,"day_of_week":6,"births":7773},{"year":1974,"month":3,"date_of_month":24,"day_of_week":7,"births":7034},{"year":1974,"month":3,"date_of_month":25,"day_of_week":1,"births":8570},{"year":1974,"month":3,"date_of_month":26,"day_of_week":2,"births":8756},{"year":1974,"month":3,"date_of_month":27,"day_of_week":3,"births":8515},{"year":1974,"month":3,"date_of_month":28,"day_of_week":4,"births":8461},{"year":1974,"month":3,"date_of_month":29,"day_of_week":5,"births":8639},{"year":1974,"month":3,"date_of_month":30,"day_of_week":6,"births":7526},{"year":1974,"month":3,"date_of_month":31,"day_of_week":7,"births":7305},{"year":1974,"month":4,"date_of_month":1,"day_of_week":1,"births":8550},{"year":1974,"month":4,"date_of_month":2,"day_of_week":2,"births":9148},{"year":1974,"month":4,"date_of_month":3,"day_of_week":3,"births":8571},{"year":1974,"month":4,"date_of_month":4,"day_of_week":4,"births":8517},{"year":1974,"month":4,"date_of_month":5,"day_of_week":5,"births":8656},{"year":1974,"month":4,"date_of_month":6,"day_of_week":6,"births":7455},{"year":1974,"month":4,"date_of_month":7,"day_of_week":7,"births":7051},{"year":1974,"month":4,"date_of_month":8,"day_of_week":1,"births":8436},{"year":1974,"month":4,"date_of_month":9,"day_of_week":2,"births":8917},{"year":1974,"month":4,"date_of_month":10,"day_of_week":3,"births":8446},{"year":1974,"month":4,"date_of_month":11,"day_of_week":4,"births":8259},{"year":1974,"month":4,"date_of_month":12,"day_of_week":5,"births":8386},{"year":1974,"month":4,"date_of_month":13,"day_of_week":6,"births":7609},{"year":1974,"month":4,"date_of_month":14,"day_of_week":7,"births":7032},{"year":1974,"month":4,"date_of_month":15,"day_of_week":1,"births":8342},{"year":1974,"month":4,"date_of_month":16,"day_of_week":2,"births":8615},{"year":1974,"month":4,"date_of_month":17,"day_of_week":3,"births":8602},{"year":1974,"month":4,"date_of_month":18,"day_of_week":4,"births":8333},{"year":1974,"month":4,"date_of_month":19,"day_of_week":5,"births":8587},{"year":1974,"month":4,"date_of_month":20,"day_of_week":6,"births":7480},{"year":1974,"month":4,"date_of_month":21,"day_of_week":7,"births":7208},{"year":1974,"month":4,"date_of_month":22,"day_of_week":1,"births":8497},{"year":1974,"month":4,"date_of_month":23,"day_of_week":2,"births":9035},{"year":1974,"month":4,"date_of_month":24,"day_of_week":3,"births":8665},{"year":1974,"month":4,"date_of_month":25,"day_of_week":4,"births":8556},{"year":1974,"month":4,"date_of_month":26,"day_of_week":5,"births":8762},{"year":1974,"month":4,"date_of_month":27,"day_of_week":6,"births":7490},{"year":1974,"month":4,"date_of_month":28,"day_of_week":7,"births":7055},{"year":1974,"month":4,"date_of_month":29,"day_of_week":1,"births":8332},{"year":1974,"month":4,"date_of_month":30,"day_of_week":2,"births":8677},{"year":1974,"month":5,"date_of_month":1,"day_of_week":3,"births":8574},{"year":1974,"month":5,"date_of_month":2,"day_of_week":4,"births":8238},{"year":1974,"month":5,"date_of_month":3,"day_of_week":5,"births":8660},{"year":1974,"month":5,"date_of_month":4,"day_of_week":6,"births":7384},{"year":1974,"month":5,"date_of_month":5,"day_of_week":7,"births":6928},{"year":1974,"month":5,"date_of_month":6,"day_of_week":1,"births":8317},{"year":1974,"month":5,"date_of_month":7,"day_of_week":2,"births":8886},{"year":1974,"month":5,"date_of_month":8,"day_of_week":3,"births":8484},{"year":1974,"month":5,"date_of_month":9,"day_of_week":4,"births":8525},{"year":1974,"month":5,"date_of_month":10,"day_of_week":5,"births":8595},{"year":1974,"month":5,"date_of_month":11,"day_of_week":6,"births":7710},{"year":1974,"month":5,"date_of_month":12,"day_of_week":7,"births":7086},{"year":1974,"month":5,"date_of_month":13,"day_of_week":1,"births":8639},{"year":1974,"month":5,"date_of_month":14,"day_of_week":2,"births":8886},{"year":1974,"month":5,"date_of_month":15,"day_of_week":3,"births":9020},{"year":1974,"month":5,"date_of_month":16,"day_of_week":4,"births":8630},{"year":1974,"month":5,"date_of_month":17,"day_of_week":5,"births":8873},{"year":1974,"month":5,"date_of_month":18,"day_of_week":6,"births":7667},{"year":1974,"month":5,"date_of_month":19,"day_of_week":7,"births":6896},{"year":1974,"month":5,"date_of_month":20,"day_of_week":1,"births":8793},{"year":1974,"month":5,"date_of_month":21,"day_of_week":2,"births":9061},{"year":1974,"month":5,"date_of_month":22,"day_of_week":3,"births":8776},{"year":1974,"month":5,"date_of_month":23,"day_of_week":4,"births":8577},{"year":1974,"month":5,"date_of_month":24,"day_of_week":5,"births":8924},{"year":1974,"month":5,"date_of_month":25,"day_of_week":6,"births":7593},{"year":1974,"month":5,"date_of_month":26,"day_of_week":7,"births":6932},{"year":1974,"month":5,"date_of_month":27,"day_of_week":1,"births":7460},{"year":1974,"month":5,"date_of_month":28,"day_of_week":2,"births":8570},{"year":1974,"month":5,"date_of_month":29,"day_of_week":3,"births":9063},{"year":1974,"month":5,"date_of_month":30,"day_of_week":4,"births":8958},{"year":1974,"month":5,"date_of_month":31,"day_of_week":5,"births":9050},{"year":1974,"month":6,"date_of_month":1,"day_of_week":6,"births":7448},{"year":1974,"month":6,"date_of_month":2,"day_of_week":7,"births":7046},{"year":1974,"month":6,"date_of_month":3,"day_of_week":1,"births":8314},{"year":1974,"month":6,"date_of_month":4,"day_of_week":2,"births":8910},{"year":1974,"month":6,"date_of_month":5,"day_of_week":3,"births":8737},{"year":1974,"month":6,"date_of_month":6,"day_of_week":4,"births":8599},{"year":1974,"month":6,"date_of_month":7,"day_of_week":5,"births":9110},{"year":1974,"month":6,"date_of_month":8,"day_of_week":6,"births":7471},{"year":1974,"month":6,"date_of_month":9,"day_of_week":7,"births":7181},{"year":1974,"month":6,"date_of_month":10,"day_of_week":1,"births":8939},{"year":1974,"month":6,"date_of_month":11,"day_of_week":2,"births":8754},{"year":1974,"month":6,"date_of_month":12,"day_of_week":3,"births":8603},{"year":1974,"month":6,"date_of_month":13,"day_of_week":4,"births":8456},{"year":1974,"month":6,"date_of_month":14,"day_of_week":5,"births":8898},{"year":1974,"month":6,"date_of_month":15,"day_of_week":6,"births":7666},{"year":1974,"month":6,"date_of_month":16,"day_of_week":7,"births":7211},{"year":1974,"month":6,"date_of_month":17,"day_of_week":1,"births":8676},{"year":1974,"month":6,"date_of_month":18,"day_of_week":2,"births":9016},{"year":1974,"month":6,"date_of_month":19,"day_of_week":3,"births":8864},{"year":1974,"month":6,"date_of_month":20,"day_of_week":4,"births":8833},{"year":1974,"month":6,"date_of_month":21,"day_of_week":5,"births":9364},{"year":1974,"month":6,"date_of_month":22,"day_of_week":6,"births":8003},{"year":1974,"month":6,"date_of_month":23,"day_of_week":7,"births":7162},{"year":1974,"month":6,"date_of_month":24,"day_of_week":1,"births":8503},{"year":1974,"month":6,"date_of_month":25,"day_of_week":2,"births":9038},{"year":1974,"month":6,"date_of_month":26,"day_of_week":3,"births":8999},{"year":1974,"month":6,"date_of_month":27,"day_of_week":4,"births":8882},{"year":1974,"month":6,"date_of_month":28,"day_of_week":5,"births":9089},{"year":1974,"month":6,"date_of_month":29,"day_of_week":6,"births":8011},{"year":1974,"month":6,"date_of_month":30,"day_of_week":7,"births":7531},{"year":1974,"month":7,"date_of_month":1,"day_of_week":1,"births":9216},{"year":1974,"month":7,"date_of_month":2,"day_of_week":2,"births":9923},{"year":1974,"month":7,"date_of_month":3,"day_of_week":3,"births":9693},{"year":1974,"month":7,"date_of_month":4,"day_of_week":4,"births":7924},{"year":1974,"month":7,"date_of_month":5,"day_of_week":5,"births":9051},{"year":1974,"month":7,"date_of_month":6,"day_of_week":6,"births":8285},{"year":1974,"month":7,"date_of_month":7,"day_of_week":7,"births":7626},{"year":1974,"month":7,"date_of_month":8,"day_of_week":1,"births":9472},{"year":1974,"month":7,"date_of_month":9,"day_of_week":2,"births":9860},{"year":1974,"month":7,"date_of_month":10,"day_of_week":3,"births":9423},{"year":1974,"month":7,"date_of_month":11,"day_of_week":4,"births":9218},{"year":1974,"month":7,"date_of_month":12,"day_of_week":5,"births":9283},{"year":1974,"month":7,"date_of_month":13,"day_of_week":6,"births":8228},{"year":1974,"month":7,"date_of_month":14,"day_of_week":7,"births":7605},{"year":1974,"month":7,"date_of_month":15,"day_of_week":1,"births":9267},{"year":1974,"month":7,"date_of_month":16,"day_of_week":2,"births":9697},{"year":1974,"month":7,"date_of_month":17,"day_of_week":3,"births":9419},{"year":1974,"month":7,"date_of_month":18,"day_of_week":4,"births":9122},{"year":1974,"month":7,"date_of_month":19,"day_of_week":5,"births":9523},{"year":1974,"month":7,"date_of_month":20,"day_of_week":6,"births":8471},{"year":1974,"month":7,"date_of_month":21,"day_of_week":7,"births":7433},{"year":1974,"month":7,"date_of_month":22,"day_of_week":1,"births":9314},{"year":1974,"month":7,"date_of_month":23,"day_of_week":2,"births":10110},{"year":1974,"month":7,"date_of_month":24,"day_of_week":3,"births":9327},{"year":1974,"month":7,"date_of_month":25,"day_of_week":4,"births":9263},{"year":1974,"month":7,"date_of_month":26,"day_of_week":5,"births":9574},{"year":1974,"month":7,"date_of_month":27,"day_of_week":6,"births":8492},{"year":1974,"month":7,"date_of_month":28,"day_of_week":7,"births":7872},{"year":1974,"month":7,"date_of_month":29,"day_of_week":1,"births":9454},{"year":1974,"month":7,"date_of_month":30,"day_of_week":2,"births":9821},{"year":1974,"month":7,"date_of_month":31,"day_of_week":3,"births":9591},{"year":1974,"month":8,"date_of_month":1,"day_of_week":4,"births":9707},{"year":1974,"month":8,"date_of_month":2,"day_of_week":5,"births":9636},{"year":1974,"month":8,"date_of_month":3,"day_of_week":6,"births":8470},{"year":1974,"month":8,"date_of_month":4,"day_of_week":7,"births":7813},{"year":1974,"month":8,"date_of_month":5,"day_of_week":1,"births":9124},{"year":1974,"month":8,"date_of_month":6,"day_of_week":2,"births":9967},{"year":1974,"month":8,"date_of_month":7,"day_of_week":3,"births":9616},{"year":1974,"month":8,"date_of_month":8,"day_of_week":4,"births":9550},{"year":1974,"month":8,"date_of_month":9,"day_of_week":5,"births":9696},{"year":1974,"month":8,"date_of_month":10,"day_of_week":6,"births":8431},{"year":1974,"month":8,"date_of_month":11,"day_of_week":7,"births":7724},{"year":1974,"month":8,"date_of_month":12,"day_of_week":1,"births":9643},{"year":1974,"month":8,"date_of_month":13,"day_of_week":2,"births":10213},{"year":1974,"month":8,"date_of_month":14,"day_of_week":3,"births":9586},{"year":1974,"month":8,"date_of_month":15,"day_of_week":4,"births":9825},{"year":1974,"month":8,"date_of_month":16,"day_of_week":5,"births":9835},{"year":1974,"month":8,"date_of_month":17,"day_of_week":6,"births":8556},{"year":1974,"month":8,"date_of_month":18,"day_of_week":7,"births":8073},{"year":1974,"month":8,"date_of_month":19,"day_of_week":1,"births":9582},{"year":1974,"month":8,"date_of_month":20,"day_of_week":2,"births":10153},{"year":1974,"month":8,"date_of_month":21,"day_of_week":3,"births":9711},{"year":1974,"month":8,"date_of_month":22,"day_of_week":4,"births":9335},{"year":1974,"month":8,"date_of_month":23,"day_of_week":5,"births":9795},{"year":1974,"month":8,"date_of_month":24,"day_of_week":6,"births":8486},{"year":1974,"month":8,"date_of_month":25,"day_of_week":7,"births":7854},{"year":1974,"month":8,"date_of_month":26,"day_of_week":1,"births":9556},{"year":1974,"month":8,"date_of_month":27,"day_of_week":2,"births":10075},{"year":1974,"month":8,"date_of_month":28,"day_of_week":3,"births":9599},{"year":1974,"month":8,"date_of_month":29,"day_of_week":4,"births":9544},{"year":1974,"month":8,"date_of_month":30,"day_of_week":5,"births":9780},{"year":1974,"month":8,"date_of_month":31,"day_of_week":6,"births":8537},{"year":1974,"month":9,"date_of_month":1,"day_of_week":7,"births":7909},{"year":1974,"month":9,"date_of_month":2,"day_of_week":1,"births":7969},{"year":1974,"month":9,"date_of_month":3,"day_of_week":2,"births":9471},{"year":1974,"month":9,"date_of_month":4,"day_of_week":3,"births":9980},{"year":1974,"month":9,"date_of_month":5,"day_of_week":4,"births":9581},{"year":1974,"month":9,"date_of_month":6,"day_of_week":5,"births":9727},{"year":1974,"month":9,"date_of_month":7,"day_of_week":6,"births":8550},{"year":1974,"month":9,"date_of_month":8,"day_of_week":7,"births":7889},{"year":1974,"month":9,"date_of_month":9,"day_of_week":1,"births":9796},{"year":1974,"month":9,"date_of_month":10,"day_of_week":2,"births":10074},{"year":1974,"month":9,"date_of_month":11,"day_of_week":3,"births":9797},{"year":1974,"month":9,"date_of_month":12,"day_of_week":4,"births":9832},{"year":1974,"month":9,"date_of_month":13,"day_of_week":5,"births":9868},{"year":1974,"month":9,"date_of_month":14,"day_of_week":6,"births":8869},{"year":1974,"month":9,"date_of_month":15,"day_of_week":7,"births":8266},{"year":1974,"month":9,"date_of_month":16,"day_of_week":1,"births":10050},{"year":1974,"month":9,"date_of_month":17,"day_of_week":2,"births":10275},{"year":1974,"month":9,"date_of_month":18,"day_of_week":3,"births":10033},{"year":1974,"month":9,"date_of_month":19,"day_of_week":4,"births":9982},{"year":1974,"month":9,"date_of_month":20,"day_of_week":5,"births":10324},{"year":1974,"month":9,"date_of_month":21,"day_of_week":6,"births":9004},{"year":1974,"month":9,"date_of_month":22,"day_of_week":7,"births":8622},{"year":1974,"month":9,"date_of_month":23,"day_of_week":1,"births":10137},{"year":1974,"month":9,"date_of_month":24,"day_of_week":2,"births":10375},{"year":1974,"month":9,"date_of_month":25,"day_of_week":3,"births":10043},{"year":1974,"month":9,"date_of_month":26,"day_of_week":4,"births":10129},{"year":1974,"month":9,"date_of_month":27,"day_of_week":5,"births":10288},{"year":1974,"month":9,"date_of_month":28,"day_of_week":6,"births":9243},{"year":1974,"month":9,"date_of_month":29,"day_of_week":7,"births":8585},{"year":1974,"month":9,"date_of_month":30,"day_of_week":1,"births":9975},{"year":1974,"month":10,"date_of_month":1,"day_of_week":2,"births":10264},{"year":1974,"month":10,"date_of_month":2,"day_of_week":3,"births":9895},{"year":1974,"month":10,"date_of_month":3,"day_of_week":4,"births":9767},{"year":1974,"month":10,"date_of_month":4,"day_of_week":5,"births":9842},{"year":1974,"month":10,"date_of_month":5,"day_of_week":6,"births":8693},{"year":1974,"month":10,"date_of_month":6,"day_of_week":7,"births":8092},{"year":1974,"month":10,"date_of_month":7,"day_of_week":1,"births":9756},{"year":1974,"month":10,"date_of_month":8,"day_of_week":2,"births":9808},{"year":1974,"month":10,"date_of_month":9,"day_of_week":3,"births":9505},{"year":1974,"month":10,"date_of_month":10,"day_of_week":4,"births":9695},{"year":1974,"month":10,"date_of_month":11,"day_of_week":5,"births":9717},{"year":1974,"month":10,"date_of_month":12,"day_of_week":6,"births":8335},{"year":1974,"month":10,"date_of_month":13,"day_of_week":7,"births":7767},{"year":1974,"month":10,"date_of_month":14,"day_of_week":1,"births":9205},{"year":1974,"month":10,"date_of_month":15,"day_of_week":2,"births":9572},{"year":1974,"month":10,"date_of_month":16,"day_of_week":3,"births":9211},{"year":1974,"month":10,"date_of_month":17,"day_of_week":4,"births":9311},{"year":1974,"month":10,"date_of_month":18,"day_of_week":5,"births":9453},{"year":1974,"month":10,"date_of_month":19,"day_of_week":6,"births":8186},{"year":1974,"month":10,"date_of_month":20,"day_of_week":7,"births":7472},{"year":1974,"month":10,"date_of_month":21,"day_of_week":1,"births":9013},{"year":1974,"month":10,"date_of_month":22,"day_of_week":2,"births":9327},{"year":1974,"month":10,"date_of_month":23,"day_of_week":3,"births":8965},{"year":1974,"month":10,"date_of_month":24,"day_of_week":4,"births":8792},{"year":1974,"month":10,"date_of_month":25,"day_of_week":5,"births":9199},{"year":1974,"month":10,"date_of_month":26,"day_of_week":6,"births":8274},{"year":1974,"month":10,"date_of_month":27,"day_of_week":7,"births":7880},{"year":1974,"month":10,"date_of_month":28,"day_of_week":1,"births":8874},{"year":1974,"month":10,"date_of_month":29,"day_of_week":2,"births":9355},{"year":1974,"month":10,"date_of_month":30,"day_of_week":3,"births":9127},{"year":1974,"month":10,"date_of_month":31,"day_of_week":4,"births":8913},{"year":1974,"month":11,"date_of_month":1,"day_of_week":5,"births":9198},{"year":1974,"month":11,"date_of_month":2,"day_of_week":6,"births":8055},{"year":1974,"month":11,"date_of_month":3,"day_of_week":7,"births":7567},{"year":1974,"month":11,"date_of_month":4,"day_of_week":1,"births":8974},{"year":1974,"month":11,"date_of_month":5,"day_of_week":2,"births":9500},{"year":1974,"month":11,"date_of_month":6,"day_of_week":3,"births":9051},{"year":1974,"month":11,"date_of_month":7,"day_of_week":4,"births":8819},{"year":1974,"month":11,"date_of_month":8,"day_of_week":5,"births":8975},{"year":1974,"month":11,"date_of_month":9,"day_of_week":6,"births":7806},{"year":1974,"month":11,"date_of_month":10,"day_of_week":7,"births":7519},{"year":1974,"month":11,"date_of_month":11,"day_of_week":1,"births":9223},{"year":1974,"month":11,"date_of_month":12,"day_of_week":2,"births":9274},{"year":1974,"month":11,"date_of_month":13,"day_of_week":3,"births":8913},{"year":1974,"month":11,"date_of_month":14,"day_of_week":4,"births":9061},{"year":1974,"month":11,"date_of_month":15,"day_of_week":5,"births":9241},{"year":1974,"month":11,"date_of_month":16,"day_of_week":6,"births":7804},{"year":1974,"month":11,"date_of_month":17,"day_of_week":7,"births":7471},{"year":1974,"month":11,"date_of_month":18,"day_of_week":1,"births":9217},{"year":1974,"month":11,"date_of_month":19,"day_of_week":2,"births":9427},{"year":1974,"month":11,"date_of_month":20,"day_of_week":3,"births":9234},{"year":1974,"month":11,"date_of_month":21,"day_of_week":4,"births":9035},{"year":1974,"month":11,"date_of_month":22,"day_of_week":5,"births":9076},{"year":1974,"month":11,"date_of_month":23,"day_of_week":6,"births":8103},{"year":1974,"month":11,"date_of_month":24,"day_of_week":7,"births":7545},{"year":1974,"month":11,"date_of_month":25,"day_of_week":1,"births":8838},{"year":1974,"month":11,"date_of_month":26,"day_of_week":2,"births":9488},{"year":1974,"month":11,"date_of_month":27,"day_of_week":3,"births":9047},{"year":1974,"month":11,"date_of_month":28,"day_of_week":4,"births":7294},{"year":1974,"month":11,"date_of_month":29,"day_of_week":5,"births":8424},{"year":1974,"month":11,"date_of_month":30,"day_of_week":6,"births":7727},{"year":1974,"month":12,"date_of_month":1,"day_of_week":7,"births":7569},{"year":1974,"month":12,"date_of_month":2,"day_of_week":1,"births":9259},{"year":1974,"month":12,"date_of_month":3,"day_of_week":2,"births":9539},{"year":1974,"month":12,"date_of_month":4,"day_of_week":3,"births":9072},{"year":1974,"month":12,"date_of_month":5,"day_of_week":4,"births":8935},{"year":1974,"month":12,"date_of_month":6,"day_of_week":5,"births":9043},{"year":1974,"month":12,"date_of_month":7,"day_of_week":6,"births":7969},{"year":1974,"month":12,"date_of_month":8,"day_of_week":7,"births":7668},{"year":1974,"month":12,"date_of_month":9,"day_of_week":1,"births":8970},{"year":1974,"month":12,"date_of_month":10,"day_of_week":2,"births":9212},{"year":1974,"month":12,"date_of_month":11,"day_of_week":3,"births":9043},{"year":1974,"month":12,"date_of_month":12,"day_of_week":4,"births":9045},{"year":1974,"month":12,"date_of_month":13,"day_of_week":5,"births":8751},{"year":1974,"month":12,"date_of_month":14,"day_of_week":6,"births":7845},{"year":1974,"month":12,"date_of_month":15,"day_of_week":7,"births":7505},{"year":1974,"month":12,"date_of_month":16,"day_of_week":1,"births":9188},{"year":1974,"month":12,"date_of_month":17,"day_of_week":2,"births":9640},{"year":1974,"month":12,"date_of_month":18,"day_of_week":3,"births":9403},{"year":1974,"month":12,"date_of_month":19,"day_of_week":4,"births":9344},{"year":1974,"month":12,"date_of_month":20,"day_of_week":5,"births":9453},{"year":1974,"month":12,"date_of_month":21,"day_of_week":6,"births":7840},{"year":1974,"month":12,"date_of_month":22,"day_of_week":7,"births":7077},{"year":1974,"month":12,"date_of_month":23,"day_of_week":1,"births":8086},{"year":1974,"month":12,"date_of_month":24,"day_of_week":2,"births":7538},{"year":1974,"month":12,"date_of_month":25,"day_of_week":3,"births":6820},{"year":1974,"month":12,"date_of_month":26,"day_of_week":4,"births":8463},{"year":1974,"month":12,"date_of_month":27,"day_of_week":5,"births":9603},{"year":1974,"month":12,"date_of_month":28,"day_of_week":6,"births":8224},{"year":1974,"month":12,"date_of_month":29,"day_of_week":7,"births":7383},{"year":1974,"month":12,"date_of_month":30,"day_of_week":1,"births":9641},{"year":1974,"month":12,"date_of_month":31,"day_of_week":2,"births":9637},{"year":1975,"month":1,"date_of_month":1,"day_of_week":3,"births":7028},{"year":1975,"month":1,"date_of_month":2,"day_of_week":4,"births":7873},{"year":1975,"month":1,"date_of_month":3,"day_of_week":5,"births":8425},{"year":1975,"month":1,"date_of_month":4,"day_of_week":6,"births":7670},{"year":1975,"month":1,"date_of_month":5,"day_of_week":7,"births":7250},{"year":1975,"month":1,"date_of_month":6,"day_of_week":1,"births":8426},{"year":1975,"month":1,"date_of_month":7,"day_of_week":2,"births":8792},{"year":1975,"month":1,"date_of_month":8,"day_of_week":3,"births":8416},{"year":1975,"month":1,"date_of_month":9,"day_of_week":4,"births":8461},{"year":1975,"month":1,"date_of_month":10,"day_of_week":5,"births":8852},{"year":1975,"month":1,"date_of_month":11,"day_of_week":6,"births":7928},{"year":1975,"month":1,"date_of_month":12,"day_of_week":7,"births":7240},{"year":1975,"month":1,"date_of_month":13,"day_of_week":1,"births":8619},{"year":1975,"month":1,"date_of_month":14,"day_of_week":2,"births":9188},{"year":1975,"month":1,"date_of_month":15,"day_of_week":3,"births":8893},{"year":1975,"month":1,"date_of_month":16,"day_of_week":4,"births":8636},{"year":1975,"month":1,"date_of_month":17,"day_of_week":5,"births":9012},{"year":1975,"month":1,"date_of_month":18,"day_of_week":6,"births":7876},{"year":1975,"month":1,"date_of_month":19,"day_of_week":7,"births":7448},{"year":1975,"month":1,"date_of_month":20,"day_of_week":1,"births":8902},{"year":1975,"month":1,"date_of_month":21,"day_of_week":2,"births":9102},{"year":1975,"month":1,"date_of_month":22,"day_of_week":3,"births":8558},{"year":1975,"month":1,"date_of_month":23,"day_of_week":4,"births":8747},{"year":1975,"month":1,"date_of_month":24,"day_of_week":5,"births":8771},{"year":1975,"month":1,"date_of_month":25,"day_of_week":6,"births":8077},{"year":1975,"month":1,"date_of_month":26,"day_of_week":7,"births":7708},{"year":1975,"month":1,"date_of_month":27,"day_of_week":1,"births":8783},{"year":1975,"month":1,"date_of_month":28,"day_of_week":2,"births":9149},{"year":1975,"month":1,"date_of_month":29,"day_of_week":3,"births":8900},{"year":1975,"month":1,"date_of_month":30,"day_of_week":4,"births":8617},{"year":1975,"month":1,"date_of_month":31,"day_of_week":5,"births":8677},{"year":1975,"month":2,"date_of_month":1,"day_of_week":6,"births":7699},{"year":1975,"month":2,"date_of_month":2,"day_of_week":7,"births":7316},{"year":1975,"month":2,"date_of_month":3,"day_of_week":1,"births":8881},{"year":1975,"month":2,"date_of_month":4,"day_of_week":2,"births":9093},{"year":1975,"month":2,"date_of_month":5,"day_of_week":3,"births":8829},{"year":1975,"month":2,"date_of_month":6,"day_of_week":4,"births":8425},{"year":1975,"month":2,"date_of_month":7,"day_of_week":5,"births":8969},{"year":1975,"month":2,"date_of_month":8,"day_of_week":6,"births":7852},{"year":1975,"month":2,"date_of_month":9,"day_of_week":7,"births":7564},{"year":1975,"month":2,"date_of_month":10,"day_of_week":1,"births":8733},{"year":1975,"month":2,"date_of_month":11,"day_of_week":2,"births":9126},{"year":1975,"month":2,"date_of_month":12,"day_of_week":3,"births":8948},{"year":1975,"month":2,"date_of_month":13,"day_of_week":4,"births":8762},{"year":1975,"month":2,"date_of_month":14,"day_of_week":5,"births":9219},{"year":1975,"month":2,"date_of_month":15,"day_of_week":6,"births":7997},{"year":1975,"month":2,"date_of_month":16,"day_of_week":7,"births":7545},{"year":1975,"month":2,"date_of_month":17,"day_of_week":1,"births":8373},{"year":1975,"month":2,"date_of_month":18,"day_of_week":2,"births":9232},{"year":1975,"month":2,"date_of_month":19,"day_of_week":3,"births":8796},{"year":1975,"month":2,"date_of_month":20,"day_of_week":4,"births":8984},{"year":1975,"month":2,"date_of_month":21,"day_of_week":5,"births":8919},{"year":1975,"month":2,"date_of_month":22,"day_of_week":6,"births":7917},{"year":1975,"month":2,"date_of_month":23,"day_of_week":7,"births":7277},{"year":1975,"month":2,"date_of_month":24,"day_of_week":1,"births":8854},{"year":1975,"month":2,"date_of_month":25,"day_of_week":2,"births":9150},{"year":1975,"month":2,"date_of_month":26,"day_of_week":3,"births":8820},{"year":1975,"month":2,"date_of_month":27,"day_of_week":4,"births":8541},{"year":1975,"month":2,"date_of_month":28,"day_of_week":5,"births":8974},{"year":1975,"month":3,"date_of_month":1,"day_of_week":6,"births":7921},{"year":1975,"month":3,"date_of_month":2,"day_of_week":7,"births":7387},{"year":1975,"month":3,"date_of_month":3,"day_of_week":1,"births":8963},{"year":1975,"month":3,"date_of_month":4,"day_of_week":2,"births":9037},{"year":1975,"month":3,"date_of_month":5,"day_of_week":3,"births":8854},{"year":1975,"month":3,"date_of_month":6,"day_of_week":4,"births":8840},{"year":1975,"month":3,"date_of_month":7,"day_of_week":5,"births":9055},{"year":1975,"month":3,"date_of_month":8,"day_of_week":6,"births":7804},{"year":1975,"month":3,"date_of_month":9,"day_of_week":7,"births":7146},{"year":1975,"month":3,"date_of_month":10,"day_of_week":1,"births":8568},{"year":1975,"month":3,"date_of_month":11,"day_of_week":2,"births":9239},{"year":1975,"month":3,"date_of_month":12,"day_of_week":3,"births":8933},{"year":1975,"month":3,"date_of_month":13,"day_of_week":4,"births":8610},{"year":1975,"month":3,"date_of_month":14,"day_of_week":5,"births":9098},{"year":1975,"month":3,"date_of_month":15,"day_of_week":6,"births":7591},{"year":1975,"month":3,"date_of_month":16,"day_of_week":7,"births":7235},{"year":1975,"month":3,"date_of_month":17,"day_of_week":1,"births":9000},{"year":1975,"month":3,"date_of_month":18,"day_of_week":2,"births":9090},{"year":1975,"month":3,"date_of_month":19,"day_of_week":3,"births":8867},{"year":1975,"month":3,"date_of_month":20,"day_of_week":4,"births":8926},{"year":1975,"month":3,"date_of_month":21,"day_of_week":5,"births":9072},{"year":1975,"month":3,"date_of_month":22,"day_of_week":6,"births":8038},{"year":1975,"month":3,"date_of_month":23,"day_of_week":7,"births":7522},{"year":1975,"month":3,"date_of_month":24,"day_of_week":1,"births":8784},{"year":1975,"month":3,"date_of_month":25,"day_of_week":2,"births":9206},{"year":1975,"month":3,"date_of_month":26,"day_of_week":3,"births":8912},{"year":1975,"month":3,"date_of_month":27,"day_of_week":4,"births":8553},{"year":1975,"month":3,"date_of_month":28,"day_of_week":5,"births":8799},{"year":1975,"month":3,"date_of_month":29,"day_of_week":6,"births":7630},{"year":1975,"month":3,"date_of_month":30,"day_of_week":7,"births":7171},{"year":1975,"month":3,"date_of_month":31,"day_of_week":1,"births":8522},{"year":1975,"month":4,"date_of_month":1,"day_of_week":2,"births":8871},{"year":1975,"month":4,"date_of_month":2,"day_of_week":3,"births":8770},{"year":1975,"month":4,"date_of_month":3,"day_of_week":4,"births":8901},{"year":1975,"month":4,"date_of_month":4,"day_of_week":5,"births":8616},{"year":1975,"month":4,"date_of_month":5,"day_of_week":6,"births":7581},{"year":1975,"month":4,"date_of_month":6,"day_of_week":7,"births":7162},{"year":1975,"month":4,"date_of_month":7,"day_of_week":1,"births":8501},{"year":1975,"month":4,"date_of_month":8,"day_of_week":2,"births":9120},{"year":1975,"month":4,"date_of_month":9,"day_of_week":3,"births":8823},{"year":1975,"month":4,"date_of_month":10,"day_of_week":4,"births":8577},{"year":1975,"month":4,"date_of_month":11,"day_of_week":5,"births":8931},{"year":1975,"month":4,"date_of_month":12,"day_of_week":6,"births":7550},{"year":1975,"month":4,"date_of_month":13,"day_of_week":7,"births":7002},{"year":1975,"month":4,"date_of_month":14,"day_of_week":1,"births":8450},{"year":1975,"month":4,"date_of_month":15,"day_of_week":2,"births":9114},{"year":1975,"month":4,"date_of_month":16,"day_of_week":3,"births":8676},{"year":1975,"month":4,"date_of_month":17,"day_of_week":4,"births":8536},{"year":1975,"month":4,"date_of_month":18,"day_of_week":5,"births":9131},{"year":1975,"month":4,"date_of_month":19,"day_of_week":6,"births":7614},{"year":1975,"month":4,"date_of_month":20,"day_of_week":7,"births":7029},{"year":1975,"month":4,"date_of_month":21,"day_of_week":1,"births":8448},{"year":1975,"month":4,"date_of_month":22,"day_of_week":2,"births":8944},{"year":1975,"month":4,"date_of_month":23,"day_of_week":3,"births":8511},{"year":1975,"month":4,"date_of_month":24,"day_of_week":4,"births":8526},{"year":1975,"month":4,"date_of_month":25,"day_of_week":5,"births":8855},{"year":1975,"month":4,"date_of_month":26,"day_of_week":6,"births":7637},{"year":1975,"month":4,"date_of_month":27,"day_of_week":7,"births":7162},{"year":1975,"month":4,"date_of_month":28,"day_of_week":1,"births":8749},{"year":1975,"month":4,"date_of_month":29,"day_of_week":2,"births":9251},{"year":1975,"month":4,"date_of_month":30,"day_of_week":3,"births":8661},{"year":1975,"month":5,"date_of_month":1,"day_of_week":4,"births":8654},{"year":1975,"month":5,"date_of_month":2,"day_of_week":5,"births":8671},{"year":1975,"month":5,"date_of_month":3,"day_of_week":6,"births":7579},{"year":1975,"month":5,"date_of_month":4,"day_of_week":7,"births":7196},{"year":1975,"month":5,"date_of_month":5,"day_of_week":1,"births":8517},{"year":1975,"month":5,"date_of_month":6,"day_of_week":2,"births":8961},{"year":1975,"month":5,"date_of_month":7,"day_of_week":3,"births":8467},{"year":1975,"month":5,"date_of_month":8,"day_of_week":4,"births":8551},{"year":1975,"month":5,"date_of_month":9,"day_of_week":5,"births":8861},{"year":1975,"month":5,"date_of_month":10,"day_of_week":6,"births":7468},{"year":1975,"month":5,"date_of_month":11,"day_of_week":7,"births":7228},{"year":1975,"month":5,"date_of_month":12,"day_of_week":1,"births":9038},{"year":1975,"month":5,"date_of_month":13,"day_of_week":2,"births":9247},{"year":1975,"month":5,"date_of_month":14,"day_of_week":3,"births":8905},{"year":1975,"month":5,"date_of_month":15,"day_of_week":4,"births":8834},{"year":1975,"month":5,"date_of_month":16,"day_of_week":5,"births":8918},{"year":1975,"month":5,"date_of_month":17,"day_of_week":6,"births":8009},{"year":1975,"month":5,"date_of_month":18,"day_of_week":7,"births":7269},{"year":1975,"month":5,"date_of_month":19,"day_of_week":1,"births":8828},{"year":1975,"month":5,"date_of_month":20,"day_of_week":2,"births":9554},{"year":1975,"month":5,"date_of_month":21,"day_of_week":3,"births":9043},{"year":1975,"month":5,"date_of_month":22,"day_of_week":4,"births":9120},{"year":1975,"month":5,"date_of_month":23,"day_of_week":5,"births":9133},{"year":1975,"month":5,"date_of_month":24,"day_of_week":6,"births":7806},{"year":1975,"month":5,"date_of_month":25,"day_of_week":7,"births":7512},{"year":1975,"month":5,"date_of_month":26,"day_of_week":1,"births":7532},{"year":1975,"month":5,"date_of_month":27,"day_of_week":2,"births":8792},{"year":1975,"month":5,"date_of_month":28,"day_of_week":3,"births":8912},{"year":1975,"month":5,"date_of_month":29,"day_of_week":4,"births":8982},{"year":1975,"month":5,"date_of_month":30,"day_of_week":5,"births":9000},{"year":1975,"month":5,"date_of_month":31,"day_of_week":6,"births":7619},{"year":1975,"month":6,"date_of_month":1,"day_of_week":7,"births":7244},{"year":1975,"month":6,"date_of_month":2,"day_of_week":1,"births":8555},{"year":1975,"month":6,"date_of_month":3,"day_of_week":2,"births":8996},{"year":1975,"month":6,"date_of_month":4,"day_of_week":3,"births":8742},{"year":1975,"month":6,"date_of_month":5,"day_of_week":4,"births":8783},{"year":1975,"month":6,"date_of_month":6,"day_of_week":5,"births":9112},{"year":1975,"month":6,"date_of_month":7,"day_of_week":6,"births":7642},{"year":1975,"month":6,"date_of_month":8,"day_of_week":7,"births":7149},{"year":1975,"month":6,"date_of_month":9,"day_of_week":1,"births":8623},{"year":1975,"month":6,"date_of_month":10,"day_of_week":2,"births":8997},{"year":1975,"month":6,"date_of_month":11,"day_of_week":3,"births":8844},{"year":1975,"month":6,"date_of_month":12,"day_of_week":4,"births":8954},{"year":1975,"month":6,"date_of_month":13,"day_of_week":5,"births":8763},{"year":1975,"month":6,"date_of_month":14,"day_of_week":6,"births":7991},{"year":1975,"month":6,"date_of_month":15,"day_of_week":7,"births":7271},{"year":1975,"month":6,"date_of_month":16,"day_of_week":1,"births":8681},{"year":1975,"month":6,"date_of_month":17,"day_of_week":2,"births":9212},{"year":1975,"month":6,"date_of_month":18,"day_of_week":3,"births":9050},{"year":1975,"month":6,"date_of_month":19,"day_of_week":4,"births":9115},{"year":1975,"month":6,"date_of_month":20,"day_of_week":5,"births":9039},{"year":1975,"month":6,"date_of_month":21,"day_of_week":6,"births":7959},{"year":1975,"month":6,"date_of_month":22,"day_of_week":7,"births":7413},{"year":1975,"month":6,"date_of_month":23,"day_of_week":1,"births":9159},{"year":1975,"month":6,"date_of_month":24,"day_of_week":2,"births":9400},{"year":1975,"month":6,"date_of_month":25,"day_of_week":3,"births":9114},{"year":1975,"month":6,"date_of_month":26,"day_of_week":4,"births":9024},{"year":1975,"month":6,"date_of_month":27,"day_of_week":5,"births":8955},{"year":1975,"month":6,"date_of_month":28,"day_of_week":6,"births":8129},{"year":1975,"month":6,"date_of_month":29,"day_of_week":7,"births":7413},{"year":1975,"month":6,"date_of_month":30,"day_of_week":1,"births":9051},{"year":1975,"month":7,"date_of_month":1,"day_of_week":2,"births":9512},{"year":1975,"month":7,"date_of_month":2,"day_of_week":3,"births":9340},{"year":1975,"month":7,"date_of_month":3,"day_of_week":4,"births":9393},{"year":1975,"month":7,"date_of_month":4,"day_of_week":5,"births":7917},{"year":1975,"month":7,"date_of_month":5,"day_of_week":6,"births":7988},{"year":1975,"month":7,"date_of_month":6,"day_of_week":7,"births":7714},{"year":1975,"month":7,"date_of_month":7,"day_of_week":1,"births":9474},{"year":1975,"month":7,"date_of_month":8,"day_of_week":2,"births":10078},{"year":1975,"month":7,"date_of_month":9,"day_of_week":3,"births":9417},{"year":1975,"month":7,"date_of_month":10,"day_of_week":4,"births":9224},{"year":1975,"month":7,"date_of_month":11,"day_of_week":5,"births":9451},{"year":1975,"month":7,"date_of_month":12,"day_of_week":6,"births":7853},{"year":1975,"month":7,"date_of_month":13,"day_of_week":7,"births":7399},{"year":1975,"month":7,"date_of_month":14,"day_of_week":1,"births":9295},{"year":1975,"month":7,"date_of_month":15,"day_of_week":2,"births":9624},{"year":1975,"month":7,"date_of_month":16,"day_of_week":3,"births":9370},{"year":1975,"month":7,"date_of_month":17,"day_of_week":4,"births":9486},{"year":1975,"month":7,"date_of_month":18,"day_of_week":5,"births":9468},{"year":1975,"month":7,"date_of_month":19,"day_of_week":6,"births":8370},{"year":1975,"month":7,"date_of_month":20,"day_of_week":7,"births":7815},{"year":1975,"month":7,"date_of_month":21,"day_of_week":1,"births":9519},{"year":1975,"month":7,"date_of_month":22,"day_of_week":2,"births":9965},{"year":1975,"month":7,"date_of_month":23,"day_of_week":3,"births":9751},{"year":1975,"month":7,"date_of_month":24,"day_of_week":4,"births":9498},{"year":1975,"month":7,"date_of_month":25,"day_of_week":5,"births":9495},{"year":1975,"month":7,"date_of_month":26,"day_of_week":6,"births":8132},{"year":1975,"month":7,"date_of_month":27,"day_of_week":7,"births":7952},{"year":1975,"month":7,"date_of_month":28,"day_of_week":1,"births":9373},{"year":1975,"month":7,"date_of_month":29,"day_of_week":2,"births":9872},{"year":1975,"month":7,"date_of_month":30,"day_of_week":3,"births":9389},{"year":1975,"month":7,"date_of_month":31,"day_of_week":4,"births":9460},{"year":1975,"month":8,"date_of_month":1,"day_of_week":5,"births":9708},{"year":1975,"month":8,"date_of_month":2,"day_of_week":6,"births":8578},{"year":1975,"month":8,"date_of_month":3,"day_of_week":7,"births":8075},{"year":1975,"month":8,"date_of_month":4,"day_of_week":1,"births":9590},{"year":1975,"month":8,"date_of_month":5,"day_of_week":2,"births":9617},{"year":1975,"month":8,"date_of_month":6,"day_of_week":3,"births":9653},{"year":1975,"month":8,"date_of_month":7,"day_of_week":4,"births":9266},{"year":1975,"month":8,"date_of_month":8,"day_of_week":5,"births":9253},{"year":1975,"month":8,"date_of_month":9,"day_of_week":6,"births":8016},{"year":1975,"month":8,"date_of_month":10,"day_of_week":7,"births":7686},{"year":1975,"month":8,"date_of_month":11,"day_of_week":1,"births":9395},{"year":1975,"month":8,"date_of_month":12,"day_of_week":2,"births":9824},{"year":1975,"month":8,"date_of_month":13,"day_of_week":3,"births":9493},{"year":1975,"month":8,"date_of_month":14,"day_of_week":4,"births":9568},{"year":1975,"month":8,"date_of_month":15,"day_of_week":5,"births":9643},{"year":1975,"month":8,"date_of_month":16,"day_of_week":6,"births":8505},{"year":1975,"month":8,"date_of_month":17,"day_of_week":7,"births":8045},{"year":1975,"month":8,"date_of_month":18,"day_of_week":1,"births":9115},{"year":1975,"month":8,"date_of_month":19,"day_of_week":2,"births":9524},{"year":1975,"month":8,"date_of_month":20,"day_of_week":3,"births":9480},{"year":1975,"month":8,"date_of_month":21,"day_of_week":4,"births":9278},{"year":1975,"month":8,"date_of_month":22,"day_of_week":5,"births":9443},{"year":1975,"month":8,"date_of_month":23,"day_of_week":6,"births":8365},{"year":1975,"month":8,"date_of_month":24,"day_of_week":7,"births":7982},{"year":1975,"month":8,"date_of_month":25,"day_of_week":1,"births":9414},{"year":1975,"month":8,"date_of_month":26,"day_of_week":2,"births":9907},{"year":1975,"month":8,"date_of_month":27,"day_of_week":3,"births":9457},{"year":1975,"month":8,"date_of_month":28,"day_of_week":4,"births":9371},{"year":1975,"month":8,"date_of_month":29,"day_of_week":5,"births":9587},{"year":1975,"month":8,"date_of_month":30,"day_of_week":6,"births":8281},{"year":1975,"month":8,"date_of_month":31,"day_of_week":7,"births":7660},{"year":1975,"month":9,"date_of_month":1,"day_of_week":1,"births":7804},{"year":1975,"month":9,"date_of_month":2,"day_of_week":2,"births":9425},{"year":1975,"month":9,"date_of_month":3,"day_of_week":3,"births":9529},{"year":1975,"month":9,"date_of_month":4,"day_of_week":4,"births":9313},{"year":1975,"month":9,"date_of_month":5,"day_of_week":5,"births":9525},{"year":1975,"month":9,"date_of_month":6,"day_of_week":6,"births":8466},{"year":1975,"month":9,"date_of_month":7,"day_of_week":7,"births":7982},{"year":1975,"month":9,"date_of_month":8,"day_of_week":1,"births":9253},{"year":1975,"month":9,"date_of_month":9,"day_of_week":2,"births":9662},{"year":1975,"month":9,"date_of_month":10,"day_of_week":3,"births":9265},{"year":1975,"month":9,"date_of_month":11,"day_of_week":4,"births":9342},{"year":1975,"month":9,"date_of_month":12,"day_of_week":5,"births":10013},{"year":1975,"month":9,"date_of_month":13,"day_of_week":6,"births":8310},{"year":1975,"month":9,"date_of_month":14,"day_of_week":7,"births":7745},{"year":1975,"month":9,"date_of_month":15,"day_of_week":1,"births":9382},{"year":1975,"month":9,"date_of_month":16,"day_of_week":2,"births":9813},{"year":1975,"month":9,"date_of_month":17,"day_of_week":3,"births":9591},{"year":1975,"month":9,"date_of_month":18,"day_of_week":4,"births":9743},{"year":1975,"month":9,"date_of_month":19,"day_of_week":5,"births":9910},{"year":1975,"month":9,"date_of_month":20,"day_of_week":6,"births":8541},{"year":1975,"month":9,"date_of_month":21,"day_of_week":7,"births":8217},{"year":1975,"month":9,"date_of_month":22,"day_of_week":1,"births":9570},{"year":1975,"month":9,"date_of_month":23,"day_of_week":2,"births":9933},{"year":1975,"month":9,"date_of_month":24,"day_of_week":3,"births":9579},{"year":1975,"month":9,"date_of_month":25,"day_of_week":4,"births":9430},{"year":1975,"month":9,"date_of_month":26,"day_of_week":5,"births":9579},{"year":1975,"month":9,"date_of_month":27,"day_of_week":6,"births":8632},{"year":1975,"month":9,"date_of_month":28,"day_of_week":7,"births":7971},{"year":1975,"month":9,"date_of_month":29,"day_of_week":1,"births":9396},{"year":1975,"month":9,"date_of_month":30,"day_of_week":2,"births":9665},{"year":1975,"month":10,"date_of_month":1,"day_of_week":3,"births":9732},{"year":1975,"month":10,"date_of_month":2,"day_of_week":4,"births":9435},{"year":1975,"month":10,"date_of_month":3,"day_of_week":5,"births":9286},{"year":1975,"month":10,"date_of_month":4,"day_of_week":6,"births":8310},{"year":1975,"month":10,"date_of_month":5,"day_of_week":7,"births":7965},{"year":1975,"month":10,"date_of_month":6,"day_of_week":1,"births":9181},{"year":1975,"month":10,"date_of_month":7,"day_of_week":2,"births":9464},{"year":1975,"month":10,"date_of_month":8,"day_of_week":3,"births":9252},{"year":1975,"month":10,"date_of_month":9,"day_of_week":4,"births":9229},{"year":1975,"month":10,"date_of_month":10,"day_of_week":5,"births":9212},{"year":1975,"month":10,"date_of_month":11,"day_of_week":6,"births":7985},{"year":1975,"month":10,"date_of_month":12,"day_of_week":7,"births":7601},{"year":1975,"month":10,"date_of_month":13,"day_of_week":1,"births":8897},{"year":1975,"month":10,"date_of_month":14,"day_of_week":2,"births":9209},{"year":1975,"month":10,"date_of_month":15,"day_of_week":3,"births":9234},{"year":1975,"month":10,"date_of_month":16,"day_of_week":4,"births":8725},{"year":1975,"month":10,"date_of_month":17,"day_of_week":5,"births":8983},{"year":1975,"month":10,"date_of_month":18,"day_of_week":6,"births":7719},{"year":1975,"month":10,"date_of_month":19,"day_of_week":7,"births":7334},{"year":1975,"month":10,"date_of_month":20,"day_of_week":1,"births":8604},{"year":1975,"month":10,"date_of_month":21,"day_of_week":2,"births":8919},{"year":1975,"month":10,"date_of_month":22,"day_of_week":3,"births":8572},{"year":1975,"month":10,"date_of_month":23,"day_of_week":4,"births":8633},{"year":1975,"month":10,"date_of_month":24,"day_of_week":5,"births":8886},{"year":1975,"month":10,"date_of_month":25,"day_of_week":6,"births":7697},{"year":1975,"month":10,"date_of_month":26,"day_of_week":7,"births":7442},{"year":1975,"month":10,"date_of_month":27,"day_of_week":1,"births":8597},{"year":1975,"month":10,"date_of_month":28,"day_of_week":2,"births":8761},{"year":1975,"month":10,"date_of_month":29,"day_of_week":3,"births":8713},{"year":1975,"month":10,"date_of_month":30,"day_of_week":4,"births":8527},{"year":1975,"month":10,"date_of_month":31,"day_of_week":5,"births":8548},{"year":1975,"month":11,"date_of_month":1,"day_of_week":6,"births":7716},{"year":1975,"month":11,"date_of_month":2,"day_of_week":7,"births":7222},{"year":1975,"month":11,"date_of_month":3,"day_of_week":1,"births":8811},{"year":1975,"month":11,"date_of_month":4,"day_of_week":2,"births":9002},{"year":1975,"month":11,"date_of_month":5,"day_of_week":3,"births":8614},{"year":1975,"month":11,"date_of_month":6,"day_of_week":4,"births":8813},{"year":1975,"month":11,"date_of_month":7,"day_of_week":5,"births":8913},{"year":1975,"month":11,"date_of_month":8,"day_of_week":6,"births":7924},{"year":1975,"month":11,"date_of_month":9,"day_of_week":7,"births":7522},{"year":1975,"month":11,"date_of_month":10,"day_of_week":1,"births":8932},{"year":1975,"month":11,"date_of_month":11,"day_of_week":2,"births":8926},{"year":1975,"month":11,"date_of_month":12,"day_of_week":3,"births":8518},{"year":1975,"month":11,"date_of_month":13,"day_of_week":4,"births":8822},{"year":1975,"month":11,"date_of_month":14,"day_of_week":5,"births":8996},{"year":1975,"month":11,"date_of_month":15,"day_of_week":6,"births":7596},{"year":1975,"month":11,"date_of_month":16,"day_of_week":7,"births":7302},{"year":1975,"month":11,"date_of_month":17,"day_of_week":1,"births":8560},{"year":1975,"month":11,"date_of_month":18,"day_of_week":2,"births":8796},{"year":1975,"month":11,"date_of_month":19,"day_of_week":3,"births":8935},{"year":1975,"month":11,"date_of_month":20,"day_of_week":4,"births":8535},{"year":1975,"month":11,"date_of_month":21,"day_of_week":5,"births":9049},{"year":1975,"month":11,"date_of_month":22,"day_of_week":6,"births":7763},{"year":1975,"month":11,"date_of_month":23,"day_of_week":7,"births":7392},{"year":1975,"month":11,"date_of_month":24,"day_of_week":1,"births":8873},{"year":1975,"month":11,"date_of_month":25,"day_of_week":2,"births":9475},{"year":1975,"month":11,"date_of_month":26,"day_of_week":3,"births":8910},{"year":1975,"month":11,"date_of_month":27,"day_of_week":4,"births":7356},{"year":1975,"month":11,"date_of_month":28,"day_of_week":5,"births":8394},{"year":1975,"month":11,"date_of_month":29,"day_of_week":6,"births":7566},{"year":1975,"month":11,"date_of_month":30,"day_of_week":7,"births":7497},{"year":1975,"month":12,"date_of_month":1,"day_of_week":1,"births":8834},{"year":1975,"month":12,"date_of_month":2,"day_of_week":2,"births":9102},{"year":1975,"month":12,"date_of_month":3,"day_of_week":3,"births":8813},{"year":1975,"month":12,"date_of_month":4,"day_of_week":4,"births":8671},{"year":1975,"month":12,"date_of_month":5,"day_of_week":5,"births":8856},{"year":1975,"month":12,"date_of_month":6,"day_of_week":6,"births":7733},{"year":1975,"month":12,"date_of_month":7,"day_of_week":7,"births":7428},{"year":1975,"month":12,"date_of_month":8,"day_of_week":1,"births":8911},{"year":1975,"month":12,"date_of_month":9,"day_of_week":2,"births":9024},{"year":1975,"month":12,"date_of_month":10,"day_of_week":3,"births":8958},{"year":1975,"month":12,"date_of_month":11,"day_of_week":4,"births":8778},{"year":1975,"month":12,"date_of_month":12,"day_of_week":5,"births":9024},{"year":1975,"month":12,"date_of_month":13,"day_of_week":6,"births":7865},{"year":1975,"month":12,"date_of_month":14,"day_of_week":7,"births":7528},{"year":1975,"month":12,"date_of_month":15,"day_of_week":1,"births":9070},{"year":1975,"month":12,"date_of_month":16,"day_of_week":2,"births":9556},{"year":1975,"month":12,"date_of_month":17,"day_of_week":3,"births":9212},{"year":1975,"month":12,"date_of_month":18,"day_of_week":4,"births":9368},{"year":1975,"month":12,"date_of_month":19,"day_of_week":5,"births":9328},{"year":1975,"month":12,"date_of_month":20,"day_of_week":6,"births":7912},{"year":1975,"month":12,"date_of_month":21,"day_of_week":7,"births":7348},{"year":1975,"month":12,"date_of_month":22,"day_of_week":1,"births":8585},{"year":1975,"month":12,"date_of_month":23,"day_of_week":2,"births":8767},{"year":1975,"month":12,"date_of_month":24,"day_of_week":3,"births":7737},{"year":1975,"month":12,"date_of_month":25,"day_of_week":4,"births":7145},{"year":1975,"month":12,"date_of_month":26,"day_of_week":5,"births":8598},{"year":1975,"month":12,"date_of_month":27,"day_of_week":6,"births":7950},{"year":1975,"month":12,"date_of_month":28,"day_of_week":7,"births":7328},{"year":1975,"month":12,"date_of_month":29,"day_of_week":1,"births":9397},{"year":1975,"month":12,"date_of_month":30,"day_of_week":2,"births":10144},{"year":1975,"month":12,"date_of_month":31,"day_of_week":3,"births":9578},{"year":1976,"month":1,"date_of_month":1,"day_of_week":4,"births":7302},{"year":1976,"month":1,"date_of_month":2,"day_of_week":5,"births":7994},{"year":1976,"month":1,"date_of_month":3,"day_of_week":6,"births":7458},{"year":1976,"month":1,"date_of_month":4,"day_of_week":7,"births":7251},{"year":1976,"month":1,"date_of_month":5,"day_of_week":1,"births":8252},{"year":1976,"month":1,"date_of_month":6,"day_of_week":2,"births":8945},{"year":1976,"month":1,"date_of_month":7,"day_of_week":3,"births":8611},{"year":1976,"month":1,"date_of_month":8,"day_of_week":4,"births":8417},{"year":1976,"month":1,"date_of_month":9,"day_of_week":5,"births":8585},{"year":1976,"month":1,"date_of_month":10,"day_of_week":6,"births":7634},{"year":1976,"month":1,"date_of_month":11,"day_of_week":7,"births":7236},{"year":1976,"month":1,"date_of_month":12,"day_of_week":1,"births":8708},{"year":1976,"month":1,"date_of_month":13,"day_of_week":2,"births":9048},{"year":1976,"month":1,"date_of_month":14,"day_of_week":3,"births":8951},{"year":1976,"month":1,"date_of_month":15,"day_of_week":4,"births":8736},{"year":1976,"month":1,"date_of_month":16,"day_of_week":5,"births":8847},{"year":1976,"month":1,"date_of_month":17,"day_of_week":6,"births":7969},{"year":1976,"month":1,"date_of_month":18,"day_of_week":7,"births":7148},{"year":1976,"month":1,"date_of_month":19,"day_of_week":1,"births":8893},{"year":1976,"month":1,"date_of_month":20,"day_of_week":2,"births":9002},{"year":1976,"month":1,"date_of_month":21,"day_of_week":3,"births":8639},{"year":1976,"month":1,"date_of_month":22,"day_of_week":4,"births":8893},{"year":1976,"month":1,"date_of_month":23,"day_of_week":5,"births":8771},{"year":1976,"month":1,"date_of_month":24,"day_of_week":6,"births":7866},{"year":1976,"month":1,"date_of_month":25,"day_of_week":7,"births":7519},{"year":1976,"month":1,"date_of_month":26,"day_of_week":1,"births":8550},{"year":1976,"month":1,"date_of_month":27,"day_of_week":2,"births":8877},{"year":1976,"month":1,"date_of_month":28,"day_of_week":3,"births":8659},{"year":1976,"month":1,"date_of_month":29,"day_of_week":4,"births":8699},{"year":1976,"month":1,"date_of_month":30,"day_of_week":5,"births":8792},{"year":1976,"month":1,"date_of_month":31,"day_of_week":6,"births":7702},{"year":1976,"month":2,"date_of_month":1,"day_of_week":7,"births":7472},{"year":1976,"month":2,"date_of_month":2,"day_of_week":1,"births":8858},{"year":1976,"month":2,"date_of_month":3,"day_of_week":2,"births":8846},{"year":1976,"month":2,"date_of_month":4,"day_of_week":3,"births":8766},{"year":1976,"month":2,"date_of_month":5,"day_of_week":4,"births":8674},{"year":1976,"month":2,"date_of_month":6,"day_of_week":5,"births":8817},{"year":1976,"month":2,"date_of_month":7,"day_of_week":6,"births":7684},{"year":1976,"month":2,"date_of_month":8,"day_of_week":7,"births":7356},{"year":1976,"month":2,"date_of_month":9,"day_of_week":1,"births":8541},{"year":1976,"month":2,"date_of_month":10,"day_of_week":2,"births":9222},{"year":1976,"month":2,"date_of_month":11,"day_of_week":3,"births":8707},{"year":1976,"month":2,"date_of_month":12,"day_of_week":4,"births":8779},{"year":1976,"month":2,"date_of_month":13,"day_of_week":5,"births":8666},{"year":1976,"month":2,"date_of_month":14,"day_of_week":6,"births":7855},{"year":1976,"month":2,"date_of_month":15,"day_of_week":7,"births":7330},{"year":1976,"month":2,"date_of_month":16,"day_of_week":1,"births":8576},{"year":1976,"month":2,"date_of_month":17,"day_of_week":2,"births":9072},{"year":1976,"month":2,"date_of_month":18,"day_of_week":3,"births":8826},{"year":1976,"month":2,"date_of_month":19,"day_of_week":4,"births":8599},{"year":1976,"month":2,"date_of_month":20,"day_of_week":5,"births":8845},{"year":1976,"month":2,"date_of_month":21,"day_of_week":6,"births":7752},{"year":1976,"month":2,"date_of_month":22,"day_of_week":7,"births":7337},{"year":1976,"month":2,"date_of_month":23,"day_of_week":1,"births":8687},{"year":1976,"month":2,"date_of_month":24,"day_of_week":2,"births":8734},{"year":1976,"month":2,"date_of_month":25,"day_of_week":3,"births":8572},{"year":1976,"month":2,"date_of_month":26,"day_of_week":4,"births":8714},{"year":1976,"month":2,"date_of_month":27,"day_of_week":5,"births":8742},{"year":1976,"month":2,"date_of_month":28,"day_of_week":6,"births":7932},{"year":1976,"month":2,"date_of_month":29,"day_of_week":7,"births":7559},{"year":1976,"month":3,"date_of_month":1,"day_of_week":1,"births":8859},{"year":1976,"month":3,"date_of_month":2,"day_of_week":2,"births":9039},{"year":1976,"month":3,"date_of_month":3,"day_of_week":3,"births":8849},{"year":1976,"month":3,"date_of_month":4,"day_of_week":4,"births":8617},{"year":1976,"month":3,"date_of_month":5,"day_of_week":5,"births":8705},{"year":1976,"month":3,"date_of_month":6,"day_of_week":6,"births":7560},{"year":1976,"month":3,"date_of_month":7,"day_of_week":7,"births":7252},{"year":1976,"month":3,"date_of_month":8,"day_of_week":1,"births":8429},{"year":1976,"month":3,"date_of_month":9,"day_of_week":2,"births":8712},{"year":1976,"month":3,"date_of_month":10,"day_of_week":3,"births":8554},{"year":1976,"month":3,"date_of_month":11,"day_of_week":4,"births":8561},{"year":1976,"month":3,"date_of_month":12,"day_of_week":5,"births":8654},{"year":1976,"month":3,"date_of_month":13,"day_of_week":6,"births":7674},{"year":1976,"month":3,"date_of_month":14,"day_of_week":7,"births":7134},{"year":1976,"month":3,"date_of_month":15,"day_of_week":1,"births":8467},{"year":1976,"month":3,"date_of_month":16,"day_of_week":2,"births":8636},{"year":1976,"month":3,"date_of_month":17,"day_of_week":3,"births":8681},{"year":1976,"month":3,"date_of_month":18,"day_of_week":4,"births":8472},{"year":1976,"month":3,"date_of_month":19,"day_of_week":5,"births":8623},{"year":1976,"month":3,"date_of_month":20,"day_of_week":6,"births":7890},{"year":1976,"month":3,"date_of_month":21,"day_of_week":7,"births":7384},{"year":1976,"month":3,"date_of_month":22,"day_of_week":1,"births":8515},{"year":1976,"month":3,"date_of_month":23,"day_of_week":2,"births":8863},{"year":1976,"month":3,"date_of_month":24,"day_of_week":3,"births":8389},{"year":1976,"month":3,"date_of_month":25,"day_of_week":4,"births":8623},{"year":1976,"month":3,"date_of_month":26,"day_of_week":5,"births":8744},{"year":1976,"month":3,"date_of_month":27,"day_of_week":6,"births":7725},{"year":1976,"month":3,"date_of_month":28,"day_of_week":7,"births":7267},{"year":1976,"month":3,"date_of_month":29,"day_of_week":1,"births":8499},{"year":1976,"month":3,"date_of_month":30,"day_of_week":2,"births":8818},{"year":1976,"month":3,"date_of_month":31,"day_of_week":3,"births":8653},{"year":1976,"month":4,"date_of_month":1,"day_of_week":4,"births":8336},{"year":1976,"month":4,"date_of_month":2,"day_of_week":5,"births":8641},{"year":1976,"month":4,"date_of_month":3,"day_of_week":6,"births":7583},{"year":1976,"month":4,"date_of_month":4,"day_of_week":7,"births":7431},{"year":1976,"month":4,"date_of_month":5,"day_of_week":1,"births":8279},{"year":1976,"month":4,"date_of_month":6,"day_of_week":2,"births":8586},{"year":1976,"month":4,"date_of_month":7,"day_of_week":3,"births":8568},{"year":1976,"month":4,"date_of_month":8,"day_of_week":4,"births":8507},{"year":1976,"month":4,"date_of_month":9,"day_of_week":5,"births":8287},{"year":1976,"month":4,"date_of_month":10,"day_of_week":6,"births":7382},{"year":1976,"month":4,"date_of_month":11,"day_of_week":7,"births":7056},{"year":1976,"month":4,"date_of_month":12,"day_of_week":1,"births":8532},{"year":1976,"month":4,"date_of_month":13,"day_of_week":2,"births":8459},{"year":1976,"month":4,"date_of_month":14,"day_of_week":3,"births":8694},{"year":1976,"month":4,"date_of_month":15,"day_of_week":4,"births":8583},{"year":1976,"month":4,"date_of_month":16,"day_of_week":5,"births":8258},{"year":1976,"month":4,"date_of_month":17,"day_of_week":6,"births":7538},{"year":1976,"month":4,"date_of_month":18,"day_of_week":7,"births":7099},{"year":1976,"month":4,"date_of_month":19,"day_of_week":1,"births":8327},{"year":1976,"month":4,"date_of_month":20,"day_of_week":2,"births":9036},{"year":1976,"month":4,"date_of_month":21,"day_of_week":3,"births":8518},{"year":1976,"month":4,"date_of_month":22,"day_of_week":4,"births":8385},{"year":1976,"month":4,"date_of_month":23,"day_of_week":5,"births":8497},{"year":1976,"month":4,"date_of_month":24,"day_of_week":6,"births":7302},{"year":1976,"month":4,"date_of_month":25,"day_of_week":7,"births":6817},{"year":1976,"month":4,"date_of_month":26,"day_of_week":1,"births":8332},{"year":1976,"month":4,"date_of_month":27,"day_of_week":2,"births":8490},{"year":1976,"month":4,"date_of_month":28,"day_of_week":3,"births":8290},{"year":1976,"month":4,"date_of_month":29,"day_of_week":4,"births":8093},{"year":1976,"month":4,"date_of_month":30,"day_of_week":5,"births":8372},{"year":1976,"month":5,"date_of_month":1,"day_of_week":6,"births":7612},{"year":1976,"month":5,"date_of_month":2,"day_of_week":7,"births":7090},{"year":1976,"month":5,"date_of_month":3,"day_of_week":1,"births":8233},{"year":1976,"month":5,"date_of_month":4,"day_of_week":2,"births":8783},{"year":1976,"month":5,"date_of_month":5,"day_of_week":3,"births":8602},{"year":1976,"month":5,"date_of_month":6,"day_of_week":4,"births":8520},{"year":1976,"month":5,"date_of_month":7,"day_of_week":5,"births":8640},{"year":1976,"month":5,"date_of_month":8,"day_of_week":6,"births":7379},{"year":1976,"month":5,"date_of_month":9,"day_of_week":7,"births":6675},{"year":1976,"month":5,"date_of_month":10,"day_of_week":1,"births":8572},{"year":1976,"month":5,"date_of_month":11,"day_of_week":2,"births":8876},{"year":1976,"month":5,"date_of_month":12,"day_of_week":3,"births":8384},{"year":1976,"month":5,"date_of_month":13,"day_of_week":4,"births":8239},{"year":1976,"month":5,"date_of_month":14,"day_of_week":5,"births":8627},{"year":1976,"month":5,"date_of_month":15,"day_of_week":6,"births":7509},{"year":1976,"month":5,"date_of_month":16,"day_of_week":7,"births":7157},{"year":1976,"month":5,"date_of_month":17,"day_of_week":1,"births":8740},{"year":1976,"month":5,"date_of_month":18,"day_of_week":2,"births":8594},{"year":1976,"month":5,"date_of_month":19,"day_of_week":3,"births":8489},{"year":1976,"month":5,"date_of_month":20,"day_of_week":4,"births":8414},{"year":1976,"month":5,"date_of_month":21,"day_of_week":5,"births":8733},{"year":1976,"month":5,"date_of_month":22,"day_of_week":6,"births":7465},{"year":1976,"month":5,"date_of_month":23,"day_of_week":7,"births":7014},{"year":1976,"month":5,"date_of_month":24,"day_of_week":1,"births":8754},{"year":1976,"month":5,"date_of_month":25,"day_of_week":2,"births":8861},{"year":1976,"month":5,"date_of_month":26,"day_of_week":3,"births":8433},{"year":1976,"month":5,"date_of_month":27,"day_of_week":4,"births":8530},{"year":1976,"month":5,"date_of_month":28,"day_of_week":5,"births":8898},{"year":1976,"month":5,"date_of_month":29,"day_of_week":6,"births":7745},{"year":1976,"month":5,"date_of_month":30,"day_of_week":7,"births":7203},{"year":1976,"month":5,"date_of_month":31,"day_of_week":1,"births":7587},{"year":1976,"month":6,"date_of_month":1,"day_of_week":2,"births":8927},{"year":1976,"month":6,"date_of_month":2,"day_of_week":3,"births":8749},{"year":1976,"month":6,"date_of_month":3,"day_of_week":4,"births":8786},{"year":1976,"month":6,"date_of_month":4,"day_of_week":5,"births":8854},{"year":1976,"month":6,"date_of_month":5,"day_of_week":6,"births":7390},{"year":1976,"month":6,"date_of_month":6,"day_of_week":7,"births":7303},{"year":1976,"month":6,"date_of_month":7,"day_of_week":1,"births":8415},{"year":1976,"month":6,"date_of_month":8,"day_of_week":2,"births":9107},{"year":1976,"month":6,"date_of_month":9,"day_of_week":3,"births":8802},{"year":1976,"month":6,"date_of_month":10,"day_of_week":4,"births":8986},{"year":1976,"month":6,"date_of_month":11,"day_of_week":5,"births":9060},{"year":1976,"month":6,"date_of_month":12,"day_of_week":6,"births":7894},{"year":1976,"month":6,"date_of_month":13,"day_of_week":7,"births":7440},{"year":1976,"month":6,"date_of_month":14,"day_of_week":1,"births":8972},{"year":1976,"month":6,"date_of_month":15,"day_of_week":2,"births":9060},{"year":1976,"month":6,"date_of_month":16,"day_of_week":3,"births":8968},{"year":1976,"month":6,"date_of_month":17,"day_of_week":4,"births":8831},{"year":1976,"month":6,"date_of_month":18,"day_of_week":5,"births":8833},{"year":1976,"month":6,"date_of_month":19,"day_of_week":6,"births":7829},{"year":1976,"month":6,"date_of_month":20,"day_of_week":7,"births":7397},{"year":1976,"month":6,"date_of_month":21,"day_of_week":1,"births":8464},{"year":1976,"month":6,"date_of_month":22,"day_of_week":2,"births":9048},{"year":1976,"month":6,"date_of_month":23,"day_of_week":3,"births":8903},{"year":1976,"month":6,"date_of_month":24,"day_of_week":4,"births":9017},{"year":1976,"month":6,"date_of_month":25,"day_of_week":5,"births":9126},{"year":1976,"month":6,"date_of_month":26,"day_of_week":6,"births":7827},{"year":1976,"month":6,"date_of_month":27,"day_of_week":7,"births":7614},{"year":1976,"month":6,"date_of_month":28,"day_of_week":1,"births":9071},{"year":1976,"month":6,"date_of_month":29,"day_of_week":2,"births":9487},{"year":1976,"month":6,"date_of_month":30,"day_of_week":3,"births":9132},{"year":1976,"month":7,"date_of_month":1,"day_of_week":4,"births":9072},{"year":1976,"month":7,"date_of_month":2,"day_of_week":5,"births":9360},{"year":1976,"month":7,"date_of_month":3,"day_of_week":6,"births":7918},{"year":1976,"month":7,"date_of_month":4,"day_of_week":7,"births":7893},{"year":1976,"month":7,"date_of_month":5,"day_of_week":1,"births":7564},{"year":1976,"month":7,"date_of_month":6,"day_of_week":2,"births":9227},{"year":1976,"month":7,"date_of_month":7,"day_of_week":3,"births":9947},{"year":1976,"month":7,"date_of_month":8,"day_of_week":4,"births":9549},{"year":1976,"month":7,"date_of_month":9,"day_of_week":5,"births":9587},{"year":1976,"month":7,"date_of_month":10,"day_of_week":6,"births":8269},{"year":1976,"month":7,"date_of_month":11,"day_of_week":7,"births":7993},{"year":1976,"month":7,"date_of_month":12,"day_of_week":1,"births":9268},{"year":1976,"month":7,"date_of_month":13,"day_of_week":2,"births":9476},{"year":1976,"month":7,"date_of_month":14,"day_of_week":3,"births":9352},{"year":1976,"month":7,"date_of_month":15,"day_of_week":4,"births":9462},{"year":1976,"month":7,"date_of_month":16,"day_of_week":5,"births":9568},{"year":1976,"month":7,"date_of_month":17,"day_of_week":6,"births":8147},{"year":1976,"month":7,"date_of_month":18,"day_of_week":7,"births":7576},{"year":1976,"month":7,"date_of_month":19,"day_of_week":1,"births":9300},{"year":1976,"month":7,"date_of_month":20,"day_of_week":2,"births":9430},{"year":1976,"month":7,"date_of_month":21,"day_of_week":3,"births":9444},{"year":1976,"month":7,"date_of_month":22,"day_of_week":4,"births":9411},{"year":1976,"month":7,"date_of_month":23,"day_of_week":5,"births":9455},{"year":1976,"month":7,"date_of_month":24,"day_of_week":6,"births":8462},{"year":1976,"month":7,"date_of_month":25,"day_of_week":7,"births":7811},{"year":1976,"month":7,"date_of_month":26,"day_of_week":1,"births":9392},{"year":1976,"month":7,"date_of_month":27,"day_of_week":2,"births":9684},{"year":1976,"month":7,"date_of_month":28,"day_of_week":3,"births":9164},{"year":1976,"month":7,"date_of_month":29,"day_of_week":4,"births":9369},{"year":1976,"month":7,"date_of_month":30,"day_of_week":5,"births":9685},{"year":1976,"month":7,"date_of_month":31,"day_of_week":6,"births":8234},{"year":1976,"month":8,"date_of_month":1,"day_of_week":7,"births":7857},{"year":1976,"month":8,"date_of_month":2,"day_of_week":1,"births":9037},{"year":1976,"month":8,"date_of_month":3,"day_of_week":2,"births":9583},{"year":1976,"month":8,"date_of_month":4,"day_of_week":3,"births":9065},{"year":1976,"month":8,"date_of_month":5,"day_of_week":4,"births":9393},{"year":1976,"month":8,"date_of_month":6,"day_of_week":5,"births":9655},{"year":1976,"month":8,"date_of_month":7,"day_of_week":6,"births":8424},{"year":1976,"month":8,"date_of_month":8,"day_of_week":7,"births":8024},{"year":1976,"month":8,"date_of_month":9,"day_of_week":1,"births":9343},{"year":1976,"month":8,"date_of_month":10,"day_of_week":2,"births":9832},{"year":1976,"month":8,"date_of_month":11,"day_of_week":3,"births":9317},{"year":1976,"month":8,"date_of_month":12,"day_of_week":4,"births":9722},{"year":1976,"month":8,"date_of_month":13,"day_of_week":5,"births":9538},{"year":1976,"month":8,"date_of_month":14,"day_of_week":6,"births":8328},{"year":1976,"month":8,"date_of_month":15,"day_of_week":7,"births":7823},{"year":1976,"month":8,"date_of_month":16,"day_of_week":1,"births":9335},{"year":1976,"month":8,"date_of_month":17,"day_of_week":2,"births":9623},{"year":1976,"month":8,"date_of_month":18,"day_of_week":3,"births":9519},{"year":1976,"month":8,"date_of_month":19,"day_of_week":4,"births":9455},{"year":1976,"month":8,"date_of_month":20,"day_of_week":5,"births":9273},{"year":1976,"month":8,"date_of_month":21,"day_of_week":6,"births":8748},{"year":1976,"month":8,"date_of_month":22,"day_of_week":7,"births":8287},{"year":1976,"month":8,"date_of_month":23,"day_of_week":1,"births":9456},{"year":1976,"month":8,"date_of_month":24,"day_of_week":2,"births":9877},{"year":1976,"month":8,"date_of_month":25,"day_of_week":3,"births":9481},{"year":1976,"month":8,"date_of_month":26,"day_of_week":4,"births":9660},{"year":1976,"month":8,"date_of_month":27,"day_of_week":5,"births":9862},{"year":1976,"month":8,"date_of_month":28,"day_of_week":6,"births":8498},{"year":1976,"month":8,"date_of_month":29,"day_of_week":7,"births":7998},{"year":1976,"month":8,"date_of_month":30,"day_of_week":1,"births":9159},{"year":1976,"month":8,"date_of_month":31,"day_of_week":2,"births":9602},{"year":1976,"month":9,"date_of_month":1,"day_of_week":3,"births":9476},{"year":1976,"month":9,"date_of_month":2,"day_of_week":4,"births":9324},{"year":1976,"month":9,"date_of_month":3,"day_of_week":5,"births":9667},{"year":1976,"month":9,"date_of_month":4,"day_of_week":6,"births":8407},{"year":1976,"month":9,"date_of_month":5,"day_of_week":7,"births":7807},{"year":1976,"month":9,"date_of_month":6,"day_of_week":1,"births":8083},{"year":1976,"month":9,"date_of_month":7,"day_of_week":2,"births":9654},{"year":1976,"month":9,"date_of_month":8,"day_of_week":3,"births":10166},{"year":1976,"month":9,"date_of_month":9,"day_of_week":4,"births":9990},{"year":1976,"month":9,"date_of_month":10,"day_of_week":5,"births":9998},{"year":1976,"month":9,"date_of_month":11,"day_of_week":6,"births":8413},{"year":1976,"month":9,"date_of_month":12,"day_of_week":7,"births":8142},{"year":1976,"month":9,"date_of_month":13,"day_of_week":1,"births":9641},{"year":1976,"month":9,"date_of_month":14,"day_of_week":2,"births":10165},{"year":1976,"month":9,"date_of_month":15,"day_of_week":3,"births":9977},{"year":1976,"month":9,"date_of_month":16,"day_of_week":4,"births":9956},{"year":1976,"month":9,"date_of_month":17,"day_of_week":5,"births":9985},{"year":1976,"month":9,"date_of_month":18,"day_of_week":6,"births":8738},{"year":1976,"month":9,"date_of_month":19,"day_of_week":7,"births":8585},{"year":1976,"month":9,"date_of_month":20,"day_of_week":1,"births":10051},{"year":1976,"month":9,"date_of_month":21,"day_of_week":2,"births":10296},{"year":1976,"month":9,"date_of_month":22,"day_of_week":3,"births":9836},{"year":1976,"month":9,"date_of_month":23,"day_of_week":4,"births":9815},{"year":1976,"month":9,"date_of_month":24,"day_of_week":5,"births":10052},{"year":1976,"month":9,"date_of_month":25,"day_of_week":6,"births":8792},{"year":1976,"month":9,"date_of_month":26,"day_of_week":7,"births":8510},{"year":1976,"month":9,"date_of_month":27,"day_of_week":1,"births":10026},{"year":1976,"month":9,"date_of_month":28,"day_of_week":2,"births":10146},{"year":1976,"month":9,"date_of_month":29,"day_of_week":3,"births":9817},{"year":1976,"month":9,"date_of_month":30,"day_of_week":4,"births":9718},{"year":1976,"month":10,"date_of_month":1,"day_of_week":5,"births":9859},{"year":1976,"month":10,"date_of_month":2,"day_of_week":6,"births":8691},{"year":1976,"month":10,"date_of_month":3,"day_of_week":7,"births":8270},{"year":1976,"month":10,"date_of_month":4,"day_of_week":1,"births":9656},{"year":1976,"month":10,"date_of_month":5,"day_of_week":2,"births":9789},{"year":1976,"month":10,"date_of_month":6,"day_of_week":3,"births":9483},{"year":1976,"month":10,"date_of_month":7,"day_of_week":4,"births":9461},{"year":1976,"month":10,"date_of_month":8,"day_of_week":5,"births":9565},{"year":1976,"month":10,"date_of_month":9,"day_of_week":6,"births":8262},{"year":1976,"month":10,"date_of_month":10,"day_of_week":7,"births":8313},{"year":1976,"month":10,"date_of_month":11,"day_of_week":1,"births":9396},{"year":1976,"month":10,"date_of_month":12,"day_of_week":2,"births":9622},{"year":1976,"month":10,"date_of_month":13,"day_of_week":3,"births":9183},{"year":1976,"month":10,"date_of_month":14,"day_of_week":4,"births":9253},{"year":1976,"month":10,"date_of_month":15,"day_of_week":5,"births":9564},{"year":1976,"month":10,"date_of_month":16,"day_of_week":6,"births":8187},{"year":1976,"month":10,"date_of_month":17,"day_of_week":7,"births":7814},{"year":1976,"month":10,"date_of_month":18,"day_of_week":1,"births":9248},{"year":1976,"month":10,"date_of_month":19,"day_of_week":2,"births":9248},{"year":1976,"month":10,"date_of_month":20,"day_of_week":3,"births":9575},{"year":1976,"month":10,"date_of_month":21,"day_of_week":4,"births":9257},{"year":1976,"month":10,"date_of_month":22,"day_of_week":5,"births":9442},{"year":1976,"month":10,"date_of_month":23,"day_of_week":6,"births":8201},{"year":1976,"month":10,"date_of_month":24,"day_of_week":7,"births":7848},{"year":1976,"month":10,"date_of_month":25,"day_of_week":1,"births":9198},{"year":1976,"month":10,"date_of_month":26,"day_of_week":2,"births":9403},{"year":1976,"month":10,"date_of_month":27,"day_of_week":3,"births":9212},{"year":1976,"month":10,"date_of_month":28,"day_of_week":4,"births":8857},{"year":1976,"month":10,"date_of_month":29,"day_of_week":5,"births":9116},{"year":1976,"month":10,"date_of_month":30,"day_of_week":6,"births":7968},{"year":1976,"month":10,"date_of_month":31,"day_of_week":7,"births":8078},{"year":1976,"month":11,"date_of_month":1,"day_of_week":1,"births":9007},{"year":1976,"month":11,"date_of_month":2,"day_of_week":2,"births":9155},{"year":1976,"month":11,"date_of_month":3,"day_of_week":3,"births":9015},{"year":1976,"month":11,"date_of_month":4,"day_of_week":4,"births":9092},{"year":1976,"month":11,"date_of_month":5,"day_of_week":5,"births":9307},{"year":1976,"month":11,"date_of_month":6,"day_of_week":6,"births":7864},{"year":1976,"month":11,"date_of_month":7,"day_of_week":7,"births":7860},{"year":1976,"month":11,"date_of_month":8,"day_of_week":1,"births":9361},{"year":1976,"month":11,"date_of_month":9,"day_of_week":2,"births":9480},{"year":1976,"month":11,"date_of_month":10,"day_of_week":3,"births":9432},{"year":1976,"month":11,"date_of_month":11,"day_of_week":4,"births":9429},{"year":1976,"month":11,"date_of_month":12,"day_of_week":5,"births":9204},{"year":1976,"month":11,"date_of_month":13,"day_of_week":6,"births":7913},{"year":1976,"month":11,"date_of_month":14,"day_of_week":7,"births":7652},{"year":1976,"month":11,"date_of_month":15,"day_of_week":1,"births":9031},{"year":1976,"month":11,"date_of_month":16,"day_of_week":2,"births":9569},{"year":1976,"month":11,"date_of_month":17,"day_of_week":3,"births":9296},{"year":1976,"month":11,"date_of_month":18,"day_of_week":4,"births":9181},{"year":1976,"month":11,"date_of_month":19,"day_of_week":5,"births":9458},{"year":1976,"month":11,"date_of_month":20,"day_of_week":6,"births":7967},{"year":1976,"month":11,"date_of_month":21,"day_of_week":7,"births":7707},{"year":1976,"month":11,"date_of_month":22,"day_of_week":1,"births":9160},{"year":1976,"month":11,"date_of_month":23,"day_of_week":2,"births":9316},{"year":1976,"month":11,"date_of_month":24,"day_of_week":3,"births":9008},{"year":1976,"month":11,"date_of_month":25,"day_of_week":4,"births":7492},{"year":1976,"month":11,"date_of_month":26,"day_of_week":5,"births":8733},{"year":1976,"month":11,"date_of_month":27,"day_of_week":6,"births":7966},{"year":1976,"month":11,"date_of_month":28,"day_of_week":7,"births":7585},{"year":1976,"month":11,"date_of_month":29,"day_of_week":1,"births":9263},{"year":1976,"month":11,"date_of_month":30,"day_of_week":2,"births":9550},{"year":1976,"month":12,"date_of_month":1,"day_of_week":3,"births":9045},{"year":1976,"month":12,"date_of_month":2,"day_of_week":4,"births":8969},{"year":1976,"month":12,"date_of_month":3,"day_of_week":5,"births":9042},{"year":1976,"month":12,"date_of_month":4,"day_of_week":6,"births":7889},{"year":1976,"month":12,"date_of_month":5,"day_of_week":7,"births":7640},{"year":1976,"month":12,"date_of_month":6,"day_of_week":1,"births":9198},{"year":1976,"month":12,"date_of_month":7,"day_of_week":2,"births":9637},{"year":1976,"month":12,"date_of_month":8,"day_of_week":3,"births":9215},{"year":1976,"month":12,"date_of_month":9,"day_of_week":4,"births":9263},{"year":1976,"month":12,"date_of_month":10,"day_of_week":5,"births":9159},{"year":1976,"month":12,"date_of_month":11,"day_of_week":6,"births":7969},{"year":1976,"month":12,"date_of_month":12,"day_of_week":7,"births":7769},{"year":1976,"month":12,"date_of_month":13,"day_of_week":1,"births":9240},{"year":1976,"month":12,"date_of_month":14,"day_of_week":2,"births":9559},{"year":1976,"month":12,"date_of_month":15,"day_of_week":3,"births":9516},{"year":1976,"month":12,"date_of_month":16,"day_of_week":4,"births":9450},{"year":1976,"month":12,"date_of_month":17,"day_of_week":5,"births":9890},{"year":1976,"month":12,"date_of_month":18,"day_of_week":6,"births":7981},{"year":1976,"month":12,"date_of_month":19,"day_of_week":7,"births":7505},{"year":1976,"month":12,"date_of_month":20,"day_of_week":1,"births":9782},{"year":1976,"month":12,"date_of_month":21,"day_of_week":2,"births":9776},{"year":1976,"month":12,"date_of_month":22,"day_of_week":3,"births":8594},{"year":1976,"month":12,"date_of_month":23,"day_of_week":4,"births":8104},{"year":1976,"month":12,"date_of_month":24,"day_of_week":5,"births":7521},{"year":1976,"month":12,"date_of_month":25,"day_of_week":6,"births":7185},{"year":1976,"month":12,"date_of_month":26,"day_of_week":7,"births":7610},{"year":1976,"month":12,"date_of_month":27,"day_of_week":1,"births":9342},{"year":1976,"month":12,"date_of_month":28,"day_of_week":2,"births":10115},{"year":1976,"month":12,"date_of_month":29,"day_of_week":3,"births":10088},{"year":1976,"month":12,"date_of_month":30,"day_of_week":4,"births":9851},{"year":1976,"month":12,"date_of_month":31,"day_of_week":5,"births":8964},{"year":1977,"month":1,"date_of_month":1,"day_of_week":6,"births":7416},{"year":1977,"month":1,"date_of_month":2,"day_of_week":7,"births":7467},{"year":1977,"month":1,"date_of_month":3,"day_of_week":1,"births":8703},{"year":1977,"month":1,"date_of_month":4,"day_of_week":2,"births":9104},{"year":1977,"month":1,"date_of_month":5,"day_of_week":3,"births":8984},{"year":1977,"month":1,"date_of_month":6,"day_of_week":4,"births":8971},{"year":1977,"month":1,"date_of_month":7,"day_of_week":5,"births":9212},{"year":1977,"month":1,"date_of_month":8,"day_of_week":6,"births":8013},{"year":1977,"month":1,"date_of_month":9,"day_of_week":7,"births":7561},{"year":1977,"month":1,"date_of_month":10,"day_of_week":1,"births":9142},{"year":1977,"month":1,"date_of_month":11,"day_of_week":2,"births":9180},{"year":1977,"month":1,"date_of_month":12,"day_of_week":3,"births":9257},{"year":1977,"month":1,"date_of_month":13,"day_of_week":4,"births":9450},{"year":1977,"month":1,"date_of_month":14,"day_of_week":5,"births":9317},{"year":1977,"month":1,"date_of_month":15,"day_of_week":6,"births":8043},{"year":1977,"month":1,"date_of_month":16,"day_of_week":7,"births":7666},{"year":1977,"month":1,"date_of_month":17,"day_of_week":1,"births":9396},{"year":1977,"month":1,"date_of_month":18,"day_of_week":2,"births":9628},{"year":1977,"month":1,"date_of_month":19,"day_of_week":3,"births":9173},{"year":1977,"month":1,"date_of_month":20,"day_of_week":4,"births":9229},{"year":1977,"month":1,"date_of_month":21,"day_of_week":5,"births":9391},{"year":1977,"month":1,"date_of_month":22,"day_of_week":6,"births":8168},{"year":1977,"month":1,"date_of_month":23,"day_of_week":7,"births":7620},{"year":1977,"month":1,"date_of_month":24,"day_of_week":1,"births":9246},{"year":1977,"month":1,"date_of_month":25,"day_of_week":2,"births":9575},{"year":1977,"month":1,"date_of_month":26,"day_of_week":3,"births":9270},{"year":1977,"month":1,"date_of_month":27,"day_of_week":4,"births":9339},{"year":1977,"month":1,"date_of_month":28,"day_of_week":5,"births":9422},{"year":1977,"month":1,"date_of_month":29,"day_of_week":6,"births":8041},{"year":1977,"month":1,"date_of_month":30,"day_of_week":7,"births":7769},{"year":1977,"month":1,"date_of_month":31,"day_of_week":1,"births":9251},{"year":1977,"month":2,"date_of_month":1,"day_of_week":2,"births":9486},{"year":1977,"month":2,"date_of_month":2,"day_of_week":3,"births":9033},{"year":1977,"month":2,"date_of_month":3,"day_of_week":4,"births":9244},{"year":1977,"month":2,"date_of_month":4,"day_of_week":5,"births":9420},{"year":1977,"month":2,"date_of_month":5,"day_of_week":6,"births":8177},{"year":1977,"month":2,"date_of_month":6,"day_of_week":7,"births":7693},{"year":1977,"month":2,"date_of_month":7,"day_of_week":1,"births":9122},{"year":1977,"month":2,"date_of_month":8,"day_of_week":2,"births":9095},{"year":1977,"month":2,"date_of_month":9,"day_of_week":3,"births":9268},{"year":1977,"month":2,"date_of_month":10,"day_of_week":4,"births":9536},{"year":1977,"month":2,"date_of_month":11,"day_of_week":5,"births":9471},{"year":1977,"month":2,"date_of_month":12,"day_of_week":6,"births":8492},{"year":1977,"month":2,"date_of_month":13,"day_of_week":7,"births":8085},{"year":1977,"month":2,"date_of_month":14,"day_of_week":1,"births":9833},{"year":1977,"month":2,"date_of_month":15,"day_of_week":2,"births":9715},{"year":1977,"month":2,"date_of_month":16,"day_of_week":3,"births":9419},{"year":1977,"month":2,"date_of_month":17,"day_of_week":4,"births":9565},{"year":1977,"month":2,"date_of_month":18,"day_of_week":5,"births":9496},{"year":1977,"month":2,"date_of_month":19,"day_of_week":6,"births":8175},{"year":1977,"month":2,"date_of_month":20,"day_of_week":7,"births":8010},{"year":1977,"month":2,"date_of_month":21,"day_of_week":1,"births":9112},{"year":1977,"month":2,"date_of_month":22,"day_of_week":2,"births":9827},{"year":1977,"month":2,"date_of_month":23,"day_of_week":3,"births":9629},{"year":1977,"month":2,"date_of_month":24,"day_of_week":4,"births":9450},{"year":1977,"month":2,"date_of_month":25,"day_of_week":5,"births":9648},{"year":1977,"month":2,"date_of_month":26,"day_of_week":6,"births":8525},{"year":1977,"month":2,"date_of_month":27,"day_of_week":7,"births":7904},{"year":1977,"month":2,"date_of_month":28,"day_of_week":1,"births":9361},{"year":1977,"month":3,"date_of_month":1,"day_of_week":2,"births":9835},{"year":1977,"month":3,"date_of_month":2,"day_of_week":3,"births":9447},{"year":1977,"month":3,"date_of_month":3,"day_of_week":4,"births":9543},{"year":1977,"month":3,"date_of_month":4,"day_of_week":5,"births":9777},{"year":1977,"month":3,"date_of_month":5,"day_of_week":6,"births":8352},{"year":1977,"month":3,"date_of_month":6,"day_of_week":7,"births":7784},{"year":1977,"month":3,"date_of_month":7,"day_of_week":1,"births":9359},{"year":1977,"month":3,"date_of_month":8,"day_of_week":2,"births":10033},{"year":1977,"month":3,"date_of_month":9,"day_of_week":3,"births":9356},{"year":1977,"month":3,"date_of_month":10,"day_of_week":4,"births":9356},{"year":1977,"month":3,"date_of_month":11,"day_of_week":5,"births":9497},{"year":1977,"month":3,"date_of_month":12,"day_of_week":6,"births":8266},{"year":1977,"month":3,"date_of_month":13,"day_of_week":7,"births":7938},{"year":1977,"month":3,"date_of_month":14,"day_of_week":1,"births":9378},{"year":1977,"month":3,"date_of_month":15,"day_of_week":2,"births":9684},{"year":1977,"month":3,"date_of_month":16,"day_of_week":3,"births":9467},{"year":1977,"month":3,"date_of_month":17,"day_of_week":4,"births":9312},{"year":1977,"month":3,"date_of_month":18,"day_of_week":5,"births":9260},{"year":1977,"month":3,"date_of_month":19,"day_of_week":6,"births":8170},{"year":1977,"month":3,"date_of_month":20,"day_of_week":7,"births":7836},{"year":1977,"month":3,"date_of_month":21,"day_of_week":1,"births":9082},{"year":1977,"month":3,"date_of_month":22,"day_of_week":2,"births":9534},{"year":1977,"month":3,"date_of_month":23,"day_of_week":3,"births":9172},{"year":1977,"month":3,"date_of_month":24,"day_of_week":4,"births":9255},{"year":1977,"month":3,"date_of_month":25,"day_of_week":5,"births":9345},{"year":1977,"month":3,"date_of_month":26,"day_of_week":6,"births":7959},{"year":1977,"month":3,"date_of_month":27,"day_of_week":7,"births":7769},{"year":1977,"month":3,"date_of_month":28,"day_of_week":1,"births":9297},{"year":1977,"month":3,"date_of_month":29,"day_of_week":2,"births":9649},{"year":1977,"month":3,"date_of_month":30,"day_of_week":3,"births":9410},{"year":1977,"month":3,"date_of_month":31,"day_of_week":4,"births":9445},{"year":1977,"month":4,"date_of_month":1,"day_of_week":5,"births":8997},{"year":1977,"month":4,"date_of_month":2,"day_of_week":6,"births":8058},{"year":1977,"month":4,"date_of_month":3,"day_of_week":7,"births":7956},{"year":1977,"month":4,"date_of_month":4,"day_of_week":1,"births":9286},{"year":1977,"month":4,"date_of_month":5,"day_of_week":2,"births":9506},{"year":1977,"month":4,"date_of_month":6,"day_of_week":3,"births":9129},{"year":1977,"month":4,"date_of_month":7,"day_of_week":4,"births":9148},{"year":1977,"month":4,"date_of_month":8,"day_of_week":5,"births":8991},{"year":1977,"month":4,"date_of_month":9,"day_of_week":6,"births":7734},{"year":1977,"month":4,"date_of_month":10,"day_of_week":7,"births":7376},{"year":1977,"month":4,"date_of_month":11,"day_of_week":1,"births":8971},{"year":1977,"month":4,"date_of_month":12,"day_of_week":2,"births":9676},{"year":1977,"month":4,"date_of_month":13,"day_of_week":3,"births":9216},{"year":1977,"month":4,"date_of_month":14,"day_of_week":4,"births":9101},{"year":1977,"month":4,"date_of_month":15,"day_of_week":5,"births":9299},{"year":1977,"month":4,"date_of_month":16,"day_of_week":6,"births":8039},{"year":1977,"month":4,"date_of_month":17,"day_of_week":7,"births":7593},{"year":1977,"month":4,"date_of_month":18,"day_of_week":1,"births":9357},{"year":1977,"month":4,"date_of_month":19,"day_of_week":2,"births":9691},{"year":1977,"month":4,"date_of_month":20,"day_of_week":3,"births":9267},{"year":1977,"month":4,"date_of_month":21,"day_of_week":4,"births":9144},{"year":1977,"month":4,"date_of_month":22,"day_of_week":5,"births":9158},{"year":1977,"month":4,"date_of_month":23,"day_of_week":6,"births":7919},{"year":1977,"month":4,"date_of_month":24,"day_of_week":7,"births":7202},{"year":1977,"month":4,"date_of_month":25,"day_of_week":1,"births":9011},{"year":1977,"month":4,"date_of_month":26,"day_of_week":2,"births":9432},{"year":1977,"month":4,"date_of_month":27,"day_of_week":3,"births":8823},{"year":1977,"month":4,"date_of_month":28,"day_of_week":4,"births":8984},{"year":1977,"month":4,"date_of_month":29,"day_of_week":5,"births":8931},{"year":1977,"month":4,"date_of_month":30,"day_of_week":6,"births":7866},{"year":1977,"month":5,"date_of_month":1,"day_of_week":7,"births":7634},{"year":1977,"month":5,"date_of_month":2,"day_of_week":1,"births":9385},{"year":1977,"month":5,"date_of_month":3,"day_of_week":2,"births":9444},{"year":1977,"month":5,"date_of_month":4,"day_of_week":3,"births":9397},{"year":1977,"month":5,"date_of_month":5,"day_of_week":4,"births":9386},{"year":1977,"month":5,"date_of_month":6,"day_of_week":5,"births":9535},{"year":1977,"month":5,"date_of_month":7,"day_of_week":6,"births":8082},{"year":1977,"month":5,"date_of_month":8,"day_of_week":7,"births":7643},{"year":1977,"month":5,"date_of_month":9,"day_of_week":1,"births":8849},{"year":1977,"month":5,"date_of_month":10,"day_of_week":2,"births":9404},{"year":1977,"month":5,"date_of_month":11,"day_of_week":3,"births":8892},{"year":1977,"month":5,"date_of_month":12,"day_of_week":4,"births":9210},{"year":1977,"month":5,"date_of_month":13,"day_of_week":5,"births":9314},{"year":1977,"month":5,"date_of_month":14,"day_of_week":6,"births":8108},{"year":1977,"month":5,"date_of_month":15,"day_of_week":7,"births":7521},{"year":1977,"month":5,"date_of_month":16,"day_of_week":1,"births":9489},{"year":1977,"month":5,"date_of_month":17,"day_of_week":2,"births":9642},{"year":1977,"month":5,"date_of_month":18,"day_of_week":3,"births":9413},{"year":1977,"month":5,"date_of_month":19,"day_of_week":4,"births":9243},{"year":1977,"month":5,"date_of_month":20,"day_of_week":5,"births":9454},{"year":1977,"month":5,"date_of_month":21,"day_of_week":6,"births":7894},{"year":1977,"month":5,"date_of_month":22,"day_of_week":7,"births":7731},{"year":1977,"month":5,"date_of_month":23,"day_of_week":1,"births":9421},{"year":1977,"month":5,"date_of_month":24,"day_of_week":2,"births":9603},{"year":1977,"month":5,"date_of_month":25,"day_of_week":3,"births":9528},{"year":1977,"month":5,"date_of_month":26,"day_of_week":4,"births":9368},{"year":1977,"month":5,"date_of_month":27,"day_of_week":5,"births":9609},{"year":1977,"month":5,"date_of_month":28,"day_of_week":6,"births":8084},{"year":1977,"month":5,"date_of_month":29,"day_of_week":7,"births":7744},{"year":1977,"month":5,"date_of_month":30,"day_of_week":1,"births":7745},{"year":1977,"month":5,"date_of_month":31,"day_of_week":2,"births":9397},{"year":1977,"month":6,"date_of_month":1,"day_of_week":3,"births":9668},{"year":1977,"month":6,"date_of_month":2,"day_of_week":4,"births":9344},{"year":1977,"month":6,"date_of_month":3,"day_of_week":5,"births":9425},{"year":1977,"month":6,"date_of_month":4,"day_of_week":6,"births":8049},{"year":1977,"month":6,"date_of_month":5,"day_of_week":7,"births":7889},{"year":1977,"month":6,"date_of_month":6,"day_of_week":1,"births":9274},{"year":1977,"month":6,"date_of_month":7,"day_of_week":2,"births":9547},{"year":1977,"month":6,"date_of_month":8,"day_of_week":3,"births":9205},{"year":1977,"month":6,"date_of_month":9,"day_of_week":4,"births":9393},{"year":1977,"month":6,"date_of_month":10,"day_of_week":5,"births":9237},{"year":1977,"month":6,"date_of_month":11,"day_of_week":6,"births":8020},{"year":1977,"month":6,"date_of_month":12,"day_of_week":7,"births":7613},{"year":1977,"month":6,"date_of_month":13,"day_of_week":1,"births":9329},{"year":1977,"month":6,"date_of_month":14,"day_of_week":2,"births":9629},{"year":1977,"month":6,"date_of_month":15,"day_of_week":3,"births":9539},{"year":1977,"month":6,"date_of_month":16,"day_of_week":4,"births":9736},{"year":1977,"month":6,"date_of_month":17,"day_of_week":5,"births":9746},{"year":1977,"month":6,"date_of_month":18,"day_of_week":6,"births":8227},{"year":1977,"month":6,"date_of_month":19,"day_of_week":7,"births":7795},{"year":1977,"month":6,"date_of_month":20,"day_of_week":1,"births":9528},{"year":1977,"month":6,"date_of_month":21,"day_of_week":2,"births":9668},{"year":1977,"month":6,"date_of_month":22,"day_of_week":3,"births":9423},{"year":1977,"month":6,"date_of_month":23,"day_of_week":4,"births":9489},{"year":1977,"month":6,"date_of_month":24,"day_of_week":5,"births":9612},{"year":1977,"month":6,"date_of_month":25,"day_of_week":6,"births":8338},{"year":1977,"month":6,"date_of_month":26,"day_of_week":7,"births":8038},{"year":1977,"month":6,"date_of_month":27,"day_of_week":1,"births":9657},{"year":1977,"month":6,"date_of_month":28,"day_of_week":2,"births":9994},{"year":1977,"month":6,"date_of_month":29,"day_of_week":3,"births":9735},{"year":1977,"month":6,"date_of_month":30,"day_of_week":4,"births":9612},{"year":1977,"month":7,"date_of_month":1,"day_of_week":5,"births":9746},{"year":1977,"month":7,"date_of_month":2,"day_of_week":6,"births":8311},{"year":1977,"month":7,"date_of_month":3,"day_of_week":7,"births":7861},{"year":1977,"month":7,"date_of_month":4,"day_of_week":1,"births":8171},{"year":1977,"month":7,"date_of_month":5,"day_of_week":2,"births":9648},{"year":1977,"month":7,"date_of_month":6,"day_of_week":3,"births":10533},{"year":1977,"month":7,"date_of_month":7,"day_of_week":4,"births":10424},{"year":1977,"month":7,"date_of_month":8,"day_of_week":5,"births":10234},{"year":1977,"month":7,"date_of_month":9,"day_of_week":6,"births":8793},{"year":1977,"month":7,"date_of_month":10,"day_of_week":7,"births":7983},{"year":1977,"month":7,"date_of_month":11,"day_of_week":1,"births":9590},{"year":1977,"month":7,"date_of_month":12,"day_of_week":2,"births":9997},{"year":1977,"month":7,"date_of_month":13,"day_of_week":3,"births":9920},{"year":1977,"month":7,"date_of_month":14,"day_of_week":4,"births":10054},{"year":1977,"month":7,"date_of_month":15,"day_of_week":5,"births":10176},{"year":1977,"month":7,"date_of_month":16,"day_of_week":6,"births":8667},{"year":1977,"month":7,"date_of_month":17,"day_of_week":7,"births":8058},{"year":1977,"month":7,"date_of_month":18,"day_of_week":1,"births":9781},{"year":1977,"month":7,"date_of_month":19,"day_of_week":2,"births":10173},{"year":1977,"month":7,"date_of_month":20,"day_of_week":3,"births":10132},{"year":1977,"month":7,"date_of_month":21,"day_of_week":4,"births":9878},{"year":1977,"month":7,"date_of_month":22,"day_of_week":5,"births":10180},{"year":1977,"month":7,"date_of_month":23,"day_of_week":6,"births":8488},{"year":1977,"month":7,"date_of_month":24,"day_of_week":7,"births":8186},{"year":1977,"month":7,"date_of_month":25,"day_of_week":1,"births":9771},{"year":1977,"month":7,"date_of_month":26,"day_of_week":2,"births":10128},{"year":1977,"month":7,"date_of_month":27,"day_of_week":3,"births":9688},{"year":1977,"month":7,"date_of_month":28,"day_of_week":4,"births":9826},{"year":1977,"month":7,"date_of_month":29,"day_of_week":5,"births":10084},{"year":1977,"month":7,"date_of_month":30,"day_of_week":6,"births":8817},{"year":1977,"month":7,"date_of_month":31,"day_of_week":7,"births":8223},{"year":1977,"month":8,"date_of_month":1,"day_of_week":1,"births":9810},{"year":1977,"month":8,"date_of_month":2,"day_of_week":2,"births":10281},{"year":1977,"month":8,"date_of_month":3,"day_of_week":3,"births":9890},{"year":1977,"month":8,"date_of_month":4,"day_of_week":4,"births":9820},{"year":1977,"month":8,"date_of_month":5,"day_of_week":5,"births":10300},{"year":1977,"month":8,"date_of_month":6,"day_of_week":6,"births":8808},{"year":1977,"month":8,"date_of_month":7,"day_of_week":7,"births":8401},{"year":1977,"month":8,"date_of_month":8,"day_of_week":1,"births":9955},{"year":1977,"month":8,"date_of_month":9,"day_of_week":2,"births":10272},{"year":1977,"month":8,"date_of_month":10,"day_of_week":3,"births":10212},{"year":1977,"month":8,"date_of_month":11,"day_of_week":4,"births":9760},{"year":1977,"month":8,"date_of_month":12,"day_of_week":5,"births":10099},{"year":1977,"month":8,"date_of_month":13,"day_of_week":6,"births":8669},{"year":1977,"month":8,"date_of_month":14,"day_of_week":7,"births":8245},{"year":1977,"month":8,"date_of_month":15,"day_of_week":1,"births":9852},{"year":1977,"month":8,"date_of_month":16,"day_of_week":2,"births":10359},{"year":1977,"month":8,"date_of_month":17,"day_of_week":3,"births":9908},{"year":1977,"month":8,"date_of_month":18,"day_of_week":4,"births":9856},{"year":1977,"month":8,"date_of_month":19,"day_of_week":5,"births":10003},{"year":1977,"month":8,"date_of_month":20,"day_of_week":6,"births":8531},{"year":1977,"month":8,"date_of_month":21,"day_of_week":7,"births":8369},{"year":1977,"month":8,"date_of_month":22,"day_of_week":1,"births":9978},{"year":1977,"month":8,"date_of_month":23,"day_of_week":2,"births":10413},{"year":1977,"month":8,"date_of_month":24,"day_of_week":3,"births":10118},{"year":1977,"month":8,"date_of_month":25,"day_of_week":4,"births":10022},{"year":1977,"month":8,"date_of_month":26,"day_of_week":5,"births":9927},{"year":1977,"month":8,"date_of_month":27,"day_of_week":6,"births":8821},{"year":1977,"month":8,"date_of_month":28,"day_of_week":7,"births":8564},{"year":1977,"month":8,"date_of_month":29,"day_of_week":1,"births":9876},{"year":1977,"month":8,"date_of_month":30,"day_of_week":2,"births":10418},{"year":1977,"month":8,"date_of_month":31,"day_of_week":3,"births":10153},{"year":1977,"month":9,"date_of_month":1,"day_of_week":4,"births":9952},{"year":1977,"month":9,"date_of_month":2,"day_of_week":5,"births":10187},{"year":1977,"month":9,"date_of_month":3,"day_of_week":6,"births":8633},{"year":1977,"month":9,"date_of_month":4,"day_of_week":7,"births":8148},{"year":1977,"month":9,"date_of_month":5,"day_of_week":1,"births":8338},{"year":1977,"month":9,"date_of_month":6,"day_of_week":2,"births":10095},{"year":1977,"month":9,"date_of_month":7,"day_of_week":3,"births":10330},{"year":1977,"month":9,"date_of_month":8,"day_of_week":4,"births":10120},{"year":1977,"month":9,"date_of_month":9,"day_of_week":5,"births":10294},{"year":1977,"month":9,"date_of_month":10,"day_of_week":6,"births":8771},{"year":1977,"month":9,"date_of_month":11,"day_of_week":7,"births":8380},{"year":1977,"month":9,"date_of_month":12,"day_of_week":1,"births":9998},{"year":1977,"month":9,"date_of_month":13,"day_of_week":2,"births":10177},{"year":1977,"month":9,"date_of_month":14,"day_of_week":3,"births":10223},{"year":1977,"month":9,"date_of_month":15,"day_of_week":4,"births":10161},{"year":1977,"month":9,"date_of_month":16,"day_of_week":5,"births":10490},{"year":1977,"month":9,"date_of_month":17,"day_of_week":6,"births":9161},{"year":1977,"month":9,"date_of_month":18,"day_of_week":7,"births":8728},{"year":1977,"month":9,"date_of_month":19,"day_of_week":1,"births":10278},{"year":1977,"month":9,"date_of_month":20,"day_of_week":2,"births":10647},{"year":1977,"month":9,"date_of_month":21,"day_of_week":3,"births":10392},{"year":1977,"month":9,"date_of_month":22,"day_of_week":4,"births":10040},{"year":1977,"month":9,"date_of_month":23,"day_of_week":5,"births":10328},{"year":1977,"month":9,"date_of_month":24,"day_of_week":6,"births":9003},{"year":1977,"month":9,"date_of_month":25,"day_of_week":7,"births":8617},{"year":1977,"month":9,"date_of_month":26,"day_of_week":1,"births":10379},{"year":1977,"month":9,"date_of_month":27,"day_of_week":2,"births":10528},{"year":1977,"month":9,"date_of_month":28,"day_of_week":3,"births":10100},{"year":1977,"month":9,"date_of_month":29,"day_of_week":4,"births":10080},{"year":1977,"month":9,"date_of_month":30,"day_of_week":5,"births":10346},{"year":1977,"month":10,"date_of_month":1,"day_of_week":6,"births":9034},{"year":1977,"month":10,"date_of_month":2,"day_of_week":7,"births":8617},{"year":1977,"month":10,"date_of_month":3,"day_of_week":1,"births":10010},{"year":1977,"month":10,"date_of_month":4,"day_of_week":2,"births":10176},{"year":1977,"month":10,"date_of_month":5,"day_of_week":3,"births":9804},{"year":1977,"month":10,"date_of_month":6,"day_of_week":4,"births":9826},{"year":1977,"month":10,"date_of_month":7,"day_of_week":5,"births":9972},{"year":1977,"month":10,"date_of_month":8,"day_of_week":6,"births":8560},{"year":1977,"month":10,"date_of_month":9,"day_of_week":7,"births":8320},{"year":1977,"month":10,"date_of_month":10,"day_of_week":1,"births":9646},{"year":1977,"month":10,"date_of_month":11,"day_of_week":2,"births":9929},{"year":1977,"month":10,"date_of_month":12,"day_of_week":3,"births":9643},{"year":1977,"month":10,"date_of_month":13,"day_of_week":4,"births":9592},{"year":1977,"month":10,"date_of_month":14,"day_of_week":5,"births":9625},{"year":1977,"month":10,"date_of_month":15,"day_of_week":6,"births":8388},{"year":1977,"month":10,"date_of_month":16,"day_of_week":7,"births":8243},{"year":1977,"month":10,"date_of_month":17,"day_of_week":1,"births":9504},{"year":1977,"month":10,"date_of_month":18,"day_of_week":2,"births":9678},{"year":1977,"month":10,"date_of_month":19,"day_of_week":3,"births":9650},{"year":1977,"month":10,"date_of_month":20,"day_of_week":4,"births":9586},{"year":1977,"month":10,"date_of_month":21,"day_of_week":5,"births":9681},{"year":1977,"month":10,"date_of_month":22,"day_of_week":6,"births":8276},{"year":1977,"month":10,"date_of_month":23,"day_of_week":7,"births":7823},{"year":1977,"month":10,"date_of_month":24,"day_of_week":1,"births":9232},{"year":1977,"month":10,"date_of_month":25,"day_of_week":2,"births":9785},{"year":1977,"month":10,"date_of_month":26,"day_of_week":3,"births":9567},{"year":1977,"month":10,"date_of_month":27,"day_of_week":4,"births":9431},{"year":1977,"month":10,"date_of_month":28,"day_of_week":5,"births":9397},{"year":1977,"month":10,"date_of_month":29,"day_of_week":6,"births":8183},{"year":1977,"month":10,"date_of_month":30,"day_of_week":7,"births":8079},{"year":1977,"month":10,"date_of_month":31,"day_of_week":1,"births":9037},{"year":1977,"month":11,"date_of_month":1,"day_of_week":2,"births":9603},{"year":1977,"month":11,"date_of_month":2,"day_of_week":3,"births":9131},{"year":1977,"month":11,"date_of_month":3,"day_of_week":4,"births":9412},{"year":1977,"month":11,"date_of_month":4,"day_of_week":5,"births":9585},{"year":1977,"month":11,"date_of_month":5,"day_of_week":6,"births":8238},{"year":1977,"month":11,"date_of_month":6,"day_of_week":7,"births":7842},{"year":1977,"month":11,"date_of_month":7,"day_of_week":1,"births":9438},{"year":1977,"month":11,"date_of_month":8,"day_of_week":2,"births":9775},{"year":1977,"month":11,"date_of_month":9,"day_of_week":3,"births":9282},{"year":1977,"month":11,"date_of_month":10,"day_of_week":4,"births":9418},{"year":1977,"month":11,"date_of_month":11,"day_of_week":5,"births":9245},{"year":1977,"month":11,"date_of_month":12,"day_of_week":6,"births":8004},{"year":1977,"month":11,"date_of_month":13,"day_of_week":7,"births":7895},{"year":1977,"month":11,"date_of_month":14,"day_of_week":1,"births":9230},{"year":1977,"month":11,"date_of_month":15,"day_of_week":2,"births":9756},{"year":1977,"month":11,"date_of_month":16,"day_of_week":3,"births":9419},{"year":1977,"month":11,"date_of_month":17,"day_of_week":4,"births":9518},{"year":1977,"month":11,"date_of_month":18,"day_of_week":5,"births":9548},{"year":1977,"month":11,"date_of_month":19,"day_of_week":6,"births":8172},{"year":1977,"month":11,"date_of_month":20,"day_of_week":7,"births":7686},{"year":1977,"month":11,"date_of_month":21,"day_of_week":1,"births":9570},{"year":1977,"month":11,"date_of_month":22,"day_of_week":2,"births":9576},{"year":1977,"month":11,"date_of_month":23,"day_of_week":3,"births":9377},{"year":1977,"month":11,"date_of_month":24,"day_of_week":4,"births":7708},{"year":1977,"month":11,"date_of_month":25,"day_of_week":5,"births":8772},{"year":1977,"month":11,"date_of_month":26,"day_of_week":6,"births":8009},{"year":1977,"month":11,"date_of_month":27,"day_of_week":7,"births":7727},{"year":1977,"month":11,"date_of_month":28,"day_of_week":1,"births":9490},{"year":1977,"month":11,"date_of_month":29,"day_of_week":2,"births":9619},{"year":1977,"month":11,"date_of_month":30,"day_of_week":3,"births":9371},{"year":1977,"month":12,"date_of_month":1,"day_of_week":4,"births":9210},{"year":1977,"month":12,"date_of_month":2,"day_of_week":5,"births":9246},{"year":1977,"month":12,"date_of_month":3,"day_of_week":6,"births":7942},{"year":1977,"month":12,"date_of_month":4,"day_of_week":7,"births":7609},{"year":1977,"month":12,"date_of_month":5,"day_of_week":1,"births":9358},{"year":1977,"month":12,"date_of_month":6,"day_of_week":2,"births":9505},{"year":1977,"month":12,"date_of_month":7,"day_of_week":3,"births":9075},{"year":1977,"month":12,"date_of_month":8,"day_of_week":4,"births":9261},{"year":1977,"month":12,"date_of_month":9,"day_of_week":5,"births":9230},{"year":1977,"month":12,"date_of_month":10,"day_of_week":6,"births":7964},{"year":1977,"month":12,"date_of_month":11,"day_of_week":7,"births":7503},{"year":1977,"month":12,"date_of_month":12,"day_of_week":1,"births":9264},{"year":1977,"month":12,"date_of_month":13,"day_of_week":2,"births":9533},{"year":1977,"month":12,"date_of_month":14,"day_of_week":3,"births":9224},{"year":1977,"month":12,"date_of_month":15,"day_of_week":4,"births":9430},{"year":1977,"month":12,"date_of_month":16,"day_of_week":5,"births":9586},{"year":1977,"month":12,"date_of_month":17,"day_of_week":6,"births":8173},{"year":1977,"month":12,"date_of_month":18,"day_of_week":7,"births":7583},{"year":1977,"month":12,"date_of_month":19,"day_of_week":1,"births":9908},{"year":1977,"month":12,"date_of_month":20,"day_of_week":2,"births":9899},{"year":1977,"month":12,"date_of_month":21,"day_of_week":3,"births":9267},{"year":1977,"month":12,"date_of_month":22,"day_of_week":4,"births":8519},{"year":1977,"month":12,"date_of_month":23,"day_of_week":5,"births":8049},{"year":1977,"month":12,"date_of_month":24,"day_of_week":6,"births":7354},{"year":1977,"month":12,"date_of_month":25,"day_of_week":7,"births":7404},{"year":1977,"month":12,"date_of_month":26,"day_of_week":1,"births":7512},{"year":1977,"month":12,"date_of_month":27,"day_of_week":2,"births":9189},{"year":1977,"month":12,"date_of_month":28,"day_of_week":3,"births":9733},{"year":1977,"month":12,"date_of_month":29,"day_of_week":4,"births":9734},{"year":1977,"month":12,"date_of_month":30,"day_of_week":5,"births":9806},{"year":1977,"month":12,"date_of_month":31,"day_of_week":6,"births":7982},{"year":1978,"month":1,"date_of_month":1,"day_of_week":7,"births":7716},{"year":1978,"month":1,"date_of_month":2,"day_of_week":1,"births":7543},{"year":1978,"month":1,"date_of_month":3,"day_of_week":2,"births":8833},{"year":1978,"month":1,"date_of_month":4,"day_of_week":3,"births":8870},{"year":1978,"month":1,"date_of_month":5,"day_of_week":4,"births":9053},{"year":1978,"month":1,"date_of_month":6,"day_of_week":5,"births":9224},{"year":1978,"month":1,"date_of_month":7,"day_of_week":6,"births":8091},{"year":1978,"month":1,"date_of_month":8,"day_of_week":7,"births":7622},{"year":1978,"month":1,"date_of_month":9,"day_of_week":1,"births":9187},{"year":1978,"month":1,"date_of_month":10,"day_of_week":2,"births":9095},{"year":1978,"month":1,"date_of_month":11,"day_of_week":3,"births":9220},{"year":1978,"month":1,"date_of_month":12,"day_of_week":4,"births":9276},{"year":1978,"month":1,"date_of_month":13,"day_of_week":5,"births":9154},{"year":1978,"month":1,"date_of_month":14,"day_of_week":6,"births":8314},{"year":1978,"month":1,"date_of_month":15,"day_of_week":7,"births":7783},{"year":1978,"month":1,"date_of_month":16,"day_of_week":1,"births":9472},{"year":1978,"month":1,"date_of_month":17,"day_of_week":2,"births":9347},{"year":1978,"month":1,"date_of_month":18,"day_of_week":3,"births":9134},{"year":1978,"month":1,"date_of_month":19,"day_of_week":4,"births":9240},{"year":1978,"month":1,"date_of_month":20,"day_of_week":5,"births":9316},{"year":1978,"month":1,"date_of_month":21,"day_of_week":6,"births":7963},{"year":1978,"month":1,"date_of_month":22,"day_of_week":7,"births":7573},{"year":1978,"month":1,"date_of_month":23,"day_of_week":1,"births":9263},{"year":1978,"month":1,"date_of_month":24,"day_of_week":2,"births":9426},{"year":1978,"month":1,"date_of_month":25,"day_of_week":3,"births":9103},{"year":1978,"month":1,"date_of_month":26,"day_of_week":4,"births":9397},{"year":1978,"month":1,"date_of_month":27,"day_of_week":5,"births":8992},{"year":1978,"month":1,"date_of_month":28,"day_of_week":6,"births":7959},{"year":1978,"month":1,"date_of_month":29,"day_of_week":7,"births":7537},{"year":1978,"month":1,"date_of_month":30,"day_of_week":1,"births":9194},{"year":1978,"month":1,"date_of_month":31,"day_of_week":2,"births":9165},{"year":1978,"month":2,"date_of_month":1,"day_of_week":3,"births":9171},{"year":1978,"month":2,"date_of_month":2,"day_of_week":4,"births":9237},{"year":1978,"month":2,"date_of_month":3,"day_of_week":5,"births":9184},{"year":1978,"month":2,"date_of_month":4,"day_of_week":6,"births":8079},{"year":1978,"month":2,"date_of_month":5,"day_of_week":7,"births":7820},{"year":1978,"month":2,"date_of_month":6,"day_of_week":1,"births":9236},{"year":1978,"month":2,"date_of_month":7,"day_of_week":2,"births":9348},{"year":1978,"month":2,"date_of_month":8,"day_of_week":3,"births":9154},{"year":1978,"month":2,"date_of_month":9,"day_of_week":4,"births":9262},{"year":1978,"month":2,"date_of_month":10,"day_of_week":5,"births":9534},{"year":1978,"month":2,"date_of_month":11,"day_of_week":6,"births":8155},{"year":1978,"month":2,"date_of_month":12,"day_of_week":7,"births":7965},{"year":1978,"month":2,"date_of_month":13,"day_of_week":1,"births":8975},{"year":1978,"month":2,"date_of_month":14,"day_of_week":2,"births":9864},{"year":1978,"month":2,"date_of_month":15,"day_of_week":3,"births":9296},{"year":1978,"month":2,"date_of_month":16,"day_of_week":4,"births":9115},{"year":1978,"month":2,"date_of_month":17,"day_of_week":5,"births":9251},{"year":1978,"month":2,"date_of_month":18,"day_of_week":6,"births":8183},{"year":1978,"month":2,"date_of_month":19,"day_of_week":7,"births":7708},{"year":1978,"month":2,"date_of_month":20,"day_of_week":1,"births":9036},{"year":1978,"month":2,"date_of_month":21,"day_of_week":2,"births":9266},{"year":1978,"month":2,"date_of_month":22,"day_of_week":3,"births":9353},{"year":1978,"month":2,"date_of_month":23,"day_of_week":4,"births":9283},{"year":1978,"month":2,"date_of_month":24,"day_of_week":5,"births":9566},{"year":1978,"month":2,"date_of_month":25,"day_of_week":6,"births":8331},{"year":1978,"month":2,"date_of_month":26,"day_of_week":7,"births":7895},{"year":1978,"month":2,"date_of_month":27,"day_of_week":1,"births":9272},{"year":1978,"month":2,"date_of_month":28,"day_of_week":2,"births":9717},{"year":1978,"month":3,"date_of_month":1,"day_of_week":3,"births":9144},{"year":1978,"month":3,"date_of_month":2,"day_of_week":4,"births":9320},{"year":1978,"month":3,"date_of_month":3,"day_of_week":5,"births":9445},{"year":1978,"month":3,"date_of_month":4,"day_of_week":6,"births":8030},{"year":1978,"month":3,"date_of_month":5,"day_of_week":7,"births":7811},{"year":1978,"month":3,"date_of_month":6,"day_of_week":1,"births":9302},{"year":1978,"month":3,"date_of_month":7,"day_of_week":2,"births":9585},{"year":1978,"month":3,"date_of_month":8,"day_of_week":3,"births":9221},{"year":1978,"month":3,"date_of_month":9,"day_of_week":4,"births":9231},{"year":1978,"month":3,"date_of_month":10,"day_of_week":5,"births":9597},{"year":1978,"month":3,"date_of_month":11,"day_of_week":6,"births":8157},{"year":1978,"month":3,"date_of_month":12,"day_of_week":7,"births":7884},{"year":1978,"month":3,"date_of_month":13,"day_of_week":1,"births":9036},{"year":1978,"month":3,"date_of_month":14,"day_of_week":2,"births":9537},{"year":1978,"month":3,"date_of_month":15,"day_of_week":3,"births":9299},{"year":1978,"month":3,"date_of_month":16,"day_of_week":4,"births":9337},{"year":1978,"month":3,"date_of_month":17,"day_of_week":5,"births":9488},{"year":1978,"month":3,"date_of_month":18,"day_of_week":6,"births":7972},{"year":1978,"month":3,"date_of_month":19,"day_of_week":7,"births":7741},{"year":1978,"month":3,"date_of_month":20,"day_of_week":1,"births":9145},{"year":1978,"month":3,"date_of_month":21,"day_of_week":2,"births":9679},{"year":1978,"month":3,"date_of_month":22,"day_of_week":3,"births":9321},{"year":1978,"month":3,"date_of_month":23,"day_of_week":4,"births":9169},{"year":1978,"month":3,"date_of_month":24,"day_of_week":5,"births":9164},{"year":1978,"month":3,"date_of_month":25,"day_of_week":6,"births":7887},{"year":1978,"month":3,"date_of_month":26,"day_of_week":7,"births":7595},{"year":1978,"month":3,"date_of_month":27,"day_of_week":1,"births":9113},{"year":1978,"month":3,"date_of_month":28,"day_of_week":2,"births":9303},{"year":1978,"month":3,"date_of_month":29,"day_of_week":3,"births":9206},{"year":1978,"month":3,"date_of_month":30,"day_of_week":4,"births":8917},{"year":1978,"month":3,"date_of_month":31,"day_of_week":5,"births":9330},{"year":1978,"month":4,"date_of_month":1,"day_of_week":6,"births":8081},{"year":1978,"month":4,"date_of_month":2,"day_of_week":7,"births":7699},{"year":1978,"month":4,"date_of_month":3,"day_of_week":1,"births":9127},{"year":1978,"month":4,"date_of_month":4,"day_of_week":2,"births":9450},{"year":1978,"month":4,"date_of_month":5,"day_of_week":3,"births":8860},{"year":1978,"month":4,"date_of_month":6,"day_of_week":4,"births":8981},{"year":1978,"month":4,"date_of_month":7,"day_of_week":5,"births":9087},{"year":1978,"month":4,"date_of_month":8,"day_of_week":6,"births":7903},{"year":1978,"month":4,"date_of_month":9,"day_of_week":7,"births":7463},{"year":1978,"month":4,"date_of_month":10,"day_of_week":1,"births":8881},{"year":1978,"month":4,"date_of_month":11,"day_of_week":2,"births":9034},{"year":1978,"month":4,"date_of_month":12,"day_of_week":3,"births":8619},{"year":1978,"month":4,"date_of_month":13,"day_of_week":4,"births":8734},{"year":1978,"month":4,"date_of_month":14,"day_of_week":5,"births":9028},{"year":1978,"month":4,"date_of_month":15,"day_of_week":6,"births":7533},{"year":1978,"month":4,"date_of_month":16,"day_of_week":7,"births":7201},{"year":1978,"month":4,"date_of_month":17,"day_of_week":1,"births":8713},{"year":1978,"month":4,"date_of_month":18,"day_of_week":2,"births":9215},{"year":1978,"month":4,"date_of_month":19,"day_of_week":3,"births":8728},{"year":1978,"month":4,"date_of_month":20,"day_of_week":4,"births":8594},{"year":1978,"month":4,"date_of_month":21,"day_of_week":5,"births":8902},{"year":1978,"month":4,"date_of_month":22,"day_of_week":6,"births":7797},{"year":1978,"month":4,"date_of_month":23,"day_of_week":7,"births":7315},{"year":1978,"month":4,"date_of_month":24,"day_of_week":1,"births":9031},{"year":1978,"month":4,"date_of_month":25,"day_of_week":2,"births":9092},{"year":1978,"month":4,"date_of_month":26,"day_of_week":3,"births":9027},{"year":1978,"month":4,"date_of_month":27,"day_of_week":4,"births":8859},{"year":1978,"month":4,"date_of_month":28,"day_of_week":5,"births":9055},{"year":1978,"month":4,"date_of_month":29,"day_of_week":6,"births":7764},{"year":1978,"month":4,"date_of_month":30,"day_of_week":7,"births":7152},{"year":1978,"month":5,"date_of_month":1,"day_of_week":1,"births":8907},{"year":1978,"month":5,"date_of_month":2,"day_of_week":2,"births":9426},{"year":1978,"month":5,"date_of_month":3,"day_of_week":3,"births":9063},{"year":1978,"month":5,"date_of_month":4,"day_of_week":4,"births":8680},{"year":1978,"month":5,"date_of_month":5,"day_of_week":5,"births":9106},{"year":1978,"month":5,"date_of_month":6,"day_of_week":6,"births":7730},{"year":1978,"month":5,"date_of_month":7,"day_of_week":7,"births":7398},{"year":1978,"month":5,"date_of_month":8,"day_of_week":1,"births":8996},{"year":1978,"month":5,"date_of_month":9,"day_of_week":2,"births":9317},{"year":1978,"month":5,"date_of_month":10,"day_of_week":3,"births":9288},{"year":1978,"month":5,"date_of_month":11,"day_of_week":4,"births":8914},{"year":1978,"month":5,"date_of_month":12,"day_of_week":5,"births":8981},{"year":1978,"month":5,"date_of_month":13,"day_of_week":6,"births":7767},{"year":1978,"month":5,"date_of_month":14,"day_of_week":7,"births":7390},{"year":1978,"month":5,"date_of_month":15,"day_of_week":1,"births":9212},{"year":1978,"month":5,"date_of_month":16,"day_of_week":2,"births":9212},{"year":1978,"month":5,"date_of_month":17,"day_of_week":3,"births":8927},{"year":1978,"month":5,"date_of_month":18,"day_of_week":4,"births":9060},{"year":1978,"month":5,"date_of_month":19,"day_of_week":5,"births":9018},{"year":1978,"month":5,"date_of_month":20,"day_of_week":6,"births":8078},{"year":1978,"month":5,"date_of_month":21,"day_of_week":7,"births":7580},{"year":1978,"month":5,"date_of_month":22,"day_of_week":1,"births":9102},{"year":1978,"month":5,"date_of_month":23,"day_of_week":2,"births":9221},{"year":1978,"month":5,"date_of_month":24,"day_of_week":3,"births":9208},{"year":1978,"month":5,"date_of_month":25,"day_of_week":4,"births":9193},{"year":1978,"month":5,"date_of_month":26,"day_of_week":5,"births":9532},{"year":1978,"month":5,"date_of_month":27,"day_of_week":6,"births":8021},{"year":1978,"month":5,"date_of_month":28,"day_of_week":7,"births":7797},{"year":1978,"month":5,"date_of_month":29,"day_of_week":1,"births":7793},{"year":1978,"month":5,"date_of_month":30,"day_of_week":2,"births":9637},{"year":1978,"month":5,"date_of_month":31,"day_of_week":3,"births":9613},{"year":1978,"month":6,"date_of_month":1,"day_of_week":4,"births":9450},{"year":1978,"month":6,"date_of_month":2,"day_of_week":5,"births":9313},{"year":1978,"month":6,"date_of_month":3,"day_of_week":6,"births":7982},{"year":1978,"month":6,"date_of_month":4,"day_of_week":7,"births":7408},{"year":1978,"month":6,"date_of_month":5,"day_of_week":1,"births":9136},{"year":1978,"month":6,"date_of_month":6,"day_of_week":2,"births":9613},{"year":1978,"month":6,"date_of_month":7,"day_of_week":3,"births":9348},{"year":1978,"month":6,"date_of_month":8,"day_of_week":4,"births":9090},{"year":1978,"month":6,"date_of_month":9,"day_of_week":5,"births":9374},{"year":1978,"month":6,"date_of_month":10,"day_of_week":6,"births":8048},{"year":1978,"month":6,"date_of_month":11,"day_of_week":7,"births":7584},{"year":1978,"month":6,"date_of_month":12,"day_of_week":1,"births":9208},{"year":1978,"month":6,"date_of_month":13,"day_of_week":2,"births":9269},{"year":1978,"month":6,"date_of_month":14,"day_of_week":3,"births":9234},{"year":1978,"month":6,"date_of_month":15,"day_of_week":4,"births":9183},{"year":1978,"month":6,"date_of_month":16,"day_of_week":5,"births":9362},{"year":1978,"month":6,"date_of_month":17,"day_of_week":6,"births":8244},{"year":1978,"month":6,"date_of_month":18,"day_of_week":7,"births":7794},{"year":1978,"month":6,"date_of_month":19,"day_of_week":1,"births":9553},{"year":1978,"month":6,"date_of_month":20,"day_of_week":2,"births":9683},{"year":1978,"month":6,"date_of_month":21,"day_of_week":3,"births":9278},{"year":1978,"month":6,"date_of_month":22,"day_of_week":4,"births":9411},{"year":1978,"month":6,"date_of_month":23,"day_of_week":5,"births":9601},{"year":1978,"month":6,"date_of_month":24,"day_of_week":6,"births":8132},{"year":1978,"month":6,"date_of_month":25,"day_of_week":7,"births":8102},{"year":1978,"month":6,"date_of_month":26,"day_of_week":1,"births":9353},{"year":1978,"month":6,"date_of_month":27,"day_of_week":2,"births":9858},{"year":1978,"month":6,"date_of_month":28,"day_of_week":3,"births":9709},{"year":1978,"month":6,"date_of_month":29,"day_of_week":4,"births":9641},{"year":1978,"month":6,"date_of_month":30,"day_of_week":5,"births":10098},{"year":1978,"month":7,"date_of_month":1,"day_of_week":6,"births":8218},{"year":1978,"month":7,"date_of_month":2,"day_of_week":7,"births":7991},{"year":1978,"month":7,"date_of_month":3,"day_of_week":1,"births":9294},{"year":1978,"month":7,"date_of_month":4,"day_of_week":2,"births":8448},{"year":1978,"month":7,"date_of_month":5,"day_of_week":3,"births":9689},{"year":1978,"month":7,"date_of_month":6,"day_of_week":4,"births":10204},{"year":1978,"month":7,"date_of_month":7,"day_of_week":5,"births":10255},{"year":1978,"month":7,"date_of_month":8,"day_of_week":6,"births":8791},{"year":1978,"month":7,"date_of_month":9,"day_of_week":7,"births":8112},{"year":1978,"month":7,"date_of_month":10,"day_of_week":1,"births":9887},{"year":1978,"month":7,"date_of_month":11,"day_of_week":2,"births":9868},{"year":1978,"month":7,"date_of_month":12,"day_of_week":3,"births":9716},{"year":1978,"month":7,"date_of_month":13,"day_of_week":4,"births":9995},{"year":1978,"month":7,"date_of_month":14,"day_of_week":5,"births":10449},{"year":1978,"month":7,"date_of_month":15,"day_of_week":6,"births":8870},{"year":1978,"month":7,"date_of_month":16,"day_of_week":7,"births":8426},{"year":1978,"month":7,"date_of_month":17,"day_of_week":1,"births":10037},{"year":1978,"month":7,"date_of_month":18,"day_of_week":2,"births":10376},{"year":1978,"month":7,"date_of_month":19,"day_of_week":3,"births":10025},{"year":1978,"month":7,"date_of_month":20,"day_of_week":4,"births":10401},{"year":1978,"month":7,"date_of_month":21,"day_of_week":5,"births":10342},{"year":1978,"month":7,"date_of_month":22,"day_of_week":6,"births":9082},{"year":1978,"month":7,"date_of_month":23,"day_of_week":7,"births":8577},{"year":1978,"month":7,"date_of_month":24,"day_of_week":1,"births":9977},{"year":1978,"month":7,"date_of_month":25,"day_of_week":2,"births":10361},{"year":1978,"month":7,"date_of_month":26,"day_of_week":3,"births":10111},{"year":1978,"month":7,"date_of_month":27,"day_of_week":4,"births":10206},{"year":1978,"month":7,"date_of_month":28,"day_of_week":5,"births":10324},{"year":1978,"month":7,"date_of_month":29,"day_of_week":6,"births":8695},{"year":1978,"month":7,"date_of_month":30,"day_of_week":7,"births":8494},{"year":1978,"month":7,"date_of_month":31,"day_of_week":1,"births":9902},{"year":1978,"month":8,"date_of_month":1,"day_of_week":2,"births":10164},{"year":1978,"month":8,"date_of_month":2,"day_of_week":3,"births":9838},{"year":1978,"month":8,"date_of_month":3,"day_of_week":4,"births":10144},{"year":1978,"month":8,"date_of_month":4,"day_of_week":5,"births":10063},{"year":1978,"month":8,"date_of_month":5,"day_of_week":6,"births":8757},{"year":1978,"month":8,"date_of_month":6,"day_of_week":7,"births":8456},{"year":1978,"month":8,"date_of_month":7,"day_of_week":1,"births":10219},{"year":1978,"month":8,"date_of_month":8,"day_of_week":2,"births":10460},{"year":1978,"month":8,"date_of_month":9,"day_of_week":3,"births":10163},{"year":1978,"month":8,"date_of_month":10,"day_of_week":4,"births":10307},{"year":1978,"month":8,"date_of_month":11,"day_of_week":5,"births":10184},{"year":1978,"month":8,"date_of_month":12,"day_of_week":6,"births":8966},{"year":1978,"month":8,"date_of_month":13,"day_of_week":7,"births":8547},{"year":1978,"month":8,"date_of_month":14,"day_of_week":1,"births":10145},{"year":1978,"month":8,"date_of_month":15,"day_of_week":2,"births":10520},{"year":1978,"month":8,"date_of_month":16,"day_of_week":3,"births":10072},{"year":1978,"month":8,"date_of_month":17,"day_of_week":4,"births":10400},{"year":1978,"month":8,"date_of_month":18,"day_of_week":5,"births":10377},{"year":1978,"month":8,"date_of_month":19,"day_of_week":6,"births":8927},{"year":1978,"month":8,"date_of_month":20,"day_of_week":7,"births":8493},{"year":1978,"month":8,"date_of_month":21,"day_of_week":1,"births":9987},{"year":1978,"month":8,"date_of_month":22,"day_of_week":2,"births":10241},{"year":1978,"month":8,"date_of_month":23,"day_of_week":3,"births":9914},{"year":1978,"month":8,"date_of_month":24,"day_of_week":4,"births":10168},{"year":1978,"month":8,"date_of_month":25,"day_of_week":5,"births":10186},{"year":1978,"month":8,"date_of_month":26,"day_of_week":6,"births":8802},{"year":1978,"month":8,"date_of_month":27,"day_of_week":7,"births":8471},{"year":1978,"month":8,"date_of_month":28,"day_of_week":1,"births":10016},{"year":1978,"month":8,"date_of_month":29,"day_of_week":2,"births":10400},{"year":1978,"month":8,"date_of_month":30,"day_of_week":3,"births":10081},{"year":1978,"month":8,"date_of_month":31,"day_of_week":4,"births":9866},{"year":1978,"month":9,"date_of_month":1,"day_of_week":5,"births":10133},{"year":1978,"month":9,"date_of_month":2,"day_of_week":6,"births":8591},{"year":1978,"month":9,"date_of_month":3,"day_of_week":7,"births":8366},{"year":1978,"month":9,"date_of_month":4,"day_of_week":1,"births":8492},{"year":1978,"month":9,"date_of_month":5,"day_of_week":2,"births":10044},{"year":1978,"month":9,"date_of_month":6,"day_of_week":3,"births":10720},{"year":1978,"month":9,"date_of_month":7,"day_of_week":4,"births":10309},{"year":1978,"month":9,"date_of_month":8,"day_of_week":5,"births":10384},{"year":1978,"month":9,"date_of_month":9,"day_of_week":6,"births":9035},{"year":1978,"month":9,"date_of_month":10,"day_of_week":7,"births":8650},{"year":1978,"month":9,"date_of_month":11,"day_of_week":1,"births":10165},{"year":1978,"month":9,"date_of_month":12,"day_of_week":2,"births":10439},{"year":1978,"month":9,"date_of_month":13,"day_of_week":3,"births":10170},{"year":1978,"month":9,"date_of_month":14,"day_of_week":4,"births":10279},{"year":1978,"month":9,"date_of_month":15,"day_of_week":5,"births":10283},{"year":1978,"month":9,"date_of_month":16,"day_of_week":6,"births":9187},{"year":1978,"month":9,"date_of_month":17,"day_of_week":7,"births":8725},{"year":1978,"month":9,"date_of_month":18,"day_of_week":1,"births":10324},{"year":1978,"month":9,"date_of_month":19,"day_of_week":2,"births":10728},{"year":1978,"month":9,"date_of_month":20,"day_of_week":3,"births":10504},{"year":1978,"month":9,"date_of_month":21,"day_of_week":4,"births":10518},{"year":1978,"month":9,"date_of_month":22,"day_of_week":5,"births":10370},{"year":1978,"month":9,"date_of_month":23,"day_of_week":6,"births":8751},{"year":1978,"month":9,"date_of_month":24,"day_of_week":7,"births":8661},{"year":1978,"month":9,"date_of_month":25,"day_of_week":1,"births":10434},{"year":1978,"month":9,"date_of_month":26,"day_of_week":2,"births":10518},{"year":1978,"month":9,"date_of_month":27,"day_of_week":3,"births":10359},{"year":1978,"month":9,"date_of_month":28,"day_of_week":4,"births":10198},{"year":1978,"month":9,"date_of_month":29,"day_of_week":5,"births":10386},{"year":1978,"month":9,"date_of_month":30,"day_of_week":6,"births":8663},{"year":1978,"month":10,"date_of_month":1,"day_of_week":7,"births":8701},{"year":1978,"month":10,"date_of_month":2,"day_of_week":1,"births":9949},{"year":1978,"month":10,"date_of_month":3,"day_of_week":2,"births":10388},{"year":1978,"month":10,"date_of_month":4,"day_of_week":3,"births":9945},{"year":1978,"month":10,"date_of_month":5,"day_of_week":4,"births":9964},{"year":1978,"month":10,"date_of_month":6,"day_of_week":5,"births":10066},{"year":1978,"month":10,"date_of_month":7,"day_of_week":6,"births":8623},{"year":1978,"month":10,"date_of_month":8,"day_of_week":7,"births":8391},{"year":1978,"month":10,"date_of_month":9,"day_of_week":1,"births":9784},{"year":1978,"month":10,"date_of_month":10,"day_of_week":2,"births":10361},{"year":1978,"month":10,"date_of_month":11,"day_of_week":3,"births":9893},{"year":1978,"month":10,"date_of_month":12,"day_of_week":4,"births":9834},{"year":1978,"month":10,"date_of_month":13,"day_of_week":5,"births":9777},{"year":1978,"month":10,"date_of_month":14,"day_of_week":6,"births":8566},{"year":1978,"month":10,"date_of_month":15,"day_of_week":7,"births":7890},{"year":1978,"month":10,"date_of_month":16,"day_of_week":1,"births":9547},{"year":1978,"month":10,"date_of_month":17,"day_of_week":2,"births":9956},{"year":1978,"month":10,"date_of_month":18,"day_of_week":3,"births":9409},{"year":1978,"month":10,"date_of_month":19,"day_of_week":4,"births":9514},{"year":1978,"month":10,"date_of_month":20,"day_of_week":5,"births":9644},{"year":1978,"month":10,"date_of_month":21,"day_of_week":6,"births":8423},{"year":1978,"month":10,"date_of_month":22,"day_of_week":7,"births":7949},{"year":1978,"month":10,"date_of_month":23,"day_of_week":1,"births":9436},{"year":1978,"month":10,"date_of_month":24,"day_of_week":2,"births":9588},{"year":1978,"month":10,"date_of_month":25,"day_of_week":3,"births":9338},{"year":1978,"month":10,"date_of_month":26,"day_of_week":4,"births":9515},{"year":1978,"month":10,"date_of_month":27,"day_of_week":5,"births":9551},{"year":1978,"month":10,"date_of_month":28,"day_of_week":6,"births":8425},{"year":1978,"month":10,"date_of_month":29,"day_of_week":7,"births":8168},{"year":1978,"month":10,"date_of_month":30,"day_of_week":1,"births":9472},{"year":1978,"month":10,"date_of_month":31,"day_of_week":2,"births":9349},{"year":1978,"month":11,"date_of_month":1,"day_of_week":3,"births":9340},{"year":1978,"month":11,"date_of_month":2,"day_of_week":4,"births":9261},{"year":1978,"month":11,"date_of_month":3,"day_of_week":5,"births":9787},{"year":1978,"month":11,"date_of_month":4,"day_of_week":6,"births":8263},{"year":1978,"month":11,"date_of_month":5,"day_of_week":7,"births":8027},{"year":1978,"month":11,"date_of_month":6,"day_of_week":1,"births":9526},{"year":1978,"month":11,"date_of_month":7,"day_of_week":2,"births":9789},{"year":1978,"month":11,"date_of_month":8,"day_of_week":3,"births":9524},{"year":1978,"month":11,"date_of_month":9,"day_of_week":4,"births":9622},{"year":1978,"month":11,"date_of_month":10,"day_of_week":5,"births":9673},{"year":1978,"month":11,"date_of_month":11,"day_of_week":6,"births":8367},{"year":1978,"month":11,"date_of_month":12,"day_of_week":7,"births":7986},{"year":1978,"month":11,"date_of_month":13,"day_of_week":1,"births":9629},{"year":1978,"month":11,"date_of_month":14,"day_of_week":2,"births":10031},{"year":1978,"month":11,"date_of_month":15,"day_of_week":3,"births":9551},{"year":1978,"month":11,"date_of_month":16,"day_of_week":4,"births":9578},{"year":1978,"month":11,"date_of_month":17,"day_of_week":5,"births":9856},{"year":1978,"month":11,"date_of_month":18,"day_of_week":6,"births":8445},{"year":1978,"month":11,"date_of_month":19,"day_of_week":7,"births":7877},{"year":1978,"month":11,"date_of_month":20,"day_of_week":1,"births":9603},{"year":1978,"month":11,"date_of_month":21,"day_of_week":2,"births":9961},{"year":1978,"month":11,"date_of_month":22,"day_of_week":3,"births":9566},{"year":1978,"month":11,"date_of_month":23,"day_of_week":4,"births":7926},{"year":1978,"month":11,"date_of_month":24,"day_of_week":5,"births":9053},{"year":1978,"month":11,"date_of_month":25,"day_of_week":6,"births":8290},{"year":1978,"month":11,"date_of_month":26,"day_of_week":7,"births":8081},{"year":1978,"month":11,"date_of_month":27,"day_of_week":1,"births":9835},{"year":1978,"month":11,"date_of_month":28,"day_of_week":2,"births":9826},{"year":1978,"month":11,"date_of_month":29,"day_of_week":3,"births":9452},{"year":1978,"month":11,"date_of_month":30,"day_of_week":4,"births":9410},{"year":1978,"month":12,"date_of_month":1,"day_of_week":5,"births":9614},{"year":1978,"month":12,"date_of_month":2,"day_of_week":6,"births":8544},{"year":1978,"month":12,"date_of_month":3,"day_of_week":7,"births":8211},{"year":1978,"month":12,"date_of_month":4,"day_of_week":1,"births":9779},{"year":1978,"month":12,"date_of_month":5,"day_of_week":2,"births":9895},{"year":1978,"month":12,"date_of_month":6,"day_of_week":3,"births":9419},{"year":1978,"month":12,"date_of_month":7,"day_of_week":4,"births":9497},{"year":1978,"month":12,"date_of_month":8,"day_of_week":5,"births":9417},{"year":1978,"month":12,"date_of_month":9,"day_of_week":6,"births":8347},{"year":1978,"month":12,"date_of_month":10,"day_of_week":7,"births":8104},{"year":1978,"month":12,"date_of_month":11,"day_of_week":1,"births":9697},{"year":1978,"month":12,"date_of_month":12,"day_of_week":2,"births":10072},{"year":1978,"month":12,"date_of_month":13,"day_of_week":3,"births":9532},{"year":1978,"month":12,"date_of_month":14,"day_of_week":4,"births":9539},{"year":1978,"month":12,"date_of_month":15,"day_of_week":5,"births":9963},{"year":1978,"month":12,"date_of_month":16,"day_of_week":6,"births":8522},{"year":1978,"month":12,"date_of_month":17,"day_of_week":7,"births":8186},{"year":1978,"month":12,"date_of_month":18,"day_of_week":1,"births":10213},{"year":1978,"month":12,"date_of_month":19,"day_of_week":2,"births":10617},{"year":1978,"month":12,"date_of_month":20,"day_of_week":3,"births":10005},{"year":1978,"month":12,"date_of_month":21,"day_of_week":4,"births":9418},{"year":1978,"month":12,"date_of_month":22,"day_of_week":5,"births":9028},{"year":1978,"month":12,"date_of_month":23,"day_of_week":6,"births":7952},{"year":1978,"month":12,"date_of_month":24,"day_of_week":7,"births":7974},{"year":1978,"month":12,"date_of_month":25,"day_of_week":1,"births":7860},{"year":1978,"month":12,"date_of_month":26,"day_of_week":2,"births":8911},{"year":1978,"month":12,"date_of_month":27,"day_of_week":3,"births":9924},{"year":1978,"month":12,"date_of_month":28,"day_of_week":4,"births":10190},{"year":1978,"month":12,"date_of_month":29,"day_of_week":5,"births":10413},{"year":1978,"month":12,"date_of_month":30,"day_of_week":6,"births":8487},{"year":1978,"month":12,"date_of_month":31,"day_of_week":7,"births":8038},{"year":1979,"month":1,"date_of_month":1,"day_of_week":1,"births":8221},{"year":1979,"month":1,"date_of_month":2,"day_of_week":2,"births":8855},{"year":1979,"month":1,"date_of_month":3,"day_of_week":3,"births":9351},{"year":1979,"month":1,"date_of_month":4,"day_of_week":4,"births":9429},{"year":1979,"month":1,"date_of_month":5,"day_of_week":5,"births":9586},{"year":1979,"month":1,"date_of_month":6,"day_of_week":6,"births":8570},{"year":1979,"month":1,"date_of_month":7,"day_of_week":7,"births":8013},{"year":1979,"month":1,"date_of_month":8,"day_of_week":1,"births":9524},{"year":1979,"month":1,"date_of_month":9,"day_of_week":2,"births":9310},{"year":1979,"month":1,"date_of_month":10,"day_of_week":3,"births":9416},{"year":1979,"month":1,"date_of_month":11,"day_of_week":4,"births":9409},{"year":1979,"month":1,"date_of_month":12,"day_of_week":5,"births":9670},{"year":1979,"month":1,"date_of_month":13,"day_of_week":6,"births":8649},{"year":1979,"month":1,"date_of_month":14,"day_of_week":7,"births":8173},{"year":1979,"month":1,"date_of_month":15,"day_of_week":1,"births":9554},{"year":1979,"month":1,"date_of_month":16,"day_of_week":2,"births":9805},{"year":1979,"month":1,"date_of_month":17,"day_of_week":3,"births":9513},{"year":1979,"month":1,"date_of_month":18,"day_of_week":4,"births":9495},{"year":1979,"month":1,"date_of_month":19,"day_of_week":5,"births":9875},{"year":1979,"month":1,"date_of_month":20,"day_of_week":6,"births":8478},{"year":1979,"month":1,"date_of_month":21,"day_of_week":7,"births":8019},{"year":1979,"month":1,"date_of_month":22,"day_of_week":1,"births":9705},{"year":1979,"month":1,"date_of_month":23,"day_of_week":2,"births":9794},{"year":1979,"month":1,"date_of_month":24,"day_of_week":3,"births":9556},{"year":1979,"month":1,"date_of_month":25,"day_of_week":4,"births":9656},{"year":1979,"month":1,"date_of_month":26,"day_of_week":5,"births":9809},{"year":1979,"month":1,"date_of_month":27,"day_of_week":6,"births":8372},{"year":1979,"month":1,"date_of_month":28,"day_of_week":7,"births":8235},{"year":1979,"month":1,"date_of_month":29,"day_of_week":1,"births":9732},{"year":1979,"month":1,"date_of_month":30,"day_of_week":2,"births":9520},{"year":1979,"month":1,"date_of_month":31,"day_of_week":3,"births":9576},{"year":1979,"month":2,"date_of_month":1,"day_of_week":4,"births":9335},{"year":1979,"month":2,"date_of_month":2,"day_of_week":5,"births":9895},{"year":1979,"month":2,"date_of_month":3,"day_of_week":6,"births":8588},{"year":1979,"month":2,"date_of_month":4,"day_of_week":7,"births":8193},{"year":1979,"month":2,"date_of_month":5,"day_of_week":1,"births":9562},{"year":1979,"month":2,"date_of_month":6,"day_of_week":2,"births":9835},{"year":1979,"month":2,"date_of_month":7,"day_of_week":3,"births":9642},{"year":1979,"month":2,"date_of_month":8,"day_of_week":4,"births":9577},{"year":1979,"month":2,"date_of_month":9,"day_of_week":5,"births":9675},{"year":1979,"month":2,"date_of_month":10,"day_of_week":6,"births":8576},{"year":1979,"month":2,"date_of_month":11,"day_of_week":7,"births":8194},{"year":1979,"month":2,"date_of_month":12,"day_of_week":1,"births":9663},{"year":1979,"month":2,"date_of_month":13,"day_of_week":2,"births":9663},{"year":1979,"month":2,"date_of_month":14,"day_of_week":3,"births":10038},{"year":1979,"month":2,"date_of_month":15,"day_of_week":4,"births":9725},{"year":1979,"month":2,"date_of_month":16,"day_of_week":5,"births":9823},{"year":1979,"month":2,"date_of_month":17,"day_of_week":6,"births":8416},{"year":1979,"month":2,"date_of_month":18,"day_of_week":7,"births":8195},{"year":1979,"month":2,"date_of_month":19,"day_of_week":1,"births":9279},{"year":1979,"month":2,"date_of_month":20,"day_of_week":2,"births":10052},{"year":1979,"month":2,"date_of_month":21,"day_of_week":3,"births":9776},{"year":1979,"month":2,"date_of_month":22,"day_of_week":4,"births":9697},{"year":1979,"month":2,"date_of_month":23,"day_of_week":5,"births":10100},{"year":1979,"month":2,"date_of_month":24,"day_of_week":6,"births":8625},{"year":1979,"month":2,"date_of_month":25,"day_of_week":7,"births":8259},{"year":1979,"month":2,"date_of_month":26,"day_of_week":1,"births":9567},{"year":1979,"month":2,"date_of_month":27,"day_of_week":2,"births":9751},{"year":1979,"month":2,"date_of_month":28,"day_of_week":3,"births":9662},{"year":1979,"month":3,"date_of_month":1,"day_of_week":4,"births":9814},{"year":1979,"month":3,"date_of_month":2,"day_of_week":5,"births":9753},{"year":1979,"month":3,"date_of_month":3,"day_of_week":6,"births":8731},{"year":1979,"month":3,"date_of_month":4,"day_of_week":7,"births":8228},{"year":1979,"month":3,"date_of_month":5,"day_of_week":1,"births":9697},{"year":1979,"month":3,"date_of_month":6,"day_of_week":2,"births":9667},{"year":1979,"month":3,"date_of_month":7,"day_of_week":3,"births":9603},{"year":1979,"month":3,"date_of_month":8,"day_of_week":4,"births":9779},{"year":1979,"month":3,"date_of_month":9,"day_of_week":5,"births":9817},{"year":1979,"month":3,"date_of_month":10,"day_of_week":6,"births":8531},{"year":1979,"month":3,"date_of_month":11,"day_of_week":7,"births":7930},{"year":1979,"month":3,"date_of_month":12,"day_of_week":1,"births":9624},{"year":1979,"month":3,"date_of_month":13,"day_of_week":2,"births":9569},{"year":1979,"month":3,"date_of_month":14,"day_of_week":3,"births":9629},{"year":1979,"month":3,"date_of_month":15,"day_of_week":4,"births":9550},{"year":1979,"month":3,"date_of_month":16,"day_of_week":5,"births":9676},{"year":1979,"month":3,"date_of_month":17,"day_of_week":6,"births":8533},{"year":1979,"month":3,"date_of_month":18,"day_of_week":7,"births":8191},{"year":1979,"month":3,"date_of_month":19,"day_of_week":1,"births":9701},{"year":1979,"month":3,"date_of_month":20,"day_of_week":2,"births":10110},{"year":1979,"month":3,"date_of_month":21,"day_of_week":3,"births":9704},{"year":1979,"month":3,"date_of_month":22,"day_of_week":4,"births":9597},{"year":1979,"month":3,"date_of_month":23,"day_of_week":5,"births":9779},{"year":1979,"month":3,"date_of_month":24,"day_of_week":6,"births":8563},{"year":1979,"month":3,"date_of_month":25,"day_of_week":7,"births":8056},{"year":1979,"month":3,"date_of_month":26,"day_of_week":1,"births":9514},{"year":1979,"month":3,"date_of_month":27,"day_of_week":2,"births":9937},{"year":1979,"month":3,"date_of_month":28,"day_of_week":3,"births":9825},{"year":1979,"month":3,"date_of_month":29,"day_of_week":4,"births":9622},{"year":1979,"month":3,"date_of_month":30,"day_of_week":5,"births":9856},{"year":1979,"month":3,"date_of_month":31,"day_of_week":6,"births":8472},{"year":1979,"month":4,"date_of_month":1,"day_of_week":7,"births":8126},{"year":1979,"month":4,"date_of_month":2,"day_of_week":1,"births":9406},{"year":1979,"month":4,"date_of_month":3,"day_of_week":2,"births":9592},{"year":1979,"month":4,"date_of_month":4,"day_of_week":3,"births":9527},{"year":1979,"month":4,"date_of_month":5,"day_of_week":4,"births":9517},{"year":1979,"month":4,"date_of_month":6,"day_of_week":5,"births":9605},{"year":1979,"month":4,"date_of_month":7,"day_of_week":6,"births":8130},{"year":1979,"month":4,"date_of_month":8,"day_of_week":7,"births":7841},{"year":1979,"month":4,"date_of_month":9,"day_of_week":1,"births":9647},{"year":1979,"month":4,"date_of_month":10,"day_of_week":2,"births":9689},{"year":1979,"month":4,"date_of_month":11,"day_of_week":3,"births":9500},{"year":1979,"month":4,"date_of_month":12,"day_of_week":4,"births":9592},{"year":1979,"month":4,"date_of_month":13,"day_of_week":5,"births":9070},{"year":1979,"month":4,"date_of_month":14,"day_of_week":6,"births":8207},{"year":1979,"month":4,"date_of_month":15,"day_of_week":7,"births":7615},{"year":1979,"month":4,"date_of_month":16,"day_of_week":1,"births":9349},{"year":1979,"month":4,"date_of_month":17,"day_of_week":2,"births":9777},{"year":1979,"month":4,"date_of_month":18,"day_of_week":3,"births":9495},{"year":1979,"month":4,"date_of_month":19,"day_of_week":4,"births":9248},{"year":1979,"month":4,"date_of_month":20,"day_of_week":5,"births":9629},{"year":1979,"month":4,"date_of_month":21,"day_of_week":6,"births":8197},{"year":1979,"month":4,"date_of_month":22,"day_of_week":7,"births":7921},{"year":1979,"month":4,"date_of_month":23,"day_of_week":1,"births":9534},{"year":1979,"month":4,"date_of_month":24,"day_of_week":2,"births":9842},{"year":1979,"month":4,"date_of_month":25,"day_of_week":3,"births":9635},{"year":1979,"month":4,"date_of_month":26,"day_of_week":4,"births":9335},{"year":1979,"month":4,"date_of_month":27,"day_of_week":5,"births":9564},{"year":1979,"month":4,"date_of_month":28,"day_of_week":6,"births":7953},{"year":1979,"month":4,"date_of_month":29,"day_of_week":7,"births":7497},{"year":1979,"month":4,"date_of_month":30,"day_of_week":1,"births":9518},{"year":1979,"month":5,"date_of_month":1,"day_of_week":2,"births":10096},{"year":1979,"month":5,"date_of_month":2,"day_of_week":3,"births":9618},{"year":1979,"month":5,"date_of_month":3,"day_of_week":4,"births":9555},{"year":1979,"month":5,"date_of_month":4,"day_of_week":5,"births":9583},{"year":1979,"month":5,"date_of_month":5,"day_of_week":6,"births":8164},{"year":1979,"month":5,"date_of_month":6,"day_of_week":7,"births":7909},{"year":1979,"month":5,"date_of_month":7,"day_of_week":1,"births":9752},{"year":1979,"month":5,"date_of_month":8,"day_of_week":2,"births":10007},{"year":1979,"month":5,"date_of_month":9,"day_of_week":3,"births":9722},{"year":1979,"month":5,"date_of_month":10,"day_of_week":4,"births":9778},{"year":1979,"month":5,"date_of_month":11,"day_of_week":5,"births":9854},{"year":1979,"month":5,"date_of_month":12,"day_of_week":6,"births":8274},{"year":1979,"month":5,"date_of_month":13,"day_of_week":7,"births":8069},{"year":1979,"month":5,"date_of_month":14,"day_of_week":1,"births":9482},{"year":1979,"month":5,"date_of_month":15,"day_of_week":2,"births":9779},{"year":1979,"month":5,"date_of_month":16,"day_of_week":3,"births":9539},{"year":1979,"month":5,"date_of_month":17,"day_of_week":4,"births":9401},{"year":1979,"month":5,"date_of_month":18,"day_of_week":5,"births":9538},{"year":1979,"month":5,"date_of_month":19,"day_of_week":6,"births":8350},{"year":1979,"month":5,"date_of_month":20,"day_of_week":7,"births":8081},{"year":1979,"month":5,"date_of_month":21,"day_of_week":1,"births":9737},{"year":1979,"month":5,"date_of_month":22,"day_of_week":2,"births":9772},{"year":1979,"month":5,"date_of_month":23,"day_of_week":3,"births":9781},{"year":1979,"month":5,"date_of_month":24,"day_of_week":4,"births":9745},{"year":1979,"month":5,"date_of_month":25,"day_of_week":5,"births":9858},{"year":1979,"month":5,"date_of_month":26,"day_of_week":6,"births":8364},{"year":1979,"month":5,"date_of_month":27,"day_of_week":7,"births":7945},{"year":1979,"month":5,"date_of_month":28,"day_of_week":1,"births":8394},{"year":1979,"month":5,"date_of_month":29,"day_of_week":2,"births":9835},{"year":1979,"month":5,"date_of_month":30,"day_of_week":3,"births":9854},{"year":1979,"month":5,"date_of_month":31,"day_of_week":4,"births":9723},{"year":1979,"month":6,"date_of_month":1,"day_of_week":5,"births":9887},{"year":1979,"month":6,"date_of_month":2,"day_of_week":6,"births":8549},{"year":1979,"month":6,"date_of_month":3,"day_of_week":7,"births":8190},{"year":1979,"month":6,"date_of_month":4,"day_of_week":1,"births":9771},{"year":1979,"month":6,"date_of_month":5,"day_of_week":2,"births":9851},{"year":1979,"month":6,"date_of_month":6,"day_of_week":3,"births":9841},{"year":1979,"month":6,"date_of_month":7,"day_of_week":4,"births":9722},{"year":1979,"month":6,"date_of_month":8,"day_of_week":5,"births":9589},{"year":1979,"month":6,"date_of_month":9,"day_of_week":6,"births":8331},{"year":1979,"month":6,"date_of_month":10,"day_of_week":7,"births":8309},{"year":1979,"month":6,"date_of_month":11,"day_of_week":1,"births":9603},{"year":1979,"month":6,"date_of_month":12,"day_of_week":2,"births":9820},{"year":1979,"month":6,"date_of_month":13,"day_of_week":3,"births":9546},{"year":1979,"month":6,"date_of_month":14,"day_of_week":4,"births":9798},{"year":1979,"month":6,"date_of_month":15,"day_of_week":5,"births":9815},{"year":1979,"month":6,"date_of_month":16,"day_of_week":6,"births":8661},{"year":1979,"month":6,"date_of_month":17,"day_of_week":7,"births":8175},{"year":1979,"month":6,"date_of_month":18,"day_of_week":1,"births":9732},{"year":1979,"month":6,"date_of_month":19,"day_of_week":2,"births":10014},{"year":1979,"month":6,"date_of_month":20,"day_of_week":3,"births":10091},{"year":1979,"month":6,"date_of_month":21,"day_of_week":4,"births":9768},{"year":1979,"month":6,"date_of_month":22,"day_of_week":5,"births":10007},{"year":1979,"month":6,"date_of_month":23,"day_of_week":6,"births":8485},{"year":1979,"month":6,"date_of_month":24,"day_of_week":7,"births":8132},{"year":1979,"month":6,"date_of_month":25,"day_of_week":1,"births":9572},{"year":1979,"month":6,"date_of_month":26,"day_of_week":2,"births":10116},{"year":1979,"month":6,"date_of_month":27,"day_of_week":3,"births":10081},{"year":1979,"month":6,"date_of_month":28,"day_of_week":4,"births":10086},{"year":1979,"month":6,"date_of_month":29,"day_of_week":5,"births":10253},{"year":1979,"month":6,"date_of_month":30,"day_of_week":6,"births":8923},{"year":1979,"month":7,"date_of_month":1,"day_of_week":7,"births":8563},{"year":1979,"month":7,"date_of_month":2,"day_of_week":1,"births":10075},{"year":1979,"month":7,"date_of_month":3,"day_of_week":2,"births":10516},{"year":1979,"month":7,"date_of_month":4,"day_of_week":3,"births":8708},{"year":1979,"month":7,"date_of_month":5,"day_of_week":4,"births":9946},{"year":1979,"month":7,"date_of_month":6,"day_of_week":5,"births":10353},{"year":1979,"month":7,"date_of_month":7,"day_of_week":6,"births":9017},{"year":1979,"month":7,"date_of_month":8,"day_of_week":7,"births":8624},{"year":1979,"month":7,"date_of_month":9,"day_of_week":1,"births":10555},{"year":1979,"month":7,"date_of_month":10,"day_of_week":2,"births":10793},{"year":1979,"month":7,"date_of_month":11,"day_of_week":3,"births":10368},{"year":1979,"month":7,"date_of_month":12,"day_of_week":4,"births":10729},{"year":1979,"month":7,"date_of_month":13,"day_of_week":5,"births":10710},{"year":1979,"month":7,"date_of_month":14,"day_of_week":6,"births":9344},{"year":1979,"month":7,"date_of_month":15,"day_of_week":7,"births":9012},{"year":1979,"month":7,"date_of_month":16,"day_of_week":1,"births":10481},{"year":1979,"month":7,"date_of_month":17,"day_of_week":2,"births":10827},{"year":1979,"month":7,"date_of_month":18,"day_of_week":3,"births":10531},{"year":1979,"month":7,"date_of_month":19,"day_of_week":4,"births":10456},{"year":1979,"month":7,"date_of_month":20,"day_of_week":5,"births":10668},{"year":1979,"month":7,"date_of_month":21,"day_of_week":6,"births":9148},{"year":1979,"month":7,"date_of_month":22,"day_of_week":7,"births":8873},{"year":1979,"month":7,"date_of_month":23,"day_of_week":1,"births":10605},{"year":1979,"month":7,"date_of_month":24,"day_of_week":2,"births":10851},{"year":1979,"month":7,"date_of_month":25,"day_of_week":3,"births":10737},{"year":1979,"month":7,"date_of_month":26,"day_of_week":4,"births":10663},{"year":1979,"month":7,"date_of_month":27,"day_of_week":5,"births":10800},{"year":1979,"month":7,"date_of_month":28,"day_of_week":6,"births":9418},{"year":1979,"month":7,"date_of_month":29,"day_of_week":7,"births":8894},{"year":1979,"month":7,"date_of_month":30,"day_of_week":1,"births":10534},{"year":1979,"month":7,"date_of_month":31,"day_of_week":2,"births":10842},{"year":1979,"month":8,"date_of_month":1,"day_of_week":3,"births":10876},{"year":1979,"month":8,"date_of_month":2,"day_of_week":4,"births":10692},{"year":1979,"month":8,"date_of_month":3,"day_of_week":5,"births":10797},{"year":1979,"month":8,"date_of_month":4,"day_of_week":6,"births":9427},{"year":1979,"month":8,"date_of_month":5,"day_of_week":7,"births":8887},{"year":1979,"month":8,"date_of_month":6,"day_of_week":1,"births":10653},{"year":1979,"month":8,"date_of_month":7,"day_of_week":2,"births":10853},{"year":1979,"month":8,"date_of_month":8,"day_of_week":3,"births":10830},{"year":1979,"month":8,"date_of_month":9,"day_of_week":4,"births":10570},{"year":1979,"month":8,"date_of_month":10,"day_of_week":5,"births":10834},{"year":1979,"month":8,"date_of_month":11,"day_of_week":6,"births":9286},{"year":1979,"month":8,"date_of_month":12,"day_of_week":7,"births":8721},{"year":1979,"month":8,"date_of_month":13,"day_of_week":1,"births":10096},{"year":1979,"month":8,"date_of_month":14,"day_of_week":2,"births":10934},{"year":1979,"month":8,"date_of_month":15,"day_of_week":3,"births":10490},{"year":1979,"month":8,"date_of_month":16,"day_of_week":4,"births":10386},{"year":1979,"month":8,"date_of_month":17,"day_of_week":5,"births":10398},{"year":1979,"month":8,"date_of_month":18,"day_of_week":6,"births":9241},{"year":1979,"month":8,"date_of_month":19,"day_of_week":7,"births":9196},{"year":1979,"month":8,"date_of_month":20,"day_of_week":1,"births":10660},{"year":1979,"month":8,"date_of_month":21,"day_of_week":2,"births":10910},{"year":1979,"month":8,"date_of_month":22,"day_of_week":3,"births":10565},{"year":1979,"month":8,"date_of_month":23,"day_of_week":4,"births":10700},{"year":1979,"month":8,"date_of_month":24,"day_of_week":5,"births":10571},{"year":1979,"month":8,"date_of_month":25,"day_of_week":6,"births":9325},{"year":1979,"month":8,"date_of_month":26,"day_of_week":7,"births":8924},{"year":1979,"month":8,"date_of_month":27,"day_of_week":1,"births":10577},{"year":1979,"month":8,"date_of_month":28,"day_of_week":2,"births":11049},{"year":1979,"month":8,"date_of_month":29,"day_of_week":3,"births":10534},{"year":1979,"month":8,"date_of_month":30,"day_of_week":4,"births":10646},{"year":1979,"month":8,"date_of_month":31,"day_of_week":5,"births":10873},{"year":1979,"month":9,"date_of_month":1,"day_of_week":6,"births":9124},{"year":1979,"month":9,"date_of_month":2,"day_of_week":7,"births":8738},{"year":1979,"month":9,"date_of_month":3,"day_of_week":1,"births":8991},{"year":1979,"month":9,"date_of_month":4,"day_of_week":2,"births":10494},{"year":1979,"month":9,"date_of_month":5,"day_of_week":3,"births":11026},{"year":1979,"month":9,"date_of_month":6,"day_of_week":4,"births":10796},{"year":1979,"month":9,"date_of_month":7,"day_of_week":5,"births":10741},{"year":1979,"month":9,"date_of_month":8,"day_of_week":6,"births":9160},{"year":1979,"month":9,"date_of_month":9,"day_of_week":7,"births":8970},{"year":1979,"month":9,"date_of_month":10,"day_of_week":1,"births":10577},{"year":1979,"month":9,"date_of_month":11,"day_of_week":2,"births":11081},{"year":1979,"month":9,"date_of_month":12,"day_of_week":3,"births":10598},{"year":1979,"month":9,"date_of_month":13,"day_of_week":4,"births":10685},{"year":1979,"month":9,"date_of_month":14,"day_of_week":5,"births":10994},{"year":1979,"month":9,"date_of_month":15,"day_of_week":6,"births":9368},{"year":1979,"month":9,"date_of_month":16,"day_of_week":7,"births":9225},{"year":1979,"month":9,"date_of_month":17,"day_of_week":1,"births":10804},{"year":1979,"month":9,"date_of_month":18,"day_of_week":2,"births":11185},{"year":1979,"month":9,"date_of_month":19,"day_of_week":3,"births":11043},{"year":1979,"month":9,"date_of_month":20,"day_of_week":4,"births":10699},{"year":1979,"month":9,"date_of_month":21,"day_of_week":5,"births":10911},{"year":1979,"month":9,"date_of_month":22,"day_of_week":6,"births":9383},{"year":1979,"month":9,"date_of_month":23,"day_of_week":7,"births":9141},{"year":1979,"month":9,"date_of_month":24,"day_of_week":1,"births":10954},{"year":1979,"month":9,"date_of_month":25,"day_of_week":2,"births":11061},{"year":1979,"month":9,"date_of_month":26,"day_of_week":3,"births":10807},{"year":1979,"month":9,"date_of_month":27,"day_of_week":4,"births":11013},{"year":1979,"month":9,"date_of_month":28,"day_of_week":5,"births":10915},{"year":1979,"month":9,"date_of_month":29,"day_of_week":6,"births":9542},{"year":1979,"month":9,"date_of_month":30,"day_of_week":7,"births":9112},{"year":1979,"month":10,"date_of_month":1,"day_of_week":1,"births":10475},{"year":1979,"month":10,"date_of_month":2,"day_of_week":2,"births":10911},{"year":1979,"month":10,"date_of_month":3,"day_of_week":3,"births":10597},{"year":1979,"month":10,"date_of_month":4,"day_of_week":4,"births":10314},{"year":1979,"month":10,"date_of_month":5,"day_of_week":5,"births":10600},{"year":1979,"month":10,"date_of_month":6,"day_of_week":6,"births":9138},{"year":1979,"month":10,"date_of_month":7,"day_of_week":7,"births":8618},{"year":1979,"month":10,"date_of_month":8,"day_of_week":1,"births":10043},{"year":1979,"month":10,"date_of_month":9,"day_of_week":2,"births":10350},{"year":1979,"month":10,"date_of_month":10,"day_of_week":3,"births":10199},{"year":1979,"month":10,"date_of_month":11,"day_of_week":4,"births":10106},{"year":1979,"month":10,"date_of_month":12,"day_of_week":5,"births":10421},{"year":1979,"month":10,"date_of_month":13,"day_of_week":6,"births":8964},{"year":1979,"month":10,"date_of_month":14,"day_of_week":7,"births":8482},{"year":1979,"month":10,"date_of_month":15,"day_of_week":1,"births":10164},{"year":1979,"month":10,"date_of_month":16,"day_of_week":2,"births":10256},{"year":1979,"month":10,"date_of_month":17,"day_of_week":3,"births":10007},{"year":1979,"month":10,"date_of_month":18,"day_of_week":4,"births":9774},{"year":1979,"month":10,"date_of_month":19,"day_of_week":5,"births":10233},{"year":1979,"month":10,"date_of_month":20,"day_of_week":6,"births":8691},{"year":1979,"month":10,"date_of_month":21,"day_of_week":7,"births":8654},{"year":1979,"month":10,"date_of_month":22,"day_of_week":1,"births":10246},{"year":1979,"month":10,"date_of_month":23,"day_of_week":2,"births":10197},{"year":1979,"month":10,"date_of_month":24,"day_of_week":3,"births":9984},{"year":1979,"month":10,"date_of_month":25,"day_of_week":4,"births":9906},{"year":1979,"month":10,"date_of_month":26,"day_of_week":5,"births":9987},{"year":1979,"month":10,"date_of_month":27,"day_of_week":6,"births":8573},{"year":1979,"month":10,"date_of_month":28,"day_of_week":7,"births":8598},{"year":1979,"month":10,"date_of_month":29,"day_of_week":1,"births":9920},{"year":1979,"month":10,"date_of_month":30,"day_of_week":2,"births":10502},{"year":1979,"month":10,"date_of_month":31,"day_of_week":3,"births":9684},{"year":1979,"month":11,"date_of_month":1,"day_of_week":4,"births":9919},{"year":1979,"month":11,"date_of_month":2,"day_of_week":5,"births":10174},{"year":1979,"month":11,"date_of_month":3,"day_of_week":6,"births":8630},{"year":1979,"month":11,"date_of_month":4,"day_of_week":7,"births":8252},{"year":1979,"month":11,"date_of_month":5,"day_of_week":1,"births":10056},{"year":1979,"month":11,"date_of_month":6,"day_of_week":2,"births":10276},{"year":1979,"month":11,"date_of_month":7,"day_of_week":3,"births":9966},{"year":1979,"month":11,"date_of_month":8,"day_of_week":4,"births":10108},{"year":1979,"month":11,"date_of_month":9,"day_of_week":5,"births":10102},{"year":1979,"month":11,"date_of_month":10,"day_of_week":6,"births":8799},{"year":1979,"month":11,"date_of_month":11,"day_of_week":7,"births":8760},{"year":1979,"month":11,"date_of_month":12,"day_of_week":1,"births":9894},{"year":1979,"month":11,"date_of_month":13,"day_of_week":2,"births":10451},{"year":1979,"month":11,"date_of_month":14,"day_of_week":3,"births":10150},{"year":1979,"month":11,"date_of_month":15,"day_of_week":4,"births":10181},{"year":1979,"month":11,"date_of_month":16,"day_of_week":5,"births":10272},{"year":1979,"month":11,"date_of_month":17,"day_of_week":6,"births":8696},{"year":1979,"month":11,"date_of_month":18,"day_of_week":7,"births":8399},{"year":1979,"month":11,"date_of_month":19,"day_of_week":1,"births":10355},{"year":1979,"month":11,"date_of_month":20,"day_of_week":2,"births":10765},{"year":1979,"month":11,"date_of_month":21,"day_of_week":3,"births":10043},{"year":1979,"month":11,"date_of_month":22,"day_of_week":4,"births":8164},{"year":1979,"month":11,"date_of_month":23,"day_of_week":5,"births":9480},{"year":1979,"month":11,"date_of_month":24,"day_of_week":6,"births":8774},{"year":1979,"month":11,"date_of_month":25,"day_of_week":7,"births":8342},{"year":1979,"month":11,"date_of_month":26,"day_of_week":1,"births":10009},{"year":1979,"month":11,"date_of_month":27,"day_of_week":2,"births":10274},{"year":1979,"month":11,"date_of_month":28,"day_of_week":3,"births":9988},{"year":1979,"month":11,"date_of_month":29,"day_of_week":4,"births":9720},{"year":1979,"month":11,"date_of_month":30,"day_of_week":5,"births":9758},{"year":1979,"month":12,"date_of_month":1,"day_of_week":6,"births":8343},{"year":1979,"month":12,"date_of_month":2,"day_of_week":7,"births":8430},{"year":1979,"month":12,"date_of_month":3,"day_of_week":1,"births":9642},{"year":1979,"month":12,"date_of_month":4,"day_of_week":2,"births":10282},{"year":1979,"month":12,"date_of_month":5,"day_of_week":3,"births":9932},{"year":1979,"month":12,"date_of_month":6,"day_of_week":4,"births":10021},{"year":1979,"month":12,"date_of_month":7,"day_of_week":5,"births":9869},{"year":1979,"month":12,"date_of_month":8,"day_of_week":6,"births":8709},{"year":1979,"month":12,"date_of_month":9,"day_of_week":7,"births":8213},{"year":1979,"month":12,"date_of_month":10,"day_of_week":1,"births":9932},{"year":1979,"month":12,"date_of_month":11,"day_of_week":2,"births":10308},{"year":1979,"month":12,"date_of_month":12,"day_of_week":3,"births":10050},{"year":1979,"month":12,"date_of_month":13,"day_of_week":4,"births":9700},{"year":1979,"month":12,"date_of_month":14,"day_of_week":5,"births":9944},{"year":1979,"month":12,"date_of_month":15,"day_of_week":6,"births":8473},{"year":1979,"month":12,"date_of_month":16,"day_of_week":7,"births":8209},{"year":1979,"month":12,"date_of_month":17,"day_of_week":1,"births":10273},{"year":1979,"month":12,"date_of_month":18,"day_of_week":2,"births":10592},{"year":1979,"month":12,"date_of_month":19,"day_of_week":3,"births":10257},{"year":1979,"month":12,"date_of_month":20,"day_of_week":4,"births":10022},{"year":1979,"month":12,"date_of_month":21,"day_of_week":5,"births":9963},{"year":1979,"month":12,"date_of_month":22,"day_of_week":6,"births":8536},{"year":1979,"month":12,"date_of_month":23,"day_of_week":7,"births":8104},{"year":1979,"month":12,"date_of_month":24,"day_of_week":1,"births":8490},{"year":1979,"month":12,"date_of_month":25,"day_of_week":2,"births":7968},{"year":1979,"month":12,"date_of_month":26,"day_of_week":3,"births":9231},{"year":1979,"month":12,"date_of_month":27,"day_of_week":4,"births":10504},{"year":1979,"month":12,"date_of_month":28,"day_of_week":5,"births":10961},{"year":1979,"month":12,"date_of_month":29,"day_of_week":6,"births":8990},{"year":1979,"month":12,"date_of_month":30,"day_of_week":7,"births":8250},{"year":1979,"month":12,"date_of_month":31,"day_of_week":1,"births":9782},{"year":1980,"month":1,"date_of_month":1,"day_of_week":2,"births":8232},{"year":1980,"month":1,"date_of_month":2,"day_of_week":3,"births":9011},{"year":1980,"month":1,"date_of_month":3,"day_of_week":4,"births":9902},{"year":1980,"month":1,"date_of_month":4,"day_of_week":5,"births":9939},{"year":1980,"month":1,"date_of_month":5,"day_of_week":6,"births":8691},{"year":1980,"month":1,"date_of_month":6,"day_of_week":7,"births":8213},{"year":1980,"month":1,"date_of_month":7,"day_of_week":1,"births":9833},{"year":1980,"month":1,"date_of_month":8,"day_of_week":2,"births":9822},{"year":1980,"month":1,"date_of_month":9,"day_of_week":3,"births":9564},{"year":1980,"month":1,"date_of_month":10,"day_of_week":4,"births":9759},{"year":1980,"month":1,"date_of_month":11,"day_of_week":5,"births":10234},{"year":1980,"month":1,"date_of_month":12,"day_of_week":6,"births":8613},{"year":1980,"month":1,"date_of_month":13,"day_of_week":7,"births":8291},{"year":1980,"month":1,"date_of_month":14,"day_of_week":1,"births":10101},{"year":1980,"month":1,"date_of_month":15,"day_of_week":2,"births":9972},{"year":1980,"month":1,"date_of_month":16,"day_of_week":3,"births":9660},{"year":1980,"month":1,"date_of_month":17,"day_of_week":4,"births":9812},{"year":1980,"month":1,"date_of_month":18,"day_of_week":5,"births":10180},{"year":1980,"month":1,"date_of_month":19,"day_of_week":6,"births":8730},{"year":1980,"month":1,"date_of_month":20,"day_of_week":7,"births":8457},{"year":1980,"month":1,"date_of_month":21,"day_of_week":1,"births":9675},{"year":1980,"month":1,"date_of_month":22,"day_of_week":2,"births":10076},{"year":1980,"month":1,"date_of_month":23,"day_of_week":3,"births":9593},{"year":1980,"month":1,"date_of_month":24,"day_of_week":4,"births":9908},{"year":1980,"month":1,"date_of_month":25,"day_of_week":5,"births":10067},{"year":1980,"month":1,"date_of_month":26,"day_of_week":6,"births":8730},{"year":1980,"month":1,"date_of_month":27,"day_of_week":7,"births":8258},{"year":1980,"month":1,"date_of_month":28,"day_of_week":1,"births":9880},{"year":1980,"month":1,"date_of_month":29,"day_of_week":2,"births":9868},{"year":1980,"month":1,"date_of_month":30,"day_of_week":3,"births":9677},{"year":1980,"month":1,"date_of_month":31,"day_of_week":4,"births":9739},{"year":1980,"month":2,"date_of_month":1,"day_of_week":5,"births":9996},{"year":1980,"month":2,"date_of_month":2,"day_of_week":6,"births":8798},{"year":1980,"month":2,"date_of_month":3,"day_of_week":7,"births":8285},{"year":1980,"month":2,"date_of_month":4,"day_of_week":1,"births":9816},{"year":1980,"month":2,"date_of_month":5,"day_of_week":2,"births":10251},{"year":1980,"month":2,"date_of_month":6,"day_of_week":3,"births":9907},{"year":1980,"month":2,"date_of_month":7,"day_of_week":4,"births":10108},{"year":1980,"month":2,"date_of_month":8,"day_of_week":5,"births":10001},{"year":1980,"month":2,"date_of_month":9,"day_of_week":6,"births":8772},{"year":1980,"month":2,"date_of_month":10,"day_of_week":7,"births":8354},{"year":1980,"month":2,"date_of_month":11,"day_of_week":1,"births":10154},{"year":1980,"month":2,"date_of_month":12,"day_of_week":2,"births":10252},{"year":1980,"month":2,"date_of_month":13,"day_of_week":3,"births":9790},{"year":1980,"month":2,"date_of_month":14,"day_of_week":4,"births":10432},{"year":1980,"month":2,"date_of_month":15,"day_of_week":5,"births":10201},{"year":1980,"month":2,"date_of_month":16,"day_of_week":6,"births":8918},{"year":1980,"month":2,"date_of_month":17,"day_of_week":7,"births":8571},{"year":1980,"month":2,"date_of_month":18,"day_of_week":1,"births":9716},{"year":1980,"month":2,"date_of_month":19,"day_of_week":2,"births":10175},{"year":1980,"month":2,"date_of_month":20,"day_of_week":3,"births":10093},{"year":1980,"month":2,"date_of_month":21,"day_of_week":4,"births":10156},{"year":1980,"month":2,"date_of_month":22,"day_of_week":5,"births":10268},{"year":1980,"month":2,"date_of_month":23,"day_of_week":6,"births":8956},{"year":1980,"month":2,"date_of_month":24,"day_of_week":7,"births":8604},{"year":1980,"month":2,"date_of_month":25,"day_of_week":1,"births":10032},{"year":1980,"month":2,"date_of_month":26,"day_of_week":2,"births":10177},{"year":1980,"month":2,"date_of_month":27,"day_of_week":3,"births":9783},{"year":1980,"month":2,"date_of_month":28,"day_of_week":4,"births":10211},{"year":1980,"month":2,"date_of_month":29,"day_of_week":5,"births":9615},{"year":1980,"month":3,"date_of_month":1,"day_of_week":6,"births":8610},{"year":1980,"month":3,"date_of_month":2,"day_of_week":7,"births":8339},{"year":1980,"month":3,"date_of_month":3,"day_of_week":1,"births":10053},{"year":1980,"month":3,"date_of_month":4,"day_of_week":2,"births":10113},{"year":1980,"month":3,"date_of_month":5,"day_of_week":3,"births":9978},{"year":1980,"month":3,"date_of_month":6,"day_of_week":4,"births":10067},{"year":1980,"month":3,"date_of_month":7,"day_of_week":5,"births":10043},{"year":1980,"month":3,"date_of_month":8,"day_of_week":6,"births":8883},{"year":1980,"month":3,"date_of_month":9,"day_of_week":7,"births":8440},{"year":1980,"month":3,"date_of_month":10,"day_of_week":1,"births":9922},{"year":1980,"month":3,"date_of_month":11,"day_of_week":2,"births":10234},{"year":1980,"month":3,"date_of_month":12,"day_of_week":3,"births":10075},{"year":1980,"month":3,"date_of_month":13,"day_of_week":4,"births":9770},{"year":1980,"month":3,"date_of_month":14,"day_of_week":5,"births":9961},{"year":1980,"month":3,"date_of_month":15,"day_of_week":6,"births":8711},{"year":1980,"month":3,"date_of_month":16,"day_of_week":7,"births":8429},{"year":1980,"month":3,"date_of_month":17,"day_of_week":1,"births":10259},{"year":1980,"month":3,"date_of_month":18,"day_of_week":2,"births":10101},{"year":1980,"month":3,"date_of_month":19,"day_of_week":3,"births":10111},{"year":1980,"month":3,"date_of_month":20,"day_of_week":4,"births":9799},{"year":1980,"month":3,"date_of_month":21,"day_of_week":5,"births":10356},{"year":1980,"month":3,"date_of_month":22,"day_of_week":6,"births":8902},{"year":1980,"month":3,"date_of_month":23,"day_of_week":7,"births":8530},{"year":1980,"month":3,"date_of_month":24,"day_of_week":1,"births":10100},{"year":1980,"month":3,"date_of_month":25,"day_of_week":2,"births":10553},{"year":1980,"month":3,"date_of_month":26,"day_of_week":3,"births":10094},{"year":1980,"month":3,"date_of_month":27,"day_of_week":4,"births":9952},{"year":1980,"month":3,"date_of_month":28,"day_of_week":5,"births":10115},{"year":1980,"month":3,"date_of_month":29,"day_of_week":6,"births":8867},{"year":1980,"month":3,"date_of_month":30,"day_of_week":7,"births":8482},{"year":1980,"month":3,"date_of_month":31,"day_of_week":1,"births":9897},{"year":1980,"month":4,"date_of_month":1,"day_of_week":2,"births":10146},{"year":1980,"month":4,"date_of_month":2,"day_of_week":3,"births":10088},{"year":1980,"month":4,"date_of_month":3,"day_of_week":4,"births":9887},{"year":1980,"month":4,"date_of_month":4,"day_of_week":5,"births":10033},{"year":1980,"month":4,"date_of_month":5,"day_of_week":6,"births":8476},{"year":1980,"month":4,"date_of_month":6,"day_of_week":7,"births":8413},{"year":1980,"month":4,"date_of_month":7,"day_of_week":1,"births":9863},{"year":1980,"month":4,"date_of_month":8,"day_of_week":2,"births":10323},{"year":1980,"month":4,"date_of_month":9,"day_of_week":3,"births":9957},{"year":1980,"month":4,"date_of_month":10,"day_of_week":4,"births":9943},{"year":1980,"month":4,"date_of_month":11,"day_of_week":5,"births":9945},{"year":1980,"month":4,"date_of_month":12,"day_of_week":6,"births":8544},{"year":1980,"month":4,"date_of_month":13,"day_of_week":7,"births":8281},{"year":1980,"month":4,"date_of_month":14,"day_of_week":1,"births":9821},{"year":1980,"month":4,"date_of_month":15,"day_of_week":2,"births":10141},{"year":1980,"month":4,"date_of_month":16,"day_of_week":3,"births":10130},{"year":1980,"month":4,"date_of_month":17,"day_of_week":4,"births":9751},{"year":1980,"month":4,"date_of_month":18,"day_of_week":5,"births":9961},{"year":1980,"month":4,"date_of_month":19,"day_of_week":6,"births":8642},{"year":1980,"month":4,"date_of_month":20,"day_of_week":7,"births":8460},{"year":1980,"month":4,"date_of_month":21,"day_of_week":1,"births":10004},{"year":1980,"month":4,"date_of_month":22,"day_of_week":2,"births":10344},{"year":1980,"month":4,"date_of_month":23,"day_of_week":3,"births":9985},{"year":1980,"month":4,"date_of_month":24,"day_of_week":4,"births":9870},{"year":1980,"month":4,"date_of_month":25,"day_of_week":5,"births":10007},{"year":1980,"month":4,"date_of_month":26,"day_of_week":6,"births":8410},{"year":1980,"month":4,"date_of_month":27,"day_of_week":7,"births":7856},{"year":1980,"month":4,"date_of_month":28,"day_of_week":1,"births":9926},{"year":1980,"month":4,"date_of_month":29,"day_of_week":2,"births":10155},{"year":1980,"month":4,"date_of_month":30,"day_of_week":3,"births":9832},{"year":1980,"month":5,"date_of_month":1,"day_of_week":4,"births":10131},{"year":1980,"month":5,"date_of_month":2,"day_of_week":5,"births":9991},{"year":1980,"month":5,"date_of_month":3,"day_of_week":6,"births":8659},{"year":1980,"month":5,"date_of_month":4,"day_of_week":7,"births":8086},{"year":1980,"month":5,"date_of_month":5,"day_of_week":1,"births":9951},{"year":1980,"month":5,"date_of_month":6,"day_of_week":2,"births":10199},{"year":1980,"month":5,"date_of_month":7,"day_of_week":3,"births":9524},{"year":1980,"month":5,"date_of_month":8,"day_of_week":4,"births":9418},{"year":1980,"month":5,"date_of_month":9,"day_of_week":5,"births":9766},{"year":1980,"month":5,"date_of_month":10,"day_of_week":6,"births":8431},{"year":1980,"month":5,"date_of_month":11,"day_of_week":7,"births":8312},{"year":1980,"month":5,"date_of_month":12,"day_of_week":1,"births":9922},{"year":1980,"month":5,"date_of_month":13,"day_of_week":2,"births":9967},{"year":1980,"month":5,"date_of_month":14,"day_of_week":3,"births":9717},{"year":1980,"month":5,"date_of_month":15,"day_of_week":4,"births":9832},{"year":1980,"month":5,"date_of_month":16,"day_of_week":5,"births":9842},{"year":1980,"month":5,"date_of_month":17,"day_of_week":6,"births":8385},{"year":1980,"month":5,"date_of_month":18,"day_of_week":7,"births":8323},{"year":1980,"month":5,"date_of_month":19,"day_of_week":1,"births":9984},{"year":1980,"month":5,"date_of_month":20,"day_of_week":2,"births":10571},{"year":1980,"month":5,"date_of_month":21,"day_of_week":3,"births":9682},{"year":1980,"month":5,"date_of_month":22,"day_of_week":4,"births":10109},{"year":1980,"month":5,"date_of_month":23,"day_of_week":5,"births":10258},{"year":1980,"month":5,"date_of_month":24,"day_of_week":6,"births":8659},{"year":1980,"month":5,"date_of_month":25,"day_of_week":7,"births":8462},{"year":1980,"month":5,"date_of_month":26,"day_of_week":1,"births":8644},{"year":1980,"month":5,"date_of_month":27,"day_of_week":2,"births":10149},{"year":1980,"month":5,"date_of_month":28,"day_of_week":3,"births":10198},{"year":1980,"month":5,"date_of_month":29,"day_of_week":4,"births":10189},{"year":1980,"month":5,"date_of_month":30,"day_of_week":5,"births":10182},{"year":1980,"month":5,"date_of_month":31,"day_of_week":6,"births":8574},{"year":1980,"month":6,"date_of_month":1,"day_of_week":7,"births":8454},{"year":1980,"month":6,"date_of_month":2,"day_of_week":1,"births":9933},{"year":1980,"month":6,"date_of_month":3,"day_of_week":2,"births":10258},{"year":1980,"month":6,"date_of_month":4,"day_of_week":3,"births":10010},{"year":1980,"month":6,"date_of_month":5,"day_of_week":4,"births":9978},{"year":1980,"month":6,"date_of_month":6,"day_of_week":5,"births":10222},{"year":1980,"month":6,"date_of_month":7,"day_of_week":6,"births":8816},{"year":1980,"month":6,"date_of_month":8,"day_of_week":7,"births":8183},{"year":1980,"month":6,"date_of_month":9,"day_of_week":1,"births":9666},{"year":1980,"month":6,"date_of_month":10,"day_of_week":2,"births":10340},{"year":1980,"month":6,"date_of_month":11,"day_of_week":3,"births":10042},{"year":1980,"month":6,"date_of_month":12,"day_of_week":4,"births":9966},{"year":1980,"month":6,"date_of_month":13,"day_of_week":5,"births":9887},{"year":1980,"month":6,"date_of_month":14,"day_of_week":6,"births":8715},{"year":1980,"month":6,"date_of_month":15,"day_of_week":7,"births":8674},{"year":1980,"month":6,"date_of_month":16,"day_of_week":1,"births":10249},{"year":1980,"month":6,"date_of_month":17,"day_of_week":2,"births":10209},{"year":1980,"month":6,"date_of_month":18,"day_of_week":3,"births":10336},{"year":1980,"month":6,"date_of_month":19,"day_of_week":4,"births":10240},{"year":1980,"month":6,"date_of_month":20,"day_of_week":5,"births":10326},{"year":1980,"month":6,"date_of_month":21,"day_of_week":6,"births":8812},{"year":1980,"month":6,"date_of_month":22,"day_of_week":7,"births":8733},{"year":1980,"month":6,"date_of_month":23,"day_of_week":1,"births":10492},{"year":1980,"month":6,"date_of_month":24,"day_of_week":2,"births":10859},{"year":1980,"month":6,"date_of_month":25,"day_of_week":3,"births":10550},{"year":1980,"month":6,"date_of_month":26,"day_of_week":4,"births":10621},{"year":1980,"month":6,"date_of_month":27,"day_of_week":5,"births":10688},{"year":1980,"month":6,"date_of_month":28,"day_of_week":6,"births":9011},{"year":1980,"month":6,"date_of_month":29,"day_of_week":7,"births":8820},{"year":1980,"month":6,"date_of_month":30,"day_of_week":1,"births":10371},{"year":1980,"month":7,"date_of_month":1,"day_of_week":2,"births":10921},{"year":1980,"month":7,"date_of_month":2,"day_of_week":3,"births":10914},{"year":1980,"month":7,"date_of_month":3,"day_of_week":4,"births":10694},{"year":1980,"month":7,"date_of_month":4,"day_of_week":5,"births":9203},{"year":1980,"month":7,"date_of_month":5,"day_of_week":6,"births":9228},{"year":1980,"month":7,"date_of_month":6,"day_of_week":7,"births":8917},{"year":1980,"month":7,"date_of_month":7,"day_of_week":1,"births":10484},{"year":1980,"month":7,"date_of_month":8,"day_of_week":2,"births":11290},{"year":1980,"month":7,"date_of_month":9,"day_of_week":3,"births":10800},{"year":1980,"month":7,"date_of_month":10,"day_of_week":4,"births":10768},{"year":1980,"month":7,"date_of_month":11,"day_of_week":5,"births":11078},{"year":1980,"month":7,"date_of_month":12,"day_of_week":6,"births":9270},{"year":1980,"month":7,"date_of_month":13,"day_of_week":7,"births":8943},{"year":1980,"month":7,"date_of_month":14,"day_of_week":1,"births":10613},{"year":1980,"month":7,"date_of_month":15,"day_of_week":2,"births":11095},{"year":1980,"month":7,"date_of_month":16,"day_of_week":3,"births":11065},{"year":1980,"month":7,"date_of_month":17,"day_of_week":4,"births":11062},{"year":1980,"month":7,"date_of_month":18,"day_of_week":5,"births":10696},{"year":1980,"month":7,"date_of_month":19,"day_of_week":6,"births":9191},{"year":1980,"month":7,"date_of_month":20,"day_of_week":7,"births":9129},{"year":1980,"month":7,"date_of_month":21,"day_of_week":1,"births":10853},{"year":1980,"month":7,"date_of_month":22,"day_of_week":2,"births":11067},{"year":1980,"month":7,"date_of_month":23,"day_of_week":3,"births":10616},{"year":1980,"month":7,"date_of_month":24,"day_of_week":4,"births":10615},{"year":1980,"month":7,"date_of_month":25,"day_of_week":5,"births":10785},{"year":1980,"month":7,"date_of_month":26,"day_of_week":6,"births":9429},{"year":1980,"month":7,"date_of_month":27,"day_of_week":7,"births":9139},{"year":1980,"month":7,"date_of_month":28,"day_of_week":1,"births":10926},{"year":1980,"month":7,"date_of_month":29,"day_of_week":2,"births":11461},{"year":1980,"month":7,"date_of_month":30,"day_of_week":3,"births":11126},{"year":1980,"month":7,"date_of_month":31,"day_of_week":4,"births":10975},{"year":1980,"month":8,"date_of_month":1,"day_of_week":5,"births":11006},{"year":1980,"month":8,"date_of_month":2,"day_of_week":6,"births":9585},{"year":1980,"month":8,"date_of_month":3,"day_of_week":7,"births":9176},{"year":1980,"month":8,"date_of_month":4,"day_of_week":1,"births":10783},{"year":1980,"month":8,"date_of_month":5,"day_of_week":2,"births":11194},{"year":1980,"month":8,"date_of_month":6,"day_of_week":3,"births":10785},{"year":1980,"month":8,"date_of_month":7,"day_of_week":4,"births":11044},{"year":1980,"month":8,"date_of_month":8,"day_of_week":5,"births":11492},{"year":1980,"month":8,"date_of_month":9,"day_of_week":6,"births":9466},{"year":1980,"month":8,"date_of_month":10,"day_of_week":7,"births":9145},{"year":1980,"month":8,"date_of_month":11,"day_of_week":1,"births":11026},{"year":1980,"month":8,"date_of_month":12,"day_of_week":2,"births":11371},{"year":1980,"month":8,"date_of_month":13,"day_of_week":3,"births":10923},{"year":1980,"month":8,"date_of_month":14,"day_of_week":4,"births":10756},{"year":1980,"month":8,"date_of_month":15,"day_of_week":5,"births":10897},{"year":1980,"month":8,"date_of_month":16,"day_of_week":6,"births":9361},{"year":1980,"month":8,"date_of_month":17,"day_of_week":7,"births":9001},{"year":1980,"month":8,"date_of_month":18,"day_of_week":1,"births":10933},{"year":1980,"month":8,"date_of_month":19,"day_of_week":2,"births":11193},{"year":1980,"month":8,"date_of_month":20,"day_of_week":3,"births":10942},{"year":1980,"month":8,"date_of_month":21,"day_of_week":4,"births":10811},{"year":1980,"month":8,"date_of_month":22,"day_of_week":5,"births":10779},{"year":1980,"month":8,"date_of_month":23,"day_of_week":6,"births":9271},{"year":1980,"month":8,"date_of_month":24,"day_of_week":7,"births":9103},{"year":1980,"month":8,"date_of_month":25,"day_of_week":1,"births":10910},{"year":1980,"month":8,"date_of_month":26,"day_of_week":2,"births":11151},{"year":1980,"month":8,"date_of_month":27,"day_of_week":3,"births":11005},{"year":1980,"month":8,"date_of_month":28,"day_of_week":4,"births":11007},{"year":1980,"month":8,"date_of_month":29,"day_of_week":5,"births":10925},{"year":1980,"month":8,"date_of_month":30,"day_of_week":6,"births":9510},{"year":1980,"month":8,"date_of_month":31,"day_of_week":7,"births":9092},{"year":1980,"month":9,"date_of_month":1,"day_of_week":1,"births":9129},{"year":1980,"month":9,"date_of_month":2,"day_of_week":2,"births":11057},{"year":1980,"month":9,"date_of_month":3,"day_of_week":3,"births":11174},{"year":1980,"month":9,"date_of_month":4,"day_of_week":4,"births":11039},{"year":1980,"month":9,"date_of_month":5,"day_of_week":5,"births":11013},{"year":1980,"month":9,"date_of_month":6,"day_of_week":6,"births":9545},{"year":1980,"month":9,"date_of_month":7,"day_of_week":7,"births":9287},{"year":1980,"month":9,"date_of_month":8,"day_of_week":1,"births":10900},{"year":1980,"month":9,"date_of_month":9,"day_of_week":2,"births":11019},{"year":1980,"month":9,"date_of_month":10,"day_of_week":3,"births":11003},{"year":1980,"month":9,"date_of_month":11,"day_of_week":4,"births":10796},{"year":1980,"month":9,"date_of_month":12,"day_of_week":5,"births":11198},{"year":1980,"month":9,"date_of_month":13,"day_of_week":6,"births":9673},{"year":1980,"month":9,"date_of_month":14,"day_of_week":7,"births":9499},{"year":1980,"month":9,"date_of_month":15,"day_of_week":1,"births":11424},{"year":1980,"month":9,"date_of_month":16,"day_of_week":2,"births":11414},{"year":1980,"month":9,"date_of_month":17,"day_of_week":3,"births":11292},{"year":1980,"month":9,"date_of_month":18,"day_of_week":4,"births":11317},{"year":1980,"month":9,"date_of_month":19,"day_of_week":5,"births":11326},{"year":1980,"month":9,"date_of_month":20,"day_of_week":6,"births":9967},{"year":1980,"month":9,"date_of_month":21,"day_of_week":7,"births":9773},{"year":1980,"month":9,"date_of_month":22,"day_of_week":1,"births":11613},{"year":1980,"month":9,"date_of_month":23,"day_of_week":2,"births":11722},{"year":1980,"month":9,"date_of_month":24,"day_of_week":3,"births":11333},{"year":1980,"month":9,"date_of_month":25,"day_of_week":4,"births":10977},{"year":1980,"month":9,"date_of_month":26,"day_of_week":5,"births":11163},{"year":1980,"month":9,"date_of_month":27,"day_of_week":6,"births":9754},{"year":1980,"month":9,"date_of_month":28,"day_of_week":7,"births":9263},{"year":1980,"month":9,"date_of_month":29,"day_of_week":1,"births":11099},{"year":1980,"month":9,"date_of_month":30,"day_of_week":2,"births":11301},{"year":1980,"month":10,"date_of_month":1,"day_of_week":3,"births":11104},{"year":1980,"month":10,"date_of_month":2,"day_of_week":4,"births":10929},{"year":1980,"month":10,"date_of_month":3,"day_of_week":5,"births":11048},{"year":1980,"month":10,"date_of_month":4,"day_of_week":6,"births":9352},{"year":1980,"month":10,"date_of_month":5,"day_of_week":7,"births":9013},{"year":1980,"month":10,"date_of_month":6,"day_of_week":1,"births":10539},{"year":1980,"month":10,"date_of_month":7,"day_of_week":2,"births":10602},{"year":1980,"month":10,"date_of_month":8,"day_of_week":3,"births":10827},{"year":1980,"month":10,"date_of_month":9,"day_of_week":4,"births":10684},{"year":1980,"month":10,"date_of_month":10,"day_of_week":5,"births":10754},{"year":1980,"month":10,"date_of_month":11,"day_of_week":6,"births":8984},{"year":1980,"month":10,"date_of_month":12,"day_of_week":7,"births":8674},{"year":1980,"month":10,"date_of_month":13,"day_of_week":1,"births":10093},{"year":1980,"month":10,"date_of_month":14,"day_of_week":2,"births":10612},{"year":1980,"month":10,"date_of_month":15,"day_of_week":3,"births":10580},{"year":1980,"month":10,"date_of_month":16,"day_of_week":4,"births":10232},{"year":1980,"month":10,"date_of_month":17,"day_of_week":5,"births":10328},{"year":1980,"month":10,"date_of_month":18,"day_of_week":6,"births":8970},{"year":1980,"month":10,"date_of_month":19,"day_of_week":7,"births":8669},{"year":1980,"month":10,"date_of_month":20,"day_of_week":1,"births":10289},{"year":1980,"month":10,"date_of_month":21,"day_of_week":2,"births":10373},{"year":1980,"month":10,"date_of_month":22,"day_of_week":3,"births":10089},{"year":1980,"month":10,"date_of_month":23,"day_of_week":4,"births":10051},{"year":1980,"month":10,"date_of_month":24,"day_of_week":5,"births":10380},{"year":1980,"month":10,"date_of_month":25,"day_of_week":6,"births":8870},{"year":1980,"month":10,"date_of_month":26,"day_of_week":7,"births":9159},{"year":1980,"month":10,"date_of_month":27,"day_of_week":1,"births":10100},{"year":1980,"month":10,"date_of_month":28,"day_of_week":2,"births":10327},{"year":1980,"month":10,"date_of_month":29,"day_of_week":3,"births":10081},{"year":1980,"month":10,"date_of_month":30,"day_of_week":4,"births":9982},{"year":1980,"month":10,"date_of_month":31,"day_of_week":5,"births":10101},{"year":1980,"month":11,"date_of_month":1,"day_of_week":6,"births":8851},{"year":1980,"month":11,"date_of_month":2,"day_of_week":7,"births":8641},{"year":1980,"month":11,"date_of_month":3,"day_of_week":1,"births":10289},{"year":1980,"month":11,"date_of_month":4,"day_of_week":2,"births":10465},{"year":1980,"month":11,"date_of_month":5,"day_of_week":3,"births":10373},{"year":1980,"month":11,"date_of_month":6,"day_of_week":4,"births":10128},{"year":1980,"month":11,"date_of_month":7,"day_of_week":5,"births":10517},{"year":1980,"month":11,"date_of_month":8,"day_of_week":6,"births":8906},{"year":1980,"month":11,"date_of_month":9,"day_of_week":7,"births":8745},{"year":1980,"month":11,"date_of_month":10,"day_of_week":1,"births":10249},{"year":1980,"month":11,"date_of_month":11,"day_of_week":2,"births":10326},{"year":1980,"month":11,"date_of_month":12,"day_of_week":3,"births":10059},{"year":1980,"month":11,"date_of_month":13,"day_of_week":4,"births":9930},{"year":1980,"month":11,"date_of_month":14,"day_of_week":5,"births":10413},{"year":1980,"month":11,"date_of_month":15,"day_of_week":6,"births":8829},{"year":1980,"month":11,"date_of_month":16,"day_of_week":7,"births":8563},{"year":1980,"month":11,"date_of_month":17,"day_of_week":1,"births":10175},{"year":1980,"month":11,"date_of_month":18,"day_of_week":2,"births":10500},{"year":1980,"month":11,"date_of_month":19,"day_of_week":3,"births":10180},{"year":1980,"month":11,"date_of_month":20,"day_of_week":4,"births":9977},{"year":1980,"month":11,"date_of_month":21,"day_of_week":5,"births":10243},{"year":1980,"month":11,"date_of_month":22,"day_of_week":6,"births":8680},{"year":1980,"month":11,"date_of_month":23,"day_of_week":7,"births":8443},{"year":1980,"month":11,"date_of_month":24,"day_of_week":1,"births":10447},{"year":1980,"month":11,"date_of_month":25,"day_of_week":2,"births":10496},{"year":1980,"month":11,"date_of_month":26,"day_of_week":3,"births":10236},{"year":1980,"month":11,"date_of_month":27,"day_of_week":4,"births":8134},{"year":1980,"month":11,"date_of_month":28,"day_of_week":5,"births":9649},{"year":1980,"month":11,"date_of_month":29,"day_of_week":6,"births":8821},{"year":1980,"month":11,"date_of_month":30,"day_of_week":7,"births":8830},{"year":1980,"month":12,"date_of_month":1,"day_of_week":1,"births":10225},{"year":1980,"month":12,"date_of_month":2,"day_of_week":2,"births":10711},{"year":1980,"month":12,"date_of_month":3,"day_of_week":3,"births":10105},{"year":1980,"month":12,"date_of_month":4,"day_of_week":4,"births":9925},{"year":1980,"month":12,"date_of_month":5,"day_of_week":5,"births":10288},{"year":1980,"month":12,"date_of_month":6,"day_of_week":6,"births":8659},{"year":1980,"month":12,"date_of_month":7,"day_of_week":7,"births":8513},{"year":1980,"month":12,"date_of_month":8,"day_of_week":1,"births":10368},{"year":1980,"month":12,"date_of_month":9,"day_of_week":2,"births":10322},{"year":1980,"month":12,"date_of_month":10,"day_of_week":3,"births":10120},{"year":1980,"month":12,"date_of_month":11,"day_of_week":4,"births":9998},{"year":1980,"month":12,"date_of_month":12,"day_of_week":5,"births":10039},{"year":1980,"month":12,"date_of_month":13,"day_of_week":6,"births":8758},{"year":1980,"month":12,"date_of_month":14,"day_of_week":7,"births":8523},{"year":1980,"month":12,"date_of_month":15,"day_of_week":1,"births":10508},{"year":1980,"month":12,"date_of_month":16,"day_of_week":2,"births":10772},{"year":1980,"month":12,"date_of_month":17,"day_of_week":3,"births":10524},{"year":1980,"month":12,"date_of_month":18,"day_of_week":4,"births":10580},{"year":1980,"month":12,"date_of_month":19,"day_of_week":5,"births":10662},{"year":1980,"month":12,"date_of_month":20,"day_of_week":6,"births":8526},{"year":1980,"month":12,"date_of_month":21,"day_of_week":7,"births":8289},{"year":1980,"month":12,"date_of_month":22,"day_of_week":1,"births":10035},{"year":1980,"month":12,"date_of_month":23,"day_of_week":2,"births":10118},{"year":1980,"month":12,"date_of_month":24,"day_of_week":3,"births":8979},{"year":1980,"month":12,"date_of_month":25,"day_of_week":4,"births":7979},{"year":1980,"month":12,"date_of_month":26,"day_of_week":5,"births":9313},{"year":1980,"month":12,"date_of_month":27,"day_of_week":6,"births":8748},{"year":1980,"month":12,"date_of_month":28,"day_of_week":7,"births":8576},{"year":1980,"month":12,"date_of_month":29,"day_of_week":1,"births":10881},{"year":1980,"month":12,"date_of_month":30,"day_of_week":2,"births":11603},{"year":1980,"month":12,"date_of_month":31,"day_of_week":3,"births":10947},{"year":1981,"month":1,"date_of_month":1,"day_of_week":4,"births":8299},{"year":1981,"month":1,"date_of_month":2,"day_of_week":5,"births":9045},{"year":1981,"month":1,"date_of_month":3,"day_of_week":6,"births":8458},{"year":1981,"month":1,"date_of_month":4,"day_of_week":7,"births":8295},{"year":1981,"month":1,"date_of_month":5,"day_of_week":1,"births":9614},{"year":1981,"month":1,"date_of_month":6,"day_of_week":2,"births":10128},{"year":1981,"month":1,"date_of_month":7,"day_of_week":3,"births":10140},{"year":1981,"month":1,"date_of_month":8,"day_of_week":4,"births":9423},{"year":1981,"month":1,"date_of_month":9,"day_of_week":5,"births":9702},{"year":1981,"month":1,"date_of_month":10,"day_of_week":6,"births":8449},{"year":1981,"month":1,"date_of_month":11,"day_of_week":7,"births":8276},{"year":1981,"month":1,"date_of_month":12,"day_of_week":1,"births":9900},{"year":1981,"month":1,"date_of_month":13,"day_of_week":2,"births":10163},{"year":1981,"month":1,"date_of_month":14,"day_of_week":3,"births":10419},{"year":1981,"month":1,"date_of_month":15,"day_of_week":4,"births":10157},{"year":1981,"month":1,"date_of_month":16,"day_of_week":5,"births":10164},{"year":1981,"month":1,"date_of_month":17,"day_of_week":6,"births":8601},{"year":1981,"month":1,"date_of_month":18,"day_of_week":7,"births":8402},{"year":1981,"month":1,"date_of_month":19,"day_of_week":1,"births":10368},{"year":1981,"month":1,"date_of_month":20,"day_of_week":2,"births":10455},{"year":1981,"month":1,"date_of_month":21,"day_of_week":3,"births":10166},{"year":1981,"month":1,"date_of_month":22,"day_of_week":4,"births":10003},{"year":1981,"month":1,"date_of_month":23,"day_of_week":5,"births":10123},{"year":1981,"month":1,"date_of_month":24,"day_of_week":6,"births":8825},{"year":1981,"month":1,"date_of_month":25,"day_of_week":7,"births":8369},{"year":1981,"month":1,"date_of_month":26,"day_of_week":1,"births":10213},{"year":1981,"month":1,"date_of_month":27,"day_of_week":2,"births":10346},{"year":1981,"month":1,"date_of_month":28,"day_of_week":3,"births":10145},{"year":1981,"month":1,"date_of_month":29,"day_of_week":4,"births":9874},{"year":1981,"month":1,"date_of_month":30,"day_of_week":5,"births":10106},{"year":1981,"month":1,"date_of_month":31,"day_of_week":6,"births":8457},{"year":1981,"month":2,"date_of_month":1,"day_of_week":7,"births":8474},{"year":1981,"month":2,"date_of_month":2,"day_of_week":1,"births":10285},{"year":1981,"month":2,"date_of_month":3,"day_of_week":2,"births":10231},{"year":1981,"month":2,"date_of_month":4,"day_of_week":3,"births":10083},{"year":1981,"month":2,"date_of_month":5,"day_of_week":4,"births":9985},{"year":1981,"month":2,"date_of_month":6,"day_of_week":5,"births":10099},{"year":1981,"month":2,"date_of_month":7,"day_of_week":6,"births":8563},{"year":1981,"month":2,"date_of_month":8,"day_of_week":7,"births":8611},{"year":1981,"month":2,"date_of_month":9,"day_of_week":1,"births":10313},{"year":1981,"month":2,"date_of_month":10,"day_of_week":2,"births":10355},{"year":1981,"month":2,"date_of_month":11,"day_of_week":3,"births":10112},{"year":1981,"month":2,"date_of_month":12,"day_of_week":4,"births":10332},{"year":1981,"month":2,"date_of_month":13,"day_of_week":5,"births":9670},{"year":1981,"month":2,"date_of_month":14,"day_of_week":6,"births":9114},{"year":1981,"month":2,"date_of_month":15,"day_of_week":7,"births":8538},{"year":1981,"month":2,"date_of_month":16,"day_of_week":1,"births":9796},{"year":1981,"month":2,"date_of_month":17,"day_of_week":2,"births":10409},{"year":1981,"month":2,"date_of_month":18,"day_of_week":3,"births":10313},{"year":1981,"month":2,"date_of_month":19,"day_of_week":4,"births":10337},{"year":1981,"month":2,"date_of_month":20,"day_of_week":5,"births":10368},{"year":1981,"month":2,"date_of_month":21,"day_of_week":6,"births":8975},{"year":1981,"month":2,"date_of_month":22,"day_of_week":7,"births":8657},{"year":1981,"month":2,"date_of_month":23,"day_of_week":1,"births":10157},{"year":1981,"month":2,"date_of_month":24,"day_of_week":2,"births":10423},{"year":1981,"month":2,"date_of_month":25,"day_of_week":3,"births":10270},{"year":1981,"month":2,"date_of_month":26,"day_of_week":4,"births":10054},{"year":1981,"month":2,"date_of_month":27,"day_of_week":5,"births":10226},{"year":1981,"month":2,"date_of_month":28,"day_of_week":6,"births":8892},{"year":1981,"month":3,"date_of_month":1,"day_of_week":7,"births":8534},{"year":1981,"month":3,"date_of_month":2,"day_of_week":1,"births":10130},{"year":1981,"month":3,"date_of_month":3,"day_of_week":2,"births":10471},{"year":1981,"month":3,"date_of_month":4,"day_of_week":3,"births":10277},{"year":1981,"month":3,"date_of_month":5,"day_of_week":4,"births":10168},{"year":1981,"month":3,"date_of_month":6,"day_of_week":5,"births":10134},{"year":1981,"month":3,"date_of_month":7,"day_of_week":6,"births":8697},{"year":1981,"month":3,"date_of_month":8,"day_of_week":7,"births":8369},{"year":1981,"month":3,"date_of_month":9,"day_of_week":1,"births":9912},{"year":1981,"month":3,"date_of_month":10,"day_of_week":2,"births":10348},{"year":1981,"month":3,"date_of_month":11,"day_of_week":3,"births":10184},{"year":1981,"month":3,"date_of_month":12,"day_of_week":4,"births":10137},{"year":1981,"month":3,"date_of_month":13,"day_of_week":5,"births":9961},{"year":1981,"month":3,"date_of_month":14,"day_of_week":6,"births":8937},{"year":1981,"month":3,"date_of_month":15,"day_of_week":7,"births":8338},{"year":1981,"month":3,"date_of_month":16,"day_of_week":1,"births":10269},{"year":1981,"month":3,"date_of_month":17,"day_of_week":2,"births":10731},{"year":1981,"month":3,"date_of_month":18,"day_of_week":3,"births":10129},{"year":1981,"month":3,"date_of_month":19,"day_of_week":4,"births":10030},{"year":1981,"month":3,"date_of_month":20,"day_of_week":5,"births":10184},{"year":1981,"month":3,"date_of_month":21,"day_of_week":6,"births":8773},{"year":1981,"month":3,"date_of_month":22,"day_of_week":7,"births":8458},{"year":1981,"month":3,"date_of_month":23,"day_of_week":1,"births":10040},{"year":1981,"month":3,"date_of_month":24,"day_of_week":2,"births":10453},{"year":1981,"month":3,"date_of_month":25,"day_of_week":3,"births":10090},{"year":1981,"month":3,"date_of_month":26,"day_of_week":4,"births":10193},{"year":1981,"month":3,"date_of_month":27,"day_of_week":5,"births":10454},{"year":1981,"month":3,"date_of_month":28,"day_of_week":6,"births":8835},{"year":1981,"month":3,"date_of_month":29,"day_of_week":7,"births":8532},{"year":1981,"month":3,"date_of_month":30,"day_of_week":1,"births":10063},{"year":1981,"month":3,"date_of_month":31,"day_of_week":2,"births":10327},{"year":1981,"month":4,"date_of_month":1,"day_of_week":3,"births":9860},{"year":1981,"month":4,"date_of_month":2,"day_of_week":4,"births":10004},{"year":1981,"month":4,"date_of_month":3,"day_of_week":5,"births":10151},{"year":1981,"month":4,"date_of_month":4,"day_of_week":6,"births":8888},{"year":1981,"month":4,"date_of_month":5,"day_of_week":7,"births":8378},{"year":1981,"month":4,"date_of_month":6,"day_of_week":1,"births":9988},{"year":1981,"month":4,"date_of_month":7,"day_of_week":2,"births":10356},{"year":1981,"month":4,"date_of_month":8,"day_of_week":3,"births":10034},{"year":1981,"month":4,"date_of_month":9,"day_of_week":4,"births":10052},{"year":1981,"month":4,"date_of_month":10,"day_of_week":5,"births":10115},{"year":1981,"month":4,"date_of_month":11,"day_of_week":6,"births":8702},{"year":1981,"month":4,"date_of_month":12,"day_of_week":7,"births":8338},{"year":1981,"month":4,"date_of_month":13,"day_of_week":1,"births":9736},{"year":1981,"month":4,"date_of_month":14,"day_of_week":2,"births":10277},{"year":1981,"month":4,"date_of_month":15,"day_of_week":3,"births":9966},{"year":1981,"month":4,"date_of_month":16,"day_of_week":4,"births":9634},{"year":1981,"month":4,"date_of_month":17,"day_of_week":5,"births":9593},{"year":1981,"month":4,"date_of_month":18,"day_of_week":6,"births":8349},{"year":1981,"month":4,"date_of_month":19,"day_of_week":7,"births":8122},{"year":1981,"month":4,"date_of_month":20,"day_of_week":1,"births":9558},{"year":1981,"month":4,"date_of_month":21,"day_of_week":2,"births":10155},{"year":1981,"month":4,"date_of_month":22,"day_of_week":3,"births":9992},{"year":1981,"month":4,"date_of_month":23,"day_of_week":4,"births":10078},{"year":1981,"month":4,"date_of_month":24,"day_of_week":5,"births":9921},{"year":1981,"month":4,"date_of_month":25,"day_of_week":6,"births":8431},{"year":1981,"month":4,"date_of_month":26,"day_of_week":7,"births":7756},{"year":1981,"month":4,"date_of_month":27,"day_of_week":1,"births":9657},{"year":1981,"month":4,"date_of_month":28,"day_of_week":2,"births":10242},{"year":1981,"month":4,"date_of_month":29,"day_of_week":3,"births":9959},{"year":1981,"month":4,"date_of_month":30,"day_of_week":4,"births":9675},{"year":1981,"month":5,"date_of_month":1,"day_of_week":5,"births":10047},{"year":1981,"month":5,"date_of_month":2,"day_of_week":6,"births":8329},{"year":1981,"month":5,"date_of_month":3,"day_of_week":7,"births":8115},{"year":1981,"month":5,"date_of_month":4,"day_of_week":1,"births":9755},{"year":1981,"month":5,"date_of_month":5,"day_of_week":2,"births":10383},{"year":1981,"month":5,"date_of_month":6,"day_of_week":3,"births":9884},{"year":1981,"month":5,"date_of_month":7,"day_of_week":4,"births":9906},{"year":1981,"month":5,"date_of_month":8,"day_of_week":5,"births":10086},{"year":1981,"month":5,"date_of_month":9,"day_of_week":6,"births":8354},{"year":1981,"month":5,"date_of_month":10,"day_of_week":7,"births":8504},{"year":1981,"month":5,"date_of_month":11,"day_of_week":1,"births":9942},{"year":1981,"month":5,"date_of_month":12,"day_of_week":2,"births":10076},{"year":1981,"month":5,"date_of_month":13,"day_of_week":3,"births":9895},{"year":1981,"month":5,"date_of_month":14,"day_of_week":4,"births":10145},{"year":1981,"month":5,"date_of_month":15,"day_of_week":5,"births":10195},{"year":1981,"month":5,"date_of_month":16,"day_of_week":6,"births":8518},{"year":1981,"month":5,"date_of_month":17,"day_of_week":7,"births":8194},{"year":1981,"month":5,"date_of_month":18,"day_of_week":1,"births":10159},{"year":1981,"month":5,"date_of_month":19,"day_of_week":2,"births":10309},{"year":1981,"month":5,"date_of_month":20,"day_of_week":3,"births":10086},{"year":1981,"month":5,"date_of_month":21,"day_of_week":4,"births":10182},{"year":1981,"month":5,"date_of_month":22,"day_of_week":5,"births":10424},{"year":1981,"month":5,"date_of_month":23,"day_of_week":6,"births":8760},{"year":1981,"month":5,"date_of_month":24,"day_of_week":7,"births":8344},{"year":1981,"month":5,"date_of_month":25,"day_of_week":1,"births":8843},{"year":1981,"month":5,"date_of_month":26,"day_of_week":2,"births":10471},{"year":1981,"month":5,"date_of_month":27,"day_of_week":3,"births":10674},{"year":1981,"month":5,"date_of_month":28,"day_of_week":4,"births":10400},{"year":1981,"month":5,"date_of_month":29,"day_of_week":5,"births":10411},{"year":1981,"month":5,"date_of_month":30,"day_of_week":6,"births":8852},{"year":1981,"month":5,"date_of_month":31,"day_of_week":7,"births":8598},{"year":1981,"month":6,"date_of_month":1,"day_of_week":1,"births":10077},{"year":1981,"month":6,"date_of_month":2,"day_of_week":2,"births":10355},{"year":1981,"month":6,"date_of_month":3,"day_of_week":3,"births":10195},{"year":1981,"month":6,"date_of_month":4,"day_of_week":4,"births":10208},{"year":1981,"month":6,"date_of_month":5,"day_of_week":5,"births":10366},{"year":1981,"month":6,"date_of_month":6,"day_of_week":6,"births":8965},{"year":1981,"month":6,"date_of_month":7,"day_of_week":7,"births":8638},{"year":1981,"month":6,"date_of_month":8,"day_of_week":1,"births":10206},{"year":1981,"month":6,"date_of_month":9,"day_of_week":2,"births":10569},{"year":1981,"month":6,"date_of_month":10,"day_of_week":3,"births":10379},{"year":1981,"month":6,"date_of_month":11,"day_of_week":4,"births":10131},{"year":1981,"month":6,"date_of_month":12,"day_of_week":5,"births":10162},{"year":1981,"month":6,"date_of_month":13,"day_of_week":6,"births":8853},{"year":1981,"month":6,"date_of_month":14,"day_of_week":7,"births":8484},{"year":1981,"month":6,"date_of_month":15,"day_of_week":1,"births":10182},{"year":1981,"month":6,"date_of_month":16,"day_of_week":2,"births":10749},{"year":1981,"month":6,"date_of_month":17,"day_of_week":3,"births":10414},{"year":1981,"month":6,"date_of_month":18,"day_of_week":4,"births":10072},{"year":1981,"month":6,"date_of_month":19,"day_of_week":5,"births":10522},{"year":1981,"month":6,"date_of_month":20,"day_of_week":6,"births":9012},{"year":1981,"month":6,"date_of_month":21,"day_of_week":7,"births":8713},{"year":1981,"month":6,"date_of_month":22,"day_of_week":1,"births":10597},{"year":1981,"month":6,"date_of_month":23,"day_of_week":2,"births":10540},{"year":1981,"month":6,"date_of_month":24,"day_of_week":3,"births":10325},{"year":1981,"month":6,"date_of_month":25,"day_of_week":4,"births":10377},{"year":1981,"month":6,"date_of_month":26,"day_of_week":5,"births":10524},{"year":1981,"month":6,"date_of_month":27,"day_of_week":6,"births":8649},{"year":1981,"month":6,"date_of_month":28,"day_of_week":7,"births":8599},{"year":1981,"month":6,"date_of_month":29,"day_of_week":1,"births":10502},{"year":1981,"month":6,"date_of_month":30,"day_of_week":2,"births":11057},{"year":1981,"month":7,"date_of_month":1,"day_of_week":3,"births":10679},{"year":1981,"month":7,"date_of_month":2,"day_of_week":4,"births":10657},{"year":1981,"month":7,"date_of_month":3,"day_of_week":5,"births":9717},{"year":1981,"month":7,"date_of_month":4,"day_of_week":6,"births":8935},{"year":1981,"month":7,"date_of_month":5,"day_of_week":7,"births":8875},{"year":1981,"month":7,"date_of_month":6,"day_of_week":1,"births":10602},{"year":1981,"month":7,"date_of_month":7,"day_of_week":2,"births":11498},{"year":1981,"month":7,"date_of_month":8,"day_of_week":3,"births":11205},{"year":1981,"month":7,"date_of_month":9,"day_of_week":4,"births":11146},{"year":1981,"month":7,"date_of_month":10,"day_of_week":5,"births":11364},{"year":1981,"month":7,"date_of_month":11,"day_of_week":6,"births":9452},{"year":1981,"month":7,"date_of_month":12,"day_of_week":7,"births":8997},{"year":1981,"month":7,"date_of_month":13,"day_of_week":1,"births":10618},{"year":1981,"month":7,"date_of_month":14,"day_of_week":2,"births":11577},{"year":1981,"month":7,"date_of_month":15,"day_of_week":3,"births":11108},{"year":1981,"month":7,"date_of_month":16,"day_of_week":4,"births":10942},{"year":1981,"month":7,"date_of_month":17,"day_of_week":5,"births":11126},{"year":1981,"month":7,"date_of_month":18,"day_of_week":6,"births":9333},{"year":1981,"month":7,"date_of_month":19,"day_of_week":7,"births":8993},{"year":1981,"month":7,"date_of_month":20,"day_of_week":1,"births":11111},{"year":1981,"month":7,"date_of_month":21,"day_of_week":2,"births":11313},{"year":1981,"month":7,"date_of_month":22,"day_of_week":3,"births":11064},{"year":1981,"month":7,"date_of_month":23,"day_of_week":4,"births":10965},{"year":1981,"month":7,"date_of_month":24,"day_of_week":5,"births":11010},{"year":1981,"month":7,"date_of_month":25,"day_of_week":6,"births":9430},{"year":1981,"month":7,"date_of_month":26,"day_of_week":7,"births":9254},{"year":1981,"month":7,"date_of_month":27,"day_of_week":1,"births":10893},{"year":1981,"month":7,"date_of_month":28,"day_of_week":2,"births":11479},{"year":1981,"month":7,"date_of_month":29,"day_of_week":3,"births":11211},{"year":1981,"month":7,"date_of_month":30,"day_of_week":4,"births":11000},{"year":1981,"month":7,"date_of_month":31,"day_of_week":5,"births":11211},{"year":1981,"month":8,"date_of_month":1,"day_of_week":6,"births":9733},{"year":1981,"month":8,"date_of_month":2,"day_of_week":7,"births":9276},{"year":1981,"month":8,"date_of_month":3,"day_of_week":1,"births":11152},{"year":1981,"month":8,"date_of_month":4,"day_of_week":2,"births":11697},{"year":1981,"month":8,"date_of_month":5,"day_of_week":3,"births":11438},{"year":1981,"month":8,"date_of_month":6,"day_of_week":4,"births":11153},{"year":1981,"month":8,"date_of_month":7,"day_of_week":5,"births":11256},{"year":1981,"month":8,"date_of_month":8,"day_of_week":6,"births":9803},{"year":1981,"month":8,"date_of_month":9,"day_of_week":7,"births":9360},{"year":1981,"month":8,"date_of_month":10,"day_of_week":1,"births":11052},{"year":1981,"month":8,"date_of_month":11,"day_of_week":2,"births":11242},{"year":1981,"month":8,"date_of_month":12,"day_of_week":3,"births":11357},{"year":1981,"month":8,"date_of_month":13,"day_of_week":4,"births":11088},{"year":1981,"month":8,"date_of_month":14,"day_of_week":5,"births":11433},{"year":1981,"month":8,"date_of_month":15,"day_of_week":6,"births":9628},{"year":1981,"month":8,"date_of_month":16,"day_of_week":7,"births":9282},{"year":1981,"month":8,"date_of_month":17,"day_of_week":1,"births":11048},{"year":1981,"month":8,"date_of_month":18,"day_of_week":2,"births":11407},{"year":1981,"month":8,"date_of_month":19,"day_of_week":3,"births":11059},{"year":1981,"month":8,"date_of_month":20,"day_of_week":4,"births":10956},{"year":1981,"month":8,"date_of_month":21,"day_of_week":5,"births":11091},{"year":1981,"month":8,"date_of_month":22,"day_of_week":6,"births":9740},{"year":1981,"month":8,"date_of_month":23,"day_of_week":7,"births":9225},{"year":1981,"month":8,"date_of_month":24,"day_of_week":1,"births":11147},{"year":1981,"month":8,"date_of_month":25,"day_of_week":2,"births":11407},{"year":1981,"month":8,"date_of_month":26,"day_of_week":3,"births":11198},{"year":1981,"month":8,"date_of_month":27,"day_of_week":4,"births":11059},{"year":1981,"month":8,"date_of_month":28,"day_of_week":5,"births":11260},{"year":1981,"month":8,"date_of_month":29,"day_of_week":6,"births":9667},{"year":1981,"month":8,"date_of_month":30,"day_of_week":7,"births":9261},{"year":1981,"month":8,"date_of_month":31,"day_of_week":1,"births":11050},{"year":1981,"month":9,"date_of_month":1,"day_of_week":2,"births":11156},{"year":1981,"month":9,"date_of_month":2,"day_of_week":3,"births":10922},{"year":1981,"month":9,"date_of_month":3,"day_of_week":4,"births":10894},{"year":1981,"month":9,"date_of_month":4,"day_of_week":5,"births":11180},{"year":1981,"month":9,"date_of_month":5,"day_of_week":6,"births":9354},{"year":1981,"month":9,"date_of_month":6,"day_of_week":7,"births":9095},{"year":1981,"month":9,"date_of_month":7,"day_of_week":1,"births":9213},{"year":1981,"month":9,"date_of_month":8,"day_of_week":2,"births":11071},{"year":1981,"month":9,"date_of_month":9,"day_of_week":3,"births":11356},{"year":1981,"month":9,"date_of_month":10,"day_of_week":4,"births":11245},{"year":1981,"month":9,"date_of_month":11,"day_of_week":5,"births":11471},{"year":1981,"month":9,"date_of_month":12,"day_of_week":6,"births":9561},{"year":1981,"month":9,"date_of_month":13,"day_of_week":7,"births":9396},{"year":1981,"month":9,"date_of_month":14,"day_of_week":1,"births":11377},{"year":1981,"month":9,"date_of_month":15,"day_of_week":2,"births":11422},{"year":1981,"month":9,"date_of_month":16,"day_of_week":3,"births":11365},{"year":1981,"month":9,"date_of_month":17,"day_of_week":4,"births":11071},{"year":1981,"month":9,"date_of_month":18,"day_of_week":5,"births":11148},{"year":1981,"month":9,"date_of_month":19,"day_of_week":6,"births":9609},{"year":1981,"month":9,"date_of_month":20,"day_of_week":7,"births":9532},{"year":1981,"month":9,"date_of_month":21,"day_of_week":1,"births":11262},{"year":1981,"month":9,"date_of_month":22,"day_of_week":2,"births":11488},{"year":1981,"month":9,"date_of_month":23,"day_of_week":3,"births":11281},{"year":1981,"month":9,"date_of_month":24,"day_of_week":4,"births":11201},{"year":1981,"month":9,"date_of_month":25,"day_of_week":5,"births":11460},{"year":1981,"month":9,"date_of_month":26,"day_of_week":6,"births":9703},{"year":1981,"month":9,"date_of_month":27,"day_of_week":7,"births":9337},{"year":1981,"month":9,"date_of_month":28,"day_of_week":1,"births":11341},{"year":1981,"month":9,"date_of_month":29,"day_of_week":2,"births":11074},{"year":1981,"month":9,"date_of_month":30,"day_of_week":3,"births":10992},{"year":1981,"month":10,"date_of_month":1,"day_of_week":4,"births":10881},{"year":1981,"month":10,"date_of_month":2,"day_of_week":5,"births":11018},{"year":1981,"month":10,"date_of_month":3,"day_of_week":6,"births":9318},{"year":1981,"month":10,"date_of_month":4,"day_of_week":7,"births":8905},{"year":1981,"month":10,"date_of_month":5,"day_of_week":1,"births":10874},{"year":1981,"month":10,"date_of_month":6,"day_of_week":2,"births":10899},{"year":1981,"month":10,"date_of_month":7,"day_of_week":3,"births":10483},{"year":1981,"month":10,"date_of_month":8,"day_of_week":4,"births":10405},{"year":1981,"month":10,"date_of_month":9,"day_of_week":5,"births":10905},{"year":1981,"month":10,"date_of_month":10,"day_of_week":6,"births":9313},{"year":1981,"month":10,"date_of_month":11,"day_of_week":7,"births":8756},{"year":1981,"month":10,"date_of_month":12,"day_of_week":1,"births":10372},{"year":1981,"month":10,"date_of_month":13,"day_of_week":2,"births":10616},{"year":1981,"month":10,"date_of_month":14,"day_of_week":3,"births":10214},{"year":1981,"month":10,"date_of_month":15,"day_of_week":4,"births":10456},{"year":1981,"month":10,"date_of_month":16,"day_of_week":5,"births":10716},{"year":1981,"month":10,"date_of_month":17,"day_of_week":6,"births":8537},{"year":1981,"month":10,"date_of_month":18,"day_of_week":7,"births":8540},{"year":1981,"month":10,"date_of_month":19,"day_of_week":1,"births":10023},{"year":1981,"month":10,"date_of_month":20,"day_of_week":2,"births":10277},{"year":1981,"month":10,"date_of_month":21,"day_of_week":3,"births":10460},{"year":1981,"month":10,"date_of_month":22,"day_of_week":4,"births":10267},{"year":1981,"month":10,"date_of_month":23,"day_of_week":5,"births":10316},{"year":1981,"month":10,"date_of_month":24,"day_of_week":6,"births":8687},{"year":1981,"month":10,"date_of_month":25,"day_of_week":7,"births":8733},{"year":1981,"month":10,"date_of_month":26,"day_of_week":1,"births":10044},{"year":1981,"month":10,"date_of_month":27,"day_of_week":2,"births":10452},{"year":1981,"month":10,"date_of_month":28,"day_of_week":3,"births":10153},{"year":1981,"month":10,"date_of_month":29,"day_of_week":4,"births":10111},{"year":1981,"month":10,"date_of_month":30,"day_of_week":5,"births":10302},{"year":1981,"month":10,"date_of_month":31,"day_of_week":6,"births":8643},{"year":1981,"month":11,"date_of_month":1,"day_of_week":7,"births":8358},{"year":1981,"month":11,"date_of_month":2,"day_of_week":1,"births":10303},{"year":1981,"month":11,"date_of_month":3,"day_of_week":2,"births":10397},{"year":1981,"month":11,"date_of_month":4,"day_of_week":3,"births":10350},{"year":1981,"month":11,"date_of_month":5,"day_of_week":4,"births":10315},{"year":1981,"month":11,"date_of_month":6,"day_of_week":5,"births":10678},{"year":1981,"month":11,"date_of_month":7,"day_of_week":6,"births":8797},{"year":1981,"month":11,"date_of_month":8,"day_of_week":7,"births":8471},{"year":1981,"month":11,"date_of_month":9,"day_of_week":1,"births":10155},{"year":1981,"month":11,"date_of_month":10,"day_of_week":2,"births":10356},{"year":1981,"month":11,"date_of_month":11,"day_of_week":3,"births":10050},{"year":1981,"month":11,"date_of_month":12,"day_of_week":4,"births":10256},{"year":1981,"month":11,"date_of_month":13,"day_of_week":5,"births":9919},{"year":1981,"month":11,"date_of_month":14,"day_of_week":6,"births":8796},{"year":1981,"month":11,"date_of_month":15,"day_of_week":7,"births":8499},{"year":1981,"month":11,"date_of_month":16,"day_of_week":1,"births":10453},{"year":1981,"month":11,"date_of_month":17,"day_of_week":2,"births":10765},{"year":1981,"month":11,"date_of_month":18,"day_of_week":3,"births":10144},{"year":1981,"month":11,"date_of_month":19,"day_of_week":4,"births":10224},{"year":1981,"month":11,"date_of_month":20,"day_of_week":5,"births":10574},{"year":1981,"month":11,"date_of_month":21,"day_of_week":6,"births":8746},{"year":1981,"month":11,"date_of_month":22,"day_of_week":7,"births":8427},{"year":1981,"month":11,"date_of_month":23,"day_of_week":1,"births":10335},{"year":1981,"month":11,"date_of_month":24,"day_of_week":2,"births":10528},{"year":1981,"month":11,"date_of_month":25,"day_of_week":3,"births":10452},{"year":1981,"month":11,"date_of_month":26,"day_of_week":4,"births":8154},{"year":1981,"month":11,"date_of_month":27,"day_of_week":5,"births":9650},{"year":1981,"month":11,"date_of_month":28,"day_of_week":6,"births":8487},{"year":1981,"month":11,"date_of_month":29,"day_of_week":7,"births":8528},{"year":1981,"month":11,"date_of_month":30,"day_of_week":1,"births":10217},{"year":1981,"month":12,"date_of_month":1,"day_of_week":2,"births":10880},{"year":1981,"month":12,"date_of_month":2,"day_of_week":3,"births":10456},{"year":1981,"month":12,"date_of_month":3,"day_of_week":4,"births":10113},{"year":1981,"month":12,"date_of_month":4,"day_of_week":5,"births":9920},{"year":1981,"month":12,"date_of_month":5,"day_of_week":6,"births":8560},{"year":1981,"month":12,"date_of_month":6,"day_of_week":7,"births":8316},{"year":1981,"month":12,"date_of_month":7,"day_of_week":1,"births":10090},{"year":1981,"month":12,"date_of_month":8,"day_of_week":2,"births":10621},{"year":1981,"month":12,"date_of_month":9,"day_of_week":3,"births":10112},{"year":1981,"month":12,"date_of_month":10,"day_of_week":4,"births":9935},{"year":1981,"month":12,"date_of_month":11,"day_of_week":5,"births":10164},{"year":1981,"month":12,"date_of_month":12,"day_of_week":6,"births":8635},{"year":1981,"month":12,"date_of_month":13,"day_of_week":7,"births":8284},{"year":1981,"month":12,"date_of_month":14,"day_of_week":1,"births":10365},{"year":1981,"month":12,"date_of_month":15,"day_of_week":2,"births":10799},{"year":1981,"month":12,"date_of_month":16,"day_of_week":3,"births":10333},{"year":1981,"month":12,"date_of_month":17,"day_of_week":4,"births":10672},{"year":1981,"month":12,"date_of_month":18,"day_of_week":5,"births":10853},{"year":1981,"month":12,"date_of_month":19,"day_of_week":6,"births":8664},{"year":1981,"month":12,"date_of_month":20,"day_of_week":7,"births":8173},{"year":1981,"month":12,"date_of_month":21,"day_of_week":1,"births":10562},{"year":1981,"month":12,"date_of_month":22,"day_of_week":2,"births":10567},{"year":1981,"month":12,"date_of_month":23,"day_of_week":3,"births":9841},{"year":1981,"month":12,"date_of_month":24,"day_of_week":4,"births":8741},{"year":1981,"month":12,"date_of_month":25,"day_of_week":5,"births":8023},{"year":1981,"month":12,"date_of_month":26,"day_of_week":6,"births":8352},{"year":1981,"month":12,"date_of_month":27,"day_of_week":7,"births":8653},{"year":1981,"month":12,"date_of_month":28,"day_of_week":1,"births":11045},{"year":1981,"month":12,"date_of_month":29,"day_of_week":2,"births":11279},{"year":1981,"month":12,"date_of_month":30,"day_of_week":3,"births":11036},{"year":1981,"month":12,"date_of_month":31,"day_of_week":4,"births":10394},{"year":1982,"month":1,"date_of_month":1,"day_of_week":5,"births":8560},{"year":1982,"month":1,"date_of_month":2,"day_of_week":6,"births":8308},{"year":1982,"month":1,"date_of_month":3,"day_of_week":7,"births":8606},{"year":1982,"month":1,"date_of_month":4,"day_of_week":1,"births":9958},{"year":1982,"month":1,"date_of_month":5,"day_of_week":2,"births":10253},{"year":1982,"month":1,"date_of_month":6,"day_of_week":3,"births":10182},{"year":1982,"month":1,"date_of_month":7,"day_of_week":4,"births":9949},{"year":1982,"month":1,"date_of_month":8,"day_of_week":5,"births":10087},{"year":1982,"month":1,"date_of_month":9,"day_of_week":6,"births":8484},{"year":1982,"month":1,"date_of_month":10,"day_of_week":7,"births":8387},{"year":1982,"month":1,"date_of_month":11,"day_of_week":1,"births":10226},{"year":1982,"month":1,"date_of_month":12,"day_of_week":2,"births":10452},{"year":1982,"month":1,"date_of_month":13,"day_of_week":3,"births":10182},{"year":1982,"month":1,"date_of_month":14,"day_of_week":4,"births":10100},{"year":1982,"month":1,"date_of_month":15,"day_of_week":5,"births":9969},{"year":1982,"month":1,"date_of_month":16,"day_of_week":6,"births":8705},{"year":1982,"month":1,"date_of_month":17,"day_of_week":7,"births":8522},{"year":1982,"month":1,"date_of_month":18,"day_of_week":1,"births":10253},{"year":1982,"month":1,"date_of_month":19,"day_of_week":2,"births":10708},{"year":1982,"month":1,"date_of_month":20,"day_of_week":3,"births":10334},{"year":1982,"month":1,"date_of_month":21,"day_of_week":4,"births":10176},{"year":1982,"month":1,"date_of_month":22,"day_of_week":5,"births":10425},{"year":1982,"month":1,"date_of_month":23,"day_of_week":6,"births":8706},{"year":1982,"month":1,"date_of_month":24,"day_of_week":7,"births":8532},{"year":1982,"month":1,"date_of_month":25,"day_of_week":1,"births":10232},{"year":1982,"month":1,"date_of_month":26,"day_of_week":2,"births":10457},{"year":1982,"month":1,"date_of_month":27,"day_of_week":3,"births":10156},{"year":1982,"month":1,"date_of_month":28,"day_of_week":4,"births":10113},{"year":1982,"month":1,"date_of_month":29,"day_of_week":5,"births":10207},{"year":1982,"month":1,"date_of_month":30,"day_of_week":6,"births":8726},{"year":1982,"month":1,"date_of_month":31,"day_of_week":7,"births":8380},{"year":1982,"month":2,"date_of_month":1,"day_of_week":1,"births":10222},{"year":1982,"month":2,"date_of_month":2,"day_of_week":2,"births":10426},{"year":1982,"month":2,"date_of_month":3,"day_of_week":3,"births":10169},{"year":1982,"month":2,"date_of_month":4,"day_of_week":4,"births":10070},{"year":1982,"month":2,"date_of_month":5,"day_of_week":5,"births":10242},{"year":1982,"month":2,"date_of_month":6,"day_of_week":6,"births":8804},{"year":1982,"month":2,"date_of_month":7,"day_of_week":7,"births":8514},{"year":1982,"month":2,"date_of_month":8,"day_of_week":1,"births":10362},{"year":1982,"month":2,"date_of_month":9,"day_of_week":2,"births":10551},{"year":1982,"month":2,"date_of_month":10,"day_of_week":3,"births":10424},{"year":1982,"month":2,"date_of_month":11,"day_of_week":4,"births":10402},{"year":1982,"month":2,"date_of_month":12,"day_of_week":5,"births":10474},{"year":1982,"month":2,"date_of_month":13,"day_of_week":6,"births":8963},{"year":1982,"month":2,"date_of_month":14,"day_of_week":7,"births":8680},{"year":1982,"month":2,"date_of_month":15,"day_of_week":1,"births":10206},{"year":1982,"month":2,"date_of_month":16,"day_of_week":2,"births":10737},{"year":1982,"month":2,"date_of_month":17,"day_of_week":3,"births":10532},{"year":1982,"month":2,"date_of_month":18,"day_of_week":4,"births":10366},{"year":1982,"month":2,"date_of_month":19,"day_of_week":5,"births":10375},{"year":1982,"month":2,"date_of_month":20,"day_of_week":6,"births":8923},{"year":1982,"month":2,"date_of_month":21,"day_of_week":7,"births":8709},{"year":1982,"month":2,"date_of_month":22,"day_of_week":1,"births":10577},{"year":1982,"month":2,"date_of_month":23,"day_of_week":2,"births":10474},{"year":1982,"month":2,"date_of_month":24,"day_of_week":3,"births":10462},{"year":1982,"month":2,"date_of_month":25,"day_of_week":4,"births":10367},{"year":1982,"month":2,"date_of_month":26,"day_of_week":5,"births":10047},{"year":1982,"month":2,"date_of_month":27,"day_of_week":6,"births":8852},{"year":1982,"month":2,"date_of_month":28,"day_of_week":7,"births":8384},{"year":1982,"month":3,"date_of_month":1,"day_of_week":1,"births":10257},{"year":1982,"month":3,"date_of_month":2,"day_of_week":2,"births":10679},{"year":1982,"month":3,"date_of_month":3,"day_of_week":3,"births":10506},{"year":1982,"month":3,"date_of_month":4,"day_of_week":4,"births":10205},{"year":1982,"month":3,"date_of_month":5,"day_of_week":5,"births":10476},{"year":1982,"month":3,"date_of_month":6,"day_of_week":6,"births":8768},{"year":1982,"month":3,"date_of_month":7,"day_of_week":7,"births":8399},{"year":1982,"month":3,"date_of_month":8,"day_of_week":1,"births":10293},{"year":1982,"month":3,"date_of_month":9,"day_of_week":2,"births":10417},{"year":1982,"month":3,"date_of_month":10,"day_of_week":3,"births":10424},{"year":1982,"month":3,"date_of_month":11,"day_of_week":4,"births":10233},{"year":1982,"month":3,"date_of_month":12,"day_of_week":5,"births":10369},{"year":1982,"month":3,"date_of_month":13,"day_of_week":6,"births":8966},{"year":1982,"month":3,"date_of_month":14,"day_of_week":7,"births":8402},{"year":1982,"month":3,"date_of_month":15,"day_of_week":1,"births":10098},{"year":1982,"month":3,"date_of_month":16,"day_of_week":2,"births":10547},{"year":1982,"month":3,"date_of_month":17,"day_of_week":3,"births":10583},{"year":1982,"month":3,"date_of_month":18,"day_of_week":4,"births":10447},{"year":1982,"month":3,"date_of_month":19,"day_of_week":5,"births":10259},{"year":1982,"month":3,"date_of_month":20,"day_of_week":6,"births":8705},{"year":1982,"month":3,"date_of_month":21,"day_of_week":7,"births":8313},{"year":1982,"month":3,"date_of_month":22,"day_of_week":1,"births":10056},{"year":1982,"month":3,"date_of_month":23,"day_of_week":2,"births":10338},{"year":1982,"month":3,"date_of_month":24,"day_of_week":3,"births":10210},{"year":1982,"month":3,"date_of_month":25,"day_of_week":4,"births":10238},{"year":1982,"month":3,"date_of_month":26,"day_of_week":5,"births":10280},{"year":1982,"month":3,"date_of_month":27,"day_of_week":6,"births":8568},{"year":1982,"month":3,"date_of_month":28,"day_of_week":7,"births":8214},{"year":1982,"month":3,"date_of_month":29,"day_of_week":1,"births":10216},{"year":1982,"month":3,"date_of_month":30,"day_of_week":2,"births":10481},{"year":1982,"month":3,"date_of_month":31,"day_of_week":3,"births":10271},{"year":1982,"month":4,"date_of_month":1,"day_of_week":4,"births":10118},{"year":1982,"month":4,"date_of_month":2,"day_of_week":5,"births":10528},{"year":1982,"month":4,"date_of_month":3,"day_of_week":6,"births":8955},{"year":1982,"month":4,"date_of_month":4,"day_of_week":7,"births":8432},{"year":1982,"month":4,"date_of_month":5,"day_of_week":1,"births":10128},{"year":1982,"month":4,"date_of_month":6,"day_of_week":2,"births":10620},{"year":1982,"month":4,"date_of_month":7,"day_of_week":3,"births":9974},{"year":1982,"month":4,"date_of_month":8,"day_of_week":4,"births":10158},{"year":1982,"month":4,"date_of_month":9,"day_of_week":5,"births":10099},{"year":1982,"month":4,"date_of_month":10,"day_of_week":6,"births":8385},{"year":1982,"month":4,"date_of_month":11,"day_of_week":7,"births":7914},{"year":1982,"month":4,"date_of_month":12,"day_of_week":1,"births":9991},{"year":1982,"month":4,"date_of_month":13,"day_of_week":2,"births":10350},{"year":1982,"month":4,"date_of_month":14,"day_of_week":3,"births":10233},{"year":1982,"month":4,"date_of_month":15,"day_of_week":4,"births":10295},{"year":1982,"month":4,"date_of_month":16,"day_of_week":5,"births":10275},{"year":1982,"month":4,"date_of_month":17,"day_of_week":6,"births":8852},{"year":1982,"month":4,"date_of_month":18,"day_of_week":7,"births":8195},{"year":1982,"month":4,"date_of_month":19,"day_of_week":1,"births":10172},{"year":1982,"month":4,"date_of_month":20,"day_of_week":2,"births":10603},{"year":1982,"month":4,"date_of_month":21,"day_of_week":3,"births":10030},{"year":1982,"month":4,"date_of_month":22,"day_of_week":4,"births":9958},{"year":1982,"month":4,"date_of_month":23,"day_of_week":5,"births":10011},{"year":1982,"month":4,"date_of_month":24,"day_of_week":6,"births":8494},{"year":1982,"month":4,"date_of_month":25,"day_of_week":7,"births":7855},{"year":1982,"month":4,"date_of_month":26,"day_of_week":1,"births":10369},{"year":1982,"month":4,"date_of_month":27,"day_of_week":2,"births":10270},{"year":1982,"month":4,"date_of_month":28,"day_of_week":3,"births":10262},{"year":1982,"month":4,"date_of_month":29,"day_of_week":4,"births":9911},{"year":1982,"month":4,"date_of_month":30,"day_of_week":5,"births":10396},{"year":1982,"month":5,"date_of_month":1,"day_of_week":6,"births":8720},{"year":1982,"month":5,"date_of_month":2,"day_of_week":7,"births":8407},{"year":1982,"month":5,"date_of_month":3,"day_of_week":1,"births":10442},{"year":1982,"month":5,"date_of_month":4,"day_of_week":2,"births":10632},{"year":1982,"month":5,"date_of_month":5,"day_of_week":3,"births":10409},{"year":1982,"month":5,"date_of_month":6,"day_of_week":4,"births":10372},{"year":1982,"month":5,"date_of_month":7,"day_of_week":5,"births":10494},{"year":1982,"month":5,"date_of_month":8,"day_of_week":6,"births":8755},{"year":1982,"month":5,"date_of_month":9,"day_of_week":7,"births":8592},{"year":1982,"month":5,"date_of_month":10,"day_of_week":1,"births":10616},{"year":1982,"month":5,"date_of_month":11,"day_of_week":2,"births":10703},{"year":1982,"month":5,"date_of_month":12,"day_of_week":3,"births":10428},{"year":1982,"month":5,"date_of_month":13,"day_of_week":4,"births":10131},{"year":1982,"month":5,"date_of_month":14,"day_of_week":5,"births":10497},{"year":1982,"month":5,"date_of_month":15,"day_of_week":6,"births":8867},{"year":1982,"month":5,"date_of_month":16,"day_of_week":7,"births":8419},{"year":1982,"month":5,"date_of_month":17,"day_of_week":1,"births":10571},{"year":1982,"month":5,"date_of_month":18,"day_of_week":2,"births":10800},{"year":1982,"month":5,"date_of_month":19,"day_of_week":3,"births":10517},{"year":1982,"month":5,"date_of_month":20,"day_of_week":4,"births":10400},{"year":1982,"month":5,"date_of_month":21,"day_of_week":5,"births":10545},{"year":1982,"month":5,"date_of_month":22,"day_of_week":6,"births":8605},{"year":1982,"month":5,"date_of_month":23,"day_of_week":7,"births":8460},{"year":1982,"month":5,"date_of_month":24,"day_of_week":1,"births":10406},{"year":1982,"month":5,"date_of_month":25,"day_of_week":2,"births":10932},{"year":1982,"month":5,"date_of_month":26,"day_of_week":3,"births":10854},{"year":1982,"month":5,"date_of_month":27,"day_of_week":4,"births":10708},{"year":1982,"month":5,"date_of_month":28,"day_of_week":5,"births":10683},{"year":1982,"month":5,"date_of_month":29,"day_of_week":6,"births":8965},{"year":1982,"month":5,"date_of_month":30,"day_of_week":7,"births":8719},{"year":1982,"month":5,"date_of_month":31,"day_of_week":1,"births":8997},{"year":1982,"month":6,"date_of_month":1,"day_of_week":2,"births":10498},{"year":1982,"month":6,"date_of_month":2,"day_of_week":3,"births":10712},{"year":1982,"month":6,"date_of_month":3,"day_of_week":4,"births":10635},{"year":1982,"month":6,"date_of_month":4,"day_of_week":5,"births":10591},{"year":1982,"month":6,"date_of_month":5,"day_of_week":6,"births":8920},{"year":1982,"month":6,"date_of_month":6,"day_of_week":7,"births":8765},{"year":1982,"month":6,"date_of_month":7,"day_of_week":1,"births":10383},{"year":1982,"month":6,"date_of_month":8,"day_of_week":2,"births":10636},{"year":1982,"month":6,"date_of_month":9,"day_of_week":3,"births":10353},{"year":1982,"month":6,"date_of_month":10,"day_of_week":4,"births":10703},{"year":1982,"month":6,"date_of_month":11,"day_of_week":5,"births":10629},{"year":1982,"month":6,"date_of_month":12,"day_of_week":6,"births":9125},{"year":1982,"month":6,"date_of_month":13,"day_of_week":7,"births":8508},{"year":1982,"month":6,"date_of_month":14,"day_of_week":1,"births":10482},{"year":1982,"month":6,"date_of_month":15,"day_of_week":2,"births":10943},{"year":1982,"month":6,"date_of_month":16,"day_of_week":3,"births":10953},{"year":1982,"month":6,"date_of_month":17,"day_of_week":4,"births":10731},{"year":1982,"month":6,"date_of_month":18,"day_of_week":5,"births":10880},{"year":1982,"month":6,"date_of_month":19,"day_of_week":6,"births":8948},{"year":1982,"month":6,"date_of_month":20,"day_of_week":7,"births":8798},{"year":1982,"month":6,"date_of_month":21,"day_of_week":1,"births":10786},{"year":1982,"month":6,"date_of_month":22,"day_of_week":2,"births":11050},{"year":1982,"month":6,"date_of_month":23,"day_of_week":3,"births":10758},{"year":1982,"month":6,"date_of_month":24,"day_of_week":4,"births":10839},{"year":1982,"month":6,"date_of_month":25,"day_of_week":5,"births":11016},{"year":1982,"month":6,"date_of_month":26,"day_of_week":6,"births":9216},{"year":1982,"month":6,"date_of_month":27,"day_of_week":7,"births":8982},{"year":1982,"month":6,"date_of_month":28,"day_of_week":1,"births":10978},{"year":1982,"month":6,"date_of_month":29,"day_of_week":2,"births":11456},{"year":1982,"month":6,"date_of_month":30,"day_of_week":3,"births":10962},{"year":1982,"month":7,"date_of_month":1,"day_of_week":4,"births":10924},{"year":1982,"month":7,"date_of_month":2,"day_of_week":5,"births":10893},{"year":1982,"month":7,"date_of_month":3,"day_of_week":6,"births":9293},{"year":1982,"month":7,"date_of_month":4,"day_of_week":7,"births":9036},{"year":1982,"month":7,"date_of_month":5,"day_of_week":1,"births":8978},{"year":1982,"month":7,"date_of_month":6,"day_of_week":2,"births":11171},{"year":1982,"month":7,"date_of_month":7,"day_of_week":3,"births":11742},{"year":1982,"month":7,"date_of_month":8,"day_of_week":4,"births":11654},{"year":1982,"month":7,"date_of_month":9,"day_of_week":5,"births":11312},{"year":1982,"month":7,"date_of_month":10,"day_of_week":6,"births":9591},{"year":1982,"month":7,"date_of_month":11,"day_of_week":7,"births":9165},{"year":1982,"month":7,"date_of_month":12,"day_of_week":1,"births":10996},{"year":1982,"month":7,"date_of_month":13,"day_of_week":2,"births":11136},{"year":1982,"month":7,"date_of_month":14,"day_of_week":3,"births":11095},{"year":1982,"month":7,"date_of_month":15,"day_of_week":4,"births":11218},{"year":1982,"month":7,"date_of_month":16,"day_of_week":5,"births":11339},{"year":1982,"month":7,"date_of_month":17,"day_of_week":6,"births":9616},{"year":1982,"month":7,"date_of_month":18,"day_of_week":7,"births":9374},{"year":1982,"month":7,"date_of_month":19,"day_of_week":1,"births":11039},{"year":1982,"month":7,"date_of_month":20,"day_of_week":2,"births":11551},{"year":1982,"month":7,"date_of_month":21,"day_of_week":3,"births":11242},{"year":1982,"month":7,"date_of_month":22,"day_of_week":4,"births":11004},{"year":1982,"month":7,"date_of_month":23,"day_of_week":5,"births":11347},{"year":1982,"month":7,"date_of_month":24,"day_of_week":6,"births":9608},{"year":1982,"month":7,"date_of_month":25,"day_of_week":7,"births":9096},{"year":1982,"month":7,"date_of_month":26,"day_of_week":1,"births":11041},{"year":1982,"month":7,"date_of_month":27,"day_of_week":2,"births":11474},{"year":1982,"month":7,"date_of_month":28,"day_of_week":3,"births":11235},{"year":1982,"month":7,"date_of_month":29,"day_of_week":4,"births":11073},{"year":1982,"month":7,"date_of_month":30,"day_of_week":5,"births":11116},{"year":1982,"month":7,"date_of_month":31,"day_of_week":6,"births":9589},{"year":1982,"month":8,"date_of_month":1,"day_of_week":7,"births":9193},{"year":1982,"month":8,"date_of_month":2,"day_of_week":1,"births":10956},{"year":1982,"month":8,"date_of_month":3,"day_of_week":2,"births":11515},{"year":1982,"month":8,"date_of_month":4,"day_of_week":3,"births":11253},{"year":1982,"month":8,"date_of_month":5,"day_of_week":4,"births":11196},{"year":1982,"month":8,"date_of_month":6,"day_of_week":5,"births":11014},{"year":1982,"month":8,"date_of_month":7,"day_of_week":6,"births":9349},{"year":1982,"month":8,"date_of_month":8,"day_of_week":7,"births":9198},{"year":1982,"month":8,"date_of_month":9,"day_of_week":1,"births":10903},{"year":1982,"month":8,"date_of_month":10,"day_of_week":2,"births":11383},{"year":1982,"month":8,"date_of_month":11,"day_of_week":3,"births":11104},{"year":1982,"month":8,"date_of_month":12,"day_of_week":4,"births":11195},{"year":1982,"month":8,"date_of_month":13,"day_of_week":5,"births":10678},{"year":1982,"month":8,"date_of_month":14,"day_of_week":6,"births":9444},{"year":1982,"month":8,"date_of_month":15,"day_of_week":7,"births":9215},{"year":1982,"month":8,"date_of_month":16,"day_of_week":1,"births":11201},{"year":1982,"month":8,"date_of_month":17,"day_of_week":2,"births":11489},{"year":1982,"month":8,"date_of_month":18,"day_of_week":3,"births":11266},{"year":1982,"month":8,"date_of_month":19,"day_of_week":4,"births":11154},{"year":1982,"month":8,"date_of_month":20,"day_of_week":5,"births":11385},{"year":1982,"month":8,"date_of_month":21,"day_of_week":6,"births":9602},{"year":1982,"month":8,"date_of_month":22,"day_of_week":7,"births":9098},{"year":1982,"month":8,"date_of_month":23,"day_of_week":1,"births":10944},{"year":1982,"month":8,"date_of_month":24,"day_of_week":2,"births":11577},{"year":1982,"month":8,"date_of_month":25,"day_of_week":3,"births":11153},{"year":1982,"month":8,"date_of_month":26,"day_of_week":4,"births":11026},{"year":1982,"month":8,"date_of_month":27,"day_of_week":5,"births":11266},{"year":1982,"month":8,"date_of_month":28,"day_of_week":6,"births":9484},{"year":1982,"month":8,"date_of_month":29,"day_of_week":7,"births":8900},{"year":1982,"month":8,"date_of_month":30,"day_of_week":1,"births":10963},{"year":1982,"month":8,"date_of_month":31,"day_of_week":2,"births":11505},{"year":1982,"month":9,"date_of_month":1,"day_of_week":3,"births":11118},{"year":1982,"month":9,"date_of_month":2,"day_of_week":4,"births":11081},{"year":1982,"month":9,"date_of_month":3,"day_of_week":5,"births":11475},{"year":1982,"month":9,"date_of_month":4,"day_of_week":6,"births":9579},{"year":1982,"month":9,"date_of_month":5,"day_of_week":7,"births":9158},{"year":1982,"month":9,"date_of_month":6,"day_of_week":1,"births":9262},{"year":1982,"month":9,"date_of_month":7,"day_of_week":2,"births":11342},{"year":1982,"month":9,"date_of_month":8,"day_of_week":3,"births":11455},{"year":1982,"month":9,"date_of_month":9,"day_of_week":4,"births":11395},{"year":1982,"month":9,"date_of_month":10,"day_of_week":5,"births":11917},{"year":1982,"month":9,"date_of_month":11,"day_of_week":6,"births":9695},{"year":1982,"month":9,"date_of_month":12,"day_of_week":7,"births":9660},{"year":1982,"month":9,"date_of_month":13,"day_of_week":1,"births":11343},{"year":1982,"month":9,"date_of_month":14,"day_of_week":2,"births":11725},{"year":1982,"month":9,"date_of_month":15,"day_of_week":3,"births":11359},{"year":1982,"month":9,"date_of_month":16,"day_of_week":4,"births":11578},{"year":1982,"month":9,"date_of_month":17,"day_of_week":5,"births":11736},{"year":1982,"month":9,"date_of_month":18,"day_of_week":6,"births":9577},{"year":1982,"month":9,"date_of_month":19,"day_of_week":7,"births":9552},{"year":1982,"month":9,"date_of_month":20,"day_of_week":1,"births":11596},{"year":1982,"month":9,"date_of_month":21,"day_of_week":2,"births":11791},{"year":1982,"month":9,"date_of_month":22,"day_of_week":3,"births":11530},{"year":1982,"month":9,"date_of_month":23,"day_of_week":4,"births":11551},{"year":1982,"month":9,"date_of_month":24,"day_of_week":5,"births":11480},{"year":1982,"month":9,"date_of_month":25,"day_of_week":6,"births":9792},{"year":1982,"month":9,"date_of_month":26,"day_of_week":7,"births":9425},{"year":1982,"month":9,"date_of_month":27,"day_of_week":1,"births":11538},{"year":1982,"month":9,"date_of_month":28,"day_of_week":2,"births":11674},{"year":1982,"month":9,"date_of_month":29,"day_of_week":3,"births":11402},{"year":1982,"month":9,"date_of_month":30,"day_of_week":4,"births":11269},{"year":1982,"month":10,"date_of_month":1,"day_of_week":5,"births":11297},{"year":1982,"month":10,"date_of_month":2,"day_of_week":6,"births":9603},{"year":1982,"month":10,"date_of_month":3,"day_of_week":7,"births":9188},{"year":1982,"month":10,"date_of_month":4,"day_of_week":1,"births":11176},{"year":1982,"month":10,"date_of_month":5,"day_of_week":2,"births":11205},{"year":1982,"month":10,"date_of_month":6,"day_of_week":3,"births":11143},{"year":1982,"month":10,"date_of_month":7,"day_of_week":4,"births":10945},{"year":1982,"month":10,"date_of_month":8,"day_of_week":5,"births":11065},{"year":1982,"month":10,"date_of_month":9,"day_of_week":6,"births":9196},{"year":1982,"month":10,"date_of_month":10,"day_of_week":7,"births":8879},{"year":1982,"month":10,"date_of_month":11,"day_of_week":1,"births":10327},{"year":1982,"month":10,"date_of_month":12,"day_of_week":2,"births":10989},{"year":1982,"month":10,"date_of_month":13,"day_of_week":3,"births":10316},{"year":1982,"month":10,"date_of_month":14,"day_of_week":4,"births":10722},{"year":1982,"month":10,"date_of_month":15,"day_of_week":5,"births":10510},{"year":1982,"month":10,"date_of_month":16,"day_of_week":6,"births":8894},{"year":1982,"month":10,"date_of_month":17,"day_of_week":7,"births":8582},{"year":1982,"month":10,"date_of_month":18,"day_of_week":1,"births":10417},{"year":1982,"month":10,"date_of_month":19,"day_of_week":2,"births":10945},{"year":1982,"month":10,"date_of_month":20,"day_of_week":3,"births":10440},{"year":1982,"month":10,"date_of_month":21,"day_of_week":4,"births":10444},{"year":1982,"month":10,"date_of_month":22,"day_of_week":5,"births":10432},{"year":1982,"month":10,"date_of_month":23,"day_of_week":6,"births":8980},{"year":1982,"month":10,"date_of_month":24,"day_of_week":7,"births":8655},{"year":1982,"month":10,"date_of_month":25,"day_of_week":1,"births":10341},{"year":1982,"month":10,"date_of_month":26,"day_of_week":2,"births":10681},{"year":1982,"month":10,"date_of_month":27,"day_of_week":3,"births":10372},{"year":1982,"month":10,"date_of_month":28,"day_of_week":4,"births":10503},{"year":1982,"month":10,"date_of_month":29,"day_of_week":5,"births":10514},{"year":1982,"month":10,"date_of_month":30,"day_of_week":6,"births":8723},{"year":1982,"month":10,"date_of_month":31,"day_of_week":7,"births":8876},{"year":1982,"month":11,"date_of_month":1,"day_of_week":1,"births":10350},{"year":1982,"month":11,"date_of_month":2,"day_of_week":2,"births":10667},{"year":1982,"month":11,"date_of_month":3,"day_of_week":3,"births":10265},{"year":1982,"month":11,"date_of_month":4,"day_of_week":4,"births":10449},{"year":1982,"month":11,"date_of_month":5,"day_of_week":5,"births":10441},{"year":1982,"month":11,"date_of_month":6,"day_of_week":6,"births":8758},{"year":1982,"month":11,"date_of_month":7,"day_of_week":7,"births":8657},{"year":1982,"month":11,"date_of_month":8,"day_of_week":1,"births":10429},{"year":1982,"month":11,"date_of_month":9,"day_of_week":2,"births":10737},{"year":1982,"month":11,"date_of_month":10,"day_of_week":3,"births":10578},{"year":1982,"month":11,"date_of_month":11,"day_of_week":4,"births":10418},{"year":1982,"month":11,"date_of_month":12,"day_of_week":5,"births":10490},{"year":1982,"month":11,"date_of_month":13,"day_of_week":6,"births":8826},{"year":1982,"month":11,"date_of_month":14,"day_of_week":7,"births":8108},{"year":1982,"month":11,"date_of_month":15,"day_of_week":1,"births":10414},{"year":1982,"month":11,"date_of_month":16,"day_of_week":2,"births":10442},{"year":1982,"month":11,"date_of_month":17,"day_of_week":3,"births":10361},{"year":1982,"month":11,"date_of_month":18,"day_of_week":4,"births":10394},{"year":1982,"month":11,"date_of_month":19,"day_of_week":5,"births":10621},{"year":1982,"month":11,"date_of_month":20,"day_of_week":6,"births":8900},{"year":1982,"month":11,"date_of_month":21,"day_of_week":7,"births":8434},{"year":1982,"month":11,"date_of_month":22,"day_of_week":1,"births":10481},{"year":1982,"month":11,"date_of_month":23,"day_of_week":2,"births":10810},{"year":1982,"month":11,"date_of_month":24,"day_of_week":3,"births":10307},{"year":1982,"month":11,"date_of_month":25,"day_of_week":4,"births":8045},{"year":1982,"month":11,"date_of_month":26,"day_of_week":5,"births":9239},{"year":1982,"month":11,"date_of_month":27,"day_of_week":6,"births":8558},{"year":1982,"month":11,"date_of_month":28,"day_of_week":7,"births":8528},{"year":1982,"month":11,"date_of_month":29,"day_of_week":1,"births":10540},{"year":1982,"month":11,"date_of_month":30,"day_of_week":2,"births":11074},{"year":1982,"month":12,"date_of_month":1,"day_of_week":3,"births":10432},{"year":1982,"month":12,"date_of_month":2,"day_of_week":4,"births":10056},{"year":1982,"month":12,"date_of_month":3,"day_of_week":5,"births":10139},{"year":1982,"month":12,"date_of_month":4,"day_of_week":6,"births":8595},{"year":1982,"month":12,"date_of_month":5,"day_of_week":7,"births":8444},{"year":1982,"month":12,"date_of_month":6,"day_of_week":1,"births":10066},{"year":1982,"month":12,"date_of_month":7,"day_of_week":2,"births":10227},{"year":1982,"month":12,"date_of_month":8,"day_of_week":3,"births":10113},{"year":1982,"month":12,"date_of_month":9,"day_of_week":4,"births":9920},{"year":1982,"month":12,"date_of_month":10,"day_of_week":5,"births":10016},{"year":1982,"month":12,"date_of_month":11,"day_of_week":6,"births":8605},{"year":1982,"month":12,"date_of_month":12,"day_of_week":7,"births":8275},{"year":1982,"month":12,"date_of_month":13,"day_of_week":1,"births":10015},{"year":1982,"month":12,"date_of_month":14,"day_of_week":2,"births":10700},{"year":1982,"month":12,"date_of_month":15,"day_of_week":3,"births":10388},{"year":1982,"month":12,"date_of_month":16,"day_of_week":4,"births":10632},{"year":1982,"month":12,"date_of_month":17,"day_of_week":5,"births":10619},{"year":1982,"month":12,"date_of_month":18,"day_of_week":6,"births":8502},{"year":1982,"month":12,"date_of_month":19,"day_of_week":7,"births":8394},{"year":1982,"month":12,"date_of_month":20,"day_of_week":1,"births":10681},{"year":1982,"month":12,"date_of_month":21,"day_of_week":2,"births":10661},{"year":1982,"month":12,"date_of_month":22,"day_of_week":3,"births":9901},{"year":1982,"month":12,"date_of_month":23,"day_of_week":4,"births":9250},{"year":1982,"month":12,"date_of_month":24,"day_of_week":5,"births":8186},{"year":1982,"month":12,"date_of_month":25,"day_of_week":6,"births":7825},{"year":1982,"month":12,"date_of_month":26,"day_of_week":7,"births":7953},{"year":1982,"month":12,"date_of_month":27,"day_of_week":1,"births":10227},{"year":1982,"month":12,"date_of_month":28,"day_of_week":2,"births":10673},{"year":1982,"month":12,"date_of_month":29,"day_of_week":3,"births":10841},{"year":1982,"month":12,"date_of_month":30,"day_of_week":4,"births":10886},{"year":1982,"month":12,"date_of_month":31,"day_of_week":5,"births":9277},{"year":1983,"month":1,"date_of_month":1,"day_of_week":6,"births":8174},{"year":1983,"month":1,"date_of_month":2,"day_of_week":7,"births":8085},{"year":1983,"month":1,"date_of_month":3,"day_of_week":1,"births":9523},{"year":1983,"month":1,"date_of_month":4,"day_of_week":2,"births":10094},{"year":1983,"month":1,"date_of_month":5,"day_of_week":3,"births":9966},{"year":1983,"month":1,"date_of_month":6,"day_of_week":4,"births":9990},{"year":1983,"month":1,"date_of_month":7,"day_of_week":5,"births":9947},{"year":1983,"month":1,"date_of_month":8,"day_of_week":6,"births":8525},{"year":1983,"month":1,"date_of_month":9,"day_of_week":7,"births":8287},{"year":1983,"month":1,"date_of_month":10,"day_of_week":1,"births":9930},{"year":1983,"month":1,"date_of_month":11,"day_of_week":2,"births":10337},{"year":1983,"month":1,"date_of_month":12,"day_of_week":3,"births":10273},{"year":1983,"month":1,"date_of_month":13,"day_of_week":4,"births":10190},{"year":1983,"month":1,"date_of_month":14,"day_of_week":5,"births":10244},{"year":1983,"month":1,"date_of_month":15,"day_of_week":6,"births":8784},{"year":1983,"month":1,"date_of_month":16,"day_of_week":7,"births":8382},{"year":1983,"month":1,"date_of_month":17,"day_of_week":1,"births":10131},{"year":1983,"month":1,"date_of_month":18,"day_of_week":2,"births":10482},{"year":1983,"month":1,"date_of_month":19,"day_of_week":3,"births":9950},{"year":1983,"month":1,"date_of_month":20,"day_of_week":4,"births":10154},{"year":1983,"month":1,"date_of_month":21,"day_of_week":5,"births":10306},{"year":1983,"month":1,"date_of_month":22,"day_of_week":6,"births":8798},{"year":1983,"month":1,"date_of_month":23,"day_of_week":7,"births":8600},{"year":1983,"month":1,"date_of_month":24,"day_of_week":1,"births":10091},{"year":1983,"month":1,"date_of_month":25,"day_of_week":2,"births":10368},{"year":1983,"month":1,"date_of_month":26,"day_of_week":3,"births":10272},{"year":1983,"month":1,"date_of_month":27,"day_of_week":4,"births":10302},{"year":1983,"month":1,"date_of_month":28,"day_of_week":5,"births":10210},{"year":1983,"month":1,"date_of_month":29,"day_of_week":6,"births":8757},{"year":1983,"month":1,"date_of_month":30,"day_of_week":7,"births":8711},{"year":1983,"month":1,"date_of_month":31,"day_of_week":1,"births":10148},{"year":1983,"month":2,"date_of_month":1,"day_of_week":2,"births":10579},{"year":1983,"month":2,"date_of_month":2,"day_of_week":3,"births":10160},{"year":1983,"month":2,"date_of_month":3,"day_of_week":4,"births":10396},{"year":1983,"month":2,"date_of_month":4,"day_of_week":5,"births":10196},{"year":1983,"month":2,"date_of_month":5,"day_of_week":6,"births":8479},{"year":1983,"month":2,"date_of_month":6,"day_of_week":7,"births":8495},{"year":1983,"month":2,"date_of_month":7,"day_of_week":1,"births":10232},{"year":1983,"month":2,"date_of_month":8,"day_of_week":2,"births":10603},{"year":1983,"month":2,"date_of_month":9,"day_of_week":3,"births":10127},{"year":1983,"month":2,"date_of_month":10,"day_of_week":4,"births":10261},{"year":1983,"month":2,"date_of_month":11,"day_of_week":5,"births":10501},{"year":1983,"month":2,"date_of_month":12,"day_of_week":6,"births":8829},{"year":1983,"month":2,"date_of_month":13,"day_of_week":7,"births":8558},{"year":1983,"month":2,"date_of_month":14,"day_of_week":1,"births":10598},{"year":1983,"month":2,"date_of_month":15,"day_of_week":2,"births":10572},{"year":1983,"month":2,"date_of_month":16,"day_of_week":3,"births":10519},{"year":1983,"month":2,"date_of_month":17,"day_of_week":4,"births":10509},{"year":1983,"month":2,"date_of_month":18,"day_of_week":5,"births":10427},{"year":1983,"month":2,"date_of_month":19,"day_of_week":6,"births":8846},{"year":1983,"month":2,"date_of_month":20,"day_of_week":7,"births":8522},{"year":1983,"month":2,"date_of_month":21,"day_of_week":1,"births":10020},{"year":1983,"month":2,"date_of_month":22,"day_of_week":2,"births":10471},{"year":1983,"month":2,"date_of_month":23,"day_of_week":3,"births":10676},{"year":1983,"month":2,"date_of_month":24,"day_of_week":4,"births":10610},{"year":1983,"month":2,"date_of_month":25,"day_of_week":5,"births":10498},{"year":1983,"month":2,"date_of_month":26,"day_of_week":6,"births":8869},{"year":1983,"month":2,"date_of_month":27,"day_of_week":7,"births":8460},{"year":1983,"month":2,"date_of_month":28,"day_of_week":1,"births":10254},{"year":1983,"month":3,"date_of_month":1,"day_of_week":2,"births":10669},{"year":1983,"month":3,"date_of_month":2,"day_of_week":3,"births":10674},{"year":1983,"month":3,"date_of_month":3,"day_of_week":4,"births":10562},{"year":1983,"month":3,"date_of_month":4,"day_of_week":5,"births":10645},{"year":1983,"month":3,"date_of_month":5,"day_of_week":6,"births":9035},{"year":1983,"month":3,"date_of_month":6,"day_of_week":7,"births":8570},{"year":1983,"month":3,"date_of_month":7,"day_of_week":1,"births":10353},{"year":1983,"month":3,"date_of_month":8,"day_of_week":2,"births":10702},{"year":1983,"month":3,"date_of_month":9,"day_of_week":3,"births":10322},{"year":1983,"month":3,"date_of_month":10,"day_of_week":4,"births":10348},{"year":1983,"month":3,"date_of_month":11,"day_of_week":5,"births":10351},{"year":1983,"month":3,"date_of_month":12,"day_of_week":6,"births":8754},{"year":1983,"month":3,"date_of_month":13,"day_of_week":7,"births":8432},{"year":1983,"month":3,"date_of_month":14,"day_of_week":1,"births":10434},{"year":1983,"month":3,"date_of_month":15,"day_of_week":2,"births":10839},{"year":1983,"month":3,"date_of_month":16,"day_of_week":3,"births":10251},{"year":1983,"month":3,"date_of_month":17,"day_of_week":4,"births":10524},{"year":1983,"month":3,"date_of_month":18,"day_of_week":5,"births":10827},{"year":1983,"month":3,"date_of_month":19,"day_of_week":6,"births":8776},{"year":1983,"month":3,"date_of_month":20,"day_of_week":7,"births":8524},{"year":1983,"month":3,"date_of_month":21,"day_of_week":1,"births":10433},{"year":1983,"month":3,"date_of_month":22,"day_of_week":2,"births":10692},{"year":1983,"month":3,"date_of_month":23,"day_of_week":3,"births":10230},{"year":1983,"month":3,"date_of_month":24,"day_of_week":4,"births":10215},{"year":1983,"month":3,"date_of_month":25,"day_of_week":5,"births":10512},{"year":1983,"month":3,"date_of_month":26,"day_of_week":6,"births":8736},{"year":1983,"month":3,"date_of_month":27,"day_of_week":7,"births":8475},{"year":1983,"month":3,"date_of_month":28,"day_of_week":1,"births":10251},{"year":1983,"month":3,"date_of_month":29,"day_of_week":2,"births":10811},{"year":1983,"month":3,"date_of_month":30,"day_of_week":3,"births":10649},{"year":1983,"month":3,"date_of_month":31,"day_of_week":4,"births":10613},{"year":1983,"month":4,"date_of_month":1,"day_of_week":5,"births":9982},{"year":1983,"month":4,"date_of_month":2,"day_of_week":6,"births":8772},{"year":1983,"month":4,"date_of_month":3,"day_of_week":7,"births":8354},{"year":1983,"month":4,"date_of_month":4,"day_of_week":1,"births":10207},{"year":1983,"month":4,"date_of_month":5,"day_of_week":2,"births":10759},{"year":1983,"month":4,"date_of_month":6,"day_of_week":3,"births":10448},{"year":1983,"month":4,"date_of_month":7,"day_of_week":4,"births":10659},{"year":1983,"month":4,"date_of_month":8,"day_of_week":5,"births":10558},{"year":1983,"month":4,"date_of_month":9,"day_of_week":6,"births":8785},{"year":1983,"month":4,"date_of_month":10,"day_of_week":7,"births":8485},{"year":1983,"month":4,"date_of_month":11,"day_of_week":1,"births":10298},{"year":1983,"month":4,"date_of_month":12,"day_of_week":2,"births":10574},{"year":1983,"month":4,"date_of_month":13,"day_of_week":3,"births":10112},{"year":1983,"month":4,"date_of_month":14,"day_of_week":4,"births":10196},{"year":1983,"month":4,"date_of_month":15,"day_of_week":5,"births":10339},{"year":1983,"month":4,"date_of_month":16,"day_of_week":6,"births":8623},{"year":1983,"month":4,"date_of_month":17,"day_of_week":7,"births":8364},{"year":1983,"month":4,"date_of_month":18,"day_of_week":1,"births":10217},{"year":1983,"month":4,"date_of_month":19,"day_of_week":2,"births":10409},{"year":1983,"month":4,"date_of_month":20,"day_of_week":3,"births":10371},{"year":1983,"month":4,"date_of_month":21,"day_of_week":4,"births":10201},{"year":1983,"month":4,"date_of_month":22,"day_of_week":5,"births":10268},{"year":1983,"month":4,"date_of_month":23,"day_of_week":6,"births":8704},{"year":1983,"month":4,"date_of_month":24,"day_of_week":7,"births":7950},{"year":1983,"month":4,"date_of_month":25,"day_of_week":1,"births":10371},{"year":1983,"month":4,"date_of_month":26,"day_of_week":2,"births":10592},{"year":1983,"month":4,"date_of_month":27,"day_of_week":3,"births":10412},{"year":1983,"month":4,"date_of_month":28,"day_of_week":4,"births":10435},{"year":1983,"month":4,"date_of_month":29,"day_of_week":5,"births":10279},{"year":1983,"month":4,"date_of_month":30,"day_of_week":6,"births":8479},{"year":1983,"month":5,"date_of_month":1,"day_of_week":7,"births":8170},{"year":1983,"month":5,"date_of_month":2,"day_of_week":1,"births":10114},{"year":1983,"month":5,"date_of_month":3,"day_of_week":2,"births":10637},{"year":1983,"month":5,"date_of_month":4,"day_of_week":3,"births":10216},{"year":1983,"month":5,"date_of_month":5,"day_of_week":4,"births":10505},{"year":1983,"month":5,"date_of_month":6,"day_of_week":5,"births":10277},{"year":1983,"month":5,"date_of_month":7,"day_of_week":6,"births":8649},{"year":1983,"month":5,"date_of_month":8,"day_of_week":7,"births":8412},{"year":1983,"month":5,"date_of_month":9,"day_of_week":1,"births":9982},{"year":1983,"month":5,"date_of_month":10,"day_of_week":2,"births":10328},{"year":1983,"month":5,"date_of_month":11,"day_of_week":3,"births":10174},{"year":1983,"month":5,"date_of_month":12,"day_of_week":4,"births":10306},{"year":1983,"month":5,"date_of_month":13,"day_of_week":5,"births":10090},{"year":1983,"month":5,"date_of_month":14,"day_of_week":6,"births":8741},{"year":1983,"month":5,"date_of_month":15,"day_of_week":7,"births":8464},{"year":1983,"month":5,"date_of_month":16,"day_of_week":1,"births":10424},{"year":1983,"month":5,"date_of_month":17,"day_of_week":2,"births":10401},{"year":1983,"month":5,"date_of_month":18,"day_of_week":3,"births":10196},{"year":1983,"month":5,"date_of_month":19,"day_of_week":4,"births":10506},{"year":1983,"month":5,"date_of_month":20,"day_of_week":5,"births":10513},{"year":1983,"month":5,"date_of_month":21,"day_of_week":6,"births":8950},{"year":1983,"month":5,"date_of_month":22,"day_of_week":7,"births":8368},{"year":1983,"month":5,"date_of_month":23,"day_of_week":1,"births":10419},{"year":1983,"month":5,"date_of_month":24,"day_of_week":2,"births":10971},{"year":1983,"month":5,"date_of_month":25,"day_of_week":3,"births":10574},{"year":1983,"month":5,"date_of_month":26,"day_of_week":4,"births":10358},{"year":1983,"month":5,"date_of_month":27,"day_of_week":5,"births":10476},{"year":1983,"month":5,"date_of_month":28,"day_of_week":6,"births":8757},{"year":1983,"month":5,"date_of_month":29,"day_of_week":7,"births":8547},{"year":1983,"month":5,"date_of_month":30,"day_of_week":1,"births":8687},{"year":1983,"month":5,"date_of_month":31,"day_of_week":2,"births":10320},{"year":1983,"month":6,"date_of_month":1,"day_of_week":3,"births":10800},{"year":1983,"month":6,"date_of_month":2,"day_of_week":4,"births":10516},{"year":1983,"month":6,"date_of_month":3,"day_of_week":5,"births":10664},{"year":1983,"month":6,"date_of_month":4,"day_of_week":6,"births":9012},{"year":1983,"month":6,"date_of_month":5,"day_of_week":7,"births":8574},{"year":1983,"month":6,"date_of_month":6,"day_of_week":1,"births":10371},{"year":1983,"month":6,"date_of_month":7,"day_of_week":2,"births":10633},{"year":1983,"month":6,"date_of_month":8,"day_of_week":3,"births":10375},{"year":1983,"month":6,"date_of_month":9,"day_of_week":4,"births":10499},{"year":1983,"month":6,"date_of_month":10,"day_of_week":5,"births":10652},{"year":1983,"month":6,"date_of_month":11,"day_of_week":6,"births":8957},{"year":1983,"month":6,"date_of_month":12,"day_of_week":7,"births":8547},{"year":1983,"month":6,"date_of_month":13,"day_of_week":1,"births":10464},{"year":1983,"month":6,"date_of_month":14,"day_of_week":2,"births":10986},{"year":1983,"month":6,"date_of_month":15,"day_of_week":3,"births":10422},{"year":1983,"month":6,"date_of_month":16,"day_of_week":4,"births":10527},{"year":1983,"month":6,"date_of_month":17,"day_of_week":5,"births":10785},{"year":1983,"month":6,"date_of_month":18,"day_of_week":6,"births":8709},{"year":1983,"month":6,"date_of_month":19,"day_of_week":7,"births":8589},{"year":1983,"month":6,"date_of_month":20,"day_of_week":1,"births":10498},{"year":1983,"month":6,"date_of_month":21,"day_of_week":2,"births":10751},{"year":1983,"month":6,"date_of_month":22,"day_of_week":3,"births":10418},{"year":1983,"month":6,"date_of_month":23,"day_of_week":4,"births":10790},{"year":1983,"month":6,"date_of_month":24,"day_of_week":5,"births":10688},{"year":1983,"month":6,"date_of_month":25,"day_of_week":6,"births":9068},{"year":1983,"month":6,"date_of_month":26,"day_of_week":7,"births":8661},{"year":1983,"month":6,"date_of_month":27,"day_of_week":1,"births":10634},{"year":1983,"month":6,"date_of_month":28,"day_of_week":2,"births":11088},{"year":1983,"month":6,"date_of_month":29,"day_of_week":3,"births":10784},{"year":1983,"month":6,"date_of_month":30,"day_of_week":4,"births":10760},{"year":1983,"month":7,"date_of_month":1,"day_of_week":5,"births":10913},{"year":1983,"month":7,"date_of_month":2,"day_of_week":6,"births":9075},{"year":1983,"month":7,"date_of_month":3,"day_of_week":7,"births":8648},{"year":1983,"month":7,"date_of_month":4,"day_of_week":1,"births":8943},{"year":1983,"month":7,"date_of_month":5,"day_of_week":2,"births":10491},{"year":1983,"month":7,"date_of_month":6,"day_of_week":3,"births":11119},{"year":1983,"month":7,"date_of_month":7,"day_of_week":4,"births":11130},{"year":1983,"month":7,"date_of_month":8,"day_of_week":5,"births":10871},{"year":1983,"month":7,"date_of_month":9,"day_of_week":6,"births":9055},{"year":1983,"month":7,"date_of_month":10,"day_of_week":7,"births":8838},{"year":1983,"month":7,"date_of_month":11,"day_of_week":1,"births":10664},{"year":1983,"month":7,"date_of_month":12,"day_of_week":2,"births":11254},{"year":1983,"month":7,"date_of_month":13,"day_of_week":3,"births":11037},{"year":1983,"month":7,"date_of_month":14,"day_of_week":4,"births":11036},{"year":1983,"month":7,"date_of_month":15,"day_of_week":5,"births":11166},{"year":1983,"month":7,"date_of_month":16,"day_of_week":6,"births":9220},{"year":1983,"month":7,"date_of_month":17,"day_of_week":7,"births":8940},{"year":1983,"month":7,"date_of_month":18,"day_of_week":1,"births":10767},{"year":1983,"month":7,"date_of_month":19,"day_of_week":2,"births":11040},{"year":1983,"month":7,"date_of_month":20,"day_of_week":3,"births":11099},{"year":1983,"month":7,"date_of_month":21,"day_of_week":4,"births":11072},{"year":1983,"month":7,"date_of_month":22,"day_of_week":5,"births":11043},{"year":1983,"month":7,"date_of_month":23,"day_of_week":6,"births":9155},{"year":1983,"month":7,"date_of_month":24,"day_of_week":7,"births":8993},{"year":1983,"month":7,"date_of_month":25,"day_of_week":1,"births":10653},{"year":1983,"month":7,"date_of_month":26,"day_of_week":2,"births":11033},{"year":1983,"month":7,"date_of_month":27,"day_of_week":3,"births":10839},{"year":1983,"month":7,"date_of_month":28,"day_of_week":4,"births":11037},{"year":1983,"month":7,"date_of_month":29,"day_of_week":5,"births":11025},{"year":1983,"month":7,"date_of_month":30,"day_of_week":6,"births":9164},{"year":1983,"month":7,"date_of_month":31,"day_of_week":7,"births":8970},{"year":1983,"month":8,"date_of_month":1,"day_of_week":1,"births":10610},{"year":1983,"month":8,"date_of_month":2,"day_of_week":2,"births":11046},{"year":1983,"month":8,"date_of_month":3,"day_of_week":3,"births":10953},{"year":1983,"month":8,"date_of_month":4,"day_of_week":4,"births":10720},{"year":1983,"month":8,"date_of_month":5,"day_of_week":5,"births":11016},{"year":1983,"month":8,"date_of_month":6,"day_of_week":6,"births":9232},{"year":1983,"month":8,"date_of_month":7,"day_of_week":7,"births":9256},{"year":1983,"month":8,"date_of_month":8,"day_of_week":1,"births":10795},{"year":1983,"month":8,"date_of_month":9,"day_of_week":2,"births":11139},{"year":1983,"month":8,"date_of_month":10,"day_of_week":3,"births":11022},{"year":1983,"month":8,"date_of_month":11,"day_of_week":4,"births":10789},{"year":1983,"month":8,"date_of_month":12,"day_of_week":5,"births":10966},{"year":1983,"month":8,"date_of_month":13,"day_of_week":6,"births":9158},{"year":1983,"month":8,"date_of_month":14,"day_of_week":7,"births":8830},{"year":1983,"month":8,"date_of_month":15,"day_of_week":1,"births":10663},{"year":1983,"month":8,"date_of_month":16,"day_of_week":2,"births":11270},{"year":1983,"month":8,"date_of_month":17,"day_of_week":3,"births":11012},{"year":1983,"month":8,"date_of_month":18,"day_of_week":4,"births":11135},{"year":1983,"month":8,"date_of_month":19,"day_of_week":5,"births":11219},{"year":1983,"month":8,"date_of_month":20,"day_of_week":6,"births":9260},{"year":1983,"month":8,"date_of_month":21,"day_of_week":7,"births":9142},{"year":1983,"month":8,"date_of_month":22,"day_of_week":1,"births":10633},{"year":1983,"month":8,"date_of_month":23,"day_of_week":2,"births":11153},{"year":1983,"month":8,"date_of_month":24,"day_of_week":3,"births":10815},{"year":1983,"month":8,"date_of_month":25,"day_of_week":4,"births":10724},{"year":1983,"month":8,"date_of_month":26,"day_of_week":5,"births":10839},{"year":1983,"month":8,"date_of_month":27,"day_of_week":6,"births":9242},{"year":1983,"month":8,"date_of_month":28,"day_of_week":7,"births":9009},{"year":1983,"month":8,"date_of_month":29,"day_of_week":1,"births":10812},{"year":1983,"month":8,"date_of_month":30,"day_of_week":2,"births":11131},{"year":1983,"month":8,"date_of_month":31,"day_of_week":3,"births":10805},{"year":1983,"month":9,"date_of_month":1,"day_of_week":4,"births":10747},{"year":1983,"month":9,"date_of_month":2,"day_of_week":5,"births":10907},{"year":1983,"month":9,"date_of_month":3,"day_of_week":6,"births":9151},{"year":1983,"month":9,"date_of_month":4,"day_of_week":7,"births":8806},{"year":1983,"month":9,"date_of_month":5,"day_of_week":1,"births":8749},{"year":1983,"month":9,"date_of_month":6,"day_of_week":2,"births":10995},{"year":1983,"month":9,"date_of_month":7,"day_of_week":3,"births":11348},{"year":1983,"month":9,"date_of_month":8,"day_of_week":4,"births":11052},{"year":1983,"month":9,"date_of_month":9,"day_of_week":5,"births":11099},{"year":1983,"month":9,"date_of_month":10,"day_of_week":6,"births":9536},{"year":1983,"month":9,"date_of_month":11,"day_of_week":7,"births":9048},{"year":1983,"month":9,"date_of_month":12,"day_of_week":1,"births":10898},{"year":1983,"month":9,"date_of_month":13,"day_of_week":2,"births":11216},{"year":1983,"month":9,"date_of_month":14,"day_of_week":3,"births":11183},{"year":1983,"month":9,"date_of_month":15,"day_of_week":4,"births":10976},{"year":1983,"month":9,"date_of_month":16,"day_of_week":5,"births":10948},{"year":1983,"month":9,"date_of_month":17,"day_of_week":6,"births":9436},{"year":1983,"month":9,"date_of_month":18,"day_of_week":7,"births":9327},{"year":1983,"month":9,"date_of_month":19,"day_of_week":1,"births":11180},{"year":1983,"month":9,"date_of_month":20,"day_of_week":2,"births":11635},{"year":1983,"month":9,"date_of_month":21,"day_of_week":3,"births":11276},{"year":1983,"month":9,"date_of_month":22,"day_of_week":4,"births":11065},{"year":1983,"month":9,"date_of_month":23,"day_of_week":5,"births":11177},{"year":1983,"month":9,"date_of_month":24,"day_of_week":6,"births":9174},{"year":1983,"month":9,"date_of_month":25,"day_of_week":7,"births":8821},{"year":1983,"month":9,"date_of_month":26,"day_of_week":1,"births":10958},{"year":1983,"month":9,"date_of_month":27,"day_of_week":2,"births":11366},{"year":1983,"month":9,"date_of_month":28,"day_of_week":3,"births":10953},{"year":1983,"month":9,"date_of_month":29,"day_of_week":4,"births":10889},{"year":1983,"month":9,"date_of_month":30,"day_of_week":5,"births":10914},{"year":1983,"month":10,"date_of_month":1,"day_of_week":6,"births":9202},{"year":1983,"month":10,"date_of_month":2,"day_of_week":7,"births":8893},{"year":1983,"month":10,"date_of_month":3,"day_of_week":1,"births":10806},{"year":1983,"month":10,"date_of_month":4,"day_of_week":2,"births":11182},{"year":1983,"month":10,"date_of_month":5,"day_of_week":3,"births":10762},{"year":1983,"month":10,"date_of_month":6,"day_of_week":4,"births":10675},{"year":1983,"month":10,"date_of_month":7,"day_of_week":5,"births":10753},{"year":1983,"month":10,"date_of_month":8,"day_of_week":6,"births":8971},{"year":1983,"month":10,"date_of_month":9,"day_of_week":7,"births":8551},{"year":1983,"month":10,"date_of_month":10,"day_of_week":1,"births":10273},{"year":1983,"month":10,"date_of_month":11,"day_of_week":2,"births":10656},{"year":1983,"month":10,"date_of_month":12,"day_of_week":3,"births":10645},{"year":1983,"month":10,"date_of_month":13,"day_of_week":4,"births":10320},{"year":1983,"month":10,"date_of_month":14,"day_of_week":5,"births":10610},{"year":1983,"month":10,"date_of_month":15,"day_of_week":6,"births":8570},{"year":1983,"month":10,"date_of_month":16,"day_of_week":7,"births":8505},{"year":1983,"month":10,"date_of_month":17,"day_of_week":1,"births":10302},{"year":1983,"month":10,"date_of_month":18,"day_of_week":2,"births":10485},{"year":1983,"month":10,"date_of_month":19,"day_of_week":3,"births":10224},{"year":1983,"month":10,"date_of_month":20,"day_of_week":4,"births":10392},{"year":1983,"month":10,"date_of_month":21,"day_of_week":5,"births":10192},{"year":1983,"month":10,"date_of_month":22,"day_of_week":6,"births":8626},{"year":1983,"month":10,"date_of_month":23,"day_of_week":7,"births":8234},{"year":1983,"month":10,"date_of_month":24,"day_of_week":1,"births":10225},{"year":1983,"month":10,"date_of_month":25,"day_of_week":2,"births":10624},{"year":1983,"month":10,"date_of_month":26,"day_of_week":3,"births":10201},{"year":1983,"month":10,"date_of_month":27,"day_of_week":4,"births":10260},{"year":1983,"month":10,"date_of_month":28,"day_of_week":5,"births":10306},{"year":1983,"month":10,"date_of_month":29,"day_of_week":6,"births":8504},{"year":1983,"month":10,"date_of_month":30,"day_of_week":7,"births":8496},{"year":1983,"month":10,"date_of_month":31,"day_of_week":1,"births":9679},{"year":1983,"month":11,"date_of_month":1,"day_of_week":2,"births":10279},{"year":1983,"month":11,"date_of_month":2,"day_of_week":3,"births":10082},{"year":1983,"month":11,"date_of_month":3,"day_of_week":4,"births":10253},{"year":1983,"month":11,"date_of_month":4,"day_of_week":5,"births":10266},{"year":1983,"month":11,"date_of_month":5,"day_of_week":6,"births":8643},{"year":1983,"month":11,"date_of_month":6,"day_of_week":7,"births":8218},{"year":1983,"month":11,"date_of_month":7,"day_of_week":1,"births":10240},{"year":1983,"month":11,"date_of_month":8,"day_of_week":2,"births":10460},{"year":1983,"month":11,"date_of_month":9,"day_of_week":3,"births":10182},{"year":1983,"month":11,"date_of_month":10,"day_of_week":4,"births":10264},{"year":1983,"month":11,"date_of_month":11,"day_of_week":5,"births":10109},{"year":1983,"month":11,"date_of_month":12,"day_of_week":6,"births":8430},{"year":1983,"month":11,"date_of_month":13,"day_of_week":7,"births":8446},{"year":1983,"month":11,"date_of_month":14,"day_of_week":1,"births":10222},{"year":1983,"month":11,"date_of_month":15,"day_of_week":2,"births":10683},{"year":1983,"month":11,"date_of_month":16,"day_of_week":3,"births":10255},{"year":1983,"month":11,"date_of_month":17,"day_of_week":4,"births":10220},{"year":1983,"month":11,"date_of_month":18,"day_of_week":5,"births":10484},{"year":1983,"month":11,"date_of_month":19,"day_of_week":6,"births":8681},{"year":1983,"month":11,"date_of_month":20,"day_of_week":7,"births":8318},{"year":1983,"month":11,"date_of_month":21,"day_of_week":1,"births":10479},{"year":1983,"month":11,"date_of_month":22,"day_of_week":2,"births":10868},{"year":1983,"month":11,"date_of_month":23,"day_of_week":3,"births":10341},{"year":1983,"month":11,"date_of_month":24,"day_of_week":4,"births":8316},{"year":1983,"month":11,"date_of_month":25,"day_of_week":5,"births":9449},{"year":1983,"month":11,"date_of_month":26,"day_of_week":6,"births":8233},{"year":1983,"month":11,"date_of_month":27,"day_of_week":7,"births":8224},{"year":1983,"month":11,"date_of_month":28,"day_of_week":1,"births":10178},{"year":1983,"month":11,"date_of_month":29,"day_of_week":2,"births":10526},{"year":1983,"month":11,"date_of_month":30,"day_of_week":3,"births":9921},{"year":1983,"month":12,"date_of_month":1,"day_of_week":4,"births":10297},{"year":1983,"month":12,"date_of_month":2,"day_of_week":5,"births":10069},{"year":1983,"month":12,"date_of_month":3,"day_of_week":6,"births":8275},{"year":1983,"month":12,"date_of_month":4,"day_of_week":7,"births":7974},{"year":1983,"month":12,"date_of_month":5,"day_of_week":1,"births":10178},{"year":1983,"month":12,"date_of_month":6,"day_of_week":2,"births":10279},{"year":1983,"month":12,"date_of_month":7,"day_of_week":3,"births":10131},{"year":1983,"month":12,"date_of_month":8,"day_of_week":4,"births":10138},{"year":1983,"month":12,"date_of_month":9,"day_of_week":5,"births":10132},{"year":1983,"month":12,"date_of_month":10,"day_of_week":6,"births":8396},{"year":1983,"month":12,"date_of_month":11,"day_of_week":7,"births":8316},{"year":1983,"month":12,"date_of_month":12,"day_of_week":1,"births":10260},{"year":1983,"month":12,"date_of_month":13,"day_of_week":2,"births":10427},{"year":1983,"month":12,"date_of_month":14,"day_of_week":3,"births":10274},{"year":1983,"month":12,"date_of_month":15,"day_of_week":4,"births":10464},{"year":1983,"month":12,"date_of_month":16,"day_of_week":5,"births":10534},{"year":1983,"month":12,"date_of_month":17,"day_of_week":6,"births":8299},{"year":1983,"month":12,"date_of_month":18,"day_of_week":7,"births":8170},{"year":1983,"month":12,"date_of_month":19,"day_of_week":1,"births":10761},{"year":1983,"month":12,"date_of_month":20,"day_of_week":2,"births":10985},{"year":1983,"month":12,"date_of_month":21,"day_of_week":3,"births":10226},{"year":1983,"month":12,"date_of_month":22,"day_of_week":4,"births":9507},{"year":1983,"month":12,"date_of_month":23,"day_of_week":5,"births":9035},{"year":1983,"month":12,"date_of_month":24,"day_of_week":6,"births":8042},{"year":1983,"month":12,"date_of_month":25,"day_of_week":7,"births":7645},{"year":1983,"month":12,"date_of_month":26,"day_of_week":1,"births":8236},{"year":1983,"month":12,"date_of_month":27,"day_of_week":2,"births":10617},{"year":1983,"month":12,"date_of_month":28,"day_of_week":3,"births":11264},{"year":1983,"month":12,"date_of_month":29,"day_of_week":4,"births":10883},{"year":1983,"month":12,"date_of_month":30,"day_of_week":5,"births":11001},{"year":1983,"month":12,"date_of_month":31,"day_of_week":6,"births":8562},{"year":1984,"month":1,"date_of_month":1,"day_of_week":7,"births":8013},{"year":1984,"month":1,"date_of_month":2,"day_of_week":1,"births":8005},{"year":1984,"month":1,"date_of_month":3,"day_of_week":2,"births":9662},{"year":1984,"month":1,"date_of_month":4,"day_of_week":3,"births":9923},{"year":1984,"month":1,"date_of_month":5,"day_of_week":4,"births":10004},{"year":1984,"month":1,"date_of_month":6,"day_of_week":5,"births":10117},{"year":1984,"month":1,"date_of_month":7,"day_of_week":6,"births":8497},{"year":1984,"month":1,"date_of_month":8,"day_of_week":7,"births":8230},{"year":1984,"month":1,"date_of_month":9,"day_of_week":1,"births":9690},{"year":1984,"month":1,"date_of_month":10,"day_of_week":2,"births":10115},{"year":1984,"month":1,"date_of_month":11,"day_of_week":3,"births":9814},{"year":1984,"month":1,"date_of_month":12,"day_of_week":4,"births":9798},{"year":1984,"month":1,"date_of_month":13,"day_of_week":5,"births":9838},{"year":1984,"month":1,"date_of_month":14,"day_of_week":6,"births":8504},{"year":1984,"month":1,"date_of_month":15,"day_of_week":7,"births":8108},{"year":1984,"month":1,"date_of_month":16,"day_of_week":1,"births":9937},{"year":1984,"month":1,"date_of_month":17,"day_of_week":2,"births":10094},{"year":1984,"month":1,"date_of_month":18,"day_of_week":3,"births":10134},{"year":1984,"month":1,"date_of_month":19,"day_of_week":4,"births":9894},{"year":1984,"month":1,"date_of_month":20,"day_of_week":5,"births":10097},{"year":1984,"month":1,"date_of_month":21,"day_of_week":6,"births":8335},{"year":1984,"month":1,"date_of_month":22,"day_of_week":7,"births":8072},{"year":1984,"month":1,"date_of_month":23,"day_of_week":1,"births":9925},{"year":1984,"month":1,"date_of_month":24,"day_of_week":2,"births":10285},{"year":1984,"month":1,"date_of_month":25,"day_of_week":3,"births":10254},{"year":1984,"month":1,"date_of_month":26,"day_of_week":4,"births":10144},{"year":1984,"month":1,"date_of_month":27,"day_of_week":5,"births":10287},{"year":1984,"month":1,"date_of_month":28,"day_of_week":6,"births":8550},{"year":1984,"month":1,"date_of_month":29,"day_of_week":7,"births":8191},{"year":1984,"month":1,"date_of_month":30,"day_of_week":1,"births":9880},{"year":1984,"month":1,"date_of_month":31,"day_of_week":2,"births":10129},{"year":1984,"month":2,"date_of_month":1,"day_of_week":3,"births":10039},{"year":1984,"month":2,"date_of_month":2,"day_of_week":4,"births":10127},{"year":1984,"month":2,"date_of_month":3,"day_of_week":5,"births":10199},{"year":1984,"month":2,"date_of_month":4,"day_of_week":6,"births":8514},{"year":1984,"month":2,"date_of_month":5,"day_of_week":7,"births":8276},{"year":1984,"month":2,"date_of_month":6,"day_of_week":1,"births":9954},{"year":1984,"month":2,"date_of_month":7,"day_of_week":2,"births":10083},{"year":1984,"month":2,"date_of_month":8,"day_of_week":3,"births":10127},{"year":1984,"month":2,"date_of_month":9,"day_of_week":4,"births":10001},{"year":1984,"month":2,"date_of_month":10,"day_of_week":5,"births":10584},{"year":1984,"month":2,"date_of_month":11,"day_of_week":6,"births":8747},{"year":1984,"month":2,"date_of_month":12,"day_of_week":7,"births":8356},{"year":1984,"month":2,"date_of_month":13,"day_of_week":1,"births":9977},{"year":1984,"month":2,"date_of_month":14,"day_of_week":2,"births":11265},{"year":1984,"month":2,"date_of_month":15,"day_of_week":3,"births":10213},{"year":1984,"month":2,"date_of_month":16,"day_of_week":4,"births":10253},{"year":1984,"month":2,"date_of_month":17,"day_of_week":5,"births":10229},{"year":1984,"month":2,"date_of_month":18,"day_of_week":6,"births":8871},{"year":1984,"month":2,"date_of_month":19,"day_of_week":7,"births":8377},{"year":1984,"month":2,"date_of_month":20,"day_of_week":1,"births":9815},{"year":1984,"month":2,"date_of_month":21,"day_of_week":2,"births":10189},{"year":1984,"month":2,"date_of_month":22,"day_of_week":3,"births":10303},{"year":1984,"month":2,"date_of_month":23,"day_of_week":4,"births":9995},{"year":1984,"month":2,"date_of_month":24,"day_of_week":5,"births":10310},{"year":1984,"month":2,"date_of_month":25,"day_of_week":6,"births":8637},{"year":1984,"month":2,"date_of_month":26,"day_of_week":7,"births":8294},{"year":1984,"month":2,"date_of_month":27,"day_of_week":1,"births":10052},{"year":1984,"month":2,"date_of_month":28,"day_of_week":2,"births":10431},{"year":1984,"month":2,"date_of_month":29,"day_of_week":3,"births":9680},{"year":1984,"month":3,"date_of_month":1,"day_of_week":4,"births":10471},{"year":1984,"month":3,"date_of_month":2,"day_of_week":5,"births":10505},{"year":1984,"month":3,"date_of_month":3,"day_of_week":6,"births":8808},{"year":1984,"month":3,"date_of_month":4,"day_of_week":7,"births":8363},{"year":1984,"month":3,"date_of_month":5,"day_of_week":1,"births":10124},{"year":1984,"month":3,"date_of_month":6,"day_of_week":2,"births":10557},{"year":1984,"month":3,"date_of_month":7,"day_of_week":3,"births":10359},{"year":1984,"month":3,"date_of_month":8,"day_of_week":4,"births":10276},{"year":1984,"month":3,"date_of_month":9,"day_of_week":5,"births":10095},{"year":1984,"month":3,"date_of_month":10,"day_of_week":6,"births":8663},{"year":1984,"month":3,"date_of_month":11,"day_of_week":7,"births":8401},{"year":1984,"month":3,"date_of_month":12,"day_of_week":1,"births":10252},{"year":1984,"month":3,"date_of_month":13,"day_of_week":2,"births":10271},{"year":1984,"month":3,"date_of_month":14,"day_of_week":3,"births":10176},{"year":1984,"month":3,"date_of_month":15,"day_of_week":4,"births":10329},{"year":1984,"month":3,"date_of_month":16,"day_of_week":5,"births":10706},{"year":1984,"month":3,"date_of_month":17,"day_of_week":6,"births":8883},{"year":1984,"month":3,"date_of_month":18,"day_of_week":7,"births":8331},{"year":1984,"month":3,"date_of_month":19,"day_of_week":1,"births":10427},{"year":1984,"month":3,"date_of_month":20,"day_of_week":2,"births":10714},{"year":1984,"month":3,"date_of_month":21,"day_of_week":3,"births":10395},{"year":1984,"month":3,"date_of_month":22,"day_of_week":4,"births":10353},{"year":1984,"month":3,"date_of_month":23,"day_of_week":5,"births":10284},{"year":1984,"month":3,"date_of_month":24,"day_of_week":6,"births":8566},{"year":1984,"month":3,"date_of_month":25,"day_of_week":7,"births":8266},{"year":1984,"month":3,"date_of_month":26,"day_of_week":1,"births":10166},{"year":1984,"month":3,"date_of_month":27,"day_of_week":2,"births":10356},{"year":1984,"month":3,"date_of_month":28,"day_of_week":3,"births":10300},{"year":1984,"month":3,"date_of_month":29,"day_of_week":4,"births":10157},{"year":1984,"month":3,"date_of_month":30,"day_of_week":5,"births":10269},{"year":1984,"month":3,"date_of_month":31,"day_of_week":6,"births":8514},{"year":1984,"month":4,"date_of_month":1,"day_of_week":7,"births":8202},{"year":1984,"month":4,"date_of_month":2,"day_of_week":1,"births":10016},{"year":1984,"month":4,"date_of_month":3,"day_of_week":2,"births":10052},{"year":1984,"month":4,"date_of_month":4,"day_of_week":3,"births":10331},{"year":1984,"month":4,"date_of_month":5,"day_of_week":4,"births":9971},{"year":1984,"month":4,"date_of_month":6,"day_of_week":5,"births":10340},{"year":1984,"month":4,"date_of_month":7,"day_of_week":6,"births":8567},{"year":1984,"month":4,"date_of_month":8,"day_of_week":7,"births":8057},{"year":1984,"month":4,"date_of_month":9,"day_of_week":1,"births":10033},{"year":1984,"month":4,"date_of_month":10,"day_of_week":2,"births":10199},{"year":1984,"month":4,"date_of_month":11,"day_of_week":3,"births":9830},{"year":1984,"month":4,"date_of_month":12,"day_of_week":4,"births":10282},{"year":1984,"month":4,"date_of_month":13,"day_of_week":5,"births":10102},{"year":1984,"month":4,"date_of_month":14,"day_of_week":6,"births":8577},{"year":1984,"month":4,"date_of_month":15,"day_of_week":7,"births":8088},{"year":1984,"month":4,"date_of_month":16,"day_of_week":1,"births":9991},{"year":1984,"month":4,"date_of_month":17,"day_of_week":2,"births":10570},{"year":1984,"month":4,"date_of_month":18,"day_of_week":3,"births":10086},{"year":1984,"month":4,"date_of_month":19,"day_of_week":4,"births":10057},{"year":1984,"month":4,"date_of_month":20,"day_of_week":5,"births":9689},{"year":1984,"month":4,"date_of_month":21,"day_of_week":6,"births":8263},{"year":1984,"month":4,"date_of_month":22,"day_of_week":7,"births":7891},{"year":1984,"month":4,"date_of_month":23,"day_of_week":1,"births":9931},{"year":1984,"month":4,"date_of_month":24,"day_of_week":2,"births":10293},{"year":1984,"month":4,"date_of_month":25,"day_of_week":3,"births":10052},{"year":1984,"month":4,"date_of_month":26,"day_of_week":4,"births":10200},{"year":1984,"month":4,"date_of_month":27,"day_of_week":5,"births":10152},{"year":1984,"month":4,"date_of_month":28,"day_of_week":6,"births":8484},{"year":1984,"month":4,"date_of_month":29,"day_of_week":7,"births":7721},{"year":1984,"month":4,"date_of_month":30,"day_of_week":1,"births":10097},{"year":1984,"month":5,"date_of_month":1,"day_of_week":2,"births":10535},{"year":1984,"month":5,"date_of_month":2,"day_of_week":3,"births":10187},{"year":1984,"month":5,"date_of_month":3,"day_of_week":4,"births":10238},{"year":1984,"month":5,"date_of_month":4,"day_of_week":5,"births":10292},{"year":1984,"month":5,"date_of_month":5,"day_of_week":6,"births":8380},{"year":1984,"month":5,"date_of_month":6,"day_of_week":7,"births":8184},{"year":1984,"month":5,"date_of_month":7,"day_of_week":1,"births":9813},{"year":1984,"month":5,"date_of_month":8,"day_of_week":2,"births":10203},{"year":1984,"month":5,"date_of_month":9,"day_of_week":3,"births":9688},{"year":1984,"month":5,"date_of_month":10,"day_of_week":4,"births":9946},{"year":1984,"month":5,"date_of_month":11,"day_of_week":5,"births":10275},{"year":1984,"month":5,"date_of_month":12,"day_of_week":6,"births":8378},{"year":1984,"month":5,"date_of_month":13,"day_of_week":7,"births":8199},{"year":1984,"month":5,"date_of_month":14,"day_of_week":1,"births":10087},{"year":1984,"month":5,"date_of_month":15,"day_of_week":2,"births":10289},{"year":1984,"month":5,"date_of_month":16,"day_of_week":3,"births":10005},{"year":1984,"month":5,"date_of_month":17,"day_of_week":4,"births":9851},{"year":1984,"month":5,"date_of_month":18,"day_of_week":5,"births":10080},{"year":1984,"month":5,"date_of_month":19,"day_of_week":6,"births":8476},{"year":1984,"month":5,"date_of_month":20,"day_of_week":7,"births":8282},{"year":1984,"month":5,"date_of_month":21,"day_of_week":1,"births":10181},{"year":1984,"month":5,"date_of_month":22,"day_of_week":2,"births":10780},{"year":1984,"month":5,"date_of_month":23,"day_of_week":3,"births":10371},{"year":1984,"month":5,"date_of_month":24,"day_of_week":4,"births":10133},{"year":1984,"month":5,"date_of_month":25,"day_of_week":5,"births":10575},{"year":1984,"month":5,"date_of_month":26,"day_of_week":6,"births":8849},{"year":1984,"month":5,"date_of_month":27,"day_of_week":7,"births":8388},{"year":1984,"month":5,"date_of_month":28,"day_of_week":1,"births":8411},{"year":1984,"month":5,"date_of_month":29,"day_of_week":2,"births":10268},{"year":1984,"month":5,"date_of_month":30,"day_of_week":3,"births":10285},{"year":1984,"month":5,"date_of_month":31,"day_of_week":4,"births":10099},{"year":1984,"month":6,"date_of_month":1,"day_of_week":5,"births":10401},{"year":1984,"month":6,"date_of_month":2,"day_of_week":6,"births":8880},{"year":1984,"month":6,"date_of_month":3,"day_of_week":7,"births":8277},{"year":1984,"month":6,"date_of_month":4,"day_of_week":1,"births":10018},{"year":1984,"month":6,"date_of_month":5,"day_of_week":2,"births":10514},{"year":1984,"month":6,"date_of_month":6,"day_of_week":3,"births":10477},{"year":1984,"month":6,"date_of_month":7,"day_of_week":4,"births":10244},{"year":1984,"month":6,"date_of_month":8,"day_of_week":5,"births":10560},{"year":1984,"month":6,"date_of_month":9,"day_of_week":6,"births":8761},{"year":1984,"month":6,"date_of_month":10,"day_of_week":7,"births":8422},{"year":1984,"month":6,"date_of_month":11,"day_of_week":1,"births":10327},{"year":1984,"month":6,"date_of_month":12,"day_of_week":2,"births":10502},{"year":1984,"month":6,"date_of_month":13,"day_of_week":3,"births":10084},{"year":1984,"month":6,"date_of_month":14,"day_of_week":4,"births":10732},{"year":1984,"month":6,"date_of_month":15,"day_of_week":5,"births":10332},{"year":1984,"month":6,"date_of_month":16,"day_of_week":6,"births":8457},{"year":1984,"month":6,"date_of_month":17,"day_of_week":7,"births":8611},{"year":1984,"month":6,"date_of_month":18,"day_of_week":1,"births":10483},{"year":1984,"month":6,"date_of_month":19,"day_of_week":2,"births":10515},{"year":1984,"month":6,"date_of_month":20,"day_of_week":3,"births":10655},{"year":1984,"month":6,"date_of_month":21,"day_of_week":4,"births":10561},{"year":1984,"month":6,"date_of_month":22,"day_of_week":5,"births":10586},{"year":1984,"month":6,"date_of_month":23,"day_of_week":6,"births":8972},{"year":1984,"month":6,"date_of_month":24,"day_of_week":7,"births":8821},{"year":1984,"month":6,"date_of_month":25,"day_of_week":1,"births":10561},{"year":1984,"month":6,"date_of_month":26,"day_of_week":2,"births":10980},{"year":1984,"month":6,"date_of_month":27,"day_of_week":3,"births":10662},{"year":1984,"month":6,"date_of_month":28,"day_of_week":4,"births":10794},{"year":1984,"month":6,"date_of_month":29,"day_of_week":5,"births":11087},{"year":1984,"month":6,"date_of_month":30,"day_of_week":6,"births":8940},{"year":1984,"month":7,"date_of_month":1,"day_of_week":7,"births":8565},{"year":1984,"month":7,"date_of_month":2,"day_of_week":1,"births":10807},{"year":1984,"month":7,"date_of_month":3,"day_of_week":2,"births":11250},{"year":1984,"month":7,"date_of_month":4,"day_of_week":3,"births":9240},{"year":1984,"month":7,"date_of_month":5,"day_of_week":4,"births":10789},{"year":1984,"month":7,"date_of_month":6,"day_of_week":5,"births":11566},{"year":1984,"month":7,"date_of_month":7,"day_of_week":6,"births":9138},{"year":1984,"month":7,"date_of_month":8,"day_of_week":7,"births":8956},{"year":1984,"month":7,"date_of_month":9,"day_of_week":1,"births":10996},{"year":1984,"month":7,"date_of_month":10,"day_of_week":2,"births":11661},{"year":1984,"month":7,"date_of_month":11,"day_of_week":3,"births":10923},{"year":1984,"month":7,"date_of_month":12,"day_of_week":4,"births":11264},{"year":1984,"month":7,"date_of_month":13,"day_of_week":5,"births":10687},{"year":1984,"month":7,"date_of_month":14,"day_of_week":6,"births":9213},{"year":1984,"month":7,"date_of_month":15,"day_of_week":7,"births":9046},{"year":1984,"month":7,"date_of_month":16,"day_of_week":1,"births":11295},{"year":1984,"month":7,"date_of_month":17,"day_of_week":2,"births":11493},{"year":1984,"month":7,"date_of_month":18,"day_of_week":3,"births":11278},{"year":1984,"month":7,"date_of_month":19,"day_of_week":4,"births":11042},{"year":1984,"month":7,"date_of_month":20,"day_of_week":5,"births":11185},{"year":1984,"month":7,"date_of_month":21,"day_of_week":6,"births":9338},{"year":1984,"month":7,"date_of_month":22,"day_of_week":7,"births":9029},{"year":1984,"month":7,"date_of_month":23,"day_of_week":1,"births":11176},{"year":1984,"month":7,"date_of_month":24,"day_of_week":2,"births":11811},{"year":1984,"month":7,"date_of_month":25,"day_of_week":3,"births":11099},{"year":1984,"month":7,"date_of_month":26,"day_of_week":4,"births":11003},{"year":1984,"month":7,"date_of_month":27,"day_of_week":5,"births":11320},{"year":1984,"month":7,"date_of_month":28,"day_of_week":6,"births":9470},{"year":1984,"month":7,"date_of_month":29,"day_of_week":7,"births":8901},{"year":1984,"month":7,"date_of_month":30,"day_of_week":1,"births":10782},{"year":1984,"month":7,"date_of_month":31,"day_of_week":2,"births":11582},{"year":1984,"month":8,"date_of_month":1,"day_of_week":3,"births":11227},{"year":1984,"month":8,"date_of_month":2,"day_of_week":4,"births":11410},{"year":1984,"month":8,"date_of_month":3,"day_of_week":5,"births":11370},{"year":1984,"month":8,"date_of_month":4,"day_of_week":6,"births":9594},{"year":1984,"month":8,"date_of_month":5,"day_of_week":7,"births":9137},{"year":1984,"month":8,"date_of_month":6,"day_of_week":1,"births":11213},{"year":1984,"month":8,"date_of_month":7,"day_of_week":2,"births":11884},{"year":1984,"month":8,"date_of_month":8,"day_of_week":3,"births":11392},{"year":1984,"month":8,"date_of_month":9,"day_of_week":4,"births":11377},{"year":1984,"month":8,"date_of_month":10,"day_of_week":5,"births":11364},{"year":1984,"month":8,"date_of_month":11,"day_of_week":6,"births":9465},{"year":1984,"month":8,"date_of_month":12,"day_of_week":7,"births":9045},{"year":1984,"month":8,"date_of_month":13,"day_of_week":1,"births":11017},{"year":1984,"month":8,"date_of_month":14,"day_of_week":2,"births":11550},{"year":1984,"month":8,"date_of_month":15,"day_of_week":3,"births":11489},{"year":1984,"month":8,"date_of_month":16,"day_of_week":4,"births":11301},{"year":1984,"month":8,"date_of_month":17,"day_of_week":5,"births":11427},{"year":1984,"month":8,"date_of_month":18,"day_of_week":6,"births":9407},{"year":1984,"month":8,"date_of_month":19,"day_of_week":7,"births":8945},{"year":1984,"month":8,"date_of_month":20,"day_of_week":1,"births":11228},{"year":1984,"month":8,"date_of_month":21,"day_of_week":2,"births":11585},{"year":1984,"month":8,"date_of_month":22,"day_of_week":3,"births":11180},{"year":1984,"month":8,"date_of_month":23,"day_of_week":4,"births":11110},{"year":1984,"month":8,"date_of_month":24,"day_of_week":5,"births":11162},{"year":1984,"month":8,"date_of_month":25,"day_of_week":6,"births":9254},{"year":1984,"month":8,"date_of_month":26,"day_of_week":7,"births":9234},{"year":1984,"month":8,"date_of_month":27,"day_of_week":1,"births":11221},{"year":1984,"month":8,"date_of_month":28,"day_of_week":2,"births":11829},{"year":1984,"month":8,"date_of_month":29,"day_of_week":3,"births":11342},{"year":1984,"month":8,"date_of_month":30,"day_of_week":4,"births":11421},{"year":1984,"month":8,"date_of_month":31,"day_of_week":5,"births":11481},{"year":1984,"month":9,"date_of_month":1,"day_of_week":6,"births":9370},{"year":1984,"month":9,"date_of_month":2,"day_of_week":7,"births":8962},{"year":1984,"month":9,"date_of_month":3,"day_of_week":1,"births":9343},{"year":1984,"month":9,"date_of_month":4,"day_of_week":2,"births":11111},{"year":1984,"month":9,"date_of_month":5,"day_of_week":3,"births":11827},{"year":1984,"month":9,"date_of_month":6,"day_of_week":4,"births":11442},{"year":1984,"month":9,"date_of_month":7,"day_of_week":5,"births":11760},{"year":1984,"month":9,"date_of_month":8,"day_of_week":6,"births":9588},{"year":1984,"month":9,"date_of_month":9,"day_of_week":7,"births":9354},{"year":1984,"month":9,"date_of_month":10,"day_of_week":1,"births":11641},{"year":1984,"month":9,"date_of_month":11,"day_of_week":2,"births":11795},{"year":1984,"month":9,"date_of_month":12,"day_of_week":3,"births":11388},{"year":1984,"month":9,"date_of_month":13,"day_of_week":4,"births":11515},{"year":1984,"month":9,"date_of_month":14,"day_of_week":5,"births":12034},{"year":1984,"month":9,"date_of_month":15,"day_of_week":6,"births":9880},{"year":1984,"month":9,"date_of_month":16,"day_of_week":7,"births":9310},{"year":1984,"month":9,"date_of_month":17,"day_of_week":1,"births":11487},{"year":1984,"month":9,"date_of_month":18,"day_of_week":2,"births":12038},{"year":1984,"month":9,"date_of_month":19,"day_of_week":3,"births":11787},{"year":1984,"month":9,"date_of_month":20,"day_of_week":4,"births":11720},{"year":1984,"month":9,"date_of_month":21,"day_of_week":5,"births":12121},{"year":1984,"month":9,"date_of_month":22,"day_of_week":6,"births":9857},{"year":1984,"month":9,"date_of_month":23,"day_of_week":7,"births":9622},{"year":1984,"month":9,"date_of_month":24,"day_of_week":1,"births":11980},{"year":1984,"month":9,"date_of_month":25,"day_of_week":2,"births":12271},{"year":1984,"month":9,"date_of_month":26,"day_of_week":3,"births":11691},{"year":1984,"month":9,"date_of_month":27,"day_of_week":4,"births":11174},{"year":1984,"month":9,"date_of_month":28,"day_of_week":5,"births":11559},{"year":1984,"month":9,"date_of_month":29,"day_of_week":6,"births":9813},{"year":1984,"month":9,"date_of_month":30,"day_of_week":7,"births":9462},{"year":1984,"month":10,"date_of_month":1,"day_of_week":1,"births":11235},{"year":1984,"month":10,"date_of_month":2,"day_of_week":2,"births":11572},{"year":1984,"month":10,"date_of_month":3,"day_of_week":3,"births":11487},{"year":1984,"month":10,"date_of_month":4,"day_of_week":4,"births":11339},{"year":1984,"month":10,"date_of_month":5,"day_of_week":5,"births":11387},{"year":1984,"month":10,"date_of_month":6,"day_of_week":6,"births":9523},{"year":1984,"month":10,"date_of_month":7,"day_of_week":7,"births":8749},{"year":1984,"month":10,"date_of_month":8,"day_of_week":1,"births":11054},{"year":1984,"month":10,"date_of_month":9,"day_of_week":2,"births":11435},{"year":1984,"month":10,"date_of_month":10,"day_of_week":3,"births":11146},{"year":1984,"month":10,"date_of_month":11,"day_of_week":4,"births":11060},{"year":1984,"month":10,"date_of_month":12,"day_of_week":5,"births":11018},{"year":1984,"month":10,"date_of_month":13,"day_of_week":6,"births":9009},{"year":1984,"month":10,"date_of_month":14,"day_of_week":7,"births":8836},{"year":1984,"month":10,"date_of_month":15,"day_of_week":1,"births":10961},{"year":1984,"month":10,"date_of_month":16,"day_of_week":2,"births":10999},{"year":1984,"month":10,"date_of_month":17,"day_of_week":3,"births":10693},{"year":1984,"month":10,"date_of_month":18,"day_of_week":4,"births":10597},{"year":1984,"month":10,"date_of_month":19,"day_of_week":5,"births":10837},{"year":1984,"month":10,"date_of_month":20,"day_of_week":6,"births":8791},{"year":1984,"month":10,"date_of_month":21,"day_of_week":7,"births":8544},{"year":1984,"month":10,"date_of_month":22,"day_of_week":1,"births":10609},{"year":1984,"month":10,"date_of_month":23,"day_of_week":2,"births":10883},{"year":1984,"month":10,"date_of_month":24,"day_of_week":3,"births":10395},{"year":1984,"month":10,"date_of_month":25,"day_of_week":4,"births":10463},{"year":1984,"month":10,"date_of_month":26,"day_of_week":5,"births":10568},{"year":1984,"month":10,"date_of_month":27,"day_of_week":6,"births":8882},{"year":1984,"month":10,"date_of_month":28,"day_of_week":7,"births":8910},{"year":1984,"month":10,"date_of_month":29,"day_of_week":1,"births":10266},{"year":1984,"month":10,"date_of_month":30,"day_of_week":2,"births":10458},{"year":1984,"month":10,"date_of_month":31,"day_of_week":3,"births":10033},{"year":1984,"month":11,"date_of_month":1,"day_of_week":4,"births":10602},{"year":1984,"month":11,"date_of_month":2,"day_of_week":5,"births":10436},{"year":1984,"month":11,"date_of_month":3,"day_of_week":6,"births":8526},{"year":1984,"month":11,"date_of_month":4,"day_of_week":7,"births":8380},{"year":1984,"month":11,"date_of_month":5,"day_of_week":1,"births":10572},{"year":1984,"month":11,"date_of_month":6,"day_of_week":2,"births":10506},{"year":1984,"month":11,"date_of_month":7,"day_of_week":3,"births":10291},{"year":1984,"month":11,"date_of_month":8,"day_of_week":4,"births":10378},{"year":1984,"month":11,"date_of_month":9,"day_of_week":5,"births":10772},{"year":1984,"month":11,"date_of_month":10,"day_of_week":6,"births":8487},{"year":1984,"month":11,"date_of_month":11,"day_of_week":7,"births":8576},{"year":1984,"month":11,"date_of_month":12,"day_of_week":1,"births":10262},{"year":1984,"month":11,"date_of_month":13,"day_of_week":2,"births":10755},{"year":1984,"month":11,"date_of_month":14,"day_of_week":3,"births":10403},{"year":1984,"month":11,"date_of_month":15,"day_of_week":4,"births":10701},{"year":1984,"month":11,"date_of_month":16,"day_of_week":5,"births":10722},{"year":1984,"month":11,"date_of_month":17,"day_of_week":6,"births":8688},{"year":1984,"month":11,"date_of_month":18,"day_of_week":7,"births":8300},{"year":1984,"month":11,"date_of_month":19,"day_of_week":1,"births":10740},{"year":1984,"month":11,"date_of_month":20,"day_of_week":2,"births":10941},{"year":1984,"month":11,"date_of_month":21,"day_of_week":3,"births":10501},{"year":1984,"month":11,"date_of_month":22,"day_of_week":4,"births":8011},{"year":1984,"month":11,"date_of_month":23,"day_of_week":5,"births":9689},{"year":1984,"month":11,"date_of_month":24,"day_of_week":6,"births":8512},{"year":1984,"month":11,"date_of_month":25,"day_of_week":7,"births":8543},{"year":1984,"month":11,"date_of_month":26,"day_of_week":1,"births":10656},{"year":1984,"month":11,"date_of_month":27,"day_of_week":2,"births":10819},{"year":1984,"month":11,"date_of_month":28,"day_of_week":3,"births":10458},{"year":1984,"month":11,"date_of_month":29,"day_of_week":4,"births":10387},{"year":1984,"month":11,"date_of_month":30,"day_of_week":5,"births":10560},{"year":1984,"month":12,"date_of_month":1,"day_of_week":6,"births":8479},{"year":1984,"month":12,"date_of_month":2,"day_of_week":7,"births":8348},{"year":1984,"month":12,"date_of_month":3,"day_of_week":1,"births":10289},{"year":1984,"month":12,"date_of_month":4,"day_of_week":2,"births":10544},{"year":1984,"month":12,"date_of_month":5,"day_of_week":3,"births":10182},{"year":1984,"month":12,"date_of_month":6,"day_of_week":4,"births":10172},{"year":1984,"month":12,"date_of_month":7,"day_of_week":5,"births":10260},{"year":1984,"month":12,"date_of_month":8,"day_of_week":6,"births":8459},{"year":1984,"month":12,"date_of_month":9,"day_of_week":7,"births":8267},{"year":1984,"month":12,"date_of_month":10,"day_of_week":1,"births":10506},{"year":1984,"month":12,"date_of_month":11,"day_of_week":2,"births":10747},{"year":1984,"month":12,"date_of_month":12,"day_of_week":3,"births":10569},{"year":1984,"month":12,"date_of_month":13,"day_of_week":4,"births":10378},{"year":1984,"month":12,"date_of_month":14,"day_of_week":5,"births":10630},{"year":1984,"month":12,"date_of_month":15,"day_of_week":6,"births":8505},{"year":1984,"month":12,"date_of_month":16,"day_of_week":7,"births":8253},{"year":1984,"month":12,"date_of_month":17,"day_of_week":1,"births":10760},{"year":1984,"month":12,"date_of_month":18,"day_of_week":2,"births":11444},{"year":1984,"month":12,"date_of_month":19,"day_of_week":3,"births":10933},{"year":1984,"month":12,"date_of_month":20,"day_of_week":4,"births":10825},{"year":1984,"month":12,"date_of_month":21,"day_of_week":5,"births":10474},{"year":1984,"month":12,"date_of_month":22,"day_of_week":6,"births":8519},{"year":1984,"month":12,"date_of_month":23,"day_of_week":7,"births":7901},{"year":1984,"month":12,"date_of_month":24,"day_of_week":1,"births":8575},{"year":1984,"month":12,"date_of_month":25,"day_of_week":2,"births":7851},{"year":1984,"month":12,"date_of_month":26,"day_of_week":3,"births":9777},{"year":1984,"month":12,"date_of_month":27,"day_of_week":4,"births":11224},{"year":1984,"month":12,"date_of_month":28,"day_of_week":5,"births":11705},{"year":1984,"month":12,"date_of_month":29,"day_of_week":6,"births":9254},{"year":1984,"month":12,"date_of_month":30,"day_of_week":7,"births":8386},{"year":1984,"month":12,"date_of_month":31,"day_of_week":1,"births":10105},{"year":1985,"month":1,"date_of_month":1,"day_of_week":2,"births":8335},{"year":1985,"month":1,"date_of_month":2,"day_of_week":3,"births":9377},{"year":1985,"month":1,"date_of_month":3,"day_of_week":4,"births":10052},{"year":1985,"month":1,"date_of_month":4,"day_of_week":5,"births":10458},{"year":1985,"month":1,"date_of_month":5,"day_of_week":6,"births":8648},{"year":1985,"month":1,"date_of_month":6,"day_of_week":7,"births":8477},{"year":1985,"month":1,"date_of_month":7,"day_of_week":1,"births":10078},{"year":1985,"month":1,"date_of_month":8,"day_of_week":2,"births":10242},{"year":1985,"month":1,"date_of_month":9,"day_of_week":3,"births":9988},{"year":1985,"month":1,"date_of_month":10,"day_of_week":4,"births":10150},{"year":1985,"month":1,"date_of_month":11,"day_of_week":5,"births":10501},{"year":1985,"month":1,"date_of_month":12,"day_of_week":6,"births":8759},{"year":1985,"month":1,"date_of_month":13,"day_of_week":7,"births":8247},{"year":1985,"month":1,"date_of_month":14,"day_of_week":1,"births":10409},{"year":1985,"month":1,"date_of_month":15,"day_of_week":2,"births":10692},{"year":1985,"month":1,"date_of_month":16,"day_of_week":3,"births":10199},{"year":1985,"month":1,"date_of_month":17,"day_of_week":4,"births":10391},{"year":1985,"month":1,"date_of_month":18,"day_of_week":5,"births":10865},{"year":1985,"month":1,"date_of_month":19,"day_of_week":6,"births":8982},{"year":1985,"month":1,"date_of_month":20,"day_of_week":7,"births":8345},{"year":1985,"month":1,"date_of_month":21,"day_of_week":1,"births":10314},{"year":1985,"month":1,"date_of_month":22,"day_of_week":2,"births":10598},{"year":1985,"month":1,"date_of_month":23,"day_of_week":3,"births":10496},{"year":1985,"month":1,"date_of_month":24,"day_of_week":4,"births":10470},{"year":1985,"month":1,"date_of_month":25,"day_of_week":5,"births":10755},{"year":1985,"month":1,"date_of_month":26,"day_of_week":6,"births":8774},{"year":1985,"month":1,"date_of_month":27,"day_of_week":7,"births":8441},{"year":1985,"month":1,"date_of_month":28,"day_of_week":1,"births":10322},{"year":1985,"month":1,"date_of_month":29,"day_of_week":2,"births":10582},{"year":1985,"month":1,"date_of_month":30,"day_of_week":3,"births":10308},{"year":1985,"month":1,"date_of_month":31,"day_of_week":4,"births":10162},{"year":1985,"month":2,"date_of_month":1,"day_of_week":5,"births":10591},{"year":1985,"month":2,"date_of_month":2,"day_of_week":6,"births":8829},{"year":1985,"month":2,"date_of_month":3,"day_of_week":7,"births":8347},{"year":1985,"month":2,"date_of_month":4,"day_of_week":1,"births":10338},{"year":1985,"month":2,"date_of_month":5,"day_of_week":2,"births":10607},{"year":1985,"month":2,"date_of_month":6,"day_of_week":3,"births":10506},{"year":1985,"month":2,"date_of_month":7,"day_of_week":4,"births":10508},{"year":1985,"month":2,"date_of_month":8,"day_of_week":5,"births":10579},{"year":1985,"month":2,"date_of_month":9,"day_of_week":6,"births":8921},{"year":1985,"month":2,"date_of_month":10,"day_of_week":7,"births":8607},{"year":1985,"month":2,"date_of_month":11,"day_of_week":1,"births":10597},{"year":1985,"month":2,"date_of_month":12,"day_of_week":2,"births":10889},{"year":1985,"month":2,"date_of_month":13,"day_of_week":3,"births":10306},{"year":1985,"month":2,"date_of_month":14,"day_of_week":4,"births":11363},{"year":1985,"month":2,"date_of_month":15,"day_of_week":5,"births":10681},{"year":1985,"month":2,"date_of_month":16,"day_of_week":6,"births":8883},{"year":1985,"month":2,"date_of_month":17,"day_of_week":7,"births":8476},{"year":1985,"month":2,"date_of_month":18,"day_of_week":1,"births":9925},{"year":1985,"month":2,"date_of_month":19,"day_of_week":2,"births":10572},{"year":1985,"month":2,"date_of_month":20,"day_of_week":3,"births":10536},{"year":1985,"month":2,"date_of_month":21,"day_of_week":4,"births":10583},{"year":1985,"month":2,"date_of_month":22,"day_of_week":5,"births":10729},{"year":1985,"month":2,"date_of_month":23,"day_of_week":6,"births":8833},{"year":1985,"month":2,"date_of_month":24,"day_of_week":7,"births":8836},{"year":1985,"month":2,"date_of_month":25,"day_of_week":1,"births":10529},{"year":1985,"month":2,"date_of_month":26,"day_of_week":2,"births":10718},{"year":1985,"month":2,"date_of_month":27,"day_of_week":3,"births":10671},{"year":1985,"month":2,"date_of_month":28,"day_of_week":4,"births":10616},{"year":1985,"month":3,"date_of_month":1,"day_of_week":5,"births":10876},{"year":1985,"month":3,"date_of_month":2,"day_of_week":6,"births":8824},{"year":1985,"month":3,"date_of_month":3,"day_of_week":7,"births":8554},{"year":1985,"month":3,"date_of_month":4,"day_of_week":1,"births":10629},{"year":1985,"month":3,"date_of_month":5,"day_of_week":2,"births":10797},{"year":1985,"month":3,"date_of_month":6,"day_of_week":3,"births":10475},{"year":1985,"month":3,"date_of_month":7,"day_of_week":4,"births":10509},{"year":1985,"month":3,"date_of_month":8,"day_of_week":5,"births":10927},{"year":1985,"month":3,"date_of_month":9,"day_of_week":6,"births":9010},{"year":1985,"month":3,"date_of_month":10,"day_of_week":7,"births":8344},{"year":1985,"month":3,"date_of_month":11,"day_of_week":1,"births":10544},{"year":1985,"month":3,"date_of_month":12,"day_of_week":2,"births":10812},{"year":1985,"month":3,"date_of_month":13,"day_of_week":3,"births":10286},{"year":1985,"month":3,"date_of_month":14,"day_of_week":4,"births":10732},{"year":1985,"month":3,"date_of_month":15,"day_of_week":5,"births":10610},{"year":1985,"month":3,"date_of_month":16,"day_of_week":6,"births":8690},{"year":1985,"month":3,"date_of_month":17,"day_of_week":7,"births":8503},{"year":1985,"month":3,"date_of_month":18,"day_of_week":1,"births":10516},{"year":1985,"month":3,"date_of_month":19,"day_of_week":2,"births":10803},{"year":1985,"month":3,"date_of_month":20,"day_of_week":3,"births":10683},{"year":1985,"month":3,"date_of_month":21,"day_of_week":4,"births":10591},{"year":1985,"month":3,"date_of_month":22,"day_of_week":5,"births":10792},{"year":1985,"month":3,"date_of_month":23,"day_of_week":6,"births":8867},{"year":1985,"month":3,"date_of_month":24,"day_of_week":7,"births":8458},{"year":1985,"month":3,"date_of_month":25,"day_of_week":1,"births":10472},{"year":1985,"month":3,"date_of_month":26,"day_of_week":2,"births":10918},{"year":1985,"month":3,"date_of_month":27,"day_of_week":3,"births":10666},{"year":1985,"month":3,"date_of_month":28,"day_of_week":4,"births":10890},{"year":1985,"month":3,"date_of_month":29,"day_of_week":5,"births":11037},{"year":1985,"month":3,"date_of_month":30,"day_of_week":6,"births":8887},{"year":1985,"month":3,"date_of_month":31,"day_of_week":7,"births":8321},{"year":1985,"month":4,"date_of_month":1,"day_of_week":1,"births":9834},{"year":1985,"month":4,"date_of_month":2,"day_of_week":2,"births":11263},{"year":1985,"month":4,"date_of_month":3,"day_of_week":3,"births":10554},{"year":1985,"month":4,"date_of_month":4,"day_of_week":4,"births":10589},{"year":1985,"month":4,"date_of_month":5,"day_of_week":5,"births":10238},{"year":1985,"month":4,"date_of_month":6,"day_of_week":6,"births":8761},{"year":1985,"month":4,"date_of_month":7,"day_of_week":7,"births":8136},{"year":1985,"month":4,"date_of_month":8,"day_of_week":1,"births":10135},{"year":1985,"month":4,"date_of_month":9,"day_of_week":2,"births":10541},{"year":1985,"month":4,"date_of_month":10,"day_of_week":3,"births":10559},{"year":1985,"month":4,"date_of_month":11,"day_of_week":4,"births":10506},{"year":1985,"month":4,"date_of_month":12,"day_of_week":5,"births":10733},{"year":1985,"month":4,"date_of_month":13,"day_of_week":6,"births":8766},{"year":1985,"month":4,"date_of_month":14,"day_of_week":7,"births":8390},{"year":1985,"month":4,"date_of_month":15,"day_of_week":1,"births":10607},{"year":1985,"month":4,"date_of_month":16,"day_of_week":2,"births":11121},{"year":1985,"month":4,"date_of_month":17,"day_of_week":3,"births":10493},{"year":1985,"month":4,"date_of_month":18,"day_of_week":4,"births":10464},{"year":1985,"month":4,"date_of_month":19,"day_of_week":5,"births":11178},{"year":1985,"month":4,"date_of_month":20,"day_of_week":6,"births":8797},{"year":1985,"month":4,"date_of_month":21,"day_of_week":7,"births":8639},{"year":1985,"month":4,"date_of_month":22,"day_of_week":1,"births":10712},{"year":1985,"month":4,"date_of_month":23,"day_of_week":2,"births":11030},{"year":1985,"month":4,"date_of_month":24,"day_of_week":3,"births":10413},{"year":1985,"month":4,"date_of_month":25,"day_of_week":4,"births":10634},{"year":1985,"month":4,"date_of_month":26,"day_of_week":5,"births":10671},{"year":1985,"month":4,"date_of_month":27,"day_of_week":6,"births":8925},{"year":1985,"month":4,"date_of_month":28,"day_of_week":7,"births":8059},{"year":1985,"month":4,"date_of_month":29,"day_of_week":1,"births":10484},{"year":1985,"month":4,"date_of_month":30,"day_of_week":2,"births":10894},{"year":1985,"month":5,"date_of_month":1,"day_of_week":3,"births":10727},{"year":1985,"month":5,"date_of_month":2,"day_of_week":4,"births":10728},{"year":1985,"month":5,"date_of_month":3,"day_of_week":5,"births":10593},{"year":1985,"month":5,"date_of_month":4,"day_of_week":6,"births":8680},{"year":1985,"month":5,"date_of_month":5,"day_of_week":7,"births":8678},{"year":1985,"month":5,"date_of_month":6,"day_of_week":1,"births":10642},{"year":1985,"month":5,"date_of_month":7,"day_of_week":2,"births":11267},{"year":1985,"month":5,"date_of_month":8,"day_of_week":3,"births":10723},{"year":1985,"month":5,"date_of_month":9,"day_of_week":4,"births":10764},{"year":1985,"month":5,"date_of_month":10,"day_of_week":5,"births":11005},{"year":1985,"month":5,"date_of_month":11,"day_of_week":6,"births":8971},{"year":1985,"month":5,"date_of_month":12,"day_of_week":7,"births":8643},{"year":1985,"month":5,"date_of_month":13,"day_of_week":1,"births":10154},{"year":1985,"month":5,"date_of_month":14,"day_of_week":2,"births":11099},{"year":1985,"month":5,"date_of_month":15,"day_of_week":3,"births":10762},{"year":1985,"month":5,"date_of_month":16,"day_of_week":4,"births":10409},{"year":1985,"month":5,"date_of_month":17,"day_of_week":5,"births":10845},{"year":1985,"month":5,"date_of_month":18,"day_of_week":6,"births":8950},{"year":1985,"month":5,"date_of_month":19,"day_of_week":7,"births":8453},{"year":1985,"month":5,"date_of_month":20,"day_of_week":1,"births":10955},{"year":1985,"month":5,"date_of_month":21,"day_of_week":2,"births":10962},{"year":1985,"month":5,"date_of_month":22,"day_of_week":3,"births":10908},{"year":1985,"month":5,"date_of_month":23,"day_of_week":4,"births":10845},{"year":1985,"month":5,"date_of_month":24,"day_of_week":5,"births":11196},{"year":1985,"month":5,"date_of_month":25,"day_of_week":6,"births":8925},{"year":1985,"month":5,"date_of_month":26,"day_of_week":7,"births":8756},{"year":1985,"month":5,"date_of_month":27,"day_of_week":1,"births":9049},{"year":1985,"month":5,"date_of_month":28,"day_of_week":2,"births":10865},{"year":1985,"month":5,"date_of_month":29,"day_of_week":3,"births":11225},{"year":1985,"month":5,"date_of_month":30,"day_of_week":4,"births":10943},{"year":1985,"month":5,"date_of_month":31,"day_of_week":5,"births":11288},{"year":1985,"month":6,"date_of_month":1,"day_of_week":6,"births":8996},{"year":1985,"month":6,"date_of_month":2,"day_of_week":7,"births":8753},{"year":1985,"month":6,"date_of_month":3,"day_of_week":1,"births":10538},{"year":1985,"month":6,"date_of_month":4,"day_of_week":2,"births":10772},{"year":1985,"month":6,"date_of_month":5,"day_of_week":3,"births":10846},{"year":1985,"month":6,"date_of_month":6,"day_of_week":4,"births":10805},{"year":1985,"month":6,"date_of_month":7,"day_of_week":5,"births":10993},{"year":1985,"month":6,"date_of_month":8,"day_of_week":6,"births":8936},{"year":1985,"month":6,"date_of_month":9,"day_of_week":7,"births":8789},{"year":1985,"month":6,"date_of_month":10,"day_of_week":1,"births":10919},{"year":1985,"month":6,"date_of_month":11,"day_of_week":2,"births":11091},{"year":1985,"month":6,"date_of_month":12,"day_of_week":3,"births":10620},{"year":1985,"month":6,"date_of_month":13,"day_of_week":4,"births":10402},{"year":1985,"month":6,"date_of_month":14,"day_of_week":5,"births":11047},{"year":1985,"month":6,"date_of_month":15,"day_of_week":6,"births":8991},{"year":1985,"month":6,"date_of_month":16,"day_of_week":7,"births":8831},{"year":1985,"month":6,"date_of_month":17,"day_of_week":1,"births":10962},{"year":1985,"month":6,"date_of_month":18,"day_of_week":2,"births":11141},{"year":1985,"month":6,"date_of_month":19,"day_of_week":3,"births":10856},{"year":1985,"month":6,"date_of_month":20,"day_of_week":4,"births":11341},{"year":1985,"month":6,"date_of_month":21,"day_of_week":5,"births":11204},{"year":1985,"month":6,"date_of_month":22,"day_of_week":6,"births":9258},{"year":1985,"month":6,"date_of_month":23,"day_of_week":7,"births":8757},{"year":1985,"month":6,"date_of_month":24,"day_of_week":1,"births":11014},{"year":1985,"month":6,"date_of_month":25,"day_of_week":2,"births":11385},{"year":1985,"month":6,"date_of_month":26,"day_of_week":3,"births":11112},{"year":1985,"month":6,"date_of_month":27,"day_of_week":4,"births":11066},{"year":1985,"month":6,"date_of_month":28,"day_of_week":5,"births":11360},{"year":1985,"month":6,"date_of_month":29,"day_of_week":6,"births":9200},{"year":1985,"month":6,"date_of_month":30,"day_of_week":7,"births":8877},{"year":1985,"month":7,"date_of_month":1,"day_of_week":1,"births":11302},{"year":1985,"month":7,"date_of_month":2,"day_of_week":2,"births":11905},{"year":1985,"month":7,"date_of_month":3,"day_of_week":3,"births":11698},{"year":1985,"month":7,"date_of_month":4,"day_of_week":4,"births":9176},{"year":1985,"month":7,"date_of_month":5,"day_of_week":5,"births":11233},{"year":1985,"month":7,"date_of_month":6,"day_of_week":6,"births":9326},{"year":1985,"month":7,"date_of_month":7,"day_of_week":7,"births":9114},{"year":1985,"month":7,"date_of_month":8,"day_of_week":1,"births":11340},{"year":1985,"month":7,"date_of_month":9,"day_of_week":2,"births":11882},{"year":1985,"month":7,"date_of_month":10,"day_of_week":3,"births":11640},{"year":1985,"month":7,"date_of_month":11,"day_of_week":4,"births":11148},{"year":1985,"month":7,"date_of_month":12,"day_of_week":5,"births":11459},{"year":1985,"month":7,"date_of_month":13,"day_of_week":6,"births":9180},{"year":1985,"month":7,"date_of_month":14,"day_of_week":7,"births":8965},{"year":1985,"month":7,"date_of_month":15,"day_of_week":1,"births":11414},{"year":1985,"month":7,"date_of_month":16,"day_of_week":2,"births":11685},{"year":1985,"month":7,"date_of_month":17,"day_of_week":3,"births":11243},{"year":1985,"month":7,"date_of_month":18,"day_of_week":4,"births":11231},{"year":1985,"month":7,"date_of_month":19,"day_of_week":5,"births":11484},{"year":1985,"month":7,"date_of_month":20,"day_of_week":6,"births":9375},{"year":1985,"month":7,"date_of_month":21,"day_of_week":7,"births":8914},{"year":1985,"month":7,"date_of_month":22,"day_of_week":1,"births":11164},{"year":1985,"month":7,"date_of_month":23,"day_of_week":2,"births":11489},{"year":1985,"month":7,"date_of_month":24,"day_of_week":3,"births":11100},{"year":1985,"month":7,"date_of_month":25,"day_of_week":4,"births":11341},{"year":1985,"month":7,"date_of_month":26,"day_of_week":5,"births":11399},{"year":1985,"month":7,"date_of_month":27,"day_of_week":6,"births":9441},{"year":1985,"month":7,"date_of_month":28,"day_of_week":7,"births":8941},{"year":1985,"month":7,"date_of_month":29,"day_of_week":1,"births":11331},{"year":1985,"month":7,"date_of_month":30,"day_of_week":2,"births":11707},{"year":1985,"month":7,"date_of_month":31,"day_of_week":3,"births":11284},{"year":1985,"month":8,"date_of_month":1,"day_of_week":4,"births":11202},{"year":1985,"month":8,"date_of_month":2,"day_of_week":5,"births":11221},{"year":1985,"month":8,"date_of_month":3,"day_of_week":6,"births":9413},{"year":1985,"month":8,"date_of_month":4,"day_of_week":7,"births":8804},{"year":1985,"month":8,"date_of_month":5,"day_of_week":1,"births":11160},{"year":1985,"month":8,"date_of_month":6,"day_of_week":2,"births":11562},{"year":1985,"month":8,"date_of_month":7,"day_of_week":3,"births":11442},{"year":1985,"month":8,"date_of_month":8,"day_of_week":4,"births":11533},{"year":1985,"month":8,"date_of_month":9,"day_of_week":5,"births":11542},{"year":1985,"month":8,"date_of_month":10,"day_of_week":6,"births":9321},{"year":1985,"month":8,"date_of_month":11,"day_of_week":7,"births":9027},{"year":1985,"month":8,"date_of_month":12,"day_of_week":1,"births":11424},{"year":1985,"month":8,"date_of_month":13,"day_of_week":2,"births":11636},{"year":1985,"month":8,"date_of_month":14,"day_of_week":3,"births":11540},{"year":1985,"month":8,"date_of_month":15,"day_of_week":4,"births":11746},{"year":1985,"month":8,"date_of_month":16,"day_of_week":5,"births":11614},{"year":1985,"month":8,"date_of_month":17,"day_of_week":6,"births":9680},{"year":1985,"month":8,"date_of_month":18,"day_of_week":7,"births":9291},{"year":1985,"month":8,"date_of_month":19,"day_of_week":1,"births":11314},{"year":1985,"month":8,"date_of_month":20,"day_of_week":2,"births":11903},{"year":1985,"month":8,"date_of_month":21,"day_of_week":3,"births":11384},{"year":1985,"month":8,"date_of_month":22,"day_of_week":4,"births":11538},{"year":1985,"month":8,"date_of_month":23,"day_of_week":5,"births":11434},{"year":1985,"month":8,"date_of_month":24,"day_of_week":6,"births":9473},{"year":1985,"month":8,"date_of_month":25,"day_of_week":7,"births":9128},{"year":1985,"month":8,"date_of_month":26,"day_of_week":1,"births":11324},{"year":1985,"month":8,"date_of_month":27,"day_of_week":2,"births":11780},{"year":1985,"month":8,"date_of_month":28,"day_of_week":3,"births":11368},{"year":1985,"month":8,"date_of_month":29,"day_of_week":4,"births":11515},{"year":1985,"month":8,"date_of_month":30,"day_of_week":5,"births":11867},{"year":1985,"month":8,"date_of_month":31,"day_of_week":6,"births":9832},{"year":1985,"month":9,"date_of_month":1,"day_of_week":7,"births":9145},{"year":1985,"month":9,"date_of_month":2,"day_of_week":1,"births":9183},{"year":1985,"month":9,"date_of_month":3,"day_of_week":2,"births":11417},{"year":1985,"month":9,"date_of_month":4,"day_of_week":3,"births":11985},{"year":1985,"month":9,"date_of_month":5,"day_of_week":4,"births":11959},{"year":1985,"month":9,"date_of_month":6,"day_of_week":5,"births":11925},{"year":1985,"month":9,"date_of_month":7,"day_of_week":6,"births":9564},{"year":1985,"month":9,"date_of_month":8,"day_of_week":7,"births":9072},{"year":1985,"month":9,"date_of_month":9,"day_of_week":1,"births":11623},{"year":1985,"month":9,"date_of_month":10,"day_of_week":2,"births":11828},{"year":1985,"month":9,"date_of_month":11,"day_of_week":3,"births":11521},{"year":1985,"month":9,"date_of_month":12,"day_of_week":4,"births":11958},{"year":1985,"month":9,"date_of_month":13,"day_of_week":5,"births":11330},{"year":1985,"month":9,"date_of_month":14,"day_of_week":6,"births":9542},{"year":1985,"month":9,"date_of_month":15,"day_of_week":7,"births":9281},{"year":1985,"month":9,"date_of_month":16,"day_of_week":1,"births":11849},{"year":1985,"month":9,"date_of_month":17,"day_of_week":2,"births":12058},{"year":1985,"month":9,"date_of_month":18,"day_of_week":3,"births":11819},{"year":1985,"month":9,"date_of_month":19,"day_of_week":4,"births":12212},{"year":1985,"month":9,"date_of_month":20,"day_of_week":5,"births":12118},{"year":1985,"month":9,"date_of_month":21,"day_of_week":6,"births":10144},{"year":1985,"month":9,"date_of_month":22,"day_of_week":7,"births":9798},{"year":1985,"month":9,"date_of_month":23,"day_of_week":1,"births":11909},{"year":1985,"month":9,"date_of_month":24,"day_of_week":2,"births":12396},{"year":1985,"month":9,"date_of_month":25,"day_of_week":3,"births":11695},{"year":1985,"month":9,"date_of_month":26,"day_of_week":4,"births":12038},{"year":1985,"month":9,"date_of_month":27,"day_of_week":5,"births":11926},{"year":1985,"month":9,"date_of_month":28,"day_of_week":6,"births":9584},{"year":1985,"month":9,"date_of_month":29,"day_of_week":7,"births":9236},{"year":1985,"month":9,"date_of_month":30,"day_of_week":1,"births":11560},{"year":1985,"month":10,"date_of_month":1,"day_of_week":2,"births":11719},{"year":1985,"month":10,"date_of_month":2,"day_of_week":3,"births":11365},{"year":1985,"month":10,"date_of_month":3,"day_of_week":4,"births":11359},{"year":1985,"month":10,"date_of_month":4,"day_of_week":5,"births":11810},{"year":1985,"month":10,"date_of_month":5,"day_of_week":6,"births":9578},{"year":1985,"month":10,"date_of_month":6,"day_of_week":7,"births":8928},{"year":1985,"month":10,"date_of_month":7,"day_of_week":1,"births":11024},{"year":1985,"month":10,"date_of_month":8,"day_of_week":2,"births":11358},{"year":1985,"month":10,"date_of_month":9,"day_of_week":3,"births":10959},{"year":1985,"month":10,"date_of_month":10,"day_of_week":4,"births":11057},{"year":1985,"month":10,"date_of_month":11,"day_of_week":5,"births":11184},{"year":1985,"month":10,"date_of_month":12,"day_of_week":6,"births":8948},{"year":1985,"month":10,"date_of_month":13,"day_of_week":7,"births":8515},{"year":1985,"month":10,"date_of_month":14,"day_of_week":1,"births":10651},{"year":1985,"month":10,"date_of_month":15,"day_of_week":2,"births":11353},{"year":1985,"month":10,"date_of_month":16,"day_of_week":3,"births":10784},{"year":1985,"month":10,"date_of_month":17,"day_of_week":4,"births":10809},{"year":1985,"month":10,"date_of_month":18,"day_of_week":5,"births":10849},{"year":1985,"month":10,"date_of_month":19,"day_of_week":6,"births":8847},{"year":1985,"month":10,"date_of_month":20,"day_of_week":7,"births":8481},{"year":1985,"month":10,"date_of_month":21,"day_of_week":1,"births":10773},{"year":1985,"month":10,"date_of_month":22,"day_of_week":2,"births":11023},{"year":1985,"month":10,"date_of_month":23,"day_of_week":3,"births":10698},{"year":1985,"month":10,"date_of_month":24,"day_of_week":4,"births":10657},{"year":1985,"month":10,"date_of_month":25,"day_of_week":5,"births":10892},{"year":1985,"month":10,"date_of_month":26,"day_of_week":6,"births":8721},{"year":1985,"month":10,"date_of_month":27,"day_of_week":7,"births":8823},{"year":1985,"month":10,"date_of_month":28,"day_of_week":1,"births":10510},{"year":1985,"month":10,"date_of_month":29,"day_of_week":2,"births":10790},{"year":1985,"month":10,"date_of_month":30,"day_of_week":3,"births":10666},{"year":1985,"month":10,"date_of_month":31,"day_of_week":4,"births":10246},{"year":1985,"month":11,"date_of_month":1,"day_of_week":5,"births":11095},{"year":1985,"month":11,"date_of_month":2,"day_of_week":6,"births":8875},{"year":1985,"month":11,"date_of_month":3,"day_of_week":7,"births":8442},{"year":1985,"month":11,"date_of_month":4,"day_of_week":1,"births":10896},{"year":1985,"month":11,"date_of_month":5,"day_of_week":2,"births":11119},{"year":1985,"month":11,"date_of_month":6,"day_of_week":3,"births":10695},{"year":1985,"month":11,"date_of_month":7,"day_of_week":4,"births":10865},{"year":1985,"month":11,"date_of_month":8,"day_of_week":5,"births":10798},{"year":1985,"month":11,"date_of_month":9,"day_of_week":6,"births":8788},{"year":1985,"month":11,"date_of_month":10,"day_of_week":7,"births":8338},{"year":1985,"month":11,"date_of_month":11,"day_of_week":1,"births":10348},{"year":1985,"month":11,"date_of_month":12,"day_of_week":2,"births":10984},{"year":1985,"month":11,"date_of_month":13,"day_of_week":3,"births":10505},{"year":1985,"month":11,"date_of_month":14,"day_of_week":4,"births":10837},{"year":1985,"month":11,"date_of_month":15,"day_of_week":5,"births":10971},{"year":1985,"month":11,"date_of_month":16,"day_of_week":6,"births":8718},{"year":1985,"month":11,"date_of_month":17,"day_of_week":7,"births":8545},{"year":1985,"month":11,"date_of_month":18,"day_of_week":1,"births":10721},{"year":1985,"month":11,"date_of_month":19,"day_of_week":2,"births":10800},{"year":1985,"month":11,"date_of_month":20,"day_of_week":3,"births":10829},{"year":1985,"month":11,"date_of_month":21,"day_of_week":4,"births":10638},{"year":1985,"month":11,"date_of_month":22,"day_of_week":5,"births":11058},{"year":1985,"month":11,"date_of_month":23,"day_of_week":6,"births":8814},{"year":1985,"month":11,"date_of_month":24,"day_of_week":7,"births":8581},{"year":1985,"month":11,"date_of_month":25,"day_of_week":1,"births":10816},{"year":1985,"month":11,"date_of_month":26,"day_of_week":2,"births":11284},{"year":1985,"month":11,"date_of_month":27,"day_of_week":3,"births":10766},{"year":1985,"month":11,"date_of_month":28,"day_of_week":4,"births":8183},{"year":1985,"month":11,"date_of_month":29,"day_of_week":5,"births":9922},{"year":1985,"month":11,"date_of_month":30,"day_of_week":6,"births":8696},{"year":1985,"month":12,"date_of_month":1,"day_of_week":7,"births":8549},{"year":1985,"month":12,"date_of_month":2,"day_of_week":1,"births":10578},{"year":1985,"month":12,"date_of_month":3,"day_of_week":2,"births":11263},{"year":1985,"month":12,"date_of_month":4,"day_of_week":3,"births":10672},{"year":1985,"month":12,"date_of_month":5,"day_of_week":4,"births":10604},{"year":1985,"month":12,"date_of_month":6,"day_of_week":5,"births":10484},{"year":1985,"month":12,"date_of_month":7,"day_of_week":6,"births":8535},{"year":1985,"month":12,"date_of_month":8,"day_of_week":7,"births":8394},{"year":1985,"month":12,"date_of_month":9,"day_of_week":1,"births":10607},{"year":1985,"month":12,"date_of_month":10,"day_of_week":2,"births":10974},{"year":1985,"month":12,"date_of_month":11,"day_of_week":3,"births":10433},{"year":1985,"month":12,"date_of_month":12,"day_of_week":4,"births":10610},{"year":1985,"month":12,"date_of_month":13,"day_of_week":5,"births":10145},{"year":1985,"month":12,"date_of_month":14,"day_of_week":6,"births":8706},{"year":1985,"month":12,"date_of_month":15,"day_of_week":7,"births":8253},{"year":1985,"month":12,"date_of_month":16,"day_of_week":1,"births":10987},{"year":1985,"month":12,"date_of_month":17,"day_of_week":2,"births":11453},{"year":1985,"month":12,"date_of_month":18,"day_of_week":3,"births":10983},{"year":1985,"month":12,"date_of_month":19,"day_of_week":4,"births":10917},{"year":1985,"month":12,"date_of_month":20,"day_of_week":5,"births":11308},{"year":1985,"month":12,"date_of_month":21,"day_of_week":6,"births":8916},{"year":1985,"month":12,"date_of_month":22,"day_of_week":7,"births":8259},{"year":1985,"month":12,"date_of_month":23,"day_of_week":1,"births":9859},{"year":1985,"month":12,"date_of_month":24,"day_of_week":2,"births":9203},{"year":1985,"month":12,"date_of_month":25,"day_of_week":3,"births":8031},{"year":1985,"month":12,"date_of_month":26,"day_of_week":4,"births":10022},{"year":1985,"month":12,"date_of_month":27,"day_of_week":5,"births":11484},{"year":1985,"month":12,"date_of_month":28,"day_of_week":6,"births":9248},{"year":1985,"month":12,"date_of_month":29,"day_of_week":7,"births":8526},{"year":1985,"month":12,"date_of_month":30,"day_of_week":1,"births":11644},{"year":1985,"month":12,"date_of_month":31,"day_of_week":2,"births":11485},{"year":1986,"month":1,"date_of_month":1,"day_of_week":3,"births":8444},{"year":1986,"month":1,"date_of_month":2,"day_of_week":4,"births":9446},{"year":1986,"month":1,"date_of_month":3,"day_of_week":5,"births":10327},{"year":1986,"month":1,"date_of_month":4,"day_of_week":6,"births":8807},{"year":1986,"month":1,"date_of_month":5,"day_of_week":7,"births":8397},{"year":1986,"month":1,"date_of_month":6,"day_of_week":1,"births":10293},{"year":1986,"month":1,"date_of_month":7,"day_of_week":2,"births":10716},{"year":1986,"month":1,"date_of_month":8,"day_of_week":3,"births":10065},{"year":1986,"month":1,"date_of_month":9,"day_of_week":4,"births":10056},{"year":1986,"month":1,"date_of_month":10,"day_of_week":5,"births":10659},{"year":1986,"month":1,"date_of_month":11,"day_of_week":6,"births":8870},{"year":1986,"month":1,"date_of_month":12,"day_of_week":7,"births":8274},{"year":1986,"month":1,"date_of_month":13,"day_of_week":1,"births":10206},{"year":1986,"month":1,"date_of_month":14,"day_of_week":2,"births":10739},{"year":1986,"month":1,"date_of_month":15,"day_of_week":3,"births":10403},{"year":1986,"month":1,"date_of_month":16,"day_of_week":4,"births":10387},{"year":1986,"month":1,"date_of_month":17,"day_of_week":5,"births":10674},{"year":1986,"month":1,"date_of_month":18,"day_of_week":6,"births":8843},{"year":1986,"month":1,"date_of_month":19,"day_of_week":7,"births":8354},{"year":1986,"month":1,"date_of_month":20,"day_of_week":1,"births":10489},{"year":1986,"month":1,"date_of_month":21,"day_of_week":2,"births":10856},{"year":1986,"month":1,"date_of_month":22,"day_of_week":3,"births":10398},{"year":1986,"month":1,"date_of_month":23,"day_of_week":4,"births":10388},{"year":1986,"month":1,"date_of_month":24,"day_of_week":5,"births":10511},{"year":1986,"month":1,"date_of_month":25,"day_of_week":6,"births":9021},{"year":1986,"month":1,"date_of_month":26,"day_of_week":7,"births":8328},{"year":1986,"month":1,"date_of_month":27,"day_of_week":1,"births":10459},{"year":1986,"month":1,"date_of_month":28,"day_of_week":2,"births":10650},{"year":1986,"month":1,"date_of_month":29,"day_of_week":3,"births":10442},{"year":1986,"month":1,"date_of_month":30,"day_of_week":4,"births":10376},{"year":1986,"month":1,"date_of_month":31,"day_of_week":5,"births":10638},{"year":1986,"month":2,"date_of_month":1,"day_of_week":6,"births":8736},{"year":1986,"month":2,"date_of_month":2,"day_of_week":7,"births":8542},{"year":1986,"month":2,"date_of_month":3,"day_of_week":1,"births":10403},{"year":1986,"month":2,"date_of_month":4,"day_of_week":2,"births":10765},{"year":1986,"month":2,"date_of_month":5,"day_of_week":3,"births":10219},{"year":1986,"month":2,"date_of_month":6,"day_of_week":4,"births":10606},{"year":1986,"month":2,"date_of_month":7,"day_of_week":5,"births":10638},{"year":1986,"month":2,"date_of_month":8,"day_of_week":6,"births":8759},{"year":1986,"month":2,"date_of_month":9,"day_of_week":7,"births":8471},{"year":1986,"month":2,"date_of_month":10,"day_of_week":1,"births":10558},{"year":1986,"month":2,"date_of_month":11,"day_of_week":2,"births":10747},{"year":1986,"month":2,"date_of_month":12,"day_of_week":3,"births":10571},{"year":1986,"month":2,"date_of_month":13,"day_of_week":4,"births":10442},{"year":1986,"month":2,"date_of_month":14,"day_of_week":5,"births":11412},{"year":1986,"month":2,"date_of_month":15,"day_of_week":6,"births":8927},{"year":1986,"month":2,"date_of_month":16,"day_of_week":7,"births":8413},{"year":1986,"month":2,"date_of_month":17,"day_of_week":1,"births":10237},{"year":1986,"month":2,"date_of_month":18,"day_of_week":2,"births":10919},{"year":1986,"month":2,"date_of_month":19,"day_of_week":3,"births":10869},{"year":1986,"month":2,"date_of_month":20,"day_of_week":4,"births":10654},{"year":1986,"month":2,"date_of_month":21,"day_of_week":5,"births":10820},{"year":1986,"month":2,"date_of_month":22,"day_of_week":6,"births":8969},{"year":1986,"month":2,"date_of_month":23,"day_of_week":7,"births":8383},{"year":1986,"month":2,"date_of_month":24,"day_of_week":1,"births":10563},{"year":1986,"month":2,"date_of_month":25,"day_of_week":2,"births":10891},{"year":1986,"month":2,"date_of_month":26,"day_of_week":3,"births":10716},{"year":1986,"month":2,"date_of_month":27,"day_of_week":4,"births":10672},{"year":1986,"month":2,"date_of_month":28,"day_of_week":5,"births":10883},{"year":1986,"month":3,"date_of_month":1,"day_of_week":6,"births":8776},{"year":1986,"month":3,"date_of_month":2,"day_of_week":7,"births":8334},{"year":1986,"month":3,"date_of_month":3,"day_of_week":1,"births":10671},{"year":1986,"month":3,"date_of_month":4,"day_of_week":2,"births":10926},{"year":1986,"month":3,"date_of_month":5,"day_of_week":3,"births":10651},{"year":1986,"month":3,"date_of_month":6,"day_of_week":4,"births":10783},{"year":1986,"month":3,"date_of_month":7,"day_of_week":5,"births":11033},{"year":1986,"month":3,"date_of_month":8,"day_of_week":6,"births":8763},{"year":1986,"month":3,"date_of_month":9,"day_of_week":7,"births":8240},{"year":1986,"month":3,"date_of_month":10,"day_of_week":1,"births":10839},{"year":1986,"month":3,"date_of_month":11,"day_of_week":2,"births":10958},{"year":1986,"month":3,"date_of_month":12,"day_of_week":3,"births":10744},{"year":1986,"month":3,"date_of_month":13,"day_of_week":4,"births":10522},{"year":1986,"month":3,"date_of_month":14,"day_of_week":5,"births":10897},{"year":1986,"month":3,"date_of_month":15,"day_of_week":6,"births":8854},{"year":1986,"month":3,"date_of_month":16,"day_of_week":7,"births":8432},{"year":1986,"month":3,"date_of_month":17,"day_of_week":1,"births":10670},{"year":1986,"month":3,"date_of_month":18,"day_of_week":2,"births":10865},{"year":1986,"month":3,"date_of_month":19,"day_of_week":3,"births":10710},{"year":1986,"month":3,"date_of_month":20,"day_of_week":4,"births":10743},{"year":1986,"month":3,"date_of_month":21,"day_of_week":5,"births":10984},{"year":1986,"month":3,"date_of_month":22,"day_of_week":6,"births":8554},{"year":1986,"month":3,"date_of_month":23,"day_of_week":7,"births":8387},{"year":1986,"month":3,"date_of_month":24,"day_of_week":1,"births":10542},{"year":1986,"month":3,"date_of_month":25,"day_of_week":2,"births":11144},{"year":1986,"month":3,"date_of_month":26,"day_of_week":3,"births":10872},{"year":1986,"month":3,"date_of_month":27,"day_of_week":4,"births":11081},{"year":1986,"month":3,"date_of_month":28,"day_of_week":5,"births":10813},{"year":1986,"month":3,"date_of_month":29,"day_of_week":6,"births":8817},{"year":1986,"month":3,"date_of_month":30,"day_of_week":7,"births":8572},{"year":1986,"month":3,"date_of_month":31,"day_of_week":1,"births":10569},{"year":1986,"month":4,"date_of_month":1,"day_of_week":2,"births":10569},{"year":1986,"month":4,"date_of_month":2,"day_of_week":3,"births":10683},{"year":1986,"month":4,"date_of_month":3,"day_of_week":4,"births":11000},{"year":1986,"month":4,"date_of_month":4,"day_of_week":5,"births":10807},{"year":1986,"month":4,"date_of_month":5,"day_of_week":6,"births":8944},{"year":1986,"month":4,"date_of_month":6,"day_of_week":7,"births":8289},{"year":1986,"month":4,"date_of_month":7,"day_of_week":1,"births":10720},{"year":1986,"month":4,"date_of_month":8,"day_of_week":2,"births":11217},{"year":1986,"month":4,"date_of_month":9,"day_of_week":3,"births":10656},{"year":1986,"month":4,"date_of_month":10,"day_of_week":4,"births":10621},{"year":1986,"month":4,"date_of_month":11,"day_of_week":5,"births":10486},{"year":1986,"month":4,"date_of_month":12,"day_of_week":6,"births":8608},{"year":1986,"month":4,"date_of_month":13,"day_of_week":7,"births":8295},{"year":1986,"month":4,"date_of_month":14,"day_of_week":1,"births":10658},{"year":1986,"month":4,"date_of_month":15,"day_of_week":2,"births":10876},{"year":1986,"month":4,"date_of_month":16,"day_of_week":3,"births":10609},{"year":1986,"month":4,"date_of_month":17,"day_of_week":4,"births":10664},{"year":1986,"month":4,"date_of_month":18,"day_of_week":5,"births":10549},{"year":1986,"month":4,"date_of_month":19,"day_of_week":6,"births":8679},{"year":1986,"month":4,"date_of_month":20,"day_of_week":7,"births":8382},{"year":1986,"month":4,"date_of_month":21,"day_of_week":1,"births":10447},{"year":1986,"month":4,"date_of_month":22,"day_of_week":2,"births":10896},{"year":1986,"month":4,"date_of_month":23,"day_of_week":3,"births":10341},{"year":1986,"month":4,"date_of_month":24,"day_of_week":4,"births":10572},{"year":1986,"month":4,"date_of_month":25,"day_of_week":5,"births":10988},{"year":1986,"month":4,"date_of_month":26,"day_of_week":6,"births":9023},{"year":1986,"month":4,"date_of_month":27,"day_of_week":7,"births":8167},{"year":1986,"month":4,"date_of_month":28,"day_of_week":1,"births":10820},{"year":1986,"month":4,"date_of_month":29,"day_of_week":2,"births":11003},{"year":1986,"month":4,"date_of_month":30,"day_of_week":3,"births":10881},{"year":1986,"month":5,"date_of_month":1,"day_of_week":4,"births":10962},{"year":1986,"month":5,"date_of_month":2,"day_of_week":5,"births":10821},{"year":1986,"month":5,"date_of_month":3,"day_of_week":6,"births":8524},{"year":1986,"month":5,"date_of_month":4,"day_of_week":7,"births":7921},{"year":1986,"month":5,"date_of_month":5,"day_of_week":1,"births":10494},{"year":1986,"month":5,"date_of_month":6,"day_of_week":2,"births":11018},{"year":1986,"month":5,"date_of_month":7,"day_of_week":3,"births":10640},{"year":1986,"month":5,"date_of_month":8,"day_of_week":4,"births":10517},{"year":1986,"month":5,"date_of_month":9,"day_of_week":5,"births":10813},{"year":1986,"month":5,"date_of_month":10,"day_of_week":6,"births":8835},{"year":1986,"month":5,"date_of_month":11,"day_of_week":7,"births":8358},{"year":1986,"month":5,"date_of_month":12,"day_of_week":1,"births":10637},{"year":1986,"month":5,"date_of_month":13,"day_of_week":2,"births":10959},{"year":1986,"month":5,"date_of_month":14,"day_of_week":3,"births":10750},{"year":1986,"month":5,"date_of_month":15,"day_of_week":4,"births":10886},{"year":1986,"month":5,"date_of_month":16,"day_of_week":5,"births":11116},{"year":1986,"month":5,"date_of_month":17,"day_of_week":6,"births":8880},{"year":1986,"month":5,"date_of_month":18,"day_of_week":7,"births":8602},{"year":1986,"month":5,"date_of_month":19,"day_of_week":1,"births":10785},{"year":1986,"month":5,"date_of_month":20,"day_of_week":2,"births":11221},{"year":1986,"month":5,"date_of_month":21,"day_of_week":3,"births":10719},{"year":1986,"month":5,"date_of_month":22,"day_of_week":4,"births":10781},{"year":1986,"month":5,"date_of_month":23,"day_of_week":5,"births":11284},{"year":1986,"month":5,"date_of_month":24,"day_of_week":6,"births":8937},{"year":1986,"month":5,"date_of_month":25,"day_of_week":7,"births":8442},{"year":1986,"month":5,"date_of_month":26,"day_of_week":1,"births":8838},{"year":1986,"month":5,"date_of_month":27,"day_of_week":2,"births":11086},{"year":1986,"month":5,"date_of_month":28,"day_of_week":3,"births":11454},{"year":1986,"month":5,"date_of_month":29,"day_of_week":4,"births":11348},{"year":1986,"month":5,"date_of_month":30,"day_of_week":5,"births":11560},{"year":1986,"month":5,"date_of_month":31,"day_of_week":6,"births":9131},{"year":1986,"month":6,"date_of_month":1,"day_of_week":7,"births":8579},{"year":1986,"month":6,"date_of_month":2,"day_of_week":1,"births":10757},{"year":1986,"month":6,"date_of_month":3,"day_of_week":2,"births":10785},{"year":1986,"month":6,"date_of_month":4,"day_of_week":3,"births":10762},{"year":1986,"month":6,"date_of_month":5,"day_of_week":4,"births":10923},{"year":1986,"month":6,"date_of_month":6,"day_of_week":5,"births":11010},{"year":1986,"month":6,"date_of_month":7,"day_of_week":6,"births":8664},{"year":1986,"month":6,"date_of_month":8,"day_of_week":7,"births":8405},{"year":1986,"month":6,"date_of_month":9,"day_of_week":1,"births":10632},{"year":1986,"month":6,"date_of_month":10,"day_of_week":2,"births":10879},{"year":1986,"month":6,"date_of_month":11,"day_of_week":3,"births":10998},{"year":1986,"month":6,"date_of_month":12,"day_of_week":4,"births":11111},{"year":1986,"month":6,"date_of_month":13,"day_of_week":5,"births":10411},{"year":1986,"month":6,"date_of_month":14,"day_of_week":6,"births":8643},{"year":1986,"month":6,"date_of_month":15,"day_of_week":7,"births":8528},{"year":1986,"month":6,"date_of_month":16,"day_of_week":1,"births":11051},{"year":1986,"month":6,"date_of_month":17,"day_of_week":2,"births":11361},{"year":1986,"month":6,"date_of_month":18,"day_of_week":3,"births":10692},{"year":1986,"month":6,"date_of_month":19,"day_of_week":4,"births":10676},{"year":1986,"month":6,"date_of_month":20,"day_of_week":5,"births":11154},{"year":1986,"month":6,"date_of_month":21,"day_of_week":6,"births":8857},{"year":1986,"month":6,"date_of_month":22,"day_of_week":7,"births":8473},{"year":1986,"month":6,"date_of_month":23,"day_of_week":1,"births":10968},{"year":1986,"month":6,"date_of_month":24,"day_of_week":2,"births":11532},{"year":1986,"month":6,"date_of_month":25,"day_of_week":3,"births":11038},{"year":1986,"month":6,"date_of_month":26,"day_of_week":4,"births":11100},{"year":1986,"month":6,"date_of_month":27,"day_of_week":5,"births":11286},{"year":1986,"month":6,"date_of_month":28,"day_of_week":6,"births":9128},{"year":1986,"month":6,"date_of_month":29,"day_of_week":7,"births":8718},{"year":1986,"month":6,"date_of_month":30,"day_of_week":1,"births":10890},{"year":1986,"month":7,"date_of_month":1,"day_of_week":2,"births":11545},{"year":1986,"month":7,"date_of_month":2,"day_of_week":3,"births":11413},{"year":1986,"month":7,"date_of_month":3,"day_of_week":4,"births":11306},{"year":1986,"month":7,"date_of_month":4,"day_of_week":5,"births":9019},{"year":1986,"month":7,"date_of_month":5,"day_of_week":6,"births":9111},{"year":1986,"month":7,"date_of_month":6,"day_of_week":7,"births":8665},{"year":1986,"month":7,"date_of_month":7,"day_of_week":1,"births":11367},{"year":1986,"month":7,"date_of_month":8,"day_of_week":2,"births":12051},{"year":1986,"month":7,"date_of_month":9,"day_of_week":3,"births":11404},{"year":1986,"month":7,"date_of_month":10,"day_of_week":4,"births":11684},{"year":1986,"month":7,"date_of_month":11,"day_of_week":5,"births":11405},{"year":1986,"month":7,"date_of_month":12,"day_of_week":6,"births":9182},{"year":1986,"month":7,"date_of_month":13,"day_of_week":7,"births":8789},{"year":1986,"month":7,"date_of_month":14,"day_of_week":1,"births":11133},{"year":1986,"month":7,"date_of_month":15,"day_of_week":2,"births":11627},{"year":1986,"month":7,"date_of_month":16,"day_of_week":3,"births":11334},{"year":1986,"month":7,"date_of_month":17,"day_of_week":4,"births":11378},{"year":1986,"month":7,"date_of_month":18,"day_of_week":5,"births":11572},{"year":1986,"month":7,"date_of_month":19,"day_of_week":6,"births":9421},{"year":1986,"month":7,"date_of_month":20,"day_of_week":7,"births":9050},{"year":1986,"month":7,"date_of_month":21,"day_of_week":1,"births":11200},{"year":1986,"month":7,"date_of_month":22,"day_of_week":2,"births":12263},{"year":1986,"month":7,"date_of_month":23,"day_of_week":3,"births":11540},{"year":1986,"month":7,"date_of_month":24,"day_of_week":4,"births":11322},{"year":1986,"month":7,"date_of_month":25,"day_of_week":5,"births":11801},{"year":1986,"month":7,"date_of_month":26,"day_of_week":6,"births":9386},{"year":1986,"month":7,"date_of_month":27,"day_of_week":7,"births":8959},{"year":1986,"month":7,"date_of_month":28,"day_of_week":1,"births":11372},{"year":1986,"month":7,"date_of_month":29,"day_of_week":2,"births":11896},{"year":1986,"month":7,"date_of_month":30,"day_of_week":3,"births":11418},{"year":1986,"month":7,"date_of_month":31,"day_of_week":4,"births":11298},{"year":1986,"month":8,"date_of_month":1,"day_of_week":5,"births":11686},{"year":1986,"month":8,"date_of_month":2,"day_of_week":6,"births":9357},{"year":1986,"month":8,"date_of_month":3,"day_of_week":7,"births":8875},{"year":1986,"month":8,"date_of_month":4,"day_of_week":1,"births":11264},{"year":1986,"month":8,"date_of_month":5,"day_of_week":2,"births":11655},{"year":1986,"month":8,"date_of_month":6,"day_of_week":3,"births":11643},{"year":1986,"month":8,"date_of_month":7,"day_of_week":4,"births":11413},{"year":1986,"month":8,"date_of_month":8,"day_of_week":5,"births":11733},{"year":1986,"month":8,"date_of_month":9,"day_of_week":6,"births":9560},{"year":1986,"month":8,"date_of_month":10,"day_of_week":7,"births":8924},{"year":1986,"month":8,"date_of_month":11,"day_of_week":1,"births":11216},{"year":1986,"month":8,"date_of_month":12,"day_of_week":2,"births":11685},{"year":1986,"month":8,"date_of_month":13,"day_of_week":3,"births":11158},{"year":1986,"month":8,"date_of_month":14,"day_of_week":4,"births":11340},{"year":1986,"month":8,"date_of_month":15,"day_of_week":5,"births":11651},{"year":1986,"month":8,"date_of_month":16,"day_of_week":6,"births":9552},{"year":1986,"month":8,"date_of_month":17,"day_of_week":7,"births":9135},{"year":1986,"month":8,"date_of_month":18,"day_of_week":1,"births":11258},{"year":1986,"month":8,"date_of_month":19,"day_of_week":2,"births":11833},{"year":1986,"month":8,"date_of_month":20,"day_of_week":3,"births":11768},{"year":1986,"month":8,"date_of_month":21,"day_of_week":4,"births":11509},{"year":1986,"month":8,"date_of_month":22,"day_of_week":5,"births":11554},{"year":1986,"month":8,"date_of_month":23,"day_of_week":6,"births":9491},{"year":1986,"month":8,"date_of_month":24,"day_of_week":7,"births":8940},{"year":1986,"month":8,"date_of_month":25,"day_of_week":1,"births":11333},{"year":1986,"month":8,"date_of_month":26,"day_of_week":2,"births":11819},{"year":1986,"month":8,"date_of_month":27,"day_of_week":3,"births":11680},{"year":1986,"month":8,"date_of_month":28,"day_of_week":4,"births":11462},{"year":1986,"month":8,"date_of_month":29,"day_of_week":5,"births":11717},{"year":1986,"month":8,"date_of_month":30,"day_of_week":6,"births":9211},{"year":1986,"month":8,"date_of_month":31,"day_of_week":7,"births":8842},{"year":1986,"month":9,"date_of_month":1,"day_of_week":1,"births":8948},{"year":1986,"month":9,"date_of_month":2,"day_of_week":2,"births":11277},{"year":1986,"month":9,"date_of_month":3,"day_of_week":3,"births":11840},{"year":1986,"month":9,"date_of_month":4,"day_of_week":4,"births":11737},{"year":1986,"month":9,"date_of_month":5,"day_of_week":5,"births":11884},{"year":1986,"month":9,"date_of_month":6,"day_of_week":6,"births":9685},{"year":1986,"month":9,"date_of_month":7,"day_of_week":7,"births":9044},{"year":1986,"month":9,"date_of_month":8,"day_of_week":1,"births":11221},{"year":1986,"month":9,"date_of_month":9,"day_of_week":2,"births":11877},{"year":1986,"month":9,"date_of_month":10,"day_of_week":3,"births":11443},{"year":1986,"month":9,"date_of_month":11,"day_of_week":4,"births":11704},{"year":1986,"month":9,"date_of_month":12,"day_of_week":5,"births":12011},{"year":1986,"month":9,"date_of_month":13,"day_of_week":6,"births":9596},{"year":1986,"month":9,"date_of_month":14,"day_of_week":7,"births":9167},{"year":1986,"month":9,"date_of_month":15,"day_of_week":1,"births":11763},{"year":1986,"month":9,"date_of_month":16,"day_of_week":2,"births":12301},{"year":1986,"month":9,"date_of_month":17,"day_of_week":3,"births":11757},{"year":1986,"month":9,"date_of_month":18,"day_of_week":4,"births":12011},{"year":1986,"month":9,"date_of_month":19,"day_of_week":5,"births":12237},{"year":1986,"month":9,"date_of_month":20,"day_of_week":6,"births":9906},{"year":1986,"month":9,"date_of_month":21,"day_of_week":7,"births":9483},{"year":1986,"month":9,"date_of_month":22,"day_of_week":1,"births":12156},{"year":1986,"month":9,"date_of_month":23,"day_of_week":2,"births":12235},{"year":1986,"month":9,"date_of_month":24,"day_of_week":3,"births":12062},{"year":1986,"month":9,"date_of_month":25,"day_of_week":4,"births":12281},{"year":1986,"month":9,"date_of_month":26,"day_of_week":5,"births":12412},{"year":1986,"month":9,"date_of_month":27,"day_of_week":6,"births":9783},{"year":1986,"month":9,"date_of_month":28,"day_of_week":7,"births":9171},{"year":1986,"month":9,"date_of_month":29,"day_of_week":1,"births":11731},{"year":1986,"month":9,"date_of_month":30,"day_of_week":2,"births":11859},{"year":1986,"month":10,"date_of_month":1,"day_of_week":3,"births":11704},{"year":1986,"month":10,"date_of_month":2,"day_of_week":4,"births":11536},{"year":1986,"month":10,"date_of_month":3,"day_of_week":5,"births":11446},{"year":1986,"month":10,"date_of_month":4,"day_of_week":6,"births":9282},{"year":1986,"month":10,"date_of_month":5,"day_of_week":7,"births":8799},{"year":1986,"month":10,"date_of_month":6,"day_of_week":1,"births":10979},{"year":1986,"month":10,"date_of_month":7,"day_of_week":2,"births":11500},{"year":1986,"month":10,"date_of_month":8,"day_of_week":3,"births":11013},{"year":1986,"month":10,"date_of_month":9,"day_of_week":4,"births":10859},{"year":1986,"month":10,"date_of_month":10,"day_of_week":5,"births":11168},{"year":1986,"month":10,"date_of_month":11,"day_of_week":6,"births":8775},{"year":1986,"month":10,"date_of_month":12,"day_of_week":7,"births":8217},{"year":1986,"month":10,"date_of_month":13,"day_of_week":1,"births":10322},{"year":1986,"month":10,"date_of_month":14,"day_of_week":2,"births":11030},{"year":1986,"month":10,"date_of_month":15,"day_of_week":3,"births":11085},{"year":1986,"month":10,"date_of_month":16,"day_of_week":4,"births":10867},{"year":1986,"month":10,"date_of_month":17,"day_of_week":5,"births":11004},{"year":1986,"month":10,"date_of_month":18,"day_of_week":6,"births":8710},{"year":1986,"month":10,"date_of_month":19,"day_of_week":7,"births":8218},{"year":1986,"month":10,"date_of_month":20,"day_of_week":1,"births":10445},{"year":1986,"month":10,"date_of_month":21,"day_of_week":2,"births":10981},{"year":1986,"month":10,"date_of_month":22,"day_of_week":3,"births":10589},{"year":1986,"month":10,"date_of_month":23,"day_of_week":4,"births":10526},{"year":1986,"month":10,"date_of_month":24,"day_of_week":5,"births":10736},{"year":1986,"month":10,"date_of_month":25,"day_of_week":6,"births":8580},{"year":1986,"month":10,"date_of_month":26,"day_of_week":7,"births":8562},{"year":1986,"month":10,"date_of_month":27,"day_of_week":1,"births":10522},{"year":1986,"month":10,"date_of_month":28,"day_of_week":2,"births":10796},{"year":1986,"month":10,"date_of_month":29,"day_of_week":3,"births":10594},{"year":1986,"month":10,"date_of_month":30,"day_of_week":4,"births":10504},{"year":1986,"month":10,"date_of_month":31,"day_of_week":5,"births":10122},{"year":1986,"month":11,"date_of_month":1,"day_of_week":6,"births":8717},{"year":1986,"month":11,"date_of_month":2,"day_of_week":7,"births":8209},{"year":1986,"month":11,"date_of_month":3,"day_of_week":1,"births":10593},{"year":1986,"month":11,"date_of_month":4,"day_of_week":2,"births":11064},{"year":1986,"month":11,"date_of_month":5,"day_of_week":3,"births":10471},{"year":1986,"month":11,"date_of_month":6,"day_of_week":4,"births":10626},{"year":1986,"month":11,"date_of_month":7,"day_of_week":5,"births":10680},{"year":1986,"month":11,"date_of_month":8,"day_of_week":6,"births":8758},{"year":1986,"month":11,"date_of_month":9,"day_of_week":7,"births":8339},{"year":1986,"month":11,"date_of_month":10,"day_of_week":1,"births":10403},{"year":1986,"month":11,"date_of_month":11,"day_of_week":2,"births":10875},{"year":1986,"month":11,"date_of_month":12,"day_of_week":3,"births":10599},{"year":1986,"month":11,"date_of_month":13,"day_of_week":4,"births":10245},{"year":1986,"month":11,"date_of_month":14,"day_of_week":5,"births":10668},{"year":1986,"month":11,"date_of_month":15,"day_of_week":6,"births":8465},{"year":1986,"month":11,"date_of_month":16,"day_of_week":7,"births":8213},{"year":1986,"month":11,"date_of_month":17,"day_of_week":1,"births":10534},{"year":1986,"month":11,"date_of_month":18,"day_of_week":2,"births":11046},{"year":1986,"month":11,"date_of_month":19,"day_of_week":3,"births":10590},{"year":1986,"month":11,"date_of_month":20,"day_of_week":4,"births":10541},{"year":1986,"month":11,"date_of_month":21,"day_of_week":5,"births":10856},{"year":1986,"month":11,"date_of_month":22,"day_of_week":6,"births":8442},{"year":1986,"month":11,"date_of_month":23,"day_of_week":7,"births":8186},{"year":1986,"month":11,"date_of_month":24,"day_of_week":1,"births":10601},{"year":1986,"month":11,"date_of_month":25,"day_of_week":2,"births":11101},{"year":1986,"month":11,"date_of_month":26,"day_of_week":3,"births":10458},{"year":1986,"month":11,"date_of_month":27,"day_of_week":4,"births":8015},{"year":1986,"month":11,"date_of_month":28,"day_of_week":5,"births":9724},{"year":1986,"month":11,"date_of_month":29,"day_of_week":6,"births":8362},{"year":1986,"month":11,"date_of_month":30,"day_of_week":7,"births":8190},{"year":1986,"month":12,"date_of_month":1,"day_of_week":1,"births":10612},{"year":1986,"month":12,"date_of_month":2,"day_of_week":2,"births":11106},{"year":1986,"month":12,"date_of_month":3,"day_of_week":3,"births":10650},{"year":1986,"month":12,"date_of_month":4,"day_of_week":4,"births":10280},{"year":1986,"month":12,"date_of_month":5,"day_of_week":5,"births":10441},{"year":1986,"month":12,"date_of_month":6,"day_of_week":6,"births":8295},{"year":1986,"month":12,"date_of_month":7,"day_of_week":7,"births":8087},{"year":1986,"month":12,"date_of_month":8,"day_of_week":1,"births":10446},{"year":1986,"month":12,"date_of_month":9,"day_of_week":2,"births":10963},{"year":1986,"month":12,"date_of_month":10,"day_of_week":3,"births":10619},{"year":1986,"month":12,"date_of_month":11,"day_of_week":4,"births":10403},{"year":1986,"month":12,"date_of_month":12,"day_of_week":5,"births":10678},{"year":1986,"month":12,"date_of_month":13,"day_of_week":6,"births":8502},{"year":1986,"month":12,"date_of_month":14,"day_of_week":7,"births":8080},{"year":1986,"month":12,"date_of_month":15,"day_of_week":1,"births":10866},{"year":1986,"month":12,"date_of_month":16,"day_of_week":2,"births":11389},{"year":1986,"month":12,"date_of_month":17,"day_of_week":3,"births":11217},{"year":1986,"month":12,"date_of_month":18,"day_of_week":4,"births":11187},{"year":1986,"month":12,"date_of_month":19,"day_of_week":5,"births":11628},{"year":1986,"month":12,"date_of_month":20,"day_of_week":6,"births":8688},{"year":1986,"month":12,"date_of_month":21,"day_of_week":7,"births":8146},{"year":1986,"month":12,"date_of_month":22,"day_of_week":1,"births":10589},{"year":1986,"month":12,"date_of_month":23,"day_of_week":2,"births":10533},{"year":1986,"month":12,"date_of_month":24,"day_of_week":3,"births":9097},{"year":1986,"month":12,"date_of_month":25,"day_of_week":4,"births":8107},{"year":1986,"month":12,"date_of_month":26,"day_of_week":5,"births":10417},{"year":1986,"month":12,"date_of_month":27,"day_of_week":6,"births":8821},{"year":1986,"month":12,"date_of_month":28,"day_of_week":7,"births":8286},{"year":1986,"month":12,"date_of_month":29,"day_of_week":1,"births":11298},{"year":1986,"month":12,"date_of_month":30,"day_of_week":2,"births":12237},{"year":1986,"month":12,"date_of_month":31,"day_of_week":3,"births":11388},{"year":1987,"month":1,"date_of_month":1,"day_of_week":4,"births":8343},{"year":1987,"month":1,"date_of_month":2,"day_of_week":5,"births":9530},{"year":1987,"month":1,"date_of_month":3,"day_of_week":6,"births":8778},{"year":1987,"month":1,"date_of_month":4,"day_of_week":7,"births":8259},{"year":1987,"month":1,"date_of_month":5,"day_of_week":1,"births":10102},{"year":1987,"month":1,"date_of_month":6,"day_of_week":2,"births":11016},{"year":1987,"month":1,"date_of_month":7,"day_of_week":3,"births":10534},{"year":1987,"month":1,"date_of_month":8,"day_of_week":4,"births":10462},{"year":1987,"month":1,"date_of_month":9,"day_of_week":5,"births":10470},{"year":1987,"month":1,"date_of_month":10,"day_of_week":6,"births":8645},{"year":1987,"month":1,"date_of_month":11,"day_of_week":7,"births":8181},{"year":1987,"month":1,"date_of_month":12,"day_of_week":1,"births":10385},{"year":1987,"month":1,"date_of_month":13,"day_of_week":2,"births":10581},{"year":1987,"month":1,"date_of_month":14,"day_of_week":3,"births":10456},{"year":1987,"month":1,"date_of_month":15,"day_of_week":4,"births":10520},{"year":1987,"month":1,"date_of_month":16,"day_of_week":5,"births":10633},{"year":1987,"month":1,"date_of_month":17,"day_of_week":6,"births":8608},{"year":1987,"month":1,"date_of_month":18,"day_of_week":7,"births":8095},{"year":1987,"month":1,"date_of_month":19,"day_of_week":1,"births":10160},{"year":1987,"month":1,"date_of_month":20,"day_of_week":2,"births":10670},{"year":1987,"month":1,"date_of_month":21,"day_of_week":3,"births":10612},{"year":1987,"month":1,"date_of_month":22,"day_of_week":4,"births":10602},{"year":1987,"month":1,"date_of_month":23,"day_of_week":5,"births":10581},{"year":1987,"month":1,"date_of_month":24,"day_of_week":6,"births":8582},{"year":1987,"month":1,"date_of_month":25,"day_of_week":7,"births":8341},{"year":1987,"month":1,"date_of_month":26,"day_of_week":1,"births":10297},{"year":1987,"month":1,"date_of_month":27,"day_of_week":2,"births":10831},{"year":1987,"month":1,"date_of_month":28,"day_of_week":3,"births":10811},{"year":1987,"month":1,"date_of_month":29,"day_of_week":4,"births":10641},{"year":1987,"month":1,"date_of_month":30,"day_of_week":5,"births":10712},{"year":1987,"month":1,"date_of_month":31,"day_of_week":6,"births":8896},{"year":1987,"month":2,"date_of_month":1,"day_of_week":7,"births":8403},{"year":1987,"month":2,"date_of_month":2,"day_of_week":1,"births":10585},{"year":1987,"month":2,"date_of_month":3,"day_of_week":2,"births":11039},{"year":1987,"month":2,"date_of_month":4,"day_of_week":3,"births":10549},{"year":1987,"month":2,"date_of_month":5,"day_of_week":4,"births":10529},{"year":1987,"month":2,"date_of_month":6,"day_of_week":5,"births":10611},{"year":1987,"month":2,"date_of_month":7,"day_of_week":6,"births":8735},{"year":1987,"month":2,"date_of_month":8,"day_of_week":7,"births":8278},{"year":1987,"month":2,"date_of_month":9,"day_of_week":1,"births":10414},{"year":1987,"month":2,"date_of_month":10,"day_of_week":2,"births":10976},{"year":1987,"month":2,"date_of_month":11,"day_of_week":3,"births":10649},{"year":1987,"month":2,"date_of_month":12,"day_of_week":4,"births":10986},{"year":1987,"month":2,"date_of_month":13,"day_of_week":5,"births":10256},{"year":1987,"month":2,"date_of_month":14,"day_of_week":6,"births":9245},{"year":1987,"month":2,"date_of_month":15,"day_of_week":7,"births":8384},{"year":1987,"month":2,"date_of_month":16,"day_of_week":1,"births":10263},{"year":1987,"month":2,"date_of_month":17,"day_of_week":2,"births":10930},{"year":1987,"month":2,"date_of_month":18,"day_of_week":3,"births":10756},{"year":1987,"month":2,"date_of_month":19,"day_of_week":4,"births":10488},{"year":1987,"month":2,"date_of_month":20,"day_of_week":5,"births":10992},{"year":1987,"month":2,"date_of_month":21,"day_of_week":6,"births":8840},{"year":1987,"month":2,"date_of_month":22,"day_of_week":7,"births":8642},{"year":1987,"month":2,"date_of_month":23,"day_of_week":1,"births":10752},{"year":1987,"month":2,"date_of_month":24,"day_of_week":2,"births":11015},{"year":1987,"month":2,"date_of_month":25,"day_of_week":3,"births":10863},{"year":1987,"month":2,"date_of_month":26,"day_of_week":4,"births":10625},{"year":1987,"month":2,"date_of_month":27,"day_of_week":5,"births":11010},{"year":1987,"month":2,"date_of_month":28,"day_of_week":6,"births":8945},{"year":1987,"month":3,"date_of_month":1,"day_of_week":7,"births":8485},{"year":1987,"month":3,"date_of_month":2,"day_of_week":1,"births":10818},{"year":1987,"month":3,"date_of_month":3,"day_of_week":2,"births":10931},{"year":1987,"month":3,"date_of_month":4,"day_of_week":3,"births":10667},{"year":1987,"month":3,"date_of_month":5,"day_of_week":4,"births":10971},{"year":1987,"month":3,"date_of_month":6,"day_of_week":5,"births":11095},{"year":1987,"month":3,"date_of_month":7,"day_of_week":6,"births":8754},{"year":1987,"month":3,"date_of_month":8,"day_of_week":7,"births":8294},{"year":1987,"month":3,"date_of_month":9,"day_of_week":1,"births":10809},{"year":1987,"month":3,"date_of_month":10,"day_of_week":2,"births":11200},{"year":1987,"month":3,"date_of_month":11,"day_of_week":3,"births":10697},{"year":1987,"month":3,"date_of_month":12,"day_of_week":4,"births":10900},{"year":1987,"month":3,"date_of_month":13,"day_of_week":5,"births":10399},{"year":1987,"month":3,"date_of_month":14,"day_of_week":6,"births":8837},{"year":1987,"month":3,"date_of_month":15,"day_of_week":7,"births":8318},{"year":1987,"month":3,"date_of_month":16,"day_of_week":1,"births":10818},{"year":1987,"month":3,"date_of_month":17,"day_of_week":2,"births":11226},{"year":1987,"month":3,"date_of_month":18,"day_of_week":3,"births":11095},{"year":1987,"month":3,"date_of_month":19,"day_of_week":4,"births":10948},{"year":1987,"month":3,"date_of_month":20,"day_of_week":5,"births":11255},{"year":1987,"month":3,"date_of_month":21,"day_of_week":6,"births":9006},{"year":1987,"month":3,"date_of_month":22,"day_of_week":7,"births":8307},{"year":1987,"month":3,"date_of_month":23,"day_of_week":1,"births":10830},{"year":1987,"month":3,"date_of_month":24,"day_of_week":2,"births":11317},{"year":1987,"month":3,"date_of_month":25,"day_of_week":3,"births":10802},{"year":1987,"month":3,"date_of_month":26,"day_of_week":4,"births":10915},{"year":1987,"month":3,"date_of_month":27,"day_of_week":5,"births":11057},{"year":1987,"month":3,"date_of_month":28,"day_of_week":6,"births":8855},{"year":1987,"month":3,"date_of_month":29,"day_of_week":7,"births":8355},{"year":1987,"month":3,"date_of_month":30,"day_of_week":1,"births":10623},{"year":1987,"month":3,"date_of_month":31,"day_of_week":2,"births":11196},{"year":1987,"month":4,"date_of_month":1,"day_of_week":3,"births":10212},{"year":1987,"month":4,"date_of_month":2,"day_of_week":4,"births":11069},{"year":1987,"month":4,"date_of_month":3,"day_of_week":5,"births":11045},{"year":1987,"month":4,"date_of_month":4,"day_of_week":6,"births":8819},{"year":1987,"month":4,"date_of_month":5,"day_of_week":7,"births":8012},{"year":1987,"month":4,"date_of_month":6,"day_of_week":1,"births":10765},{"year":1987,"month":4,"date_of_month":7,"day_of_week":2,"births":11324},{"year":1987,"month":4,"date_of_month":8,"day_of_week":3,"births":11006},{"year":1987,"month":4,"date_of_month":9,"day_of_week":4,"births":10810},{"year":1987,"month":4,"date_of_month":10,"day_of_week":5,"births":11284},{"year":1987,"month":4,"date_of_month":11,"day_of_week":6,"births":9033},{"year":1987,"month":4,"date_of_month":12,"day_of_week":7,"births":8535},{"year":1987,"month":4,"date_of_month":13,"day_of_week":1,"births":10610},{"year":1987,"month":4,"date_of_month":14,"day_of_week":2,"births":11417},{"year":1987,"month":4,"date_of_month":15,"day_of_week":3,"births":11067},{"year":1987,"month":4,"date_of_month":16,"day_of_week":4,"births":11175},{"year":1987,"month":4,"date_of_month":17,"day_of_week":5,"births":10558},{"year":1987,"month":4,"date_of_month":18,"day_of_week":6,"births":8925},{"year":1987,"month":4,"date_of_month":19,"day_of_week":7,"births":8225},{"year":1987,"month":4,"date_of_month":20,"day_of_week":1,"births":10594},{"year":1987,"month":4,"date_of_month":21,"day_of_week":2,"births":11205},{"year":1987,"month":4,"date_of_month":22,"day_of_week":3,"births":10972},{"year":1987,"month":4,"date_of_month":23,"day_of_week":4,"births":10816},{"year":1987,"month":4,"date_of_month":24,"day_of_week":5,"births":10847},{"year":1987,"month":4,"date_of_month":25,"day_of_week":6,"births":8663},{"year":1987,"month":4,"date_of_month":26,"day_of_week":7,"births":8286},{"year":1987,"month":4,"date_of_month":27,"day_of_week":1,"births":10386},{"year":1987,"month":4,"date_of_month":28,"day_of_week":2,"births":10895},{"year":1987,"month":4,"date_of_month":29,"day_of_week":3,"births":10610},{"year":1987,"month":4,"date_of_month":30,"day_of_week":4,"births":10900},{"year":1987,"month":5,"date_of_month":1,"day_of_week":5,"births":10939},{"year":1987,"month":5,"date_of_month":2,"day_of_week":6,"births":8879},{"year":1987,"month":5,"date_of_month":3,"day_of_week":7,"births":8375},{"year":1987,"month":5,"date_of_month":4,"day_of_week":1,"births":10808},{"year":1987,"month":5,"date_of_month":5,"day_of_week":2,"births":11110},{"year":1987,"month":5,"date_of_month":6,"day_of_week":3,"births":10826},{"year":1987,"month":5,"date_of_month":7,"day_of_week":4,"births":10956},{"year":1987,"month":5,"date_of_month":8,"day_of_week":5,"births":11198},{"year":1987,"month":5,"date_of_month":9,"day_of_week":6,"births":8853},{"year":1987,"month":5,"date_of_month":10,"day_of_week":7,"births":8567},{"year":1987,"month":5,"date_of_month":11,"day_of_week":1,"births":10993},{"year":1987,"month":5,"date_of_month":12,"day_of_week":2,"births":11413},{"year":1987,"month":5,"date_of_month":13,"day_of_week":3,"births":10560},{"year":1987,"month":5,"date_of_month":14,"day_of_week":4,"births":11038},{"year":1987,"month":5,"date_of_month":15,"day_of_week":5,"births":11210},{"year":1987,"month":5,"date_of_month":16,"day_of_week":6,"births":8893},{"year":1987,"month":5,"date_of_month":17,"day_of_week":7,"births":8329},{"year":1987,"month":5,"date_of_month":18,"day_of_week":1,"births":11208},{"year":1987,"month":5,"date_of_month":19,"day_of_week":2,"births":11443},{"year":1987,"month":5,"date_of_month":20,"day_of_week":3,"births":11226},{"year":1987,"month":5,"date_of_month":21,"day_of_week":4,"births":11289},{"year":1987,"month":5,"date_of_month":22,"day_of_week":5,"births":11620},{"year":1987,"month":5,"date_of_month":23,"day_of_week":6,"births":8954},{"year":1987,"month":5,"date_of_month":24,"day_of_week":7,"births":8368},{"year":1987,"month":5,"date_of_month":25,"day_of_week":1,"births":8789},{"year":1987,"month":5,"date_of_month":26,"day_of_week":2,"births":11131},{"year":1987,"month":5,"date_of_month":27,"day_of_week":3,"births":11835},{"year":1987,"month":5,"date_of_month":28,"day_of_week":4,"births":11437},{"year":1987,"month":5,"date_of_month":29,"day_of_week":5,"births":11779},{"year":1987,"month":5,"date_of_month":30,"day_of_week":6,"births":9276},{"year":1987,"month":5,"date_of_month":31,"day_of_week":7,"births":8809},{"year":1987,"month":6,"date_of_month":1,"day_of_week":1,"births":11099},{"year":1987,"month":6,"date_of_month":2,"day_of_week":2,"births":11540},{"year":1987,"month":6,"date_of_month":3,"day_of_week":3,"births":11180},{"year":1987,"month":6,"date_of_month":4,"day_of_week":4,"births":11231},{"year":1987,"month":6,"date_of_month":5,"day_of_week":5,"births":11360},{"year":1987,"month":6,"date_of_month":6,"day_of_week":6,"births":9262},{"year":1987,"month":6,"date_of_month":7,"day_of_week":7,"births":8551},{"year":1987,"month":6,"date_of_month":8,"day_of_week":1,"births":11102},{"year":1987,"month":6,"date_of_month":9,"day_of_week":2,"births":11498},{"year":1987,"month":6,"date_of_month":10,"day_of_week":3,"births":11357},{"year":1987,"month":6,"date_of_month":11,"day_of_week":4,"births":11290},{"year":1987,"month":6,"date_of_month":12,"day_of_week":5,"births":11510},{"year":1987,"month":6,"date_of_month":13,"day_of_week":6,"births":9254},{"year":1987,"month":6,"date_of_month":14,"day_of_week":7,"births":8623},{"year":1987,"month":6,"date_of_month":15,"day_of_week":1,"births":11453},{"year":1987,"month":6,"date_of_month":16,"day_of_week":2,"births":11647},{"year":1987,"month":6,"date_of_month":17,"day_of_week":3,"births":11471},{"year":1987,"month":6,"date_of_month":18,"day_of_week":4,"births":11225},{"year":1987,"month":6,"date_of_month":19,"day_of_week":5,"births":11461},{"year":1987,"month":6,"date_of_month":20,"day_of_week":6,"births":9255},{"year":1987,"month":6,"date_of_month":21,"day_of_week":7,"births":8886},{"year":1987,"month":6,"date_of_month":22,"day_of_week":1,"births":11073},{"year":1987,"month":6,"date_of_month":23,"day_of_week":2,"births":11433},{"year":1987,"month":6,"date_of_month":24,"day_of_week":3,"births":11191},{"year":1987,"month":6,"date_of_month":25,"day_of_week":4,"births":11427},{"year":1987,"month":6,"date_of_month":26,"day_of_week":5,"births":11548},{"year":1987,"month":6,"date_of_month":27,"day_of_week":6,"births":8988},{"year":1987,"month":6,"date_of_month":28,"day_of_week":7,"births":8695},{"year":1987,"month":6,"date_of_month":29,"day_of_week":1,"births":10869},{"year":1987,"month":6,"date_of_month":30,"day_of_week":2,"births":11878},{"year":1987,"month":7,"date_of_month":1,"day_of_week":3,"births":11440},{"year":1987,"month":7,"date_of_month":2,"day_of_week":4,"births":11849},{"year":1987,"month":7,"date_of_month":3,"day_of_week":5,"births":10153},{"year":1987,"month":7,"date_of_month":4,"day_of_week":6,"births":8864},{"year":1987,"month":7,"date_of_month":5,"day_of_week":7,"births":8645},{"year":1987,"month":7,"date_of_month":6,"day_of_week":1,"births":10949},{"year":1987,"month":7,"date_of_month":7,"day_of_week":2,"births":11864},{"year":1987,"month":7,"date_of_month":8,"day_of_week":3,"births":11530},{"year":1987,"month":7,"date_of_month":9,"day_of_week":4,"births":11404},{"year":1987,"month":7,"date_of_month":10,"day_of_week":5,"births":11646},{"year":1987,"month":7,"date_of_month":11,"day_of_week":6,"births":9305},{"year":1987,"month":7,"date_of_month":12,"day_of_week":7,"births":8870},{"year":1987,"month":7,"date_of_month":13,"day_of_week":1,"births":10955},{"year":1987,"month":7,"date_of_month":14,"day_of_week":2,"births":11890},{"year":1987,"month":7,"date_of_month":15,"day_of_week":3,"births":11356},{"year":1987,"month":7,"date_of_month":16,"day_of_week":4,"births":11432},{"year":1987,"month":7,"date_of_month":17,"day_of_week":5,"births":11518},{"year":1987,"month":7,"date_of_month":18,"day_of_week":6,"births":9011},{"year":1987,"month":7,"date_of_month":19,"day_of_week":7,"births":8859},{"year":1987,"month":7,"date_of_month":20,"day_of_week":1,"births":11389},{"year":1987,"month":7,"date_of_month":21,"day_of_week":2,"births":11854},{"year":1987,"month":7,"date_of_month":22,"day_of_week":3,"births":11631},{"year":1987,"month":7,"date_of_month":23,"day_of_week":4,"births":11579},{"year":1987,"month":7,"date_of_month":24,"day_of_week":5,"births":11778},{"year":1987,"month":7,"date_of_month":25,"day_of_week":6,"births":9530},{"year":1987,"month":7,"date_of_month":26,"day_of_week":7,"births":9073},{"year":1987,"month":7,"date_of_month":27,"day_of_week":1,"births":11604},{"year":1987,"month":7,"date_of_month":28,"day_of_week":2,"births":12043},{"year":1987,"month":7,"date_of_month":29,"day_of_week":3,"births":11590},{"year":1987,"month":7,"date_of_month":30,"day_of_week":4,"births":11614},{"year":1987,"month":7,"date_of_month":31,"day_of_week":5,"births":11493},{"year":1987,"month":8,"date_of_month":1,"day_of_week":6,"births":9142},{"year":1987,"month":8,"date_of_month":2,"day_of_week":7,"births":8896},{"year":1987,"month":8,"date_of_month":3,"day_of_week":1,"births":11329},{"year":1987,"month":8,"date_of_month":4,"day_of_week":2,"births":11720},{"year":1987,"month":8,"date_of_month":5,"day_of_week":3,"births":11351},{"year":1987,"month":8,"date_of_month":6,"day_of_week":4,"births":11336},{"year":1987,"month":8,"date_of_month":7,"day_of_week":5,"births":11765},{"year":1987,"month":8,"date_of_month":8,"day_of_week":6,"births":9421},{"year":1987,"month":8,"date_of_month":9,"day_of_week":7,"births":8637},{"year":1987,"month":8,"date_of_month":10,"day_of_week":1,"births":11476},{"year":1987,"month":8,"date_of_month":11,"day_of_week":2,"births":11790},{"year":1987,"month":8,"date_of_month":12,"day_of_week":3,"births":11341},{"year":1987,"month":8,"date_of_month":13,"day_of_week":4,"births":11418},{"year":1987,"month":8,"date_of_month":14,"day_of_week":5,"births":11472},{"year":1987,"month":8,"date_of_month":15,"day_of_week":6,"births":9398},{"year":1987,"month":8,"date_of_month":16,"day_of_week":7,"births":8858},{"year":1987,"month":8,"date_of_month":17,"day_of_week":1,"births":11585},{"year":1987,"month":8,"date_of_month":18,"day_of_week":2,"births":11896},{"year":1987,"month":8,"date_of_month":19,"day_of_week":3,"births":11234},{"year":1987,"month":8,"date_of_month":20,"day_of_week":4,"births":11440},{"year":1987,"month":8,"date_of_month":21,"day_of_week":5,"births":11692},{"year":1987,"month":8,"date_of_month":22,"day_of_week":6,"births":9313},{"year":1987,"month":8,"date_of_month":23,"day_of_week":7,"births":8900},{"year":1987,"month":8,"date_of_month":24,"day_of_week":1,"births":11056},{"year":1987,"month":8,"date_of_month":25,"day_of_week":2,"births":11670},{"year":1987,"month":8,"date_of_month":26,"day_of_week":3,"births":11462},{"year":1987,"month":8,"date_of_month":27,"day_of_week":4,"births":11533},{"year":1987,"month":8,"date_of_month":28,"day_of_week":5,"births":11616},{"year":1987,"month":8,"date_of_month":29,"day_of_week":6,"births":9148},{"year":1987,"month":8,"date_of_month":30,"day_of_week":7,"births":8798},{"year":1987,"month":8,"date_of_month":31,"day_of_week":1,"births":10995},{"year":1987,"month":9,"date_of_month":1,"day_of_week":2,"births":11734},{"year":1987,"month":9,"date_of_month":2,"day_of_week":3,"births":11451},{"year":1987,"month":9,"date_of_month":3,"day_of_week":4,"births":11472},{"year":1987,"month":9,"date_of_month":4,"day_of_week":5,"births":11869},{"year":1987,"month":9,"date_of_month":5,"day_of_week":6,"births":9392},{"year":1987,"month":9,"date_of_month":6,"day_of_week":7,"births":8802},{"year":1987,"month":9,"date_of_month":7,"day_of_week":1,"births":9330},{"year":1987,"month":9,"date_of_month":8,"day_of_week":2,"births":11731},{"year":1987,"month":9,"date_of_month":9,"day_of_week":3,"births":12178},{"year":1987,"month":9,"date_of_month":10,"day_of_week":4,"births":12252},{"year":1987,"month":9,"date_of_month":11,"day_of_week":5,"births":12351},{"year":1987,"month":9,"date_of_month":12,"day_of_week":6,"births":9467},{"year":1987,"month":9,"date_of_month":13,"day_of_week":7,"births":9024},{"year":1987,"month":9,"date_of_month":14,"day_of_week":1,"births":11572},{"year":1987,"month":9,"date_of_month":15,"day_of_week":2,"births":12140},{"year":1987,"month":9,"date_of_month":16,"day_of_week":3,"births":11988},{"year":1987,"month":9,"date_of_month":17,"day_of_week":4,"births":12106},{"year":1987,"month":9,"date_of_month":18,"day_of_week":5,"births":12197},{"year":1987,"month":9,"date_of_month":19,"day_of_week":6,"births":9828},{"year":1987,"month":9,"date_of_month":20,"day_of_week":7,"births":9432},{"year":1987,"month":9,"date_of_month":21,"day_of_week":1,"births":11875},{"year":1987,"month":9,"date_of_month":22,"day_of_week":2,"births":12256},{"year":1987,"month":9,"date_of_month":23,"day_of_week":3,"births":11682},{"year":1987,"month":9,"date_of_month":24,"day_of_week":4,"births":11860},{"year":1987,"month":9,"date_of_month":25,"day_of_week":5,"births":12173},{"year":1987,"month":9,"date_of_month":26,"day_of_week":6,"births":9791},{"year":1987,"month":9,"date_of_month":27,"day_of_week":7,"births":9147},{"year":1987,"month":9,"date_of_month":28,"day_of_week":1,"births":11513},{"year":1987,"month":9,"date_of_month":29,"day_of_week":2,"births":12085},{"year":1987,"month":9,"date_of_month":30,"day_of_week":3,"births":11737},{"year":1987,"month":10,"date_of_month":1,"day_of_week":4,"births":11791},{"year":1987,"month":10,"date_of_month":2,"day_of_week":5,"births":11861},{"year":1987,"month":10,"date_of_month":3,"day_of_week":6,"births":9238},{"year":1987,"month":10,"date_of_month":4,"day_of_week":7,"births":8686},{"year":1987,"month":10,"date_of_month":5,"day_of_week":1,"births":11368},{"year":1987,"month":10,"date_of_month":6,"day_of_week":2,"births":11565},{"year":1987,"month":10,"date_of_month":7,"day_of_week":3,"births":11256},{"year":1987,"month":10,"date_of_month":8,"day_of_week":4,"births":11315},{"year":1987,"month":10,"date_of_month":9,"day_of_week":5,"births":11254},{"year":1987,"month":10,"date_of_month":10,"day_of_week":6,"births":9165},{"year":1987,"month":10,"date_of_month":11,"day_of_week":7,"births":8543},{"year":1987,"month":10,"date_of_month":12,"day_of_week":1,"births":10871},{"year":1987,"month":10,"date_of_month":13,"day_of_week":2,"births":11433},{"year":1987,"month":10,"date_of_month":14,"day_of_week":3,"births":11374},{"year":1987,"month":10,"date_of_month":15,"day_of_week":4,"births":11419},{"year":1987,"month":10,"date_of_month":16,"day_of_week":5,"births":11240},{"year":1987,"month":10,"date_of_month":17,"day_of_week":6,"births":8972},{"year":1987,"month":10,"date_of_month":18,"day_of_week":7,"births":8270},{"year":1987,"month":10,"date_of_month":19,"day_of_week":1,"births":10844},{"year":1987,"month":10,"date_of_month":20,"day_of_week":2,"births":11380},{"year":1987,"month":10,"date_of_month":21,"day_of_week":3,"births":11190},{"year":1987,"month":10,"date_of_month":22,"day_of_week":4,"births":10793},{"year":1987,"month":10,"date_of_month":23,"day_of_week":5,"births":11160},{"year":1987,"month":10,"date_of_month":24,"day_of_week":6,"births":8848},{"year":1987,"month":10,"date_of_month":25,"day_of_week":7,"births":8849},{"year":1987,"month":10,"date_of_month":26,"day_of_week":1,"births":10856},{"year":1987,"month":10,"date_of_month":27,"day_of_week":2,"births":11116},{"year":1987,"month":10,"date_of_month":28,"day_of_week":3,"births":11046},{"year":1987,"month":10,"date_of_month":29,"day_of_week":4,"births":11100},{"year":1987,"month":10,"date_of_month":30,"day_of_week":5,"births":11046},{"year":1987,"month":10,"date_of_month":31,"day_of_week":6,"births":8885},{"year":1987,"month":11,"date_of_month":1,"day_of_week":7,"births":8463},{"year":1987,"month":11,"date_of_month":2,"day_of_week":1,"births":10791},{"year":1987,"month":11,"date_of_month":3,"day_of_week":2,"births":11227},{"year":1987,"month":11,"date_of_month":4,"day_of_week":3,"births":11132},{"year":1987,"month":11,"date_of_month":5,"day_of_week":4,"births":10977},{"year":1987,"month":11,"date_of_month":6,"day_of_week":5,"births":11099},{"year":1987,"month":11,"date_of_month":7,"day_of_week":6,"births":8814},{"year":1987,"month":11,"date_of_month":8,"day_of_week":7,"births":8433},{"year":1987,"month":11,"date_of_month":9,"day_of_week":1,"births":10895},{"year":1987,"month":11,"date_of_month":10,"day_of_week":2,"births":11390},{"year":1987,"month":11,"date_of_month":11,"day_of_week":3,"births":11006},{"year":1987,"month":11,"date_of_month":12,"day_of_week":4,"births":11006},{"year":1987,"month":11,"date_of_month":13,"day_of_week":5,"births":10642},{"year":1987,"month":11,"date_of_month":14,"day_of_week":6,"births":8877},{"year":1987,"month":11,"date_of_month":15,"day_of_week":7,"births":8523},{"year":1987,"month":11,"date_of_month":16,"day_of_week":1,"births":11017},{"year":1987,"month":11,"date_of_month":17,"day_of_week":2,"births":11443},{"year":1987,"month":11,"date_of_month":18,"day_of_week":3,"births":11020},{"year":1987,"month":11,"date_of_month":19,"day_of_week":4,"births":10828},{"year":1987,"month":11,"date_of_month":20,"day_of_week":5,"births":11249},{"year":1987,"month":11,"date_of_month":21,"day_of_week":6,"births":8891},{"year":1987,"month":11,"date_of_month":22,"day_of_week":7,"births":8476},{"year":1987,"month":11,"date_of_month":23,"day_of_week":1,"births":11270},{"year":1987,"month":11,"date_of_month":24,"day_of_week":2,"births":11545},{"year":1987,"month":11,"date_of_month":25,"day_of_week":3,"births":11125},{"year":1987,"month":11,"date_of_month":26,"day_of_week":4,"births":8318},{"year":1987,"month":11,"date_of_month":27,"day_of_week":5,"births":10014},{"year":1987,"month":11,"date_of_month":28,"day_of_week":6,"births":8685},{"year":1987,"month":11,"date_of_month":29,"day_of_week":7,"births":8416},{"year":1987,"month":11,"date_of_month":30,"day_of_week":1,"births":11085},{"year":1987,"month":12,"date_of_month":1,"day_of_week":2,"births":11807},{"year":1987,"month":12,"date_of_month":2,"day_of_week":3,"births":10936},{"year":1987,"month":12,"date_of_month":3,"day_of_week":4,"births":10865},{"year":1987,"month":12,"date_of_month":4,"day_of_week":5,"births":10895},{"year":1987,"month":12,"date_of_month":5,"day_of_week":6,"births":8655},{"year":1987,"month":12,"date_of_month":6,"day_of_week":7,"births":8483},{"year":1987,"month":12,"date_of_month":7,"day_of_week":1,"births":10667},{"year":1987,"month":12,"date_of_month":8,"day_of_week":2,"births":11179},{"year":1987,"month":12,"date_of_month":9,"day_of_week":3,"births":10844},{"year":1987,"month":12,"date_of_month":10,"day_of_week":4,"births":10937},{"year":1987,"month":12,"date_of_month":11,"day_of_week":5,"births":11035},{"year":1987,"month":12,"date_of_month":12,"day_of_week":6,"births":8807},{"year":1987,"month":12,"date_of_month":13,"day_of_week":7,"births":8239},{"year":1987,"month":12,"date_of_month":14,"day_of_week":1,"births":10933},{"year":1987,"month":12,"date_of_month":15,"day_of_week":2,"births":11533},{"year":1987,"month":12,"date_of_month":16,"day_of_week":3,"births":11132},{"year":1987,"month":12,"date_of_month":17,"day_of_week":4,"births":11394},{"year":1987,"month":12,"date_of_month":18,"day_of_week":5,"births":11872},{"year":1987,"month":12,"date_of_month":19,"day_of_week":6,"births":8920},{"year":1987,"month":12,"date_of_month":20,"day_of_week":7,"births":8360},{"year":1987,"month":12,"date_of_month":21,"day_of_week":1,"births":11531},{"year":1987,"month":12,"date_of_month":22,"day_of_week":2,"births":11162},{"year":1987,"month":12,"date_of_month":23,"day_of_week":3,"births":10301},{"year":1987,"month":12,"date_of_month":24,"day_of_week":4,"births":8919},{"year":1987,"month":12,"date_of_month":25,"day_of_week":5,"births":7881},{"year":1987,"month":12,"date_of_month":26,"day_of_week":6,"births":8446},{"year":1987,"month":12,"date_of_month":27,"day_of_week":7,"births":8541},{"year":1987,"month":12,"date_of_month":28,"day_of_week":1,"births":11462},{"year":1987,"month":12,"date_of_month":29,"day_of_week":2,"births":12181},{"year":1987,"month":12,"date_of_month":30,"day_of_week":3,"births":11843},{"year":1987,"month":12,"date_of_month":31,"day_of_week":4,"births":10812},{"year":1988,"month":1,"date_of_month":1,"day_of_week":5,"births":8494},{"year":1988,"month":1,"date_of_month":2,"day_of_week":6,"births":8049},{"year":1988,"month":1,"date_of_month":3,"day_of_week":7,"births":8177},{"year":1988,"month":1,"date_of_month":4,"day_of_week":1,"births":10202},{"year":1988,"month":1,"date_of_month":5,"day_of_week":2,"births":10927},{"year":1988,"month":1,"date_of_month":6,"day_of_week":3,"births":10669},{"year":1988,"month":1,"date_of_month":7,"day_of_week":4,"births":10814},{"year":1988,"month":1,"date_of_month":8,"day_of_week":5,"births":10748},{"year":1988,"month":1,"date_of_month":9,"day_of_week":6,"births":8645},{"year":1988,"month":1,"date_of_month":10,"day_of_week":7,"births":8299},{"year":1988,"month":1,"date_of_month":11,"day_of_week":1,"births":10652},{"year":1988,"month":1,"date_of_month":12,"day_of_week":2,"births":11173},{"year":1988,"month":1,"date_of_month":13,"day_of_week":3,"births":10685},{"year":1988,"month":1,"date_of_month":14,"day_of_week":4,"births":10781},{"year":1988,"month":1,"date_of_month":15,"day_of_week":5,"births":11141},{"year":1988,"month":1,"date_of_month":16,"day_of_week":6,"births":8835},{"year":1988,"month":1,"date_of_month":17,"day_of_week":7,"births":8516},{"year":1988,"month":1,"date_of_month":18,"day_of_week":1,"births":10617},{"year":1988,"month":1,"date_of_month":19,"day_of_week":2,"births":11156},{"year":1988,"month":1,"date_of_month":20,"day_of_week":3,"births":11001},{"year":1988,"month":1,"date_of_month":21,"day_of_week":4,"births":10949},{"year":1988,"month":1,"date_of_month":22,"day_of_week":5,"births":10927},{"year":1988,"month":1,"date_of_month":23,"day_of_week":6,"births":8728},{"year":1988,"month":1,"date_of_month":24,"day_of_week":7,"births":8573},{"year":1988,"month":1,"date_of_month":25,"day_of_week":1,"births":10784},{"year":1988,"month":1,"date_of_month":26,"day_of_week":2,"births":10971},{"year":1988,"month":1,"date_of_month":27,"day_of_week":3,"births":10865},{"year":1988,"month":1,"date_of_month":28,"day_of_week":4,"births":10689},{"year":1988,"month":1,"date_of_month":29,"day_of_week":5,"births":11019},{"year":1988,"month":1,"date_of_month":30,"day_of_week":6,"births":8899},{"year":1988,"month":1,"date_of_month":31,"day_of_week":7,"births":8515},{"year":1988,"month":2,"date_of_month":1,"day_of_week":1,"births":10747},{"year":1988,"month":2,"date_of_month":2,"day_of_week":2,"births":11370},{"year":1988,"month":2,"date_of_month":3,"day_of_week":3,"births":10879},{"year":1988,"month":2,"date_of_month":4,"day_of_week":4,"births":10802},{"year":1988,"month":2,"date_of_month":5,"day_of_week":5,"births":10944},{"year":1988,"month":2,"date_of_month":6,"day_of_week":6,"births":8721},{"year":1988,"month":2,"date_of_month":7,"day_of_week":7,"births":8310},{"year":1988,"month":2,"date_of_month":8,"day_of_week":1,"births":10624},{"year":1988,"month":2,"date_of_month":9,"day_of_week":2,"births":11268},{"year":1988,"month":2,"date_of_month":10,"day_of_week":3,"births":11170},{"year":1988,"month":2,"date_of_month":11,"day_of_week":4,"births":11020},{"year":1988,"month":2,"date_of_month":12,"day_of_week":5,"births":11160},{"year":1988,"month":2,"date_of_month":13,"day_of_week":6,"births":8720},{"year":1988,"month":2,"date_of_month":14,"day_of_week":7,"births":8730},{"year":1988,"month":2,"date_of_month":15,"day_of_week":1,"births":10360},{"year":1988,"month":2,"date_of_month":16,"day_of_week":2,"births":11259},{"year":1988,"month":2,"date_of_month":17,"day_of_week":3,"births":11162},{"year":1988,"month":2,"date_of_month":18,"day_of_week":4,"births":11040},{"year":1988,"month":2,"date_of_month":19,"day_of_week":5,"births":11129},{"year":1988,"month":2,"date_of_month":20,"day_of_week":6,"births":9208},{"year":1988,"month":2,"date_of_month":21,"day_of_week":7,"births":8422},{"year":1988,"month":2,"date_of_month":22,"day_of_week":1,"births":10833},{"year":1988,"month":2,"date_of_month":23,"day_of_week":2,"births":11001},{"year":1988,"month":2,"date_of_month":24,"day_of_week":3,"births":10681},{"year":1988,"month":2,"date_of_month":25,"day_of_week":4,"births":10792},{"year":1988,"month":2,"date_of_month":26,"day_of_week":5,"births":11084},{"year":1988,"month":2,"date_of_month":27,"day_of_week":6,"births":9018},{"year":1988,"month":2,"date_of_month":28,"day_of_week":7,"births":8499},{"year":1988,"month":2,"date_of_month":29,"day_of_week":1,"births":9798},{"year":1988,"month":3,"date_of_month":1,"day_of_week":2,"births":11501},{"year":1988,"month":3,"date_of_month":2,"day_of_week":3,"births":11017},{"year":1988,"month":3,"date_of_month":3,"day_of_week":4,"births":11090},{"year":1988,"month":3,"date_of_month":4,"day_of_week":5,"births":11010},{"year":1988,"month":3,"date_of_month":5,"day_of_week":6,"births":8917},{"year":1988,"month":3,"date_of_month":6,"day_of_week":7,"births":8383},{"year":1988,"month":3,"date_of_month":7,"day_of_week":1,"births":10536},{"year":1988,"month":3,"date_of_month":8,"day_of_week":2,"births":11309},{"year":1988,"month":3,"date_of_month":9,"day_of_week":3,"births":10721},{"year":1988,"month":3,"date_of_month":10,"day_of_week":4,"births":10873},{"year":1988,"month":3,"date_of_month":11,"day_of_week":5,"births":10790},{"year":1988,"month":3,"date_of_month":12,"day_of_week":6,"births":8723},{"year":1988,"month":3,"date_of_month":13,"day_of_week":7,"births":8291},{"year":1988,"month":3,"date_of_month":14,"day_of_week":1,"births":10379},{"year":1988,"month":3,"date_of_month":15,"day_of_week":2,"births":11103},{"year":1988,"month":3,"date_of_month":16,"day_of_week":3,"births":11043},{"year":1988,"month":3,"date_of_month":17,"day_of_week":4,"births":10918},{"year":1988,"month":3,"date_of_month":18,"day_of_week":5,"births":11089},{"year":1988,"month":3,"date_of_month":19,"day_of_week":6,"births":8755},{"year":1988,"month":3,"date_of_month":20,"day_of_week":7,"births":8646},{"year":1988,"month":3,"date_of_month":21,"day_of_week":1,"births":10906},{"year":1988,"month":3,"date_of_month":22,"day_of_week":2,"births":11288},{"year":1988,"month":3,"date_of_month":23,"day_of_week":3,"births":10980},{"year":1988,"month":3,"date_of_month":24,"day_of_week":4,"births":11045},{"year":1988,"month":3,"date_of_month":25,"day_of_week":5,"births":11279},{"year":1988,"month":3,"date_of_month":26,"day_of_week":6,"births":9168},{"year":1988,"month":3,"date_of_month":27,"day_of_week":7,"births":8534},{"year":1988,"month":3,"date_of_month":28,"day_of_week":1,"births":10780},{"year":1988,"month":3,"date_of_month":29,"day_of_week":2,"births":11405},{"year":1988,"month":3,"date_of_month":30,"day_of_week":3,"births":10882},{"year":1988,"month":3,"date_of_month":31,"day_of_week":4,"births":10880},{"year":1988,"month":4,"date_of_month":1,"day_of_week":5,"births":10298},{"year":1988,"month":4,"date_of_month":2,"day_of_week":6,"births":8965},{"year":1988,"month":4,"date_of_month":3,"day_of_week":7,"births":8128},{"year":1988,"month":4,"date_of_month":4,"day_of_week":1,"births":11021},{"year":1988,"month":4,"date_of_month":5,"day_of_week":2,"births":11522},{"year":1988,"month":4,"date_of_month":6,"day_of_week":3,"births":11084},{"year":1988,"month":4,"date_of_month":7,"day_of_week":4,"births":10886},{"year":1988,"month":4,"date_of_month":8,"day_of_week":5,"births":11061},{"year":1988,"month":4,"date_of_month":9,"day_of_week":6,"births":8701},{"year":1988,"month":4,"date_of_month":10,"day_of_week":7,"births":8502},{"year":1988,"month":4,"date_of_month":11,"day_of_week":1,"births":10922},{"year":1988,"month":4,"date_of_month":12,"day_of_week":2,"births":11232},{"year":1988,"month":4,"date_of_month":13,"day_of_week":3,"births":10534},{"year":1988,"month":4,"date_of_month":14,"day_of_week":4,"births":10877},{"year":1988,"month":4,"date_of_month":15,"day_of_week":5,"births":11115},{"year":1988,"month":4,"date_of_month":16,"day_of_week":6,"births":8896},{"year":1988,"month":4,"date_of_month":17,"day_of_week":7,"births":8300},{"year":1988,"month":4,"date_of_month":18,"day_of_week":1,"births":10934},{"year":1988,"month":4,"date_of_month":19,"day_of_week":2,"births":11044},{"year":1988,"month":4,"date_of_month":20,"day_of_week":3,"births":11020},{"year":1988,"month":4,"date_of_month":21,"day_of_week":4,"births":10942},{"year":1988,"month":4,"date_of_month":22,"day_of_week":5,"births":11294},{"year":1988,"month":4,"date_of_month":23,"day_of_week":6,"births":9165},{"year":1988,"month":4,"date_of_month":24,"day_of_week":7,"births":8485},{"year":1988,"month":4,"date_of_month":25,"day_of_week":1,"births":11004},{"year":1988,"month":4,"date_of_month":26,"day_of_week":2,"births":11400},{"year":1988,"month":4,"date_of_month":27,"day_of_week":3,"births":11061},{"year":1988,"month":4,"date_of_month":28,"day_of_week":4,"births":11329},{"year":1988,"month":4,"date_of_month":29,"day_of_week":5,"births":10836},{"year":1988,"month":4,"date_of_month":30,"day_of_week":6,"births":8904},{"year":1988,"month":5,"date_of_month":1,"day_of_week":7,"births":8474},{"year":1988,"month":5,"date_of_month":2,"day_of_week":1,"births":10564},{"year":1988,"month":5,"date_of_month":3,"day_of_week":2,"births":11095},{"year":1988,"month":5,"date_of_month":4,"day_of_week":3,"births":10931},{"year":1988,"month":5,"date_of_month":5,"day_of_week":4,"births":11038},{"year":1988,"month":5,"date_of_month":6,"day_of_week":5,"births":11271},{"year":1988,"month":5,"date_of_month":7,"day_of_week":6,"births":8991},{"year":1988,"month":5,"date_of_month":8,"day_of_week":7,"births":8692},{"year":1988,"month":5,"date_of_month":9,"day_of_week":1,"births":11077},{"year":1988,"month":5,"date_of_month":10,"day_of_week":2,"births":11664},{"year":1988,"month":5,"date_of_month":11,"day_of_week":3,"births":11319},{"year":1988,"month":5,"date_of_month":12,"day_of_week":4,"births":11207},{"year":1988,"month":5,"date_of_month":13,"day_of_week":5,"births":10931},{"year":1988,"month":5,"date_of_month":14,"day_of_week":6,"births":8949},{"year":1988,"month":5,"date_of_month":15,"day_of_week":7,"births":8764},{"year":1988,"month":5,"date_of_month":16,"day_of_week":1,"births":11267},{"year":1988,"month":5,"date_of_month":17,"day_of_week":2,"births":11593},{"year":1988,"month":5,"date_of_month":18,"day_of_week":3,"births":11311},{"year":1988,"month":5,"date_of_month":19,"day_of_week":4,"births":11110},{"year":1988,"month":5,"date_of_month":20,"day_of_week":5,"births":11452},{"year":1988,"month":5,"date_of_month":21,"day_of_week":6,"births":8955},{"year":1988,"month":5,"date_of_month":22,"day_of_week":7,"births":8816},{"year":1988,"month":5,"date_of_month":23,"day_of_week":1,"births":11355},{"year":1988,"month":5,"date_of_month":24,"day_of_week":2,"births":11862},{"year":1988,"month":5,"date_of_month":25,"day_of_week":3,"births":11464},{"year":1988,"month":5,"date_of_month":26,"day_of_week":4,"births":11494},{"year":1988,"month":5,"date_of_month":27,"day_of_week":5,"births":11712},{"year":1988,"month":5,"date_of_month":28,"day_of_week":6,"births":9342},{"year":1988,"month":5,"date_of_month":29,"day_of_week":7,"births":8741},{"year":1988,"month":5,"date_of_month":30,"day_of_week":1,"births":9253},{"year":1988,"month":5,"date_of_month":31,"day_of_week":2,"births":11586},{"year":1988,"month":6,"date_of_month":1,"day_of_week":3,"births":12037},{"year":1988,"month":6,"date_of_month":2,"day_of_week":4,"births":11911},{"year":1988,"month":6,"date_of_month":3,"day_of_week":5,"births":11462},{"year":1988,"month":6,"date_of_month":4,"day_of_week":6,"births":9219},{"year":1988,"month":6,"date_of_month":5,"day_of_week":7,"births":8791},{"year":1988,"month":6,"date_of_month":6,"day_of_week":1,"births":11392},{"year":1988,"month":6,"date_of_month":7,"day_of_week":2,"births":11573},{"year":1988,"month":6,"date_of_month":8,"day_of_week":3,"births":11495},{"year":1988,"month":6,"date_of_month":9,"day_of_week":4,"births":11519},{"year":1988,"month":6,"date_of_month":10,"day_of_week":5,"births":11549},{"year":1988,"month":6,"date_of_month":11,"day_of_week":6,"births":9099},{"year":1988,"month":6,"date_of_month":12,"day_of_week":7,"births":8674},{"year":1988,"month":6,"date_of_month":13,"day_of_week":1,"births":11097},{"year":1988,"month":6,"date_of_month":14,"day_of_week":2,"births":11915},{"year":1988,"month":6,"date_of_month":15,"day_of_week":3,"births":11651},{"year":1988,"month":6,"date_of_month":16,"day_of_week":4,"births":11656},{"year":1988,"month":6,"date_of_month":17,"day_of_week":5,"births":11639},{"year":1988,"month":6,"date_of_month":18,"day_of_week":6,"births":9380},{"year":1988,"month":6,"date_of_month":19,"day_of_week":7,"births":9038},{"year":1988,"month":6,"date_of_month":20,"day_of_week":1,"births":11552},{"year":1988,"month":6,"date_of_month":21,"day_of_week":2,"births":12040},{"year":1988,"month":6,"date_of_month":22,"day_of_week":3,"births":11779},{"year":1988,"month":6,"date_of_month":23,"day_of_week":4,"births":11786},{"year":1988,"month":6,"date_of_month":24,"day_of_week":5,"births":11698},{"year":1988,"month":6,"date_of_month":25,"day_of_week":6,"births":9470},{"year":1988,"month":6,"date_of_month":26,"day_of_week":7,"births":8858},{"year":1988,"month":6,"date_of_month":27,"day_of_week":1,"births":11166},{"year":1988,"month":6,"date_of_month":28,"day_of_week":2,"births":12165},{"year":1988,"month":6,"date_of_month":29,"day_of_week":3,"births":11629},{"year":1988,"month":6,"date_of_month":30,"day_of_week":4,"births":11980},{"year":1988,"month":7,"date_of_month":1,"day_of_week":5,"births":11825},{"year":1988,"month":7,"date_of_month":2,"day_of_week":6,"births":9611},{"year":1988,"month":7,"date_of_month":3,"day_of_week":7,"births":8988},{"year":1988,"month":7,"date_of_month":4,"day_of_week":1,"births":9259},{"year":1988,"month":7,"date_of_month":5,"day_of_week":2,"births":11715},{"year":1988,"month":7,"date_of_month":6,"day_of_week":3,"births":12488},{"year":1988,"month":7,"date_of_month":7,"day_of_week":4,"births":12727},{"year":1988,"month":7,"date_of_month":8,"day_of_week":5,"births":12424},{"year":1988,"month":7,"date_of_month":9,"day_of_week":6,"births":9923},{"year":1988,"month":7,"date_of_month":10,"day_of_week":7,"births":9408},{"year":1988,"month":7,"date_of_month":11,"day_of_week":1,"births":11979},{"year":1988,"month":7,"date_of_month":12,"day_of_week":2,"births":12068},{"year":1988,"month":7,"date_of_month":13,"day_of_week":3,"births":11753},{"year":1988,"month":7,"date_of_month":14,"day_of_week":4,"births":11953},{"year":1988,"month":7,"date_of_month":15,"day_of_week":5,"births":12429},{"year":1988,"month":7,"date_of_month":16,"day_of_week":6,"births":9835},{"year":1988,"month":7,"date_of_month":17,"day_of_week":7,"births":9308},{"year":1988,"month":7,"date_of_month":18,"day_of_week":1,"births":11699},{"year":1988,"month":7,"date_of_month":19,"day_of_week":2,"births":12185},{"year":1988,"month":7,"date_of_month":20,"day_of_week":3,"births":12096},{"year":1988,"month":7,"date_of_month":21,"day_of_week":4,"births":11927},{"year":1988,"month":7,"date_of_month":22,"day_of_week":5,"births":12112},{"year":1988,"month":7,"date_of_month":23,"day_of_week":6,"births":9796},{"year":1988,"month":7,"date_of_month":24,"day_of_week":7,"births":9129},{"year":1988,"month":7,"date_of_month":25,"day_of_week":1,"births":11641},{"year":1988,"month":7,"date_of_month":26,"day_of_week":2,"births":12344},{"year":1988,"month":7,"date_of_month":27,"day_of_week":3,"births":12164},{"year":1988,"month":7,"date_of_month":28,"day_of_week":4,"births":12195},{"year":1988,"month":7,"date_of_month":29,"day_of_week":5,"births":12304},{"year":1988,"month":7,"date_of_month":30,"day_of_week":6,"births":10185},{"year":1988,"month":7,"date_of_month":31,"day_of_week":7,"births":9361},{"year":1988,"month":8,"date_of_month":1,"day_of_week":1,"births":11806},{"year":1988,"month":8,"date_of_month":2,"day_of_week":2,"births":12165},{"year":1988,"month":8,"date_of_month":3,"day_of_week":3,"births":11945},{"year":1988,"month":8,"date_of_month":4,"day_of_week":4,"births":12156},{"year":1988,"month":8,"date_of_month":5,"day_of_week":5,"births":12174},{"year":1988,"month":8,"date_of_month":6,"day_of_week":6,"births":9955},{"year":1988,"month":8,"date_of_month":7,"day_of_week":7,"births":9207},{"year":1988,"month":8,"date_of_month":8,"day_of_week":1,"births":12413},{"year":1988,"month":8,"date_of_month":9,"day_of_week":2,"births":12282},{"year":1988,"month":8,"date_of_month":10,"day_of_week":3,"births":12015},{"year":1988,"month":8,"date_of_month":11,"day_of_week":4,"births":12204},{"year":1988,"month":8,"date_of_month":12,"day_of_week":5,"births":12226},{"year":1988,"month":8,"date_of_month":13,"day_of_week":6,"births":9917},{"year":1988,"month":8,"date_of_month":14,"day_of_week":7,"births":9434},{"year":1988,"month":8,"date_of_month":15,"day_of_week":1,"births":11769},{"year":1988,"month":8,"date_of_month":16,"day_of_week":2,"births":12434},{"year":1988,"month":8,"date_of_month":17,"day_of_week":3,"births":11996},{"year":1988,"month":8,"date_of_month":18,"day_of_week":4,"births":12328},{"year":1988,"month":8,"date_of_month":19,"day_of_week":5,"births":12167},{"year":1988,"month":8,"date_of_month":20,"day_of_week":6,"births":9762},{"year":1988,"month":8,"date_of_month":21,"day_of_week":7,"births":9271},{"year":1988,"month":8,"date_of_month":22,"day_of_week":1,"births":11683},{"year":1988,"month":8,"date_of_month":23,"day_of_week":2,"births":12236},{"year":1988,"month":8,"date_of_month":24,"day_of_week":3,"births":11931},{"year":1988,"month":8,"date_of_month":25,"day_of_week":4,"births":12106},{"year":1988,"month":8,"date_of_month":26,"day_of_week":5,"births":12243},{"year":1988,"month":8,"date_of_month":27,"day_of_week":6,"births":9724},{"year":1988,"month":8,"date_of_month":28,"day_of_week":7,"births":9270},{"year":1988,"month":8,"date_of_month":29,"day_of_week":1,"births":11597},{"year":1988,"month":8,"date_of_month":30,"day_of_week":2,"births":12280},{"year":1988,"month":8,"date_of_month":31,"day_of_week":3,"births":11903},{"year":1988,"month":9,"date_of_month":1,"day_of_week":4,"births":11867},{"year":1988,"month":9,"date_of_month":2,"day_of_week":5,"births":12251},{"year":1988,"month":9,"date_of_month":3,"day_of_week":6,"births":9966},{"year":1988,"month":9,"date_of_month":4,"day_of_week":7,"births":9250},{"year":1988,"month":9,"date_of_month":5,"day_of_week":1,"births":9292},{"year":1988,"month":9,"date_of_month":6,"day_of_week":2,"births":12084},{"year":1988,"month":9,"date_of_month":7,"day_of_week":3,"births":12509},{"year":1988,"month":9,"date_of_month":8,"day_of_week":4,"births":12351},{"year":1988,"month":9,"date_of_month":9,"day_of_week":5,"births":12661},{"year":1988,"month":9,"date_of_month":10,"day_of_week":6,"births":9968},{"year":1988,"month":9,"date_of_month":11,"day_of_week":7,"births":9505},{"year":1988,"month":9,"date_of_month":12,"day_of_week":1,"births":12062},{"year":1988,"month":9,"date_of_month":13,"day_of_week":2,"births":12451},{"year":1988,"month":9,"date_of_month":14,"day_of_week":3,"births":12551},{"year":1988,"month":9,"date_of_month":15,"day_of_week":4,"births":12398},{"year":1988,"month":9,"date_of_month":16,"day_of_week":5,"births":12620},{"year":1988,"month":9,"date_of_month":17,"day_of_week":6,"births":10362},{"year":1988,"month":9,"date_of_month":18,"day_of_week":7,"births":9848},{"year":1988,"month":9,"date_of_month":19,"day_of_week":1,"births":12332},{"year":1988,"month":9,"date_of_month":20,"day_of_week":2,"births":12851},{"year":1988,"month":9,"date_of_month":21,"day_of_week":3,"births":12426},{"year":1988,"month":9,"date_of_month":22,"day_of_week":4,"births":12554},{"year":1988,"month":9,"date_of_month":23,"day_of_week":5,"births":12694},{"year":1988,"month":9,"date_of_month":24,"day_of_week":6,"births":9978},{"year":1988,"month":9,"date_of_month":25,"day_of_week":7,"births":9489},{"year":1988,"month":9,"date_of_month":26,"day_of_week":1,"births":12037},{"year":1988,"month":9,"date_of_month":27,"day_of_week":2,"births":12454},{"year":1988,"month":9,"date_of_month":28,"day_of_week":3,"births":11956},{"year":1988,"month":9,"date_of_month":29,"day_of_week":4,"births":12247},{"year":1988,"month":9,"date_of_month":30,"day_of_week":5,"births":12263},{"year":1988,"month":10,"date_of_month":1,"day_of_week":6,"births":9802},{"year":1988,"month":10,"date_of_month":2,"day_of_week":7,"births":9091},{"year":1988,"month":10,"date_of_month":3,"day_of_week":1,"births":11684},{"year":1988,"month":10,"date_of_month":4,"day_of_week":2,"births":12072},{"year":1988,"month":10,"date_of_month":5,"day_of_week":3,"births":11618},{"year":1988,"month":10,"date_of_month":6,"day_of_week":4,"births":11740},{"year":1988,"month":10,"date_of_month":7,"day_of_week":5,"births":11767},{"year":1988,"month":10,"date_of_month":8,"day_of_week":6,"births":9330},{"year":1988,"month":10,"date_of_month":9,"day_of_week":7,"births":9084},{"year":1988,"month":10,"date_of_month":10,"day_of_week":1,"births":11367},{"year":1988,"month":10,"date_of_month":11,"day_of_week":2,"births":11836},{"year":1988,"month":10,"date_of_month":12,"day_of_week":3,"births":11563},{"year":1988,"month":10,"date_of_month":13,"day_of_week":4,"births":11178},{"year":1988,"month":10,"date_of_month":14,"day_of_week":5,"births":11618},{"year":1988,"month":10,"date_of_month":15,"day_of_week":6,"births":9381},{"year":1988,"month":10,"date_of_month":16,"day_of_week":7,"births":8751},{"year":1988,"month":10,"date_of_month":17,"day_of_week":1,"births":11503},{"year":1988,"month":10,"date_of_month":18,"day_of_week":2,"births":11893},{"year":1988,"month":10,"date_of_month":19,"day_of_week":3,"births":11106},{"year":1988,"month":10,"date_of_month":20,"day_of_week":4,"births":11329},{"year":1988,"month":10,"date_of_month":21,"day_of_week":5,"births":11197},{"year":1988,"month":10,"date_of_month":22,"day_of_week":6,"births":9215},{"year":1988,"month":10,"date_of_month":23,"day_of_week":7,"births":8671},{"year":1988,"month":10,"date_of_month":24,"day_of_week":1,"births":11261},{"year":1988,"month":10,"date_of_month":25,"day_of_week":2,"births":11650},{"year":1988,"month":10,"date_of_month":26,"day_of_week":3,"births":11416},{"year":1988,"month":10,"date_of_month":27,"day_of_week":4,"births":11083},{"year":1988,"month":10,"date_of_month":28,"day_of_week":5,"births":11508},{"year":1988,"month":10,"date_of_month":29,"day_of_week":6,"births":8989},{"year":1988,"month":10,"date_of_month":30,"day_of_week":7,"births":8950},{"year":1988,"month":10,"date_of_month":31,"day_of_week":1,"births":9979},{"year":1988,"month":11,"date_of_month":1,"day_of_week":2,"births":11862},{"year":1988,"month":11,"date_of_month":2,"day_of_week":3,"births":11050},{"year":1988,"month":11,"date_of_month":3,"day_of_week":4,"births":11320},{"year":1988,"month":11,"date_of_month":4,"day_of_week":5,"births":11552},{"year":1988,"month":11,"date_of_month":5,"day_of_week":6,"births":9157},{"year":1988,"month":11,"date_of_month":6,"day_of_week":7,"births":8733},{"year":1988,"month":11,"date_of_month":7,"day_of_week":1,"births":11184},{"year":1988,"month":11,"date_of_month":8,"day_of_week":2,"births":11374},{"year":1988,"month":11,"date_of_month":9,"day_of_week":3,"births":11127},{"year":1988,"month":11,"date_of_month":10,"day_of_week":4,"births":11154},{"year":1988,"month":11,"date_of_month":11,"day_of_week":5,"births":11160},{"year":1988,"month":11,"date_of_month":12,"day_of_week":6,"births":9047},{"year":1988,"month":11,"date_of_month":13,"day_of_week":7,"births":8475},{"year":1988,"month":11,"date_of_month":14,"day_of_week":1,"births":10975},{"year":1988,"month":11,"date_of_month":15,"day_of_week":2,"births":11408},{"year":1988,"month":11,"date_of_month":16,"day_of_week":3,"births":10972},{"year":1988,"month":11,"date_of_month":17,"day_of_week":4,"births":11206},{"year":1988,"month":11,"date_of_month":18,"day_of_week":5,"births":11465},{"year":1988,"month":11,"date_of_month":19,"day_of_week":6,"births":8982},{"year":1988,"month":11,"date_of_month":20,"day_of_week":7,"births":8435},{"year":1988,"month":11,"date_of_month":21,"day_of_week":1,"births":11358},{"year":1988,"month":11,"date_of_month":22,"day_of_week":2,"births":11864},{"year":1988,"month":11,"date_of_month":23,"day_of_week":3,"births":10961},{"year":1988,"month":11,"date_of_month":24,"day_of_week":4,"births":8524},{"year":1988,"month":11,"date_of_month":25,"day_of_week":5,"births":10098},{"year":1988,"month":11,"date_of_month":26,"day_of_week":6,"births":8912},{"year":1988,"month":11,"date_of_month":27,"day_of_week":7,"births":8510},{"year":1988,"month":11,"date_of_month":28,"day_of_week":1,"births":11049},{"year":1988,"month":11,"date_of_month":29,"day_of_week":2,"births":11523},{"year":1988,"month":11,"date_of_month":30,"day_of_week":3,"births":11229},{"year":1988,"month":12,"date_of_month":1,"day_of_week":4,"births":11227},{"year":1988,"month":12,"date_of_month":2,"day_of_week":5,"births":10899},{"year":1988,"month":12,"date_of_month":3,"day_of_week":6,"births":8870},{"year":1988,"month":12,"date_of_month":4,"day_of_week":7,"births":8324},{"year":1988,"month":12,"date_of_month":5,"day_of_week":1,"births":10651},{"year":1988,"month":12,"date_of_month":6,"day_of_week":2,"births":11297},{"year":1988,"month":12,"date_of_month":7,"day_of_week":3,"births":11095},{"year":1988,"month":12,"date_of_month":8,"day_of_week":4,"births":11131},{"year":1988,"month":12,"date_of_month":9,"day_of_week":5,"births":10878},{"year":1988,"month":12,"date_of_month":10,"day_of_week":6,"births":8825},{"year":1988,"month":12,"date_of_month":11,"day_of_week":7,"births":8452},{"year":1988,"month":12,"date_of_month":12,"day_of_week":1,"births":10959},{"year":1988,"month":12,"date_of_month":13,"day_of_week":2,"births":11283},{"year":1988,"month":12,"date_of_month":14,"day_of_week":3,"births":11362},{"year":1988,"month":12,"date_of_month":15,"day_of_week":4,"births":11364},{"year":1988,"month":12,"date_of_month":16,"day_of_week":5,"births":11463},{"year":1988,"month":12,"date_of_month":17,"day_of_week":6,"births":8756},{"year":1988,"month":12,"date_of_month":18,"day_of_week":7,"births":8431},{"year":1988,"month":12,"date_of_month":19,"day_of_week":1,"births":11716},{"year":1988,"month":12,"date_of_month":20,"day_of_week":2,"births":12435},{"year":1988,"month":12,"date_of_month":21,"day_of_week":3,"births":11323},{"year":1988,"month":12,"date_of_month":22,"day_of_week":4,"births":10729},{"year":1988,"month":12,"date_of_month":23,"day_of_week":5,"births":9997},{"year":1988,"month":12,"date_of_month":24,"day_of_week":6,"births":8293},{"year":1988,"month":12,"date_of_month":25,"day_of_week":7,"births":7835},{"year":1988,"month":12,"date_of_month":26,"day_of_week":1,"births":8683},{"year":1988,"month":12,"date_of_month":27,"day_of_week":2,"births":11528},{"year":1988,"month":12,"date_of_month":28,"day_of_week":3,"births":11847},{"year":1988,"month":12,"date_of_month":29,"day_of_week":4,"births":11704},{"year":1988,"month":12,"date_of_month":30,"day_of_week":5,"births":11837},{"year":1988,"month":12,"date_of_month":31,"day_of_week":6,"births":9133}]
 
-},{}],170:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8831,7 +8953,7 @@ function dataset() {
 
 module.exports = dataset;
 
-},{"./../data/data.json":169,"@stdlib/utils/copy":218}],171:[function(require,module,exports){
+},{"./../data/data.json":171,"@stdlib/utils/copy":223}],173:[function(require,module,exports){
 (function (__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -8876,7 +8998,6 @@ var opts = {
 *
 * -   This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
 *
-*
 * @throws {Error} unable to read data
 * @returns {ObjectArray} birth data
 *
@@ -8898,7 +9019,7 @@ function dataset() {
 module.exports = dataset;
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/lib")
-},{"@stdlib/fs/read-json":181,"path":288}],172:[function(require,module,exports){
+},{"@stdlib/fs/read-json":183,"path":293}],174:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/datasets/cdc-nchs-us-births-1969-1988",
   "version": "0.0.0",
@@ -8971,7 +9092,7 @@ module.exports={
   ]
 }
 
-},{}],173:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -9004,7 +9125,7 @@ var dataset = require( './../lib/browser.js' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof dataset, 'function', 'main export is a function' );
+	t.strictEqual( typeof dataset, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -9033,7 +9154,7 @@ tape( 'the function returns a copy', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/test/test.browser.js")
-},{"./../lib/browser.js":170,"@stdlib/assert/is-object-array":122,"tape":393}],174:[function(require,module,exports){
+},{"./../lib/browser.js":172,"@stdlib/assert/is-object-array":122,"tape":416}],176:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -9209,7 +9330,7 @@ tape( 'the command-line interface prints US birth data', opts, function test( t 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/test/test.cli.js","/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/test")
-},{"./../package.json":172,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-windows":144,"@stdlib/fs/read-file":177,"@stdlib/process/exec-path":192,"child_process":285,"path":288,"tape":393}],175:[function(require,module,exports){
+},{"./../package.json":174,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-windows":144,"@stdlib/fs/read-file":179,"@stdlib/process/exec-path":196,"child_process":290,"path":293,"tape":416}],177:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -9250,7 +9371,7 @@ var opts = {
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof dataset, 'function', 'main export is a function' );
+	t.strictEqual( typeof dataset, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -9279,7 +9400,7 @@ tape( 'the function returns a copy', opts, function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/test/test.js")
-},{"./../lib":170,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-object-array":122,"tape":393}],176:[function(require,module,exports){
+},{"./../lib":172,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-object-array":122,"tape":416}],178:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});/**
 * @license Apache-2.0
@@ -9331,7 +9452,7 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/cdc-nchs-us-births-1969-1988/test/test.main.js")
-},{"./../lib/main.js":171,"proxyquireify":385,"tape":393}],177:[function(require,module,exports){
+},{"./../lib/main.js":173,"proxyquireify":406,"tape":416}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9381,20 +9502,20 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var readFile = require( './main.js' );
+var main = require( './main.js' );
 var sync = require( './sync.js' );
 
 
 // MAIN //
 
-setReadOnly( readFile, 'sync', sync );
+setReadOnly( main, 'sync', sync );
 
 
 // EXPORTS //
 
-module.exports = readFile;
+module.exports = main;
 
-},{"./main.js":178,"./sync.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":220}],178:[function(require,module,exports){
+},{"./main.js":180,"./sync.js":181,"@stdlib/utils/define-nonenumerable-read-only-property":226}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9455,7 +9576,7 @@ function readFile() {
 
 module.exports = readFile;
 
-},{"fs":285}],179:[function(require,module,exports){
+},{"fs":290}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9518,7 +9639,7 @@ function readFileSync( file, options ) {
 
 module.exports = readFileSync;
 
-},{"fs":285}],180:[function(require,module,exports){
+},{"fs":290}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9634,7 +9755,7 @@ function readJSON( file, options, clbk ) {
 
 module.exports = readJSON;
 
-},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-function":95,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":177,"@stdlib/string/format":209,"@stdlib/string/remove-utf8-bom":212,"@stdlib/utils/parse-json":264}],181:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-function":95,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":179,"@stdlib/string/format":213,"@stdlib/string/remove-utf8-bom":216,"@stdlib/utils/parse-json":269}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9701,7 +9822,7 @@ setReadOnly( readJSON, 'sync', sync );
 
 module.exports = readJSON;
 
-},{"./async.js":180,"./sync.js":182,"@stdlib/utils/define-nonenumerable-read-only-property":220}],182:[function(require,module,exports){
+},{"./async.js":182,"./sync.js":184,"@stdlib/utils/define-nonenumerable-read-only-property":226}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9792,7 +9913,7 @@ function readJSONSync( file, options ) {
 
 module.exports = readJSONSync;
 
-},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":177,"@stdlib/string/format":209,"@stdlib/string/remove-utf8-bom":212,"@stdlib/utils/parse-json":264}],183:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":179,"@stdlib/string/format":213,"@stdlib/string/remove-utf8-bom":216,"@stdlib/utils/parse-json":269}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9830,14 +9951,14 @@ module.exports = readJSONSync;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":184}],184:[function(require,module,exports){
+},{"./main.js":186}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9888,7 +10009,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":187}],185:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":189}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9926,14 +10047,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":186}],186:[function(require,module,exports){
+},{"./main.js":188}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9979,7 +10100,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],187:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10023,14 +10144,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":188}],188:[function(require,module,exports){
+},{"./main.js":190}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10082,7 +10203,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],189:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10117,14 +10238,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":190}],190:[function(require,module,exports){
+},{"./main.js":192}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10149,7 +10270,123 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],191:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":194}],194:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10185,7 +10422,7 @@ var PLATFORM = '';
 
 module.exports = PLATFORM;
 
-},{}],192:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10210,7 +10447,7 @@ module.exports = PLATFORM;
 
 module.exports = null;
 
-},{}],193:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10260,20 +10497,20 @@ module.exports = null;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":194,"./regexp.js":195,"@stdlib/utils/define-nonenumerable-read-only-property":220}],194:[function(require,module,exports){
+},{"./main.js":198,"./regexp.js":199,"@stdlib/utils/define-nonenumerable-read-only-property":226}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10329,7 +10566,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],195:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10391,7 +10628,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":194}],196:[function(require,module,exports){
+},{"./main.js":198}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10440,25 +10677,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":197,"./regexp.js":198,"@stdlib/utils/define-nonenumerable-read-only-property":220}],197:[function(require,module,exports){
+},{"./main.js":201,"./regexp.js":202,"@stdlib/utils/define-nonenumerable-read-only-property":226}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10504,7 +10736,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],198:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10564,7 +10796,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -10576,7 +10807,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":197}],199:[function(require,module,exports){
+},{"./main.js":201}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10662,7 +10893,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -10689,7 +10920,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":202}],200:[function(require,module,exports){
+},{"./is_number.js":206}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10806,7 +11037,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":202,"./zero_pad.js":206}],201:[function(require,module,exports){
+},{"./is_number.js":206,"./zero_pad.js":210}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10842,14 +11073,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":204}],202:[function(require,module,exports){
+},{"./main.js":208}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10897,7 +11128,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],203:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10941,7 +11172,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],204:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10974,11 +11205,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -11109,6 +11358,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -11117,9 +11367,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -11158,7 +11406,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":199,"./format_integer.js":200,"./is_string.js":203,"./space_pad.js":205,"./zero_pad.js":206}],205:[function(require,module,exports){
+},{"./format_double.js":203,"./format_integer.js":204,"./is_string.js":207,"./space_pad.js":209,"./zero_pad.js":210}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11225,7 +11473,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],206:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11311,7 +11559,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],207:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11347,14 +11595,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":208}],208:[function(require,module,exports){
+},{"./main.js":212}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11446,7 +11694,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],209:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11484,16 +11732,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":211}],210:[function(require,module,exports){
-arguments[4][203][0].apply(exports,arguments)
-},{"dup":203}],211:[function(require,module,exports){
+},{"./main.js":215}],214:[function(require,module,exports){
+arguments[4][207][0].apply(exports,arguments)
+},{"dup":207}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11541,18 +11789,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -11562,7 +11807,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":210,"@stdlib/string/base/format-interpolate":201,"@stdlib/string/base/format-tokenize":207}],212:[function(require,module,exports){
+},{"./is_string.js":214,"@stdlib/string/base/format-interpolate":205,"@stdlib/string/base/format-tokenize":211}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11597,14 +11842,14 @@ module.exports = format;
 
 // MODULES //
 
-var removeUTF8BOM = require( './remove_utf_8_bom.js' );
+var removeUTF8BOM = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = removeUTF8BOM;
 
-},{"./remove_utf_8_bom.js":213}],213:[function(require,module,exports){
+},{"./main.js":217}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11650,7 +11895,6 @@ var BOM = 65279;
 * [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
 * [2]: http://es5.github.io/#x4.3.16
 *
-*
 * @param {string} str - input string
 * @throws {TypeError} must provide a string primitive
 * @returns {string} string with BOM removed
@@ -11674,7 +11918,79 @@ function removeUTF8BOM( str ) {
 
 module.exports = removeUTF8BOM;
 
-},{"@stdlib/assert/is-string":130,"@stdlib/string/format":209}],214:[function(require,module,exports){
+},{"@stdlib/assert/is-string":130,"@stdlib/string/format":213}],218:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":219}],219:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11715,14 +12031,14 @@ module.exports = removeUTF8BOM;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":215}],215:[function(require,module,exports){
+},{"./main.js":221}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11804,86 +12120,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/regexp/function-name":193,"@stdlib/utils/native-class":257}],216:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":217,"@stdlib/assert/is-array":72,"@stdlib/assert/is-nonnegative-integer":112,"@stdlib/constants/float64/pinf":159,"@stdlib/string/format":209}],217:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/regexp/function-name":197,"@stdlib/utils/native-class":262}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11931,7 +12168,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -12191,7 +12427,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":219,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-buffer":81,"@stdlib/assert/is-error":89,"@stdlib/buffer/from-buffer":153,"@stdlib/utils/define-property":225,"@stdlib/utils/get-prototype-of":229,"@stdlib/utils/index-of":239,"@stdlib/utils/keys":250,"@stdlib/utils/property-descriptor":268,"@stdlib/utils/property-names":272,"@stdlib/utils/regexp-from-string":275,"@stdlib/utils/type-of":280}],218:[function(require,module,exports){
+},{"./typed_arrays.js":225,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-buffer":81,"@stdlib/assert/is-error":89,"@stdlib/buffer/from-buffer":155,"@stdlib/utils/define-property":231,"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/index-of":244,"@stdlib/utils/keys":255,"@stdlib/utils/property-descriptor":273,"@stdlib/utils/property-names":277,"@stdlib/utils/regexp-from-string":279,"@stdlib/utils/type-of":285}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12242,14 +12478,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":224}],224:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":216}],219:[function(require,module,exports){
+},{"./deep_copy.js":222,"@stdlib/assert/is-array":72,"@stdlib/assert/is-nonnegative-integer":112,"@stdlib/constants/float64/pinf":161,"@stdlib/string/format":213}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12420,7 +12735,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],220:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/float64":4,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12462,14 +12777,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":221}],221:[function(require,module,exports){
+},{"./main.js":227}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12529,7 +12844,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":225}],222:[function(require,module,exports){
+},{"@stdlib/utils/define-property":231}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12592,7 +12907,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],223:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12622,7 +12937,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],224:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12675,7 +12990,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":223}],225:[function(require,module,exports){
+},{"./define_property.js":229}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12735,7 +13050,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":222,"./has_define_property_support.js":224,"./polyfill.js":226}],226:[function(require,module,exports){
+},{"./builtin.js":228,"./has_define_property_support.js":230,"./polyfill.js":232}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12859,7 +13174,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":209}],227:[function(require,module,exports){
+},{"@stdlib/string/format":213}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12901,63 +13216,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":230,"./polyfill.js":231,"@stdlib/assert/is-function":95}],228:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":227}],229:[function(require,module,exports){
+},{"./native.js":236,"./polyfill.js":237,"@stdlib/assert/is-function":95}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12992,14 +13251,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":228}],230:[function(require,module,exports){
+},{"./main.js":235}],235:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":233,"@stdlib/object/ctor":193}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13029,7 +13345,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],231:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13086,7 +13402,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":232,"@stdlib/utils/native-class":257}],232:[function(require,module,exports){
+},{"./proto.js":238,"@stdlib/utils/native-class":262}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13124,7 +13440,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],233:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":240,"./global_this.js":241,"./self.js":242,"./window.js":243,"@stdlib/assert/is-boolean":74,"@stdlib/string/format":213}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13154,7 +13551,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -13162,12 +13559,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],234:[function(require,module,exports){
-(function (global){(function (){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13186,137 +13582,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],235:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":236}],236:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":233,"./global.js":234,"./self.js":237,"./window.js":238,"@stdlib/assert/is-boolean":74,"@stdlib/string/format":209}],237:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13346,7 +13619,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],238:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13376,7 +13649,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],239:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13444,14 +13717,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":240}],240:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13586,7 +13859,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":83,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":108,"@stdlib/assert/is-string":130,"@stdlib/string/format":209}],241:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":83,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":108,"@stdlib/assert/is-string":130,"@stdlib/string/format":213}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13638,7 +13911,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],242:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13700,7 +13973,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":241,"@stdlib/assert/is-arguments":67}],243:[function(require,module,exports){
+},{"./builtin.js":246,"@stdlib/assert/is-arguments":67}],248:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -13724,7 +13997,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],244:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13784,7 +14057,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":241}],245:[function(require,module,exports){
+},{"./builtin.js":246}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13862,7 +14135,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":243,"./is_constructor_prototype.js":251,"./window.js":256,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":239,"@stdlib/utils/type-of":280}],246:[function(require,module,exports){
+},{"./excluded_keys.json":248,"./is_constructor_prototype.js":256,"./window.js":261,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":244,"@stdlib/utils/type-of":285}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13892,7 +14165,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],247:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13929,7 +14202,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":86,"@stdlib/utils/noop":262}],248:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":86,"@stdlib/utils/noop":267}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13972,7 +14245,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":86}],249:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":86}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14002,7 +14275,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],250:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14042,14 +14315,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":253}],251:[function(require,module,exports){
+},{"./main.js":258}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14088,7 +14361,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],252:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14141,7 +14414,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":245,"./has_window.js":249,"./is_constructor_prototype.js":251}],253:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":250,"./has_window.js":254,"./is_constructor_prototype.js":256}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14206,7 +14479,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":241,"./builtin_wrapper.js":242,"./has_arguments_bug.js":244,"./has_builtin.js":246,"./polyfill.js":255}],254:[function(require,module,exports){
+},{"./builtin.js":246,"./builtin_wrapper.js":247,"./has_arguments_bug.js":249,"./has_builtin.js":251,"./polyfill.js":260}],259:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -14217,7 +14490,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],255:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14321,7 +14594,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":247,"./has_non_enumerable_properties_bug.js":248,"./is_constructor_prototype_wrapper.js":252,"./non_enumerable.json":254,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":67,"@stdlib/assert/is-object-like":124}],256:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":252,"./has_non_enumerable_properties_bug.js":253,"./is_constructor_prototype_wrapper.js":257,"./non_enumerable.json":259,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":67,"@stdlib/assert/is-object-like":124}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14351,7 +14624,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],257:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14396,25 +14669,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":258,"./polyfill.js":259,"@stdlib/assert/has-tostringtag-support":50}],258:[function(require,module,exports){
+},{"./main.js":263,"./polyfill.js":264,"@stdlib/assert/has-tostringtag-support":50}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14472,7 +14745,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":260}],259:[function(require,module,exports){
+},{"./tostring.js":265}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14555,7 +14828,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":260,"./tostringtag.js":261,"@stdlib/assert/has-own-property":46}],260:[function(require,module,exports){
+},{"./tostring.js":265,"./tostringtag.js":266,"@stdlib/assert/has-own-property":46}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14585,7 +14858,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],261:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14606,6 +14879,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -14615,7 +14893,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],262:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":218}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14650,14 +14928,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":263}],263:[function(require,module,exports){
+},{"./main.js":268}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14694,7 +14972,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],264:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14729,14 +15007,14 @@ module.exports = noop;
 
 // MODULES //
 
-var parseJSON = require( './parse_json.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = parseJSON;
+module.exports = main;
 
-},{"./parse_json.js":265}],265:[function(require,module,exports){
+},{"./main.js":270}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14800,7 +15078,7 @@ function parseJSON( str, reviver ) {
 
 module.exports = parseJSON;
 
-},{"@stdlib/assert/is-function":95,"@stdlib/assert/is-string":130,"@stdlib/string/format":209}],266:[function(require,module,exports){
+},{"@stdlib/assert/is-function":95,"@stdlib/assert/is-string":130,"@stdlib/string/format":213}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14864,7 +15142,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],267:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14894,7 +15172,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],268:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14953,7 +15231,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":266,"./has_builtin.js":267,"./polyfill.js":269}],269:[function(require,module,exports){
+},{"./builtin.js":271,"./has_builtin.js":272,"./polyfill.js":274}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15021,7 +15299,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":46}],270:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15041,6 +15319,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -15078,7 +15361,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],271:[function(require,module,exports){
+},{"@stdlib/object/ctor":193}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15108,7 +15391,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],272:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15165,7 +15448,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":270,"./has_builtin.js":271,"./polyfill.js":273}],273:[function(require,module,exports){
+},{"./builtin.js":275,"./has_builtin.js":276,"./polyfill.js":278}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15188,6 +15471,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -15223,7 +15507,49 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":250}],274:[function(require,module,exports){
+},{"@stdlib/object/ctor":193,"@stdlib/utils/keys":255}],279:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":280}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15280,49 +15606,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":130,"@stdlib/regexp/regexp":196,"@stdlib/string/format":209}],275:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":274}],276:[function(require,module,exports){
+},{"@stdlib/assert/is-string":130,"@stdlib/regexp/regexp":200,"@stdlib/string/format":213}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15379,7 +15663,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":277,"./fixtures/re.js":278,"./fixtures/typedarray.js":279}],277:[function(require,module,exports){
+},{"./fixtures/nodelist.js":282,"./fixtures/re.js":283,"./fixtures/typedarray.js":284}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15415,7 +15699,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":235}],278:[function(require,module,exports){
+},{"@stdlib/utils/global":239}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15443,7 +15727,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],279:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15471,7 +15755,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],280:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15510,63 +15794,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":276,"./polyfill.js":281,"./typeof.js":282}],281:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":214}],282:[function(require,module,exports){
+},{"./check.js":281,"./main.js":286,"./polyfill.js":287}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15644,7 +15885,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":214}],283:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":220}],287:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":220}],288:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -15796,11 +16080,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],284:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 
-},{}],285:[function(require,module,exports){
-arguments[4][284][0].apply(exports,arguments)
-},{"dup":284}],286:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
+arguments[4][289][0].apply(exports,arguments)
+},{"dup":289}],291:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -17581,7 +17865,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":283,"buffer":286,"ieee754":375}],287:[function(require,module,exports){
+},{"base64-js":288,"buffer":291,"ieee754":395}],292:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18080,7 +18364,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],288:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -18613,7 +18897,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":384}],289:[function(require,module,exports){
+},{"_process":405}],294:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18744,7 +19028,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":287,"inherits":376,"readable-stream/lib/_stream_duplex.js":291,"readable-stream/lib/_stream_passthrough.js":292,"readable-stream/lib/_stream_readable.js":293,"readable-stream/lib/_stream_transform.js":294,"readable-stream/lib/_stream_writable.js":295,"readable-stream/lib/internal/streams/end-of-stream.js":299,"readable-stream/lib/internal/streams/pipeline.js":301}],290:[function(require,module,exports){
+},{"events":292,"inherits":396,"readable-stream/lib/_stream_duplex.js":296,"readable-stream/lib/_stream_passthrough.js":297,"readable-stream/lib/_stream_readable.js":298,"readable-stream/lib/_stream_transform.js":299,"readable-stream/lib/_stream_writable.js":300,"readable-stream/lib/internal/streams/end-of-stream.js":304,"readable-stream/lib/internal/streams/pipeline.js":306}],295:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -18873,7 +19157,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],291:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19015,7 +19299,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":293,"./_stream_writable":295,"_process":384,"inherits":376}],292:[function(require,module,exports){
+},{"./_stream_readable":298,"./_stream_writable":300,"_process":405,"inherits":396}],297:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19055,7 +19339,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":294,"inherits":376}],293:[function(require,module,exports){
+},{"./_stream_transform":299,"inherits":396}],298:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -20182,7 +20466,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":290,"./_stream_duplex":291,"./internal/streams/async_iterator":296,"./internal/streams/buffer_list":297,"./internal/streams/destroy":298,"./internal/streams/from":300,"./internal/streams/state":302,"./internal/streams/stream":303,"_process":384,"buffer":286,"events":287,"inherits":376,"string_decoder/":392,"util":284}],294:[function(require,module,exports){
+},{"../errors":295,"./_stream_duplex":296,"./internal/streams/async_iterator":301,"./internal/streams/buffer_list":302,"./internal/streams/destroy":303,"./internal/streams/from":305,"./internal/streams/state":307,"./internal/streams/stream":308,"_process":405,"buffer":291,"events":292,"inherits":396,"string_decoder/":415,"util":289}],299:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20384,7 +20668,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":290,"./_stream_duplex":291,"inherits":376}],295:[function(require,module,exports){
+},{"../errors":295,"./_stream_duplex":296,"inherits":396}],300:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -21084,7 +21368,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":290,"./_stream_duplex":291,"./internal/streams/destroy":298,"./internal/streams/state":302,"./internal/streams/stream":303,"_process":384,"buffer":286,"inherits":376,"util-deprecate":401}],296:[function(require,module,exports){
+},{"../errors":295,"./_stream_duplex":296,"./internal/streams/destroy":303,"./internal/streams/state":307,"./internal/streams/stream":308,"_process":405,"buffer":291,"inherits":396,"util-deprecate":424}],301:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -21294,7 +21578,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":299,"_process":384}],297:[function(require,module,exports){
+},{"./end-of-stream":304,"_process":405}],302:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -21505,7 +21789,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":286,"util":284}],298:[function(require,module,exports){
+},{"buffer":291,"util":289}],303:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -21613,7 +21897,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":384}],299:[function(require,module,exports){
+},{"_process":405}],304:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -21718,12 +22002,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":290}],300:[function(require,module,exports){
+},{"../../../errors":295}],305:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],301:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -21821,7 +22105,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":290,"./end-of-stream":299}],302:[function(require,module,exports){
+},{"../../../errors":295,"./end-of-stream":304}],307:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -21849,10 +22133,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":290}],303:[function(require,module,exports){
+},{"../../../errors":295}],308:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":287}],304:[function(require,module,exports){
+},{"events":292}],309:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21869,43 +22153,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":305,"get-intrinsic":370}],305:[function(require,module,exports){
+},{"./":310,"get-intrinsic":386}],310:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -21918,7 +22190,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":369,"get-intrinsic":370}],306:[function(require,module,exports){
+},{"es-define-property":370,"es-errors/type":376,"function-bind":385,"get-intrinsic":386,"set-function-length":410}],311:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -22014,7 +22286,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":307,"./lib/keys.js":308}],307:[function(require,module,exports){
+},{"./lib/is_arguments.js":312,"./lib/keys.js":313}],312:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -22036,7 +22308,7 @@ function unsupported(object){
     false;
 };
 
-},{}],308:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -22047,7 +22319,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],309:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":370,"es-errors/syntax":375,"es-errors/type":376,"gopd":387}],315:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -22055,29 +22385,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -22096,14 +22426,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":371,"object-keys":382}],310:[function(require,module,exports){
+},{"define-data-property":314,"has-property-descriptors":388,"object-keys":403}],316:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],311:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22142,13 +22472,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":341,"./ToPrimitive":343,"./Type":348}],312:[function(require,module,exports){
+},{"./ToNumber":348,"./ToPrimitive":350,"./Type":355}],318:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -22156,13 +22486,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -22174,7 +22503,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -22207,28 +22536,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":357,"../helpers/isNaN":359,"../helpers/isPrefixOf":360,"./ToNumber":341,"./ToPrimitive":343,"./Type":348,"get-intrinsic":370}],313:[function(require,module,exports){
+},{"../helpers/isFinite":363,"../helpers/isNaN":364,"../helpers/isPrefixOf":365,"./ToNumber":348,"./ToPrimitive":350,"es-errors/type":376,"get-intrinsic":386}],319:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":309,"es-errors/type":376}],320:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":370}],314:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":378}],321:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -22279,7 +22641,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":317,"./InLeapYear":321,"./MonthFromTime":331,"get-intrinsic":370}],315:[function(require,module,exports){
+},{"./DayWithinYear":324,"./InLeapYear":328,"./MonthFromTime":338,"es-errors/eval":371}],322:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22292,7 +22654,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":364,"./floor":352}],316:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./floor":359}],323:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22304,7 +22666,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":352}],317:[function(require,module,exports){
+},{"./floor":359}],324:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -22317,7 +22679,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":315,"./DayFromYear":316,"./YearFromTime":350}],318:[function(require,module,exports){
+},{"./Day":322,"./DayFromYear":323,"./YearFromTime":357}],325:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -22337,18 +22699,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":353}],319:[function(require,module,exports){
+},{"./modulo":360}],326:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -22357,7 +22716,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -22378,7 +22739,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":356,"./IsAccessorDescriptor":322,"./IsDataDescriptor":324,"./Type":348,"get-intrinsic":370}],320:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":367,"./IsAccessorDescriptor":329,"./IsDataDescriptor":331,"es-errors/type":376}],327:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22394,12 +22755,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":364,"./floor":352,"./modulo":353}],321:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./floor":359,"./modulo":360}],328:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -22417,14 +22776,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":318,"./YearFromTime":350,"get-intrinsic":370}],322:[function(require,module,exports){
+},{"./DaysInYear":325,"./YearFromTime":357,"es-errors/eval":371}],329:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -22433,30 +22792,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":356,"./Type":348,"has":374}],323:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":367,"es-errors/type":376,"hasown":394}],330:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":377}],324:[function(require,module,exports){
+},{"is-callable":397}],331:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -22465,23 +22826,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":356,"./Type":348,"has":374}],325:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":367,"es-errors/type":376,"hasown":394}],332:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -22490,7 +22854,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -22499,28 +22865,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":356,"./IsAccessorDescriptor":322,"./IsDataDescriptor":324,"./Type":348}],326:[function(require,module,exports){
+},{"./IsAccessorDescriptor":329,"./IsDataDescriptor":331,"./IsPropertyDescriptor":333,"es-errors/type":376}],333:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":361,"./IsAccessorDescriptor":322,"./IsDataDescriptor":324,"./Type":348}],327:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":367}],334:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -22535,7 +22893,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":357,"../helpers/timeConstants":364}],328:[function(require,module,exports){
+},{"../helpers/isFinite":363,"../helpers/timeConstants":369}],335:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22570,7 +22928,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":357,"./DateFromTime":314,"./Day":315,"./MonthFromTime":331,"./ToInteger":340,"./YearFromTime":350,"./floor":352,"./modulo":353,"get-intrinsic":370}],329:[function(require,module,exports){
+},{"../helpers/isFinite":363,"./DateFromTime":321,"./Day":322,"./MonthFromTime":338,"./ToInteger":347,"./YearFromTime":357,"./floor":359,"./modulo":360,"get-intrinsic":386}],336:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -22595,7 +22953,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":357,"../helpers/timeConstants":364,"./ToInteger":340}],330:[function(require,module,exports){
+},{"../helpers/isFinite":363,"../helpers/timeConstants":369,"./ToInteger":347}],337:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22611,7 +22969,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":364,"./floor":352,"./modulo":353}],331:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./floor":359,"./modulo":360}],338:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -22660,7 +23018,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":317,"./InLeapYear":321}],332:[function(require,module,exports){
+},{"./DayWithinYear":324,"./InLeapYear":328}],339:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -22675,7 +23033,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":359}],333:[function(require,module,exports){
+},{"../helpers/isNaN":364}],340:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22691,7 +23049,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":364,"./floor":352,"./modulo":353}],334:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./floor":359,"./modulo":360}],341:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -22710,7 +23068,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":348}],335:[function(require,module,exports){
+},{"./Type":355}],342:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22733,7 +23091,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":357,"./ToNumber":341,"./abs":351,"get-intrinsic":370}],336:[function(require,module,exports){
+},{"../helpers/isFinite":363,"./ToNumber":348,"./abs":358,"get-intrinsic":386}],343:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -22746,7 +23104,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":364,"./DayFromYear":316}],337:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./DayFromYear":323}],344:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -22760,14 +23118,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":364,"./modulo":353}],338:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./modulo":360}],345:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],339:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22778,7 +23136,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":341}],340:[function(require,module,exports){
+},{"./ToNumber":348}],347:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -22798,10 +23156,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":357,"../helpers/isNaN":359,"../helpers/sign":363,"./ToNumber":341,"./abs":351,"./floor":352}],341:[function(require,module,exports){
+},{"../helpers/isFinite":363,"../helpers/isNaN":364,"../helpers/sign":368,"./ToNumber":348,"./abs":358,"./floor":359}],348:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -22811,46 +23177,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":343}],342:[function(require,module,exports){
+},{"./ToPrimitive":350,"call-bind/callBound":309,"safe-regex-test":409}],349:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":313,"get-intrinsic":370}],343:[function(require,module,exports){
+},{"es-object-atoms/ToObject":379}],350:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":365}],344:[function(require,module,exports){
+},{"es-to-primitive/es5":381}],351:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -22864,26 +23223,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -22891,13 +23250,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":323,"./ToBoolean":338,"./Type":348,"get-intrinsic":370,"has":374}],345:[function(require,module,exports){
+},{"./IsCallable":330,"./ToBoolean":345,"./Type":355,"es-errors/type":376,"hasown":394}],352:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22911,7 +23270,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":370}],346:[function(require,module,exports){
+},{"get-intrinsic":386}],353:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -22932,7 +23291,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":357,"../helpers/isNaN":359,"../helpers/sign":363,"./ToNumber":341,"./abs":351,"./floor":352,"./modulo":353}],347:[function(require,module,exports){
+},{"../helpers/isFinite":363,"../helpers/isNaN":364,"../helpers/sign":368,"./ToNumber":348,"./abs":358,"./floor":359,"./modulo":360}],354:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22943,7 +23302,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":341}],348:[function(require,module,exports){
+},{"./ToNumber":348}],355:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -22969,7 +23328,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],349:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -22981,7 +23340,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":315,"./modulo":353}],350:[function(require,module,exports){
+},{"./Day":322,"./modulo":360}],357:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22999,7 +23358,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":304,"get-intrinsic":370}],351:[function(require,module,exports){
+},{"call-bind/callBound":309,"get-intrinsic":386}],358:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -23012,7 +23371,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":370}],352:[function(require,module,exports){
+},{"get-intrinsic":386}],359:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -23025,7 +23384,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],353:[function(require,module,exports){
+},{}],360:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -23036,7 +23395,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":362}],354:[function(require,module,exports){
+},{"../helpers/mod":366}],361:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -23049,7 +23408,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":364,"./modulo":353}],355:[function(require,module,exports){
+},{"../helpers/timeConstants":369,"./modulo":360}],362:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -23060,6 +23419,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -23102,90 +23462,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":311,"./5/AbstractRelationalComparison":312,"./5/CheckObjectCoercible":313,"./5/DateFromTime":314,"./5/Day":315,"./5/DayFromYear":316,"./5/DayWithinYear":317,"./5/DaysInYear":318,"./5/FromPropertyDescriptor":319,"./5/HourFromTime":320,"./5/InLeapYear":321,"./5/IsAccessorDescriptor":322,"./5/IsCallable":323,"./5/IsDataDescriptor":324,"./5/IsGenericDescriptor":325,"./5/IsPropertyDescriptor":326,"./5/MakeDate":327,"./5/MakeDay":328,"./5/MakeTime":329,"./5/MinFromTime":330,"./5/MonthFromTime":331,"./5/SameValue":332,"./5/SecFromTime":333,"./5/StrictEqualityComparison":334,"./5/TimeClip":335,"./5/TimeFromYear":336,"./5/TimeWithinDay":337,"./5/ToBoolean":338,"./5/ToInt32":339,"./5/ToInteger":340,"./5/ToNumber":341,"./5/ToObject":342,"./5/ToPrimitive":343,"./5/ToPropertyDescriptor":344,"./5/ToString":345,"./5/ToUint16":346,"./5/ToUint32":347,"./5/Type":348,"./5/WeekDay":349,"./5/YearFromTime":350,"./5/abs":351,"./5/floor":352,"./5/modulo":353,"./5/msFromTime":354}],356:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":317,"./5/AbstractRelationalComparison":318,"./5/Canonicalize":319,"./5/CheckObjectCoercible":320,"./5/DateFromTime":321,"./5/Day":322,"./5/DayFromYear":323,"./5/DayWithinYear":324,"./5/DaysInYear":325,"./5/FromPropertyDescriptor":326,"./5/HourFromTime":327,"./5/InLeapYear":328,"./5/IsAccessorDescriptor":329,"./5/IsCallable":330,"./5/IsDataDescriptor":331,"./5/IsGenericDescriptor":332,"./5/IsPropertyDescriptor":333,"./5/MakeDate":334,"./5/MakeDay":335,"./5/MakeTime":336,"./5/MinFromTime":337,"./5/MonthFromTime":338,"./5/SameValue":339,"./5/SecFromTime":340,"./5/StrictEqualityComparison":341,"./5/TimeClip":342,"./5/TimeFromYear":343,"./5/TimeWithinDay":344,"./5/ToBoolean":345,"./5/ToInt32":346,"./5/ToInteger":347,"./5/ToNumber":348,"./5/ToObject":349,"./5/ToPrimitive":350,"./5/ToPropertyDescriptor":351,"./5/ToString":352,"./5/ToUint16":353,"./5/ToUint32":354,"./5/Type":355,"./5/WeekDay":356,"./5/YearFromTime":357,"./5/abs":358,"./5/floor":359,"./5/modulo":360,"./5/msFromTime":361}],363:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":358,"get-intrinsic":370,"has":374}],357:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],358:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":374}],359:[function(require,module,exports){
+},{"./isNaN":364}],364:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],360:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -23200,40 +23491,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":304}],361:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":370,"has":374}],362:[function(require,module,exports){
+},{"call-bind/callBound":309}],366:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -23243,14 +23501,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],363:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":376,"hasown":394}],368:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],364:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -23271,7 +23567,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],365:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":386}],371:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],372:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],373:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],374:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],375:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],376:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],377:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],378:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":376}],379:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":380,"./RequireObjectCoercible":378}],380:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],381:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -23318,14 +23705,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":366,"is-callable":377}],366:[function(require,module,exports){
+},{"./helpers/isPrimitive":382,"is-callable":397}],382:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],367:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -23363,49 +23750,81 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":378,"merge-descriptors":379}],368:[function(require,module,exports){
+},{"is-object":398,"merge-descriptors":400}],384:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -23417,21 +23836,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],369:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":368}],370:[function(require,module,exports){
+},{"./implementation":384}],386:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -23470,18 +23895,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -23489,6 +23920,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -23496,9 +23929,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -23509,10 +23942,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -23520,15 +23953,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -23538,11 +23971,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -23559,7 +24002,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -23570,6 +24013,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -23624,11 +24068,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -23684,6 +24129,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -23756,29 +24204,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":369,"has":374,"has-symbols":372}],371:[function(require,module,exports){
+},{"es-errors":372,"es-errors/eval":371,"es-errors/range":373,"es-errors/ref":374,"es-errors/syntax":375,"es-errors/type":376,"es-errors/uri":377,"function-bind":385,"has-proto":389,"has-symbols":390,"hasown":394}],387:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":386}],388:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -23791,7 +24246,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":370}],372:[function(require,module,exports){
+},{"es-define-property":370}],389:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],390:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -23806,7 +24278,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":373}],373:[function(require,module,exports){
+},{"./shams":391}],391:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -23850,14 +24322,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],374:[function(require,module,exports){
+},{}],392:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":391}],393:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":369}],375:[function(require,module,exports){
+},{"function-bind":385}],394:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":385}],395:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -23944,7 +24436,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],376:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -23973,7 +24465,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],377:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -24019,44 +24511,131 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],378:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 'use strict';
 
 module.exports = function isObject(x) {
 	return typeof x === 'object' && x !== null;
 };
 
-},{}],379:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":309,"has-tostringtag/shams":392}],400:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -24118,7 +24697,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],380:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -24127,7 +24706,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],381:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -24251,7 +24830,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":383}],382:[function(require,module,exports){
+},{"./isArguments":404}],403:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -24285,7 +24864,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":381,"./isArguments":383}],383:[function(require,module,exports){
+},{"./implementation":402,"./isArguments":404}],404:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -24304,7 +24883,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],384:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -24490,7 +25069,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],385:[function(require,module,exports){
+},{}],406:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -24585,7 +25164,7 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":367,"module-not-found-error":380}],386:[function(require,module,exports){
+},{"fill-keys":383,"module-not-found-error":401}],407:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -24618,7 +25197,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":384,"through":399,"timers":400}],387:[function(require,module,exports){
+},{"_process":405,"through":422,"timers":423}],408:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -24685,7 +25264,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":286}],388:[function(require,module,exports){
+},{"buffer":291}],409:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":309,"es-errors/type":376,"is-regex":399}],410:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":314,"es-errors/type":376,"get-intrinsic":386,"gopd":387,"has-property-descriptors":388}],411:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -24700,7 +25341,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":355,"function-bind":369}],389:[function(require,module,exports){
+},{"es-abstract/es5":362,"function-bind":385}],412:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -24720,7 +25361,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":388,"./polyfill":390,"./shim":391,"define-properties":309,"function-bind":369}],390:[function(require,module,exports){
+},{"./implementation":411,"./polyfill":413,"./shim":414,"define-properties":315,"function-bind":385}],413:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -24734,7 +25375,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":388}],391:[function(require,module,exports){
+},{"./implementation":411}],414:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -24746,7 +25387,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":390,"define-properties":309}],392:[function(require,module,exports){
+},{"./polyfill":413,"define-properties":315}],415:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25043,7 +25684,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":387}],393:[function(require,module,exports){
+},{"safe-buffer":408}],416:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -25197,7 +25838,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":394,"./lib/results":396,"./lib/test":397,"_process":384,"defined":310,"through":399,"timers":400}],394:[function(require,module,exports){
+},{"./lib/default_stream":417,"./lib/results":419,"./lib/test":420,"_process":405,"defined":316,"through":422,"timers":423}],417:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -25232,7 +25873,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":384,"fs":285,"through":399}],395:[function(require,module,exports){
+},{"_process":405,"fs":290,"through":422}],418:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -25240,7 +25881,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":384,"timers":400}],396:[function(require,module,exports){
+},{"_process":405,"timers":423}],419:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -25431,7 +26072,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":384,"events":287,"function-bind":369,"has":374,"inherits":376,"object-inspect":398,"resumer":386,"through":399,"timers":400}],397:[function(require,module,exports){
+},{"_process":405,"events":292,"function-bind":385,"has":393,"inherits":396,"object-inspect":421,"resumer":407,"through":422,"timers":423}],420:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -25932,7 +26573,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":395,"deep-equal":306,"defined":310,"events":287,"has":374,"inherits":376,"path":288,"string.prototype.trim":389}],398:[function(require,module,exports){
+},{"./next_tick":418,"deep-equal":311,"defined":316,"events":292,"has":393,"inherits":396,"path":293,"string.prototype.trim":412}],421:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -26126,7 +26767,7 @@ function inspectString (str) {
     }
 }
 
-},{}],399:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -26238,7 +26879,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":384,"stream":289}],400:[function(require,module,exports){
+},{"_process":405,"stream":294}],423:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -26317,7 +26958,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":384,"timers":400}],401:[function(require,module,exports){
+},{"process/browser.js":405,"timers":423}],424:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -26388,4 +27029,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[173,174,175,176]);
+},{}]},{},[175,176,177,178]);

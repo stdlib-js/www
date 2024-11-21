@@ -1,0 +1,14 @@
+<h1 id="ltrim">ltrim</h1><blockquote><p>Trim whitespace characters from the beginning of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ltrim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/left-trim'</span> );
+</code></pre><h4 id="ltrim-str-">ltrim( str )</h4><p>Trims whitespace from the beginning of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = ltrim( <span class="hljs-string">' \r\n\t  Beep \t\t\n  '</span> );
+<span class="hljs-comment">// returns 'Beep \t\t\n  '</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Following <a href="https://en.wikipedia.org/wiki/Unicode">Unicode 6.3.0</a> and later, "whitespace" is defined as the following characters:</p><ul><li><code>\f</code></li><li><code>\n</code></li><li><code>\r</code></li><li><code>\t</code></li><li><code>\v</code></li><li><code>\u0020</code></li><li><code>\u00a0</code></li><li><code>\u1680</code></li><li><code>\u2000-\u200a</code></li><li><code>\u2028</code></li><li><code>\u2029</code></li><li><code>\u202f</code></li><li><code>\u205f</code></li><li><code>\u3000</code></li><li><code>\ufeff</code></li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ltrim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/left-trim'</span> );
+
+<span class="hljs-keyword">var</span> str = ltrim( <span class="hljs-string">'   Whitespace   '</span> );
+<span class="hljs-comment">// returns 'Whitespace   '</span>
+
+str = ltrim( <span class="hljs-string">'\t\t\tTabs\t\t\t'</span> );
+<span class="hljs-comment">// returns 'Tabs\t\t\t'</span>
+
+str = ltrim( <span class="hljs-string">'\n\n\nNew Lines\n\n\n'</span> );
+<span class="hljs-comment">// returns 'New Lines\n\n\n'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

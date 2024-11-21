@@ -1,0 +1,48 @@
+<h1 id="quantile-function">Quantile Function</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">Studentized range</a> distribution <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range/quantile'</span> );
+</code></pre><h4 id="quantile-p-r-v-nranges1-">quantile( p, r, v[, nranges=1] )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> for a <a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">studentized range</a> distribution with sample size <code>r</code> and <code>v</code> degrees of freedom. Optionally. Optionally, the number of groups whose maximum range is considered can be specified via the <code>nranges</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.5</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~0.0644</span>
+
+y = quantile( <span class="hljs-number">0.9</span>, <span class="hljs-number">17.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~0.913</span>
+
+y = quantile( <span class="hljs-number">0.5</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns ~0.01</span>
+</code></pre><p>If provided a probability <code>p</code> outside the interval <code>[0,1]</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">1.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If provided <code>v &#x3C; 2</code> or <code>r &#x3C; 2</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.4</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.4</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">1.5</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><h4 id="quantilefactory-r-v-nranges1-">quantile.factory( r, v[, nranges=1] )</h4><p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> of an <a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">studentized range</a> distribution with sample size <code>r</code> and <code>v</code> degrees of freedom. Optionally, the number of groups whose maximum range is considered can be specified via the <code>nranges</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myquantile = quantile.factory( <span class="hljs-number">4.0</span> );
+
+<span class="hljs-keyword">var</span> y = myquantile( <span class="hljs-number">0.2</span> );
+<span class="hljs-comment">// returns ~-0.941</span>
+
+y = myquantile( <span class="hljs-number">0.9</span> );
+<span class="hljs-comment">// returns ~1.533</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range/quantile'</span> );
+
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">var</span> p;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    p = randu();
+    r = ( randu() * <span class="hljs-number">20.0</span> ) + <span class="hljs-number">2.0</span>;
+    v = ( randu() * <span class="hljs-number">20.0</span> ) + <span class="hljs-number">2.0</span>;
+    y = quantile( p, r, v );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'p: %d, r: %d, v: %d, Q(p;r,v): %d'</span>, p.toFixed( <span class="hljs-number">4</span> ), r.toFixed( <span class="hljs-number">4</span> ), v.toFixed( <span class="hljs-number">4</span> ), y.toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

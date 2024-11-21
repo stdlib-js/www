@@ -1,0 +1,70 @@
+<h1 id="issamevaluezerof">isSameValueZerof</h1><blockquote><p>Test if two single-precision floating-point numbers are the same value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameValueZerof = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/assert/is-same-value-zero'</span> );
+</code></pre><h4 id="issamevaluezerof-a-b-">isSameValueZerof( a, b )</h4><p>Tests if two single-precision floating-point numbers <code>a</code> and <code>b</code> are the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSameValueZerof( toFloat32( <span class="hljs-number">3.14</span> ), toFloat32( <span class="hljs-number">3.14</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( toFloat32( <span class="hljs-number">5.0</span> ), toFloat32( <span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>In contrast to the strict equality operator <code>===</code>, the function treats <code>NaNs</code> as the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-literal">NaN</span> === <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSameValueZerof( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>In contrast to the <a href="/docs/api/latest/@stdlib/number/float32/base/assert/is-same-value">SameValue Algorithm</a> (as specified in ECMAScript 5), the function does not distinguish between <code>+0</code> and <code>-0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-number">0.0</span> === -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<span class="hljs-keyword">var</span> isSameValueZerof = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/assert/is-same-value-zero'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSameValueZerof( toFloat32( <span class="hljs-number">3.14</span> ), toFloat32( <span class="hljs-number">3.14</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( toFloat32( <span class="hljs-number">0.0</span> ), toFloat32( <span class="hljs-number">0.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( toFloat32( -<span class="hljs-number">0.0</span> ), toFloat32( <span class="hljs-number">0.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameValueZerof( toFloat32( <span class="hljs-literal">NaN</span> ), toFloat32( <span class="hljs-literal">NaN</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/assert/is_same_value_zero.h"</span></span>
+</code></pre><h4 id="stdlib_base_float32_is_same_value_zero-a-b-">stdlib_base_float32_is_same_value_zero( a, b )</h4><p>Tests if two single-precision floating-point numbers <code>a</code> and <code>b</code> are the same value.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-keyword">bool</span> v = stdlib_base_float32_is_same_value_zero( <span class="hljs-number">3.14f</span>, <span class="hljs-number">3.14f</span> );
+<span class="hljs-comment">// returns true</span>
+
+v = stdlib_base_float32_is_same_value_zero( <span class="hljs-number">0.0f</span>, <span class="hljs-number">-0.0f</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>a</strong>: <code>[in] float</code> first input value.</li><li><strong>b</strong>: <code>[in] float</code> second input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stdlib_base_float32_is_same_value_zero</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> b )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/assert/is_same_value_zero.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> a[] = {
+        <span class="hljs-number">5.0f</span>,
+        <span class="hljs-number">-2.0f</span>,
+        <span class="hljs-number">0.0f</span>,
+        <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span>
+    };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> b[] = {
+        <span class="hljs-number">5.0f</span>,
+        <span class="hljs-number">2.0f</span>,
+        <span class="hljs-number">-0.0f</span>,
+        <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span>
+    };
+
+    <span class="hljs-keyword">bool</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        v = stdlib_base_float32_is_same_value_zero( a[ i ], b[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Same value? %s\n"</span>, ( v ) ? <span class="hljs-string">"True"</span> : <span class="hljs-string">"False"</span> );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

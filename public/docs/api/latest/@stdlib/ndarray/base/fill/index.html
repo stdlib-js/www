@@ -1,0 +1,46 @@
+<h1 id="fill">fill</h1><blockquote><p>Fill an input ndarray with a specified value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fill = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/fill'</span> );
+</code></pre><h4 id="fill-x-value-">fill( x, value )</h4><p>Fills an input ndarray with a specified value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create a data buffer:</span>
+<span class="hljs-keyword">var</span> xbuf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+
+<span class="hljs-comment">// Define the shape of the input array:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Define the array strides:</span>
+<span class="hljs-keyword">var</span> sx = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// Define the index offset:</span>
+<span class="hljs-keyword">var</span> ox = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create the input ndarray-like object:</span>
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'data'</span>: xbuf,
+    <span class="hljs-string">'shape'</span>: shape,
+    <span class="hljs-string">'strides'</span>: sx,
+    <span class="hljs-string">'offset'</span>: ox,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+fill( x, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-built_in">console</span>.log( x.data );
+<span class="hljs-comment">// => &#x3C;Float64Array>[ 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: array-like object containing an input ndarray.</li><li><strong>value</strong>: scalar value.</li></ul><p>A provided ndarray should be an object with the following properties:</p><ul><li><strong>dtype</strong>: data type.</li><li><strong>data</strong>: data buffer.</li><li><strong>shape</strong>: dimensions.</li><li><strong>strides</strong>: stride lengths.</li><li><strong>offset</strong>: index offset.</li><li><strong>order</strong>: specifies whether an ndarray is row-major (C-style) or column major (Fortran-style).</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>value</code> is a number and <code>x</code> has a complex <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, the function fills an input ndarray with a complex number whose real component equals the provided scalar <code>value</code> and whose imaginary component is zero.</li><li>The function <strong>mutates</strong> the input ndarray.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
+<span class="hljs-keyword">var</span> fill = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/fill'</span> );
+
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ],
+    <span class="hljs-string">'strides'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+fill( x, <span class="hljs-number">10.0</span> );
+<span class="hljs-built_in">console</span>.log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+</code></pre></section><section class="related"></section><section class="links"></section>

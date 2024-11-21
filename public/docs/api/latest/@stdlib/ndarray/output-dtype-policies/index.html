@@ -1,0 +1,27 @@
+<h1 id="policies">Policies</h1><blockquote><p>List of output ndarray data type policies.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> policies = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/output-dtype-policies'</span> );
+</code></pre><h4 id="policies-1">policies()</h4><p>Returns a list of ndarray data type policies.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = policies();
+<span class="hljs-comment">// e.g., returns [ 'same', 'promoted', ... ]</span>
+</code></pre><p>The output <code>array</code> contains the following data type policies:</p><ul><li><code>same</code>: return the same data type.</li><li><code>promoted</code>: return a promoted data type.</li><li><code>bool</code>: return a boolean data type.</li><li><code>signed_integer</code>: return a signed integer data type.</li><li><code>unsigned_integer</code>: return an unsigned integer data type.</li><li><code>integer</code>: return an integer data type (i.e., either signed or unsigned).</li><li><code>floating_point</code>: return a floating-point data type (i.e., either real-valued or complex-valued).</li><li><code>real_floating_point</code>: return a real-valued floating-point data type.</li><li><code>complex_floating_point</code>: return a complex-valued floating-point data type.</li><li><code>real</code>: return a real-valued data type.</li><li><code>numeric</code>: return a numeric data type.</li><li><code>default</code>: return the default data type.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+<span class="hljs-keyword">var</span> policies = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/output-dtype-policies'</span> );
+
+<span class="hljs-keyword">var</span> POLICIES = policies();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPolicy</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-keyword">if</span> ( indexOf( POLICIES, str ) === -<span class="hljs-number">1</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> bool = isPolicy( <span class="hljs-string">'same'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPolicy( <span class="hljs-string">'real_floating_point'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPolicy( <span class="hljs-string">'promoted'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPolicy( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

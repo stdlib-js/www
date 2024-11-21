@@ -1,0 +1,27 @@
+<h1 id="emptylike">emptyLike</h1><blockquote><p>Create an uninitialized array having the same length and data type as a provided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/empty-like'</span> );
+</code></pre><h4 id="emptylike-x-dtype-">emptyLike( x[, dtype] )</h4><p>Creates an uninitialized array having the same length and <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> as a provided array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> arr = emptyLike( x );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0, 0 ];</span>
+</code></pre><p>By default, the output array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> is inferred from the provided array <code>x</code>. To return an array having a different <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a>, provide a <code>dtype</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> arr = emptyLike( x, <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;Int32Array></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In browser environments, the function always returns zero-filled arrays.</li><li>If <code>dtype</code> is <code>'generic'</code>, the function always returns a zero-filled array.</li><li>In Node.js versions <code>>=3.0.0</code>, the underlying memory of returned typed arrays is <strong>not</strong> initialized. Memory contents are unknown and may contain <strong>sensitive</strong> data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/empty-like'</span> );
+
+<span class="hljs-comment">// Create a zero-filled array:</span>
+<span class="hljs-keyword">var</span> x = zeros( <span class="hljs-number">4</span>, <span class="hljs-string">'complex128'</span> );
+
+<span class="hljs-comment">// Get a list of array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate empty arrays...</span>
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    arr = emptyLike( x, dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( arr );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/empty"><code>@stdlib/array/empty</code></a></span><span class="delimiter">: </span><span class="description">create an uninitialized array having a specified length.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/full-like"><code>@stdlib/array/full-like</code></a></span><span class="delimiter">: </span><span class="description">create a filled array having the same length and data type as a provided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/ones-like"><code>@stdlib/array/ones-like</code></a></span><span class="delimiter">: </span><span class="description">create an array filled with ones and having the same length and data type as a provided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/zeros-like"><code>@stdlib/array/zeros-like</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled array having the same length and data type as a provided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/empty-like"><code>@stdlib/ndarray/empty-like</code></a></span><span class="delimiter">: </span><span class="description">create an uninitialized ndarray having the same shape and data type as a provided ndarray.</span></li></ul></section><section class="links"></section>

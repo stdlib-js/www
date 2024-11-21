@@ -1,0 +1,24 @@
+<h1 id="copyindexed">copyIndexed</h1><blockquote><p>Copy the elements of an indexed array-like object to a new "generic" array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copyIndexed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/copy-indexed'</span> );
+</code></pre><h4 id="copyindexed-x-">copyIndexed( x )</h4><p>Copies the elements of an indexed array-like object to a new "generic" array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> out = copyIndexed( x );
+<span class="hljs-comment">// returns [ 1, 2, 3  ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>An <em>indexed</em> array-like object is a data structure in which one retrieves elements via integer indices using bracket <code>[]</code> notation (e.g., <code>Float64Array</code>, <code>Int32Array</code>, <code>Array</code>, etc). This is in contrast to an <em>accessor</em> array-like object in which one retrieves elements using <code>get</code> and <code>set</code> methods (e.g., <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a> and <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> copyIndexed = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/copy-indexed'</span> );
+
+<span class="hljs-comment">// Create a Float64Array:</span>
+<span class="hljs-keyword">var</span> arr = filledBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, randu );
+
+<span class="hljs-comment">// Copy elements to a generic array:</span>
+<span class="hljs-keyword">var</span> out = copyIndexed( arr );
+
+<span class="hljs-comment">// Retrieve the first element:</span>
+<span class="hljs-keyword">var</span> x = out[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d'</span>, x );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

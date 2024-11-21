@@ -1,0 +1,47 @@
+<h1 id="erfcx">erfcx</h1><blockquote><p>Scaled <a href="https://en.wikipedia.org/wiki/Error_function">complementary error function</a>.</p></blockquote><section class="intro"><p>The scaled <a href="https://en.wikipedia.org/wiki/Error_function">complementary error function</a> is defined as</p><p>For large values, the scaled <a href="https://en.wikipedia.org/wiki/Error_function">complementary error function</a> is approximately equal to</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> erfcx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/erfcx'</span> );
+</code></pre><h4 id="erfcx-x-">erfcx( x )</h4><p>Evaluates the scaled <a href="https://en.wikipedia.org/wiki/Error_function">complementary error function</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = erfcx( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+y = erfcx( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.4276</span>
+
+y = erfcx( -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~5.01</span>
+
+y = erfcx( <span class="hljs-number">50.0</span> );
+<span class="hljs-comment">// returns ~0.011</span>
+
+y = erfcx( -<span class="hljs-number">50.0</span> );
+<span class="hljs-comment">// returns +Infinity</span>
+</code></pre><p>If provided <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = erfcx( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> erfcx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/erfcx'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">30.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, erfcx(x): %d'</span>, x[ i ], erfcx( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/erfcx.h"</span></span>
+</code></pre><h4 id="erfcx-x--1">erfcx( x )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Error_function">scaled complementary error function</a>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> y  = stdlib_base_erfcx( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+y  = stdlib_base_erfcx( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.4276</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_erfcx</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/erfcx.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.22</span>, <span class="hljs-number">0.44</span>, <span class="hljs-number">0.67</span>, <span class="hljs-number">0.89</span>, <span class="hljs-number">1.11</span>, <span class="hljs-number">1.33</span>, <span class="hljs-number">1.56</span>, <span class="hljs-number">1.78</span>, <span class="hljs-number">2.0</span> };
+
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_erfcx( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x: %lf, erfcx(x): %lf\n"</span>, x[ i ], v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/erfc"><code>@stdlib/math/base/special/erfc</code></a></span><span class="delimiter">: </span><span class="description">complementary error function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/erfcinv"><code>@stdlib/math/base/special/erfcinv</code></a></span><span class="delimiter">: </span><span class="description">inverse complementary error function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/erf"><code>@stdlib/math/base/special/erf</code></a></span><span class="delimiter">: </span><span class="description">error function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/erfinv"><code>@stdlib/math/base/special/erfinv</code></a></span><span class="delimiter">: </span><span class="description">inverse error function.</span></li></ul></section><section class="links"></section>

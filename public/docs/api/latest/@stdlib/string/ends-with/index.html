@@ -1,5 +1,5 @@
 <h1 id="endswith">endsWith</h1><blockquote><p>Test if a string ends with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
-</code></pre><h4 id="endswith-str-search-len-">endsWith( str, search[, len] )</h4><p>Tests if a <code>string</code> ends with the characters of another <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+</code></pre><h4 id="endswith-str-search-len-">endsWith( str, search[, len] )</h4><p>Tests if a string ends with the characters of another string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
 
 <span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'boy?'</span> );
 <span class="hljs-comment">// returns true</span>
@@ -17,14 +17,13 @@ bool = endsWith( str, <span class="hljs-string">'to be'</span>, -<span class="hl
 
 <span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>In general, exercise caution when operating on substrings containing Unicode characters, as the visual character length may not equal the number of code points. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = <span class="hljs-string">'🏠'</span>.length;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></li><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith"><code>String.prototype.endsWith</code></a> in the following ways:</p><ul><li>The function requires string values for the first and second arguments and requires that the <code>len</code> argument is an integer value.</li><li>The function does <strong>not</strong> clamp positive <code>len</code> values to the end of the input string.</li><li>Except when provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>false</code> if <code>len</code> resolves to a starting search position which exceeds the bounds of the input string.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
 
-<span class="hljs-keyword">var</span> bool;
-<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
 
-str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
-
-bool = endsWith( str, <span class="hljs-string">'air'</span> );
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'air'</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = endsWith( str, <span class="hljs-string">'fair'</span> );
@@ -44,7 +43,7 @@ Options:
          --search string       Search string.
          --len int             Substring length.
          --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
-</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | ends-with --search=Beep --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>

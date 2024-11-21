@@ -1,0 +1,54 @@
+<h1 id="map5d">map5d</h1><blockquote><p>Apply a function to elements in a five-dimensional nested input array and assign results to elements in a new five-dimensional nested output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> map5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/map5d'</span> );
+</code></pre><h4 id="map5d-x-shape-fcn-thisarg-">map5d( x, shape, fcn[, thisArg] )</h4><p>Applies a function to elements in a five-dimensional nested input array and assigns results to elements in a new five-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> y = map5d( x, shape, naryFunction( abs, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns [ [ [ [ [ 1.0, 2.0 ], [ 3.0, 4.0 ] ] ] ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input nested array.</li><li><strong>shape</strong>: array shape.</li><li><strong>fcn</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul><p>To set the applied function's execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> x;
+}
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> y = map5d( x, shape, fcn, ctx );
+<span class="hljs-comment">// returns [ [ [ [ [ 1.0, 2.0 ], [ 3.0, 4.0 ] ] ] ] ]</span>
+
+<span class="hljs-keyword">var</span> v = ctx.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><h4 id="map5dassign-x-y-shape-fcn-thisarg-">map5d.assign( x, y, shape, fcn[, thisArg] )</h4><p>Applies a function to elements in a five-dimensional nested input array and assigns results to elements in a five-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> y = zeros5d( shape );
+
+<span class="hljs-keyword">var</span> out = map5d.assign( x, y, shape, naryFunction( abs, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns [ [ [ [ [ 1.0, 2.0 ], [ 3.0, 4.0 ] ] ] ] ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input nested array.</li><li><strong>y</strong>: output nested array.</li><li><strong>shape</strong>: array shape.</li><li><strong>fcn</strong>: function to apply.</li><li><strong>thisArg</strong>: applied function execution context (<em>optional</em>).</li></ul><p>The function assumes that the input and output arrays have the same shape.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filled5dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled5d-by'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> map5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/map5d'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> x = filled5dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = map5d( x, shape, naryFunction( abs, <span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

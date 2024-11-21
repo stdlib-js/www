@@ -1,0 +1,132 @@
+<h1 id="seq2slice">seq2slice</h1><blockquote><p>Convert a subsequence string to a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> seq2slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/seq2slice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="seq2slice-str-len-strict-">seq2slice( str, len, strict )</h4><p>Converts a subsequence string to a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object, where <code>len</code> specifies the maximum number of elements allowed in the slice.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2slice( <span class="hljs-string">':5'</span>, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> v = s.start;
+<span class="hljs-comment">// returns 0</span>
+
+v = s.stop;
+<span class="hljs-comment">// returns 5</span>
+
+v = s.step;
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>A subsequence string has the following format:</p><pre><code class="no-highlight language-text">&#x3C;start>:&#x3C;stop>:&#x3C;increment>
+</code></pre><p>where</p><ul><li>If an <code>increment</code> is not specified, the default increment is <code>1</code>. An increment of zero is <strong>not</strong> allowed.</li><li>The <code>start</code> index is <strong>inclusive</strong>.</li><li>The <code>stop</code> index is <strong>exclusive</strong>.</li><li>Both <code>start</code> and <code>stop</code> indices are <em>optional</em>. If not provided, <code>start</code> and <code>stop</code> default to index extremes. Which extremes correspond to which index depends on whether the <code>increment</code> is positive or negative.</li><li>Both <code>start</code> and <code>stop</code> can be negative; in which case, the corresponding index is resolved by subtracting the respective value from the provided length <code>len</code>.</li><li>Both <code>start</code> and <code>stop</code> can use the <code>end</code> keyword (e.g., <code>end-2::2</code>, <code>end-3:</code>, etc), which supports basic subtraction and division.</li><li>The <code>end</code> keyword resolves to the provided length <code>len</code>. Thus, <code>:-1</code> is equivalent to <code>:end-1</code>, <code>:-2</code> is equivalent to <code>:end-2</code>, and so on and so forth. The exception is when performing a division operation when the <code>increment</code> is less than zero; in which case, <code>end</code> is equal to <code>len-1</code> in order to preserve user expectations when <code>end/d</code> equals a whole number and slicing from right-to-left. The result from a division operation is <strong>rounded down</strong> to the nearest integer value.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2slice( <span class="hljs-string">'end:2:-1'</span>, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> v = s.start;
+<span class="hljs-comment">// returns 9</span>
+
+v = s.stop;
+<span class="hljs-comment">// returns 2</span>
+
+v = s.step;
+<span class="hljs-comment">// returns -1</span>
+
+s = seq2slice( <span class="hljs-string">'end-2:2:-1'</span>, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+v = s.start;
+<span class="hljs-comment">// returns 8</span>
+
+v = s.stop;
+<span class="hljs-comment">// returns 2</span>
+
+v = s.step;
+<span class="hljs-comment">// returns -1</span>
+
+s = seq2slice( <span class="hljs-string">'end/2:2:-1'</span>, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+v = s.start;
+<span class="hljs-comment">// returns 4</span>
+
+v = s.stop;
+<span class="hljs-comment">// returns 2</span>
+
+v = s.step;
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p>When <code>strict</code> is <code>true</code>, the function throws an error if a subsequence string resolves to a slice exceeding index bounds.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2slice( <span class="hljs-string">'10:20'</span>, <span class="hljs-number">10</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When <code>len</code> is zero, the function always returns a Slice object equivalent to <code>0:0:&#x3C;increment></code>.</li><li>When <code>strict</code> is <code>false</code>, the resolved slice start is clamped to the slice index bounds (i.e., <code>[0, len)</code>).</li><li>When <code>strict</code> is <code>false</code>, the resolved slice end is upper bound clamped to <code>len</code> (i.e., one greater than the last possible index).</li><li>When the increment is negative, the resolved slice end value may be <code>null</code>, thus indicating that a non-empty slice should include the first index.</li><li>The function ensures that results satisfy the convention that <code>:n</code> combined with <code>n:</code> is equivalent to <code>:</code> (i.e., selecting all elements). This convention matches Python slice semantics, but diverges from the MATLAB convention where <code>:n</code> and <code>n:</code> overlap by one element.</li><li>Unlike MATLAB, but like Python, the subsequence string is upper-bound exclusive. For example, in Python, <code>0:2</code> corresponds to the sequence <code>{0,1}</code>. In MATLAB, <code>1:3</code> corresponds to <code>{1,2,3}</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> seq2slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/seq2slice'</span> );
+
+<span class="hljs-keyword">var</span> s = seq2slice( <span class="hljs-string">':'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 5. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">'2:'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 2. stop: 5. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">':3'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 3. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">'2:4'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 2. stop: 4. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">'1:4:2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 1. stop: 4. step: 2.'</span>
+
+s = seq2slice( <span class="hljs-string">'2::2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 2. stop: 5. step: 2.'</span>
+
+s = seq2slice( <span class="hljs-string">':-2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 3. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">':-1:2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 4. step: 2.'</span>
+
+s = seq2slice( <span class="hljs-string">'-4:-1:2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 1. stop: 4. step: 2.'</span>
+
+s = seq2slice( <span class="hljs-string">'-5:-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 4. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">'::-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 4. stop: null. step: -1.'</span>
+
+s = seq2slice( <span class="hljs-string">':0:-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 4. stop: 0. step: -1.'</span>
+
+s = seq2slice( <span class="hljs-string">'3:0:-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 3. stop: 0. step: -1.'</span>
+
+s = seq2slice( <span class="hljs-string">'-1:-4:-2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 4. stop: 1. step: -2.'</span>
+
+s = seq2slice( <span class="hljs-string">':end'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 5. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">':end-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 4. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">':end/2'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 2. step: 1.'</span>
+
+s = seq2slice( <span class="hljs-string">'end/2::-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 2. stop: null. step: -1.'</span>
+
+s = seq2slice( <span class="hljs-string">'end-2::-1'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 3. stop: null. step: -1.'</span>
+
+s = seq2slice( <span class="hljs-string">'end/2:'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 2. stop: 5. step: 1.'</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/slice/ctor"><code>@stdlib/slice/ctor</code></a></span><span class="delimiter">: </span><span class="description">slice constructor.</span></li></ul></section><section class="links"></section>

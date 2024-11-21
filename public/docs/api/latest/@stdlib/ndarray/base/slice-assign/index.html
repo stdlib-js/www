@@ -1,0 +1,111 @@
+<h1 id="sliceassign">sliceAssign</h1><blockquote><p>Assign element values from a broadcasted input <code>ndarray</code> to corresponding elements in an output <code>ndarray</code> view.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceAssign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/slice-assign'</span> );
+</code></pre><h4 id="sliceassign-x-y-slice-strict-">sliceAssign( x, y, slice, strict )</h4><p>Assigns element values from a broadcasted input <code>ndarray</code> to corresponding elements in an output <code>ndarray</code> view.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndzeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+
+<span class="hljs-comment">// Define an input array:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = x.shape;
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( x );
+<span class="hljs-comment">// returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+
+<span class="hljs-comment">// Define an output array:</span>
+<span class="hljs-keyword">var</span> y = ndzeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ], {
+    <span class="hljs-string">'dtype'</span>: x.dtype
+});
+
+<span class="hljs-comment">// Create a slice:</span>
+<span class="hljs-keyword">var</span> s0 = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> s2 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> MultiSlice( s0, s1, s2 );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-comment">// Perform assignment:</span>
+<span class="hljs-keyword">var</span> out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ [ 6.0, 5.0 ], [ 4.0, 3.0 ], [ 2.0, 1.0 ] ], [ [ 6.0, 5.0 ], [ 4.0, 3.0 ], [ 2.0, 1.0 ] ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input <code>ndarray</code>.</li><li><strong>y</strong>: output <code>ndarray</code>.</li><li><strong>slice</strong>: a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> instance specifying the output <code>ndarray</code> view.</li><li><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The input <code>ndarray</code> <strong>must</strong> be <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">broadcast compatible</a> with the output <code>ndarray</code> view.</li><li>The input <code>ndarray</code> must have a <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> which can be <a href="/docs/api/latest/@stdlib/ndarray/safe-casts">safely cast</a> to the output <code>ndarray</code> data type. Floating-point data types (both real and complex) are allowed to downcast to a lower precision data type of the <a href="/docs/api/latest/@stdlib/ndarray/same-kind-casts">same kind</a> (e.g., element values from a <code>'float64'</code> input <code>ndarray</code> can be assigned to corresponding elements in a <code>'float32'</code> output <code>ndarray</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> scalar2ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/from-scalar'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> ndzeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/slice'</span> );
+<span class="hljs-keyword">var</span> sliceAssign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/slice-assign'</span> );
+
+<span class="hljs-comment">// Alias `null` to allow for more compact indexing expressions:</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-literal">null</span>;
+
+<span class="hljs-comment">// Create an output ndarray:</span>
+<span class="hljs-keyword">var</span> y = ndzeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ] );
+
+<span class="hljs-comment">// Update each matrix...</span>
+<span class="hljs-keyword">var</span> s1 = E( <span class="hljs-number">0</span>, _, _ );
+sliceAssign( scalar2ndarray( <span class="hljs-number">100</span> ), y, s1, <span class="hljs-literal">false</span> );
+
+<span class="hljs-keyword">var</span> a1 = ndarray2array( slice( y, s1, <span class="hljs-literal">false</span> ) );
+<span class="hljs-comment">// returns [ [ 100, 100, 100 ], [ 100, 100, 100 ], [ 100, 100, 100 ] ]</span>
+
+<span class="hljs-keyword">var</span> s2 = E( <span class="hljs-number">1</span>, _, _ );
+sliceAssign( scalar2ndarray( <span class="hljs-number">200</span> ), y, s2, <span class="hljs-literal">false</span> );
+
+<span class="hljs-keyword">var</span> a2 = ndarray2array( slice( y, s2, <span class="hljs-literal">false</span> ) );
+<span class="hljs-comment">// returns [ [ 200, 200, 200 ], [ 200, 200, 200 ], [ 200, 200, 200 ] ]</span>
+
+<span class="hljs-keyword">var</span> s3 = E( <span class="hljs-number">2</span>, _, _ );
+sliceAssign( scalar2ndarray( <span class="hljs-number">300</span> ), y, s3, <span class="hljs-literal">false</span> );
+
+<span class="hljs-keyword">var</span> a3 = ndarray2array( slice( y, s3, <span class="hljs-literal">false</span> ) );
+<span class="hljs-comment">// returns [ [ 300, 300, 300 ], [ 300, 300, 300 ], [ 300, 300, 300 ] ]</span>
+
+<span class="hljs-comment">// Update the second rows in each matrix:</span>
+<span class="hljs-keyword">var</span> s4 = E( _, <span class="hljs-number">1</span>, _ );
+sliceAssign( scalar2ndarray( <span class="hljs-number">400</span> ), y, s4, <span class="hljs-literal">false</span> );
+
+<span class="hljs-keyword">var</span> a4 = ndarray2array( slice( y, s4, <span class="hljs-literal">false</span> ) );
+<span class="hljs-comment">// returns [ [ 400, 400, 400 ], [ 400, 400, 400 ], [ 400, 400, 400 ] ]</span>
+
+<span class="hljs-comment">// Update the second columns in each matrix:</span>
+<span class="hljs-keyword">var</span> s5 = E( _, _, <span class="hljs-number">1</span> );
+sliceAssign( scalar2ndarray( <span class="hljs-number">500</span> ), y, s5, <span class="hljs-literal">false</span> );
+
+<span class="hljs-keyword">var</span> a5 = ndarray2array( slice( y, s5, <span class="hljs-literal">false</span> ) );
+<span class="hljs-comment">// returns [ [ 500, 500, 500 ], [ 500, 500, 500 ], [ 500, 500, 500 ] ]</span>
+
+<span class="hljs-comment">// Return the contents of the entire ndarray:</span>
+<span class="hljs-keyword">var</span> a6 = ndarray2array( y );
+<span class="hljs-comment">/* returns
+  [
+    [
+      [ 100, 500, 100 ],
+      [ 400, 500, 400 ],
+      [ 100, 500, 100 ]
+    ],
+    [
+      [ 200, 500, 200 ],
+      [ 400, 500, 400 ],
+      [ 200, 500, 200 ]
+    ],
+    [
+      [ 300, 500, 300 ],
+      [ 400, 500, 400 ],
+      [ 300, 500, 300 ]
+    ]
+  ]
+*/</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,30 @@
+<h1 id="parse">parse</h1><blockquote><p>Parses a string representing a complex number into a complex like object <code>{re: number, im: number}</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-js"><span class="hljs-keyword">var</span> parse = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/base/parse'</span> );
+</code></pre><h4 id="parse-str-">parse( str )</h4><p>Parses a string representing a complex number into a complex like object.</p><pre><code class="hljs language-js"><span class="hljs-keyword">var</span> parse = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/base/parse'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'5 + 3i'</span>;
+
+<span class="hljs-keyword">var</span> z = parse( str );
+<span class="hljs-comment">// returns &#x3C;{re: 5, im: 3}></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-js"><span class="hljs-keyword">var</span> parse = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/base/parse'</span> );
+
+<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> z;
+
+z = parse( <span class="hljs-string">'5 + 4i'</span> );
+<span class="hljs-comment">// returns {'re' : 5, 'im' : 4}</span>
+
+z = parse( <span class="hljs-string">'Infinity + 2.34i'</span> );
+<span class="hljs-comment">// returns {'re' : Infinity, 'im' : 2.34}</span>
+
+z = parse( <span class="hljs-string">'NaN + 4i'</span> );
+<span class="hljs-comment">// returns {'re' : NaN, 'im' : 4}</span>
+
+z = parse( <span class="hljs-string">'45i55 + 5'</span> );
+<span class="hljs-comment">// returns null</span>
+
+z = parse( <span class="hljs-string">'5 + 6 + 10e4i'</span> );
+<span class="hljs-comment">// returns {'re' : 11, 'im' : 100000}</span>
+
+z = parse( {} );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float32/ctor"><code>@stdlib/complex/float32/ctor</code></a></span><span class="delimiter">: </span><span class="description">64-bit complex number.</span></li></ul></section><section class="links"></section>

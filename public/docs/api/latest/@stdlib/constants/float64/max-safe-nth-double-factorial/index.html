@@ -1,0 +1,28 @@
+<h1 id="float64_max_safe_nth_double_factorial">FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL</h1><blockquote><p>Maximum safe nth <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> when stored in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> format.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/max-safe-nth-double-factorial'</span> );
+</code></pre><h4 id="float64_max_safe_nth_double_factorial-1">FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL</h4><p>The maximum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> nth <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> when stored in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> format.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL === <span class="hljs-number">301</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/max-safe-nth-double-factorial'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params"> n </span>) </span>{
+    <span class="hljs-keyword">var</span> a;
+    <span class="hljs-keyword">var</span> i;
+
+    a = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> ( i = n; i >= <span class="hljs-number">2</span>; i -= <span class="hljs-number">2</span> ) {
+        a *= i;
+    }
+    <span class="hljs-keyword">return</span> a;
+}
+
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">400</span>; i++ ) {
+    v = factorial( i );
+    <span class="hljs-keyword">if</span> ( i > FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Unsafe: %d'</span>, v );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Safe:   %d'</span>, v );
+    }
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/constants/float64/max_safe_nth_double_factorial.h"</span></span>
+</code></pre><h4 id="stdlib_constant_float64_max_safe_nth_double_factorial">STDLIB_CONSTANT_FLOAT64_MAX_SAFE_NTH_DOUBLE_FACTORIAL</h4><p>Macro for the maximum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> nth <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> when stored in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> format.</p></section><section class="notes"></section><section class="examples"></section></section><section class="related"></section><section class="links"></section>

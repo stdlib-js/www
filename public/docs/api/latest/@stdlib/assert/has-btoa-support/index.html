@@ -1,0 +1,20 @@
+<h1 id="hasbtoasupport">hasBtoaSupport</h1><blockquote><p>Detect native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa"><code>btoa</code></a> support.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasBtoaSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-btoa-support'</span> );
+</code></pre><h4 id="hasbtoasupport-1">hasBtoaSupport()</h4><p>Detects if a runtime environment supports <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa"><code>btoa</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasBtoaSupport();
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasBtoaSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-btoa-support'</span> );
+
+<span class="hljs-keyword">var</span> bool = hasBtoaSupport();
+<span class="hljs-keyword">if</span> ( bool ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment has btoa support.'</span> );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment lacks btoa support.'</span> );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: has-btoa-support [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ has-btoa-support
+&#x3C;boolean>
+</code></pre></section></section><section class="related"></section><section class="links"></section>

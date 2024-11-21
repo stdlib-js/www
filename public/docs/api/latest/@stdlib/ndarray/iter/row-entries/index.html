@@ -1,0 +1,72 @@
+<h1 id="nditerrowentries">nditerRowEntries</h1><blockquote><p>Create an iterator which returns <code>[index, row]</code> pairs for each row in a matrix (or stack of matrices).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nditerRowEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/row-entries'</span> );
+</code></pre><h4 id="nditerrowentries-x-options-">nditerRowEntries( x[, options] )</h4><p>Returns an iterator which returns <code>[index, row]</code> pairs for each row in a matrix (or stack of matrices).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditerRowEntries( x );
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-keyword">var</span> idx = v[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns [ 0, 0, null ]</span>
+
+<span class="hljs-keyword">var</span> row = ndarray2array( v[ <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 1, 2 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [...]</span>
+
+idx = v[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns [ 0, 1, null ]</span>
+
+row = ndarray2array( v[ <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 3, 4 ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>readonly</strong>: boolean indicating whether returned <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> views should be read-only. In order to return writable <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> views, the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> must be writable. If the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> is read-only, setting this option to <code>false</code> raises an exception. Default: <code>true</code>.</li></ul><p>By default, the iterator returns <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> views which are <strong>read-only</strong>. To return writable <a href="/docs/api/latest/@stdlib/ndarray/slice">views</a>, set the <code>readonly</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditerRowEntries( x, {
+    <span class="hljs-string">'readonly'</span>: <span class="hljs-literal">false</span>
+});
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-keyword">var</span> row = ndarray2array( v[ <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 1, 2 ]</span>
+
+v[ <span class="hljs-number">1</span> ].set( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+
+row = ndarray2array( v[ <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 10, 2 ]</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Each returned index is a Cartesian index (i.e., an array of subscripts/dimension indices). A dimension index equal to <code>null</code> indicates that all values along the respective dimension are included in the returned <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>.</li><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li><li>A returned iterator does <strong>not</strong> copy a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. To ensure iterable reproducibility, copy the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> <strong>before</strong> creating an iterator. Otherwise, any changes to the contents of input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> will be reflected in the returned iterator.</li><li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an ndarray's <code>@@iterator</code> method, regardless of whether this method is defined.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> nditerRowEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/row-entries'</span> );
+
+<span class="hljs-comment">// Define an input array:</span>
+<span class="hljs-keyword">var</span> x = array( zeroTo( <span class="hljs-number">27</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Create an iterator for returning [index, row] pairs:</span>
+<span class="hljs-keyword">var</span> it = nditerRowEntries( x );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value[ <span class="hljs-number">0</span> ] );
+    <span class="hljs-built_in">console</span>.log( ndarray2array( v.value[ <span class="hljs-number">1</span> ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/iter/column-entries"><code>@stdlib/ndarray/iter/column-entries</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns [index, column] pairs for each column in a matrix (or stack of matrices).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/iter/entries"><code>@stdlib/ndarray/iter/entries</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns [index, value] pairs for each element in a provided ndarray.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/iter/rows"><code>@stdlib/ndarray/iter/rows</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iterates over each row in a matrix (or stack of matrices).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice"><code>@stdlib/ndarray/slice</code></a></span><span class="delimiter">: </span><span class="description">return a read-only view of an input ndarray.</span></li></ul></section><section class="links"></section>

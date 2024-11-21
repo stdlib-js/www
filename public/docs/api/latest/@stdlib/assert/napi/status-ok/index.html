@@ -1,0 +1,43 @@
+<h1 id="ok-status">ok status</h1><blockquote><p>C utilities for asserting that a Node-API call returns an "ok" status.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/napi/status-ok'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/napi/status-ok'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/assert/napi/status_ok.h"</span></span>
+</code></pre><h4 id="stdlib_assert_napi_status_ok_ret_void-env-call-message-">STDLIB_ASSERT_NAPI_STATUS_OK_RET_VOID( env, call, message )</h4><p>Macro for asserting that a Node-API API call returns an "ok" status.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value value, <span class="hljs-keyword">double</span> *out )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+
+    STDLIB_ASSERT_NAPI_STATUS_OK_RET_VOID( env, napi_get_value_double( env, value, out ), <span class="hljs-string">""</span> )
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">return</span>;
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the function is invoked.</li><li><strong>call</strong>: expression which returns a Node-API status.</li><li><strong>message</strong>: error message.</li></ul><p>If a status is not "ok", an exception is raised and <code>void</code> returned.</p><h4 id="stdlib_assert_napi_status_ok_ret_null-env-call-message-">STDLIB_ASSERT_NAPI_STATUS_OK_RET_NULL( env, call, message )</h4><p>Macro for asserting that a Node-API API call returns an "ok" status.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">foo</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value value, <span class="hljs-keyword">double</span> *out )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+
+    STDLIB_ASSERT_NAPI_STATUS_OK_RET_NULL( env, napi_get_value_double( env, value, out ), <span class="hljs-string">""</span> )
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the function is invoked.</li><li><strong>call</strong>: expression which returns a Node-API status.</li><li><strong>message</strong>: error message.</li></ul><p>If a status is not "ok", an exception is raised and <code>NULL</code> returned.</p><h4 id="stdlib_assert_napi_status_ok_ret_value-env-call-message-value-">STDLIB_ASSERT_NAPI_STATUS_OK_RET_VALUE( env, call, message, value )</h4><p>Macro for asserting that a Node-API API call returns an "ok" status.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">foo</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value value )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">double</span> *out;
+    STDLIB_ASSERT_NAPI_STATUS_OK_RET_VALUE( env, napi_get_value_double( env, value, out ), <span class="hljs-string">""</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">return</span> out;
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the function is invoked.</li><li><strong>call</strong>: expression which returns a Node-API status.</li><li><strong>message</strong>: error message.</li><li><strong>value</strong>: return value.</li></ul><p>If a status is not "ok", an exception is raised and the value specified by <code>value</code> returned.</p></section><section class="notes"></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

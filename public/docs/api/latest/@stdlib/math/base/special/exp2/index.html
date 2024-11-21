@@ -20,4 +20,26 @@ v = exp2( <span class="hljs-literal">NaN</span> );
     x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'2^%d = %d'</span>, x, exp2( x ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp10"><code>@stdlib/math/base/special/exp10</code></a></span><span class="delimiter">: </span><span class="description">base 10 exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/exp2.h"</span></span>
+</code></pre><h4 id="stdlib_base_exp2-x-">stdlib_base_exp2( x )</h4><p>Evaluates the base <code>2</code> <a href="https://en.wikipedia.org/wiki/Exponential_function">exponential function</a>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_exp2( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns 8.0</span>
+
+out = stdlib_base_exp2( <span class="hljs-number">-9.0</span> );
+<span class="hljs-comment">// returns ~0.002</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_exp2</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/exp2.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
+        v = stdlib_base_exp2( x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"2^%lf = %lf\n"</span>, x, v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp10"><code>@stdlib/math/base/special/exp10</code></a></span><span class="delimiter">: </span><span class="description">base 10 exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section><section class="links"></section>

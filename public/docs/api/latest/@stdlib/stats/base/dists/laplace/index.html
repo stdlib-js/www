@@ -7,8 +7,80 @@
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.344</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
-<span class="hljs-keyword">var</span> laplace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/laplace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> laplace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/laplace'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( laplace ) );
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> laplace.Laplace( <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> );
+
+<span class="hljs-built_in">console</span>.log( dist.mu );
+<span class="hljs-comment">// => 4.0</span>
+
+<span class="hljs-built_in">console</span>.log( dist.b );
+<span class="hljs-comment">// => 2.0</span>
+
+dist.mu = <span class="hljs-number">6.0</span>;
+dist.b = <span class="hljs-number">3.0</span>;
+
+<span class="hljs-built_in">console</span>.log( dist.mu );
+<span class="hljs-comment">// => 6.0</span>
+
+<span class="hljs-built_in">console</span>.log( dist.b );
+<span class="hljs-comment">// => 3.0</span>
+
+<span class="hljs-built_in">console</span>.log( dist.kurtosis );
+<span class="hljs-comment">// => 3.0</span>
+
+<span class="hljs-built_in">console</span>.log( dist.median );
+<span class="hljs-comment">// => 6.0</span>
+
+<span class="hljs-built_in">console</span>.log( dist.variance );
+<span class="hljs-comment">// => 18.0</span>
+
+<span class="hljs-keyword">var</span> mu = <span class="hljs-number">4.0</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">2.0</span>;
+
+<span class="hljs-built_in">console</span>.log( laplace.pdf( <span class="hljs-number">2.0</span>, mu, b ) );
+<span class="hljs-comment">// => ~0.092</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.cdf( <span class="hljs-number">2.0</span>, mu, b ) );
+<span class="hljs-comment">// => ~0.184</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.quantile( <span class="hljs-number">0.5</span>, mu, b ) );
+<span class="hljs-comment">// => 4.0</span>
+
+mu = <span class="hljs-number">6.0</span>;
+b = <span class="hljs-number">3.0</span>;
+
+<span class="hljs-built_in">console</span>.log( laplace.entropy( mu, b ) );
+<span class="hljs-comment">// => ~ 2.7918</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.mean( mu, b ) );
+<span class="hljs-comment">// => 6.0</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.median( mu, b ) );
+<span class="hljs-comment">// => 6.0</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.mode( mu, b ) );
+<span class="hljs-comment">// => 6.0</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.variance( mu, b ) );
+<span class="hljs-comment">// => 18.0</span>
+
+<span class="hljs-built_in">console</span>.log( laplace.skewness( mu, b ) );
+<span class="hljs-comment">// => 0.0</span>
+
+<span class="hljs-keyword">var</span> myquantile = laplace.quantile.factory( <span class="hljs-number">10.0</span>, <span class="hljs-number">2.0</span> );
+
+<span class="hljs-built_in">console</span>.log( myquantile( <span class="hljs-number">0.2</span> ) );
+<span class="hljs-comment">// => ~8.167</span>
+
+<span class="hljs-built_in">console</span>.log( myquantile( <span class="hljs-number">0.8</span> ) );
+<span class="hljs-comment">// => ~11.833</span>
+
+<span class="hljs-keyword">var</span> mylogpdf = laplace.logpdf.factory( <span class="hljs-number">10.0</span>, <span class="hljs-number">2.0</span> );
+
+<span class="hljs-built_in">console</span>.log( mylogpdf( <span class="hljs-number">10.0</span>) );
+<span class="hljs-comment">// => ~-1.386</span>
+
+<span class="hljs-built_in">console</span>.log( mylogpdf( <span class="hljs-number">5.0</span> ) );
+<span class="hljs-comment">// => ~-3.886</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

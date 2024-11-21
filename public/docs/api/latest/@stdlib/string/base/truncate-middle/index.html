@@ -1,0 +1,23 @@
+<h1 id="truncatemiddle">truncateMiddle</h1><blockquote><p>Truncate the middle UTF-16 code units of a string to return a string having a specified length.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncateMiddle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/truncate-middle'</span> );
+</code></pre><h4 id="truncatemiddle-str-len-seq-">truncateMiddle( str, len, seq )</h4><p>Truncates the middle UTF-16 code units of a string to return a string having a specified length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = truncateMiddle( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span>, <span class="hljs-string">'...'</span> );
+<span class="hljs-comment">// returns 'be...op'</span>
+
+out = truncateMiddle( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span>, <span class="hljs-string">'!'</span> );
+<span class="hljs-comment">// returns 'bee!oop'</span>
+
+out = truncateMiddle( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span>, <span class="hljs-string">'!!!'</span> );
+<span class="hljs-comment">// returns 'be!!!op'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncateMiddle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/truncate-middle'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'</span>;
+<span class="hljs-keyword">var</span> out = truncateMiddle( str, <span class="hljs-number">15</span>, <span class="hljs-string">'...'</span> );
+<span class="hljs-comment">// returns 'Lorem ... elit.'</span>
+
+str = <span class="hljs-string">'To be or not to be, that is the question'</span>;
+out = truncateMiddle( str, <span class="hljs-number">19</span>, <span class="hljs-string">'|'</span> );
+<span class="hljs-comment">// returns 'To be or | question'</span>
+
+str = <span class="hljs-string">'The quick fox jumps over the lazy dog.'</span>;
+out = truncateMiddle( str, <span class="hljs-number">28</span>, <span class="hljs-string">'...'</span> );
+<span class="hljs-comment">// returns 'The quick fox...he lazy dog.'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,50 @@
+<h1 id="isbooleandatatype">isBooleanDataType</h1><blockquote><p>Test if an input value is a supported ndarray boolean <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBooleanDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-boolean-data-type'</span> );
+</code></pre><h4 id="isbooleandatatype-value-">isBooleanDataType( value )</h4><p>Tests if an input <code>value</code> is a supported ndarray boolean <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBooleanDataType( <span class="hljs-string">'bool'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'uint32'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBooleanDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-boolean-data-type'</span> );
+
+<span class="hljs-keyword">var</span> bool = isBooleanDataType( <span class="hljs-string">'binary'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'bool'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'int16'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'int8'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'uint16'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'uint32'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'uint8'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'uint8c'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isBooleanDataType( <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

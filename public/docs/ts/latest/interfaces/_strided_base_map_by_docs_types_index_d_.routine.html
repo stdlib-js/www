@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -110,14 +110,14 @@
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fcn<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a>, clbk<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">__call&lt;T, U, V, W&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fcn<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span>, clbk<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ThisParameterType</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts#L119">lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts:119</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts#L92">lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts:92</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -125,6 +125,21 @@
 								<p>Applies a unary function to each element retrieved from a strided input array according to a callback function and assigns results to a strided output array.</p>
 							</div>
 						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+							<li>
+								<h4>U</h4>
+							</li>
+							<li>
+								<h4>V</h4>
+							</li>
+							<li>
+								<h4>W</h4>
+							</li>
+						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -134,7 +149,7 @@
 								</div>
 							</li>
 							<li>
-								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>input array</p>
 								</div>
@@ -146,7 +161,7 @@
 								</div>
 							</li>
 							<li>
-								<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>destination array</p>
 								</div>
@@ -158,32 +173,35 @@
 								</div>
 							</li>
 							<li>
-								<h5>fcn: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a></h5>
+								<h5>fcn: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>unary function to apply to callback return values</p>
 								</div>
 							</li>
 							<li>
-								<h5>clbk: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a></h5>
+								<h5>clbk: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>callback function</p>
 								</div>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">any</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">ThisParameterType</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>callback execution context</p>
 								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns
-							<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+							<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 								Collection
 							</a>
+							<span class="tsd-signature-symbol">&lt;</span>
+							<span class="tsd-signature-type">V</span>
+							<span class="tsd-signature-symbol">&gt;</span>
 						</h4>
 						<p><code>y</code></p>
 						<h4 class="tsd-example-title">Example</h4>
-						<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/math/base/special/abs`</span> );
+						<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
@@ -205,7 +223,7 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="_strided_base_map_by_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="_strided_base_map_by_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
 							</ul>
 						</section>
 					</div>
@@ -213,17 +231,17 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 					<a name="ndarray" class="tsd-anchor"></a>
 					<h3>ndarray</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">ndarray<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fcn<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a>, clbk<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">ndarray&lt;T, U, V, W&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fcn<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span>, clbk<span class="tsd-signature-symbol">: </span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ThisParameterType</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts#L176">lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts#L149">lib/node_modules/@stdlib/strided/base/map-by/docs/types/index.d.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -231,6 +249,21 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									<p>Applies a unary function to each element retrieved from a strided input array according to a callback function and assigns results to a strided output array using alternative indexing semantics.</p>
 								</div>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>U</h4>
+								</li>
+								<li>
+									<h4>V</h4>
+								</li>
+								<li>
+									<h4>W</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -240,7 +273,7 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									</div>
 								</li>
 								<li>
-									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>input array</p>
 									</div>
@@ -258,7 +291,7 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									</div>
 								</li>
 								<li>
-									<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>destination array</p>
 									</div>
@@ -276,32 +309,35 @@ mapBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									</div>
 								</li>
 								<li>
-									<h5>fcn: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a></h5>
+									<h5>fcn: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-signature-type">Unary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>unary function to apply to callback return values</p>
 									</div>
 								</li>
 								<li>
-									<h5>clbk: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a></h5>
+									<h5>clbk: <a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>callback function</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">any</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">ThisParameterType</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-signature-type">Callback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>callback execution context</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+								<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 									Collection
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">V</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p><code>y</code></p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/math/base/special/abs`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
@@ -333,41 +369,35 @@ mapBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_strided_base_map_by_docs_types_index_d_.routine.html" class="tsd-kind-icon">Routine</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 								<a href="_strided_base_map_by_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#binarycallback" class="tsd-kind-icon">Binary<wbr>Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#callback" class="tsd-kind-icon">Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#nullarycallback" class="tsd-kind-icon">Nullary<wbr>Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#quaternarycallback" class="tsd-kind-icon">Quaternary<wbr>Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#quinarycallback" class="tsd-kind-icon">Quinary<wbr>Callback</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#senarycallback" class="tsd-kind-icon">Senary<wbr>Callback</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#ternarycallback" class="tsd-kind-icon">Ternary<wbr>Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unary" class="tsd-kind-icon">Unary</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_strided_base_map_by_docs_types_index_d_.html#unarycallback" class="tsd-kind-icon">Unary<wbr>Callback</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
@@ -438,13 +468,13 @@ mapBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

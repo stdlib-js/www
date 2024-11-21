@@ -1,0 +1,29 @@
+<h1 id="base64touint8array">base64ToUint8Array</h1><blockquote><p>Convert a Base64-encoded string to a <a href="/docs/api/latest/@stdlib/array/uint8">Uint8Array</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base64ToUint8Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/base64-to-uint8array'</span> );
+</code></pre><h4 id="base64touint8array-str-">base64ToUint8Array( str )</h4><p>Converts a base64-encoded string to a <a href="/docs/api/latest/@stdlib/array/uint8">Uint8Array</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+
+<span class="hljs-keyword">var</span> str = string2buffer( <span class="hljs-string">'Hello World!'</span> ).toString( <span class="hljs-string">'base64'</span> );
+<span class="hljs-comment">// returns 'SGVsbG8gV29ybGQh'</span>
+
+<span class="hljs-keyword">var</span> out = base64ToUint8Array( str );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 72, 101, ... ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function returns <code>null</code> when provided a string containing non-ASCII characters.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+<span class="hljs-keyword">var</span> base64ToUint8Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/base64-to-uint8array'</span> );
+
+<span class="hljs-keyword">var</span> buf = string2buffer( <span class="hljs-string">'Hello World!'</span> ).toString( <span class="hljs-string">'base64'</span> );
+<span class="hljs-comment">// returns 'SGVsbG8gV29ybGQh'</span>
+
+<span class="hljs-keyword">var</span> arr = base64ToUint8Array( buf );
+<span class="hljs-comment">// returns &#x3C;Uint8Array></span>
+
+buf = string2buffer( <span class="hljs-string">'HELLO WORLD!'</span> ).toString( <span class="hljs-string">'base64'</span> );
+<span class="hljs-comment">// returns 'SEVMTE8gV09STEQh'</span>
+
+arr = base64ToUint8Array( buf );
+<span class="hljs-comment">// returns &#x3C;Uint8Array></span>
+
+buf = string2buffer( <span class="hljs-string">'To be, or not to be: that is the question.'</span> ).toString( <span class="hljs-string">'base64'</span> );
+<span class="hljs-comment">// returns 'VG8gYmUsIG9yIG5vdCB0byBiZTogdGhhdCBpcyB0aGUgcXVlc3Rpb24u'</span>
+
+arr = base64ToUint8Array( buf );
+<span class="hljs-comment">// returns &#x3C;Uint8Array></span>
+</code></pre></section><section class="related"></section><section class="links"></section>

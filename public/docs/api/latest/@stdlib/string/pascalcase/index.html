@@ -10,6 +10,9 @@ out = pascalcase( <span class="hljs-string">'Hello World!'</span> );
 
 out = pascalcase( <span class="hljs-string">'--foo-bar--'</span> );
 <span class="hljs-comment">// returns 'FooBar'</span>
+
+out = pascalcase( <span class="hljs-string">'fooBar'</span> );
+<span class="hljs-comment">// returns 'FooBar'</span>
 </code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pascalcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/pascalcase'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
@@ -42,4 +45,4 @@ BeEpBooP
 </code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep_boop\tisMobile'</span> | pascalcase --split <span class="hljs-string">'\t'</span>
 BeepBoop
 IsMobile
-</code></pre></section></section><section class="related"></section><section class="links"></section>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/camelcase"><code>@stdlib/string/camelcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to camel case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/constantcase"><code>@stdlib/string/constantcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to constant case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/kebabcase"><code>@stdlib/string/kebabcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to kebab case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/snakecase"><code>@stdlib/string/snakecase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to snake case.</span></li></ul></section><section class="links"></section>

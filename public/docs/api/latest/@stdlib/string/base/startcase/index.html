@@ -1,0 +1,20 @@
+<h1 id="startcase">startcase</h1><blockquote><p>Capitalize the first letter of each word in a string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/startcase'</span> );
+</code></pre><h4 id="startcase-str-">startcase( str )</h4><p>Capitalizes the first letter of each word in a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = startcase( <span class="hljs-string">'beep boop a foo bar'</span> );
+<span class="hljs-comment">// returns 'Beep Boop A Foo Bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/startcase'</span> );
+
+<span class="hljs-keyword">var</span> str = startcase( <span class="hljs-string">'beep boop foo bar'</span> );
+<span class="hljs-comment">// returns 'Beep Boop Foo Bar'</span>
+
+str = startcase( <span class="hljs-string">'Beep'</span> );
+<span class="hljs-comment">// returns 'Beep'</span>
+
+str = startcase( <span class="hljs-string">'BeEp'</span> );
+<span class="hljs-comment">// returns 'BeEp'</span>
+
+str = startcase( <span class="hljs-string">'$**_beep_BoOp_**$'</span> );
+<span class="hljs-comment">// returns '$**_beep_BoOp_**$'</span>
+
+str = startcase( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,9 +1,16 @@
 <h1 id="umuldw">umuldw</h1><blockquote><p>Compute the double word product of two unsigned 32-bit integers.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> umuldw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/umuldw'</span> );
-</code></pre><h4 id="umuldw-out-a-b-">umuldw( [out,] a, b )</h4><p>Multiplies two unsigned 32-bit integers and returns an <code>array</code> of two unsigned 32-bit integers (in big endian order) which represents the unsigned 64-bit integer product.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = umuldw( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
+</code></pre><h4 id="umuldw-a-b-">umuldw( a, b )</h4><p>Multiplies two unsigned 32-bit integers and returns an <code>array</code> of two unsigned 32-bit integers (in big endian order) which represents the unsigned 64-bit integer product.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = umuldw( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns [ 0, 10 ]</span>
 
 v = umuldw( <span class="hljs-number">0x80000000</span>, <span class="hljs-number">0x80000000</span> ); <span class="hljs-comment">// 2^31 * 2^31 = 4611686018427388000 => 32-bit integer overflow</span>
 <span class="hljs-comment">// returns [ 1073741824, 0 ]</span>
+</code></pre><h4 id="umuldwassign-a-b-out-stride-offset-">umuldw.assign( a, b, out, stride, offset )</h4><p>Multiplies two unsigned 32-bit integers and assigns results representing the unsigned 64-bit integer product (in big endian order) to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> v = umuldw.assign( <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 0, 10 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( v === out );
+<span class="hljs-comment">// returns true</span>
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When computing the product of 32-bit integer values in double-precision floating-point format (the default JavaScript numeric data type), computing the double word product is necessary in order to <strong>avoid</strong> exceeding the <a href="/docs/api/latest/@stdlib/constants/float64/max-safe-integer">maximum safe double-precision floating-point integer value</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 <span class="hljs-keyword">var</span> umuldw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/umuldw'</span> );
 

@@ -1,22 +1,54 @@
-<h1 id="phase">phase</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a complex number in radians.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a complex number, also known as the <strong>phase</strong>, is the angle of the radius extending from the origin to the complex number plotted in the complex plane and the positive real axis.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cphase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cphase'</span> );
-</code></pre><h4 id="cphase-re-im-">cphase( re, im )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a <code>complex</code> number comprised of a <strong>real</strong> component <code>re</code> and an <strong>imaginary</strong> component <code>im</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> phi = cphase( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<h1 id="cphase">cphase</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a double-precision complex floating-point number in radians.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a complex number, also known as the <strong>phase</strong>, is the angle of the radius extending from the origin to the complex number plotted in the complex plane and the positive real axis.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cphase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cphase'</span> );
+</code></pre><h4 id="cphase-z-">cphase( z )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a double-precision complex floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> phi = cphase( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ) );
 <span class="hljs-comment">// returns ~0.5404</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
-<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> );
 <span class="hljs-keyword">var</span> cphase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cphase'</span> );
 
-<span class="hljs-keyword">var</span> re;
-<span class="hljs-keyword">var</span> im;
 <span class="hljs-keyword">var</span> z;
 <span class="hljs-keyword">var</span> i;
 
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
-    re = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
-    im = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
-    z = <span class="hljs-keyword">new</span> Complex128( re, im );
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'arg(%s) = %d'</span>, z.toString(), cphase( real(z), imag(z) ) );
+    z = <span class="hljs-keyword">new</span> Complex128( uniform( -<span class="hljs-number">500.0</span>, <span class="hljs-number">500.0</span> ), uniform( -<span class="hljs-number">500.0</span>, <span class="hljs-number">500.0</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'arg(%s) = %d'</span>, z.toString(), cphase( z ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cabs"><code>@stdlib/math/base/special/cabs</code></a></span><span class="delimiter">: </span><span class="description">compute an absolute value of a complex number.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cphase.h"</span></span>
+</code></pre><h4 id="stdlib_base_cphase-z-">stdlib_base_cphase( z )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a double-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+
+<span class="hljs-keyword">stdlib_complex128_t</span> z = stdlib_complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">double</span> out = stdlib_base_cphase( z );
+<span class="hljs-comment">// returns ~0.5404</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] stdlib_complex128_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_cphase</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> z )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cphase.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x[] = {
+        stdlib_complex128( <span class="hljs-number">3.14</span>, <span class="hljs-number">1.5</span> ),
+        stdlib_complex128( <span class="hljs-number">-3.14</span>, <span class="hljs-number">-1.5</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+    };
+
+    <span class="hljs-keyword">stdlib_complex128_t</span> v;
+    <span class="hljs-keyword">stdlib_complex128_t</span> y;
+    <span class="hljs-keyword">double</span> re1;
+    <span class="hljs-keyword">double</span> im1;
+    <span class="hljs-keyword">double</span> re2;
+    <span class="hljs-keyword">double</span> im2;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        v = x[ i ];
+        y = stdlib_base_cphase( v );
+        stdlib_complex128_reim( v, &#x26;re1, &#x26;im1 );
+        stdlib_complex128_reim( y, &#x26;re2, &#x26;im2 );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cphase(%lf + %lfi) = %lf\n"</span>, re, im, y );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cabs"><code>@stdlib/math/base/special/cabs</code></a></span><span class="delimiter">: </span><span class="description">compute the absolute value of a double-precision complex floating-point number.</span></li></ul></section><section class="links"></section>

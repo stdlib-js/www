@@ -1,0 +1,28 @@
+<h1 id="issamefloat64array">isSameFloat64Array</h1><blockquote><p>Test if two arguments are both <a href="/docs/api/latest/@stdlib/array/float64">Float64Arrays</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameFloat64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-float64array'</span> );
+</code></pre><h4 id="issamefloat64array-v1-v2-">isSameFloat64Array( v1, v2 )</h4><p>Tests if two arguments are both <a href="/docs/api/latest/@stdlib/array/float64">Float64Arrays</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> bool = isSameFloat64Array( x, y );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameFloat64Array( x, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code> and treats <code>NaNs</code> as the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same value</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> isSameFloat64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-float64array'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> out = isSameFloat64Array( x, y );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> ] );
+y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+out = isSameFloat64Array( x, y );
+<span class="hljs-comment">// returns false</span>
+
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+out = isSameFloat64Array( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-float32array"><code>@stdlib/assert/is-same-float32array</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are both Float32Arrays and have the same values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li></ul></section><section class="links"></section>

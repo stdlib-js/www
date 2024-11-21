@@ -1,0 +1,24 @@
+<h1 id="strided2array5d">strided2array5d</h1><blockquote><p>Convert a strided array to a five-dimensional nested array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> strided2array5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/strided2array5d'</span> );
+</code></pre><h4 id="strided2array5d-x-shape-strides-offset-">strided2array5d( x, shape, strides, offset )</h4><p>Converts a strided array to a five-dimensional nested array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> arr = strided2array5d( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ [ [ [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ] ] ] ]</span>
+
+arr = strided2array5d( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ [ [ [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ] ] ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input array.</li><li><strong>shape</strong>: array shape.</li><li><strong>strides</strong>: dimension strides.</li><li><strong>offset</strong>: index of the first indexed value in the input array.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes that the input array is <a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-buffer-length-compatible">compatible</a> with the specified array shape, dimension strides, and index offset.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> strided2array5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/strided2array5d'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> x = zeroTo( numel( shape ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = strided2array5d( x, shape, shape2strides( shape, <span class="hljs-string">'row-major'</span> ), <span class="hljs-number">0</span> );
+<span class="hljs-built_in">console</span>.log( y );
+
+y = strided2array5d( x, shape, shape2strides( shape, <span class="hljs-string">'column-major'</span> ), <span class="hljs-number">0</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,38 @@
+<h1 id="foreach">forEach</h1><blockquote><p>Invokes a function for each character in a string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/for-each'</span> );
+</code></pre><h4 id="foreach-str-options-clbk-thisarg--">forEach( str, [options,] clbk[, thisArg ] )</h4><p>Invokes a function for each character in a string.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> value, index </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d: %s'</span>, index, value );
+}
+
+forEach( <span class="hljs-string">'Beep!'</span>, log );
+<span class="hljs-comment">/* =>
+    0: B
+    1: e
+    2: e
+    3: p
+    4: !
+*/</span>
+</code></pre><p>The invoked function is provided three arguments:</p><ul><li><strong>value</strong>: character.</li><li><strong>index</strong>: starting character index.</li><li><strong>str</strong>: input string.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello, world!'</span>;
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+forEach( str, clbk, ctx );
+
+<span class="hljs-keyword">var</span> bool = ( str.length === ctx.count );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>mode</strong>: type of characters over which to iterate. Must be one of the following:</p><ul><li><code>'grapheme'</code>: grapheme clusters. Appropriate for strings containing visual characters which can span multiple Unicode code points (e.g., emoji).</li><li><code>'code_point'</code>: Unicode code points. Appropriate for strings containing visual characters which are comprised of more than one Unicode code unit (e.g., ideographic symbols and punctuation and mathematical alphanumerics).</li><li><code>'code_unit'</code>: UTF-16 code units. Appropriate for strings containing visual characters drawn from the basic multilingual plane (BMP) (e.g., common characters, such as those from the Latin, Greek, and Cyrillic alphabets).</li></ul><p>Default: <code>'grapheme'</code>.</p></li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>By default, the function assumes the general case in which an input string may contain an arbitrary number of grapheme clusters. This assumption comes with a performance cost. Accordingly, if an input string is known to only contain visual characters of a particular type (e.g., only alphanumeric), one can achieve better performance by specifying the appropriate <code>mode</code> option.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/for-each'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> value, index </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d: %s'</span>, index, value );
+}
+
+forEach( <span class="hljs-string">'presidential election'</span>, log );
+forEach( <span class="hljs-string">'Iñtërnâtiônàlizætiøn'</span>, log );
+forEach( <span class="hljs-string">'🌷🍕'</span>, log );
+forEach( <span class="hljs-string">'\uD834\uDD1E'</span>, log );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li></ul></section><section class="links"></section>

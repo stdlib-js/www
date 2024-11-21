@@ -1,0 +1,332 @@
+<h1 id="array2fancy">array2fancy</h1><blockquote><p>Convert an array to an object supporting fancy indexing.</p></blockquote><section class="intro"><p>An array supporting <strong>fancy indexing</strong> is an array which supports slicing via indexing expressions for both retrieval and assignment.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2fancy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-fancy'</span> );
+
+<span class="hljs-comment">// Create a plain array:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-comment">// Turn the plain array into a "fancy" array:</span>
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+
+<span class="hljs-comment">// Select the first 3 elements:</span>
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-string">':3'</span> ];
+<span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
+
+<span class="hljs-comment">// Select every other element, starting from the second element:</span>
+v = y[ <span class="hljs-string">'1::2'</span> ];
+<span class="hljs-comment">// returns [ 2, 4, 6, 8 ]</span>
+
+<span class="hljs-comment">// Select every other element, in reverse order, starting with the least element:</span>
+v = y[ <span class="hljs-string">'::-2'</span> ];
+<span class="hljs-comment">// returns [ 8, 6, 4, 2 ]</span>
+
+<span class="hljs-comment">// Set all elements to the same value:</span>
+y[ <span class="hljs-string">':'</span> ] = <span class="hljs-number">9</span>;
+
+<span class="hljs-comment">// Create a shallow copy by selecting all elements:</span>
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 9, 9, 9, 9, 9, 9, 9, 9 ]</span>
+</code></pre></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2fancy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-fancy'</span> );
+</code></pre><h4 id="array2fancy-x-options-">array2fancy( x[, options] )</h4><p>Converts an array to an object supporting fancy indexing.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+<span class="hljs-comment">// returns &#x3C;Array></span>
+
+<span class="hljs-comment">// Normal element access:</span>
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns 1</span>
+
+v = y[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-comment">// Using negative integers:</span>
+v = y[ -<span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 4</span>
+
+v = y[ -<span class="hljs-number">2</span> ];
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-comment">// Using subsequence expressions:</span>
+v = y[ <span class="hljs-string">'1::2'</span> ];
+<span class="hljs-comment">// returns [ 2, 4 ]</span>
+
+<span class="hljs-comment">// Using Slice objects:</span>
+v = y[ <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ) ];
+<span class="hljs-comment">// returns [ 2, 4 ]</span>
+
+<span class="hljs-comment">// Assignment:</span>
+y[ <span class="hljs-string">'1:3'</span> ] = <span class="hljs-number">5</span>;
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 1, 5, 5, 4 ]</span>
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>cache</strong>: cache for resolving array index objects. Must have a <code>get</code> method which accepts a single argument: a string identifier associated with an array index.</p><p>If an array index associated with a provided identifier exists, the <code>get</code> method should return an object having the following properties:</p><ul><li><strong>data</strong>: the underlying index array.</li><li><strong>type</strong>: the index type. Must be either <code>'mask'</code>, <code>'bool'</code>, or <code>'int'</code>.</li><li><strong>dtype</strong>: the <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> of the underlying array.</li></ul><p>If an array index is not associated with a provided identifier, the <code>get</code> method should return <code>null</code>.</p><p>Default: <a href="/docs/api/latest/@stdlib/array/index"><code>ArrayIndex</code></a>.</p></li><li><p><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking. Default: <code>false</code>.</p></li></ul><p>By default, the function returns a fancy array which does <strong>not</strong> enforce strict bounds checking. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>To enforce strict bounds checking, set the <code>strict</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], {
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+</code></pre><h4 id="array2fancyfactory-options-">array2fancy.factory( [options] )</h4><p>Returns a function for converting an array to an object supporting fancy indexing.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = array2fancy.factory();
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = fcn( x );
+<span class="hljs-comment">// returns &#x3C;Array></span>
+
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>cache</strong>: default cache for resolving array index objects. Must have a <code>get</code> method which accepts a single argument: a string identifier associated with an array index.</p><p>If an array index associated with a provided identifier exists, the <code>get</code> method should return an object having the following properties:</p><ul><li><strong>data</strong>: the underlying index array.</li><li><strong>type</strong>: the index type. Must be either <code>'mask'</code>, <code>'bool'</code>, or <code>'int'</code>.</li><li><strong>dtype</strong>: the <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> of the underlying array.</li></ul><p>If an array index is not associated with a provided identifier, the <code>get</code> method should return <code>null</code>.</p><p>Default: <a href="/docs/api/latest/@stdlib/array/index"><code>ArrayIndex</code></a>.</p></li><li><p><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking by default. Default: <code>false</code>.</p></li></ul><p>By default, the function returns a function which, by default, does <strong>not</strong> enforce strict bounds checking. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = array2fancy.factory();
+
+<span class="hljs-keyword">var</span> y = fcn( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>To enforce strict bounds checking by default, set the <code>strict</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = array2fancy.factory({
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-keyword">var</span> y = fcn( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+</code></pre><p>The returned function supports the same options as above. When the returned function is provided option values, those values override the factory method defaults.</p><h4 id="array2fancyidx-x-options-">array2fancy.idx( x[, options] )</h4><p>Wraps a provided array as an array index object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> idx = array2fancy.idx( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+</code></pre><p>For documentation and usage, see <a href="/docs/api/latest/@stdlib/array/index"><code>ArrayIndex</code></a>.</p></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li>A fancy array shares the <strong>same</strong> data as the provided input array. Hence, any mutations to the returned array will affect the underlying input array and vice versa.</li><li>For operations returning a new array (e.g., when slicing or invoking an instance method), a fancy array returns a new fancy array having the same configuration as specified by <code>options</code>.</li><li>A fancy array supports indexing using positive and negative integers (both numeric literals and strings), <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> instances, <a href="/docs/api/latest/@stdlib/slice/seq2slice">subsequence expressions</a>, and <a href="/docs/api/latest/@stdlib/array/index">index arrays</a> (boolean, mask, and integer).</li><li>A fancy array supports all properties and methods of the input array, and, thus, a fancy array can be consumed by any API which supports array-like objects.</li><li>Indexing expressions provide a convenient and powerful means for creating and operating on array views; however, their use does entail a performance cost. Indexing expressions are best suited for interactive use (e.g., in the <a href="/docs/api/latest/@stdlib/repl">REPL</a>) and scripting. For performance critical applications, prefer equivalent functional APIs supporting array-like objects.</li><li>In older JavaScript environments which do <strong>not</strong> support <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects, the use of indexing expressions is <strong>not</strong> supported.</li></ul><h3 id="bounds-checking">Bounds Checking</h3><p>By default, fancy arrays do <strong>not</strong> enforce strict bounds checking across index expressions. The motivation for the default fancy array behavior stems from a desire to maintain parity with plain arrays; namely, the returning of <code>undefined</code> when accessing a single non-existent property.</p><p>Accordingly, when <code>strict</code> is <code>false</code>, one may observe the following behaviors:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], {
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">false</span>
+});
+
+<span class="hljs-comment">// Access a non-existent property:</span>
+<span class="hljs-keyword">var</span> v = x[ <span class="hljs-string">'foo'</span> ];
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// Access an out-of-bounds index:</span>
+v = x[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// returns undefined</span>
+
+v = x[ -<span class="hljs-number">10</span> ];
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// Access an out-of-bounds slice:</span>
+v = x[ <span class="hljs-string">'10:'</span> ];
+<span class="hljs-comment">// returns []</span>
+
+<span class="hljs-comment">// Access one or more out-of-bounds indices:</span>
+<span class="hljs-keyword">var</span> i = array2fancy.idx( [ <span class="hljs-number">10</span>, <span class="hljs-number">20</span> ] );
+v = x[ i ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+</code></pre><p>When <code>strict</code> is <code>true</code>, fancy arrays normalize index behavior and consistently enforce strict bounds checking.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], {
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Access a non-existent property:</span>
+<span class="hljs-keyword">var</span> v = x[ <span class="hljs-string">'foo'</span> ];
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// Access an out-of-bounds index:</span>
+v = x[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+
+v = x[ -<span class="hljs-number">10</span> ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+
+<span class="hljs-comment">// Access an out-of-bounds slice:</span>
+v = x[ <span class="hljs-string">'10:'</span> ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+
+<span class="hljs-comment">// Access one or more out-of-bounds indices:</span>
+<span class="hljs-keyword">var</span> i = array2fancy.idx( [ <span class="hljs-number">10</span>, <span class="hljs-number">20</span> ] );
+v = x[ i ];
+<span class="hljs-comment">// throws &#x3C;RangeError></span>
+</code></pre><h3 id="broadcasting">Broadcasting</h3><p>Fancy arrays support <strong>broadcasting</strong> in which assigned scalars and single-element arrays are repeated (without additional memory allocation) to match the length of a target array instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-comment">// Broadcast a scalar:</span>
+y[ <span class="hljs-string">':'</span> ] = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 5, 5, 5 ]</span>
+
+<span class="hljs-comment">// Broadcast a single-element array:</span>
+y[ <span class="hljs-string">':'</span> ] = [ <span class="hljs-number">6</span> ];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 6, 6, 6, 6 ]</span>
+</code></pre><p>Fancy array broadcasting follows the <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">same rules</a> as for <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a>. Consequently, when assigning arrays to slices, the array on the right-hand-side must be broadcast-compatible with number of elements in the slice. For example, each assignment expression in the following example follows broadcast rules and is thus valid.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+y[ <span class="hljs-string">':'</span> ] = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 6, 7, 8 ]</span>
+
+y[ <span class="hljs-string">'1::2'</span> ] = [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 9, 7, 10 ]</span>
+
+y[ <span class="hljs-string">'1::2'</span> ] = [ <span class="hljs-number">11</span> ];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 11, 7, 11 ]</span>
+
+y[ <span class="hljs-string">'1::2'</span> ] = <span class="hljs-number">12</span>;
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 12, 7, 12 ]</span>
+
+<span class="hljs-comment">// Out-of-bounds slices (i.e., slices with zero elements):</span>
+y[ <span class="hljs-string">'10:20'</span> ] = [ <span class="hljs-number">13</span> ];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 12, 7, 12 ]</span>
+
+y[ <span class="hljs-string">'10:20'</span> ] = <span class="hljs-number">13</span>;
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 12, 7, 12 ]</span>
+
+y[ <span class="hljs-string">'10:20'</span> ] = [];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 12, 7, 12 ]</span>
+</code></pre><p>However, the following assignment expressions are not valid.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+y[ <span class="hljs-string">':'</span> ] = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-comment">// throws &#x3C;Error></span>
+
+<span class="hljs-comment">// Out-of-bounds slice (i.e., a slice with zero elements):</span>
+y[ <span class="hljs-string">'10:20'</span> ] = [ <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span> ];
+<span class="hljs-comment">// throws &#x3C;Error></span>
+</code></pre><p>In order to broadcast a nested array element as one would a scalar, one must wrap the element in a single-element array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = array2fancy( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+
+<span class="hljs-comment">// Assign individual array elements:</span>
+y[ <span class="hljs-string">':'</span> ] = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 6 ]</span>
+
+y = array2fancy( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+
+<span class="hljs-comment">// Broadcast a nested array:</span>
+y[ <span class="hljs-string">':'</span> ] = [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ];
+v = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ [ 5, 6 ], [ 5, 6 ] ]</span>
+</code></pre><h3 id="casting">Casting</h3><p>Fancy arrays support <a href="/docs/api/latest/@stdlib/array/mostly-safe-casts">(mostly) safe casts</a> (i.e., any cast which can be performed without overflow or loss of precision, with the exception of floating-point arrays which are also allowed to downcast from higher precision to lower precision).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+
+<span class="hljs-comment">// 8-bit unsigned integer values can be safely cast to 32-bit signed integer values:</span>
+y[ <span class="hljs-string">':'</span> ] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] );
+</code></pre><p>When attempting to perform an unsafe cast, fancy arrays will raise an exception.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+
+<span class="hljs-comment">// Attempt to assign a non-integer value:</span>
+y[ <span class="hljs-string">':'</span> ] = <span class="hljs-number">3.14</span>;
+<span class="hljs-comment">// throws &#x3C;TypeError></span>
+
+<span class="hljs-comment">// Attempt to assign a negative value:</span>
+y[ <span class="hljs-string">':'</span> ] = -<span class="hljs-number">3</span>;
+<span class="hljs-comment">// throws &#x3C;TypeError></span>
+</code></pre><p>When assigning a real-valued scalar to a complex number array (e.g., <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a> or <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>), a fancy array will cast the real-valued scalar to a complex number argument having an imaginary component equal to zero.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+
+<span class="hljs-comment">// Retrieve the first element:</span>
+<span class="hljs-keyword">var</span> v = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( v );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( v );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-comment">// Assign a real-valued scalar to the first element:</span>
+y[ <span class="hljs-number">0</span> ] = <span class="hljs-number">9.0</span>;
+
+v = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( v );
+<span class="hljs-comment">// returns 9.0</span>
+
+im = imag( v );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> BooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/bool'</span> );
+<span class="hljs-keyword">var</span> array2fancy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-fancy'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> y = array2fancy( x );
+<span class="hljs-comment">// returns &#x3C;Array></span>
+
+<span class="hljs-comment">// Slice retrieval:</span>
+<span class="hljs-keyword">var</span> z = y[ <span class="hljs-string">'1::2'</span> ];
+<span class="hljs-comment">// returns [ 2, 4, 6 ]</span>
+
+z = y[ <span class="hljs-string">'-2::-2'</span> ];
+<span class="hljs-comment">// returns [ 5, 3, 1 ]</span>
+
+z = y[ <span class="hljs-string">'1:4'</span> ];
+<span class="hljs-comment">// returns [ 2, 3, 4 ]</span>
+
+<span class="hljs-comment">// Slice assignment:</span>
+y[ <span class="hljs-string">'4:1:-1'</span> ] = <span class="hljs-number">10</span>;
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 1, 2, 10, 10, 10, 6 ]</span>
+
+y[ <span class="hljs-string">'2:5'</span> ] = [ -<span class="hljs-number">10</span>, -<span class="hljs-number">9</span>, -<span class="hljs-number">8</span> ];
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 1, 2, -10, -9, -8, 6 ]</span>
+
+<span class="hljs-comment">// Array index retrieval:</span>
+<span class="hljs-keyword">var</span> idx = array2fancy.idx;
+
+<span class="hljs-keyword">var</span> i = idx( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ); <span class="hljs-comment">// integer index array</span>
+z = y[ i ];
+<span class="hljs-comment">// returns [ 2, -9, -8 ]</span>
+
+i = idx( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> ] ); <span class="hljs-comment">// boolean array</span>
+z = y[ i ];
+<span class="hljs-comment">// returns [ 1, -9, -8, 6 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> ] ) ); <span class="hljs-comment">// boolean array</span>
+z = y[ i ];
+<span class="hljs-comment">// returns [ 1, -9, -8, 6 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] ) ); <span class="hljs-comment">// mask array</span>
+z = y[ i ];
+<span class="hljs-comment">// returns [ 1, 2, -9, -8 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] ) ); <span class="hljs-comment">// integer index array</span>
+z = y[ i ];
+<span class="hljs-comment">// returns [ 1, 1, 2, 2, -10, -10 ]</span>
+
+<span class="hljs-comment">// Array index assignment:</span>
+x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+y = array2fancy( x );
+
+i = idx( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] ); <span class="hljs-comment">// boolean array</span>
+y[ i ] = <span class="hljs-number">5</span>;
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 5, 2, 5, 4, 5, 6 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] ) ); <span class="hljs-comment">// boolean array</span>
+y[ i ] = <span class="hljs-number">7</span>;
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 7, 2, 7, 4, 7, 6 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] ) ); <span class="hljs-comment">// mask array</span>
+y[ i ] = <span class="hljs-number">8</span>;
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 7, 2, 7, 8, 8, 8 ]</span>
+
+i = idx( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ] ) ); <span class="hljs-comment">// integer index array</span>
+y[ i ] = [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span> ];
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ 7, 2, 11, 10, 8, 9 ]</span>
+
+i = idx( [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] ); <span class="hljs-comment">// integer index array</span>
+y[ i ] = -<span class="hljs-number">1</span>;
+z = y[ <span class="hljs-string">':'</span> ];
+<span class="hljs-comment">// returns [ -1, -1, 11, 10, 8, 9 ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/slice"><code>@stdlib/array/slice</code></a></span><span class="delimiter">: </span><span class="description">return a shallow copy of a portion of an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/fancy"><code>@stdlib/ndarray/fancy</code></a></span><span class="delimiter">: </span><span class="description">fancy multidimensional array constructor.</span></li></ul></section><section class="links"></section>

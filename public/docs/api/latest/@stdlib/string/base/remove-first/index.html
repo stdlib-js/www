@@ -1,0 +1,23 @@
+<h1 id="removefirst">removeFirst</h1><blockquote><p>Remove the first <code>n</code> UTF-16 code units of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-first'</span> );
+</code></pre><h4 id="removefirst-str-n-">removeFirst( str, n )</h4><p>Removes the first <code>n</code> UTF-16 code units of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeFirst( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'ast man standing'</span>
+
+out = removeFirst( <span class="hljs-string">'Hidden Treasures'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'idden Treasures'</span>
+
+out = removeFirst( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'ar'</span>
+
+out = removeFirst( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-first'</span> );
+
+<span class="hljs-keyword">var</span> str = removeFirst( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'residential election'</span>
+
+str = removeFirst( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'avaScript'</span>
+
+str = removeFirst( <span class="hljs-string">'The Last of the Mohicans'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'ast of the Mohicans'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

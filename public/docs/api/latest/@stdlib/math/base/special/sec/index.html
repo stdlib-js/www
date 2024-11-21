@@ -1,0 +1,46 @@
+<h1 id="secant">Secant</h1><blockquote><p>Evaluate the <a href="https://en.wikipedia.org/wiki/Trigonometric_functions">secant</a> of a number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sec = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sec'</span> );
+</code></pre><h2 id="sec-x-">sec( x )</h2><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Trigonometric_functions">secant</a> of <code>x</code> (in radians).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = sec( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = sec( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 16331239353195370.0</span>
+
+v = sec( -<span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~1.9999999999999996</span>
+
+v = sec( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~1.9999999999999996</span>
+
+v = sec( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/pi'</span> );
+<span class="hljs-keyword">var</span> sec = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sec'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -PI/<span class="hljs-number">2.0</span>, PI/<span class="hljs-number">2.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( sec( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/sec.h"</span></span>
+</code></pre><h4 id="stdlib_base_sec-x-">stdlib_base_sec( x )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Trigonometric_functions">secant</a> of <code>x</code> (in radians).</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_sec( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+out = stdlib_base_cos( <span class="hljs-number">3.141592653589793</span> / <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 6.123233995736766e-17</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_sec</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/sec.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">0.523</span>, <span class="hljs-number">0.785</span>, <span class="hljs-number">1.047</span>, <span class="hljs-number">3.14</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_sec( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"sec(%lf) = %lf\n"</span>, x[ i ], y );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -97,13 +97,14 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-kind-icon">Closure</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-kind-icon">Closure</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-kind-icon">Curry<wbr>Function</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_utils_curry_docs_types_index_d_.html#curry" class="tsd-kind-icon">curry</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_utils_curry_docs_types_index_d_.html#curry" class="tsd-kind-icon">curry</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,13 +112,13 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 					<a name="closure" class="tsd-anchor"></a>
 					<h3>Closure</h3>
-					<div class="tsd-signature tsd-kind-icon">Closure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">Closure&lt;TArgs, TReturn&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TFirst</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">Closure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TReturn</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L27">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L36">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,23 +134,62 @@
 							</dd>
 						</dl>
 					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li>
+							<h4>TReturn</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+					<a name="curryfunction" class="tsd-anchor"></a>
+					<h3>Curry<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Curry<wbr>Function&lt;TThis, TArgs, TReturn&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TThis</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L24">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:24</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Curry function type.</p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>TThis</h4>
+						</li>
+						<li>
+							<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li>
+							<h4>TReturn</h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TThis</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>v: <span class="tsd-signature-type">any</span></h5>
+												<h5>this: <span class="tsd-signature-type">TThis</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">TArgs</span></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns
-											<span class="tsd-signature-type">any</span>
+											<span class="tsd-signature-type">TReturn</span>
 										</h4>
 									</li>
 								</ul>
@@ -160,18 +200,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="curry" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagExport assignment">Export assignment</span> curry</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">curry<span class="tsd-signature-symbol">(</span>fcn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, arity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">Closure</a></li>
-						<li class="tsd-signature tsd-kind-icon">curry<span class="tsd-signature-symbol">(</span>fcn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">Closure</a></li>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">curry&lt;TThis, TArgs, TReturn&gt;<span class="tsd-signature-symbol">(</span>fcn<span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-signature-type">CurryFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TThis</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span>, arity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, thisArg<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">TThis</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">Closure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">curry&lt;TThis, TArgs, TReturn&gt;<span class="tsd-signature-symbol">(</span>fcn<span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-signature-type">CurryFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TThis</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span>, thisArg<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">TThis</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">Closure</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L52">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L66">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:66</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,22 +229,34 @@
 									<dd><p><code>arity</code> must be a positive integer</p>
 									</dd>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TThis<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
+								</li>
+								<li>
+									<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>TReturn</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fcn: <span class="tsd-signature-type">Function</span></h5>
+									<h5>fcn: <a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-signature-type">CurryFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TThis</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>function to curry</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arity: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>arity: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>number of parameters (default: fcn.length)</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">any</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <a href="" class="tsd-signature-type">TThis</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>evaluation context</p>
 									</div>
@@ -214,6 +266,11 @@
 								<a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">
 									Closure
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">TArgs</span>
+								<span class="tsd-signature-symbol">, </span>
+								<span class="tsd-signature-type">TReturn</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>curry function</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -230,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L75">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts#L97">lib/node_modules/@stdlib/utils/curry/docs/types/index.d.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,16 +301,28 @@
 									<li>Until return value resolution, each invocation returns a new partially applied curry function.</li>
 								</ul>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TThis<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
+								</li>
+								<li>
+									<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>TReturn</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fcn: <span class="tsd-signature-type">Function</span></h5>
+									<h5>fcn: <a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-signature-type">CurryFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TThis</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>function to curry</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <span class="tsd-signature-type">any</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> thisArg: <a href="" class="tsd-signature-type">TThis</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>evaluation context</p>
 									</div>
@@ -263,6 +332,11 @@
 								<a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-signature-type">
 									Closure
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">TArgs</span>
+								<span class="tsd-signature-symbol">, </span>
+								<span class="tsd-signature-type">TReturn</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>curry function</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -293,10 +367,13 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_utils_curry_docs_types_index_d_.html#closure" class="tsd-kind-icon">Closure</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_utils_curry_docs_types_index_d_.html#curryfunction" class="tsd-kind-icon">Curry<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_utils_curry_docs_types_index_d_.html#curry" class="tsd-kind-icon">curry</a>
 					</li>
 				</ul>
@@ -364,13 +441,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

@@ -17,11 +17,7 @@ defineProperty( obj, <span class="hljs-string">'a'</span>, {
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> nonEnumerablePropertiesIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nonenumerable-properties-in'</span> );
 
-<span class="hljs-keyword">var</span> hasSymbols;
-<span class="hljs-keyword">var</span> props;
-<span class="hljs-keyword">var</span> obj;
-
-hasSymbols = hasSymbolSupport();
+<span class="hljs-keyword">var</span> hasSymbols = hasSymbolSupport();
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.a = <span class="hljs-string">'a'</span>;
@@ -60,9 +56,7 @@ defineProperty( Foo.prototype, <span class="hljs-string">'beep'</span>, {
     });
 }
 
-obj = <span class="hljs-keyword">new</span> Foo();
-props = nonEnumerablePropertiesIn( obj );
-
-<span class="hljs-built_in">console</span>.log( props );
-<span class="hljs-comment">// e.g., => [ 'b', 'beep', ... ]</span>
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> props = nonEnumerablePropertiesIn( obj );
+<span class="hljs-comment">// returns [ 'b', 'beep', ... ]</span>
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/enumerable-properties-in"><code>@stdlib/utils/enumerable-properties-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-nonenumerable-properties"><code>@stdlib/utils/inherited-nonenumerable-properties</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited non-enumerable property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/nonenumerable-properties"><code>@stdlib/utils/nonenumerable-properties</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own non-enumerable property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/properties-in"><code>@stdlib/utils/properties-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited property names and symbols.</span></li></ul></section><section class="links"></section>

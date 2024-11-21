@@ -1,0 +1,22 @@
+<h1 id="replace">replace</h1><blockquote><p>Replace search occurrences with a replacement string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/replace'</span> );
+</code></pre><h4 id="replace-str-search-newval-">replace( str, search, newval )</h4><p>Replaces search occurrences with a replacement string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-regexp">/e/g</span>, <span class="hljs-string">'o'</span> );
+<span class="hljs-comment">// returns 'boop'</span>
+</code></pre><p>If provided a function as the third argument, the function is invoked for each match, and the function's return value is used as the replacement string.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'/'</span> + p1 + <span class="hljs-string">'/'</span>;
+}
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Oranges and lemons'</span>;
+<span class="hljs-keyword">var</span> out = replace( str, <span class="hljs-regexp">/([^\s]+)/gi</span>, replacer );
+<span class="hljs-comment">// returns '/Oranges/ /and/ /lemons/'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes that the <code>search</code> argument is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">regular expression</a>. Accordingly, the function should <strong>not</strong> be used as a general drop-in replacement for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/capitalize'</span> );
+<span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/replace'</span> );
+
+<span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'Hello World'</span>, <span class="hljs-regexp">/world/i</span>, <span class="hljs-string">'Mr. President'</span> );
+<span class="hljs-comment">// returns 'Hello Mr. President'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
+    <span class="hljs-keyword">return</span> capitalize( p1 );
+}
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Oranges and lemons say the bells of St. Clement\'s'</span>;
+out = replace( str, <span class="hljs-regexp">/([^\s]*)/gi</span>, replacer );
+<span class="hljs-comment">// returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

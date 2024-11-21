@@ -1,0 +1,78 @@
+<h1 id="normalizemultislice">normalizeMultiSlice</h1><blockquote><p>Normalize a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normalizeMultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-multi-slice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="normalizemultislice-slice-shape-strict-">normalizeMultiSlice( slice, shape, strict )</h4><p>Normalizes a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object, where <code>shape</code> specifies the maximum allowed slice shape.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ), <span class="hljs-literal">null</span>, -<span class="hljs-number">4</span> );
+<span class="hljs-keyword">var</span> s2 = normalizeMultiSlice( s1, shape, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> d = s2.data;
+<span class="hljs-comment">// returns [ &#x3C;Slice>, &#x3C;Slice>, &#x3C;Slice> ]</span>
+
+<span class="hljs-keyword">var</span> v = d[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> start = v.start;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> stop = v.stop;
+<span class="hljs-comment">// returns 10</span>
+
+<span class="hljs-keyword">var</span> step = v.step;
+<span class="hljs-comment">// returns 2</span>
+
+v = d[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+start = v.start;
+<span class="hljs-comment">// returns 0</span>
+
+stop = v.stop;
+<span class="hljs-comment">// returns 10</span>
+
+step = v.step;
+<span class="hljs-comment">// returns 1</span>
+
+v = d[ <span class="hljs-number">2</span> ];
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+start = v.start;
+<span class="hljs-comment">// returns 6</span>
+
+stop = v.stop;
+<span class="hljs-comment">// returns 7</span>
+
+step = v.step;
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>When <code>strict</code> is <code>true</code>, the function returns an error object if an input slice exceeds index bounds.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-keyword">var</span> s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">10</span> ], <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns { 'code': 'ERR_SLICE_OUT_OF_BOUNDS' }</span>
+</code></pre><p>A returned error object may have one of the following error codes:</p><ul><li><strong>ERR_SLICE_OUT_OF_BOUNDS</strong>: a slice exceeds index bounds.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> MultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> normalizeMultiSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-multi-slice'</span> );
+
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-literal">null</span>, S(), -<span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">7</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-literal">null</span> );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">5</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( S( -<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), <span class="hljs-number">3</span> );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">5</span>, <span class="hljs-number">5</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( <span class="hljs-number">2</span>, S( -<span class="hljs-number">10</span>, -<span class="hljs-number">2</span>, <span class="hljs-number">2</span> ), <span class="hljs-number">3</span>, <span class="hljs-literal">null</span> );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+
+s1 = <span class="hljs-keyword">new</span> MultiSlice( S( <span class="hljs-number">1</span>, <span class="hljs-number">20</span>, <span class="hljs-number">2</span> ), S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) );
+s2 = normalizeMultiSlice( s1, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s1.toString(), s2.toString() );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

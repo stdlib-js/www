@@ -1,0 +1,79 @@
+<h1 id="randu">randu</h1><blockquote><p>Create an array containing <a href="/docs/api/latest/@stdlib/random/base/randu">uniformly</a> distributed pseudorandom numbers between <code>0</code> and <code>1</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/randu'</span> );
+</code></pre><h4 id="randu-len-options-">randu( len[, options] )</h4><p>Returns an array containing <a href="/docs/api/latest/@stdlib/random/base/randu">uniformly</a> distributed pseudorandom numbers between <code>0</code> and <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = randu( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>len</strong>: output array length.</li><li><strong>options</strong>: function options.</li></ul><p>The function accepts the following <code>options</code>:</p><ul><li><strong>dtype</strong>: output array data type. Must be a <a href="/docs/api/latest/@stdlib/array/typed-real-float-dtypes">real-valued floating-point data type</a> or "generic". Default: <code>'float64'</code>.</li></ul><p>By default, the function returns a <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>. To return an array having a different data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+
+<span class="hljs-keyword">var</span> out = randu( <span class="hljs-number">10</span>, opts );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre><h4 id="randufactory-options-">randu.factory( [options] )</h4><p>Returns a function for creating arrays containing <a href="/docs/api/latest/@stdlib/random/base/randu">uniformly</a> distributed pseudorandom numbers between <code>0</code> and <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> random = randu.factory();
+
+<span class="hljs-keyword">var</span> out = random( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 10</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><p><strong>name</strong>: name of a supported pseudorandom number generator (PRNG), which will serve as the underlying source of pseudorandom numbers. The following generators are supported:</p><ul><li><a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li><li><a href="/docs/api/latest/@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li><li><a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li></ul><p>Default: <a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p></li><li><p><strong>seed</strong>: pseudorandom number generator seed. Valid seed values vary according to the underlying PRNG.</p></li><li><p><strong>state</strong>: pseudorandom number generator state. Valid state values vary according to the underlying PRNG. If provided, the function ignores the <code>seed</code> option.</p></li><li><p><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</p></li><li><p><strong>dtype</strong>: default output array data type. Must be a <a href="/docs/api/latest/@stdlib/array/typed-real-float-dtypes">real-valued floating-point data type</a> or "generic". Default: <code>'float64'</code>.</p></li></ul><p>By default, the underlying pseudorandom number generator is <a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'minstd-shuffle'</span>
+};
+<span class="hljs-keyword">var</span> random = randu.factory( opts );
+
+<span class="hljs-keyword">var</span> out = random( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+};
+<span class="hljs-keyword">var</span> random = randu.factory( opts );
+
+<span class="hljs-keyword">var</span> out = random( <span class="hljs-number">10</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>The returned function accepts the following <code>options</code>:</p><ul><li><strong>dtype</strong>: output array data type. Must be a <a href="/docs/api/latest/@stdlib/array/typed-real-float-dtypes">real-valued floating-point data type</a> or "generic". This overrides the default output array data type.</li></ul><p>To override the default output array data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> random = randu.factory();
+
+<span class="hljs-keyword">var</span> out = random( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+out = random( <span class="hljs-number">10</span>, opts );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre><h4 id="randuprng">randu.PRNG</h4><p>The underlying pseudorandom number generator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prng = randu.PRNG;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><h4 id="randuseed">randu.seed</h4><p>The value used to seed the underlying pseudorandom number generator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> seed = randu.seed;
+</code></pre><h4 id="randuseedlength">randu.seedLength</h4><p>Length of underlying pseudorandom number generator seed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = randu.seedLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><h4 id="randustate">randu.state</h4><p>Writable property for getting and setting the underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> state = randu.state;
+</code></pre><h4 id="randustatelength">randu.stateLength</h4><p>Length of underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = randu.stateLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><h4 id="randubytelength">randu.byteLength</h4><p>Size (in bytes) of underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = randu.byteLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><strong>Warning</strong>: the default underlying source of pseudorandom numbers may <strong>change</strong> in the future. If exact reproducibility is required, either explicitly specify a PRNG via the <code>name</code> option or use an underlying PRNG directly.</li><li>If PRNG state is "shared" (meaning a state array was provided during function creation and <strong>not</strong> copied) and one sets the underlying generator state to a state array having a different length, the function returned by the <code>factory</code> method does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize the output of the underlying generator according to the new shared state array, the state array for <strong>each</strong> relevant creation function and/or PRNG must be <strong>explicitly</strong> set.</li><li>If PRNG state is "shared" and one sets the underlying generator state to a state array of the same length, the PRNG state is updated (along with the state of all other creation functions and/or PRNGs sharing the PRNG's state array).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/randu'</span> );
+
+<span class="hljs-comment">// Create a function for generating random arrays originating from the same state:</span>
+<span class="hljs-keyword">var</span> random = randu.factory({
+    <span class="hljs-string">'state'</span>: randu.state,
+    <span class="hljs-string">'copy'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Generate 3 arrays:</span>
+<span class="hljs-keyword">var</span> x1 = random( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> x2 = random( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> x3 = random( <span class="hljs-number">5</span> );
+
+<span class="hljs-comment">// Print the contents:</span>
+logEach( <span class="hljs-string">'%f, %f, %f'</span>, x1, x2, x3 );
+
+<span class="hljs-comment">// Create another function for generating random arrays with the original state:</span>
+random = randu.factory({
+    <span class="hljs-string">'state'</span>: randu.state,
+    <span class="hljs-string">'copy'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Generate a single array which replicates the above pseudorandom number generation sequence:</span>
+<span class="hljs-keyword">var</span> x4 = random( <span class="hljs-number">15</span> );
+
+<span class="hljs-comment">// Print the contents:</span>
+logEach( <span class="hljs-string">'%f'</span>, x4 );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/array/uniform"><code>@stdlib/random/array/uniform</code></a></span><span class="delimiter">: </span><span class="description">create an array containing pseudorandom numbers drawn from a continuous uniform distribution.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/randu"><code>@stdlib/random/base/randu</code></a></span><span class="delimiter">: </span><span class="description">uniformly distributed pseudorandom numbers between 0 and 1.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/strided/randu"><code>@stdlib/random/strided/randu</code></a></span><span class="delimiter">: </span><span class="description">fill a strided array with uniformly distributed pseudorandom numbers between 0 and 1.</span></li></ul></section><section class="links"></section>

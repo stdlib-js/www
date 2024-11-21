@@ -19,4 +19,28 @@ y = gammaDeltaRatio( <span class="hljs-number">100.0</span>, <span class="hljs-n
     delta = randu()*<span class="hljs-number">10.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'gamma( %d ) / gamma( %d + %d ) = %d'</span>, z, z, delta, gammaDeltaRatio( z, delta ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gamma_delta_ratio.h"</span></span>
+</code></pre><h4 id="stdlib_base_gamma_delta_ratio-z-delta-">stdlib_base_gamma_delta_ratio( z, delta )</h4><p>Computes the ratio of two <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma functions</a>. Specifically, the function evaluates <code>Γ( z ) / Γ( z + delta )</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_gamma_delta_ratio( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~0.042</span>
+
+out = stdlib_base_gamma_delta_ratio( <span class="hljs-number">4.0</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns ~0.516</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] double</code> first gamma parameter.</li><li><strong>delta</strong>: <code>[in] double</code> difference.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_gamma_delta_ratio</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> z, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> delta )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gamma_delta_ratio.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> delta;
+    <span class="hljs-keyword">double</span> out;
+    <span class="hljs-keyword">double</span> z;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        z = (<span class="hljs-keyword">double</span>)rand() * <span class="hljs-number">10.0</span>;
+        delta = (<span class="hljs-keyword">double</span>)rand() * <span class="hljs-number">10.0</span>;
+        out = stdlib_base_gamma_delta_ratio( z, delta );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"gamma_delta_ratio(%lf, %lf) = %lf\n"</span>, z, delta, out );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li></ul></section><section class="links"></section>

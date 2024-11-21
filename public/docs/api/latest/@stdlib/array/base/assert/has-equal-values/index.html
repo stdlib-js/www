@@ -1,0 +1,22 @@
+<h1 id="hasequalvalues">hasEqualValues</h1><blockquote><p>Test if two arrays have equal values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasEqualValues = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/has-equal-values'</span> );
+</code></pre><h4 id="hasequalvalues-x-y-">hasEqualValues( x, y )</h4><p>Tests if two arrays have equal values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> bool = hasEqualValues( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If provided arrays of unequal length, the function returns <code>false</code>.</li><li>The function performs <strong>strict</strong> equality comparison.</li><li>The function does <strong>not</strong> skip <code>undefined</code> elements and is thus not optimized for sparse arrays.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
+<span class="hljs-keyword">var</span> hasEqualValues = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/has-equal-values'</span> );
+
+<span class="hljs-keyword">var</span> buf = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex128Array( buf );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> Complex128Array( buf );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> out = hasEqualValues( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

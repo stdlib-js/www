@@ -7,8 +7,84 @@
 
 <span class="hljs-keyword">var</span> mu = dist.mean;
 <span class="hljs-comment">// returns ~1.88</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chiRandomFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/chi'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> variance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/variance'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> rayleigh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/rayleigh'</span> );
+<span class="hljs-keyword">var</span> absdiff = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/utils/absolute-difference'</span> );
+<span class="hljs-keyword">var</span> mean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/mean'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/max'</span> );
 <span class="hljs-keyword">var</span> chi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/chi'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( chi ) );
+<span class="hljs-comment">// Define the degrees of freedom parameter:</span>
+<span class="hljs-keyword">var</span> k = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Generate an array of x values:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Compute the PDF for each x:</span>
+<span class="hljs-keyword">var</span> chiPDF = chi.pdf.factory( k );
+<span class="hljs-keyword">var</span> pdf = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, chiPDF );
+
+<span class="hljs-comment">// Compute the CDF for each x:</span>
+<span class="hljs-keyword">var</span> chiCDF = chi.cdf.factory( k );
+<span class="hljs-keyword">var</span> cdf = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, chiCDF );
+
+<span class="hljs-comment">// Output the PDF and CDF values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x values: '</span>, x );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF values: '</span>, pdf );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF values: '</span>, cdf );
+
+<span class="hljs-comment">// Compute statistical properties:</span>
+<span class="hljs-keyword">var</span> theoreticalMean = chi.mean( k );
+<span class="hljs-keyword">var</span> theoreticalVariance = chi.variance( k );
+<span class="hljs-keyword">var</span> theoreticalSkewness = chi.skewness( k );
+<span class="hljs-keyword">var</span> theoreticalKurtosis = chi.kurtosis( k );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Mean: '</span>, theoreticalMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Variance: '</span>, theoreticalVariance );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Skewness: '</span>, theoreticalSkewness );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Kurtosis: '</span>, theoreticalKurtosis );
+
+<span class="hljs-comment">// Generate random samples from the Chi distribution:</span>
+<span class="hljs-keyword">var</span> rchi = chiRandomFactory( k );
+<span class="hljs-keyword">var</span> n = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">var</span> samples = filledarrayBy( n, <span class="hljs-string">'float64'</span>, rchi );
+
+<span class="hljs-comment">// Compute sample mean and variance:</span>
+<span class="hljs-keyword">var</span> sampleMean = mean( n, samples, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sampleVariance = variance( n, <span class="hljs-number">1</span>, samples, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Mean: '</span>, sampleMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Variance: '</span>, sampleVariance );
+
+<span class="hljs-comment">// Compare sample statistics to theoretical values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Mean: '</span>, abs( theoreticalMean - sampleMean ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Variance: '</span>, abs( theoreticalVariance - sampleVariance ) );
+
+<span class="hljs-comment">// Demonstrate the relationship with the Rayleigh distribution when k=2:</span>
+<span class="hljs-keyword">var</span> rayleighPDF = rayleigh.pdf.factory( <span class="hljs-number">1.0</span> );
+<span class="hljs-keyword">var</span> rayleighCDF = rayleigh.cdf.factory( <span class="hljs-number">1.0</span> );
+
+<span class="hljs-comment">// Compute Rayleigh PDF and CDF for each x:</span>
+<span class="hljs-keyword">var</span> rayleighPDFValues = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, rayleighPDF );
+
+<span class="hljs-keyword">var</span> rayleighCDFValues = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, rayleighCDF );
+
+<span class="hljs-comment">// Compare Chi and Rayleigh PDFs and CDFs:</span>
+<span class="hljs-keyword">var</span> maxDiffPDF = <span class="hljs-number">0.0</span>;
+<span class="hljs-keyword">var</span> maxDiffCDF = <span class="hljs-number">0.0</span>;
+<span class="hljs-keyword">var</span> diffPDF;
+<span class="hljs-keyword">var</span> diffCDF;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    diffPDF = absdiff( pdf[ i ], rayleighPDFValues[ i ] );
+    maxDiffPDF = max( maxDiffPDF, diffPDF );
+    diffCDF = absdiff( cdf[ i ], rayleighCDFValues[ i ] );
+    maxDiffCDF = max( maxDiffCDF, diffCDF );
+}
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Maximum difference between Chi(k=2) PDF and Rayleigh PDF: '</span>, maxDiffPDF );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Maximum difference between Chi(k=2) CDF and Rayleigh CDF: '</span>, maxDiffCDF );
 </code></pre></section><section class="related"></section><section class="links"></section>

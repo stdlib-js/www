@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -93,6 +93,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Interface describing the main export.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -110,7 +117,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L42">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L45">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:45</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -123,9 +130,10 @@
 							<ul>
 								<li><p>The function accepts the following &quot;modes&quot;:</p>
 									<ul>
-										<li><code>throw</code>: throws an error when a linear index exceeds array dimensions.</li>
-										<li><code>wrap</code>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
-										<li><code>clamp</code>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+										<li><strong>throw</strong>: throw an error when a linear index exceeds array dimensions.</li>
+										<li><strong>normalize</strong>: normalize negative linear indices and throw an error when a linear index exceeds array dimensions.</li>
+										<li><strong>wrap</strong>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+										<li><strong>clamp</strong>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
 									</ul>
 								</li>
 							</ul>
@@ -182,7 +190,7 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_ind2sub_docs_types_index_d_.ind2sub.html#assign" class="tsd-kind-icon">assign</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="_ndarray_ind2sub_docs_types_index_d_.ind2sub.html#assign" class="tsd-kind-icon">assign</a></li>
 							</ul>
 						</section>
 					</div>
@@ -190,18 +198,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 					<a name="assign" class="tsd-anchor"></a>
 					<h3>assign</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">assign<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">: </span><a href="_array_datespace_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a>, out<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">assign<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, out<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">assign&lt;T&gt;<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">: </span><a href="_array_datespace_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a>, out<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">assign&lt;T&gt;<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, idx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, out<span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L105">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L108">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -214,9 +222,10 @@
 								<ul>
 									<li><p>The function accepts the following &quot;modes&quot;:</p>
 										<ul>
-											<li><code>throw</code>: throws an error when a linear index exceeds array dimensions.</li>
-											<li><code>wrap</code>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
-											<li><code>clamp</code>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+											<li><strong>throw</strong>: throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>normalize</strong>: normalize negative linear indices and throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>wrap</strong>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+											<li><strong>clamp</strong>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
 										</ul>
 									</li>
 								</ul>
@@ -234,6 +243,12 @@
 									<dd><p>must provide a linear index which does not exceed array dimensions</p>
 									</dd>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -255,15 +270,19 @@
 									</div>
 								</li>
 								<li>
-									<h5>out: <span class="tsd-signature-type">any</span></h5>
+									<h5>out: <a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>output array</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<span class="tsd-signature-type">Array</span>
+								<a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">
+									ArrayLike
+								</a>
 								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">number</span>
 								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
@@ -282,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L137">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts#L140">lib/node_modules/@stdlib/ndarray/ind2sub/docs/types/index.d.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,9 +314,10 @@
 								<ul>
 									<li><p>The function accepts the following &quot;modes&quot;:</p>
 										<ul>
-											<li><code>throw</code>: throws an error when a linear index exceeds array dimensions.</li>
-											<li><code>wrap</code>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
-											<li><code>clamp</code>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+											<li><strong>throw</strong>: throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>normalize</strong>: normalize negative linear indices and throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>wrap</strong>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+											<li><strong>clamp</strong>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
 										</ul>
 									</li>
 								</ul>
@@ -312,6 +332,12 @@
 									<dd><p>must provide a linear index which does not exceed array dimensions</p>
 									</dd>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -327,15 +353,19 @@
 									</div>
 								</li>
 								<li>
-									<h5>out: <span class="tsd-signature-type">any</span></h5>
+									<h5>out: <a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>output array</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<span class="tsd-signature-type">Array</span>
+								<a href="_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">
+									ArrayLike
+								</a>
 								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">number</span>
 								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
@@ -373,7 +403,7 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_ndarray_ind2sub_docs_types_index_d_.ind2sub.html" class="tsd-kind-icon">Ind2<wbr>Sub</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 								<a href="_ndarray_ind2sub_docs_types_index_d_.ind2sub.html#assign" class="tsd-kind-icon">assign</a>
 							</li>
 						</ul>
@@ -451,13 +481,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

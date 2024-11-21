@@ -7,8 +7,12 @@
 
 setNonEnumerableReadOnlyAccessor( obj, <span class="hljs-string">'foo'</span>, getter );
 
-obj.foo = <span class="hljs-string">'boop'</span>;
-<span class="hljs-comment">// throws &#x3C;Error></span>
+<span class="hljs-keyword">try</span> {
+    obj.foo = <span class="hljs-string">'boop'</span>;
+    <span class="hljs-comment">// throws &#x3C;Error></span>
+} <span class="hljs-keyword">catch</span> ( error ) {
+    <span class="hljs-built_in">console</span>.error( error.message );
+}
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Non-enumerable read-only accessors are <strong>non-configurable</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setNonEnumerableReadOnlyAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-read-only-accessor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{

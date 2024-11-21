@@ -1,0 +1,139 @@
+<h1 id="parallel">parallel</h1><blockquote><p>Execute functions in parallel and pass the results of all functions to a provided callback.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parallel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/parallel'</span> );
+</code></pre><h4 id="parallel-fcns-options-done-">parallel( fcns, [options,] done )</h4><p>Executes a set of functions in parallel and passes the results of all functions to a provided callback.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">4</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => [ 2, 4 ]</span>
+}
+
+<span class="hljs-keyword">var</span> fcns = [ a, b ];
+
+parallel( fcns, done );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>limit</strong>: maximum number of functions to execute concurrently. Default: <code>infinity</code>.</li><li><strong>thisArg</strong>: execution context for each function.</li></ul><p>To limit the maximum number of functions executing in parallel, set the <code>limit</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">4</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => [ 2, 4 ]</span>
+}
+
+<span class="hljs-keyword">var</span> fcns = [ a, b ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'limit'</span>: <span class="hljs-number">1</span>
+};
+
+parallel( fcns, opts, done );
+</code></pre><p>To set the <code>this</code> context for <strong>all</strong> <code>functions</code> in the provided function array, set the <code>thisArg</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">this</span>.idx += <span class="hljs-number">1</span>;
+    clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">this</span>.idx += <span class="hljs-number">1</span>;
+    clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">4</span> );
+}
+
+<span class="hljs-keyword">var</span> fcns = [ a, b ];
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'idx'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'thisArg'</span>: ctx
+};
+
+parallel( fcns, opts, done );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( ctx.idx );
+    <span class="hljs-comment">// => 2</span>
+}
+</code></pre><h4 id="parallelfactory-fcns-options-">parallel.factory( fcns, [options] )</h4><p>Returns a reusable function which executes a set of functions in parallel.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-number">4</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => [ 2, 4 ]</span>
+}
+
+<span class="hljs-keyword">var</span> fcns = [ a, b ];
+
+<span class="hljs-keyword">var</span> run = parallel.factory( fcns );
+
+run( done );
+run( done );
+run( done );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The order of the results provided to the <code>done</code> callback corresponds to the order of the provided functions.</li><li>When executed, each provided function is invoked with a single callback argument. The callback should be invoked upon function completion. The first argument is reserved as an <code>error</code> argument (which can be <code>null</code>). The second argument is reserved for any results which should be passed to the <code>done</code> callback upon completion of all provided functions.</li><li>If any function fails to invoke the callback argument, the <code>done</code> callback will never be invoked.</li><li>This implementation is intended to start asynchronous tasks so that execution of each task runs concurrently. If provided a function which does not perform asynchronous tasks, the function will execute synchronously. Hence, this implementation does <strong>not</strong> guarantee that execution is asynchronous. To do so, wrap the <code>done</code> callback in a <code>function</code> which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li><li>The function executes provided functions in the same thread. Accordingly, the function does <strong>not</strong> spawn new threads.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parallel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/parallel'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">300</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-string">'one'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">100</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        clbk( <span class="hljs-literal">null</span>, <span class="hljs-string">'two'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, results </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( results );
+    <span class="hljs-comment">// => [ 'one', 'two' ]</span>
+}
+
+<span class="hljs-keyword">var</span> fcns = [ foo, bar ];
+
+parallel( fcns, done );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

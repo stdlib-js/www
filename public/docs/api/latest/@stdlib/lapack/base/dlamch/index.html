@@ -1,0 +1,39 @@
+<h1 id="dlamch">dlamch</h1><blockquote><p>Determine double-precision floating-point machine parameters.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dlamch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/lapack/base/dlamch'</span> );
+</code></pre><h4 id="dlamch-cmach-">dlamch( cmach )</h4><p>Determines double-precision floating-point machine parameters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dlamch( <span class="hljs-string">'E'</span> );
+<span class="hljs-comment">// returns 1.1102230246251565e-16</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><p><strong>cmach</strong>: specifies the value to be returned. The following characters are supported:</p><ul><li><code>'E'</code>/<code>'e'</code>: (eps) relative machine precision.</li><li><code>'S'</code>/<code>'s'</code>: (sfmin) safe minimum such that <code>1/sfmin</code> does not overflow.</li><li><code>'B'</code>/<code>'b'</code>: (base) base of the machine (also known as the floating-point radix).</li><li><code>'P'</code>/<code>'p'</code>: (prec) <code>eps*base</code>.</li><li><code>'N'</code>/<code>'n'</code>: (t) number of (base) digits in the mantissa.</li><li><code>'R'</code>/<code>'r'</code>: (rnd) <code>1.0</code> when rounding occurs in addition and <code>0.0</code> otherwise.</li><li><code>'M'</code>/<code>'m'</code>: (emin) minimum exponent before (gradual) underflow.</li><li><code>'U'</code>/<code>'u'</code>: (rmin) underflow threshold.</li><li><code>'L'</code>/<code>'l'</code>: (emax) largest exponent before overflow.</li><li><code>'O'</code>/<code>'o'</code>: (rmax) overflow threshold.</li></ul></li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><code>dlamch()</code> corresponds to the <a href="https://www.netlib.org/lapack/explore-html/">LAPACK</a> function <a href="https://www.netlib.org/lapack/explore-html/d4/d86/group__lamch_gaeab255e77cbd3b0f31aea74ed0ce099e.html#gaeab255e77cbd3b0f31aea74ed0ce099e"><code>dlamch</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dlamch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/lapack/base/dlamch'</span> );
+
+<span class="hljs-keyword">var</span> out = dlamch( <span class="hljs-string">'E'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Precision: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'S'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Safe minimum: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'B'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Base: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'P'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Precision*base: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'N'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Number of digits in mantissa: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'R'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Rounding: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'M'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Minimum exponent before underflow: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'U'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Underflow threshold: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'L'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Maximum exponent before overflow: %d'</span>, out );
+
+out = dlamch( <span class="hljs-string">'O'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Overflow threshold: %d'</span>, out );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c">TODO
+</code></pre><h4 id="todo">TODO</h4><p>TODO.</p><pre><code class="hljs language-c">TODO
+</code></pre><p>TODO</p><pre><code class="hljs language-c">TODO
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c">TODO
+</code></pre></section></section><section class="related"></section><section class="links"></section>

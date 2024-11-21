@@ -1,0 +1,56 @@
+<h1 id="first">first</h1><blockquote><p>Return the first character(s) of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> first = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/first'</span> );
+</code></pre><h4 id="first-str-n-options-">first( str[, n][, options] )</h4><p>Returns the first character(s) of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = first( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'l'</span>
+
+out = first( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'H'</span>
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>mode</strong>: type of characters to return. Must be one of the following:</p><ul><li><code>'grapheme'</code>: grapheme clusters. Appropriate for strings containing visual characters which can span multiple Unicode code points (e.g., emoji).</li><li><code>'code_point'</code>: Unicode code points. Appropriate for strings containing visual characters which are comprised of more than one Unicode code unit (e.g., ideographic symbols and punctuation and mathematical alphanumerics).</li><li><code>'code_unit'</code>: UTF-16 code units. Appropriate for strings containing visual characters drawn from the basic multilingual plane (BMP) (e.g., common characters, such as those from the Latin, Greek, and Cyrillic alphabets).</li></ul><p>Default: <code>'grapheme'</code>.</p></li></ul><p>By default, the function returns the first character. To return the first <code>n</code> characters, provide a second argument specifying the number of characters to return.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = first( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'foo b'</span>
+
+out = first( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>By default, the function assumes the general case in which an input string may contain an arbitrary number of grapheme clusters. This assumption comes with a performance cost. Accordingly, if an input string is known to only contain visual characters of a particular type (e.g., only alphanumeric), one can achieve better performance by specifying the appropriate <code>mode</code> option.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> first = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/first'</span> );
+
+<span class="hljs-keyword">var</span> str = first( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'l'</span>
+
+str = first( <span class="hljs-string">'presidential election'</span> );
+<span class="hljs-comment">// returns 'p'</span>
+
+str = first( <span class="hljs-string">'javaScript'</span> );
+<span class="hljs-comment">// returns 'j'</span>
+
+str = first( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'H'</span>
+
+str = first( <span class="hljs-string">'The Last of the Mohicans'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'The L'</span>
+
+str = first( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '🐶🐮'</span>
+
+str = first( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns '🐶🐮🐷🐰🐸'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: first [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --n num               Number of characters to return. Default: 1.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+         --mode mode           Type of character to return. Default: 'grapheme'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | first --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | first --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ first beep
+b
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\nboop'</span> | first --n=2
+be
+bo
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\tboop'</span> | first --split <span class="hljs-string">'\t'</span>
+b
+b
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/remove-first"><code>@stdlib/string/remove-first</code></a></span><span class="delimiter">: </span><span class="description">remove the first character(s) of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/last"><code>@stdlib/string/last</code></a></span><span class="delimiter">: </span><span class="description">return the last character(s) of a string.</span></li></ul></section><section class="links"></section>

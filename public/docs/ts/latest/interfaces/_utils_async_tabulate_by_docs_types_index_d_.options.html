@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -86,7 +86,7 @@
 					<a href="_utils_async_tabulate_by_docs_types_index_d_.options.html">Options</a>
 				</li>
 			</ul>
-			<h1>Interface Options</h1>
+			<h1>Interface Options&lt;T, V&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -99,6 +99,17 @@
 						<p>Interface defining function options.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+					<li>
+						<h4>V</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
@@ -131,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L32">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L37">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -146,22 +157,22 @@
 					<div class="tsd-signature tsd-kind-icon">series<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L37">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L42">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Boolean indicating whether to wait for a previous invocation to complete before invoking a provided function for the next element in a collection (default: false).</p>
+							<p>Boolean indicating whether to sequentially invoke the <code>indicator</code> function for each <code>collection</code> element. If <code>true</code>, the function sets <code>options.limit=1</code>.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="thisarg" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> this<wbr>Arg</h3>
-					<div class="tsd-signature tsd-kind-icon">this<wbr>Arg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">this<wbr>Arg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ThisParameterType</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#indicator" class="tsd-signature-type">Indicator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L42">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts#L32">lib/node_modules/@stdlib/utils/async/tabulate-by/docs/types/index.d.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -187,7 +198,7 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_utils_async_tabulate_by_docs_types_index_d_.options.html" class="tsd-kind-icon">Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
@@ -203,47 +214,47 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_utils_async_tabulate_by_docs_types_index_d_.tabulatebyasync.html" class="tsd-kind-icon">Tabulate<wbr>ByAsync</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#binary" class="tsd-kind-icon">Binary</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#binaryindicator" class="tsd-kind-icon">Binary<wbr>Indicator</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#binarynext" class="tsd-kind-icon">Binary<wbr>Next</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#callback" class="tsd-kind-icon">Callback</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#donebinary" class="tsd-kind-icon">Done<wbr>Binary</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#donecallback" class="tsd-kind-icon">Done<wbr>Callback</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#donenullary" class="tsd-kind-icon">Done<wbr>Nullary</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#doneunary" class="tsd-kind-icon">Done<wbr>Unary</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#factoryfunction" class="tsd-kind-icon">Factory<wbr>Function</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#indicator" class="tsd-kind-icon">Indicator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#next" class="tsd-kind-icon">Next</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#nullary" class="tsd-kind-icon">Nullary</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#nullarynext" class="tsd-kind-icon">Nullary<wbr>Next</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#quaternaryindicator" class="tsd-kind-icon">Quaternary<wbr>Indicator</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#ternaryindicator" class="tsd-kind-icon">Ternary<wbr>Indicator</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#unary" class="tsd-kind-icon">Unary</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#unarynext" class="tsd-kind-icon">Unary<wbr>Next</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
 						<a href="../modules/_utils_async_tabulate_by_docs_types_index_d_.html#tabulatebyasync-1" class="tsd-kind-icon">tabulate<wbr>ByAsync</a>
@@ -313,13 +324,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

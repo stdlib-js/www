@@ -1,0 +1,31 @@
+<h1 id="thunk">thunk</h1><blockquote><p>Generate a <a href="https://en.wikipedia.org/wiki/Thunk">thunk</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> thunk = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/thunk'</span> );
+</code></pre><h4 id="thunk-fcn-args-">thunk( fcn[, ...args] )</h4><p>Returns a <a href="https://en.wikipedia.org/wiki/Thunk">thunk</a> (i.e., an anonymous function having arity <code>0</code> and which invokes a provided function with specified arguments).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> f = thunk( add, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = f();
+<span class="hljs-comment">// returns 5</span>
+
+<span class="hljs-comment">// ...</span>
+
+v = f();
+<span class="hljs-comment">// returns 5</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> decorateAfter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/decorate-after'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> thunk = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/thunk'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v );
+}
+
+<span class="hljs-comment">// Create a PRNG for generating uniformly distributed pseudorandom integers:</span>
+<span class="hljs-keyword">var</span> randi = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">1000</span> );
+
+<span class="hljs-comment">// Randomly delay evaluation of various thunks...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    <span class="hljs-built_in">setTimeout</span>( decorateAfter( thunk( add, i, i+<span class="hljs-number">1</span> ), <span class="hljs-number">0</span>, log ), randi() );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

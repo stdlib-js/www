@@ -1,0 +1,35 @@
+<h1 id="join">join</h1><blockquote><p>Return a string created by joining array elements using a specified separator.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/join'</span> );
+</code></pre><h4 id="join-x-separator-">join( x, separator )</h4><p>Returns a string created by joining array elements using a specified separator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '1,2,3,4,5,6'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having a <code>join</code> method, the function defers execution to that method and assumes that the method API has the following signature:</p><pre><code class="no-highlight language-text">x.join( separator )
+</code></pre></li><li><p>If provided an array-like object without a <code>join</code> method, the function manually constructs the output string.</p></li><li><p>If an array element is either <code>null</code> or <code>undefined</code>, the function will serialize the element as an empty string.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> AccessorArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/accessor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/join'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ];
+<span class="hljs-keyword">var</span> s = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '0,1,2,3,4,5'</span>
+
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
+s = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '0,1,2,3,4,5'</span>
+
+s = join( x, <span class="hljs-string">'-'</span> );
+<span class="hljs-comment">// returns '0-1-2-3-4-5'</span>
+
+x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+s = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '1,2,3,4'</span>
+
+x = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+s = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '1 + 2i,3 + 4i,5 + 6i'</span>
+
+x = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ] );
+s = join( x, <span class="hljs-string">','</span> );
+<span class="hljs-comment">// returns '1 - 1i,2 - 2i'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

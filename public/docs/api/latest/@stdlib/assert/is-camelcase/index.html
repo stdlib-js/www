@@ -1,0 +1,44 @@
+<h1 id="iscamelcase">isCamelcase</h1><blockquote><p>Test if a value is a camelcase string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCamelcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-camelcase'</span> );
+</code></pre><h4 id="iscamelcase-value-">isCamelcase( value )</h4><p>Tests if a <code>value</code> is an camelcase <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isCamelcase( <span class="hljs-string">'beepBoop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isCamelcase( <span class="hljs-string">'beep and Boop'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function validates that a <code>value</code> is a <code>string</code>. For all other types, the function returns <code>false</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCamelcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-camelcase'</span> );
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'beepBoop'</span> ) );
+<span class="hljs-comment">// => true</span>
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'beepBoop123'</span> ) );
+<span class="hljs-comment">// => true</span>
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'beep Boop'</span> ) );
+<span class="hljs-comment">// => false</span>
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'beep'</span> ) );
+<span class="hljs-comment">// => true</span>
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'beep boop'</span> ) );
+<span class="hljs-comment">// => false</span>
+
+<span class="hljs-built_in">console</span>.log( isCamelcase( <span class="hljs-string">'b'</span> ) );
+<span class="hljs-comment">// => true</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-camelcase [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beEp booP\nFOO'</span> | is-camelcase --split /\r?\n/
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beEp booP\nFOO'</span> | is-camelcase --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-camelcase beepBoop
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep Boop'</span> | is-camelcase
+<span class="hljs-literal">false</span>
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beepBoop\tbeep_boop'</span> | is-camelcase --split <span class="hljs-string">'\t'</span>
+<span class="hljs-literal">true</span>
+<span class="hljs-literal">false</span>
+</code></pre></section></section><section class="related"></section><section class="links"></section>

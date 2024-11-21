@@ -37,7 +37,7 @@
 </code></pre><p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
 <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER)</span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_LITTLE_ENDIAN</span>
     <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Platform is little-endian...\n"</span> );

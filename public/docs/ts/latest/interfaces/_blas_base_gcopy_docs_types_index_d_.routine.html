@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -110,14 +110,14 @@
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">__call&lt;T, U&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts:28</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -125,16 +125,25 @@
 								<p>Copies values from <code>x</code> into <code>y</code>.</p>
 							</div>
 						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+							<li>
+								<h4>U</h4>
+							</li>
+						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>N: <span class="tsd-signature-type">number</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>number of values to copy</p>
+									<p>number of indexed elements</p>
 								</div>
 							</li>
 							<li>
-								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>input array</p>
 								</div>
@@ -146,9 +155,9 @@
 								</div>
 							</li>
 							<li>
-								<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>destination array</p>
+									<p>output array</p>
 								</div>
 							</li>
 							<li>
@@ -159,11 +168,16 @@
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns
-							<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+							<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 								Collection
 							</a>
+							<span class="tsd-signature-symbol">&lt;</span>
+							<span class="tsd-signature-type">T</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">U</span>
+							<span class="tsd-signature-symbol">&gt;</span>
 						</h4>
-						<p><code>y</code></p>
+						<p>output array</p>
 						<h4 class="tsd-example-title">Example</h4>
 						<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span> ];
@@ -181,7 +195,7 @@ gcopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="_blas_base_gcopy_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="_blas_base_gcopy_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
 							</ul>
 						</section>
 					</div>
@@ -189,17 +203,17 @@ gcopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 					<a name="ndarray" class="tsd-anchor"></a>
 					<h3>ndarray</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">ndarray<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">ndarray&lt;T, U&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, strideX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span>, strideY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offsetY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts#L67">lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts#L67">lib/node_modules/@stdlib/blas/base/gcopy/docs/types/index.d.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,16 +221,25 @@ gcopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									<p>Copies values from <code>x</code> into <code>y</code> using alternative indexing semantics.</p>
 								</div>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>U</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>N: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>number of values to copy</p>
+										<p>number of indexed elements</p>
 									</div>
 								</li>
 								<li>
-									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>input array</p>
 									</div>
@@ -234,9 +257,9 @@ gcopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 									</div>
 								</li>
 								<li>
-									<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>y: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>destination array</p>
+										<p>output array</p>
 									</div>
 								</li>
 								<li>
@@ -253,11 +276,16 @@ gcopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+								<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 									Collection
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">U</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
-							<p><code>y</code></p>
+							<p>output array</p>
 							<h4 class="tsd-example-title">Example</h4>
 							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span> ];
@@ -285,10 +313,10 @@ gcopy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_blas_base_gcopy_docs_types_index_d_.routine.html" class="tsd-kind-icon">Routine</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 								<a href="_blas_base_gcopy_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a>
 							</li>
 						</ul>
@@ -363,13 +391,13 @@ gcopy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

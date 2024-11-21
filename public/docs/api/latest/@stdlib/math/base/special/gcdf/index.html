@@ -1,0 +1,45 @@
+<h1 id="gcdf">gcdf</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd) of two single-precision floating-point numbers.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd) of two non-zero integers <code>a</code> and <code>b</code> is the largest positive integer which divides both <code>a</code> and <code>b</code> without a remainder. The gcd is also known as the <strong>greatest common factor</strong> (gcf), <strong>highest common factor</strong> (hcf), <strong>highest common divisor</strong>, and <strong>greatest common measure</strong> (gcm).</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gcdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gcdf'</span> );
+</code></pre><h4 id="gcdf-a-b-">gcdf( a, b )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd) of two single-precision floating-point numbers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcdf( <span class="hljs-number">48</span>, <span class="hljs-number">18</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p>If both <code>a</code> and <code>b</code> are <code>0</code>, the function returns <code>0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcdf( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 0</span>
+</code></pre><p>Both <code>a</code> and <code>b</code> must have integer values; otherwise, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcdf( <span class="hljs-number">3.14</span>, <span class="hljs-number">18</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = gcdf( <span class="hljs-number">48</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = gcdf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">18</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = gcdf( <span class="hljs-number">48</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> gcdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gcdf'</span> );
+
+<span class="hljs-keyword">var</span> a = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">50</span> );
+<span class="hljs-keyword">var</span> b = discreteUniform( a.length, <span class="hljs-number">0</span>, <span class="hljs-number">50</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; a.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'gcdf(%d,%d) = %d'</span>, a[ i ], b[ i ], gcdf( a[ i ], b[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gcdf.h"</span></span>
+</code></pre><h4 id="stdlib_base_gcdf-a-b-">stdlib_base_gcdf( a, b )</h4><p>Computes the greatest common divisor (gcd) of two single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> v = stdlib_base_gcdf( <span class="hljs-number">48.0f</span>, <span class="hljs-number">18.0f</span> );
+<span class="hljs-comment">// returns 6.0f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>a</strong>: <code>[in] float</code> input value.</li><li><strong>b</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_gcdf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> b )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gcdf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> a[] = { <span class="hljs-number">24.0f</span>, <span class="hljs-number">32.0f</span>, <span class="hljs-number">48.0f</span>, <span class="hljs-number">116.0f</span>, <span class="hljs-number">33.0f</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> b[] = { <span class="hljs-number">12.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">15.0f</span>, <span class="hljs-number">52.0f</span>, <span class="hljs-number">22.0f</span> };
+
+    <span class="hljs-keyword">float</span> out;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        out = stdlib_base_gcdf( a[ i ], b[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"gcdf(%f, %f) = %f\n"</span>, a[ i ], b[ i ], out );
+    }
+}
+</code></pre></section></section><section class="references"><h2 id="references">References</h2><ul><li>Stein, Josef. 1967. "Computational problems associated with Racah algebra." <em>Journal of Computational Physics</em> 1 (3): 397–405. doi:<a href="https://doi.org/10.1016/0021-9991(67)90047-2">10.1016/0021-9991(67)90047-2</a>.</li></ul></section><section class="related"></section><section class="links"></section>

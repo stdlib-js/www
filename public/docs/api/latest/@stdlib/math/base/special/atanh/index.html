@@ -1,5 +1,5 @@
-<h1 id="atanh">atanh</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arctangent</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atanh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atanh'</span> );
-</code></pre><h4 id="atanh-x-">atanh( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arctangent</a> of <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atanh( <span class="hljs-number">0.0</span> );
+<h1 id="atanh">atanh</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arctangent</a> of a double-precision floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atanh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atanh'</span> );
+</code></pre><h4 id="atanh-x-">atanh( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arctangent</a> of a double-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atanh( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
 
 v = atanh( -<span class="hljs-number">0.0</span> );
@@ -27,4 +27,24 @@ v = atanh( -<span class="hljs-number">1.0</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( atanh( x[ i ] ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acosh"><code>@stdlib/math/base/special/acosh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arccosine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atan"><code>@stdlib/math/base/special/atan</code></a></span><span class="delimiter">: </span><span class="description">compute the arctangent of a number.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/atanh.h"</span></span>
+</code></pre><h4 id="stdlib_base_atanh-x-">stdlib_base_atanh( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arctangent</a> of double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_atanh( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = stdlib_base_atanh( <span class="hljs-number">-0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_atanh</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/atanh.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">-1.0</span>, <span class="hljs-number">-0.78</span>, <span class="hljs-number">-0.56</span>, <span class="hljs-number">-0.33</span>, <span class="hljs-number">-0.11</span>, <span class="hljs-number">0.11</span>, <span class="hljs-number">0.33</span>, <span class="hljs-number">0.56</span>, <span class="hljs-number">0.78</span>, <span class="hljs-number">1.0</span> };
+    
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_atanh( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"atanh(%lf) = %lf\n"</span>, x[ i ], v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acosh"><code>@stdlib/math/base/special/acosh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arccosine of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atan"><code>@stdlib/math/base/special/atan</code></a></span><span class="delimiter">: </span><span class="description">compute the arctangent of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,81 @@
+<h1 id="minstd-shuffle">MINSTD Shuffle</h1><blockquote><p>Fill a strided array with pseudorandom numbers generated using a <a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle">linear congruential pseudorandom number generator</a> (LCG) whose output is shuffled.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/strided/minstd-shuffle'</span> );
+</code></pre><h4 id="minstd-n-out-so-options-">minstd( N, out, so[, options] )</h4><p>Fills a strided array with pseudorandom integers between <code>1</code> and <code>2147483646</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+minstd( out.length, out, <span class="hljs-number">1</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>out</strong>: output array.</li><li><strong>so</strong>: index increment for <code>out</code>.</li></ul><p>The <code>N</code> and stride parameters determine which strided array elements are accessed at runtime. For example, to access every other value in <code>out</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+
+minstd( <span class="hljs-number">3</span>, out, <span class="hljs-number">2</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Initial array:</span>
+<span class="hljs-keyword">var</span> out0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">6</span> );
+
+<span class="hljs-comment">// Create offset views:</span>
+<span class="hljs-keyword">var</span> out1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( out0.buffer, out0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+
+<span class="hljs-comment">// Fill the output array:</span>
+minstd( out1.length, out1, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>state</strong>: an <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li></ul><p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+};
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+minstd( out.length, out, <span class="hljs-number">1</span>, opts );
+</code></pre><h4 id="minstdndarray-n-out-so-oo-options-">minstd.ndarray( N, out, so, oo[, options] )</h4><p>Fills a strided array with pseudorandom integers between <code>1</code> and <code>2147483646</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+minstd.ndarray( out.length, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>oo</strong>: starting index for <code>out</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to access every other value in <code>out</code> starting from the second value,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+
+minstd.ndarray( <span class="hljs-number">3</span>, out, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the same <code>options</code> as documented above for <code>minstd()</code>.</p><h4 id="minstdnormalized-n-out-so-options-">minstd.normalized( N, out, so[, options] )</h4><p>Fills a strided array with pseudorandom numbers between <code>0</code> and <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+minstd.normalized( out.length, out, <span class="hljs-number">1</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>out</strong>: output array.</li><li><strong>so</strong>: index increment for <code>out</code>.</li></ul><p>The function accepts the same <code>options</code> as documented above for <code>minstd()</code>.</p><h4 id="minstdnormalizedndarray-n-out-so-oo-options-">minstd.normalized.ndarray( N, out, so, oo[, options] )</h4><p>Fills a strided array with pseudorandom numbers between <code>0</code> and <code>1</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+minstd.normalized.ndarray( out.length, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>oo</strong>: starting index for <code>out</code>.</li></ul><p>The function accepts the same <code>options</code> as documented above for <code>minstd()</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, all functions leave the output array unchanged.</li><li>All functions support array-like objects having getter and setter accessors for array element access.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/strided/minstd-shuffle'</span> );
+
+<span class="hljs-comment">// Specify a PRNG seed:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>
+};
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x1 = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-comment">// Create a list of indices:</span>
+<span class="hljs-keyword">var</span> idx = zeroTo( x1.length );
+
+<span class="hljs-comment">// Fill the array with pseudorandom numbers:</span>
+minstd.normalized( x1.length, x1, <span class="hljs-number">1</span>, opts );
+
+<span class="hljs-comment">// Create a second array:</span>
+<span class="hljs-keyword">var</span> x2 = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+
+<span class="hljs-comment">// Fill the array with the same pseudorandom numbers:</span>
+minstd.normalized( x2.length, x2, <span class="hljs-number">1</span>, opts );
+
+<span class="hljs-comment">// Print the array contents:</span>
+logEach( <span class="hljs-string">'x1[%d] = %.2f; x2[%d] = %.2f'</span>, idx, x1, idx, x2 );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle"><code>@stdlib/random/base/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">A linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/array/minstd-shuffle"><code>@stdlib/random/array/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">create an array containing pseudorandom numbers generated using a linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/strided/minstd"><code>@stdlib/random/strided/minstd</code></a></span><span class="delimiter">: </span><span class="description">fill a strided array with pseudorandom numbers generated using a linear congruential pseudorandom number generator (LCG).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/strided/randu"><code>@stdlib/random/strided/randu</code></a></span><span class="delimiter">: </span><span class="description">fill a strided array with uniformly distributed pseudorandom numbers between 0 and 1.</span></li></ul></section><section class="links"></section>

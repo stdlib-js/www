@@ -1,0 +1,48 @@
+<h1 id="nditerinterleavesubarrays">nditerInterleaveSubarrays</h1><blockquote><p>Create an iterator which iterates over interleaved subarrays.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nditerInterleaveSubarrays = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/interleave-subarrays'</span> );
+</code></pre><h4 id="nditerinterleavesubarrays-arr-ndims-">nditerInterleaveSubarrays( arr, ndims )</h4><p>Returns an iterator which iterates over interleaved subarrays.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditerInterleaveSubarrays( [ x, x ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( v );
+<span class="hljs-comment">// returns [ [ 1, 2 ], [ 3, 4 ] ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+arr = ndarray2array( v );
+<span class="hljs-comment">// returns [ [ 1, 2 ], [ 3, 4 ] ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>All provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a> must be <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">broadcast compatible</a>.</li><li>After broadcasting, each broadcasted input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> must have at least <code>ndims+1</code> dimensions.</li><li>For input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a> supporting read-only views, the function returns <strong>read-only</strong> views of interleaved subarrays. As input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a> may be broadcasted, a view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to a view may affect multiple elements. If you need to write to a subarray, copy the subarray <strong>before</strong> attempting mutation.</li><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li><li>A returned iterator does <strong>not</strong> copy a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. To ensure iterable reproducibility, copy the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> <strong>before</strong> creating an iterator. Otherwise, any changes to the contents of input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> will be reflected in the returned iterator.</li><li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an ndarray's <code>@@iterator</code> method, regardless of whether this method is defined.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> nditerInterleaveSubarrays = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/interleave-subarrays'</span> );
+
+<span class="hljs-comment">// Define input arrays:</span>
+<span class="hljs-keyword">var</span> x = array( zeroTo( <span class="hljs-number">27</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+<span class="hljs-keyword">var</span> y = array( zeroTo( <span class="hljs-number">9</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Create an iterator for iterating over interleaved matrices:</span>
+<span class="hljs-keyword">var</span> it = nditerInterleaveSubarrays( [ x, y ], <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( ndarray2array( v.value ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

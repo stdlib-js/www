@@ -1,0 +1,85 @@
+<h1 id="sliceassign">sliceAssign</h1><blockquote><p>Assign element values from a broadcasted input array to corresponding elements in an output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceAssign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/fancy-slice-assign'</span> );
+</code></pre><h4 id="slice-x-y-s-strict-">slice( x, y, s, strict )</h4><p>Assigns element values from a broadcasted input array to corresponding elements in an output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 4, 0, 3, 0, 2, 0, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>y</strong>: output array.</li><li><strong>s</strong>: <a href="/docs/api/latest/@stdlib/slice/ctor">slice</a> object specifying the output array slice.</li><li><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The input array <strong>must</strong> be broadcast compatible with the output array slice (i.e., contain only one element or the same number of elements as in the slice).</li><li>The input array must have a <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> which can be <a href="/docs/api/latest/@stdlib/array/safe-casts">safely cast</a> to the output array data type. Floating-point data types (both real and complex) are allowed to downcast to a lower precision data type of the <a href="/docs/api/latest/@stdlib/array/same-kind-casts">same kind</a> (e.g., element values from a <code>'float64'</code> input array can be assigned to corresponding elements in a <code>'float32'</code> output array).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zero-to'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> sliceAssign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/fancy-slice-assign'</span> );
+
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+
+<span class="hljs-keyword">var</span> y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]</span>
+
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> Slice();
+<span class="hljs-keyword">var</span> out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+
+x = zeroTo( <span class="hljs-number">5</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">2</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 4, 0, 3, 0, 2, 0, 1, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">5</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">2</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">2</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 4, 0, 3, 0, 2, 0, 1, 0, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">6</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, -<span class="hljs-number">2</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 0, 0, 1, 2, 3, 4, 5, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">3</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 0, 0, 1, 2, 0, 0, 0, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">3</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">5</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">5</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 0, 0, 0, 0, 0 ]</span>
+
+x = zeroTo( <span class="hljs-number">5</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+y = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
+s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">5</span>, <span class="hljs-literal">null</span> );
+out = sliceAssign( x, y, s, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0, 0, 0, 1, 2, 3, 4 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

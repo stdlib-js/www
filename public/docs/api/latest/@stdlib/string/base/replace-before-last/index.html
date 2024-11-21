@@ -1,0 +1,29 @@
+<h1 id="replacebeforelast">replaceBeforeLast</h1><blockquote><p>Replace the substring before the last occurrence of a specified search string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replaceBeforeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/replace-before-last'</span> );
+</code></pre><h4 id="replacebeforelast-str-search-replacement-fromindex-">replaceBeforeLast( str, search, replacement, fromIndex )</h4><p>Replaces the substring before the last occurrence of a specified search string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+<span class="hljs-keyword">var</span> out = replaceBeforeLast( str, <span class="hljs-string">' '</span>, <span class="hljs-string">'loop'</span>, str.length );
+<span class="hljs-comment">// returns 'loop boop'</span>
+
+out = replaceBeforeLast( str, <span class="hljs-string">'o'</span>, <span class="hljs-string">'bar'</span>, str.length );
+<span class="hljs-comment">// returns 'barop'</span>
+</code></pre><p>To begin searching from a specific index, provide a corresponding <code>fromIndex</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replaceBeforeLast( <span class="hljs-string">'beep boop beep'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'loop'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'loop boop beep'</span>
+</code></pre><p>If <code>fromIndex</code> is less than zero, the starting index is resolved relative to the last string character, with the last string character corresponding to <code>fromIndex = -1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replaceBeforeLast( <span class="hljs-string">'beep boop beep'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'loop'</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'loop beep'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a search string is not present in a provided string, the function returns the provided string unchanged.</li><li>If a search string is an empty string, the function returns the provided string unchanged.</li><li>If <code>fromIndex</code> resolves to an index which is less than <code>0</code>, the function returns the provided string unchanged.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replaceBeforeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/replace-before-last'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+<span class="hljs-keyword">var</span> out = replaceBeforeLast( str, <span class="hljs-string">'p'</span>, <span class="hljs-string">'see'</span>, str.length );
+<span class="hljs-comment">// returns 'seep'</span>
+
+str = <span class="hljs-string">'Hello World!'</span>;
+out = replaceBeforeLast( str, <span class="hljs-string">'xyz'</span>, <span class="hljs-string">'foo'</span>, str.length );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+str = <span class="hljs-string">'Hello World!'</span>;
+out = replaceBeforeLast( str, <span class="hljs-string">''</span>, <span class="hljs-string">'foo'</span>, str.length );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+str = <span class="hljs-string">''</span>;
+out = replaceBeforeLast( str, <span class="hljs-string">'xyz'</span>, <span class="hljs-string">'foo'</span>, str.length );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/replace-after-last"><code>@stdlib/string/base/replace-after-last</code></a></span><span class="delimiter">: </span><span class="description">replace the substring after the last occurrence of a specified search string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/replace-after"><code>@stdlib/string/base/replace-after</code></a></span><span class="delimiter">: </span><span class="description">replace the substring after the first occurrence of a specified search string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/replace-before"><code>@stdlib/string/base/replace-before</code></a></span><span class="delimiter">: </span><span class="description">replace the substring before the first occurrence of a specified search string.</span></li></ul></section><section class="links"></section>

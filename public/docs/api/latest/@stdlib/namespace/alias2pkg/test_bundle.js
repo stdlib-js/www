@@ -123,12 +123,12 @@
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":2}],2:[function(require,module,exports){
 /**
@@ -231,12 +231,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":4}],4:[function(require,module,exports){
 /**
@@ -317,12 +317,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":6}],6:[function(require,module,exports){
 /**
@@ -465,22 +465,22 @@ module.exports = true;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":10,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-nonenumerable-read-only-property":63}],9:[function(require,module,exports){
+},{"./main.js":10,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-nonenumerable-read-only-property":70}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -766,22 +766,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":14,"./object.js":15,"./primitive.js":16,"@stdlib/utils/define-nonenumerable-read-only-property":63}],14:[function(require,module,exports){
+},{"./main.js":14,"./object.js":15,"./primitive.js":16,"@stdlib/utils/define-nonenumerable-read-only-property":70}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -909,7 +909,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":18,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/number/ctor":44,"@stdlib/utils/native-class":70}],16:[function(require,module,exports){
+},{"./try2serialize.js":18,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/number/ctor":44,"@stdlib/utils/native-class":77}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1102,22 +1102,22 @@ module.exports = test;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":20,"./object.js":21,"./primitive.js":22,"@stdlib/utils/define-nonenumerable-read-only-property":63}],20:[function(require,module,exports){
+},{"./main.js":20,"./object.js":21,"./primitive.js":22,"@stdlib/utils/define-nonenumerable-read-only-property":70}],20:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1236,7 +1236,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":23,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":70}],22:[function(require,module,exports){
+},{"./try2valueof.js":23,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":77}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1586,20 +1586,20 @@ module.exports = FLOAT64_PINF;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var readFile = require( './main.js' );
+var main = require( './main.js' );
 var sync = require( './sync.js' );
 
 
 // MAIN //
 
-setReadOnly( readFile, 'sync', sync );
+setReadOnly( main, 'sync', sync );
 
 
 // EXPORTS //
 
-module.exports = readFile;
+module.exports = main;
 
-},{"./main.js":29,"./sync.js":30,"@stdlib/utils/define-nonenumerable-read-only-property":63}],29:[function(require,module,exports){
+},{"./main.js":29,"./sync.js":30,"@stdlib/utils/define-nonenumerable-read-only-property":70}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1660,7 +1660,7 @@ function readFile() {
 
 module.exports = readFile;
 
-},{"fs":77}],30:[function(require,module,exports){
+},{"fs":84}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1723,7 +1723,7 @@ function readFileSync( file, options ) {
 
 module.exports = readFileSync;
 
-},{"fs":77}],31:[function(require,module,exports){
+},{"fs":84}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1761,14 +1761,14 @@ module.exports = readFileSync;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":32}],32:[function(require,module,exports){
+},{"./main.js":32}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1863,12 +1863,12 @@ module.exports = isInteger;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
 },{"./main.js":34}],34:[function(require,module,exports){
 /**
@@ -1923,7 +1923,8 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 module.exports = floor;
 
 },{}],35:[function(require,module,exports){
-module.exports={"abs":"@stdlib/math/special/abs","acronym":"@stdlib/string/acronym","AFINN_96":"@stdlib/datasets/afinn-96","AFINN_111":"@stdlib/datasets/afinn-111","afull":"@stdlib/array/full","afullLike":"@stdlib/array/full-like","alias2pkg":"@stdlib/namespace/alias2pkg","alias2related":"@stdlib/namespace/alias2related","alias2standalone":"@stdlib/namespace/alias2standalone","aliases":"@stdlib/namespace/aliases","allocUnsafe":"@stdlib/buffer/alloc-unsafe","anova1":"@stdlib/stats/anova1","ANSCOMBES_QUARTET":"@stdlib/datasets/anscombes-quartet","any":"@stdlib/utils/any","anyBy":"@stdlib/utils/any-by","anyByAsync":"@stdlib/utils/async/any-by","anyByRight":"@stdlib/utils/any-by-right","anyByRightAsync":"@stdlib/utils/async/any-by-right","aones":"@stdlib/array/ones","aonesLike":"@stdlib/array/ones-like","APERY":"@stdlib/constants/float64/apery","append":"@stdlib/utils/append","ARCH":"@stdlib/os/arch","argumentFunction":"@stdlib/utils/argument-function","ARGV":"@stdlib/process/argv","array":"@stdlib/ndarray/array","array2buffer":"@stdlib/buffer/from-array","array2iterator":"@stdlib/array/to-iterator","array2iteratorRight":"@stdlib/array/to-iterator-right","ArrayBuffer":"@stdlib/array/buffer","arraybuffer2buffer":"@stdlib/buffer/from-arraybuffer","arrayCtors":"@stdlib/array/ctors","arrayDataType":"@stdlib/array/dtype","arrayDataTypes":"@stdlib/array/dtypes","arrayMinDataType":"@stdlib/array/min-dtype","arrayNextDataType":"@stdlib/array/next-dtype","arrayPromotionRules":"@stdlib/array/promotion-rules","arraySafeCasts":"@stdlib/array/safe-casts","arraySameKindCasts":"@stdlib/array/same-kind-casts","arrayShape":"@stdlib/array/shape","arrayStream":"@stdlib/streams/node/from-array","arrayview2iterator":"@stdlib/array/to-view-iterator","arrayview2iteratorRight":"@stdlib/array/to-view-iterator-right","AsyncIteratorSymbol":"@stdlib/symbol/async-iterator","azeros":"@stdlib/array/zeros","azerosLike":"@stdlib/array/zeros-like","bartlettTest":"@stdlib/stats/bartlett-test","base.abs":"@stdlib/math/base/special/abs","base.abs2":"@stdlib/math/base/special/abs2","base.abs2f":"@stdlib/math/base/special/abs2f","base.absdiff":"@stdlib/math/base/utils/absolute-difference","base.absf":"@stdlib/math/base/special/absf","base.acos":"@stdlib/math/base/special/acos","base.acosh":"@stdlib/math/base/special/acosh","base.acot":"@stdlib/math/base/special/acot","base.acoth":"@stdlib/math/base/special/acoth","base.acovercos":"@stdlib/math/base/special/acovercos","base.acoversin":"@stdlib/math/base/special/acoversin","base.acsc":"@stdlib/math/base/special/acsc","base.acsch":"@stdlib/math/base/special/acsch","base.add":"@stdlib/math/base/ops/add","base.addf":"@stdlib/math/base/ops/addf","base.ahavercos":"@stdlib/math/base/special/ahavercos","base.ahaversin":"@stdlib/math/base/special/ahaversin","base.asech":"@stdlib/math/base/special/asech","base.asin":"@stdlib/math/base/special/asin","base.asinh":"@stdlib/math/base/special/asinh","base.atan":"@stdlib/math/base/special/atan","base.atan2":"@stdlib/math/base/special/atan2","base.atanh":"@stdlib/math/base/special/atanh","base.avercos":"@stdlib/math/base/special/avercos","base.aversin":"@stdlib/math/base/special/aversin","base.bernoulli":"@stdlib/math/base/special/bernoulli","base.besselj0":"@stdlib/math/base/special/besselj0","base.besselj1":"@stdlib/math/base/special/besselj1","base.bessely0":"@stdlib/math/base/special/bessely0","base.bessely1":"@stdlib/math/base/special/bessely1","base.beta":"@stdlib/math/base/special/beta","base.betainc":"@stdlib/math/base/special/betainc","base.betaincinv":"@stdlib/math/base/special/betaincinv","base.betaln":"@stdlib/math/base/special/betaln","base.binet":"@stdlib/math/base/special/binet","base.binomcoef":"@stdlib/math/base/special/binomcoef","base.binomcoefln":"@stdlib/math/base/special/binomcoefln","base.boxcox":"@stdlib/math/base/special/boxcox","base.boxcox1p":"@stdlib/math/base/special/boxcox1p","base.boxcox1pinv":"@stdlib/math/base/special/boxcox1pinv","base.boxcoxinv":"@stdlib/math/base/special/boxcoxinv","base.cabs":"@stdlib/math/base/special/cabs","base.cabs2":"@stdlib/math/base/special/cabs2","base.cabs2f":"@stdlib/math/base/special/cabs2f","base.cabsf":"@stdlib/math/base/special/cabsf","base.cadd":"@stdlib/math/base/ops/cadd","base.caddf":"@stdlib/math/base/ops/caddf","base.cbrt":"@stdlib/math/base/special/cbrt","base.cbrtf":"@stdlib/math/base/special/cbrtf","base.cceil":"@stdlib/math/base/special/cceil","base.cceilf":"@stdlib/math/base/special/cceilf","base.cceiln":"@stdlib/math/base/special/cceiln","base.ccis":"@stdlib/math/base/special/ccis","base.cdiv":"@stdlib/math/base/ops/cdiv","base.ceil":"@stdlib/math/base/special/ceil","base.ceil2":"@stdlib/math/base/special/ceil2","base.ceil10":"@stdlib/math/base/special/ceil10","base.ceilb":"@stdlib/math/base/special/ceilb","base.ceilf":"@stdlib/math/base/special/ceilf","base.ceiln":"@stdlib/math/base/special/ceiln","base.ceilsd":"@stdlib/math/base/special/ceilsd","base.cexp":"@stdlib/math/base/special/cexp","base.cflipsign":"@stdlib/math/base/special/cflipsign","base.cflipsignf":"@stdlib/math/base/special/cflipsignf","base.cfloor":"@stdlib/math/base/special/cfloor","base.cfloorn":"@stdlib/math/base/special/cfloorn","base.cidentity":"@stdlib/math/base/special/cidentity","base.cidentityf":"@stdlib/math/base/special/cidentityf","base.cinv":"@stdlib/math/base/special/cinv","base.clamp":"@stdlib/math/base/special/clamp","base.clampf":"@stdlib/math/base/special/clampf","base.cmul":"@stdlib/math/base/ops/cmul","base.cmulf":"@stdlib/math/base/ops/cmulf","base.cneg":"@stdlib/math/base/ops/cneg","base.continuedFraction":"@stdlib/math/base/tools/continued-fraction","base.copysign":"@stdlib/math/base/special/copysign","base.copysignf":"@stdlib/math/base/special/copysignf","base.cos":"@stdlib/math/base/special/cos","base.cosh":"@stdlib/math/base/special/cosh","base.cosm1":"@stdlib/math/base/special/cosm1","base.cospi":"@stdlib/math/base/special/cospi","base.cot":"@stdlib/math/base/special/cot","base.coth":"@stdlib/math/base/special/coth","base.covercos":"@stdlib/math/base/special/covercos","base.coversin":"@stdlib/math/base/special/coversin","base.cphase":"@stdlib/math/base/special/cphase","base.cpolar":"@stdlib/math/base/special/cpolar","base.cround":"@stdlib/math/base/special/cround","base.croundn":"@stdlib/math/base/special/croundn","base.csch":"@stdlib/math/base/special/csch","base.csignum":"@stdlib/math/base/special/csignum","base.csub":"@stdlib/math/base/ops/csub","base.csubf":"@stdlib/math/base/ops/csubf","base.deg2rad":"@stdlib/math/base/special/deg2rad","base.deg2radf":"@stdlib/math/base/special/deg2radf","base.digamma":"@stdlib/math/base/special/digamma","base.diracDelta":"@stdlib/math/base/special/dirac-delta","base.dists.arcsine.Arcsine":"@stdlib/stats/base/dists/arcsine/ctor","base.dists.arcsine.cdf":"@stdlib/stats/base/dists/arcsine/cdf","base.dists.arcsine.entropy":"@stdlib/stats/base/dists/arcsine/entropy","base.dists.arcsine.kurtosis":"@stdlib/stats/base/dists/arcsine/kurtosis","base.dists.arcsine.logcdf":"@stdlib/stats/base/dists/arcsine/logcdf","base.dists.arcsine.logpdf":"@stdlib/stats/base/dists/arcsine/logpdf","base.dists.arcsine.mean":"@stdlib/stats/base/dists/arcsine/mean","base.dists.arcsine.median":"@stdlib/stats/base/dists/arcsine/median","base.dists.arcsine.mode":"@stdlib/stats/base/dists/arcsine/mode","base.dists.arcsine.pdf":"@stdlib/stats/base/dists/arcsine/pdf","base.dists.arcsine.quantile":"@stdlib/stats/base/dists/arcsine/quantile","base.dists.arcsine.skewness":"@stdlib/stats/base/dists/arcsine/skewness","base.dists.arcsine.stdev":"@stdlib/stats/base/dists/arcsine/stdev","base.dists.arcsine.variance":"@stdlib/stats/base/dists/arcsine/variance","base.dists.bernoulli.Bernoulli":"@stdlib/stats/base/dists/bernoulli/ctor","base.dists.bernoulli.cdf":"@stdlib/stats/base/dists/bernoulli/cdf","base.dists.bernoulli.entropy":"@stdlib/stats/base/dists/bernoulli/entropy","base.dists.bernoulli.kurtosis":"@stdlib/stats/base/dists/bernoulli/kurtosis","base.dists.bernoulli.mean":"@stdlib/stats/base/dists/bernoulli/mean","base.dists.bernoulli.median":"@stdlib/stats/base/dists/bernoulli/median","base.dists.bernoulli.mgf":"@stdlib/stats/base/dists/bernoulli/mgf","base.dists.bernoulli.mode":"@stdlib/stats/base/dists/bernoulli/mode","base.dists.bernoulli.pmf":"@stdlib/stats/base/dists/bernoulli/pmf","base.dists.bernoulli.quantile":"@stdlib/stats/base/dists/bernoulli/quantile","base.dists.bernoulli.skewness":"@stdlib/stats/base/dists/bernoulli/skewness","base.dists.bernoulli.stdev":"@stdlib/stats/base/dists/bernoulli/stdev","base.dists.bernoulli.variance":"@stdlib/stats/base/dists/bernoulli/variance","base.dists.beta.Beta":"@stdlib/stats/base/dists/beta/ctor","base.dists.beta.cdf":"@stdlib/stats/base/dists/beta/cdf","base.dists.beta.entropy":"@stdlib/stats/base/dists/beta/entropy","base.dists.beta.kurtosis":"@stdlib/stats/base/dists/beta/kurtosis","base.dists.beta.logcdf":"@stdlib/stats/base/dists/beta/logcdf","base.dists.beta.logpdf":"@stdlib/stats/base/dists/beta/logpdf","base.dists.beta.mean":"@stdlib/stats/base/dists/beta/mean","base.dists.beta.median":"@stdlib/stats/base/dists/beta/median","base.dists.beta.mgf":"@stdlib/stats/base/dists/beta/mgf","base.dists.beta.mode":"@stdlib/stats/base/dists/beta/mode","base.dists.beta.pdf":"@stdlib/stats/base/dists/beta/pdf","base.dists.beta.quantile":"@stdlib/stats/base/dists/beta/quantile","base.dists.beta.skewness":"@stdlib/stats/base/dists/beta/skewness","base.dists.beta.stdev":"@stdlib/stats/base/dists/beta/stdev","base.dists.beta.variance":"@stdlib/stats/base/dists/beta/variance","base.dists.betaprime.BetaPrime":"@stdlib/stats/base/dists/betaprime/ctor","base.dists.betaprime.cdf":"@stdlib/stats/base/dists/betaprime/cdf","base.dists.betaprime.kurtosis":"@stdlib/stats/base/dists/betaprime/kurtosis","base.dists.betaprime.logcdf":"@stdlib/stats/base/dists/betaprime/logcdf","base.dists.betaprime.logpdf":"@stdlib/stats/base/dists/betaprime/logpdf","base.dists.betaprime.mean":"@stdlib/stats/base/dists/betaprime/mean","base.dists.betaprime.mode":"@stdlib/stats/base/dists/betaprime/mode","base.dists.betaprime.pdf":"@stdlib/stats/base/dists/betaprime/pdf","base.dists.betaprime.quantile":"@stdlib/stats/base/dists/betaprime/quantile","base.dists.betaprime.skewness":"@stdlib/stats/base/dists/betaprime/skewness","base.dists.betaprime.stdev":"@stdlib/stats/base/dists/betaprime/stdev","base.dists.betaprime.variance":"@stdlib/stats/base/dists/betaprime/variance","base.dists.binomial.Binomial":"@stdlib/stats/base/dists/binomial/ctor","base.dists.binomial.cdf":"@stdlib/stats/base/dists/binomial/cdf","base.dists.binomial.entropy":"@stdlib/stats/base/dists/binomial/entropy","base.dists.binomial.kurtosis":"@stdlib/stats/base/dists/binomial/kurtosis","base.dists.binomial.logpmf":"@stdlib/stats/base/dists/binomial/logpmf","base.dists.binomial.mean":"@stdlib/stats/base/dists/binomial/mean","base.dists.binomial.median":"@stdlib/stats/base/dists/binomial/median","base.dists.binomial.mgf":"@stdlib/stats/base/dists/binomial/mgf","base.dists.binomial.mode":"@stdlib/stats/base/dists/binomial/mode","base.dists.binomial.pmf":"@stdlib/stats/base/dists/binomial/pmf","base.dists.binomial.quantile":"@stdlib/stats/base/dists/binomial/quantile","base.dists.binomial.skewness":"@stdlib/stats/base/dists/binomial/skewness","base.dists.binomial.stdev":"@stdlib/stats/base/dists/binomial/stdev","base.dists.binomial.variance":"@stdlib/stats/base/dists/binomial/variance","base.dists.cauchy.Cauchy":"@stdlib/stats/base/dists/cauchy/ctor","base.dists.cauchy.cdf":"@stdlib/stats/base/dists/cauchy/cdf","base.dists.cauchy.entropy":"@stdlib/stats/base/dists/cauchy/entropy","base.dists.cauchy.logcdf":"@stdlib/stats/base/dists/cauchy/logcdf","base.dists.cauchy.logpdf":"@stdlib/stats/base/dists/cauchy/logpdf","base.dists.cauchy.median":"@stdlib/stats/base/dists/cauchy/median","base.dists.cauchy.mode":"@stdlib/stats/base/dists/cauchy/mode","base.dists.cauchy.pdf":"@stdlib/stats/base/dists/cauchy/pdf","base.dists.cauchy.quantile":"@stdlib/stats/base/dists/cauchy/quantile","base.dists.chi.cdf":"@stdlib/stats/base/dists/chi/cdf","base.dists.chi.Chi":"@stdlib/stats/base/dists/chi/ctor","base.dists.chi.entropy":"@stdlib/stats/base/dists/chi/entropy","base.dists.chi.kurtosis":"@stdlib/stats/base/dists/chi/kurtosis","base.dists.chi.logpdf":"@stdlib/stats/base/dists/chi/logpdf","base.dists.chi.mean":"@stdlib/stats/base/dists/chi/mean","base.dists.chi.mode":"@stdlib/stats/base/dists/chi/mode","base.dists.chi.pdf":"@stdlib/stats/base/dists/chi/pdf","base.dists.chi.quantile":"@stdlib/stats/base/dists/chi/quantile","base.dists.chi.skewness":"@stdlib/stats/base/dists/chi/skewness","base.dists.chi.stdev":"@stdlib/stats/base/dists/chi/stdev","base.dists.chi.variance":"@stdlib/stats/base/dists/chi/variance","base.dists.chisquare.cdf":"@stdlib/stats/base/dists/chisquare/cdf","base.dists.chisquare.ChiSquare":"@stdlib/stats/base/dists/chisquare/ctor","base.dists.chisquare.entropy":"@stdlib/stats/base/dists/chisquare/entropy","base.dists.chisquare.kurtosis":"@stdlib/stats/base/dists/chisquare/kurtosis","base.dists.chisquare.logpdf":"@stdlib/stats/base/dists/chisquare/logpdf","base.dists.chisquare.mean":"@stdlib/stats/base/dists/chisquare/mean","base.dists.chisquare.median":"@stdlib/stats/base/dists/chisquare/median","base.dists.chisquare.mgf":"@stdlib/stats/base/dists/chisquare/mgf","base.dists.chisquare.mode":"@stdlib/stats/base/dists/chisquare/mode","base.dists.chisquare.pdf":"@stdlib/stats/base/dists/chisquare/pdf","base.dists.chisquare.quantile":"@stdlib/stats/base/dists/chisquare/quantile","base.dists.chisquare.skewness":"@stdlib/stats/base/dists/chisquare/skewness","base.dists.chisquare.stdev":"@stdlib/stats/base/dists/chisquare/stdev","base.dists.chisquare.variance":"@stdlib/stats/base/dists/chisquare/variance","base.dists.cosine.cdf":"@stdlib/stats/base/dists/cosine/cdf","base.dists.cosine.Cosine":"@stdlib/stats/base/dists/cosine/ctor","base.dists.cosine.kurtosis":"@stdlib/stats/base/dists/cosine/kurtosis","base.dists.cosine.logcdf":"@stdlib/stats/base/dists/cosine/logcdf","base.dists.cosine.logpdf":"@stdlib/stats/base/dists/cosine/logpdf","base.dists.cosine.mean":"@stdlib/stats/base/dists/cosine/mean","base.dists.cosine.median":"@stdlib/stats/base/dists/cosine/median","base.dists.cosine.mgf":"@stdlib/stats/base/dists/cosine/mgf","base.dists.cosine.mode":"@stdlib/stats/base/dists/cosine/mode","base.dists.cosine.pdf":"@stdlib/stats/base/dists/cosine/pdf","base.dists.cosine.quantile":"@stdlib/stats/base/dists/cosine/quantile","base.dists.cosine.skewness":"@stdlib/stats/base/dists/cosine/skewness","base.dists.cosine.stdev":"@stdlib/stats/base/dists/cosine/stdev","base.dists.cosine.variance":"@stdlib/stats/base/dists/cosine/variance","base.dists.degenerate.cdf":"@stdlib/stats/base/dists/degenerate/cdf","base.dists.degenerate.Degenerate":"@stdlib/stats/base/dists/degenerate/ctor","base.dists.degenerate.entropy":"@stdlib/stats/base/dists/degenerate/entropy","base.dists.degenerate.logcdf":"@stdlib/stats/base/dists/degenerate/logcdf","base.dists.degenerate.logpdf":"@stdlib/stats/base/dists/degenerate/logpdf","base.dists.degenerate.logpmf":"@stdlib/stats/base/dists/degenerate/logpmf","base.dists.degenerate.mean":"@stdlib/stats/base/dists/degenerate/mean","base.dists.degenerate.median":"@stdlib/stats/base/dists/degenerate/median","base.dists.degenerate.mgf":"@stdlib/stats/base/dists/degenerate/mgf","base.dists.degenerate.mode":"@stdlib/stats/base/dists/degenerate/mode","base.dists.degenerate.pdf":"@stdlib/stats/base/dists/degenerate/pdf","base.dists.degenerate.pmf":"@stdlib/stats/base/dists/degenerate/pmf","base.dists.degenerate.quantile":"@stdlib/stats/base/dists/degenerate/quantile","base.dists.degenerate.stdev":"@stdlib/stats/base/dists/degenerate/stdev","base.dists.degenerate.variance":"@stdlib/stats/base/dists/degenerate/variance","base.dists.discreteUniform.cdf":"@stdlib/stats/base/dists/discrete-uniform/cdf","base.dists.discreteUniform.DiscreteUniform":"@stdlib/stats/base/dists/discrete-uniform/ctor","base.dists.discreteUniform.kurtosis":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","base.dists.discreteUniform.logcdf":"@stdlib/stats/base/dists/discrete-uniform/logcdf","base.dists.discreteUniform.logpmf":"@stdlib/stats/base/dists/discrete-uniform/logpmf","base.dists.discreteUniform.mean":"@stdlib/stats/base/dists/discrete-uniform/mean","base.dists.discreteUniform.median":"@stdlib/stats/base/dists/discrete-uniform/median","base.dists.discreteUniform.mgf":"@stdlib/stats/base/dists/discrete-uniform/mgf","base.dists.discreteUniform.pmf":"@stdlib/stats/base/dists/discrete-uniform/pmf","base.dists.discreteUniform.quantile":"@stdlib/stats/base/dists/discrete-uniform/quantile","base.dists.discreteUniform.skewness":"@stdlib/stats/base/dists/discrete-uniform/skewness","base.dists.discreteUniform.stdev":"@stdlib/stats/base/dists/discrete-uniform/stdev","base.dists.discreteUniform.variance":"@stdlib/stats/base/dists/discrete-uniform/variance","base.dists.erlang.cdf":"@stdlib/stats/base/dists/erlang/cdf","base.dists.erlang.entropy":"@stdlib/stats/base/dists/erlang/entropy","base.dists.erlang.Erlang":"@stdlib/stats/base/dists/erlang/ctor","base.dists.erlang.kurtosis":"@stdlib/stats/base/dists/erlang/kurtosis","base.dists.erlang.logpdf":"@stdlib/stats/base/dists/erlang/logpdf","base.dists.erlang.mean":"@stdlib/stats/base/dists/erlang/mean","base.dists.erlang.mgf":"@stdlib/stats/base/dists/erlang/mgf","base.dists.erlang.mode":"@stdlib/stats/base/dists/erlang/mode","base.dists.erlang.pdf":"@stdlib/stats/base/dists/erlang/pdf","base.dists.erlang.quantile":"@stdlib/stats/base/dists/erlang/quantile","base.dists.erlang.skewness":"@stdlib/stats/base/dists/erlang/skewness","base.dists.erlang.stdev":"@stdlib/stats/base/dists/erlang/stdev","base.dists.erlang.variance":"@stdlib/stats/base/dists/erlang/variance","base.dists.exponential.cdf":"@stdlib/stats/base/dists/exponential/cdf","base.dists.exponential.entropy":"@stdlib/stats/base/dists/exponential/entropy","base.dists.exponential.Exponential":"@stdlib/stats/base/dists/exponential/ctor","base.dists.exponential.kurtosis":"@stdlib/stats/base/dists/exponential/kurtosis","base.dists.exponential.logcdf":"@stdlib/stats/base/dists/exponential/logcdf","base.dists.exponential.logpdf":"@stdlib/stats/base/dists/exponential/logpdf","base.dists.exponential.mean":"@stdlib/stats/base/dists/exponential/mean","base.dists.exponential.median":"@stdlib/stats/base/dists/exponential/median","base.dists.exponential.mgf":"@stdlib/stats/base/dists/exponential/mgf","base.dists.exponential.mode":"@stdlib/stats/base/dists/exponential/mode","base.dists.exponential.pdf":"@stdlib/stats/base/dists/exponential/pdf","base.dists.exponential.quantile":"@stdlib/stats/base/dists/exponential/quantile","base.dists.exponential.skewness":"@stdlib/stats/base/dists/exponential/skewness","base.dists.exponential.stdev":"@stdlib/stats/base/dists/exponential/stdev","base.dists.exponential.variance":"@stdlib/stats/base/dists/exponential/variance","base.dists.f.cdf":"@stdlib/stats/base/dists/f/cdf","base.dists.f.entropy":"@stdlib/stats/base/dists/f/entropy","base.dists.f.F":"@stdlib/stats/base/dists/f/ctor","base.dists.f.kurtosis":"@stdlib/stats/base/dists/f/kurtosis","base.dists.f.mean":"@stdlib/stats/base/dists/f/mean","base.dists.f.mode":"@stdlib/stats/base/dists/f/mode","base.dists.f.pdf":"@stdlib/stats/base/dists/f/pdf","base.dists.f.quantile":"@stdlib/stats/base/dists/f/quantile","base.dists.f.skewness":"@stdlib/stats/base/dists/f/skewness","base.dists.f.stdev":"@stdlib/stats/base/dists/f/stdev","base.dists.f.variance":"@stdlib/stats/base/dists/f/variance","base.dists.frechet.cdf":"@stdlib/stats/base/dists/frechet/cdf","base.dists.frechet.entropy":"@stdlib/stats/base/dists/frechet/entropy","base.dists.frechet.Frechet":"@stdlib/stats/base/dists/frechet/ctor","base.dists.frechet.kurtosis":"@stdlib/stats/base/dists/frechet/kurtosis","base.dists.frechet.logcdf":"@stdlib/stats/base/dists/frechet/logcdf","base.dists.frechet.logpdf":"@stdlib/stats/base/dists/frechet/logpdf","base.dists.frechet.mean":"@stdlib/stats/base/dists/frechet/mean","base.dists.frechet.median":"@stdlib/stats/base/dists/frechet/median","base.dists.frechet.mode":"@stdlib/stats/base/dists/frechet/mode","base.dists.frechet.pdf":"@stdlib/stats/base/dists/frechet/pdf","base.dists.frechet.quantile":"@stdlib/stats/base/dists/frechet/quantile","base.dists.frechet.skewness":"@stdlib/stats/base/dists/frechet/skewness","base.dists.frechet.stdev":"@stdlib/stats/base/dists/frechet/stdev","base.dists.frechet.variance":"@stdlib/stats/base/dists/frechet/variance","base.dists.gamma.cdf":"@stdlib/stats/base/dists/gamma/cdf","base.dists.gamma.entropy":"@stdlib/stats/base/dists/gamma/entropy","base.dists.gamma.Gamma":"@stdlib/stats/base/dists/gamma/ctor","base.dists.gamma.kurtosis":"@stdlib/stats/base/dists/gamma/kurtosis","base.dists.gamma.logcdf":"@stdlib/stats/base/dists/gamma/logcdf","base.dists.gamma.logpdf":"@stdlib/stats/base/dists/gamma/logpdf","base.dists.gamma.mean":"@stdlib/stats/base/dists/gamma/mean","base.dists.gamma.mgf":"@stdlib/stats/base/dists/gamma/mgf","base.dists.gamma.mode":"@stdlib/stats/base/dists/gamma/mode","base.dists.gamma.pdf":"@stdlib/stats/base/dists/gamma/pdf","base.dists.gamma.quantile":"@stdlib/stats/base/dists/gamma/quantile","base.dists.gamma.skewness":"@stdlib/stats/base/dists/gamma/skewness","base.dists.gamma.stdev":"@stdlib/stats/base/dists/gamma/stdev","base.dists.gamma.variance":"@stdlib/stats/base/dists/gamma/variance","base.dists.geometric.cdf":"@stdlib/stats/base/dists/geometric/cdf","base.dists.geometric.entropy":"@stdlib/stats/base/dists/geometric/entropy","base.dists.geometric.Geometric":"@stdlib/stats/base/dists/geometric/ctor","base.dists.geometric.kurtosis":"@stdlib/stats/base/dists/geometric/kurtosis","base.dists.geometric.logcdf":"@stdlib/stats/base/dists/geometric/logcdf","base.dists.geometric.logpmf":"@stdlib/stats/base/dists/geometric/logpmf","base.dists.geometric.mean":"@stdlib/stats/base/dists/geometric/mean","base.dists.geometric.median":"@stdlib/stats/base/dists/geometric/median","base.dists.geometric.mgf":"@stdlib/stats/base/dists/geometric/mgf","base.dists.geometric.mode":"@stdlib/stats/base/dists/geometric/mode","base.dists.geometric.pmf":"@stdlib/stats/base/dists/geometric/pmf","base.dists.geometric.quantile":"@stdlib/stats/base/dists/geometric/quantile","base.dists.geometric.skewness":"@stdlib/stats/base/dists/geometric/skewness","base.dists.geometric.stdev":"@stdlib/stats/base/dists/geometric/stdev","base.dists.geometric.variance":"@stdlib/stats/base/dists/geometric/variance","base.dists.gumbel.cdf":"@stdlib/stats/base/dists/gumbel/cdf","base.dists.gumbel.entropy":"@stdlib/stats/base/dists/gumbel/entropy","base.dists.gumbel.Gumbel":"@stdlib/stats/base/dists/gumbel/ctor","base.dists.gumbel.kurtosis":"@stdlib/stats/base/dists/gumbel/kurtosis","base.dists.gumbel.logcdf":"@stdlib/stats/base/dists/gumbel/logcdf","base.dists.gumbel.logpdf":"@stdlib/stats/base/dists/gumbel/logpdf","base.dists.gumbel.mean":"@stdlib/stats/base/dists/gumbel/mean","base.dists.gumbel.median":"@stdlib/stats/base/dists/gumbel/median","base.dists.gumbel.mgf":"@stdlib/stats/base/dists/gumbel/mgf","base.dists.gumbel.mode":"@stdlib/stats/base/dists/gumbel/mode","base.dists.gumbel.pdf":"@stdlib/stats/base/dists/gumbel/pdf","base.dists.gumbel.quantile":"@stdlib/stats/base/dists/gumbel/quantile","base.dists.gumbel.skewness":"@stdlib/stats/base/dists/gumbel/skewness","base.dists.gumbel.stdev":"@stdlib/stats/base/dists/gumbel/stdev","base.dists.gumbel.variance":"@stdlib/stats/base/dists/gumbel/variance","base.dists.hypergeometric.cdf":"@stdlib/stats/base/dists/hypergeometric/cdf","base.dists.hypergeometric.Hypergeometric":"@stdlib/stats/base/dists/hypergeometric/ctor","base.dists.hypergeometric.kurtosis":"@stdlib/stats/base/dists/hypergeometric/kurtosis","base.dists.hypergeometric.logpmf":"@stdlib/stats/base/dists/hypergeometric/logpmf","base.dists.hypergeometric.mean":"@stdlib/stats/base/dists/hypergeometric/mean","base.dists.hypergeometric.mode":"@stdlib/stats/base/dists/hypergeometric/mode","base.dists.hypergeometric.pmf":"@stdlib/stats/base/dists/hypergeometric/pmf","base.dists.hypergeometric.quantile":"@stdlib/stats/base/dists/hypergeometric/quantile","base.dists.hypergeometric.skewness":"@stdlib/stats/base/dists/hypergeometric/skewness","base.dists.hypergeometric.stdev":"@stdlib/stats/base/dists/hypergeometric/stdev","base.dists.hypergeometric.variance":"@stdlib/stats/base/dists/hypergeometric/variance","base.dists.invgamma.cdf":"@stdlib/stats/base/dists/invgamma/cdf","base.dists.invgamma.entropy":"@stdlib/stats/base/dists/invgamma/entropy","base.dists.invgamma.InvGamma":"@stdlib/stats/base/dists/invgamma/ctor","base.dists.invgamma.kurtosis":"@stdlib/stats/base/dists/invgamma/kurtosis","base.dists.invgamma.logpdf":"@stdlib/stats/base/dists/invgamma/logpdf","base.dists.invgamma.mean":"@stdlib/stats/base/dists/invgamma/mean","base.dists.invgamma.mode":"@stdlib/stats/base/dists/invgamma/mode","base.dists.invgamma.pdf":"@stdlib/stats/base/dists/invgamma/pdf","base.dists.invgamma.quantile":"@stdlib/stats/base/dists/invgamma/quantile","base.dists.invgamma.skewness":"@stdlib/stats/base/dists/invgamma/skewness","base.dists.invgamma.stdev":"@stdlib/stats/base/dists/invgamma/stdev","base.dists.invgamma.variance":"@stdlib/stats/base/dists/invgamma/variance","base.dists.kumaraswamy.cdf":"@stdlib/stats/base/dists/kumaraswamy/cdf","base.dists.kumaraswamy.Kumaraswamy":"@stdlib/stats/base/dists/kumaraswamy/ctor","base.dists.kumaraswamy.kurtosis":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","base.dists.kumaraswamy.logcdf":"@stdlib/stats/base/dists/kumaraswamy/logcdf","base.dists.kumaraswamy.logpdf":"@stdlib/stats/base/dists/kumaraswamy/logpdf","base.dists.kumaraswamy.mean":"@stdlib/stats/base/dists/kumaraswamy/mean","base.dists.kumaraswamy.median":"@stdlib/stats/base/dists/kumaraswamy/median","base.dists.kumaraswamy.mode":"@stdlib/stats/base/dists/kumaraswamy/mode","base.dists.kumaraswamy.pdf":"@stdlib/stats/base/dists/kumaraswamy/pdf","base.dists.kumaraswamy.quantile":"@stdlib/stats/base/dists/kumaraswamy/quantile","base.dists.kumaraswamy.skewness":"@stdlib/stats/base/dists/kumaraswamy/skewness","base.dists.kumaraswamy.stdev":"@stdlib/stats/base/dists/kumaraswamy/stdev","base.dists.kumaraswamy.variance":"@stdlib/stats/base/dists/kumaraswamy/variance","base.dists.laplace.cdf":"@stdlib/stats/base/dists/laplace/cdf","base.dists.laplace.entropy":"@stdlib/stats/base/dists/laplace/entropy","base.dists.laplace.kurtosis":"@stdlib/stats/base/dists/laplace/kurtosis","base.dists.laplace.Laplace":"@stdlib/stats/base/dists/laplace/ctor","base.dists.laplace.logcdf":"@stdlib/stats/base/dists/laplace/logcdf","base.dists.laplace.logpdf":"@stdlib/stats/base/dists/laplace/logpdf","base.dists.laplace.mean":"@stdlib/stats/base/dists/laplace/mean","base.dists.laplace.median":"@stdlib/stats/base/dists/laplace/median","base.dists.laplace.mgf":"@stdlib/stats/base/dists/laplace/mgf","base.dists.laplace.mode":"@stdlib/stats/base/dists/laplace/mode","base.dists.laplace.pdf":"@stdlib/stats/base/dists/laplace/pdf","base.dists.laplace.quantile":"@stdlib/stats/base/dists/laplace/quantile","base.dists.laplace.skewness":"@stdlib/stats/base/dists/laplace/skewness","base.dists.laplace.stdev":"@stdlib/stats/base/dists/laplace/stdev","base.dists.laplace.variance":"@stdlib/stats/base/dists/laplace/variance","base.dists.levy.cdf":"@stdlib/stats/base/dists/levy/cdf","base.dists.levy.entropy":"@stdlib/stats/base/dists/levy/entropy","base.dists.levy.Levy":"@stdlib/stats/base/dists/levy/ctor","base.dists.levy.logcdf":"@stdlib/stats/base/dists/levy/logcdf","base.dists.levy.logpdf":"@stdlib/stats/base/dists/levy/logpdf","base.dists.levy.mean":"@stdlib/stats/base/dists/levy/mean","base.dists.levy.median":"@stdlib/stats/base/dists/levy/median","base.dists.levy.mode":"@stdlib/stats/base/dists/levy/mode","base.dists.levy.pdf":"@stdlib/stats/base/dists/levy/pdf","base.dists.levy.quantile":"@stdlib/stats/base/dists/levy/quantile","base.dists.levy.stdev":"@stdlib/stats/base/dists/levy/stdev","base.dists.levy.variance":"@stdlib/stats/base/dists/levy/variance","base.dists.logistic.cdf":"@stdlib/stats/base/dists/logistic/cdf","base.dists.logistic.entropy":"@stdlib/stats/base/dists/logistic/entropy","base.dists.logistic.kurtosis":"@stdlib/stats/base/dists/logistic/kurtosis","base.dists.logistic.logcdf":"@stdlib/stats/base/dists/logistic/logcdf","base.dists.logistic.Logistic":"@stdlib/stats/base/dists/logistic/ctor","base.dists.logistic.logpdf":"@stdlib/stats/base/dists/logistic/logpdf","base.dists.logistic.mean":"@stdlib/stats/base/dists/logistic/mean","base.dists.logistic.median":"@stdlib/stats/base/dists/logistic/median","base.dists.logistic.mgf":"@stdlib/stats/base/dists/logistic/mgf","base.dists.logistic.mode":"@stdlib/stats/base/dists/logistic/mode","base.dists.logistic.pdf":"@stdlib/stats/base/dists/logistic/pdf","base.dists.logistic.quantile":"@stdlib/stats/base/dists/logistic/quantile","base.dists.logistic.skewness":"@stdlib/stats/base/dists/logistic/skewness","base.dists.logistic.stdev":"@stdlib/stats/base/dists/logistic/stdev","base.dists.logistic.variance":"@stdlib/stats/base/dists/logistic/variance","base.dists.lognormal.cdf":"@stdlib/stats/base/dists/lognormal/cdf","base.dists.lognormal.entropy":"@stdlib/stats/base/dists/lognormal/entropy","base.dists.lognormal.kurtosis":"@stdlib/stats/base/dists/lognormal/kurtosis","base.dists.lognormal.LogNormal":"@stdlib/stats/base/dists/lognormal/ctor","base.dists.lognormal.logpdf":"@stdlib/stats/base/dists/lognormal/logpdf","base.dists.lognormal.mean":"@stdlib/stats/base/dists/lognormal/mean","base.dists.lognormal.median":"@stdlib/stats/base/dists/lognormal/median","base.dists.lognormal.mode":"@stdlib/stats/base/dists/lognormal/mode","base.dists.lognormal.pdf":"@stdlib/stats/base/dists/lognormal/pdf","base.dists.lognormal.quantile":"@stdlib/stats/base/dists/lognormal/quantile","base.dists.lognormal.skewness":"@stdlib/stats/base/dists/lognormal/skewness","base.dists.lognormal.stdev":"@stdlib/stats/base/dists/lognormal/stdev","base.dists.lognormal.variance":"@stdlib/stats/base/dists/lognormal/variance","base.dists.negativeBinomial.cdf":"@stdlib/stats/base/dists/negative-binomial/cdf","base.dists.negativeBinomial.kurtosis":"@stdlib/stats/base/dists/negative-binomial/kurtosis","base.dists.negativeBinomial.logpmf":"@stdlib/stats/base/dists/negative-binomial/logpmf","base.dists.negativeBinomial.mean":"@stdlib/stats/base/dists/negative-binomial/mean","base.dists.negativeBinomial.mgf":"@stdlib/stats/base/dists/negative-binomial/mgf","base.dists.negativeBinomial.mode":"@stdlib/stats/base/dists/negative-binomial/mode","base.dists.negativeBinomial.NegativeBinomial":"@stdlib/stats/base/dists/negative-binomial/ctor","base.dists.negativeBinomial.pmf":"@stdlib/stats/base/dists/negative-binomial/pmf","base.dists.negativeBinomial.quantile":"@stdlib/stats/base/dists/negative-binomial/quantile","base.dists.negativeBinomial.skewness":"@stdlib/stats/base/dists/negative-binomial/skewness","base.dists.negativeBinomial.stdev":"@stdlib/stats/base/dists/negative-binomial/stdev","base.dists.negativeBinomial.variance":"@stdlib/stats/base/dists/negative-binomial/variance","base.dists.normal.cdf":"@stdlib/stats/base/dists/normal/cdf","base.dists.normal.entropy":"@stdlib/stats/base/dists/normal/entropy","base.dists.normal.kurtosis":"@stdlib/stats/base/dists/normal/kurtosis","base.dists.normal.logpdf":"@stdlib/stats/base/dists/normal/logpdf","base.dists.normal.mean":"@stdlib/stats/base/dists/normal/mean","base.dists.normal.median":"@stdlib/stats/base/dists/normal/median","base.dists.normal.mgf":"@stdlib/stats/base/dists/normal/mgf","base.dists.normal.mode":"@stdlib/stats/base/dists/normal/mode","base.dists.normal.Normal":"@stdlib/stats/base/dists/normal/ctor","base.dists.normal.pdf":"@stdlib/stats/base/dists/normal/pdf","base.dists.normal.quantile":"@stdlib/stats/base/dists/normal/quantile","base.dists.normal.skewness":"@stdlib/stats/base/dists/normal/skewness","base.dists.normal.stdev":"@stdlib/stats/base/dists/normal/stdev","base.dists.normal.variance":"@stdlib/stats/base/dists/normal/variance","base.dists.pareto1.cdf":"@stdlib/stats/base/dists/pareto-type1/cdf","base.dists.pareto1.entropy":"@stdlib/stats/base/dists/pareto-type1/entropy","base.dists.pareto1.kurtosis":"@stdlib/stats/base/dists/pareto-type1/kurtosis","base.dists.pareto1.logcdf":"@stdlib/stats/base/dists/pareto-type1/logcdf","base.dists.pareto1.logpdf":"@stdlib/stats/base/dists/pareto-type1/logpdf","base.dists.pareto1.mean":"@stdlib/stats/base/dists/pareto-type1/mean","base.dists.pareto1.median":"@stdlib/stats/base/dists/pareto-type1/median","base.dists.pareto1.mode":"@stdlib/stats/base/dists/pareto-type1/mode","base.dists.pareto1.Pareto1":"@stdlib/stats/base/dists/pareto-type1/ctor","base.dists.pareto1.pdf":"@stdlib/stats/base/dists/pareto-type1/pdf","base.dists.pareto1.quantile":"@stdlib/stats/base/dists/pareto-type1/quantile","base.dists.pareto1.skewness":"@stdlib/stats/base/dists/pareto-type1/skewness","base.dists.pareto1.stdev":"@stdlib/stats/base/dists/pareto-type1/stdev","base.dists.pareto1.variance":"@stdlib/stats/base/dists/pareto-type1/variance","base.dists.poisson.cdf":"@stdlib/stats/base/dists/poisson/cdf","base.dists.poisson.entropy":"@stdlib/stats/base/dists/poisson/entropy","base.dists.poisson.kurtosis":"@stdlib/stats/base/dists/poisson/kurtosis","base.dists.poisson.logpmf":"@stdlib/stats/base/dists/poisson/logpmf","base.dists.poisson.mean":"@stdlib/stats/base/dists/poisson/mean","base.dists.poisson.median":"@stdlib/stats/base/dists/poisson/median","base.dists.poisson.mgf":"@stdlib/stats/base/dists/poisson/mgf","base.dists.poisson.mode":"@stdlib/stats/base/dists/poisson/mode","base.dists.poisson.pmf":"@stdlib/stats/base/dists/poisson/pmf","base.dists.poisson.Poisson":"@stdlib/stats/base/dists/poisson/ctor","base.dists.poisson.quantile":"@stdlib/stats/base/dists/poisson/quantile","base.dists.poisson.skewness":"@stdlib/stats/base/dists/poisson/skewness","base.dists.poisson.stdev":"@stdlib/stats/base/dists/poisson/stdev","base.dists.poisson.variance":"@stdlib/stats/base/dists/poisson/variance","base.dists.rayleigh.cdf":"@stdlib/stats/base/dists/rayleigh/cdf","base.dists.rayleigh.entropy":"@stdlib/stats/base/dists/rayleigh/entropy","base.dists.rayleigh.kurtosis":"@stdlib/stats/base/dists/rayleigh/kurtosis","base.dists.rayleigh.logcdf":"@stdlib/stats/base/dists/rayleigh/logcdf","base.dists.rayleigh.logpdf":"@stdlib/stats/base/dists/rayleigh/logpdf","base.dists.rayleigh.mean":"@stdlib/stats/base/dists/rayleigh/mean","base.dists.rayleigh.median":"@stdlib/stats/base/dists/rayleigh/median","base.dists.rayleigh.mgf":"@stdlib/stats/base/dists/rayleigh/mgf","base.dists.rayleigh.mode":"@stdlib/stats/base/dists/rayleigh/mode","base.dists.rayleigh.pdf":"@stdlib/stats/base/dists/rayleigh/pdf","base.dists.rayleigh.quantile":"@stdlib/stats/base/dists/rayleigh/quantile","base.dists.rayleigh.Rayleigh":"@stdlib/stats/base/dists/rayleigh/ctor","base.dists.rayleigh.skewness":"@stdlib/stats/base/dists/rayleigh/skewness","base.dists.rayleigh.stdev":"@stdlib/stats/base/dists/rayleigh/stdev","base.dists.rayleigh.variance":"@stdlib/stats/base/dists/rayleigh/variance","base.dists.signrank.cdf":"@stdlib/stats/base/dists/signrank/cdf","base.dists.signrank.pdf":"@stdlib/stats/base/dists/signrank/pdf","base.dists.signrank.quantile":"@stdlib/stats/base/dists/signrank/quantile","base.dists.t.cdf":"@stdlib/stats/base/dists/t/cdf","base.dists.t.entropy":"@stdlib/stats/base/dists/t/entropy","base.dists.t.kurtosis":"@stdlib/stats/base/dists/t/kurtosis","base.dists.t.mean":"@stdlib/stats/base/dists/t/mean","base.dists.t.median":"@stdlib/stats/base/dists/t/median","base.dists.t.mode":"@stdlib/stats/base/dists/t/mode","base.dists.t.pdf":"@stdlib/stats/base/dists/t/pdf","base.dists.t.quantile":"@stdlib/stats/base/dists/t/quantile","base.dists.t.skewness":"@stdlib/stats/base/dists/t/skewness","base.dists.t.stdev":"@stdlib/stats/base/dists/t/stdev","base.dists.t.T":"@stdlib/stats/base/dists/t/ctor","base.dists.t.variance":"@stdlib/stats/base/dists/t/variance","base.dists.triangular.cdf":"@stdlib/stats/base/dists/triangular/cdf","base.dists.triangular.entropy":"@stdlib/stats/base/dists/triangular/entropy","base.dists.triangular.kurtosis":"@stdlib/stats/base/dists/triangular/kurtosis","base.dists.triangular.logcdf":"@stdlib/stats/base/dists/triangular/logcdf","base.dists.triangular.logpdf":"@stdlib/stats/base/dists/triangular/logpdf","base.dists.triangular.mean":"@stdlib/stats/base/dists/triangular/mean","base.dists.triangular.median":"@stdlib/stats/base/dists/triangular/median","base.dists.triangular.mgf":"@stdlib/stats/base/dists/triangular/mgf","base.dists.triangular.mode":"@stdlib/stats/base/dists/triangular/mode","base.dists.triangular.pdf":"@stdlib/stats/base/dists/triangular/pdf","base.dists.triangular.quantile":"@stdlib/stats/base/dists/triangular/quantile","base.dists.triangular.skewness":"@stdlib/stats/base/dists/triangular/skewness","base.dists.triangular.stdev":"@stdlib/stats/base/dists/triangular/stdev","base.dists.triangular.Triangular":"@stdlib/stats/base/dists/triangular/ctor","base.dists.triangular.variance":"@stdlib/stats/base/dists/triangular/variance","base.dists.uniform.cdf":"@stdlib/stats/base/dists/uniform/cdf","base.dists.uniform.entropy":"@stdlib/stats/base/dists/uniform/entropy","base.dists.uniform.kurtosis":"@stdlib/stats/base/dists/uniform/kurtosis","base.dists.uniform.logcdf":"@stdlib/stats/base/dists/uniform/logcdf","base.dists.uniform.logpdf":"@stdlib/stats/base/dists/uniform/logpdf","base.dists.uniform.mean":"@stdlib/stats/base/dists/uniform/mean","base.dists.uniform.median":"@stdlib/stats/base/dists/uniform/median","base.dists.uniform.mgf":"@stdlib/stats/base/dists/uniform/mgf","base.dists.uniform.pdf":"@stdlib/stats/base/dists/uniform/pdf","base.dists.uniform.quantile":"@stdlib/stats/base/dists/uniform/quantile","base.dists.uniform.skewness":"@stdlib/stats/base/dists/uniform/skewness","base.dists.uniform.stdev":"@stdlib/stats/base/dists/uniform/stdev","base.dists.uniform.Uniform":"@stdlib/stats/base/dists/uniform/ctor","base.dists.uniform.variance":"@stdlib/stats/base/dists/uniform/variance","base.dists.weibull.cdf":"@stdlib/stats/base/dists/weibull/cdf","base.dists.weibull.entropy":"@stdlib/stats/base/dists/weibull/entropy","base.dists.weibull.kurtosis":"@stdlib/stats/base/dists/weibull/kurtosis","base.dists.weibull.logcdf":"@stdlib/stats/base/dists/weibull/logcdf","base.dists.weibull.logpdf":"@stdlib/stats/base/dists/weibull/logpdf","base.dists.weibull.mean":"@stdlib/stats/base/dists/weibull/mean","base.dists.weibull.median":"@stdlib/stats/base/dists/weibull/median","base.dists.weibull.mgf":"@stdlib/stats/base/dists/weibull/mgf","base.dists.weibull.mode":"@stdlib/stats/base/dists/weibull/mode","base.dists.weibull.pdf":"@stdlib/stats/base/dists/weibull/pdf","base.dists.weibull.quantile":"@stdlib/stats/base/dists/weibull/quantile","base.dists.weibull.skewness":"@stdlib/stats/base/dists/weibull/skewness","base.dists.weibull.stdev":"@stdlib/stats/base/dists/weibull/stdev","base.dists.weibull.variance":"@stdlib/stats/base/dists/weibull/variance","base.dists.weibull.Weibull":"@stdlib/stats/base/dists/weibull/ctor","base.ellipe":"@stdlib/math/base/special/ellipe","base.ellipk":"@stdlib/math/base/special/ellipk","base.epsdiff":"@stdlib/math/base/utils/float64-epsilon-difference","base.erf":"@stdlib/math/base/special/erf","base.erfc":"@stdlib/math/base/special/erfc","base.erfcinv":"@stdlib/math/base/special/erfcinv","base.erfinv":"@stdlib/math/base/special/erfinv","base.eta":"@stdlib/math/base/special/dirichlet-eta","base.evalpoly":"@stdlib/math/base/tools/evalpoly","base.evalrational":"@stdlib/math/base/tools/evalrational","base.exp":"@stdlib/math/base/special/exp","base.exp2":"@stdlib/math/base/special/exp2","base.exp10":"@stdlib/math/base/special/exp10","base.expit":"@stdlib/math/base/special/expit","base.expm1":"@stdlib/math/base/special/expm1","base.expm1rel":"@stdlib/math/base/special/expm1rel","base.exponent":"@stdlib/number/float64/base/exponent","base.exponentf":"@stdlib/number/float32/base/exponent","base.factorial":"@stdlib/math/base/special/factorial","base.factorialln":"@stdlib/math/base/special/factorialln","base.fallingFactorial":"@stdlib/math/base/special/falling-factorial","base.fibonacci":"@stdlib/math/base/special/fibonacci","base.fibonacciIndex":"@stdlib/math/base/special/fibonacci-index","base.fibpoly":"@stdlib/math/base/tools/fibpoly","base.flipsign":"@stdlib/math/base/special/flipsign","base.flipsignf":"@stdlib/math/base/special/flipsignf","base.float32ToInt32":"@stdlib/number/float32/base/to-int32","base.float32ToUint32":"@stdlib/number/float32/base/to-uint32","base.float64ToFloat32":"@stdlib/number/float64/base/to-float32","base.float64ToInt32":"@stdlib/number/float64/base/to-int32","base.float64ToInt64Bytes":"@stdlib/number/float64/base/to-int64-bytes","base.float64ToUint32":"@stdlib/number/float64/base/to-uint32","base.floor":"@stdlib/math/base/special/floor","base.floor2":"@stdlib/math/base/special/floor2","base.floor10":"@stdlib/math/base/special/floor10","base.floorb":"@stdlib/math/base/special/floorb","base.floorf":"@stdlib/math/base/special/floorf","base.floorn":"@stdlib/math/base/special/floorn","base.floorsd":"@stdlib/math/base/special/floorsd","base.fresnel":"@stdlib/math/base/special/fresnel","base.fresnelc":"@stdlib/math/base/special/fresnelc","base.fresnels":"@stdlib/math/base/special/fresnels","base.frexp":"@stdlib/math/base/special/frexp","base.fromBinaryString":"@stdlib/number/float64/base/from-binary-string","base.fromBinaryStringf":"@stdlib/number/float32/base/from-binary-string","base.fromBinaryStringUint8":"@stdlib/number/uint8/base/from-binary-string","base.fromBinaryStringUint16":"@stdlib/number/uint16/base/from-binary-string","base.fromBinaryStringUint32":"@stdlib/number/uint32/base/from-binary-string","base.fromInt64Bytes":"@stdlib/number/float64/base/from-int64-bytes","base.fromWordf":"@stdlib/number/float32/base/from-word","base.fromWords":"@stdlib/number/float64/base/from-words","base.gamma":"@stdlib/math/base/special/gamma","base.gamma1pm1":"@stdlib/math/base/special/gamma1pm1","base.gammaDeltaRatio":"@stdlib/math/base/special/gamma-delta-ratio","base.gammainc":"@stdlib/math/base/special/gammainc","base.gammaincinv":"@stdlib/math/base/special/gammaincinv","base.gammaLanczosSum":"@stdlib/math/base/special/gamma-lanczos-sum","base.gammaLanczosSumExpGScaled":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","base.gammaln":"@stdlib/math/base/special/gammaln","base.gcd":"@stdlib/math/base/special/gcd","base.getHighWord":"@stdlib/number/float64/base/get-high-word","base.getLowWord":"@stdlib/number/float64/base/get-low-word","base.hacovercos":"@stdlib/math/base/special/hacovercos","base.hacoversin":"@stdlib/math/base/special/hacoversin","base.havercos":"@stdlib/math/base/special/havercos","base.haversin":"@stdlib/math/base/special/haversin","base.heaviside":"@stdlib/math/base/special/heaviside","base.hermitepoly":"@stdlib/math/base/tools/hermitepoly","base.hypot":"@stdlib/math/base/special/hypot","base.hypotf":"@stdlib/math/base/special/hypotf","base.identity":"@stdlib/math/base/special/identity","base.identityf":"@stdlib/math/base/special/identityf","base.imul":"@stdlib/math/base/ops/imul","base.imuldw":"@stdlib/math/base/ops/imuldw","base.int32ToUint32":"@stdlib/number/int32/base/to-uint32","base.inv":"@stdlib/math/base/special/inv","base.invf":"@stdlib/math/base/special/invf","base.isComposite":"@stdlib/math/base/assert/is-composite","base.isCoprime":"@stdlib/math/base/assert/is-coprime","base.isEven":"@stdlib/math/base/assert/is-even","base.isEvenInt32":"@stdlib/math/base/assert/int32-is-even","base.isFinite":"@stdlib/math/base/assert/is-finite","base.isFinitef":"@stdlib/math/base/assert/is-finitef","base.isInfinite":"@stdlib/math/base/assert/is-infinite","base.isInfinitef":"@stdlib/math/base/assert/is-infinitef","base.isInteger":"@stdlib/math/base/assert/is-integer","base.isnan":"@stdlib/math/base/assert/is-nan","base.isnanf":"@stdlib/math/base/assert/is-nanf","base.isNegativeInteger":"@stdlib/math/base/assert/is-negative-integer","base.isNegativeZero":"@stdlib/math/base/assert/is-negative-zero","base.isNegativeZerof":"@stdlib/math/base/assert/is-negative-zerof","base.isNonNegativeInteger":"@stdlib/math/base/assert/is-nonnegative-integer","base.isNonPositiveInteger":"@stdlib/math/base/assert/is-nonpositive-integer","base.isOdd":"@stdlib/math/base/assert/is-odd","base.isOddInt32":"@stdlib/math/base/assert/int32-is-odd","base.isPositiveInteger":"@stdlib/math/base/assert/is-positive-integer","base.isPositiveZero":"@stdlib/math/base/assert/is-positive-zero","base.isPositiveZerof":"@stdlib/math/base/assert/is-positive-zerof","base.isPow2Uint32":"@stdlib/math/base/assert/uint32-is-pow2","base.isPrime":"@stdlib/math/base/assert/is-prime","base.isProbability":"@stdlib/math/base/assert/is-probability","base.isSafeInteger":"@stdlib/math/base/assert/is-safe-integer","base.kernelBetainc":"@stdlib/math/base/special/kernel-betainc","base.kernelBetaincinv":"@stdlib/math/base/special/kernel-betaincinv","base.kernelCos":"@stdlib/math/base/special/kernel-cos","base.kernelSin":"@stdlib/math/base/special/kernel-sin","base.kernelTan":"@stdlib/math/base/special/kernel-tan","base.kroneckerDelta":"@stdlib/math/base/special/kronecker-delta","base.kroneckerDeltaf":"@stdlib/math/base/special/kronecker-deltaf","base.labs":"@stdlib/math/base/special/labs","base.lcm":"@stdlib/math/base/special/lcm","base.ldexp":"@stdlib/math/base/special/ldexp","base.ln":"@stdlib/math/base/special/ln","base.log":"@stdlib/math/base/special/log","base.log1mexp":"@stdlib/math/base/special/log1mexp","base.log1p":"@stdlib/math/base/special/log1p","base.log1pexp":"@stdlib/math/base/special/log1pexp","base.log2":"@stdlib/math/base/special/log2","base.log10":"@stdlib/math/base/special/log10","base.logaddexp":"@stdlib/math/base/special/logaddexp","base.logit":"@stdlib/math/base/special/logit","base.lucas":"@stdlib/math/base/special/lucas","base.lucaspoly":"@stdlib/math/base/tools/lucaspoly","base.max":"@stdlib/math/base/special/max","base.maxabs":"@stdlib/math/base/special/maxabs","base.min":"@stdlib/math/base/special/min","base.minabs":"@stdlib/math/base/special/minabs","base.minmax":"@stdlib/math/base/special/minmax","base.minmaxabs":"@stdlib/math/base/special/minmaxabs","base.modf":"@stdlib/math/base/special/modf","base.mul":"@stdlib/math/base/ops/mul","base.mulf":"@stdlib/math/base/ops/mulf","base.ndarray":"@stdlib/ndarray/base/ctor","base.ndarrayUnary":"@stdlib/ndarray/base/unary","base.ndzeros":"@stdlib/ndarray/base/zeros","base.ndzerosLike":"@stdlib/ndarray/base/zeros-like","base.negafibonacci":"@stdlib/math/base/special/negafibonacci","base.negalucas":"@stdlib/math/base/special/negalucas","base.nonfibonacci":"@stdlib/math/base/special/nonfibonacci","base.normalize":"@stdlib/number/float64/base/normalize","base.normalizef":"@stdlib/number/float32/base/normalize","base.normhermitepoly":"@stdlib/math/base/tools/normhermitepoly","base.pdiff":"@stdlib/math/base/special/pdiff","base.pdifff":"@stdlib/math/base/special/pdifff","base.polygamma":"@stdlib/math/base/special/polygamma","base.pow":"@stdlib/math/base/special/pow","base.powm1":"@stdlib/math/base/special/powm1","base.rad2deg":"@stdlib/math/base/special/rad2deg","base.ramp":"@stdlib/math/base/special/ramp","base.rampf":"@stdlib/math/base/special/rampf","base.random.arcsine":"@stdlib/random/base/arcsine","base.random.bernoulli":"@stdlib/random/base/bernoulli","base.random.beta":"@stdlib/random/base/beta","base.random.betaprime":"@stdlib/random/base/betaprime","base.random.binomial":"@stdlib/random/base/binomial","base.random.boxMuller":"@stdlib/random/base/box-muller","base.random.cauchy":"@stdlib/random/base/cauchy","base.random.chi":"@stdlib/random/base/chi","base.random.chisquare":"@stdlib/random/base/chisquare","base.random.cosine":"@stdlib/random/base/cosine","base.random.discreteUniform":"@stdlib/random/base/discrete-uniform","base.random.erlang":"@stdlib/random/base/erlang","base.random.exponential":"@stdlib/random/base/exponential","base.random.f":"@stdlib/random/base/f","base.random.frechet":"@stdlib/random/base/frechet","base.random.gamma":"@stdlib/random/base/gamma","base.random.geometric":"@stdlib/random/base/geometric","base.random.gumbel":"@stdlib/random/base/gumbel","base.random.hypergeometric":"@stdlib/random/base/hypergeometric","base.random.improvedZiggurat":"@stdlib/random/base/improved-ziggurat","base.random.invgamma":"@stdlib/random/base/invgamma","base.random.kumaraswamy":"@stdlib/random/base/kumaraswamy","base.random.laplace":"@stdlib/random/base/laplace","base.random.levy":"@stdlib/random/base/levy","base.random.logistic":"@stdlib/random/base/logistic","base.random.lognormal":"@stdlib/random/base/lognormal","base.random.minstd":"@stdlib/random/base/minstd","base.random.minstdShuffle":"@stdlib/random/base/minstd-shuffle","base.random.mt19937":"@stdlib/random/base/mt19937","base.random.negativeBinomial":"@stdlib/random/base/negative-binomial","base.random.normal":"@stdlib/random/base/normal","base.random.pareto1":"@stdlib/random/base/pareto-type1","base.random.poisson":"@stdlib/random/base/poisson","base.random.randi":"@stdlib/random/base/randi","base.random.randn":"@stdlib/random/base/randn","base.random.randu":"@stdlib/random/base/randu","base.random.rayleigh":"@stdlib/random/base/rayleigh","base.random.t":"@stdlib/random/base/t","base.random.triangular":"@stdlib/random/base/triangular","base.random.uniform":"@stdlib/random/base/uniform","base.random.weibull":"@stdlib/random/base/weibull","base.reldiff":"@stdlib/math/base/utils/relative-difference","base.rempio2":"@stdlib/math/base/special/rempio2","base.risingFactorial":"@stdlib/math/base/special/rising-factorial","base.rotl32":"@stdlib/number/uint32/base/rotl","base.rotr32":"@stdlib/number/uint32/base/rotr","base.round":"@stdlib/math/base/special/round","base.round2":"@stdlib/math/base/special/round2","base.round10":"@stdlib/math/base/special/round10","base.roundb":"@stdlib/math/base/special/roundb","base.roundn":"@stdlib/math/base/special/roundn","base.roundsd":"@stdlib/math/base/special/roundsd","base.rsqrt":"@stdlib/math/base/special/rsqrt","base.rsqrtf":"@stdlib/math/base/special/rsqrtf","base.scalar2ndarray":"@stdlib/ndarray/base/from-scalar","base.setHighWord":"@stdlib/number/float64/base/set-high-word","base.setLowWord":"@stdlib/number/float64/base/set-low-word","base.sici":"@stdlib/math/base/special/sici","base.signbit":"@stdlib/number/float64/base/signbit","base.signbitf":"@stdlib/number/float32/base/signbit","base.significandf":"@stdlib/number/float32/base/significand","base.signum":"@stdlib/math/base/special/signum","base.signumf":"@stdlib/math/base/special/signumf","base.sin":"@stdlib/math/base/special/sin","base.sinc":"@stdlib/math/base/special/sinc","base.sincos":"@stdlib/math/base/special/sincos","base.sincospi":"@stdlib/math/base/special/sincospi","base.sinh":"@stdlib/math/base/special/sinh","base.sinpi":"@stdlib/math/base/special/sinpi","base.spence":"@stdlib/math/base/special/spence","base.sqrt":"@stdlib/math/base/special/sqrt","base.sqrt1pm1":"@stdlib/math/base/special/sqrt1pm1","base.sqrtf":"@stdlib/math/base/special/sqrtf","base.strided.binary":"@stdlib/strided/base/binary","base.strided.ccopy":"@stdlib/blas/base/ccopy","base.strided.cmap":"@stdlib/strided/base/cmap","base.strided.cswap":"@stdlib/blas/base/cswap","base.strided.cumax":"@stdlib/stats/base/cumax","base.strided.cumaxabs":"@stdlib/stats/base/cumaxabs","base.strided.cumin":"@stdlib/stats/base/cumin","base.strided.cuminabs":"@stdlib/stats/base/cuminabs","base.strided.dabs":"@stdlib/math/strided/special/dabs","base.strided.dabs2":"@stdlib/math/strided/special/dabs2","base.strided.dapx":"@stdlib/blas/ext/base/dapx","base.strided.dapxsum":"@stdlib/blas/ext/base/dapxsum","base.strided.dapxsumkbn":"@stdlib/blas/ext/base/dapxsumkbn","base.strided.dapxsumkbn2":"@stdlib/blas/ext/base/dapxsumkbn2","base.strided.dapxsumors":"@stdlib/blas/ext/base/dapxsumors","base.strided.dapxsumpw":"@stdlib/blas/ext/base/dapxsumpw","base.strided.dasum":"@stdlib/blas/base/dasum","base.strided.dasumpw":"@stdlib/blas/ext/base/dasumpw","base.strided.daxpy":"@stdlib/blas/base/daxpy","base.strided.dcbrt":"@stdlib/math/strided/special/dcbrt","base.strided.dceil":"@stdlib/math/strided/special/dceil","base.strided.dcopy":"@stdlib/blas/base/dcopy","base.strided.dcumax":"@stdlib/stats/base/dcumax","base.strided.dcumaxabs":"@stdlib/stats/base/dcumaxabs","base.strided.dcumin":"@stdlib/stats/base/dcumin","base.strided.dcuminabs":"@stdlib/stats/base/dcuminabs","base.strided.dcusum":"@stdlib/blas/ext/base/dcusum","base.strided.dcusumkbn":"@stdlib/blas/ext/base/dcusumkbn","base.strided.dcusumkbn2":"@stdlib/blas/ext/base/dcusumkbn2","base.strided.dcusumors":"@stdlib/blas/ext/base/dcusumors","base.strided.dcusumpw":"@stdlib/blas/ext/base/dcusumpw","base.strided.ddeg2rad":"@stdlib/math/strided/special/ddeg2rad","base.strided.ddot":"@stdlib/blas/base/ddot","base.strided.dfill":"@stdlib/blas/ext/base/dfill","base.strided.dfloor":"@stdlib/math/strided/special/dfloor","base.strided.dinv":"@stdlib/math/strided/special/dinv","base.strided.dmap":"@stdlib/strided/base/dmap","base.strided.dmap2":"@stdlib/strided/base/dmap2","base.strided.dmax":"@stdlib/stats/base/dmax","base.strided.dmaxabs":"@stdlib/stats/base/dmaxabs","base.strided.dmaxabssorted":"@stdlib/stats/base/dmaxabssorted","base.strided.dmaxsorted":"@stdlib/stats/base/dmaxsorted","base.strided.dmean":"@stdlib/stats/base/dmean","base.strided.dmeankbn":"@stdlib/stats/base/dmeankbn","base.strided.dmeankbn2":"@stdlib/stats/base/dmeankbn2","base.strided.dmeanli":"@stdlib/stats/base/dmeanli","base.strided.dmeanlipw":"@stdlib/stats/base/dmeanlipw","base.strided.dmeanors":"@stdlib/stats/base/dmeanors","base.strided.dmeanpn":"@stdlib/stats/base/dmeanpn","base.strided.dmeanpw":"@stdlib/stats/base/dmeanpw","base.strided.dmeanstdev":"@stdlib/stats/base/dmeanstdev","base.strided.dmeanstdevpn":"@stdlib/stats/base/dmeanstdevpn","base.strided.dmeanvar":"@stdlib/stats/base/dmeanvar","base.strided.dmeanvarpn":"@stdlib/stats/base/dmeanvarpn","base.strided.dmeanwd":"@stdlib/stats/base/dmeanwd","base.strided.dmediansorted":"@stdlib/stats/base/dmediansorted","base.strided.dmidrange":"@stdlib/stats/base/dmidrange","base.strided.dmin":"@stdlib/stats/base/dmin","base.strided.dminabs":"@stdlib/stats/base/dminabs","base.strided.dminsorted":"@stdlib/stats/base/dminsorted","base.strided.dmskabs":"@stdlib/math/strided/special/dmskabs","base.strided.dmskabs2":"@stdlib/math/strided/special/dmskabs2","base.strided.dmskcbrt":"@stdlib/math/strided/special/dmskcbrt","base.strided.dmskceil":"@stdlib/math/strided/special/dmskceil","base.strided.dmskdeg2rad":"@stdlib/math/strided/special/dmskdeg2rad","base.strided.dmskfloor":"@stdlib/math/strided/special/dmskfloor","base.strided.dmskinv":"@stdlib/math/strided/special/dmskinv","base.strided.dmskmap":"@stdlib/strided/base/dmskmap","base.strided.dmskmap2":"@stdlib/strided/base/dmskmap2","base.strided.dmskmax":"@stdlib/stats/base/dmskmax","base.strided.dmskmin":"@stdlib/stats/base/dmskmin","base.strided.dmskramp":"@stdlib/math/strided/special/dmskramp","base.strided.dmskrange":"@stdlib/stats/base/dmskrange","base.strided.dmskrsqrt":"@stdlib/math/strided/special/dmskrsqrt","base.strided.dmsksqrt":"@stdlib/math/strided/special/dmsksqrt","base.strided.dmsktrunc":"@stdlib/math/strided/special/dmsktrunc","base.strided.dnanasum":"@stdlib/blas/ext/base/dnanasum","base.strided.dnanasumors":"@stdlib/blas/ext/base/dnanasumors","base.strided.dnanmax":"@stdlib/stats/base/dnanmax","base.strided.dnanmaxabs":"@stdlib/stats/base/dnanmaxabs","base.strided.dnanmean":"@stdlib/stats/base/dnanmean","base.strided.dnanmeanors":"@stdlib/stats/base/dnanmeanors","base.strided.dnanmeanpn":"@stdlib/stats/base/dnanmeanpn","base.strided.dnanmeanpw":"@stdlib/stats/base/dnanmeanpw","base.strided.dnanmeanwd":"@stdlib/stats/base/dnanmeanwd","base.strided.dnanmin":"@stdlib/stats/base/dnanmin","base.strided.dnanminabs":"@stdlib/stats/base/dnanminabs","base.strided.dnanmskmax":"@stdlib/stats/base/dnanmskmax","base.strided.dnanmskmin":"@stdlib/stats/base/dnanmskmin","base.strided.dnanmskrange":"@stdlib/stats/base/dnanmskrange","base.strided.dnannsum":"@stdlib/blas/ext/base/dnannsum","base.strided.dnannsumkbn":"@stdlib/blas/ext/base/dnannsumkbn","base.strided.dnannsumkbn2":"@stdlib/blas/ext/base/dnannsumkbn2","base.strided.dnannsumors":"@stdlib/blas/ext/base/dnannsumors","base.strided.dnannsumpw":"@stdlib/blas/ext/base/dnannsumpw","base.strided.dnanrange":"@stdlib/stats/base/dnanrange","base.strided.dnanstdev":"@stdlib/stats/base/dnanstdev","base.strided.dnanstdevch":"@stdlib/stats/base/dnanstdevch","base.strided.dnanstdevpn":"@stdlib/stats/base/dnanstdevpn","base.strided.dnanstdevtk":"@stdlib/stats/base/dnanstdevtk","base.strided.dnanstdevwd":"@stdlib/stats/base/dnanstdevwd","base.strided.dnanstdevyc":"@stdlib/stats/base/dnanstdevyc","base.strided.dnansum":"@stdlib/blas/ext/base/dnansum","base.strided.dnansumkbn":"@stdlib/blas/ext/base/dnansumkbn","base.strided.dnansumkbn2":"@stdlib/blas/ext/base/dnansumkbn2","base.strided.dnansumors":"@stdlib/blas/ext/base/dnansumors","base.strided.dnansumpw":"@stdlib/blas/ext/base/dnansumpw","base.strided.dnanvariance":"@stdlib/stats/base/dnanvariance","base.strided.dnanvariancech":"@stdlib/stats/base/dnanvariancech","base.strided.dnanvariancepn":"@stdlib/stats/base/dnanvariancepn","base.strided.dnanvariancetk":"@stdlib/stats/base/dnanvariancetk","base.strided.dnanvariancewd":"@stdlib/stats/base/dnanvariancewd","base.strided.dnanvarianceyc":"@stdlib/stats/base/dnanvarianceyc","base.strided.dnrm2":"@stdlib/blas/base/dnrm2","base.strided.dramp":"@stdlib/math/strided/special/dramp","base.strided.drange":"@stdlib/stats/base/drange","base.strided.drev":"@stdlib/blas/ext/base/drev","base.strided.drsqrt":"@stdlib/math/strided/special/drsqrt","base.strided.dsapxsum":"@stdlib/blas/ext/base/dsapxsum","base.strided.dsapxsumpw":"@stdlib/blas/ext/base/dsapxsumpw","base.strided.dscal":"@stdlib/blas/base/dscal","base.strided.dsdot":"@stdlib/blas/base/dsdot","base.strided.dsem":"@stdlib/stats/base/dsem","base.strided.dsemch":"@stdlib/stats/base/dsemch","base.strided.dsempn":"@stdlib/stats/base/dsempn","base.strided.dsemtk":"@stdlib/stats/base/dsemtk","base.strided.dsemwd":"@stdlib/stats/base/dsemwd","base.strided.dsemyc":"@stdlib/stats/base/dsemyc","base.strided.dsmean":"@stdlib/stats/base/dsmean","base.strided.dsmeanors":"@stdlib/stats/base/dsmeanors","base.strided.dsmeanpn":"@stdlib/stats/base/dsmeanpn","base.strided.dsmeanpw":"@stdlib/stats/base/dsmeanpw","base.strided.dsmeanwd":"@stdlib/stats/base/dsmeanwd","base.strided.dsnanmean":"@stdlib/stats/base/dsnanmean","base.strided.dsnanmeanors":"@stdlib/stats/base/dsnanmeanors","base.strided.dsnanmeanpn":"@stdlib/stats/base/dsnanmeanpn","base.strided.dsnanmeanwd":"@stdlib/stats/base/dsnanmeanwd","base.strided.dsnannsumors":"@stdlib/blas/ext/base/dsnannsumors","base.strided.dsnansum":"@stdlib/blas/ext/base/dsnansum","base.strided.dsnansumors":"@stdlib/blas/ext/base/dsnansumors","base.strided.dsnansumpw":"@stdlib/blas/ext/base/dsnansumpw","base.strided.dsort2hp":"@stdlib/blas/ext/base/dsort2hp","base.strided.dsort2ins":"@stdlib/blas/ext/base/dsort2ins","base.strided.dsort2sh":"@stdlib/blas/ext/base/dsort2sh","base.strided.dsorthp":"@stdlib/blas/ext/base/dsorthp","base.strided.dsortins":"@stdlib/blas/ext/base/dsortins","base.strided.dsortsh":"@stdlib/blas/ext/base/dsortsh","base.strided.dsqrt":"@stdlib/math/strided/special/dsqrt","base.strided.dssum":"@stdlib/blas/ext/base/dssum","base.strided.dssumors":"@stdlib/blas/ext/base/dssumors","base.strided.dssumpw":"@stdlib/blas/ext/base/dssumpw","base.strided.dstdev":"@stdlib/stats/base/dstdev","base.strided.dstdevch":"@stdlib/stats/base/dstdevch","base.strided.dstdevpn":"@stdlib/stats/base/dstdevpn","base.strided.dstdevtk":"@stdlib/stats/base/dstdevtk","base.strided.dstdevwd":"@stdlib/stats/base/dstdevwd","base.strided.dstdevyc":"@stdlib/stats/base/dstdevyc","base.strided.dsum":"@stdlib/blas/ext/base/dsum","base.strided.dsumkbn":"@stdlib/blas/ext/base/dsumkbn","base.strided.dsumkbn2":"@stdlib/blas/ext/base/dsumkbn2","base.strided.dsumors":"@stdlib/blas/ext/base/dsumors","base.strided.dsumpw":"@stdlib/blas/ext/base/dsumpw","base.strided.dsvariance":"@stdlib/stats/base/dsvariance","base.strided.dsvariancepn":"@stdlib/stats/base/dsvariancepn","base.strided.dswap":"@stdlib/blas/base/dswap","base.strided.dtrunc":"@stdlib/math/strided/special/dtrunc","base.strided.dvariance":"@stdlib/stats/base/dvariance","base.strided.dvariancech":"@stdlib/stats/base/dvariancech","base.strided.dvariancepn":"@stdlib/stats/base/dvariancepn","base.strided.dvariancetk":"@stdlib/stats/base/dvariancetk","base.strided.dvariancewd":"@stdlib/stats/base/dvariancewd","base.strided.dvarianceyc":"@stdlib/stats/base/dvarianceyc","base.strided.dvarm":"@stdlib/stats/base/dvarm","base.strided.dvarmpn":"@stdlib/stats/base/dvarmpn","base.strided.dvarmtk":"@stdlib/stats/base/dvarmtk","base.strided.gapx":"@stdlib/blas/ext/base/gapx","base.strided.gapxsum":"@stdlib/blas/ext/base/gapxsum","base.strided.gapxsumkbn":"@stdlib/blas/ext/base/gapxsumkbn","base.strided.gapxsumkbn2":"@stdlib/blas/ext/base/gapxsumkbn2","base.strided.gapxsumors":"@stdlib/blas/ext/base/gapxsumors","base.strided.gapxsumpw":"@stdlib/blas/ext/base/gapxsumpw","base.strided.gasum":"@stdlib/blas/base/gasum","base.strided.gasumpw":"@stdlib/blas/ext/base/gasumpw","base.strided.gaxpy":"@stdlib/blas/base/gaxpy","base.strided.gcopy":"@stdlib/blas/base/gcopy","base.strided.gcusum":"@stdlib/blas/ext/base/gcusum","base.strided.gcusumkbn":"@stdlib/blas/ext/base/gcusumkbn","base.strided.gcusumkbn2":"@stdlib/blas/ext/base/gcusumkbn2","base.strided.gcusumors":"@stdlib/blas/ext/base/gcusumors","base.strided.gcusumpw":"@stdlib/blas/ext/base/gcusumpw","base.strided.gdot":"@stdlib/blas/base/gdot","base.strided.gfill":"@stdlib/blas/ext/base/gfill","base.strided.gfillBy":"@stdlib/blas/ext/base/gfill-by","base.strided.gnannsumkbn":"@stdlib/blas/ext/base/gnannsumkbn","base.strided.gnansum":"@stdlib/blas/ext/base/gnansum","base.strided.gnansumkbn":"@stdlib/blas/ext/base/gnansumkbn","base.strided.gnansumkbn2":"@stdlib/blas/ext/base/gnansumkbn2","base.strided.gnansumors":"@stdlib/blas/ext/base/gnansumors","base.strided.gnansumpw":"@stdlib/blas/ext/base/gnansumpw","base.strided.gnrm2":"@stdlib/blas/base/gnrm2","base.strided.grev":"@stdlib/blas/ext/base/grev","base.strided.gscal":"@stdlib/blas/base/gscal","base.strided.gsort2hp":"@stdlib/blas/ext/base/gsort2hp","base.strided.gsort2ins":"@stdlib/blas/ext/base/gsort2ins","base.strided.gsort2sh":"@stdlib/blas/ext/base/gsort2sh","base.strided.gsorthp":"@stdlib/blas/ext/base/gsorthp","base.strided.gsortins":"@stdlib/blas/ext/base/gsortins","base.strided.gsortsh":"@stdlib/blas/ext/base/gsortsh","base.strided.gsum":"@stdlib/blas/ext/base/gsum","base.strided.gsumkbn":"@stdlib/blas/ext/base/gsumkbn","base.strided.gsumkbn2":"@stdlib/blas/ext/base/gsumkbn2","base.strided.gsumors":"@stdlib/blas/ext/base/gsumors","base.strided.gsumpw":"@stdlib/blas/ext/base/gsumpw","base.strided.gswap":"@stdlib/blas/base/gswap","base.strided.mapBy":"@stdlib/strided/base/map-by","base.strided.mapBy2":"@stdlib/strided/base/map-by2","base.strided.max":"@stdlib/stats/base/max","base.strided.maxabs":"@stdlib/stats/base/maxabs","base.strided.maxBy":"@stdlib/stats/base/max-by","base.strided.maxsorted":"@stdlib/stats/base/maxsorted","base.strided.mean":"@stdlib/stats/base/mean","base.strided.meankbn":"@stdlib/stats/base/meankbn","base.strided.meankbn2":"@stdlib/stats/base/meankbn2","base.strided.meanors":"@stdlib/stats/base/meanors","base.strided.meanpn":"@stdlib/stats/base/meanpn","base.strided.meanpw":"@stdlib/stats/base/meanpw","base.strided.meanwd":"@stdlib/stats/base/meanwd","base.strided.mediansorted":"@stdlib/stats/base/mediansorted","base.strided.min":"@stdlib/stats/base/min","base.strided.minabs":"@stdlib/stats/base/minabs","base.strided.minBy":"@stdlib/stats/base/min-by","base.strided.minsorted":"@stdlib/stats/base/minsorted","base.strided.mskmax":"@stdlib/stats/base/mskmax","base.strided.mskmin":"@stdlib/stats/base/mskmin","base.strided.mskrange":"@stdlib/stats/base/mskrange","base.strided.mskunary":"@stdlib/strided/base/mskunary","base.strided.nanmax":"@stdlib/stats/base/nanmax","base.strided.nanmaxabs":"@stdlib/stats/base/nanmaxabs","base.strided.nanmaxBy":"@stdlib/stats/base/nanmax-by","base.strided.nanmean":"@stdlib/stats/base/nanmean","base.strided.nanmeanors":"@stdlib/stats/base/nanmeanors","base.strided.nanmeanpn":"@stdlib/stats/base/nanmeanpn","base.strided.nanmeanwd":"@stdlib/stats/base/nanmeanwd","base.strided.nanmin":"@stdlib/stats/base/nanmin","base.strided.nanminabs":"@stdlib/stats/base/nanminabs","base.strided.nanminBy":"@stdlib/stats/base/nanmin-by","base.strided.nanmskmax":"@stdlib/stats/base/nanmskmax","base.strided.nanmskmin":"@stdlib/stats/base/nanmskmin","base.strided.nanmskrange":"@stdlib/stats/base/nanmskrange","base.strided.nanrange":"@stdlib/stats/base/nanrange","base.strided.nanrangeBy":"@stdlib/stats/base/nanrange-by","base.strided.nanstdev":"@stdlib/stats/base/nanstdev","base.strided.nanstdevch":"@stdlib/stats/base/nanstdevch","base.strided.nanstdevpn":"@stdlib/stats/base/nanstdevpn","base.strided.nanstdevtk":"@stdlib/stats/base/nanstdevtk","base.strided.nanstdevwd":"@stdlib/stats/base/nanstdevwd","base.strided.nanstdevyc":"@stdlib/stats/base/nanstdevyc","base.strided.nanvariance":"@stdlib/stats/base/nanvariance","base.strided.nanvariancech":"@stdlib/stats/base/nanvariancech","base.strided.nanvariancepn":"@stdlib/stats/base/nanvariancepn","base.strided.nanvariancetk":"@stdlib/stats/base/nanvariancetk","base.strided.nanvariancewd":"@stdlib/stats/base/nanvariancewd","base.strided.nanvarianceyc":"@stdlib/stats/base/nanvarianceyc","base.strided.nullary":"@stdlib/strided/base/nullary","base.strided.quaternary":"@stdlib/strided/base/quaternary","base.strided.quinary":"@stdlib/strided/base/quinary","base.strided.range":"@stdlib/stats/base/range","base.strided.rangeBy":"@stdlib/stats/base/range-by","base.strided.sabs":"@stdlib/math/strided/special/sabs","base.strided.sabs2":"@stdlib/math/strided/special/sabs2","base.strided.sapx":"@stdlib/blas/ext/base/sapx","base.strided.sapxsum":"@stdlib/blas/ext/base/sapxsum","base.strided.sapxsumkbn":"@stdlib/blas/ext/base/sapxsumkbn","base.strided.sapxsumkbn2":"@stdlib/blas/ext/base/sapxsumkbn2","base.strided.sapxsumors":"@stdlib/blas/ext/base/sapxsumors","base.strided.sapxsumpw":"@stdlib/blas/ext/base/sapxsumpw","base.strided.sasum":"@stdlib/blas/base/sasum","base.strided.sasumpw":"@stdlib/blas/ext/base/sasumpw","base.strided.saxpy":"@stdlib/blas/base/saxpy","base.strided.scbrt":"@stdlib/math/strided/special/scbrt","base.strided.sceil":"@stdlib/math/strided/special/sceil","base.strided.scopy":"@stdlib/blas/base/scopy","base.strided.scumax":"@stdlib/stats/base/scumax","base.strided.scumaxabs":"@stdlib/stats/base/scumaxabs","base.strided.scumin":"@stdlib/stats/base/scumin","base.strided.scuminabs":"@stdlib/stats/base/scuminabs","base.strided.scusum":"@stdlib/blas/ext/base/scusum","base.strided.scusumkbn":"@stdlib/blas/ext/base/scusumkbn","base.strided.scusumkbn2":"@stdlib/blas/ext/base/scusumkbn2","base.strided.scusumors":"@stdlib/blas/ext/base/scusumors","base.strided.scusumpw":"@stdlib/blas/ext/base/scusumpw","base.strided.sdeg2rad":"@stdlib/math/strided/special/sdeg2rad","base.strided.sdot":"@stdlib/blas/base/sdot","base.strided.sdsapxsum":"@stdlib/blas/ext/base/sdsapxsum","base.strided.sdsapxsumpw":"@stdlib/blas/ext/base/sdsapxsumpw","base.strided.sdsdot":"@stdlib/blas/base/sdsdot","base.strided.sdsmean":"@stdlib/stats/base/sdsmean","base.strided.sdsmeanors":"@stdlib/stats/base/sdsmeanors","base.strided.sdsnanmean":"@stdlib/stats/base/sdsnanmean","base.strided.sdsnanmeanors":"@stdlib/stats/base/sdsnanmeanors","base.strided.sdsnansum":"@stdlib/blas/ext/base/sdsnansum","base.strided.sdsnansumpw":"@stdlib/blas/ext/base/sdsnansumpw","base.strided.sdssum":"@stdlib/blas/ext/base/sdssum","base.strided.sdssumpw":"@stdlib/blas/ext/base/sdssumpw","base.strided.sfill":"@stdlib/blas/ext/base/sfill","base.strided.sfloor":"@stdlib/math/strided/special/sfloor","base.strided.sinv":"@stdlib/math/strided/special/sinv","base.strided.smap":"@stdlib/strided/base/smap","base.strided.smap2":"@stdlib/strided/base/smap2","base.strided.smax":"@stdlib/stats/base/smax","base.strided.smaxabs":"@stdlib/stats/base/smaxabs","base.strided.smaxabssorted":"@stdlib/stats/base/smaxabssorted","base.strided.smaxsorted":"@stdlib/stats/base/smaxsorted","base.strided.smean":"@stdlib/stats/base/smean","base.strided.smeankbn":"@stdlib/stats/base/smeankbn","base.strided.smeankbn2":"@stdlib/stats/base/smeankbn2","base.strided.smeanli":"@stdlib/stats/base/smeanli","base.strided.smeanlipw":"@stdlib/stats/base/smeanlipw","base.strided.smeanors":"@stdlib/stats/base/smeanors","base.strided.smeanpn":"@stdlib/stats/base/smeanpn","base.strided.smeanpw":"@stdlib/stats/base/smeanpw","base.strided.smeanwd":"@stdlib/stats/base/smeanwd","base.strided.smediansorted":"@stdlib/stats/base/smediansorted","base.strided.smidrange":"@stdlib/stats/base/smidrange","base.strided.smin":"@stdlib/stats/base/smin","base.strided.sminabs":"@stdlib/stats/base/sminabs","base.strided.sminsorted":"@stdlib/stats/base/sminsorted","base.strided.smskabs":"@stdlib/math/strided/special/smskabs","base.strided.smskabs2":"@stdlib/math/strided/special/smskabs2","base.strided.smskcbrt":"@stdlib/math/strided/special/smskcbrt","base.strided.smskceil":"@stdlib/math/strided/special/smskceil","base.strided.smskdeg2rad":"@stdlib/math/strided/special/smskdeg2rad","base.strided.smskfloor":"@stdlib/math/strided/special/smskfloor","base.strided.smskinv":"@stdlib/math/strided/special/smskinv","base.strided.smskmap":"@stdlib/strided/base/smskmap","base.strided.smskmap2":"@stdlib/strided/base/smskmap2","base.strided.smskmax":"@stdlib/stats/base/smskmax","base.strided.smskmin":"@stdlib/stats/base/smskmin","base.strided.smskramp":"@stdlib/math/strided/special/smskramp","base.strided.smskrange":"@stdlib/stats/base/smskrange","base.strided.smskrsqrt":"@stdlib/math/strided/special/smskrsqrt","base.strided.smsksqrt":"@stdlib/math/strided/special/smsksqrt","base.strided.smsktrunc":"@stdlib/math/strided/special/smsktrunc","base.strided.snanmax":"@stdlib/stats/base/snanmax","base.strided.snanmaxabs":"@stdlib/stats/base/snanmaxabs","base.strided.snanmean":"@stdlib/stats/base/snanmean","base.strided.snanmeanors":"@stdlib/stats/base/snanmeanors","base.strided.snanmeanpn":"@stdlib/stats/base/snanmeanpn","base.strided.snanmeanwd":"@stdlib/stats/base/snanmeanwd","base.strided.snanmin":"@stdlib/stats/base/snanmin","base.strided.snanminabs":"@stdlib/stats/base/snanminabs","base.strided.snanmskmax":"@stdlib/stats/base/snanmskmax","base.strided.snanmskmin":"@stdlib/stats/base/snanmskmin","base.strided.snanmskrange":"@stdlib/stats/base/snanmskrange","base.strided.snanrange":"@stdlib/stats/base/snanrange","base.strided.snanstdev":"@stdlib/stats/base/snanstdev","base.strided.snanstdevch":"@stdlib/stats/base/snanstdevch","base.strided.snanstdevpn":"@stdlib/stats/base/snanstdevpn","base.strided.snanstdevtk":"@stdlib/stats/base/snanstdevtk","base.strided.snanstdevwd":"@stdlib/stats/base/snanstdevwd","base.strided.snanstdevyc":"@stdlib/stats/base/snanstdevyc","base.strided.snansum":"@stdlib/blas/ext/base/snansum","base.strided.snansumkbn":"@stdlib/blas/ext/base/snansumkbn","base.strided.snansumkbn2":"@stdlib/blas/ext/base/snansumkbn2","base.strided.snansumors":"@stdlib/blas/ext/base/snansumors","base.strided.snansumpw":"@stdlib/blas/ext/base/snansumpw","base.strided.snanvariance":"@stdlib/stats/base/snanvariance","base.strided.snanvariancech":"@stdlib/stats/base/snanvariancech","base.strided.snanvariancepn":"@stdlib/stats/base/snanvariancepn","base.strided.snanvariancetk":"@stdlib/stats/base/snanvariancetk","base.strided.snanvariancewd":"@stdlib/stats/base/snanvariancewd","base.strided.snanvarianceyc":"@stdlib/stats/base/snanvarianceyc","base.strided.snrm2":"@stdlib/blas/base/snrm2","base.strided.sramp":"@stdlib/math/strided/special/sramp","base.strided.srange":"@stdlib/stats/base/srange","base.strided.srev":"@stdlib/blas/ext/base/srev","base.strided.srsqrt":"@stdlib/math/strided/special/srsqrt","base.strided.sscal":"@stdlib/blas/base/sscal","base.strided.ssort2hp":"@stdlib/blas/ext/base/ssort2hp","base.strided.ssort2ins":"@stdlib/blas/ext/base/ssort2ins","base.strided.ssort2sh":"@stdlib/blas/ext/base/ssort2sh","base.strided.ssorthp":"@stdlib/blas/ext/base/ssorthp","base.strided.ssortins":"@stdlib/blas/ext/base/ssortins","base.strided.ssortsh":"@stdlib/blas/ext/base/ssortsh","base.strided.ssqrt":"@stdlib/math/strided/special/ssqrt","base.strided.sstdev":"@stdlib/stats/base/sstdev","base.strided.sstdevch":"@stdlib/stats/base/sstdevch","base.strided.sstdevpn":"@stdlib/stats/base/sstdevpn","base.strided.sstdevtk":"@stdlib/stats/base/sstdevtk","base.strided.sstdevwd":"@stdlib/stats/base/sstdevwd","base.strided.sstdevyc":"@stdlib/stats/base/sstdevyc","base.strided.ssum":"@stdlib/blas/ext/base/ssum","base.strided.ssumkbn":"@stdlib/blas/ext/base/ssumkbn","base.strided.ssumkbn2":"@stdlib/blas/ext/base/ssumkbn2","base.strided.ssumors":"@stdlib/blas/ext/base/ssumors","base.strided.ssumpw":"@stdlib/blas/ext/base/ssumpw","base.strided.sswap":"@stdlib/blas/base/sswap","base.strided.stdev":"@stdlib/stats/base/stdev","base.strided.stdevch":"@stdlib/stats/base/stdevch","base.strided.stdevpn":"@stdlib/stats/base/stdevpn","base.strided.stdevtk":"@stdlib/stats/base/stdevtk","base.strided.stdevwd":"@stdlib/stats/base/stdevwd","base.strided.stdevyc":"@stdlib/stats/base/stdevyc","base.strided.strunc":"@stdlib/math/strided/special/strunc","base.strided.svariance":"@stdlib/stats/base/svariance","base.strided.svariancech":"@stdlib/stats/base/svariancech","base.strided.svariancepn":"@stdlib/stats/base/svariancepn","base.strided.svariancetk":"@stdlib/stats/base/svariancetk","base.strided.svariancewd":"@stdlib/stats/base/svariancewd","base.strided.svarianceyc":"@stdlib/stats/base/svarianceyc","base.strided.ternary":"@stdlib/strided/base/ternary","base.strided.unary":"@stdlib/strided/base/unary","base.strided.variance":"@stdlib/stats/base/variance","base.strided.variancech":"@stdlib/stats/base/variancech","base.strided.variancepn":"@stdlib/stats/base/variancepn","base.strided.variancetk":"@stdlib/stats/base/variancetk","base.strided.variancewd":"@stdlib/stats/base/variancewd","base.strided.varianceyc":"@stdlib/stats/base/varianceyc","base.strided.zmap":"@stdlib/strided/base/zmap","base.sub":"@stdlib/math/base/ops/sub","base.subf":"@stdlib/math/base/ops/subf","base.sumSeries":"@stdlib/math/base/tools/sum-series","base.tan":"@stdlib/math/base/special/tan","base.tanh":"@stdlib/math/base/special/tanh","base.toBinaryString":"@stdlib/number/float64/base/to-binary-string","base.toBinaryStringf":"@stdlib/number/float32/base/to-binary-string","base.toBinaryStringUint8":"@stdlib/number/uint8/base/to-binary-string","base.toBinaryStringUint16":"@stdlib/number/uint16/base/to-binary-string","base.toBinaryStringUint32":"@stdlib/number/uint32/base/to-binary-string","base.toWordf":"@stdlib/number/float32/base/to-word","base.toWords":"@stdlib/number/float64/base/to-words","base.transpose":"@stdlib/ndarray/base/transpose","base.tribonacci":"@stdlib/math/base/special/tribonacci","base.trigamma":"@stdlib/math/base/special/trigamma","base.trunc":"@stdlib/math/base/special/trunc","base.trunc2":"@stdlib/math/base/special/trunc2","base.trunc10":"@stdlib/math/base/special/trunc10","base.truncb":"@stdlib/math/base/special/truncb","base.truncf":"@stdlib/math/base/special/truncf","base.truncn":"@stdlib/math/base/special/truncn","base.truncsd":"@stdlib/math/base/special/truncsd","base.umul":"@stdlib/math/base/ops/umul","base.umuldw":"@stdlib/math/base/ops/umuldw","base.uint32ToInt32":"@stdlib/number/uint32/base/to-int32","base.vercos":"@stdlib/math/base/special/vercos","base.versin":"@stdlib/math/base/special/versin","base.wrap":"@stdlib/math/base/special/wrap","base.xlog1py":"@stdlib/math/base/special/xlog1py","base.xlogy":"@stdlib/math/base/special/xlogy","base.zeta":"@stdlib/math/base/special/riemann-zeta","bench":"@stdlib/bench","BERNDT_CPS_WAGES_1985":"@stdlib/datasets/berndt-cps-wages-1985","bifurcate":"@stdlib/utils/bifurcate","bifurcateBy":"@stdlib/utils/bifurcate-by","bifurcateByAsync":"@stdlib/utils/async/bifurcate-by","bifurcateIn":"@stdlib/utils/bifurcate-in","bifurcateOwn":"@stdlib/utils/bifurcate-own","BigInt":"@stdlib/bigint/ctor","binomialTest":"@stdlib/stats/binomial-test","Buffer":"@stdlib/buffer/ctor","buffer2json":"@stdlib/buffer/to-json","BYTE_ORDER":"@stdlib/os/byte-order","camelcase":"@stdlib/string/camelcase","capitalize":"@stdlib/string/capitalize","capitalizeKeys":"@stdlib/utils/capitalize-keys","CATALAN":"@stdlib/constants/float64/catalan","CBRT_EPS":"@stdlib/constants/float64/cbrt-eps","CDC_NCHS_US_BIRTHS_1969_1988":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","CDC_NCHS_US_BIRTHS_1994_2003":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","chdir":"@stdlib/process/chdir","chi2gof":"@stdlib/stats/chi2gof","chi2test":"@stdlib/stats/chi2test","circarray2iterator":"@stdlib/array/to-circular-iterator","circularArrayStream":"@stdlib/streams/node/from-circular-array","CircularBuffer":"@stdlib/utils/circular-buffer","close":"@stdlib/fs/close","CMUDICT":"@stdlib/datasets/cmudict","codePointAt":"@stdlib/string/code-point-at","commonKeys":"@stdlib/utils/common-keys","commonKeysIn":"@stdlib/utils/common-keys-in","complex":"@stdlib/complex/cmplx","Complex64":"@stdlib/complex/float32","COMPLEX64_NUM_BYTES":"@stdlib/constants/complex64/num-bytes","Complex64Array":"@stdlib/array/complex64","Complex128":"@stdlib/complex/float64","COMPLEX128_NUM_BYTES":"@stdlib/constants/complex128/num-bytes","Complex128Array":"@stdlib/array/complex128","complexarray":"@stdlib/array/typed-complex","complexarrayCtors":"@stdlib/array/typed-complex-ctors","complexarrayDataTypes":"@stdlib/array/typed-complex-dtypes","complexCtors":"@stdlib/complex/ctors","complexDataType":"@stdlib/complex/dtype","complexDataTypes":"@stdlib/complex/dtypes","complexPromotionRules":"@stdlib/complex/promotion-rules","compose":"@stdlib/utils/compose","composeAsync":"@stdlib/utils/async/compose","configdir":"@stdlib/os/configdir","conj":"@stdlib/complex/conj","conjf":"@stdlib/complex/conjf","constantcase":"@stdlib/string/constantcase","constantFunction":"@stdlib/utils/constant-function","constantStream":"@stdlib/streams/node/from-constant","constructorName":"@stdlib/utils/constructor-name","contains":"@stdlib/assert/contains","convertArray":"@stdlib/array/convert","convertArraySame":"@stdlib/array/convert-same","convertPath":"@stdlib/utils/convert-path","copy":"@stdlib/utils/copy","copyBuffer":"@stdlib/buffer/from-buffer","countBy":"@stdlib/utils/count-by","countByAsync":"@stdlib/utils/async/count-by","curry":"@stdlib/utils/curry","curryRight":"@stdlib/utils/curry-right","cwd":"@stdlib/process/cwd","DALE_CHALL_NEW":"@stdlib/datasets/dale-chall-new","datasets":"@stdlib/datasets","DataView":"@stdlib/array/dataview","datespace":"@stdlib/array/datespace","dayOfQuarter":"@stdlib/time/day-of-quarter","dayOfYear":"@stdlib/time/day-of-year","daysInMonth":"@stdlib/time/days-in-month","daysInYear":"@stdlib/time/days-in-year","ddot":"@stdlib/blas/ddot","debugSinkStream":"@stdlib/streams/node/debug-sink","debugStream":"@stdlib/streams/node/debug","deepEqual":"@stdlib/assert/deep-equal","deepGet":"@stdlib/utils/deep-get","deepHasOwnProp":"@stdlib/assert/deep-has-own-property","deepHasProp":"@stdlib/assert/deep-has-property","deepPluck":"@stdlib/utils/deep-pluck","deepSet":"@stdlib/utils/deep-set","defineMemoizedProperty":"@stdlib/utils/define-memoized-property","defineProperties":"@stdlib/utils/define-properties","defineProperty":"@stdlib/utils/define-property","dirname":"@stdlib/utils/dirname","DoublyLinkedList":"@stdlib/utils/doubly-linked-list","doUntil":"@stdlib/utils/do-until","doUntilAsync":"@stdlib/utils/async/do-until","doUntilEach":"@stdlib/utils/do-until-each","doUntilEachRight":"@stdlib/utils/do-until-each-right","doWhile":"@stdlib/utils/do-while","doWhileAsync":"@stdlib/utils/async/do-while","doWhileEach":"@stdlib/utils/do-while-each","doWhileEachRight":"@stdlib/utils/do-while-each-right","dswap":"@stdlib/blas/dswap","E":"@stdlib/constants/float64/e","EMOJI":"@stdlib/datasets/emoji","EMOJI_CODE_PICTO":"@stdlib/datasets/emoji-code-picto","EMOJI_PICTO_CODE":"@stdlib/datasets/emoji-picto-code","emptyStream":"@stdlib/streams/node/empty","endsWith":"@stdlib/string/ends-with","enumerableProperties":"@stdlib/utils/enumerable-properties","enumerablePropertiesIn":"@stdlib/utils/enumerable-properties-in","enumerablePropertySymbols":"@stdlib/utils/enumerable-property-symbols","enumerablePropertySymbolsIn":"@stdlib/utils/enumerable-property-symbols-in","ENV":"@stdlib/process/env","EPS":"@stdlib/constants/float64/eps","error2json":"@stdlib/error/to-json","EULERGAMMA":"@stdlib/constants/float64/eulergamma","every":"@stdlib/utils/every","everyBy":"@stdlib/utils/every-by","everyByAsync":"@stdlib/utils/async/every-by","everyByRight":"@stdlib/utils/every-by-right","everyByRightAsync":"@stdlib/utils/async/every-by-right","evil":"@stdlib/utils/eval","EXEC_PATH":"@stdlib/process/exec-path","exists":"@stdlib/fs/exists","expandContractions":"@stdlib/nlp/expand-contractions","extname":"@stdlib/utils/extname","fastmath.abs":"@stdlib/math/base/special/fast/abs","fastmath.acosh":"@stdlib/math/base/special/fast/acosh","fastmath.ampbm":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","fastmath.asinh":"@stdlib/math/base/special/fast/asinh","fastmath.atanh":"@stdlib/math/base/special/fast/atanh","fastmath.hypot":"@stdlib/math/base/special/fast/hypot","fastmath.log2Uint32":"@stdlib/math/base/special/fast/uint32-log2","fastmath.max":"@stdlib/math/base/special/fast/max","fastmath.min":"@stdlib/math/base/special/fast/min","fastmath.powint":"@stdlib/math/base/special/fast/pow-int","fastmath.sqrtUint32":"@stdlib/math/base/special/fast/uint32-sqrt","FEMALE_FIRST_NAMES_EN":"@stdlib/datasets/female-first-names-en","FIFO":"@stdlib/utils/fifo","filledarray":"@stdlib/array/filled","filledarrayBy":"@stdlib/array/filled-by","filterArguments":"@stdlib/utils/filter-arguments","find":"@stdlib/utils/find","FIVETHIRTYEIGHT_FFQ":"@stdlib/datasets/fivethirtyeight-ffq","flattenArray":"@stdlib/utils/flatten-array","flattenObject":"@stdlib/utils/flatten-object","flignerTest":"@stdlib/stats/fligner-test","FLOAT_WORD_ORDER":"@stdlib/os/float-word-order","FLOAT16_CBRT_EPS":"@stdlib/constants/float16/cbrt-eps","FLOAT16_EPS":"@stdlib/constants/float16/eps","FLOAT16_EXPONENT_BIAS":"@stdlib/constants/float16/exponent-bias","FLOAT16_MAX":"@stdlib/constants/float16/max","FLOAT16_MAX_SAFE_INTEGER":"@stdlib/constants/float16/max-safe-integer","FLOAT16_MIN_SAFE_INTEGER":"@stdlib/constants/float16/min-safe-integer","FLOAT16_NINF":"@stdlib/constants/float16/ninf","FLOAT16_NUM_BYTES":"@stdlib/constants/float16/num-bytes","FLOAT16_PINF":"@stdlib/constants/float16/pinf","FLOAT16_PRECISION":"@stdlib/constants/float16/precision","FLOAT16_SMALLEST_NORMAL":"@stdlib/constants/float16/smallest-normal","FLOAT16_SMALLEST_SUBNORMAL":"@stdlib/constants/float16/smallest-subnormal","FLOAT16_SQRT_EPS":"@stdlib/constants/float16/sqrt-eps","FLOAT32_CBRT_EPS":"@stdlib/constants/float32/cbrt-eps","FLOAT32_EPS":"@stdlib/constants/float32/eps","FLOAT32_EXPONENT_BIAS":"@stdlib/constants/float32/exponent-bias","FLOAT32_MAX":"@stdlib/constants/float32/max","FLOAT32_MAX_SAFE_INTEGER":"@stdlib/constants/float32/max-safe-integer","FLOAT32_MIN_SAFE_INTEGER":"@stdlib/constants/float32/min-safe-integer","FLOAT32_NINF":"@stdlib/constants/float32/ninf","FLOAT32_NUM_BYTES":"@stdlib/constants/float32/num-bytes","FLOAT32_PINF":"@stdlib/constants/float32/pinf","FLOAT32_PRECISION":"@stdlib/constants/float32/precision","FLOAT32_SMALLEST_NORMAL":"@stdlib/constants/float32/smallest-normal","FLOAT32_SMALLEST_SUBNORMAL":"@stdlib/constants/float32/smallest-subnormal","FLOAT32_SQRT_EPS":"@stdlib/constants/float32/sqrt-eps","Float32Array":"@stdlib/array/float32","FLOAT64_EXPONENT_BIAS":"@stdlib/constants/float64/exponent-bias","FLOAT64_HIGH_WORD_EXPONENT_MASK":"@stdlib/constants/float64/high-word-exponent-mask","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK":"@stdlib/constants/float64/high-word-significand-mask","FLOAT64_MAX":"@stdlib/constants/float64/max","FLOAT64_MAX_BASE2_EXPONENT":"@stdlib/constants/float64/max-base2-exponent","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base2-exponent-subnormal","FLOAT64_MAX_BASE10_EXPONENT":"@stdlib/constants/float64/max-base10-exponent","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base10-exponent-subnormal","FLOAT64_MAX_LN":"@stdlib/constants/float64/max-ln","FLOAT64_MAX_SAFE_FIBONACCI":"@stdlib/constants/float64/max-safe-fibonacci","FLOAT64_MAX_SAFE_INTEGER":"@stdlib/constants/float64/max-safe-integer","FLOAT64_MAX_SAFE_LUCAS":"@stdlib/constants/float64/max-safe-lucas","FLOAT64_MAX_SAFE_NTH_FIBONACCI":"@stdlib/constants/float64/max-safe-nth-fibonacci","FLOAT64_MAX_SAFE_NTH_LUCAS":"@stdlib/constants/float64/max-safe-nth-lucas","FLOAT64_MIN_BASE2_EXPONENT":"@stdlib/constants/float64/min-base2-exponent","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base2-exponent-subnormal","FLOAT64_MIN_BASE10_EXPONENT":"@stdlib/constants/float64/min-base10-exponent","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base10-exponent-subnormal","FLOAT64_MIN_LN":"@stdlib/constants/float64/min-ln","FLOAT64_MIN_SAFE_INTEGER":"@stdlib/constants/float64/min-safe-integer","FLOAT64_NUM_BYTES":"@stdlib/constants/float64/num-bytes","FLOAT64_PRECISION":"@stdlib/constants/float64/precision","FLOAT64_SMALLEST_NORMAL":"@stdlib/constants/float64/smallest-normal","FLOAT64_SMALLEST_SUBNORMAL":"@stdlib/constants/float64/smallest-subnormal","Float64Array":"@stdlib/array/float64","forEach":"@stdlib/utils/for-each","forEachAsync":"@stdlib/utils/async/for-each","forEachRight":"@stdlib/utils/for-each-right","forEachRightAsync":"@stdlib/utils/async/for-each-right","forIn":"@stdlib/utils/for-in","forOwn":"@stdlib/utils/for-own","FOURTH_PI":"@stdlib/constants/float64/fourth-pi","FOURTH_ROOT_EPS":"@stdlib/constants/float64/fourth-root-eps","FRB_SF_WAGE_RIGIDITY":"@stdlib/datasets/frb-sf-wage-rigidity","fromCodePoint":"@stdlib/string/from-code-point","functionName":"@stdlib/utils/function-name","functionSequence":"@stdlib/utils/function-sequence","functionSequenceAsync":"@stdlib/utils/async/function-sequence","GAMMA_LANCZOS_G":"@stdlib/constants/float64/gamma-lanczos-g","gdot":"@stdlib/blas/gdot","getegid":"@stdlib/process/getegid","geteuid":"@stdlib/process/geteuid","getgid":"@stdlib/process/getgid","getGlobal":"@stdlib/utils/global","getPrototypeOf":"@stdlib/utils/get-prototype-of","getuid":"@stdlib/process/getuid","GLAISHER":"@stdlib/constants/float64/glaisher-kinkelin","group":"@stdlib/utils/group","groupBy":"@stdlib/utils/group-by","groupByAsync":"@stdlib/utils/async/group-by","groupIn":"@stdlib/utils/group-in","groupOwn":"@stdlib/utils/group-own","gswap":"@stdlib/blas/gswap","HALF_LN2":"@stdlib/constants/float64/half-ln-two","HALF_PI":"@stdlib/constants/float64/half-pi","HARRISON_BOSTON_HOUSE_PRICES":"@stdlib/datasets/harrison-boston-house-prices","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED":"@stdlib/datasets/harrison-boston-house-prices-corrected","hasArrayBufferSupport":"@stdlib/assert/has-arraybuffer-support","hasAsyncAwaitSupport":"@stdlib/assert/has-async-await-support","hasAsyncIteratorSymbolSupport":"@stdlib/assert/has-async-iterator-symbol-support","hasBigInt64ArraySupport":"@stdlib/assert/has-bigint64array-support","hasBigIntSupport":"@stdlib/assert/has-bigint-support","hasBigUint64ArraySupport":"@stdlib/assert/has-biguint64array-support","hasClassSupport":"@stdlib/assert/has-class-support","hasDataViewSupport":"@stdlib/assert/has-dataview-support","hasDefinePropertiesSupport":"@stdlib/assert/has-define-properties-support","hasDefinePropertySupport":"@stdlib/assert/has-define-property-support","hasFloat32ArraySupport":"@stdlib/assert/has-float32array-support","hasFloat64ArraySupport":"@stdlib/assert/has-float64array-support","hasFunctionNameSupport":"@stdlib/assert/has-function-name-support","hasGeneratorSupport":"@stdlib/assert/has-generator-support","hasGlobalThisSupport":"@stdlib/assert/has-globalthis-support","hasInt8ArraySupport":"@stdlib/assert/has-int8array-support","hasInt16ArraySupport":"@stdlib/assert/has-int16array-support","hasInt32ArraySupport":"@stdlib/assert/has-int32array-support","hasIteratorSymbolSupport":"@stdlib/assert/has-iterator-symbol-support","hasMapSupport":"@stdlib/assert/has-map-support","hasNodeBufferSupport":"@stdlib/assert/has-node-buffer-support","hasOwnProp":"@stdlib/assert/has-own-property","hasProp":"@stdlib/assert/has-property","hasProxySupport":"@stdlib/assert/has-proxy-support","hasSetSupport":"@stdlib/assert/has-set-support","hasSharedArrayBufferSupport":"@stdlib/assert/has-sharedarraybuffer-support","hasSymbolSupport":"@stdlib/assert/has-symbol-support","hasToStringTagSupport":"@stdlib/assert/has-tostringtag-support","hasUint8ArraySupport":"@stdlib/assert/has-uint8array-support","hasUint8ClampedArraySupport":"@stdlib/assert/has-uint8clampedarray-support","hasUint16ArraySupport":"@stdlib/assert/has-uint16array-support","hasUint32ArraySupport":"@stdlib/assert/has-uint32array-support","hasUTF16SurrogatePairAt":"@stdlib/assert/has-utf16-surrogate-pair-at","hasWeakMapSupport":"@stdlib/assert/has-weakmap-support","hasWeakSetSupport":"@stdlib/assert/has-weakset-support","hasWebAssemblySupport":"@stdlib/assert/has-wasm-support","HERNDON_VENUS_SEMIDIAMETERS":"@stdlib/datasets/herndon-venus-semidiameters","homedir":"@stdlib/os/homedir","HOURS_IN_DAY":"@stdlib/constants/time/hours-in-day","HOURS_IN_WEEK":"@stdlib/constants/time/hours-in-week","hoursInMonth":"@stdlib/time/hours-in-month","hoursInYear":"@stdlib/time/hours-in-year","httpServer":"@stdlib/net/http-server","identity":"@stdlib/utils/identity-function","ifelse":"@stdlib/utils/if-else","ifelseAsync":"@stdlib/utils/async/if-else","ifthen":"@stdlib/utils/if-then","ifthenAsync":"@stdlib/utils/async/if-then","imag":"@stdlib/complex/imag","imagf":"@stdlib/complex/imagf","IMG_ACANTHUS_MOLLIS":"@stdlib/datasets/img-acanthus-mollis","IMG_AIRPLANE_FROM_ABOVE":"@stdlib/datasets/img-airplane-from-above","IMG_ALLIUM_OREOPHILUM":"@stdlib/datasets/img-allium-oreophilum","IMG_BLACK_CANYON":"@stdlib/datasets/img-black-canyon","IMG_DUST_BOWL_HOME":"@stdlib/datasets/img-dust-bowl-home","IMG_FRENCH_ALPINE_LANDSCAPE":"@stdlib/datasets/img-french-alpine-landscape","IMG_LOCOMOTION_HOUSE_CAT":"@stdlib/datasets/img-locomotion-house-cat","IMG_LOCOMOTION_NUDE_MALE":"@stdlib/datasets/img-locomotion-nude-male","IMG_MARCH_PASTORAL":"@stdlib/datasets/img-march-pastoral","IMG_NAGASAKI_BOATS":"@stdlib/datasets/img-nagasaki-boats","incrapcorr":"@stdlib/stats/incr/apcorr","incrBinaryClassification":"@stdlib/ml/incr/binary-classification","incrcount":"@stdlib/stats/incr/count","incrcovariance":"@stdlib/stats/incr/covariance","incrcovmat":"@stdlib/stats/incr/covmat","incrcv":"@stdlib/stats/incr/cv","increwmean":"@stdlib/stats/incr/ewmean","increwstdev":"@stdlib/stats/incr/ewstdev","increwvariance":"@stdlib/stats/incr/ewvariance","incrgmean":"@stdlib/stats/incr/gmean","incrgrubbs":"@stdlib/stats/incr/grubbs","incrhmean":"@stdlib/stats/incr/hmean","incrkmeans":"@stdlib/ml/incr/kmeans","incrkurtosis":"@stdlib/stats/incr/kurtosis","incrmaape":"@stdlib/stats/incr/maape","incrmae":"@stdlib/stats/incr/mae","incrmapcorr":"@stdlib/stats/incr/mapcorr","incrmape":"@stdlib/stats/incr/mape","incrmax":"@stdlib/stats/incr/max","incrmaxabs":"@stdlib/stats/incr/maxabs","incrmcovariance":"@stdlib/stats/incr/mcovariance","incrmcv":"@stdlib/stats/incr/mcv","incrmda":"@stdlib/stats/incr/mda","incrme":"@stdlib/stats/incr/me","incrmean":"@stdlib/stats/incr/mean","incrmeanabs":"@stdlib/stats/incr/meanabs","incrmeanabs2":"@stdlib/stats/incr/meanabs2","incrmeanstdev":"@stdlib/stats/incr/meanstdev","incrmeanvar":"@stdlib/stats/incr/meanvar","incrmgmean":"@stdlib/stats/incr/mgmean","incrmgrubbs":"@stdlib/stats/incr/mgrubbs","incrmhmean":"@stdlib/stats/incr/mhmean","incrmidrange":"@stdlib/stats/incr/midrange","incrmin":"@stdlib/stats/incr/min","incrminabs":"@stdlib/stats/incr/minabs","incrminmax":"@stdlib/stats/incr/minmax","incrminmaxabs":"@stdlib/stats/incr/minmaxabs","incrmmaape":"@stdlib/stats/incr/mmaape","incrmmae":"@stdlib/stats/incr/mmae","incrmmape":"@stdlib/stats/incr/mmape","incrmmax":"@stdlib/stats/incr/mmax","incrmmaxabs":"@stdlib/stats/incr/mmaxabs","incrmmda":"@stdlib/stats/incr/mmda","incrmme":"@stdlib/stats/incr/mme","incrmmean":"@stdlib/stats/incr/mmean","incrmmeanabs":"@stdlib/stats/incr/mmeanabs","incrmmeanabs2":"@stdlib/stats/incr/mmeanabs2","incrmmeanstdev":"@stdlib/stats/incr/mmeanstdev","incrmmeanvar":"@stdlib/stats/incr/mmeanvar","incrmmidrange":"@stdlib/stats/incr/mmidrange","incrmmin":"@stdlib/stats/incr/mmin","incrmminabs":"@stdlib/stats/incr/mminabs","incrmminmax":"@stdlib/stats/incr/mminmax","incrmminmaxabs":"@stdlib/stats/incr/mminmaxabs","incrmmpe":"@stdlib/stats/incr/mmpe","incrmmse":"@stdlib/stats/incr/mmse","incrmpcorr":"@stdlib/stats/incr/mpcorr","incrmpcorr2":"@stdlib/stats/incr/mpcorr2","incrmpcorrdist":"@stdlib/stats/incr/mpcorrdist","incrmpe":"@stdlib/stats/incr/mpe","incrmprod":"@stdlib/stats/incr/mprod","incrmrange":"@stdlib/stats/incr/mrange","incrmrmse":"@stdlib/stats/incr/mrmse","incrmrss":"@stdlib/stats/incr/mrss","incrmse":"@stdlib/stats/incr/mse","incrmstdev":"@stdlib/stats/incr/mstdev","incrmsum":"@stdlib/stats/incr/msum","incrmsumabs":"@stdlib/stats/incr/msumabs","incrmsumabs2":"@stdlib/stats/incr/msumabs2","incrmsummary":"@stdlib/stats/incr/msummary","incrmsumprod":"@stdlib/stats/incr/msumprod","incrmvariance":"@stdlib/stats/incr/mvariance","incrmvmr":"@stdlib/stats/incr/mvmr","incrnancount":"@stdlib/stats/incr/nancount","incrnansum":"@stdlib/stats/incr/nansum","incrnansumabs":"@stdlib/stats/incr/nansumabs","incrnansumabs2":"@stdlib/stats/incr/nansumabs2","incrpcorr":"@stdlib/stats/incr/pcorr","incrpcorr2":"@stdlib/stats/incr/pcorr2","incrpcorrdist":"@stdlib/stats/incr/pcorrdist","incrpcorrdistmat":"@stdlib/stats/incr/pcorrdistmat","incrpcorrmat":"@stdlib/stats/incr/pcorrmat","incrprod":"@stdlib/stats/incr/prod","incrrange":"@stdlib/stats/incr/range","incrrmse":"@stdlib/stats/incr/rmse","incrrss":"@stdlib/stats/incr/rss","incrSGDRegression":"@stdlib/ml/incr/sgd-regression","incrskewness":"@stdlib/stats/incr/skewness","incrspace":"@stdlib/array/incrspace","incrstdev":"@stdlib/stats/incr/stdev","incrsum":"@stdlib/stats/incr/sum","incrsumabs":"@stdlib/stats/incr/sumabs","incrsumabs2":"@stdlib/stats/incr/sumabs2","incrsummary":"@stdlib/stats/incr/summary","incrsumprod":"@stdlib/stats/incr/sumprod","incrvariance":"@stdlib/stats/incr/variance","incrvmr":"@stdlib/stats/incr/vmr","incrwmean":"@stdlib/stats/incr/wmean","ind2sub":"@stdlib/ndarray/ind2sub","indexOf":"@stdlib/utils/index-of","inherit":"@stdlib/utils/inherit","inheritedEnumerableProperties":"@stdlib/utils/inherited-enumerable-properties","inheritedEnumerablePropertySymbols":"@stdlib/utils/inherited-enumerable-property-symbols","inheritedKeys":"@stdlib/utils/inherited-keys","inheritedNonEnumerableProperties":"@stdlib/utils/inherited-nonenumerable-properties","inheritedNonEnumerablePropertyNames":"@stdlib/utils/inherited-nonenumerable-property-names","inheritedNonEnumerablePropertySymbols":"@stdlib/utils/inherited-nonenumerable-property-symbols","inheritedProperties":"@stdlib/utils/inherited-properties","inheritedPropertyDescriptor":"@stdlib/utils/inherited-property-descriptor","inheritedPropertyDescriptors":"@stdlib/utils/inherited-property-descriptors","inheritedPropertyNames":"@stdlib/utils/inherited-property-names","inheritedPropertySymbols":"@stdlib/utils/inherited-property-symbols","inheritedWritableProperties":"@stdlib/utils/inherited-writable-properties","inheritedWritablePropertyNames":"@stdlib/utils/inherited-writable-property-names","inheritedWritablePropertySymbols":"@stdlib/utils/inherited-writable-property-symbols","inmap":"@stdlib/utils/inmap","inmapAsync":"@stdlib/utils/async/inmap","inmapRight":"@stdlib/utils/inmap-right","inmapRightAsync":"@stdlib/utils/async/inmap-right","inspectSinkStream":"@stdlib/streams/node/inspect-sink","inspectStream":"@stdlib/streams/node/inspect","instanceOf":"@stdlib/assert/instance-of","INT8_MAX":"@stdlib/constants/int8/max","INT8_MIN":"@stdlib/constants/int8/min","INT8_NUM_BYTES":"@stdlib/constants/int8/num-bytes","Int8Array":"@stdlib/array/int8","INT16_MAX":"@stdlib/constants/int16/max","INT16_MIN":"@stdlib/constants/int16/min","INT16_NUM_BYTES":"@stdlib/constants/int16/num-bytes","Int16Array":"@stdlib/array/int16","INT32_MAX":"@stdlib/constants/int32/max","INT32_MIN":"@stdlib/constants/int32/min","INT32_NUM_BYTES":"@stdlib/constants/int32/num-bytes","Int32Array":"@stdlib/array/int32","IS_BIG_ENDIAN":"@stdlib/assert/is-big-endian","IS_BROWSER":"@stdlib/assert/is-browser","IS_DARWIN":"@stdlib/assert/is-darwin","IS_ELECTRON":"@stdlib/assert/is-electron","IS_ELECTRON_MAIN":"@stdlib/assert/is-electron-main","IS_ELECTRON_RENDERER":"@stdlib/assert/is-electron-renderer","IS_LITTLE_ENDIAN":"@stdlib/assert/is-little-endian","IS_NODE":"@stdlib/assert/is-node","IS_WEB_WORKER":"@stdlib/assert/is-web-worker","IS_WINDOWS":"@stdlib/assert/is-windows","isAbsolutePath":"@stdlib/assert/is-absolute-path","isAccessorProperty":"@stdlib/assert/is-accessor-property","isAccessorPropertyIn":"@stdlib/assert/is-accessor-property-in","isAlphagram":"@stdlib/assert/is-alphagram","isAlphaNumeric":"@stdlib/assert/is-alphanumeric","isAnagram":"@stdlib/assert/is-anagram","isArguments":"@stdlib/assert/is-arguments","isArray":"@stdlib/assert/is-array","isArrayArray":"@stdlib/assert/is-array-array","isArrayBuffer":"@stdlib/assert/is-arraybuffer","isArrayBufferView":"@stdlib/assert/is-arraybuffer-view","isArrayLength":"@stdlib/assert/is-array-length","isArrayLike":"@stdlib/assert/is-array-like","isArrayLikeObject":"@stdlib/assert/is-array-like-object","isASCII":"@stdlib/assert/is-ascii","isBetween":"@stdlib/assert/is-between","isBetweenArray":"@stdlib/assert/is-between-array","isBigInt":"@stdlib/assert/is-bigint","isBigInt64Array":"@stdlib/assert/is-bigint64array","isBigUint64Array":"@stdlib/assert/is-biguint64array","isBinaryString":"@stdlib/assert/is-binary-string","isBoolean":"@stdlib/assert/is-boolean","isBooleanArray":"@stdlib/assert/is-boolean-array","isBoxedPrimitive":"@stdlib/assert/is-boxed-primitive","isBuffer":"@stdlib/assert/is-buffer","isCapitalized":"@stdlib/assert/is-capitalized","isCentrosymmetricMatrix":"@stdlib/assert/is-centrosymmetric-matrix","isCircular":"@stdlib/assert/is-circular","isCircularArray":"@stdlib/assert/is-circular-array","isCircularPlainObject":"@stdlib/assert/is-circular-plain-object","isClass":"@stdlib/assert/is-class","isCollection":"@stdlib/assert/is-collection","isComplex":"@stdlib/assert/is-complex","isComplex64":"@stdlib/assert/is-complex64","isComplex64Array":"@stdlib/assert/is-complex64array","isComplex128":"@stdlib/assert/is-complex128","isComplex128Array":"@stdlib/assert/is-complex128array","isComplexLike":"@stdlib/assert/is-complex-like","isComplexTypedArray":"@stdlib/assert/is-complex-typed-array","isComplexTypedArrayLike":"@stdlib/assert/is-complex-typed-array-like","isComposite":"@stdlib/assert/is-composite","isConfigurableProperty":"@stdlib/assert/is-configurable-property","isConfigurablePropertyIn":"@stdlib/assert/is-configurable-property-in","isCubeNumber":"@stdlib/assert/is-cube-number","isDataProperty":"@stdlib/assert/is-data-property","isDataPropertyIn":"@stdlib/assert/is-data-property-in","isDataView":"@stdlib/assert/is-dataview","isDateObject":"@stdlib/assert/is-date-object","isDigitString":"@stdlib/assert/is-digit-string","isEmailAddress":"@stdlib/assert/is-email-address","isEmptyArray":"@stdlib/assert/is-empty-array","isEmptyArrayLikeObject":"@stdlib/assert/is-empty-array-like-object","isEmptyCollection":"@stdlib/assert/is-empty-collection","isEmptyObject":"@stdlib/assert/is-empty-object","isEmptyString":"@stdlib/assert/is-empty-string","isEnumerableProperty":"@stdlib/assert/is-enumerable-property","isEnumerablePropertyIn":"@stdlib/assert/is-enumerable-property-in","isError":"@stdlib/assert/is-error","isEvalError":"@stdlib/assert/is-eval-error","isEven":"@stdlib/assert/is-even","isFalsy":"@stdlib/assert/is-falsy","isFalsyArray":"@stdlib/assert/is-falsy-array","isFinite":"@stdlib/assert/is-finite","isFiniteArray":"@stdlib/assert/is-finite-array","isFloat32Array":"@stdlib/assert/is-float32array","isFloat32MatrixLike":"@stdlib/assert/is-float32matrix-like","isFloat32ndarrayLike":"@stdlib/assert/is-float32ndarray-like","isFloat32VectorLike":"@stdlib/assert/is-float32vector-like","isFloat64Array":"@stdlib/assert/is-float64array","isFloat64MatrixLike":"@stdlib/assert/is-float64matrix-like","isFloat64ndarrayLike":"@stdlib/assert/is-float64ndarray-like","isFloat64VectorLike":"@stdlib/assert/is-float64vector-like","isFunction":"@stdlib/assert/is-function","isFunctionArray":"@stdlib/assert/is-function-array","isGeneratorObject":"@stdlib/assert/is-generator-object","isGeneratorObjectLike":"@stdlib/assert/is-generator-object-like","isgzipBuffer":"@stdlib/assert/is-gzip-buffer","isHexString":"@stdlib/assert/is-hex-string","isInfinite":"@stdlib/assert/is-infinite","isInheritedProperty":"@stdlib/assert/is-inherited-property","isInt8Array":"@stdlib/assert/is-int8array","isInt16Array":"@stdlib/assert/is-int16array","isInt32Array":"@stdlib/assert/is-int32array","isInteger":"@stdlib/assert/is-integer","isIntegerArray":"@stdlib/assert/is-integer-array","isIterableLike":"@stdlib/assert/is-iterable-like","isIteratorLike":"@stdlib/assert/is-iterator-like","isJSON":"@stdlib/assert/is-json","isLeapYear":"@stdlib/assert/is-leap-year","isLocalhost":"@stdlib/assert/is-localhost","isLowercase":"@stdlib/assert/is-lowercase","isMatrixLike":"@stdlib/assert/is-matrix-like","isMethod":"@stdlib/assert/is-method","isMethodIn":"@stdlib/assert/is-method-in","isNamedTypedTupleLike":"@stdlib/assert/is-named-typed-tuple-like","isnan":"@stdlib/assert/is-nan","isNaNArray":"@stdlib/assert/is-nan-array","isNativeFunction":"@stdlib/assert/is-native-function","isndarrayLike":"@stdlib/assert/is-ndarray-like","isNegativeInteger":"@stdlib/assert/is-negative-integer","isNegativeIntegerArray":"@stdlib/assert/is-negative-integer-array","isNegativeNumber":"@stdlib/assert/is-negative-number","isNegativeNumberArray":"@stdlib/assert/is-negative-number-array","isNegativeZero":"@stdlib/assert/is-negative-zero","isNodeBuiltin":"@stdlib/assert/is-node-builtin","isNodeDuplexStreamLike":"@stdlib/assert/is-node-duplex-stream-like","isNodeReadableStreamLike":"@stdlib/assert/is-node-readable-stream-like","isNodeREPL":"@stdlib/assert/is-node-repl","isNodeStreamLike":"@stdlib/assert/is-node-stream-like","isNodeTransformStreamLike":"@stdlib/assert/is-node-transform-stream-like","isNodeWritableStreamLike":"@stdlib/assert/is-node-writable-stream-like","isNonConfigurableProperty":"@stdlib/assert/is-nonconfigurable-property","isNonConfigurablePropertyIn":"@stdlib/assert/is-nonconfigurable-property-in","isNonEnumerableProperty":"@stdlib/assert/is-nonenumerable-property","isNonEnumerablePropertyIn":"@stdlib/assert/is-nonenumerable-property-in","isNonNegativeInteger":"@stdlib/assert/is-nonnegative-integer","isNonNegativeIntegerArray":"@stdlib/assert/is-nonnegative-integer-array","isNonNegativeNumber":"@stdlib/assert/is-nonnegative-number","isNonNegativeNumberArray":"@stdlib/assert/is-nonnegative-number-array","isNonPositiveInteger":"@stdlib/assert/is-nonpositive-integer","isNonPositiveIntegerArray":"@stdlib/assert/is-nonpositive-integer-array","isNonPositiveNumber":"@stdlib/assert/is-nonpositive-number","isNonPositiveNumberArray":"@stdlib/assert/is-nonpositive-number-array","isNonSymmetricMatrix":"@stdlib/assert/is-nonsymmetric-matrix","isNull":"@stdlib/assert/is-null","isNullArray":"@stdlib/assert/is-null-array","isNumber":"@stdlib/assert/is-number","isNumberArray":"@stdlib/assert/is-number-array","isNumericArray":"@stdlib/assert/is-numeric-array","isObject":"@stdlib/assert/is-object","isObjectArray":"@stdlib/assert/is-object-array","isObjectLike":"@stdlib/assert/is-object-like","isOdd":"@stdlib/assert/is-odd","isoWeeksInYear":"@stdlib/time/iso-weeks-in-year","isPersymmetricMatrix":"@stdlib/assert/is-persymmetric-matrix","isPlainObject":"@stdlib/assert/is-plain-object","isPlainObjectArray":"@stdlib/assert/is-plain-object-array","isPositiveInteger":"@stdlib/assert/is-positive-integer","isPositiveIntegerArray":"@stdlib/assert/is-positive-integer-array","isPositiveNumber":"@stdlib/assert/is-positive-number","isPositiveNumberArray":"@stdlib/assert/is-positive-number-array","isPositiveZero":"@stdlib/assert/is-positive-zero","isPrime":"@stdlib/assert/is-prime","isPrimitive":"@stdlib/assert/is-primitive","isPrimitiveArray":"@stdlib/assert/is-primitive-array","isPRNGLike":"@stdlib/assert/is-prng-like","isProbability":"@stdlib/assert/is-probability","isProbabilityArray":"@stdlib/assert/is-probability-array","isPropertyKey":"@stdlib/assert/is-property-key","isPrototypeOf":"@stdlib/assert/is-prototype-of","isRangeError":"@stdlib/assert/is-range-error","isReadableProperty":"@stdlib/assert/is-readable-property","isReadablePropertyIn":"@stdlib/assert/is-readable-property-in","isReadOnlyProperty":"@stdlib/assert/is-read-only-property","isReadOnlyPropertyIn":"@stdlib/assert/is-read-only-property-in","isReadWriteProperty":"@stdlib/assert/is-read-write-property","isReadWritePropertyIn":"@stdlib/assert/is-read-write-property-in","isReferenceError":"@stdlib/assert/is-reference-error","isRegExp":"@stdlib/assert/is-regexp","isRegExpString":"@stdlib/assert/is-regexp-string","isRelativePath":"@stdlib/assert/is-relative-path","isSafeInteger":"@stdlib/assert/is-safe-integer","isSafeIntegerArray":"@stdlib/assert/is-safe-integer-array","isSameNativeClass":"@stdlib/assert/is-same-native-class","isSameType":"@stdlib/assert/is-same-type","isSameValue":"@stdlib/assert/is-same-value","isSameValueZero":"@stdlib/assert/is-same-value-zero","isSharedArrayBuffer":"@stdlib/assert/is-sharedarraybuffer","isSkewCentrosymmetricMatrix":"@stdlib/assert/is-skew-centrosymmetric-matrix","isSkewPersymmetricMatrix":"@stdlib/assert/is-skew-persymmetric-matrix","isSkewSymmetricMatrix":"@stdlib/assert/is-skew-symmetric-matrix","isSquareMatrix":"@stdlib/assert/is-square-matrix","isSquareNumber":"@stdlib/assert/is-square-number","isSquareTriangularNumber":"@stdlib/assert/is-square-triangular-number","isStrictEqual":"@stdlib/assert/is-strict-equal","isString":"@stdlib/assert/is-string","isStringArray":"@stdlib/assert/is-string-array","isSymbol":"@stdlib/assert/is-symbol","isSymbolArray":"@stdlib/assert/is-symbol-array","isSymmetricMatrix":"@stdlib/assert/is-symmetric-matrix","isSyntaxError":"@stdlib/assert/is-syntax-error","isTriangularNumber":"@stdlib/assert/is-triangular-number","isTruthy":"@stdlib/assert/is-truthy","isTruthyArray":"@stdlib/assert/is-truthy-array","isTypedArray":"@stdlib/assert/is-typed-array","isTypedArrayLength":"@stdlib/assert/is-typed-array-length","isTypedArrayLike":"@stdlib/assert/is-typed-array-like","isTypeError":"@stdlib/assert/is-type-error","isUint8Array":"@stdlib/assert/is-uint8array","isUint8ClampedArray":"@stdlib/assert/is-uint8clampedarray","isUint16Array":"@stdlib/assert/is-uint16array","isUint32Array":"@stdlib/assert/is-uint32array","isUNCPath":"@stdlib/assert/is-unc-path","isUndefined":"@stdlib/assert/is-undefined","isUndefinedOrNull":"@stdlib/assert/is-undefined-or-null","isUnityProbabilityArray":"@stdlib/assert/is-unity-probability-array","isUppercase":"@stdlib/assert/is-uppercase","isURI":"@stdlib/assert/is-uri","isURIError":"@stdlib/assert/is-uri-error","isVectorLike":"@stdlib/assert/is-vector-like","isWhitespace":"@stdlib/assert/is-whitespace","isWritableProperty":"@stdlib/assert/is-writable-property","isWritablePropertyIn":"@stdlib/assert/is-writable-property-in","isWriteOnlyProperty":"@stdlib/assert/is-write-only-property","isWriteOnlyPropertyIn":"@stdlib/assert/is-write-only-property-in","iterAbs":"@stdlib/math/iter/special/abs","iterAbs2":"@stdlib/math/iter/special/abs2","iterAcos":"@stdlib/math/iter/special/acos","iterAcosh":"@stdlib/math/iter/special/acosh","iterAcot":"@stdlib/math/iter/special/acot","iterAcoth":"@stdlib/math/iter/special/acoth","iterAcovercos":"@stdlib/math/iter/special/acovercos","iterAcoversin":"@stdlib/math/iter/special/acoversin","iterAdd":"@stdlib/math/iter/ops/add","iterAdvance":"@stdlib/iter/advance","iterAhavercos":"@stdlib/math/iter/special/ahavercos","iterAhaversin":"@stdlib/math/iter/special/ahaversin","iterAny":"@stdlib/iter/any","iterAnyBy":"@stdlib/iter/any-by","iterAsin":"@stdlib/math/iter/special/asin","iterAsinh":"@stdlib/math/iter/special/asinh","iterAtan":"@stdlib/math/iter/special/atan","iterAtan2":"@stdlib/math/iter/special/atan2","iterAtanh":"@stdlib/math/iter/special/atanh","iterator2array":"@stdlib/array/from-iterator","iterator2arrayview":"@stdlib/iter/to-array-view","iterator2arrayviewRight":"@stdlib/iter/to-array-view-right","iteratorStream":"@stdlib/streams/node/from-iterator","IteratorSymbol":"@stdlib/symbol/iterator","iterAvercos":"@stdlib/math/iter/special/avercos","iterAversin":"@stdlib/math/iter/special/aversin","iterawgn":"@stdlib/simulate/iter/awgn","iterawln":"@stdlib/simulate/iter/awln","iterawun":"@stdlib/simulate/iter/awun","iterBartlettHannPulse":"@stdlib/simulate/iter/bartlett-hann-pulse","iterBartlettPulse":"@stdlib/simulate/iter/bartlett-pulse","iterBesselj0":"@stdlib/math/iter/special/besselj0","iterBesselj1":"@stdlib/math/iter/special/besselj1","iterBessely0":"@stdlib/math/iter/special/bessely0","iterBessely1":"@stdlib/math/iter/special/bessely1","iterBeta":"@stdlib/math/iter/special/beta","iterBetaln":"@stdlib/math/iter/special/betaln","iterBinet":"@stdlib/math/iter/special/binet","iterCbrt":"@stdlib/math/iter/special/cbrt","iterCeil":"@stdlib/math/iter/special/ceil","iterCeil2":"@stdlib/math/iter/special/ceil2","iterCeil10":"@stdlib/math/iter/special/ceil10","iterCompositesSeq":"@stdlib/math/iter/sequences/composites","iterConcat":"@stdlib/iter/concat","iterConstant":"@stdlib/iter/constant","iterContinuedFraction":"@stdlib/math/iter/utils/continued-fraction","iterContinuedFractionSeq":"@stdlib/math/iter/sequences/continued-fraction","iterCos":"@stdlib/math/iter/special/cos","iterCosh":"@stdlib/math/iter/special/cosh","iterCosineWave":"@stdlib/simulate/iter/cosine-wave","iterCosm1":"@stdlib/math/iter/special/cosm1","iterCospi":"@stdlib/math/iter/special/cospi","iterCounter":"@stdlib/iter/counter","iterCovercos":"@stdlib/math/iter/special/covercos","iterCoversin":"@stdlib/math/iter/special/coversin","iterCubesSeq":"@stdlib/math/iter/sequences/cubes","itercugmean":"@stdlib/stats/iter/cugmean","itercuhmean":"@stdlib/stats/iter/cuhmean","itercumax":"@stdlib/stats/iter/cumax","itercumaxabs":"@stdlib/stats/iter/cumaxabs","itercumean":"@stdlib/stats/iter/cumean","itercumeanabs":"@stdlib/stats/iter/cumeanabs","itercumeanabs2":"@stdlib/stats/iter/cumeanabs2","itercumidrange":"@stdlib/stats/iter/cumidrange","itercumin":"@stdlib/stats/iter/cumin","itercuminabs":"@stdlib/stats/iter/cuminabs","itercuprod":"@stdlib/stats/iter/cuprod","itercurange":"@stdlib/stats/iter/curange","itercusum":"@stdlib/stats/iter/cusum","itercusumabs":"@stdlib/stats/iter/cusumabs","itercusumabs2":"@stdlib/stats/iter/cusumabs2","iterDatespace":"@stdlib/iter/datespace","iterDedupe":"@stdlib/iter/dedupe","iterDedupeBy":"@stdlib/iter/dedupe-by","iterDeg2rad":"@stdlib/math/iter/special/deg2rad","iterDigamma":"@stdlib/math/iter/special/digamma","iterDiracComb":"@stdlib/simulate/iter/dirac-comb","iterDiracDelta":"@stdlib/math/iter/special/dirac-delta","iterDivide":"@stdlib/math/iter/ops/divide","iterEllipe":"@stdlib/math/iter/special/ellipe","iterEllipk":"@stdlib/math/iter/special/ellipk","iterEmpty":"@stdlib/iter/empty","iterErf":"@stdlib/math/iter/special/erf","iterErfc":"@stdlib/math/iter/special/erfc","iterErfcinv":"@stdlib/math/iter/special/erfcinv","iterErfinv":"@stdlib/math/iter/special/erfinv","iterEta":"@stdlib/math/iter/special/dirichlet-eta","iterEvenIntegersSeq":"@stdlib/math/iter/sequences/even-integers","iterEvery":"@stdlib/iter/every","iterEveryBy":"@stdlib/iter/every-by","iterExp":"@stdlib/math/iter/special/exp","iterExp2":"@stdlib/math/iter/special/exp2","iterExp10":"@stdlib/math/iter/special/exp10","iterExpit":"@stdlib/math/iter/special/expit","iterExpm1":"@stdlib/math/iter/special/expm1","iterExpm1rel":"@stdlib/math/iter/special/expm1rel","iterFactorial":"@stdlib/math/iter/special/factorial","iterFactorialln":"@stdlib/math/iter/special/factorialln","iterFactorialsSeq":"@stdlib/math/iter/sequences/factorials","iterFibonacciSeq":"@stdlib/math/iter/sequences/fibonacci","iterFifthPowersSeq":"@stdlib/math/iter/sequences/fifth-powers","iterFill":"@stdlib/iter/fill","iterFilter":"@stdlib/iter/filter","iterFilterMap":"@stdlib/iter/filter-map","iterFirst":"@stdlib/iter/first","iterFlatTopPulse":"@stdlib/simulate/iter/flat-top-pulse","iterFloor":"@stdlib/math/iter/special/floor","iterFloor2":"@stdlib/math/iter/special/floor2","iterFloor10":"@stdlib/math/iter/special/floor10","iterFlow":"@stdlib/iter/flow","iterForEach":"@stdlib/iter/for-each","iterFourthPowersSeq":"@stdlib/math/iter/sequences/fourth-powers","iterFresnelc":"@stdlib/math/iter/special/fresnelc","iterFresnels":"@stdlib/math/iter/special/fresnels","iterGamma":"@stdlib/math/iter/special/gamma","iterGamma1pm1":"@stdlib/math/iter/special/gamma1pm1","iterGammaln":"@stdlib/math/iter/special/gammaln","iterHacovercos":"@stdlib/math/iter/special/hacovercos","iterHacoversin":"@stdlib/math/iter/special/hacoversin","iterHannPulse":"@stdlib/simulate/iter/hann-pulse","iterHavercos":"@stdlib/math/iter/special/havercos","iterHaversin":"@stdlib/math/iter/special/haversin","iterHead":"@stdlib/iter/head","iterIncrspace":"@stdlib/iter/incrspace","iterIntegersSeq":"@stdlib/math/iter/sequences/integers","iterIntersection":"@stdlib/iter/intersection","iterIntersectionByHash":"@stdlib/iter/intersection-by-hash","iterInv":"@stdlib/math/iter/special/inv","iterLanczosPulse":"@stdlib/simulate/iter/lanczos-pulse","iterLast":"@stdlib/iter/last","iterLength":"@stdlib/iter/length","iterLinspace":"@stdlib/iter/linspace","iterLn":"@stdlib/math/iter/special/ln","iterLog":"@stdlib/math/iter/special/log","iterLog1mexp":"@stdlib/math/iter/special/log1mexp","iterLog1p":"@stdlib/math/iter/special/log1p","iterLog1pexp":"@stdlib/math/iter/special/log1pexp","iterLog2":"@stdlib/math/iter/special/log2","iterLog10":"@stdlib/math/iter/special/log10","iterLogit":"@stdlib/math/iter/special/logit","iterLogspace":"@stdlib/iter/logspace","iterLucasSeq":"@stdlib/math/iter/sequences/lucas","iterMap":"@stdlib/iter/map","iterMapN":"@stdlib/iter/mapn","itermax":"@stdlib/stats/iter/max","itermaxabs":"@stdlib/stats/iter/maxabs","itermean":"@stdlib/stats/iter/mean","itermeanabs":"@stdlib/stats/iter/meanabs","itermeanabs2":"@stdlib/stats/iter/meanabs2","itermidrange":"@stdlib/stats/iter/midrange","itermin":"@stdlib/stats/iter/min","iterminabs":"@stdlib/stats/iter/minabs","itermmax":"@stdlib/stats/iter/mmax","itermmaxabs":"@stdlib/stats/iter/mmaxabs","itermmean":"@stdlib/stats/iter/mmean","itermmeanabs":"@stdlib/stats/iter/mmeanabs","itermmeanabs2":"@stdlib/stats/iter/mmeanabs2","itermmidrange":"@stdlib/stats/iter/mmidrange","itermmin":"@stdlib/stats/iter/mmin","itermminabs":"@stdlib/stats/iter/mminabs","iterMod":"@stdlib/math/iter/ops/mod","itermprod":"@stdlib/stats/iter/mprod","itermrange":"@stdlib/stats/iter/mrange","itermsum":"@stdlib/stats/iter/msum","itermsumabs":"@stdlib/stats/iter/msumabs","itermsumabs2":"@stdlib/stats/iter/msumabs2","iterMultiply":"@stdlib/math/iter/ops/multiply","iterNegaFibonacciSeq":"@stdlib/math/iter/sequences/negafibonacci","iterNegaLucasSeq":"@stdlib/math/iter/sequences/negalucas","iterNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/negative-even-integers","iterNegativeIntegersSeq":"@stdlib/math/iter/sequences/negative-integers","iterNegativeOddIntegersSeq":"@stdlib/math/iter/sequences/negative-odd-integers","iterNone":"@stdlib/iter/none","iterNoneBy":"@stdlib/iter/none-by","iterNonFibonacciSeq":"@stdlib/math/iter/sequences/nonfibonacci","iterNonNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-even-integers","iterNonNegativeIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-integers","iterNonPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-even-integers","iterNonPositiveIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-integers","iterNonSquaresSeq":"@stdlib/math/iter/sequences/nonsquares","iterNth":"@stdlib/iter/nth","iterOddIntegersSeq":"@stdlib/math/iter/sequences/odd-integers","iterPeriodicSinc":"@stdlib/simulate/iter/periodic-sinc","iterPipeline":"@stdlib/iter/pipeline","iterPop":"@stdlib/iter/pop","iterPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/positive-even-integers","iterPositiveIntegersSeq":"@stdlib/math/iter/sequences/positive-integers","iterPositiveOddIntegersSeq":"@stdlib/math/iter/sequences/positive-odd-integers","iterPow":"@stdlib/math/iter/special/pow","iterPrimesSeq":"@stdlib/math/iter/sequences/primes","iterprod":"@stdlib/stats/iter/prod","iterPulse":"@stdlib/simulate/iter/pulse","iterPush":"@stdlib/iter/push","iterRad2deg":"@stdlib/math/iter/special/rad2deg","iterRamp":"@stdlib/math/iter/special/ramp","iterrange":"@stdlib/stats/iter/range","iterReject":"@stdlib/iter/reject","iterReplicate":"@stdlib/iter/replicate","iterReplicateBy":"@stdlib/iter/replicate-by","iterRound":"@stdlib/math/iter/special/round","iterRound2":"@stdlib/math/iter/special/round2","iterRound10":"@stdlib/math/iter/special/round10","iterRsqrt":"@stdlib/math/iter/special/rsqrt","iterSawtoothWave":"@stdlib/simulate/iter/sawtooth-wave","iterShift":"@stdlib/iter/shift","iterSignum":"@stdlib/math/iter/special/signum","iterSin":"@stdlib/math/iter/special/sin","iterSinc":"@stdlib/math/iter/special/sinc","iterSineWave":"@stdlib/simulate/iter/sine-wave","iterSinh":"@stdlib/math/iter/special/sinh","iterSinpi":"@stdlib/math/iter/special/sinpi","iterSlice":"@stdlib/iter/slice","iterSome":"@stdlib/iter/some","iterSomeBy":"@stdlib/iter/some-by","iterSpence":"@stdlib/math/iter/special/spence","iterSqrt":"@stdlib/math/iter/special/sqrt","iterSqrt1pm1":"@stdlib/math/iter/special/sqrt1pm1","iterSquaredTriangularSeq":"@stdlib/math/iter/sequences/squared-triangular","iterSquaresSeq":"@stdlib/math/iter/sequences/squares","iterSquareWave":"@stdlib/simulate/iter/square-wave","iterstdev":"@stdlib/stats/iter/stdev","iterStep":"@stdlib/iter/step","iterStrided":"@stdlib/iter/strided","iterStridedBy":"@stdlib/iter/strided-by","iterSubtract":"@stdlib/math/iter/ops/subtract","itersum":"@stdlib/stats/iter/sum","itersumabs":"@stdlib/stats/iter/sumabs","itersumabs2":"@stdlib/stats/iter/sumabs2","iterTan":"@stdlib/math/iter/special/tan","iterTanh":"@stdlib/math/iter/special/tanh","iterThunk":"@stdlib/iter/pipeline-thunk","iterTriangleWave":"@stdlib/simulate/iter/triangle-wave","iterTriangularSeq":"@stdlib/math/iter/sequences/triangular","iterTrigamma":"@stdlib/math/iter/special/trigamma","iterTrunc":"@stdlib/math/iter/special/trunc","iterTrunc2":"@stdlib/math/iter/special/trunc2","iterTrunc10":"@stdlib/math/iter/special/trunc10","iterUnion":"@stdlib/iter/union","iterUnique":"@stdlib/iter/unique","iterUniqueBy":"@stdlib/iter/unique-by","iterUniqueByHash":"@stdlib/iter/unique-by-hash","iterUnitspace":"@stdlib/iter/unitspace","iterUnshift":"@stdlib/iter/unshift","itervariance":"@stdlib/stats/iter/variance","iterVercos":"@stdlib/math/iter/special/vercos","iterVersin":"@stdlib/math/iter/special/versin","iterZeta":"@stdlib/math/iter/special/riemann-zeta","joinStream":"@stdlib/streams/node/join","kde2d":"@stdlib/stats/kde2d","kebabcase":"@stdlib/string/kebabcase","keyBy":"@stdlib/utils/key-by","keyByRight":"@stdlib/utils/key-by-right","keysIn":"@stdlib/utils/keys-in","kruskalTest":"@stdlib/stats/kruskal-test","kstest":"@stdlib/stats/kstest","lda":"@stdlib/nlp/lda","leveneTest":"@stdlib/stats/levene-test","LinkedList":"@stdlib/utils/linked-list","linspace":"@stdlib/array/linspace","LIU_NEGATIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-negative-opinion-words-en","LIU_POSITIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-positive-opinion-words-en","LN_HALF":"@stdlib/constants/float64/ln-half","LN_PI":"@stdlib/constants/float64/ln-pi","LN_SQRT_TWO_PI":"@stdlib/constants/float64/ln-sqrt-two-pi","LN_TWO_PI":"@stdlib/constants/float64/ln-two-pi","LN2":"@stdlib/constants/float64/ln-two","LN10":"@stdlib/constants/float64/ln-ten","LOG2E":"@stdlib/constants/float64/log2-e","LOG10E":"@stdlib/constants/float64/log10-e","logspace":"@stdlib/array/logspace","lowercase":"@stdlib/string/lowercase","lowercaseKeys":"@stdlib/utils/lowercase-keys","lowess":"@stdlib/stats/lowess","lpad":"@stdlib/string/left-pad","ltrim":"@stdlib/string/left-trim","MALE_FIRST_NAMES_EN":"@stdlib/datasets/male-first-names-en","map":"@stdlib/utils/map","map2":"@stdlib/utils/map2","map2d":"@stdlib/utils/map2d","map2Right":"@stdlib/utils/map2-right","map3d":"@stdlib/utils/map3d","map4d":"@stdlib/utils/map4d","map5d":"@stdlib/utils/map5d","mapArguments":"@stdlib/utils/map-arguments","mapFun":"@stdlib/utils/map-function","mapFunAsync":"@stdlib/utils/async/map-function","mapKeys":"@stdlib/utils/map-keys","mapKeysAsync":"@stdlib/utils/async/map-keys","mapReduce":"@stdlib/utils/map-reduce","mapReduceRight":"@stdlib/utils/map-reduce-right","mapRight":"@stdlib/utils/map-right","mapValues":"@stdlib/utils/map-values","mapValuesAsync":"@stdlib/utils/async/map-values","maskArguments":"@stdlib/utils/mask-arguments","MAX_ARRAY_LENGTH":"@stdlib/constants/array/max-array-length","MAX_TYPED_ARRAY_LENGTH":"@stdlib/constants/array/max-typed-array-length","memoize":"@stdlib/utils/memoize","merge":"@stdlib/utils/merge","MILLISECONDS_IN_DAY":"@stdlib/constants/time/milliseconds-in-day","MILLISECONDS_IN_HOUR":"@stdlib/constants/time/milliseconds-in-hour","MILLISECONDS_IN_MINUTE":"@stdlib/constants/time/milliseconds-in-minute","MILLISECONDS_IN_SECOND":"@stdlib/constants/time/milliseconds-in-second","MILLISECONDS_IN_WEEK":"@stdlib/constants/time/milliseconds-in-week","MINARD_NAPOLEONS_MARCH":"@stdlib/datasets/minard-napoleons-march","MINUTES_IN_DAY":"@stdlib/constants/time/minutes-in-day","MINUTES_IN_HOUR":"@stdlib/constants/time/minutes-in-hour","MINUTES_IN_WEEK":"@stdlib/constants/time/minutes-in-week","minutesInMonth":"@stdlib/time/minutes-in-month","minutesInYear":"@stdlib/time/minutes-in-year","MOBY_DICK":"@stdlib/datasets/moby-dick","MONTH_NAMES_EN":"@stdlib/datasets/month-names-en","MONTHS_IN_YEAR":"@stdlib/constants/time/months-in-year","moveProperty":"@stdlib/utils/move-property","namedtypedtuple":"@stdlib/utils/named-typed-tuple","naryFunction":"@stdlib/utils/nary-function","nativeClass":"@stdlib/utils/native-class","ndarray":"@stdlib/ndarray/ctor","ndarrayCastingModes":"@stdlib/ndarray/casting-modes","ndarrayDataTypes":"@stdlib/ndarray/dtypes","ndarrayDispatch":"@stdlib/ndarray/dispatch","ndarrayIndexModes":"@stdlib/ndarray/index-modes","ndarrayMinDataType":"@stdlib/ndarray/min-dtype","ndarrayNextDataType":"@stdlib/ndarray/next-dtype","ndarrayOrders":"@stdlib/ndarray/orders","ndarrayPromotionRules":"@stdlib/ndarray/promotion-rules","ndarraySafeCasts":"@stdlib/ndarray/safe-casts","ndarraySameKindCasts":"@stdlib/ndarray/same-kind-casts","ndzeros":"@stdlib/ndarray/zeros","ndzerosLike":"@stdlib/ndarray/zeros-like","nextGraphemeClusterBreak":"@stdlib/string/next-grapheme-cluster-break","nextTick":"@stdlib/utils/next-tick","NIGHTINGALES_ROSE":"@stdlib/datasets/nightingales-rose","NINF":"@stdlib/constants/float64/ninf","NODE_VERSION":"@stdlib/process/node-version","none":"@stdlib/utils/none","noneBy":"@stdlib/utils/none-by","noneByAsync":"@stdlib/utils/async/none-by","noneByRight":"@stdlib/utils/none-by-right","noneByRightAsync":"@stdlib/utils/async/none-by-right","nonEnumerableProperties":"@stdlib/utils/nonenumerable-properties","nonEnumerablePropertiesIn":"@stdlib/utils/nonenumerable-properties-in","nonEnumerablePropertyNames":"@stdlib/utils/nonenumerable-property-names","nonEnumerablePropertyNamesIn":"@stdlib/utils/nonenumerable-property-names-in","nonEnumerablePropertySymbols":"@stdlib/utils/nonenumerable-property-symbols","nonEnumerablePropertySymbolsIn":"@stdlib/utils/nonenumerable-property-symbols-in","nonIndexKeys":"@stdlib/utils/nonindex-keys","noop":"@stdlib/utils/noop","now":"@stdlib/time/now","NUM_CPUS":"@stdlib/os/num-cpus","Number":"@stdlib/number/ctor","numGraphemeClusters":"@stdlib/string/num-grapheme-clusters","objectEntries":"@stdlib/utils/entries","objectEntriesIn":"@stdlib/utils/entries-in","objectFromEntries":"@stdlib/utils/from-entries","objectInverse":"@stdlib/utils/object-inverse","objectInverseBy":"@stdlib/utils/object-inverse-by","objectKeys":"@stdlib/utils/keys","objectValues":"@stdlib/utils/values","objectValuesIn":"@stdlib/utils/values-in","omit":"@stdlib/utils/omit","omitBy":"@stdlib/utils/omit-by","open":"@stdlib/fs/open","openURL":"@stdlib/utils/open-url","PACE_BOSTON_HOUSE_PRICES":"@stdlib/datasets/pace-boston-house-prices","pad":"@stdlib/string/pad","padjust":"@stdlib/stats/padjust","papply":"@stdlib/utils/papply","papplyRight":"@stdlib/utils/papply-right","parallel":"@stdlib/utils/parallel","parseJSON":"@stdlib/utils/parse-json","pascalcase":"@stdlib/string/pascalcase","PATH_DELIMITER":"@stdlib/constants/path/delimiter","PATH_DELIMITER_POSIX":"@stdlib/constants/path/delimiter-posix","PATH_DELIMITER_WIN32":"@stdlib/constants/path/delimiter-win32","PATH_SEP":"@stdlib/constants/path/sep","PATH_SEP_POSIX":"@stdlib/constants/path/sep-posix","PATH_SEP_WIN32":"@stdlib/constants/path/sep-win32","pcorrtest":"@stdlib/stats/pcorrtest","percentEncode":"@stdlib/string/percent-encode","PHI":"@stdlib/constants/float64/phi","PI":"@stdlib/constants/float64/pi","PI_SQUARED":"@stdlib/constants/float64/pi-squared","pick":"@stdlib/utils/pick","pickArguments":"@stdlib/utils/pick-arguments","pickBy":"@stdlib/utils/pick-by","PINF":"@stdlib/constants/float64/pinf","pkg2alias":"@stdlib/namespace/pkg2alias","pkg2related":"@stdlib/namespace/pkg2related","pkg2standalone":"@stdlib/namespace/pkg2standalone","PLATFORM":"@stdlib/os/platform","plot":"@stdlib/plot","Plot":"@stdlib/plot/ctor","pluck":"@stdlib/utils/pluck","pop":"@stdlib/utils/pop","porterStemmer":"@stdlib/nlp/porter-stemmer","prepend":"@stdlib/utils/prepend","PRIMES_100K":"@stdlib/datasets/primes-100k","properties":"@stdlib/utils/properties","propertiesIn":"@stdlib/utils/properties-in","propertyDescriptor":"@stdlib/utils/property-descriptor","propertyDescriptorIn":"@stdlib/utils/property-descriptor-in","propertyDescriptors":"@stdlib/utils/property-descriptors","propertyDescriptorsIn":"@stdlib/utils/property-descriptors-in","propertyNames":"@stdlib/utils/property-names","propertyNamesIn":"@stdlib/utils/property-names-in","propertySymbols":"@stdlib/utils/property-symbols","propertySymbolsIn":"@stdlib/utils/property-symbols-in","Proxy":"@stdlib/proxy/ctor","push":"@stdlib/utils/push","quarterOfYear":"@stdlib/time/quarter-of-year","random.iterators.arcsine":"@stdlib/random/iter/arcsine","random.iterators.bernoulli":"@stdlib/random/iter/bernoulli","random.iterators.beta":"@stdlib/random/iter/beta","random.iterators.betaprime":"@stdlib/random/iter/betaprime","random.iterators.binomial":"@stdlib/random/iter/binomial","random.iterators.boxMuller":"@stdlib/random/iter/box-muller","random.iterators.cauchy":"@stdlib/random/iter/cauchy","random.iterators.chi":"@stdlib/random/iter/chi","random.iterators.chisquare":"@stdlib/random/iter/chisquare","random.iterators.cosine":"@stdlib/random/iter/cosine","random.iterators.discreteUniform":"@stdlib/random/iter/discrete-uniform","random.iterators.erlang":"@stdlib/random/iter/erlang","random.iterators.exponential":"@stdlib/random/iter/exponential","random.iterators.f":"@stdlib/random/iter/f","random.iterators.frechet":"@stdlib/random/iter/frechet","random.iterators.gamma":"@stdlib/random/iter/gamma","random.iterators.geometric":"@stdlib/random/iter/geometric","random.iterators.gumbel":"@stdlib/random/iter/gumbel","random.iterators.hypergeometric":"@stdlib/random/iter/hypergeometric","random.iterators.improvedZiggurat":"@stdlib/random/iter/improved-ziggurat","random.iterators.invgamma":"@stdlib/random/iter/invgamma","random.iterators.kumaraswamy":"@stdlib/random/iter/kumaraswamy","random.iterators.laplace":"@stdlib/random/iter/laplace","random.iterators.levy":"@stdlib/random/iter/levy","random.iterators.logistic":"@stdlib/random/iter/logistic","random.iterators.lognormal":"@stdlib/random/iter/lognormal","random.iterators.minstd":"@stdlib/random/iter/minstd","random.iterators.minstdShuffle":"@stdlib/random/iter/minstd-shuffle","random.iterators.mt19937":"@stdlib/random/iter/mt19937","random.iterators.negativeBinomial":"@stdlib/random/iter/negative-binomial","random.iterators.normal":"@stdlib/random/iter/normal","random.iterators.pareto1":"@stdlib/random/iter/pareto-type1","random.iterators.poisson":"@stdlib/random/iter/poisson","random.iterators.randi":"@stdlib/random/iter/randi","random.iterators.randn":"@stdlib/random/iter/randn","random.iterators.randu":"@stdlib/random/iter/randu","random.iterators.rayleigh":"@stdlib/random/iter/rayleigh","random.iterators.t":"@stdlib/random/iter/t","random.iterators.triangular":"@stdlib/random/iter/triangular","random.iterators.uniform":"@stdlib/random/iter/uniform","random.iterators.weibull":"@stdlib/random/iter/weibull","random.streams.arcsine":"@stdlib/random/streams/arcsine","random.streams.bernoulli":"@stdlib/random/streams/bernoulli","random.streams.beta":"@stdlib/random/streams/beta","random.streams.betaprime":"@stdlib/random/streams/betaprime","random.streams.binomial":"@stdlib/random/streams/binomial","random.streams.boxMuller":"@stdlib/random/streams/box-muller","random.streams.cauchy":"@stdlib/random/streams/cauchy","random.streams.chi":"@stdlib/random/streams/chi","random.streams.chisquare":"@stdlib/random/streams/chisquare","random.streams.cosine":"@stdlib/random/streams/cosine","random.streams.discreteUniform":"@stdlib/random/streams/discrete-uniform","random.streams.erlang":"@stdlib/random/streams/erlang","random.streams.exponential":"@stdlib/random/streams/exponential","random.streams.f":"@stdlib/random/streams/f","random.streams.frechet":"@stdlib/random/streams/frechet","random.streams.gamma":"@stdlib/random/streams/gamma","random.streams.geometric":"@stdlib/random/streams/geometric","random.streams.gumbel":"@stdlib/random/streams/gumbel","random.streams.hypergeometric":"@stdlib/random/streams/hypergeometric","random.streams.improvedZiggurat":"@stdlib/random/streams/improved-ziggurat","random.streams.invgamma":"@stdlib/random/streams/invgamma","random.streams.kumaraswamy":"@stdlib/random/streams/kumaraswamy","random.streams.laplace":"@stdlib/random/streams/laplace","random.streams.levy":"@stdlib/random/streams/levy","random.streams.logistic":"@stdlib/random/streams/logistic","random.streams.lognormal":"@stdlib/random/streams/lognormal","random.streams.minstd":"@stdlib/random/streams/minstd","random.streams.minstdShuffle":"@stdlib/random/streams/minstd-shuffle","random.streams.mt19937":"@stdlib/random/streams/mt19937","random.streams.negativeBinomial":"@stdlib/random/streams/negative-binomial","random.streams.normal":"@stdlib/random/streams/normal","random.streams.pareto1":"@stdlib/random/streams/pareto-type1","random.streams.poisson":"@stdlib/random/streams/poisson","random.streams.randi":"@stdlib/random/streams/randi","random.streams.randn":"@stdlib/random/streams/randn","random.streams.randu":"@stdlib/random/streams/randu","random.streams.rayleigh":"@stdlib/random/streams/rayleigh","random.streams.t":"@stdlib/random/streams/t","random.streams.triangular":"@stdlib/random/streams/triangular","random.streams.uniform":"@stdlib/random/streams/uniform","random.streams.weibull":"@stdlib/random/streams/weibull","ranks":"@stdlib/stats/ranks","readDir":"@stdlib/fs/read-dir","readFile":"@stdlib/fs/read-file","readFileList":"@stdlib/fs/read-file-list","readJSON":"@stdlib/fs/read-json","readWASM":"@stdlib/fs/read-wasm","real":"@stdlib/complex/real","realarray":"@stdlib/array/typed-real","realarrayCtors":"@stdlib/array/typed-real-ctors","realarrayDataTypes":"@stdlib/array/typed-real-dtypes","realf":"@stdlib/complex/realf","realmax":"@stdlib/utils/real-max","realmin":"@stdlib/utils/real-min","reBasename":"@stdlib/regexp/basename","reBasenamePosix":"@stdlib/regexp/basename-posix","reBasenameWindows":"@stdlib/regexp/basename-windows","reColorHexadecimal":"@stdlib/regexp/color-hexadecimal","reDecimalNumber":"@stdlib/regexp/decimal-number","reDirname":"@stdlib/regexp/dirname","reDirnamePosix":"@stdlib/regexp/dirname-posix","reDirnameWindows":"@stdlib/regexp/dirname-windows","reduce":"@stdlib/utils/reduce","reduce2d":"@stdlib/utils/reduce2d","reduceAsync":"@stdlib/utils/async/reduce","reduceRight":"@stdlib/utils/reduce-right","reduceRightAsync":"@stdlib/utils/async/reduce-right","reEOL":"@stdlib/regexp/eol","reExtendedLengthPath":"@stdlib/regexp/extended-length-path","reExtname":"@stdlib/regexp/extname","reExtnamePosix":"@stdlib/regexp/extname-posix","reExtnameWindows":"@stdlib/regexp/extname-windows","reFilename":"@stdlib/regexp/filename","reFilenamePosix":"@stdlib/regexp/filename-posix","reFilenameWindows":"@stdlib/regexp/filename-windows","reFromString":"@stdlib/utils/regexp-from-string","reFunctionName":"@stdlib/regexp/function-name","reim":"@stdlib/complex/reim","reimf":"@stdlib/complex/reimf","rejectArguments":"@stdlib/utils/reject-arguments","removeFirst":"@stdlib/string/remove-first","removeLast":"@stdlib/string/remove-last","removePunctuation":"@stdlib/string/remove-punctuation","removeUTF8BOM":"@stdlib/string/remove-utf8-bom","removeWords":"@stdlib/string/remove-words","rename":"@stdlib/fs/rename","reNativeFunction":"@stdlib/regexp/native-function","reorderArguments":"@stdlib/utils/reorder-arguments","repeat":"@stdlib/string/repeat","replace":"@stdlib/string/replace","reRegExp":"@stdlib/regexp/regexp","rescape":"@stdlib/utils/escape-regexp-string","resolveParentPath":"@stdlib/fs/resolve-parent-path","resolveParentPathBy":"@stdlib/fs/resolve-parent-path-by","reUncPath":"@stdlib/regexp/unc-path","reUtf16SurrogatePair":"@stdlib/regexp/utf16-surrogate-pair","reUtf16UnpairedSurrogate":"@stdlib/regexp/utf16-unpaired-surrogate","reverseArguments":"@stdlib/utils/reverse-arguments","reverseString":"@stdlib/string/reverse","reviveBasePRNG":"@stdlib/random/base/reviver","reviveBuffer":"@stdlib/buffer/reviver","reviveComplex":"@stdlib/complex/reviver","reviveComplex64":"@stdlib/complex/reviver-float32","reviveComplex128":"@stdlib/complex/reviver-float64","reviveError":"@stdlib/error/reviver","reviveTypedArray":"@stdlib/array/reviver","reWhitespace":"@stdlib/regexp/whitespace","rpad":"@stdlib/string/right-pad","rtrim":"@stdlib/string/right-trim","safeintmax":"@stdlib/utils/safe-int-max","safeintmin":"@stdlib/utils/safe-int-min","sample":"@stdlib/random/sample","SAVOY_STOPWORDS_FIN":"@stdlib/datasets/savoy-stopwords-fin","SAVOY_STOPWORDS_FR":"@stdlib/datasets/savoy-stopwords-fr","SAVOY_STOPWORDS_GER":"@stdlib/datasets/savoy-stopwords-ger","SAVOY_STOPWORDS_IT":"@stdlib/datasets/savoy-stopwords-it","SAVOY_STOPWORDS_POR":"@stdlib/datasets/savoy-stopwords-por","SAVOY_STOPWORDS_SP":"@stdlib/datasets/savoy-stopwords-sp","SAVOY_STOPWORDS_SWE":"@stdlib/datasets/savoy-stopwords-swe","scalar2ndarray":"@stdlib/ndarray/from-scalar","sdot":"@stdlib/blas/sdot","SECONDS_IN_DAY":"@stdlib/constants/time/seconds-in-day","SECONDS_IN_HOUR":"@stdlib/constants/time/seconds-in-hour","SECONDS_IN_MINUTE":"@stdlib/constants/time/seconds-in-minute","SECONDS_IN_WEEK":"@stdlib/constants/time/seconds-in-week","secondsInMonth":"@stdlib/time/seconds-in-month","secondsInYear":"@stdlib/time/seconds-in-year","setConfigurableReadOnly":"@stdlib/utils/define-configurable-read-only-property","setConfigurableReadOnlyAccessor":"@stdlib/utils/define-configurable-read-only-accessor","setConfigurableReadWriteAccessor":"@stdlib/utils/define-configurable-read-write-accessor","setConfigurableWriteOnlyAccessor":"@stdlib/utils/define-configurable-write-only-accessor","setMemoizedConfigurableReadOnly":"@stdlib/utils/define-memoized-configurable-read-only-property","setMemoizedReadOnly":"@stdlib/utils/define-memoized-read-only-property","setNonEnumerableProperty":"@stdlib/utils/define-nonenumerable-property","setNonEnumerableReadOnly":"@stdlib/utils/define-nonenumerable-read-only-property","setNonEnumerableReadOnlyAccessor":"@stdlib/utils/define-nonenumerable-read-only-accessor","setNonEnumerableReadWriteAccessor":"@stdlib/utils/define-nonenumerable-read-write-accessor","setNonEnumerableWriteOnlyAccessor":"@stdlib/utils/define-nonenumerable-write-only-accessor","setReadOnly":"@stdlib/utils/define-read-only-property","setReadOnlyAccessor":"@stdlib/utils/define-read-only-accessor","setReadWriteAccessor":"@stdlib/utils/define-read-write-accessor","setWriteOnlyAccessor":"@stdlib/utils/define-write-only-accessor","SharedArrayBuffer":"@stdlib/array/shared-buffer","shift":"@stdlib/utils/shift","shuffle":"@stdlib/random/shuffle","sizeOf":"@stdlib/utils/size-of","snakecase":"@stdlib/string/snakecase","some":"@stdlib/utils/some","someBy":"@stdlib/utils/some-by","someByAsync":"@stdlib/utils/async/some-by","someByRight":"@stdlib/utils/some-by-right","someByRightAsync":"@stdlib/utils/async/some-by-right","SOTU":"@stdlib/datasets/sotu","SPACHE_REVISED":"@stdlib/datasets/spache-revised","SPAM_ASSASSIN":"@stdlib/datasets/spam-assassin","SparklineBase":"@stdlib/plot/sparklines/base/ctor","sparsearray2iterator":"@stdlib/array/to-sparse-iterator","sparsearray2iteratorRight":"@stdlib/array/to-sparse-iterator-right","splitStream":"@stdlib/streams/node/split","SQRT_EPS":"@stdlib/constants/float64/sqrt-eps","SQRT_HALF":"@stdlib/constants/float64/sqrt-half","SQRT_HALF_PI":"@stdlib/constants/float64/sqrt-half-pi","SQRT_PHI":"@stdlib/constants/float64/sqrt-phi","SQRT_PI":"@stdlib/constants/float64/sqrt-pi","SQRT_THREE":"@stdlib/constants/float64/sqrt-three","SQRT_TWO":"@stdlib/constants/float64/sqrt-two","SQRT_TWO_PI":"@stdlib/constants/float64/sqrt-two-pi","SSA_US_BIRTHS_2000_2014":"@stdlib/datasets/ssa-us-births-2000-2014","sswap":"@stdlib/blas/sswap","Stack":"@stdlib/utils/stack","standalone2pkg":"@stdlib/namespace/standalone2pkg","STANDARD_CARD_DECK":"@stdlib/datasets/standard-card-deck","startcase":"@stdlib/string/startcase","startsWith":"@stdlib/string/starts-with","STOPWORDS_EN":"@stdlib/datasets/stopwords-en","strided.abs":"@stdlib/math/strided/special/abs","strided.abs2":"@stdlib/math/strided/special/abs2","strided.abs2By":"@stdlib/math/strided/special/abs2-by","strided.absBy":"@stdlib/math/strided/special/abs-by","strided.add":"@stdlib/math/strided/ops/add","strided.cbrt":"@stdlib/math/strided/special/cbrt","strided.ceil":"@stdlib/math/strided/special/ceil","strided.deg2rad":"@stdlib/math/strided/special/deg2rad","strided.dispatch":"@stdlib/strided/dispatch","strided.floor":"@stdlib/math/strided/special/floor","strided.inv":"@stdlib/math/strided/special/inv","strided.mul":"@stdlib/math/strided/ops/mul","strided.ramp":"@stdlib/math/strided/special/ramp","strided.rsqrt":"@stdlib/math/strided/special/rsqrt","strided.sqrt":"@stdlib/math/strided/special/sqrt","strided.sub":"@stdlib/math/strided/ops/sub","strided.trunc":"@stdlib/math/strided/special/trunc","stridedarray2iterator":"@stdlib/array/to-strided-iterator","stridedArrayStream":"@stdlib/streams/node/from-strided-array","string2buffer":"@stdlib/buffer/from-string","sub2ind":"@stdlib/ndarray/sub2ind","substringAfter":"@stdlib/string/substring-after","substringAfterLast":"@stdlib/string/substring-after-last","substringBefore":"@stdlib/string/substring-before","substringBeforeLast":"@stdlib/string/substring-before-last","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-single-hop-sensor-network","Symbol":"@stdlib/symbol/ctor","tabulate":"@stdlib/utils/tabulate","tabulateBy":"@stdlib/utils/tabulate-by","tabulateByAsync":"@stdlib/utils/async/tabulate-by","tic":"@stdlib/time/tic","timeit":"@stdlib/utils/timeit","tmpdir":"@stdlib/os/tmpdir","toc":"@stdlib/time/toc","tokenize":"@stdlib/nlp/tokenize","transformStream":"@stdlib/streams/node/transform","trim":"@stdlib/string/trim","truncate":"@stdlib/string/truncate","truncateMiddle":"@stdlib/string/truncate-middle","trycatch":"@stdlib/utils/try-catch","trycatchAsync":"@stdlib/utils/async/try-catch","tryFunction":"@stdlib/utils/try-function","tryRequire":"@stdlib/utils/try-require","trythen":"@stdlib/utils/try-then","trythenAsync":"@stdlib/utils/async/try-then","ttest":"@stdlib/stats/ttest","ttest2":"@stdlib/stats/ttest2","TWO_PI":"@stdlib/constants/float64/two-pi","typedarray":"@stdlib/array/typed","typedarray2json":"@stdlib/array/to-json","typedarrayCtors":"@stdlib/array/typed-ctors","typedarrayDataTypes":"@stdlib/array/typed-dtypes","typedarraypool":"@stdlib/array/pool","typemax":"@stdlib/utils/type-max","typemin":"@stdlib/utils/type-min","typeOf":"@stdlib/utils/type-of","UINT8_MAX":"@stdlib/constants/uint8/max","UINT8_NUM_BYTES":"@stdlib/constants/uint8/num-bytes","Uint8Array":"@stdlib/array/uint8","Uint8ClampedArray":"@stdlib/array/uint8c","UINT16_MAX":"@stdlib/constants/uint16/max","UINT16_NUM_BYTES":"@stdlib/constants/uint16/num-bytes","Uint16Array":"@stdlib/array/uint16","UINT32_MAX":"@stdlib/constants/uint32/max","UINT32_NUM_BYTES":"@stdlib/constants/uint32/num-bytes","Uint32Array":"@stdlib/array/uint32","umask":"@stdlib/process/umask","uncapitalize":"@stdlib/string/uncapitalize","uncapitalizeKeys":"@stdlib/utils/uncapitalize-keys","uncurry":"@stdlib/utils/uncurry","uncurryRight":"@stdlib/utils/uncurry-right","UNICODE_MAX":"@stdlib/constants/unicode/max","UNICODE_MAX_BMP":"@stdlib/constants/unicode/max-bmp","UnicodeColumnChartSparkline":"@stdlib/plot/sparklines/unicode/column","UnicodeLineChartSparkline":"@stdlib/plot/sparklines/unicode/line","UnicodeSparkline":"@stdlib/plot/sparklines/unicode","UnicodeTristateChartSparkline":"@stdlib/plot/sparklines/unicode/tristate","UnicodeUpDownChartSparkline":"@stdlib/plot/sparklines/unicode/up-down","UnicodeWinLossChartSparkline":"@stdlib/plot/sparklines/unicode/win-loss","unlink":"@stdlib/fs/unlink","unshift":"@stdlib/utils/unshift","until":"@stdlib/utils/until","untilAsync":"@stdlib/utils/async/until","untilEach":"@stdlib/utils/until-each","untilEachRight":"@stdlib/utils/until-each-right","unzip":"@stdlib/utils/unzip","uppercase":"@stdlib/string/uppercase","uppercaseKeys":"@stdlib/utils/uppercase-keys","US_STATES_ABBR":"@stdlib/datasets/us-states-abbr","US_STATES_CAPITALS":"@stdlib/datasets/us-states-capitals","US_STATES_CAPITALS_NAMES":"@stdlib/datasets/us-states-capitals-names","US_STATES_NAMES":"@stdlib/datasets/us-states-names","US_STATES_NAMES_CAPITALS":"@stdlib/datasets/us-states-names-capitals","utf16ToUTF8Array":"@stdlib/string/utf16-to-utf8-array","vartest":"@stdlib/stats/vartest","waterfall":"@stdlib/utils/async/series-waterfall","whileAsync":"@stdlib/utils/async/while","whileEach":"@stdlib/utils/while-each","whileEachRight":"@stdlib/utils/while-each-right","whilst":"@stdlib/utils/while","wilcoxon":"@stdlib/stats/wilcoxon","writableProperties":"@stdlib/utils/writable-properties","writablePropertiesIn":"@stdlib/utils/writable-properties-in","writablePropertyNames":"@stdlib/utils/writable-property-names","writablePropertyNamesIn":"@stdlib/utils/writable-property-names-in","writablePropertySymbols":"@stdlib/utils/writable-property-symbols","writablePropertySymbolsIn":"@stdlib/utils/writable-property-symbols-in","writeFile":"@stdlib/fs/write-file","zip":"@stdlib/utils/zip","ztest":"@stdlib/stats/ztest","ztest2":"@stdlib/stats/ztest2"}
+module.exports={"abs":"@stdlib/math/special/abs","acartesianPower":"@stdlib/array/cartesian-power","acartesianProduct":"@stdlib/array/cartesian-product","acartesianSquare":"@stdlib/array/cartesian-square","acronym":"@stdlib/string/acronym","aempty":"@stdlib/array/empty","aemptyLike":"@stdlib/array/empty-like","AFINN_96":"@stdlib/datasets/afinn-96","AFINN_111":"@stdlib/datasets/afinn-111","afull":"@stdlib/array/full","afullLike":"@stdlib/array/full-like","alias2pkg":"@stdlib/namespace/alias2pkg","alias2related":"@stdlib/namespace/alias2related","alias2standalone":"@stdlib/namespace/alias2standalone","aliases":"@stdlib/namespace/aliases","allocUnsafe":"@stdlib/buffer/alloc-unsafe","amskfilter":"@stdlib/array/mskfilter","amskput":"@stdlib/array/mskput","amskreject":"@stdlib/array/mskreject","anans":"@stdlib/array/nans","anansLike":"@stdlib/array/nans-like","anova1":"@stdlib/stats/anova1","ANSCOMBES_QUARTET":"@stdlib/datasets/anscombes-quartet","any":"@stdlib/utils/any","anyBy":"@stdlib/utils/any-by","anyByAsync":"@stdlib/utils/async/any-by","anyByRight":"@stdlib/utils/any-by-right","anyByRightAsync":"@stdlib/utils/async/any-by-right","anyInBy":"@stdlib/utils/any-in-by","anyOwnBy":"@stdlib/utils/any-own-by","aones":"@stdlib/array/ones","aonesLike":"@stdlib/array/ones-like","aoneTo":"@stdlib/array/one-to","aoneToLike":"@stdlib/array/one-to-like","APERY":"@stdlib/constants/float64/apery","aplace":"@stdlib/array/place","append":"@stdlib/utils/append","aput":"@stdlib/array/put","ARCH":"@stdlib/os/arch","argumentFunction":"@stdlib/utils/argument-function","ARGV":"@stdlib/process/argv","array":"@stdlib/ndarray/array","array2buffer":"@stdlib/buffer/from-array","array2fancy":"@stdlib/array/to-fancy","array2iterator":"@stdlib/array/to-iterator","array2iteratorRight":"@stdlib/array/to-iterator-right","ArrayBuffer":"@stdlib/array/buffer","arraybuffer2buffer":"@stdlib/buffer/from-arraybuffer","arrayCtors":"@stdlib/array/ctors","arrayDataType":"@stdlib/array/dtype","arrayDataTypes":"@stdlib/array/dtypes","ArrayIndex":"@stdlib/array/index","arrayMinDataType":"@stdlib/array/min-dtype","arrayMostlySafeCasts":"@stdlib/array/mostly-safe-casts","arrayNextDataType":"@stdlib/array/next-dtype","arrayPromotionRules":"@stdlib/array/promotion-rules","arraySafeCasts":"@stdlib/array/safe-casts","arraySameKindCasts":"@stdlib/array/same-kind-casts","arrayShape":"@stdlib/array/shape","arrayStream":"@stdlib/streams/node/from-array","arrayview2iterator":"@stdlib/array/to-view-iterator","arrayview2iteratorRight":"@stdlib/array/to-view-iterator-right","aslice":"@stdlib/array/slice","AsyncIteratorSymbol":"@stdlib/symbol/async-iterator","atake":"@stdlib/array/take","azeros":"@stdlib/array/zeros","azerosLike":"@stdlib/array/zeros-like","azeroTo":"@stdlib/array/zero-to","azeroToLike":"@stdlib/array/zero-to-like","bartlettTest":"@stdlib/stats/bartlett-test","base.abs":"@stdlib/math/base/special/abs","base.abs2":"@stdlib/math/base/special/abs2","base.abs2f":"@stdlib/math/base/special/abs2f","base.absdiff":"@stdlib/math/base/utils/absolute-difference","base.absf":"@stdlib/math/base/special/absf","base.acartesianPower":"@stdlib/array/base/cartesian-power","base.acartesianProduct":"@stdlib/array/base/cartesian-product","base.acartesianSquare":"@stdlib/array/base/cartesian-square","base.acos":"@stdlib/math/base/special/acos","base.acosd":"@stdlib/math/base/special/acosd","base.acosf":"@stdlib/math/base/special/acosf","base.acosh":"@stdlib/math/base/special/acosh","base.acot":"@stdlib/math/base/special/acot","base.acotd":"@stdlib/math/base/special/acotd","base.acotf":"@stdlib/math/base/special/acotf","base.acoth":"@stdlib/math/base/special/acoth","base.acovercos":"@stdlib/math/base/special/acovercos","base.acoversin":"@stdlib/math/base/special/acoversin","base.acsc":"@stdlib/math/base/special/acsc","base.acscd":"@stdlib/math/base/special/acscd","base.acscdf":"@stdlib/math/base/special/acscdf","base.acscf":"@stdlib/math/base/special/acscf","base.acsch":"@stdlib/math/base/special/acsch","base.add":"@stdlib/math/base/ops/add","base.add3":"@stdlib/math/base/ops/add3","base.add4":"@stdlib/math/base/ops/add4","base.add5":"@stdlib/math/base/ops/add5","base.addf":"@stdlib/math/base/ops/addf","base.afilled":"@stdlib/array/base/filled","base.afilled2d":"@stdlib/array/base/filled2d","base.afilled2dBy":"@stdlib/array/base/filled2d-by","base.afilled3d":"@stdlib/array/base/filled3d","base.afilled3dBy":"@stdlib/array/base/filled3d-by","base.afilled4d":"@stdlib/array/base/filled4d","base.afilled4dBy":"@stdlib/array/base/filled4d-by","base.afilled5d":"@stdlib/array/base/filled5d","base.afilled5dBy":"@stdlib/array/base/filled5d-by","base.afilledBy":"@stdlib/array/base/filled-by","base.afillednd":"@stdlib/array/base/fillednd","base.afilledndBy":"@stdlib/array/base/fillednd-by","base.afilter":"@stdlib/array/base/filter","base.afirst":"@stdlib/array/base/first","base.aflatten":"@stdlib/array/base/flatten","base.aflatten2d":"@stdlib/array/base/flatten2d","base.aflatten2dBy":"@stdlib/array/base/flatten2d-by","base.aflatten3d":"@stdlib/array/base/flatten3d","base.aflatten3dBy":"@stdlib/array/base/flatten3d-by","base.aflatten4d":"@stdlib/array/base/flatten4d","base.aflatten4dBy":"@stdlib/array/base/flatten4d-by","base.aflatten5d":"@stdlib/array/base/flatten5d","base.aflatten5dBy":"@stdlib/array/base/flatten5d-by","base.aflattenBy":"@stdlib/array/base/flatten-by","base.afliplr2d":"@stdlib/array/base/fliplr2d","base.afliplr3d":"@stdlib/array/base/fliplr3d","base.afliplr4d":"@stdlib/array/base/fliplr4d","base.afliplr5d":"@stdlib/array/base/fliplr5d","base.aflipud2d":"@stdlib/array/base/flipud2d","base.aflipud3d":"@stdlib/array/base/flipud3d","base.aflipud4d":"@stdlib/array/base/flipud4d","base.aflipud5d":"@stdlib/array/base/flipud5d","base.ahavercos":"@stdlib/math/base/special/ahavercos","base.ahaversin":"@stdlib/math/base/special/ahaversin","base.altcase":"@stdlib/string/base/altcase","base.aones":"@stdlib/array/base/ones","base.aones2d":"@stdlib/array/base/ones2d","base.aones3d":"@stdlib/array/base/ones3d","base.aones4d":"@stdlib/array/base/ones4d","base.aones5d":"@stdlib/array/base/ones5d","base.aonesnd":"@stdlib/array/base/onesnd","base.aoneTo":"@stdlib/array/base/one-to","base.args2multislice":"@stdlib/slice/base/args2multislice","base.asec":"@stdlib/math/base/special/asec","base.asecd":"@stdlib/math/base/special/asecd","base.asecdf":"@stdlib/math/base/special/asecdf","base.asecf":"@stdlib/math/base/special/asecf","base.asech":"@stdlib/math/base/special/asech","base.asin":"@stdlib/math/base/special/asin","base.asind":"@stdlib/math/base/special/asind","base.asindf":"@stdlib/math/base/special/asindf","base.asinf":"@stdlib/math/base/special/asinf","base.asinh":"@stdlib/math/base/special/asinh","base.atan":"@stdlib/math/base/special/atan","base.atan2":"@stdlib/math/base/special/atan2","base.atand":"@stdlib/math/base/special/atand","base.atanf":"@stdlib/math/base/special/atanf","base.atanh":"@stdlib/math/base/special/atanh","base.avercos":"@stdlib/math/base/special/avercos","base.aversin":"@stdlib/math/base/special/aversin","base.azeros":"@stdlib/array/base/zeros","base.azeros2d":"@stdlib/array/base/zeros2d","base.azeros3d":"@stdlib/array/base/zeros3d","base.azeros4d":"@stdlib/array/base/zeros4d","base.azeros5d":"@stdlib/array/base/zeros5d","base.azerosnd":"@stdlib/array/base/zerosnd","base.azeroTo":"@stdlib/array/base/zero-to","base.bernoulli":"@stdlib/math/base/special/bernoulli","base.besselj0":"@stdlib/math/base/special/besselj0","base.besselj1":"@stdlib/math/base/special/besselj1","base.bessely0":"@stdlib/math/base/special/bessely0","base.bessely1":"@stdlib/math/base/special/bessely1","base.beta":"@stdlib/math/base/special/beta","base.betainc":"@stdlib/math/base/special/betainc","base.betaincinv":"@stdlib/math/base/special/betaincinv","base.betaln":"@stdlib/math/base/special/betaln","base.binet":"@stdlib/math/base/special/binet","base.binomcoef":"@stdlib/math/base/special/binomcoef","base.binomcoefln":"@stdlib/math/base/special/binomcoefln","base.boxcox":"@stdlib/math/base/special/boxcox","base.boxcox1p":"@stdlib/math/base/special/boxcox1p","base.boxcox1pinv":"@stdlib/math/base/special/boxcox1pinv","base.boxcoxinv":"@stdlib/math/base/special/boxcoxinv","base.cabs":"@stdlib/math/base/special/cabs","base.cabs2":"@stdlib/math/base/special/cabs2","base.cabs2f":"@stdlib/math/base/special/cabs2f","base.cabsf":"@stdlib/math/base/special/cabsf","base.cadd":"@stdlib/complex/float64/base/add","base.caddf":"@stdlib/complex/float32/base/add","base.camelcase":"@stdlib/string/base/camelcase","base.capitalize":"@stdlib/string/base/capitalize","base.cbrt":"@stdlib/math/base/special/cbrt","base.cbrtf":"@stdlib/math/base/special/cbrtf","base.cceil":"@stdlib/math/base/special/cceil","base.cceilf":"@stdlib/math/base/special/cceilf","base.cceiln":"@stdlib/math/base/special/cceiln","base.ccis":"@stdlib/math/base/special/ccis","base.cdiv":"@stdlib/math/base/ops/cdiv","base.ceil":"@stdlib/math/base/special/ceil","base.ceil2":"@stdlib/math/base/special/ceil2","base.ceil10":"@stdlib/math/base/special/ceil10","base.ceilb":"@stdlib/math/base/special/ceilb","base.ceilf":"@stdlib/math/base/special/ceilf","base.ceiln":"@stdlib/math/base/special/ceiln","base.ceilsd":"@stdlib/math/base/special/ceilsd","base.cexp":"@stdlib/math/base/special/cexp","base.cflipsign":"@stdlib/math/base/special/cflipsign","base.cflipsignf":"@stdlib/math/base/special/cflipsignf","base.cfloor":"@stdlib/math/base/special/cfloor","base.cfloorn":"@stdlib/math/base/special/cfloorn","base.cidentity":"@stdlib/math/base/special/cidentity","base.cidentityf":"@stdlib/math/base/special/cidentityf","base.cinv":"@stdlib/math/base/special/cinv","base.clamp":"@stdlib/math/base/special/clamp","base.clampf":"@stdlib/math/base/special/clampf","base.cmul":"@stdlib/complex/float64/base/mul","base.cmulf":"@stdlib/complex/float32/base/mul","base.cneg":"@stdlib/math/base/ops/cneg","base.cnegf":"@stdlib/math/base/ops/cnegf","base.codePointAt":"@stdlib/string/base/code-point-at","base.constantcase":"@stdlib/string/base/constantcase","base.continuedFraction":"@stdlib/math/base/tools/continued-fraction","base.copysign":"@stdlib/math/base/special/copysign","base.copysignf":"@stdlib/math/base/special/copysignf","base.cos":"@stdlib/math/base/special/cos","base.cosd":"@stdlib/math/base/special/cosd","base.cosh":"@stdlib/math/base/special/cosh","base.cosm1":"@stdlib/math/base/special/cosm1","base.cospi":"@stdlib/math/base/special/cospi","base.cot":"@stdlib/math/base/special/cot","base.cotd":"@stdlib/math/base/special/cotd","base.coth":"@stdlib/math/base/special/coth","base.covercos":"@stdlib/math/base/special/covercos","base.coversin":"@stdlib/math/base/special/coversin","base.cphase":"@stdlib/math/base/special/cphase","base.cpolar":"@stdlib/math/base/special/cpolar","base.cround":"@stdlib/math/base/special/cround","base.croundn":"@stdlib/math/base/special/croundn","base.csc":"@stdlib/math/base/special/csc","base.cscd":"@stdlib/math/base/special/cscd","base.csch":"@stdlib/math/base/special/csch","base.csignum":"@stdlib/math/base/special/csignum","base.csub":"@stdlib/math/base/ops/csub","base.csubf":"@stdlib/math/base/ops/csubf","base.deg2rad":"@stdlib/math/base/special/deg2rad","base.deg2radf":"@stdlib/math/base/special/deg2radf","base.digamma":"@stdlib/math/base/special/digamma","base.diracDelta":"@stdlib/math/base/special/dirac-delta","base.div":"@stdlib/math/base/ops/div","base.divf":"@stdlib/math/base/ops/divf","base.dotcase":"@stdlib/string/base/dotcase","base.dists.arcsine.Arcsine":"@stdlib/stats/base/dists/arcsine/ctor","base.dists.arcsine.cdf":"@stdlib/stats/base/dists/arcsine/cdf","base.dists.arcsine.entropy":"@stdlib/stats/base/dists/arcsine/entropy","base.dists.arcsine.kurtosis":"@stdlib/stats/base/dists/arcsine/kurtosis","base.dists.arcsine.logcdf":"@stdlib/stats/base/dists/arcsine/logcdf","base.dists.arcsine.logpdf":"@stdlib/stats/base/dists/arcsine/logpdf","base.dists.arcsine.mean":"@stdlib/stats/base/dists/arcsine/mean","base.dists.arcsine.median":"@stdlib/stats/base/dists/arcsine/median","base.dists.arcsine.mode":"@stdlib/stats/base/dists/arcsine/mode","base.dists.arcsine.pdf":"@stdlib/stats/base/dists/arcsine/pdf","base.dists.arcsine.quantile":"@stdlib/stats/base/dists/arcsine/quantile","base.dists.arcsine.skewness":"@stdlib/stats/base/dists/arcsine/skewness","base.dists.arcsine.stdev":"@stdlib/stats/base/dists/arcsine/stdev","base.dists.arcsine.variance":"@stdlib/stats/base/dists/arcsine/variance","base.dists.bernoulli.Bernoulli":"@stdlib/stats/base/dists/bernoulli/ctor","base.dists.bernoulli.cdf":"@stdlib/stats/base/dists/bernoulli/cdf","base.dists.bernoulli.entropy":"@stdlib/stats/base/dists/bernoulli/entropy","base.dists.bernoulli.kurtosis":"@stdlib/stats/base/dists/bernoulli/kurtosis","base.dists.bernoulli.mean":"@stdlib/stats/base/dists/bernoulli/mean","base.dists.bernoulli.median":"@stdlib/stats/base/dists/bernoulli/median","base.dists.bernoulli.mgf":"@stdlib/stats/base/dists/bernoulli/mgf","base.dists.bernoulli.mode":"@stdlib/stats/base/dists/bernoulli/mode","base.dists.bernoulli.pmf":"@stdlib/stats/base/dists/bernoulli/pmf","base.dists.bernoulli.quantile":"@stdlib/stats/base/dists/bernoulli/quantile","base.dists.bernoulli.skewness":"@stdlib/stats/base/dists/bernoulli/skewness","base.dists.bernoulli.stdev":"@stdlib/stats/base/dists/bernoulli/stdev","base.dists.bernoulli.variance":"@stdlib/stats/base/dists/bernoulli/variance","base.dists.beta.Beta":"@stdlib/stats/base/dists/beta/ctor","base.dists.beta.cdf":"@stdlib/stats/base/dists/beta/cdf","base.dists.beta.entropy":"@stdlib/stats/base/dists/beta/entropy","base.dists.beta.kurtosis":"@stdlib/stats/base/dists/beta/kurtosis","base.dists.beta.logcdf":"@stdlib/stats/base/dists/beta/logcdf","base.dists.beta.logpdf":"@stdlib/stats/base/dists/beta/logpdf","base.dists.beta.mean":"@stdlib/stats/base/dists/beta/mean","base.dists.beta.median":"@stdlib/stats/base/dists/beta/median","base.dists.beta.mgf":"@stdlib/stats/base/dists/beta/mgf","base.dists.beta.mode":"@stdlib/stats/base/dists/beta/mode","base.dists.beta.pdf":"@stdlib/stats/base/dists/beta/pdf","base.dists.beta.quantile":"@stdlib/stats/base/dists/beta/quantile","base.dists.beta.skewness":"@stdlib/stats/base/dists/beta/skewness","base.dists.beta.stdev":"@stdlib/stats/base/dists/beta/stdev","base.dists.beta.variance":"@stdlib/stats/base/dists/beta/variance","base.dists.betaprime.BetaPrime":"@stdlib/stats/base/dists/betaprime/ctor","base.dists.betaprime.cdf":"@stdlib/stats/base/dists/betaprime/cdf","base.dists.betaprime.kurtosis":"@stdlib/stats/base/dists/betaprime/kurtosis","base.dists.betaprime.logcdf":"@stdlib/stats/base/dists/betaprime/logcdf","base.dists.betaprime.logpdf":"@stdlib/stats/base/dists/betaprime/logpdf","base.dists.betaprime.mean":"@stdlib/stats/base/dists/betaprime/mean","base.dists.betaprime.mode":"@stdlib/stats/base/dists/betaprime/mode","base.dists.betaprime.pdf":"@stdlib/stats/base/dists/betaprime/pdf","base.dists.betaprime.quantile":"@stdlib/stats/base/dists/betaprime/quantile","base.dists.betaprime.skewness":"@stdlib/stats/base/dists/betaprime/skewness","base.dists.betaprime.stdev":"@stdlib/stats/base/dists/betaprime/stdev","base.dists.betaprime.variance":"@stdlib/stats/base/dists/betaprime/variance","base.dists.binomial.Binomial":"@stdlib/stats/base/dists/binomial/ctor","base.dists.binomial.cdf":"@stdlib/stats/base/dists/binomial/cdf","base.dists.binomial.entropy":"@stdlib/stats/base/dists/binomial/entropy","base.dists.binomial.kurtosis":"@stdlib/stats/base/dists/binomial/kurtosis","base.dists.binomial.logpmf":"@stdlib/stats/base/dists/binomial/logpmf","base.dists.binomial.mean":"@stdlib/stats/base/dists/binomial/mean","base.dists.binomial.median":"@stdlib/stats/base/dists/binomial/median","base.dists.binomial.mgf":"@stdlib/stats/base/dists/binomial/mgf","base.dists.binomial.mode":"@stdlib/stats/base/dists/binomial/mode","base.dists.binomial.pmf":"@stdlib/stats/base/dists/binomial/pmf","base.dists.binomial.quantile":"@stdlib/stats/base/dists/binomial/quantile","base.dists.binomial.skewness":"@stdlib/stats/base/dists/binomial/skewness","base.dists.binomial.stdev":"@stdlib/stats/base/dists/binomial/stdev","base.dists.binomial.variance":"@stdlib/stats/base/dists/binomial/variance","base.dists.cauchy.Cauchy":"@stdlib/stats/base/dists/cauchy/ctor","base.dists.cauchy.cdf":"@stdlib/stats/base/dists/cauchy/cdf","base.dists.cauchy.entropy":"@stdlib/stats/base/dists/cauchy/entropy","base.dists.cauchy.logcdf":"@stdlib/stats/base/dists/cauchy/logcdf","base.dists.cauchy.logpdf":"@stdlib/stats/base/dists/cauchy/logpdf","base.dists.cauchy.median":"@stdlib/stats/base/dists/cauchy/median","base.dists.cauchy.mode":"@stdlib/stats/base/dists/cauchy/mode","base.dists.cauchy.pdf":"@stdlib/stats/base/dists/cauchy/pdf","base.dists.cauchy.quantile":"@stdlib/stats/base/dists/cauchy/quantile","base.dists.chi.cdf":"@stdlib/stats/base/dists/chi/cdf","base.dists.chi.Chi":"@stdlib/stats/base/dists/chi/ctor","base.dists.chi.entropy":"@stdlib/stats/base/dists/chi/entropy","base.dists.chi.kurtosis":"@stdlib/stats/base/dists/chi/kurtosis","base.dists.chi.logpdf":"@stdlib/stats/base/dists/chi/logpdf","base.dists.chi.mean":"@stdlib/stats/base/dists/chi/mean","base.dists.chi.mode":"@stdlib/stats/base/dists/chi/mode","base.dists.chi.pdf":"@stdlib/stats/base/dists/chi/pdf","base.dists.chi.quantile":"@stdlib/stats/base/dists/chi/quantile","base.dists.chi.skewness":"@stdlib/stats/base/dists/chi/skewness","base.dists.chi.stdev":"@stdlib/stats/base/dists/chi/stdev","base.dists.chi.variance":"@stdlib/stats/base/dists/chi/variance","base.dists.chisquare.cdf":"@stdlib/stats/base/dists/chisquare/cdf","base.dists.chisquare.ChiSquare":"@stdlib/stats/base/dists/chisquare/ctor","base.dists.chisquare.entropy":"@stdlib/stats/base/dists/chisquare/entropy","base.dists.chisquare.kurtosis":"@stdlib/stats/base/dists/chisquare/kurtosis","base.dists.chisquare.logpdf":"@stdlib/stats/base/dists/chisquare/logpdf","base.dists.chisquare.mean":"@stdlib/stats/base/dists/chisquare/mean","base.dists.chisquare.median":"@stdlib/stats/base/dists/chisquare/median","base.dists.chisquare.mgf":"@stdlib/stats/base/dists/chisquare/mgf","base.dists.chisquare.mode":"@stdlib/stats/base/dists/chisquare/mode","base.dists.chisquare.pdf":"@stdlib/stats/base/dists/chisquare/pdf","base.dists.chisquare.quantile":"@stdlib/stats/base/dists/chisquare/quantile","base.dists.chisquare.skewness":"@stdlib/stats/base/dists/chisquare/skewness","base.dists.chisquare.stdev":"@stdlib/stats/base/dists/chisquare/stdev","base.dists.chisquare.variance":"@stdlib/stats/base/dists/chisquare/variance","base.dists.cosine.cdf":"@stdlib/stats/base/dists/cosine/cdf","base.dists.cosine.Cosine":"@stdlib/stats/base/dists/cosine/ctor","base.dists.cosine.kurtosis":"@stdlib/stats/base/dists/cosine/kurtosis","base.dists.cosine.logcdf":"@stdlib/stats/base/dists/cosine/logcdf","base.dists.cosine.logpdf":"@stdlib/stats/base/dists/cosine/logpdf","base.dists.cosine.mean":"@stdlib/stats/base/dists/cosine/mean","base.dists.cosine.median":"@stdlib/stats/base/dists/cosine/median","base.dists.cosine.mgf":"@stdlib/stats/base/dists/cosine/mgf","base.dists.cosine.mode":"@stdlib/stats/base/dists/cosine/mode","base.dists.cosine.pdf":"@stdlib/stats/base/dists/cosine/pdf","base.dists.cosine.quantile":"@stdlib/stats/base/dists/cosine/quantile","base.dists.cosine.skewness":"@stdlib/stats/base/dists/cosine/skewness","base.dists.cosine.stdev":"@stdlib/stats/base/dists/cosine/stdev","base.dists.cosine.variance":"@stdlib/stats/base/dists/cosine/variance","base.dists.degenerate.cdf":"@stdlib/stats/base/dists/degenerate/cdf","base.dists.degenerate.Degenerate":"@stdlib/stats/base/dists/degenerate/ctor","base.dists.degenerate.entropy":"@stdlib/stats/base/dists/degenerate/entropy","base.dists.degenerate.logcdf":"@stdlib/stats/base/dists/degenerate/logcdf","base.dists.degenerate.logpdf":"@stdlib/stats/base/dists/degenerate/logpdf","base.dists.degenerate.logpmf":"@stdlib/stats/base/dists/degenerate/logpmf","base.dists.degenerate.mean":"@stdlib/stats/base/dists/degenerate/mean","base.dists.degenerate.median":"@stdlib/stats/base/dists/degenerate/median","base.dists.degenerate.mgf":"@stdlib/stats/base/dists/degenerate/mgf","base.dists.degenerate.mode":"@stdlib/stats/base/dists/degenerate/mode","base.dists.degenerate.pdf":"@stdlib/stats/base/dists/degenerate/pdf","base.dists.degenerate.pmf":"@stdlib/stats/base/dists/degenerate/pmf","base.dists.degenerate.quantile":"@stdlib/stats/base/dists/degenerate/quantile","base.dists.degenerate.stdev":"@stdlib/stats/base/dists/degenerate/stdev","base.dists.degenerate.variance":"@stdlib/stats/base/dists/degenerate/variance","base.dists.discreteUniform.cdf":"@stdlib/stats/base/dists/discrete-uniform/cdf","base.dists.discreteUniform.DiscreteUniform":"@stdlib/stats/base/dists/discrete-uniform/ctor","base.dists.discreteUniform.entropy":"@stdlib/stats/base/dists/discrete-uniform/entropy","base.dists.discreteUniform.kurtosis":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","base.dists.discreteUniform.logcdf":"@stdlib/stats/base/dists/discrete-uniform/logcdf","base.dists.discreteUniform.logpmf":"@stdlib/stats/base/dists/discrete-uniform/logpmf","base.dists.discreteUniform.mean":"@stdlib/stats/base/dists/discrete-uniform/mean","base.dists.discreteUniform.median":"@stdlib/stats/base/dists/discrete-uniform/median","base.dists.discreteUniform.mgf":"@stdlib/stats/base/dists/discrete-uniform/mgf","base.dists.discreteUniform.pmf":"@stdlib/stats/base/dists/discrete-uniform/pmf","base.dists.discreteUniform.quantile":"@stdlib/stats/base/dists/discrete-uniform/quantile","base.dists.discreteUniform.skewness":"@stdlib/stats/base/dists/discrete-uniform/skewness","base.dists.discreteUniform.stdev":"@stdlib/stats/base/dists/discrete-uniform/stdev","base.dists.discreteUniform.variance":"@stdlib/stats/base/dists/discrete-uniform/variance","base.dists.erlang.cdf":"@stdlib/stats/base/dists/erlang/cdf","base.dists.erlang.entropy":"@stdlib/stats/base/dists/erlang/entropy","base.dists.erlang.Erlang":"@stdlib/stats/base/dists/erlang/ctor","base.dists.erlang.kurtosis":"@stdlib/stats/base/dists/erlang/kurtosis","base.dists.erlang.logpdf":"@stdlib/stats/base/dists/erlang/logpdf","base.dists.erlang.mean":"@stdlib/stats/base/dists/erlang/mean","base.dists.erlang.mgf":"@stdlib/stats/base/dists/erlang/mgf","base.dists.erlang.mode":"@stdlib/stats/base/dists/erlang/mode","base.dists.erlang.pdf":"@stdlib/stats/base/dists/erlang/pdf","base.dists.erlang.quantile":"@stdlib/stats/base/dists/erlang/quantile","base.dists.erlang.skewness":"@stdlib/stats/base/dists/erlang/skewness","base.dists.erlang.stdev":"@stdlib/stats/base/dists/erlang/stdev","base.dists.erlang.variance":"@stdlib/stats/base/dists/erlang/variance","base.dists.exponential.cdf":"@stdlib/stats/base/dists/exponential/cdf","base.dists.exponential.entropy":"@stdlib/stats/base/dists/exponential/entropy","base.dists.exponential.Exponential":"@stdlib/stats/base/dists/exponential/ctor","base.dists.exponential.kurtosis":"@stdlib/stats/base/dists/exponential/kurtosis","base.dists.exponential.logcdf":"@stdlib/stats/base/dists/exponential/logcdf","base.dists.exponential.logpdf":"@stdlib/stats/base/dists/exponential/logpdf","base.dists.exponential.mean":"@stdlib/stats/base/dists/exponential/mean","base.dists.exponential.median":"@stdlib/stats/base/dists/exponential/median","base.dists.exponential.mgf":"@stdlib/stats/base/dists/exponential/mgf","base.dists.exponential.mode":"@stdlib/stats/base/dists/exponential/mode","base.dists.exponential.pdf":"@stdlib/stats/base/dists/exponential/pdf","base.dists.exponential.quantile":"@stdlib/stats/base/dists/exponential/quantile","base.dists.exponential.skewness":"@stdlib/stats/base/dists/exponential/skewness","base.dists.exponential.stdev":"@stdlib/stats/base/dists/exponential/stdev","base.dists.exponential.variance":"@stdlib/stats/base/dists/exponential/variance","base.dists.f.cdf":"@stdlib/stats/base/dists/f/cdf","base.dists.f.entropy":"@stdlib/stats/base/dists/f/entropy","base.dists.f.F":"@stdlib/stats/base/dists/f/ctor","base.dists.f.kurtosis":"@stdlib/stats/base/dists/f/kurtosis","base.dists.f.mean":"@stdlib/stats/base/dists/f/mean","base.dists.f.mode":"@stdlib/stats/base/dists/f/mode","base.dists.f.pdf":"@stdlib/stats/base/dists/f/pdf","base.dists.f.quantile":"@stdlib/stats/base/dists/f/quantile","base.dists.f.skewness":"@stdlib/stats/base/dists/f/skewness","base.dists.f.stdev":"@stdlib/stats/base/dists/f/stdev","base.dists.f.variance":"@stdlib/stats/base/dists/f/variance","base.dists.frechet.cdf":"@stdlib/stats/base/dists/frechet/cdf","base.dists.frechet.entropy":"@stdlib/stats/base/dists/frechet/entropy","base.dists.frechet.Frechet":"@stdlib/stats/base/dists/frechet/ctor","base.dists.frechet.kurtosis":"@stdlib/stats/base/dists/frechet/kurtosis","base.dists.frechet.logcdf":"@stdlib/stats/base/dists/frechet/logcdf","base.dists.frechet.logpdf":"@stdlib/stats/base/dists/frechet/logpdf","base.dists.frechet.mean":"@stdlib/stats/base/dists/frechet/mean","base.dists.frechet.median":"@stdlib/stats/base/dists/frechet/median","base.dists.frechet.mode":"@stdlib/stats/base/dists/frechet/mode","base.dists.frechet.pdf":"@stdlib/stats/base/dists/frechet/pdf","base.dists.frechet.quantile":"@stdlib/stats/base/dists/frechet/quantile","base.dists.frechet.skewness":"@stdlib/stats/base/dists/frechet/skewness","base.dists.frechet.stdev":"@stdlib/stats/base/dists/frechet/stdev","base.dists.frechet.variance":"@stdlib/stats/base/dists/frechet/variance","base.dists.gamma.cdf":"@stdlib/stats/base/dists/gamma/cdf","base.dists.gamma.entropy":"@stdlib/stats/base/dists/gamma/entropy","base.dists.gamma.Gamma":"@stdlib/stats/base/dists/gamma/ctor","base.dists.gamma.kurtosis":"@stdlib/stats/base/dists/gamma/kurtosis","base.dists.gamma.logcdf":"@stdlib/stats/base/dists/gamma/logcdf","base.dists.gamma.logpdf":"@stdlib/stats/base/dists/gamma/logpdf","base.dists.gamma.mean":"@stdlib/stats/base/dists/gamma/mean","base.dists.gamma.mgf":"@stdlib/stats/base/dists/gamma/mgf","base.dists.gamma.mode":"@stdlib/stats/base/dists/gamma/mode","base.dists.gamma.pdf":"@stdlib/stats/base/dists/gamma/pdf","base.dists.gamma.quantile":"@stdlib/stats/base/dists/gamma/quantile","base.dists.gamma.skewness":"@stdlib/stats/base/dists/gamma/skewness","base.dists.gamma.stdev":"@stdlib/stats/base/dists/gamma/stdev","base.dists.gamma.variance":"@stdlib/stats/base/dists/gamma/variance","base.dists.geometric.cdf":"@stdlib/stats/base/dists/geometric/cdf","base.dists.geometric.entropy":"@stdlib/stats/base/dists/geometric/entropy","base.dists.geometric.Geometric":"@stdlib/stats/base/dists/geometric/ctor","base.dists.geometric.kurtosis":"@stdlib/stats/base/dists/geometric/kurtosis","base.dists.geometric.logcdf":"@stdlib/stats/base/dists/geometric/logcdf","base.dists.geometric.logpmf":"@stdlib/stats/base/dists/geometric/logpmf","base.dists.geometric.mean":"@stdlib/stats/base/dists/geometric/mean","base.dists.geometric.median":"@stdlib/stats/base/dists/geometric/median","base.dists.geometric.mgf":"@stdlib/stats/base/dists/geometric/mgf","base.dists.geometric.mode":"@stdlib/stats/base/dists/geometric/mode","base.dists.geometric.pmf":"@stdlib/stats/base/dists/geometric/pmf","base.dists.geometric.quantile":"@stdlib/stats/base/dists/geometric/quantile","base.dists.geometric.skewness":"@stdlib/stats/base/dists/geometric/skewness","base.dists.geometric.stdev":"@stdlib/stats/base/dists/geometric/stdev","base.dists.geometric.variance":"@stdlib/stats/base/dists/geometric/variance","base.dists.gumbel.cdf":"@stdlib/stats/base/dists/gumbel/cdf","base.dists.gumbel.entropy":"@stdlib/stats/base/dists/gumbel/entropy","base.dists.gumbel.Gumbel":"@stdlib/stats/base/dists/gumbel/ctor","base.dists.gumbel.kurtosis":"@stdlib/stats/base/dists/gumbel/kurtosis","base.dists.gumbel.logcdf":"@stdlib/stats/base/dists/gumbel/logcdf","base.dists.gumbel.logpdf":"@stdlib/stats/base/dists/gumbel/logpdf","base.dists.gumbel.mean":"@stdlib/stats/base/dists/gumbel/mean","base.dists.gumbel.median":"@stdlib/stats/base/dists/gumbel/median","base.dists.gumbel.mgf":"@stdlib/stats/base/dists/gumbel/mgf","base.dists.gumbel.mode":"@stdlib/stats/base/dists/gumbel/mode","base.dists.gumbel.pdf":"@stdlib/stats/base/dists/gumbel/pdf","base.dists.gumbel.quantile":"@stdlib/stats/base/dists/gumbel/quantile","base.dists.gumbel.skewness":"@stdlib/stats/base/dists/gumbel/skewness","base.dists.gumbel.stdev":"@stdlib/stats/base/dists/gumbel/stdev","base.dists.gumbel.variance":"@stdlib/stats/base/dists/gumbel/variance","base.dists.hypergeometric.cdf":"@stdlib/stats/base/dists/hypergeometric/cdf","base.dists.hypergeometric.Hypergeometric":"@stdlib/stats/base/dists/hypergeometric/ctor","base.dists.hypergeometric.kurtosis":"@stdlib/stats/base/dists/hypergeometric/kurtosis","base.dists.hypergeometric.logpmf":"@stdlib/stats/base/dists/hypergeometric/logpmf","base.dists.hypergeometric.mean":"@stdlib/stats/base/dists/hypergeometric/mean","base.dists.hypergeometric.mode":"@stdlib/stats/base/dists/hypergeometric/mode","base.dists.hypergeometric.pmf":"@stdlib/stats/base/dists/hypergeometric/pmf","base.dists.hypergeometric.quantile":"@stdlib/stats/base/dists/hypergeometric/quantile","base.dists.hypergeometric.skewness":"@stdlib/stats/base/dists/hypergeometric/skewness","base.dists.hypergeometric.stdev":"@stdlib/stats/base/dists/hypergeometric/stdev","base.dists.hypergeometric.variance":"@stdlib/stats/base/dists/hypergeometric/variance","base.dists.invgamma.cdf":"@stdlib/stats/base/dists/invgamma/cdf","base.dists.invgamma.entropy":"@stdlib/stats/base/dists/invgamma/entropy","base.dists.invgamma.InvGamma":"@stdlib/stats/base/dists/invgamma/ctor","base.dists.invgamma.kurtosis":"@stdlib/stats/base/dists/invgamma/kurtosis","base.dists.invgamma.logpdf":"@stdlib/stats/base/dists/invgamma/logpdf","base.dists.invgamma.mean":"@stdlib/stats/base/dists/invgamma/mean","base.dists.invgamma.mode":"@stdlib/stats/base/dists/invgamma/mode","base.dists.invgamma.pdf":"@stdlib/stats/base/dists/invgamma/pdf","base.dists.invgamma.quantile":"@stdlib/stats/base/dists/invgamma/quantile","base.dists.invgamma.skewness":"@stdlib/stats/base/dists/invgamma/skewness","base.dists.invgamma.stdev":"@stdlib/stats/base/dists/invgamma/stdev","base.dists.invgamma.variance":"@stdlib/stats/base/dists/invgamma/variance","base.dists.kumaraswamy.cdf":"@stdlib/stats/base/dists/kumaraswamy/cdf","base.dists.kumaraswamy.Kumaraswamy":"@stdlib/stats/base/dists/kumaraswamy/ctor","base.dists.kumaraswamy.kurtosis":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","base.dists.kumaraswamy.logcdf":"@stdlib/stats/base/dists/kumaraswamy/logcdf","base.dists.kumaraswamy.logpdf":"@stdlib/stats/base/dists/kumaraswamy/logpdf","base.dists.kumaraswamy.mean":"@stdlib/stats/base/dists/kumaraswamy/mean","base.dists.kumaraswamy.median":"@stdlib/stats/base/dists/kumaraswamy/median","base.dists.kumaraswamy.mode":"@stdlib/stats/base/dists/kumaraswamy/mode","base.dists.kumaraswamy.pdf":"@stdlib/stats/base/dists/kumaraswamy/pdf","base.dists.kumaraswamy.quantile":"@stdlib/stats/base/dists/kumaraswamy/quantile","base.dists.kumaraswamy.skewness":"@stdlib/stats/base/dists/kumaraswamy/skewness","base.dists.kumaraswamy.stdev":"@stdlib/stats/base/dists/kumaraswamy/stdev","base.dists.kumaraswamy.variance":"@stdlib/stats/base/dists/kumaraswamy/variance","base.dists.laplace.cdf":"@stdlib/stats/base/dists/laplace/cdf","base.dists.laplace.entropy":"@stdlib/stats/base/dists/laplace/entropy","base.dists.laplace.kurtosis":"@stdlib/stats/base/dists/laplace/kurtosis","base.dists.laplace.Laplace":"@stdlib/stats/base/dists/laplace/ctor","base.dists.laplace.logcdf":"@stdlib/stats/base/dists/laplace/logcdf","base.dists.laplace.logpdf":"@stdlib/stats/base/dists/laplace/logpdf","base.dists.laplace.mean":"@stdlib/stats/base/dists/laplace/mean","base.dists.laplace.median":"@stdlib/stats/base/dists/laplace/median","base.dists.laplace.mgf":"@stdlib/stats/base/dists/laplace/mgf","base.dists.laplace.mode":"@stdlib/stats/base/dists/laplace/mode","base.dists.laplace.pdf":"@stdlib/stats/base/dists/laplace/pdf","base.dists.laplace.quantile":"@stdlib/stats/base/dists/laplace/quantile","base.dists.laplace.skewness":"@stdlib/stats/base/dists/laplace/skewness","base.dists.laplace.stdev":"@stdlib/stats/base/dists/laplace/stdev","base.dists.laplace.variance":"@stdlib/stats/base/dists/laplace/variance","base.dists.levy.cdf":"@stdlib/stats/base/dists/levy/cdf","base.dists.levy.entropy":"@stdlib/stats/base/dists/levy/entropy","base.dists.levy.Levy":"@stdlib/stats/base/dists/levy/ctor","base.dists.levy.logcdf":"@stdlib/stats/base/dists/levy/logcdf","base.dists.levy.logpdf":"@stdlib/stats/base/dists/levy/logpdf","base.dists.levy.mean":"@stdlib/stats/base/dists/levy/mean","base.dists.levy.median":"@stdlib/stats/base/dists/levy/median","base.dists.levy.mode":"@stdlib/stats/base/dists/levy/mode","base.dists.levy.pdf":"@stdlib/stats/base/dists/levy/pdf","base.dists.levy.quantile":"@stdlib/stats/base/dists/levy/quantile","base.dists.levy.stdev":"@stdlib/stats/base/dists/levy/stdev","base.dists.levy.variance":"@stdlib/stats/base/dists/levy/variance","base.dists.logistic.cdf":"@stdlib/stats/base/dists/logistic/cdf","base.dists.logistic.entropy":"@stdlib/stats/base/dists/logistic/entropy","base.dists.logistic.kurtosis":"@stdlib/stats/base/dists/logistic/kurtosis","base.dists.logistic.logcdf":"@stdlib/stats/base/dists/logistic/logcdf","base.dists.logistic.Logistic":"@stdlib/stats/base/dists/logistic/ctor","base.dists.logistic.logpdf":"@stdlib/stats/base/dists/logistic/logpdf","base.dists.logistic.mean":"@stdlib/stats/base/dists/logistic/mean","base.dists.logistic.median":"@stdlib/stats/base/dists/logistic/median","base.dists.logistic.mgf":"@stdlib/stats/base/dists/logistic/mgf","base.dists.logistic.mode":"@stdlib/stats/base/dists/logistic/mode","base.dists.logistic.pdf":"@stdlib/stats/base/dists/logistic/pdf","base.dists.logistic.quantile":"@stdlib/stats/base/dists/logistic/quantile","base.dists.logistic.skewness":"@stdlib/stats/base/dists/logistic/skewness","base.dists.logistic.stdev":"@stdlib/stats/base/dists/logistic/stdev","base.dists.logistic.variance":"@stdlib/stats/base/dists/logistic/variance","base.dists.lognormal.cdf":"@stdlib/stats/base/dists/lognormal/cdf","base.dists.lognormal.entropy":"@stdlib/stats/base/dists/lognormal/entropy","base.dists.lognormal.kurtosis":"@stdlib/stats/base/dists/lognormal/kurtosis","base.dists.lognormal.LogNormal":"@stdlib/stats/base/dists/lognormal/ctor","base.dists.lognormal.logcdf":"@stdlib/stats/base/dists/lognormal/logcdf","base.dists.lognormal.logpdf":"@stdlib/stats/base/dists/lognormal/logpdf","base.dists.lognormal.mean":"@stdlib/stats/base/dists/lognormal/mean","base.dists.lognormal.median":"@stdlib/stats/base/dists/lognormal/median","base.dists.lognormal.mode":"@stdlib/stats/base/dists/lognormal/mode","base.dists.lognormal.pdf":"@stdlib/stats/base/dists/lognormal/pdf","base.dists.lognormal.quantile":"@stdlib/stats/base/dists/lognormal/quantile","base.dists.lognormal.skewness":"@stdlib/stats/base/dists/lognormal/skewness","base.dists.lognormal.stdev":"@stdlib/stats/base/dists/lognormal/stdev","base.dists.lognormal.variance":"@stdlib/stats/base/dists/lognormal/variance","base.dists.negativeBinomial.cdf":"@stdlib/stats/base/dists/negative-binomial/cdf","base.dists.negativeBinomial.kurtosis":"@stdlib/stats/base/dists/negative-binomial/kurtosis","base.dists.negativeBinomial.logpmf":"@stdlib/stats/base/dists/negative-binomial/logpmf","base.dists.negativeBinomial.mean":"@stdlib/stats/base/dists/negative-binomial/mean","base.dists.negativeBinomial.mgf":"@stdlib/stats/base/dists/negative-binomial/mgf","base.dists.negativeBinomial.mode":"@stdlib/stats/base/dists/negative-binomial/mode","base.dists.negativeBinomial.NegativeBinomial":"@stdlib/stats/base/dists/negative-binomial/ctor","base.dists.negativeBinomial.pmf":"@stdlib/stats/base/dists/negative-binomial/pmf","base.dists.negativeBinomial.quantile":"@stdlib/stats/base/dists/negative-binomial/quantile","base.dists.negativeBinomial.skewness":"@stdlib/stats/base/dists/negative-binomial/skewness","base.dists.negativeBinomial.stdev":"@stdlib/stats/base/dists/negative-binomial/stdev","base.dists.negativeBinomial.variance":"@stdlib/stats/base/dists/negative-binomial/variance","base.dists.normal.cdf":"@stdlib/stats/base/dists/normal/cdf","base.dists.normal.entropy":"@stdlib/stats/base/dists/normal/entropy","base.dists.normal.kurtosis":"@stdlib/stats/base/dists/normal/kurtosis","base.dists.normal.logcdf":"@stdlib/stats/base/dists/normal/logcdf","base.dists.normal.logpdf":"@stdlib/stats/base/dists/normal/logpdf","base.dists.normal.mean":"@stdlib/stats/base/dists/normal/mean","base.dists.normal.median":"@stdlib/stats/base/dists/normal/median","base.dists.normal.mgf":"@stdlib/stats/base/dists/normal/mgf","base.dists.normal.mode":"@stdlib/stats/base/dists/normal/mode","base.dists.normal.Normal":"@stdlib/stats/base/dists/normal/ctor","base.dists.normal.pdf":"@stdlib/stats/base/dists/normal/pdf","base.dists.normal.quantile":"@stdlib/stats/base/dists/normal/quantile","base.dists.normal.skewness":"@stdlib/stats/base/dists/normal/skewness","base.dists.normal.stdev":"@stdlib/stats/base/dists/normal/stdev","base.dists.normal.variance":"@stdlib/stats/base/dists/normal/variance","base.dists.pareto1.cdf":"@stdlib/stats/base/dists/pareto-type1/cdf","base.dists.pareto1.entropy":"@stdlib/stats/base/dists/pareto-type1/entropy","base.dists.pareto1.kurtosis":"@stdlib/stats/base/dists/pareto-type1/kurtosis","base.dists.pareto1.logcdf":"@stdlib/stats/base/dists/pareto-type1/logcdf","base.dists.pareto1.logpdf":"@stdlib/stats/base/dists/pareto-type1/logpdf","base.dists.pareto1.mean":"@stdlib/stats/base/dists/pareto-type1/mean","base.dists.pareto1.median":"@stdlib/stats/base/dists/pareto-type1/median","base.dists.pareto1.mode":"@stdlib/stats/base/dists/pareto-type1/mode","base.dists.pareto1.Pareto1":"@stdlib/stats/base/dists/pareto-type1/ctor","base.dists.pareto1.pdf":"@stdlib/stats/base/dists/pareto-type1/pdf","base.dists.pareto1.quantile":"@stdlib/stats/base/dists/pareto-type1/quantile","base.dists.pareto1.skewness":"@stdlib/stats/base/dists/pareto-type1/skewness","base.dists.pareto1.stdev":"@stdlib/stats/base/dists/pareto-type1/stdev","base.dists.pareto1.variance":"@stdlib/stats/base/dists/pareto-type1/variance","base.dists.poisson.cdf":"@stdlib/stats/base/dists/poisson/cdf","base.dists.poisson.entropy":"@stdlib/stats/base/dists/poisson/entropy","base.dists.poisson.kurtosis":"@stdlib/stats/base/dists/poisson/kurtosis","base.dists.poisson.logpmf":"@stdlib/stats/base/dists/poisson/logpmf","base.dists.poisson.mean":"@stdlib/stats/base/dists/poisson/mean","base.dists.poisson.median":"@stdlib/stats/base/dists/poisson/median","base.dists.poisson.mgf":"@stdlib/stats/base/dists/poisson/mgf","base.dists.poisson.mode":"@stdlib/stats/base/dists/poisson/mode","base.dists.poisson.pmf":"@stdlib/stats/base/dists/poisson/pmf","base.dists.poisson.Poisson":"@stdlib/stats/base/dists/poisson/ctor","base.dists.poisson.quantile":"@stdlib/stats/base/dists/poisson/quantile","base.dists.poisson.skewness":"@stdlib/stats/base/dists/poisson/skewness","base.dists.poisson.stdev":"@stdlib/stats/base/dists/poisson/stdev","base.dists.poisson.variance":"@stdlib/stats/base/dists/poisson/variance","base.dists.rayleigh.cdf":"@stdlib/stats/base/dists/rayleigh/cdf","base.dists.rayleigh.entropy":"@stdlib/stats/base/dists/rayleigh/entropy","base.dists.rayleigh.kurtosis":"@stdlib/stats/base/dists/rayleigh/kurtosis","base.dists.rayleigh.logcdf":"@stdlib/stats/base/dists/rayleigh/logcdf","base.dists.rayleigh.logpdf":"@stdlib/stats/base/dists/rayleigh/logpdf","base.dists.rayleigh.mean":"@stdlib/stats/base/dists/rayleigh/mean","base.dists.rayleigh.median":"@stdlib/stats/base/dists/rayleigh/median","base.dists.rayleigh.mgf":"@stdlib/stats/base/dists/rayleigh/mgf","base.dists.rayleigh.mode":"@stdlib/stats/base/dists/rayleigh/mode","base.dists.rayleigh.pdf":"@stdlib/stats/base/dists/rayleigh/pdf","base.dists.rayleigh.quantile":"@stdlib/stats/base/dists/rayleigh/quantile","base.dists.rayleigh.Rayleigh":"@stdlib/stats/base/dists/rayleigh/ctor","base.dists.rayleigh.skewness":"@stdlib/stats/base/dists/rayleigh/skewness","base.dists.rayleigh.stdev":"@stdlib/stats/base/dists/rayleigh/stdev","base.dists.rayleigh.variance":"@stdlib/stats/base/dists/rayleigh/variance","base.dists.signrank.cdf":"@stdlib/stats/base/dists/signrank/cdf","base.dists.signrank.pdf":"@stdlib/stats/base/dists/signrank/pdf","base.dists.signrank.quantile":"@stdlib/stats/base/dists/signrank/quantile","base.dists.studentizedRange.cdf":"@stdlib/stats/base/dists/studentized-range/cdf","base.dists.studentizedRange.quantile":"@stdlib/stats/base/dists/studentized-range/quantile","base.dists.t.cdf":"@stdlib/stats/base/dists/t/cdf","base.dists.t.entropy":"@stdlib/stats/base/dists/t/entropy","base.dists.t.kurtosis":"@stdlib/stats/base/dists/t/kurtosis","base.dists.t.logcdf":"@stdlib/stats/base/dists/t/logcdf","base.dists.t.logpdf":"@stdlib/stats/base/dists/t/logpdf","base.dists.t.mean":"@stdlib/stats/base/dists/t/mean","base.dists.t.median":"@stdlib/stats/base/dists/t/median","base.dists.t.mode":"@stdlib/stats/base/dists/t/mode","base.dists.t.pdf":"@stdlib/stats/base/dists/t/pdf","base.dists.t.quantile":"@stdlib/stats/base/dists/t/quantile","base.dists.t.skewness":"@stdlib/stats/base/dists/t/skewness","base.dists.t.stdev":"@stdlib/stats/base/dists/t/stdev","base.dists.t.T":"@stdlib/stats/base/dists/t/ctor","base.dists.t.variance":"@stdlib/stats/base/dists/t/variance","base.dists.triangular.cdf":"@stdlib/stats/base/dists/triangular/cdf","base.dists.triangular.entropy":"@stdlib/stats/base/dists/triangular/entropy","base.dists.triangular.kurtosis":"@stdlib/stats/base/dists/triangular/kurtosis","base.dists.triangular.logcdf":"@stdlib/stats/base/dists/triangular/logcdf","base.dists.triangular.logpdf":"@stdlib/stats/base/dists/triangular/logpdf","base.dists.triangular.mean":"@stdlib/stats/base/dists/triangular/mean","base.dists.triangular.median":"@stdlib/stats/base/dists/triangular/median","base.dists.triangular.mgf":"@stdlib/stats/base/dists/triangular/mgf","base.dists.triangular.mode":"@stdlib/stats/base/dists/triangular/mode","base.dists.triangular.pdf":"@stdlib/stats/base/dists/triangular/pdf","base.dists.triangular.quantile":"@stdlib/stats/base/dists/triangular/quantile","base.dists.triangular.skewness":"@stdlib/stats/base/dists/triangular/skewness","base.dists.triangular.stdev":"@stdlib/stats/base/dists/triangular/stdev","base.dists.triangular.Triangular":"@stdlib/stats/base/dists/triangular/ctor","base.dists.triangular.variance":"@stdlib/stats/base/dists/triangular/variance","base.dists.truncatedNormal.pdf":"@stdlib/stats/base/dists/truncated-normal/pdf","base.dists.uniform.cdf":"@stdlib/stats/base/dists/uniform/cdf","base.dists.uniform.entropy":"@stdlib/stats/base/dists/uniform/entropy","base.dists.uniform.kurtosis":"@stdlib/stats/base/dists/uniform/kurtosis","base.dists.uniform.logcdf":"@stdlib/stats/base/dists/uniform/logcdf","base.dists.uniform.logpdf":"@stdlib/stats/base/dists/uniform/logpdf","base.dists.uniform.mean":"@stdlib/stats/base/dists/uniform/mean","base.dists.uniform.median":"@stdlib/stats/base/dists/uniform/median","base.dists.uniform.mgf":"@stdlib/stats/base/dists/uniform/mgf","base.dists.uniform.pdf":"@stdlib/stats/base/dists/uniform/pdf","base.dists.uniform.quantile":"@stdlib/stats/base/dists/uniform/quantile","base.dists.uniform.skewness":"@stdlib/stats/base/dists/uniform/skewness","base.dists.uniform.stdev":"@stdlib/stats/base/dists/uniform/stdev","base.dists.uniform.Uniform":"@stdlib/stats/base/dists/uniform/ctor","base.dists.uniform.variance":"@stdlib/stats/base/dists/uniform/variance","base.dists.weibull.cdf":"@stdlib/stats/base/dists/weibull/cdf","base.dists.weibull.entropy":"@stdlib/stats/base/dists/weibull/entropy","base.dists.weibull.kurtosis":"@stdlib/stats/base/dists/weibull/kurtosis","base.dists.weibull.logcdf":"@stdlib/stats/base/dists/weibull/logcdf","base.dists.weibull.logpdf":"@stdlib/stats/base/dists/weibull/logpdf","base.dists.weibull.mean":"@stdlib/stats/base/dists/weibull/mean","base.dists.weibull.median":"@stdlib/stats/base/dists/weibull/median","base.dists.weibull.mgf":"@stdlib/stats/base/dists/weibull/mgf","base.dists.weibull.mode":"@stdlib/stats/base/dists/weibull/mode","base.dists.weibull.pdf":"@stdlib/stats/base/dists/weibull/pdf","base.dists.weibull.quantile":"@stdlib/stats/base/dists/weibull/quantile","base.dists.weibull.skewness":"@stdlib/stats/base/dists/weibull/skewness","base.dists.weibull.stdev":"@stdlib/stats/base/dists/weibull/stdev","base.dists.weibull.variance":"@stdlib/stats/base/dists/weibull/variance","base.dists.weibull.Weibull":"@stdlib/stats/base/dists/weibull/ctor","base.ellipe":"@stdlib/math/base/special/ellipe","base.ellipj":"@stdlib/math/base/special/ellipj","base.ellipk":"@stdlib/math/base/special/ellipk","base.endsWith":"@stdlib/string/base/ends-with","base.epsdiff":"@stdlib/math/base/utils/float64-epsilon-difference","base.erf":"@stdlib/math/base/special/erf","base.erfc":"@stdlib/math/base/special/erfc","base.erfcinv":"@stdlib/math/base/special/erfcinv","base.erfcx":"@stdlib/math/base/special/erfcx","base.erfinv":"@stdlib/math/base/special/erfinv","base.eta":"@stdlib/math/base/special/dirichlet-eta","base.evalpoly":"@stdlib/math/base/tools/evalpoly","base.evalrational":"@stdlib/math/base/tools/evalrational","base.exp":"@stdlib/math/base/special/exp","base.exp2":"@stdlib/math/base/special/exp2","base.exp10":"@stdlib/math/base/special/exp10","base.expit":"@stdlib/math/base/special/expit","base.expm1":"@stdlib/math/base/special/expm1","base.expm1rel":"@stdlib/math/base/special/expm1rel","base.exponent":"@stdlib/number/float64/base/exponent","base.exponentf":"@stdlib/number/float32/base/exponent","base.factorial":"@stdlib/math/base/special/factorial","base.factorial2":"@stdlib/math/base/special/factorial2","base.factorialln":"@stdlib/math/base/special/factorialln","base.fallingFactorial":"@stdlib/math/base/special/falling-factorial","base.fibonacci":"@stdlib/math/base/special/fibonacci","base.fibonacciIndex":"@stdlib/math/base/special/fibonacci-index","base.fibpoly":"@stdlib/math/base/tools/fibpoly","base.firstCodePoint":"@stdlib/string/base/first-code-point","base.firstCodeUnit":"@stdlib/string/base/first","base.firstGraphemeCluster":"@stdlib/string/base/first-grapheme-cluster","base.flipsign":"@stdlib/math/base/special/flipsign","base.flipsignf":"@stdlib/math/base/special/flipsignf","base.float32ToInt32":"@stdlib/number/float32/base/to-int32","base.float32ToUint32":"@stdlib/number/float32/base/to-uint32","base.float64ToFloat32":"@stdlib/number/float64/base/to-float32","base.float64ToInt32":"@stdlib/number/float64/base/to-int32","base.float64ToInt64Bytes":"@stdlib/number/float64/base/to-int64-bytes","base.float64ToUint32":"@stdlib/number/float64/base/to-uint32","base.floor":"@stdlib/math/base/special/floor","base.floor2":"@stdlib/math/base/special/floor2","base.floor10":"@stdlib/math/base/special/floor10","base.floorb":"@stdlib/math/base/special/floorb","base.floorf":"@stdlib/math/base/special/floorf","base.floorn":"@stdlib/math/base/special/floorn","base.floorsd":"@stdlib/math/base/special/floorsd","base.forEachChar":"@stdlib/string/base/for-each","base.forEachCodePoint":"@stdlib/string/base/for-each-code-point","base.forEachCodePointRight":"@stdlib/string/base/for-each-code-point-right","base.forEachGraphemeCluster":"@stdlib/string/base/for-each-grapheme-cluster","base.forEachRight":"@stdlib/string/base/for-each-right","base.formatInterpolate":"@stdlib/string/base/format-interpolate","base.formatTokenize":"@stdlib/string/base/format-tokenize","base.fresnel":"@stdlib/math/base/special/fresnel","base.fresnelc":"@stdlib/math/base/special/fresnelc","base.fresnels":"@stdlib/math/base/special/fresnels","base.frexp":"@stdlib/math/base/special/frexp","base.fromBinaryString":"@stdlib/number/float64/base/from-binary-string","base.fromBinaryStringf":"@stdlib/number/float32/base/from-binary-string","base.fromBinaryStringUint8":"@stdlib/number/uint8/base/from-binary-string","base.fromBinaryStringUint16":"@stdlib/number/uint16/base/from-binary-string","base.fromBinaryStringUint32":"@stdlib/number/uint32/base/from-binary-string","base.fromInt64Bytes":"@stdlib/number/float64/base/from-int64-bytes","base.fromWordf":"@stdlib/number/float32/base/from-word","base.fromWords":"@stdlib/number/float64/base/from-words","base.gamma":"@stdlib/math/base/special/gamma","base.gamma1pm1":"@stdlib/math/base/special/gamma1pm1","base.gammaDeltaRatio":"@stdlib/math/base/special/gamma-delta-ratio","base.gammainc":"@stdlib/math/base/special/gammainc","base.gammaincinv":"@stdlib/math/base/special/gammaincinv","base.gammaLanczosSum":"@stdlib/math/base/special/gamma-lanczos-sum","base.gammaLanczosSumExpGScaled":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","base.gammaln":"@stdlib/math/base/special/gammaln","base.gammasgn":"@stdlib/math/base/special/gammasgn","base.gcd":"@stdlib/math/base/special/gcd","base.getHighWord":"@stdlib/number/float64/base/get-high-word","base.getLowWord":"@stdlib/number/float64/base/get-low-word","base.hacovercos":"@stdlib/math/base/special/hacovercos","base.hacoversin":"@stdlib/math/base/special/hacoversin","base.havercos":"@stdlib/math/base/special/havercos","base.haversin":"@stdlib/math/base/special/haversin","base.headercase":"@stdlib/string/base/headercase","base.heaviside":"@stdlib/math/base/special/heaviside","base.hermitepoly":"@stdlib/math/base/tools/hermitepoly","base.hypot":"@stdlib/math/base/special/hypot","base.hypotf":"@stdlib/math/base/special/hypotf","base.identity":"@stdlib/math/base/special/identity","base.identityf":"@stdlib/math/base/special/identityf","base.imul":"@stdlib/math/base/ops/imul","base.imuldw":"@stdlib/math/base/ops/imuldw","base.int2slice":"@stdlib/slice/base/int2slice","base.int32ToUint32":"@stdlib/number/int32/base/to-uint32","base.inv":"@stdlib/math/base/special/inv","base.invcase":"@stdlib/string/base/invcase","base.invf":"@stdlib/math/base/special/invf","base.isComposite":"@stdlib/math/base/assert/is-composite","base.isCoprime":"@stdlib/math/base/assert/is-coprime","base.isEven":"@stdlib/math/base/assert/is-even","base.isEvenInt32":"@stdlib/math/base/assert/int32-is-even","base.isFinite":"@stdlib/math/base/assert/is-finite","base.isFinitef":"@stdlib/math/base/assert/is-finitef","base.isInfinite":"@stdlib/math/base/assert/is-infinite","base.isInfinitef":"@stdlib/math/base/assert/is-infinitef","base.isInteger":"@stdlib/math/base/assert/is-integer","base.isnan":"@stdlib/math/base/assert/is-nan","base.isnanf":"@stdlib/math/base/assert/is-nanf","base.isNegativeFinite":"@stdlib/math/base/assert/is-negative-finite","base.isNegativeInteger":"@stdlib/math/base/assert/is-negative-integer","base.isNegativeZero":"@stdlib/math/base/assert/is-negative-zero","base.isNegativeZerof":"@stdlib/math/base/assert/is-negative-zerof","base.isNonNegativeFinite":"@stdlib/math/base/assert/is-nonnegative-finite","base.isNonNegativeInteger":"@stdlib/math/base/assert/is-nonnegative-integer","base.isNonPositiveFinite":"@stdlib/math/base/assert/is-nonpositive-finite","base.isNonPositiveInteger":"@stdlib/math/base/assert/is-nonpositive-integer","base.isOdd":"@stdlib/math/base/assert/is-odd","base.isOddInt32":"@stdlib/math/base/assert/int32-is-odd","base.isPositiveFinite":"@stdlib/math/base/assert/is-positive-finite","base.isPositiveInteger":"@stdlib/math/base/assert/is-positive-integer","base.isPositiveZero":"@stdlib/math/base/assert/is-positive-zero","base.isPositiveZerof":"@stdlib/math/base/assert/is-positive-zerof","base.isPow2Uint32":"@stdlib/math/base/assert/uint32-is-pow2","base.isPrime":"@stdlib/math/base/assert/is-prime","base.isProbability":"@stdlib/math/base/assert/is-probability","base.isSafeInteger":"@stdlib/math/base/assert/is-safe-integer","base.kebabcase":"@stdlib/string/base/kebabcase","base.kernelBetainc":"@stdlib/math/base/special/kernel-betainc","base.kernelBetaincinv":"@stdlib/math/base/special/kernel-betaincinv","base.kernelCos":"@stdlib/math/base/special/kernel-cos","base.kernelLog1p":"@stdlib/math/base/special/kernel-log1p","base.kernelSin":"@stdlib/math/base/special/kernel-sin","base.kernelTan":"@stdlib/math/base/special/kernel-tan","base.kroneckerDelta":"@stdlib/math/base/special/kronecker-delta","base.kroneckerDeltaf":"@stdlib/math/base/special/kronecker-deltaf","base.labs":"@stdlib/math/base/special/labs","base.last":"@stdlib/string/base/last","base.lastCodePoint":"@stdlib/string/base/last-code-point","base.lastGraphemeCluster":"@stdlib/string/base/last-grapheme-cluster","base.lcm":"@stdlib/math/base/special/lcm","base.ldexp":"@stdlib/math/base/special/ldexp","base.leftPad":"@stdlib/string/base/left-pad","base.leftTrim":"@stdlib/string/base/left-trim","base.ln":"@stdlib/math/base/special/ln","base.log":"@stdlib/math/base/special/log","base.log1mexp":"@stdlib/math/base/special/log1mexp","base.log1p":"@stdlib/math/base/special/log1p","base.log1pexp":"@stdlib/math/base/special/log1pexp","base.log1pmx":"@stdlib/math/base/special/log1pmx","base.log2":"@stdlib/math/base/special/log2","base.log10":"@stdlib/math/base/special/log10","base.logaddexp":"@stdlib/math/base/special/logaddexp","base.logit":"@stdlib/math/base/special/logit","base.lowercase":"@stdlib/string/base/lowercase","base.lucas":"@stdlib/math/base/special/lucas","base.lucaspoly":"@stdlib/math/base/tools/lucaspoly","base.max":"@stdlib/math/base/special/max","base.maxabs":"@stdlib/math/base/special/maxabs","base.maxabsn":"@stdlib/math/base/special/maxabsn","base.maxn":"@stdlib/math/base/special/maxn","base.min":"@stdlib/math/base/special/min","base.minabs":"@stdlib/math/base/special/minabs","base.minabsn":"@stdlib/math/base/special/minabsn","base.minmax":"@stdlib/math/base/special/minmax","base.minmaxabs":"@stdlib/math/base/special/minmaxabs","base.minmaxabsn":"@stdlib/math/base/special/minmaxabsn","base.minmaxn":"@stdlib/math/base/special/minmaxn","base.minn":"@stdlib/math/base/special/minn","base.modf":"@stdlib/math/base/special/modf","base.mul":"@stdlib/math/base/ops/mul","base.mulf":"@stdlib/math/base/ops/mulf","base.ndarray":"@stdlib/ndarray/base/ctor","base.ndarrayUnary":"@stdlib/ndarray/base/unary","base.ndzeros":"@stdlib/ndarray/base/zeros","base.ndzerosLike":"@stdlib/ndarray/base/zeros-like","base.negafibonacci":"@stdlib/math/base/special/negafibonacci","base.negalucas":"@stdlib/math/base/special/negalucas","base.nonfibonacci":"@stdlib/math/base/special/nonfibonacci","base.normalize":"@stdlib/number/float64/base/normalize","base.normalizef":"@stdlib/number/float32/base/normalize","base.normalizeMultiSlice":"@stdlib/slice/base/normalize-multi-slice","base.normalizeSlice":"@stdlib/slice/base/normalize-slice","base.normhermitepoly":"@stdlib/math/base/tools/normhermitepoly","base.pascalcase":"@stdlib/string/base/pascalcase","base.pdiff":"@stdlib/math/base/special/pdiff","base.pdifff":"@stdlib/math/base/special/pdifff","base.percentEncode":"@stdlib/string/base/percent-encode","base.polygamma":"@stdlib/math/base/special/polygamma","base.pow":"@stdlib/math/base/special/pow","base.powm1":"@stdlib/math/base/special/powm1","base.rad2deg":"@stdlib/math/base/special/rad2deg","base.rad2degf":"@stdlib/math/base/special/rad2degf","base.ramp":"@stdlib/math/base/special/ramp","base.rampf":"@stdlib/math/base/special/rampf","base.random.arcsine":"@stdlib/random/base/arcsine","base.random.bernoulli":"@stdlib/random/base/bernoulli","base.random.beta":"@stdlib/random/base/beta","base.random.betaprime":"@stdlib/random/base/betaprime","base.random.binomial":"@stdlib/random/base/binomial","base.random.boxMuller":"@stdlib/random/base/box-muller","base.random.cauchy":"@stdlib/random/base/cauchy","base.random.chi":"@stdlib/random/base/chi","base.random.chisquare":"@stdlib/random/base/chisquare","base.random.cosine":"@stdlib/random/base/cosine","base.random.discreteUniform":"@stdlib/random/base/discrete-uniform","base.random.erlang":"@stdlib/random/base/erlang","base.random.exponential":"@stdlib/random/base/exponential","base.random.f":"@stdlib/random/base/f","base.random.frechet":"@stdlib/random/base/frechet","base.random.gamma":"@stdlib/random/base/gamma","base.random.geometric":"@stdlib/random/base/geometric","base.random.gumbel":"@stdlib/random/base/gumbel","base.random.hypergeometric":"@stdlib/random/base/hypergeometric","base.random.improvedZiggurat":"@stdlib/random/base/improved-ziggurat","base.random.invgamma":"@stdlib/random/base/invgamma","base.random.kumaraswamy":"@stdlib/random/base/kumaraswamy","base.random.laplace":"@stdlib/random/base/laplace","base.random.levy":"@stdlib/random/base/levy","base.random.logistic":"@stdlib/random/base/logistic","base.random.lognormal":"@stdlib/random/base/lognormal","base.random.minstd":"@stdlib/random/base/minstd","base.random.minstdShuffle":"@stdlib/random/base/minstd-shuffle","base.random.mt19937":"@stdlib/random/base/mt19937","base.random.negativeBinomial":"@stdlib/random/base/negative-binomial","base.random.normal":"@stdlib/random/base/normal","base.random.pareto1":"@stdlib/random/base/pareto-type1","base.random.poisson":"@stdlib/random/base/poisson","base.random.randi":"@stdlib/random/base/randi","base.random.randn":"@stdlib/random/base/randn","base.random.randu":"@stdlib/random/base/randu","base.random.rayleigh":"@stdlib/random/base/rayleigh","base.random.t":"@stdlib/random/base/t","base.random.triangular":"@stdlib/random/base/triangular","base.random.uniform":"@stdlib/random/base/uniform","base.random.weibull":"@stdlib/random/base/weibull","base.rcbrt":"@stdlib/math/base/special/rcbrt","base.rcbrtf":"@stdlib/math/base/special/rcbrtf","base.reldiff":"@stdlib/math/base/utils/relative-difference","base.removeFirst":"@stdlib/string/base/remove-first","base.removeFirstCodePoint":"@stdlib/string/base/remove-first-code-point","base.removeFirstGraphemeCluster":"@stdlib/string/base/remove-first-grapheme-cluster","base.removeLast":"@stdlib/string/base/remove-last","base.removeLastCodePoint":"@stdlib/string/base/remove-last-code-point","base.removeLastGraphemeCluster":"@stdlib/string/base/remove-last-grapheme-cluster","base.rempio2":"@stdlib/math/base/special/rempio2","base.repeat":"@stdlib/string/base/repeat","base.replace":"@stdlib/string/base/replace","base.replaceAfter":"@stdlib/string/base/replace-after","base.replaceAfterLast":"@stdlib/string/base/replace-after-last","base.replaceBefore":"@stdlib/string/base/replace-before","base.replaceBeforeLast":"@stdlib/string/base/replace-before-last","base.reverse":"@stdlib/string/base/reverse","base.reverseCodePoints":"@stdlib/string/base/reverse-code-points","base.reverseGraphemeClusters":"@stdlib/string/base/reverse-grapheme-clusters","base.rightPad":"@stdlib/string/base/right-pad","base.rightTrim":"@stdlib/string/base/right-trim","base.risingFactorial":"@stdlib/math/base/special/rising-factorial","base.rotl32":"@stdlib/number/uint32/base/rotl","base.rotr32":"@stdlib/number/uint32/base/rotr","base.round":"@stdlib/math/base/special/round","base.round2":"@stdlib/math/base/special/round2","base.round10":"@stdlib/math/base/special/round10","base.roundb":"@stdlib/math/base/special/roundb","base.roundn":"@stdlib/math/base/special/roundn","base.roundsd":"@stdlib/math/base/special/roundsd","base.rsqrt":"@stdlib/math/base/special/rsqrt","base.rsqrtf":"@stdlib/math/base/special/rsqrtf","base.sargs2multislice":"@stdlib/slice/base/sargs2multislice","base.scalar2ndarray":"@stdlib/ndarray/base/from-scalar","base.secd":"@stdlib/math/base/special/secd","base.seq2multislice":"@stdlib/slice/base/seq2multislice","base.seq2slice":"@stdlib/slice/base/seq2slice","base.setHighWord":"@stdlib/number/float64/base/set-high-word","base.setLowWord":"@stdlib/number/float64/base/set-low-word","base.sici":"@stdlib/math/base/special/sici","base.signbit":"@stdlib/number/float64/base/signbit","base.signbitf":"@stdlib/number/float32/base/signbit","base.significandf":"@stdlib/number/float32/base/significand","base.signum":"@stdlib/math/base/special/signum","base.signumf":"@stdlib/math/base/special/signumf","base.sin":"@stdlib/math/base/special/sin","base.sinc":"@stdlib/math/base/special/sinc","base.sincos":"@stdlib/math/base/special/sincos","base.sincospi":"@stdlib/math/base/special/sincospi","base.sinh":"@stdlib/math/base/special/sinh","base.sinpi":"@stdlib/math/base/special/sinpi","base.slice2seq":"@stdlib/slice/base/slice2seq","base.sliceLength":"@stdlib/slice/base/length","base.sliceNonReducedDimensions":"@stdlib/slice/base/nonreduced-dimensions","base.sliceReducedDimensions":"@stdlib/slice/base/reduced-dimensions","base.sliceShape":"@stdlib/slice/base/shape","base.snakecase":"@stdlib/string/base/snakecase","base.spence":"@stdlib/math/base/special/spence","base.sqrt":"@stdlib/math/base/special/sqrt","base.sqrt1pm1":"@stdlib/math/base/special/sqrt1pm1","base.sqrtf":"@stdlib/math/base/special/sqrtf","base.sqrtpi":"@stdlib/math/base/special/sqrtpi","base.startcase":"@stdlib/string/base/startcase","base.startsWith":"@stdlib/string/base/starts-with","base.stickycase":"@stdlib/string/base/stickycase","base.strided.binary":"@stdlib/strided/base/binary","base.strided.binaryDtypeSignatures":"@stdlib/strided/base/binary-dtype-signatures","base.strided.binarySignatureCallbacks":"@stdlib/strided/base/binary-signature-callbacks","base.strided.ccopy":"@stdlib/blas/base/ccopy","base.strided.cmap":"@stdlib/strided/base/cmap","base.strided.cswap":"@stdlib/blas/base/cswap","base.strided.cumax":"@stdlib/stats/base/cumax","base.strided.cumaxabs":"@stdlib/stats/base/cumaxabs","base.strided.cumin":"@stdlib/stats/base/cumin","base.strided.cuminabs":"@stdlib/stats/base/cuminabs","base.strided.dabs":"@stdlib/math/strided/special/dabs","base.strided.dabs2":"@stdlib/math/strided/special/dabs2","base.strided.dapx":"@stdlib/blas/ext/base/dapx","base.strided.dapxsum":"@stdlib/blas/ext/base/dapxsum","base.strided.dapxsumkbn":"@stdlib/blas/ext/base/dapxsumkbn","base.strided.dapxsumkbn2":"@stdlib/blas/ext/base/dapxsumkbn2","base.strided.dapxsumors":"@stdlib/blas/ext/base/dapxsumors","base.strided.dapxsumpw":"@stdlib/blas/ext/base/dapxsumpw","base.strided.dasum":"@stdlib/blas/base/dasum","base.strided.dasumpw":"@stdlib/blas/ext/base/dasumpw","base.strided.daxpy":"@stdlib/blas/base/daxpy","base.strided.dcbrt":"@stdlib/math/strided/special/dcbrt","base.strided.dceil":"@stdlib/math/strided/special/dceil","base.strided.dcopy":"@stdlib/blas/base/dcopy","base.strided.dcumax":"@stdlib/stats/base/dcumax","base.strided.dcumaxabs":"@stdlib/stats/base/dcumaxabs","base.strided.dcumin":"@stdlib/stats/base/dcumin","base.strided.dcuminabs":"@stdlib/stats/base/dcuminabs","base.strided.dcusum":"@stdlib/blas/ext/base/dcusum","base.strided.dcusumkbn":"@stdlib/blas/ext/base/dcusumkbn","base.strided.dcusumkbn2":"@stdlib/blas/ext/base/dcusumkbn2","base.strided.dcusumors":"@stdlib/blas/ext/base/dcusumors","base.strided.dcusumpw":"@stdlib/blas/ext/base/dcusumpw","base.strided.ddeg2rad":"@stdlib/math/strided/special/ddeg2rad","base.strided.ddot":"@stdlib/blas/base/ddot","base.strided.dfill":"@stdlib/blas/ext/base/dfill","base.strided.dfloor":"@stdlib/math/strided/special/dfloor","base.strided.dinv":"@stdlib/math/strided/special/dinv","base.strided.dmap":"@stdlib/strided/base/dmap","base.strided.dmap2":"@stdlib/strided/base/dmap2","base.strided.dmax":"@stdlib/stats/base/dmax","base.strided.dmaxabs":"@stdlib/stats/base/dmaxabs","base.strided.dmaxabssorted":"@stdlib/stats/base/dmaxabssorted","base.strided.dmaxsorted":"@stdlib/stats/base/dmaxsorted","base.strided.dmean":"@stdlib/stats/base/dmean","base.strided.dmeankbn":"@stdlib/stats/base/dmeankbn","base.strided.dmeankbn2":"@stdlib/stats/base/dmeankbn2","base.strided.dmeanli":"@stdlib/stats/base/dmeanli","base.strided.dmeanlipw":"@stdlib/stats/base/dmeanlipw","base.strided.dmeanors":"@stdlib/stats/base/dmeanors","base.strided.dmeanpn":"@stdlib/stats/base/dmeanpn","base.strided.dmeanpw":"@stdlib/stats/base/dmeanpw","base.strided.dmeanstdev":"@stdlib/stats/base/dmeanstdev","base.strided.dmeanstdevpn":"@stdlib/stats/base/dmeanstdevpn","base.strided.dmeanvar":"@stdlib/stats/base/dmeanvar","base.strided.dmeanvarpn":"@stdlib/stats/base/dmeanvarpn","base.strided.dmeanwd":"@stdlib/stats/base/dmeanwd","base.strided.dmediansorted":"@stdlib/stats/base/dmediansorted","base.strided.dmidrange":"@stdlib/stats/base/dmidrange","base.strided.dmin":"@stdlib/stats/base/dmin","base.strided.dminabs":"@stdlib/stats/base/dminabs","base.strided.dminsorted":"@stdlib/stats/base/dminsorted","base.strided.dmskabs":"@stdlib/math/strided/special/dmskabs","base.strided.dmskabs2":"@stdlib/math/strided/special/dmskabs2","base.strided.dmskcbrt":"@stdlib/math/strided/special/dmskcbrt","base.strided.dmskceil":"@stdlib/math/strided/special/dmskceil","base.strided.dmskdeg2rad":"@stdlib/math/strided/special/dmskdeg2rad","base.strided.dmskfloor":"@stdlib/math/strided/special/dmskfloor","base.strided.dmskinv":"@stdlib/math/strided/special/dmskinv","base.strided.dmskmap":"@stdlib/strided/base/dmskmap","base.strided.dmskmap2":"@stdlib/strided/base/dmskmap2","base.strided.dmskmax":"@stdlib/stats/base/dmskmax","base.strided.dmskmin":"@stdlib/stats/base/dmskmin","base.strided.dmskramp":"@stdlib/math/strided/special/dmskramp","base.strided.dmskrange":"@stdlib/stats/base/dmskrange","base.strided.dmskrsqrt":"@stdlib/math/strided/special/dmskrsqrt","base.strided.dmsksqrt":"@stdlib/math/strided/special/dmsksqrt","base.strided.dmsktrunc":"@stdlib/math/strided/special/dmsktrunc","base.strided.dnanasum":"@stdlib/blas/ext/base/dnanasum","base.strided.dnanasumors":"@stdlib/blas/ext/base/dnanasumors","base.strided.dnanmax":"@stdlib/stats/base/dnanmax","base.strided.dnanmaxabs":"@stdlib/stats/base/dnanmaxabs","base.strided.dnanmean":"@stdlib/stats/base/dnanmean","base.strided.dnanmeanors":"@stdlib/stats/base/dnanmeanors","base.strided.dnanmeanpn":"@stdlib/stats/base/dnanmeanpn","base.strided.dnanmeanpw":"@stdlib/stats/base/dnanmeanpw","base.strided.dnanmeanwd":"@stdlib/stats/base/dnanmeanwd","base.strided.dnanmin":"@stdlib/stats/base/dnanmin","base.strided.dnanminabs":"@stdlib/stats/base/dnanminabs","base.strided.dnanmskmax":"@stdlib/stats/base/dnanmskmax","base.strided.dnanmskmin":"@stdlib/stats/base/dnanmskmin","base.strided.dnanmskrange":"@stdlib/stats/base/dnanmskrange","base.strided.dnannsum":"@stdlib/blas/ext/base/dnannsum","base.strided.dnannsumkbn":"@stdlib/blas/ext/base/dnannsumkbn","base.strided.dnannsumkbn2":"@stdlib/blas/ext/base/dnannsumkbn2","base.strided.dnannsumors":"@stdlib/blas/ext/base/dnannsumors","base.strided.dnannsumpw":"@stdlib/blas/ext/base/dnannsumpw","base.strided.dnanrange":"@stdlib/stats/base/dnanrange","base.strided.dnanstdev":"@stdlib/stats/base/dnanstdev","base.strided.dnanstdevch":"@stdlib/stats/base/dnanstdevch","base.strided.dnanstdevpn":"@stdlib/stats/base/dnanstdevpn","base.strided.dnanstdevtk":"@stdlib/stats/base/dnanstdevtk","base.strided.dnanstdevwd":"@stdlib/stats/base/dnanstdevwd","base.strided.dnanstdevyc":"@stdlib/stats/base/dnanstdevyc","base.strided.dnansum":"@stdlib/blas/ext/base/dnansum","base.strided.dnansumkbn":"@stdlib/blas/ext/base/dnansumkbn","base.strided.dnansumkbn2":"@stdlib/blas/ext/base/dnansumkbn2","base.strided.dnansumors":"@stdlib/blas/ext/base/dnansumors","base.strided.dnansumpw":"@stdlib/blas/ext/base/dnansumpw","base.strided.dnanvariance":"@stdlib/stats/base/dnanvariance","base.strided.dnanvariancech":"@stdlib/stats/base/dnanvariancech","base.strided.dnanvariancepn":"@stdlib/stats/base/dnanvariancepn","base.strided.dnanvariancetk":"@stdlib/stats/base/dnanvariancetk","base.strided.dnanvariancewd":"@stdlib/stats/base/dnanvariancewd","base.strided.dnanvarianceyc":"@stdlib/stats/base/dnanvarianceyc","base.strided.dnrm2":"@stdlib/blas/base/dnrm2","base.strided.dramp":"@stdlib/math/strided/special/dramp","base.strided.drange":"@stdlib/stats/base/drange","base.strided.drev":"@stdlib/blas/ext/base/drev","base.strided.drsqrt":"@stdlib/math/strided/special/drsqrt","base.strided.dsapxsum":"@stdlib/blas/ext/base/dsapxsum","base.strided.dsapxsumpw":"@stdlib/blas/ext/base/dsapxsumpw","base.strided.dscal":"@stdlib/blas/base/dscal","base.strided.dsdot":"@stdlib/blas/base/dsdot","base.strided.dsem":"@stdlib/stats/base/dsem","base.strided.dsemch":"@stdlib/stats/base/dsemch","base.strided.dsempn":"@stdlib/stats/base/dsempn","base.strided.dsemtk":"@stdlib/stats/base/dsemtk","base.strided.dsemwd":"@stdlib/stats/base/dsemwd","base.strided.dsemyc":"@stdlib/stats/base/dsemyc","base.strided.dsmean":"@stdlib/stats/base/dsmean","base.strided.dsmeanors":"@stdlib/stats/base/dsmeanors","base.strided.dsmeanpn":"@stdlib/stats/base/dsmeanpn","base.strided.dsmeanpw":"@stdlib/stats/base/dsmeanpw","base.strided.dsmeanwd":"@stdlib/stats/base/dsmeanwd","base.strided.dsnanmean":"@stdlib/stats/base/dsnanmean","base.strided.dsnanmeanors":"@stdlib/stats/base/dsnanmeanors","base.strided.dsnanmeanpn":"@stdlib/stats/base/dsnanmeanpn","base.strided.dsnanmeanwd":"@stdlib/stats/base/dsnanmeanwd","base.strided.dsnannsumors":"@stdlib/blas/ext/base/dsnannsumors","base.strided.dsnansum":"@stdlib/blas/ext/base/dsnansum","base.strided.dsnansumors":"@stdlib/blas/ext/base/dsnansumors","base.strided.dsnansumpw":"@stdlib/blas/ext/base/dsnansumpw","base.strided.dsort2hp":"@stdlib/blas/ext/base/dsort2hp","base.strided.dsort2ins":"@stdlib/blas/ext/base/dsort2ins","base.strided.dsort2sh":"@stdlib/blas/ext/base/dsort2sh","base.strided.dsorthp":"@stdlib/blas/ext/base/dsorthp","base.strided.dsortins":"@stdlib/blas/ext/base/dsortins","base.strided.dsortsh":"@stdlib/blas/ext/base/dsortsh","base.strided.dsqrt":"@stdlib/math/strided/special/dsqrt","base.strided.dssum":"@stdlib/blas/ext/base/dssum","base.strided.dssumors":"@stdlib/blas/ext/base/dssumors","base.strided.dssumpw":"@stdlib/blas/ext/base/dssumpw","base.strided.dstdev":"@stdlib/stats/base/dstdev","base.strided.dstdevch":"@stdlib/stats/base/dstdevch","base.strided.dstdevpn":"@stdlib/stats/base/dstdevpn","base.strided.dstdevtk":"@stdlib/stats/base/dstdevtk","base.strided.dstdevwd":"@stdlib/stats/base/dstdevwd","base.strided.dstdevyc":"@stdlib/stats/base/dstdevyc","base.strided.dsum":"@stdlib/blas/ext/base/dsum","base.strided.dsumkbn":"@stdlib/blas/ext/base/dsumkbn","base.strided.dsumkbn2":"@stdlib/blas/ext/base/dsumkbn2","base.strided.dsumors":"@stdlib/blas/ext/base/dsumors","base.strided.dsumpw":"@stdlib/blas/ext/base/dsumpw","base.strided.dsvariance":"@stdlib/stats/base/dsvariance","base.strided.dsvariancepn":"@stdlib/stats/base/dsvariancepn","base.strided.dswap":"@stdlib/blas/base/dswap","base.strided.dtrunc":"@stdlib/math/strided/special/dtrunc","base.strided.dtypeEnum2Str":"@stdlib/strided/base/dtype-enum2str","base.strided.dtypeResolveEnum":"@stdlib/strided/base/dtype-resolve-enum","base.strided.dtypeResolveStr":"@stdlib/strided/base/dtype-resolve-str","base.strided.dtypeStr2Enum":"@stdlib/strided/base/dtype-str2enum","base.strided.dvariance":"@stdlib/stats/base/dvariance","base.strided.dvariancech":"@stdlib/stats/base/dvariancech","base.strided.dvariancepn":"@stdlib/stats/base/dvariancepn","base.strided.dvariancetk":"@stdlib/stats/base/dvariancetk","base.strided.dvariancewd":"@stdlib/stats/base/dvariancewd","base.strided.dvarianceyc":"@stdlib/stats/base/dvarianceyc","base.strided.dvarm":"@stdlib/stats/base/dvarm","base.strided.dvarmpn":"@stdlib/stats/base/dvarmpn","base.strided.dvarmtk":"@stdlib/stats/base/dvarmtk","base.strided.functionObject":"@stdlib/strided/base/function-object","base.strided.gapx":"@stdlib/blas/ext/base/gapx","base.strided.gapxsum":"@stdlib/blas/ext/base/gapxsum","base.strided.gapxsumkbn":"@stdlib/blas/ext/base/gapxsumkbn","base.strided.gapxsumkbn2":"@stdlib/blas/ext/base/gapxsumkbn2","base.strided.gapxsumors":"@stdlib/blas/ext/base/gapxsumors","base.strided.gapxsumpw":"@stdlib/blas/ext/base/gapxsumpw","base.strided.gasum":"@stdlib/blas/base/gasum","base.strided.gasumpw":"@stdlib/blas/ext/base/gasumpw","base.strided.gaxpy":"@stdlib/blas/base/gaxpy","base.strided.gcopy":"@stdlib/blas/base/gcopy","base.strided.gcusum":"@stdlib/blas/ext/base/gcusum","base.strided.gcusumkbn":"@stdlib/blas/ext/base/gcusumkbn","base.strided.gcusumkbn2":"@stdlib/blas/ext/base/gcusumkbn2","base.strided.gcusumors":"@stdlib/blas/ext/base/gcusumors","base.strided.gcusumpw":"@stdlib/blas/ext/base/gcusumpw","base.strided.gdot":"@stdlib/blas/base/gdot","base.strided.gfill":"@stdlib/blas/ext/base/gfill","base.strided.gfillBy":"@stdlib/blas/ext/base/gfill-by","base.strided.gnannsumkbn":"@stdlib/blas/ext/base/gnannsumkbn","base.strided.gnansum":"@stdlib/blas/ext/base/gnansum","base.strided.gnansumkbn":"@stdlib/blas/ext/base/gnansumkbn","base.strided.gnansumkbn2":"@stdlib/blas/ext/base/gnansumkbn2","base.strided.gnansumors":"@stdlib/blas/ext/base/gnansumors","base.strided.gnansumpw":"@stdlib/blas/ext/base/gnansumpw","base.strided.gnrm2":"@stdlib/blas/base/gnrm2","base.strided.grev":"@stdlib/blas/ext/base/grev","base.strided.gscal":"@stdlib/blas/base/gscal","base.strided.gsort2hp":"@stdlib/blas/ext/base/gsort2hp","base.strided.gsort2ins":"@stdlib/blas/ext/base/gsort2ins","base.strided.gsort2sh":"@stdlib/blas/ext/base/gsort2sh","base.strided.gsorthp":"@stdlib/blas/ext/base/gsorthp","base.strided.gsortins":"@stdlib/blas/ext/base/gsortins","base.strided.gsortsh":"@stdlib/blas/ext/base/gsortsh","base.strided.gsum":"@stdlib/blas/ext/base/gsum","base.strided.gsumkbn":"@stdlib/blas/ext/base/gsumkbn","base.strided.gsumkbn2":"@stdlib/blas/ext/base/gsumkbn2","base.strided.gsumors":"@stdlib/blas/ext/base/gsumors","base.strided.gsumpw":"@stdlib/blas/ext/base/gsumpw","base.strided.gswap":"@stdlib/blas/base/gswap","base.strided.mapBy":"@stdlib/strided/base/map-by","base.strided.mapBy2":"@stdlib/strided/base/map-by2","base.strided.max":"@stdlib/stats/base/max","base.strided.maxabs":"@stdlib/stats/base/maxabs","base.strided.maxBy":"@stdlib/stats/base/max-by","base.strided.maxsorted":"@stdlib/stats/base/maxsorted","base.strided.maxViewBufferIndex":"@stdlib/strided/base/max-view-buffer-index","base.strided.mean":"@stdlib/stats/base/mean","base.strided.meankbn":"@stdlib/stats/base/meankbn","base.strided.meankbn2":"@stdlib/stats/base/meankbn2","base.strided.meanors":"@stdlib/stats/base/meanors","base.strided.meanpn":"@stdlib/stats/base/meanpn","base.strided.meanpw":"@stdlib/stats/base/meanpw","base.strided.meanwd":"@stdlib/stats/base/meanwd","base.strided.mediansorted":"@stdlib/stats/base/mediansorted","base.strided.metaDataProps":"@stdlib/strided/base/meta-data-props","base.strided.min":"@stdlib/stats/base/min","base.strided.minabs":"@stdlib/stats/base/minabs","base.strided.minBy":"@stdlib/stats/base/min-by","base.strided.minsorted":"@stdlib/stats/base/minsorted","base.strided.minViewBufferIndex":"@stdlib/strided/base/min-view-buffer-index","base.strided.mskmax":"@stdlib/stats/base/mskmax","base.strided.mskmin":"@stdlib/stats/base/mskmin","base.strided.mskrange":"@stdlib/stats/base/mskrange","base.strided.mskunary":"@stdlib/strided/base/mskunary","base.strided.mskunaryDtypeSignatures":"@stdlib/strided/base/mskunary-dtype-signatures","base.strided.mskunarySignatureCallbacks":"@stdlib/strided/base/mskunary-signature-callbacks","base.strided.nanmax":"@stdlib/stats/base/nanmax","base.strided.nanmaxabs":"@stdlib/stats/base/nanmaxabs","base.strided.nanmaxBy":"@stdlib/stats/base/nanmax-by","base.strided.nanmean":"@stdlib/stats/base/nanmean","base.strided.nanmeanors":"@stdlib/stats/base/nanmeanors","base.strided.nanmeanpn":"@stdlib/stats/base/nanmeanpn","base.strided.nanmeanwd":"@stdlib/stats/base/nanmeanwd","base.strided.nanmin":"@stdlib/stats/base/nanmin","base.strided.nanminabs":"@stdlib/stats/base/nanminabs","base.strided.nanminBy":"@stdlib/stats/base/nanmin-by","base.strided.nanmskmax":"@stdlib/stats/base/nanmskmax","base.strided.nanmskmin":"@stdlib/stats/base/nanmskmin","base.strided.nanmskrange":"@stdlib/stats/base/nanmskrange","base.strided.nanrange":"@stdlib/stats/base/nanrange","base.strided.nanrangeBy":"@stdlib/stats/base/nanrange-by","base.strided.nanstdev":"@stdlib/stats/base/nanstdev","base.strided.nanstdevch":"@stdlib/stats/base/nanstdevch","base.strided.nanstdevpn":"@stdlib/stats/base/nanstdevpn","base.strided.nanstdevtk":"@stdlib/stats/base/nanstdevtk","base.strided.nanstdevwd":"@stdlib/stats/base/nanstdevwd","base.strided.nanstdevyc":"@stdlib/stats/base/nanstdevyc","base.strided.nanvariance":"@stdlib/stats/base/nanvariance","base.strided.nanvariancech":"@stdlib/stats/base/nanvariancech","base.strided.nanvariancepn":"@stdlib/stats/base/nanvariancepn","base.strided.nanvariancetk":"@stdlib/stats/base/nanvariancetk","base.strided.nanvariancewd":"@stdlib/stats/base/nanvariancewd","base.strided.nanvarianceyc":"@stdlib/stats/base/nanvarianceyc","base.strided.nullary":"@stdlib/strided/base/nullary","base.strided.offsetView":"@stdlib/strided/base/offset-view","base.strided.quaternary":"@stdlib/strided/base/quaternary","base.strided.quinary":"@stdlib/strided/base/quinary","base.strided.range":"@stdlib/stats/base/range","base.strided.rangeBy":"@stdlib/stats/base/range-by","base.strided.reinterpretComplex":"@stdlib/strided/base/reinterpret-complex","base.strided.reinterpretComplex64":"@stdlib/strided/base/reinterpret-complex64","base.strided.reinterpretComplex128":"@stdlib/strided/base/reinterpret-complex128","base.strided.sabs":"@stdlib/math/strided/special/sabs","base.strided.sabs2":"@stdlib/math/strided/special/sabs2","base.strided.sapx":"@stdlib/blas/ext/base/sapx","base.strided.sapxsum":"@stdlib/blas/ext/base/sapxsum","base.strided.sapxsumkbn":"@stdlib/blas/ext/base/sapxsumkbn","base.strided.sapxsumkbn2":"@stdlib/blas/ext/base/sapxsumkbn2","base.strided.sapxsumors":"@stdlib/blas/ext/base/sapxsumors","base.strided.sapxsumpw":"@stdlib/blas/ext/base/sapxsumpw","base.strided.sasum":"@stdlib/blas/base/sasum","base.strided.sasumpw":"@stdlib/blas/ext/base/sasumpw","base.strided.saxpy":"@stdlib/blas/base/saxpy","base.strided.scbrt":"@stdlib/math/strided/special/scbrt","base.strided.sceil":"@stdlib/math/strided/special/sceil","base.strided.scopy":"@stdlib/blas/base/scopy","base.strided.scumax":"@stdlib/stats/base/scumax","base.strided.scumaxabs":"@stdlib/stats/base/scumaxabs","base.strided.scumin":"@stdlib/stats/base/scumin","base.strided.scuminabs":"@stdlib/stats/base/scuminabs","base.strided.scusum":"@stdlib/blas/ext/base/scusum","base.strided.scusumkbn":"@stdlib/blas/ext/base/scusumkbn","base.strided.scusumkbn2":"@stdlib/blas/ext/base/scusumkbn2","base.strided.scusumors":"@stdlib/blas/ext/base/scusumors","base.strided.scusumpw":"@stdlib/blas/ext/base/scusumpw","base.strided.sdeg2rad":"@stdlib/math/strided/special/sdeg2rad","base.strided.sdot":"@stdlib/blas/base/sdot","base.strided.sdsapxsum":"@stdlib/blas/ext/base/sdsapxsum","base.strided.sdsapxsumpw":"@stdlib/blas/ext/base/sdsapxsumpw","base.strided.sdsdot":"@stdlib/blas/base/sdsdot","base.strided.sdsmean":"@stdlib/stats/base/sdsmean","base.strided.sdsmeanors":"@stdlib/stats/base/sdsmeanors","base.strided.sdsnanmean":"@stdlib/stats/base/sdsnanmean","base.strided.sdsnanmeanors":"@stdlib/stats/base/sdsnanmeanors","base.strided.sdsnansum":"@stdlib/blas/ext/base/sdsnansum","base.strided.sdsnansumpw":"@stdlib/blas/ext/base/sdsnansumpw","base.strided.sdssum":"@stdlib/blas/ext/base/sdssum","base.strided.sdssumpw":"@stdlib/blas/ext/base/sdssumpw","base.strided.sfill":"@stdlib/blas/ext/base/sfill","base.strided.sfloor":"@stdlib/math/strided/special/sfloor","base.strided.sinv":"@stdlib/math/strided/special/sinv","base.strided.smap":"@stdlib/strided/base/smap","base.strided.smap2":"@stdlib/strided/base/smap2","base.strided.smax":"@stdlib/stats/base/smax","base.strided.smaxabs":"@stdlib/stats/base/smaxabs","base.strided.smaxabssorted":"@stdlib/stats/base/smaxabssorted","base.strided.smaxsorted":"@stdlib/stats/base/smaxsorted","base.strided.smean":"@stdlib/stats/base/smean","base.strided.smeankbn":"@stdlib/stats/base/smeankbn","base.strided.smeankbn2":"@stdlib/stats/base/smeankbn2","base.strided.smeanli":"@stdlib/stats/base/smeanli","base.strided.smeanlipw":"@stdlib/stats/base/smeanlipw","base.strided.smeanors":"@stdlib/stats/base/smeanors","base.strided.smeanpn":"@stdlib/stats/base/smeanpn","base.strided.smeanpw":"@stdlib/stats/base/smeanpw","base.strided.smeanwd":"@stdlib/stats/base/smeanwd","base.strided.smediansorted":"@stdlib/stats/base/smediansorted","base.strided.smidrange":"@stdlib/stats/base/smidrange","base.strided.smin":"@stdlib/stats/base/smin","base.strided.sminabs":"@stdlib/stats/base/sminabs","base.strided.sminsorted":"@stdlib/stats/base/sminsorted","base.strided.smskabs":"@stdlib/math/strided/special/smskabs","base.strided.smskabs2":"@stdlib/math/strided/special/smskabs2","base.strided.smskcbrt":"@stdlib/math/strided/special/smskcbrt","base.strided.smskceil":"@stdlib/math/strided/special/smskceil","base.strided.smskdeg2rad":"@stdlib/math/strided/special/smskdeg2rad","base.strided.smskfloor":"@stdlib/math/strided/special/smskfloor","base.strided.smskinv":"@stdlib/math/strided/special/smskinv","base.strided.smskmap":"@stdlib/strided/base/smskmap","base.strided.smskmap2":"@stdlib/strided/base/smskmap2","base.strided.smskmax":"@stdlib/stats/base/smskmax","base.strided.smskmin":"@stdlib/stats/base/smskmin","base.strided.smskramp":"@stdlib/math/strided/special/smskramp","base.strided.smskrange":"@stdlib/stats/base/smskrange","base.strided.smskrsqrt":"@stdlib/math/strided/special/smskrsqrt","base.strided.smsksqrt":"@stdlib/math/strided/special/smsksqrt","base.strided.smsktrunc":"@stdlib/math/strided/special/smsktrunc","base.strided.snanmax":"@stdlib/stats/base/snanmax","base.strided.snanmaxabs":"@stdlib/stats/base/snanmaxabs","base.strided.snanmean":"@stdlib/stats/base/snanmean","base.strided.snanmeanors":"@stdlib/stats/base/snanmeanors","base.strided.snanmeanpn":"@stdlib/stats/base/snanmeanpn","base.strided.snanmeanwd":"@stdlib/stats/base/snanmeanwd","base.strided.snanmin":"@stdlib/stats/base/snanmin","base.strided.snanminabs":"@stdlib/stats/base/snanminabs","base.strided.snanmskmax":"@stdlib/stats/base/snanmskmax","base.strided.snanmskmin":"@stdlib/stats/base/snanmskmin","base.strided.snanmskrange":"@stdlib/stats/base/snanmskrange","base.strided.snanrange":"@stdlib/stats/base/snanrange","base.strided.snanstdev":"@stdlib/stats/base/snanstdev","base.strided.snanstdevch":"@stdlib/stats/base/snanstdevch","base.strided.snanstdevpn":"@stdlib/stats/base/snanstdevpn","base.strided.snanstdevtk":"@stdlib/stats/base/snanstdevtk","base.strided.snanstdevwd":"@stdlib/stats/base/snanstdevwd","base.strided.snanstdevyc":"@stdlib/stats/base/snanstdevyc","base.strided.snansum":"@stdlib/blas/ext/base/snansum","base.strided.snansumkbn":"@stdlib/blas/ext/base/snansumkbn","base.strided.snansumkbn2":"@stdlib/blas/ext/base/snansumkbn2","base.strided.snansumors":"@stdlib/blas/ext/base/snansumors","base.strided.snansumpw":"@stdlib/blas/ext/base/snansumpw","base.strided.snanvariance":"@stdlib/stats/base/snanvariance","base.strided.snanvariancech":"@stdlib/stats/base/snanvariancech","base.strided.snanvariancepn":"@stdlib/stats/base/snanvariancepn","base.strided.snanvariancetk":"@stdlib/stats/base/snanvariancetk","base.strided.snanvariancewd":"@stdlib/stats/base/snanvariancewd","base.strided.snanvarianceyc":"@stdlib/stats/base/snanvarianceyc","base.strided.snrm2":"@stdlib/blas/base/snrm2","base.strided.sramp":"@stdlib/math/strided/special/sramp","base.strided.srange":"@stdlib/stats/base/srange","base.strided.srev":"@stdlib/blas/ext/base/srev","base.strided.srsqrt":"@stdlib/math/strided/special/srsqrt","base.strided.sscal":"@stdlib/blas/base/sscal","base.strided.ssort2hp":"@stdlib/blas/ext/base/ssort2hp","base.strided.ssort2ins":"@stdlib/blas/ext/base/ssort2ins","base.strided.ssort2sh":"@stdlib/blas/ext/base/ssort2sh","base.strided.ssorthp":"@stdlib/blas/ext/base/ssorthp","base.strided.ssortins":"@stdlib/blas/ext/base/ssortins","base.strided.ssortsh":"@stdlib/blas/ext/base/ssortsh","base.strided.ssqrt":"@stdlib/math/strided/special/ssqrt","base.strided.sstdev":"@stdlib/stats/base/sstdev","base.strided.sstdevch":"@stdlib/stats/base/sstdevch","base.strided.sstdevpn":"@stdlib/stats/base/sstdevpn","base.strided.sstdevtk":"@stdlib/stats/base/sstdevtk","base.strided.sstdevwd":"@stdlib/stats/base/sstdevwd","base.strided.sstdevyc":"@stdlib/stats/base/sstdevyc","base.strided.ssum":"@stdlib/blas/ext/base/ssum","base.strided.ssumkbn":"@stdlib/blas/ext/base/ssumkbn","base.strided.ssumkbn2":"@stdlib/blas/ext/base/ssumkbn2","base.strided.ssumors":"@stdlib/blas/ext/base/ssumors","base.strided.ssumpw":"@stdlib/blas/ext/base/ssumpw","base.strided.sswap":"@stdlib/blas/base/sswap","base.strided.stdev":"@stdlib/stats/base/stdev","base.strided.stdevch":"@stdlib/stats/base/stdevch","base.strided.stdevpn":"@stdlib/stats/base/stdevpn","base.strided.stdevtk":"@stdlib/stats/base/stdevtk","base.strided.stdevwd":"@stdlib/stats/base/stdevwd","base.strided.stdevyc":"@stdlib/stats/base/stdevyc","base.strided.strunc":"@stdlib/math/strided/special/strunc","base.strided.svariance":"@stdlib/stats/base/svariance","base.strided.svariancech":"@stdlib/stats/base/svariancech","base.strided.svariancepn":"@stdlib/stats/base/svariancepn","base.strided.svariancetk":"@stdlib/stats/base/svariancetk","base.strided.svariancewd":"@stdlib/stats/base/svariancewd","base.strided.svarianceyc":"@stdlib/stats/base/svarianceyc","base.strided.ternary":"@stdlib/strided/base/ternary","base.strided.unary":"@stdlib/strided/base/unary","base.strided.unaryBy":"@stdlib/strided/base/unary-by","base.strided.unaryDtypeSignatures":"@stdlib/strided/base/unary-dtype-signatures","base.strided.unarySignatureCallbacks":"@stdlib/strided/base/unary-signature-callbacks","base.strided.variance":"@stdlib/stats/base/variance","base.strided.variancech":"@stdlib/stats/base/variancech","base.strided.variancepn":"@stdlib/stats/base/variancepn","base.strided.variancetk":"@stdlib/stats/base/variancetk","base.strided.variancewd":"@stdlib/stats/base/variancewd","base.strided.varianceyc":"@stdlib/stats/base/varianceyc","base.strided.zmap":"@stdlib/strided/base/zmap","base.str2multislice":"@stdlib/slice/base/str2multislice","base.str2slice":"@stdlib/slice/base/str2slice","base.sub":"@stdlib/math/base/ops/sub","base.subf":"@stdlib/math/base/ops/subf","base.sumSeries":"@stdlib/math/base/tools/sum-series","base.tan":"@stdlib/math/base/special/tan","base.tand":"@stdlib/math/base/special/tand","base.tanh":"@stdlib/math/base/special/tanh","base.toBinaryString":"@stdlib/number/float64/base/to-binary-string","base.toBinaryStringf":"@stdlib/number/float32/base/to-binary-string","base.toBinaryStringUint8":"@stdlib/number/uint8/base/to-binary-string","base.toBinaryStringUint16":"@stdlib/number/uint16/base/to-binary-string","base.toBinaryStringUint32":"@stdlib/number/uint32/base/to-binary-string","base.toWordf":"@stdlib/number/float32/base/to-word","base.toWords":"@stdlib/number/float64/base/to-words","base.transpose":"@stdlib/ndarray/base/transpose","base.tribonacci":"@stdlib/math/base/special/tribonacci","base.trigamma":"@stdlib/math/base/special/trigamma","base.trim":"@stdlib/string/base/trim","base.trunc":"@stdlib/math/base/special/trunc","base.trunc2":"@stdlib/math/base/special/trunc2","base.trunc10":"@stdlib/math/base/special/trunc10","base.truncateMiddle":"@stdlib/string/base/truncate-middle","base.truncb":"@stdlib/math/base/special/truncb","base.truncf":"@stdlib/math/base/special/truncf","base.truncn":"@stdlib/math/base/special/truncn","base.truncsd":"@stdlib/math/base/special/truncsd","base.uint32ToInt32":"@stdlib/number/uint32/base/to-int32","base.umul":"@stdlib/math/base/ops/umul","base.umuldw":"@stdlib/math/base/ops/umuldw","base.uncapitalize":"@stdlib/string/base/uncapitalize","base.uppercase":"@stdlib/string/base/uppercase","base.vercos":"@stdlib/math/base/special/vercos","base.versin":"@stdlib/math/base/special/versin","base.wrap":"@stdlib/math/base/special/wrap","base.xlog1py":"@stdlib/math/base/special/xlog1py","base.xlogy":"@stdlib/math/base/special/xlogy","base.zeta":"@stdlib/math/base/special/riemann-zeta","bench":"@stdlib/bench","BERNDT_CPS_WAGES_1985":"@stdlib/datasets/berndt-cps-wages-1985","bifurcate":"@stdlib/utils/bifurcate","bifurcateBy":"@stdlib/utils/bifurcate-by","bifurcateByAsync":"@stdlib/utils/async/bifurcate-by","bifurcateIn":"@stdlib/utils/bifurcate-in","bifurcateOwn":"@stdlib/utils/bifurcate-own","BigInt":"@stdlib/bigint/ctor","binomialTest":"@stdlib/stats/binomial-test","Boolean":"@stdlib/boolean/ctor","BooleanArray":"@stdlib/array/bool","broadcastArray":"@stdlib/ndarray/broadcast-array","broadcastArrays":"@stdlib/ndarray/broadcast-arrays","Buffer":"@stdlib/buffer/ctor","buffer2json":"@stdlib/buffer/to-json","BYTE_ORDER":"@stdlib/os/byte-order","camelcase":"@stdlib/string/camelcase","capitalize":"@stdlib/string/capitalize","capitalizeKeys":"@stdlib/utils/capitalize-keys","CATALAN":"@stdlib/constants/float64/catalan","CBRT_EPS":"@stdlib/constants/float64/cbrt-eps","CDC_NCHS_US_BIRTHS_1969_1988":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","CDC_NCHS_US_BIRTHS_1994_2003":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","chdir":"@stdlib/process/chdir","chi2gof":"@stdlib/stats/chi2gof","chi2test":"@stdlib/stats/chi2test","circarray2iterator":"@stdlib/array/to-circular-iterator","circularArrayStream":"@stdlib/streams/node/from-circular-array","CircularBuffer":"@stdlib/utils/circular-buffer","close":"@stdlib/fs/close","CMUDICT":"@stdlib/datasets/cmudict","codePointAt":"@stdlib/string/code-point-at","commonKeys":"@stdlib/utils/common-keys","commonKeysIn":"@stdlib/utils/common-keys-in","complex":"@stdlib/complex/cmplx","Complex64":"@stdlib/complex/float32/ctor","COMPLEX64_NAN":"@stdlib/constants/complex64/nan","COMPLEX64_NUM_BYTES":"@stdlib/constants/complex64/num-bytes","COMPLEX64_ZERO":"@stdlib/constants/complex64/zero","Complex64Array":"@stdlib/array/complex64","Complex128":"@stdlib/complex/float64/ctor","COMPLEX128_NAN":"@stdlib/constants/complex128/nan","COMPLEX128_NUM_BYTES":"@stdlib/constants/complex128/num-bytes","COMPLEX128_ZERO":"@stdlib/constants/complex128/zero","Complex128Array":"@stdlib/array/complex128","complexarray":"@stdlib/array/typed-complex","complexarrayCtors":"@stdlib/array/typed-complex-ctors","complexarrayDataTypes":"@stdlib/array/typed-complex-dtypes","complexCtors":"@stdlib/complex/ctors","complexDataType":"@stdlib/complex/dtype","complexDataTypes":"@stdlib/complex/dtypes","complexPromotionRules":"@stdlib/complex/promotion-rules","compose":"@stdlib/utils/compose","composeAsync":"@stdlib/utils/async/compose","configdir":"@stdlib/os/configdir","conj":"@stdlib/complex/float64/conj","conjf":"@stdlib/complex/float32/conj","constantcase":"@stdlib/string/constantcase","constantFunction":"@stdlib/utils/constant-function","constantStream":"@stdlib/streams/node/from-constant","constructorName":"@stdlib/utils/constructor-name","contains":"@stdlib/assert/contains","convertArray":"@stdlib/array/convert","convertArraySame":"@stdlib/array/convert-same","convertPath":"@stdlib/utils/convert-path","copy":"@stdlib/utils/copy","copyBuffer":"@stdlib/buffer/from-buffer","countBy":"@stdlib/utils/count-by","countByAsync":"@stdlib/utils/async/count-by","currentYear":"@stdlib/time/current-year","curry":"@stdlib/utils/curry","curryRight":"@stdlib/utils/curry-right","cwd":"@stdlib/process/cwd","DALE_CHALL_NEW":"@stdlib/datasets/dale-chall-new","datasets":"@stdlib/datasets","DataView":"@stdlib/array/dataview","datespace":"@stdlib/array/datespace","dayOfQuarter":"@stdlib/time/day-of-quarter","dayOfYear":"@stdlib/time/day-of-year","daysInMonth":"@stdlib/time/days-in-month","daysInYear":"@stdlib/time/days-in-year","ddot":"@stdlib/blas/ddot","debugSinkStream":"@stdlib/streams/node/debug-sink","debugStream":"@stdlib/streams/node/debug","decorateAfter":"@stdlib/utils/decorate-after","deepEqual":"@stdlib/assert/deep-equal","deepGet":"@stdlib/utils/deep-get","deepHasOwnProp":"@stdlib/assert/deep-has-own-property","deepHasProp":"@stdlib/assert/deep-has-property","deepPluck":"@stdlib/utils/deep-pluck","deepSet":"@stdlib/utils/deep-set","defineMemoizedProperty":"@stdlib/utils/define-memoized-property","defineProperties":"@stdlib/utils/define-properties","defineProperty":"@stdlib/utils/define-property","dirname":"@stdlib/utils/dirname","dotcase":"@stdlib/string/dotcase","DoublyLinkedList":"@stdlib/utils/doubly-linked-list","doUntil":"@stdlib/utils/do-until","doUntilAsync":"@stdlib/utils/async/do-until","doUntilEach":"@stdlib/utils/do-until-each","doUntilEachRight":"@stdlib/utils/do-until-each-right","doWhile":"@stdlib/utils/do-while","doWhileAsync":"@stdlib/utils/async/do-while","doWhileEach":"@stdlib/utils/do-while-each","doWhileEachRight":"@stdlib/utils/do-while-each-right","dswap":"@stdlib/blas/dswap","E":"@stdlib/constants/float64/e","EMOJI":"@stdlib/datasets/emoji","EMOJI_CODE_PICTO":"@stdlib/datasets/emoji-code-picto","EMOJI_PICTO_CODE":"@stdlib/datasets/emoji-picto-code","emptyStream":"@stdlib/streams/node/empty","endsWith":"@stdlib/string/ends-with","enumerableProperties":"@stdlib/utils/enumerable-properties","enumerablePropertiesIn":"@stdlib/utils/enumerable-properties-in","enumerablePropertySymbols":"@stdlib/utils/enumerable-property-symbols","enumerablePropertySymbolsIn":"@stdlib/utils/enumerable-property-symbols-in","ENV":"@stdlib/process/env","EPS":"@stdlib/constants/float64/eps","error2json":"@stdlib/error/to-json","EULERGAMMA":"@stdlib/constants/float64/eulergamma","every":"@stdlib/utils/every","everyBy":"@stdlib/utils/every-by","everyByAsync":"@stdlib/utils/async/every-by","everyByRight":"@stdlib/utils/every-by-right","everyByRightAsync":"@stdlib/utils/async/every-by-right","everyInBy":"@stdlib/utils/every-in-by","everyOwnBy":"@stdlib/utils/every-own-by","evil":"@stdlib/utils/eval","EXEC_PATH":"@stdlib/process/exec-path","exists":"@stdlib/fs/exists","expandAcronyms":"@stdlib/nlp/expand-acronyms","expandContractions":"@stdlib/nlp/expand-contractions","extname":"@stdlib/utils/extname","FancyArray":"@stdlib/ndarray/fancy","fastmath.abs":"@stdlib/math/base/special/fast/abs","fastmath.acosh":"@stdlib/math/base/special/fast/acosh","fastmath.ampbm":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","fastmath.asinh":"@stdlib/math/base/special/fast/asinh","fastmath.atanh":"@stdlib/math/base/special/fast/atanh","fastmath.hypot":"@stdlib/math/base/special/fast/hypot","fastmath.log2Uint32":"@stdlib/math/base/special/fast/uint32-log2","fastmath.max":"@stdlib/math/base/special/fast/max","fastmath.min":"@stdlib/math/base/special/fast/min","fastmath.powint":"@stdlib/math/base/special/fast/pow-int","fastmath.sqrtUint32":"@stdlib/math/base/special/fast/uint32-sqrt","FEMALE_FIRST_NAMES_EN":"@stdlib/datasets/female-first-names-en","FIFO":"@stdlib/utils/fifo","filledarray":"@stdlib/array/filled","filledarrayBy":"@stdlib/array/filled-by","filterArguments":"@stdlib/utils/filter-arguments","find":"@stdlib/utils/find","firstChar":"@stdlib/string/first","FIVETHIRTYEIGHT_FFQ":"@stdlib/datasets/fivethirtyeight-ffq","flattenArray":"@stdlib/utils/flatten-array","flattenObject":"@stdlib/utils/flatten-object","flignerTest":"@stdlib/stats/fligner-test","FLOAT_WORD_ORDER":"@stdlib/os/float-word-order","FLOAT16_CBRT_EPS":"@stdlib/constants/float16/cbrt-eps","FLOAT16_EPS":"@stdlib/constants/float16/eps","FLOAT16_EXPONENT_BIAS":"@stdlib/constants/float16/exponent-bias","FLOAT16_MAX":"@stdlib/constants/float16/max","FLOAT16_MAX_SAFE_INTEGER":"@stdlib/constants/float16/max-safe-integer","FLOAT16_MIN_SAFE_INTEGER":"@stdlib/constants/float16/min-safe-integer","FLOAT16_NINF":"@stdlib/constants/float16/ninf","FLOAT16_NUM_BYTES":"@stdlib/constants/float16/num-bytes","FLOAT16_PINF":"@stdlib/constants/float16/pinf","FLOAT16_PRECISION":"@stdlib/constants/float16/precision","FLOAT16_SMALLEST_NORMAL":"@stdlib/constants/float16/smallest-normal","FLOAT16_SMALLEST_SUBNORMAL":"@stdlib/constants/float16/smallest-subnormal","FLOAT16_SQRT_EPS":"@stdlib/constants/float16/sqrt-eps","FLOAT32_ABS_MASK":"@stdlib/constants/float32/abs-mask","FLOAT32_CBRT_EPS":"@stdlib/constants/float32/cbrt-eps","FLOAT32_EPS":"@stdlib/constants/float32/eps","FLOAT32_EXPONENT_BIAS":"@stdlib/constants/float32/exponent-bias","FLOAT32_EXPONENT_MASK":"@stdlib/constants/float32/exponent-mask","FLOAT32_FOURTH_PI":"@stdlib/constants/float32/fourth-pi","FLOAT32_HALF_PI":"@stdlib/constants/float32/half-pi","FLOAT32_MAX":"@stdlib/constants/float32/max","FLOAT32_MAX_SAFE_INTEGER":"@stdlib/constants/float32/max-safe-integer","FLOAT32_MIN_SAFE_INTEGER":"@stdlib/constants/float32/min-safe-integer","FLOAT32_NAN":"@stdlib/constants/float32/nan","FLOAT32_NINF":"@stdlib/constants/float32/ninf","FLOAT32_NUM_BYTES":"@stdlib/constants/float32/num-bytes","FLOAT32_PI":"@stdlib/constants/float32/pi","FLOAT32_PINF":"@stdlib/constants/float32/pinf","FLOAT32_PRECISION":"@stdlib/constants/float32/precision","FLOAT32_SIGN_MASK":"@stdlib/constants/float32/sign-mask","FLOAT32_SIGNIFICAND_MASK":"@stdlib/constants/float32/significand-mask","FLOAT32_SMALLEST_NORMAL":"@stdlib/constants/float32/smallest-normal","FLOAT32_SMALLEST_SUBNORMAL":"@stdlib/constants/float32/smallest-subnormal","FLOAT32_SQRT_EPS":"@stdlib/constants/float32/sqrt-eps","FLOAT32_TWO_PI":"@stdlib/constants/float32/two-pi","Float32Array":"@stdlib/array/float32","Float32ArrayFE":"@stdlib/array/fixed-endian-float32","Float32ArrayLE":"@stdlib/array/little-endian-float32","FLOAT64_EXPONENT_BIAS":"@stdlib/constants/float64/exponent-bias","FLOAT64_HIGH_WORD_ABS_MASK":"@stdlib/constants/float64/high-word-abs-mask","FLOAT64_HIGH_WORD_EXPONENT_MASK":"@stdlib/constants/float64/high-word-exponent-mask","FLOAT64_HIGH_WORD_SIGN_MASK":"@stdlib/constants/float64/high-word-sign-mask","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK":"@stdlib/constants/float64/high-word-significand-mask","FLOAT64_MAX":"@stdlib/constants/float64/max","FLOAT64_MAX_BASE2_EXPONENT":"@stdlib/constants/float64/max-base2-exponent","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base2-exponent-subnormal","FLOAT64_MAX_BASE10_EXPONENT":"@stdlib/constants/float64/max-base10-exponent","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base10-exponent-subnormal","FLOAT64_MAX_LN":"@stdlib/constants/float64/max-ln","FLOAT64_MAX_SAFE_FIBONACCI":"@stdlib/constants/float64/max-safe-fibonacci","FLOAT64_MAX_SAFE_INTEGER":"@stdlib/constants/float64/max-safe-integer","FLOAT64_MAX_SAFE_LUCAS":"@stdlib/constants/float64/max-safe-lucas","FLOAT64_MAX_SAFE_NTH_FIBONACCI":"@stdlib/constants/float64/max-safe-nth-fibonacci","FLOAT64_MAX_SAFE_NTH_LUCAS":"@stdlib/constants/float64/max-safe-nth-lucas","FLOAT64_MIN_BASE2_EXPONENT":"@stdlib/constants/float64/min-base2-exponent","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base2-exponent-subnormal","FLOAT64_MIN_BASE10_EXPONENT":"@stdlib/constants/float64/min-base10-exponent","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base10-exponent-subnormal","FLOAT64_MIN_LN":"@stdlib/constants/float64/min-ln","FLOAT64_MIN_SAFE_INTEGER":"@stdlib/constants/float64/min-safe-integer","FLOAT64_NUM_BYTES":"@stdlib/constants/float64/num-bytes","FLOAT64_PRECISION":"@stdlib/constants/float64/precision","FLOAT64_SMALLEST_NORMAL":"@stdlib/constants/float64/smallest-normal","FLOAT64_SMALLEST_SUBNORMAL":"@stdlib/constants/float64/smallest-subnormal","Float64Array":"@stdlib/array/float64","Float64ArrayFE":"@stdlib/array/fixed-endian-float64","Float64ArrayLE":"@stdlib/array/little-endian-float64","forEach":"@stdlib/utils/for-each","forEachAsync":"@stdlib/utils/async/for-each","forEachChar":"@stdlib/string/for-each","forEachRight":"@stdlib/utils/for-each-right","forEachRightAsync":"@stdlib/utils/async/for-each-right","forIn":"@stdlib/utils/for-in","format":"@stdlib/string/format","forOwn":"@stdlib/utils/for-own","FOURTH_PI":"@stdlib/constants/float64/fourth-pi","FOURTH_ROOT_EPS":"@stdlib/constants/float64/fourth-root-eps","FRB_SF_WAGE_RIGIDITY":"@stdlib/datasets/frb-sf-wage-rigidity","fromCodePoint":"@stdlib/string/from-code-point","Function":"@stdlib/function/ctor","function2string":"@stdlib/function/to-string","functionName":"@stdlib/utils/function-name","functionSequence":"@stdlib/utils/function-sequence","functionSequenceAsync":"@stdlib/utils/async/function-sequence","GAMMA_LANCZOS_G":"@stdlib/constants/float64/gamma-lanczos-g","gdot":"@stdlib/blas/gdot","getegid":"@stdlib/process/getegid","geteuid":"@stdlib/process/geteuid","getgid":"@stdlib/process/getgid","getGlobal":"@stdlib/utils/global","getPrototypeOf":"@stdlib/utils/get-prototype-of","getuid":"@stdlib/process/getuid","GLAISHER":"@stdlib/constants/float64/glaisher-kinkelin","graphemeClusters2iterator":"@stdlib/string/to-grapheme-cluster-iterator","graphemeClusters2iteratorRight":"@stdlib/string/to-grapheme-cluster-iterator-right","group":"@stdlib/utils/group","groupBy":"@stdlib/utils/group-by","groupByAsync":"@stdlib/utils/async/group-by","groupIn":"@stdlib/utils/group-in","groupOwn":"@stdlib/utils/group-own","gswap":"@stdlib/blas/gswap","HALF_LN2":"@stdlib/constants/float64/half-ln-two","HALF_PI":"@stdlib/constants/float64/half-pi","HARRISON_BOSTON_HOUSE_PRICES":"@stdlib/datasets/harrison-boston-house-prices","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED":"@stdlib/datasets/harrison-boston-house-prices-corrected","hasArrayBufferSupport":"@stdlib/assert/has-arraybuffer-support","hasArrowFunctionSupport":"@stdlib/assert/has-arrow-function-support","hasAsyncAwaitSupport":"@stdlib/assert/has-async-await-support","hasAsyncIteratorSymbolSupport":"@stdlib/assert/has-async-iterator-symbol-support","hasAtobSupport":"@stdlib/assert/has-atob-support","hasBigInt64ArraySupport":"@stdlib/assert/has-bigint64array-support","hasBigIntSupport":"@stdlib/assert/has-bigint-support","hasBigUint64ArraySupport":"@stdlib/assert/has-biguint64array-support","hasBtoaSupport":"@stdlib/assert/has-btoa-support","hasClassSupport":"@stdlib/assert/has-class-support","hasDataViewSupport":"@stdlib/assert/has-dataview-support","hasDefinePropertiesSupport":"@stdlib/assert/has-define-properties-support","hasDefinePropertySupport":"@stdlib/assert/has-define-property-support","hasFloat32ArraySupport":"@stdlib/assert/has-float32array-support","hasFloat64ArraySupport":"@stdlib/assert/has-float64array-support","hasFunctionNameSupport":"@stdlib/assert/has-function-name-support","hasGeneratorSupport":"@stdlib/assert/has-generator-support","hasGlobalThisSupport":"@stdlib/assert/has-globalthis-support","hasInt8ArraySupport":"@stdlib/assert/has-int8array-support","hasInt16ArraySupport":"@stdlib/assert/has-int16array-support","hasInt32ArraySupport":"@stdlib/assert/has-int32array-support","hasIteratorSymbolSupport":"@stdlib/assert/has-iterator-symbol-support","hasMapSupport":"@stdlib/assert/has-map-support","hasNodeBufferSupport":"@stdlib/assert/has-node-buffer-support","hasOwnProp":"@stdlib/assert/has-own-property","hasProp":"@stdlib/assert/has-property","hasProxySupport":"@stdlib/assert/has-proxy-support","hasSetSupport":"@stdlib/assert/has-set-support","hasSharedArrayBufferSupport":"@stdlib/assert/has-sharedarraybuffer-support","hasSymbolSupport":"@stdlib/assert/has-symbol-support","hasToStringTagSupport":"@stdlib/assert/has-tostringtag-support","hasUint8ArraySupport":"@stdlib/assert/has-uint8array-support","hasUint8ClampedArraySupport":"@stdlib/assert/has-uint8clampedarray-support","hasUint16ArraySupport":"@stdlib/assert/has-uint16array-support","hasUint32ArraySupport":"@stdlib/assert/has-uint32array-support","hasUTF16SurrogatePairAt":"@stdlib/assert/has-utf16-surrogate-pair-at","hasWeakMapSupport":"@stdlib/assert/has-weakmap-support","hasWeakSetSupport":"@stdlib/assert/has-weakset-support","hasWebAssemblySupport":"@stdlib/assert/has-wasm-support","headercase":"@stdlib/string/headercase","HERNDON_VENUS_SEMIDIAMETERS":"@stdlib/datasets/herndon-venus-semidiameters","homedir":"@stdlib/os/homedir","HOURS_IN_DAY":"@stdlib/constants/time/hours-in-day","HOURS_IN_WEEK":"@stdlib/constants/time/hours-in-week","hoursInMonth":"@stdlib/time/hours-in-month","hoursInYear":"@stdlib/time/hours-in-year","httpServer":"@stdlib/net/http-server","identity":"@stdlib/utils/identity-function","ifelse":"@stdlib/utils/if-else","ifelseAsync":"@stdlib/utils/async/if-else","ifthen":"@stdlib/utils/if-then","ifthenAsync":"@stdlib/utils/async/if-then","imag":"@stdlib/complex/float64/imag","imagf":"@stdlib/complex/float32/imag","IMG_ACANTHUS_MOLLIS":"@stdlib/datasets/img-acanthus-mollis","IMG_AIRPLANE_FROM_ABOVE":"@stdlib/datasets/img-airplane-from-above","IMG_ALLIUM_OREOPHILUM":"@stdlib/datasets/img-allium-oreophilum","IMG_BLACK_CANYON":"@stdlib/datasets/img-black-canyon","IMG_DUST_BOWL_HOME":"@stdlib/datasets/img-dust-bowl-home","IMG_FRENCH_ALPINE_LANDSCAPE":"@stdlib/datasets/img-french-alpine-landscape","IMG_LOCOMOTION_HOUSE_CAT":"@stdlib/datasets/img-locomotion-house-cat","IMG_LOCOMOTION_NUDE_MALE":"@stdlib/datasets/img-locomotion-nude-male","IMG_MARCH_PASTORAL":"@stdlib/datasets/img-march-pastoral","IMG_NAGASAKI_BOATS":"@stdlib/datasets/img-nagasaki-boats","incrapcorr":"@stdlib/stats/incr/apcorr","incrBinaryClassification":"@stdlib/ml/incr/binary-classification","incrcount":"@stdlib/stats/incr/count","incrcovariance":"@stdlib/stats/incr/covariance","incrcovmat":"@stdlib/stats/incr/covmat","incrcv":"@stdlib/stats/incr/cv","increwmean":"@stdlib/stats/incr/ewmean","increwstdev":"@stdlib/stats/incr/ewstdev","increwvariance":"@stdlib/stats/incr/ewvariance","incrgmean":"@stdlib/stats/incr/gmean","incrgrubbs":"@stdlib/stats/incr/grubbs","incrhmean":"@stdlib/stats/incr/hmean","incrkmeans":"@stdlib/ml/incr/kmeans","incrkurtosis":"@stdlib/stats/incr/kurtosis","incrmaape":"@stdlib/stats/incr/maape","incrmae":"@stdlib/stats/incr/mae","incrmapcorr":"@stdlib/stats/incr/mapcorr","incrmape":"@stdlib/stats/incr/mape","incrmax":"@stdlib/stats/incr/max","incrmaxabs":"@stdlib/stats/incr/maxabs","incrmcovariance":"@stdlib/stats/incr/mcovariance","incrmcv":"@stdlib/stats/incr/mcv","incrmda":"@stdlib/stats/incr/mda","incrme":"@stdlib/stats/incr/me","incrmean":"@stdlib/stats/incr/mean","incrmeanabs":"@stdlib/stats/incr/meanabs","incrmeanabs2":"@stdlib/stats/incr/meanabs2","incrmeanstdev":"@stdlib/stats/incr/meanstdev","incrmeanvar":"@stdlib/stats/incr/meanvar","incrmgmean":"@stdlib/stats/incr/mgmean","incrmgrubbs":"@stdlib/stats/incr/mgrubbs","incrmhmean":"@stdlib/stats/incr/mhmean","incrmidrange":"@stdlib/stats/incr/midrange","incrmin":"@stdlib/stats/incr/min","incrminabs":"@stdlib/stats/incr/minabs","incrminmax":"@stdlib/stats/incr/minmax","incrminmaxabs":"@stdlib/stats/incr/minmaxabs","incrmmaape":"@stdlib/stats/incr/mmaape","incrmmae":"@stdlib/stats/incr/mmae","incrmmape":"@stdlib/stats/incr/mmape","incrmmax":"@stdlib/stats/incr/mmax","incrmmaxabs":"@stdlib/stats/incr/mmaxabs","incrmmda":"@stdlib/stats/incr/mmda","incrmme":"@stdlib/stats/incr/mme","incrmmean":"@stdlib/stats/incr/mmean","incrmmeanabs":"@stdlib/stats/incr/mmeanabs","incrmmeanabs2":"@stdlib/stats/incr/mmeanabs2","incrmmeanstdev":"@stdlib/stats/incr/mmeanstdev","incrmmeanvar":"@stdlib/stats/incr/mmeanvar","incrmmidrange":"@stdlib/stats/incr/mmidrange","incrmmin":"@stdlib/stats/incr/mmin","incrmminabs":"@stdlib/stats/incr/mminabs","incrmminmax":"@stdlib/stats/incr/mminmax","incrmminmaxabs":"@stdlib/stats/incr/mminmaxabs","incrmmpe":"@stdlib/stats/incr/mmpe","incrmmse":"@stdlib/stats/incr/mmse","incrmpcorr":"@stdlib/stats/incr/mpcorr","incrmpcorr2":"@stdlib/stats/incr/mpcorr2","incrmpcorrdist":"@stdlib/stats/incr/mpcorrdist","incrmpe":"@stdlib/stats/incr/mpe","incrmprod":"@stdlib/stats/incr/mprod","incrmrange":"@stdlib/stats/incr/mrange","incrmrmse":"@stdlib/stats/incr/mrmse","incrmrss":"@stdlib/stats/incr/mrss","incrmse":"@stdlib/stats/incr/mse","incrmstdev":"@stdlib/stats/incr/mstdev","incrmsum":"@stdlib/stats/incr/msum","incrmsumabs":"@stdlib/stats/incr/msumabs","incrmsumabs2":"@stdlib/stats/incr/msumabs2","incrmsummary":"@stdlib/stats/incr/msummary","incrmsumprod":"@stdlib/stats/incr/msumprod","incrmvariance":"@stdlib/stats/incr/mvariance","incrmvmr":"@stdlib/stats/incr/mvmr","incrnancount":"@stdlib/stats/incr/nancount","incrnansum":"@stdlib/stats/incr/nansum","incrnansumabs":"@stdlib/stats/incr/nansumabs","incrnansumabs2":"@stdlib/stats/incr/nansumabs2","incrpcorr":"@stdlib/stats/incr/pcorr","incrpcorr2":"@stdlib/stats/incr/pcorr2","incrpcorrdist":"@stdlib/stats/incr/pcorrdist","incrpcorrdistmat":"@stdlib/stats/incr/pcorrdistmat","incrpcorrmat":"@stdlib/stats/incr/pcorrmat","incrprod":"@stdlib/stats/incr/prod","incrrange":"@stdlib/stats/incr/range","incrrmse":"@stdlib/stats/incr/rmse","incrrss":"@stdlib/stats/incr/rss","incrSGDRegression":"@stdlib/ml/incr/sgd-regression","incrskewness":"@stdlib/stats/incr/skewness","incrspace":"@stdlib/array/incrspace","incrstdev":"@stdlib/stats/incr/stdev","incrsum":"@stdlib/stats/incr/sum","incrsumabs":"@stdlib/stats/incr/sumabs","incrsumabs2":"@stdlib/stats/incr/sumabs2","incrsummary":"@stdlib/stats/incr/summary","incrsumprod":"@stdlib/stats/incr/sumprod","incrvariance":"@stdlib/stats/incr/variance","incrvmr":"@stdlib/stats/incr/vmr","incrwmean":"@stdlib/stats/incr/wmean","ind2sub":"@stdlib/ndarray/ind2sub","indexOf":"@stdlib/utils/index-of","inherit":"@stdlib/utils/inherit","inheritedEnumerableProperties":"@stdlib/utils/inherited-enumerable-properties","inheritedEnumerablePropertySymbols":"@stdlib/utils/inherited-enumerable-property-symbols","inheritedKeys":"@stdlib/utils/inherited-keys","inheritedNonEnumerableProperties":"@stdlib/utils/inherited-nonenumerable-properties","inheritedNonEnumerablePropertyNames":"@stdlib/utils/inherited-nonenumerable-property-names","inheritedNonEnumerablePropertySymbols":"@stdlib/utils/inherited-nonenumerable-property-symbols","inheritedProperties":"@stdlib/utils/inherited-properties","inheritedPropertyDescriptor":"@stdlib/utils/inherited-property-descriptor","inheritedPropertyDescriptors":"@stdlib/utils/inherited-property-descriptors","inheritedPropertyNames":"@stdlib/utils/inherited-property-names","inheritedPropertySymbols":"@stdlib/utils/inherited-property-symbols","inheritedWritableProperties":"@stdlib/utils/inherited-writable-properties","inheritedWritablePropertyNames":"@stdlib/utils/inherited-writable-property-names","inheritedWritablePropertySymbols":"@stdlib/utils/inherited-writable-property-symbols","inmap":"@stdlib/utils/inmap","inmapAsync":"@stdlib/utils/async/inmap","inmapRight":"@stdlib/utils/inmap-right","inmapRightAsync":"@stdlib/utils/async/inmap-right","inspectSinkStream":"@stdlib/streams/node/inspect-sink","inspectStream":"@stdlib/streams/node/inspect","instanceOf":"@stdlib/assert/instance-of","INT8_MAX":"@stdlib/constants/int8/max","INT8_MIN":"@stdlib/constants/int8/min","INT8_NUM_BYTES":"@stdlib/constants/int8/num-bytes","Int8Array":"@stdlib/array/int8","INT16_MAX":"@stdlib/constants/int16/max","INT16_MIN":"@stdlib/constants/int16/min","INT16_NUM_BYTES":"@stdlib/constants/int16/num-bytes","Int16Array":"@stdlib/array/int16","INT32_MAX":"@stdlib/constants/int32/max","INT32_MIN":"@stdlib/constants/int32/min","INT32_NUM_BYTES":"@stdlib/constants/int32/num-bytes","Int32Array":"@stdlib/array/int32","IS_BIG_ENDIAN":"@stdlib/assert/is-big-endian","IS_BROWSER":"@stdlib/assert/is-browser","IS_DARWIN":"@stdlib/assert/is-darwin","IS_DOCKER":"@stdlib/assert/is-docker","IS_ELECTRON":"@stdlib/assert/is-electron","IS_ELECTRON_MAIN":"@stdlib/assert/is-electron-main","IS_ELECTRON_RENDERER":"@stdlib/assert/is-electron-renderer","IS_LITTLE_ENDIAN":"@stdlib/assert/is-little-endian","IS_MOBILE":"@stdlib/assert/is-mobile","IS_NODE":"@stdlib/assert/is-node","IS_TOUCH_DEVICE":"@stdlib/assert/is-touch-device","IS_WEB_WORKER":"@stdlib/assert/is-web-worker","IS_WINDOWS":"@stdlib/assert/is-windows","isAbsoluteHttpURI":"@stdlib/assert/is-absolute-http-uri","isAbsolutePath":"@stdlib/assert/is-absolute-path","isAbsoluteURI":"@stdlib/assert/is-absolute-uri","isAccessorArray":"@stdlib/assert/is-accessor-array","isAccessorProperty":"@stdlib/assert/is-accessor-property","isAccessorPropertyIn":"@stdlib/assert/is-accessor-property-in","isAlphagram":"@stdlib/assert/is-alphagram","isAlphaNumeric":"@stdlib/assert/is-alphanumeric","isAnagram":"@stdlib/assert/is-anagram","isArguments":"@stdlib/assert/is-arguments","isArray":"@stdlib/assert/is-array","isArrayArray":"@stdlib/assert/is-array-array","isArrayBuffer":"@stdlib/assert/is-arraybuffer","isArrayBufferView":"@stdlib/assert/is-arraybuffer-view","isArrayLength":"@stdlib/assert/is-array-length","isArrayLike":"@stdlib/assert/is-array-like","isArrayLikeObject":"@stdlib/assert/is-array-like-object","isArrowFunction":"@stdlib/assert/is-arrow-function","isASCII":"@stdlib/assert/is-ascii","isBetween":"@stdlib/assert/is-between","isBetweenArray":"@stdlib/assert/is-between-array","isBigInt":"@stdlib/assert/is-bigint","isBigInt64Array":"@stdlib/assert/is-bigint64array","isBigUint64Array":"@stdlib/assert/is-biguint64array","isBinaryString":"@stdlib/assert/is-binary-string","isBlankString":"@stdlib/assert/is-blank-string","isBoolean":"@stdlib/assert/is-boolean","isBooleanArray":"@stdlib/assert/is-boolean-array","isBoxedPrimitive":"@stdlib/assert/is-boxed-primitive","isBuffer":"@stdlib/assert/is-buffer","isCamelcase":"@stdlib/assert/is-camelcase","isCapitalized":"@stdlib/assert/is-capitalized","isCentrosymmetricMatrix":"@stdlib/assert/is-centrosymmetric-matrix","isCircular":"@stdlib/assert/is-circular","isCircularArray":"@stdlib/assert/is-circular-array","isCircularPlainObject":"@stdlib/assert/is-circular-plain-object","isClass":"@stdlib/assert/is-class","isCollection":"@stdlib/assert/is-collection","isComplex":"@stdlib/assert/is-complex","isComplex64":"@stdlib/assert/is-complex64","isComplex64Array":"@stdlib/assert/is-complex64array","isComplex64MatrixLike":"@stdlib/assert/is-complex64matrix-like","isComplex64ndarrayLike":"@stdlib/assert/is-complex64ndarray-like","isComplex64VectorLike":"@stdlib/assert/is-complex64vector-like","isComplex128":"@stdlib/assert/is-complex128","isComplex128Array":"@stdlib/assert/is-complex128array","isComplex128MatrixLike":"@stdlib/assert/is-complex128matrix-like","isComplex128ndarrayLike":"@stdlib/assert/is-complex128ndarray-like","isComplex128VectorLike":"@stdlib/assert/is-complex128vector-like","isComplexLike":"@stdlib/assert/is-complex-like","isComplexTypedArray":"@stdlib/assert/is-complex-typed-array","isComplexTypedArrayLike":"@stdlib/assert/is-complex-typed-array-like","isComposite":"@stdlib/assert/is-composite","isConfigurableProperty":"@stdlib/assert/is-configurable-property","isConfigurablePropertyIn":"@stdlib/assert/is-configurable-property-in","isConstantcase":"@stdlib/assert/is-constantcase","isCubeNumber":"@stdlib/assert/is-cube-number","isCurrentYear":"@stdlib/assert/is-current-year","isDataProperty":"@stdlib/assert/is-data-property","isDataPropertyIn":"@stdlib/assert/is-data-property-in","isDataView":"@stdlib/assert/is-dataview","isDateObject":"@stdlib/assert/is-date-object","isDateObjectArray":"@stdlib/assert/is-date-object-array","isDigitString":"@stdlib/assert/is-digit-string","isDomainName":"@stdlib/assert/is-domain-name","isDurationString":"@stdlib/assert/is-duration-string","isEmailAddress":"@stdlib/assert/is-email-address","isEmptyArray":"@stdlib/assert/is-empty-array","isEmptyArrayLikeObject":"@stdlib/assert/is-empty-array-like-object","isEmptyCollection":"@stdlib/assert/is-empty-collection","isEmptyObject":"@stdlib/assert/is-empty-object","isEmptyString":"@stdlib/assert/is-empty-string","isEnumerableProperty":"@stdlib/assert/is-enumerable-property","isEnumerablePropertyIn":"@stdlib/assert/is-enumerable-property-in","isEqualArray":"@stdlib/assert/is-equal-array","isError":"@stdlib/assert/is-error","isEvalError":"@stdlib/assert/is-eval-error","isEven":"@stdlib/assert/is-even","isFalsy":"@stdlib/assert/is-falsy","isFalsyArray":"@stdlib/assert/is-falsy-array","isFinite":"@stdlib/assert/is-finite","isFiniteArray":"@stdlib/assert/is-finite-array","isFloat32Array":"@stdlib/assert/is-float32array","isFloat32MatrixLike":"@stdlib/assert/is-float32matrix-like","isFloat32ndarrayLike":"@stdlib/assert/is-float32ndarray-like","isFloat32VectorLike":"@stdlib/assert/is-float32vector-like","isFloat64Array":"@stdlib/assert/is-float64array","isFloat64MatrixLike":"@stdlib/assert/is-float64matrix-like","isFloat64ndarrayLike":"@stdlib/assert/is-float64ndarray-like","isFloat64VectorLike":"@stdlib/assert/is-float64vector-like","isFunction":"@stdlib/assert/is-function","isFunctionArray":"@stdlib/assert/is-function-array","isGeneratorObject":"@stdlib/assert/is-generator-object","isGeneratorObjectLike":"@stdlib/assert/is-generator-object-like","isgzipBuffer":"@stdlib/assert/is-gzip-buffer","isHexString":"@stdlib/assert/is-hex-string","isInfinite":"@stdlib/assert/is-infinite","isInheritedProperty":"@stdlib/assert/is-inherited-property","isInt8Array":"@stdlib/assert/is-int8array","isInt16Array":"@stdlib/assert/is-int16array","isInt32Array":"@stdlib/assert/is-int32array","isInteger":"@stdlib/assert/is-integer","isIntegerArray":"@stdlib/assert/is-integer-array","isIterableLike":"@stdlib/assert/is-iterable-like","isIteratorLike":"@stdlib/assert/is-iterator-like","isJSON":"@stdlib/assert/is-json","isKebabcase":"@stdlib/assert/is-kebabcase","isLeapYear":"@stdlib/assert/is-leap-year","isLocalhost":"@stdlib/assert/is-localhost","isLowercase":"@stdlib/assert/is-lowercase","isMatrixLike":"@stdlib/assert/is-matrix-like","isMethod":"@stdlib/assert/is-method","isMethodIn":"@stdlib/assert/is-method-in","isMultiSlice":"@stdlib/assert/is-multi-slice","isNamedTypedTupleLike":"@stdlib/assert/is-named-typed-tuple-like","isnan":"@stdlib/assert/is-nan","isNaNArray":"@stdlib/assert/is-nan-array","isNativeFunction":"@stdlib/assert/is-native-function","isndarrayLike":"@stdlib/assert/is-ndarray-like","isndarrayLikeWithDataType":"@stdlib/assert/is-ndarray-like-with-data-type","isNegativeFinite":"@stdlib/assert/is-negative-finite","isNegativeInteger":"@stdlib/assert/is-negative-integer","isNegativeIntegerArray":"@stdlib/assert/is-negative-integer-array","isNegativeNumber":"@stdlib/assert/is-negative-number","isNegativeNumberArray":"@stdlib/assert/is-negative-number-array","isNegativeZero":"@stdlib/assert/is-negative-zero","isNodeBuiltin":"@stdlib/assert/is-node-builtin","isNodeDuplexStreamLike":"@stdlib/assert/is-node-duplex-stream-like","isNodeReadableStreamLike":"@stdlib/assert/is-node-readable-stream-like","isNodeREPL":"@stdlib/assert/is-node-repl","isNodeStreamLike":"@stdlib/assert/is-node-stream-like","isNodeTransformStreamLike":"@stdlib/assert/is-node-transform-stream-like","isNodeWritableStreamLike":"@stdlib/assert/is-node-writable-stream-like","isNonConfigurableProperty":"@stdlib/assert/is-nonconfigurable-property","isNonConfigurablePropertyIn":"@stdlib/assert/is-nonconfigurable-property-in","isNonEnumerableProperty":"@stdlib/assert/is-nonenumerable-property","isNonEnumerablePropertyIn":"@stdlib/assert/is-nonenumerable-property-in","isNonNegativeFinite":"@stdlib/assert/is-nonnegative-finite","isNonNegativeInteger":"@stdlib/assert/is-nonnegative-integer","isNonNegativeIntegerArray":"@stdlib/assert/is-nonnegative-integer-array","isNonNegativeNumber":"@stdlib/assert/is-nonnegative-number","isNonNegativeNumberArray":"@stdlib/assert/is-nonnegative-number-array","isNonPositiveFinite":"@stdlib/assert/is-nonpositive-finite","isNonPositiveInteger":"@stdlib/assert/is-nonpositive-integer","isNonPositiveIntegerArray":"@stdlib/assert/is-nonpositive-integer-array","isNonPositiveNumber":"@stdlib/assert/is-nonpositive-number","isNonPositiveNumberArray":"@stdlib/assert/is-nonpositive-number-array","isNonSymmetricMatrix":"@stdlib/assert/is-nonsymmetric-matrix","isNull":"@stdlib/assert/is-null","isNullArray":"@stdlib/assert/is-null-array","isNumber":"@stdlib/assert/is-number","isNumberArray":"@stdlib/assert/is-number-array","isNumericArray":"@stdlib/assert/is-numeric-array","isObject":"@stdlib/assert/is-object","isObjectArray":"@stdlib/assert/is-object-array","isObjectLike":"@stdlib/assert/is-object-like","isOdd":"@stdlib/assert/is-odd","isoWeeksInYear":"@stdlib/time/iso-weeks-in-year","isPascalcase":"@stdlib/assert/is-pascalcase","isPersymmetricMatrix":"@stdlib/assert/is-persymmetric-matrix","isPlainObject":"@stdlib/assert/is-plain-object","isPlainObjectArray":"@stdlib/assert/is-plain-object-array","isPositiveFinite":"@stdlib/assert/is-positive-finite","isPositiveInteger":"@stdlib/assert/is-positive-integer","isPositiveIntegerArray":"@stdlib/assert/is-positive-integer-array","isPositiveNumber":"@stdlib/assert/is-positive-number","isPositiveNumberArray":"@stdlib/assert/is-positive-number-array","isPositiveZero":"@stdlib/assert/is-positive-zero","isPrime":"@stdlib/assert/is-prime","isPrimitive":"@stdlib/assert/is-primitive","isPrimitiveArray":"@stdlib/assert/is-primitive-array","isPRNGLike":"@stdlib/assert/is-prng-like","isProbability":"@stdlib/assert/is-probability","isProbabilityArray":"@stdlib/assert/is-probability-array","isPropertyKey":"@stdlib/assert/is-property-key","isPrototypeOf":"@stdlib/assert/is-prototype-of","isRaggedNestedArray":"@stdlib/assert/is-ragged-nested-array","isRangeError":"@stdlib/assert/is-range-error","isReadableProperty":"@stdlib/assert/is-readable-property","isReadablePropertyIn":"@stdlib/assert/is-readable-property-in","isReadOnlyProperty":"@stdlib/assert/is-read-only-property","isReadOnlyPropertyIn":"@stdlib/assert/is-read-only-property-in","isReadWriteProperty":"@stdlib/assert/is-read-write-property","isReadWritePropertyIn":"@stdlib/assert/is-read-write-property-in","isReferenceError":"@stdlib/assert/is-reference-error","isRegExp":"@stdlib/assert/is-regexp","isRegExpString":"@stdlib/assert/is-regexp-string","isRelativePath":"@stdlib/assert/is-relative-path","isRelativeURI":"@stdlib/assert/is-relative-uri","isSafeInteger":"@stdlib/assert/is-safe-integer","isSafeIntegerArray":"@stdlib/assert/is-safe-integer-array","isSameArray":"@stdlib/assert/is-same-array","isSameArrayLike":"@stdlib/assert/is-same-array-like","isSameComplex64":"@stdlib/assert/is-same-complex64","isSameComplex64Array":"@stdlib/assert/is-same-complex64array","isSameComplex128":"@stdlib/assert/is-same-complex128","isSameComplex128Array":"@stdlib/assert/is-same-complex128array","isSameDateObject":"@stdlib/assert/is-same-date-object","isSameFloat32Array":"@stdlib/assert/is-same-float32array","isSameFloat64Array":"@stdlib/assert/is-same-float64array","isSameNativeClass":"@stdlib/assert/is-same-native-class","isSameType":"@stdlib/assert/is-same-type","isSameValue":"@stdlib/assert/is-same-value","isSameValueZero":"@stdlib/assert/is-same-value-zero","isSemVer":"@stdlib/assert/is-semver","isSharedArrayBuffer":"@stdlib/assert/is-sharedarraybuffer","isSkewCentrosymmetricMatrix":"@stdlib/assert/is-skew-centrosymmetric-matrix","isSkewPersymmetricMatrix":"@stdlib/assert/is-skew-persymmetric-matrix","isSkewSymmetricMatrix":"@stdlib/assert/is-skew-symmetric-matrix","isSlice":"@stdlib/assert/is-slice","isSnakecase":"@stdlib/assert/is-snakecase","isSquareMatrix":"@stdlib/assert/is-square-matrix","isSquareNumber":"@stdlib/assert/is-square-number","isSquareTriangularNumber":"@stdlib/assert/is-square-triangular-number","isStartcase":"@stdlib/assert/is-startcase","isStrictEqual":"@stdlib/assert/is-strict-equal","isString":"@stdlib/assert/is-string","isStringArray":"@stdlib/assert/is-string-array","isSymbol":"@stdlib/assert/is-symbol","isSymbolArray":"@stdlib/assert/is-symbol-array","isSymmetricMatrix":"@stdlib/assert/is-symmetric-matrix","isSyntaxError":"@stdlib/assert/is-syntax-error","isTriangularNumber":"@stdlib/assert/is-triangular-number","isTruthy":"@stdlib/assert/is-truthy","isTruthyArray":"@stdlib/assert/is-truthy-array","isTypedArray":"@stdlib/assert/is-typed-array","isTypedArrayLength":"@stdlib/assert/is-typed-array-length","isTypedArrayLike":"@stdlib/assert/is-typed-array-like","isTypeError":"@stdlib/assert/is-type-error","isUint8Array":"@stdlib/assert/is-uint8array","isUint8ClampedArray":"@stdlib/assert/is-uint8clampedarray","isUint16Array":"@stdlib/assert/is-uint16array","isUint32Array":"@stdlib/assert/is-uint32array","isUNCPath":"@stdlib/assert/is-unc-path","isUndefined":"@stdlib/assert/is-undefined","isUndefinedOrNull":"@stdlib/assert/is-undefined-or-null","isUnityProbabilityArray":"@stdlib/assert/is-unity-probability-array","isUppercase":"@stdlib/assert/is-uppercase","isURI":"@stdlib/assert/is-uri","isURIError":"@stdlib/assert/is-uri-error","isVectorLike":"@stdlib/assert/is-vector-like","isWebAssemblyMemory":"@stdlib/assert/is-wasm-memory","isWellFormedString":"@stdlib/assert/is-well-formed-string","isWhitespace":"@stdlib/assert/is-whitespace","isWritableProperty":"@stdlib/assert/is-writable-property","isWritablePropertyIn":"@stdlib/assert/is-writable-property-in","isWriteOnlyProperty":"@stdlib/assert/is-write-only-property","isWriteOnlyPropertyIn":"@stdlib/assert/is-write-only-property-in","iterAbs":"@stdlib/math/iter/special/abs","iterAbs2":"@stdlib/math/iter/special/abs2","iterAcos":"@stdlib/math/iter/special/acos","iterAcosh":"@stdlib/math/iter/special/acosh","iterAcot":"@stdlib/math/iter/special/acot","iterAcoth":"@stdlib/math/iter/special/acoth","iterAcovercos":"@stdlib/math/iter/special/acovercos","iterAcoversin":"@stdlib/math/iter/special/acoversin","iterAdd":"@stdlib/math/iter/ops/add","iterAdvance":"@stdlib/iter/advance","iterAhavercos":"@stdlib/math/iter/special/ahavercos","iterAhaversin":"@stdlib/math/iter/special/ahaversin","iterAny":"@stdlib/iter/any","iterAnyBy":"@stdlib/iter/any-by","iterAsin":"@stdlib/math/iter/special/asin","iterAsinh":"@stdlib/math/iter/special/asinh","iterAtan":"@stdlib/math/iter/special/atan","iterAtan2":"@stdlib/math/iter/special/atan2","iterAtanh":"@stdlib/math/iter/special/atanh","iterator2array":"@stdlib/array/from-iterator","iterator2arrayview":"@stdlib/iter/to-array-view","iterator2arrayviewRight":"@stdlib/iter/to-array-view-right","iteratorStream":"@stdlib/streams/node/from-iterator","IteratorSymbol":"@stdlib/symbol/iterator","iterAvercos":"@stdlib/math/iter/special/avercos","iterAversin":"@stdlib/math/iter/special/aversin","iterawgn":"@stdlib/simulate/iter/awgn","iterawln":"@stdlib/simulate/iter/awln","iterawun":"@stdlib/simulate/iter/awun","iterBartlettHannPulse":"@stdlib/simulate/iter/bartlett-hann-pulse","iterBartlettPulse":"@stdlib/simulate/iter/bartlett-pulse","iterBesselj0":"@stdlib/math/iter/special/besselj0","iterBesselj1":"@stdlib/math/iter/special/besselj1","iterBessely0":"@stdlib/math/iter/special/bessely0","iterBessely1":"@stdlib/math/iter/special/bessely1","iterBeta":"@stdlib/math/iter/special/beta","iterBetaln":"@stdlib/math/iter/special/betaln","iterBinet":"@stdlib/math/iter/special/binet","iterCbrt":"@stdlib/math/iter/special/cbrt","iterCeil":"@stdlib/math/iter/special/ceil","iterCeil2":"@stdlib/math/iter/special/ceil2","iterCeil10":"@stdlib/math/iter/special/ceil10","iterCompositesSeq":"@stdlib/math/iter/sequences/composites","iterConcat":"@stdlib/iter/concat","iterConstant":"@stdlib/iter/constant","iterContinuedFraction":"@stdlib/math/iter/utils/continued-fraction","iterContinuedFractionSeq":"@stdlib/math/iter/sequences/continued-fraction","iterCos":"@stdlib/math/iter/special/cos","iterCosh":"@stdlib/math/iter/special/cosh","iterCosineWave":"@stdlib/simulate/iter/cosine-wave","iterCosm1":"@stdlib/math/iter/special/cosm1","iterCospi":"@stdlib/math/iter/special/cospi","iterCounter":"@stdlib/iter/counter","iterCovercos":"@stdlib/math/iter/special/covercos","iterCoversin":"@stdlib/math/iter/special/coversin","iterCubesSeq":"@stdlib/math/iter/sequences/cubes","itercugmean":"@stdlib/stats/iter/cugmean","itercuhmean":"@stdlib/stats/iter/cuhmean","itercumax":"@stdlib/stats/iter/cumax","itercumaxabs":"@stdlib/stats/iter/cumaxabs","itercumean":"@stdlib/stats/iter/cumean","itercumeanabs":"@stdlib/stats/iter/cumeanabs","itercumeanabs2":"@stdlib/stats/iter/cumeanabs2","itercumidrange":"@stdlib/stats/iter/cumidrange","itercumin":"@stdlib/stats/iter/cumin","itercuminabs":"@stdlib/stats/iter/cuminabs","itercuprod":"@stdlib/stats/iter/cuprod","itercurange":"@stdlib/stats/iter/curange","itercusum":"@stdlib/stats/iter/cusum","itercusumabs":"@stdlib/stats/iter/cusumabs","itercusumabs2":"@stdlib/stats/iter/cusumabs2","iterDatespace":"@stdlib/iter/datespace","iterDedupe":"@stdlib/iter/dedupe","iterDedupeBy":"@stdlib/iter/dedupe-by","iterDeg2rad":"@stdlib/math/iter/special/deg2rad","iterDigamma":"@stdlib/math/iter/special/digamma","iterDiracComb":"@stdlib/simulate/iter/dirac-comb","iterDiracDelta":"@stdlib/math/iter/special/dirac-delta","iterDivide":"@stdlib/math/iter/ops/divide","iterDoUntilEach":"@stdlib/iter/do-until-each","iterDoWhileEach":"@stdlib/iter/do-while-each","iterEllipe":"@stdlib/math/iter/special/ellipe","iterEllipk":"@stdlib/math/iter/special/ellipk","iterEmpty":"@stdlib/iter/empty","iterErf":"@stdlib/math/iter/special/erf","iterErfc":"@stdlib/math/iter/special/erfc","iterErfcinv":"@stdlib/math/iter/special/erfcinv","iterErfinv":"@stdlib/math/iter/special/erfinv","iterEta":"@stdlib/math/iter/special/dirichlet-eta","iterEvenIntegersSeq":"@stdlib/math/iter/sequences/even-integers","iterEvery":"@stdlib/iter/every","iterEveryBy":"@stdlib/iter/every-by","iterExp":"@stdlib/math/iter/special/exp","iterExp2":"@stdlib/math/iter/special/exp2","iterExp10":"@stdlib/math/iter/special/exp10","iterExpit":"@stdlib/math/iter/special/expit","iterExpm1":"@stdlib/math/iter/special/expm1","iterExpm1rel":"@stdlib/math/iter/special/expm1rel","iterFactorial":"@stdlib/math/iter/special/factorial","iterFactorialln":"@stdlib/math/iter/special/factorialln","iterFactorialsSeq":"@stdlib/math/iter/sequences/factorials","iterFibonacciSeq":"@stdlib/math/iter/sequences/fibonacci","iterFifthPowersSeq":"@stdlib/math/iter/sequences/fifth-powers","iterFill":"@stdlib/iter/fill","iterFilter":"@stdlib/iter/filter","iterFilterMap":"@stdlib/iter/filter-map","iterFirst":"@stdlib/iter/first","iterFlatTopPulse":"@stdlib/simulate/iter/flat-top-pulse","iterFloor":"@stdlib/math/iter/special/floor","iterFloor2":"@stdlib/math/iter/special/floor2","iterFloor10":"@stdlib/math/iter/special/floor10","iterFlow":"@stdlib/iter/flow","iterForEach":"@stdlib/iter/for-each","iterFourthPowersSeq":"@stdlib/math/iter/sequences/fourth-powers","iterFresnelc":"@stdlib/math/iter/special/fresnelc","iterFresnels":"@stdlib/math/iter/special/fresnels","iterGamma":"@stdlib/math/iter/special/gamma","iterGamma1pm1":"@stdlib/math/iter/special/gamma1pm1","iterGammaln":"@stdlib/math/iter/special/gammaln","iterHacovercos":"@stdlib/math/iter/special/hacovercos","iterHacoversin":"@stdlib/math/iter/special/hacoversin","iterHannPulse":"@stdlib/simulate/iter/hann-pulse","iterHavercos":"@stdlib/math/iter/special/havercos","iterHaversin":"@stdlib/math/iter/special/haversin","iterHead":"@stdlib/iter/head","iterIncrspace":"@stdlib/iter/incrspace","iterIntegersSeq":"@stdlib/math/iter/sequences/integers","iterIntersection":"@stdlib/iter/intersection","iterIntersectionByHash":"@stdlib/iter/intersection-by-hash","iterInv":"@stdlib/math/iter/special/inv","iterLanczosPulse":"@stdlib/simulate/iter/lanczos-pulse","iterLast":"@stdlib/iter/last","iterLength":"@stdlib/iter/length","iterLinspace":"@stdlib/iter/linspace","iterLn":"@stdlib/math/iter/special/ln","iterLog":"@stdlib/math/iter/special/log","iterLog1mexp":"@stdlib/math/iter/special/log1mexp","iterLog1p":"@stdlib/math/iter/special/log1p","iterLog1pexp":"@stdlib/math/iter/special/log1pexp","iterLog2":"@stdlib/math/iter/special/log2","iterLog10":"@stdlib/math/iter/special/log10","iterLogit":"@stdlib/math/iter/special/logit","iterLogspace":"@stdlib/iter/logspace","iterLucasSeq":"@stdlib/math/iter/sequences/lucas","iterMap":"@stdlib/iter/map","iterMapN":"@stdlib/iter/mapn","itermax":"@stdlib/stats/iter/max","itermaxabs":"@stdlib/stats/iter/maxabs","itermean":"@stdlib/stats/iter/mean","itermeanabs":"@stdlib/stats/iter/meanabs","itermeanabs2":"@stdlib/stats/iter/meanabs2","itermidrange":"@stdlib/stats/iter/midrange","itermin":"@stdlib/stats/iter/min","iterminabs":"@stdlib/stats/iter/minabs","itermmax":"@stdlib/stats/iter/mmax","itermmaxabs":"@stdlib/stats/iter/mmaxabs","itermmean":"@stdlib/stats/iter/mmean","itermmeanabs":"@stdlib/stats/iter/mmeanabs","itermmeanabs2":"@stdlib/stats/iter/mmeanabs2","itermmidrange":"@stdlib/stats/iter/mmidrange","itermmin":"@stdlib/stats/iter/mmin","itermminabs":"@stdlib/stats/iter/mminabs","iterMod":"@stdlib/math/iter/ops/mod","itermprod":"@stdlib/stats/iter/mprod","itermrange":"@stdlib/stats/iter/mrange","itermsum":"@stdlib/stats/iter/msum","itermsumabs":"@stdlib/stats/iter/msumabs","itermsumabs2":"@stdlib/stats/iter/msumabs2","iterMultiply":"@stdlib/math/iter/ops/multiply","iterNegaFibonacciSeq":"@stdlib/math/iter/sequences/negafibonacci","iterNegaLucasSeq":"@stdlib/math/iter/sequences/negalucas","iterNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/negative-even-integers","iterNegativeIntegersSeq":"@stdlib/math/iter/sequences/negative-integers","iterNegativeOddIntegersSeq":"@stdlib/math/iter/sequences/negative-odd-integers","iterNone":"@stdlib/iter/none","iterNoneBy":"@stdlib/iter/none-by","iterNonFibonacciSeq":"@stdlib/math/iter/sequences/nonfibonacci","iterNonNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-even-integers","iterNonNegativeIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-integers","iterNonPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-even-integers","iterNonPositiveIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-integers","iterNonSquaresSeq":"@stdlib/math/iter/sequences/nonsquares","iterNth":"@stdlib/iter/nth","iterOddIntegersSeq":"@stdlib/math/iter/sequences/odd-integers","iterPeriodicSinc":"@stdlib/simulate/iter/periodic-sinc","iterPipeline":"@stdlib/iter/pipeline","iterPop":"@stdlib/iter/pop","iterPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/positive-even-integers","iterPositiveIntegersSeq":"@stdlib/math/iter/sequences/positive-integers","iterPositiveOddIntegersSeq":"@stdlib/math/iter/sequences/positive-odd-integers","iterPow":"@stdlib/math/iter/special/pow","iterPrimesSeq":"@stdlib/math/iter/sequences/primes","iterprod":"@stdlib/stats/iter/prod","iterPulse":"@stdlib/simulate/iter/pulse","iterPush":"@stdlib/iter/push","iterRad2deg":"@stdlib/math/iter/special/rad2deg","iterRamp":"@stdlib/math/iter/special/ramp","iterrange":"@stdlib/stats/iter/range","iterReject":"@stdlib/iter/reject","iterReplicate":"@stdlib/iter/replicate","iterReplicateBy":"@stdlib/iter/replicate-by","iterRound":"@stdlib/math/iter/special/round","iterRound2":"@stdlib/math/iter/special/round2","iterRound10":"@stdlib/math/iter/special/round10","iterRsqrt":"@stdlib/math/iter/special/rsqrt","iterSawtoothWave":"@stdlib/simulate/iter/sawtooth-wave","iterShift":"@stdlib/iter/shift","iterSignum":"@stdlib/math/iter/special/signum","iterSin":"@stdlib/math/iter/special/sin","iterSinc":"@stdlib/math/iter/special/sinc","iterSineWave":"@stdlib/simulate/iter/sine-wave","iterSinh":"@stdlib/math/iter/special/sinh","iterSinpi":"@stdlib/math/iter/special/sinpi","iterSlice":"@stdlib/iter/slice","iterSome":"@stdlib/iter/some","iterSomeBy":"@stdlib/iter/some-by","iterSpence":"@stdlib/math/iter/special/spence","iterSqrt":"@stdlib/math/iter/special/sqrt","iterSqrt1pm1":"@stdlib/math/iter/special/sqrt1pm1","iterSquaredTriangularSeq":"@stdlib/math/iter/sequences/squared-triangular","iterSquaresSeq":"@stdlib/math/iter/sequences/squares","iterSquareWave":"@stdlib/simulate/iter/square-wave","iterstdev":"@stdlib/stats/iter/stdev","iterStep":"@stdlib/iter/step","iterStrided":"@stdlib/iter/strided","iterStridedBy":"@stdlib/iter/strided-by","iterSubtract":"@stdlib/math/iter/ops/subtract","itersum":"@stdlib/stats/iter/sum","itersumabs":"@stdlib/stats/iter/sumabs","itersumabs2":"@stdlib/stats/iter/sumabs2","iterTan":"@stdlib/math/iter/special/tan","iterTanh":"@stdlib/math/iter/special/tanh","iterThunk":"@stdlib/iter/pipeline-thunk","iterTriangleWave":"@stdlib/simulate/iter/triangle-wave","iterTriangularSeq":"@stdlib/math/iter/sequences/triangular","iterTribonnaciSeq":"@stdlib/math/iter/sequences/tribonacci","iterTrigamma":"@stdlib/math/iter/special/trigamma","iterTrunc":"@stdlib/math/iter/special/trunc","iterTrunc2":"@stdlib/math/iter/special/trunc2","iterTrunc10":"@stdlib/math/iter/special/trunc10","iterUnion":"@stdlib/iter/union","iterUnique":"@stdlib/iter/unique","iterUniqueBy":"@stdlib/iter/unique-by","iterUniqueByHash":"@stdlib/iter/unique-by-hash","iterUnitspace":"@stdlib/iter/unitspace","iterUnshift":"@stdlib/iter/unshift","iterUntilEach":"@stdlib/iter/until-each","itervariance":"@stdlib/stats/iter/variance","iterVercos":"@stdlib/math/iter/special/vercos","iterVersin":"@stdlib/math/iter/special/versin","iterWhileEach":"@stdlib/iter/while-each","iterZeta":"@stdlib/math/iter/special/riemann-zeta","joinStream":"@stdlib/streams/node/join","kde2d":"@stdlib/stats/kde2d","kebabcase":"@stdlib/string/kebabcase","keyBy":"@stdlib/utils/key-by","keyByRight":"@stdlib/utils/key-by-right","keysIn":"@stdlib/utils/keys-in","kruskalTest":"@stdlib/stats/kruskal-test","kstest":"@stdlib/stats/kstest","last":"@stdlib/string/last","lda":"@stdlib/nlp/lda","leveneTest":"@stdlib/stats/levene-test","LinkedList":"@stdlib/utils/linked-list","linspace":"@stdlib/array/linspace","LIU_NEGATIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-negative-opinion-words-en","LIU_POSITIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-positive-opinion-words-en","LN_HALF":"@stdlib/constants/float64/ln-half","LN_PI":"@stdlib/constants/float64/ln-pi","LN_SQRT_TWO_PI":"@stdlib/constants/float64/ln-sqrt-two-pi","LN_TWO_PI":"@stdlib/constants/float64/ln-two-pi","LN2":"@stdlib/constants/float64/ln-two","LN10":"@stdlib/constants/float64/ln-ten","LOG2E":"@stdlib/constants/float64/log2-e","LOG10E":"@stdlib/constants/float64/log10-e","logspace":"@stdlib/array/logspace","lowercase":"@stdlib/string/lowercase","lowercaseKeys":"@stdlib/utils/lowercase-keys","lowess":"@stdlib/stats/lowess","lpad":"@stdlib/string/left-pad","ltrim":"@stdlib/string/left-trim","ltrimN":"@stdlib/string/left-trim-n","MALE_FIRST_NAMES_EN":"@stdlib/datasets/male-first-names-en","map":"@stdlib/utils/map","map2":"@stdlib/utils/map2","map2d":"@stdlib/utils/map2d","map2Right":"@stdlib/utils/map2-right","map3d":"@stdlib/utils/map3d","map4d":"@stdlib/utils/map4d","map5d":"@stdlib/utils/map5d","mapArguments":"@stdlib/utils/map-arguments","mapFun":"@stdlib/utils/map-function","mapFunAsync":"@stdlib/utils/async/map-function","mapKeys":"@stdlib/utils/map-keys","mapKeysAsync":"@stdlib/utils/async/map-keys","mapReduce":"@stdlib/utils/map-reduce","mapReduceRight":"@stdlib/utils/map-reduce-right","mapRight":"@stdlib/utils/map-right","mapValues":"@stdlib/utils/map-values","mapValuesAsync":"@stdlib/utils/async/map-values","maskArguments":"@stdlib/utils/mask-arguments","MAX_ARRAY_LENGTH":"@stdlib/constants/array/max-array-length","MAX_TYPED_ARRAY_LENGTH":"@stdlib/constants/array/max-typed-array-length","maybeBroadcastArray":"@stdlib/ndarray/maybe-broadcast-array","maybeBroadcastArrays":"@stdlib/ndarray/maybe-broadcast-arrays","memoize":"@stdlib/utils/memoize","merge":"@stdlib/utils/merge","MILLISECONDS_IN_DAY":"@stdlib/constants/time/milliseconds-in-day","MILLISECONDS_IN_HOUR":"@stdlib/constants/time/milliseconds-in-hour","MILLISECONDS_IN_MINUTE":"@stdlib/constants/time/milliseconds-in-minute","MILLISECONDS_IN_SECOND":"@stdlib/constants/time/milliseconds-in-second","MILLISECONDS_IN_WEEK":"@stdlib/constants/time/milliseconds-in-week","MINARD_NAPOLEONS_MARCH":"@stdlib/datasets/minard-napoleons-march","MINUTES_IN_DAY":"@stdlib/constants/time/minutes-in-day","MINUTES_IN_HOUR":"@stdlib/constants/time/minutes-in-hour","MINUTES_IN_WEEK":"@stdlib/constants/time/minutes-in-week","minutesInMonth":"@stdlib/time/minutes-in-month","minutesInYear":"@stdlib/time/minutes-in-year","MOBY_DICK":"@stdlib/datasets/moby-dick","MONTH_NAMES_EN":"@stdlib/datasets/month-names-en","MONTHS_IN_YEAR":"@stdlib/constants/time/months-in-year","moveProperty":"@stdlib/utils/move-property","MultiSlice":"@stdlib/slice/multi","namedtypedtuple":"@stdlib/utils/named-typed-tuple","NAN":"@stdlib/constants/float64/nan","naryFunction":"@stdlib/utils/nary-function","nativeClass":"@stdlib/utils/native-class","ndarray":"@stdlib/ndarray/ctor","ndarray2array":"@stdlib/ndarray/to-array","ndarrayCastingModes":"@stdlib/ndarray/casting-modes","ndarrayDataBuffer":"@stdlib/ndarray/data-buffer","ndarrayDataType":"@stdlib/ndarray/dtype","ndarrayDataTypes":"@stdlib/ndarray/dtypes","ndarrayDispatch":"@stdlib/ndarray/dispatch","ndarrayFlag":"@stdlib/ndarray/flag","ndarrayFlags":"@stdlib/ndarray/flags","ndarrayIndexModes":"@stdlib/ndarray/index-modes","ndarraylike2ndarray":"@stdlib/ndarray/ndarraylike2ndarray","ndarrayMinDataType":"@stdlib/ndarray/min-dtype","ndarrayMostlySafeCasts":"@stdlib/ndarray/mostly-safe-casts","ndarrayNextDataType":"@stdlib/ndarray/next-dtype","ndarrayOffset":"@stdlib/ndarray/offset","ndarrayOrder":"@stdlib/ndarray/order","ndarrayOrders":"@stdlib/ndarray/orders","ndarrayPromotionRules":"@stdlib/ndarray/promotion-rules","ndarraySafeCasts":"@stdlib/ndarray/safe-casts","ndarraySameKindCasts":"@stdlib/ndarray/same-kind-casts","ndarrayShape":"@stdlib/ndarray/shape","ndarrayStride":"@stdlib/ndarray/stride","ndarrayStrides":"@stdlib/ndarray/strides","ndat":"@stdlib/ndarray/at","ndempty":"@stdlib/ndarray/empty","ndemptyLike":"@stdlib/ndarray/empty-like","ndims":"@stdlib/ndarray/ndims","nditer2arrayEach":"@stdlib/ndarray/iter/to-array-each","nditerColumnEntries":"@stdlib/ndarray/iter/column-entries","nditerColumns":"@stdlib/ndarray/iter/columns","nditerEntries":"@stdlib/ndarray/iter/entries","nditerIndices":"@stdlib/ndarray/iter/indices","nditerInterleaveSubarrays":"@stdlib/ndarray/iter/interleave-subarrays","nditerMatrices":"@stdlib/ndarray/iter/matrices","nditerMatrixEntries":"@stdlib/ndarray/iter/matrix-entries","nditerRowEntries":"@stdlib/ndarray/iter/row-entries","nditerRows":"@stdlib/ndarray/iter/rows","nditerSelectDimension":"@stdlib/ndarray/iter/select-dimension","nditerStacks":"@stdlib/ndarray/iter/stacks","nditerSubarrays":"@stdlib/ndarray/iter/subarrays","nditerValues":"@stdlib/ndarray/iter/values","ndslice":"@stdlib/ndarray/slice","ndsliceAssign":"@stdlib/ndarray/slice-assign","ndsliceDimension":"@stdlib/ndarray/slice-dimension","ndsliceDimensionFrom":"@stdlib/ndarray/slice-dimension-from","ndsliceDimensionTo":"@stdlib/ndarray/slice-dimension-to","ndsliceFrom":"@stdlib/ndarray/slice-from","ndsliceTo":"@stdlib/ndarray/slice-to","ndzeros":"@stdlib/ndarray/zeros","ndzerosLike":"@stdlib/ndarray/zeros-like","nextGraphemeClusterBreak":"@stdlib/string/next-grapheme-cluster-break","nextTick":"@stdlib/utils/next-tick","NIGHTINGALES_ROSE":"@stdlib/datasets/nightingales-rose","NINF":"@stdlib/constants/float64/ninf","NODE_VERSION":"@stdlib/process/node-version","none":"@stdlib/utils/none","noneBy":"@stdlib/utils/none-by","noneByAsync":"@stdlib/utils/async/none-by","noneByRight":"@stdlib/utils/none-by-right","noneByRightAsync":"@stdlib/utils/async/none-by-right","noneInBy":"@stdlib/utils/none-in-by","nonEnumerableProperties":"@stdlib/utils/nonenumerable-properties","nonEnumerablePropertiesIn":"@stdlib/utils/nonenumerable-properties-in","nonEnumerablePropertyNames":"@stdlib/utils/nonenumerable-property-names","nonEnumerablePropertyNamesIn":"@stdlib/utils/nonenumerable-property-names-in","nonEnumerablePropertySymbols":"@stdlib/utils/nonenumerable-property-symbols","nonEnumerablePropertySymbolsIn":"@stdlib/utils/nonenumerable-property-symbols-in","noneOwnBy":"@stdlib/utils/none-own-by","nonIndexKeys":"@stdlib/utils/nonindex-keys","noop":"@stdlib/utils/noop","now":"@stdlib/time/now","NUM_CPUS":"@stdlib/os/num-cpus","num2words":"@stdlib/string/num2words","Number":"@stdlib/number/ctor","numel":"@stdlib/ndarray/numel","numelDimension":"@stdlib/ndarray/numel-dimension","numGraphemeClusters":"@stdlib/string/num-grapheme-clusters","Object":"@stdlib/object/ctor","objectEntries":"@stdlib/utils/entries","objectEntriesIn":"@stdlib/utils/entries-in","objectFromEntries":"@stdlib/utils/from-entries","objectInverse":"@stdlib/utils/object-inverse","objectInverseBy":"@stdlib/utils/object-inverse-by","objectKeys":"@stdlib/utils/keys","objectValues":"@stdlib/utils/values","objectValuesIn":"@stdlib/utils/values-in","omit":"@stdlib/utils/omit","omitBy":"@stdlib/utils/omit-by","open":"@stdlib/fs/open","openURL":"@stdlib/utils/open-url","ordinalize":"@stdlib/nlp/ordinalize","PACE_BOSTON_HOUSE_PRICES":"@stdlib/datasets/pace-boston-house-prices","pad":"@stdlib/string/pad","padjust":"@stdlib/stats/padjust","papply":"@stdlib/utils/papply","papplyRight":"@stdlib/utils/papply-right","parallel":"@stdlib/utils/parallel","parseJSON":"@stdlib/utils/parse-json","pascalcase":"@stdlib/string/pascalcase","PATH_DELIMITER":"@stdlib/constants/path/delimiter","PATH_DELIMITER_POSIX":"@stdlib/constants/path/delimiter-posix","PATH_DELIMITER_WIN32":"@stdlib/constants/path/delimiter-win32","PATH_SEP":"@stdlib/constants/path/sep","PATH_SEP_POSIX":"@stdlib/constants/path/sep-posix","PATH_SEP_WIN32":"@stdlib/constants/path/sep-win32","pcorrtest":"@stdlib/stats/pcorrtest","percentEncode":"@stdlib/string/percent-encode","PHI":"@stdlib/constants/float64/phi","PI":"@stdlib/constants/float64/pi","PI_SQUARED":"@stdlib/constants/float64/pi-squared","pick":"@stdlib/utils/pick","pickArguments":"@stdlib/utils/pick-arguments","pickBy":"@stdlib/utils/pick-by","PINF":"@stdlib/constants/float64/pinf","pkg2alias":"@stdlib/namespace/pkg2alias","pkg2related":"@stdlib/namespace/pkg2related","pkg2standalone":"@stdlib/namespace/pkg2standalone","PLATFORM":"@stdlib/os/platform","plot":"@stdlib/plot","Plot":"@stdlib/plot/ctor","pluck":"@stdlib/utils/pluck","pop":"@stdlib/utils/pop","porterStemmer":"@stdlib/nlp/porter-stemmer","prepend":"@stdlib/utils/prepend","prevGraphemeClusterBreak":"@stdlib/string/prev-grapheme-cluster-break","PRIMES_100K":"@stdlib/datasets/primes-100k","properties":"@stdlib/utils/properties","propertiesIn":"@stdlib/utils/properties-in","propertyDescriptor":"@stdlib/utils/property-descriptor","propertyDescriptorIn":"@stdlib/utils/property-descriptor-in","propertyDescriptors":"@stdlib/utils/property-descriptors","propertyDescriptorsIn":"@stdlib/utils/property-descriptors-in","propertyNames":"@stdlib/utils/property-names","propertyNamesIn":"@stdlib/utils/property-names-in","propertySymbols":"@stdlib/utils/property-symbols","propertySymbolsIn":"@stdlib/utils/property-symbols-in","Proxy":"@stdlib/proxy/ctor","push":"@stdlib/utils/push","quarterOfYear":"@stdlib/time/quarter-of-year","random.array.arcsine":"@stdlib/random/array/arcsine","random.array.bernoulli":"@stdlib/random/array/bernoulli","random.array.beta":"@stdlib/random/array/beta","random.array.betaprime":"@stdlib/random/array/betaprime","random.array.binomial":"@stdlib/random/array/binomial","random.array.cauchy":"@stdlib/random/array/cauchy","random.array.chi":"@stdlib/random/array/chi","random.array.chisquare":"@stdlib/random/array/chisquare","random.array.cosine":"@stdlib/random/array/cosine","random.array.discreteUniform":"@stdlib/random/array/discrete-uniform","random.array.erlang":"@stdlib/random/array/erlang","random.array.exponential":"@stdlib/random/array/exponential","random.array.f":"@stdlib/random/array/f","random.array.frechet":"@stdlib/random/array/frechet","random.array.gamma":"@stdlib/random/array/gamma","random.array.geometric":"@stdlib/random/array/geometric","random.array.gumbel":"@stdlib/random/array/gumbel","random.array.hypergeometric":"@stdlib/random/array/hypergeometric","random.array.invgamma":"@stdlib/random/array/invgamma","random.array.kumaraswamy":"@stdlib/random/array/kumaraswamy","random.array.laplace":"@stdlib/random/array/laplace","random.array.levy":"@stdlib/random/array/levy","random.array.logistic":"@stdlib/random/array/logistic","random.array.lognormal":"@stdlib/random/array/lognormal","random.array.minstd":"@stdlib/random/array/minstd","random.array.minstdShuffle":"@stdlib/random/array/minstd-shuffle","random.array.mt19937":"@stdlib/random/array/mt19937","random.array.negativeBinomial":"@stdlib/random/array/negative-binomial","random.array.normal":"@stdlib/random/array/normal","random.array.pareto1":"@stdlib/random/array/pareto-type1","random.array.poisson":"@stdlib/random/array/poisson","random.array.randu":"@stdlib/random/array/randu","random.array.rayleigh":"@stdlib/random/array/rayleigh","random.array.t":"@stdlib/random/array/t","random.array.triangular":"@stdlib/random/array/triangular","random.array.uniform":"@stdlib/random/array/uniform","random.array.weibull":"@stdlib/random/array/weibull","random.iterators.arcsine":"@stdlib/random/iter/arcsine","random.iterators.bernoulli":"@stdlib/random/iter/bernoulli","random.iterators.beta":"@stdlib/random/iter/beta","random.iterators.betaprime":"@stdlib/random/iter/betaprime","random.iterators.binomial":"@stdlib/random/iter/binomial","random.iterators.boxMuller":"@stdlib/random/iter/box-muller","random.iterators.cauchy":"@stdlib/random/iter/cauchy","random.iterators.chi":"@stdlib/random/iter/chi","random.iterators.chisquare":"@stdlib/random/iter/chisquare","random.iterators.cosine":"@stdlib/random/iter/cosine","random.iterators.discreteUniform":"@stdlib/random/iter/discrete-uniform","random.iterators.erlang":"@stdlib/random/iter/erlang","random.iterators.exponential":"@stdlib/random/iter/exponential","random.iterators.f":"@stdlib/random/iter/f","random.iterators.frechet":"@stdlib/random/iter/frechet","random.iterators.gamma":"@stdlib/random/iter/gamma","random.iterators.geometric":"@stdlib/random/iter/geometric","random.iterators.gumbel":"@stdlib/random/iter/gumbel","random.iterators.hypergeometric":"@stdlib/random/iter/hypergeometric","random.iterators.improvedZiggurat":"@stdlib/random/iter/improved-ziggurat","random.iterators.invgamma":"@stdlib/random/iter/invgamma","random.iterators.kumaraswamy":"@stdlib/random/iter/kumaraswamy","random.iterators.laplace":"@stdlib/random/iter/laplace","random.iterators.levy":"@stdlib/random/iter/levy","random.iterators.logistic":"@stdlib/random/iter/logistic","random.iterators.lognormal":"@stdlib/random/iter/lognormal","random.iterators.minstd":"@stdlib/random/iter/minstd","random.iterators.minstdShuffle":"@stdlib/random/iter/minstd-shuffle","random.iterators.mt19937":"@stdlib/random/iter/mt19937","random.iterators.negativeBinomial":"@stdlib/random/iter/negative-binomial","random.iterators.normal":"@stdlib/random/iter/normal","random.iterators.pareto1":"@stdlib/random/iter/pareto-type1","random.iterators.poisson":"@stdlib/random/iter/poisson","random.iterators.randi":"@stdlib/random/iter/randi","random.iterators.randn":"@stdlib/random/iter/randn","random.iterators.randu":"@stdlib/random/iter/randu","random.iterators.rayleigh":"@stdlib/random/iter/rayleigh","random.iterators.t":"@stdlib/random/iter/t","random.iterators.triangular":"@stdlib/random/iter/triangular","random.iterators.uniform":"@stdlib/random/iter/uniform","random.iterators.weibull":"@stdlib/random/iter/weibull","random.streams.arcsine":"@stdlib/random/streams/arcsine","random.streams.bernoulli":"@stdlib/random/streams/bernoulli","random.streams.beta":"@stdlib/random/streams/beta","random.streams.betaprime":"@stdlib/random/streams/betaprime","random.streams.binomial":"@stdlib/random/streams/binomial","random.streams.boxMuller":"@stdlib/random/streams/box-muller","random.streams.cauchy":"@stdlib/random/streams/cauchy","random.streams.chi":"@stdlib/random/streams/chi","random.streams.chisquare":"@stdlib/random/streams/chisquare","random.streams.cosine":"@stdlib/random/streams/cosine","random.streams.discreteUniform":"@stdlib/random/streams/discrete-uniform","random.streams.erlang":"@stdlib/random/streams/erlang","random.streams.exponential":"@stdlib/random/streams/exponential","random.streams.f":"@stdlib/random/streams/f","random.streams.frechet":"@stdlib/random/streams/frechet","random.streams.gamma":"@stdlib/random/streams/gamma","random.streams.geometric":"@stdlib/random/streams/geometric","random.streams.gumbel":"@stdlib/random/streams/gumbel","random.streams.hypergeometric":"@stdlib/random/streams/hypergeometric","random.streams.improvedZiggurat":"@stdlib/random/streams/improved-ziggurat","random.streams.invgamma":"@stdlib/random/streams/invgamma","random.streams.kumaraswamy":"@stdlib/random/streams/kumaraswamy","random.streams.laplace":"@stdlib/random/streams/laplace","random.streams.levy":"@stdlib/random/streams/levy","random.streams.logistic":"@stdlib/random/streams/logistic","random.streams.lognormal":"@stdlib/random/streams/lognormal","random.streams.minstd":"@stdlib/random/streams/minstd","random.streams.minstdShuffle":"@stdlib/random/streams/minstd-shuffle","random.streams.mt19937":"@stdlib/random/streams/mt19937","random.streams.negativeBinomial":"@stdlib/random/streams/negative-binomial","random.streams.normal":"@stdlib/random/streams/normal","random.streams.pareto1":"@stdlib/random/streams/pareto-type1","random.streams.poisson":"@stdlib/random/streams/poisson","random.streams.randi":"@stdlib/random/streams/randi","random.streams.randn":"@stdlib/random/streams/randn","random.streams.randu":"@stdlib/random/streams/randu","random.streams.rayleigh":"@stdlib/random/streams/rayleigh","random.streams.t":"@stdlib/random/streams/t","random.streams.triangular":"@stdlib/random/streams/triangular","random.streams.uniform":"@stdlib/random/streams/uniform","random.streams.weibull":"@stdlib/random/streams/weibull","random.strided.arcsine":"@stdlib/random/strided/arcsine","random.strided.bernoulli":"@stdlib/random/strided/bernoulli","random.strided.beta":"@stdlib/random/strided/beta","random.strided.betaprime":"@stdlib/random/strided/betaprime","random.strided.chi":"@stdlib/random/strided/chi","random.strided.chisquare":"@stdlib/random/strided/chisquare","random.strided.cosine":"@stdlib/random/strided/cosine","random.strided.discreteUniform":"@stdlib/random/strided/discrete-uniform","random.strided.exponential":"@stdlib/random/strided/exponential","random.strided.gamma":"@stdlib/random/strided/gamma","random.strided.geometric":"@stdlib/random/strided/geometric","random.strided.invgamma":"@stdlib/random/strided/invgamma","random.strided.lognormal":"@stdlib/random/strided/lognormal","random.strided.minstd":"@stdlib/random/strided/minstd","random.strided.minstdShuffle":"@stdlib/random/strided/minstd-shuffle","random.strided.mt19937":"@stdlib/random/strided/mt19937","random.strided.normal":"@stdlib/random/strided/normal","random.strided.poisson":"@stdlib/random/strided/poisson","random.strided.randu":"@stdlib/random/strided/randu","random.strided.rayleigh":"@stdlib/random/strided/rayleigh","random.strided.t":"@stdlib/random/strided/t","random.strided.uniform":"@stdlib/random/strided/uniform","random.strided.weibull":"@stdlib/random/strided/weibull","ranks":"@stdlib/stats/ranks","readDir":"@stdlib/fs/read-dir","readFile":"@stdlib/fs/read-file","readFileList":"@stdlib/fs/read-file-list","readJSON":"@stdlib/fs/read-json","readWASM":"@stdlib/fs/read-wasm","real":"@stdlib/complex/float64/real","realarray":"@stdlib/array/typed-real","realarrayCtors":"@stdlib/array/typed-real-ctors","realarrayDataTypes":"@stdlib/array/typed-real-dtypes","realf":"@stdlib/complex/float32/real","realmax":"@stdlib/utils/real-max","realmin":"@stdlib/utils/real-min","reBasename":"@stdlib/regexp/basename","reBasenamePosix":"@stdlib/regexp/basename-posix","reBasenameWindows":"@stdlib/regexp/basename-windows","reColorHexadecimal":"@stdlib/regexp/color-hexadecimal","reDecimalNumber":"@stdlib/regexp/decimal-number","reDirname":"@stdlib/regexp/dirname","reDirnamePosix":"@stdlib/regexp/dirname-posix","reDirnameWindows":"@stdlib/regexp/dirname-windows","reduce":"@stdlib/utils/reduce","reduce2d":"@stdlib/utils/reduce2d","reduceAsync":"@stdlib/utils/async/reduce","reduceRight":"@stdlib/utils/reduce-right","reduceRightAsync":"@stdlib/utils/async/reduce-right","reDurationString":"@stdlib/regexp/duration-string","reEOL":"@stdlib/regexp/eol","reExtendedLengthPath":"@stdlib/regexp/extended-length-path","reExtname":"@stdlib/regexp/extname","reExtnamePosix":"@stdlib/regexp/extname-posix","reExtnameWindows":"@stdlib/regexp/extname-windows","reFilename":"@stdlib/regexp/filename","reFilenamePosix":"@stdlib/regexp/filename-posix","reFilenameWindows":"@stdlib/regexp/filename-windows","reFromString":"@stdlib/utils/regexp-from-string","reFunctionName":"@stdlib/regexp/function-name","regexp2json":"@stdlib/regexp/to-json","reim":"@stdlib/complex/float64/reim","reimf":"@stdlib/complex/float32/reim","rejectArguments":"@stdlib/utils/reject-arguments","removeFirst":"@stdlib/string/remove-first","removeLast":"@stdlib/string/remove-last","removePunctuation":"@stdlib/string/remove-punctuation","removeUTF8BOM":"@stdlib/string/remove-utf8-bom","removeWords":"@stdlib/string/remove-words","rename":"@stdlib/fs/rename","reNativeFunction":"@stdlib/regexp/native-function","reorderArguments":"@stdlib/utils/reorder-arguments","repeat":"@stdlib/string/repeat","replace":"@stdlib/string/replace","replaceBefore":"@stdlib/string/replace-before","reRegExp":"@stdlib/regexp/regexp","rescape":"@stdlib/utils/escape-regexp-string","reSemVer":"@stdlib/regexp/semver","resolveParentPath":"@stdlib/fs/resolve-parent-path","resolveParentPathBy":"@stdlib/fs/resolve-parent-path-by","reUncPath":"@stdlib/regexp/unc-path","reUtf16SurrogatePair":"@stdlib/regexp/utf16-surrogate-pair","reUtf16UnpairedSurrogate":"@stdlib/regexp/utf16-unpaired-surrogate","reverseArguments":"@stdlib/utils/reverse-arguments","reverseString":"@stdlib/string/reverse","reviveBasePRNG":"@stdlib/random/base/reviver","reviveBuffer":"@stdlib/buffer/reviver","reviveComplex":"@stdlib/complex/reviver","reviveComplex64":"@stdlib/complex/float32/reviver","reviveComplex128":"@stdlib/complex/float64/reviver","reviveError":"@stdlib/error/reviver","reviveRegExp":"@stdlib/regexp/reviver","reviveTypedArray":"@stdlib/array/reviver","reWhitespace":"@stdlib/regexp/whitespace","rpad":"@stdlib/string/right-pad","rtrim":"@stdlib/string/right-trim","rtrimN":"@stdlib/string/right-trim-n","safeintmax":"@stdlib/utils/safe-int-max","safeintmin":"@stdlib/utils/safe-int-min","sample":"@stdlib/random/sample","SAVOY_STOPWORDS_FIN":"@stdlib/datasets/savoy-stopwords-fin","SAVOY_STOPWORDS_FR":"@stdlib/datasets/savoy-stopwords-fr","SAVOY_STOPWORDS_GER":"@stdlib/datasets/savoy-stopwords-ger","SAVOY_STOPWORDS_IT":"@stdlib/datasets/savoy-stopwords-it","SAVOY_STOPWORDS_POR":"@stdlib/datasets/savoy-stopwords-por","SAVOY_STOPWORDS_SP":"@stdlib/datasets/savoy-stopwords-sp","SAVOY_STOPWORDS_SWE":"@stdlib/datasets/savoy-stopwords-swe","scalar2array":"@stdlib/array/from-scalar","scalar2ndarray":"@stdlib/ndarray/from-scalar","sdot":"@stdlib/blas/sdot","SECONDS_IN_DAY":"@stdlib/constants/time/seconds-in-day","SECONDS_IN_HOUR":"@stdlib/constants/time/seconds-in-hour","SECONDS_IN_MINUTE":"@stdlib/constants/time/seconds-in-minute","SECONDS_IN_WEEK":"@stdlib/constants/time/seconds-in-week","secondsInMonth":"@stdlib/time/seconds-in-month","secondsInYear":"@stdlib/time/seconds-in-year","sentencize":"@stdlib/nlp/sentencize","seq2slice":"@stdlib/slice/seq2slice","setConfigurableReadOnly":"@stdlib/utils/define-configurable-read-only-property","setConfigurableReadOnlyAccessor":"@stdlib/utils/define-configurable-read-only-accessor","setConfigurableReadWriteAccessor":"@stdlib/utils/define-configurable-read-write-accessor","setConfigurableWriteOnlyAccessor":"@stdlib/utils/define-configurable-write-only-accessor","setMemoizedConfigurableReadOnly":"@stdlib/utils/define-memoized-configurable-read-only-property","setMemoizedReadOnly":"@stdlib/utils/define-memoized-read-only-property","setNonEnumerableProperty":"@stdlib/utils/define-nonenumerable-property","setNonEnumerableReadOnly":"@stdlib/utils/define-nonenumerable-read-only-property","setNonEnumerableReadOnlyAccessor":"@stdlib/utils/define-nonenumerable-read-only-accessor","setNonEnumerableReadWriteAccessor":"@stdlib/utils/define-nonenumerable-read-write-accessor","setNonEnumerableWriteOnlyAccessor":"@stdlib/utils/define-nonenumerable-write-only-accessor","setReadOnly":"@stdlib/utils/define-read-only-property","setReadOnlyAccessor":"@stdlib/utils/define-read-only-accessor","setReadWriteAccessor":"@stdlib/utils/define-read-write-accessor","setWriteOnlyAccessor":"@stdlib/utils/define-write-only-accessor","SharedArrayBuffer":"@stdlib/array/shared-buffer","shift":"@stdlib/utils/shift","shuffle":"@stdlib/random/shuffle","sizeOf":"@stdlib/utils/size-of","Slice":"@stdlib/slice/ctor","snakecase":"@stdlib/string/snakecase","some":"@stdlib/utils/some","someBy":"@stdlib/utils/some-by","someByAsync":"@stdlib/utils/async/some-by","someByRight":"@stdlib/utils/some-by-right","someByRightAsync":"@stdlib/utils/async/some-by-right","someInBy":"@stdlib/utils/some-in-by","someOwnBy":"@stdlib/utils/some-own-by","SOTU":"@stdlib/datasets/sotu","SPACHE_REVISED":"@stdlib/datasets/spache-revised","SPAM_ASSASSIN":"@stdlib/datasets/spam-assassin","SparklineBase":"@stdlib/plot/sparklines/base/ctor","sparsearray2iterator":"@stdlib/array/to-sparse-iterator","sparsearray2iteratorRight":"@stdlib/array/to-sparse-iterator-right","splitStream":"@stdlib/streams/node/split","SQRT_EPS":"@stdlib/constants/float64/sqrt-eps","SQRT_HALF":"@stdlib/constants/float64/sqrt-half","SQRT_HALF_PI":"@stdlib/constants/float64/sqrt-half-pi","SQRT_PHI":"@stdlib/constants/float64/sqrt-phi","SQRT_PI":"@stdlib/constants/float64/sqrt-pi","SQRT_THREE":"@stdlib/constants/float64/sqrt-three","SQRT_TWO":"@stdlib/constants/float64/sqrt-two","SQRT_TWO_PI":"@stdlib/constants/float64/sqrt-two-pi","SSA_US_BIRTHS_2000_2014":"@stdlib/datasets/ssa-us-births-2000-2014","sswap":"@stdlib/blas/sswap","Stack":"@stdlib/utils/stack","standalone2pkg":"@stdlib/namespace/standalone2pkg","STANDARD_CARD_DECK":"@stdlib/datasets/standard-card-deck","startcase":"@stdlib/string/startcase","startsWith":"@stdlib/string/starts-with","STOPWORDS_EN":"@stdlib/datasets/stopwords-en","strided.abs":"@stdlib/math/strided/special/abs","strided.abs2":"@stdlib/math/strided/special/abs2","strided.abs2By":"@stdlib/math/strided/special/abs2-by","strided.absBy":"@stdlib/math/strided/special/abs-by","strided.acosBy":"@stdlib/math/strided/special/acos-by","strided.acoshBy":"@stdlib/math/strided/special/acosh-by","strided.acotBy":"@stdlib/math/strided/special/acot-by","strided.acothBy":"@stdlib/math/strided/special/acoth-by","strided.acovercosBy":"@stdlib/math/strided/special/acovercos-by","strided.acoversinBy":"@stdlib/math/strided/special/acoversin-by","strided.add":"@stdlib/math/strided/ops/add","strided.addBy":"@stdlib/math/strided/ops/add-by","strided.ahavercosBy":"@stdlib/math/strided/special/ahavercos-by","strided.ahaversinBy":"@stdlib/math/strided/special/ahaversin-by","strided.asinBy":"@stdlib/math/strided/special/asin-by","strided.asinhBy":"@stdlib/math/strided/special/asinh-by","strided.atanBy":"@stdlib/math/strided/special/atan-by","strided.atanhBy":"@stdlib/math/strided/special/atanh-by","strided.avercosBy":"@stdlib/math/strided/special/avercos-by","strided.aversinBy":"@stdlib/math/strided/special/aversin-by","strided.besselj0By":"@stdlib/math/strided/special/besselj0-by","strided.besselj1By":"@stdlib/math/strided/special/besselj1-by","strided.bessely0By":"@stdlib/math/strided/special/bessely0-by","strided.bessely1By":"@stdlib/math/strided/special/bessely1-by","strided.binetBy":"@stdlib/math/strided/special/binet-by","strided.cbrt":"@stdlib/math/strided/special/cbrt","strided.cbrtBy":"@stdlib/math/strided/special/cbrt-by","strided.ceil":"@stdlib/math/strided/special/ceil","strided.cosBy":"@stdlib/math/strided/special/cos-by","strided.deg2rad":"@stdlib/math/strided/special/deg2rad","strided.dataTypes":"@stdlib/strided/dtypes","strided.dcbrtBy":"@stdlib/math/strided/special/dcbrt-by","strided.dispatch":"@stdlib/strided/dispatch","strided.dispatchBy":"@stdlib/strided/dispatch-by","strided.floor":"@stdlib/math/strided/special/floor","strided.inv":"@stdlib/math/strided/special/inv","strided.mul":"@stdlib/math/strided/ops/mul","strided.mulBy":"@stdlib/math/strided/ops/mul-by","strided.ramp":"@stdlib/math/strided/special/ramp","strided.rsqrt":"@stdlib/math/strided/special/rsqrt","strided.sinBy":"@stdlib/math/strided/special/sin-by","strided.sqrt":"@stdlib/math/strided/special/sqrt","strided.sqrtBy":"@stdlib/math/strided/special/sqrt-by","strided.sub":"@stdlib/math/strided/ops/sub","strided.subBy":"@stdlib/math/strided/ops/sub-by","strided.trunc":"@stdlib/math/strided/special/trunc","stridedarray2iterator":"@stdlib/array/to-strided-iterator","stridedArrayStream":"@stdlib/streams/node/from-strided-array","string2buffer":"@stdlib/buffer/from-string","sub2ind":"@stdlib/ndarray/sub2ind","substringAfter":"@stdlib/string/substring-after","substringAfterLast":"@stdlib/string/substring-after-last","substringBefore":"@stdlib/string/substring-before","substringBeforeLast":"@stdlib/string/substring-before-last","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-single-hop-sensor-network","Symbol":"@stdlib/symbol/ctor","tabulate":"@stdlib/utils/tabulate","tabulateBy":"@stdlib/utils/tabulate-by","tabulateByAsync":"@stdlib/utils/async/tabulate-by","thunk":"@stdlib/utils/thunk","tic":"@stdlib/time/tic","timeit":"@stdlib/utils/timeit","tmpdir":"@stdlib/os/tmpdir","toc":"@stdlib/time/toc","tokenize":"@stdlib/nlp/tokenize","transformStream":"@stdlib/streams/node/transform","trim":"@stdlib/string/trim","truncate":"@stdlib/string/truncate","truncateMiddle":"@stdlib/string/truncate-middle","trycatch":"@stdlib/utils/try-catch","trycatchAsync":"@stdlib/utils/async/try-catch","tryFunction":"@stdlib/utils/try-function","tryRequire":"@stdlib/utils/try-require","trythen":"@stdlib/utils/try-then","trythenAsync":"@stdlib/utils/async/try-then","ttest":"@stdlib/stats/ttest","ttest2":"@stdlib/stats/ttest2","TWO_PI":"@stdlib/constants/float64/two-pi","typedarray":"@stdlib/array/typed","typedarray2json":"@stdlib/array/to-json","typedarrayCtors":"@stdlib/array/typed-ctors","typedarrayDataTypes":"@stdlib/array/typed-dtypes","typedarraypool":"@stdlib/array/pool","typemax":"@stdlib/utils/type-max","typemin":"@stdlib/utils/type-min","typeOf":"@stdlib/utils/type-of","UINT8_MAX":"@stdlib/constants/uint8/max","UINT8_NUM_BYTES":"@stdlib/constants/uint8/num-bytes","Uint8Array":"@stdlib/array/uint8","Uint8ClampedArray":"@stdlib/array/uint8c","UINT16_MAX":"@stdlib/constants/uint16/max","UINT16_NUM_BYTES":"@stdlib/constants/uint16/num-bytes","Uint16Array":"@stdlib/array/uint16","UINT32_MAX":"@stdlib/constants/uint32/max","UINT32_NUM_BYTES":"@stdlib/constants/uint32/num-bytes","Uint32Array":"@stdlib/array/uint32","umask":"@stdlib/process/umask","uncapitalize":"@stdlib/string/uncapitalize","uncapitalizeKeys":"@stdlib/utils/uncapitalize-keys","uncurry":"@stdlib/utils/uncurry","uncurryRight":"@stdlib/utils/uncurry-right","UNICODE_MAX":"@stdlib/constants/unicode/max","UNICODE_MAX_BMP":"@stdlib/constants/unicode/max-bmp","UnicodeColumnChartSparkline":"@stdlib/plot/sparklines/unicode/column","UnicodeLineChartSparkline":"@stdlib/plot/sparklines/unicode/line","UnicodeSparkline":"@stdlib/plot/sparklines/unicode","UnicodeTristateChartSparkline":"@stdlib/plot/sparklines/unicode/tristate","UnicodeUpDownChartSparkline":"@stdlib/plot/sparklines/unicode/up-down","UnicodeWinLossChartSparkline":"@stdlib/plot/sparklines/unicode/win-loss","unlink":"@stdlib/fs/unlink","unshift":"@stdlib/utils/unshift","until":"@stdlib/utils/until","untilAsync":"@stdlib/utils/async/until","untilEach":"@stdlib/utils/until-each","untilEachRight":"@stdlib/utils/until-each-right","unzip":"@stdlib/utils/unzip","uppercase":"@stdlib/string/uppercase","uppercaseKeys":"@stdlib/utils/uppercase-keys","US_STATES_ABBR":"@stdlib/datasets/us-states-abbr","US_STATES_CAPITALS":"@stdlib/datasets/us-states-capitals","US_STATES_CAPITALS_NAMES":"@stdlib/datasets/us-states-capitals-names","US_STATES_NAMES":"@stdlib/datasets/us-states-names","US_STATES_NAMES_CAPITALS":"@stdlib/datasets/us-states-names-capitals","utf16ToUTF8Array":"@stdlib/string/utf16-to-utf8-array","vartest":"@stdlib/stats/vartest","waterfall":"@stdlib/utils/async/series-waterfall","WebAssemblyMemory":"@stdlib/wasm/memory","whileAsync":"@stdlib/utils/async/while","whileEach":"@stdlib/utils/while-each","whileEachRight":"@stdlib/utils/while-each-right","whilst":"@stdlib/utils/while","wilcoxon":"@stdlib/stats/wilcoxon","writableProperties":"@stdlib/utils/writable-properties","writablePropertiesIn":"@stdlib/utils/writable-properties-in","writablePropertyNames":"@stdlib/utils/writable-property-names","writablePropertyNamesIn":"@stdlib/utils/writable-property-names-in","writablePropertySymbols":"@stdlib/utils/writable-property-symbols","writablePropertySymbolsIn":"@stdlib/utils/writable-property-symbols-in","writeFile":"@stdlib/fs/write-file","zip":"@stdlib/utils/zip","ztest":"@stdlib/stats/ztest","ztest2":"@stdlib/stats/ztest2"}
+
 },{}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -2023,7 +2024,7 @@ function alias2pkg( alias ) {
 
 module.exports = alias2pkg;
 
-},{"./../data/data.json":35,"@stdlib/assert/has-own-property":1,"@stdlib/assert/is-string":19,"@stdlib/string/format":58}],38:[function(require,module,exports){
+},{"./../data/data.json":35,"@stdlib/assert/has-own-property":1,"@stdlib/assert/is-string":19,"@stdlib/string/format":63}],38:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/namespace/alias2pkg",
   "version": "0.0.0",
@@ -2280,7 +2281,7 @@ tape( 'if unable to resolve a package name, the command-line interface sets a no
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/namespace/alias2pkg/test/test.cli.js","/lib/node_modules/@stdlib/namespace/alias2pkg/test")
-},{"./../lib":36,"./../package.json":38,"@stdlib/assert/is-browser":7,"@stdlib/assert/is-windows":25,"@stdlib/fs/read-file":28,"@stdlib/process/exec-path":47,"child_process":77,"path":80,"tape":180}],40:[function(require,module,exports){
+},{"./../lib":36,"./../package.json":38,"@stdlib/assert/is-browser":7,"@stdlib/assert/is-windows":25,"@stdlib/fs/read-file":28,"@stdlib/process/exec-path":47,"child_process":84,"path":87,"tape":205}],40:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -2377,8 +2378,9 @@ tape( 'the function returns `null` if provided an unrecognized alias', function 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/namespace/alias2pkg/test/test.js")
-},{"./../data/data.json":35,"./../lib":36,"@stdlib/namespace/aliases":42,"tape":180}],41:[function(require,module,exports){
-module.exports=["abs","acronym","AFINN_96","AFINN_111","afull","afullLike","alias2pkg","alias2related","alias2standalone","aliases","allocUnsafe","anova1","ANSCOMBES_QUARTET","any","anyBy","anyByAsync","anyByRight","anyByRightAsync","aones","aonesLike","APERY","append","ARCH","argumentFunction","ARGV","array","array2buffer","array2iterator","array2iteratorRight","ArrayBuffer","arraybuffer2buffer","arrayCtors","arrayDataType","arrayDataTypes","arrayMinDataType","arrayNextDataType","arrayPromotionRules","arraySafeCasts","arraySameKindCasts","arrayShape","arrayStream","arrayview2iterator","arrayview2iteratorRight","AsyncIteratorSymbol","azeros","azerosLike","bartlettTest","base.abs","base.abs2","base.abs2f","base.absdiff","base.absf","base.acos","base.acosh","base.acot","base.acoth","base.acovercos","base.acoversin","base.acsc","base.acsch","base.add","base.addf","base.ahavercos","base.ahaversin","base.asech","base.asin","base.asinh","base.atan","base.atan2","base.atanh","base.avercos","base.aversin","base.bernoulli","base.besselj0","base.besselj1","base.bessely0","base.bessely1","base.beta","base.betainc","base.betaincinv","base.betaln","base.binet","base.binomcoef","base.binomcoefln","base.boxcox","base.boxcox1p","base.boxcox1pinv","base.boxcoxinv","base.cabs","base.cabs2","base.cabs2f","base.cabsf","base.cadd","base.caddf","base.cbrt","base.cbrtf","base.cceil","base.cceilf","base.cceiln","base.ccis","base.cdiv","base.ceil","base.ceil2","base.ceil10","base.ceilb","base.ceilf","base.ceiln","base.ceilsd","base.cexp","base.cflipsign","base.cflipsignf","base.cfloor","base.cfloorn","base.cidentity","base.cidentityf","base.cinv","base.clamp","base.clampf","base.cmul","base.cmulf","base.cneg","base.continuedFraction","base.copysign","base.copysignf","base.cos","base.cosh","base.cosm1","base.cospi","base.cot","base.coth","base.covercos","base.coversin","base.cphase","base.cpolar","base.cround","base.croundn","base.csch","base.csignum","base.csub","base.csubf","base.deg2rad","base.deg2radf","base.digamma","base.diracDelta","base.dists.arcsine.Arcsine","base.dists.arcsine.cdf","base.dists.arcsine.entropy","base.dists.arcsine.kurtosis","base.dists.arcsine.logcdf","base.dists.arcsine.logpdf","base.dists.arcsine.mean","base.dists.arcsine.median","base.dists.arcsine.mode","base.dists.arcsine.pdf","base.dists.arcsine.quantile","base.dists.arcsine.skewness","base.dists.arcsine.stdev","base.dists.arcsine.variance","base.dists.bernoulli.Bernoulli","base.dists.bernoulli.cdf","base.dists.bernoulli.entropy","base.dists.bernoulli.kurtosis","base.dists.bernoulli.mean","base.dists.bernoulli.median","base.dists.bernoulli.mgf","base.dists.bernoulli.mode","base.dists.bernoulli.pmf","base.dists.bernoulli.quantile","base.dists.bernoulli.skewness","base.dists.bernoulli.stdev","base.dists.bernoulli.variance","base.dists.beta.Beta","base.dists.beta.cdf","base.dists.beta.entropy","base.dists.beta.kurtosis","base.dists.beta.logcdf","base.dists.beta.logpdf","base.dists.beta.mean","base.dists.beta.median","base.dists.beta.mgf","base.dists.beta.mode","base.dists.beta.pdf","base.dists.beta.quantile","base.dists.beta.skewness","base.dists.beta.stdev","base.dists.beta.variance","base.dists.betaprime.BetaPrime","base.dists.betaprime.cdf","base.dists.betaprime.kurtosis","base.dists.betaprime.logcdf","base.dists.betaprime.logpdf","base.dists.betaprime.mean","base.dists.betaprime.mode","base.dists.betaprime.pdf","base.dists.betaprime.quantile","base.dists.betaprime.skewness","base.dists.betaprime.stdev","base.dists.betaprime.variance","base.dists.binomial.Binomial","base.dists.binomial.cdf","base.dists.binomial.entropy","base.dists.binomial.kurtosis","base.dists.binomial.logpmf","base.dists.binomial.mean","base.dists.binomial.median","base.dists.binomial.mgf","base.dists.binomial.mode","base.dists.binomial.pmf","base.dists.binomial.quantile","base.dists.binomial.skewness","base.dists.binomial.stdev","base.dists.binomial.variance","base.dists.cauchy.Cauchy","base.dists.cauchy.cdf","base.dists.cauchy.entropy","base.dists.cauchy.logcdf","base.dists.cauchy.logpdf","base.dists.cauchy.median","base.dists.cauchy.mode","base.dists.cauchy.pdf","base.dists.cauchy.quantile","base.dists.chi.cdf","base.dists.chi.Chi","base.dists.chi.entropy","base.dists.chi.kurtosis","base.dists.chi.logpdf","base.dists.chi.mean","base.dists.chi.mode","base.dists.chi.pdf","base.dists.chi.quantile","base.dists.chi.skewness","base.dists.chi.stdev","base.dists.chi.variance","base.dists.chisquare.cdf","base.dists.chisquare.ChiSquare","base.dists.chisquare.entropy","base.dists.chisquare.kurtosis","base.dists.chisquare.logpdf","base.dists.chisquare.mean","base.dists.chisquare.median","base.dists.chisquare.mgf","base.dists.chisquare.mode","base.dists.chisquare.pdf","base.dists.chisquare.quantile","base.dists.chisquare.skewness","base.dists.chisquare.stdev","base.dists.chisquare.variance","base.dists.cosine.cdf","base.dists.cosine.Cosine","base.dists.cosine.kurtosis","base.dists.cosine.logcdf","base.dists.cosine.logpdf","base.dists.cosine.mean","base.dists.cosine.median","base.dists.cosine.mgf","base.dists.cosine.mode","base.dists.cosine.pdf","base.dists.cosine.quantile","base.dists.cosine.skewness","base.dists.cosine.stdev","base.dists.cosine.variance","base.dists.degenerate.cdf","base.dists.degenerate.Degenerate","base.dists.degenerate.entropy","base.dists.degenerate.logcdf","base.dists.degenerate.logpdf","base.dists.degenerate.logpmf","base.dists.degenerate.mean","base.dists.degenerate.median","base.dists.degenerate.mgf","base.dists.degenerate.mode","base.dists.degenerate.pdf","base.dists.degenerate.pmf","base.dists.degenerate.quantile","base.dists.degenerate.stdev","base.dists.degenerate.variance","base.dists.discreteUniform.cdf","base.dists.discreteUniform.DiscreteUniform","base.dists.discreteUniform.kurtosis","base.dists.discreteUniform.logcdf","base.dists.discreteUniform.logpmf","base.dists.discreteUniform.mean","base.dists.discreteUniform.median","base.dists.discreteUniform.mgf","base.dists.discreteUniform.pmf","base.dists.discreteUniform.quantile","base.dists.discreteUniform.skewness","base.dists.discreteUniform.stdev","base.dists.discreteUniform.variance","base.dists.erlang.cdf","base.dists.erlang.entropy","base.dists.erlang.Erlang","base.dists.erlang.kurtosis","base.dists.erlang.logpdf","base.dists.erlang.mean","base.dists.erlang.mgf","base.dists.erlang.mode","base.dists.erlang.pdf","base.dists.erlang.quantile","base.dists.erlang.skewness","base.dists.erlang.stdev","base.dists.erlang.variance","base.dists.exponential.cdf","base.dists.exponential.entropy","base.dists.exponential.Exponential","base.dists.exponential.kurtosis","base.dists.exponential.logcdf","base.dists.exponential.logpdf","base.dists.exponential.mean","base.dists.exponential.median","base.dists.exponential.mgf","base.dists.exponential.mode","base.dists.exponential.pdf","base.dists.exponential.quantile","base.dists.exponential.skewness","base.dists.exponential.stdev","base.dists.exponential.variance","base.dists.f.cdf","base.dists.f.entropy","base.dists.f.F","base.dists.f.kurtosis","base.dists.f.mean","base.dists.f.mode","base.dists.f.pdf","base.dists.f.quantile","base.dists.f.skewness","base.dists.f.stdev","base.dists.f.variance","base.dists.frechet.cdf","base.dists.frechet.entropy","base.dists.frechet.Frechet","base.dists.frechet.kurtosis","base.dists.frechet.logcdf","base.dists.frechet.logpdf","base.dists.frechet.mean","base.dists.frechet.median","base.dists.frechet.mode","base.dists.frechet.pdf","base.dists.frechet.quantile","base.dists.frechet.skewness","base.dists.frechet.stdev","base.dists.frechet.variance","base.dists.gamma.cdf","base.dists.gamma.entropy","base.dists.gamma.Gamma","base.dists.gamma.kurtosis","base.dists.gamma.logcdf","base.dists.gamma.logpdf","base.dists.gamma.mean","base.dists.gamma.mgf","base.dists.gamma.mode","base.dists.gamma.pdf","base.dists.gamma.quantile","base.dists.gamma.skewness","base.dists.gamma.stdev","base.dists.gamma.variance","base.dists.geometric.cdf","base.dists.geometric.entropy","base.dists.geometric.Geometric","base.dists.geometric.kurtosis","base.dists.geometric.logcdf","base.dists.geometric.logpmf","base.dists.geometric.mean","base.dists.geometric.median","base.dists.geometric.mgf","base.dists.geometric.mode","base.dists.geometric.pmf","base.dists.geometric.quantile","base.dists.geometric.skewness","base.dists.geometric.stdev","base.dists.geometric.variance","base.dists.gumbel.cdf","base.dists.gumbel.entropy","base.dists.gumbel.Gumbel","base.dists.gumbel.kurtosis","base.dists.gumbel.logcdf","base.dists.gumbel.logpdf","base.dists.gumbel.mean","base.dists.gumbel.median","base.dists.gumbel.mgf","base.dists.gumbel.mode","base.dists.gumbel.pdf","base.dists.gumbel.quantile","base.dists.gumbel.skewness","base.dists.gumbel.stdev","base.dists.gumbel.variance","base.dists.hypergeometric.cdf","base.dists.hypergeometric.Hypergeometric","base.dists.hypergeometric.kurtosis","base.dists.hypergeometric.logpmf","base.dists.hypergeometric.mean","base.dists.hypergeometric.mode","base.dists.hypergeometric.pmf","base.dists.hypergeometric.quantile","base.dists.hypergeometric.skewness","base.dists.hypergeometric.stdev","base.dists.hypergeometric.variance","base.dists.invgamma.cdf","base.dists.invgamma.entropy","base.dists.invgamma.InvGamma","base.dists.invgamma.kurtosis","base.dists.invgamma.logpdf","base.dists.invgamma.mean","base.dists.invgamma.mode","base.dists.invgamma.pdf","base.dists.invgamma.quantile","base.dists.invgamma.skewness","base.dists.invgamma.stdev","base.dists.invgamma.variance","base.dists.kumaraswamy.cdf","base.dists.kumaraswamy.Kumaraswamy","base.dists.kumaraswamy.kurtosis","base.dists.kumaraswamy.logcdf","base.dists.kumaraswamy.logpdf","base.dists.kumaraswamy.mean","base.dists.kumaraswamy.median","base.dists.kumaraswamy.mode","base.dists.kumaraswamy.pdf","base.dists.kumaraswamy.quantile","base.dists.kumaraswamy.skewness","base.dists.kumaraswamy.stdev","base.dists.kumaraswamy.variance","base.dists.laplace.cdf","base.dists.laplace.entropy","base.dists.laplace.kurtosis","base.dists.laplace.Laplace","base.dists.laplace.logcdf","base.dists.laplace.logpdf","base.dists.laplace.mean","base.dists.laplace.median","base.dists.laplace.mgf","base.dists.laplace.mode","base.dists.laplace.pdf","base.dists.laplace.quantile","base.dists.laplace.skewness","base.dists.laplace.stdev","base.dists.laplace.variance","base.dists.levy.cdf","base.dists.levy.entropy","base.dists.levy.Levy","base.dists.levy.logcdf","base.dists.levy.logpdf","base.dists.levy.mean","base.dists.levy.median","base.dists.levy.mode","base.dists.levy.pdf","base.dists.levy.quantile","base.dists.levy.stdev","base.dists.levy.variance","base.dists.logistic.cdf","base.dists.logistic.entropy","base.dists.logistic.kurtosis","base.dists.logistic.logcdf","base.dists.logistic.Logistic","base.dists.logistic.logpdf","base.dists.logistic.mean","base.dists.logistic.median","base.dists.logistic.mgf","base.dists.logistic.mode","base.dists.logistic.pdf","base.dists.logistic.quantile","base.dists.logistic.skewness","base.dists.logistic.stdev","base.dists.logistic.variance","base.dists.lognormal.cdf","base.dists.lognormal.entropy","base.dists.lognormal.kurtosis","base.dists.lognormal.LogNormal","base.dists.lognormal.logpdf","base.dists.lognormal.mean","base.dists.lognormal.median","base.dists.lognormal.mode","base.dists.lognormal.pdf","base.dists.lognormal.quantile","base.dists.lognormal.skewness","base.dists.lognormal.stdev","base.dists.lognormal.variance","base.dists.negativeBinomial.cdf","base.dists.negativeBinomial.kurtosis","base.dists.negativeBinomial.logpmf","base.dists.negativeBinomial.mean","base.dists.negativeBinomial.mgf","base.dists.negativeBinomial.mode","base.dists.negativeBinomial.NegativeBinomial","base.dists.negativeBinomial.pmf","base.dists.negativeBinomial.quantile","base.dists.negativeBinomial.skewness","base.dists.negativeBinomial.stdev","base.dists.negativeBinomial.variance","base.dists.normal.cdf","base.dists.normal.entropy","base.dists.normal.kurtosis","base.dists.normal.logpdf","base.dists.normal.mean","base.dists.normal.median","base.dists.normal.mgf","base.dists.normal.mode","base.dists.normal.Normal","base.dists.normal.pdf","base.dists.normal.quantile","base.dists.normal.skewness","base.dists.normal.stdev","base.dists.normal.variance","base.dists.pareto1.cdf","base.dists.pareto1.entropy","base.dists.pareto1.kurtosis","base.dists.pareto1.logcdf","base.dists.pareto1.logpdf","base.dists.pareto1.mean","base.dists.pareto1.median","base.dists.pareto1.mode","base.dists.pareto1.Pareto1","base.dists.pareto1.pdf","base.dists.pareto1.quantile","base.dists.pareto1.skewness","base.dists.pareto1.stdev","base.dists.pareto1.variance","base.dists.poisson.cdf","base.dists.poisson.entropy","base.dists.poisson.kurtosis","base.dists.poisson.logpmf","base.dists.poisson.mean","base.dists.poisson.median","base.dists.poisson.mgf","base.dists.poisson.mode","base.dists.poisson.pmf","base.dists.poisson.Poisson","base.dists.poisson.quantile","base.dists.poisson.skewness","base.dists.poisson.stdev","base.dists.poisson.variance","base.dists.rayleigh.cdf","base.dists.rayleigh.entropy","base.dists.rayleigh.kurtosis","base.dists.rayleigh.logcdf","base.dists.rayleigh.logpdf","base.dists.rayleigh.mean","base.dists.rayleigh.median","base.dists.rayleigh.mgf","base.dists.rayleigh.mode","base.dists.rayleigh.pdf","base.dists.rayleigh.quantile","base.dists.rayleigh.Rayleigh","base.dists.rayleigh.skewness","base.dists.rayleigh.stdev","base.dists.rayleigh.variance","base.dists.signrank.cdf","base.dists.signrank.pdf","base.dists.signrank.quantile","base.dists.t.cdf","base.dists.t.entropy","base.dists.t.kurtosis","base.dists.t.mean","base.dists.t.median","base.dists.t.mode","base.dists.t.pdf","base.dists.t.quantile","base.dists.t.skewness","base.dists.t.stdev","base.dists.t.T","base.dists.t.variance","base.dists.triangular.cdf","base.dists.triangular.entropy","base.dists.triangular.kurtosis","base.dists.triangular.logcdf","base.dists.triangular.logpdf","base.dists.triangular.mean","base.dists.triangular.median","base.dists.triangular.mgf","base.dists.triangular.mode","base.dists.triangular.pdf","base.dists.triangular.quantile","base.dists.triangular.skewness","base.dists.triangular.stdev","base.dists.triangular.Triangular","base.dists.triangular.variance","base.dists.uniform.cdf","base.dists.uniform.entropy","base.dists.uniform.kurtosis","base.dists.uniform.logcdf","base.dists.uniform.logpdf","base.dists.uniform.mean","base.dists.uniform.median","base.dists.uniform.mgf","base.dists.uniform.pdf","base.dists.uniform.quantile","base.dists.uniform.skewness","base.dists.uniform.stdev","base.dists.uniform.Uniform","base.dists.uniform.variance","base.dists.weibull.cdf","base.dists.weibull.entropy","base.dists.weibull.kurtosis","base.dists.weibull.logcdf","base.dists.weibull.logpdf","base.dists.weibull.mean","base.dists.weibull.median","base.dists.weibull.mgf","base.dists.weibull.mode","base.dists.weibull.pdf","base.dists.weibull.quantile","base.dists.weibull.skewness","base.dists.weibull.stdev","base.dists.weibull.variance","base.dists.weibull.Weibull","base.ellipe","base.ellipk","base.epsdiff","base.erf","base.erfc","base.erfcinv","base.erfinv","base.eta","base.evalpoly","base.evalrational","base.exp","base.exp2","base.exp10","base.expit","base.expm1","base.expm1rel","base.exponent","base.exponentf","base.factorial","base.factorialln","base.fallingFactorial","base.fibonacci","base.fibonacciIndex","base.fibpoly","base.flipsign","base.flipsignf","base.float32ToInt32","base.float32ToUint32","base.float64ToFloat32","base.float64ToInt32","base.float64ToInt64Bytes","base.float64ToUint32","base.floor","base.floor2","base.floor10","base.floorb","base.floorf","base.floorn","base.floorsd","base.fresnel","base.fresnelc","base.fresnels","base.frexp","base.fromBinaryString","base.fromBinaryStringf","base.fromBinaryStringUint8","base.fromBinaryStringUint16","base.fromBinaryStringUint32","base.fromInt64Bytes","base.fromWordf","base.fromWords","base.gamma","base.gamma1pm1","base.gammaDeltaRatio","base.gammainc","base.gammaincinv","base.gammaLanczosSum","base.gammaLanczosSumExpGScaled","base.gammaln","base.gcd","base.getHighWord","base.getLowWord","base.hacovercos","base.hacoversin","base.havercos","base.haversin","base.heaviside","base.hermitepoly","base.hypot","base.hypotf","base.identity","base.identityf","base.imul","base.imuldw","base.int32ToUint32","base.inv","base.invf","base.isComposite","base.isCoprime","base.isEven","base.isEvenInt32","base.isFinite","base.isFinitef","base.isInfinite","base.isInfinitef","base.isInteger","base.isnan","base.isnanf","base.isNegativeInteger","base.isNegativeZero","base.isNegativeZerof","base.isNonNegativeInteger","base.isNonPositiveInteger","base.isOdd","base.isOddInt32","base.isPositiveInteger","base.isPositiveZero","base.isPositiveZerof","base.isPow2Uint32","base.isPrime","base.isProbability","base.isSafeInteger","base.kernelBetainc","base.kernelBetaincinv","base.kernelCos","base.kernelSin","base.kernelTan","base.kroneckerDelta","base.kroneckerDeltaf","base.labs","base.lcm","base.ldexp","base.ln","base.log","base.log1mexp","base.log1p","base.log1pexp","base.log2","base.log10","base.logaddexp","base.logit","base.lucas","base.lucaspoly","base.max","base.maxabs","base.min","base.minabs","base.minmax","base.minmaxabs","base.modf","base.mul","base.mulf","base.ndarray","base.ndarrayUnary","base.ndzeros","base.ndzerosLike","base.negafibonacci","base.negalucas","base.nonfibonacci","base.normalize","base.normalizef","base.normhermitepoly","base.pdiff","base.pdifff","base.polygamma","base.pow","base.powm1","base.rad2deg","base.ramp","base.rampf","base.random.arcsine","base.random.bernoulli","base.random.beta","base.random.betaprime","base.random.binomial","base.random.boxMuller","base.random.cauchy","base.random.chi","base.random.chisquare","base.random.cosine","base.random.discreteUniform","base.random.erlang","base.random.exponential","base.random.f","base.random.frechet","base.random.gamma","base.random.geometric","base.random.gumbel","base.random.hypergeometric","base.random.improvedZiggurat","base.random.invgamma","base.random.kumaraswamy","base.random.laplace","base.random.levy","base.random.logistic","base.random.lognormal","base.random.minstd","base.random.minstdShuffle","base.random.mt19937","base.random.negativeBinomial","base.random.normal","base.random.pareto1","base.random.poisson","base.random.randi","base.random.randn","base.random.randu","base.random.rayleigh","base.random.t","base.random.triangular","base.random.uniform","base.random.weibull","base.reldiff","base.rempio2","base.risingFactorial","base.rotl32","base.rotr32","base.round","base.round2","base.round10","base.roundb","base.roundn","base.roundsd","base.rsqrt","base.rsqrtf","base.scalar2ndarray","base.setHighWord","base.setLowWord","base.sici","base.signbit","base.signbitf","base.significandf","base.signum","base.signumf","base.sin","base.sinc","base.sincos","base.sincospi","base.sinh","base.sinpi","base.spence","base.sqrt","base.sqrt1pm1","base.sqrtf","base.strided.binary","base.strided.ccopy","base.strided.cmap","base.strided.cswap","base.strided.cumax","base.strided.cumaxabs","base.strided.cumin","base.strided.cuminabs","base.strided.dabs","base.strided.dabs2","base.strided.dapx","base.strided.dapxsum","base.strided.dapxsumkbn","base.strided.dapxsumkbn2","base.strided.dapxsumors","base.strided.dapxsumpw","base.strided.dasum","base.strided.dasumpw","base.strided.daxpy","base.strided.dcbrt","base.strided.dceil","base.strided.dcopy","base.strided.dcumax","base.strided.dcumaxabs","base.strided.dcumin","base.strided.dcuminabs","base.strided.dcusum","base.strided.dcusumkbn","base.strided.dcusumkbn2","base.strided.dcusumors","base.strided.dcusumpw","base.strided.ddeg2rad","base.strided.ddot","base.strided.dfill","base.strided.dfloor","base.strided.dinv","base.strided.dmap","base.strided.dmap2","base.strided.dmax","base.strided.dmaxabs","base.strided.dmaxabssorted","base.strided.dmaxsorted","base.strided.dmean","base.strided.dmeankbn","base.strided.dmeankbn2","base.strided.dmeanli","base.strided.dmeanlipw","base.strided.dmeanors","base.strided.dmeanpn","base.strided.dmeanpw","base.strided.dmeanstdev","base.strided.dmeanstdevpn","base.strided.dmeanvar","base.strided.dmeanvarpn","base.strided.dmeanwd","base.strided.dmediansorted","base.strided.dmidrange","base.strided.dmin","base.strided.dminabs","base.strided.dminsorted","base.strided.dmskabs","base.strided.dmskabs2","base.strided.dmskcbrt","base.strided.dmskceil","base.strided.dmskdeg2rad","base.strided.dmskfloor","base.strided.dmskinv","base.strided.dmskmap","base.strided.dmskmap2","base.strided.dmskmax","base.strided.dmskmin","base.strided.dmskramp","base.strided.dmskrange","base.strided.dmskrsqrt","base.strided.dmsksqrt","base.strided.dmsktrunc","base.strided.dnanasum","base.strided.dnanasumors","base.strided.dnanmax","base.strided.dnanmaxabs","base.strided.dnanmean","base.strided.dnanmeanors","base.strided.dnanmeanpn","base.strided.dnanmeanpw","base.strided.dnanmeanwd","base.strided.dnanmin","base.strided.dnanminabs","base.strided.dnanmskmax","base.strided.dnanmskmin","base.strided.dnanmskrange","base.strided.dnannsum","base.strided.dnannsumkbn","base.strided.dnannsumkbn2","base.strided.dnannsumors","base.strided.dnannsumpw","base.strided.dnanrange","base.strided.dnanstdev","base.strided.dnanstdevch","base.strided.dnanstdevpn","base.strided.dnanstdevtk","base.strided.dnanstdevwd","base.strided.dnanstdevyc","base.strided.dnansum","base.strided.dnansumkbn","base.strided.dnansumkbn2","base.strided.dnansumors","base.strided.dnansumpw","base.strided.dnanvariance","base.strided.dnanvariancech","base.strided.dnanvariancepn","base.strided.dnanvariancetk","base.strided.dnanvariancewd","base.strided.dnanvarianceyc","base.strided.dnrm2","base.strided.dramp","base.strided.drange","base.strided.drev","base.strided.drsqrt","base.strided.dsapxsum","base.strided.dsapxsumpw","base.strided.dscal","base.strided.dsdot","base.strided.dsem","base.strided.dsemch","base.strided.dsempn","base.strided.dsemtk","base.strided.dsemwd","base.strided.dsemyc","base.strided.dsmean","base.strided.dsmeanors","base.strided.dsmeanpn","base.strided.dsmeanpw","base.strided.dsmeanwd","base.strided.dsnanmean","base.strided.dsnanmeanors","base.strided.dsnanmeanpn","base.strided.dsnanmeanwd","base.strided.dsnannsumors","base.strided.dsnansum","base.strided.dsnansumors","base.strided.dsnansumpw","base.strided.dsort2hp","base.strided.dsort2ins","base.strided.dsort2sh","base.strided.dsorthp","base.strided.dsortins","base.strided.dsortsh","base.strided.dsqrt","base.strided.dssum","base.strided.dssumors","base.strided.dssumpw","base.strided.dstdev","base.strided.dstdevch","base.strided.dstdevpn","base.strided.dstdevtk","base.strided.dstdevwd","base.strided.dstdevyc","base.strided.dsum","base.strided.dsumkbn","base.strided.dsumkbn2","base.strided.dsumors","base.strided.dsumpw","base.strided.dsvariance","base.strided.dsvariancepn","base.strided.dswap","base.strided.dtrunc","base.strided.dvariance","base.strided.dvariancech","base.strided.dvariancepn","base.strided.dvariancetk","base.strided.dvariancewd","base.strided.dvarianceyc","base.strided.dvarm","base.strided.dvarmpn","base.strided.dvarmtk","base.strided.gapx","base.strided.gapxsum","base.strided.gapxsumkbn","base.strided.gapxsumkbn2","base.strided.gapxsumors","base.strided.gapxsumpw","base.strided.gasum","base.strided.gasumpw","base.strided.gaxpy","base.strided.gcopy","base.strided.gcusum","base.strided.gcusumkbn","base.strided.gcusumkbn2","base.strided.gcusumors","base.strided.gcusumpw","base.strided.gdot","base.strided.gfill","base.strided.gfillBy","base.strided.gnannsumkbn","base.strided.gnansum","base.strided.gnansumkbn","base.strided.gnansumkbn2","base.strided.gnansumors","base.strided.gnansumpw","base.strided.gnrm2","base.strided.grev","base.strided.gscal","base.strided.gsort2hp","base.strided.gsort2ins","base.strided.gsort2sh","base.strided.gsorthp","base.strided.gsortins","base.strided.gsortsh","base.strided.gsum","base.strided.gsumkbn","base.strided.gsumkbn2","base.strided.gsumors","base.strided.gsumpw","base.strided.gswap","base.strided.mapBy","base.strided.mapBy2","base.strided.max","base.strided.maxabs","base.strided.maxBy","base.strided.maxsorted","base.strided.mean","base.strided.meankbn","base.strided.meankbn2","base.strided.meanors","base.strided.meanpn","base.strided.meanpw","base.strided.meanwd","base.strided.mediansorted","base.strided.min","base.strided.minabs","base.strided.minBy","base.strided.minsorted","base.strided.mskmax","base.strided.mskmin","base.strided.mskrange","base.strided.mskunary","base.strided.nanmax","base.strided.nanmaxabs","base.strided.nanmaxBy","base.strided.nanmean","base.strided.nanmeanors","base.strided.nanmeanpn","base.strided.nanmeanwd","base.strided.nanmin","base.strided.nanminabs","base.strided.nanminBy","base.strided.nanmskmax","base.strided.nanmskmin","base.strided.nanmskrange","base.strided.nanrange","base.strided.nanrangeBy","base.strided.nanstdev","base.strided.nanstdevch","base.strided.nanstdevpn","base.strided.nanstdevtk","base.strided.nanstdevwd","base.strided.nanstdevyc","base.strided.nanvariance","base.strided.nanvariancech","base.strided.nanvariancepn","base.strided.nanvariancetk","base.strided.nanvariancewd","base.strided.nanvarianceyc","base.strided.nullary","base.strided.quaternary","base.strided.quinary","base.strided.range","base.strided.rangeBy","base.strided.sabs","base.strided.sabs2","base.strided.sapx","base.strided.sapxsum","base.strided.sapxsumkbn","base.strided.sapxsumkbn2","base.strided.sapxsumors","base.strided.sapxsumpw","base.strided.sasum","base.strided.sasumpw","base.strided.saxpy","base.strided.scbrt","base.strided.sceil","base.strided.scopy","base.strided.scumax","base.strided.scumaxabs","base.strided.scumin","base.strided.scuminabs","base.strided.scusum","base.strided.scusumkbn","base.strided.scusumkbn2","base.strided.scusumors","base.strided.scusumpw","base.strided.sdeg2rad","base.strided.sdot","base.strided.sdsapxsum","base.strided.sdsapxsumpw","base.strided.sdsdot","base.strided.sdsmean","base.strided.sdsmeanors","base.strided.sdsnanmean","base.strided.sdsnanmeanors","base.strided.sdsnansum","base.strided.sdsnansumpw","base.strided.sdssum","base.strided.sdssumpw","base.strided.sfill","base.strided.sfloor","base.strided.sinv","base.strided.smap","base.strided.smap2","base.strided.smax","base.strided.smaxabs","base.strided.smaxabssorted","base.strided.smaxsorted","base.strided.smean","base.strided.smeankbn","base.strided.smeankbn2","base.strided.smeanli","base.strided.smeanlipw","base.strided.smeanors","base.strided.smeanpn","base.strided.smeanpw","base.strided.smeanwd","base.strided.smediansorted","base.strided.smidrange","base.strided.smin","base.strided.sminabs","base.strided.sminsorted","base.strided.smskabs","base.strided.smskabs2","base.strided.smskcbrt","base.strided.smskceil","base.strided.smskdeg2rad","base.strided.smskfloor","base.strided.smskinv","base.strided.smskmap","base.strided.smskmap2","base.strided.smskmax","base.strided.smskmin","base.strided.smskramp","base.strided.smskrange","base.strided.smskrsqrt","base.strided.smsksqrt","base.strided.smsktrunc","base.strided.snanmax","base.strided.snanmaxabs","base.strided.snanmean","base.strided.snanmeanors","base.strided.snanmeanpn","base.strided.snanmeanwd","base.strided.snanmin","base.strided.snanminabs","base.strided.snanmskmax","base.strided.snanmskmin","base.strided.snanmskrange","base.strided.snanrange","base.strided.snanstdev","base.strided.snanstdevch","base.strided.snanstdevpn","base.strided.snanstdevtk","base.strided.snanstdevwd","base.strided.snanstdevyc","base.strided.snansum","base.strided.snansumkbn","base.strided.snansumkbn2","base.strided.snansumors","base.strided.snansumpw","base.strided.snanvariance","base.strided.snanvariancech","base.strided.snanvariancepn","base.strided.snanvariancetk","base.strided.snanvariancewd","base.strided.snanvarianceyc","base.strided.snrm2","base.strided.sramp","base.strided.srange","base.strided.srev","base.strided.srsqrt","base.strided.sscal","base.strided.ssort2hp","base.strided.ssort2ins","base.strided.ssort2sh","base.strided.ssorthp","base.strided.ssortins","base.strided.ssortsh","base.strided.ssqrt","base.strided.sstdev","base.strided.sstdevch","base.strided.sstdevpn","base.strided.sstdevtk","base.strided.sstdevwd","base.strided.sstdevyc","base.strided.ssum","base.strided.ssumkbn","base.strided.ssumkbn2","base.strided.ssumors","base.strided.ssumpw","base.strided.sswap","base.strided.stdev","base.strided.stdevch","base.strided.stdevpn","base.strided.stdevtk","base.strided.stdevwd","base.strided.stdevyc","base.strided.strunc","base.strided.svariance","base.strided.svariancech","base.strided.svariancepn","base.strided.svariancetk","base.strided.svariancewd","base.strided.svarianceyc","base.strided.ternary","base.strided.unary","base.strided.variance","base.strided.variancech","base.strided.variancepn","base.strided.variancetk","base.strided.variancewd","base.strided.varianceyc","base.strided.zmap","base.sub","base.subf","base.sumSeries","base.tan","base.tanh","base.toBinaryString","base.toBinaryStringf","base.toBinaryStringUint8","base.toBinaryStringUint16","base.toBinaryStringUint32","base.toWordf","base.toWords","base.transpose","base.tribonacci","base.trigamma","base.trunc","base.trunc2","base.trunc10","base.truncb","base.truncf","base.truncn","base.truncsd","base.umul","base.umuldw","base.uint32ToInt32","base.vercos","base.versin","base.wrap","base.xlog1py","base.xlogy","base.zeta","bench","BERNDT_CPS_WAGES_1985","bifurcate","bifurcateBy","bifurcateByAsync","bifurcateIn","bifurcateOwn","BigInt","binomialTest","Buffer","buffer2json","BYTE_ORDER","camelcase","capitalize","capitalizeKeys","CATALAN","CBRT_EPS","CDC_NCHS_US_BIRTHS_1969_1988","CDC_NCHS_US_BIRTHS_1994_2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013","chdir","chi2gof","chi2test","circarray2iterator","circularArrayStream","CircularBuffer","close","CMUDICT","codePointAt","commonKeys","commonKeysIn","complex","Complex64","COMPLEX64_NUM_BYTES","Complex64Array","Complex128","COMPLEX128_NUM_BYTES","Complex128Array","complexarray","complexarrayCtors","complexarrayDataTypes","complexCtors","complexDataType","complexDataTypes","complexPromotionRules","compose","composeAsync","configdir","conj","conjf","constantcase","constantFunction","constantStream","constructorName","contains","convertArray","convertArraySame","convertPath","copy","copyBuffer","countBy","countByAsync","curry","curryRight","cwd","DALE_CHALL_NEW","datasets","DataView","datespace","dayOfQuarter","dayOfYear","daysInMonth","daysInYear","ddot","debugSinkStream","debugStream","deepEqual","deepGet","deepHasOwnProp","deepHasProp","deepPluck","deepSet","defineMemoizedProperty","defineProperties","defineProperty","dirname","DoublyLinkedList","doUntil","doUntilAsync","doUntilEach","doUntilEachRight","doWhile","doWhileAsync","doWhileEach","doWhileEachRight","dswap","E","EMOJI","EMOJI_CODE_PICTO","EMOJI_PICTO_CODE","emptyStream","endsWith","enumerableProperties","enumerablePropertiesIn","enumerablePropertySymbols","enumerablePropertySymbolsIn","ENV","EPS","error2json","EULERGAMMA","every","everyBy","everyByAsync","everyByRight","everyByRightAsync","evil","EXEC_PATH","exists","expandContractions","extname","fastmath.abs","fastmath.acosh","fastmath.ampbm","fastmath.asinh","fastmath.atanh","fastmath.hypot","fastmath.log2Uint32","fastmath.max","fastmath.min","fastmath.powint","fastmath.sqrtUint32","FEMALE_FIRST_NAMES_EN","FIFO","filledarray","filledarrayBy","filterArguments","find","FIVETHIRTYEIGHT_FFQ","flattenArray","flattenObject","flignerTest","FLOAT_WORD_ORDER","FLOAT16_CBRT_EPS","FLOAT16_EPS","FLOAT16_EXPONENT_BIAS","FLOAT16_MAX","FLOAT16_MAX_SAFE_INTEGER","FLOAT16_MIN_SAFE_INTEGER","FLOAT16_NINF","FLOAT16_NUM_BYTES","FLOAT16_PINF","FLOAT16_PRECISION","FLOAT16_SMALLEST_NORMAL","FLOAT16_SMALLEST_SUBNORMAL","FLOAT16_SQRT_EPS","FLOAT32_CBRT_EPS","FLOAT32_EPS","FLOAT32_EXPONENT_BIAS","FLOAT32_MAX","FLOAT32_MAX_SAFE_INTEGER","FLOAT32_MIN_SAFE_INTEGER","FLOAT32_NINF","FLOAT32_NUM_BYTES","FLOAT32_PINF","FLOAT32_PRECISION","FLOAT32_SMALLEST_NORMAL","FLOAT32_SMALLEST_SUBNORMAL","FLOAT32_SQRT_EPS","Float32Array","FLOAT64_EXPONENT_BIAS","FLOAT64_HIGH_WORD_EXPONENT_MASK","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK","FLOAT64_MAX","FLOAT64_MAX_BASE2_EXPONENT","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MAX_BASE10_EXPONENT","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MAX_LN","FLOAT64_MAX_SAFE_FIBONACCI","FLOAT64_MAX_SAFE_INTEGER","FLOAT64_MAX_SAFE_LUCAS","FLOAT64_MAX_SAFE_NTH_FIBONACCI","FLOAT64_MAX_SAFE_NTH_LUCAS","FLOAT64_MIN_BASE2_EXPONENT","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MIN_BASE10_EXPONENT","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MIN_LN","FLOAT64_MIN_SAFE_INTEGER","FLOAT64_NUM_BYTES","FLOAT64_PRECISION","FLOAT64_SMALLEST_NORMAL","FLOAT64_SMALLEST_SUBNORMAL","Float64Array","forEach","forEachAsync","forEachRight","forEachRightAsync","forIn","forOwn","FOURTH_PI","FOURTH_ROOT_EPS","FRB_SF_WAGE_RIGIDITY","fromCodePoint","functionName","functionSequence","functionSequenceAsync","GAMMA_LANCZOS_G","gdot","getegid","geteuid","getgid","getGlobal","getPrototypeOf","getuid","GLAISHER","group","groupBy","groupByAsync","groupIn","groupOwn","gswap","HALF_LN2","HALF_PI","HARRISON_BOSTON_HOUSE_PRICES","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED","hasArrayBufferSupport","hasAsyncAwaitSupport","hasAsyncIteratorSymbolSupport","hasBigInt64ArraySupport","hasBigIntSupport","hasBigUint64ArraySupport","hasClassSupport","hasDataViewSupport","hasDefinePropertiesSupport","hasDefinePropertySupport","hasFloat32ArraySupport","hasFloat64ArraySupport","hasFunctionNameSupport","hasGeneratorSupport","hasGlobalThisSupport","hasInt8ArraySupport","hasInt16ArraySupport","hasInt32ArraySupport","hasIteratorSymbolSupport","hasMapSupport","hasNodeBufferSupport","hasOwnProp","hasProp","hasProxySupport","hasSetSupport","hasSharedArrayBufferSupport","hasSymbolSupport","hasToStringTagSupport","hasUint8ArraySupport","hasUint8ClampedArraySupport","hasUint16ArraySupport","hasUint32ArraySupport","hasUTF16SurrogatePairAt","hasWeakMapSupport","hasWeakSetSupport","hasWebAssemblySupport","HERNDON_VENUS_SEMIDIAMETERS","homedir","HOURS_IN_DAY","HOURS_IN_WEEK","hoursInMonth","hoursInYear","httpServer","identity","ifelse","ifelseAsync","ifthen","ifthenAsync","imag","imagf","IMG_ACANTHUS_MOLLIS","IMG_AIRPLANE_FROM_ABOVE","IMG_ALLIUM_OREOPHILUM","IMG_BLACK_CANYON","IMG_DUST_BOWL_HOME","IMG_FRENCH_ALPINE_LANDSCAPE","IMG_LOCOMOTION_HOUSE_CAT","IMG_LOCOMOTION_NUDE_MALE","IMG_MARCH_PASTORAL","IMG_NAGASAKI_BOATS","incrapcorr","incrBinaryClassification","incrcount","incrcovariance","incrcovmat","incrcv","increwmean","increwstdev","increwvariance","incrgmean","incrgrubbs","incrhmean","incrkmeans","incrkurtosis","incrmaape","incrmae","incrmapcorr","incrmape","incrmax","incrmaxabs","incrmcovariance","incrmcv","incrmda","incrme","incrmean","incrmeanabs","incrmeanabs2","incrmeanstdev","incrmeanvar","incrmgmean","incrmgrubbs","incrmhmean","incrmidrange","incrmin","incrminabs","incrminmax","incrminmaxabs","incrmmaape","incrmmae","incrmmape","incrmmax","incrmmaxabs","incrmmda","incrmme","incrmmean","incrmmeanabs","incrmmeanabs2","incrmmeanstdev","incrmmeanvar","incrmmidrange","incrmmin","incrmminabs","incrmminmax","incrmminmaxabs","incrmmpe","incrmmse","incrmpcorr","incrmpcorr2","incrmpcorrdist","incrmpe","incrmprod","incrmrange","incrmrmse","incrmrss","incrmse","incrmstdev","incrmsum","incrmsumabs","incrmsumabs2","incrmsummary","incrmsumprod","incrmvariance","incrmvmr","incrnancount","incrnansum","incrnansumabs","incrnansumabs2","incrpcorr","incrpcorr2","incrpcorrdist","incrpcorrdistmat","incrpcorrmat","incrprod","incrrange","incrrmse","incrrss","incrSGDRegression","incrskewness","incrspace","incrstdev","incrsum","incrsumabs","incrsumabs2","incrsummary","incrsumprod","incrvariance","incrvmr","incrwmean","ind2sub","indexOf","inherit","inheritedEnumerableProperties","inheritedEnumerablePropertySymbols","inheritedKeys","inheritedNonEnumerableProperties","inheritedNonEnumerablePropertyNames","inheritedNonEnumerablePropertySymbols","inheritedProperties","inheritedPropertyDescriptor","inheritedPropertyDescriptors","inheritedPropertyNames","inheritedPropertySymbols","inheritedWritableProperties","inheritedWritablePropertyNames","inheritedWritablePropertySymbols","inmap","inmapAsync","inmapRight","inmapRightAsync","inspectSinkStream","inspectStream","instanceOf","INT8_MAX","INT8_MIN","INT8_NUM_BYTES","Int8Array","INT16_MAX","INT16_MIN","INT16_NUM_BYTES","Int16Array","INT32_MAX","INT32_MIN","INT32_NUM_BYTES","Int32Array","IS_BIG_ENDIAN","IS_BROWSER","IS_DARWIN","IS_ELECTRON","IS_ELECTRON_MAIN","IS_ELECTRON_RENDERER","IS_LITTLE_ENDIAN","IS_NODE","IS_WEB_WORKER","IS_WINDOWS","isAbsolutePath","isAccessorProperty","isAccessorPropertyIn","isAlphagram","isAlphaNumeric","isAnagram","isArguments","isArray","isArrayArray","isArrayBuffer","isArrayBufferView","isArrayLength","isArrayLike","isArrayLikeObject","isASCII","isBetween","isBetweenArray","isBigInt","isBigInt64Array","isBigUint64Array","isBinaryString","isBoolean","isBooleanArray","isBoxedPrimitive","isBuffer","isCapitalized","isCentrosymmetricMatrix","isCircular","isCircularArray","isCircularPlainObject","isClass","isCollection","isComplex","isComplex64","isComplex64Array","isComplex128","isComplex128Array","isComplexLike","isComplexTypedArray","isComplexTypedArrayLike","isComposite","isConfigurableProperty","isConfigurablePropertyIn","isCubeNumber","isDataProperty","isDataPropertyIn","isDataView","isDateObject","isDigitString","isEmailAddress","isEmptyArray","isEmptyArrayLikeObject","isEmptyCollection","isEmptyObject","isEmptyString","isEnumerableProperty","isEnumerablePropertyIn","isError","isEvalError","isEven","isFalsy","isFalsyArray","isFinite","isFiniteArray","isFloat32Array","isFloat32MatrixLike","isFloat32ndarrayLike","isFloat32VectorLike","isFloat64Array","isFloat64MatrixLike","isFloat64ndarrayLike","isFloat64VectorLike","isFunction","isFunctionArray","isGeneratorObject","isGeneratorObjectLike","isgzipBuffer","isHexString","isInfinite","isInheritedProperty","isInt8Array","isInt16Array","isInt32Array","isInteger","isIntegerArray","isIterableLike","isIteratorLike","isJSON","isLeapYear","isLocalhost","isLowercase","isMatrixLike","isMethod","isMethodIn","isNamedTypedTupleLike","isnan","isNaNArray","isNativeFunction","isndarrayLike","isNegativeInteger","isNegativeIntegerArray","isNegativeNumber","isNegativeNumberArray","isNegativeZero","isNodeBuiltin","isNodeDuplexStreamLike","isNodeReadableStreamLike","isNodeREPL","isNodeStreamLike","isNodeTransformStreamLike","isNodeWritableStreamLike","isNonConfigurableProperty","isNonConfigurablePropertyIn","isNonEnumerableProperty","isNonEnumerablePropertyIn","isNonNegativeInteger","isNonNegativeIntegerArray","isNonNegativeNumber","isNonNegativeNumberArray","isNonPositiveInteger","isNonPositiveIntegerArray","isNonPositiveNumber","isNonPositiveNumberArray","isNonSymmetricMatrix","isNull","isNullArray","isNumber","isNumberArray","isNumericArray","isObject","isObjectArray","isObjectLike","isOdd","isoWeeksInYear","isPersymmetricMatrix","isPlainObject","isPlainObjectArray","isPositiveInteger","isPositiveIntegerArray","isPositiveNumber","isPositiveNumberArray","isPositiveZero","isPrime","isPrimitive","isPrimitiveArray","isPRNGLike","isProbability","isProbabilityArray","isPropertyKey","isPrototypeOf","isRangeError","isReadableProperty","isReadablePropertyIn","isReadOnlyProperty","isReadOnlyPropertyIn","isReadWriteProperty","isReadWritePropertyIn","isReferenceError","isRegExp","isRegExpString","isRelativePath","isSafeInteger","isSafeIntegerArray","isSameNativeClass","isSameType","isSameValue","isSameValueZero","isSharedArrayBuffer","isSkewCentrosymmetricMatrix","isSkewPersymmetricMatrix","isSkewSymmetricMatrix","isSquareMatrix","isSquareNumber","isSquareTriangularNumber","isStrictEqual","isString","isStringArray","isSymbol","isSymbolArray","isSymmetricMatrix","isSyntaxError","isTriangularNumber","isTruthy","isTruthyArray","isTypedArray","isTypedArrayLength","isTypedArrayLike","isTypeError","isUint8Array","isUint8ClampedArray","isUint16Array","isUint32Array","isUNCPath","isUndefined","isUndefinedOrNull","isUnityProbabilityArray","isUppercase","isURI","isURIError","isVectorLike","isWhitespace","isWritableProperty","isWritablePropertyIn","isWriteOnlyProperty","isWriteOnlyPropertyIn","iterAbs","iterAbs2","iterAcos","iterAcosh","iterAcot","iterAcoth","iterAcovercos","iterAcoversin","iterAdd","iterAdvance","iterAhavercos","iterAhaversin","iterAny","iterAnyBy","iterAsin","iterAsinh","iterAtan","iterAtan2","iterAtanh","iterator2array","iterator2arrayview","iterator2arrayviewRight","iteratorStream","IteratorSymbol","iterAvercos","iterAversin","iterawgn","iterawln","iterawun","iterBartlettHannPulse","iterBartlettPulse","iterBesselj0","iterBesselj1","iterBessely0","iterBessely1","iterBeta","iterBetaln","iterBinet","iterCbrt","iterCeil","iterCeil2","iterCeil10","iterCompositesSeq","iterConcat","iterConstant","iterContinuedFraction","iterContinuedFractionSeq","iterCos","iterCosh","iterCosineWave","iterCosm1","iterCospi","iterCounter","iterCovercos","iterCoversin","iterCubesSeq","itercugmean","itercuhmean","itercumax","itercumaxabs","itercumean","itercumeanabs","itercumeanabs2","itercumidrange","itercumin","itercuminabs","itercuprod","itercurange","itercusum","itercusumabs","itercusumabs2","iterDatespace","iterDedupe","iterDedupeBy","iterDeg2rad","iterDigamma","iterDiracComb","iterDiracDelta","iterDivide","iterEllipe","iterEllipk","iterEmpty","iterErf","iterErfc","iterErfcinv","iterErfinv","iterEta","iterEvenIntegersSeq","iterEvery","iterEveryBy","iterExp","iterExp2","iterExp10","iterExpit","iterExpm1","iterExpm1rel","iterFactorial","iterFactorialln","iterFactorialsSeq","iterFibonacciSeq","iterFifthPowersSeq","iterFill","iterFilter","iterFilterMap","iterFirst","iterFlatTopPulse","iterFloor","iterFloor2","iterFloor10","iterFlow","iterForEach","iterFourthPowersSeq","iterFresnelc","iterFresnels","iterGamma","iterGamma1pm1","iterGammaln","iterHacovercos","iterHacoversin","iterHannPulse","iterHavercos","iterHaversin","iterHead","iterIncrspace","iterIntegersSeq","iterIntersection","iterIntersectionByHash","iterInv","iterLanczosPulse","iterLast","iterLength","iterLinspace","iterLn","iterLog","iterLog1mexp","iterLog1p","iterLog1pexp","iterLog2","iterLog10","iterLogit","iterLogspace","iterLucasSeq","iterMap","iterMapN","itermax","itermaxabs","itermean","itermeanabs","itermeanabs2","itermidrange","itermin","iterminabs","itermmax","itermmaxabs","itermmean","itermmeanabs","itermmeanabs2","itermmidrange","itermmin","itermminabs","iterMod","itermprod","itermrange","itermsum","itermsumabs","itermsumabs2","iterMultiply","iterNegaFibonacciSeq","iterNegaLucasSeq","iterNegativeEvenIntegersSeq","iterNegativeIntegersSeq","iterNegativeOddIntegersSeq","iterNone","iterNoneBy","iterNonFibonacciSeq","iterNonNegativeEvenIntegersSeq","iterNonNegativeIntegersSeq","iterNonPositiveEvenIntegersSeq","iterNonPositiveIntegersSeq","iterNonSquaresSeq","iterNth","iterOddIntegersSeq","iterPeriodicSinc","iterPipeline","iterPop","iterPositiveEvenIntegersSeq","iterPositiveIntegersSeq","iterPositiveOddIntegersSeq","iterPow","iterPrimesSeq","iterprod","iterPulse","iterPush","iterRad2deg","iterRamp","iterrange","iterReject","iterReplicate","iterReplicateBy","iterRound","iterRound2","iterRound10","iterRsqrt","iterSawtoothWave","iterShift","iterSignum","iterSin","iterSinc","iterSineWave","iterSinh","iterSinpi","iterSlice","iterSome","iterSomeBy","iterSpence","iterSqrt","iterSqrt1pm1","iterSquaredTriangularSeq","iterSquaresSeq","iterSquareWave","iterstdev","iterStep","iterStrided","iterStridedBy","iterSubtract","itersum","itersumabs","itersumabs2","iterTan","iterTanh","iterThunk","iterTriangleWave","iterTriangularSeq","iterTrigamma","iterTrunc","iterTrunc2","iterTrunc10","iterUnion","iterUnique","iterUniqueBy","iterUniqueByHash","iterUnitspace","iterUnshift","itervariance","iterVercos","iterVersin","iterZeta","joinStream","kde2d","kebabcase","keyBy","keyByRight","keysIn","kruskalTest","kstest","lda","leveneTest","LinkedList","linspace","LIU_NEGATIVE_OPINION_WORDS_EN","LIU_POSITIVE_OPINION_WORDS_EN","LN_HALF","LN_PI","LN_SQRT_TWO_PI","LN_TWO_PI","LN2","LN10","LOG2E","LOG10E","logspace","lowercase","lowercaseKeys","lowess","lpad","ltrim","MALE_FIRST_NAMES_EN","map","map2","map2d","map2Right","map3d","map4d","map5d","mapArguments","mapFun","mapFunAsync","mapKeys","mapKeysAsync","mapReduce","mapReduceRight","mapRight","mapValues","mapValuesAsync","maskArguments","MAX_ARRAY_LENGTH","MAX_TYPED_ARRAY_LENGTH","memoize","merge","MILLISECONDS_IN_DAY","MILLISECONDS_IN_HOUR","MILLISECONDS_IN_MINUTE","MILLISECONDS_IN_SECOND","MILLISECONDS_IN_WEEK","MINARD_NAPOLEONS_MARCH","MINUTES_IN_DAY","MINUTES_IN_HOUR","MINUTES_IN_WEEK","minutesInMonth","minutesInYear","MOBY_DICK","MONTH_NAMES_EN","MONTHS_IN_YEAR","moveProperty","namedtypedtuple","naryFunction","nativeClass","ndarray","ndarrayCastingModes","ndarrayDataTypes","ndarrayDispatch","ndarrayIndexModes","ndarrayMinDataType","ndarrayNextDataType","ndarrayOrders","ndarrayPromotionRules","ndarraySafeCasts","ndarraySameKindCasts","ndzeros","ndzerosLike","nextGraphemeClusterBreak","nextTick","NIGHTINGALES_ROSE","NINF","NODE_VERSION","none","noneBy","noneByAsync","noneByRight","noneByRightAsync","nonEnumerableProperties","nonEnumerablePropertiesIn","nonEnumerablePropertyNames","nonEnumerablePropertyNamesIn","nonEnumerablePropertySymbols","nonEnumerablePropertySymbolsIn","nonIndexKeys","noop","now","NUM_CPUS","Number","numGraphemeClusters","objectEntries","objectEntriesIn","objectFromEntries","objectInverse","objectInverseBy","objectKeys","objectValues","objectValuesIn","omit","omitBy","open","openURL","PACE_BOSTON_HOUSE_PRICES","pad","padjust","papply","papplyRight","parallel","parseJSON","pascalcase","PATH_DELIMITER","PATH_DELIMITER_POSIX","PATH_DELIMITER_WIN32","PATH_SEP","PATH_SEP_POSIX","PATH_SEP_WIN32","pcorrtest","percentEncode","PHI","PI","PI_SQUARED","pick","pickArguments","pickBy","PINF","pkg2alias","pkg2related","pkg2standalone","PLATFORM","plot","Plot","pluck","pop","porterStemmer","prepend","PRIMES_100K","properties","propertiesIn","propertyDescriptor","propertyDescriptorIn","propertyDescriptors","propertyDescriptorsIn","propertyNames","propertyNamesIn","propertySymbols","propertySymbolsIn","Proxy","push","quarterOfYear","random.iterators.arcsine","random.iterators.bernoulli","random.iterators.beta","random.iterators.betaprime","random.iterators.binomial","random.iterators.boxMuller","random.iterators.cauchy","random.iterators.chi","random.iterators.chisquare","random.iterators.cosine","random.iterators.discreteUniform","random.iterators.erlang","random.iterators.exponential","random.iterators.f","random.iterators.frechet","random.iterators.gamma","random.iterators.geometric","random.iterators.gumbel","random.iterators.hypergeometric","random.iterators.improvedZiggurat","random.iterators.invgamma","random.iterators.kumaraswamy","random.iterators.laplace","random.iterators.levy","random.iterators.logistic","random.iterators.lognormal","random.iterators.minstd","random.iterators.minstdShuffle","random.iterators.mt19937","random.iterators.negativeBinomial","random.iterators.normal","random.iterators.pareto1","random.iterators.poisson","random.iterators.randi","random.iterators.randn","random.iterators.randu","random.iterators.rayleigh","random.iterators.t","random.iterators.triangular","random.iterators.uniform","random.iterators.weibull","random.streams.arcsine","random.streams.bernoulli","random.streams.beta","random.streams.betaprime","random.streams.binomial","random.streams.boxMuller","random.streams.cauchy","random.streams.chi","random.streams.chisquare","random.streams.cosine","random.streams.discreteUniform","random.streams.erlang","random.streams.exponential","random.streams.f","random.streams.frechet","random.streams.gamma","random.streams.geometric","random.streams.gumbel","random.streams.hypergeometric","random.streams.improvedZiggurat","random.streams.invgamma","random.streams.kumaraswamy","random.streams.laplace","random.streams.levy","random.streams.logistic","random.streams.lognormal","random.streams.minstd","random.streams.minstdShuffle","random.streams.mt19937","random.streams.negativeBinomial","random.streams.normal","random.streams.pareto1","random.streams.poisson","random.streams.randi","random.streams.randn","random.streams.randu","random.streams.rayleigh","random.streams.t","random.streams.triangular","random.streams.uniform","random.streams.weibull","ranks","readDir","readFile","readFileList","readJSON","readWASM","real","realarray","realarrayCtors","realarrayDataTypes","realf","realmax","realmin","reBasename","reBasenamePosix","reBasenameWindows","reColorHexadecimal","reDecimalNumber","reDirname","reDirnamePosix","reDirnameWindows","reduce","reduce2d","reduceAsync","reduceRight","reduceRightAsync","reEOL","reExtendedLengthPath","reExtname","reExtnamePosix","reExtnameWindows","reFilename","reFilenamePosix","reFilenameWindows","reFromString","reFunctionName","reim","reimf","rejectArguments","removeFirst","removeLast","removePunctuation","removeUTF8BOM","removeWords","rename","reNativeFunction","reorderArguments","repeat","replace","reRegExp","rescape","resolveParentPath","resolveParentPathBy","reUncPath","reUtf16SurrogatePair","reUtf16UnpairedSurrogate","reverseArguments","reverseString","reviveBasePRNG","reviveBuffer","reviveComplex","reviveComplex64","reviveComplex128","reviveError","reviveTypedArray","reWhitespace","rpad","rtrim","safeintmax","safeintmin","sample","SAVOY_STOPWORDS_FIN","SAVOY_STOPWORDS_FR","SAVOY_STOPWORDS_GER","SAVOY_STOPWORDS_IT","SAVOY_STOPWORDS_POR","SAVOY_STOPWORDS_SP","SAVOY_STOPWORDS_SWE","scalar2ndarray","sdot","SECONDS_IN_DAY","SECONDS_IN_HOUR","SECONDS_IN_MINUTE","SECONDS_IN_WEEK","secondsInMonth","secondsInYear","setConfigurableReadOnly","setConfigurableReadOnlyAccessor","setConfigurableReadWriteAccessor","setConfigurableWriteOnlyAccessor","setMemoizedConfigurableReadOnly","setMemoizedReadOnly","setNonEnumerableProperty","setNonEnumerableReadOnly","setNonEnumerableReadOnlyAccessor","setNonEnumerableReadWriteAccessor","setNonEnumerableWriteOnlyAccessor","setReadOnly","setReadOnlyAccessor","setReadWriteAccessor","setWriteOnlyAccessor","SharedArrayBuffer","shift","shuffle","sizeOf","snakecase","some","someBy","someByAsync","someByRight","someByRightAsync","SOTU","SPACHE_REVISED","SPAM_ASSASSIN","SparklineBase","sparsearray2iterator","sparsearray2iteratorRight","splitStream","SQRT_EPS","SQRT_HALF","SQRT_HALF_PI","SQRT_PHI","SQRT_PI","SQRT_THREE","SQRT_TWO","SQRT_TWO_PI","SSA_US_BIRTHS_2000_2014","sswap","Stack","standalone2pkg","STANDARD_CARD_DECK","startcase","startsWith","STOPWORDS_EN","strided.abs","strided.abs2","strided.abs2By","strided.absBy","strided.add","strided.cbrt","strided.ceil","strided.deg2rad","strided.dispatch","strided.floor","strided.inv","strided.mul","strided.ramp","strided.rsqrt","strided.sqrt","strided.sub","strided.trunc","stridedarray2iterator","stridedArrayStream","string2buffer","sub2ind","substringAfter","substringAfterLast","substringBefore","substringBeforeLast","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK","Symbol","tabulate","tabulateBy","tabulateByAsync","tic","timeit","tmpdir","toc","tokenize","transformStream","trim","truncate","truncateMiddle","trycatch","trycatchAsync","tryFunction","tryRequire","trythen","trythenAsync","ttest","ttest2","TWO_PI","typedarray","typedarray2json","typedarrayCtors","typedarrayDataTypes","typedarraypool","typemax","typemin","typeOf","UINT8_MAX","UINT8_NUM_BYTES","Uint8Array","Uint8ClampedArray","UINT16_MAX","UINT16_NUM_BYTES","Uint16Array","UINT32_MAX","UINT32_NUM_BYTES","Uint32Array","umask","uncapitalize","uncapitalizeKeys","uncurry","uncurryRight","UNICODE_MAX","UNICODE_MAX_BMP","UnicodeColumnChartSparkline","UnicodeLineChartSparkline","UnicodeSparkline","UnicodeTristateChartSparkline","UnicodeUpDownChartSparkline","UnicodeWinLossChartSparkline","unlink","unshift","until","untilAsync","untilEach","untilEachRight","unzip","uppercase","uppercaseKeys","US_STATES_ABBR","US_STATES_CAPITALS","US_STATES_CAPITALS_NAMES","US_STATES_NAMES","US_STATES_NAMES_CAPITALS","utf16ToUTF8Array","vartest","waterfall","whileAsync","whileEach","whileEachRight","whilst","wilcoxon","writableProperties","writablePropertiesIn","writablePropertyNames","writablePropertyNamesIn","writablePropertySymbols","writablePropertySymbolsIn","writeFile","zip","ztest","ztest2"]
+},{"./../data/data.json":35,"./../lib":36,"@stdlib/namespace/aliases":42,"tape":205}],41:[function(require,module,exports){
+module.exports=["abs","acartesianPower","acartesianProduct","acartesianSquare","acronym","aempty","aemptyLike","AFINN_96","AFINN_111","afull","afullLike","alias2pkg","alias2related","alias2standalone","aliases","allocUnsafe","amskfilter","amskput","amskreject","anans","anansLike","anova1","ANSCOMBES_QUARTET","any","anyBy","anyByAsync","anyByRight","anyByRightAsync","anyInBy","anyOwnBy","aones","aonesLike","aoneTo","aoneToLike","APERY","aplace","append","aput","ARCH","argumentFunction","ARGV","array","array2buffer","array2fancy","array2iterator","array2iteratorRight","ArrayBuffer","arraybuffer2buffer","arrayCtors","arrayDataType","arrayDataTypes","ArrayIndex","arrayMinDataType","arrayMostlySafeCasts","arrayNextDataType","arrayPromotionRules","arraySafeCasts","arraySameKindCasts","arrayShape","arrayStream","arrayview2iterator","arrayview2iteratorRight","aslice","AsyncIteratorSymbol","atake","azeros","azerosLike","azeroTo","azeroToLike","bartlettTest","base.abs","base.abs2","base.abs2f","base.absdiff","base.absf","base.acartesianPower","base.acartesianProduct","base.acartesianSquare","base.acos","base.acosd","base.acosf","base.acosh","base.acot","base.acotd","base.acotf","base.acoth","base.acovercos","base.acoversin","base.acsc","base.acscd","base.acscdf","base.acscf","base.acsch","base.add","base.add3","base.add4","base.add5","base.addf","base.afilled","base.afilled2d","base.afilled2dBy","base.afilled3d","base.afilled3dBy","base.afilled4d","base.afilled4dBy","base.afilled5d","base.afilled5dBy","base.afilledBy","base.afillednd","base.afilledndBy","base.afilter","base.afirst","base.aflatten","base.aflatten2d","base.aflatten2dBy","base.aflatten3d","base.aflatten3dBy","base.aflatten4d","base.aflatten4dBy","base.aflatten5d","base.aflatten5dBy","base.aflattenBy","base.afliplr2d","base.afliplr3d","base.afliplr4d","base.afliplr5d","base.aflipud2d","base.aflipud3d","base.aflipud4d","base.aflipud5d","base.ahavercos","base.ahaversin","base.altcase","base.aones","base.aones2d","base.aones3d","base.aones4d","base.aones5d","base.aonesnd","base.aoneTo","base.args2multislice","base.asec","base.asecd","base.asecdf","base.asecf","base.asech","base.asin","base.asind","base.asindf","base.asinf","base.asinh","base.atan","base.atan2","base.atand","base.atanf","base.atanh","base.avercos","base.aversin","base.azeros","base.azeros2d","base.azeros3d","base.azeros4d","base.azeros5d","base.azerosnd","base.azeroTo","base.bernoulli","base.besselj0","base.besselj1","base.bessely0","base.bessely1","base.beta","base.betainc","base.betaincinv","base.betaln","base.binet","base.binomcoef","base.binomcoefln","base.boxcox","base.boxcox1p","base.boxcox1pinv","base.boxcoxinv","base.cabs","base.cabs2","base.cabs2f","base.cabsf","base.cadd","base.caddf","base.camelcase","base.capitalize","base.cbrt","base.cbrtf","base.cceil","base.cceilf","base.cceiln","base.ccis","base.cdiv","base.ceil","base.ceil2","base.ceil10","base.ceilb","base.ceilf","base.ceiln","base.ceilsd","base.cexp","base.cflipsign","base.cflipsignf","base.cfloor","base.cfloorn","base.cidentity","base.cidentityf","base.cinv","base.clamp","base.clampf","base.cmul","base.cmulf","base.cneg","base.cnegf","base.codePointAt","base.constantcase","base.continuedFraction","base.copysign","base.copysignf","base.cos","base.cosd","base.cosh","base.cosm1","base.cospi","base.cot","base.cotd","base.coth","base.covercos","base.coversin","base.cphase","base.cpolar","base.cround","base.croundn","base.csc","base.cscd","base.csch","base.csignum","base.csub","base.csubf","base.deg2rad","base.deg2radf","base.digamma","base.diracDelta","base.div","base.divf","base.dotcase","base.dists.arcsine.Arcsine","base.dists.arcsine.cdf","base.dists.arcsine.entropy","base.dists.arcsine.kurtosis","base.dists.arcsine.logcdf","base.dists.arcsine.logpdf","base.dists.arcsine.mean","base.dists.arcsine.median","base.dists.arcsine.mode","base.dists.arcsine.pdf","base.dists.arcsine.quantile","base.dists.arcsine.skewness","base.dists.arcsine.stdev","base.dists.arcsine.variance","base.dists.bernoulli.Bernoulli","base.dists.bernoulli.cdf","base.dists.bernoulli.entropy","base.dists.bernoulli.kurtosis","base.dists.bernoulli.mean","base.dists.bernoulli.median","base.dists.bernoulli.mgf","base.dists.bernoulli.mode","base.dists.bernoulli.pmf","base.dists.bernoulli.quantile","base.dists.bernoulli.skewness","base.dists.bernoulli.stdev","base.dists.bernoulli.variance","base.dists.beta.Beta","base.dists.beta.cdf","base.dists.beta.entropy","base.dists.beta.kurtosis","base.dists.beta.logcdf","base.dists.beta.logpdf","base.dists.beta.mean","base.dists.beta.median","base.dists.beta.mgf","base.dists.beta.mode","base.dists.beta.pdf","base.dists.beta.quantile","base.dists.beta.skewness","base.dists.beta.stdev","base.dists.beta.variance","base.dists.betaprime.BetaPrime","base.dists.betaprime.cdf","base.dists.betaprime.kurtosis","base.dists.betaprime.logcdf","base.dists.betaprime.logpdf","base.dists.betaprime.mean","base.dists.betaprime.mode","base.dists.betaprime.pdf","base.dists.betaprime.quantile","base.dists.betaprime.skewness","base.dists.betaprime.stdev","base.dists.betaprime.variance","base.dists.binomial.Binomial","base.dists.binomial.cdf","base.dists.binomial.entropy","base.dists.binomial.kurtosis","base.dists.binomial.logpmf","base.dists.binomial.mean","base.dists.binomial.median","base.dists.binomial.mgf","base.dists.binomial.mode","base.dists.binomial.pmf","base.dists.binomial.quantile","base.dists.binomial.skewness","base.dists.binomial.stdev","base.dists.binomial.variance","base.dists.cauchy.Cauchy","base.dists.cauchy.cdf","base.dists.cauchy.entropy","base.dists.cauchy.logcdf","base.dists.cauchy.logpdf","base.dists.cauchy.median","base.dists.cauchy.mode","base.dists.cauchy.pdf","base.dists.cauchy.quantile","base.dists.chi.cdf","base.dists.chi.Chi","base.dists.chi.entropy","base.dists.chi.kurtosis","base.dists.chi.logpdf","base.dists.chi.mean","base.dists.chi.mode","base.dists.chi.pdf","base.dists.chi.quantile","base.dists.chi.skewness","base.dists.chi.stdev","base.dists.chi.variance","base.dists.chisquare.cdf","base.dists.chisquare.ChiSquare","base.dists.chisquare.entropy","base.dists.chisquare.kurtosis","base.dists.chisquare.logpdf","base.dists.chisquare.mean","base.dists.chisquare.median","base.dists.chisquare.mgf","base.dists.chisquare.mode","base.dists.chisquare.pdf","base.dists.chisquare.quantile","base.dists.chisquare.skewness","base.dists.chisquare.stdev","base.dists.chisquare.variance","base.dists.cosine.cdf","base.dists.cosine.Cosine","base.dists.cosine.kurtosis","base.dists.cosine.logcdf","base.dists.cosine.logpdf","base.dists.cosine.mean","base.dists.cosine.median","base.dists.cosine.mgf","base.dists.cosine.mode","base.dists.cosine.pdf","base.dists.cosine.quantile","base.dists.cosine.skewness","base.dists.cosine.stdev","base.dists.cosine.variance","base.dists.degenerate.cdf","base.dists.degenerate.Degenerate","base.dists.degenerate.entropy","base.dists.degenerate.logcdf","base.dists.degenerate.logpdf","base.dists.degenerate.logpmf","base.dists.degenerate.mean","base.dists.degenerate.median","base.dists.degenerate.mgf","base.dists.degenerate.mode","base.dists.degenerate.pdf","base.dists.degenerate.pmf","base.dists.degenerate.quantile","base.dists.degenerate.stdev","base.dists.degenerate.variance","base.dists.discreteUniform.cdf","base.dists.discreteUniform.DiscreteUniform","base.dists.discreteUniform.entropy","base.dists.discreteUniform.kurtosis","base.dists.discreteUniform.logcdf","base.dists.discreteUniform.logpmf","base.dists.discreteUniform.mean","base.dists.discreteUniform.median","base.dists.discreteUniform.mgf","base.dists.discreteUniform.pmf","base.dists.discreteUniform.quantile","base.dists.discreteUniform.skewness","base.dists.discreteUniform.stdev","base.dists.discreteUniform.variance","base.dists.erlang.cdf","base.dists.erlang.entropy","base.dists.erlang.Erlang","base.dists.erlang.kurtosis","base.dists.erlang.logpdf","base.dists.erlang.mean","base.dists.erlang.mgf","base.dists.erlang.mode","base.dists.erlang.pdf","base.dists.erlang.quantile","base.dists.erlang.skewness","base.dists.erlang.stdev","base.dists.erlang.variance","base.dists.exponential.cdf","base.dists.exponential.entropy","base.dists.exponential.Exponential","base.dists.exponential.kurtosis","base.dists.exponential.logcdf","base.dists.exponential.logpdf","base.dists.exponential.mean","base.dists.exponential.median","base.dists.exponential.mgf","base.dists.exponential.mode","base.dists.exponential.pdf","base.dists.exponential.quantile","base.dists.exponential.skewness","base.dists.exponential.stdev","base.dists.exponential.variance","base.dists.f.cdf","base.dists.f.entropy","base.dists.f.F","base.dists.f.kurtosis","base.dists.f.mean","base.dists.f.mode","base.dists.f.pdf","base.dists.f.quantile","base.dists.f.skewness","base.dists.f.stdev","base.dists.f.variance","base.dists.frechet.cdf","base.dists.frechet.entropy","base.dists.frechet.Frechet","base.dists.frechet.kurtosis","base.dists.frechet.logcdf","base.dists.frechet.logpdf","base.dists.frechet.mean","base.dists.frechet.median","base.dists.frechet.mode","base.dists.frechet.pdf","base.dists.frechet.quantile","base.dists.frechet.skewness","base.dists.frechet.stdev","base.dists.frechet.variance","base.dists.gamma.cdf","base.dists.gamma.entropy","base.dists.gamma.Gamma","base.dists.gamma.kurtosis","base.dists.gamma.logcdf","base.dists.gamma.logpdf","base.dists.gamma.mean","base.dists.gamma.mgf","base.dists.gamma.mode","base.dists.gamma.pdf","base.dists.gamma.quantile","base.dists.gamma.skewness","base.dists.gamma.stdev","base.dists.gamma.variance","base.dists.geometric.cdf","base.dists.geometric.entropy","base.dists.geometric.Geometric","base.dists.geometric.kurtosis","base.dists.geometric.logcdf","base.dists.geometric.logpmf","base.dists.geometric.mean","base.dists.geometric.median","base.dists.geometric.mgf","base.dists.geometric.mode","base.dists.geometric.pmf","base.dists.geometric.quantile","base.dists.geometric.skewness","base.dists.geometric.stdev","base.dists.geometric.variance","base.dists.gumbel.cdf","base.dists.gumbel.entropy","base.dists.gumbel.Gumbel","base.dists.gumbel.kurtosis","base.dists.gumbel.logcdf","base.dists.gumbel.logpdf","base.dists.gumbel.mean","base.dists.gumbel.median","base.dists.gumbel.mgf","base.dists.gumbel.mode","base.dists.gumbel.pdf","base.dists.gumbel.quantile","base.dists.gumbel.skewness","base.dists.gumbel.stdev","base.dists.gumbel.variance","base.dists.hypergeometric.cdf","base.dists.hypergeometric.Hypergeometric","base.dists.hypergeometric.kurtosis","base.dists.hypergeometric.logpmf","base.dists.hypergeometric.mean","base.dists.hypergeometric.mode","base.dists.hypergeometric.pmf","base.dists.hypergeometric.quantile","base.dists.hypergeometric.skewness","base.dists.hypergeometric.stdev","base.dists.hypergeometric.variance","base.dists.invgamma.cdf","base.dists.invgamma.entropy","base.dists.invgamma.InvGamma","base.dists.invgamma.kurtosis","base.dists.invgamma.logpdf","base.dists.invgamma.mean","base.dists.invgamma.mode","base.dists.invgamma.pdf","base.dists.invgamma.quantile","base.dists.invgamma.skewness","base.dists.invgamma.stdev","base.dists.invgamma.variance","base.dists.kumaraswamy.cdf","base.dists.kumaraswamy.Kumaraswamy","base.dists.kumaraswamy.kurtosis","base.dists.kumaraswamy.logcdf","base.dists.kumaraswamy.logpdf","base.dists.kumaraswamy.mean","base.dists.kumaraswamy.median","base.dists.kumaraswamy.mode","base.dists.kumaraswamy.pdf","base.dists.kumaraswamy.quantile","base.dists.kumaraswamy.skewness","base.dists.kumaraswamy.stdev","base.dists.kumaraswamy.variance","base.dists.laplace.cdf","base.dists.laplace.entropy","base.dists.laplace.kurtosis","base.dists.laplace.Laplace","base.dists.laplace.logcdf","base.dists.laplace.logpdf","base.dists.laplace.mean","base.dists.laplace.median","base.dists.laplace.mgf","base.dists.laplace.mode","base.dists.laplace.pdf","base.dists.laplace.quantile","base.dists.laplace.skewness","base.dists.laplace.stdev","base.dists.laplace.variance","base.dists.levy.cdf","base.dists.levy.entropy","base.dists.levy.Levy","base.dists.levy.logcdf","base.dists.levy.logpdf","base.dists.levy.mean","base.dists.levy.median","base.dists.levy.mode","base.dists.levy.pdf","base.dists.levy.quantile","base.dists.levy.stdev","base.dists.levy.variance","base.dists.logistic.cdf","base.dists.logistic.entropy","base.dists.logistic.kurtosis","base.dists.logistic.logcdf","base.dists.logistic.Logistic","base.dists.logistic.logpdf","base.dists.logistic.mean","base.dists.logistic.median","base.dists.logistic.mgf","base.dists.logistic.mode","base.dists.logistic.pdf","base.dists.logistic.quantile","base.dists.logistic.skewness","base.dists.logistic.stdev","base.dists.logistic.variance","base.dists.lognormal.cdf","base.dists.lognormal.entropy","base.dists.lognormal.kurtosis","base.dists.lognormal.LogNormal","base.dists.lognormal.logcdf","base.dists.lognormal.logpdf","base.dists.lognormal.mean","base.dists.lognormal.median","base.dists.lognormal.mode","base.dists.lognormal.pdf","base.dists.lognormal.quantile","base.dists.lognormal.skewness","base.dists.lognormal.stdev","base.dists.lognormal.variance","base.dists.negativeBinomial.cdf","base.dists.negativeBinomial.kurtosis","base.dists.negativeBinomial.logpmf","base.dists.negativeBinomial.mean","base.dists.negativeBinomial.mgf","base.dists.negativeBinomial.mode","base.dists.negativeBinomial.NegativeBinomial","base.dists.negativeBinomial.pmf","base.dists.negativeBinomial.quantile","base.dists.negativeBinomial.skewness","base.dists.negativeBinomial.stdev","base.dists.negativeBinomial.variance","base.dists.normal.cdf","base.dists.normal.entropy","base.dists.normal.kurtosis","base.dists.normal.logcdf","base.dists.normal.logpdf","base.dists.normal.mean","base.dists.normal.median","base.dists.normal.mgf","base.dists.normal.mode","base.dists.normal.Normal","base.dists.normal.pdf","base.dists.normal.quantile","base.dists.normal.skewness","base.dists.normal.stdev","base.dists.normal.variance","base.dists.pareto1.cdf","base.dists.pareto1.entropy","base.dists.pareto1.kurtosis","base.dists.pareto1.logcdf","base.dists.pareto1.logpdf","base.dists.pareto1.mean","base.dists.pareto1.median","base.dists.pareto1.mode","base.dists.pareto1.Pareto1","base.dists.pareto1.pdf","base.dists.pareto1.quantile","base.dists.pareto1.skewness","base.dists.pareto1.stdev","base.dists.pareto1.variance","base.dists.poisson.cdf","base.dists.poisson.entropy","base.dists.poisson.kurtosis","base.dists.poisson.logpmf","base.dists.poisson.mean","base.dists.poisson.median","base.dists.poisson.mgf","base.dists.poisson.mode","base.dists.poisson.pmf","base.dists.poisson.Poisson","base.dists.poisson.quantile","base.dists.poisson.skewness","base.dists.poisson.stdev","base.dists.poisson.variance","base.dists.rayleigh.cdf","base.dists.rayleigh.entropy","base.dists.rayleigh.kurtosis","base.dists.rayleigh.logcdf","base.dists.rayleigh.logpdf","base.dists.rayleigh.mean","base.dists.rayleigh.median","base.dists.rayleigh.mgf","base.dists.rayleigh.mode","base.dists.rayleigh.pdf","base.dists.rayleigh.quantile","base.dists.rayleigh.Rayleigh","base.dists.rayleigh.skewness","base.dists.rayleigh.stdev","base.dists.rayleigh.variance","base.dists.signrank.cdf","base.dists.signrank.pdf","base.dists.signrank.quantile","base.dists.studentizedRange.cdf","base.dists.studentizedRange.quantile","base.dists.t.cdf","base.dists.t.entropy","base.dists.t.kurtosis","base.dists.t.logcdf","base.dists.t.logpdf","base.dists.t.mean","base.dists.t.median","base.dists.t.mode","base.dists.t.pdf","base.dists.t.quantile","base.dists.t.skewness","base.dists.t.stdev","base.dists.t.T","base.dists.t.variance","base.dists.triangular.cdf","base.dists.triangular.entropy","base.dists.triangular.kurtosis","base.dists.triangular.logcdf","base.dists.triangular.logpdf","base.dists.triangular.mean","base.dists.triangular.median","base.dists.triangular.mgf","base.dists.triangular.mode","base.dists.triangular.pdf","base.dists.triangular.quantile","base.dists.triangular.skewness","base.dists.triangular.stdev","base.dists.triangular.Triangular","base.dists.triangular.variance","base.dists.truncatedNormal.pdf","base.dists.uniform.cdf","base.dists.uniform.entropy","base.dists.uniform.kurtosis","base.dists.uniform.logcdf","base.dists.uniform.logpdf","base.dists.uniform.mean","base.dists.uniform.median","base.dists.uniform.mgf","base.dists.uniform.pdf","base.dists.uniform.quantile","base.dists.uniform.skewness","base.dists.uniform.stdev","base.dists.uniform.Uniform","base.dists.uniform.variance","base.dists.weibull.cdf","base.dists.weibull.entropy","base.dists.weibull.kurtosis","base.dists.weibull.logcdf","base.dists.weibull.logpdf","base.dists.weibull.mean","base.dists.weibull.median","base.dists.weibull.mgf","base.dists.weibull.mode","base.dists.weibull.pdf","base.dists.weibull.quantile","base.dists.weibull.skewness","base.dists.weibull.stdev","base.dists.weibull.variance","base.dists.weibull.Weibull","base.ellipe","base.ellipj","base.ellipk","base.endsWith","base.epsdiff","base.erf","base.erfc","base.erfcinv","base.erfcx","base.erfinv","base.eta","base.evalpoly","base.evalrational","base.exp","base.exp2","base.exp10","base.expit","base.expm1","base.expm1rel","base.exponent","base.exponentf","base.factorial","base.factorial2","base.factorialln","base.fallingFactorial","base.fibonacci","base.fibonacciIndex","base.fibpoly","base.firstCodePoint","base.firstCodeUnit","base.firstGraphemeCluster","base.flipsign","base.flipsignf","base.float32ToInt32","base.float32ToUint32","base.float64ToFloat32","base.float64ToInt32","base.float64ToInt64Bytes","base.float64ToUint32","base.floor","base.floor2","base.floor10","base.floorb","base.floorf","base.floorn","base.floorsd","base.forEachChar","base.forEachCodePoint","base.forEachCodePointRight","base.forEachGraphemeCluster","base.forEachRight","base.formatInterpolate","base.formatTokenize","base.fresnel","base.fresnelc","base.fresnels","base.frexp","base.fromBinaryString","base.fromBinaryStringf","base.fromBinaryStringUint8","base.fromBinaryStringUint16","base.fromBinaryStringUint32","base.fromInt64Bytes","base.fromWordf","base.fromWords","base.gamma","base.gamma1pm1","base.gammaDeltaRatio","base.gammainc","base.gammaincinv","base.gammaLanczosSum","base.gammaLanczosSumExpGScaled","base.gammaln","base.gammasgn","base.gcd","base.getHighWord","base.getLowWord","base.hacovercos","base.hacoversin","base.havercos","base.haversin","base.headercase","base.heaviside","base.hermitepoly","base.hypot","base.hypotf","base.identity","base.identityf","base.imul","base.imuldw","base.int2slice","base.int32ToUint32","base.inv","base.invcase","base.invf","base.isComposite","base.isCoprime","base.isEven","base.isEvenInt32","base.isFinite","base.isFinitef","base.isInfinite","base.isInfinitef","base.isInteger","base.isnan","base.isnanf","base.isNegativeFinite","base.isNegativeInteger","base.isNegativeZero","base.isNegativeZerof","base.isNonNegativeFinite","base.isNonNegativeInteger","base.isNonPositiveFinite","base.isNonPositiveInteger","base.isOdd","base.isOddInt32","base.isPositiveFinite","base.isPositiveInteger","base.isPositiveZero","base.isPositiveZerof","base.isPow2Uint32","base.isPrime","base.isProbability","base.isSafeInteger","base.kebabcase","base.kernelBetainc","base.kernelBetaincinv","base.kernelCos","base.kernelLog1p","base.kernelSin","base.kernelTan","base.kroneckerDelta","base.kroneckerDeltaf","base.labs","base.last","base.lastCodePoint","base.lastGraphemeCluster","base.lcm","base.ldexp","base.leftPad","base.leftTrim","base.ln","base.log","base.log1mexp","base.log1p","base.log1pexp","base.log1pmx","base.log2","base.log10","base.logaddexp","base.logit","base.lowercase","base.lucas","base.lucaspoly","base.max","base.maxabs","base.maxabsn","base.maxn","base.min","base.minabs","base.minabsn","base.minmax","base.minmaxabs","base.minmaxabsn","base.minmaxn","base.minn","base.modf","base.mul","base.mulf","base.ndarray","base.ndarrayUnary","base.ndzeros","base.ndzerosLike","base.negafibonacci","base.negalucas","base.nonfibonacci","base.normalize","base.normalizef","base.normalizeMultiSlice","base.normalizeSlice","base.normhermitepoly","base.pascalcase","base.pdiff","base.pdifff","base.percentEncode","base.polygamma","base.pow","base.powm1","base.rad2deg","base.rad2degf","base.ramp","base.rampf","base.random.arcsine","base.random.bernoulli","base.random.beta","base.random.betaprime","base.random.binomial","base.random.boxMuller","base.random.cauchy","base.random.chi","base.random.chisquare","base.random.cosine","base.random.discreteUniform","base.random.erlang","base.random.exponential","base.random.f","base.random.frechet","base.random.gamma","base.random.geometric","base.random.gumbel","base.random.hypergeometric","base.random.improvedZiggurat","base.random.invgamma","base.random.kumaraswamy","base.random.laplace","base.random.levy","base.random.logistic","base.random.lognormal","base.random.minstd","base.random.minstdShuffle","base.random.mt19937","base.random.negativeBinomial","base.random.normal","base.random.pareto1","base.random.poisson","base.random.randi","base.random.randn","base.random.randu","base.random.rayleigh","base.random.t","base.random.triangular","base.random.uniform","base.random.weibull","base.rcbrt","base.rcbrtf","base.reldiff","base.removeFirst","base.removeFirstCodePoint","base.removeFirstGraphemeCluster","base.removeLast","base.removeLastCodePoint","base.removeLastGraphemeCluster","base.rempio2","base.repeat","base.replace","base.replaceAfter","base.replaceAfterLast","base.replaceBefore","base.replaceBeforeLast","base.reverse","base.reverseCodePoints","base.reverseGraphemeClusters","base.rightPad","base.rightTrim","base.risingFactorial","base.rotl32","base.rotr32","base.round","base.round2","base.round10","base.roundb","base.roundn","base.roundsd","base.rsqrt","base.rsqrtf","base.sargs2multislice","base.scalar2ndarray","base.secd","base.seq2multislice","base.seq2slice","base.setHighWord","base.setLowWord","base.sici","base.signbit","base.signbitf","base.significandf","base.signum","base.signumf","base.sin","base.sinc","base.sincos","base.sincospi","base.sinh","base.sinpi","base.slice2seq","base.sliceLength","base.sliceNonReducedDimensions","base.sliceReducedDimensions","base.sliceShape","base.snakecase","base.spence","base.sqrt","base.sqrt1pm1","base.sqrtf","base.sqrtpi","base.startcase","base.startsWith","base.stickycase","base.strided.binary","base.strided.binaryDtypeSignatures","base.strided.binarySignatureCallbacks","base.strided.ccopy","base.strided.cmap","base.strided.cswap","base.strided.cumax","base.strided.cumaxabs","base.strided.cumin","base.strided.cuminabs","base.strided.dabs","base.strided.dabs2","base.strided.dapx","base.strided.dapxsum","base.strided.dapxsumkbn","base.strided.dapxsumkbn2","base.strided.dapxsumors","base.strided.dapxsumpw","base.strided.dasum","base.strided.dasumpw","base.strided.daxpy","base.strided.dcbrt","base.strided.dceil","base.strided.dcopy","base.strided.dcumax","base.strided.dcumaxabs","base.strided.dcumin","base.strided.dcuminabs","base.strided.dcusum","base.strided.dcusumkbn","base.strided.dcusumkbn2","base.strided.dcusumors","base.strided.dcusumpw","base.strided.ddeg2rad","base.strided.ddot","base.strided.dfill","base.strided.dfloor","base.strided.dinv","base.strided.dmap","base.strided.dmap2","base.strided.dmax","base.strided.dmaxabs","base.strided.dmaxabssorted","base.strided.dmaxsorted","base.strided.dmean","base.strided.dmeankbn","base.strided.dmeankbn2","base.strided.dmeanli","base.strided.dmeanlipw","base.strided.dmeanors","base.strided.dmeanpn","base.strided.dmeanpw","base.strided.dmeanstdev","base.strided.dmeanstdevpn","base.strided.dmeanvar","base.strided.dmeanvarpn","base.strided.dmeanwd","base.strided.dmediansorted","base.strided.dmidrange","base.strided.dmin","base.strided.dminabs","base.strided.dminsorted","base.strided.dmskabs","base.strided.dmskabs2","base.strided.dmskcbrt","base.strided.dmskceil","base.strided.dmskdeg2rad","base.strided.dmskfloor","base.strided.dmskinv","base.strided.dmskmap","base.strided.dmskmap2","base.strided.dmskmax","base.strided.dmskmin","base.strided.dmskramp","base.strided.dmskrange","base.strided.dmskrsqrt","base.strided.dmsksqrt","base.strided.dmsktrunc","base.strided.dnanasum","base.strided.dnanasumors","base.strided.dnanmax","base.strided.dnanmaxabs","base.strided.dnanmean","base.strided.dnanmeanors","base.strided.dnanmeanpn","base.strided.dnanmeanpw","base.strided.dnanmeanwd","base.strided.dnanmin","base.strided.dnanminabs","base.strided.dnanmskmax","base.strided.dnanmskmin","base.strided.dnanmskrange","base.strided.dnannsum","base.strided.dnannsumkbn","base.strided.dnannsumkbn2","base.strided.dnannsumors","base.strided.dnannsumpw","base.strided.dnanrange","base.strided.dnanstdev","base.strided.dnanstdevch","base.strided.dnanstdevpn","base.strided.dnanstdevtk","base.strided.dnanstdevwd","base.strided.dnanstdevyc","base.strided.dnansum","base.strided.dnansumkbn","base.strided.dnansumkbn2","base.strided.dnansumors","base.strided.dnansumpw","base.strided.dnanvariance","base.strided.dnanvariancech","base.strided.dnanvariancepn","base.strided.dnanvariancetk","base.strided.dnanvariancewd","base.strided.dnanvarianceyc","base.strided.dnrm2","base.strided.dramp","base.strided.drange","base.strided.drev","base.strided.drsqrt","base.strided.dsapxsum","base.strided.dsapxsumpw","base.strided.dscal","base.strided.dsdot","base.strided.dsem","base.strided.dsemch","base.strided.dsempn","base.strided.dsemtk","base.strided.dsemwd","base.strided.dsemyc","base.strided.dsmean","base.strided.dsmeanors","base.strided.dsmeanpn","base.strided.dsmeanpw","base.strided.dsmeanwd","base.strided.dsnanmean","base.strided.dsnanmeanors","base.strided.dsnanmeanpn","base.strided.dsnanmeanwd","base.strided.dsnannsumors","base.strided.dsnansum","base.strided.dsnansumors","base.strided.dsnansumpw","base.strided.dsort2hp","base.strided.dsort2ins","base.strided.dsort2sh","base.strided.dsorthp","base.strided.dsortins","base.strided.dsortsh","base.strided.dsqrt","base.strided.dssum","base.strided.dssumors","base.strided.dssumpw","base.strided.dstdev","base.strided.dstdevch","base.strided.dstdevpn","base.strided.dstdevtk","base.strided.dstdevwd","base.strided.dstdevyc","base.strided.dsum","base.strided.dsumkbn","base.strided.dsumkbn2","base.strided.dsumors","base.strided.dsumpw","base.strided.dsvariance","base.strided.dsvariancepn","base.strided.dswap","base.strided.dtrunc","base.strided.dtypeEnum2Str","base.strided.dtypeResolveEnum","base.strided.dtypeResolveStr","base.strided.dtypeStr2Enum","base.strided.dvariance","base.strided.dvariancech","base.strided.dvariancepn","base.strided.dvariancetk","base.strided.dvariancewd","base.strided.dvarianceyc","base.strided.dvarm","base.strided.dvarmpn","base.strided.dvarmtk","base.strided.functionObject","base.strided.gapx","base.strided.gapxsum","base.strided.gapxsumkbn","base.strided.gapxsumkbn2","base.strided.gapxsumors","base.strided.gapxsumpw","base.strided.gasum","base.strided.gasumpw","base.strided.gaxpy","base.strided.gcopy","base.strided.gcusum","base.strided.gcusumkbn","base.strided.gcusumkbn2","base.strided.gcusumors","base.strided.gcusumpw","base.strided.gdot","base.strided.gfill","base.strided.gfillBy","base.strided.gnannsumkbn","base.strided.gnansum","base.strided.gnansumkbn","base.strided.gnansumkbn2","base.strided.gnansumors","base.strided.gnansumpw","base.strided.gnrm2","base.strided.grev","base.strided.gscal","base.strided.gsort2hp","base.strided.gsort2ins","base.strided.gsort2sh","base.strided.gsorthp","base.strided.gsortins","base.strided.gsortsh","base.strided.gsum","base.strided.gsumkbn","base.strided.gsumkbn2","base.strided.gsumors","base.strided.gsumpw","base.strided.gswap","base.strided.mapBy","base.strided.mapBy2","base.strided.max","base.strided.maxabs","base.strided.maxBy","base.strided.maxsorted","base.strided.maxViewBufferIndex","base.strided.mean","base.strided.meankbn","base.strided.meankbn2","base.strided.meanors","base.strided.meanpn","base.strided.meanpw","base.strided.meanwd","base.strided.mediansorted","base.strided.metaDataProps","base.strided.min","base.strided.minabs","base.strided.minBy","base.strided.minsorted","base.strided.minViewBufferIndex","base.strided.mskmax","base.strided.mskmin","base.strided.mskrange","base.strided.mskunary","base.strided.mskunaryDtypeSignatures","base.strided.mskunarySignatureCallbacks","base.strided.nanmax","base.strided.nanmaxabs","base.strided.nanmaxBy","base.strided.nanmean","base.strided.nanmeanors","base.strided.nanmeanpn","base.strided.nanmeanwd","base.strided.nanmin","base.strided.nanminabs","base.strided.nanminBy","base.strided.nanmskmax","base.strided.nanmskmin","base.strided.nanmskrange","base.strided.nanrange","base.strided.nanrangeBy","base.strided.nanstdev","base.strided.nanstdevch","base.strided.nanstdevpn","base.strided.nanstdevtk","base.strided.nanstdevwd","base.strided.nanstdevyc","base.strided.nanvariance","base.strided.nanvariancech","base.strided.nanvariancepn","base.strided.nanvariancetk","base.strided.nanvariancewd","base.strided.nanvarianceyc","base.strided.nullary","base.strided.offsetView","base.strided.quaternary","base.strided.quinary","base.strided.range","base.strided.rangeBy","base.strided.reinterpretComplex","base.strided.reinterpretComplex64","base.strided.reinterpretComplex128","base.strided.sabs","base.strided.sabs2","base.strided.sapx","base.strided.sapxsum","base.strided.sapxsumkbn","base.strided.sapxsumkbn2","base.strided.sapxsumors","base.strided.sapxsumpw","base.strided.sasum","base.strided.sasumpw","base.strided.saxpy","base.strided.scbrt","base.strided.sceil","base.strided.scopy","base.strided.scumax","base.strided.scumaxabs","base.strided.scumin","base.strided.scuminabs","base.strided.scusum","base.strided.scusumkbn","base.strided.scusumkbn2","base.strided.scusumors","base.strided.scusumpw","base.strided.sdeg2rad","base.strided.sdot","base.strided.sdsapxsum","base.strided.sdsapxsumpw","base.strided.sdsdot","base.strided.sdsmean","base.strided.sdsmeanors","base.strided.sdsnanmean","base.strided.sdsnanmeanors","base.strided.sdsnansum","base.strided.sdsnansumpw","base.strided.sdssum","base.strided.sdssumpw","base.strided.sfill","base.strided.sfloor","base.strided.sinv","base.strided.smap","base.strided.smap2","base.strided.smax","base.strided.smaxabs","base.strided.smaxabssorted","base.strided.smaxsorted","base.strided.smean","base.strided.smeankbn","base.strided.smeankbn2","base.strided.smeanli","base.strided.smeanlipw","base.strided.smeanors","base.strided.smeanpn","base.strided.smeanpw","base.strided.smeanwd","base.strided.smediansorted","base.strided.smidrange","base.strided.smin","base.strided.sminabs","base.strided.sminsorted","base.strided.smskabs","base.strided.smskabs2","base.strided.smskcbrt","base.strided.smskceil","base.strided.smskdeg2rad","base.strided.smskfloor","base.strided.smskinv","base.strided.smskmap","base.strided.smskmap2","base.strided.smskmax","base.strided.smskmin","base.strided.smskramp","base.strided.smskrange","base.strided.smskrsqrt","base.strided.smsksqrt","base.strided.smsktrunc","base.strided.snanmax","base.strided.snanmaxabs","base.strided.snanmean","base.strided.snanmeanors","base.strided.snanmeanpn","base.strided.snanmeanwd","base.strided.snanmin","base.strided.snanminabs","base.strided.snanmskmax","base.strided.snanmskmin","base.strided.snanmskrange","base.strided.snanrange","base.strided.snanstdev","base.strided.snanstdevch","base.strided.snanstdevpn","base.strided.snanstdevtk","base.strided.snanstdevwd","base.strided.snanstdevyc","base.strided.snansum","base.strided.snansumkbn","base.strided.snansumkbn2","base.strided.snansumors","base.strided.snansumpw","base.strided.snanvariance","base.strided.snanvariancech","base.strided.snanvariancepn","base.strided.snanvariancetk","base.strided.snanvariancewd","base.strided.snanvarianceyc","base.strided.snrm2","base.strided.sramp","base.strided.srange","base.strided.srev","base.strided.srsqrt","base.strided.sscal","base.strided.ssort2hp","base.strided.ssort2ins","base.strided.ssort2sh","base.strided.ssorthp","base.strided.ssortins","base.strided.ssortsh","base.strided.ssqrt","base.strided.sstdev","base.strided.sstdevch","base.strided.sstdevpn","base.strided.sstdevtk","base.strided.sstdevwd","base.strided.sstdevyc","base.strided.ssum","base.strided.ssumkbn","base.strided.ssumkbn2","base.strided.ssumors","base.strided.ssumpw","base.strided.sswap","base.strided.stdev","base.strided.stdevch","base.strided.stdevpn","base.strided.stdevtk","base.strided.stdevwd","base.strided.stdevyc","base.strided.strunc","base.strided.svariance","base.strided.svariancech","base.strided.svariancepn","base.strided.svariancetk","base.strided.svariancewd","base.strided.svarianceyc","base.strided.ternary","base.strided.unary","base.strided.unaryBy","base.strided.unaryDtypeSignatures","base.strided.unarySignatureCallbacks","base.strided.variance","base.strided.variancech","base.strided.variancepn","base.strided.variancetk","base.strided.variancewd","base.strided.varianceyc","base.strided.zmap","base.str2multislice","base.str2slice","base.sub","base.subf","base.sumSeries","base.tan","base.tand","base.tanh","base.toBinaryString","base.toBinaryStringf","base.toBinaryStringUint8","base.toBinaryStringUint16","base.toBinaryStringUint32","base.toWordf","base.toWords","base.transpose","base.tribonacci","base.trigamma","base.trim","base.trunc","base.trunc2","base.trunc10","base.truncateMiddle","base.truncb","base.truncf","base.truncn","base.truncsd","base.uint32ToInt32","base.umul","base.umuldw","base.uncapitalize","base.uppercase","base.vercos","base.versin","base.wrap","base.xlog1py","base.xlogy","base.zeta","bench","BERNDT_CPS_WAGES_1985","bifurcate","bifurcateBy","bifurcateByAsync","bifurcateIn","bifurcateOwn","BigInt","binomialTest","Boolean","BooleanArray","broadcastArray","broadcastArrays","Buffer","buffer2json","BYTE_ORDER","camelcase","capitalize","capitalizeKeys","CATALAN","CBRT_EPS","CDC_NCHS_US_BIRTHS_1969_1988","CDC_NCHS_US_BIRTHS_1994_2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013","chdir","chi2gof","chi2test","circarray2iterator","circularArrayStream","CircularBuffer","close","CMUDICT","codePointAt","commonKeys","commonKeysIn","complex","Complex64","COMPLEX64_NAN","COMPLEX64_NUM_BYTES","COMPLEX64_ZERO","Complex64Array","Complex128","COMPLEX128_NAN","COMPLEX128_NUM_BYTES","COMPLEX128_ZERO","Complex128Array","complexarray","complexarrayCtors","complexarrayDataTypes","complexCtors","complexDataType","complexDataTypes","complexPromotionRules","compose","composeAsync","configdir","conj","conjf","constantcase","constantFunction","constantStream","constructorName","contains","convertArray","convertArraySame","convertPath","copy","copyBuffer","countBy","countByAsync","currentYear","curry","curryRight","cwd","DALE_CHALL_NEW","datasets","DataView","datespace","dayOfQuarter","dayOfYear","daysInMonth","daysInYear","ddot","debugSinkStream","debugStream","decorateAfter","deepEqual","deepGet","deepHasOwnProp","deepHasProp","deepPluck","deepSet","defineMemoizedProperty","defineProperties","defineProperty","dirname","dotcase","DoublyLinkedList","doUntil","doUntilAsync","doUntilEach","doUntilEachRight","doWhile","doWhileAsync","doWhileEach","doWhileEachRight","dswap","E","EMOJI","EMOJI_CODE_PICTO","EMOJI_PICTO_CODE","emptyStream","endsWith","enumerableProperties","enumerablePropertiesIn","enumerablePropertySymbols","enumerablePropertySymbolsIn","ENV","EPS","error2json","EULERGAMMA","every","everyBy","everyByAsync","everyByRight","everyByRightAsync","everyInBy","everyOwnBy","evil","EXEC_PATH","exists","expandAcronyms","expandContractions","extname","FancyArray","fastmath.abs","fastmath.acosh","fastmath.ampbm","fastmath.asinh","fastmath.atanh","fastmath.hypot","fastmath.log2Uint32","fastmath.max","fastmath.min","fastmath.powint","fastmath.sqrtUint32","FEMALE_FIRST_NAMES_EN","FIFO","filledarray","filledarrayBy","filterArguments","find","firstChar","FIVETHIRTYEIGHT_FFQ","flattenArray","flattenObject","flignerTest","FLOAT_WORD_ORDER","FLOAT16_CBRT_EPS","FLOAT16_EPS","FLOAT16_EXPONENT_BIAS","FLOAT16_MAX","FLOAT16_MAX_SAFE_INTEGER","FLOAT16_MIN_SAFE_INTEGER","FLOAT16_NINF","FLOAT16_NUM_BYTES","FLOAT16_PINF","FLOAT16_PRECISION","FLOAT16_SMALLEST_NORMAL","FLOAT16_SMALLEST_SUBNORMAL","FLOAT16_SQRT_EPS","FLOAT32_ABS_MASK","FLOAT32_CBRT_EPS","FLOAT32_EPS","FLOAT32_EXPONENT_BIAS","FLOAT32_EXPONENT_MASK","FLOAT32_FOURTH_PI","FLOAT32_HALF_PI","FLOAT32_MAX","FLOAT32_MAX_SAFE_INTEGER","FLOAT32_MIN_SAFE_INTEGER","FLOAT32_NAN","FLOAT32_NINF","FLOAT32_NUM_BYTES","FLOAT32_PI","FLOAT32_PINF","FLOAT32_PRECISION","FLOAT32_SIGN_MASK","FLOAT32_SIGNIFICAND_MASK","FLOAT32_SMALLEST_NORMAL","FLOAT32_SMALLEST_SUBNORMAL","FLOAT32_SQRT_EPS","FLOAT32_TWO_PI","Float32Array","Float32ArrayFE","Float32ArrayLE","FLOAT64_EXPONENT_BIAS","FLOAT64_HIGH_WORD_ABS_MASK","FLOAT64_HIGH_WORD_EXPONENT_MASK","FLOAT64_HIGH_WORD_SIGN_MASK","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK","FLOAT64_MAX","FLOAT64_MAX_BASE2_EXPONENT","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MAX_BASE10_EXPONENT","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MAX_LN","FLOAT64_MAX_SAFE_FIBONACCI","FLOAT64_MAX_SAFE_INTEGER","FLOAT64_MAX_SAFE_LUCAS","FLOAT64_MAX_SAFE_NTH_FIBONACCI","FLOAT64_MAX_SAFE_NTH_LUCAS","FLOAT64_MIN_BASE2_EXPONENT","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MIN_BASE10_EXPONENT","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MIN_LN","FLOAT64_MIN_SAFE_INTEGER","FLOAT64_NUM_BYTES","FLOAT64_PRECISION","FLOAT64_SMALLEST_NORMAL","FLOAT64_SMALLEST_SUBNORMAL","Float64Array","Float64ArrayFE","Float64ArrayLE","forEach","forEachAsync","forEachChar","forEachRight","forEachRightAsync","forIn","format","forOwn","FOURTH_PI","FOURTH_ROOT_EPS","FRB_SF_WAGE_RIGIDITY","fromCodePoint","Function","function2string","functionName","functionSequence","functionSequenceAsync","GAMMA_LANCZOS_G","gdot","getegid","geteuid","getgid","getGlobal","getPrototypeOf","getuid","GLAISHER","graphemeClusters2iterator","graphemeClusters2iteratorRight","group","groupBy","groupByAsync","groupIn","groupOwn","gswap","HALF_LN2","HALF_PI","HARRISON_BOSTON_HOUSE_PRICES","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED","hasArrayBufferSupport","hasArrowFunctionSupport","hasAsyncAwaitSupport","hasAsyncIteratorSymbolSupport","hasAtobSupport","hasBigInt64ArraySupport","hasBigIntSupport","hasBigUint64ArraySupport","hasBtoaSupport","hasClassSupport","hasDataViewSupport","hasDefinePropertiesSupport","hasDefinePropertySupport","hasFloat32ArraySupport","hasFloat64ArraySupport","hasFunctionNameSupport","hasGeneratorSupport","hasGlobalThisSupport","hasInt8ArraySupport","hasInt16ArraySupport","hasInt32ArraySupport","hasIteratorSymbolSupport","hasMapSupport","hasNodeBufferSupport","hasOwnProp","hasProp","hasProxySupport","hasSetSupport","hasSharedArrayBufferSupport","hasSymbolSupport","hasToStringTagSupport","hasUint8ArraySupport","hasUint8ClampedArraySupport","hasUint16ArraySupport","hasUint32ArraySupport","hasUTF16SurrogatePairAt","hasWeakMapSupport","hasWeakSetSupport","hasWebAssemblySupport","headercase","HERNDON_VENUS_SEMIDIAMETERS","homedir","HOURS_IN_DAY","HOURS_IN_WEEK","hoursInMonth","hoursInYear","httpServer","identity","ifelse","ifelseAsync","ifthen","ifthenAsync","imag","imagf","IMG_ACANTHUS_MOLLIS","IMG_AIRPLANE_FROM_ABOVE","IMG_ALLIUM_OREOPHILUM","IMG_BLACK_CANYON","IMG_DUST_BOWL_HOME","IMG_FRENCH_ALPINE_LANDSCAPE","IMG_LOCOMOTION_HOUSE_CAT","IMG_LOCOMOTION_NUDE_MALE","IMG_MARCH_PASTORAL","IMG_NAGASAKI_BOATS","incrapcorr","incrBinaryClassification","incrcount","incrcovariance","incrcovmat","incrcv","increwmean","increwstdev","increwvariance","incrgmean","incrgrubbs","incrhmean","incrkmeans","incrkurtosis","incrmaape","incrmae","incrmapcorr","incrmape","incrmax","incrmaxabs","incrmcovariance","incrmcv","incrmda","incrme","incrmean","incrmeanabs","incrmeanabs2","incrmeanstdev","incrmeanvar","incrmgmean","incrmgrubbs","incrmhmean","incrmidrange","incrmin","incrminabs","incrminmax","incrminmaxabs","incrmmaape","incrmmae","incrmmape","incrmmax","incrmmaxabs","incrmmda","incrmme","incrmmean","incrmmeanabs","incrmmeanabs2","incrmmeanstdev","incrmmeanvar","incrmmidrange","incrmmin","incrmminabs","incrmminmax","incrmminmaxabs","incrmmpe","incrmmse","incrmpcorr","incrmpcorr2","incrmpcorrdist","incrmpe","incrmprod","incrmrange","incrmrmse","incrmrss","incrmse","incrmstdev","incrmsum","incrmsumabs","incrmsumabs2","incrmsummary","incrmsumprod","incrmvariance","incrmvmr","incrnancount","incrnansum","incrnansumabs","incrnansumabs2","incrpcorr","incrpcorr2","incrpcorrdist","incrpcorrdistmat","incrpcorrmat","incrprod","incrrange","incrrmse","incrrss","incrSGDRegression","incrskewness","incrspace","incrstdev","incrsum","incrsumabs","incrsumabs2","incrsummary","incrsumprod","incrvariance","incrvmr","incrwmean","ind2sub","indexOf","inherit","inheritedEnumerableProperties","inheritedEnumerablePropertySymbols","inheritedKeys","inheritedNonEnumerableProperties","inheritedNonEnumerablePropertyNames","inheritedNonEnumerablePropertySymbols","inheritedProperties","inheritedPropertyDescriptor","inheritedPropertyDescriptors","inheritedPropertyNames","inheritedPropertySymbols","inheritedWritableProperties","inheritedWritablePropertyNames","inheritedWritablePropertySymbols","inmap","inmapAsync","inmapRight","inmapRightAsync","inspectSinkStream","inspectStream","instanceOf","INT8_MAX","INT8_MIN","INT8_NUM_BYTES","Int8Array","INT16_MAX","INT16_MIN","INT16_NUM_BYTES","Int16Array","INT32_MAX","INT32_MIN","INT32_NUM_BYTES","Int32Array","IS_BIG_ENDIAN","IS_BROWSER","IS_DARWIN","IS_DOCKER","IS_ELECTRON","IS_ELECTRON_MAIN","IS_ELECTRON_RENDERER","IS_LITTLE_ENDIAN","IS_MOBILE","IS_NODE","IS_TOUCH_DEVICE","IS_WEB_WORKER","IS_WINDOWS","isAbsoluteHttpURI","isAbsolutePath","isAbsoluteURI","isAccessorArray","isAccessorProperty","isAccessorPropertyIn","isAlphagram","isAlphaNumeric","isAnagram","isArguments","isArray","isArrayArray","isArrayBuffer","isArrayBufferView","isArrayLength","isArrayLike","isArrayLikeObject","isArrowFunction","isASCII","isBetween","isBetweenArray","isBigInt","isBigInt64Array","isBigUint64Array","isBinaryString","isBlankString","isBoolean","isBooleanArray","isBoxedPrimitive","isBuffer","isCamelcase","isCapitalized","isCentrosymmetricMatrix","isCircular","isCircularArray","isCircularPlainObject","isClass","isCollection","isComplex","isComplex64","isComplex64Array","isComplex64MatrixLike","isComplex64ndarrayLike","isComplex64VectorLike","isComplex128","isComplex128Array","isComplex128MatrixLike","isComplex128ndarrayLike","isComplex128VectorLike","isComplexLike","isComplexTypedArray","isComplexTypedArrayLike","isComposite","isConfigurableProperty","isConfigurablePropertyIn","isConstantcase","isCubeNumber","isCurrentYear","isDataProperty","isDataPropertyIn","isDataView","isDateObject","isDateObjectArray","isDigitString","isDomainName","isDurationString","isEmailAddress","isEmptyArray","isEmptyArrayLikeObject","isEmptyCollection","isEmptyObject","isEmptyString","isEnumerableProperty","isEnumerablePropertyIn","isEqualArray","isError","isEvalError","isEven","isFalsy","isFalsyArray","isFinite","isFiniteArray","isFloat32Array","isFloat32MatrixLike","isFloat32ndarrayLike","isFloat32VectorLike","isFloat64Array","isFloat64MatrixLike","isFloat64ndarrayLike","isFloat64VectorLike","isFunction","isFunctionArray","isGeneratorObject","isGeneratorObjectLike","isgzipBuffer","isHexString","isInfinite","isInheritedProperty","isInt8Array","isInt16Array","isInt32Array","isInteger","isIntegerArray","isIterableLike","isIteratorLike","isJSON","isKebabcase","isLeapYear","isLocalhost","isLowercase","isMatrixLike","isMethod","isMethodIn","isMultiSlice","isNamedTypedTupleLike","isnan","isNaNArray","isNativeFunction","isndarrayLike","isndarrayLikeWithDataType","isNegativeFinite","isNegativeInteger","isNegativeIntegerArray","isNegativeNumber","isNegativeNumberArray","isNegativeZero","isNodeBuiltin","isNodeDuplexStreamLike","isNodeReadableStreamLike","isNodeREPL","isNodeStreamLike","isNodeTransformStreamLike","isNodeWritableStreamLike","isNonConfigurableProperty","isNonConfigurablePropertyIn","isNonEnumerableProperty","isNonEnumerablePropertyIn","isNonNegativeFinite","isNonNegativeInteger","isNonNegativeIntegerArray","isNonNegativeNumber","isNonNegativeNumberArray","isNonPositiveFinite","isNonPositiveInteger","isNonPositiveIntegerArray","isNonPositiveNumber","isNonPositiveNumberArray","isNonSymmetricMatrix","isNull","isNullArray","isNumber","isNumberArray","isNumericArray","isObject","isObjectArray","isObjectLike","isOdd","isoWeeksInYear","isPascalcase","isPersymmetricMatrix","isPlainObject","isPlainObjectArray","isPositiveFinite","isPositiveInteger","isPositiveIntegerArray","isPositiveNumber","isPositiveNumberArray","isPositiveZero","isPrime","isPrimitive","isPrimitiveArray","isPRNGLike","isProbability","isProbabilityArray","isPropertyKey","isPrototypeOf","isRaggedNestedArray","isRangeError","isReadableProperty","isReadablePropertyIn","isReadOnlyProperty","isReadOnlyPropertyIn","isReadWriteProperty","isReadWritePropertyIn","isReferenceError","isRegExp","isRegExpString","isRelativePath","isRelativeURI","isSafeInteger","isSafeIntegerArray","isSameArray","isSameArrayLike","isSameComplex64","isSameComplex64Array","isSameComplex128","isSameComplex128Array","isSameDateObject","isSameFloat32Array","isSameFloat64Array","isSameNativeClass","isSameType","isSameValue","isSameValueZero","isSemVer","isSharedArrayBuffer","isSkewCentrosymmetricMatrix","isSkewPersymmetricMatrix","isSkewSymmetricMatrix","isSlice","isSnakecase","isSquareMatrix","isSquareNumber","isSquareTriangularNumber","isStartcase","isStrictEqual","isString","isStringArray","isSymbol","isSymbolArray","isSymmetricMatrix","isSyntaxError","isTriangularNumber","isTruthy","isTruthyArray","isTypedArray","isTypedArrayLength","isTypedArrayLike","isTypeError","isUint8Array","isUint8ClampedArray","isUint16Array","isUint32Array","isUNCPath","isUndefined","isUndefinedOrNull","isUnityProbabilityArray","isUppercase","isURI","isURIError","isVectorLike","isWebAssemblyMemory","isWellFormedString","isWhitespace","isWritableProperty","isWritablePropertyIn","isWriteOnlyProperty","isWriteOnlyPropertyIn","iterAbs","iterAbs2","iterAcos","iterAcosh","iterAcot","iterAcoth","iterAcovercos","iterAcoversin","iterAdd","iterAdvance","iterAhavercos","iterAhaversin","iterAny","iterAnyBy","iterAsin","iterAsinh","iterAtan","iterAtan2","iterAtanh","iterator2array","iterator2arrayview","iterator2arrayviewRight","iteratorStream","IteratorSymbol","iterAvercos","iterAversin","iterawgn","iterawln","iterawun","iterBartlettHannPulse","iterBartlettPulse","iterBesselj0","iterBesselj1","iterBessely0","iterBessely1","iterBeta","iterBetaln","iterBinet","iterCbrt","iterCeil","iterCeil2","iterCeil10","iterCompositesSeq","iterConcat","iterConstant","iterContinuedFraction","iterContinuedFractionSeq","iterCos","iterCosh","iterCosineWave","iterCosm1","iterCospi","iterCounter","iterCovercos","iterCoversin","iterCubesSeq","itercugmean","itercuhmean","itercumax","itercumaxabs","itercumean","itercumeanabs","itercumeanabs2","itercumidrange","itercumin","itercuminabs","itercuprod","itercurange","itercusum","itercusumabs","itercusumabs2","iterDatespace","iterDedupe","iterDedupeBy","iterDeg2rad","iterDigamma","iterDiracComb","iterDiracDelta","iterDivide","iterDoUntilEach","iterDoWhileEach","iterEllipe","iterEllipk","iterEmpty","iterErf","iterErfc","iterErfcinv","iterErfinv","iterEta","iterEvenIntegersSeq","iterEvery","iterEveryBy","iterExp","iterExp2","iterExp10","iterExpit","iterExpm1","iterExpm1rel","iterFactorial","iterFactorialln","iterFactorialsSeq","iterFibonacciSeq","iterFifthPowersSeq","iterFill","iterFilter","iterFilterMap","iterFirst","iterFlatTopPulse","iterFloor","iterFloor2","iterFloor10","iterFlow","iterForEach","iterFourthPowersSeq","iterFresnelc","iterFresnels","iterGamma","iterGamma1pm1","iterGammaln","iterHacovercos","iterHacoversin","iterHannPulse","iterHavercos","iterHaversin","iterHead","iterIncrspace","iterIntegersSeq","iterIntersection","iterIntersectionByHash","iterInv","iterLanczosPulse","iterLast","iterLength","iterLinspace","iterLn","iterLog","iterLog1mexp","iterLog1p","iterLog1pexp","iterLog2","iterLog10","iterLogit","iterLogspace","iterLucasSeq","iterMap","iterMapN","itermax","itermaxabs","itermean","itermeanabs","itermeanabs2","itermidrange","itermin","iterminabs","itermmax","itermmaxabs","itermmean","itermmeanabs","itermmeanabs2","itermmidrange","itermmin","itermminabs","iterMod","itermprod","itermrange","itermsum","itermsumabs","itermsumabs2","iterMultiply","iterNegaFibonacciSeq","iterNegaLucasSeq","iterNegativeEvenIntegersSeq","iterNegativeIntegersSeq","iterNegativeOddIntegersSeq","iterNone","iterNoneBy","iterNonFibonacciSeq","iterNonNegativeEvenIntegersSeq","iterNonNegativeIntegersSeq","iterNonPositiveEvenIntegersSeq","iterNonPositiveIntegersSeq","iterNonSquaresSeq","iterNth","iterOddIntegersSeq","iterPeriodicSinc","iterPipeline","iterPop","iterPositiveEvenIntegersSeq","iterPositiveIntegersSeq","iterPositiveOddIntegersSeq","iterPow","iterPrimesSeq","iterprod","iterPulse","iterPush","iterRad2deg","iterRamp","iterrange","iterReject","iterReplicate","iterReplicateBy","iterRound","iterRound2","iterRound10","iterRsqrt","iterSawtoothWave","iterShift","iterSignum","iterSin","iterSinc","iterSineWave","iterSinh","iterSinpi","iterSlice","iterSome","iterSomeBy","iterSpence","iterSqrt","iterSqrt1pm1","iterSquaredTriangularSeq","iterSquaresSeq","iterSquareWave","iterstdev","iterStep","iterStrided","iterStridedBy","iterSubtract","itersum","itersumabs","itersumabs2","iterTan","iterTanh","iterThunk","iterTriangleWave","iterTriangularSeq","iterTribonnaciSeq","iterTrigamma","iterTrunc","iterTrunc2","iterTrunc10","iterUnion","iterUnique","iterUniqueBy","iterUniqueByHash","iterUnitspace","iterUnshift","iterUntilEach","itervariance","iterVercos","iterVersin","iterWhileEach","iterZeta","joinStream","kde2d","kebabcase","keyBy","keyByRight","keysIn","kruskalTest","kstest","last","lda","leveneTest","LinkedList","linspace","LIU_NEGATIVE_OPINION_WORDS_EN","LIU_POSITIVE_OPINION_WORDS_EN","LN_HALF","LN_PI","LN_SQRT_TWO_PI","LN_TWO_PI","LN2","LN10","LOG2E","LOG10E","logspace","lowercase","lowercaseKeys","lowess","lpad","ltrim","ltrimN","MALE_FIRST_NAMES_EN","map","map2","map2d","map2Right","map3d","map4d","map5d","mapArguments","mapFun","mapFunAsync","mapKeys","mapKeysAsync","mapReduce","mapReduceRight","mapRight","mapValues","mapValuesAsync","maskArguments","MAX_ARRAY_LENGTH","MAX_TYPED_ARRAY_LENGTH","maybeBroadcastArray","maybeBroadcastArrays","memoize","merge","MILLISECONDS_IN_DAY","MILLISECONDS_IN_HOUR","MILLISECONDS_IN_MINUTE","MILLISECONDS_IN_SECOND","MILLISECONDS_IN_WEEK","MINARD_NAPOLEONS_MARCH","MINUTES_IN_DAY","MINUTES_IN_HOUR","MINUTES_IN_WEEK","minutesInMonth","minutesInYear","MOBY_DICK","MONTH_NAMES_EN","MONTHS_IN_YEAR","moveProperty","MultiSlice","namedtypedtuple","NAN","naryFunction","nativeClass","ndarray","ndarray2array","ndarrayCastingModes","ndarrayDataBuffer","ndarrayDataType","ndarrayDataTypes","ndarrayDispatch","ndarrayFlag","ndarrayFlags","ndarrayIndexModes","ndarraylike2ndarray","ndarrayMinDataType","ndarrayMostlySafeCasts","ndarrayNextDataType","ndarrayOffset","ndarrayOrder","ndarrayOrders","ndarrayPromotionRules","ndarraySafeCasts","ndarraySameKindCasts","ndarrayShape","ndarrayStride","ndarrayStrides","ndat","ndempty","ndemptyLike","ndims","nditer2arrayEach","nditerColumnEntries","nditerColumns","nditerEntries","nditerIndices","nditerInterleaveSubarrays","nditerMatrices","nditerMatrixEntries","nditerRowEntries","nditerRows","nditerSelectDimension","nditerStacks","nditerSubarrays","nditerValues","ndslice","ndsliceAssign","ndsliceDimension","ndsliceDimensionFrom","ndsliceDimensionTo","ndsliceFrom","ndsliceTo","ndzeros","ndzerosLike","nextGraphemeClusterBreak","nextTick","NIGHTINGALES_ROSE","NINF","NODE_VERSION","none","noneBy","noneByAsync","noneByRight","noneByRightAsync","noneInBy","nonEnumerableProperties","nonEnumerablePropertiesIn","nonEnumerablePropertyNames","nonEnumerablePropertyNamesIn","nonEnumerablePropertySymbols","nonEnumerablePropertySymbolsIn","noneOwnBy","nonIndexKeys","noop","now","NUM_CPUS","num2words","Number","numel","numelDimension","numGraphemeClusters","Object","objectEntries","objectEntriesIn","objectFromEntries","objectInverse","objectInverseBy","objectKeys","objectValues","objectValuesIn","omit","omitBy","open","openURL","ordinalize","PACE_BOSTON_HOUSE_PRICES","pad","padjust","papply","papplyRight","parallel","parseJSON","pascalcase","PATH_DELIMITER","PATH_DELIMITER_POSIX","PATH_DELIMITER_WIN32","PATH_SEP","PATH_SEP_POSIX","PATH_SEP_WIN32","pcorrtest","percentEncode","PHI","PI","PI_SQUARED","pick","pickArguments","pickBy","PINF","pkg2alias","pkg2related","pkg2standalone","PLATFORM","plot","Plot","pluck","pop","porterStemmer","prepend","prevGraphemeClusterBreak","PRIMES_100K","properties","propertiesIn","propertyDescriptor","propertyDescriptorIn","propertyDescriptors","propertyDescriptorsIn","propertyNames","propertyNamesIn","propertySymbols","propertySymbolsIn","Proxy","push","quarterOfYear","random.array.arcsine","random.array.bernoulli","random.array.beta","random.array.betaprime","random.array.binomial","random.array.cauchy","random.array.chi","random.array.chisquare","random.array.cosine","random.array.discreteUniform","random.array.erlang","random.array.exponential","random.array.f","random.array.frechet","random.array.gamma","random.array.geometric","random.array.gumbel","random.array.hypergeometric","random.array.invgamma","random.array.kumaraswamy","random.array.laplace","random.array.levy","random.array.logistic","random.array.lognormal","random.array.minstd","random.array.minstdShuffle","random.array.mt19937","random.array.negativeBinomial","random.array.normal","random.array.pareto1","random.array.poisson","random.array.randu","random.array.rayleigh","random.array.t","random.array.triangular","random.array.uniform","random.array.weibull","random.iterators.arcsine","random.iterators.bernoulli","random.iterators.beta","random.iterators.betaprime","random.iterators.binomial","random.iterators.boxMuller","random.iterators.cauchy","random.iterators.chi","random.iterators.chisquare","random.iterators.cosine","random.iterators.discreteUniform","random.iterators.erlang","random.iterators.exponential","random.iterators.f","random.iterators.frechet","random.iterators.gamma","random.iterators.geometric","random.iterators.gumbel","random.iterators.hypergeometric","random.iterators.improvedZiggurat","random.iterators.invgamma","random.iterators.kumaraswamy","random.iterators.laplace","random.iterators.levy","random.iterators.logistic","random.iterators.lognormal","random.iterators.minstd","random.iterators.minstdShuffle","random.iterators.mt19937","random.iterators.negativeBinomial","random.iterators.normal","random.iterators.pareto1","random.iterators.poisson","random.iterators.randi","random.iterators.randn","random.iterators.randu","random.iterators.rayleigh","random.iterators.t","random.iterators.triangular","random.iterators.uniform","random.iterators.weibull","random.streams.arcsine","random.streams.bernoulli","random.streams.beta","random.streams.betaprime","random.streams.binomial","random.streams.boxMuller","random.streams.cauchy","random.streams.chi","random.streams.chisquare","random.streams.cosine","random.streams.discreteUniform","random.streams.erlang","random.streams.exponential","random.streams.f","random.streams.frechet","random.streams.gamma","random.streams.geometric","random.streams.gumbel","random.streams.hypergeometric","random.streams.improvedZiggurat","random.streams.invgamma","random.streams.kumaraswamy","random.streams.laplace","random.streams.levy","random.streams.logistic","random.streams.lognormal","random.streams.minstd","random.streams.minstdShuffle","random.streams.mt19937","random.streams.negativeBinomial","random.streams.normal","random.streams.pareto1","random.streams.poisson","random.streams.randi","random.streams.randn","random.streams.randu","random.streams.rayleigh","random.streams.t","random.streams.triangular","random.streams.uniform","random.streams.weibull","random.strided.arcsine","random.strided.bernoulli","random.strided.beta","random.strided.betaprime","random.strided.chi","random.strided.chisquare","random.strided.cosine","random.strided.discreteUniform","random.strided.exponential","random.strided.gamma","random.strided.geometric","random.strided.invgamma","random.strided.lognormal","random.strided.minstd","random.strided.minstdShuffle","random.strided.mt19937","random.strided.normal","random.strided.poisson","random.strided.randu","random.strided.rayleigh","random.strided.t","random.strided.uniform","random.strided.weibull","ranks","readDir","readFile","readFileList","readJSON","readWASM","real","realarray","realarrayCtors","realarrayDataTypes","realf","realmax","realmin","reBasename","reBasenamePosix","reBasenameWindows","reColorHexadecimal","reDecimalNumber","reDirname","reDirnamePosix","reDirnameWindows","reduce","reduce2d","reduceAsync","reduceRight","reduceRightAsync","reDurationString","reEOL","reExtendedLengthPath","reExtname","reExtnamePosix","reExtnameWindows","reFilename","reFilenamePosix","reFilenameWindows","reFromString","reFunctionName","regexp2json","reim","reimf","rejectArguments","removeFirst","removeLast","removePunctuation","removeUTF8BOM","removeWords","rename","reNativeFunction","reorderArguments","repeat","replace","replaceBefore","reRegExp","rescape","reSemVer","resolveParentPath","resolveParentPathBy","reUncPath","reUtf16SurrogatePair","reUtf16UnpairedSurrogate","reverseArguments","reverseString","reviveBasePRNG","reviveBuffer","reviveComplex","reviveComplex64","reviveComplex128","reviveError","reviveRegExp","reviveTypedArray","reWhitespace","rpad","rtrim","rtrimN","safeintmax","safeintmin","sample","SAVOY_STOPWORDS_FIN","SAVOY_STOPWORDS_FR","SAVOY_STOPWORDS_GER","SAVOY_STOPWORDS_IT","SAVOY_STOPWORDS_POR","SAVOY_STOPWORDS_SP","SAVOY_STOPWORDS_SWE","scalar2array","scalar2ndarray","sdot","SECONDS_IN_DAY","SECONDS_IN_HOUR","SECONDS_IN_MINUTE","SECONDS_IN_WEEK","secondsInMonth","secondsInYear","sentencize","seq2slice","setConfigurableReadOnly","setConfigurableReadOnlyAccessor","setConfigurableReadWriteAccessor","setConfigurableWriteOnlyAccessor","setMemoizedConfigurableReadOnly","setMemoizedReadOnly","setNonEnumerableProperty","setNonEnumerableReadOnly","setNonEnumerableReadOnlyAccessor","setNonEnumerableReadWriteAccessor","setNonEnumerableWriteOnlyAccessor","setReadOnly","setReadOnlyAccessor","setReadWriteAccessor","setWriteOnlyAccessor","SharedArrayBuffer","shift","shuffle","sizeOf","Slice","snakecase","some","someBy","someByAsync","someByRight","someByRightAsync","someInBy","someOwnBy","SOTU","SPACHE_REVISED","SPAM_ASSASSIN","SparklineBase","sparsearray2iterator","sparsearray2iteratorRight","splitStream","SQRT_EPS","SQRT_HALF","SQRT_HALF_PI","SQRT_PHI","SQRT_PI","SQRT_THREE","SQRT_TWO","SQRT_TWO_PI","SSA_US_BIRTHS_2000_2014","sswap","Stack","standalone2pkg","STANDARD_CARD_DECK","startcase","startsWith","STOPWORDS_EN","strided.abs","strided.abs2","strided.abs2By","strided.absBy","strided.acosBy","strided.acoshBy","strided.acotBy","strided.acothBy","strided.acovercosBy","strided.acoversinBy","strided.add","strided.addBy","strided.ahavercosBy","strided.ahaversinBy","strided.asinBy","strided.asinhBy","strided.atanBy","strided.atanhBy","strided.avercosBy","strided.aversinBy","strided.besselj0By","strided.besselj1By","strided.bessely0By","strided.bessely1By","strided.binetBy","strided.cbrt","strided.cbrtBy","strided.ceil","strided.cosBy","strided.deg2rad","strided.dataTypes","strided.dcbrtBy","strided.dispatch","strided.dispatchBy","strided.floor","strided.inv","strided.mul","strided.mulBy","strided.ramp","strided.rsqrt","strided.sinBy","strided.sqrt","strided.sqrtBy","strided.sub","strided.subBy","strided.trunc","stridedarray2iterator","stridedArrayStream","string2buffer","sub2ind","substringAfter","substringAfterLast","substringBefore","substringBeforeLast","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK","Symbol","tabulate","tabulateBy","tabulateByAsync","thunk","tic","timeit","tmpdir","toc","tokenize","transformStream","trim","truncate","truncateMiddle","trycatch","trycatchAsync","tryFunction","tryRequire","trythen","trythenAsync","ttest","ttest2","TWO_PI","typedarray","typedarray2json","typedarrayCtors","typedarrayDataTypes","typedarraypool","typemax","typemin","typeOf","UINT8_MAX","UINT8_NUM_BYTES","Uint8Array","Uint8ClampedArray","UINT16_MAX","UINT16_NUM_BYTES","Uint16Array","UINT32_MAX","UINT32_NUM_BYTES","Uint32Array","umask","uncapitalize","uncapitalizeKeys","uncurry","uncurryRight","UNICODE_MAX","UNICODE_MAX_BMP","UnicodeColumnChartSparkline","UnicodeLineChartSparkline","UnicodeSparkline","UnicodeTristateChartSparkline","UnicodeUpDownChartSparkline","UnicodeWinLossChartSparkline","unlink","unshift","until","untilAsync","untilEach","untilEachRight","unzip","uppercase","uppercaseKeys","US_STATES_ABBR","US_STATES_CAPITALS","US_STATES_CAPITALS_NAMES","US_STATES_NAMES","US_STATES_NAMES_CAPITALS","utf16ToUTF8Array","vartest","waterfall","WebAssemblyMemory","whileAsync","whileEach","whileEachRight","whilst","wilcoxon","writableProperties","writablePropertiesIn","writablePropertyNames","writablePropertyNamesIn","writablePropertySymbols","writablePropertySymbolsIn","writeFile","zip","ztest","ztest2"]
+
 },{}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -2420,12 +2422,12 @@ module.exports=["abs","acronym","AFINN_96","AFINN_111","afull","afullLike","alia
 
 // MODULES //
 
-var aliases = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = aliases;
+module.exports = main;
 
 },{"./main.js":43}],43:[function(require,module,exports){
 /**
@@ -2527,7 +2529,7 @@ function aliases( namespace ) {
 
 module.exports = aliases;
 
-},{"./../data/data.json":41,"@stdlib/assert/is-string":19,"@stdlib/namespace/alias2pkg":36,"@stdlib/string/format":58,"@stdlib/string/starts-with":61}],44:[function(require,module,exports){
+},{"./../data/data.json":41,"@stdlib/assert/is-string":19,"@stdlib/namespace/alias2pkg":36,"@stdlib/string/format":63,"@stdlib/string/starts-with":66}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2562,14 +2564,14 @@ module.exports = aliases;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":45}],45:[function(require,module,exports){
+},{"./main.js":45}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2741,7 +2743,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -2921,12 +2923,12 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
 },{"./main.js":53}],51:[function(require,module,exports){
 /**
@@ -3053,11 +3055,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -3188,6 +3208,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -3196,9 +3217,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -3426,12 +3445,12 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
 },{"./main.js":57}],57:[function(require,module,exports){
 /**
@@ -3546,6 +3565,300 @@ module.exports = formatTokenize;
 
 'use strict';
 
+// MAIN //
+
+var startsWith = String.prototype.startsWith;
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{}],59:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.startsWith !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],60:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a string starts with the characters of another string.
+*
+* @module @stdlib/string/base/starts-with
+*
+* @example
+* var startsWith = require( '@stdlib/string/base/starts-with' );
+*
+* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
+* var bool = startsWith( str, 'Fair', 0 );
+* // returns true
+*
+* bool = startsWith( str, 'fair', 0 );
+* // returns false
+*
+* bool = startsWith( str, 'foul', 8 );
+* // returns true
+*
+* bool = startsWith( str, 'filthy', -10 );
+* // returns true
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var startsWith;
+if ( HAS_BUILTIN ) {
+	startsWith = main;
+} else {
+	startsWith = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{"./has_builtin.js":59,"./main.js":61,"./polyfill.js":62}],61:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} position - position at which to start searching
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+function startsWith( str, search, position ) {
+	var pos;
+	if ( position < 0 ) {
+		pos = str.length + position;
+	} else {
+		pos = position;
+	}
+	if ( search.length === 0 ) {
+		return true;
+	}
+	if (
+		pos < 0 ||
+		pos + search.length > str.length
+	) {
+		return false;
+	}
+	return builtin.call( str, search, pos );
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{"./builtin.js":58}],62:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @private
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} position - position at which to start searching
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+function startsWith( str, search, position ) {
+	var pos;
+	var i;
+	if ( position < 0 ) {
+		pos = str.length + position;
+	} else {
+		pos = position;
+	}
+	if ( search.length === 0 ) {
+		return true;
+	}
+	if (
+		pos < 0 ||
+		pos + search.length > str.length
+	) {
+		return false;
+	}
+	for ( i = 0; i < search.length; i++ ) {
+		if ( str.charCodeAt( pos + i ) !== search.charCodeAt( i ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
 /**
 * Insert supplied variable values into a format string.
 *
@@ -3563,16 +3876,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":60}],59:[function(require,module,exports){
+},{"./main.js":65}],64:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"dup":52}],60:[function(require,module,exports){
+},{"dup":52}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3620,18 +3933,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -3641,7 +3951,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":59,"@stdlib/string/base/format-interpolate":50,"@stdlib/string/base/format-tokenize":56}],61:[function(require,module,exports){
+},{"./is_string.js":64,"@stdlib/string/base/format-interpolate":50,"@stdlib/string/base/format-tokenize":56}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3686,14 +3996,14 @@ module.exports = format;
 
 // MODULES //
 
-var startsWith = require( './starts_with.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = startsWith;
+module.exports = main;
 
-},{"./starts_with.js":62}],62:[function(require,module,exports){
+},{"./main.js":67}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3719,6 +4029,7 @@ module.exports = startsWith;
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/starts-with' );
 
 
 // MAIN //
@@ -3760,7 +4071,6 @@ var format = require( '@stdlib/string/format' );
 */
 function startsWith( str, search, position ) {
 	var pos;
-	var i;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
@@ -3771,29 +4081,11 @@ function startsWith( str, search, position ) {
 		if ( !isInteger( position ) ) {
 			throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', position ) );
 		}
-		if ( position < 0 ) {
-			pos = str.length + position;
-		} else {
-			pos = position;
-		}
+		pos = position;
 	} else {
 		pos = 0;
 	}
-	if ( search.length === 0 ) {
-		return true;
-	}
-	if (
-		pos < 0 ||
-		pos + search.length > str.length
-	) {
-		return false;
-	}
-	for ( i = 0; i < search.length; i++ ) {
-		if ( str.charCodeAt( pos + i ) !== search.charCodeAt( i ) ) {
-			return false;
-		}
-	}
-	return true;
+	return base( str, search, pos );
 }
 
 
@@ -3801,7 +4093,79 @@ function startsWith( str, search, position ) {
 
 module.exports = startsWith;
 
-},{"@stdlib/assert/is-integer":8,"@stdlib/assert/is-string":19,"@stdlib/string/format":58}],63:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":8,"@stdlib/assert/is-string":19,"@stdlib/string/base/starts-with":60,"@stdlib/string/format":63}],68:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":69}],69:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3843,14 +4207,14 @@ module.exports = startsWith;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":64}],64:[function(require,module,exports){
+},{"./main.js":71}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3910,7 +4274,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":68}],65:[function(require,module,exports){
+},{"@stdlib/utils/define-property":75}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3973,7 +4337,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],66:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4003,7 +4367,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],67:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4056,7 +4420,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":66}],68:[function(require,module,exports){
+},{"./define_property.js":73}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4116,7 +4480,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":65,"./has_define_property_support.js":67,"./polyfill.js":69}],69:[function(require,module,exports){
+},{"./builtin.js":72,"./has_define_property_support.js":74,"./polyfill.js":76}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4240,7 +4604,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":58}],70:[function(require,module,exports){
+},{"@stdlib/string/format":63}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4285,25 +4649,25 @@ module.exports = defineProperty;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":71,"./polyfill.js":72,"@stdlib/assert/has-tostringtag-support":5}],71:[function(require,module,exports){
+},{"./main.js":78,"./polyfill.js":79,"@stdlib/assert/has-tostringtag-support":5}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4361,7 +4725,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":73}],72:[function(require,module,exports){
+},{"./tostring.js":80}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4444,7 +4808,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":73,"./tostringtag.js":74,"@stdlib/assert/has-own-property":1}],73:[function(require,module,exports){
+},{"./tostring.js":80,"./tostringtag.js":81,"@stdlib/assert/has-own-property":1}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4474,7 +4838,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],74:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4495,6 +4859,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -4504,7 +4873,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],75:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":68}],82:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -4656,11 +5025,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],76:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 
-},{}],77:[function(require,module,exports){
-arguments[4][76][0].apply(exports,arguments)
-},{"dup":76}],78:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
+arguments[4][83][0].apply(exports,arguments)
+},{"dup":83}],85:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -6441,7 +6810,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":75,"buffer":78,"ieee754":166}],79:[function(require,module,exports){
+},{"base64-js":82,"buffer":85,"ieee754":188}],86:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6940,7 +7309,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],80:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -7473,7 +7842,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":172}],81:[function(require,module,exports){
+},{"_process":195}],88:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7604,7 +7973,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":79,"inherits":167,"readable-stream/lib/_stream_duplex.js":83,"readable-stream/lib/_stream_passthrough.js":84,"readable-stream/lib/_stream_readable.js":85,"readable-stream/lib/_stream_transform.js":86,"readable-stream/lib/_stream_writable.js":87,"readable-stream/lib/internal/streams/end-of-stream.js":91,"readable-stream/lib/internal/streams/pipeline.js":93}],82:[function(require,module,exports){
+},{"events":86,"inherits":189,"readable-stream/lib/_stream_duplex.js":90,"readable-stream/lib/_stream_passthrough.js":91,"readable-stream/lib/_stream_readable.js":92,"readable-stream/lib/_stream_transform.js":93,"readable-stream/lib/_stream_writable.js":94,"readable-stream/lib/internal/streams/end-of-stream.js":98,"readable-stream/lib/internal/streams/pipeline.js":100}],89:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -7733,7 +8102,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],83:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7875,7 +8244,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":85,"./_stream_writable":87,"_process":172,"inherits":167}],84:[function(require,module,exports){
+},{"./_stream_readable":92,"./_stream_writable":94,"_process":195,"inherits":189}],91:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7915,7 +8284,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":86,"inherits":167}],85:[function(require,module,exports){
+},{"./_stream_transform":93,"inherits":189}],92:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9042,7 +9411,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":82,"./_stream_duplex":83,"./internal/streams/async_iterator":88,"./internal/streams/buffer_list":89,"./internal/streams/destroy":90,"./internal/streams/from":92,"./internal/streams/state":94,"./internal/streams/stream":95,"_process":172,"buffer":78,"events":79,"inherits":167,"string_decoder/":179,"util":76}],86:[function(require,module,exports){
+},{"../errors":89,"./_stream_duplex":90,"./internal/streams/async_iterator":95,"./internal/streams/buffer_list":96,"./internal/streams/destroy":97,"./internal/streams/from":99,"./internal/streams/state":101,"./internal/streams/stream":102,"_process":195,"buffer":85,"events":86,"inherits":189,"string_decoder/":204,"util":83}],93:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9244,7 +9613,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":82,"./_stream_duplex":83,"inherits":167}],87:[function(require,module,exports){
+},{"../errors":89,"./_stream_duplex":90,"inherits":189}],94:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9944,7 +10313,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":82,"./_stream_duplex":83,"./internal/streams/destroy":90,"./internal/streams/state":94,"./internal/streams/stream":95,"_process":172,"buffer":78,"inherits":167,"util-deprecate":188}],88:[function(require,module,exports){
+},{"../errors":89,"./_stream_duplex":90,"./internal/streams/destroy":97,"./internal/streams/state":101,"./internal/streams/stream":102,"_process":195,"buffer":85,"inherits":189,"util-deprecate":213}],95:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -10154,7 +10523,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":91,"_process":172}],89:[function(require,module,exports){
+},{"./end-of-stream":98,"_process":195}],96:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -10365,7 +10734,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":78,"util":76}],90:[function(require,module,exports){
+},{"buffer":85,"util":83}],97:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -10473,7 +10842,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":172}],91:[function(require,module,exports){
+},{"_process":195}],98:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -10578,12 +10947,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":82}],92:[function(require,module,exports){
+},{"../../../errors":89}],99:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],93:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -10681,7 +11050,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":82,"./end-of-stream":91}],94:[function(require,module,exports){
+},{"../../../errors":89,"./end-of-stream":98}],101:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -10709,10 +11078,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":82}],95:[function(require,module,exports){
+},{"../../../errors":89}],102:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":79}],96:[function(require,module,exports){
+},{"events":86}],103:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -10729,43 +11098,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":97,"get-intrinsic":161}],97:[function(require,module,exports){
+},{"./":104,"get-intrinsic":179}],104:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -10778,7 +11135,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":160,"get-intrinsic":161}],98:[function(require,module,exports){
+},{"es-define-property":164,"es-errors/type":170,"function-bind":178,"get-intrinsic":179,"set-function-length":199}],105:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -10874,7 +11231,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":99,"./lib/keys.js":100}],99:[function(require,module,exports){
+},{"./lib/is_arguments.js":106,"./lib/keys.js":107}],106:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -10896,7 +11253,7 @@ function unsupported(object){
     false;
 };
 
-},{}],100:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -10907,7 +11264,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],101:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":164,"es-errors/syntax":169,"es-errors/type":170,"gopd":180}],109:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -10915,29 +11330,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -10956,14 +11371,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":162,"object-keys":170}],102:[function(require,module,exports){
+},{"define-data-property":108,"has-property-descriptors":181,"object-keys":193}],110:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],103:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -11002,13 +11417,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":133,"./ToPrimitive":135,"./Type":140}],104:[function(require,module,exports){
+},{"./ToNumber":142,"./ToPrimitive":144,"./Type":149}],112:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -11016,13 +11431,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -11034,7 +11448,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -11067,28 +11481,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":149,"../helpers/isNaN":151,"../helpers/isPrefixOf":152,"./ToNumber":133,"./ToPrimitive":135,"./Type":140,"get-intrinsic":161}],105:[function(require,module,exports){
+},{"../helpers/isFinite":157,"../helpers/isNaN":158,"../helpers/isPrefixOf":159,"./ToNumber":142,"./ToPrimitive":144,"es-errors/type":170,"get-intrinsic":179}],113:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":103,"es-errors/type":170}],114:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":161}],106:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":172}],115:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -11139,7 +11586,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":109,"./InLeapYear":113,"./MonthFromTime":123,"get-intrinsic":161}],107:[function(require,module,exports){
+},{"./DayWithinYear":118,"./InLeapYear":122,"./MonthFromTime":132,"es-errors/eval":165}],116:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -11152,7 +11599,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":156,"./floor":144}],108:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./floor":153}],117:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -11164,7 +11611,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":144}],109:[function(require,module,exports){
+},{"./floor":153}],118:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -11177,7 +11624,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":107,"./DayFromYear":108,"./YearFromTime":142}],110:[function(require,module,exports){
+},{"./Day":116,"./DayFromYear":117,"./YearFromTime":151}],119:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -11197,18 +11644,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":145}],111:[function(require,module,exports){
+},{"./modulo":154}],120:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -11217,7 +11661,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -11238,7 +11684,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":148,"./IsAccessorDescriptor":114,"./IsDataDescriptor":116,"./Type":140,"get-intrinsic":161}],112:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":161,"./IsAccessorDescriptor":123,"./IsDataDescriptor":125,"es-errors/type":170}],121:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -11254,12 +11700,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":156,"./floor":144,"./modulo":145}],113:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./floor":153,"./modulo":154}],122:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -11277,14 +11721,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":110,"./YearFromTime":142,"get-intrinsic":161}],114:[function(require,module,exports){
+},{"./DaysInYear":119,"./YearFromTime":151,"es-errors/eval":165}],123:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -11293,30 +11737,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":148,"./Type":140,"has":165}],115:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":161,"es-errors/type":170,"hasown":187}],124:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":168}],116:[function(require,module,exports){
+},{"is-callable":190}],125:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -11325,23 +11771,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":148,"./Type":140,"has":165}],117:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":161,"es-errors/type":170,"hasown":187}],126:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -11350,7 +11799,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -11359,28 +11810,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":148,"./IsAccessorDescriptor":114,"./IsDataDescriptor":116,"./Type":140}],118:[function(require,module,exports){
+},{"./IsAccessorDescriptor":123,"./IsDataDescriptor":125,"./IsPropertyDescriptor":127,"es-errors/type":170}],127:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":153,"./IsAccessorDescriptor":114,"./IsDataDescriptor":116,"./Type":140}],119:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":161}],128:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -11395,7 +11838,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":149,"../helpers/timeConstants":156}],120:[function(require,module,exports){
+},{"../helpers/isFinite":157,"../helpers/timeConstants":163}],129:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -11430,7 +11873,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":149,"./DateFromTime":106,"./Day":107,"./MonthFromTime":123,"./ToInteger":132,"./YearFromTime":142,"./floor":144,"./modulo":145,"get-intrinsic":161}],121:[function(require,module,exports){
+},{"../helpers/isFinite":157,"./DateFromTime":115,"./Day":116,"./MonthFromTime":132,"./ToInteger":141,"./YearFromTime":151,"./floor":153,"./modulo":154,"get-intrinsic":179}],130:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -11455,7 +11898,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":149,"../helpers/timeConstants":156,"./ToInteger":132}],122:[function(require,module,exports){
+},{"../helpers/isFinite":157,"../helpers/timeConstants":163,"./ToInteger":141}],131:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -11471,7 +11914,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":156,"./floor":144,"./modulo":145}],123:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./floor":153,"./modulo":154}],132:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -11520,7 +11963,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":109,"./InLeapYear":113}],124:[function(require,module,exports){
+},{"./DayWithinYear":118,"./InLeapYear":122}],133:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -11535,7 +11978,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":151}],125:[function(require,module,exports){
+},{"../helpers/isNaN":158}],134:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -11551,7 +11994,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":156,"./floor":144,"./modulo":145}],126:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./floor":153,"./modulo":154}],135:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -11570,7 +12013,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":140}],127:[function(require,module,exports){
+},{"./Type":149}],136:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -11593,7 +12036,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":149,"./ToNumber":133,"./abs":143,"get-intrinsic":161}],128:[function(require,module,exports){
+},{"../helpers/isFinite":157,"./ToNumber":142,"./abs":152,"get-intrinsic":179}],137:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -11606,7 +12049,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":156,"./DayFromYear":108}],129:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./DayFromYear":117}],138:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -11620,14 +12063,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":156,"./modulo":145}],130:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./modulo":154}],139:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],131:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -11638,7 +12081,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":133}],132:[function(require,module,exports){
+},{"./ToNumber":142}],141:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -11658,10 +12101,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":149,"../helpers/isNaN":151,"../helpers/sign":155,"./ToNumber":133,"./abs":143,"./floor":144}],133:[function(require,module,exports){
+},{"../helpers/isFinite":157,"../helpers/isNaN":158,"../helpers/sign":162,"./ToNumber":142,"./abs":152,"./floor":153}],142:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -11671,46 +12122,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":135}],134:[function(require,module,exports){
+},{"./ToPrimitive":144,"call-bind/callBound":103,"safe-regex-test":198}],143:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":105,"get-intrinsic":161}],135:[function(require,module,exports){
+},{"es-object-atoms/ToObject":173}],144:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":157}],136:[function(require,module,exports){
+},{"es-to-primitive/es5":175}],145:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -11724,26 +12168,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -11751,13 +12195,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":115,"./ToBoolean":130,"./Type":140,"get-intrinsic":161,"has":165}],137:[function(require,module,exports){
+},{"./IsCallable":124,"./ToBoolean":139,"./Type":149,"es-errors/type":170,"hasown":187}],146:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -11771,7 +12215,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":161}],138:[function(require,module,exports){
+},{"get-intrinsic":179}],147:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -11792,7 +12236,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":149,"../helpers/isNaN":151,"../helpers/sign":155,"./ToNumber":133,"./abs":143,"./floor":144,"./modulo":145}],139:[function(require,module,exports){
+},{"../helpers/isFinite":157,"../helpers/isNaN":158,"../helpers/sign":162,"./ToNumber":142,"./abs":152,"./floor":153,"./modulo":154}],148:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -11803,7 +12247,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":133}],140:[function(require,module,exports){
+},{"./ToNumber":142}],149:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -11829,7 +12273,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],141:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -11841,7 +12285,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":107,"./modulo":145}],142:[function(require,module,exports){
+},{"./Day":116,"./modulo":154}],151:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -11859,7 +12303,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":96,"get-intrinsic":161}],143:[function(require,module,exports){
+},{"call-bind/callBound":103,"get-intrinsic":179}],152:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -11872,7 +12316,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":161}],144:[function(require,module,exports){
+},{"get-intrinsic":179}],153:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -11885,7 +12329,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],145:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -11896,7 +12340,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":154}],146:[function(require,module,exports){
+},{"../helpers/mod":160}],155:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -11909,7 +12353,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":156,"./modulo":145}],147:[function(require,module,exports){
+},{"../helpers/timeConstants":163,"./modulo":154}],156:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -11920,6 +12364,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -11962,90 +12407,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":103,"./5/AbstractRelationalComparison":104,"./5/CheckObjectCoercible":105,"./5/DateFromTime":106,"./5/Day":107,"./5/DayFromYear":108,"./5/DayWithinYear":109,"./5/DaysInYear":110,"./5/FromPropertyDescriptor":111,"./5/HourFromTime":112,"./5/InLeapYear":113,"./5/IsAccessorDescriptor":114,"./5/IsCallable":115,"./5/IsDataDescriptor":116,"./5/IsGenericDescriptor":117,"./5/IsPropertyDescriptor":118,"./5/MakeDate":119,"./5/MakeDay":120,"./5/MakeTime":121,"./5/MinFromTime":122,"./5/MonthFromTime":123,"./5/SameValue":124,"./5/SecFromTime":125,"./5/StrictEqualityComparison":126,"./5/TimeClip":127,"./5/TimeFromYear":128,"./5/TimeWithinDay":129,"./5/ToBoolean":130,"./5/ToInt32":131,"./5/ToInteger":132,"./5/ToNumber":133,"./5/ToObject":134,"./5/ToPrimitive":135,"./5/ToPropertyDescriptor":136,"./5/ToString":137,"./5/ToUint16":138,"./5/ToUint32":139,"./5/Type":140,"./5/WeekDay":141,"./5/YearFromTime":142,"./5/abs":143,"./5/floor":144,"./5/modulo":145,"./5/msFromTime":146}],148:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":111,"./5/AbstractRelationalComparison":112,"./5/Canonicalize":113,"./5/CheckObjectCoercible":114,"./5/DateFromTime":115,"./5/Day":116,"./5/DayFromYear":117,"./5/DayWithinYear":118,"./5/DaysInYear":119,"./5/FromPropertyDescriptor":120,"./5/HourFromTime":121,"./5/InLeapYear":122,"./5/IsAccessorDescriptor":123,"./5/IsCallable":124,"./5/IsDataDescriptor":125,"./5/IsGenericDescriptor":126,"./5/IsPropertyDescriptor":127,"./5/MakeDate":128,"./5/MakeDay":129,"./5/MakeTime":130,"./5/MinFromTime":131,"./5/MonthFromTime":132,"./5/SameValue":133,"./5/SecFromTime":134,"./5/StrictEqualityComparison":135,"./5/TimeClip":136,"./5/TimeFromYear":137,"./5/TimeWithinDay":138,"./5/ToBoolean":139,"./5/ToInt32":140,"./5/ToInteger":141,"./5/ToNumber":142,"./5/ToObject":143,"./5/ToPrimitive":144,"./5/ToPropertyDescriptor":145,"./5/ToString":146,"./5/ToUint16":147,"./5/ToUint32":148,"./5/Type":149,"./5/WeekDay":150,"./5/YearFromTime":151,"./5/abs":152,"./5/floor":153,"./5/modulo":154,"./5/msFromTime":155}],157:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":150,"get-intrinsic":161,"has":165}],149:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],150:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":165}],151:[function(require,module,exports){
+},{"./isNaN":158}],158:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],152:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -12060,40 +12436,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":96}],153:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":161,"has":165}],154:[function(require,module,exports){
+},{"call-bind/callBound":103}],160:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -12103,14 +12446,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],155:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":170,"hasown":187}],162:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],156:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -12131,7 +12512,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],157:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":179}],165:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],166:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],167:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],168:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],169:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],170:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],171:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],172:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":170}],173:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":174,"./RequireObjectCoercible":172}],174:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],175:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -12178,56 +12650,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":158,"is-callable":168}],158:[function(require,module,exports){
+},{"./helpers/isPrimitive":176,"is-callable":190}],176:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],159:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -12239,21 +12743,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],160:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":159}],161:[function(require,module,exports){
+},{"./implementation":177}],179:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -12292,18 +12802,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -12311,6 +12827,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -12318,9 +12836,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -12331,10 +12849,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -12342,15 +12860,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -12360,11 +12878,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -12381,7 +12909,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -12392,6 +12920,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -12446,11 +12975,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -12506,6 +13036,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -12578,29 +13111,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":160,"has":165,"has-symbols":163}],162:[function(require,module,exports){
+},{"es-errors":166,"es-errors/eval":165,"es-errors/range":167,"es-errors/ref":168,"es-errors/syntax":169,"es-errors/type":170,"es-errors/uri":171,"function-bind":178,"has-proto":182,"has-symbols":183,"hasown":187}],180:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":179}],181:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -12613,7 +13153,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":161}],163:[function(require,module,exports){
+},{"es-define-property":164}],182:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],183:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -12628,7 +13185,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":164}],164:[function(require,module,exports){
+},{"./shams":184}],184:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -12672,14 +13229,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],165:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":184}],186:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":160}],166:[function(require,module,exports){
+},{"function-bind":178}],187:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":178}],188:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -12766,7 +13343,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],167:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -12795,7 +13372,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -12841,37 +13418,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],169:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":103,"has-tostringtag/shams":185}],192:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -12995,7 +13659,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":171}],170:[function(require,module,exports){
+},{"./isArguments":194}],193:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -13029,7 +13693,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":169,"./isArguments":171}],171:[function(require,module,exports){
+},{"./implementation":192,"./isArguments":194}],194:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -13048,7 +13712,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],172:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -13234,7 +13898,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],173:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -13267,7 +13931,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":172,"through":186,"timers":187}],174:[function(require,module,exports){
+},{"_process":195,"through":211,"timers":212}],197:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -13334,7 +13998,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":78}],175:[function(require,module,exports){
+},{"buffer":85}],198:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":103,"es-errors/type":170,"is-regex":191}],199:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":108,"es-errors/type":170,"get-intrinsic":179,"gopd":180,"has-property-descriptors":181}],200:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -13349,7 +14075,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":147,"function-bind":160}],176:[function(require,module,exports){
+},{"es-abstract/es5":156,"function-bind":178}],201:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -13369,7 +14095,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":175,"./polyfill":177,"./shim":178,"define-properties":101,"function-bind":160}],177:[function(require,module,exports){
+},{"./implementation":200,"./polyfill":202,"./shim":203,"define-properties":109,"function-bind":178}],202:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -13383,7 +14109,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":175}],178:[function(require,module,exports){
+},{"./implementation":200}],203:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -13395,7 +14121,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":177,"define-properties":101}],179:[function(require,module,exports){
+},{"./polyfill":202,"define-properties":109}],204:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13692,7 +14418,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":174}],180:[function(require,module,exports){
+},{"safe-buffer":197}],205:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -13846,7 +14572,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":181,"./lib/results":183,"./lib/test":184,"_process":172,"defined":102,"through":186,"timers":187}],181:[function(require,module,exports){
+},{"./lib/default_stream":206,"./lib/results":208,"./lib/test":209,"_process":195,"defined":110,"through":211,"timers":212}],206:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -13881,7 +14607,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":172,"fs":77,"through":186}],182:[function(require,module,exports){
+},{"_process":195,"fs":84,"through":211}],207:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -13889,7 +14615,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":172,"timers":187}],183:[function(require,module,exports){
+},{"_process":195,"timers":212}],208:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -14080,7 +14806,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":172,"events":79,"function-bind":160,"has":165,"inherits":167,"object-inspect":185,"resumer":173,"through":186,"timers":187}],184:[function(require,module,exports){
+},{"_process":195,"events":86,"function-bind":178,"has":186,"inherits":189,"object-inspect":210,"resumer":196,"through":211,"timers":212}],209:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -14581,7 +15307,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":182,"deep-equal":98,"defined":102,"events":79,"has":165,"inherits":167,"path":80,"string.prototype.trim":176}],185:[function(require,module,exports){
+},{"./next_tick":207,"deep-equal":105,"defined":110,"events":86,"has":186,"inherits":189,"path":87,"string.prototype.trim":201}],210:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -14775,7 +15501,7 @@ function inspectString (str) {
     }
 }
 
-},{}],186:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -14887,7 +15613,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":172,"stream":81}],187:[function(require,module,exports){
+},{"_process":195,"stream":88}],212:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -14966,7 +15692,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":172,"timers":187}],188:[function(require,module,exports){
+},{"process/browser.js":195,"timers":212}],213:[function(require,module,exports){
 (function (global){(function (){
 
 /**

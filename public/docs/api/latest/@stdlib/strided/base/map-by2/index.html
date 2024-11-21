@@ -1,8 +1,10 @@
 <h1 id="mapby2">mapBy2</h1><blockquote><p>Apply a binary function to each pair of elements retrieved from strided input arrays according to a callback function and assign results to a strided output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mapBy2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/map-by2'</span> );
 </code></pre><h4 id="mapby2-n-x-stridex-y-stridey-z-stridez-fcn-clbk-thisarg-">mapBy2( N, x, strideX, y, strideY, z, strideZ, fcn, clbk[, thisArg] )</h4><p>Applies a binary function to each pair of elements retrieved from strided input arrays according to a callback function and assigns results to a strided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
@@ -11,11 +13,13 @@
 
 mapBy2( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, add, accessor );
 <span class="hljs-comment">// z => [ -2.0, 4.0, 10.0, -6.0, 14.0, 6.0, 6.0, 2.0 ]</span>
-</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>z</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideZ</strong>: index increment for <code>z</code>.</li><li><strong>fcn</strong>: binary function to apply to callback return values.</li><li><strong>clbk</strong>: callback function which returns an array-like object containing two values.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback function is provided nine arguments:</p><ul><li><strong>vx</strong>: input array element.</li><li><strong>vy</strong>: input array element.</li><li><strong>idx</strong>: iteration index (zero-based).</li><li><strong>ix</strong>: input array strided index (<code>offsetX + idx*strideX</code>).</li><li><strong>iy</strong>: input array strided index (<code>offsetY + idx*strideY</code>).</li><li><strong>iz</strong>: output array strided index (<code>offsetZ + idx*strideZ</code>).</li><li><strong>x</strong>: input array/collection.</li><li><strong>y</strong>: input array/collection.</li><li><strong>z</strong>: output array/collection.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>z</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideZ</strong>: index increment for <code>z</code>.</li><li><strong>fcn</strong>: binary function to apply to callback return values.</li><li><strong>clbk</strong>: callback function which returns an array-like object containing two values.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback function is provided four arguments:</p><ul><li><strong>values</strong>: input array element values <code>[vx, vy]</code>.</li><li><strong>idx</strong>: iteration index (zero-based).</li><li><strong>indices</strong>: input and output array strided indices <code>[ix, iy, iz]</code> (computed according to <code>offset + idx*stride</code>).</li><li><strong>arrays</strong>: input and output arrays/collections <code>[x, y, z]</code>.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> context = {
@@ -33,8 +37,10 @@ mapBy2( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-nu
 <span class="hljs-comment">// returns 8</span>
 </code></pre><p>The <code>N</code> and <code>stride</code> parameters determine which elements in the strided arrays are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
@@ -46,8 +52,10 @@ mapBy2( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span
 </code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-comment">// Initial arrays...</span>
@@ -64,8 +72,10 @@ mapBy2( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</sp
 <span class="hljs-comment">// z0 => &#x3C;Float64Array>[ 0.0, 0.0, -8.0, -2.0, 2.0, 0.0 ]</span>
 </code></pre><h4 id="mapby2ndarray-n-x-stridex-offsetx-y-stridey-offsety-z-stridez-offsetz-fcn-clbk-thisarg-">mapBy2.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, z, strideZ, offsetZ, fcn, clbk[, thisArg] )</h4><p>Applies a binary function to each pair of elements retrieved from strided input arrays according to a callback function and assigns results to a strided output array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span> ];
@@ -76,8 +86,10 @@ mapBy2.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hl
 <span class="hljs-comment">// z => [ 0.0, -2.0, -2.0, -4.0, -4.0 ]</span>
 </code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li><li><strong>offsetZ</strong>: starting index for <code>z</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy </span>) </span>{
-    <span class="hljs-keyword">return</span> [ vx*<span class="hljs-number">2.0</span>, vy*<span class="hljs-number">2.0</span> ];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values </span>) </span>{
+    values[ <span class="hljs-number">0</span> ] *= <span class="hljs-number">2.0</span>;
+    values[ <span class="hljs-number">1</span> ] *= <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
@@ -104,12 +116,12 @@ mapBy2( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-nu
 <span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 <span class="hljs-keyword">var</span> mapBy2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/map-by2'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> vx, vy, i </span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> values, i </span>) </span>{
     <span class="hljs-keyword">if</span> ( (i%<span class="hljs-number">3</span>) === <span class="hljs-number">0</span> ) {
         <span class="hljs-comment">// Simulate a "missing" value...</span>
         <span class="hljs-keyword">return</span>;
     }
-    <span class="hljs-keyword">return</span> [ vx, vy ];
+    <span class="hljs-keyword">return</span> values;
 }
 
 <span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
@@ -123,4 +135,4 @@ mapBy2( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-nu
 
 mapBy2.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, add, accessor );
 <span class="hljs-built_in">console</span>.log( z );
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/map-by"><code>@stdlib/strided/base/map-by</code></a></span><span class="delimiter">: </span><span class="description">apply a unary function to each element retrieved from a strided input array according to a callback function and assign results to a strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/binary"><code>@stdlib/strided/base/binary</code></a></span><span class="delimiter">: </span><span class="description">apply a binary callback to elements in strided input arrays and assign results to elements in a strided output array.</span></li></ul></section><section class="links"></section>

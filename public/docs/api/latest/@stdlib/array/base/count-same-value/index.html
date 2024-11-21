@@ -1,0 +1,20 @@
+<h1 id="countsamevalue">countSameValue</h1><blockquote><p>Count the number of elements in an array that are equal to a specified value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> countSameValue = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/count-same-value'</span> );
+</code></pre><h4 id="countsamevalue-x-value-">countSameValue( x, value )</h4><p>Counts the number of elements in an array that are equal to a specified value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> out = countSameValue( x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p>In contrast to an implementation using the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code> and treats <code>NaNs</code> as the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ];
+
+<span class="hljs-keyword">var</span> out = countSameValue( x, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function uses the <a href="/docs/api/latest/@stdlib/assert/is-same-value">SameValue Algorithm</a> as specified in ECMAScript 5.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> countSameValue = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/count-same-value'</span> );
+
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> n = countSameValue( x, <span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( n );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

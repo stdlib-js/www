@@ -1,0 +1,32 @@
+<h1 id="assign">assign</h1><blockquote><p>Copy enumerable own properties from one or more source objects to a target object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> assign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/assign'</span> );
+</code></pre><h4 id="assign-target-source1-source2sourcen-">assign( target, source1[, source2[,...,sourceN]] )</h4><p>Copies enumerable own properties from one or more source objects to a target object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>
+};
+<span class="hljs-keyword">var</span> y = {
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>
+};
+
+<span class="hljs-keyword">var</span> z = assign( x, y );
+
+<span class="hljs-keyword">var</span> v = z.b;
+<span class="hljs-comment">// returns 'boop'</span>
+
+<span class="hljs-keyword">var</span> bool = ( z === x );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a property key is present in multiple sources, the property from the last source that defines the key prevails.</li><li>The target object is mutated.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> assign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/assign'</span> );
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'Jane'</span>,
+    <span class="hljs-string">'age'</span>: <span class="hljs-number">29</span>
+};
+<span class="hljs-keyword">var</span> obj2 = {
+    <span class="hljs-string">'country'</span>: <span class="hljs-string">'US'</span>,
+    <span class="hljs-string">'city'</span>: <span class="hljs-string">'San Francisco'</span>
+};
+<span class="hljs-keyword">var</span> obj3 = {
+    <span class="hljs-string">'hobby'</span>: <span class="hljs-string">'Reading'</span>
+};
+
+<span class="hljs-keyword">var</span> result = assign( obj1, obj2, obj3 );
+<span class="hljs-comment">// returns { 'name': 'Jane', 'age': 29, 'country': 'US', 'city': 'San Francisco', 'hobby': 'Reading' }</span>
+</code></pre></section><section class="references"></section><section class="related"><section class="links"></section></section>

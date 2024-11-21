@@ -1,0 +1,44 @@
+<h1 id="flag">flag</h1><blockquote><p>Return a specified flag for a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/flag'</span> );
+</code></pre><h4 id="flag-x-name-">flag( x, name )</h4><p>Returns a specified flag for a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> o = flag( x, <span class="hljs-string">'READONLY'</span> );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is intended as a slight performance optimization over <a href="/docs/api/latest/@stdlib/ndarray/flags"><code>@stdlib/ndarray/flags</code></a> when <strong>only</strong> a single flag is needed. For retrieving multiple flags, use <a href="/docs/api/latest/@stdlib/ndarray/flags"><code>@stdlib/ndarray/flags</code></a> directly.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> flag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/flag'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Define some slices:</span>
+<span class="hljs-keyword">var</span> slices = [
+    <span class="hljs-comment">// :,:,:,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 5:10,4,2:4,::-1</span>
+    E( S( <span class="hljs-number">5</span>, <span class="hljs-number">10</span> ), <span class="hljs-number">4</span>, S( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ), S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) ),
+
+    <span class="hljs-comment">// :,:,2,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,2,3,:</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,3,::2,4::2</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ), S( <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ) )
+];
+
+<span class="hljs-comment">// Check whether each slice is row-major contiguous...</span>
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; slices.length; i++ ) {
+    s = slice( x, slices[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s'</span>, flag( s, <span class="hljs-string">'ROW_MAJOR_CONTIGUOUS'</span> ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/flags"><code>@stdlib/ndarray/flags</code></a></span><span class="delimiter">: </span><span class="description">return the flags of a provided ndarray.</span></li></ul></section><section class="links"></section>

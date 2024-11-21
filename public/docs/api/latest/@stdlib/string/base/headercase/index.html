@@ -1,0 +1,26 @@
+<h1 id="headercase">headercase</h1><blockquote><p>Convert a string to HTTP header case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headercase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/headercase'</span> );
+</code></pre><h4 id="headercase-str-">headercase( str )</h4><p>Converts a string to HTTP header case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = headercase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'Foo-Bar'</span>
+
+out = headercase( <span class="hljs-string">'IS_MOBILE'</span> );
+<span class="hljs-comment">// returns 'Is-Mobile'</span>
+
+out = headercase( <span class="hljs-string">'Hello World!'</span> );
+<span class="hljs-comment">// returns 'Hello-World'</span>
+
+out = headercase( <span class="hljs-string">'--foo-bar--'</span> );
+<span class="hljs-comment">// returns 'Foo-Bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headercase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/headercase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = headercase( str );
+<span class="hljs-comment">// returns 'Hello-World'</span>
+
+str = <span class="hljs-string">'HELLO  WORLD!'</span>;
+out = headercase( str );
+<span class="hljs-comment">// returns 'Hello-World'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = headercase( str );
+<span class="hljs-comment">// returns 'To-Be-Or-Not-To-Be-That-Is-The-Question'</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/camelcase"><code>@stdlib/string/base/camelcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to camel case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/pascalcase"><code>@stdlib/string/base/pascalcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to Pascal case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/uppercase"><code>@stdlib/string/base/uppercase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to uppercase.</span></li></ul></section><section class="links"></section>

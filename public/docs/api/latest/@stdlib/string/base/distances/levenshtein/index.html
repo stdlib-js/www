@@ -1,0 +1,29 @@
+<h1 id="levenshteindistance">levenshteinDistance</h1><blockquote><p>Calculate the <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a> (edit) distance between two strings.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> levenshteinDistance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/distances/levenshtein'</span> );
+</code></pre><h4 id="levenshteindistance-s1-s2-">levenshteinDistance( s1, s2 )</h4><p>Calculates the <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a> (edit) distance between two strings.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = levenshteinDistance( <span class="hljs-string">'frog'</span>, <span class="hljs-string">'from'</span> );
+<span class="hljs-comment">// returns 1</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'frog'</span>, <span class="hljs-string">'froth'</span> );
+<span class="hljs-comment">// returns 2</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'cat'</span>, <span class="hljs-string">'kitty'</span> );
+<span class="hljs-comment">// returns 4</span>
+
+dist = levenshteinDistance( <span class="hljs-string">''</span>, <span class="hljs-string">'abcdef'</span> );
+<span class="hljs-comment">// returns 6</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'1638452297'</span>, <span class="hljs-string">'2311638451'</span> );
+<span class="hljs-comment">// returns 7</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> levenshteinDistance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/distances/levenshtein'</span> );
+
+<span class="hljs-keyword">var</span> dist = levenshteinDistance( <span class="hljs-string">'algorithm'</span>, <span class="hljs-string">'altruistic'</span> );
+<span class="hljs-comment">// returns 6</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'elephant'</span>, <span class="hljs-string">'hippo'</span> );
+<span class="hljs-comment">// returns 7</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'javascript'</span>, <span class="hljs-string">'typescript'</span> );
+<span class="hljs-comment">// returns 4</span>
+
+dist = levenshteinDistance( <span class="hljs-string">'levenshtein'</span>, <span class="hljs-string">'leviathan'</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

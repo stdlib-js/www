@@ -22,4 +22,29 @@ d = rad2deg( <span class="hljs-literal">NaN</span> );
     d = rad2deg( r );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'radians: %d => degrees: %d'</span>, r, d );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/rad2deg.h"</span></span>
+</code></pre><h4 id="stdlib_base_rad2deg-x-">stdlib_base_rad2deg( x )</h4><p>Converts an angle from radians to degrees.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> x = <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">2.0</span>;
+<span class="hljs-keyword">double</span> d = stdlib_base_rad2deg( x );
+<span class="hljs-comment">// returns 90.0</span>
+
+x = <span class="hljs-number">-3.141592653589793</span>/<span class="hljs-number">4.0</span>;
+d = stdlib_base_rad2deg( x );
+<span class="hljs-comment">// returns -45.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value (in radians).</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_rad2deg</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/rad2deg.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/constants/float64/two_pi.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> d;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX * STDLIB_CONSTANT_FLOAT64_TWO_PI;
+        d = stdlib_base_rad2deg( x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"radians: %lf => degrees: %lf\n"</span>, x, d );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li></ul></section><section class="links"></section>

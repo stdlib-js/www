@@ -1,16 +1,16 @@
-<h1 id="tojson">toJSON</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
-</code></pre><h4 id="tojson-typedarray-">toJSON( typedarray )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<h1 id="typedarray2json">typedarray2json</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typedarray2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
+</code></pre><h4 id="typedarray2json-typedarray-">typedarray2json( typedarray )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
 
-<span class="hljs-keyword">var</span> json = toJSON( arr );
+<span class="hljs-keyword">var</span> json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Float64Array',
         'data': [ 5.0, 3.0 ]
     }
 */</span>
-</code></pre><p>For guidance on reviving a JSON-serialized typed array, see <a href="/docs/api/latest/@stdlib/array/reviver"><code>reviver()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Supported typed array types:</p><ul><li><a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int16"><code>Int16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint16"><code>Uint16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int8"><code>Int8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8c"><code>Uint8ClampedArray</code></a></li></ul></li><li><p>The implementation provides basic support for custom typed arrays and sets the <code>type</code> field to the closest known typed array type.</p><pre><code class="hljs language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Float64Array</span>() </span>{
+</code></pre><p>For guidance on reviving a JSON-serialized typed array, see <a href="/docs/api/latest/@stdlib/array/reviver"><code>reviver()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Supported typed array types:</p><ul><li><a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/bool"><code>BooleanArray</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int16"><code>Int16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint16"><code>Uint16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int8"><code>Int8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8c"><code>Uint8ClampedArray</code></a></li></ul></li><li><p>The implementation provides basic support for custom typed arrays and sets the <code>type</code> field to the closest known typed array type.</p><pre><code class="hljs language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Float64Array</span>() </span>{
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"> data </span>)</span> {
         <span class="hljs-built_in">super</span>( data );
     }
@@ -18,7 +18,7 @@
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> CustomArray( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
 
-<span class="hljs-keyword">var</span> json = toJSON( arr );
+<span class="hljs-keyword">var</span> json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Float64Array',
@@ -36,10 +36,11 @@
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
 <span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
 <span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
-<span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
+<span class="hljs-keyword">var</span> BooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/bool'</span> );
+<span class="hljs-keyword">var</span> typedarray2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
-<span class="hljs-keyword">var</span> json = toJSON( arr );
+<span class="hljs-keyword">var</span> json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Float64Array',
@@ -48,7 +49,7 @@
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Float32Array',
@@ -57,7 +58,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Complex128Array',
@@ -66,7 +67,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Complex64Array',
@@ -74,8 +75,17 @@ json = toJSON( arr );
     }
 */</span>
 
+arr = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] );
+json = typedarray2json( arr );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'BooleanArray',
+        'data': [ 1, 0 ]
+    }
+*/</span>
+
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ -<span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Int32Array',
@@ -84,7 +94,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Uint32Array',
@@ -93,7 +103,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( [ -<span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Int16Array',
@@ -102,7 +112,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Uint16Array',
@@ -111,7 +121,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( [ -<span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Int8Array',
@@ -120,7 +130,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Uint8Array',
@@ -129,7 +139,7 @@ json = toJSON( arr );
 */</span>
 
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>( [ <span class="hljs-number">5</span>, <span class="hljs-number">3</span> ] );
-json = toJSON( arr );
+json = typedarray2json( arr );
 <span class="hljs-comment">/* returns
     {
         'type': 'Uint8ClampedArray',

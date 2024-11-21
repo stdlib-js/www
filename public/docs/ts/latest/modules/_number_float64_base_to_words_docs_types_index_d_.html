@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -94,107 +94,44 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_number_float64_base_to_words_docs_types_index_d_.html#towords" class="tsd-kind-icon">to<wbr>Words</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_number_float64_base_to_words_docs_types_index_d_.towords.html" class="tsd-kind-icon">To<wbr>Words</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_number_float64_base_to_words_docs_types_index_d_.html#towords-1" class="tsd-kind-icon">to<wbr>Words</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="towords" class="tsd-anchor"></a>
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="towords-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagExport assignment">Export assignment</span> to<wbr>Words</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Words<span class="tsd-signature-symbol">(</span>out<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Words<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts#L43">lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts:43</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>out: <a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">ArrayLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>output array</p>
-									</div>
-								</li>
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>input value</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns
-								<a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">
-									ArrayLike
-								</a>
-								<span class="tsd-signature-symbol">&lt;</span>
-								<span class="tsd-signature-type">number</span>
-								<span class="tsd-signature-symbol">&gt;</span>
-							</h4>
-							<p>output array</p>
-							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/array/uint32`</span> );
-
-<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( <span class="hljs-number">2</span> );
-
-<span class="hljs-keyword">var</span> w = toWords( out, <span class="hljs-number">3.14e201</span> );
-<span class="hljs-comment">// returns &lt;Uint32Array&gt;[ 1774486211, 2479577218 ]</span>
-
-<span class="hljs-keyword">var</span> bool = ( w === out );
-<span class="hljs-comment">// returns true</span></code></pre>
-							</div>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts#L55">lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts:55</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>input value</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns
-								<a href="../interfaces/_types_index_d_.__stdlib_types_array_.arraylike.html" class="tsd-signature-type">
-									ArrayLike
-								</a>
-								<span class="tsd-signature-symbol">&lt;</span>
-								<span class="tsd-signature-type">number</span>
-								<span class="tsd-signature-symbol">&gt;</span>
-							</h4>
-							<p>output array</p>
-							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> w = toWords( <span class="hljs-number">3.14e201</span> );
-<span class="hljs-comment">// returns [ 1774486211, 2479577218 ]</span></code></pre>
-							</div>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>Words<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_number_float64_base_to_words_docs_types_index_d_.towords.html" class="tsd-signature-type">ToWords</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts#L74">lib/node_modules/@stdlib/number/float64/base/to-words/docs/types/index.d.ts:74</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>input value</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>output array</p>
+							</dd>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -211,8 +148,11 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_number_float64_base_to_words_docs_types_index_d_.html#towords" class="tsd-kind-icon">to<wbr>Words</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_number_float64_base_to_words_docs_types_index_d_.towords.html" class="tsd-kind-icon">To<wbr>Words</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="_number_float64_base_to_words_docs_types_index_d_.html#towords-1" class="tsd-kind-icon">to<wbr>Words</a>
 					</li>
 				</ul>
 			</nav>
@@ -279,13 +219,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

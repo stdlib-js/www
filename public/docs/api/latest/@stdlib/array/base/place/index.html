@@ -1,0 +1,45 @@
+<h1 id="place">place</h1><blockquote><p>Replace elements of an array with provided values according to a provided mask array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> place = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/place'</span> );
+</code></pre><h4 id="place-x-mask-values-mode-">place( x, mask, values, mode )</h4><p>Replaces elements of an array with provided values according to a provided mask array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = place( x, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">20</span>, <span class="hljs-number">40</span> ], <span class="hljs-string">'strict'</span> );
+<span class="hljs-comment">// returns [ 1, 20, 3, 40 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>mask</strong>: mask array.</li><li><strong>values</strong>: values to set.</li><li><strong>mode</strong>: string specifying behavior when the number of <code>values</code> does not equal the number of truthy <code>mask</code> values.</li></ul><p>The function supports the following modes:</p><ul><li><code>'strict'</code>: specifies that the function must raise an exception when the number of <code>values</code> does not <strong>exactly</strong> equal the number of truthy <code>mask</code> values.</li><li><code>'non_strict'</code>: specifies that the function must raise an exception when the function is provided insufficient <code>values</code> to satisfy the <code>mask</code> array.</li><li><code>'strict_broadcast'</code>: specifies that the function must broadcast a single-element <code>values</code> array and otherwise raise an exception when the number of <code>values</code> does not <strong>exactly</strong> equal the number of truthy <code>mask</code> values.</li><li><code>'broadcast'</code>: specifies that the function must broadcast a single-element <code>values</code> array and otherwise raise an exception when the function is provided insufficient <code>values</code> to satisfy the <code>mask</code> array.</li><li><code>'repeat'</code>: specifies that the function must reuse provided <code>values</code> when replacing elements in <code>x</code> in order to satisfy the <code>mask</code> array.</li></ul><p>In broadcasting modes, the function supports broadcasting a <code>values</code> array containing a single element against the number of truthy values in the <code>mask</code> array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = place( x, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">20</span> ], <span class="hljs-string">'strict_broadcast'</span> );
+<span class="hljs-comment">// returns [ 1, 20, 3, 20 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>In repeat mode, the function supports recycling elements in a <code>values</code> array to satisfy the number of truthy values in the <code>mask</code> array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = place( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">20</span>, <span class="hljs-number">40</span> ], <span class="hljs-string">'repeat'</span> );
+<span class="hljs-comment">// returns [ 20, 40, 3, 20 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function mutates the input array <code>x</code>.</li><li>If a <code>mask</code> array element is truthy, the corresponding element in <code>x</code> is <strong>replaced</strong>; otherwise, the corresponding element in <code>x</code> is "masked" and thus left unchanged.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> place = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/place'</span> );
+
+<span class="hljs-comment">// Generate a linearly spaced array:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate a random mask array:</span>
+<span class="hljs-keyword">var</span> N = discreteUniform( <span class="hljs-number">5</span>, <span class="hljs-number">15</span> );
+<span class="hljs-keyword">var</span> mask = filledBy( N, bernoulli.factory( <span class="hljs-number">0.3</span> ) );
+<span class="hljs-built_in">console</span>.log( mask );
+
+<span class="hljs-comment">// Generate an array of random values:</span>
+<span class="hljs-keyword">var</span> values = filledBy( N, discreteUniform.factory( <span class="hljs-number">1000</span>, <span class="hljs-number">2000</span> ) );
+<span class="hljs-built_in">console</span>.log( values );
+
+<span class="hljs-comment">// Update a random sample of elements in `x`:</span>
+<span class="hljs-keyword">var</span> out = place( x, mask, values, <span class="hljs-string">'non_strict'</span> );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

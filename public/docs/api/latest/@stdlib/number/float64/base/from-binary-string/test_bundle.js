@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float64array-support":14}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float64array-support":14}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -240,7 +240,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -258,7 +258,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":5,"./uint16array.js":6,"@stdlib/assert/has-uint16array-support":22}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-uint16array-support":22}],5:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -297,36 +327,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],6:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],7:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -363,7 +363,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":8,"./uint32array.js":9,"@stdlib/assert/has-uint32array-support":25}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-uint32array-support":25}],8:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -420,36 +450,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],9:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -486,7 +486,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":11,"./uint8array.js":12,"@stdlib/assert/has-uint8array-support":28}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-uint8array-support":28}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],12:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -542,36 +572,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],12:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],13:[function(require,module,exports){
 /**
@@ -753,12 +753,12 @@ module.exports = hasFloat64ArraySupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":17}],17:[function(require,module,exports){
 /**
@@ -861,12 +861,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":19}],19:[function(require,module,exports){
 /**
@@ -947,12 +947,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":21}],21:[function(require,module,exports){
 /**
@@ -1116,7 +1116,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":24,"@stdlib/assert/is-uint16array":83,"@stdlib/constants/uint16/max":102}],24:[function(require,module,exports){
+},{"./uint16array.js":24,"@stdlib/assert/is-uint16array":83,"@stdlib/constants/uint16/max":108}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1257,7 +1257,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":27,"@stdlib/assert/is-uint32array":85,"@stdlib/constants/uint32/max":103}],27:[function(require,module,exports){
+},{"./uint32array.js":27,"@stdlib/assert/is-uint32array":85,"@stdlib/constants/uint32/max":109}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1398,7 +1398,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":30,"@stdlib/assert/is-uint8array":87,"@stdlib/constants/uint8/max":104}],30:[function(require,module,exports){
+},{"./uint8array.js":30,"@stdlib/assert/is-uint8array":87,"@stdlib/constants/uint8/max":110}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1602,7 +1602,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":232}],34:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],34:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1672,7 +1672,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":16,"@stdlib/assert/is-array":35,"@stdlib/assert/is-enumerable-property":48,"@stdlib/constants/uint32/max":103,"@stdlib/math/base/assert/is-integer":109}],35:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":16,"@stdlib/assert/is-array":35,"@stdlib/assert/is-enumerable-property":48,"@stdlib/constants/uint32/max":109,"@stdlib/math/base/assert/is-integer":115}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1710,12 +1710,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":36}],36:[function(require,module,exports){
 /**
@@ -1782,7 +1782,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":232}],37:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1809,6 +1809,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -1818,7 +1819,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -1828,7 +1829,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -1841,22 +1842,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":38,"./object.js":39,"./primitive.js":40,"@stdlib/utils/define-nonenumerable-read-only-property":201}],38:[function(require,module,exports){
+},{"./main.js":38,"./object.js":39,"./primitive.js":40,"@stdlib/utils/define-nonenumerable-read-only-property":218}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1900,10 +1901,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -1941,6 +1946,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -1962,6 +1968,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -1983,7 +1991,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":42,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/utils/native-class":232}],40:[function(require,module,exports){
+},{"./try2serialize.js":42,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/boolean/ctor":91,"@stdlib/utils/native-class":248}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2019,6 +2027,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -2147,12 +2157,12 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":44}],44:[function(require,module,exports){
 /**
@@ -2264,12 +2274,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":46}],46:[function(require,module,exports){
 /**
@@ -2330,7 +2340,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":91,"@stdlib/math/base/assert/is-integer":109}],47:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":93,"@stdlib/math/base/assert/is-integer":115}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2425,12 +2435,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2674,7 +2684,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":232}],53:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2739,22 +2749,22 @@ module.exports = isFloat64Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":55,"./object.js":56,"./primitive.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":201}],54:[function(require,module,exports){
+},{"./main.js":55,"./object.js":56,"./primitive.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":218}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2804,7 +2814,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-integer":109}],55:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-integer":115}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3194,22 +3204,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":62,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-nonenumerable-read-only-property":201}],62:[function(require,module,exports){
+},{"./main.js":62,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-nonenumerable-read-only-property":218}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3324,7 +3334,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":69,"@stdlib/math/base/assert/is-nan":111}],64:[function(require,module,exports){
+},{"@stdlib/assert/is-number":69,"@stdlib/math/base/assert/is-nan":117}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3383,7 +3393,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":69,"@stdlib/math/base/assert/is-nan":111}],65:[function(require,module,exports){
+},{"@stdlib/assert/is-number":69,"@stdlib/math/base/assert/is-nan":117}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3449,22 +3459,22 @@ module.exports = isnan;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":66,"./object.js":67,"./primitive.js":68,"@stdlib/utils/define-nonenumerable-read-only-property":201}],66:[function(require,module,exports){
+},{"./main.js":66,"./object.js":67,"./primitive.js":68,"@stdlib/utils/define-nonenumerable-read-only-property":218}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3702,22 +3712,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":70,"./object.js":71,"./primitive.js":72,"@stdlib/utils/define-nonenumerable-read-only-property":201}],70:[function(require,module,exports){
+},{"./main.js":70,"./object.js":71,"./primitive.js":72,"@stdlib/utils/define-nonenumerable-read-only-property":218}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3845,7 +3855,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":74,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/number/ctor":140,"@stdlib/utils/native-class":232}],72:[function(require,module,exports){
+},{"./try2serialize.js":74,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/number/ctor":146,"@stdlib/utils/native-class":248}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3929,7 +3939,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":140}],74:[function(require,module,exports){
+},{"@stdlib/number/ctor":146}],74:[function(require,module,exports){
 arguments[4][42][0].apply(exports,arguments)
 },{"./tostring.js":73,"dup":42}],75:[function(require,module,exports){
 /**
@@ -3983,19 +3993,24 @@ arguments[4][42][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":76,"@stdlib/assert/tools/array-function":90,"@stdlib/utils/define-nonenumerable-read-only-property":201}],76:[function(require,module,exports){
+},{"./main.js":76,"@stdlib/assert/tools/array-function":89,"@stdlib/utils/define-nonenumerable-read-only-property":218}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4106,22 +4121,22 @@ module.exports = isObjectLike;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":78,"./object.js":79,"./primitive.js":80,"@stdlib/utils/define-nonenumerable-read-only-property":201}],78:[function(require,module,exports){
+},{"./main.js":78,"./object.js":79,"./primitive.js":80,"@stdlib/utils/define-nonenumerable-read-only-property":218}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4240,7 +4255,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":81,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/utils/native-class":232}],80:[function(require,module,exports){
+},{"./try2valueof.js":81,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/utils/native-class":248}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4466,7 +4481,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":232}],85:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4570,7 +4585,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":232}],87:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4674,7 +4689,58 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":232}],89:[function(require,module,exports){
+},{"@stdlib/utils/native-class":248}],89:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":90}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4761,11 +4827,11 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":35,"@stdlib/string/format":190}],90:[function(require,module,exports){
+},{"@stdlib/assert/is-array":35,"@stdlib/string/format":205}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -4783,36 +4849,92 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":89}],91:[function(require,module,exports){
+},{"./main.js":92}],92:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4863,7 +4985,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],92:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4923,7 +5045,65 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],93:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-abs-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for excluding the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483647 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 11111111111 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x7fffffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_ABS_MASK = 0x7fffffff>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_ABS_MASK;
+
+},{}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4981,7 +5161,123 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],94:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-sign-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+* // returns 2147483648
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483648 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 1 00000000000 00000000000000000000
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x80000000
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGN_MASK = 0x80000000>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGN_MASK;
+
+},{}],98:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-significand-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+* // returns 1048575
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the significand of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 1048575 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 00000000000 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x000fffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
+
+},{}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5034,7 +5330,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],95:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5090,7 +5386,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],96:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5146,7 +5442,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],97:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5205,7 +5501,7 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],98:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5261,7 +5557,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],99:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5323,7 +5619,56 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":140}],100:[function(require,module,exports){
+},{"@stdlib/number/ctor":146}],105:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/num-high-word-significand-bits
+* @type {integer32}
+*
+* @example
+* var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
+* // returns 20
+*/
+
+
+// MAIN //
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @constant
+* @type {integer32}
+* @default 20
+*/
+var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = 20|0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS;
+
+},{}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5381,7 +5726,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],101:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5445,7 +5790,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],102:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5508,7 +5853,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],103:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5571,7 +5916,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],104:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5634,7 +5979,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],105:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5678,14 +6023,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":106}],106:[function(require,module,exports){
+},{"./main.js":112}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5744,7 +6089,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":109}],107:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":115}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5788,14 +6133,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInfinite = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInfinite;
+module.exports = main;
 
-},{"./main.js":108}],108:[function(require,module,exports){
+},{"./main.js":114}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5855,7 +6200,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100}],109:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5893,14 +6238,14 @@ module.exports = isInfinite;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":110}],110:[function(require,module,exports){
+},{"./main.js":116}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5951,7 +6296,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":123}],111:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":129}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5989,14 +6334,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":112}],112:[function(require,module,exports){
+},{"./main.js":118}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6042,7 +6387,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],113:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6080,14 +6425,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var isNegativeZero = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNegativeZero;
+module.exports = main;
 
-},{"./main.js":114}],114:[function(require,module,exports){
+},{"./main.js":120}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6138,7 +6483,7 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/constants/float64/ninf":99}],115:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":104}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6160,7 +6505,7 @@ module.exports = isNegativeZero;
 'use strict';
 
 /**
-* Test if a finite numeric value is an odd number.
+* Test if a finite double-precision floating-point number is an odd number.
 *
 * @module @stdlib/math/base/assert/is-odd
 *
@@ -6182,14 +6527,14 @@ module.exports = isNegativeZero;
 
 // MODULES //
 
-var isOdd = require( './is_odd.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isOdd;
+module.exports = main;
 
-},{"./is_odd.js":116}],116:[function(require,module,exports){
+},{"./main.js":122}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6218,7 +6563,7 @@ var isEven = require( '@stdlib/math/base/assert/is-even' );
 // MAIN //
 
 /**
-* Tests if a finite numeric value is an odd number.
+* Tests if a finite double-precision floating-point number is an odd number.
 *
 * @param {number} x - value to test
 * @returns {boolean} boolean indicating whether the value is an odd number
@@ -6252,7 +6597,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":105}],117:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":111}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6299,14 +6644,14 @@ module.exports = isOdd;
 
 // MODULES //
 
-var abs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = abs;
+module.exports = main;
 
-},{"./main.js":118}],118:[function(require,module,exports){
+},{"./main.js":124}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6364,7 +6709,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],119:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6408,14 +6753,14 @@ module.exports = abs;
 
 // MODULES //
 
-var ceil = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ceil;
+module.exports = main;
 
-},{"./main.js":120}],120:[function(require,module,exports){
+},{"./main.js":126}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6467,7 +6812,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],121:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6521,7 +6866,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":122}],122:[function(require,module,exports){
+},{"./main.js":128}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6544,18 +6889,14 @@ module.exports = main;
 
 // MODULES //
 
+var SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
-
-// 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000>>>0; // asm type annotation
-
-// 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff|0; // asm type annotation
 
 // High/low words workspace:
 var WORDS = [ 0, 0 ];
@@ -6595,11 +6936,11 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
-	hx &= MAGNITUDE_MASK;
+	hx &= ABS_MASK;
 
 	// Extract the higher order word from `y`:
 	hy = getHighWord( y );
@@ -6619,7 +6960,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/number/float64/base/from-words":152,"@stdlib/number/float64/base/get-high-word":156,"@stdlib/number/float64/base/to-words":171}],123:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":95,"@stdlib/constants/float64/high-word-sign-mask":97,"@stdlib/number/float64/base/from-words":158,"@stdlib/number/float64/base/get-high-word":162,"@stdlib/number/float64/base/to-words":178}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6663,14 +7004,14 @@ module.exports = copysign;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":124}],124:[function(require,module,exports){
+},{"./main.js":130}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6722,7 +7063,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],125:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6782,7 +7123,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":126}],126:[function(require,module,exports){
+},{"./main.js":132}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6821,7 +7162,7 @@ var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/constants/float64/min-base2-expon
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/number/float64/base/normalize' );
+var normalize = require( '@stdlib/number/float64/base/normalize' ).assign;
 var floatExp = require( '@stdlib/number/float64/base/exponent' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
@@ -6836,10 +7177,10 @@ var TWO52_INV = 2.220446049250313e-16;
 var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
 
 // Normalization workspace:
-var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var FRAC = [ 0.0, 0.0 ];
 
 // High/low words workspace:
-var WORDS = [ 0, 0 ]; // WARNING: not thread safe
+var WORDS = [ 0, 0 ];
 
 
 // MAIN //
@@ -6891,7 +7232,7 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	normalize( FRAC, frac );
+	normalize( frac, FRAC, 1, 0 );
 	frac = FRAC[ 0 ];
 	exp += FRAC[ 1 ];
 
@@ -6916,7 +7257,7 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	toWords( WORDS, frac );
+	toWords.assign( frac, WORDS, 1, 0 );
 	high = WORDS[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
@@ -6934,7 +7275,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/constants/float64/exponent-bias":92,"@stdlib/constants/float64/max-base2-exponent":96,"@stdlib/constants/float64/max-base2-exponent-subnormal":95,"@stdlib/constants/float64/min-base2-exponent-subnormal":98,"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-infinite":107,"@stdlib/math/base/assert/is-nan":111,"@stdlib/math/base/special/copysign":121,"@stdlib/number/float64/base/exponent":142,"@stdlib/number/float64/base/from-words":152,"@stdlib/number/float64/base/normalize":158,"@stdlib/number/float64/base/to-words":171}],127:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/max-base2-exponent":101,"@stdlib/constants/float64/max-base2-exponent-subnormal":100,"@stdlib/constants/float64/min-base2-exponent-subnormal":103,"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-infinite":113,"@stdlib/math/base/assert/is-nan":117,"@stdlib/math/base/special/copysign":127,"@stdlib/number/float64/base/exponent":148,"@stdlib/number/float64/base/from-words":158,"@stdlib/number/float64/base/normalize":165,"@stdlib/number/float64/base/to-words":178}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6990,14 +7331,14 @@ module.exports = ldexp;
 
 // MODULES //
 
-var pow = require( './pow.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = pow;
+module.exports = main;
 
-},{"./pow.js":133}],128:[function(require,module,exports){
+},{"./main.js":136}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7038,6 +7379,7 @@ var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalL = require( './polyval_l.js' );
 
 
@@ -7057,9 +7399,6 @@ var HIGH_BIASED_EXP_NEG_512 = 0x20000000|0; // asm type annotation
 
 // 0x00080000 = 524288 => 0 00000000000 10000000000000000000
 var HIGH_SIGNIFICAND_HALF = 0x00080000|0; // asm type annotation
-
-// TODO: consider making an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 var TWO53 = 9007199254740992.0;	// 0x43400000, 0x00000000
 
@@ -7213,7 +7552,7 @@ function log2ax( out, ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"./polyval_l.js":130,"@stdlib/constants/float64/exponent-bias":92,"@stdlib/number/float64/base/get-high-word":156,"@stdlib/number/float64/base/set-high-word":162,"@stdlib/number/float64/base/set-low-word":164}],129:[function(require,module,exports){
+},{"./polyval_l.js":137,"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/num-high-word-significand-bits":105,"@stdlib/number/float64/base/get-high-word":162,"@stdlib/number/float64/base/set-high-word":168,"@stdlib/number/float64/base/set-low-word":170}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7306,157 +7645,7 @@ function logx( out, ax ) {
 
 module.exports = logx;
 
-},{"./polyval_w.js":132,"@stdlib/number/float64/base/set-low-word":164}],130:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5999999999999946;
-	}
-	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],131:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.16666666666666602;
-	}
-	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],132:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5;
-	}
-	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],133:[function(require,module,exports){
+},{"./polyval_w.js":139,"@stdlib/number/float64/base/set-low-word":170}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7504,6 +7693,7 @@ var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var NINF = require( '@stdlib/constants/float64/ninf' );
 var PINF = require( '@stdlib/constants/float64/pinf' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var xIsZero = require( './x_is_zero.js' );
 var yIsHuge = require( './y_is_huge.js' );
 var yIsInfinite = require( './y_is_infinite.js' );
@@ -7513,9 +7703,6 @@ var pow2 = require( './pow2.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -7547,10 +7734,10 @@ var TINY = 1.0e-300;
 var OVT = 8.0085662595372944372e-17;
 
 // High/low words workspace:
-var WORDS = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var WORDS = [ 0|0, 0|0 ];
 
 // Log workspace:
-var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var LOG_WORKSPACE = [ 0.0, 0.0 ];
 
 
 // MAIN //
@@ -7618,7 +7805,6 @@ var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
 * -   \\(\operatorname{pow}(x,y)\\) returns \\(x^y\\) nearly rounded. In particular, \\(\operatorname{pow}(<\mathrm{integer}>,<\mathrm{integer}>)\\) **always** returns the correct integer, provided the value is representable.
 * -   The hexadecimal values shown in the source code are the intended values for used constants. Decimal values may be used, provided the compiler will accurately convert decimal to binary in order to produce the hexadecimal values.
 *
-*
 * @param {number} x - base
 * @param {number} y - exponent
 * @returns {number} function value
@@ -7676,7 +7862,7 @@ function pow( x, y ) {
 		return NaN;
 	}
 	// Split `y` into high and low words:
-	toWords( WORDS, y );
+	toWords.assign( y, WORDS, 1, 0 );
 	hy = WORDS[ 0 ];
 	ly = WORDS[ 1 ];
 
@@ -7712,7 +7898,7 @@ function pow( x, y ) {
 		}
 	}
 	// Split `x` into high and low words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 	lx = WORDS[ 1 ];
 
@@ -7806,7 +7992,7 @@ function pow( x, y ) {
 	z = lp + hp;
 
 	// Note: *can* be more performant to use `getHighWord` and `getLowWord` directly, but using `toWords` looks cleaner.
-	toWords( WORDS, z );
+	toWords.assign( z, WORDS, 1, 0 );
 	j = uint32ToInt32( WORDS[0] );
 	i = uint32ToInt32( WORDS[1] );
 
@@ -7826,11 +8012,11 @@ function pow( x, y ) {
 	else if ( (j&ABS_MASK) >= HIGH_1075 ) {
 		// z < -1075
 		if ( ((j-HIGH_NEG_1075)|i) !== 0 ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 		if ( lp <= (z-hp) ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 	}
@@ -7845,7 +8031,154 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":128,"./logx.js":129,"./pow2.js":134,"./x_is_zero.js":135,"./y_is_huge.js":136,"./y_is_infinite.js":137,"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-infinite":107,"@stdlib/math/base/assert/is-integer":109,"@stdlib/math/base/assert/is-nan":111,"@stdlib/math/base/assert/is-odd":115,"@stdlib/math/base/special/abs":117,"@stdlib/math/base/special/sqrt":138,"@stdlib/number/float64/base/set-low-word":164,"@stdlib/number/float64/base/to-words":171,"@stdlib/number/uint32/base/to-int32":175}],134:[function(require,module,exports){
+},{"./log2ax.js":134,"./logx.js":135,"./pow2.js":140,"./x_is_zero.js":141,"./y_is_huge.js":142,"./y_is_infinite.js":143,"@stdlib/constants/float64/high-word-abs-mask":95,"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-infinite":113,"@stdlib/math/base/assert/is-integer":115,"@stdlib/math/base/assert/is-nan":117,"@stdlib/math/base/assert/is-odd":121,"@stdlib/math/base/special/abs":123,"@stdlib/math/base/special/sqrt":144,"@stdlib/number/float64/base/set-low-word":170,"@stdlib/number/float64/base/to-words":178,"@stdlib/number/uint32/base/to-int32":181}],137:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5999999999999946;
+	}
+	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],138:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.16666666666666602;
+	}
+	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],139:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5;
+	}
+	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7889,25 +8222,19 @@ var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var ldexp = require( '@stdlib/math/base/special/ldexp' );
 var LN2 = require( '@stdlib/constants/float64/ln-two' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+var HIGH_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalP = require( './polyval_p.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
-
-// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var HIGH_SIGNIFICAND_MASK = 0x000fffff|0; // asm type annotation
 
 // 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
 var HIGH_MIN_NORMAL_EXP = 0x00100000|0; // asm type annotation
 
 // 0x3fe00000 = 1071644672 => 0 01111111110 00000000000000000000 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_BIASED_EXP_NEG_1 = 0x3fe00000|0; // asm type annotation
-
-// TODO: consider making into an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 // High: LN2
 var LN2_HI = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
@@ -7988,7 +8315,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"./polyval_p.js":131,"@stdlib/constants/float64/exponent-bias":92,"@stdlib/constants/float64/ln-two":94,"@stdlib/math/base/special/ldexp":125,"@stdlib/number/float64/base/get-high-word":156,"@stdlib/number/float64/base/set-high-word":162,"@stdlib/number/float64/base/set-low-word":164,"@stdlib/number/uint32/base/to-int32":175}],135:[function(require,module,exports){
+},{"./polyval_p.js":138,"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/high-word-abs-mask":95,"@stdlib/constants/float64/high-word-significand-mask":98,"@stdlib/constants/float64/ln-two":99,"@stdlib/constants/float64/num-high-word-significand-bits":105,"@stdlib/math/base/special/ldexp":131,"@stdlib/number/float64/base/get-high-word":162,"@stdlib/number/float64/base/set-high-word":168,"@stdlib/number/float64/base/set-low-word":170,"@stdlib/number/uint32/base/to-int32":181}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8090,7 +8417,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-odd":115,"@stdlib/math/base/special/copysign":121}],136:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-odd":121,"@stdlib/math/base/special/copysign":127}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8127,13 +8454,11 @@ module.exports = pow;
 
 // MODULES //
 
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -8169,19 +8494,19 @@ function pow( x, y ) {
 
 	if ( ahx <= HIGH_MAX_NEAR_UNITY ) {
 		if ( y < 0 ) {
-			// signal overflow...
+			// Signal overflow...
 			return HUGE * HUGE;
 		}
-		// signal underflow...
+		// Signal underflow...
 		return TINY * TINY;
 	}
 	// `x` has a biased exponent greater than or equal to `0`...
 
 	if ( y > 0 ) {
-		// signal overflow...
+		// Signal overflow...
 		return HUGE * HUGE;
 	}
-	// signal underflow...
+	// Signal underflow...
 	return TINY * TINY;
 }
 
@@ -8190,7 +8515,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/number/float64/base/get-high-word":156}],137:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":95,"@stdlib/number/float64/base/get-high-word":162}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8280,7 +8605,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/special/abs":117}],138:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/special/abs":123}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8327,14 +8652,14 @@ module.exports = pow;
 
 // MODULES //
 
-var sqrt = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = sqrt;
+module.exports = main;
 
-},{"./main.js":139}],139:[function(require,module,exports){
+},{"./main.js":145}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8387,7 +8712,7 @@ var sqrt = Math.sqrt; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = sqrt;
 
-},{}],140:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8422,14 +8747,14 @@ module.exports = sqrt;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":141}],141:[function(require,module,exports){
+},{"./main.js":147}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8454,7 +8779,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],142:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8498,14 +8823,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var exponent = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = exponent;
+module.exports = main;
 
-},{"./main.js":143}],143:[function(require,module,exports){
+},{"./main.js":149}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8573,7 +8898,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/constants/float64/exponent-bias":92,"@stdlib/constants/float64/high-word-exponent-mask":93,"@stdlib/number/float64/base/get-high-word":156}],144:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/high-word-exponent-mask":96,"@stdlib/number/float64/base/get-high-word":162}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8645,14 +8970,14 @@ module.exports = exponent;
 
 // MODULES //
 
-var fromBinaryString = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromBinaryString;
+module.exports = main;
 
-},{"./main.js":145}],145:[function(require,module,exports){
+},{"./main.js":151}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8786,7 +9111,7 @@ function fromBinaryString( bstr ) {
 
 module.exports = fromBinaryString;
 
-},{"./todouble.js":146,"@stdlib/constants/float64/exponent-bias":92,"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/special/pow":127,"@stdlib/string/format":190}],146:[function(require,module,exports){
+},{"./todouble.js":152,"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/special/pow":133,"@stdlib/string/format":205}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8837,15 +9162,19 @@ function toDouble( frac ) {
 
 module.exports = toDouble;
 
-},{"@stdlib/math/base/special/pow":127}],147:[function(require,module,exports){
+},{"@stdlib/math/base/special/pow":133}],153:[function(require,module,exports){
 module.exports={"0100000010001101001000110011111010011001101100111010100001110110":932.4055666003976,"0100000001111110100100010000110010111001010000011010011101110001":489.065606361829,"0100000001111100001101001010110100001010101100000001100001101110":451.29224652087476,"1100000010000111011011000000011000011011011110111010110010001000":-749.5029821073558,"0100000001100111100110111011110011010001101011111001011000100100":188.86679920477138,"0100000010001010011001110111000101111110101110100100011000111100":844.9304174950298,"1100000001001111110011110010010000100010100110111011110011010010":-63.618290258449306,"1100000010001011001001100100110001010111100010011110110010101001":-868.7872763419483,"0100000010001011011001011110101010011111110011110010010000100011":876.7395626242545,"1100000010000101111111100011011111111011111011011010110110001101":-703.7773359840954,"0100000010001011010101100000001100001101101111011101011001000100":874.7514910536779,"1100000010001101110000100100101001001110011000001011001100100110":-952.286282306163,"1100000010001001100010001100011110000001110010000000010000010010":-817.0974155069582,"1100000001111001000110010111001010000011010011101110001011111101":-401.5904572564612,"1100000010001000101010100001110110000100110101011100000111101001":-789.2644135188867,"1100000001110100001000010001010011011101111001101000110101111101":-322.0675944333996,"0100000001010011111000010111011010010101101000010101011000000011":79.52286282306163,"0100000010001011000101100110010011000101011110001001111011001011":866.7992047713718,"1100000001101110100100010000110010111001010000011010011101110001":-244.5328031809145,"1100000010001010011101110101100100010000110010111001010000011010":-846.9184890656063,"0100000001101110110100001010101100000001100001101101111011101011":246.52087475149105,"0100000010000101111111100011011111111011111011011010110110001101":703.7773359840954,"1100000001011001110110000100110101011100000111101000100101101010":-103.37972166998011,"0100000001101000000110101111100101100010001110100000010100010111":192.84294234592446,"0100000001111101011100101100010001110100000010100010110111001110":471.17296222664015,"1100000001110110010111011010010101101000010101011000000011000011":-357.8528827037773,"1100000010000101100011101110001011111101011101001000110001111000":-689.8608349900596,"0100000010001010111101101001010110100001010101100000001100001110":862.8230616302187,"1100000001111011100101011010000101010110000000110000110110111110":-441.35188866799206,"1100000010000110000111100000011100100000000100000100100101001010":-707.7534791252485,"1100000010001001000110010111001010000011010011101110001011111101":-803.1809145129224,"1100000001101001100110001010111100010011110110010101000111110001":-204.7713717693837,"1100000010000110101111010001001011010100101111010101001111111010":-727.6341948310139,"0100000001111111110011110010010000100010100110111011110011010010":508.94632206759445,"0100000001110110110111001110000111111000110111111110111110110111":365.8051689860835,"1100000010001100001101001010110100001010101100000001100001101110":-902.5844930417495,"0100000001101010000101111110101110100100011000111100000011100100":208.74751491053678,"1100000010001000111010011011101111001101000110101111100101100010":-797.2166998011928,"1100000001000010111000101111110101110100100011000111100000011101":-37.77335984095428,"1100000010000101011011110001001111011001010100011111000010111011":-685.8846918489065,"0100000001111001000110010111001010000011010011101110001011111101":401.5904572564612,"0100000000110111110110110101101100011001111101001100110110011101":23.856858846918488,"1100000010000000010001101111111101111101101101011011000110011111":-520.8747514910536,"1100000001100000001001110011000001011001100100110001010111100010":-129.22465208747514,"1100000010000111001111000100111101100101010001111100001011101101":-743.5387673956262,"1100000001111000110110011101010000111011000010011010101110000100":-397.61431411530816,"0100000001110000000001110110000100110101011100000111101000100110":256.4612326043738,"1100000010001100110000111101000100101101010010111101010101000000":-920.4771371769384,"1100000010000000011101101011011000110011111010011001101100111011":-526.8389662027834,"1100000001110010101000110101111100101100010001110100000010100011":-298.2107355864811,"0100000001001110110100001010101100000001100001101101111011101011":61.63021868787276,"0100000010000111100110111011110011010001101011111001011000100100":755.4671968190855,"0100000001111000110110011101010000111011000010011010101110000100":397.61431411530816,"1100000010001001110010000110010111001010000011010011101110001100":-825.0497017892644,"0100000001100011111000010111011010010101101000010101011000000011":159.04572564612326,"1100000010000011100000100000100100101001001110011000001011001101":-624.2544731610338,"0100000001010000111001100000101100110010011000101011110001001111":67.59443339960238,"0100000010001001101110000111111000110111111110111110110110101110":823.0616302186879,"1100000010000101001111110101110100100011000111100000011100100000":-679.9204771371769,"1100000001110101010111110010110001000111010000001010001011011101":-341.948310139165,"0100000010000010001001000010001010011011101111001101000110110000":580.51689860835,"0100000001110111001111000100111101100101010001111100001011101101":371.7693836978131,"1100000001000100110111111110111110110110101101100011001111101010":-41.74950298210736,"1100000010000111110010110111001110000111111000110111111110111111":-761.4314115308151,"1100000001110111000111001000000001000001001001010010011100110000":-369.78131212723656,"0100000001111101000100110101011100000111101000100101101010011000":465.20874751491056,"1100000010001001111110000001110010000000010000010010010100100111":-831.013916500994,"0100000001100111110110110101101100011001111101001100110110011101":190.8548707753479,"1100000001111000011110100110011011001110101000011101100001001101":-391.6500994035785,"1100000001101101010100101111010101001111111001111001001000010001":-234.5924453280318,"0100000001111010101101101111011101011001000100001100101110010100":427.43538767395626,"1100000010000010110000110010111001010000011010011101110001100000":-600.3976143141153,"0100000010000101110111100110100011010111110010110001000111010000":699.8011928429423,"1100000010001111001000000011000011011011110111010110010001000011":-996.0238568588469,"1100000010000010111100101110010100000110100111011100010111111011":-606.3618290258449,"1100000001111110011100010011110110010101000111110000101110110101":-487.0775347912525,"1100000010001101010000110000110110111101110101100100010000110011":-936.3817097415507,"0100000001101101010100101111010101001111111001111001001000010001":234.5924453280318,"1100000001010011011000100011101000000101000101101110011100010000":-77.53479125248509,"1100000001111111101011110101010011111110011110010010000100010101":-506.9582504970179,"0100000010000001011001010100011111000010111011010010101101000011":556.6600397614314,"0100000010000000101101100101010001111100001011101101001010110100":534.7912524850894,"0100000001100001101001001110011000001011001100100110001010111100":141.15308151093438,"1100000010000111010011000011011011110111010110010001000011001100":-745.5268389662028,"1100000001110011000000101100110010011000101011110001001111011001":-304.1749502982107,"0100000010000010001101000000101000101101110011100001111110001110":582.5049701789264,"0100000001110010000001000101001101110111100110100011010111110011":288.2703777335984,"0100000010000111100010111101010100111111100111100100100001000101":753.4791252485089,"1100000001111101111100100000000100000100100101001001110011000001":-479.1252485089463,"1100000010001001001010010101101000010101011000000011000011011100":-805.168986083499,"1100000010000111001011000110011111010011001101100111010100001111":-741.5506958250497,"0100000001110111010111000001111010001001011010100101111010101010":373.75745526838966,"1100000001100101110111100110100011010111110010110001000111010000":-174.95029821073558,"1100000010001010010001111010001001011010100101111010101001111111":-840.9542743538767,"0100000001011001110110000100110101011100000111101000100101101010":103.37972166998011,"1100000010001001101110000111111000110111111110111110110110101110":-823.0616302186879,"0100000001111111100011111000010111011010010101101000010101011000":504.97017892644135,"0100000001100100011000001011001100100110001010111100010011110110":163.02186878727633,"1100000001111010100101110010100000110100111011100010111111010111":-425.4473161033797,"0100000001100111010111000001111010001001011010100101111010101010":186.87872763419483,"0100000010001001010010010010100100111001100000101100110010011001":809.1451292246521,"1100000001100110000111100000011100100000000100000100100101001010":-176.93836978131213,"1100000001100101100111101100101010001111100001011101101001010111":-172.96222664015906,"0100000010001000111010011011101111001101000110101111100101100010":797.2166998011928,"1100000010000101101011101011001000100001100101110010100000110101":-693.8369781312127,"1100000001110010010000111111000110111111110111110110110101101100":-292.24652087475147,"1100000010001110000000011110100010010110101001011110101010100000":-960.2385685884692,"0100000010001110101100001101101111011101011001000100001100101110":982.1073558648111,"0100000010000110011011011000110011111010011001101100111010100010":717.6938369781312,"0100000001111110101100001101101111011101011001000100001100101110":491.05367793240555,"1100000010001001011010001111100001011101101001010110100001010110":-813.1212723658052,"1100000001100011101000011101100001001101010111000001111010001001":-157.0576540755467,"0100000001111011100101011010000101010110000000110000110110111110":441.35188866799206,"0100000010000001100101001111111001111001001000010001010011011110":562.624254473161,"0100000010000100111011111101011101001000110001111000000111001000":669.9801192842942,"1100000010000110100111010100001110110000100110101011100000111101":-723.6580516898608,"0100000010001100110100111011100010111111010111010010001100011110":922.4652087475149,"0100000010000000011001101100111010100001110110000100110101011100":524.8508946322067,"0100000001000010111000101111110101110100100011000111100000011101":37.77335984095428,"1100000001100110010111011010010101101000010101011000000011000011":-178.92644135188866,"0100000010000111001111000100111101100101010001111100001011101101":743.5387673956262,"1100000001110111111110110010101000111110000101110110100101011010":-383.69781312127236,"0100000010000001010101010110000000110000110110111101110101100100":554.6719681908548,"0100000010001100010101000111110000101110110100101011010000101011":906.5606361829026,"0100000010001011111101010000111011000010011010101110000011110100":894.6322067594433,"1100000001111100100101000001101001110111000101111110101110100100":-457.25646123260435,"1100000001101011000101100110010011000101011110001001111011001011":-216.69980119284295,"0100000001111011111101010000111011000010011010101110000011110100":447.31610337972165,"1100000010000001111001001000010001010011011101111001101000110110":-572.5646123260437,"0100000010000101010011110100010010110101001011110101010011111110":681.9085487077534,"0100000010000101001111110101110100100011000111100000011100100000":679.9204771371769,"1100000001111111010011111110011110010010000100010100110111011110":-500.99403578528825,"0100000001100000011001101100111010100001110110000100110101011100":131.2127236580517,"1100000010000001101001001110011000001011001100100110001010111100":-564.6123260437375,"1100000010001111001100000001100001101101111011101011001000100010":-998.0119284294235,"0100000010001100010001001001010010011100110000010110011001001100":904.572564612326,"1100000001101010010101111000100111101100101010001111100001011110":-210.73558648111333,"1100000001110010100000111001000000001000001001001010010011100110":-296.22266401590457,"0100000001111010010101111000100111101100101010001111100001011110":421.47117296222666,"0100000001111110001100011001111101001100110110011101010000111011":483.1013916500994,"0100000001111110000100011101000000101000101101110011100001111110":481.11332007952285,"1100000001100001011001010100011111000010111011010010101101000011":-139.16500994035786,"0100000010000111101110111000101111110101110100100011000111100000":759.4433399602385,"0100000001111100111100111000011111100011011111111011111011011011":463.220675944334,"1100000010001010110001101101111011101011001000100001100101110011":-856.8588469184891,"1100000001111111011011111011011010110110001100111110100110011011":-502.9821073558648,"0100000001100010101000110101111100101100010001110100000010100011":149.10536779324056,"1100000001010110010111011010010101101000010101011000000011000011":-89.46322067594433,"0100000010000011000000101100110010011000101011110001001111011001":608.3499005964214,"1100000010000100101000000101000101101110011100001111110001110000":-660.0397614314115,"1100000010001100100101000001101001110111000101111110101110100100":-914.5129224652087,"1100000010000011001000101001101110111100110100011010111110010110":-612.3260437375745,"0100000010000111010011000011011011110111010110010001000011001100":745.5268389662028,"0100000010001010010101111000100111101100101010001111100001011110":842.9423459244533,"1100000001110101101111101001100110110011101010000111011000010011":-347.9125248508946,"1100000010001100001001001100010101111000100111101100101010010000":-900.596421471173,"1100000010000001011001010100011111000010111011010010101101000011":-556.6600397614314,"0100000010000110110011001111101001100110110011101010000111011000":729.6222664015904,"0100000001100001001001011010100101111010101001111111001111001001":137.1769383697813,"0100000010000010111000101111110101110100100011000111100000011101":604.3737574552684,"1100000010000001011101010010111101010100111111100111100100100001":-558.6481113320079,"1100000010001101011000101101110011100001111110001101111111110000":-940.3578528827038,"1100000010001111000000000110000110110111101110101100100010000110":-992.0477137176938,"1100000000111101110100100011000111100000011100100000000100000101":-29.821073558648113,"0100000010000000000001110110000100110101011100000111101000100110":512.9224652087476,"1100000001110000011001101100111010100001110110000100110101011100":-262.4254473161034,"1100000010001000011010100111111100111100100100001000101001101111":-781.3121272365805,"1100000001100001101001001110011000001011001100100110001010111100":-141.15308151093438,"0100000010001101100100101001001110011000001011001100100110001011":946.3220675944334,"1100000001100111110110110101101100011001111101001100110110011101":-190.8548707753479,"1100000001110001000001011101101001010110100001010101100000001100":-272.36580516898607,"1100000010001100100001000011001011100101000001101001110111000110":-912.5248508946322,"1100000001110000100001101001110111000101111110101110100100011001":-264.4135188866799,"1100000000110001111001001000010001010011011101111001101000110110":-17.892644135188867,"0100000001110010111000101111110101110100100011000111100000011101":302.1868787276342,"0100000010000011011100100010000110010111001010000011010011101110":622.2664015904572,"1100000001111100010101000111110000101110110100101011010000101011":-453.2803180914513,"1100000010001000011110100110011011001110101000011101100001001101":-783.300198807157,"0100000010000000010001101111111101111101101101011011000110011111":520.8747514910536,"1100000010000110000011100001111110001101111111101111101101101011":-705.7654075546719,"1100000010001101001100110010011000101011110001001111011001010100":-934.3936381709741,"0100000010000101011011110001001111011001010100011111000010111011":685.8846918489065,"0100000001101000110110011101010000111011000010011010101110000100":198.80715705765408,"1100000010001001101010001001011010100101111010101001111111001111":-821.0735586481113,"0100000010000100100100000110100111011100010111111010111010010010":658.051689860835,"0100000010000010010100111101100101010001111100001011101101001011":586.4811133200795,"1100000010000000010101101110011100001111110001101111111101111110":-522.8628230616303,"1100000001111000001110101100100010000110010111001010000011010100":-387.67395626242546,"0100000010001011100101011010000101010110000000110000110110111110":882.7037773359841,"1100000001111010010101111000100111101100101010001111100001011110":-421.47117296222666,"0100000001101100010101000111110000101110110100101011010000101011":226.64015904572565,"1100000001110100010000001110010000000010000010010010100100111010":-324.05566600397617,"0100000001111001011110001101111111101111101101101011011000110100":407.55467196819086,"1100000010000010000101000011101100001001101010111000001111010001":-578.5288270377733,"1100000000001111110011110010010000100010100110111011110011010010":-3.9761431411530817,"0100000010000000000101110100100011000111100000011100100000000100":514.910536779324,"0100000010000111001011000110011111010011001101100111010100001111":741.5506958250497,"0100000010001010110101101100011001111101001100110110011101010001":858.8469184890656,"1100000010000011010100100101001001110011000001011001100100110001":-618.2902584493041,"1100000010001011101101010111000001111010001001011010100101111011":-886.6799204771372,"1100000010001000101110100000010100010110111001110000111111000111":-791.2524850894632,"1100000001101011100101011010000101010110000000110000110110111110":-220.67594433399603,"0100000010001101010000110000110110111101110101100100010000110011":936.3817097415507,"1100000001111011110101010011111110011110010010000100010100110111":-445.3280318091451,"1100000001111010000101111110101110100100011000111100000011100100":-417.49502982107356,"1100000010001011111101010000111011000010011010101110000011110100":-894.6322067594433,"1100000010000001010101010110000000110000110110111101110101100100":-554.6719681908548,"0100000010001101011100101100010001110100000010100010110111001110":942.3459244532803,"0100000001101110010100010110111001110000111111000110111111111000":242.54473161033798,"1100000010001011110101010011111110011110010010000100010100110111":-890.6560636182902,"1100000010001100000101001101110111100110100011010111110010110001":-898.6083499005964,"0100000001001001110110000100110101011100000111101000100101101010":51.68986083499006,"0100000000100011111000010111011010010101101000010101011000000011":9.940357852882704,"0100000010001111000100000100100101001001110011000001011001100101":994.0357852882704,"0100000001000000111001100000101100110010011000101011110001001111":33.79721669980119,"1100000001110001110001001011010100101111010101001111111001111001":-284.2942345924453,"0100000010001110111000001001001010010011100110000010110011001010":988.0715705765408,"0100000010001000001110101100100010000110010111001010000011010100":775.3479125248509,"0100000010000000110101100010001110100000010100010110111001110001":538.7673956262425,"0100000010000101100011101110001011111101011101001000110001111000":689.8608349900596,"0100000010000100011100001001101010111000001111010001001011010101":654.0755467196819,"0100000001110100101000000101000101101110011100001111110001110000":330.01988071570577,"0100000001110100001000010001010011011101111001101000110101111101":322.0675944333996,"1100000010001000010010101011000000011000011011011110111010110010":-777.3359840954274,"0100000001010111110110110101101100011001111101001100110110011101":95.42743538767395,"1100000001001001110110000100110101011100000111101000100101101010":-51.68986083499006,"0100000010001011001101100011001111101001100110110011101010000111":870.7753479125248,"0100000001110110001111011101011001000100001100101110010100000111":355.8648111332008,"1100000001111100000101001101110111100110100011010111110010110001":-449.3041749502982,"0100000010000011001000101001101110111100110100011010111110010110":612.3260437375745,"1100000010001001010110010001000011001011100101000001101001110111":-811.1332007952286,"1100000001111010011101110101100100010000110010111001010000011010":-423.45924453280315,"0100000001010101110111100110100011010111110010110001000111010000":87.47514910536779,"1100000001111100011101000100101101010010111101010100111111101000":-455.26838966202786,"1100000001101100010101000111110000101110110100101011010000101011":-226.64015904572565,"0100000010000111110110110101101100011001111101001100110110011101":763.4194831013916,"1100000001111000111110011010001101011111001011000100011101000001":-399.6023856858847,"0100000001100110110111001110000111111000110111111110111110110111":182.90258449304176,"1100000010001100010101000111110000101110110100101011010000101011":-906.5606361829026,"1100000001111100101100111110100110011011001110101000011101100001":-459.2445328031809,"0100000010000101001011110111010110010001000011001011100101000010":677.9324055666004,"0100000001111011101101010111000001111010001001011010100101111011":443.3399602385686,"1100000001010000011001101100111010100001110110000100110101011100":-65.60636182902584,"1100000001011010010101111000100111101100101010001111100001011110":-105.36779324055667,"0100000010001110011100010011110110010101000111110000101110110101":974.155069582505,"0100000010000001001001011010100101111010101001111111001111001001":548.7077534791252,"0100000001100001011001010100011111000010111011010010101101000011":139.16500994035786,"1100000010001011010101100000001100001101101111011101011001000100":-874.7514910536779,"1100000001111100110100111011100010111111010111010010001100011110":-461.23260437375745,"0100000001000110110111001110000111111000110111111110111110110111":45.72564612326044,"0100000010000110010111011010010101101000010101011000000011000011":715.7057654075546,"1100000010001011111001010010011100110000010110011001001100010110":-892.6441351888668,"0100000000111001110110000100110101011100000111101000100101101010":25.84493041749503,"1100000010001110001000011011011110111010110010001000011001011101":-964.2147117296223,"1100000010001110001100011001111101001100110110011101010000111011":-966.2027833001988,"1100000010000111111110110010101000111110000101110110100101011010":-767.3956262425447,"1100000001110100011000001011001100100110001010111100010011110110":-326.04373757455267,"1100000010001110101100001101101111011101011001000100001100101110":-982.1073558648111,"1100000010001101110100100011000111100000011100100000000100000101":-954.2743538767396,"1100000001110000101001100110110011101010000111011000010011010110":-266.4015904572565,"0100000001101100100101000001101001110111000101111110101110100100":228.62823061630218,"0100000010001110011000010101011000000011000011011011110111010110":972.1669980119284,"0100000010000100001000010001010011011101111001101000110101111101":644.1351888667992,"0000000000000000000000000000000000000000000000000000000000000000":0.0,"1100000001111110101100001101101111011101011001000100001100101110":-491.05367793240555,"1100000000111111110011110010010000100010100110111011110011010010":-31.809145129224653,"0100000010001100000101001101110111100110100011010111110010110001":898.6083499005964,"1100000010000001100001010001011011100111000011111100011011111111":-560.6361829025844,"0100000010000100100000001000001001001010010011100110000010110011":656.0636182902584,"0100000010000011111000010111011010010101101000010101011000000011":636.182902584493,"0100000010000100000100010010110101001011110101010011111110011110":642.1471172962226,"0100000010001100110000111101000100101101010010111101010101000000":920.4771371769384,"0100000010000011100100011111000010111011010010101101000010101011":626.2425447316103,"1100000010001101001000110011111010011001101100111010100001110110":-932.4055666003976,"0100000001011011110101010011111110011110010010000100010100110111":111.33200795228628,"0100000001111000111110011010001101011111001011000100011101000001":399.6023856858847,"1100000010000100110100000000100000100100101001001110011000001011":-666.0039761431411,"1100000010000010011000111100000011100100000000100000100100101001":-588.469184890656,"1100000001110011100000100000100100101001001110011000001011001101":-312.1272365805169,"1100000010000000110101100010001110100000010100010110111001110001":-538.7673956262425,"1100000010000111111010110100001010101100000001100001101101111100":-765.4075546719682,"0100000010000001110001001011010100101111010101001111111001111001":568.5884691848906,"0100000010000000111101011111001011000100011101000000101000101110":542.7435387673956,"1100000001101010110101101100011001111101001100110110011101010001":-214.7117296222664,"0100000001111000000110101111100101100010001110100000010100010111":385.6858846918489,"1100000010000011000100101011010000101010110000000110000110111000":-610.337972166998,"1100000001100011111000010111011010010101101000010101011000000011":-159.04572564612326,"0100000001010100110111111110111110110110101101100011001111101010":83.49900596421472,"1100000001001110110100001010101100000001100001101101111011101011":-61.63021868787276,"0100000001110000111001100000101100110010011000101011110001001111":270.3777335984095,"1100000010001110011100010011110110010101000111110000101110110101":-974.155069582505,"0100000001101000010110101001011110101010011111110011110010010001":194.831013916501,"0100000001010011011000100011101000000101000101101110011100010000":77.53479125248509,"1100000001110110011111010111010010001100011110000001110010000000":-359.84095427435386,"1100000010000100001100001111110001101111111101111101101101011011":-646.1232604373757,"1100000010000000100101101000010101011000000011000011011011110111":-530.8151093439363,"1100000001100100001000010001010011011101111001101000110101111101":-161.0337972166998,"1100000001101010100101110010100000110100111011100010111111010111":-212.72365805168985,"0100000010001110101000001111010001001011010100101111010101010000":980.1192842942346,"1100000001101000000110101111100101100010001110100000010100010111":-192.84294234592446,"1100000001110100101000000101000101101110011100001111110001110000":-330.01988071570577,"1100000001101110110100001010101100000001100001101101111011101011":-246.52087475149105,"1100000001001101110100100011000111100000011100100000000100000101":-59.642147117296226,"0100000001110110100111010100001110110000100110101011100000111101":361.8290258449304,"0100000010001101101100100110001010111100010011110110010101001000":950.2982107355865,"0100000001111001111110000001110010000000010000010010010100100111":415.506958250497,"1100000010000000101001100110110011101010000111011000010011010110":-532.803180914513,"1100000001101110010100010110111001110000111111000110111111111000":-242.54473161033798,"0100000010000011010000100110101011100000111101000100101101010011":616.3021868787276,"0100000001001101110100100011000111100000011100100000000100000101":59.642147117296226,"0100000010001001100010001100011110000001110010000000010000010010":817.0974155069582,"0100000001110011001000101001101110111100110100011010111110010110":306.16302186878727,"0100000001111100000101001101110111100110100011010111110010110001":449.3041749502982,"0100000001101011100101011010000101010110000000110000110110111110":220.67594433399603,"0100000001111000100110100011010111110010110001000111010000001010":393.63817097415506,"0100000010000101101111101001100110110011101010000111011000010011":695.8250497017892,"1100000001110101110111100110100011010111110010110001000111010000":-349.90059642147116,"1100000010000101001011110111010110010001000011001011100101000010":-677.9324055666004,"0100000001111000011110100110011011001110101000011101100001001101":391.6500994035785,"1100000001110111001111000100111101100101010001111100001011101101":-371.7693836978131,"1100000010000010000001000101001101110111100110100011010111110011":-576.5407554671968,"1100000001010011111000010111011010010101101000010101011000000011":-79.52286282306163,"0100000001101111010011111110011110010010000100010100110111011110":250.49701789264412,"0100000001101101110100100011000111100000011100100000000100000101":238.5685884691849,"1100000001100011001000101001101110111100110100011010111110010110":-153.08151093439363,"1100000010000010111000101111110101110100100011000111100000011101":-604.3737574552684,"1100000001101101000100110101011100000111101000100101101010011000":-232.60437375745528,"0100000010000001000001011101101001010110100001010101100000001100":544.7316103379721,"0100000001010101010111110010110001000111010000001010001011011101":85.48707753479125,"1100000000101111110011110010010000100010100110111011110011010010":-15.904572564612327,"0100000001000011111000010111011010010101101000010101011000000011":39.761431411530815,"0100000001110010011000111100000011100100000000100000100100101001":294.234592445328,"0100000010001100100101000001101001110111000101111110101110100100":914.5129224652087,"1100000010001011000001100111110100110011011001110101000011101100":-864.8111332007952,"1100000010001101000000110110111101110101100100010000110010111001":-928.4294234592445,"0100000010000110000011100001111110001101111111101111101101101011":705.7654075546719,"0100000010001011000001100111110100110011011001110101000011101100":864.8111332007952,"1100000001111110100100010000110010111001010000011010011101110001":-489.065606361829,"1100000010000011111000010111011010010101101000010101011000000011":-636.182902584493,"0100000010001001110010000110010111001010000011010011101110001100":825.0497017892644,"1100000001111101100100101001001110011000001011001100100110001011":-473.1610337972167,"0100000001111111101011110101010011111110011110010010000100010101":506.9582504970179,"1100000001110100110000000010000010010010100100111001100000101101":-332.0079522862823,"1100000010001100011001000110001111000000111001000000001000001001":-908.5487077534791,"0100000010000100111111111011111011011010110110001100111110100110":671.9681908548707,"1100000001111110110100001010101100000001100001101101111011101011":-493.0417495029821,"1100000010001101101000100111101100101010001111100001011101101001":-948.3101391650099,"0100000001110110011111010111010010001100011110000001110010000000":359.84095427435386,"1100000001111110010100010110111001110000111111000110111111111000":-485.08946322067595,"1100000010000100011000001011001100100110001010111100010011110110":-652.0874751491053,"1100000010001001110110000100110101011100000111101000100101101010":-827.0377733598409,"0100000001111100100101000001101001110111000101111110101110100100":457.25646123260435,"1100000000111001110110000100110101011100000111101000100101101010":-25.84493041749503,"0100000001111111000100000100100101001001110011000001011001100101":497.0178926441352,"1100000010000110111111001011000100011101000000101000101101110100":-735.5864811133201,"1100000010000110100011010101110000011110100010010110101001011111":-721.6699801192843,"1100000001111001001110010100000110100111011100010111111010111010":-403.57852882703776,"1100000001110110110111001110000111111000110111111110111110110111":-365.8051689860835,"0100000010001001101010001001011010100101111010101001111111001111":821.0735586481113,"0100000010001010000101111110101110100100011000111100000011100100":834.9900596421471,"0100000010000001101101001100110110011101010000111011000010011011":566.6003976143141,"1100000001100111000111001000000001000001001001010010011100110000":-184.89065606361828,"1011111111111111110011110010010000100010100110111011110011010010":-1.9880715705765408,"0100000010001110001100011001111101001100110110011101010000111011":966.2027833001988,"1100000001000011111000010111011010010101101000010101011000000011":-39.761431411530815,"1100000001111101001100110010011000101011110001001111011001010100":-467.19681908548705,"0100000001110001010001010111100010011110110010101000111110000110":276.3419483101392,"0100000001110001011001010100011111000010111011010010101101000011":278.3300198807157,"0100000001111100011101000100101101010010111101010100111111101000":455.26838966202786,"1100000010000100100100000110100111011100010111111010111010010010":-658.051689860835,"0100000001111101100100101001001110011000001011001100100110001011":473.1610337972167,"0100000010000000101001100110110011101010000111011000010011010110":532.803180914513,"1100000010000001110101001001110011000001011001100100110001011000":-570.5765407554672,"1100000001111101011100101100010001110100000010100010110111001110":-471.17296222664015,"1100000001011100010101000111110000101110110100101011010000101011":-113.32007952286283,"0100000001011000110110011101010000111011000010011010101110000100":99.40357852882704,"0100000001110100100000001000001001001010010011100110000010110011":328.0318091451292,"1100000010001010010101111000100111101100101010001111100001011110":-842.9423459244533,"1100000010000101000111111000110111111110111110110110101101100011":-675.9443339960238,"1100000010000010100100110111011110011010001101011111001011000100":-594.4333996023856,"1100000001110000110001100011110000001110010000000010000010010011":-268.389662027833,"0100000001110000101001100110110011101010000111011000010011010110":266.4015904572565,"0100000000010111110110110101101100011001111101001100110110011101":5.964214711729622,"1100000010000010001101000000101000101101110011100001111110001110":-582.5049701789264,"1100000000100111110110110101101100011001111101001100110110011101":-11.928429423459244,"1100000001101011110101010011111110011110010010000100010100110111":-222.66401590457255,"1100000010000100000100010010110101001011110101010011111110011110":-642.1471172962226,"0100000001100100101000000101000101101110011100001111110001110000":165.00994035785288,"1100000010000011101000011101100001001101010111000001111010001001":-628.2306163021868,"0100000001111001100110001010111100010011110110010101000111110001":409.5427435387674,"0100000010000110100011010101110000011110100010010110101001011111":721.6699801192843,"0100000010001000000010110001000111010000001010001011011100111000":769.3836978131212,"1100000010000100010100001100101110010100000110100111011100011000":-650.0994035785288,"0100000010000101000011111010011001101100111010100001110110000101":673.9562624254473,"1100000001110001011001010100011111000010111011010010101101000011":-278.3300198807157,"1100000010000010110100110001010111100010011110110010101000111110":-602.3856858846918,"1100000001110001010001010111100010011110110010101000111110000110":-276.3419483101392,"1100000001001010110101101100011001111101001100110110011101010001":-53.6779324055666,"1100000010001011110001010101100000001100001101101111011101011001":-888.6679920477137,"0100000010001111000000000110000110110111101110101100100010000110":992.0477137176938,"0100000010001001000110010111001010000011010011101110001011111101":803.1809145129224,"0100000001011101110100100011000111100000011100100000000100000101":119.28429423459245,"0100000001111011110101010011111110011110010010000100010100110111":445.3280318091451,"1100000001100111100110111011110011010001101011111001011000100100":-188.86679920477138,"1100000001110000000001110110000100110101011100000111101000100110":-256.4612326043738,"1100000010001010000101111110101110100100011000111100000011100100":-834.9900596421471,"1100000001101111100011111000010111011010010101101000010101011000":-252.48508946322067,"0100000010000110101111010001001011010100101111010101001111111010":727.6341948310139,"0100000010001011101101010111000001111010001001011010100101111011":886.6799204771372,"0100000001110100110111111110111110110110101101100011001111101010":333.99602385685887,"0100000010001010100001110100000010100010110111001110000111111001":848.9065606361829,"1100000010000001000001011101101001010110100001010101100000001100":-544.7316103379721,"1100000010001110101000001111010001001011010100101111010101010000":-980.1192842942346,"0100000001100101000111111000110111111110111110110110101101100011":168.98608349900596,"0100000010000011000100101011010000101010110000000110000110111000":610.337972166998,"1100000001110111101110111000101111110101110100100011000111100000":-379.72166998011926,"0100000010000100110111111110111110110110101101100011001111101010":667.9920477137177,"0100000001110111011110111110110110101101100011001111101001100111":375.7455268389662,"0100000010001101101000100111101100101010001111100001011101101001":948.3101391650099,"0100000010001100001101001010110100001010101100000001100001101110":902.5844930417495,"0100000001111001001110010100000110100111011100010111111010111010":403.57852882703776,"0100000001011010010101111000100111101100101010001111100001011110":105.36779324055667,"1100000010000010101100110100011010111110010110001000111010000001":-598.4095427435387,"1100000001011111110011110010010000100010100110111011110011010010":-127.23658051689861,"1100000001010010111000101111110101110100100011000111100000011101":-75.54671968190856,"0100000010001011101001011000100011101000000101000101101110011100":884.6918489065606,"1100000001100000101001100110110011101010000111011000010011010110":-133.20079522862824,"0100000010000100110100000000100000100100101001001110011000001011":666.0039761431411,"1100000010001110111100000111101000100101101010010111101010101000":-990.0596421471173,"1100000010001010101101101111011101011001000100001100101110010100":-854.8707753479125,"1100000001011101010100101111010101001111111001111001001000010001":-117.2962226640159,"1100000010001110100000010010010100100111001100000101100110010011":-976.1431411530815,"0100000010000100010000001110010000000010000010010010100100111010":648.1113320079523,"1100000010000011110000011010011101110001011111101011101001000110":-632.2067594433399,"1100000001101000100110100011010111110010110001000111010000001010":-196.81908548707753,"1100000010001101111100100000000100000100100101001001110011000001":-958.2504970178926,"1100000001011000010110101001011110101010011111110011110010010001":-97.4155069582505,"1100000001110101111111100011011111111011111011011010110110001101":-351.8886679920477,"1100000010000001110001001011010100101111010101001111111001111001":-568.5884691848906,"0100000010000100101100000011100100000000100000100100101001001110":662.027833001988,"1100000010001101000100110101011100000111101000100101101010011000":-930.4174950298211,"0100000010000101100111101100101010001111100001011101101001010111":691.8489065606362,"0100000001110101001111110101110100100011000111100000011100100000":339.96023856858847,"0100000010001001000010011000101011110001001111011001010100011111":801.1928429423459,"1100000001101100100101000001101001110111000101111110101110100100":-228.62823061630218,"0100000001110000001001110011000001011001100100110001010111100010":258.44930417495027,"1100000001111011010101100000001100001101101111011101011001000100":-437.37574552683895,"0100000010000111010111000001111010001001011010100101111010101010":747.5149105367793,"0100000001110001000001011101101001010110100001010101100000001100":272.36580516898607,"0100000010001110111100000111101000100101101010010111101010101000":990.0596421471173,"0100000010000101110011101000000101000101101110011100001111110010":697.8131212723658,"0100000001100110010111011010010101101000010101011000000011000011":178.92644135188866,"1100000010000001001001011010100101111010101001111111001111001001":-548.7077534791252,"1100000001101101110100100011000111100000011100100000000100000101":-238.5685884691849,"1100000010000001000101011100000111101000100101101010010111101011":-546.7196819085488,"1100000010000110011111010111010010001100011110000001110010000000":-719.6819085487077,"0100000010001010100101110010100000110100111011100010111111010111":850.8946322067594,"0100000001000001111001001000010001010011011101111001101000110110":35.785288270377734,"1100000010001000110110011101010000111011000010011010101110000100":-795.2286282306163,"1100000001010110110111001110000111111000110111111110111110110111":-91.45129224652088,"0100000001110111110110110101101100011001111101001100110110011101":381.7097415506958,"0100000010000101101011101011001000100001100101110010100000110101":693.8369781312127,"1100000010001011100101011010000101010110000000110000110110111110":-882.7037773359841,"1100000001111011111101010000111011000010011010101110000011110100":-447.31610337972165,"0100000000101111110011110010010000100010100110111011110011010010":15.904572564612327,"0100000001010000011001101100111010100001110110000100110101011100":65.60636182902584,"0100000001111010111101101001010110100001010101100000001100001110":431.41153081510936,"0100000000110101110111100110100011010111110010110001000111010000":21.868787276341948,"1100000010000111010111000001111010001001011010100101111010101010":-747.5149105367793,"0100000001110011100000100000100100101001001110011000001011001101":312.1272365805169,"0100000000001111110011110010010000100010100110111011110011010010":3.9761431411530817,"0100000001000100110111111110111110110110101101100011001111101010":41.74950298210736,"0100000010001110110000001100001101101111011101011001000100001101":984.0954274353877,"0100000001000101110111100110100011010111110010110001000111010000":43.737574552683895,"1100000010001011101001011000100011101000000101000101101110011100":-884.6918489065606,"1100000010001010001101111011101011001000100001100101110010100001":-838.9662027833002,"1100000010001100111100111000011111100011011111111011111011011011":-926.441351888668,"0100000001110001101001001110011000001011001100100110001010111100":282.30616302186877,"0100000010001110000100011101000000101000101101110011100001111110":962.2266401590457,"1100000010001100110100111011100010111111010111010010001100011110":-922.4652087475149,"0100000010001000110010011110110010101000111110000101110110100101":793.2405566600397,"1100000001110000010001101111111101111101101101011011000110011111":-260.4373757455268,"1100000010001001011110001101111111101111101101101011011000110100":-815.1093439363817,"0100000010000100001100001111110001101111111101111101101101011011":646.1232604373757,"0100000001100011001000101001101110111100110100011010111110010110":153.08151093439363,"0100000010000010010000111111000110111111110111110110110101101100":584.4930417495029,"1100000001111001101110000111111000110111111110111110110110101110":-411.53081510934396,"0100000000101011110101010011111110011110010010000100010100110111":13.916500994035784,"1100000001111000101110100000010100010110111001110000111111000111":-395.6262425447316,"0100000010000100011000001011001100100110001010111100010011110110":652.0874751491053,"1100000010001100011101000100101101010010111101010100111111101000":-910.5367793240557,"1100000010000000101101100101010001111100001011101101001010110100":-534.7912524850894,"1100000010001010111101101001010110100001010101100000001100001110":-862.8230616302187,"0100000010000110111111001011000100011101000000101000101101110100":735.5864811133201,"1100000010001000100010100100111001100000101100110010011000101100":-785.2882703777336,"1100000010001111010000000000000000000000000000000000000000000000":-1000.0,"0100000001110000100001101001110111000101111110101110100100011001":264.4135188866799,"1100000010000011101100011011111111011111011011010110110001101000":-630.2186878727634,"1100000010001010100101110010100000110100111011100010111111010111":-850.8946322067594,"0100000001011111010011111110011110010010000100010100110111011110":125.24850894632206,"0100000001011000010110101001011110101010011111110011110010010001":97.4155069582505,"0100000010000110000111100000011100100000000100000100100101001010":707.7534791252485,"0100000010001000111110011010001101011111001011000100011101000001":799.2047713717694,"0100000010001111001000000011000011011011110111010110010001000011":996.0238568588469,"1100000001001000110110011101010000111011000010011010101110000100":-49.70178926441352,"0100000001110101000111111000110111111110111110110110101101100011":337.9721669980119,"0100000010001110100000010010010100100111001100000101100110010011":976.1431411530815,"1100000001110000001001110011000001011001100100110001010111100010":-258.44930417495027,"0100000001111111011011111011011010110110001100111110100110011011":502.9821073558648,"1100000001110111010111000001111010001001011010100101111010101010":-373.75745526838966,"1100000000111011110101010011111110011110010010000100010100110111":-27.83300198807157,"0100000010000111101010111010010001100011110000001110010000000010":757.455268389662,"1100000010001000100110100011010111110010110001000111010000001010":-787.2763419483101,"1100000001110100100000001000001001001010010011100110000010110011":-328.0318091451292,"0100000010001001110110000100110101011100000111101000100101101010":827.0377733598409,"0100000001100000101001100110110011101010000111011000010011010110":133.20079522862824,"1100000001111001111110000001110010000000010000010010010100100111":-415.506958250497,"0100000001111101111100100000000100000100100101001001110011000001":479.1252485089463,"0100000001110011000000101100110010011000101011110001001111011001":304.1749502982107,"1100000001010000111001100000101100110010011000101011110001001111":-67.59443339960238,"1100000010000110010111011010010101101000010101011000000011000011":-715.7057654075546,"1100000001101001010110010001000011001011100101000001101001110111":-202.78330019880715,"1100000001100000111001100000101100110010011000101011110001001111":-135.18886679920476,"0100000001110100110000000010000010010010100100111001100000101101":332.0079522862823,"0100000010000011110000011010011101110001011111101011101001000110":632.2067594433399,"1100000000110111110110110101101100011001111101001100110110011101":-23.856858846918488,"1100000001111100001101001010110100001010101100000001100001101110":-451.29224652087476,"1100000001100100101000000101000101101110011100001111110001110000":-165.00994035785288,"0100000010000111111010110100001010101100000001100001101101111100":765.4075546719682,"1100000001101111110011110010010000100010100110111011110011010010":-254.47316103379723,"0100000001101101000100110101011100000111101000100101101010011000":232.60437375745528,"1100000001100000011001101100111010100001110110000100110101011100":-131.2127236580517,"1100000001101111010011111110011110010010000100010100110111011110":-250.49701789264412,"1100000001111001110110000100110101011100000111101000100101101010":-413.51888667992046,"0100000010000110111011001100100110001010111100010011110110010101":733.5984095427435,"1100000001110110100111010100001110110000100110101011100000111101":-361.8290258449304,"1100000001100011011000100011101000000101000101101110011100010000":-155.06958250497019,"1100000010000111100010111101010100111111100111100100100001000101":-753.4791252485089,"1100000001100100011000001011001100100110001010111100010011110110":-163.02186878727633,"1100000001111100111100111000011111100011011111111011111011011011":-463.220675944334,"1100000010001100111000111010000001010001011011100111000011111100":-924.4532803180914,"1100000001111111110011110010010000100010100110111011110011010010":-508.94632206759445,"0100000001101111100011111000010111011010010101101000010101011000":252.48508946322067,"1100000001111110001100011001111101001100110110011101010000111011":-483.1013916500994,"1100000001111011011101011101001000110001111000000111001000000001":-439.3638170974155,"1100000001110110000111100000011100100000000100000100100101001010":-353.87673956262427,"1100000001110011011000100011101000000101000101101110011100010000":-310.13916500994037,"0100000010000110101011010010101101000010101011000000011000011011":725.6461232604373,"1100000001011110110100001010101100000001100001101101111011101011":-123.26043737574552,"0100000010001100000001001111011001010100011111000010111011010011":896.6202783300199,"0100000010001110010100010110111001110000111111000110111111111000":970.1789264413519,"0100000001100011011000100011101000000101000101101110011100010000":155.06958250497019,"1100000010000000001101110001011111101011101001000110001111000001":-518.8866799204771,"1100000001100010011000111100000011100100000000100000100100101001":-147.117296222664,"0100000001100000001001110011000001011001100100110001010111100010":129.22465208747514,"0100000010000011001100101000001101001110111000101111110101110101":614.3141153081511,"1100000001010001111001001000010001010011011101111001101000110110":-71.57057654075547,"1100000001110100000000010100010110111001110000111111000111000000":-320.07952286282307,"0100000010000111111110110010101000111110000101110110100101011010":767.3956262425447,"1100000001110010000001000101001101110111100110100011010111110011":-288.2703777335984,"1100000010000110110111001110000111111000110111111110111110110111":-731.610337972167,"0100000010000110110111001110000111111000110111111110111110110111":731.610337972167,"0100000001111010011101110101100100010000110010111001010000011010":423.45924453280315,"1100000001011001010110010001000011001011100101000001101001110111":-101.39165009940358,"0100000010001001111010000011010011101110001011111101011101001001":829.0258449304175,"0100000010001110000000011110100010010110101001011110101010100000":960.2385685884692,"0100000001101111000100000100100101001001110011000001011001100101":248.5089463220676,"1100000010000000011001101100111010100001110110000100110101011100":-524.8508946322067,"1100000010000101010111110010110001000111010000001010001011011101":-683.89662027833,"0100000001110000110001100011110000001110010000000010000010010011":268.389662027833,"0100000001111110011100010011110110010101000111110000101110110101":487.0775347912525,"0100000001111011011101011101001000110001111000000111001000000001":439.3638170974155,"0100000001101100000101001101110111100110100011010111110010110001":224.6520874751491,"0100000001100100001000010001010011011101111001101000110101111101":161.0337972166998,"1100000010001110100100010000110010111001010000011010011101110001":-978.131212723658,"1100000010000011001100101000001101001110111000101111110101110101":-614.3141153081511,"1100000010001101100000101010110000000110000110110111101110101101":-944.3339960238569,"1100000001111010101101101111011101011001000100001100101110010100":-427.43538767395626,"0100000001001100110100111011100010111111010111010010001100011110":57.65407554671968,"0100000010000101011111101111101101101011011000110011111010011010":687.8727634194831,"0100000010001100111100111000011111100011011111111011111011011011":926.441351888668,"1100000001111110111100000111101000100101101010010111101010101000":-495.02982107355865,"1100000010000111100110111011110011010001101011111001011000100100":-755.4671968190855,"0100000010001101011000101101110011100001111110001101111111110000":940.3578528827038,"0100000001000111110110110101101100011001111101001100110110011101":47.713717693836976,"0100000001110011110000011010011101110001011111101011101001000110":316.10337972166997,"0100000010001100001001001100010101111000100111101100101010010000":900.596421471173,"0100000001110100010000001110010000000010000010010010100100111010":324.05566600397617,"1100000010001101111000100001100101110010100000110100111011100011":-956.2624254473161,"1100000001110101100111101100101010001111100001011101101001010111":-345.9244532803181,"0100000010000000010101101110011100001111110001101111111101111110":522.8628230616303,"0100000000011111110011110010010000100010100110111011110011010010":7.952286282306163,"0100000001110101110111100110100011010111110010110001000111010000":349.90059642147116,"0100000001110010001001000010001010011011101111001101000110110000":290.258449304175,"1100000010000011010000100110101011100000111101000100101101010011":-616.3021868787276,"1100000010000101101111101001100110110011101010000111011000010011":-695.8250497017892,"0100000001111000010110101001011110101010011111110011110010010001":389.662027833002,"0100000000111101110100100011000111100000011100100000000100000101":29.821073558648113,"0100000001100101110111100110100011010111110010110001000111010000":174.95029821073558,"1100000001111111001100000001100001101101111011101011001000100010":-499.00596421471175,"0100000001101010100101110010100000110100111011100010111111010111":212.72365805168985,"0100000010001100111000111010000001010001011011100111000011111100":924.4532803180914,"1100000010000011100100011111000010111011010010101101000010101011":-626.2425447316103,"1100000010000100110111111110111110110110101101100011001111101010":-667.9920477137177,"0100000010001100101001000000001000001001001010010011100110000011":916.5009940357853,"0100000010001000001010101110000011110100010010110101001011110101":773.3598409542743,"0100000001101011000101100110010011000101011110001001111011001011":216.69980119284295,"1100000010001011100001011011100111000011111100011011111111011111":-880.7157057654075,"1100000001101001110110000100110101011100000111101000100101101010":-206.75944333996023,"0100000010001110010000011000011011011110111010110010001000011001":968.1908548707753,"1100000001100010111000101111110101110100100011000111100000011101":-151.0934393638171,"1100000010001010110101101100011001111101001100110110011101010001":-858.8469184890656,"0100000010001011110001010101100000001100001101101111011101011001":888.6679920477137,"1100000010001100010001001001010010011100110000010110011001001100":-904.572564612326,"0100000010001001011110001101111111101111101101101011011000110100":815.1093439363817,"1100000010000100101100000011100100000000100000100100101001001110":-662.027833001988,"1100000000110011111000010111011010010101101000010101011000000011":-19.880715705765407,"0100000001110011010000100110101011100000111101000100101101010011":308.1510934393638,"0100000000110001111001001000010001010011011101111001101000110110":17.892644135188867,"0100000000110011111000010111011010010101101000010101011000000011":19.880715705765407,"0100000001111101101100100110001010111100010011110110010101001000":475.14910536779325,"0100000010001000011010100111111100111100100100001000101001101111":781.3121272365805,"0100000001110100000000010100010110111001110000111111000111000000":320.07952286282307,"0100000001110101100111101100101010001111100001011101101001010111":345.9244532803181,"1100000001101000010110101001011110101010011111110011110010010001":-194.831013916501,"1100000010000100111111111011111011011010110110001100111110100110":-671.9681908548707,"1100000010001010111001101010111000001111010001001011010100101111":-860.8349900596421,"0100000001011111110011110010010000100010100110111011110011010010":127.23658051689861,"1100000010000101110111100110100011010111110010110001000111010000":-699.8011928429423,"0100000001110001001001011010100101111010101001111111001111001001":274.3538767395626,"1100000010001000111110011010001101011111001011000100011101000001":-799.2047713717694,"0100000010001010010001111010001001011010100101111010101001111111":840.9542743538767,"1100000001100110110111001110000111111000110111111110111110110111":-182.90258449304176,"1100000001100101000111111000110111111110111110110110101101100011":-168.98608349900596,"0100000010001011001001100100110001010111100010011110110010101001":868.7872763419483,"0100000010001100101100111110100110011011001110101000011101100001":918.4890656063618,"1100000010001000001110101100100010000110010111001010000011010100":-775.3479125248509,"1100000010000100001000010001010011011101111001101000110101111101":-644.1351888667992,"0100000001110111101110111000101111110101110100100011000111100000":379.72166998011926,"1100000010001010100001110100000010100010110111001110000111111001":-848.9065606361829,"0100000010001000011110100110011011001110101000011101100001001101":783.300198807157,"0100000010000001000101011100000111101000100101101010010111101011":546.7196819085488,"1100000001111010111101101001010110100001010101100000001100001110":-431.41153081510936,"0100000010000100110000000010000010010010100100111001100000101101":664.0159045725646,"1100000010000011111100010101111000100111101100101010001111100001":-638.1709741550695,"1100000010000001010001010111100010011110110010101000111110000110":-552.6838966202783,"0100000001101010110101101100011001111101001100110110011101010001":214.7117296222664,"0100000010001101110100100011000111100000011100100000000100000101":954.2743538767396,"0100000001110000010001101111111101111101101101011011000110011111":260.4373757455268,"0100000001101001100110001010111100010011110110010101000111110001":204.7713717693837,"0100000010000100000000010100010110111001110000111111000111000000":640.1590457256461,"1100000010000111101110111000101111110101110100100011000111100000":-759.4433399602385,"0100000001011110010100010110111001110000111111000110111111111000":121.27236580516899,"0100000000111011110101010011111110011110010010000100010100110111":27.83300198807157,"0100000001101011010101100000001100001101101111011101011001000100":218.68787276341948,"1100000001010101010111110010110001000111010000001010001011011101":-85.48707753479125,"1100000010001011000101100110010011000101011110001001111011001011":-866.7992047713718,"0100000010000000110001100011110000001110010000000010000010010011":536.779324055666,"1100000010001001001110010100000110100111011100010111111010111010":-807.1570576540755,"1100000010000001111101000110101111100101100010001110100000010100":-574.5526838966202,"0100000001111010100101110010100000110100111011100010111111010111":425.4473161033797,"0100000001010100011000001011001100100110001010111100010011110110":81.51093439363817,"0100000010000011111100010101111000100111101100101010001111100001":638.1709741550695,"1100000001100110100111010100001110110000100110101011100000111101":-180.9145129224652,"1100000001011111010011111110011110010010000100010100110111011110":-125.24850894632206,"0100000001110110000111100000011100100000000100000100100101001010":353.87673956262427,"0100000001011001010110010001000011001011100101000001101001110111":101.39165009940358,"1100000001111011101101010111000001111010001001011010100101111011":-443.3399602385686,"0100000001100000111001100000101100110010011000101011110001001111":135.18886679920476,"0100000010001011011101011101001000110001111000000111001000000001":878.727634194831,"0100000001110001110001001011010100101111010101001111111001111001":284.2942345924453,"0100000001110111100110111011110011010001101011111001011000100100":377.73359840954276,"0100000010000011101000011101100001001101010111000001111010001001":628.2306163021868,"0100000010001110110100001010101100000001100001101101111011101011":986.0834990059642,"0100000001110101111111100011011111111011111011011010110110001101":351.8886679920477,"0100000001111000101110100000010100010110111001110000111111000111":395.6262425447316,"0100000001100101010111110010110001000111010000001010001011011101":170.9741550695825,"0100000010001101110000100100101001001110011000001011001100100110":952.286282306163,"0100000010001010101101101111011101011001000100001100101110010100":854.8707753479125,"1100000010000000111101011111001011000100011101000000101000101110":-542.7435387673956,"0100000001111011001101100011001111101001100110110011101010000111":435.3876739562624,"0100000010000101000111111000110111111110111110110110101101100011":675.9443339960238,"1100000010000110111011001100100110001010111100010011110110010101":-733.5984095427435,"1100000010001101010100101111010101001111111001111001001000010001":-938.3697813121272,"0100000010001100100001000011001011100101000001101001110111000110":912.5248508946322,"1100000001111011000101100110010011000101011110001001111011001011":-433.3996023856859,"0100000001101001000110010111001010000011010011101110001011111101":200.7952286282306,"1100000010000010011100111010100001110110000100110101011100001000":-590.4572564612326,"0100000010000001100001010001011011100111000011111100011011111111":560.6361829025844,"1100000001110100111111111011111011011010110110001100111110100110":-335.98409542743536,"0100000001111110110100001010101100000001100001101101111011101011":493.0417495029821,"1100000010001101101100100110001010111100010011110110010101001000":-950.2982107355865,"0100000001110111111110110010101000111110000101110110100101011010":383.69781312127236,"1100000010000100010000001110010000000010000010010010100100111010":-648.1113320079523,"1100000001111000010110101001011110101010011111110011110010010001":-389.662027833002,"0100000010000001001101011001000100001100101110010100000110100111":550.6958250497017,"0100000001101100110100111011100010111111010111010010001100011110":230.61630218687873,"0100000010001000100010100100111001100000101100110010011000101100":785.2882703777336,"0100000010001010011101110101100100010000110010111001010000011010":846.9184890656063,"0100000001001000110110011101010000111011000010011010101110000100":49.70178926441352,"1100000001110111100110111011110011010001101011111001011000100100":-377.73359840954276,"0100000001011100110100111011100010111111010111010010001100011110":115.30815109343936,"1100000001111010110101101100011001111101001100110110011101010001":-429.4234592445328,"1100000010000000110001100011110000001110010000000010000010010011":-536.779324055666,"0100000010000001010001010111100010011110110010101000111110000110":552.6838966202783,"1100000010000101111011100101000001101001110111000101111110101111":-701.7892644135189,"0100000001111111111011101111001101000110101111100101100010001111":510.934393638171,"0100000010001010001101111011101011001000100001100101110010100001":838.9662027833002,"0100000010001110001000011011011110111010110010001000011001011101":964.2147117296223,"1100000001010111110110110101101100011001111101001100110110011101":-95.42743538767395,"1100000001111111000100000100100101001001110011000001011001100101":-497.0178926441352,"0100000001111001110110000100110101011100000111101000100101101010":413.51888667992046,"1100000010000010001001000010001010011011101111001101000110110000":-580.51689860835,"0100000001110101010111110010110001000111010000001010001011011101":341.948310139165,"1100000001000001111001001000010001010011011101111001101000110110":-35.785288270377734,"0100000001111000001110101100100010000110010111001010000011010100":387.67395626242546,"1100000010001001010010010010100100111001100000101100110010011001":-809.1451292246521,"1100000001111000100110100011010111110010110001000111010000001010":-393.63817097415506,"0100000001111100110100111011100010111111010111010010001100011110":461.23260437375745,"0100000001111110010100010110111001110000111111000110111111111000":485.08946322067595,"1100000010001000000010110001000111010000001010001011011100111000":-769.3836978131212,"0100000001111101010100101111010101001111111001111001001000010001":469.1848906560636,"1100000010001000001010101110000011110100010010110101001011110101":-773.3598409542743,"1100000010000111101010111010010001100011110000001110010000000010":-757.455268389662,"1100000001110001111001001000010001010011011101111001101000110110":-286.2823061630219,"0100000010000111011110111110110110101101100011001111101001100111":751.4910536779324,"0100000001110110010111011010010101101000010101011000000011000011":357.8528827037773,"1100000010001111000100000100100101001001110011000001011001100101":-994.0357852882704,"1100000010000000000101110100100011000111100000011100100000000100":-514.910536779324,"1100000010001110010000011000011011011110111010110010001000011001":-968.1908548707753,"0100000010001101111100100000000100000100100101001001110011000001":958.2504970178926,"1100000001110001001001011010100101111010101001111111001111001001":-274.3538767395626,"0100000010000001111101000110101111100101100010001110100000010100":574.5526838966202,"0100000010001000101010100001110110000100110101011100000111101001":789.2644135188867,"0100000010000010011100111010100001110110000100110101011100001000":590.4572564612326,"1100000010000011000000101100110010011000101011110001001111011001":-608.3499005964214,"1100000001010001011001010100011111000010111011010010101101000011":-69.58250497017893,"1100000010000000100001101001110111000101111110101110100100011001":-528.8270377733598,"1100000010000010010100111101100101010001111100001011101101001011":-586.4811133200795,"0100000010001101000100110101011100000111101000100101101010011000":930.4174950298211,"0100000010001001001010010101101000010101011000000011000011011100":805.168986083499,"1100000000101011110101010011111110011110010010000100010100110111":-13.916500994035784,"0100000010000010101100110100011010111110010110001000111010000001":598.4095427435387,"0100000010000110001111011101011001000100001100101110010100000111":711.7296222664016,"1100000001100101010111110010110001000111010000001010001011011101":-170.9741550695825,"1100000001100010101000110101111100101100010001110100000010100011":-149.10536779324056,"0100000010001001011010001111100001011101101001010110100001010110":813.1212723658052,"1100000001101110000100011101000000101000101101110011100001111110":-240.55666003976143,"1100000001011100110100111011100010111111010111010010001100011110":-115.30815109343936,"1100000001110011101000011101100001001101010111000001111010001001":-314.1153081510934,"1100000010000111011110111110110110101101100011001111101001100111":-751.4910536779324,"0100000001011010110101101100011001111101001100110110011101010001":107.3558648111332,"0100000010000100010100001100101110010100000110100111011100011000":650.0994035785288,"0100000001111111010011111110011110010010000100010100110111011110":500.99403578528825,"1100000000110101110111100110100011010111110010110001000111010000":-21.868787276341948,"1100000001111110000100011101000000101000101101110011100001111110":-481.11332007952285,"1100000001110101011111101111101101101011011000110011111010011010":-343.93638170974157,"0100000001011100010101000111110000101110110100101011010000101011":113.32007952286283,"0100000010000001110101001001110011000001011001100100110001011000":570.5765407554672,"1100000010001000110010011110110010101000111110000101110110100101":-793.2405566600397,"0100000010000111011011000000011000011011011110111010110010001000":749.5029821073558,"1100000010001011010001100001101101111011101011001000100001100110":-872.7634194831014,"1100000001110011110000011010011101110001011111101011101001000110":-316.10337972166997,"1100000001000101110111100110100011010111110010110001000111010000":-43.737574552683895,"0100000010001101100000101010110000000110000110110111101110101101":944.3339960238569,"0100000010000101010111110010110001000111010000001010001011011101":683.89662027833,"0100000010000001101001001110011000001011001100100110001010111100":564.6123260437375,"1100000001110011010000100110101011100000111101000100101101010011":-308.1510934393638,"0100000001001010110101101100011001111101001100110110011101010001":53.6779324055666,"1100000010001101011100101100010001110100000010100010110111001110":-942.3459244532803,"1100000010001011001101100011001111101001100110110011101010000111":-870.7753479125248,"0100000010000010110000110010111001010000011010011101110001100000":600.3976143141153,"0100000010001001001110010100000110100111011100010111111010111010":807.1570576540755,"1100000010000100110000000010000010010010100100111001100000101101":-664.0159045725646,"1100000001110010111000101111110101110100100011000111100000011101":-302.1868787276342,"1100000001110000111001100000101100110010011000101011110001001111":-270.3777335984095,"1100000001110010001001000010001010011011101111001101000110110000":-290.258449304175,"1100000010001010011001110111000101111110101110100100011000111100":-844.9304174950298,"0100000001110010010000111111000110111111110111110110110101101100":292.24652087475147,"0100000000100111110110110101101100011001111101001100110110011101":11.928429423459244,"0100000010000010000101000011101100001001101010111000001111010001":578.5288270377733,"0100000001101011110101010011111110011110010010000100010100110111":222.66401590457255,"1100000010000111000011001001100010101111000100111101100101010010":-737.5745526838966,"0100000010001010111001101010111000001111010001001011010100101111":860.8349900596421,"1100000010001110110000001100001101101111011101011001000100001101":-984.0954274353877,"0100000001100010001001000010001010011011101111001101000110110000":145.1292246520875,"1100000010001100101001000000001000001001001010010011100110000011":-916.5009940357853,"0100000001101001110110000100110101011100000111101000100101101010":206.75944333996023,"1100000001101100110100111011100010111111010111010010001100011110":-230.61630218687873,"0100000010000000001101110001011111101011101001000110001111000001":518.8866799204771,"0100000001110011111000010111011010010101101000010101011000000011":318.0914512922465,"1100000000100011111000010111011010010101101000010101011000000011":-9.940357852882704,"1100000001100100110111111110111110110110101101100011001111101010":-166.99801192842943,"0100000001110001100001010001011011100111000011111100011011111111":280.3180914512922,"0100000001100010011000111100000011100100000000100000100100101001":147.117296222664,"0100000010000110011111010111010010001100011110000001110010000000":719.6819085487077,"1100000010001010001001111101001100110110011101010000111011000010":-836.9781312127236,"0100000010000111110010110111001110000111111000110111111110111111":761.4314115308151,"1100000001111001011110001101111111101111101101101011011000110100":-407.55467196819086,"0100000001110010110000110010111001010000011010011101110001100000":300.1988071570577,"0100000001101001010110010001000011001011100101000001101001110111":202.78330019880715,"1100000010001011011001011110101010011111110011110010010000100011":-876.7395626242545,"1100000001111101000100110101011100000111101000100101101010011000":-465.20874751491056,"0100000010000000100001101001110111000101111110101110100100011001":528.8270377733598,"0100000010000011100000100000100100101001001110011000001011001101":624.2544731610338,"0100000010000110010011011011110111010110010001000011001011100101":713.7176938369781,"0100000001101010010101111000100111101100101010001111100001011110":210.73558648111333,"0100000010001010101001110000111111000110111111110111110110110110":852.882703777336,"1100000010000000111001100000101100110010011000101011110001001111":-540.755467196819,"1100000001110111011110111110110110101101100011001111101001100111":-375.7455268389662,"0100000001110110101111010001001011010100101111010101001111111010":363.81709741550696,"0100000010000110001011011110111010110010001000011001011100101000":709.741550695825,"0100000010001000010110101001011110101010011111110011110010010001":779.324055666004,"0100000010000110100111010100001110110000100110101011100000111101":723.6580516898608,"1100000010000001100101001111111001111001001000010001010011011110":-562.624254473161,"0100000010001010110001101101111011101011001000100001100101110011":856.8588469184891,"1100000010001110000100011101000000101000101101110011100001111110":-962.2266401590457,"0100000010000000100101101000010101011000000011000011011011110111":530.8151093439363,"1100000001111010001101111011101011001000100001100101110010100001":-419.4831013916501,"1100000010000010101000110101111100101100010001110100000010100011":-596.4214711729622,"1100000010001110110100001010101100000001100001101101111011101011":-986.0834990059642,"1100000010000101100111101100101010001111100001011101101001010111":-691.8489065606362,"1100000010000111110110110101101100011001111101001100110110011101":-763.4194831013916,"1100000010000110011011011000110011111010011001101100111010100010":-717.6938369781312,"1100000001111111100011111000010111011010010101101000010101011000":-504.97017892644135,"1100000001101000110110011101010000111011000010011010101110000100":-198.80715705765408,"1100000001010100011000001011001100100110001010111100010011110110":-81.51093439363817,"1100000001010100110111111110111110110110101101100011001111101010":-83.49900596421472,"1100000001111000000110101111100101100010001110100000010100010111":-385.6858846918489,"0100000010001011111001010010011100110000010110011001001100010110":892.6441351888668,"1100000010000011011100100010000110010111001010000011010011101110":-622.2664015904572,"0100000001100111000111001000000001000001001001010010011100110000":184.89065606361828,"0100000001101110000100011101000000101000101101110011100001111110":240.55666003976143,"0100000010000010100000111001000000001000001001001010010011100110":592.4453280318091,"0100000010001000100110100011010111110010110001000111010000001010":787.2763419483101,"0100000001111010110101101100011001111101001100110110011101010001":429.4234592445328,"1100000001011101110100100011000111100000011100100000000100000101":-119.28429423459245,"1100000010001010000010000000010000010010010100100111001100000110":-833.0019880715706,"0100000010001010001001111101001100110110011101010000111011000010":836.9781312127236,"0100000001110100011000001011001100100110001010111100010011110110":326.04373757455267,"0100000001110101011111101111101101101011011000110011111010011010":343.93638170974157,"1100000010000101010011110100010010110101001011110101010011111110":-681.9085487077534,"0100000010000111000111001000000001000001001001010010011100110000":739.5626242544731,"1100000001111101101100100110001010111100010011110110010101001000":-475.14910536779325,"0100000010001011010001100001101101111011101011001000100001100110":872.7634194831014,"1100000010000011110100011000111100000011100100000000100000100101":-634.1948310139165,"0100000001100100110111111110111110110110101101100011001111101010":166.99801192842943,"0100000010001000101110100000010100010110111001110000111111000111":791.2524850894632,"1100000010000110101011010010101101000010101011000000011000011011":-725.6461232604373,"0100000001010110110111001110000111111000110111111110111110110111":91.45129224652088,"1100000010000001101101001100110110011101010000111011000010011011":-566.6003976143141,"0100000001110011011000100011101000000101000101101110011100010000":310.13916500994037,"0100000001111100101100111110100110011011001110101000011101100001":459.2445328031809,"1100000001110101000111111000110111111110111110110110101101100011":-337.9721669980119,"0100000010000011110100011000111100000011100100000000100000100101":634.1948310139165,"1100000010000100011100001001101010111000001111010001001011010101":-654.0755467196819,"0100000001010010011000111100000011100100000000100000100100101001":73.558648111332,"0100000001101111110011110010010000100010100110111011110011010010":254.47316103379723,"1100000001111001100110001010111100010011110110010101000111110001":-409.5427435387674,"1100000010000111000111001000000001000001001001010010011100110000":-739.5626242544731,"0100000001111011000101100110010011000101011110001001111011001011":433.3996023856859,"1100000001110001101001001110011000001011001100100110001010111100":-282.30616302186877,"0100000001111101001100110010011000101011110001001111011001010100":467.19681908548705,"0100000010001000000110101111100101100010001110100000010100010111":771.3717693836978,"0100000010001111001100000001100001101101111011101011001000100010":998.0119284294235,"1100000010001000010110101001011110101010011111110011110010010001":-779.324055666004,"0100000001100101100111101100101010001111100001011101101001010111":172.96222664015906,"0100000010001111010000000000000000000000000000000000000000000000":1000.0,"0100000010001101001100110010011000101011110001001111011001010100":934.3936381709741,"1100000001000110110111001110000111111000110111111110111110110111":-45.72564612326044,"1100000010000101110011101000000101000101101110011100001111110010":-697.8131212723658,"0100000010001100011101000100101101010010111101010100111111101000":910.5367793240557,"1100000010001100101100111110100110011011001110101000011101100001":-918.4890656063618,"0100000001100011101000011101100001001101010111000001111010001001":157.0576540755467,"1100000010000001001101011001000100001100101110010100000110100111":-550.6958250497017,"1100000010000110001011011110111010110010001000011001011100101000":-709.741550695825,"1100000010000101011111101111101101101011011000110011111010011010":-687.8727634194831,"0100000001110111000111001000000001000001001001010010011100110000":369.78131212723656,"0100000010001011110101010011111110011110010010000100010100110111":890.6560636182902,"1100000010001110011000010101011000000011000011011011110111010110":-972.1669980119284,"0100000000111111110011110010010000100010100110111011110011010010":31.809145129224653,"0100000001111011010101100000001100001101101111011101011001000100":437.37574552683895,"0100000010001110100100010000110010111001010000011010011101110001":978.131212723658,"0100000010000111000011001001100010101111000100111101100101010010":737.5745526838966,"1100000010001001000010011000101011110001001111011001010100011111":-801.1928429423459,"1100000010000110110011001111101001100110110011101010000111011000":-729.6222664015904,"1100000001111111111011101111001101000110101111100101100010001111":-510.934393638171,"0100000010001101000000110110111101110101100100010000110010111001":928.4294234592445,"1100000001110010011000111100000011100100000000100000100100101001":-294.234592445328,"1100000001101011010101100000001100001101101111011101011001000100":-218.68787276341948,"0100000001110010100000111001000000001000001001001010010011100110":296.22266401590457,"1100000010000100111011111101011101001000110001111000000111001000":-669.9801192842942,"1100000001011010110101101100011001111101001100110110011101010001":-107.3558648111332,"1100000001101101100100101001001110011000001011001100100110001011":-236.58051689860835,"1100000001110110111111001011000100011101000000101000101101110100":-367.79324055666007,"1100000001101100000101001101110111100110100011010111110010110001":-224.6520874751491,"0100000001100110000111100000011100100000000100000100100101001010":176.93836978131213,"1100000001111101110100100011000111100000011100100000000100000101":-477.1371769383698,"1100000001110011111000010111011010010101101000010101011000000011":-318.0914512922465,"1100000010000100000000010100010110111001110000111111000111000000":-640.1590457256461,"1100000001111001010110010001000011001011100101000001101001110111":-405.5666003976143,"0100000010000010011000111100000011100100000000100000100100101001":588.469184890656,"0100000010000100101000000101000101101110011100001111110001110000":660.0397614314115,"0100000001111010000101111110101110100100011000111100000011100100":417.49502982107356,"0100000010000010101000110101111100101100010001110100000010100011":596.4214711729622,"0100000001010001111001001000010001010011011101111001101000110110":71.57057654075547,"1100000001011000110110011101010000111011000010011010101110000100":-99.40357852882704,"1100000001100001111001001000010001010011011101111001101000110110":-143.14115308151094,"0100000010000010110100110001010111100010011110110010101000111110":602.3856858846918,"1100000010000110010011011011110111010110010001000011001011100101":-713.7176938369781,"1100000001011011010101100000001100001101101111011101011001000100":-109.34393638170974,"0100000010001011100001011011100111000011111100011011111111011111":880.7157057654075,"0100000001010110010111011010010101101000010101011000000011000011":89.46322067594433,"0100000010000001111001001000010001010011011101111001101000110110":572.5646123260437,"0100000010001000110110011101010000111011000010011010101110000100":795.2286282306163,"1100000010000101000011111010011001101100111010100001110110000101":-673.9562624254473,"1100000001100010001001000010001010011011101111001101000110110000":-145.1292246520875,"0100000010000010100100110111011110011010001101011111001011000100":594.4333996023856,"0100000001111010001101111011101011001000100001100101110010100001":419.4831013916501,"1100000001010111010111000001111010001001011010100101111010101010":-93.43936381709742,"0100000010000010111100101110010100000110100111011100010111111011":606.3618290258449,"1100000001101010000101111110101110100100011000111100000011100100":-208.74751491053678,"0100000001111001101110000111111000110111111110111110110110101110":411.53081510934396,"1100000010001100000001001111011001010100011111000010111011010011":-896.6202783300199,"0100000001111111001100000001100001101101111011101011001000100010":499.00596421471175,"0100000010001001100110001010111100010011110110010101000111110001":819.0854870775348,"0100000001001111110011110010010000100010100110111011110011010010":63.618290258449306,"0100000001110100111111111011111011011010110110001100111110100110":335.98409542743536,"0100000010000000001001110011000001011001100100110001010111100010":516.8986083499005,"1100000010001110111000001001001010010011100110000010110011001010":-988.0715705765408,"1100000001011110010100010110111001110000111111000110111111111000":-121.27236580516899,"1100000001110001100001010001011011100111000011111100011011111111":-280.3180914512922,"0100000001101110100100010000110010111001010000011010011101110001":244.5328031809145,"0100000010001101010100101111010101001111111001111001001000010001":938.3697813121272,"0100000001111001010110010001000011001011100101000001101001110111":405.5666003976143,"0100000010001000010010101011000000011000011011011110111010110010":777.3359840954274,"1100000010000100100000001000001001001010010011100110000010110011":-656.0636182902584,"1100000010001000000110101111100101100010001110100000010100010111":-771.3717693836978,"0100000001110000011001101100111010100001110110000100110101011100":262.4254473161034,"0100000001101000100110100011010111110010110001000111010000001010":196.81908548707753,"0100000001111100010101000111110000101110110100101011010000101011":453.2803180914513,"1100000010001011011101011101001000110001111000000111001000000001":-878.727634194831,"0100000010001100011001000110001111000000111001000000001000001001":908.5487077534791,"1100000010001010101001110000111111000110111111110111110110110110":-852.882703777336,"0100000001100010111000101111110101110100100011000111100000011101":151.0934393638171,"0100000001001011110101010011111110011110010010000100010100110111":55.66600397614314,"1100000010000110001111011101011001000100001100101110010100000111":-711.7296222664016,"1100000001110011001000101001101110111100110100011010111110010110":-306.16302186878727,"1100000001110110001111011101011001000100001100101110010100000111":-355.8648111332008,"0100000001100110100111010100001110110000100110101011100000111101":180.9145129224652,"0100000001100001111001001000010001010011011101111001101000110110":143.14115308151094,"0100000001010001011001010100011111000010111011010010101101000011":69.58250497017893,"1100000001000000111001100000101100110010011000101011110001001111":-33.79721669980119,"0100000001011011010101100000001100001101101111011101011001000100":109.34393638170974,"1100000010001001111010000011010011101110001011111101011101001001":-829.0258449304175,"1100000001111101010100101111010101001111111001111001001000010001":-469.1848906560636,"0100000010000101111011100101000001101001110111000101111110101111":701.7892644135189,"1100000010000000000001110110000100110101011100000111101000100110":-512.9224652087476,"1100000001101111000100000100100101001001110011000001011001100101":-248.5089463220676,"0100000010000001011101010010111101010100111111100111100100100001":558.6481113320079,"1100000001100111010111000001111010001001011010100101111010101010":-186.87872763419483,"0100000010000000011101101011011000110011111010011001101100111011":526.8389662027834,"1100000001000111110110110101101100011001111101001100110110011101":-47.713717693836976,"0100000010001001111110000001110010000000010000010010010100100111":831.013916500994,"1100000010001001100110001010111100010011110110010101000111110001":-819.0854870775348,"1100000001011011110101010011111110011110010010000100010100110111":-111.33200795228628,"1100000010000000001001110011000001011001100100110001010111100010":-516.8986083499005,"0100000001101101100100101001001110011000001011001100100110001011":236.58051689860835,"1100000001001100110100111011100010111111010111010010001100011110":-57.65407554671968,"0100000010001101111000100001100101110010100000110100111011100011":956.2624254473161,"1100000010001110010100010110111001110000111111000110111111111000":-970.1789264413519,"0100000010001010000010000000010000010010010100100111001100000110":833.0019880715706,"1100000001010010011000111100000011100100000000100000100100101001":-73.558648111332,"1100000001010101110111100110100011010111110010110001000111010000":-87.47514910536779,"0011111111111111110011110010010000100010100110111011110011010010":1.9880715705765408,"1100000010000010100000111001000000001000001001001010010011100110":-592.4453280318091,"1100000001101001000110010111001010000011010011101110001011111101":-200.7952286282306,"1100000000010111110110110101101100011001111101001100110110011101":-5.964214711729622,"1100000001110101001111110101110100100011000111100000011100100000":-339.96023856858847,"1100000010001101100100101001001110011000001011001100100110001011":-946.3220675944334,"0100000001010010111000101111110101110100100011000111100000011101":75.54671968190856,"1100000010000010010000111111000110111111110111110110110101101100":-584.4930417495029,"0100000001010111010111000001111010001001011010100101111010101010":93.43936381709742,"1100000001001011110101010011111110011110010010000100010100110111":-55.66600397614314,"0100000001110110111111001011000100011101000000101000101101110100":367.79324055666007,"0100000010000011101100011011111111011111011011010110110001101000":630.2186878727634,"1100000001110110101111010001001011010100101111010101001111111010":-363.81709741550696,"1100000001111011001101100011001111101001100110110011101010000111":-435.3876739562624,"0100000001110010101000110101111100101100010001110100000010100011":298.2107355864811,"1100000000011111110011110010010000100010100110111011110011010010":-7.952286282306163,"1100000001110100110111111110111110110110101101100011001111101010":-333.99602385685887,"1100000001110111110110110101101100011001111101001100110110011101":-381.7097415506958,"0100000010000011011000100011101000000101000101101110011100010000":620.2783300198807,"0100000001111101110100100011000111100000011100100000000100000101":477.1371769383698,"0100000001011110110100001010101100000001100001101101111011101011":123.26043737574552,"0100000001110011101000011101100001001101010111000001111010001001":314.1153081510934,"0100000010000011010100100101001001110011000001011001100100110001":618.2902584493041,"1100000010000011011000100011101000000101000101101110011100010000":-620.2783300198807,"1100000001110010110000110010111001010000011010011101110001100000":-300.1988071570577,"0100000001110101101111101001100110110011101010000111011000010011":347.9125248508946,"0100000001111110111100000111101000100101101010010111101010101000":495.02982107355865,"0100000010000000111001100000101100110010011000101011110001001111":540.755467196819,"0100000010001001010110010001000011001011100101000001101001110111":811.1332007952286,"0100000001011101010100101111010101001111111001111001001000010001":117.2962226640159,"0100000010000010000001000101001101110111100110100011010111110011":576.5407554671968,"0100000001110001111001001000010001010011011101111001101000110110":286.2823061630219,"1100000001100001001001011010100101111010101001111111001111001001":-137.1769383697813}
-},{}],148:[function(require,module,exports){
+
+},{}],154:[function(require,module,exports){
 module.exports={"0001011001100011001011111011110100111101111111001011010111001001":7.83300198807157e-201,"0001011001011010011001001100001000001101110011001011000101001101":5.3876739562624254e-201,"0001011001011110001001001010101010011100100000110100011100101110":6.153081510934393e-201,"0001011001010000001101110100101011010011100100111111010111101000":3.31013916500994e-201,"0001011001011101111100101100110100010011011011111101000110101111":6.113320079522863e-201,"0001011001010000101001110111110101000111111111111011111001001000":3.3996023856858845e-201,"0001010111110101110100001110101111111000100000110110100000001010":6.958250497017892e-203,"0001011001100011100111111110111110110010011010000111111000101010":8.01192842942346e-201,"0001011000111100110101000001001100111111001111111110111000001110":1.4711729622266401e-201,"0001011001100011000010100101011100010111001011100001110110101001":7.773359840954274e-201,"0001011001100111001110100111001000011010010100000111101111101100":9.4831013916501e-201,"0001011001011111010000110110010001110000101100110010101011010000":6.381709741550696e-201,"0001011001001001010100100111111110011011111000011010101100001101":2.584493041749503e-201,"0001011001011110110111111010100101011110100011000011111111001111":6.302186878727634e-201,"0001011000011111001010100111010110101100001010010111000000001111":3.9761431411530813e-202,"0001011001100100100110010100001101011111110010011100100110101010":8.409542743538767e-201,"0001011001100111100010110111101000011001000100000001101011011100":9.612326043737575e-201,"0001011001000001111010111001110101000010111111100011101000001001":1.8290258449304175e-201,"0001011001011001110110111010000011010100110101110010111000101101":5.278330019880716e-201,"0001011001010100111001000000111110101101011001101111100111101011":4.2644135188866804e-201,"0001011001011000000011100101111110100000111000110010111101001100":4.910536779324056e-201,"0001011001100010000010101100011110111000101010100110001101111001":7.365805168986084e-201,"0001011001000010111001001111000011110000010111111000010110001001":1.9284294234592444e-201,"0001011001100010010101011001010000000110010001111001001110111001":7.485089463220676e-201,"0001011001001010110010000111110100011111111100111001110001001101":2.7335984095427434e-201,"0001011001011100110101000001001100111111001111111110111000001110":5.8846918489065604e-201,"0001011001100010000101110011111100011010111011110100000011011001":7.385685884691849e-201,"0001011000011010011111011011000011010010010101100110110000001101":3.3797216699801192e-202,"0001011001001111110110001111110100001011111011011000101101010000":3.2504970178926442e-201,"0001011001011010011111011011000011010010010101100110110000001101":5.407554671968191e-201,"0001011001011111010011111101101111010010111110000000100000110000":6.391650099403579e-201,"0001011001001001110011110010100101110010100100100101000011001101":2.6341948310139166e-201,"0001011001011101101101000111100000101000000101110111111011001111":6.0636182902584495e-201,"0001011001001110110001101011101010011010000000101000010100001111":3.1411530815109343e-201,"0001011001010110000000101100100110000001100101101101110110001011":4.493041749502982e-201,"0001011001001110011110111110111001001100011001010101010011001111":3.1113320079522863e-201,"0001011000110100000100000010001000100110110101000100011010001001":1.0238568588469183e-201,"0001011001000101100001100001111110101010111001100011011111001010":2.1968190854870773e-201,"0001011001100001011000100111110000001010000010001011011011101000":7.09741550695825e-201,"0001011001010011110001010101010111011001001101110001011001001001":4.035785288270377e-201,"0001011001000010100000010011010111011110001110001001101010001001":1.8886679920477137e-201,"0001011001100010001101100110100110010000100110110110101001001001":7.435387673956262e-201,"0001011001010001110111110010010111100000101110010101110010101001":3.6481113320079524e-201,"0001011001100010001111001010010101000001101111011101100011111001":7.445328031809145e-201,"0001011001010110000110111011100001000110001000001001100001001011":4.5129224652087476e-201,"0001011001010111100001010011111001100111111011011010110000101100":4.801192842942346e-201,"0001011001011110111011000010000011000000110100010001110100101111":6.312127236580517e-201,"0001011001100101100110001101001010111110010011011000001111011010":8.817097415506957e-201,"0001011001010100100110010100001101011111110010011100100110101010":4.2047713717693836e-201,"0001011000110100011100111101110100111000111110110011000110001010":1.0437375745526839e-201,"0001011001100111001000011000001101010101110001101100000100101011":9.443339960238568e-201,"0001011000101111001010100111010110101100001010010111000000001111":7.952286282306163e-202,"0001011001000000011101011001111110111110111011000100100011001001":1.6799204771371772e-201,"0001011001011001010100100111111110011011111000011010101100001101":5.168986083499006e-201,"0001011001010101110001000111010010010110001111101000101010101011":4.443339960238569e-201,"0001011001000100101111101010100110000110100110000110000111001010":2.1172962226640158e-201,"0001011001100100001000101101010100111010001110111001001010011010":8.220675944333996e-201,"0001011001000110001101001010011100001010101010100101001100001011":2.2664015904572565e-201,"0001011001100001110100101010111001111110011101000111111101001001":7.27634194831014e-201,"0001011001100111100101111111000101111011010101001111100000111100":9.63220675944334e-201,"0001011001100000100011101000111010000011011101100000001110001000":6.759443339960238e-201,"0001011001100011111101110011001101100010010010101000101111001010":8.151093439363817e-201,"0001011001011100111000001000101010100001100001001100101101101110":5.894632206759443e-201,"0001011001100011011110101000100110001011100110011110011000001001":7.952286282306162e-201,"0001010111111111001010100111010110101100001010010111000000001111":9.940357852882703e-203,"0001011001100000001010101101001101110001010011110001100010001000":6.600397614314115e-201,"0001011001100111101001000110100011011101100110011101010110011011":9.652087475149104e-201,"0001011001010000111100100100100110010101100111001110111010001000":3.4592445328031806e-201,"0001011001011100010101110110100101101000100011110100100001001110":5.7852882703777336e-201,"0001011000100001100001111110001000110000110101110100111100001001":4.473161033797217e-202,"0001011001100000101011011011100011111001001000100010110011111000":6.809145129224652e-201,"0001011000000111010111111101100001000001000111110001010000001011":1.4910536779324054e-202,"0001011000111011101010001110001000001000110010110010110100001110":1.411530815109344e-201,"0001011001100100010101001011001011000011010011110000100000011010":8.300198807157058e-201,"0001011001100000101100111111010010101010010001001001101110101000":6.819085487077534e-201,"0001011001010001111010111001110101000010111111100011101000001001":3.658051689860835e-201,"0001011001100111010011010010010100101101101101111100011111111011":9.512922465208747e-201,"0001011001011000111011101100010010001001101110101100000000001100":5.089463220675944e-201,"0001011001010000011010010010100001011100101001110110101101101000":3.349900596421471e-201,"0001010111011000111011101100010010001001101110101100000000001100":1.9880715705765407e-203,"0001011001010110101111011100100001000011100111111101011000101011":4.6421471172962225e-201,"0001011000111000101111001110011100000000101001110100101010001100":1.2624254473161033e-201,"0001011000110101000010010111010111010100001101011001001000001010":1.073558648111332e-201,"0001011001100010101111111000101011001001100100001110110101101001":7.654075546719682e-201,"0001011001100110101101111000110010010010011111010110011101111011":9.274353876739562e-201,"0001011001100111001001111011111100000110111010010010111111011011":9.45328031809145e-201,"0001011001100001110110001110101000101111100101101110110111111001":7.286282306163022e-201,"0001011001001011001011000011100000110010000110101000011101001101":2.7733598409542742e-201,"0001011001001101011010011010101111011010011110100100111010001111":3.0019880715705767e-201,"0001011001010101100111110000111001101111011011111111001010001010":4.41351888667992e-201,"0001011001000010111111011101111110110100111010010100000001001001":1.938369781312127e-201,"0001011001100100101010111111011001110011001100010001010110111010":8.439363817097415e-201,"0001011001100110010000010001111001101100111011110011000001101011":9.085487077534791e-201,"0001011001001011100011111111001101000100010000010111001001001101":2.813121272365805e-201,"0001011001010101010001111100101010111111100011011110010011101010":4.343936381709741e-201,"0001011001100100011011011010000110000111110110001100001011011010":8.339960238568588e-201,"0001011001011100001100100000001101000001110000001011000000101110":5.7554671968190855e-201,"0001011001100110110101101011011100001000001010011001000011101011":9.324055666003976e-201,"0001011001011101010001000100010110110011101010111011011001101110":5.9741550695825046e-201,"0001011001100110110001000000001111110100110000100100010011011011":9.294234592445328e-201,"0001011001000000010111001011000011111010011000101000111000001000":1.6699801192842942e-201,"0001011001011111100011100011000010111110010100000101101100010000":6.441351888667992e-201,"0001011001100101100100101001011100001101001010110001010100101010":8.807157057654075e-201,"0001011001100110000010010000010100110010101110010100110000111011":8.996023856858847e-201,"0001011001100010000100010000001101101001110011001101001000101001":7.375745526838966e-201,"0001011001001011000100110100100101101101100100001100110010001101":2.7634194831013915e-201,"0001011001100111011100101000101101010100100001100110000000011011":9.572564612326043e-201,"0001011001101000010011001011010010001100001110111000001000101100":9.920477137176938e-201,"0001011001011111001010100111010110101100001010010111000000001111":6.36182902584493e-201,"0001011001000101000010010111010111010100001101011001001000001010":2.147117296222664e-201,"0001011001100100111100001000011100001111101010111101011101001010":8.548707753479125e-201,"0001011001100101110101110010011110101001101001011101011010111010":8.916500994035784e-201,"0001011001010010110011000000001000101011110101011100101011001010":3.836978131212724e-201,"0001011001010001010010011000110101000101011111101111110000101001":3.52882703777336e-201,"0001011001010110010000010001111001101100111011110011000001101011":4.5427435387673956e-201,"0001011001100000100110110000010111100101101110101110000011101000":6.779324055666004e-201,"0001011001011010100010100010100000110100100110110100100101101101":5.4174950298210735e-201,"0001011001100100110111011101001111111100010001001000101100111011":8.518886679920478e-201,"0001011001001100101110110010010001111010101101100011001101001110":2.9324055666003975e-201,"0001011000100100101001011011101011000010000011101010011100001010":5.268389662027833e-202,"0001011001001111001010100111010110101100001010010111000000001111":3.180914512922465e-201,"0001011000101010111000010110101111100100011111010101011100001101":6.858846918489065e-202,"0001011001001111100011100011000010111110010100000101101100010000":3.220675944333996e-201,"0001011001010100010000011111111110101111111001111011110000001010":4.135188866799205e-201,"0001011000111010101011111000111001011011011010011110000110001101":1.3618290258449304e-201,"0001011001010100100000000101010010011011010000000000111011101010":4.184890656063618e-201,"0001011001011010000011010111111001011101111010101010001110101101":5.3180914512922466e-201,"0001011001000100100011001100101111111101100001001110110001001010":2.0974155069582504e-201,"0001011001001100111011010000001000000011110010011010100011001111":2.9522862823061633e-201,"0001011001100111100100011011010111001010001100101000100110001100":9.622266401590458e-201,"0001011000110010000111010111101011001100000100011010111110001001":9.244532803180915e-202,"0001011001010000110000000110110000001100100010010111100100001001":3.4194831013916506e-201,"0001011001100001010010011000110101000101011111101111110000101001":7.05765407554672e-201,"0001011001010011111010101011110000000000000001011010111001101010":4.065606361829026e-201,"0001011001000000110000000110110000001100100010010111100100001001":1.7097415506958253e-201,"0001011001100011000100001001001011001000010100001000110001011010":7.783300198807158e-201,"0001011001010110001010000010111110101000011001010111010110101010":4.5228628230616295e-201,"0001011000110110011001101000010010010011101111011100100010001011":1.143141153081511e-201,"0001011001100110001110101110001010111011110011001100000110111011":9.075546719681909e-201,"0001011001001101101101000111100000101000000101110111111011001111":3.0318091451292248e-201,"0001011000011101100110111000100101100011100011011100010000001110":3.777335984095427e-202,"0001010111001000111011101100010010001001101110101100000000001100":9.940357852882703e-204,"0001011001011110010101101000100000100101100101101011110010101111":6.1928429423459244e-201,"0001011001011100000000000010010110111000101011010011101010101110":5.715705765407555e-201,"0001011001100111000010001001010010010001001111010000011001101011":9.403578528827037e-201,"0001011001100011011000011001101011000111000100000010101101001010":7.912524850894633e-201,"0001011001011011101101010101100101101011000100000000101001101110":5.656063618290259e-201,"0001011001011111100110101010100000100000100101010011100001110000":6.451292246520875e-201,"0001011001000011111101110011001101100010010010101000101111001010":2.0377733598409543e-201,"0001011001010001100001111110001000110000110101110100111100001001":3.5785288270377736e-201,"0001011001011001010001100000100000111001100111001100110110101101":5.1590457256461236e-201,"0001011001001101111111110100010001110101101101001010111100001111":3.061630218687873e-201,"0001011001001010111110100101101010101001000001110001000111001101":2.7534791252485088e-201,"0001011001000111111101010111000011011100010110010111010010001011":2.4453280318091448e-201,"0001011001100011011101000100110111011010011101110111011101011001":7.94234592445328e-201,"0001011001100000110100110001111100011111111100001100010100011000":6.868787276341948e-201,"0001011001101000001001110100111001100101011011001110101000001100":9.860834990059642e-201,"0001011001010100010011100111011100010010001011001001100101101010":4.1451292246520874e-201,"0001011001010011001000110100010111011011101101111101100001101010":3.906560636182903e-201,"0001011001010110110101101011011100001000001010011001000011101011":4.662027833001988e-201,"0001011001011111000001010000111110000101010110101101011111101111":6.332007952286282e-201,"0001011001010111110000111001001101010011010001011111111100001100":4.8508946322067596e-201,"0001011001000010000001001000110000000111100001111111010011001001":1.8389662027833002e-201,"0001011001010101101101111111110100110011111110011010110101001011":4.433399602385686e-201,"0001011001011000000000011110100000111110100111100101000111101100":4.900596421471173e-201,"0001011001100000110001101010011110111101101010111110011110111000":6.848906560636182e-201,"0001011001011001001011010001100101110101000100110001001011101100":5.1391650099403575e-201,"0001011001010011000101101100111001111001011100101111101100001010":3.89662027833002e-201,"0001011001011101110011010110011011101100101000010011100110001111":6.083499005964215e-201,"0001011000101110011000101111111110000111110110111001101000001111":7.753479125248509e-202,"0001011001011101111001100101010110110001001010101111010001001110":6.1033797216699795e-201,"0001011000101000100010110000100101110111100100111101010100001100":6.262425447316103e-202,"0001011000010001001001000010011100011110101100000110010000001000":2.1868787276341946e-202,"0001011001100011101001100010101101100011100010101110110011011010":8.021868787276342e-201,"0001010111111000111011101100010010001001101110101100000000001100":7.952286282306163e-203,"0001011000110000110000000110110000001100100010010111100100001001":8.548707753479127e-202,"0001011001100011011001111101011001111000001100101001100111111010":7.922465208747515e-201,"0001011001001110100101001101110100010000111011110000111110001111":3.121272365805169e-201,"0001011001000100001010010001000011101011010111100000000101001010":2.0576540755467197e-201,"0001011001100001111110000001010010100101010000110001011101101000":7.335984095427434e-201,"0001011001100011111100001111011110110001001010000001110100011010":8.141153081510935e-201,"0001011001011100001001011000101111011111011110111101001011001110":5.745526838966203e-201,"0001011001100000000010111010100011111011101000101110111100011000":6.550695825049702e-201,"0001011001100110111101011110000101111101110101011011101001011100":9.37375745526839e-201,"0001011001011001110000101011001000010000010011010111001101101100":5.25844930417495e-201,"0001010111101000111011101100010010001001101110101100000000001100":3.9761431411530813e-203,"0001011001001111010111000101001100110101001111001110010110001111":3.2007952286282304e-201,"0001011000111000001001110100111001100101011011001110101000001100":1.2326043737574553e-201,"0001011001100011100000001100010100111100101111000101010010111001":7.962226640159045e-201,"0001011001010011010010001010110000000010100001100111000010001001":3.93638170974155e-201,"0001011001011101001010110101011011101111001000011111101110101111":5.95427435387674e-201,"0001011001100011110100011100110100111011011110111111001110101001":8.09145129224652e-201,"0001011000110000010111001011000011111010011000101000111000001000":8.349900596421471e-202,"0001011001010101001011101101101111111011000001000010101000101011":4.3240556660039765e-201,"0001011001100111111010001111100101111010000101001001011100101011":9.761431411530814e-201,"0001011001010100101001011011101011000010000011101010011100001010":4.214711729622266e-201,"0001011000111010011111011011000011010010010101100110110000001101":1.3518886679920477e-201,"0001011001100001010101100000010010100111110000111101100110001001":7.077534791252486e-201,"0001011000110001100001111110001000110000110101110100111100001001":8.946322067594434e-202,"0001011001100001011110110110101011001110100100100111000110101000":7.13717693836978e-201,"0001011001011110100010000110010110101110101010100011001000101111":6.232604373757455e-201,"0001011001010100001101011000100001001101101000101101111010101010":4.125248508946322e-201,"0001011001000111110111001000001000010111110011111011100111001100":2.4353876739562625e-201,"0001011001100001100110101001010101000100001111101001101100011001":7.186878727634195e-201,"0001011000111001001000001010001000010010110011100011010110001100":1.2823061630218687e-201,"0001011001010101100001100001111110101010111001100011011111001010":4.3936381709741546e-201,"0001011000110010100000010011010111011110001110001001101010001001":9.443339960238568e-202,"0001011001100111010000001010110111001011011100101110101010011100":9.493041749502983e-201,"0001011001100101000101011110110100110110011110100110111101101010":8.608349900596421e-201,"0001011001011111000100011000011011100111100111111011010101001111":6.341948310139165e-201,"0001011000111101000001011111000011001000010100110110001110001110":1.4811133200795228e-201,"0001011001001011010001010010011011110110101001000100001000001101":2.783300198807157e-201,"0001011001100100011000010010101000100101100100111110010101111010":8.320079522862823e-201,"0001011001000111000101010000101111110011100000011110001111001011":2.3558648111332006e-201,"0001011001011000010000000011110100101001111101101010010011001100":4.9502982107355865e-201,"0001011001100011010110110101111100010101111011011011110010011010":7.90258449304175e-201,"0001011001100111101100001110000000111111110111101011001011111011":9.67196819085487e-201,"0001011001101000000000011110100000111110100111100101000111101100":9.801192842942346e-201,"0001011001010010011010000100011100011001101011101101111111001001":3.757455268389662e-201,"0001011000111100011100000101100000101101000110010000001100001110":1.4512922465208747e-201,"0001011001010011101110001101111001110110111100100011100011101010":4.025844930417495e-201,"0001011000111010010010111101001101001001010000101111011010001100":1.3419483101391648e-201,"0001011000011100000011001001110100011010111100100001100000001110":3.5785288270377734e-202,"0001011001101000010111110110011110011111101000101100111000111100":9.950298210735586e-201,"0001011001011011011010101000110100011101011100101101101000101110":5.5964214711729625e-201,"0001011001100011010011101110011110110011101010001101111100111010":7.882703777335985e-201,"0001011001100000001001001001011111000000001011001010100111011000":6.590457256461233e-201,"0001011001001010011001001100001000001101110011001011000101001101":2.6938369781312127e-201,"0001011000111110110001101011101010011010000000101000010100001111":1.5705765407554672e-201,"0001011001100110011100101111101111110110000000101010010111101011":9.165009940357853e-201,"0001011001100111110111001000001000010111110011111011100111001100":9.74155069582505e-201,"0001011001100101001000100110010010011000101111110100110011001011":8.628230616302188e-201,"0001011000110010101100110001001101100111010011000001000000001001":9.542743538767395e-202,"0001011001010111101010101010010010001110101111000100010001001011":4.8310139165009935e-201,"0001011001011111110110001111110100001011111011011000101101010000":6.5009940357852884e-201,"0001011001000100010000011111111110101111111001111011110000001010":2.0675944333996024e-201,"0001011001100101010000011000111100001110011010110111011000111010":8.6779324055666e-201,"0001011001000101001000100110010010011000101111110100110011001011":2.157057654075547e-201,"0001011001100001001111010001010111100011001110100001111011001001":7.037773359840955e-201,"0001011001100110111111000001110100101110111110000010100100001100":9.383697813121273e-201,"0001011001011001011010110110111001100000011010110110010111001100":5.188866799204771e-201,"0001011001010100101111101010100110000110100110000110000111001010":4.2345924453280316e-201,"0001011001100011110010111001000110001010010110011000010011111001":8.081510934393637e-201,"0001011001100011100001110000000011101101110111101100001101101001":7.972166998011927e-201,"0001011001100011001010011000000110001100110110100100011100011001":7.823061630218687e-201,"0001011001010000110110010101101011010001000100110011001111001000":3.439363817097415e-201,"0001011000110011101011000110011100010100101011010101101110001010":1.0039761431411531e-201,"0001011001011100011111001100111110001111010111011110000001101110":5.8151093439363816e-201,"0001011001100101000111000010100011100111100111001101111000011010":8.618290258449304e-201,"0001011001011010111000010110101111100100011111010101011100001101":5.487077534791252e-201,"0001011001100000010101100111010101001001010000000001111101011000":6.669980119284294e-201,"0001011001011010101111000000010110111101101011101011111011101101":5.457256461232604e-201,"0001011000101100011100000101100000101101000110010000001100001110":7.256461232604374e-202,"0001011001100000011110111101101101110000000011101011011101111000":6.72962226640159e-201,"0001011001000010000111010111101011001100000100011010111110001001":1.848906560636183e-201,"0001011001101000011111101001001000010101010011101111011110101100":1.0e-200,"0001011001011010000000010000011011111011101001011100011001001100":5.308151093439363e-201,"0001011001011000101000111111100000111100000111011000111111001100":5.029821073558648e-201,"0001011001100001000001001111110010101001000001000011101010011001":6.948310139165011e-201,"0001011001000111100100011011010111001010001100101000100110001100":2.4055666003976144e-201,"0001011001010011110100011100110100111011011110111111001110101001":4.04572564612326e-201,"0001011000110000100011101000111010000011011101100000001110001000":8.449304174950298e-202,"0001011001100010101100110001001101100111010011000001000000001001":7.634194831013916e-201,"0001011001010000100011101000111010000011011101100000001110001000":3.379721669980119e-201,"0001011001011111111100011110101111010000011101110100011000001111":6.520874751491053e-201,"0001011001011000100101111000000011011001110110001011001001101100":5.019880715705765e-201,"0001011001100110010011011001010111001111001101000000110111001011":9.105367793240557e-201,"0001011001100010111010110010110010100001100000011111010000111001":7.72365805168986e-201,"0001011001100101111010011101101010111101000011010010001011001011":8.946322067594434e-201,"0001011000110010111001001111000011110000010111111000010110001001":9.642147117296222e-202,"0001011001011000101100000110111110011110011000100110110100101100":5.039761431411531e-201,"0001011001010110000011110100000011100011110110111011101011101011":4.502982107355865e-201,"0001011001100010101000000110000001010011111001001100001111111001":7.604373757455268e-201,"0001011001101000011001011010001101010000110001010011110011101100":9.960238568588469e-201,"0001011001000110011111110111001101011000010001111000001101001011":2.2962226640159045e-201,"0001011001100010010110111100111110110111011010100000001001101001":7.495029821073559e-201,"0001011001001101110011010110011011101100101000010011100110001111":3.0417495029821074e-201,"0001011001000011110001010101010111011001001101110001011001001001":2.0178926441351886e-201,"0001011001100011100011010011110010011111000000010011001000011001":7.98210735586481e-201,"0001011001001010011111011011000011010010010101100110110000001101":2.7037773359840954e-201,"0001011001010101110111010110001101011010110010000100010101101010":4.4632206759443334e-201,"0001011001100111100001010011111001100111111011011010110000101100":9.602385685884692e-201,"0001011001010000100000100001011100100001001100010010011000101000":3.3697813121272365e-201,"0001011001100000100000100001011100100001001100010010011000101000":6.739562624254473e-201,"0001011000100101000010010111010111010100001101011001001000001010":5.36779324055666e-202,"0001011001100101111101100101001000011111010100100000000000101011":8.966202783300199e-201,"0001011000110101100111110000111001101111011011111111001010001010":1.10337972166998e-201,"0001011001100001011101010010111100011101011100000000001011111000":7.127236580516898e-201,"0001011001000000000100011110010010101100110001010101110111001000":1.640159045725646e-201,"0001011001100010111001001111000011110000010111111000010110001001":7.713717693836978e-201,"0001011001001110011000101111111110000111110110111001101000001111":3.1013916500994036e-201,"0001011001100010100110100010010010100010110000100101010101001001":7.594433399602385e-201,"0001011001100111010100110110000011011110110110100011011010101011":9.52286282306163e-201,"0001011001100001100001111110001000110000110101110100111100001001":7.157057654075547e-201,"0001011000010000010111001011000011111010011000101000111000001000":2.0874751491053677e-202,"0001011001100100011110100001100011101010000111011010000000111010":8.359840954274354e-201,"0001011001100111111000101011110111001000111100100010100001111100":9.751491053677933e-201,"0001011001011001101101100011101010101110000010001001011000001100":5.248508946322067e-201,"0001011001011100101011101010110100011000011100010101010111101110":5.8548707753479124e-201,"0001011001100001100101000101100110010011000111000010110001101001":7.176938369781313e-201,"0001011001100010000001001000110000000111100001111111010011001001":7.355864811133201e-201,"0001011001011000111110110011101111101011111111111001110101101100":5.099403578528827e-201,"0001011001011110011000101111111110000111110110111001101000001111":6.202783300198807e-201,"0001011001011001110011110010100101110010100100100101000011001101":5.268389662027833e-201,"0001011000111001101101100011101010101110000010001001011000001100":1.3121272365805168e-201,"0001011001011011010100011001111001011000111010010001111101101101":5.5765407554671964e-201,"0001011001100110010100111101000110000000010101100111110001111011":9.11530815109344e-201,"0001011001011010001111110101101111100110111111100001100100101101":5.357852882703777e-201,"0001011001011100011100000101100000101101000110010000001100001110":5.805168986083499e-201,"0001011001010001000010110011100001011010001001101010100101001001":3.479125248508947e-201,"0001011001100111010111111101100001000001000111110001010000001011":9.542743538767395e-201,"0001011001000100110101111001100001001011001000100001110010001010":2.1272365805168985e-201,"0001011001100010000111010111101011001100000100011010111110001001":7.395626242544732e-201,"0001011000100101011011010011000011100110010111000111110100001011":5.467196819085487e-202,"0001011001100001001001000010011100011110101100000110010000001000":6.998011928429423e-201,"0001011000110000111100100100100110010101100111001110111010001000":8.648111332007952e-202,"0001011001011011000100110100100101101101100100001100110010001101":5.526838966202783e-201,"0001011001010010101001101001110000000101000001110011001010101001":3.8071570576540754e-201,"0001011001100100110001001110010100110111101110101101000001111010":8.479125248508946e-201,"0001011001100010100001110111000110001111010110110000100100111010":7.564612326043739e-201,"0001011001100011011011100001001000101001010101010000100010101010":7.932405566600398e-201,"0001011001000000001010101101001101110001010011110001100010001000":1.650099403578529e-201,"0001011001000000111100100100100110010101100111001110111010001000":1.7296222664015903e-201,"0001011000111000010110010010101111101110100000000101111110001100":1.242544731610338e-201,"0001011001010101010101000100001000100001110100101100001001001010":4.353876739562624e-201,"0001011001000110110010100011111110100101111001001011001110001011":2.3260437375745526e-201,"0001011001011100100101011011111001010011111001111001101100101110":5.834990059642147e-201,"0001011001100000011000101110110010101011100001001111110010111000":6.68986083499006e-201,"0001011001100101010110100111110111010010111101010011000011111010":8.71769383697813e-201,"0001011001011011110000011101000011001101010101001110011111001101":5.6660039761431406e-201,"0001011001100111011001100001001111110010010000011000001010111011":9.552683896620277e-201,"0001011001001000111011101100010010001001101110101100000000001100":2.544731610337972e-201,"0001011001010111000101010000101111110011100000011110001111001011":4.711729622266401e-201,"0001011001100000000001010110110101001010100000001000000001101000":6.540755467196819e-201,"0001011001010010000100010000001101101001110011001101001000101001":3.687872763419483e-201,"0001011000110111111101010111000011011100010110010111010010001011":1.2226640159045724e-201,"0001011001010100000100000010001000100110110101000100011010001001":4.095427435387673e-201,"0001011001011100000110010001010001111101001101101111010101101101":5.7355864811133194e-201,"0001011001001011110000011101000011001101010101001110011111001101":2.8330019880715703e-201,"0001011001011100011000111110000011001010110101000010010110101110":5.795228628230616e-201,"0001011000111001111010000001100000110111000111000000101110001101":1.3220675944333996e-201,"0001011001101000001000010001001010110100010010100111101101011100":9.85089463220676e-201,"0001011001100010011110101111101000101101000101100010101111011001":7.544731610337972e-201,"0001011001001111000100011000011011100111100111111011010101001111":3.1709741550695824e-201,"0001011000111101001101111100111001010001011001101101100100001111":1.4910536779324057e-201,"0001011001100011000101101100111001111001011100101111101100001010":7.79324055666004e-201,"0001011001010100000111001001100110001001000110010010001111101010":4.105367793240557e-201,"0001011001010101011110011010100001001000101000010101101001101011":4.3836978131212726e-201,"0001011000111111100011100011000010111110010100000101101100010000":1.610337972166998e-201,"0001011001011110011110111110111001001100011001010101010011001111":6.2226640159045725e-201,"0001011000101100000011001001110100011010111100100001100000001110":7.157057654075547e-202,"0001011001001100110101000001001100111111001111111110111000001110":2.9423459244532802e-201,"0001011001011001000101000010101010110000100010010101100000101101":5.119284294234593e-201,"0001011001000010110011000000001000101011110101011100101011001010":1.918489065606362e-201,"0001011001100111000110110100011110100100101001000101001001111011":9.433399602385685e-201,"0001011001010010010000101110000011110010111000000100011110101000":3.727634194831013e-201,"0001011001001111110000000000111001000111011000111101000010010000":3.2405566600397615e-201,"0001011001011101011010011010101111011010011110100100111010001111":6.0039761431411534e-201,"0001011001100010101110010100111100011000011011100111111010111001":7.644135188866799e-201,"0001011001100000110000000110110000001100100010010111100100001001":6.838966202783301e-201,"0001011001100000111100100100100110010101100111001110111010001000":6.918489065606361e-201,"0001011000100001111010111001110101000010111111100011101000001001":4.572564612326044e-202,"0001011001100001111001010110000110010001110110111100101101011001":7.306163021868787e-201,"0001011001011101010111010011010001111000001101010111000100101110":5.99403578528827e-201,"0001011001010110010011011001010111001111001101000000110111001011":4.552683896620278e-201,"0001011001011110000010111011101111010111111110011000110001101111":6.133200795228628e-201,"0001011001011101100000101001101010011111000001000000100101001111":6.023856858846919e-201,"0001011001000000101001110111110101000111111111111011111001001000":1.6998011928429423e-201,"0001011001100000111110001000010101000110101111110101110100111000":6.928429423459244e-201,"0001011000110110001101001010011100001010101010100101001100001011":1.1332007952286282e-201,"0001011000101100110101000001001100111111001111111110111000001110":7.355864811133201e-202,"0001011001010001101000001101000011110101011000010000100111001001":3.598409542743539e-201,"0001011000100011000101101100111001111001011100101111101100001010":4.870775347912525e-202,"0001011001100100100000000101010010011011010000000000111011101010":8.369781312127236e-201,"0001011001100000011011110110010000001101110010011101101000011000":6.709741550695825e-201,"0001011001010110011100101111101111110110000000101010010111101011":4.582504970178926e-201,"0001011001000001101110011011111110111001111010101100010010001000":1.8091451292246518e-201,"0001011001001101100000101001101010011111000001000000100101001111":3.0119284294234594e-201,"0001011001100001101001110000110010100110100000110111100001111001":7.20675944333996e-201,"0001011001100001101100111000010000001000110010000101010111011000":7.226640159045725e-201,"0001011001100101101001010100101000100000100100100110000100111011":8.836978131212724e-201,"0001011001100010100011011010110101000000011111010111011111101001":7.57455268389662e-201,"0001011001010100101100100011001000100100010100111000010001101010":4.224652087475149e-201,"0001011001001000100010110000100101110111100100111101010100001100":2.5049701789264413e-201,"0001011000010110100110000110001000011100110100010011111000001011":2.882703777335984e-202,"0001011001100101000011111011000110000101010110000000000010111010":8.598409542743538e-201,"0001011001100010110111101011010100111111001111010001011011011001":7.703777335984095e-201,"0001011001011110101110100100001100110111101111011010011110101111":6.272365805168986e-201,"0001011001100010001000111011011001111101001101000001111000111001":7.405566600397614e-201,"0001011001100001101011010100100001010111101001011110011100101000":7.216699801192842e-201,"0001011000100110100110000110001000011100110100010011111000001011":5.765407554671968e-202,"0001011001100101011000001011100110000100000101111001111110101010":8.727634194831013e-201,"0001011001100000111111101100000011110111111000011100101111101001":6.938369781312128e-201,"0001011001011100101110110010010001111010101101100011001101001110":5.864811133200795e-201,"0001011000111110011000101111111110000111110110111001101000001111":1.5506958250497018e-201,"0001011001100100111101101100001011000000110011100100010111111010":8.558648111332007e-201,"0001011001000000100011101000111010000011011101100000001110001000":1.6898608349900596e-201,"0001011001100001100011100001110111100001111110011011110110111001":7.16699801192843e-201,"0001011000100000010111001011000011111010011000101000111000001000":4.1749502982107355e-202,"0001011001001001100111010100101111101001011111101101101101001101":2.6143141153081512e-201,"0001011001100111011111110000001010110110110010110011110101111100":9.59244532803181e-201,"0001011001100110011001101000010010010011101111011100100010001011":9.145129224652087e-201,"0001011000010100010000011111111110101111111001111011110000001010":2.584493041749503e-202,"0001011001000110111000110010111001101010011011100110111001001011":2.3359840954274353e-201,"0001011001100100000111001001100110001001000110010010001111101010":8.210735586481113e-201,"0001011001101000010000000011110100101001111101101010010011001100":9.900596421471173e-201,"0001011001100101101010111000010111010001101101001100111111101011":8.846918489065607e-201,"0001011001100100100011001100101111111101100001001110110001001010":8.389662027833002e-201,"0001011001100000100010000101001011010010010100111001010011011000":6.749502982107356e-201,"0001011001100001001101101101101000110010000101111011000000011000":7.027833001988071e-201,"0001011001100110100110000110001000011100110100010011111000001011":9.224652087475149e-201,"0001011001100111011011000100111110100011011000111111000101101011":9.56262425447316e-201,"0001011001011110010010100001000011000011010100011101111101001111":6.182902584493042e-201,"0001011001100111000011101101000001000010010111110111010100011011":9.41351888667992e-201,"0001011001100111101111010101011110100010001000111001000001011100":9.691848906560637e-201,"0001011001000001010101100000010010100111110000111101100110001001":1.7693836978131214e-201,"0001011001011001100100001101010010000111001110011111110111101101":5.21868787276342e-201,"0001011001011110001100010010000111111110110010000010010010001111":6.1630218687872764e-201,"0001011001100111110000111001001101010011010001011111111100001100":9.701789264413519e-201,"0001011001001011111100111010111001010110011010000101110101001110":2.852882703777336e-201,"0001011000110001111010111001110101000010111111100011101000001001":9.145129224652088e-202,"0001011001100100011001110110010111010110101101100101010000101010":8.330019880715706e-201,"0001011001011101101010000000000011000101110100101010000101101110":6.053677932405566e-201,"0001011001011010110010000111110100011111111100111001110001001101":5.467196819085487e-201,"0001011001100100010011100111011100010010001011001001100101101010":8.290258449304175e-201,"0001011001001111011101010100000111111001110001101010000001001111":3.210735586481113e-201,"0001011001100100000100000010001000100110110101000100011010001001":8.190854870775347e-201,"0001011001100010110011000000001000101011110101011100101011001010":7.673956262425448e-201,"0001011001010011111101110011001101100010010010101000101111001010":4.0755467196819086e-201,"0001011001100100001110111100001111111110110001010100110101011010":8.260437375745527e-201,"0001011000101110110001101011101010011010000000101000010100001111":7.852882703777336e-202,"0001011000011100110101000001001100111111001111111110111000001110":3.6779324055666003e-202,"0001011001011010110101001111010010000010001110000111100110101110":5.47713717693837e-201,"0001011001100110110100000111101101010111000001110010001000111011":9.314115308151093e-201,"0001011000111001100001000101110100100100111101010010000010001100":1.302186878727634e-201,"0001011001100110101010110001010100110000001110001000101000011011":9.254473161033797e-201,"0001011000010101110100001110101111111000100000110110100000001010":2.7833001988071567e-202,"0001011000011000111011101100010010001001101110101100000000001100":3.180914512922465e-202,"0001011000100010101100110001001101100111010011000001000000001001":4.771371769383698e-202,"0001011000111100101000100011010110110110001011000111100010001111":1.4612326043737576e-201,"0001011001010110101100010101000011100001010110101111100011001100":4.6322067594433405e-201,"0001011001000011110111100100010010011101110000001101000100001010":2.0278330019880716e-201,"0001011001011000011100100001101010110011000010100001101001001100":4.990059642147117e-201,"0001011001000101001110110101001101011101010010010000011110001010":2.1669980119284292e-201,"0001011001011010101011111000111001011011011010011110000110001101":5.4473161033797215e-201,"0001011001001010100101101001111110010110111000000010011011001101":2.713717693836978e-201,"0001011001101000001100111100010111000111101100011100011101101011":9.880715705765406e-201,"0001011001001100000011001001110100011010111100100001100000001110":2.8628230616302187e-201,"0001011001011100101000100011010110110110001011000111100010001111":5.8449304174950304e-201,"0001011001010100111111001111111001110001111100001011010010101010":4.284294234592445e-201,"0001011001011000001001110100111001100101011011001110101000001100":4.930417495029821e-201,"0001011001100010110110000111100110001110000110101010100000101010":7.693836978131214e-201,"0001011001010110101001001101100101111111000101100001101101101011":4.622266401590457e-201,"0001011001010111100100011011010111001010001100101000100110001100":4.811133200795229e-201,"0001011001100000010100000011100110011000000111011011000010101000":6.660039761431411e-201,"0001011001100011000111010000101000101010100101010110100110111010":7.803180914512923e-201,"0001011001100100010000011111111110101111111001111011110000001010":8.27037773359841e-201,"0001011001000010010011110101100001010101001001010010010100001001":1.8687872763419483e-201,"0001010111101111001010100111010110101100001010010111000000001111":4.9701789264413516e-203,"0001011001000100011100111101110100111000111110110011000110001010":2.0874751491053677e-201,"0001011001100101101100011100000110000010110101110011111010011011":8.85685884691849e-201,"0001011001011011010001010010011011110110101001000100001000001101":5.566600397614314e-201,"0001011001100110000011110100000011100011110110111011101011101011":9.00596421471173e-201,"0001011001100101110001000111010010010110001111101000101010101011":8.886679920477138e-201,"0001011001100110001000011111001111110111010000110000011011111010":9.035785288270376e-201,"0001011001010010111001001111000011110000010111111000010110001001":3.856858846918489e-201,"0001011001010100001010010001000011101011010111100000000101001010":4.1153081510934394e-201,"0001011000111110111110001001100000100011000101011111101010010000":1.58051689860835e-201,"0001011001000010100110100010010010100010110000100101010101001001":1.8986083499005963e-201,"0001011000111000100010110000100101110111100100111101010100001100":1.2524850894632206e-201,"0001011001011110110001101011101010011010000000101000010100001111":6.2823061630218686e-201,"0001011000111101100110111000100101100011100011011100010000001110":1.5109343936381709e-201,"0001011001100010010010010001110010100100000000101011011001011001":7.46520874751491e-201,"0001011001010001011011101111001101101100010011011001010001001000":3.5586481113320075e-201,"0001011000110111010111111101100001000001000111110001010000001011":1.1928429423459244e-201,"0001011001001001001110011001000011010111010101111111000001001100":2.57455268389662e-201,"0001011001100101011100110110110010010111011111101110101110111011":8.757455268389663e-201,"0001011001011001100111010100101111101001011111101101101101001101":5.2286282306163024e-201,"0001011001001000101111001110011100000000101001110100101010001100":2.5248508946322067e-201,"0001011001000001001111010001010111100011001110100001111011001001":1.7594433399602387e-201,"0001011001100110100001011010111100001001011010011111000111111011":9.194831013916501e-201,"0001011001010001100101000101100110010011000111000010110001101001":3.588469184890656e-201,"0001011001100100110010110010000011101000110111010011111100101010":8.489065606361829e-201,"0001011001100011110111100100010010011101110000001101000100001010":8.111332007952287e-201,"0001011001000001110100101010111001111110011101000111111101001001":1.819085487077535e-201,"0001011001011010010110000100101010101011100001111101001111101101":5.377733598409543e-201,"0001011001100000101110100011000001011011011001110000101001011001":6.829025844930419e-201,"0001011000110001101110011011111110111001111010101100010010001000":9.045725646123259e-202,"0001011000111010111000010110101111100100011111010101011100001101":1.371769383697813e-201,"0001011001100010011101001011111001111011111100111011110100101001":7.534791252485089e-201,"0001011001000011101011000110011100010100101011010101101110001010":2.0079522862823063e-201,"0001011001100101001010001010000001001001111000011011101101111011":8.63817097415507e-201,"0001011001000100111100001000011100001111101010111101011101001010":2.137176938369781e-201,"0001011001100010111101111010010000000011110001101101000110011001":7.743538767395626e-201,"0001011001100011010000100111000001010001011001000000000111011001":7.862823061630218e-201,"0001011001100000011010010010100001011100101001110110101101101000":6.699801192842942e-201,"0001011001000000110110010101101011010001000100110011001111001000":1.7196819085487076e-201,"0001011001010001101011010100100001010111101001011110011100101000":3.608349900596421e-201,"0001011001100100110101111001100001001011001000100001110010001010":8.508946322067594e-201,"0001011001010110111011111010010111001100101100110100101110101100":4.681908548707754e-201,"0001011001011001001000001010001000010010110011100011010110001100":5.129224652087475e-201,"0001011001100100101001011011101011000010000011101010011100001010":8.429423459244532e-201,"0001011001001100100010010100011011110001101000101011110111001110":2.912524850894632e-201,"0001011001100000101000010100000110010110110111010100111110011000":6.789264413518886e-201,"0001011001100000110110010101101011010001000100110011001111001000":6.87872763419483e-201,"0001011001010010000001001000110000000111100001111111010011001001":3.6779324055666005e-201,"0001011001011100111110010111100101100110000011101000011000101110":5.9145129224652085e-201,"0001011001010010111111011101111110110100111010010100000001001001":3.876739562624254e-201,"0001011000000101110100001110101111111000100000110110100000001010":1.3916500994035783e-202,"0001011000111000111011101100010010001001101110101100000000001100":1.272365805168986e-201,"0001011001011111000111011111111001001001111001001001001010101111":6.3518886679920474e-201,"0001011000110001001001000010011100011110101100000110010000001000":8.747514910536778e-202,"0001011000001010011111011011000011010010010101100110110000001101":1.6898608349900596e-202,"0001011001100100100001101001000001001100011000100111110110011010":8.379721669980119e-201,"0001011000110111110000111001001101010011010001011111111100001100":1.2127236580516899e-201,"0001011001011101100110111000100101100011100011011100010000001110":6.0437375745526834e-201,"0001011001101000000010000010001111101111110000001100000010011100":9.811133200795229e-201,"0001011001001001100001000101110100100100111101010010000010001100":2.604373757455268e-201,"0001011001101000010100101111000000111101010111011111000011011100":9.930417495029821e-201,"0001011001100110101111011100100001000011100111111101011000101011":9.284294234592445e-201,"0001011001100101101101111111110100110011111110011010110101001011":8.866799204771372e-201,"0001011001010111111010001111100101111010000101001001011100101011":4.880715705765407e-201,"0001011001010111101101110001101111110001000000010010000110101100":4.840954274353877e-201,"0001011001101000001011011000101000010110100011110101100010111100":9.870775347912525e-201,"0001011001010000010111001011000011111010011000101000111000001000":3.3399602385685884e-201,"0001011001001001011010110110111001100000011010110110010111001100":2.5944333996023855e-201,"0001011001100100001010010001000011101011010111100000000101001010":8.230616302186879e-201,"0001011001010011100100110111100001010000001000111010000011001010":3.996023856858847e-201,"0001011001100011001111000011010010100000010000011001001100101001":7.852882703777335e-201,"0001011001100001000010110011100001011010001001101010100101001001":6.958250497017893e-201,"0001011001100011010010001010110000000010100001100111000010001001":7.8727634194831e-201,"0001011000101000111011101100010010001001101110101100000000001100":6.36182902584493e-202,"0001011001100011001000110100010111011011101101111101100001101010":7.813121272365806e-201,"0001011001100010100000010011010111011110001110001001101010001001":7.554671968190855e-201,"0001011001100110000000101100100110000001100101101101110110001011":8.986083499005964e-201,"0001011001011111101001110001111110000010110110100001010111001111":6.461232604373757e-201,"0001011000111111010111000101001100110101001111001110010110001111":1.6003976143141152e-201,"0001011001100001100000011010011001111111101101001110000001011001":7.147117296222665e-201,"0001011001100001011010001011011110111011001010110010010110011000":7.107355864811132e-201,"0001011001010000010000111100001000110101110110001101001101001000":3.320079522862823e-201,"0001011000110011010010001010110000000010100001100111000010001001":9.840954274353876e-202,"0001011001011011110110101011111110010001110111101010001010001101":5.685884691848906e-201,"0001011001011000110101011101010111000101001100010000010101001100":5.069582504970179e-201,"0001011001011001100001000101110100100100111101010010000010001100":5.208747514910536e-201,"0001011001100111011110001100011100000101101010001100111011001100":9.582504970178927e-201,"0001011001010000100110110000010111100101101110101110000011101000":3.389662027833002e-201,"0001011001100010100100111110100011110001100111111110011010011001":7.584493041749503e-201,"0001011001010111010001101110100101111100100101010101100101001100":4.751491053677933e-201,"0001011001011011101010001110001000001000110010110010110100001110":5.646123260437376e-201,"0001011001010011011110101000100110001011100110011110011000001001":3.976143141153081e-201,"0001011000111011010001010010011011110110101001000100001000001101":1.3916500994035784e-201,"0001011001000001001001000010011100011110101100000110010000001000":1.7495029821073557e-201,"0001011001000101111010011101101010111101000011010010001011001011":2.2365805168986084e-201,"0001011001000110101100010101000011100001010110101111100011001100":2.3161033797216703e-201,"0001011001010001111110000001010010100101010000110001011101101000":3.667992047713717e-201,"0001011001100001010111000100000001011000111001100100100000111001":7.087475149105368e-201,"0001011001100110011011001100000001000100111000000011011100111011":9.15506958250497e-201,"0001011001100000010010011111110111100110111110110100000111111000":6.650099403578529e-201,"0001011001000010011010000100011100011001101011101101111111001001":1.878727634194831e-201,"0001011001001010001100101110010010000100101110010011101111001101":2.6739562624254473e-201,"0001011001010000000001010110110101001010100000001000000001101000":3.2703777335984096e-201,"0001011001000011100100110111100001010000001000111010000011001010":1.9980119284294236e-201,"0001011001001101000001011111000011001000010100110110001110001110":2.9622266401590456e-201,"0001011001100100000000111010101011000100100011110110100100101010":8.170974155069583e-201,"0001011000000010101100110001001101100111010011000001000000001001":1.1928429423459244e-202,"0001011001100000111001011101001000110011010110000001000100101000":6.898608349900596e-201,"0001011001010101101010111000010111010001101101001100111111101011":4.4234592445328034e-201,"0001011000110101001110110101001101011101010010010000011110001010":1.0834990059642146e-201,"0001011001100110111000110010111001101010011011100110111001001011":9.343936381709741e-201,"0001011001100100001101011000100001001101101000101101111010101010":8.250497017892644e-201,"0001011001010011100111111110111110110010011010000111111000101010":4.00596421471173e-201,"0001011001100110100100100010011001101011101011101100111101011011":9.214711729622266e-201,"0001011001000111010001101110100101111100100101010101100101001100":2.3757455268389664e-201,"0001011001100100101111101010100110000110100110000110000111001010":8.469184890656063e-201,"0001011001100011001101011111100011101111000111110010010001111001":7.842942345924453e-201,"0001011001010101011000001011100110000100000101111001111110101010":4.3638170974155065e-201,"0001011001010101001110110101001101011101010010010000011110001010":4.3339960238568585e-201,"0001011001010010110110000111100110001110000110101010100000101010":3.846918489065607e-201,"0001011000111101110011010110011011101100101000010011100110001111":1.5208747514910537e-201,"0001011001100010110001011100011001111010101100110101110000011001":7.664015904572564e-201,"0001011001100101001110110101001101011101010010010000011110001010":8.667992047713717e-201,"0001011001011110000110000011001100111010001111100110100111001111":6.143141153081511e-201,"0001011001011011100000110111101111100001111111001001010011101101":5.616302186878727e-201,"0001011001100110001010000010111110101000011001010111010110101010":9.045725646123259e-201,"0001011001011010111110100101101010101001000001110001000111001101":5.5069582504970176e-201,"0001011001010101001000100110010010011000101111110100110011001011":4.314115308151094e-201,"0001011001100111010110011001110010001111111111001010010101011011":9.532803180914512e-201,"0001011001000001000010110011100001011010001001101010100101001001":1.7395626242544734e-201,"0001011001100001101000001101000011110101011000010000100111001001":7.196819085487078e-201,"0001011001011101000100100110100000101010100110000100000011101110":5.934393638170974e-201,"0001011000000100010000011111111110101111111001111011110000001010":1.2922465208747515e-202,"0001011001100100101100100011001000100100010100111000010001101010":8.449304174950298e-201,"0001011001011111011010001100101010010111100000011100001011101111":6.4115308151093435e-201,"0001011001010000111001011101001000110011010110000001000100101000":3.449304174950298e-201,"0001011001100010101001101001110000000101000001110011001010101001":7.614314115308151e-201,"0001011001011101010100001011110100010101111100001001001111001110":5.984095427435387e-201,"0001011001010111010111111101100001000001000111110001010000001011":4.7713717693836974e-201,"0001011001010011101011000110011100010100101011010101101110001010":4.0159045725646125e-201,"0001011001001110000110000011001100111010001111100110100111001111":3.0715705765407555e-201,"0001011001100000001111011000011010000100101101100110010010011000":6.630218687872763e-201,"0001011001010100110101111001100001001011001000100001110010001010":4.254473161033797e-201,"0001011001100111111110111010110010001101011110111110001100111100":9.791252485089463e-201,"0001011001011001010111101111011011111110001001101000100001101101":5.178926441351889e-201,"0001011001100001111100011101100011110100001000001010100010111001":7.326043737574553e-201,"0001011001001100011100000101100000101101000110010000001100001110":2.9025844930417495e-201,"0001011000100011110111100100010010011101110000001101000100001010":5.069582504970179e-202,"0001011001001111111100011110101111010000011101110100011000001111":3.2604373757455265e-201,"0001011001100111000101010000101111110011100000011110001111001011":9.423459244532803e-201,"0001011001100111111011110011010100101011001101110000010111011011":9.771371769383697e-201,"0001011001100010011011101000001011001010110100010100111001111001":7.524850894632207e-201,"0001011000011111111100011110101111010000011101110100011000001111":4.075546719681908e-202,"0001011000111111110000000000111001000111011000111101000010010000":1.6202783300198808e-201,"0001011001010111110111001000001000010111110011111011100111001100":4.870775347912525e-201,"0001011001100011101110001101111001110110111100100011100011101010":8.05168986083499e-201,"0001011001010111100111100010110100101100011101110110011011101011":4.821073558648111e-201,"0001011001100110000101010111110010010100111111100010100110011011":9.015904572564612e-201,"0001011001100110010001110101101000011110000100011001111100011011":9.095427435387674e-201,"0001011001000010101100110001001101100111010011000001000000001001":1.908548707753479e-201,"0001011001100001001010100110001011001111110100101101001010111000":7.007952286282305e-201,"0001011001101000000110101101011100000011001010000000110010101100":9.840954274353877e-201,"0001011001010010011101001011111001111011111100111011110100101001":3.7673956262425446e-201,"0001011001011101100011110001001000000001010010001110011010101110":6.033797216699801e-201,"0001011001100010001100000010110111011111011110001111101110011001":7.42544731610338e-201,"0001011001011011001110001010111110010100010111110110010010101101":5.556660039761431e-201,"0001011001000010001101100110100110010000100110110110101001001001":1.8588469184890656e-201,"0001011001010010100110100010010010100010110000100101010101001001":3.797216699801193e-201,"0001011001010010100000010011010111011110001110001001101010001001":3.777335984095427e-201,"0001011001011110101011011100101111010101011110001100101001001111":6.262425447316103e-201,"0001011001011011000111111100000011001111110101011010100111101110":5.5367793240556664e-201,"0001011001011000010011001011010010001100001110111000001000101100":4.960238568588469e-201,"0001011001011101111111110100010001110101101101001010111100001111":6.123260437375746e-201,"0001011001101000011010111101111100000001111001111010101110011100":9.970178926441352e-201,"0001011000101010000110011111010111000000001011111000000100001101":6.660039761431412e-202,"0001011000011011010001010010011011110110101001000100001000001101":3.479125248508946e-202,"0001011001010000111111101100000011110111111000011100101111101001":3.469184890656064e-201,"0001011001100111001101000011011001101001001011100000110100111100":9.473161033797217e-201,"0001011000111110100101001101110100010000111011110000111110001111":1.5606361829025845e-201,"0001011001100101100001100001111110101010111001100011011111001010":8.787276341948309e-201,"0001011001010110010110100000110100110001011110001110101100101011":4.562624254473161e-201,"0001011001100000010000111100001000110101110110001101001101001000":6.640159045725646e-201,"0001011001001001001000001010001000010010110011100011010110001100":2.5646123260437374e-201,"0001011001010000011101011001111110111110111011000100100011001001":3.3598409542743545e-201,"0001011001100101111000111001111100001011111010101011010000011010":8.93638170974155e-201,"0001011001100001000111011110101101101101100011011111010101011000":6.98807157057654e-201,"0000000000000111001100001101011001111000000110011110100011010010":1.0e-308,"0001011001011100010010101111001000000110010010100110101011101110":5.775347912524851e-201,"0001011001010101110100001110101111111000100000110110100000001010":4.453280318091451e-201,"0001011001010001001111010001010111100011001110100001111011001001":3.5188866799204775e-201,"0001011001100100100111110111111100010000111011000011100001011011":8.419483101391651e-201,"0001011001011001101010011100001101001011110000111011100010101101":5.238568588469185e-201,"0001011001100001101110011011111110111001111010101100010010001000":7.236580516898607e-201,"0001011001011000011111101001001000010101010011101111011110101100":5.0e-201,"0001011001000101101101111111110100110011111110011010110101001011":2.216699801192843e-201,"0001011001100010011000100000101101101000100011000111000100011001":7.504970178926441e-201,"0001011000111101111111110100010001110101101101001010111100001111":1.5308151093439364e-201,"0001011001100101011110011010100001001000101000010101101001101011":8.767395626242545e-201,"0001011001010110011001101000010010010011101111011100100010001011":4.572564612326044e-201,"0001011001000111010111111101100001000001000111110001010000001011":2.3856858846918487e-201,"0001011001100100111010100100101101011110100010010110100010011011":8.538767395626243e-201,"0001011001000101100111110000111001101111011011111111001010001010":2.20675944333996e-201,"0001011001101000010110010010101111101110100000000101111110001100":9.940357852882704e-201,"0001011001000000010000111100001000110101110110001101001101001000":1.6600397614314115e-201,"0001011001010000010100000011100110011000000111011011000010101000":3.330019880715706e-201,"0001011001001010010010111101001101001001010000101111011010001100":2.6838966202783297e-201,"0001011001001010000000010000011011111011101001011100011001001100":2.6540755467196816e-201,"0001011001010010100011011010110101000000011111010111011111101001":3.78727634194831e-201,"0001011001010110111000110010111001101010011011100110111001001011":4.6719681908548705e-201,"0001011001001010111000010110101111100100011111010101011100001101":2.743538767395626e-201,"0001011001010010101100110001001101100111010011000001000000001001":3.817097415506958e-201,"0001011000101111111100011110101111010000011101110100011000001111":8.151093439363816e-202,"0001011001011000010110010010101111101110100000000101111110001100":4.970178926441352e-201,"0001011001100000000111100101110000001111000010100011101100101000":6.58051689860835e-201,"0001011001010110001101001010011100001010101010100101001100001011":4.532803180914513e-201,"0001011001100100011100111101110100111000111110110011000110001010":8.349900596421471e-201,"0001011001010111001110100111001000011010010100000111101111101100":4.74155069582505e-201,"0001011001100000001101110100101011010011100100111111010111101000":6.62027833001988e-201,"0001011001001110010010100001000011000011010100011101111101001111":3.091451292246521e-201,"0001011001100010011010000100011100011001101011101101111111001001":7.514910536779324e-201,"0001011001010000101100111111010010101010010001001001101110101000":3.409542743538767e-201,"0001011001010111011011000100111110100011011000111111000101101011":4.78131212723658e-201,"0001011001100000110111111001011010000010001101011010001001111000":6.888667992047713e-201,"0001011001010111011110001100011100000101101010001100111011001100":4.7912524850894635e-201,"0001011001010110111111000001110100101110111110000010100100001100":4.6918489065606366e-201,"0001011001010001001100001001111010000000111101010100000101101000":3.508946322067594e-201,"0001011001000111110000111001001101010011010001011111111100001100":2.4254473161033798e-201,"0001011000110010010011110101100001010101001001010010010100001001":9.343936381709741e-202,"0001011001100100101110000110110111010101011101011111001100011010":8.45924453280318e-201,"0001011001100101111100000001011001101110001011111001000101111011":8.956262425447316e-201,"0001011001100101100011000101101101011100000010001010011001111010":8.797216699801192e-201,"0001011001100001110011000111001011001101010100100001000010011001":7.266401590457257e-201,"0001011001000110100110000110001000011100110100010011111000001011":2.3061630218687872e-201,"0001011001011000001100111100010111000111101100011100011101101011":4.940357852882703e-201,"0001011001010001000101111010111110111100011010111000011010101000":3.489065606361829e-201,"0001011000100010010011110101100001010101001001010010010100001001":4.671968190854871e-202,"0001011001011100000011001001110100011010111100100001100000001110":5.7256461232604375e-201,"0001011001100111110100000000101010110101100010101101110001101100":9.721669980119285e-201,"0001011001010011011011100001001000101001010101010000100010101010":3.966202783300199e-201,"0001011001010010111100010110100001010010101001000110001011101001":3.8667992047713715e-201,"0001011001010101111101100101001000011111010100100000000000101011":4.4831013916500995e-201,"0001011000110111100100011011010111001010001100101000100110001100":1.2027833001988072e-201,"0001011001100110001011100110101101011001100001111110010001011011":9.055666003976143e-201,"0001011001010111010100110110000011011110110110100011011010101011":4.761431411530815e-201,"0001011001001010000110011111010111000000001011111000000100001101":2.6640159045725646e-201,"0001011000110110110010100011111110100101111001001011001110001011":1.1630218687872763e-201,"0001011001100100111001000000111110101101011001101111100111101011":8.528827037773361e-201,"0001011001001011010111100001010110111011001011011111110011001110":2.79324055666004e-201,"0001011001100101000010010111010111010100001101011001001000001010":8.588469184890655e-201,"0001011001100000111011000000110111100100011110100111111111011000":6.908548707753479e-201,"0001011001011110001111011001100101100001000011010000000111101111":6.172962226640159e-201,"0001011001100111100111100010110100101100011101110110011011101011":9.642147117296222e-201,"0001011001100110111010010110101000011011100100001101110011111011":9.353876739562624e-201,"0001011001100100010010000011101101100001000010100010101010111010":8.280318091451292e-201,"0001011001010011000010100101011100010111001011100001110110101001":3.886679920477137e-201,"0001011001010000000111100101110000001111000010100011101100101000":3.290258449304175e-201,"0001011001100011101011000110011100010100101011010101101110001010":8.031809145129225e-201,"0001011001100001010011111100100011110110101000010110101011011001":7.067594433399603e-201,"0001011001011011000001101101001000001011010010111110111100101101":5.5168986083499e-201,"0001011001011010000110011111010111000000001011111000000100001101":5.328031809145129e-201,"0001011000111011000100110100100101101101100100001100110010001101":1.3817097415506958e-201,"0001011001011001111101001000111110011001011000001110100011101101":5.298210735586481e-201,"0001011001010000001010101101001101110001010011110001100010001000":3.300198807157058e-201,"0001011001010000000100011110010010101100110001010101110111001000":3.280318091451292e-201,"0001011001100100001011110100110010011100100000000110111111111010":8.240556660039761e-201,"0001011001010010010110111100111110110111011010100000001001101001":3.747514910536779e-201,"0001011001100110110111001111001010111001010010111111111110011011":9.333996023856858e-201,"0001011001001001101101100011101010101110000010001001011000001100":2.6242544731610335e-201,"0001011000110101110100001110101111111000100000110110100000001010":1.1133200795228627e-201,"0001011001100001110001100011011100011100001011111010000111101001":7.256461232604374e-201,"0001011001000001011011101111001101101100010011011001010001001000":1.7793240556660037e-201,"0001011001100101111111001000110111010000011101000110111011011011":8.976143141153082e-201,"0001011001011011001011000011100000110010000110101000011101001101":5.5467196819085484e-201,"0001011001100111111101010111000011011100010110010111010010001011":9.781312127236579e-201,"0001011001000111011110001100011100000101101010001100111011001100":2.3956262425447317e-201,"0001011001010111111101010111000011011100010110010111010010001011":4.8906560636182896e-201,"0001011001100000010111001011000011111010011000101000111000001000":6.679920477137177e-201,"0001011001100101110111010110001101011010110010000100010101101010":8.926441351888667e-201,"0001011001011011011101110000010001111111101101111011011110001101":5.6063618290258445e-201,"0001011001010101000010010111010111010100001101011001001000001010":4.294234592445328e-201,"0001011001100101011111111110001111111001110000111100100100011011":8.777335984095428e-201,"0001011001000100101001011011101011000010000011101010011100001010":2.107355864811133e-201,"0001011000110100010000011111111110101111111001111011110000001010":1.0337972166998012e-201,"0001010111110010101100110001001101100111010011000001000000001001":5.964214711729622e-203,"0001011001100011111111010110111100010011011011001111101001111010":8.1610337972167e-201,"0001011000100000110000000110110000001100100010010111100100001001":4.274353876739563e-202,"0001011001001101100110111000100101100011100011011100010000001110":3.0218687872763417e-201,"0001011001100101100111110000111001101111011011111111001010001010":8.82703777335984e-201,"0001011001011010010010111101001101001001010000101111011010001100":5.367793240556659e-201,"0001011001100001111111100101000001010110011001011000011000011000":7.345924453280317e-201,"0001011001011010011100010011100101110000000100011000111010101101":5.397614314115308e-201,"0001011001010100010110101110111001110100011100010111011011001010":4.15506958250497e-201,"0001011001101000000101001001101101010010000001011001110111111100":9.831013916500994e-201,"0001011001100011110001010101010111011001001101110001011001001001":8.071570576540754e-201,"0001011001011100111011010000001000000011110010011010100011001111":5.9045725646123265e-201,"0001011001100111110010011100111100000100011010000110110110111100":9.711729622266402e-201,"0001011001011110100101001101110100010000111011110000111110001111":6.242544731610338e-201,"0001011001000111101010101010010010001110101111000100010001001011":2.4155069582504968e-201,"0001011001100000000100011110010010101100110001010101110111001000":6.560636182902585e-201,"0001011001100101110100001110101111111000100000110110100000001010":8.906560636182901e-201,"0001011001010101111010011101101010111101000011010010001011001011":4.473161033797217e-201,"0001011001100010111100010110100001010010101001000110001011101001":7.733598409542743e-201,"0001011001010100011001110110010111010110101101100101010000101010":4.165009940357853e-201,"0001011001011111110000000000111001000111011000111101000010010000":6.481113320079523e-201,"0001011001011001011101111110010111000010101100000100001100101100":5.1988071570576536e-201,"0001011001010010000111010111101011001100000100011010111110001001":3.697813121272366e-201,"0001011001001101000111101101111110001100110111010001111001001110":2.9721669980119283e-201,"0001011001100010111111011101111110110100111010010100000001001001":7.753479125248508e-201,"0001011001011010001100101110010010000100101110010011101111001101":5.347912524850895e-201,"0001011001101000011110000101011001100100001011001000100011111100":9.990059642147117e-201,"0001011001100100111111001111111001110001111100001011010010101010":8.56858846918489e-201,"0001011000100011011110101000100110001011100110011110011000001001":4.970178926441351e-202,"0001011001011000110010010101111001100010111011000010011111101100":5.059642147117296e-201,"0001011001100110000110111011100001000110001000001001100001001011":9.025844930417495e-201,"0001011001001100010101110110100101101000100011110100100001001110":2.8926441351888668e-201,"0001011001100000101001110111110101000111111111111011111001001000":6.799204771371769e-201,"0001011001001110110111111010100101011110100011000011111111001111":3.151093439363817e-201,"0001011001001011110110101011111110010001110111101010001010001101":2.842942345924453e-201,"0001011000110111001011011111101010111000000010111001111010001011":1.1829025844930417e-201,"0001011001100110100010111110101010111010100011000110000010101011":9.204771371769383e-201,"0001011001011011100111000110101010100110100001100100111110101110":5.636182902584493e-201,"0001011001011101001101111100111001010001011001101101100100001111":5.964214711729623e-201,"0001011001100011000001000001101101100110000010111010111011111001":7.763419483101391e-201,"0001011001100000100101001100101000110100100110000111001000111000":6.769383697813121e-201,"0001011001000011000101101100111001111001011100101111101100001010":1.94831013916501e-201,"0001011001100101010101000100001000100001110100101100001001001010":8.707753479125248e-201,"0001011001100000011101011001111110111110111011000100100011001001":6.719681908548709e-201,"0001011001001000000011100101111110100000111000110010111101001100":2.455268389662028e-201,"0001011001010011011000011001101011000111000100000010101101001010":3.9562624254473164e-201,"0001011001001011101010001110001000001000110010110010110100001110":2.823061630218688e-201,"0001011001100010001010011111001000101110010101101000110011101001":7.415506958250497e-201,"0001011001100101010011100000011001110000101100000101001110011010":8.697813121272365e-201,"0001011001010110011111110111001101011000010001111000001101001011":4.592445328031809e-201,"0001011001100111001011011111101010111000000010111001111010001011":9.463220675944333e-201,"0001011001100110011110010011011110100111001001010001010010011011":9.174950298210735e-201,"0001011001010101100100101001011100001101001010110001010100101010":4.403578528827037e-201,"0001011000110011000101101100111001111001011100101111101100001010":9.74155069582505e-202,"0001011001010100000000111010101011000100100011110110100100101010":4.085487077534791e-201,"0001011001010111000010001001010010010001001111010000011001101011":4.7017892644135186e-201,"0001011001000101110100001110101111111000100000110110100000001010":2.2266401590457254e-201,"0001011000101111100011100011000010111110010100000101101100010000":8.05168986083499e-202,"0001011000111111001010100111010110101100001010010111000000001111":1.5904572564612325e-201,"0001011001001001111010000001100000110111000111000000101110001101":2.6441351888667993e-201,"0001011001010011001011111011110100111101111111001011010111001001":3.916500994035785e-201,"0001011001011000100010110000100101110111100100111101010100001100":5.0099403578528826e-201,"0001011001011011110011100100100000101111100110011100010100101101":5.675944333996023e-201,"0001011001010001110100101010111001111110011101000111111101001001":3.63817097415507e-201,"0001011001100111110101100100011001100110101011010100101100011100":9.731610337972167e-201,"0001011000111110001100010010000111111110110010000010010010001111":1.5407554671968191e-201,"0001011000100110001101001010011100001010101010100101001100001011":5.666003976143141e-202,"0001011001010100100011001100101111111101100001001110110001001010":4.194831013916501e-201,"0001011001001110111110001001100000100011000101011111101010010000":3.1610337972167e-201,"0001011001100001000101111010111110111100011010111000011010101000":6.978131212723657e-201,"0001011001011010111011011110001101000110110000100011010001101101":5.497017892644135e-201,"0001011000110100110101111001100001001011001000100001110010001010":1.0636182902584492e-201,"0001011000010101000010010111010111010100001101011001001000001010":2.68389662027833e-202,"0001010111111100000011001001110100011010111100100001100000001110":8.946322067594434e-203,"0001011001100100000101100101110111010111111101101011010100111010":8.20079522862823e-201,"0001011001100000110011001110001101101110110011100101011001101000":6.858846918489065e-201,"0001011001001000110101011101010111000101001100010000010101001100":2.5347912524850894e-201,"0001011001010010010011110101100001010101001001010010010100001001":3.7375745526838966e-201,"0001011000111100000011001001110100011010111100100001100000001110":1.4314115308151094e-201,"0001011001001111010000110110010001110000101100110010101011010000":3.190854870775348e-201,"0001011001001000101000111111100000111100000111011000111111001100":2.514910536779324e-201,"0001010111100010101100110001001101100111010011000001000000001001":2.982107355864811e-203,"0001011001011110110100110011000111111100010001110110001001101111":6.292246520874751e-201,"0001011001100001111010111001110101000010111111100011101000001001":7.31610337972167e-201,"0001011000100110111111000001110100101110111110000010100100001100":5.864811133200796e-202,"0001011001000110010011011001010111001111001101000000110111001011":2.276341948310139e-201,"0001011001001100001001011000101111011111011110111101001011001110":2.8727634194831014e-201,"0001011001001101001101111100111001010001011001101101100100001111":2.9821073558648113e-201,"0001011001010011100001110000000011101101110111101100001101101001":3.986083499005964e-201,"0001011001001101010100001011110100010101111100001001001111001110":2.9920477137176937e-201,"0001011001000110000110111011100001000110001000001001100001001011":2.2564612326043738e-201,"0001011001100011100110011011010000000001010001100000111101111010":8.001988071570577e-201,"0001011001011111101100111001011011100101000111101111001100101111":6.47117296222664e-201,"0001011000110110000000101100100110000001100101101101110110001011":1.1232604373757455e-201,"0001011001100011101111110001101000101000000101001010011110011001":8.061630218687872e-201,"0001011001100011111001001000000001001110111000110011111110111010":8.121272365805169e-201,"0001011001100001011011101111001101101100010011011001010001001000":7.117296222664015e-201,"0001011000111011110110101011111110010001110111101010001010001101":1.4214711729622265e-201,"0001011001001000010110010010101111101110100000000101111110001100":2.485089463220676e-201,"0001011000001100000011001001110100011010111100100001100000001110":1.7892644135188867e-202,"0001011001011000101111001110011100000000101001110100101010001100":5.049701789264413e-201,"0001011001001011011101110000010001111111101101111011011110001101":2.8031809145129222e-201,"0001011001011111110011001000010110101001101010001010110111110000":6.491053677932406e-201,"0001011001000011011000011001101011000111000100000010101101001010":1.9781312127236582e-201,"0001011000100001001001000010011100011110101100000110010000001000":4.373757455268389e-202,"0001011000111011011101110000010001111111101101111011011110001101":1.4015904572564611e-201,"0001011000101000001001110100111001100101011011001110101000001100":6.163021868787276e-202,"0001011001100011110110000000100011101100100111100110001001011010":8.101391650099404e-201,"0001011001011101011101100010001100111100101111110010101111101111":6.013916500994036e-201,"0001011001011111111111100110001100110010101111000010001101101111":6.530815109343936e-201,"0001011001101000000011100101111110100000111000110010111101001100":9.821073558648111e-201,"0001011001100111101101110001101111110001000000010010000110101100":9.681908548707754e-201,"0001011000001000111011101100010010001001101110101100000000001100":1.5904572564612325e-202,"0001011001100001000100010111010000001011010010010001011111111000":6.968190854870775e-201,"0001011001011110111110001001100000100011000101011111101010010000":6.3220675944334e-201,"0001011001100111101010101010010010001110101111000100010001001011":9.662027833001987e-201,"0001011001100110011000000100100011100010100110110101100111011011":9.135188866799205e-201,"0001011001000001101000001101000011110101011000010000100111001001":1.7992047713717695e-201,"0001011001011011100011111111001101000100010000010111001001001101":5.62624254473161e-201,"0001011001010110100010111110101010111010100011000110000010101011":4.602385685884692e-201,"0001011001010100110010110010000011101000110111010011111100101010":4.244532803180914e-201,"0001011000110101011011010011000011100110010111000111110100001011":1.0934393638170975e-201,"0001011001100101011001101111010100110101001110100000111001011011":8.737574552683897e-201,"0001011001100110001101001010011100001010101010100101001100001011":9.065606361829026e-201,"0001011001011101110110011101111001001110111001100001011011101110":6.093439363817097e-201,"0001011000111100001111100111101010100100000001011000110110001110":1.441351888667992e-201,"0001011000101011101010001110001000001000110010110010110100001110":7.05765407554672e-202,"0001011001011111001101101110110100001110011011100100110101101111":6.371769383697813e-201,"0001011001100110100111101001110111001101111100111010110010111011":9.234592445328032e-201,"0001011001000011010010001010110000000010100001100111000010001001":1.968190854870775e-201,"0001011001100101011011010011000011100110010111000111110100001011":8.74751491053678e-201,"0001011001011010001001100110110100100010011101000101111001101101":5.337972166998012e-201,"0001011001011001000001111011001101001110010001000111101011001101":5.10934393638171e-201,"0001011001100010110100100011110111011100111110000011100101111010":7.683896620278331e-201,"0001011001011011010111100001010110111011001011011111110011001110":5.58648111332008e-201,"0001011001010001110001100011011100011100001011111010000111101001":3.628230616302187e-201,"0001011000110100101001011011101011000010000011101010011100001010":1.0536779324055666e-201,"0001011001011101000111101101111110001100110111010001111001001110":5.9443339960238566e-201,"0001011001001100101000100011010110110110001011000111100010001111":2.9224652087475152e-201,"0001011001100110101100010101000011100001010110101111100011001100":9.264413518886681e-201,"0001011001000101011011010011000011100110010111000111110100001011":2.186878727634195e-201,"0001011001010111110100000000101010110101100010101101110001101100":4.860834990059642e-201,"0001011000111010000110011111010111000000001011111000000100001101":1.3320079522862823e-201,"0001011001011010101000110001011011111001001001010000010000101101":5.437375745526839e-201,"0001011000011001101101100011101010101110000010001001011000001100":3.280318091451292e-202,"0001011001010100011100111101110100111000111110110011000110001010":4.1749502982107355e-201,"0001011001100010010011110101100001010101001001010010010100001001":7.475149105367793e-201,"0001011001011000111000100100110100100111011101011110001010101100":5.0795228628230614e-201,"0001011001011111111001010111010001101110001100100110100010110000":6.510934393638171e-201,"0001011001011100100010010100011011110001101000101011110111001110":5.825049701789264e-201,"0001011001010010001101100110100110010000100110110110101001001001":3.717693836978131e-201,"0001011001000001100001111110001000110000110101110100111100001001":1.7892644135188868e-201,"0001011001100001110111110010010111100000101110010101110010101001":7.296222664015905e-201,"0001011001011110101000010101010001110011001100111110110011101111":6.2524850894632206e-201,"0001011000101101100110111000100101100011100011011100010000001110":7.554671968190854e-202,"0001011001010001010101100000010010100111110000111101100110001001":3.538767395626243e-201,"0001011001100100100100110000011110101110101001110101101011111010":8.399602385685884e-201,"0001011000010011011110101000100110001011100110011110011000001001":2.4850894632206757e-202,"0001011001100000001100010000111100100010011100011000011100111000":6.610337972166998e-201,"0001011000000001001001000010011100011110101100000110010000001000":1.0934393638170973e-202,"0001011001100011101100101010001011000101110011111100101000111010":8.041749502982108e-201,"0001011000101001010100100111111110011011111000011010101100001101":6.461232604373758e-202,"0001011000011110011000101111111110000111110110111001101000001111":3.8767395626242545e-202,"0001011001011000000110101101011100000011001010000000110010101100":4.9204771371769384e-201,"0001011001011100001111100111101010100100000001011000110110001110":5.765407554671968e-201,"0001011001010000110011001110001101101110110011100101011001101000":3.4294234592445326e-201,"0001011001001110001100010010000111111110110010000010010010001111":3.0815109343936382e-201,"0001011001100111000000100101100011100000000110101001011110111011":9.393638170974155e-201,"0001011001100101000000110011101000100011000100110010001101011010":8.578528827037773e-201,"0001011001001110101011011100101111010101011110001100101001001111":3.1312127236580516e-201,"0001011000110011011110101000100110001011100110011110011000001001":9.940357852882703e-202,"0001011000101001101101100011101010101110000010001001011000001100":6.560636182902584e-202,"0001011001100110011111110111001101011000010001111000001101001011":9.184890656063618e-201,"0001011000100111010111111101100001000001000111110001010000001011":5.964214711729622e-202,"0001011001100110110010100011111110100101111001001011001110001011":9.30417495029821e-201,"0001011001100100110100010101110010011001111111111010110111011010":8.499005964214711e-201,"0001011001100110111011111010010111001100101100110100101110101100":9.363817097415508e-201,"0001011001010110110010100011111110100101111001001011001110001011":4.652087475149105e-201,"0001011001001101111001100101010110110001001010101111010001001110":3.0516898608349898e-201,"0001011001100011100100110111100001010000001000111010000011001010":7.992047713717694e-201,"0001011000100111110000111001001101010011010001011111111100001100":6.0636182902584495e-202,"0001011001011101110000001110111110001010010111000101110000101111":6.073558648111332e-201,"0001011001001000001001110100111001100101011011001110101000001100":2.4652087475149106e-201,"0001011001010101000101011110110100110110011110100110111101101010":4.3041749502982104e-201,"0001011001010111001000011000001101010101110001101100000100101011":4.721669980119284e-201,"0001011000010001111010111001110101000010111111100011101000001001":2.286282306163022e-202,"0001011001100011010101010010001101100100110010110100110111101010":7.892644135188867e-201,"0001011001001111101001110001111110000010110110100001010111001111":3.2306163021868785e-201,"0001011001000110000000101100100110000001100101101101110110001011":2.246520874751491e-201,"0001011001011011111100111010111001010110011010000101110101001110":5.705765407554672e-201,"0001011001100100000010011110011001110101101100011101011111011001":8.180914512922464e-201,"0001011000110110111111000001110100101110111110000010100100001100":1.1729622266401592e-201,"0001011001001100001111100111101010100100000001011000110110001110":2.882703777335984e-201,"0001011001001001000001111011001101001110010001000111101011001101":2.554671968190855e-201,"0001011001010001001001000010011100011110101100000110010000001000":3.4990059642147114e-201,"0001011001100110101001001101100101111111000101100001101101101011":9.244532803180914e-201,"0001011001010011010101010010001101100100110010110100110111101010":3.946322067594434e-201,"0001011001100101110010101011000001000111011000001111100101011011":8.89662027833002e-201,"0001011001010001011110110110101011001110100100100111000110101000":3.56858846918489e-201,"0001011001000100010110101110111001110100011100010111011011001010":2.077534791252485e-201,"0001011000110001010101100000010010100111110000111101100110001001":8.846918489065607e-202,"0001011001010100111100001000011100001111101010111101011101001010":4.274353876739562e-201,"0001011001001010101011111000111001011011011010011110000110001101":2.7236580516898608e-201,"0001011000110000001010101101001101110001010011110001100010001000":8.250497017892644e-202,"0001011001011100110001111001101111011100111110110001000010101110":5.874751491053678e-201,"0001011001011101000001011111000011001000010100110110001110001110":5.924453280318091e-201,"0001011001011111010111000101001100110101001111001110010110001111":6.401590457256461e-201,"0001011001011000011001011010001101010000110001010011110011101100":4.9801192842942345e-201,"0001011000111101011010011010101111011010011110100100111010001111":1.5009940357852884e-201,"0001011001010110100110000110001000011100110100010011111000001011":4.6123260437375744e-201,"0001011000010111010111111101100001000001000111110001010000001011":2.982107355864811e-202,"0001011001000011011110101000100110001011100110011110011000001001":1.9880715705765405e-201,"0001011001100101101111100011100011100101000111000001101111111011":8.876739562624255e-201,"0001011001010011001111000011010010100000010000011001001100101001":3.9264413518886676e-201,"0001011001100101001011101101101111111011000001000010101000101011":8.648111332007953e-201,"0001011000110011110111100100010010011101110000001101000100001010":1.0139165009940358e-201,"0001011001100010010000101110000011110010111000000100011110101000":7.455268389662026e-201,"0001011001011001001110011001000011010111010101111111000001001100":5.14910536779324e-201,"0001011001101000010001100111100011011011000110010001001101111100":9.910536779324056e-201,"0001011001000011001011111011110100111101111111001011010111001001":1.9582504970178925e-201,"0001011001100000000110000010000001011101111001111100110001111000":6.570576540755467e-201,"0001011000010010101100110001001101100111010011000001000000001001":2.385685884691849e-202,"0001011001100001010000110101000110010100010111001000110101111001":7.047713717693838e-201,"0001011001001000010000000011110100101001111101101010010011001100":2.4751491053677932e-201,"0001011000111111111100011110101111010000011101110100011000001111":1.6302186878727633e-201,"0001011001011110011011110111011011101010001000000111011101101110":6.212723658051689e-201,"0001011001000110011001101000010010010011101111011100100010001011":2.286282306163022e-201,"0001011001100101010001111100101010111111100011011110010011101010":8.687872763419482e-201,"0001011001100001001100001001111010000000111101010100000101101000":7.017892644135188e-201,"0001011001001000011100100001101010110011000010100001101001001100":2.4950298210735586e-201,"0001011001010010101111111000101011001001100100001110110101101001":3.827037773359841e-201,"0001011001010010001010011111001000101110010101101000110011101001":3.7077534791252485e-201,"0001011001100011111010101011110000000000000001011010111001101010":8.131212723658052e-201,"0001011001010011110111100100010010011101110000001101000100001010":4.055666003976143e-201,"0001011001010001101110011011111110111001111010101100010010001000":3.6182902584493036e-201,"0001011001000111001011011111101010111000000010111001111010001011":2.3658051689860833e-201,"0001011001100100010110101110111001110100011100010111011011001010":8.31013916500994e-201,"0001011000101101001101111100111001010001011001101101100100001111":7.455268389662028e-202,"0001011001000100000100000010001000100110110101000100011010001001":2.0477137176938366e-201,"0001011001000110111111000001110100101110111110000010100100001100":2.3459244532803183e-201,"0001011000100101110100001110101111111000100000110110100000001010":5.566600397614313e-202,"0001011001010111001011011111101010111000000010111001111010001011":4.731610337972167e-201,"0001011001011001111010000001100000110111000111000000101110001101":5.2882703777335985e-201,"0001011001101000001110100000000101111000110101000011011000011011":9.890656063618289e-201,"0001011000001101100110111000100101100011100011011100010000001110":1.8886679920477136e-202,"0001011000111001010100100111111110011011111000011010101100001101":1.2922465208747516e-201,"0001011001011111011101010100000111111001110001101010000001001111":6.421471172962226e-201,"0001011000001111001010100111010110101100001010010111000000001111":1.9880715705765407e-202,"0001011001000101010101000100001000100001110100101100001001001010":2.176938369781312e-201,"0001011001100111010001101110100101111100100101010101100101001100":9.502982107355866e-201,"0001011001011111100000011011100101011100000010110111110110110000":6.43141153081511e-201,"0001011001101000011100100001101010110011000010100001101001001100":9.980119284294234e-201,"0001011001010001011000100111110000001010000010001011011011101000":3.548707753479125e-201,"0001011001100001101111111111101101101011000011010011001100111000":7.24652087475149e-201,"0001011001011010100101101001111110010110111000000010011011001101":5.427435387673956e-201,"0001011000100100010000011111111110101111111001111011110000001010":5.168986083499006e-202,"0001011001100110010110100000110100110001011110001110101100101011":9.125248508946322e-201,"0001011000011000001001110100111001100101011011001110101000001100":3.081510934393638e-202,"0001011001011011111001110011011011110100001000110111111111101110":5.6958250497017894e-201,"0001011001010101011011010011000011100110010111000111110100001011":4.37375745526839e-201,"0001011000110110100110000110001000011100110100010011111000001011":1.1530815109343936e-201,"0001011001100010101011001101011110110110001010011010000101011001":7.624254473161033e-201,"0001011000101010011111011011000011010010010101100110110000001101":6.7594433399602385e-202,"0001011000101101111111110100010001110101101101001010111100001111":7.654075546719682e-202,"0001011001100101001101010001011110101100001001101001100011011011":8.658051689860836e-201,"0001011000101011010001010010011011110110101001000100001000001101":6.958250497017892e-202}
-},{}],149:[function(require,module,exports){
+
+},{}],155:[function(require,module,exports){
 module.exports={"0000000000000000000001010101001100101011111001011101111111011001":2.8926441351893e-311,"0000000000000000000011101101011100010100010010101111101110110111":8.0616302186877e-311,"0000000000000000000010000111110110010100010010100111011101100101":4.6123260437377e-311,"0000000000000000000001010110111101000111001100011101111100101111":2.9522862823065e-311,"0000000000000000000010001101111111110011110101000111010100010011":4.8210735586482e-311,"0000000000000000000001111110110001011100100101110010010101111101":4.3041749502985e-311,"0000000000000000000001111000000010011110100111100111110101011101":4.075546719682e-311,"0000000000000000000000010010101111001101110101010100111001000100":6.36182902585e-312,"0000000000000000000000100100100110001110000001001001110011011011":1.2425447316105e-311,"0000000000000000000010111101101110000100000011111011100001100101":6.441351888668e-311,"0000000000000000000001110100100001101000000001100111111010110000":3.9562624254474e-311,"0000000000000000000001010000100000111000011100001000110001001000":2.733598409543e-311,"0000000000000000000011111100010111111100010100001111011000010101":8.568588469185e-311,"0000000000000000000011101110111010000000010111111010010111010101":8.1113320079525e-311,"0000000000000000000010011000001111101000011001010001101111100000":5.1689860834994e-311,"0000000000000000000010010000010101101101100011110001111011011100":4.9005964214716e-311,"0000000000000000000011000100101111110001001111111011010110111110":6.679920477137e-311,"0000000000000000000001010100100111001101011101110011010101100111":2.8727634194836e-311,"0000000000000000000001011001111000011111010110110011001101101001":3.051689860835e-311,"0000000000000000000000111111001111010110101011111110100000100010":2.147117296223e-311,"0000000000000000000000100000110010101000001101010100100011110110":1.1133200795233e-311,"0000000000000000000001010001000110010110110111110011011010111010":2.753479125249e-311,"0000000000000000000011101110000001110010101110011010011000101010":8.081510934394e-311,"0000000000000000000011101001010101111111010001000101001010011001":7.9224652087477e-311,"0000000000000000000000100101011110011011101010101001110010000111":1.2723658051696e-311,"0000000000000000000100010011110010111101100110111001011111101000":9.3638170974154e-311,"0000000000000000000011110000101010011011101010111010010100101011":8.1709741550697e-311,"0000000000000000000100001111111111010111110011000100010000000011":9.234592445328e-311,"0000000000000000000010001110111000000001011110100111010010111110":4.850894632207e-311,"0000000000000000000010101011100100010100101010010001010010010101":5.8250497017896e-311,"0000000000000000000100010110001000110111010101100100000110110001":9.443339960239e-311,"0000000000000000000010010111101010001001111101100111000101101110":5.1491053677936e-311,"0000000000000000000010111011111101101000110000111011100100001111":6.381709741551e-311,"0000000000000000000000010101111101010101001101011111011110110111":7.455268389665e-312,"0000000000000000000000101001110111011111111010001001101011011110":1.4214711729625e-311,"0000000000000000000001110101101100100100111000111101001110010101":3.9960238568593e-311,"0000000000000000000001000011000010111100011111110011110000001000":2.2763419483105e-311,"0000000000000000000010001100001111011000100010000111010110111101":4.761431411531e-311,"0000000000000000000000110111010101011011110110011110101100011110":1.878727634195e-311,"0000000000000000000011101011011001001001110001111010011100101000":7.9920477137177e-311,"0000000000000000000011010010001101101101001100010000010111111110":7.1371769383697e-311,"0000000000000000000000011000111000101101010111110100101111110010":8.449304174956e-312,"0000000000000000000000101110100011010011010111011110111001101111":1.580516898609e-311,"0000000000000000000001001001001100011100000010010011100110110110":2.485089463221e-311,"0000000000000000000010000011011101010000000011000111100100001110":4.463220675945e-311,"0000000000000000000010010100001001010011010111100111001011000001":5.029821073559e-311,"0000000000000000000011000110110010111011110000110000101001001110":6.7495029821076e-311,"0000000000000000000010000000001111001000101010111100111110011010":4.353876739563e-311,"0000000000000000000011111111100110000011101100011001111110001000":8.6779324055665e-311,"0000000000000000000100010011001101011111001011001110110101110110":9.3439363817097e-311,"0000000000000000000010111011101010111001100011000110001111010110":6.371769383698e-311,"0000000000000000000001110110010010000011010100100111111000000111":4.015904572565e-311,"0000000000000000000011001011011110101111001110000101110111011110":6.9085487077534e-311,"0000000000000000000000111000001101101001011111111110101011001001":1.9085487077537e-311,"0000000000000000000001100101100110000000000000001000010001010011":3.4493041749505e-311,"0000000000000000000001101101011111111010110101101000000101010111":3.7176938369783e-311,"0000000000000000000011010101001001000101010110100101101000111001":7.236580516899e-311,"0000000000000000000001111001100000001010101100110010011101111010":4.1252485089465e-311,"0000000000000000000001010101110010001010010101001000101001001011":2.912524850895e-311,"0000000000000000000100000011000110111010010010011001111000110101":8.7972166998014e-311,"0000000000000000000001001111101000101010110010101000110010011101":2.7037773359845e-311,"0000000000000000000100000000110001000000100011101111010001101100":8.717693836978e-311,"0000000000000000000000111001101011010101100101001001010011100111":1.9582504970185e-311,"0000000000000000000001101001111111000100001111101000001010101011":3.598409542744e-311,"0000000000000000000001010100000001101111000010001000101011110101":2.852882703778e-311,"0000000000000000000000010011100111011011011110110100110111101111":6.660039761436e-312,"0000000000000000000000001010100010100011110001111111110000000111":3.578528827045e-312,"0000000000000000000011100111111000010011001011111010100001111100":7.8727634194834e-311,"0000000000000000000011101100100100000110101001001111110000001100":8.031809145129e-311,"0000000000000000000011010101011011110100100100011010111101110010":7.2465208747517e-311,"0000000000000000000010111011000101011011000111011011100101100100":6.351888667992e-311,"0000000000000000000001100111101001001010100000111101100011100010":3.5188866799205e-311,"0000000000000000000010111101001000100101101000010000110111110011":6.4214711729623e-311,"0000000000000000000010100000001001100011001110110001100011100100":5.437375745527e-311,"0000000000000000000001011001100101110000001000111101111000110000":3.0417495029823e-311,"0000000000000000000011010011101011011001010001011011000000011100":7.1868787276345e-311,"0000000000000000000000101101011000010110100000001001100110001011":1.5407554671973e-311,"0000000000000000000100011110101000010000100110101110100100100111":9.731610337972e-311,"0000000000000000000001111000100111111101000011010010011111001111":4.095427435388e-311,"0000000000000000000100010010010101010001100001101110110111001011":9.314115308151e-311,"0000000000000000000001101000100001011000001010011101100010001110":3.5487077534796e-311,"0000000000000000000010101000010110001101010010000110101100100001":5.7157057654077e-311,"0000000000000000000100011111001101101111000010011001001110011001":9.751491053678e-311,"0000000000000000000010001101011010010101011001011100101010100001":4.8011928429425e-311,"0000000000000000000001101000110100000111011000010010110111000111":3.5586481113325e-311,"0000000000000000000010000101110011001001110001110010001011010110":4.5427435387677e-311,"0000000000000000000010111001100111101111000010010000111101000111":6.302186878728e-311,"0000000000000000000001000011010101101011101101101001000101000001":2.2862823061634e-311,"0000000000000000000000010011111010001010101100101010001100101000":6.759443339965e-312,"0000000000000000000010011111010001010101100101010001100100111001":5.4075546719685e-311,"0000000000000000000000000010101000101000111100011111111100000010":8.9463220676e-313,"0000000000000000000011111100101010101011100010000100101101001110":8.578528827038e-311,"0000000000000000000011111010000010000010100101100100110001001100":8.4890656063617e-311,"0000000000000000000001001000111001101100110100011110010001111101":2.475149105368e-311,"0000000000000000000001000001010010100001001100110011110010110010":2.2166998011933e-311,"0000000000000000000001011011010110001011011011111101110110000111":3.1013916501e-311,"0000000000000000000010011100000011001110001101000110111111000101":5.2982107355865e-311,"0000000000000000000100000101101111100011001110111001110100110110":8.886679920477e-311,"0000000000000000000001001010000100101001101011110011100101100001":2.5149105367797e-311,"0000000000000000000100000000011110010001010101111001111100110011":8.707753479125e-311,"0000000000000000000001001101111000001111011111101000110101000111":2.6441351888673e-311,"0000000000000000000001101001101100010101000001110010110101110010":3.588469184891e-311,"0000000000000000000011111100000101001101000110011010000011011100":8.558648111332e-311,"0000000000000000000011110101010110001111001000001111100010111100":8.330019880716e-311,"0000000000000000000000100001101010110101110110110100100010100001":1.143141153082e-311,"0000000000000000000011010010110011001011100111111011000001110000":7.1570576540754e-311,"0000000000000000000011111110011011000110110101000100101010100100":8.638170974155e-311,"0000000000000000000011011100011101100001110000011010110011001011":7.485089463221e-311,"0000000000000000000010000100111010111100001000010010001100101011":4.512922465209e-311,"0000000000000000000010110100111011111011100100111011101110110110":6.1431411530817e-311,"0000000000000000000010000110011000101000001101011100110101001000":4.5626242544734e-311,"0000000000000000000001111101000001000001010010110010011000100111":4.2445328031813e-311,"0000000000000000000010101101000010000000101111011011111010110010":5.874751491054e-311,"0000000000000000000001011000011010110011010001101000100101001100":3.001988071571e-311,"0000000000000000000011011110110011011011011111000101011010010011":7.5646123260437e-311,"0000000000000000000001111000111010101100010001000111110100001000":4.105367793241e-311,"0000000000000000000001011101111110110100011000011101110010001000":3.1908548707757e-311,"0000000000000000000000001100010010111111000100111111101101011101":4.174950298216e-312,"0000000000000000000010111010001101001101011101111011100110111001":6.3220675944337e-311,"0000000000000000000010110101100001011010000000100110011000101000":6.1630218687874e-311,"0000000000000000000011110101101000111110010110000100110111110101":8.339960238569e-311,"0000000000000000000001100010000101001001011010001000010110100111":3.330019880716e-311,"0000000000000000000000000000000000000000000000000000000000000001":5.0e-324,"0000000000000000000011100100000100101101011000000101010010010110":7.7435387673957e-311,"0000000000000000000011100011001100011111101110100101010011101011":7.713717693837e-311,"0000000000000000000000010000000110100100111000110100111101000010":5.46719681909e-312,"0000000000000000000001110011010110101011001010010010100111001100":3.916500994036e-311,"0000000000000000000001101010010001110011011101011101011111100100":3.608349900597e-311,"0000000000000000000011010111001100001111110111011010111011001000":7.306163021869e-311,"0000000000000000000000011110011100101110011110101001111100101110":1.0337972167005e-311,"0000000000000000000000000010000011001010100000110101010010010000":6.95825049705e-313,"0000000000000000000001011000101101100010011111011101111010000101":3.0119284294237e-311,"0000000000000000000100000110100111110000111000011001110011100001":8.9165009940357e-311,"0000000000000000000000100010100011000011100000010100100001001100":1.1729622266405e-311,"0000000000000000000100000011101100011000101110000100100010100111":8.817097415507e-311,"0000000000000000000001111100011011100010110111000111101110110101":4.2246520874756e-311,"0000000000000000000000001111110011110101101010111111101000001001":5.36779324056e-312,"0000000000000000000011111011001100111111011100111010000100110001":8.5288270377736e-311,"0000000000000000000011110000111101001010111000101111101001100100":8.1809145129225e-311,"0000000000000000000000000011001110000111011000001010100101110100":1.09343936382e-312,"0000000000000000000001100110011110001101101001101000001111111110":3.479125248509e-311,"0000000000000000000011111000100100010110100000011010001000101111":8.4393638170974e-311,"0000000000000000000001100010101010100111110101110011000000011001":3.349900596422e-311,"0000000000000000000100000100100100100110010111100100100001010010":8.8469184890657e-311,"0000000000000000000001010010010001010011101111001000101110011110":2.79324055666e-311,"0000000000000000000000111011001001000001101010010011111100000100":2.007952286283e-311,"0000000000000000000011000001110100011001000101100110000110000100":6.5805168986085e-311,"0000000000000000000011110110100001001011111111100100110110100000":8.3697813121274e-311,"0000000000000000000000011001001011011100100101101010000100101011":8.548707753485e-312,"0000000000000000000001000110110110100010010011101000111111101110":2.405566600398e-311,"0000000000000000000000101001010010000001011110011111000001101100":1.401590457257e-311,"0000000000000000000000010000011001010100000110101010010001111011":5.566600397617e-312,"0000000000000000000010110001101101110100001100110001001001000011":6.0337972167e-311,"0000000000000000000010010110011111001101000110010001110010001001":5.1093439363817e-311,"0000000000000000000001001110001010111110101101011110001010000000":2.65407554672e-311,"0000000000000000000000010100011111101001001000010100110110011010":6.95825049702e-312,"0000000000000000000011011001110100111000110011111010110111001010":7.395626242545e-311,"0000000000000000000001111010111101110110110001111101000110010111":4.174950298211e-311,"0000000000000000000011111010100111100001000001001111011010111110":8.5089463220674e-311,"0000000000000000000010100101001000000101111001111100000110101110":5.606361829026e-311,"0000000000000000000001011101000110100110101110111101110011011101":3.161033797217e-311,"0000000000000000000001100111111011111001101110110010111000011100":3.528827037774e-311,"0000000000000000000011001010111001010000110010011011001101101100":6.8886679920477e-311,"0000000000000000000001111010011000011000010110010010011100100101":4.155069582505e-311,"0000000000000000000001011001000000010001101101010011001110111110":3.0218687872765e-311,"0000000000000000000000110111111010111010010010001001010110010000":1.898608349901e-311,"0000000000000000000000011101010001110001100111010100101001001001":9.940357852885e-312,"0000000000000000000010001111001010110000101100011100100111110111":4.8608349900597e-311,"0000000000000000000000100110000011111010000110010100011011111001":1.2922465208753e-311,"0000000000000000000010010010111110010110100000010001110111011101":4.9900596421474e-311,"0000000000000000000000010101101010100101111111101010001001111110":7.355864811137e-312,"0000000000000000000100100101111100101101000000100011101110111001":9.9801192842942e-311,"0000000000000000000000101011010101001011111111010100010011111011":1.471172962227e-311,"0000000000000000000011011111011000111001111010110000000100000101":7.5844930417494e-311,"0000000000000000000000010000111110110010100010010100111011101110":5.76540755468e-312,"0000000000000000000010100001000001110000111000010001100010001111":5.4671968190857e-311,"0000000000000000000001111001110010111001111010100111110010110011":4.1351888667994e-311,"0000000000000000000010100001100111001111010011111100001100000001":5.4870775347914e-311,"0000000000000000000100010111100110100011011010101110101111001110":9.493041749503e-311,"0000000000000000000011011010000111101000000001110000001100000011":7.405566600398e-311,"0000000000000000000001001100011010100011011010011110001100101001":2.5944333996025e-311,"0000000000000000000000100001011000000110101000111111001101101000":1.133200795229e-311,"0000000000000000000010110101110100001001001110011011101101100001":6.1729622266402e-311,"0000000000000000000011000011100100110100011000100110000011011010":6.6401590457257e-311,"0000000000000000000100011001101001101101111011100100000001011101":9.562624254473e-311,"0000000000000000000010110110111111000110000101110001000001000101":6.2127236580517e-311,"0000000000000000000000010000101100000011010100011111100110110100":5.666003976145e-312,"0000000000000000000001001111000011001100010110111110001000101011":2.683896620279e-311,"0000000000000000000010101010000110101000100101000110101001110111":5.775347912525e-311,"0000000000000000000100000101011100110100000001000100011111111101":8.8767395626243e-311,"0000000000000000000000001000001100101010000011010101001000111110":2.78330019881e-312,"0000000000000000000001110111001010010000111110000111110110110010":4.0457256461236e-311,"0000000000000000000000111111110100110101000111101001001010010101":2.166998011929e-311,"0000000000000000000011010001000010110000010100111011000100011010":7.0974155069583e-311,"0000000000000000000011010011000101111010110101110000010110101010":7.166998011929e-311,"0000000000000000000001111101111001001110111100010010010111010010":4.27435387674e-311,"0000000000000000000000111001000101110111001001011110101001110101":1.9383697813128e-311,"0000000000000000000010100111110000101110110110011100000010101111":5.695825049702e-311,"0000000000000000000100001000111101101010100111000100011010101010":8.996023856859e-311,"0000000000000000000100010000010010000111000000111001100100111100":9.244532803181e-311,"0000000000000000000100100000111110001010010101011001001011101111":9.811133200795e-311,"0000000000000000000011110111101100001000110110111010001010000100":8.409542743539e-311,"0000000000000000000001101000001110101000111100101000001101010101":3.538767395627e-311,"0000000000000000000100000001010110011110111111011001111011011110":8.7375745526837e-311,"0000000000000000000000011001011110001011110011011111011001100100":8.648111332013e-312,"0000000000000000000011001010100110100001100100100101111000110011":6.878727634195e-311,"0000000000000000000011000011110111100011100110011011011000010011":6.6500994035785e-311,"0000000000000000000001011111011100100000011101101000011010100101":3.24055666004e-311,"0000000000000000000010011010100101100010000111111100010110101000":5.248508946322e-311,"0000000000000000000010011010000000000011101100010001101100110110":5.2286282306165e-311,"0000000000000000000011101001111011011101101100101111110100001011":7.9423459244534e-311,"0000000000000000000100000111001101001111010100000100011101010011":8.9363817097414e-311,"0000000000000000000001110100110100010111001111011101001111101001":3.9662027833003e-311,"0000000000000000000001011011000011011100001110001000100001001110":3.091451292247e-311,"0000000000000000000000010101000101000111100011111111100000001100":7.15705765408e-312,"0000000000000000000011011000101001111011111100100101100011100101":7.355864811133e-311,"0000000000000000000011000000101001011100001110010000110010100000":6.540755467197e-311,"0000000000000000000100100000101011011011000111100011110110110110":9.8011928429423e-311,"0000000000000000000000001010110101010010111111110101000101000000":3.677932405573e-312,"0000000000000000000011100110011010100111000110101111111001011110":7.8230616302186e-311,"0000000000000000000000101000101100100011000010110100010111111010":1.381709741551e-311,"0000000000000000000001001001110001111010011101111110010000101000":2.504970178927e-311,"0000000000000000000100100110100010001011011100001110011000101011":1.0e-310,"0000000000000000000000001111100001000110011101001010010011010000":5.26838966203e-312,"0000000000000000000000001110101000111000110011101010010100100101":4.970178926445e-312,"0000000000000000000011100100101010001011110011101111111100001000":7.7634194831014e-311,"0000000000000000000001000111101110101111111101001000111110011001":2.435387673957e-311,"0000000000000000000000011011001110100111000110011111010110111010":9.244532803185e-312,"0000000000000000000000110111101000001011000100010100000001010111":1.888667992048e-311,"0000000000000000000010110001001000010101110001000110011111010000":6.013916500994e-311,"0000000000000000000010011110101011110111001001100110111011000111":5.387673956263e-311,"0000000000000000000100001010101110000101111010000100011000000000":9.055666003976e-311,"0000000000000000000001110011000011111011111100011101010010010011":3.906560636183e-311,"0000000000000000000011110101000011011111111010011010001110000011":8.320079522863e-311,"0000000000000000000001010010110110110010001010110011011000010000":2.813121272366e-311,"0000000000000000000001111010000101101001001000011101000111101100":4.145129224652e-311,"0000000000000000000010101010011001010111110010111011111110110000":5.7852882703777e-311,"0000000000000000000011010010100000011100011010000101101100110111":7.1471172962226e-311,"0000000000000000000001000101101011100101011100010011101100001001":2.3658051689863e-311,"0000000000000000000001100001011111101010111110011101101100110101":3.3101391650105e-311,"0000000000000000000100000101001010000100110011001111001011000100":8.8667992047714e-311,"0000000000000000000010111001111010011110010000000110010010000000":6.312127236581e-311,"0000000000000000000100011001111100011101001001011001010110010110":9.572564612326e-311,"0000000000000000000000000100000110010101000001101010100100100000":1.39165009941e-312,"0000000000000000000001000110100011110011000101110011101010110101":2.3956262425453e-311,"0000000000000000000011101101001001100101000100111010011001111110":8.051689860835e-311,"0000000000000000000001001010010111011000111001101000111010011010":2.5248508946325e-311,"0000000000000000000001011011101000111010101001110011001011000000":3.111332007953e-311,"0000000000000000000000110001001011111100010011111110110101110000":1.6699801192845e-311,"0000000000000000000000000010010101111001101110101010100111001001":7.95228628234e-313,"0000000000000000000000100010110101110010101110001001110110000101":1.1829025844934e-311,"0000000000000000000010101001100001001010001001011100000000000101":5.755467196819e-311,"0000000000000000000000110011100001110110000010101001011100111001":1.749502982108e-311,"0000000000000000000100100101000100011111010111000011110000001110":9.9502982107357e-311,"0000000000000000000010010101111001101110101010100111001000010111":5.089463220676e-311,"0000000000000000000011001001101110010011111011000101111010001000":6.8489065606363e-311,"0000000000000000000001111011100011010101001101100111110000001001":4.1948310139165e-311,"0000000000000000000010101110110010011100000010011011111000001000":5.934393638171e-311,"0000000000000000000010001000001001000011100000011100110010011110":4.6222664015905e-311,"0000000000000000000100100001110110010111111110111001001010011010":9.8409542743537e-311,"0000000000000000000100010111000001000100111111000100000101011100":9.4731610337974e-311,"0000000000000000000011001111110111110011011101100101110000110110":7.057654075547e-311,"0000000000000000000010100100100010100111011110010001011100111100":5.5864811133205e-311,"0000000000000000000010111001000010010000100110100110010011010101":6.282306163022e-311,"0000000000000000000010010000111011001011111111011100100101001110":4.9204771371773e-311,"0000000000000000000000011111111010011010100011110100100101001011":1.083499005965e-311,"0000000000000000000000110000010011101110101010011110110111000101":1.640159045726e-311,"0000000000000000000011100000010001000111100100010000000010110001":7.6143141153085e-311,"0000000000000000000011011001001111011010011000010000001101010111":7.375745526839e-311,"0000000000000000000001000000011010010011100011010011110100000111":2.186878727635e-311,"0000000000000000000011001010010011110010010110110000100011111010":6.868787276342e-311,"0000000000000000000000111010110110010010011100011110100111001011":1.99801192843e-311,"0000000000000000000010110000100010110111010101011011110101011110":5.9940357852883e-311,"0000000000000000000010111100010000010111111110110000111001001000":6.3916500994037e-311,"0000000000000000000010010001110011011001101000111100100011111001":4.950298210736e-311,"0000000000000000000011100010111001110000100000101111111110110010":7.703777335984e-311,"0000000000000000000001110010011110011101100000110010101000100001":3.8866799204774e-311,"0000000000000000000100001000101010111011011001001111000101110001":8.986083499006e-311,"0000000000000000000010010111111100111001001011011100011010100111":5.1590457256465e-311,"0000000000000000000010011000110101000110110100111100011001010010":5.188866799205e-311,"0000000000000000000100000100110111010101100101011001110110001011":8.8568588469185e-311,"0000000000000000000100100000000101111100101011111001001101000100":9.7813121272365e-311,"0000000000000000000100001001010000011001110100111001101111100011":9.005964214712e-311,"0000000000000000000010011101100000111010010010010001100111100011":5.3479125248513e-311,"0000000000000000000001001010111100110111010101010011100100001100":2.544731610338e-311,"0000000000000000000001001011110101000100111110110011100010110111":2.574552683897e-311,"0000000000000000000011001110111111100101110100000101110010001011":7.027833001988e-311,"0000000000000000000000100001000101010111011011001001111000101111":1.123260437376e-311,"0000000000000000000011101000001011000010011001101111110110110101":7.882703777336e-311,"0000000000000000000000110000100110011101111000010100001011111110":1.650099403579e-311,"0000000000000000000010010110110001111100010100000111000111000011":5.119284294235e-311,"0000000000000000000001000000000111100100010101011110011111001110":2.176938369782e-311,"0000000000000000000011101100010001010111011011011010011011010011":8.0218687872763e-311,"0000000000000000000001100010111101010111000011101000010101010010":3.359840954275e-311,"0000000000000000000100100011111001100010011111101110011100101010":9.910536779324e-311,"0000000000000000000011010001111010111101111110011011000011000101":7.127236580517e-311,"0000000000000000000000001010001111110100100100001010011011001110":3.479125248516e-312,"0000000000000000000010110111010001110101010011100110010101111110":6.2226640159046e-311,"0000000000000000000001001100000111110100001100101000110111110000":2.5844930417497e-311,"0000000000000000000100000001111011111101011011000100100101010001":8.75745526839e-311,"0000000000000000000001101100100111101101001100001000000110101100":3.6878727634197e-311,"0000000000000000000100011011101100111000011100011001010011101100":9.632206759443e-311,"0000000000000000000000110111000010101100101000101001010111100101":1.868787276342e-311,"0000000000000000000000101000011001110011110100111111000011000001":1.371769383698e-311,"0000000000000000000010000010100101000010011001100111100101100011":4.433399602386e-311,"0000000000000000000010001010110001101100011100111100101110100000":4.711729622267e-311,"0000000000000000000010111110010011100010011111100110001011010111":6.4612326043737e-311,"0000000000000000000000010111001000010010000100110100110010011011":7.85288270378e-312,"0000000000000000000010000100000010101110011110110010001110000000":4.4831013916505e-311,"0000000000000000000001101100111010011100011001111101011011100101":3.6978131212725e-311,"0000000000000000000001011010011101111101110010011101110111011100":3.0715705765413e-311,"0000000000000000000100010100011000011100000010100100001001011010":9.383697813121e-311,"0000000000000000000010111110111001000000111011010000110101001010":6.48111332008e-311,"0000000000000000000001111000010101001101110101011101001010010110":4.085487077535e-311,"0000000000000000000011000001100001101001110111110000110001001011":6.5705765407557e-311,"0000000000000000000000001100100101101110010010110101000010010110":4.274353876745e-312,"0000000000000000000100011001000100001111011111111001010111101011":9.5427435387674e-311,"0000000000000000000011001100000100001101101001110000100001010000":6.928429423459e-311,"0000000000000000000001101001000110110110100110001000001100000000":3.5685884691853e-311,"0000000000000000000000011100111111000010011001011111010100010000":9.840954274357e-312,"0000000000000000000001011001010011000000111011001000100011110111":3.0318091451294e-311,"0000000000000000000000000110101110111101111110001010100000100001":2.28628230617e-312,"0000000000000000000010010111010111011010101111110001110000110101":5.139165009941e-311,"0000000000000000000011011011100101010100000110111010110100100000":7.455268389662e-311,"0000000000000000000001110001000000110001011011101000000000000100":3.836978131213e-311,"0000000000000000000011101111001100101111100101101111101100001110":8.1212723658054e-311,"0000000000000000000001011000001000000100000011110011010000010011":2.992047713718e-311,"0000000000000000000011001011001100000000000000010000100010100101":6.8986083499006e-311,"0000000000000000000100100110001111011100001110011001000011110010":9.990059642147e-311,"0000000000000000000000101001100100110000101100010100010110100101":1.4115308151097e-311,"0000000000000000000010001011101001111010000110011100101101001011":4.7415506958254e-311,"0000000000000000000011000111011000011010001100011011010011000000":6.7693836978134e-311,"0000000000000000000011110010101101100110001011101111100110111010":8.2405566600397e-311,"0000000000000000000100100001010000111001100011001110100000101000":9.821073558648e-311,"0000000000000000000100001010011011010110101100001111000011000111":9.0457256461234e-311,"0000000000000000000011000010111111010101111100111011011001101000":6.62027833002e-311,"0000000000000000000001000001110111111111101000011110011100100100":2.236580516899e-311,"0000000000000000000000111011011011110000111000001001010000111101":2.0178926441356e-311,"0000000000000000000001101110101010110111101100111101011000111100":3.75745526839e-311,"0000000000000000000001111100001000110011101001010010011001111100":4.214711729623e-311,"0000000000000000000000000101010001010001111000111111111000000100":1.789264413525e-312,"0000000000000000000000101010001010001111000111111111000000010111":1.4314115308154e-311,"0000000000000000000011011101111011001101110101100101011011101000":7.534791252485e-311,"0000000000000000000100000100010001110111001001101111001100011001":8.836978131213e-311,"0000000000000000000001010110000100111001100010111101111110000100":2.922465208748e-311,"0000000000000000000100100010011011110110011010100011110100001100":9.8608349900594e-311,"0000000000000000000100010010101000000000101111100100001100000100":9.324055666004e-311,"0000000000000000000100011101001010100100100001100011111100001010":9.681908548708e-311,"0000000000000000000011000101100111111110111001011011010101101010":6.709741550696e-311,"0000000000000000000100000110000010010010011100101111001001101111":8.89662027833e-311,"0000000000000000000000111010100011100011001110101001010010010010":1.988071570577e-311,"0000000000000000000000111100100110101101101111011110100100100001":2.057654075547e-311,"0000000000000000000000101111011011100001000000111110111000011010":1.6103379721674e-311,"0000000000000000000000101011100111111011001101001001101000110101":1.48111332008e-311,"0000000000000000000000001110010110001001100101110100111111101100":4.870775347917e-312,"0000000000000000000100010110101110010101110001001110110000100011":9.4632206759445e-311,"0000000000000000000100001101000011111111101000101110111111001000":9.135188866799e-311,"0000000000000000000011110011111000100011000011000100111010011110":8.280318091451e-311,"0000000000000000000010101100001001110011000101111011111100000111":5.8449304174954e-311,"0000000000000000000011100011110001111110001010001111111101011101":7.733598409543e-311,"0000000000000000000010101010101100000111000000110001010011101001":5.7952286282306e-311,"0000000000000000000011011010011010010111001111100101100000111100":7.415506958251e-311,"0000000000000000000100010100111101111010011110001110110011001100":9.403578528827e-311,"0000000000000000000011011101010101101111011001111010110001110110":7.5149105367794e-311,"0000000000000000000000000110011100001110110000010101001011101000":2.18687872764e-312,"0000000000000000000001110001010011100000101001011101010100111101":3.846918489066e-311,"0000000000000000000001100000010100101110000111001000011001010000":3.2703777335985e-311,"0000000000000000000001010001011001000110000101101000101111110011":2.7634194831017e-311,"0000000000000000000000110000000000111111011100101001100010001100":1.630218687873e-311,"0000000000000000000011101000011101110001100111100101001011101110":7.892644135189e-311,"0000000000000000000001000101000110000111000000101001000010010111":2.3459244532805e-311,"0000000000000000000010110011110000111110101101100110011011010010":6.10337972167e-311,"0000000000000000000000000011100000110110100101111111111010101110":1.192842942353e-312,"0000000000000000000011010100110110010110001000110000010100000000":7.226640159046e-311,"0000000000000000000001001011100010010101110000111110001101111110":2.564612326044e-311,"0000000000000000000001001111111011011010000000011110000111010110":2.7137176938374e-311,"0000000000000000000100001101010110101110110110100100010100000001":9.145129224652e-311,"0000000000000000000011100110101101010110010100100101001110010111":7.8330019880714e-311,"0000000000000000000001110100001110111000110011110010100101110111":3.9463220675945e-311,"0000000000000000000011000010011001110111100001010000101111110110":6.600397614314e-311,"0000000000000000000001110111101111101111011001110010100000100100":4.0656063618294e-311,"0000000000000000000001011100001110011001000101011101110100110010":3.1312127236585e-311,"0000000000000000000010101100101111010001100001100110100101111001":5.864811133201e-311,"0000000000000000000000110010111100010111100110111110110011000111":1.729622266402e-311,"0000000000000000000001000100110011010111110010110011101101011110":2.3359840954277e-311,"0000000000000000000000001100111000011101100000101010010111001111":4.373757455273e-312,"0000000000000000000001010111110101010100110101111101111011011010":2.982107355865e-311,"0000000000000000000100001101111100001101010010001110111101110011":9.1650099403577e-311,"0000000000000000000011101011101011111000111111101111110001100001":8.0019880715705e-311,"0000000000000000000000111101110001101010100110110011111000000101":2.0974155069585e-311,"0000000000000000000011010001010101011111100010110000011001010011":7.107355864811e-311,"0000000000000000000100100001100011101000110001000011110101100001":9.831013916501e-311,"0000000000000000000001110101011001110101101011000111111001011100":3.9860834990065e-311,"0000000000000000000010100001111001111110100001110001100000111010":5.4970178926442e-311,"0000000000000000000010111100110101110110011010011011100010111010":6.4115308151094e-311,"0000000000000000000010000111010000110101110110111100110011110011":4.592445328032e-311,"0000000000000000000011000110100000001100100010111011010100010101":6.739562624255e-311,"0000000000000000000000110110101111111101011010110100000010101100":1.8588469184894e-311,"0000000000000000000100011100100101000110000101111001010010011000":9.662027833002e-311,"0000000000000000000100011010110100101010110010111001010101000001":9.6023856858846e-311,"0000000000000000000100011101011101010011101111011001010001000011":9.691848906561e-311,"0000000000000000000011001010000001000011001000111011001111000001":6.858846918489e-311,"0000000000000000000100000110010101000001101010100100011110101000":8.906560636183e-311,"0000000000000000000001011101101100000101001010101000011101001111":3.180914512923e-311,"0000000000000000000000110010000100001001111101011110110100011011":1.699801192843e-311,"0000000000000000000001110111011101000000001011111101001011101011":4.0556660039765e-311,"0000000000000000000011000011010010000101001010110000101110100001":6.630218687873e-311,"0000000000000000000001000000101101000010110001001001001001000000":2.1968190854876e-311,"0000000000000000000000000000100101011110011011101010101001110011":1.9880715706e-313,"0000000000000000000001001111010101111011100100110011011101100100":2.6938369781316e-311,"0000000000000000000010100011010111101010100110111100001001010111":5.5467196819086e-311,"0000000000000000000011001110101100110110100110010000011101010010":7.0178926441354e-311,"0000000000000000000000110100101100110010111001111110110000011101":1.7892644135193e-311,"0000000000000000000100001011010011100100010101101111000001110010":9.075546719682e-311,"0000000000000000000001101010110111010001111001001000001001010110":3.6282306163025e-311,"0000000000000000000011100000110110100101111111111010101100100011":7.634194831014e-311,"0000000000000000000000000111100111001011100111101010011111001100":2.584493041754e-312,"0000000000000000000000100111110100010101011001010100011001001111":1.3518886679925e-311,"0000000000000000000000001001111101000101010110010101000110010100":3.379721669982e-312,"0000000000000000000010001101000111100110001011100111010101101000":4.7912524850897e-311,"0000000000000000000001100101000000100001100100011101100111100001":3.429423459245e-311,"0000000000000000000000111011101110100000000101111110100101110110":2.0278330019885e-311,"0000000000000000000010101000101000111100011111111100000001011010":5.7256461232605e-311,"0000000000000000000010011001101101010100011110011100010111111101":5.2186878727637e-311,"0000000000000000000010101111010111111010011110000110100001111010":5.954274353877e-311,"0000000000000000000011001000010000100111110101111011010001101011":6.799204771372e-311,"0000000000000000000011010111110001101110010011000101100100111010":7.3260437375745e-311,"0000000000000000000010100010110010001100001011010001011111100101":5.526838966203e-311,"0000000000000000000010011010010010110010111010000111000001101111":5.2385685884694e-311,"0000000000000000000000001011001000000010001101101010011001111001":3.7773359841e-312,"0000000000000000000000100100000000101111100101011111001001101001":1.222664015905e-311,"0000000000000000000010000110111110000110101001000111011110111010":4.582504970179e-311,"0000000000000000000100010111010011110100001100111001011010010101":9.48310139165e-311,"0000000000000000000011100110000111110111111000111010100100100101":7.8131212723657e-311,"0000000000000000000011000111000101101010111110100101111110000111":6.7594433399605e-311,"0000000000000000000000001110000011011010010111111111101010110011":4.77137176939e-312,"0000000000000000000000111101001100001100001011001001001110010011":2.077534791253e-311,"0000000000000000000001100000111010001100100010110011000011000010":3.2902584493043e-311,"0000000000000000000011100101100010011001011101001111111010110011":7.79324055666e-311,"0000000000000000000100011110000010110010001011000011111010110101":9.7117296222665e-311,"0000000000000000000001011110100100010010110100001000011011111010":3.2107355864814e-311,"0000000000000000000000001011011010110001011011011111101110110010":3.87673956263e-312,"0000000000000000000010011001000111110110000010110001101110001011":5.198807157058e-311,"0000000000000000000100011010001111001100010111001110101011001111":9.582504970179e-311,"0000000000000000000011011100110000010000111110010000001000000100":7.4950298210737e-311,"0000000000000000000001110000101110000010001101110010101011001011":3.82703777336e-311,"0000000000000000000000111100000001001111010011110011111010101111":2.0377733598414e-311,"0000000000000000000010000000100001110111111000110010010011010011":4.3638170974157e-311,"0000000000000000000000010011000001111101000011001010001101111101":6.46123260438e-312,"0000000000000000000001100000000001111110111001010011000100010111":3.2604373757457e-311,"0000000000000000000001010000110011100111101001111110000110000001":2.743538767396e-311,"0000000000000000000010010111000100101011100001111100011011111100":5.129224652088e-311,"0000000000000000000100011011011010001001001110100011111110110011":9.6222664015903e-311,"0000000000000000000000100110111100000111101111110100011010100100":1.322067594434e-311,"0000000000000000000100011000001100000001110110011001011001000000":9.512922465209e-311,"0000000000000000000000100000001101001001110001101001111010000100":1.0934393638176e-311,"0000000000000000000010011100111011011011110110100110111101110000":5.328031809145e-311,"0000000000000000000000100101110001001010111000011111000111000000":1.2823061630225e-311,"0000000000000000000011101110100111010001001010000101000010011100":8.1013916500996e-311,"0000000000000000000000110110011101001110001100111110101101110011":1.8489065606365e-311,"0000000000000000000000011011110100000101100010001010000000101100":9.44333996024e-312,"0000000000000000000011110111000110101010011011001111100000010010":8.389662027833e-311,"0000000000000000000000010010011100011110100111011111100100001011":6.26242544732e-312,"0000000000000000000011110011100101110011110101001111100101100101":8.2703777335983e-311,"0000000000000000000010001110100101010010010000110001111110000101":4.840954274354e-311,"0000000000000000000001111010101011000111100100000111110001011110":4.165009940358e-311,"0000000000000000000000010110010000000100011011010100110011110000":7.554671968194e-312,"0000000000000000000000100101001011101100011100110100011101001110":1.2624254473168e-311,"0000000000000000000100000000001011100010001000000100100111111010":8.6978131212723e-311,"0000000000000000000100000110111010100000000110001111001000011010":8.9264413518886e-311,"0000000000000000000001110011101001011010011000000111111100000101":3.926441351889e-311,"0000000000000000000010010010011000111000000100100111001101101011":4.9701789264417e-311,"0000000000000000000011010110010100000010001101111010111100011101":7.27634194831e-311,"0000000000000000000100001001100011001001000010101111000100011100":9.015904572565e-311,"0000000000000000000000111000100000011000101101110100000000000010":1.9184890656065e-311,"0000000000000000000010010000000010111110010101111100100110100011":4.890656063619e-311,"0000000000000000000011111101110101101000011001011010000000110010":8.6182902584494e-311,"0000000000000000000011000001001110111010101001111011011100010010":6.560636182903e-311,"0000000000000000000011011100001010110010100010100101011110010010":7.475149105368e-311,"0000000000000000000011100001011100000100011011100101010110010101":7.65407554672e-311,"0000000000000000000010101101010100101111111101010001001111101011":5.884691848907e-311,"0000000000000000000011100111010010110100110000001111111000001010":7.8528827037776e-311,"0000000000000000000001011111101111001111101011011101101111011110":3.250497017893e-311,"0000000000000000000100100011010100000100000100000011110010111000":9.8906560636185e-311,"0000000000000000000100011000110001100000010010000100000010110010":9.5328031809145e-311,"0000000000000000000010010101000001100001000001000111001001101100":5.0596421471174e-311,"0000000000000000000001100011110101100100101101001000010011111101":3.3896620278334e-311,"0000000000000000000010000100101000001100111010011100110111110010":4.502982107356e-311,"0000000000000000000010001001000001010001001001111100110001001001":4.652087475149e-311,"0000000000000000000100100011100110110011010001111001000111110001":9.9005964214714e-311,"0000000000000000000010111100100011000111001100100110001110000001":6.4015904572565e-311,"0000000000000000000010011101001110001011000100011100010010101001":5.337972166998e-311,"0000000000000000000000011100000110110100101111111111010101100101":9.54274353877e-312,"0000000000000000000010101111111101011000111001110001001011101100":5.9741550695825e-311,"0000000000000000000001000100001101111001010111001001000011101100":2.316103379722e-311,"0000000000000000000010111000101111100001011000110000111110011100":6.2723658051693e-311,"0000000000000000000000000100011001000100001111011111111001011001":1.49105367794e-312,"0000000000000000000000001000110010001000011110111111110010110000":2.98210735587e-312,"0000000000000000000010101110011111101100110100100110100011001111":5.924453280318e-311,"0000000000000000000001001000010100001110011000110011101000001011":2.4552683896625e-311,"0000000000000000000011110000000100111101001111001111101010111001":8.151093439364e-311,"0000000000000000000010001100100010000111101111111100101011110110":4.771371769384e-311,"0000000000000000000010101111000101001011010000010001001101000001":5.944333996024e-311,"0000000000000000000010001111011101011111111010010001111100110000":4.8707753479126e-311,"0000000000000000000001001110011101101101111011010011011110111001":2.664015904573e-311,"0000000000000000000100000011011001101001100000001111001101101110":8.807157057654e-311,"0000000000000000000000011110001001111111010000110100100111110101":1.0238568588476e-311,"0000000000000000000000100100111000111101001110111111001000010101":1.252485089464e-311,"0000000000000000000011101001101000101110011110111010011111010010":7.9324055666005e-311,"0000000000000000000001110110110111100001110000010010100001111001":4.035785288271e-311,"0000000000000000000000101101000101100111010010010100010001010010":1.5308151093445e-311,"0000000000000000000010101101111010001110011000111011111001011101":5.9045725646125e-311,"0000000000000000000011100111100101100011111110000101001101000011":7.8628230616305e-311,"0000000000000000000001101111110101110100100100010010101100100000":3.7972166998016e-311,"0000000000000000000000110000111001001101000110001001100000110111":1.6600397614317e-311,"0000000000000000000000001101001011001100101110011111101100001000":4.4731610338e-312,"0000000000000000000010000110000101111000111111100111100000001111":4.5526838966205e-311,"0000000000000000000011110011000000010101011001100100111011110011":8.2504970178926e-311,"0000000000000000000001100100011011000011001000110010111101101111":3.409542743539e-311,"0000000000000000000010001011000100011011101010110010000011011001":4.7216699801196e-311,"0000000000000000000001010110101010010111111110101000100111110110":2.9423459244536e-311,"0000000000000000000001000101111110010100101010001001000001000010":2.375745526839e-311,"0000000000000000000011111011011111101110101010101111011001101010":8.5387673956265e-311,"0000000000000000000011111010010100110001110011011010000110000101":8.4990059642146e-311,"0000000000000000000001101010100100100010101011010010110100011101":3.6182902584496e-311,"0000000000000000000100001000000101011100111101100100011011111110":8.9662027833e-311,"0000000000000000000001001000100110111101100110101000111101000100":2.4652087475154e-311,"0000000000000000000011011110001101111101000011011010110000100001":7.544731610338e-311,"0000000000000000000010010000101000011100110001100111010000010101":4.9105367793245e-311,"0000000000000000000001000111001001010001100001011110010100100111":2.415506958251e-311,"0000000000000000000001110001100110001111110111010010101001110110":3.856858846919e-311,"0000000000000000000001101100000010001110110000011101011100111010":3.667992047714e-311,"0000000000000000000001001000000001011111001010111110010011010010":2.4453280318096e-311,"0000000000000000000011000000000011111101110010100110001000101110":6.5208747514914e-311,"0000000000000000000011011011111000000011010100110000001001011001":7.465208747515e-311,"0000000000000000000100100100001100010001101101100011110001100011":9.920477137177e-311,"0000000000000000000100011110010101100001011000111001001111101110":9.7216699801194e-311,"0000000000000000000010000011101111111111010000111100111001000111":4.4731610337976e-311,"0000000000000000000000000001001010111100110111010101010011100101":3.9761431412e-313,"0000000000000000000010011011110000011110111111010001101010001100":5.2882703777337e-311,"0000000000000000000001110110100100110010100010011101001101000000":4.025844930418e-311,"0000000000000000000010110010010011010010101000011011110010110101":6.053677932406e-311,"0000000000000000000011111000110111000101101110001111011101101000":8.4493041749503e-311,"0000000000000000000010001010011110111101001111000111011001100111":4.701789264414e-311,"0000000000000000000000000110001001011111100010011111110110101111":2.08747514911e-312,"0000000000000000000010000010010010010011001011110010010000101001":4.423459244533e-311,"0000000000000000000001010001101011110101010011011110000100101100":2.7733598409545e-311,"0000000000000000000000111001011000100110010111010011111110101110":1.9483101391656e-311,"0000000000000000000000000001011101101100000101001010101000011110":4.9701789265e-313,"0000000000000000000001111011010000100101111111110010011011010000":4.1848906560637e-311,"0000000000000000000100010001101111110011000110000100001101011001":9.2942345924454e-311,"0000000000000000000011000111101011001001011010010000100111111001":6.779324055666e-311,"0000000000000000000001111110011110101101010111111101000001000100":4.2942345924456e-311,"0000000000000000000010011010111000010001010101110001101011100001":5.258449304175e-311,"0000000000000000000011111001011100100100001001111010000111011010":8.469184890656e-311,"0000000000000000000000101111001000110001110011001001100011100001":1.6003976143145e-311,"0000000000000000000100010010000010100010010011111001100010010010":9.3041749502982e-311,"0000000000000000000001011010110000101101000000010011001100010101":3.081510934394e-311,"0000000000000000000001001110110000011101001001001000110011110010":2.673956262426e-311,"0000000000000000000011100101110101001000101011000101001111101100":7.803180914513e-311,"0000000000000000000001100101010011010000110010010010111100011010":3.4393638170977e-311,"0000000000000000000001111111101001101010001111010010010100101000":4.333996023857e-311,"0000000000000000000010001011111100101001010100010010000010000100":4.751491053678e-311,"0000000000000000000000000011110011100101110011110101001111100111":1.29224652088e-312,"0000000000000000000011011001100010001001100110000101100010010000":7.3856858846917e-311,"0000000000000000000000100100010011011110110011010100011110100010":1.2326043737577e-311,"0000000000000000000011000110001101011101010101000101111111011100":6.729622266402e-311,"0000000000000000000000011111100111101011010101111111010000010010":1.073558648112e-311,"0000000000000000000100000010110100001011000100100100100011111100":8.7872763419485e-311,"0000000000000000000010010001100000101010011011000111001111000000":4.940357852883e-311,"0000000000000000000011001011110001011110011011111011001100010111":6.9184890656063e-311,"0000000000000000000011101010001110001100111010100101001001000100":7.952286282306e-311,"0000000000000000000010011101110011101001100000000110111100011100":5.357852882704e-311,"0000000000000000000001100001110010011010001100010011000001101110":3.3200795228633e-311,"0000000000000000000011100010100111000001010010111010101001111001":7.6938369781314e-311,"0000000000000000000000101110110110000010100101010100001110101000":1.5904572564616e-311,"0000000000000000000000111110000100011001110100101001001100111110":2.1073558648114e-311,"0000000000000000000000011000000000011111101110010100110001000111":8.15109343937e-312,"0000000000000000000100001011111001000010110001011001101011100100":9.0954274353877e-311,"0000000000000000000010001001100110101111100101100111011010111100":4.6719681908553e-311,"0000000000000000000011001000110110000110010001100101111011011101":6.8190854870777e-311,"0000000000000000000100100101010111001110100100111001000101000111":9.9602385685885e-311,"0000000000000000000001011111001001110001001111110011000101101100":3.230616302187e-311,"0000000000000000000000010001010001100001110000001010010000100111":5.864811133208e-312,"0000000000000000000010110010100110000001110110010001000111101110":6.063618290259e-311,"0000000000000000000010111010110010101011111001100110010000101011":6.3419483101394e-311,"0000000000000000000010100100001111111000010000011100001000000011":5.5765407554676e-311,"0000000000000000000100001111101100101000100101001110111011001010":9.2246520874754e-311,"0000000000000000000001010100010100011110001111111110000000101110":2.862823061631e-311,"0000000000000000000001100110110000111100110111011101100100110111":3.489065606362e-311,"0000000000000000000100011000011110110001000100001110101101111001":9.5228628230617e-311,"0000000000000000000011101000110000100000110101011010100000100111":7.902584493042e-311,"0000000000000000000000110010010110111001001011010100001001010101":1.7097415506965e-311,"0000000000000000000011101100110110110101110111000101000101000101":8.041749502982e-311,"0000000000000000000000000000010010101111001101110101010100111010":9.9403578534e-314,"0000000000000000000100010001001010010100101010011001100011100111":9.2743538767397e-311,"0000000000000000000011000010101100100110101111000110000100101111":6.610337972167e-311,"0000000000000000000011111110001000010111100111001111010101101011":8.628230616302e-311,"0000000000000000000100011110111010111111110100100011111001100000":9.741550695825e-311,"0000000000000000000001000111011100000000101111010011101001100000":2.425447316104e-311,"0000000000000000000011010100100011100110111010111010111111000111":7.216699801193e-311,"0000000000000000000000101100110010111000000100011110111100011001":1.5208747514916e-311,"0000000000000000000010011110111110100110010111011100010000000000":5.3976143141156e-311,"0000000000000000000000110010101001101000011001001001011110001110":1.7196819085493e-311,"0000000000000000000010101010111110110110001110100110101000100011":5.805168986084e-311,"0000000000000000000001011100110011110111100001001000011110100100":3.151093439364e-311,"0000000000000000000100100101101001111101110010101110011010000000":9.9701789264414e-311,"0000000000000000000011010000011101010001111001010000011010101000":7.0775347912525e-311,"0000000000000000000010110011001011100000010001111011110001100000":6.0834990059645e-311,"0000000000000000000000110100000111010100011110010100000110101011":1.7693836978136e-311,"0000000000000000000100100100011111000000111011011001000110011100":9.93041749503e-311,"0000000000000000000011011101101000011110100111110000000110101111":7.5248508946323e-311,"0000000000000000000100000010100001011011110110101111001111000011":8.7773359840956e-311,"0000000000000000000100011011000111011010000000101110101001111010":9.6123260437374e-311,"0000000000000000000000101011111010101010011010111110111101101110":1.491053677933e-311,"0000000000000000000010100101101101100100010101100110110000100000":5.626242544732e-311,"0000000000000000000000010111101101110000100000011111011100001110":8.05168986084e-312,"0000000000000000000100010110011011100110100011011001011011101010":9.4532803180916e-311,"0000000000000000000001100011100010110101011111010010111111000100":3.3797216699805e-311,"0000000000000000000010101011010001100101011100011011111101011100":5.815109343937e-311,"0000000000000000000001110010110001001100101110100111111101011010":3.89662027833e-311,"0000000000000000000010101111101010101001101011111011110110110011":5.9642147117297e-311,"0000000000000000000011110100011110000001011110101111100100010001":8.3001988071574e-311,"0000000000000000000100000010001110101100101000111001111010001010":8.767395626243e-311,"0000000000000000000010111011011000001010010101010000111010011101":6.361829025845e-311,"0000000000000000000001100110001011011110011011110010111011000101":3.469184890656e-311,"0000000000000000000011110100001011010010010000111010001111010111":8.290258449304e-311,"0000000000000000000011010101101110100011110010010000010010101011":7.2564612326045e-311,"0000000000000000000000000000111000001101101001011111111110101100":2.9821073559e-313,"0000000000000000000011100001001001010101001101110000000001011100":7.644135188867e-311,"0000000000000000000011010011111110001000011111010000010101010101":7.1968190854874e-311,"0000000000000000000010110010000000100011011010100110011101111100":6.043737574553e-311,"0000000000000000000010101110001100111101100110110001001110010110":5.9145129224654e-311,"0000000000000000000000010001110111000000001011110100111010011001":6.063618290265e-312,"0000000000000000000000111001111110000100110010111110101000100000":1.9681908548713e-311,"0000000000000000000011001101110100101000111100110000011110100111":6.988071570577e-311,"0000000000000000000011000111111101111000101000000101111100110010":6.789264413519e-311,"0000000000000000000000001000011111011001010001001010011101110111":2.88270377734e-312,"0000000000000000000010011001011010100101010000100111000011000100":5.208747514911e-311,"0000000000000000000010101001110011111001010111010001010100111110":5.765407554672e-311,"0000000000000000000011011111000110001010101100111010101111001100":7.5745526838966e-311,"0000000000000000000000010011010100101100010000111111100010110110":6.56063618291e-312,"0000000000000000000011101010110011101011010110001111110010110110":7.972166998012e-311,"0000000000000000000010110011011110001111011111110001000110011001":6.0934393638174e-311,"0000000000000000000100001110001110111100100000000100010010101100":9.1749502982106e-311,"0000000000000000000001100111000011101100000101010010111001110000":3.499005964215e-311,"0000000000000000000011100010000001100010110111010000000000000111":7.6739562624257e-311,"0000000000000000000011001001011011100100101101010000100101001111":6.8389662027834e-311,"0000000000000000000000001111001110010111001111010100111110010111":5.1689860835e-312,"0000000000000000000001111111010110111011000001011100111111101111":4.324055666004e-311,"0000000000000000000001101101001101001011100111110010110000011110":3.7077534791254e-311,"0000000000000000000010100100110101010110101100000110110001110101":5.5964214711733e-311,"0000000000000000000010100010011111011100111101011100001010101100":5.51689860835e-311,"0000000000000000000011100111000000000101100010011010100011010001":7.842942345925e-311,"0000000000000000000010011000100010010111100111000111000100011001":5.178926441352e-311,"0000000000000000000000000101100100000001000110110101001100111101":1.888667992053e-312,"0000000000000000000100001100011110100001001101000100010101010110":9.1153081510934e-311,"0000000000000000000011001110000111011000001010100101110011100000":6.9980119284297e-311,"0000000000000000000010000001011010000101100010010010010001111110":4.3936381709743e-311,"0000000000000000000001010010100100000010111100111110000011010111":2.803180914513e-311,"0000000000000000000001011110010001100011100110010011000111000001":3.2007952286285e-311,"0000000000000000000001010111001111110110011010010011010001101000":2.9622266401594e-311,"0000000000000000000000011010101001001000101010110100101101001000":9.04572564613e-312,"0000000000000000000011001101001111001010100001000101110100110101":6.968190854871e-311,"0000000000000000000011000100001010010010110100010000101101001100":6.6600397614314e-311,"0000000000000000000001011010001011001110100100101000100010100010":3.061630218688e-311,"0000000000000000000011110100110000110000101100100100111001001010":8.31013916501e-311,"0000000000000000000001100011010000000110010001011101101010001011":3.3697813121276e-311,"0000000000000000000001010111100010100101101000001000100110100001":2.972166998012e-311,"0000000000000000000001001101000000000001110110001000110110011100":2.614314115309e-311,"0000000000000000000000010101010111110110110001110100110101000101":7.25646123261e-312,"0000000000000000000001101111010000010110001000101000000010101110":3.777335984096e-311,"0000000000000000000010000000110100100111000110100111101000001100":4.3737574552685e-311,"0000000000000000000000011101100100100000110101001001111110000010":1.0039761431414e-311,"0000000000000000000010000101100000011010100011111100110110011101":4.532803180915e-311,"0000000000000000000001101110111101100110111010110010101101110101":3.767395626243e-311,"0000000000000000000010110111110111010011101111010000111111110000":6.2425447316103e-311,"0000000000000000000000110101110111101111110001010100000100000001":1.829025844931e-311,"0000000000000000000000101011000010011100110001011110111111000010":1.461232604374e-311,"0000000000000000000001101011101111011111100010101000001000000001":3.658051689861e-311,"0000000000000000000001110010001011101110010010111101010011101000":3.8767395626245e-311,"0000000000000000000010000001101100110100110000000111100110110111":4.403578528827e-311,"0000000000000000000100011011111111100111101010001110101000100101":9.642147117296e-311,"0000000000000000000000110101100101000000100011011110101111001000":1.819085487078e-311,"0000000000000000000011110111011001011001101001000100110101001011":8.399602385686e-311,"0000000000000000000001000011111011001010001001010011101110110011":2.306163021869e-311,"0000000000000000000000001001010111100110111010101010011100100010":3.180914512925e-312,"0000000000000000000010010001001101111011001101010001111010000111":4.93041749503e-311,"0000000000000000000100010101110110001000000111101110110001111000":9.433399602386e-311,"0000000000000000000010001110010010100011000010111100101001001100":4.831013916501e-311,"0000000000000000000011001001001000110101011111011011010000010110":6.8290258449305e-311,"0000000000000000000010000011001010100000110101010010001111010101":4.453280318092e-311,"0000000000000000000010110100000011101101111011011011110000001011":6.113320079523e-311,"0000000000000000000011101110010100100001111100001111101101100011":8.091451292247e-311,"0000000000000000000011111101100010111001001011100100101011111001":8.6083499005965e-311,"0000000000000000000100011111100000011110010000001110100011010010":9.761431411531e-311,"0000000000000000000011101111110010001110000001011010010110000000":8.141153081511e-311,"0000000000000000000010101100011100100010010011110001010001000000":5.854870775348e-311,"0000000000000000000000110011110100100101010000011110110001110010":1.759443339961e-311,"0000000000000000000100100000011000101011111001101110100001111101":9.7912524850894e-311,"0000000000000000000000111100111001011100111101010011111001011010":2.0675944334e-311,"0000000000000000000100010001011101000011111000001110111000100000":9.2842942345925e-311,"0000000000000000000010010010101011100111010010011100100010100100":4.9801192842945e-311,"0000000000000000000011011111111110011000010110011010101101110111":7.604373757455e-311,"0000000000000000000000011101110111010000000010111111010010111011":1.0139165009942e-311,"0000000000000000000011100100010111011100100101111010100111001111":7.7534791252485e-311,"0000000000000000000000110100011010000011101100001001011011100100":1.7793240556665e-311,"0000000000000000000011001110011010000111011000011011001000011001":7.0079522862825e-311,"0000000000000000000001011100100001001000010011010011001001101011":3.1411530815114e-311,"0000000000000000000000101101111101110100111011110100001111111101":1.560636182903e-311,"0000000000000000000000101100100000001000110110101001100111100000":1.510934393639e-311,"0000000000000000000010111010011111111100101011110000111011110010":6.3320079522865e-311,"0000000000000000000011110110001110011100110001101111100001100111":8.3598409542745e-311,"0000000000000000000000100110101001011000100001111111000101101011":1.312127236581e-311,"0000000000000000000011011111101011101001001000100101011000111110":7.5944333996023e-311,"0000000000000000000010001001111001011110110011011100101111110101":4.681908548708e-311,"0000000000000000000000101000000111000100100111001001101110001000":1.3618290258454e-311,"0000000000000000000001101011001010000001000110111101011110001111":3.6381709741554e-311,"0000000000000000000001111011110110000100011011011101000101000011":4.20477137177e-311,"0000000000000000000001100001001100111011110000101000010111111100":3.3001988071576e-311,"0000000000000000000010111111001011110000001001000110001010000011":6.491053677933e-311,"0000000000000000000001110011111100001001100101111101010000111110":3.9363817097417e-311,"0000000000000000000000000010111011011000001010010101010000111011":9.9403578529e-313,"0000000000000000000001100101111000101111001101111101100110001100":3.4592445328034e-311,"0000000000000000000010011110011001000111111011110001100110001110":5.37773359841e-311,"0000000000000000000000001110111011101000000001011111101001011110":5.069582504974e-312,"0000000000000000000011110001100010101001010100011010010011010110":8.2007952286283e-311,"0000000000000000000011110011010011000100100111011010010000101100":8.2604373757454e-311,"0000000000000000000011010001101000001110110000100101101110001100":7.117296222664e-311,"0000000000000000000000001011101101100000101001010101000011101011":3.97614314116e-312,"0000000000000000000011010110111001100000101001100101100110001111":7.296222664016e-311,"0000000000000000000100001001110101111000010000100100011001010101":9.0258449304177e-311,"0000000000000000000010100110000000010011100011011100000101011001":5.636182902585e-311,"0000000000000000000011111111010011010100011110100100101001001111":8.6679920477137e-311,"0000000000000000000011000000111100001011011100000110000111011001":6.55069582505e-311,"0000000000000000000010100110111000100001001100111100000100000100":5.6660039761434e-311,"0000000000000000000100100011000001010100110110001110011101111110":9.880715705765e-311,"0000000000000000000100010000100100110110001110101110111001110101":9.254473161034e-311,"0000000000000000000100000111011111111110100001111001110010001100":8.9463220675943e-311,"0000000000000000000010100110010011000010110001010001011010010010":5.6461232604377e-311,"0000000000000000000011111010111010010000001111000100101111110111":8.5188866799203e-311,"0000000000000000000000111000110011000111111011101001010100111011":1.9284294234594e-311,"0000000000000000000010010100011100000010100101011100011111111010":5.0397614314117e-311,"0000000000000000000011001000100011010111000011110000100110100100":6.809145129225e-311,"0000000000000000000010101101100111011111001011000110100100100100":5.8946322067597e-311,"0000000000000000000100001111000111001010001001100100010001010111":9.204771371769e-311,"0000000000000000000010110001011011000100111110111011110100001010":6.0238568588473e-311,"0000000000000000000000010100110010011000010110001010001011010011":7.05765407555e-312,"0000000000000000000001100000100111011101010100111101101110001001":3.2803180914514e-311,"0000000000000000000011101111011111011110110011100101000001000111":8.131212723658e-311,"0000000000000000000001110101111111010100000110110010100011001110":4.005964214712e-311,"0000000000000000000010111000001010000010111101000110010100101010":6.2524850894636e-311,"0000000000000000000001011101011001010101111100110011001000010110":3.17097415507e-311,"0000000000000000000001010001111110100100100001010011011001100101":2.7833001988074e-311,"0000000000000000000011001101100001111001101110111011001001101110":6.978131212724e-311,"0000000000000000000000011001110000111011000001010100101110011101":8.74751491054e-312,"0000000000000000000000010111011011000001010010101010000111010100":7.95228628231e-312,"0000000000000000000010110100101001001100010111000110011001111101":6.133200795229e-311,"0000000000000000000010011111110110110100000000111100001110101011":5.427435387674e-311,"0000000000000000000000011100011001100011111101110100101010011110":9.6421471173e-312,"0000000000000000000011111001001001110100111100000100110010100001":8.459244532803e-311,"0000000000000000000001100100001000010011111010111101101000110110":3.399602385686e-311,"0000000000000000000010001011010111001010111000100111011000010010":4.7316103379725e-311,"0000000000000000000100011001010110111110101101101110101100100100":9.5526838966203e-311,"0000000000000000000010110010111000110001000100000110011100100111":6.0735586481116e-311,"0000000000000000000011111000010001100111010010100100110011110110":8.4294234592445e-311,"0000000000000000000010101000111011101011101101110001010110010011":5.7355864811134e-311,"0000000000000000000010001010001100001110000001010010000100101110":4.691848906561e-311,"0000000000000000000001000000111111110001111110111110011101111001":2.2067594433405e-311,"0000000000000000000010100000011100010010011100100110111000011101":5.44731610338e-311,"0000000000000000000011111110101101110110000010111001111111011101":8.648111332008e-311,"0000000000000000000001000010001010101110110110010011110001011101":2.246520874752e-311,"0000000000000000000100001101101001011110000100011001101000111010":9.155069582505e-311,"0000000000000000000001000011101000011010111011011110011001111010":2.296222664016e-311,"0000000000000000000000010110110101100010110110111111011101100010":7.75347912525e-312,"0000000000000000000000101110010000100100001001101001100100110110":1.570576540756e-311,"0000000000000000000100011111110011001101011110000011111000001011":9.7713717693837e-311,"0000000000000000000010100011101010011001110100110001011110010000":5.5566600397614e-311,"0000000000000000000010000100010101011101101100100111100010111001":4.4930417495034e-311,"0000000000000000000011010111011110111111000101010000010000000001":7.3161033797217e-311,"0000000000000000000001101001011001100101110011111101100000111001":3.578528827038e-311,"0000000000000000000010111101011011010100110110000110001100101100":6.431411530815e-311,"0000000000000000000011010100010000110111101101000101101010001110":7.20675944334e-311,"0000000000000000000000101100001101011001101000110100010010100111":1.500994035786e-311,"0000000000000000000000111111100010000101111001110011110101011011":2.1570576540757e-311,"0000000000000000000001101110000101011001010001010010101111001001":3.737574552684e-311,"0000000000000000000000011111000010001100111010010100100110100000":1.053677932406e-311,"0000000000000000000001101111100011000101010110011101010111100111":3.787276341949e-311,"0000000000000000000001011011111011101001110111101000011111111001":3.1212723658056e-311,"0000000000000000000001010011101110111111110100010011010110111100":2.842942345925e-311,"0000000000000000000100011010100001111011100101000100000000001000":9.5924453280317e-311,"0000000000000000000010000010110111110001100111011100111010011100":4.443339960239e-311,"0000000000000000000011001111100101000100001111110000011011111101":7.047713717694e-311,"0000000000000000000100100010001001000111001100101110011111010011":9.8508946322066e-311,"0000000000000000000010001101101101000100100111010001111111011010":4.8111332007954e-311,"0000000000000000000011101101101111000011100000100101000011110001":8.071570576541e-311,"0000000000000000000001100010010111111000100111111101101011100000":3.339960238569e-311,"0000000000000000000011011010101101000110011101011010110101110101":7.4254473161036e-311,"0000000000000000000010110110101100010110110111111011101100001100":6.202783300199e-311,"0000000000000000000000100111100001100110001011011111000100010110":1.3419483101396e-311,"0000000000000000000000010100001100111001111010011111100001100001":6.858846918494e-312,"0000000000000000000010100111001011010000011010110001011000111101":5.675944333996e-311,"0000000000000000000011001100010110111100110111100101110110001010":6.9383697813125e-311,"0000000000000000000000011110101111011101101100011111010001100111":1.0437375745533e-311,"0000000000000000000011011010111111110101101011010000001010101110":7.4353876739565e-311,"0000000000000000000011000101000010100000011101110000101011110111":6.68986083499e-311,"0000000000000000000010110101001110101010110010110001000011101111":6.1530815109345e-311,"0000000000000000000011000010000111001000010011011011011010111101":6.5904572564614e-311,"0000000000000000000010100011111101001001000010100110110011001001":5.5666003976143e-311,"0000000000000000000000010001100100010000111101111111100101100000":5.964214711736e-312,"0000000000000000000011111111111000110010111010001111010011000001":8.6878727634194e-311,"0000000000000000000001010011001001100001011000101000101101001001":2.823061630219e-311,"0000000000000000000000110100111111100010000111110100000101010110":1.799204771372e-311,"0000000000000000000011010000001010100010101011011011000101101111":7.0675944333997e-311,"0000000000000000000000001101110000101011001010001010010101111010":4.67196819086e-312,"0000000000000000000010010011100011110100111011111100100001001111":5.009940357853e-311,"0000000000000000000000011100101100010011001011101001111111010111":9.74155069583e-312,"0000000000000000000011101011111110101000001101100101000110011010":8.0119284294234e-311,"0000000000000000000001111110001011111110001010000111101100001011":4.284294234593e-311,"0000000000000000000000111101011110111011011000111110100011001100":2.0874751491057e-311,"0000000000000000000001001101010010110001000011111110001011010101":2.6242544731616e-311,"0000000000000000000011000101111010101110000111010000101010100011":6.719681908549e-311,"0000000000000000000010110100010110011101001001010001000101000100":6.123260437376e-311,"0000000000000000000001111111111100011001011101000111101001100001":4.34393638171e-311,"0000000000000000000001000010011101011110000100001001000110010110":2.256461232605e-311,"0000000000000000000010011011001011000000100011100111000000011010":5.268389662028e-311,"0000000000000000000011100010010100010010000101000101010101000000":7.6838966202785e-311,"0000000000000000000001110000011011010010111111111101010110010010":3.8170974155074e-311,"0000000000000000000010100001010100100000000110000110110111001000":5.4771371769385e-311,"0000000000000000000010111001010100111111110100011011101000001110":6.292246520875e-311,"0000000000000000000011111111000000100101010000101111010100010110":8.658051689861e-311,"0000000000000000000100010101010000101001101100000100001000000101":9.4135188866797e-311,"0000000000000000000011100001101110110011101001011010101011001110":7.664015904573e-311,"0000000000000000000100000001101001001110001101001111010000010111":8.7475149105366e-311,"0000000000000000000000110001011110101011100001110100001010101001":1.6799204771374e-311,"0000000000000000000011011000010111001100101110110000001110101100":7.3459244532803e-311,"0000000000000000000010000110101011010111011011010010001010000001":4.572564612326e-311,"0000000000000000000000011111010100111100001000001001111011011001":1.063618290259e-311,"0000000000000000000011100101001111101010001111011010100101111010":7.783300198807e-311,"0000000000000000000001111111000100001011110011100111101010110110":4.3141153081514e-311,"0000000000000000000001001001011111001011010000001000111011101111":2.495029821074e-311,"0000000000000000000000110011001111000110110100110100001000000000":1.739562624255e-311,"0000000000000000000011000100011101000010000010000110000010000101":6.6699801192843e-311,"0000000000000000000001011110110111000010000001111101110000110011":3.220675944334e-311,"0000000000000000000010100000101111000001101010011100001101010110":5.457256461233e-311,"0000000000000000000010110000010000001000000111100110100000100101":5.9840954274354e-311,"0000000000000000000001000110010001000011110111111110010101111011":2.385685884692e-311,"0000000000000000000001101101110010101010000011011101011010010000":3.727634194831e-311,"0000000000000000000010001000011011110010101110010010000111010111":4.6322067594434e-311,"0000000000000000000000100011011011010001001001110100011111110111":1.202783300199e-311,"0000000000000000000001001011001111100110100011001000111001000101":2.554671968191e-311,"0000000000000000000010010011010001000101101110000111001100010110":5.0e-311,"0000000000000000000000100111001110110110111101101001101111011101":1.332007952287e-311,"0000000000000000000000011010000011101010001111001010000011010110":8.84691848907e-312,"0000000000000000000000001100000000001111110111001010011000100100":4.07554671969e-312,"0000000000000000000011110001110101011000100010001111101000001111":8.210735586481e-311,"0000000000000000000010111111011110011111010110111011011110111100":6.5009940357856e-311,"0000000000000000000010011100101000101100101000110001101000110111":5.3180914512923e-311,"0000000000000000000000111110101001111000010000010011110110110000":2.127236580517e-311,"0000000000000000000000000111010100011100011001110101001010010011":2.485089463225e-312,"0000000000000000000000101010011100111110010101110100010101010000":1.441351888668e-311,"0000000000000000000011101011000110011010100100000101000111101111":7.982107355865e-311,"0000000000000000000000000101110110110000010100101010100001110110":1.98807157058e-312,"0000000000000000000000110101010010010001010101101001011010001111":1.809145129225e-311,"0000000000000000000000111100010011111110100001101001001111101000":2.047713717694e-311,"0000000000000000000011010110000001010011000000000101100111100100":7.2664015904574e-311,"0000000000000000000001010100111001111100101011101000101010100000":2.8827037773365e-311,"0000000000000000000001101100010100111101111110010010110001110011":3.677932405567e-311,"0000000000000000000011000101010101001111101011100110000000110000":6.699801192843e-311,"0000000000000000000000000111000001101101001011111111110101011010":2.385685884696e-312,"0000000000000000000100001110110100011010111011101110111100011110":9.1948310139163e-311,"0000000000000000000010100010001100101101101111100110110101110011":5.506958250497e-311,"0000000000000000000001010000001110001001001110010011011100001111":2.72365805169e-311,"0000000000000000000000000001110000011011010010111111111101010111":5.96421471177e-313,"0000000000000000000000100011101110000000010111101001110100110000":1.212723658052e-311,"0000000000000000000000000111111001111010110101011111110100000101":2.68389662028e-312,"0000000000000000000000111010010000110100000000110011111101011001":1.978131212724e-311,"0000000000000000000011010110100110110001011011110000010001010110":7.286282306163e-311,"0000000000000000000011010011011000101010000011100101101011100011":7.1769383697816e-311,"0000000000000000000011110010011010110110111101111010010010000001":8.230616302187e-311,"0000000000000000000010011011011101101111110001011100010101010011":5.278330019881e-311,"0000000000000000000000110110001010011110111111001001011000111010":1.8389662027837e-311,"0000000000000000000000001001000100110111101100110101000111101001":3.081510934397e-312,"0000000000000000000011100011011111001110111100011010101000100100":7.72365805169e-311,"0000000000000000000010111110000000110011010001110000110110011110":6.451292246521e-311,"0000000000000000000000111110010111001001000010011110100001110111":2.117296222664e-311,"0000000000000000000010111000011100110010001010111011101001100011":6.2624254473165e-311,"0000000000000000000010010110001100011101111000011100011101010000":5.099403578529e-311,"0000000000000000000010010100101110110001110011010001110100110011":5.0497017892645e-311,"0000000000000000000001110001111000111111000101000111111110101111":3.8667992047717e-311,"0000000000000000000011111011110010011101111000100100101110100011":8.5487077534794e-311,"0000000000000000000011001111010010010101000001111011000111000100":7.037773359841e-311,"0000000000000000000010000001000111010110010100011100111101000101":4.3836978131214e-311,"0000000000000000000100010100101011001011010000011001011110010011":9.393638170974e-311,"0000000000000000000000111110111100100111011110001001001011101001":2.13717693837e-311,"0000000000000000000010011110000110011000101101111100010001010101":5.367793240557e-311,"0000000000000000000001111100101110010010000100111101000011101110":4.2345924453285e-311,"0000000000000000000001001010101010001000000111011110001111010011":2.5347912524854e-311,"0000000000000000000001001100101101010010101000010011100001100010":2.6043737574554e-311,"0000000000000000000011101010100000111100001000011010011101111101":7.962226640159e-311,"0000000000000000000100001100001011110001111111001111000000011101":9.1053677932405e-311,"0000000000000000000010100011000100111011011001000110110100011110":5.5367793240557e-311,"0000000000000000000100010000110111100101011100100100001110101110":9.264413518887e-311,"0000000000000000000100010010111010101111111101011001100000111101":9.333996023857e-311,"0000000000000000000100001110100001101011101101111001100111100101":9.1848906560634e-311,"0000000000000000000011010000110000000001000111000101101111100001":7.0874751491054e-311,"0000000000000000000010100111011101111111101000100110101101110110":5.685884691849e-311,"0000000000000000000000100010010000010100010010011111001100010011":1.1630218687877e-311,"0000000000000000000001000010110000001101010001111110011011001111":2.2664015904576e-311,"0000000000000000000100001011000000110101000111111001101100111001":9.065606361829e-311,"0000000000000000000100010101100011011000111001111001011100111110":9.4234592445326e-311,"0000000000000000000100100010101110100101101000011001001001000101":9.8707753479123e-311,"0000000000000000000011001100101001101100000101011011001011000011":6.9483101391654e-311,"0000000000000000000100001100110001010000011010111001101010001111":9.1252485089463e-311,"0000000000000000000010000001111111100011111101111100111011110000":4.41351888668e-311,"0000000000000000000001111101100110011111101110011101000010011001":4.264413518887e-311,"0000000000000000000100000111110010101101101111101111000111000101":8.956262425447e-311,"0000000000000000000010010010000110001000110110110001111000110010":4.960238568589e-311,"0000000000000000000000011010010110011001011100111111011000001111":8.9463220676e-312,"0000000000000000000011110101111011101101100011111010001100101110":8.3499005964217e-311,"0000000000000000000010000101001101101011010110000111100001100100":4.522862823062e-311,"0000000000000000000000101101101011000101101101111110111011000100":1.55069582505e-311,"0000000000000000000011110001001111111010000110100100111110011101":8.1908548707754e-311,"0000000000000000000010110110000110111000011100010001000010011010":6.182902584493e-311,"0000000000000000000001110000001000100011110010001000000001011001":3.8071570576545e-311,"0000000000000000000100011100010010010110111000000011111101011110":9.652087475149e-311,"0000000000000000000010011111100100000100110011000110111001110010":5.4174950298214e-311,"0000000000000000000010010101100110111111011100110001110011011110":5.079522862823e-311,"0000000000000000000001100111010110011011010011001000001110101001":3.5089463220677e-311,"0000000000000000000010111110100110010001101101011011100000010000":6.4711729622266e-311,"0000000000000000000001001101100101100000010001110011100000001110":2.6341948310145e-311,"0000000000000000000000101111101110010000001110110100001101010011":1.62027833002e-311,"0000000000000000000011011110100000101100010001010000000101011010":7.554671968191e-311,"0000000000000000000100011101110000000010111101001110100101111100":9.7017892644137e-311,"0000000000000000000011100100111100111011000001100101010001000001":7.7733598409543e-311,"0000000000000000000010100101011010110101000111110001011011100111":5.616302186879e-311,"0000000000000000000100000011111111000111111011111001110111100000":8.82703777336e-311,"0000000000000000000010100110100101110001111111000110101111001011":5.6560636182905e-311,"0000000000000000000000010110100010110011101001001010001000101001":7.65407554672e-312,"0000000000000000000001000001100101010000011010101001000111101011":2.226640159046e-311,"0000000000000000000100010100000101101100110100101110110100100001":9.3737574552683e-311,"0000000000000000000100001111011001111001010111011001100110010001":9.2147117296225e-311,"0000000000000000000000010010001001101111011001101010001111010010":6.163021868793e-312,"0000000000000000000100011100110111110101010011101110100111010001":9.671968190855e-311,"0000000000000000000010110110011001100111101010000110010111010011":6.192842942346e-311,"0000000000000000000000101000111111010010010000101001101100110011":1.391650099404e-311,"0000000000000000000011110000010111101100011101000100111111110010":8.161033797217e-311,"0000000000000000000010110111100100100100100001011011101010110111":6.2326043737574e-311,"0000000000000000000000100001111101100101000100101001110111011010":1.153081510935e-311,"0000000000000000000001101110011000001000011111001000000100000010":3.747514910537e-311,"0000000000000000000010011100010101111101011010111100010011111110":5.3081510934394e-311,"0000000000000000000000011010111011110111111000101010000010000001":9.145129224656e-312,"0000000000000000000010111111110001001110100100110000110011110101":6.5109343936385e-311,"0000000000000000000000100000011111111000111111011111001110111101":1.1033797216705e-311,"0000000000000000000100001010001000100111011110011001101110001110":9.0357852882705e-311,"0000000000000000000000011000100101111110001001111111011010111001":8.34990059643e-312,"0000000000000000000100010111111001010010101000100100000100000111":9.502982107356e-311,"0000000000000000000010001001010100000000010111110010000110000011":4.6620278330025e-311,"0000000000000000000011011101000011000000001100000101011100111101":7.5049701789265e-311,"0000000000000000000100000001000011101111110001100100100110100101":8.727634194831e-311,"0000000000000000000010110000110101100110100011010001001010010111":6.003976143141e-311,"0000000000000000000100001000011000001100001011011001110000110111":8.976143141153e-311,"0000000000000000000011001100111100011011010011010000011111111100":6.958250497018e-311,"0000000000000000000000001001101010010110001000011111110001011011":3.280318091454e-312,"0000000000000000000011000000010110101101000000011011011101100111":6.530815109344e-311,"0000000000000000000001110101000111000110011101010010100100100010":3.976143141153e-311,"0000000000000000000010000111100011100101000100110010001000101100":4.602385685885e-311,"0000000000000000000100100100110001110000001001001110011011010101":9.940357852883e-311,"0000000000000000000001010011011100010000100110011110000010000010":2.8330019880717e-311,"0000000000000000000010101001001110011010111011100110101011001100":5.7455268389663e-311,"0000000000000000000000001101011101111011111100010101000001000001":4.57256461233e-312,"0000000000000000000000100110010110101001010100001001110000110010":1.302186878728e-311,"0000000000000000000001101011011100110000010100110010110011001000":3.648111332008e-311,"0000000000000000000100010011100000001110011001000100001010101111":9.3538767395626e-311,"0000000000000000000001100100101101110010010110101000010010101000":3.419483101392e-311,"0000000000000000000000011000010011001110111100001010000110000000":8.2504970179e-312,"0000000000000000000001111101010011110000100000100111101101100000":4.254473161034e-311,"0000000000000000000011110110110011111011001101011010001011011001":8.37972166998e-311,"0000000000000000000011111101010000001001111101101111010111000000":8.5984095427437e-311,"0000000000000000000011110111111110111000000100101111011110111101":8.4194831013917e-311,"0000000000000000000010001111110000001111001000000111010001101001":4.8807157057654e-311,"0000000000000000000011011011010010100100111001000101011111100111":7.4453280318094e-311,"0000000000000000000011011000111100101011001010011010111000011110":7.365805168986e-311,"0000000000000000000000000100101011110011011101010101001110010010":1.59045725647e-312,"0000000000000000000100001011100110010011100011100100010110101011":9.085487077535e-311,"0000000000000000000010010101010100010000001110111100011110100101":5.0695825049703e-311,"0000000000000000000010010011110110100100001001110001110110001000":5.019880715706e-311,"0000000000000000000011111100111101011010101111111010000010000111":8.588469184891e-311,"0000000000000000000000110001110001011010101111101001011111100010":1.6898608349902e-311,"0000000000000000000001111001001101011011011110111101001001000001":4.1153081510937e-311,"0000000000000000000011101001000011010000000011001111110101100000":7.912524850895e-311,"0000000000000000000010101011110111000011111000000110100111001110":5.8349900596425e-311,"0000000000000000000000000100111110100010101011001010100011001011":1.689860834996e-312,"0000000000000000000001010110010111101000110000110011010010111101":2.932405566601e-311,"0000000000000000000010101000000011011110000100010001010111101000":5.705765407555e-311,"0000000000000000000011100000100011110110110010000101010111101010":7.6242544731614e-311,"0000000000000000000000100011001000100001111011111111001010111110":1.192842942346e-311,"0000000000000000000001000100100000101000100100111110011000100101":2.326043737575e-311,"0000000000000000000001010101011111011011000111010011010100010010":2.902584493042e-311,"0000000000000000000010001000101110100001111100000111011100010000":4.6421471172963e-311,"0000000000000000000011011000000100011101100000111010111001110011":7.3359840954274e-311,"0000000000000000000000011011100001010110010100010100101011110011":9.343936381714e-312,"0000000000000000000000101010101111101101100011101001101010001001":1.451292246521e-311,"0000000000000000000011111001101111010011010111101111011100010011":8.479125248509e-311,"0000000000000000000011110010001000000111110000000100111101001000":8.220675944334e-311,"0000000000000000000001000101011000110110001110011110010111010000":2.3558648111334e-311,"0000000000000000000010001100110100110110111101110010000000101111":4.781312127237e-311}
-},{}],150:[function(require,module,exports){
+
+},{}],156:[function(require,module,exports){
 module.exports={"0111111111011101011100011000101010101001100110100101110010100101":8.27037773359841e307,"0111111111010011010000000110010010000010100101100010100011100010":5.407554671968191e307,"0111111110101010000010111101001101000111010000111010000010111001":9.145129224652087e306,"0111111111000100001010111111000011010111111000101111101111000111":2.8330019880715705e307,"0111111111100001001100101111000001100001110101110001011101011001":9.662027833001988e307,"0111111110110011000111000010011110001001001001111110000100001110":1.3419483101391652e307,"0111111110110111101000111100011010110110111100001101101110011101":1.6600397614314115e307,"0111111111001001010001001000001111101011011001010001010110101000":3.548707753479125e307,"0111111111010011000010100000100100001100011100001011110100100011":5.347912524850894e307,"0111111110111111010010001010001101010100001101000000001001101111":2.1968190854870775e307,"0111111111011000001000101001110000011111111100101101011100000101":6.779324055666004e307,"0111111111100001000000010001110010001010110111110111010010010101":9.552683896620279e307,"0111111110111111110110011001011100111001111011010010000111000001":2.2365805168986083e307,"0111111111011101001100100001111111110101000110010101111011110001":8.200795228628231e307,"0111111111011101000001001101001110111101010011111000010100100111":8.151093439363817e307,"0111111111001110001110001101101000000101011110001110011110110110":4.244532803180915e307,"0111111111011110100000010101001111111000010101010111011101011110":8.56858846918489e307,"0111111111010101000011100110110111101110110101000011110010110111":5.914512922465209e307,"0111111111011001100000111110111010011111111001100001001101011100":7.166998011928429e307,"0111111111010110010111011010000111110010000100000101010100100101":6.282306163021869e307,"0111111111010110110010100101100011011110010110110010110010100010":6.401590457256461e307,"0111111111010111001101110000111111001010101001100000010000100000":6.520874751491054e307,"0111111111011001000101110011011110110011100110110011101111011111":7.047713717693837e307,"0111111110010110000101010010011111111111001100111100010101111100":3.876739562624255e306,"0111111110111000010110001111011110010110000110000100001011000011":1.709741550695825e307,"0111111111000101110111101100110010001001000011100101100110111101":3.0715705765407555e307,"0111111111010001010101110010110101011011010001010101111100101101":4.870775347912524e307,"0111111111100000000111101001111101110011111011100011001110100101":9.055666003976144e307,"0111111111011010000010111101001101000111010000111010000010111001":7.31610337972167e307,"0111111111011011110001111011111000110110110010101001000010100100":7.803180914512922e307,"0111111111000100000001111011001111011110011101001011001111110011":2.8131212723658054e307,"0111111111011001110000110101100101010100011001110001000100010001":7.236580516898609e307,"0111111111001011100010000101001110000010010010011001001011110000":3.8667992047713716e307,"0111111111001100011100111101111111010111100101100110010111010101":3.9960238568588467e307,"0111111111000011010100101000001011111111010011010100110011001101":2.7137176938369786e307,"0111111111001000100011110101001100001100001111011010111010000010":3.449304174950298e307,"0111111111001000010001101101100100011001011000010001111011011001":3.4095427435387673e307,"0111111110110000010001110110010000001100100010100100010001110100":1.143141153081511e307,"0111111111000111000000001011010001010100100000001001100001100001":3.230616302186879e307,"0111111110110010110100111010110110010110010010110101000101100100":1.3220675944333995e307,"0111111111000101001010011001101110101001111001101111001010010111":2.9721669980119287e307,"0111111111011110011001100010011000111101010000101100000101111111":8.538767395626242e307,"0111111111100000001001111010111010110010010010011100010110011010":9.075546719681909e307,"0111111111000011010000000110010010000010100101100010100011100010":2.7037773359840955e307,"0111111111010011001101110101010101000100001110101001011011101101":5.397614314115308e307,"0111111111010100100011111001100010000101110100100100000101010000":5.775347912524851e307,"0111111111011010001001110000000100000010010101100101011010011001":7.345924453280319e307,"0111111111011110100100110111001001110101000011001001101101001001":8.588469184890656e307,"0111111111010011100110101111110011110010001010011101110001110101":5.506958250497018e307,"0111111110100000111111001001010011101011101100011010101110011010":5.964214711729622e306,"0111111111011000110011101011110111000000101111101010110000110110":6.968190854870775e307,"0111111110001100010011111010001011011110001010000001111000000001":2.485089463220676e306,"0111111111011000100001100100001111001101111000100001110010001101":6.888667992047714e307,"0111111111001100111000001001011011000011111000010011110101010011":4.055666003976143e307,"0111111110111011100110100111000111111111000000001011011011011011":1.9383697813121274e307,"0111111111001101001110110010111100110011011101001111000011100110":4.1053677932405566e307,"0111111111010101001100101010101011101000010000101000010010001011":5.954274353876739e307,"0111111111011000000110011000110011100001100101110100010100010000":6.769383697813122e307,"0111111110111101101110100000010010011100011101101110110001001101":2.0874751491053676e307,"0111111110111111111111011101010000110011010110110110100110010101":2.246520874751491e307,"0111111111001000011111010011010010001111100001101000101010011000":3.4393638170974156e307,"0111111111010101100001000011010000011001011110101010011000101010":6.043737574552684e307,"0111111111001101001010010001000010110110101111011100110011111100":4.095427435387674e307,"0111111111010110011110001100111110101101001000110000101100000100":6.312127236580517e307,"0111111111001011010100011111100000001100001001000010011100110001":3.8369781312127234e307,"0111111111001011101011001001000001111011101101111101101011000100":3.886679920477137e307,"0111111111011101100000111010100100100110010100011000000010010000":8.290258449304176e307,"0111111101110110101001100001101111100100111011001110010011001110":9.940357852882704e305,"0111111111001000101100111001000000000101101010111111011001010111":3.469184890656064e307,"0111111111011100101100110100101010001100000101110110001110001001":8.0616302186878725e307,"0111111111000001000011101011001101101000011010001100111110000101":2.395626242544732e307,"0111111111010101111110011111101001000100001000010000111110011100":6.172962226640159e307,"0111111111011001001010010101011000110000010100100101111111001001":7.067594433399602e307,"0111111110110111001101110000111111001010101001100000010000100000":1.6302186878727635e307,"0111111111011100000100000011100000101001101001110010000001001101":7.882703777335984e307,"0111111111011101110111100100000110010101111001010011010000100011":8.389662027833003e307,"0111111111001101010011010100110110110000001011000001010011010001":4.1153081510934397e307,"0111111111011001100101100000110100011100100111010011011101000111":7.186878727634195e307,"0111111111011010101011101110010110101001101100111110001111110110":7.495029821073559e307,"0111111111000001110000111110010001000111100100000011011010101011":2.4950298210735587e307,"0111111111010000101010110000101110111010011110011000100111111100":4.681908548707753e307,"0111111111001101010111110110110000101100111000110011100010111010":4.125248508946322e307,"0111111111100000011000101001000111000111100111001111101001010011":9.204771371769384e307,"0111111111000111011011010110101101000000110010110110111111011110":3.290258449304175e307,"0111111111010101010011011101100010100011010101010011101001101011":5.984095427435388e307,"0111111111100000000001111111100101011000000010010100011011000000":9.00596421471173e307,"0111111111010100101000011011011100000010100010010110010100111010":5.795228628230617e307,"0111111111011011111000101110101111110001110111010100011010000011":7.83300198807157e307,"0111111111011101101001111110011000011111101111111100100001100100":8.330019880715706e307,"0111111110101100100110000001110011010001000001001010110110101001":1.003976143141153e307,"0111111110011100010011111010001011011110001010000001111000000001":4.970178926441352e306,"0111111111011010111101110101111110011100100100000111001110011110":7.57455268389662e307,"0111111111100001100110110001111110101110111101000010010111011011":9.890656063618289e307,"0111111110110000100011111101110111111111011001101101010000011101":1.1630218687872764e307,"0111111111001001001000000100011011110001111101101100110111010100":3.52882703777336e307,"0111111111001101011100011000101010101001100110100101110010100101":4.135188866799205e307,"0111111111011001100011001111110111011110010000011010010101010010":7.176938369781313e307,"0111111111100001110010000110101111100110101111011111111110100101":9.990059642147117e307,"0111111111001111000000000010100101100001010101110111001011000110":4.353876739562624e307,"0111111111011111110001110111100010111101001101011111110111010111":8.926441351888668e307,"0111111111011010011011110111101011110101001100101110011001000001":7.425447316103379e307,"0111111111011100111100101011010101000000100110000110000100111110":8.131212723658053e307,"0111111110110011010000000110010010000010100101100010100011100010":1.3518886679920477e307,"0111111111010110110100110110100000011100101101101011111010011000":6.411530815109345e307,"0111111111011111001011010111010110011001001000010100110010010000":8.757455268389662e307,"0111111111010101101100011000000001010001010001000111111111110100":6.093439363817098e307,"0111111110111010111001010100000100011111110110010100111110110101":1.888667992047714e307,"0111111110111111101101010101101001000000011111101101100111101101":2.2266401590457258e307,"0111111111011011110110011101110010110011100000011011010010001111":7.823061630218689e307,"0111111110101000000100000111110110100011001110111011001100011010":8.449304174950298e306,"0111111111000101000001010101111010110000011110001010101011000010":2.952286282306163e307,"0111111111011100000001110010100011101011010010111000111001011001":7.872763419483102e307,"0111111110111001001100100110010101101110101011011111000110111110":1.7693836978131212e307,"0111111111001111010010001010001101010100001101000000001001101111":4.393638170974155e307,"0111111111001010010000100010111010111101011010010000110001111000":3.687872763419483e307,"0111111111011011000010010111111000011001010001111001011110001001":7.594433399602386e307,"0111111110110110010111011010000111110010000100000101010100100101":1.5705765407554673e307,"0111111111000000010001110110010000001100100010100100010001110100":2.286282306163022e307,"0111111111010011011111111100111100110111000101110010011010010110":5.47713717693837e307,"0111111111011011100010000101001110000010010010011001001011110000":7.733598409542743e307,"0111111111011111000110110101011100011100011010100010100010100110":8.737574552683897e307,"0111111111011011101101011001111110111010000100110110110010111010":7.783300198807157e307,"0111111111010111101101011110010100110011101001111111111110000111":6.660039761431411e307,"0111111111100001001101110111100000000001000001001110000001010011":9.67196819085487e307,"0111111111011101010101100101110011101110100001111010011011000101":8.240556660039761e307,"0111111111011001111001111001011001001101110101010101100011100101":7.276341948310139e307,"0111111111000001001000001101000111100101000111111111001101101110":2.405566600397614e307,"0111111110111110010010101111100010000010001100000000101110100000":2.1272365805168987e307,"0111111111010110001100000101010110111010010001100111101101011011":6.232604373757455e307,"0111111111001001011010001100000011100100110100110101110101111101":3.5685884691848907e307,"0111111110100000101101000001101011111000110101010001101111110010":5.864811133200796e306,"0111111111010101010101101110011111100001101100001100110001100000":5.99403578528827e307,"0111111111011111100110100010110010000101011011000010010000001101":8.876739562624254e307,"0111111111000110000000110000100110000010011111001010000110010001":3.0914512922465207e307,"0111111111100001001011100110100011000010101010010100111001011111":9.652087475149107e307,"0111111110111001011110101101111101100001100010101000000101100111":1.7892644135188866e307,"0111111111000000000100010000100010010110011001001101100010110101":2.256461232604374e307,"0111111111010010111101111110101010001111101110011001100100111010":5.32803180914513e307,"0111111111010000011010111010000100000101111110001000110001001000":4.612326043737574e307,"0111111110111010011110001000101000110011100011100111100000110111":1.8588469184890657e307,"0111111111011011010110110000011101001010011111111011100100100111":7.68389662027833e307,"0111111111100000110111001101111110010001011100010010110011000000":9.473161033797216e307,"0111111111001010010101000100110100111010001000000011000001100010":3.6978131212723657e307,"0111111111011111111101001100010011110100111111111101011110100000":8.976143141153081e307,"0111111111010101101010000111000100010010111010001110110111111110":6.083499005964215e307,"0111111111010000111111001001010011101011101100011010101110011010":4.771371769383698e307,"0111111101100110101001100001101111100100111011001110010011001110":4.970178926441352e305,"0111111111100000111011101111111000001110001010000101000010101011":9.512922465208749e307,"0111111111000011111000110111011011100101000001100110110000011111":2.79324055666004e307,"0111111111011010000101001110001010000101100111110011001010101110":7.326043737574552e307,"0111111111001110100100110111001001110101000011001001101101001001":4.294234592445328e307,"0111111110010000011010111010000100000101111110001000110001001000":2.882703777335984e306,"0111111111000100001111100000111101010100100110100001111110110010":2.8429423459244536e307,"0111111111011011000110111001110010010101111111101011101101110011":7.614314115308151e307,"0111111111011101111110010110111101010000111101111110101000000010":8.41948310139165e307,"0111111111000001010001010000111011011110100011100011101101000011":2.4254473161033797e307,"0111111111010011010100101000001011111111010011010100110011001101":5.427435387673957e307,"0111111111100001110000111110010001000111100100000011011010101011":9.980119284294235e307,"0111111111010010000101010110110101111000110010000101100001001001":5.079522862823062e307,"0111111111010111101011001101010111110101010011000110110110010010":6.650099403578529e307,"0111111110111001111001111001011001001101110101010101100011100101":1.8190854870775349e307,"0111111111100001010010011001011001111101101111000000010000111110":9.711729622266402e307,"0111111111100001110011001111001110000101111010111100100010100000":1.0e308,"0111111111011100111110111100010001111110111100111111001100110010":8.141153081510934e307,"0111111111010010000011000101111000111010011011001100011001010011":5.069582504970178e307,"0111111101000010000111100111110010110111001000111110101000111110":9.940357852882704e304,"0111111111011110000000100111111010001111010100110111101111110111":8.429423459244533e307,"0111111110100100011000100100110001001110000010000110011110000110":7.157057654075547e306,"0111111111010011010110111001001000111101101010001101111011000001":5.437375745526839e307,"0111111111011110010000011110100101000011110101000111100110101010":8.499005964214711e307,"0111111111010101100111110110000111010100100011010101110000001001":6.073558648111332e307,"0111111101111000111010011110101101111011110100010110001000010101":1.0934393638170974e306,"0111111111000010010101001101100000101101010010010101010111111101":2.5745526838966204e307,"0111111111011000011101000010010101010001001010101111100010100011":6.868787276341949e307,"0111111111010010010000101011100110110000100100100011001000010010":5.129224652087475e307,"0111111111010000100001101100111011000001000010110100001000101000":4.642147117296223e307,"0111111110100010011001101111011010101010000000000111100111100111":6.461232604373757e306,"0111111111000011111101011001010101100001101111011001000000001000":2.8031809145129223e307,"0111111111000111111111100101111100100110100001001000111100110000":3.3697813121272365e307,"0111111110111010100111001100011100101100111111001100000000001011":1.8687872763419483e307,"0111111110111110011011110011010101111011100111100101001101110101":2.1371769383697815e307,"0111111110100110000101010010011111111111001100111100010101111100":7.75347912524851e306,"0111111111001110010010101111100010000010001100000000101110100000":4.2544731610337974e307,"0111111111010001001100101111000001100001110101110001011101011001":4.831013916500994e307,"0111111111011100110101111000011110000101100001011010101101011110":8.101391650099404e307,"0111111111010001011100100101101100010110010110000001010100001101":4.900596421471173e307,"0111111111011111010010001010001101010100001101000000001001101111":8.78727634194831e307,"0111111111011000000100000111110110100011001110111011001100011010":6.759443339960238e307,"0111111111100000100000100100011100100001110111010111100100101101":9.274353876739563e307,"0111111111001000001101001011101010011100101010011111101011101111":3.399602385685885e307,"0111111111011011010010001110100011001101110010001001010100111101":7.664015904572565e307,"0111111111011010110100110010001010100011001000100010101111001010":7.53479125248509e307,"0111111111010011000111000010011110001001001001111110000100001110":5.367793240556661e307,"0111111111011010010000100010111010111101011010010000110001111000":7.375745526838966e307,"0111111111010100111010100011000011110101011001011111010011100011":5.874751491053678e307,"0111111111001010000111011111000111000011111110101100010010100100":3.667992047713718e307,"0111111111100000110001100011100101110101100011000011111111011011":9.423459244532802e307,"0111111111011100011111001110111100010101111100011111011111001011":8.001988071570577e307,"0111111111100000000011001000000011110111001101110000111110111010":9.015904572564611e307,"0111111111011101011110101001100111100111111101011110111010011010":8.280318091451292e307,"0111111111000101101010000111000100010010111010001110110111111110":3.0417495029821073e307,"0111111110111011011101100011010100000101100100100110111100000110":1.9284294234592445e307,"0111111111011111100010000000111000001000101101010000000000100011":8.856858846918489e307,"0111111110111100111000001001011011000011111000010011110101010011":2.0278330019880716e307,"0111111111010111100010001001100011111011110111100010010110111110":6.610337972166998e307,"0111111110111100011100111101111111010111100101100110010111010101":1.9980119284294234e307,"0111111101100010000111100111110010110111001000111110101000111110":3.9761431411530815e305,"0111111111011110010010101111100010000010001100000000101110100000":8.508946322067595e307,"0111111111001111101101010101101001000000011111101101100111101101":4.4532803180914515e307,"0111111111000111000100101101001011010001001101111011110001001011":3.2405566600397614e307,"0111111111000110100100111111110101101000001101011100000011100011":3.1709741550695824e307,"0111111111010011110110100110011110100110101010101101101000101001":5.576540755467197e307,"0111111111010001100011011000100011010001011010101100101011101100":4.930417495029821e307,"0111111110011010000010111101001101000111010000111010000010111001":4.5725646123260436e306,"0111111110110101101010000111000100010010111010001110110111111110":1.5208747514910536e307,"0111111111011101110011000010001100011001001011100001000000111000":8.369781312127237e307,"0111111111100000100011111101110111111111011001101101010000011101":9.304174950298211e307,"0111111111001000001000101001110000011111111100101101011100000101":3.389662027833002e307,"0111111111000011011101101011111111111000101110111001010010100001":2.7335984095427437e307,"0111111111011000101100111001000000000101101010111111011001010111":6.938369781312128e307,"0111111111100000001111100101010011001110001011101011001001111111":9.125248508946323e307,"0111111111011111011101011110111110001011111111011101110000111001":8.836978131212724e307,"0111111111000100000110011101001001011011001010111101011111011101":2.823061630218688e307,"0111111111011000010001101101100100011001011000010001111011011001":6.819085487077535e307,"0111111110111001000011100010100001110101001111111010100111101010":1.7594433399602386e307,"0111111111010000110001100011100101110101100011000011111111011011":4.711729622266401e307,"0111111111011011011001000001011010001000110110110100101100011100":7.693836978131213e307,"0111111111010111101111101111010001110010000000111001000101111101":6.669980119284295e307,"0111111111011111011111101111111011001010010110010110111000101110":8.846918489065607e307,"0111111111000000011111011011111110000010101011111011000000110011":2.31610337972167e307,"0111111111011101001000000000000101111000011000100011101100000111":8.180914512922465e307,"0111111111011011001011011011101100010010101101011101111101011101":7.634194831013916e307,"0111111110110110001110010110010011111000101000100000110101010000":1.5606361829025845e307,"0111111111010100111100110100000000110011110000011000011011011000":5.884691848906561e307,"0111111110011011001011011011101100010010101101011101111101011101":4.771371769383698e306,"0111111111011010011001100110101110110110110101110101010001001100":7.415506958250497e307,"0111111110100111011111111000100110111101100000101001001111001001":8.250497017892645e306,"0111111111000110101001100001101111100100111011001110010011001110":3.1809145129224654e307,"0111111111000111001101110000111111001010101001100000010000100000":3.260437375745527e307,"0111111111100000011100000010100010100101001001100101010101000011":9.234592445328032e307,"0111111111011010111011100101000001011110001101001110000110101001":7.564612326043737e307,"0111111111011111001001000110011001011010110001011011101010011011":8.74751491053678e307,"0111111111000101010011011101100010100011010101010011101001101011":2.992047713717694e307,"0111111111000001111010000010000101000000111111100111111001111111":2.514910536779324e307,"0111111111010110011001101011000100110000011010111110011100011010":6.292246520874752e307,"0111111110010111001101110000111111001010101001100000010000100000":4.075546719681909e306,"0111111110101100111000001001011011000011111000010011110101010011":1.0139165009940358e307,"0111111111010101001000001000110001101011100010110110000010100010":5.934393638170975e307,"0111111110110101100001000011010000011001011110101010011000101010":1.510934393638171e307,"0111111111011001000011100010100001110101001111111010100111101010":7.037773359840954e307,"0111111111010111010000000001111100001001000000011001011000010100":6.530815109343936e307,"0111111101111011001011011011101100010010101101011101111101011101":1.1928429423459244e306,"0111111111001001110101010111011111010001000111100011010011111010":3.6282306163021867e307,"0111111111001100011000011100000101011010110111110100000111101100":3.9860834990059646e307,"0111111110111110100100110111001001110101000011001001101101001001":2.147117296222664e307,"0111111111000001100111111010011101001110001000011110111011010111":2.4751491053677936e307,"0111111111011101000101101111001000111010000001101010100100010010":8.170974155069583e307,"0111111111000000111010100111011001101110111110101000011110110000":2.375745526838966e307,"0111111111001001100111110001110001011010111110001100100100111100":3.598409542743539e307,"0111111111010001100111111010011101001110001000011110111011010111":4.950298210735587e307,"0111111111011001101100010011101011010111101011111110110100100110":7.216699801192843e307,"0111111111100001011100100101101100010110010110000001010100001101":9.801192842942346e307,"0111111111010100001010111111000011010111111000101111101111000111":5.666003976143141e307,"0111111111010111000100101101001011010001001101111011110001001011":6.481113320079523e307,"0111111111001100000110010100011101101000000000101011001001000010":3.9463220675944333e307,"0111111111011111111000101010011001111000010010001011001110110111":8.956262425447317e307,"0111111111010100111000010010000110110111000010100110001011101101":5.864811133200795e307,"0111111111011000111000001101110000111101011101011101000000100001":6.988071570576542e307,"0111111111011111001111111001010000010101110110000111000001111010":8.777335984095427e307,"0111111111011101100111101101011011100001011001000011011001101111":8.320079522862824e307,"0111111111001100110011100111100001000111001010100001100101101000":4.04572564612326e307,"0111111110101010111001010100000100011111110110010100111110110101":9.44333996023857e306,"0111111111011011110100001100110101110101001001100010001010011010":7.813121272365806e307,"0111111110110110000101010010011111111111001100111100010101111100":1.550695825049702e307,"0111111111010001111110100011111110111101101101011010001001101010":5.049701789264414e307,"0111111111011101010111110110110000101100111000110011100010111010":8.250497017892644e307,"0111111111001010001100000001000001000000101100011110100010001101":3.6779324055666e307,"0111111111010010101011110111000010011100110111010000100110010000":5.248508946322068e307,"0111111111010100111111000100111101110010000111010001100011001101":5.894632206759443e307,"0111111101110100011000100100110001001110000010000110011110000110":8.946322067594434e305,"0111111111011110000010111000110111001101101011110000110111101100":8.439363817097416e307,"0111111111010010111011101101101101010001010111100000011101000100":5.318091451292247e307,"0111111111010001110011001111001110000101111010111100100010100000":5.0e307,"0111111111010101110101011011110101001010101100101100011111001000":6.133200795228628e307,"0111111111100001011000000011110010011001101000001111000100100010":9.761431411530814e307,"0111111111100000101110001010001010011000000000101110010011101100":9.393638170974156e307,"0111111110010001100011011000100011010001011010101100101011101100":3.081510934393638e306,"0111111110110010000111100111110010110111001000111110101000111110":1.272365805168986e307,"0111111111000010111001011100110000010011000000100111010101001111":2.654075546719682e307,"0111111110101110100100110111001001110101000011001001101101001001":1.073558648111332e307,"0111111111011001001000000100011011110001111101101100110111010100":7.05765407554672e307,"0111111111100001011110110110101001010100101100111010011100000010":9.821073558648112e307,"0111111111011011011011010010010111000111001101101101110100010001":7.703777335984096e307,"0111111110001110100100110111001001110101000011001001101101001001":2.68389662027833e306,"0111111111010000001101010100010110001111110100110010000010001001":4.552683896620278e307,"0111111111011111101011000100101100000010001000110100011111111000":8.89662027833002e307,"0111111111100000111110000000110101001100100000111110001010100000":9.532803180914514e307,"0111111110111000011111010011010010001111100001101000101010011000":1.7196819085487078e307,"0111111111001101110111100100000110010101111001010011010000100011":4.1948310139165014e307,"0111111111010001010011100001111000011100111010011100110100111000":4.860834990059642e307,"0111111111011010010010110011110111111011110001001001111001101101":7.385685884691849e307,"0111111111100000110000011011000111010110010111100111011011100001":9.41351888667992e307,"0111111111011110010111010001011011111110111001110010111110001010":8.52882703777336e307,"0111111110111110110110111110110001100111111010010010101011110001":2.1669980119284293e307,"0111111111010001110111110001001000000010101000101110110010001010":5.019880715705765e307,"0111111111011110110100101101110100101001100011011001100011111100":8.658051689860834e307,"0111111111100001001010011110000100100011011110111000010101100100":9.642147117296223e307,"0111111101101011001011011011101100010010101101011101111101011101":5.964214711729622e305,"0111111111011110100111001000000110110011011010000010110100111110":8.598409542743539e307,"0111111111010111111101010100111111101000001010001111110100111100":6.729622266401591e307,"0111111111001010101011101110010110101001101100111110001111110110":3.7475149105367796e307,"0111111111010000111010100111011001101110111110101000011110110000":4.751491053677932e307,"0111111111011100100011110000110110010010101010010001101110110101":8.021868787276342e307,"0111111111010110000011000001100011000000110110000011001110000111":6.192842942345925e307,"0111111110110000111111001001010011101011101100011010101110011010":1.1928429423459244e307,"0111111111100000101101000001101011111000110101010001101111110010":9.383697813121274e307,"0111111111010001011110110110101001010100101100111010011100000010":4.910536779324056e307,"0111111110111011000010010111111000011001010001111001011110001001":1.8986083499005965e307,"0111111111000000001101010100010110001111110100110010000010001001":2.276341948310139e307,"0111111111011000110001011010111010000010011000110001101001000001":6.958250497017893e307,"0111111111010001111010000010000101000000111111100111111001111111":5.029821073558648e307,"0111111110101011011101100011010100000101100100100110111100000110":9.642147117296223e306,"0111111111011001011110101101111101100001100010101000000101100111":7.157057654075546e307,"0111111111010100010001110001111010010010111101011011000110100110":5.695825049701789e307,"0111111111010100101100111101010101111111010000001000100100100100":5.815109343936382e307,"0111111111010101011100100001010110011100110000111000001000111111":6.023856858846918e307,"0111111111001001011110101101111101100001100010101000000101100111":3.578528827037773e307,"0111111111011001001100100110010101101110101011011111000110111110":7.077534791252485e307,"0111111111011001101110100100101000010110000010110111111100011011":7.226640159045726e307,"0111111111010001111100010011000001111111010110100001000001110100":5.03976143141153e307,"0111111111100001011101101110001010110101100001011101111000000111":9.811133200795228e307,"0111111111100000010001110110010000001100100010100100010001110100":9.145129224652088e307,"0111111110110011011001001010000101111100000001000111000010110110":1.3618290258449303e307,"0111111111011011101011001001000001111011101101111101101011000100":7.773359840954274e307,"0111111111000000101101000001101011111000110101010001101111110010":2.3459244532803185e307,"0111111111001011000010010111111000011001010001111001011110001001":3.797216699801193e307,"0111111111010101010111111111011100100000000011000101111001010110":6.003976143141154e307,"0111111101010010000111100111110010110111001000111110101000111110":1.9880715705765407e305,"0111111111010101111100001110101100000101110001010111110110100111":6.163021868787276e307,"0111111110110011110100010101100001101000010011110100100000110100":1.3916500994035786e307,"0111111110111101001010010001000010110110101111011100110011111100":2.047713717693837e307,"0111111111001111010110101100000111010000111010110010011001011010":4.403578528827038e307,"0111111111011010100111001100011100101100111111001100000000001011":7.475149105367793e307,"0111111110110001111110100011111110111101101101011010001001101010":1.2624254473161035e307,"0111111111000110101110000011101001100001101001000000100010111000":3.190854870775348e307,"0111111110100000011010111010000100000101111110001000110001001000":5.765407554671968e306,"0111111101111111101101010101101001000000011111101101100111101101":1.3916500994035786e306,"0111111110010010101011110111000010011100110111010000100110010000":3.280318091451292e306,"0111111111000001110101100000001011000100010001110101101010010110":2.504970178926442e307,"0111111111011011001111111101100110001111011011010000001101001000":7.654075546719683e307,"0111111111001110110010011100110111101011001100100000011100001000":4.3240556660039764e307,"0111111111000010110000011000111100011001100101000010110101111011":2.634194831013917e307,"0111111111011100001010110110010111100100101110011101011000101101":7.912524850894633e307,"0111111111001011001011011011101100010010101101011101111101011101":3.817097415506958e307,"0111111111100000010010111110101110101011101110000000110101101110":9.15506958250497e307,"0111111111010001101010001011011010001100011111011000000011001100":4.96023856858847e307,"0111111111100001000001011010010000101010000011010011110110001111":9.56262425447316e307,"0111111111011110110110111110110001100111111010010010101011110001":8.667992047713717e307,"0111111111011001111110011011010011001010100011000111110011001111":7.296222664015905e307,"0111111111000111001001001111000101001101111011101110000000110101":3.250497017892644e307,"0111111111011110110000001011111010101100110101100111010100010011":8.63817097415507e307,"0111111111011000010011111110100001010111101111001011000011001111":6.829025844930418e307,"0111111111001110110110111110110001100111111010010010101011110001":4.3339960238568585e307,"0111111111010000011101001011000001000100010101000001111000111101":4.622266401590457e307,"0111111111011110001011111100101011000111000111010101010111000001":8.479125248508947e307,"0111111110110000101101000001101011111000110101010001101111110010":1.1729622266401592e307,"0111111111001110011011110011010101111011100111100101001101110101":4.274353876739563e307,"0111111111010010000111100111110010110111001000111110101000111110":5.089463220675944e307,"0111111111001100101010100011101101001101101110111101000110010100":4.025844930417495e307,"0111111111010100001101010000000000010110001111101000110110111100":5.675944333996024e307,"0111111110100101001110111011101000100110100111100001011010000001":7.455268389662028e306,"0111111111001010011110001000101000110011100011100111100000110111":3.7176938369781314e307,"0111111111001000111111000000100111111000100010001000011000000000":3.5089463220675947e307,"0111111111001011011001000001011010001000110110110100101100011100":3.8469184890656065e307,"0111111111011000101010101000000011000111010100000110010001100010":6.928429423459245e307,"0111111110110011100010001101111001110101011100101011100010001010":1.371769383697813e307,"0111111111010101111001111101101111000111011010011110101110110010":6.153081510934394e307,"0111111111011011111010111111101100110000001110001101100001111001":7.842942345924454e307,"0111111110110000110110000101011111110010010000110110001111000110":1.1829025844930418e307,"0111111111100001000111000100101001000101111100100010101001110100":9.612326043737574e307,"0111111111011000101111001001111101000100000001111000100001001011":6.948310139165009e307,"0111111111100000110100111101000001010011000101011001101011001100":9.453280318091453e307,"0111111111010100101111001110010010111101100111000001101100011001":5.825049701789264e307,"0111111111001111110110011001011100111001111011010010000111000001":4.4731610337972167e307,"0111111111001010100010101010100010110000010001011001110000100001":3.727634194831014e307,"0111111111010010011100000000010111101000010111000000101111011100":5.178926441351889e307,"0111111111100000101000011111110001111100000111011111100000000111":9.343936381709742e307,"0111111111010010100010110011001110100011011011101100000110111100":5.208747514910537e307,"0111111111000111110110100010001000101101000101100100011101011100":3.3499005964214713e307,"0111111111000001001100101111000001100001110101110001011101011001":2.415506958250497e307,"0111111111001111000100100100011111011110000011101001011010110000":4.363817097415507e307,"0111111111100000100101000110010110011110100101001001110100010111":9.314115308151093e307,"0111111111011001011100011101000000100011001011101110111101110011":7.147117296222665e307,"0111111111000100101010101100011001000000111001001111011100101110":2.902584493041749e307,"0111111110010000111111001001010011101011101100011010101110011010":2.982107355864811e306,"0111111110101110000000100111111010001111010100110111101111110111":1.0536779324055666e307,"0111111111011001101010000010101110011001010101000101101100110001":7.20675944333996e307,"0111111110110001101100011100010111001010110110010001001011000000":1.2425447316103378e307,"0111111111010011101101100010101010101101001111001001001001010100":5.536779324055666e307,"0111111110101101101110100000010010011100011101101110110001001101":1.0437375745526838e307,"0111111111001100101111000101100111001010011100101111010101111111":4.035785288270378e307,"0111111110001111101101010101101001000000011111101101100111101101":2.7833001988071572e306,"0111111111001100100001011111111001010100010011011000100111000000":4.00596421471173e307,"0111111111011001010111111011000110100110011101111100101110001000":7.127236580516899e307,"0111111111010110111001011000011010011001011011011110001010000001":6.431411530815109e307,"0111111111011101000011011110001011111011101010110001011100011101":8.1610337972167e307,"0111111111000011001011100100011000000101110111110000010011110111":2.6938369781312124e307,"0111111110101000010110001111011110010110000110000100001011000011":8.548707753479125e306,"0111111111010101001010011001101110101001111001101111001010010111":5.944333996023857e307,"0111111111000000010110011000001010001001010000010110100001011110":2.2962226640159046e307,"0111111111010000110110000101011111110010010000110110001111000110":4.731610337972167e307,"0111111111011011100110100111000111111111000000001011011011011011":7.753479125248509e307,"0111111111100000001011000011011001010001011101111000111010010101":9.085487077534793e307,"0111111111001100010011111010001011011110001010000001111000000001":3.9761431411530815e307,"0111111110111111100100010001110101000111000100001001001000011000":2.216699801192843e307,"0111111111011111001101101000010011010111011111001101111010000101":8.767395626242545e307,"0111111111011110010101000000011111000000100010111001110110010101":8.518886679920477e307,"0111111111010010101001100110000101011110100000010111011110011011":5.238568588469185e307,"0111111111011011010100011111100000001100001001000010011100110001":7.673956262425447e307,"0111111111000010011110010001010100100110101101111001110111010001":2.5944333996023856e307,"0111111111011100101000010010110000001111011000000011111110011111":8.041749502982107e307,"0111111111000000110001100011100101110101100011000011111111011011":2.3558648111332006e307,"0111111111001000010110001111011110010110000110000100001011000011":3.41948310139165e307,"0111111111011100100001011111111001010100010011011000100111000000":8.01192842942346e307,"0111111110101011001011011011101100010010101101011101111101011101":9.542743538767396e306,"0111111110111100000001110010100011101011010010111000111001011001":1.9681908548707756e307,"0111111111010011110010000100100100101001111100111011011000111111":5.556660039761432e307,"0111111111000100101111001110010010111101100111000001101100011001":2.912524850894632e307,"0111111110111010110000010000010000100110011010110000011111011111":1.8787276341948309e307,"0111111110110101000101110111110100101101001011111100111010101100":1.4811133200795228e307,"0111111111010000011111011011111110000010101011111011000000110011":4.63220675944334e307,"0111111110110111111011000100000010101001110011010110101101000110":1.679920477137177e307,"0111111111000110110111000111011101011011000100100101000010001100":3.210735586481113e307,"0111111111001000011010110001011000010010110011110110011010101110":3.429423459244533e307,"0111111111000000011010111010000100000101111110001000110001001000":2.306163021868787e307,"0111111110111100100110000001110011010001000001001010110110101001":2.007952286282306e307,"0111111110110101111100001110101100000101110001010111110110100111":1.540755467196819e307,"0111111111010010001110011010101001110010001101101010000000011110":5.119284294234593e307,"0111111111010000000110100001011111010100110000000110101010101010":4.52286282306163e307,"0111111111010110110000010100100110011111111111111001101010101101":6.391650099403579e307,"0111111111010000010100000111001101001010111001011101011001101001":4.582504970178927e307,"0111111111011100111000001001011011000011111000010011110101010011":8.111332007952286e307,"0111111111011010101001011101011001101011010110000101001000000000":7.485089463220676e307,"0111111110110110111011101001010111010111110010010111010001110110":1.610337972166998e307,"0111111110111000101000010111000110001000111101001101001001101101":1.7296222664015906e307,"0111111111001110000000100111111010001111010100110111101111110111":4.2147117296222665e307,"0111111110100010111101111110101010001111101110011001100100111010":6.660039761431413e306,"0111111110101010100111001100011100101100111111001100000000001011":9.343936381709741e306,"0111111111010010011110010001010100100110101101111001110111010001":5.188866799204771e307,"0111111110000110101001100001101111100100111011001110010011001110":1.988071570576541e306,"0111111110111101011100011000101010101001100110100101110010100101":2.0675944333996024e307,"0111111111011000000001110110111001100100111000000010000100100101":6.749502982107356e307,"0111111110101110010010101111100010000010001100000000101110100000":1.0636182902584493e307,"0111111111001001000011100010100001110101001111111010100111101010":3.518886679920477e307,"0111111110100001010001010000111011011110100011100011101101000011":6.063618290258449e306,"0111111111010001001000001101000111100101000111111111001101101110":4.811133200795228e307,"0111111111001110101001011001000011110001110000111011111100110011":4.304174950298211e307,"0111111111001111001001000110011001011010110001011011101010011011":4.37375745526839e307,"0111111110110111011111111000100110111101100000101001001111001001":1.650099403578529e307,"0111111111010100110001011111001111111011111101111010110100001110":5.834990059642147e307,"0111111111010101110111101100110010001001000011100101100110111101":6.143141153081511e307,"0111111111000010000111100111110010110111001000111110101000111110":2.544731610337972e307,"0111111111010101001110111011101000100110100111100001011010000001":5.964214711729623e307,"0111111110100010000111100111110010110111001000111110101000111110":6.36182902584493e306,"0111111110011101011100011000101010101001100110100101110010100101":5.168986083499006e306,"0111111110010100011000100100110001001110000010000110011110000110":3.5785288270377735e306,"0111111111001011101111101010111011111000011011101111111010101111":3.89662027833002e307,"0111111111011111110110011001011100111001111011010010000111000001":8.946322067594433e307,"0111111111000111010010010010111001000111010111010010100000001010":3.2703777335984097e307,"0111111111000100100110001010011111000100001011011101001101000101":2.892644135188867e307,"0111111111011000110101111100110011111111000110100011111000101011":6.978131212723658e307,"0111111111010100010110010011110100001111101011001101010110010001":5.715705765407555e307,"0111111111010011011001001010000101111100000001000111000010110110":5.447316103379721e307,"0111111111001000111010011110101101111011110100010110001000010101":3.4990059642147116e307,"0111111111011111100100010001110101000111000100001001001000011000":8.866799204771372e307,"0111111111100000100110001110110100111101110000100110011000010010":9.324055666003976e307,"0111111111011100010001101001001110011111110011001000110000001100":7.942345924453281e307,"0111111111001001111110011011010011001010100011000111110011001111":3.6481113320079523e307,"0111111110011111101101010101101001000000011111101101100111101101":5.5666003976143144e306,"0111111111000111101000111100011010110110111100001101101110011101":3.320079522862823e307,"0111111111011011111101010000101001101110100101000110101001101110":7.852882703777336e307,"0111111111001011110100001100110101110101001001100010001010011010":3.906560636182903e307,"0111111111010011111111101010010010100000000110010010000111111110":5.616302186878728e307,"0111111111100001010000001000011100111111011000000111001001001000":9.691848906560635e307,"0111111111001001001100100110010101101110101011011111000110111110":3.5387673956262424e307,"0111111111011000101000010111000110001000111101001101001001101101":6.918489065606362e307,"0111111111000110000101010010011111111111001100111100010101111100":3.101391650099404e307,"0111111111011111010100011011001010010010100011111001010001100101":8.797216699801194e307,"0111111111010111111000110011000101101011011100011101100101010001":6.709741550695825e307,"0111111111011101101100001111010101011110000110110101101001011001":8.339960238568589e307,"0111111111011100100110000001110011010001000001001010110110101001":8.031809145129224e307,"0111111110110100111100110100000000110011110000011000011011011000":1.4711729622266402e307,"0111111111000101011100100001010110011100110000111000001000111111":3.011928429423459e307,"0111111111001111011011001110000001001101101000100100101001000100":4.4135188866799207e307,"0111111110011100111000001001011011000011111000010011110101010011":5.069582504970179e306,"0111111110111010010101000100110100111010001000000011000001100010":1.8489065606361829e307,"0111111111010100000100001100001100011100110100000100010111101000":5.636182902584493e307,"0111111110100101100001000011010000011001011110101010011000101010":7.554671968190855e306,"0111111111010100010100000010110111010001010100010100001110011011":5.705765407554671e307,"0111111111100000001000110010011100010011000110111111110010011111":9.065606361829025e307,"0111111110101111011011001110000001001101101000100100101001000100":1.1033797216699802e307,"0111111110110110100000011101111011101011011111101001110011111001":1.58051689860835e307,"0111111111011011101111101010111011111000011011101111111010101111":7.79324055666004e307,"0111111111010001010001010000111011011110100011100011101101000011":4.850894632206759e307,"0111111111100001010001010000111011011110100011100011101101000011":9.701789264413519e307,"0111111111010110001001110100011001111011111010101110100101100110":6.222664015904573e307,"0111111111010111110110100010001000101101000101100100011101011100":6.699801192842943e307,"0111111111000111100100011010100000111010001110011011011110110011":3.3101391650099405e307,"0111111111011001111100001010010110001100001100001110101011011010":7.286282306163022e307,"0111111111011100001000100101011010100110010111100100010000110111":7.902584493041749e307,"0111111111100001100010010000000100110010001111010000000111110010":9.85089463220676e307,"0111111111001011000110111001110010010101111111101011101101110011":3.8071570576540756e307,"0111111111001000101000010111000110001000111101001101001001101101":3.459244532803181e307,"0111111111011011000100101000110101010111101000110010100101111110":7.604373757455269e307,"0111111111010001000001011010010000101010000011010011110110001111":4.78131212723658e307,"0111111110101100000001110010100011101011010010111000111001011001":9.840954274353878e306,"0111111101101111101101010101101001000000011111101101100111101101":6.958250497017893e305,"0111111111011101110000110001001111011010110100100111111001000011":8.359840954274354e307,"0111111111010011000100110001100001001010110011000100111100011000":5.357852882703777e307,"0111111110100110111011101001010111010111110010010111010001110110":8.05168986083499e306,"0111111111000001100011011000100011010001011010101100101011101100":2.4652087475149105e307,"0111111111000010010000101011100110110000100100100011001000010010":2.5646123260437373e307,"0111111110110110101001100001101111100100111011001110010011001110":1.5904572564612327e307,"0111111110010101100001000011010000011001011110101010011000101010":3.7773359840954276e306,"0111111111000110010111011010000111110010000100000101010100100101":3.1411530815109346e307,"0111111111011000010110001111011110010110000110000100001011000011":6.8389662027833e307,"0111111111001101000001001101001110111101010011111000010100100111":4.0755467196819084e307,"0111111111010011101001000000110000110000100001010110111001101010":5.5168986083499e307,"0111111111100001101010001011011010001100011111011000000011001100":9.92047713717694e307,"0111111110110111110010000000001110110000010111110010001101110001":1.6699801192842941e307,"0111111111011101100011001011100001100100101011010001001010000100":8.300198807157057e307,"0111111111011111000010010011100010011111101100110000010010111011":8.717693836978131e307,"0111111111100000000101011001000000110101100100101010000110110000":9.035785288270379e307,"0111111111001101111100000110000000010010100111000101100000001100":4.2047713717693834e307,"0111111110110101001110111011101000100110100111100001011010000001":1.4910536779324056e307,"0111111111010100101010101100011001000000111001001111011100101110":5.805168986083498e307,"0111111111010010100101000100001011100001110010100101001110110001":5.21868787276342e307,"0111111111100001101001000010111011101101010011111011011111010001":9.910536779324056e307,"0111111111001001010101101010001001101000000111000011100110010011":3.558648111332008e307,"0111111110000100011000100100110001001110000010000110011110000110":1.7892644135188867e306,"0111111110111011111000101110101111110001110111010100011010000011":1.9582504970178925e307,"0111111111010110010101001001001010110011101101001100001100101111":6.272365805168986e307,"0111111111010010110000011000111100011001100101000010110101111011":5.268389662027834e307,"0111111111011101100101011100011110100011000010001010010001111001":8.31013916500994e307,"0111111111011010100000011001100101110001111010100000101000101100":7.445328031809145e307,"0111111111001010000010111101001101000111010000111010000010111001":3.658051689860835e307,"0111111111000100011101000110101011001010101111111000101101110000":2.8727634194831014e307,"0111111111011000001010111010101101011110010011100110100011111001":6.789264413518886e307,"0111111110010110101001100001101111100100111011001110010011001110":3.976143141153082e306,"0111111111010100000110011101001001011011001010111101011111011101":5.646123260437376e307,"0111111110111011101111101010111011111000011011101111111010101111":1.94831013916501e307,"0111111111001010110100110010001010100011001000100010101111001010":3.767395626242545e307,"0111111111000010100111010101001000100000001001011110010110100101":2.6143141153081507e307,"0111111111000110011011111100000001101110110001110111100100001111":3.151093439363817e307,"0111111111100000011110010011011111100011100000011110011100110111":9.254473161033795e307,"0111111110111110000000100111111010001111010100110111101111110111":2.1073558648111333e307,"0111111110110011111101011001010101100001101111011001000000001000":1.4015904572564611e307,"0111111111000110001110010110010011111000101000100000110101010000":3.121272365805169e307,"0111111110110111000100101101001011010001001101111011110001001011":1.6202783300198807e307,"0111111111010110101001100001101111100100111011001110010011001110":6.361829025844931e307,"0111111111010110101011110010101100100011010010000111011011000010":6.371769383697812e307,"0111111111010111111111100101111100100110100001001000111100110000":6.739562624254473e307,"0111111111100001000011101011001101101000011010001100111110000101":9.582504970178928e307,"0111111111001100100110000001110011010001000001001010110110101001":4.015904572564612e307,"0111111110111001010101101010001001101000000111000011100110010011":1.779324055666004e307,"0111111110000010000111100111110010110111001000111110101000111110":1.5904572564612326e306,"0111111110110010010000101011100110110000100100100011001000010010":1.2823061630218687e307,"0111111111100000110010101100000100010100101110100000100011010110":9.433399602385686e307,"0111111111011010100010101010100010110000010001011001110000100001":7.455268389662028e307,"0111111111001010011001100110101110110110110101110101010001001100":3.7077534791252483e307,"0111111111000011101111110011100111101011100110000010010001001001":2.773359840954274e307,"0111111101111101011100011000101010101001100110100101110010100101":1.2922465208747515e306,"0111111110011111001001000110011001011010110001011011101010011011":5.4671968190854873e306,"0111111111010010100000100010010001100101000100110010111111000110":5.198807157057654e307,"0111111110110001100011011000100011010001011010101100101011101100":1.2326043737574552e307,"0111111111010111010010010010111001000111010111010010100000001010":6.540755467196819e307,"0111111111000010110100111010110110010110010010110101000101100100":2.644135188866799e307,"0111111111010101100011010100001101010111110101100011100000011111":6.053677932405567e307,"0111111111100001101101100100110101101010000001101101101110111011":9.950298210735586e307,"0111111110111001110000110101100101010100011001110001000100010001":1.8091451292246523e307,"0111111110010100111100110100000000110011110000011000011011011000":3.6779324055666006e306,"0111111110110100101010101100011001000000111001001111011100101110":1.4512922465208746e307,"0111111110111101110111100100000110010101111001010011010000100011":2.0974155069582507e307,"0111111111001011011101100011010100000101100100100110111100000110":3.856858846918489e307,"0111111111010001011010010100101111010111111111001000001100011000":4.890656063618291e307,"0111111111011000001101001011101010011100101010011111101011101111":6.79920477137177e307,"0111111110001010000010111101001101000111010000111010000010111001":2.2862823061630218e306,"0111111111011111101111100110100101111110110110100110101111100001":8.916500994035785e307,"0111111111100000010100000111001101001010111001011101011001101001":9.165009940357853e307,"0111111111010001101110101101010100001001001101001010010010110110":4.980119284294235e307,"0111111110100101110011001010111000001100010101110011010111010010":7.654075546719681e306,"0111111111010001000101111100001010100110110001000110000101111010":4.801192842942346e307,"0111111111000011100010001101111001110101011100101011100010001010":2.743538767395626e307,"0111111111100000111010100111011001101110111110101000011110110000":9.502982107355865e307,"0111111111010110001110010110010011111000101000100000110101010000":6.242544731610338e307,"0111111111011100101111000101100111001010011100101111010101111111":8.071570576540756e307,"0111111111011001010101101010001001101000000111000011100110010011":7.117296222664016e307,"0111111111000110001001110100011001111011111010101110100101100110":3.1113320079522864e307,"0111111110000011010000000110010010000010100101100010100011100010":1.6898608349900597e306,"0111111111010110111011101001010111010111110010010111010001110110":6.441351888667992e307,"0111111111011011011101100011010100000101100100100110111100000110":7.713717693836978e307,"0111111110011000010110001111011110010110000110000100001011000011":4.2743538767395624e306,"0111111111000101101110101000111110001111101000000001000111101001":3.0516898608349904e307,"0111111110100011100010001101111001110101011100101011100010001010":6.858846918489065e306,"0111111111010100000001111011001111011110011101001011001111110011":5.626242544731611e307,"0111111111000010011001101111011010101010000000000111100111100111":2.584493041749503e307,"0111111111100000101010110000101110111010011110011000100111111100":9.363817097415507e307,"0111111111000011000010100000100100001100011100001011110100100011":2.673956262425447e307,"0111111111011100101010100011101101001101101110111101000110010100":8.05168986083499e307,"0111111111001000000100000111110110100011001110111011001100011010":3.379721669980119e307,"0111111111100000010110011000001010001001010000010110100001011110":9.184890656063618e307,"0111111111000110111011101001010111010111110010010111010001110110":3.220675944333996e307,"0111111110001011001011011011101100010010101101011101111101011101":2.385685884691849e306,"0111111110101101011100011000101010101001100110100101110010100101":1.0337972166998012e307,"0111111111100001000100110011101100000111100101101001100001111111":9.59244532803181e307,"0111111111010000110011110100100010110011111001111101000111010000":4.721669980119284e307,"0111111110010011010000000110010010000010100101100010100011100010":3.3797216699801193e306,"0111111110100111001101110000111111001010101001100000010000100000":8.151093439363818e306,"0111111111000101010111111111011100100000000011000101111001010110":3.001988071570577e307,"0111111111001100000001110010100011101011010010111000111001011001":3.936381709741551e307,"0111111111001101101110100000010010011100011101101110110001001101":4.174950298210735e307,"0111111111010011110100010101100001101000010011110100100000110100":5.566600397614314e307,"0111111110101101001010010001000010110110101111011100110011111100":1.0238568588469185e307,"0111111111011110011011110011010101111011100111100101001101110101":8.548707753479126e307,"0111111111001001110000110101100101010100011001110001000100010001":3.6182902584493046e307,"0111111111010110000101010010011111111111001100111100010101111100":6.202783300198808e307,"0111111111010010010010111100100011101110111011011100010000001000":5.139165009940358e307,"0111111111010010011001101111011010101010000000000111100111100111":5.168986083499006e307,"0111111111011110101001011001000011110001110000111011111100110011":8.608349900596422e307,"0111111111100000001101010100010110001111110100110010000010001001":9.105367793240556e307,"0111111110110100110011110000001100111010010100110011111100000100":1.4612326043737576e307,"0111111111011001110011000110100010010010110000101010001100000110":7.246520874751492e307,"0111111111100001100101101001100000001111110001100101110011100001":9.880715705765407e307,"0111111111100001001001010101100110000100010011011011110001101001":9.63220675944334e307,"0111111111010010010101001101100000101101010010010101010111111101":5.149105367793241e307,"0111111111010011111000110111011011100101000001100110110000011111":5.58648111332008e307,"0111111111010111100110101011011101111000100101010100100110100111":6.630218687872763e307,"0111111111100000011010111010000100000101111110001000110001001000":9.224652087475149e307,"0111111111010100100110001010011111000100001011011101001101000101":5.785288270377734e307,"0111111111011000111111000000100111111000100010001000011000000000":7.017892644135189e307,"0111111111100001010110111011010011111010011100110010100000101000":9.751491053677933e307,"0111111111100001100111111010011101001110001000011110111011010111":9.900596421471174e307,"0111111111001010111001010100000100011111110110010100111110110101":3.777335984095428e307,"0111111110111101100101011100011110100011000010001010010001111001":2.077534791252485e307,"0111111111010111011101100111101001111111001001110000000111010011":6.590457256461232e307,"0111111111011100001101000111010100100011000101010110100000100010":7.922465208747515e307,"0111111111100001010101110010110101011011010001010101111100101101":9.741550695825049e307,"0111111111011100011010101101000010011001001110101101001111100000":7.982107355864811e307,"0111111110101100010011111010001011011110001010000001111000000001":9.940357852882704e306,"0111111110110010011001101111011010101010000000000111100111100111":1.2922465208747515e307,"0111111111010111001001001111000101001101111011101110000000110101":6.500994035785288e307,"0111111111010001100101101001100000001111110001100101110011100001":4.940357852882704e307,"0111111111100000100001101100111011000001000010110100001000101000":9.284294234592446e307,"0111111111100000011111011011111110000010101011111011000000110011":9.26441351888668e307,"0111111111011110101011101010000000110000000111110101000100101000":8.618290258449304e307,"0111111111011010100100111011011111101110101000010010111000010110":7.465208747514911e307,"0111111111100001010100101010010110111100000101111001011000110011":9.731610337972167e307,"0111111111100001100011011000100011010001011010101100101011101100":9.860834990059642e307,"0111111110111100101111000101100111001010011100101111010101111111":2.017892644135189e307,"0111111111011001000001010001100100110110111001000001011111110101":7.027833001988072e307,"0111111111011101001110110010111100110011011101001111000011100110":8.210735586481113e307,"0111111111011111111111011101010000110011010110110110100110010101":8.986083499005964e307,"0111111111000011011001001010000101111100000001000111000010110110":2.7236580516898606e307,"0111111111100001000101111100001010100110110001000110000101111010":9.602385685884693e307,"0111111111011100010110001011001000011100100000111010111111110110":7.962226640159046e307,"0111111111011100001111011000010001100001011100001111101000010110":7.932405566600397e307,"0111111110101001001100100110010101101110101011011111000110111110":8.846918489065606e306,"0111111111011001100111110001110001011010111110001100100100111100":7.196819085487078e307,"0111111111011010110000010000010000100110011010110000011111011111":7.514910536779323e307,"0111111111010110101110000011101001100001101001000000100010111000":6.381709741550696e307,"0111111111001111100100010001110101000111000100001001001000011000":4.433399602385686e307,"0111111111100001101011010011111000101011101010110100100111000110":9.930417495029821e307,"0111111111010101011010010000011001011110011001111111000001001010":6.013916500994035e307,"0111111111000000101000011111110001111100000111011111100000000111":2.3359840954274354e307,"0111111111010001110101100000001011000100010001110101101010010110":5.009940357852884e307,"0111111111010000001011000011011001010001011101111000111010010101":4.542743538767396e307,"0111111111000100111100110100000000110011110000011000011011011000":2.9423459244532805e307,"0111111110101001110000110101100101010100011001110001000100010001":9.045725646123261e306,"0111111111011001011010001100000011100100110100110101110101111101":7.137176938369781e307,"0111111111100000110011110100100010110011111001111101000111010000":9.443339960238567e307,"0111111111011011111111100001100110101100111011111111110001100011":7.862823061630219e307,"0111111111011101110101010011001001010111100010011010001000101101":8.379721669980119e307,"0111111111001001101100010011101011010111101011111110110100100110":3.6083499005964215e307,"0111111111010111011001000101110000000010011011111101110111101010":6.570576540755468e307,"0111111111010000111100111000010110101101010101100001100110100101":4.761431411530815e307,"0111111111010110010010111000001101110101010110010011000100111011":6.262425447316104e307,"0111111111000010001100001001101100110011110110110000111000101001":2.554671968190855e307,"0111111110110110110010100101100011011110010110110010110010100010":1.6003976143141153e307,"0111111111100001011001001100010000111000110011101011101000011110":9.7713717693837e307,"0111111111000000110110000101011111110010010000110110001111000110":2.3658051689860837e307,"0111111111001010110000010000010000100110011010110000011111011111":3.7574552683896617e307,"0111111111010100001000101110000110011001100001110110100111010010":5.656063618290259e307,"0111111111011101011010000111101101101011001111101100101010110000":8.260437375745527e307,"0111111111010010110111001011110011010100101001101110001101011010":5.298210735586482e307,"0111111111011010000111011111000111000011111110101100010010100100":7.335984095427436e307,"0111111111000011000111000010011110001001001001111110000100001110":2.6838966202783303e307,"0111111110101111111111011101010000110011010110110110100110010101":1.1232604373757455e307,"0111111111000010101011110111000010011100110111010000100110010000":2.624254473161034e307,"0111111111010011010010010111001111000000111100011011101011010111":5.417495029821074e307,"0111111111010101101110101000111110001111101000000001000111101001":6.103379721669981e307,"0111111111011011011111110100010001000011111011100000000011111011":7.723658051689861e307,"0111111111010111110100010001001011101110101110101011010101100110":6.689860834990059e307,"0111111111010011011101101011111111111000101110111001010010100001":5.467196819085487e307,"0111111110110100100001101000100101000111011101101010111101011010":1.441351888667992e307,"0111111111011000100110000110001001001010100110010100000001110111":6.908548707753479e307,"0111111111100000010101001111101011101010000100111001111101100011":9.174950298210735e307,"0111111111010000100110001110110100111101110000100110011000010010":4.662027833001988e307,"0111111111011100110011100111100001000111001010100001100101101000":8.09145129224652e307,"0111111111011011001001001010101111010100010110100100110101101000":7.624254473161034e307,"0111111111011011101000111000000100111101010111000100100011010000":7.763419483101392e307,"0111111111011010011110001000101000110011100011100111100000110111":7.435387673956263e307,"0111111111010101000001010101111010110000011110001010101011000010":5.904572564612326e307,"0111111110111000000100000111110110100011001110111011001100011010":1.6898608349900595e307,"0111111111010010001100001001101100110011110110110000111000101001":5.10934393638171e307,"0111111111011011001101101100101001010001000100010111000101010010":7.644135188866799e307,"0111111111011101111100000110000000010010100111000101100000001100":8.409542743538767e307,"0111111111010110000111100011011100111101100011110101011101110000":6.212723658051689e307,"0111111111010111000010011100001110010010110111000010101001010110":6.47117296222664e307,"0111111111000000001000110010011100010011000110111111110010011111":2.2664015904572563e307,"0111111110110101010111111111011100100000000011000101111001010110":1.5009940357852885e307,"0111111111000110110010100101100011011110010110110010110010100010":3.2007952286282306e307,"0111111111100001101100011100010111001010110110010001001011000000":9.940357852882703e307,"0111111111011010110010100001001101100100110001101001100111010101":7.524850894632207e307,"0111111111010100100001101000100101000111011101101010111101011010":5.765407554671968e307,"0111111111000010100010110011001110100011011011101100000110111100":2.6043737574552686e307,"0111111111011111101101010101101001000000011111101101100111101101":8.906560636182903e307,"0111111111000101111100001110101100000101110001010111110110100111":3.081510934393638e307,"0111111111010110011011111100000001101110110001110111100100001111":6.302186878727634e307,"0111111111100001001000001101000111100101000111111111001101101110":9.622266401590456e307,"0111111111011101111001110101000011010100010000001100011000010111":8.399602385685884e307,"0111111111010100001111100000111101010100100110100001111110110010":5.685884691848907e307,"0111111111010110100010101110111000101001110110100010111011101110":6.332007952286282e307,"0111111111100000111000010110011100110000100111101111010110111011":9.4831013916501e307,"0111111111010101010001001100100101100100111110011010100001110110":5.974155069582505e307,"0111111111001101110011000010001100011001001011100001000000111000":4.1848906560636183e307,"0111111110010011110100010101100001101000010011110100100000110100":3.4791252485089464e306,"0111111111011111010110101100000111010000111010110010011001011010":8.807157057654076e307,"0111111111010011000000001111100111001110000101010010101100101110":5.337972166998012e307,"0111111111010000101000011111110001111100000111011111100000000111":4.671968190854871e307,"0111111111010011001001010011011011000111100000110111001100000011":5.377733598409543e307,"0111111111010100110011110000001100111010010100110011111100000100":5.844930417495031e307,"0111111110101111101101010101101001000000011111101101100111101101":1.1133200795228629e307,"0111111111000111110010000000001110110000010111110010001101110001":3.3399602385685883e307,"0111111111010000000100010000100010010110011001001101100010110101":4.512922465208748e307,"0111111111000111111011000100000010101001110011010110101101000110":3.359840954274354e307,"0111111111010101000101110111110100101101001011111100111010101100":5.924453280318091e307,"0111111111000000100011111101110111111111011001101101010000011101":2.326043737574553e307,"0111111111000100011000100100110001001110000010000110011110000110":2.862823061630219e307,"0111111111100000111111001001010011101011101100011010101110011010":9.542743538767395e307,"0111111111001111001101101000010011010111011111001101111010000101":4.3836978131212724e307,"0111111111000110100000011101111011101011011111101001110011111001":3.1610337972167e307,"0111111111100001000010100010101111001001001110110000011010001001":9.572564612326042e307,"0111111111011101101110100000010010011100011101101110110001001101":8.34990059642147e307,"0111111111010110010000100111010000110110111111011001111101000110":6.252485089463221e307,"0111111111100000100010110101011001100000001110010000101100100010":9.294234592445328e307,"0111111111010101011110110010010011011011000111110001010000110101":6.033797216699802e307,"0111111111000001101100011100010111001010110110010001001011000000":2.4850894632206757e307,"0111111111100001011010010100101111010111111111001000001100011000":9.781312127236581e307,"0111111111010110000000110000100110000010011111001010000110010001":6.182902584493041e307,"0111111111011110111001001111101110100110010001001011110011100111":8.677932405566601e307,"0111111111100001011011011101001101110111001010100100110000010010":9.791252485089463e307,"0111111111010010110100111010110110010110010010110101000101100100":5.288270377733598e307,"0110100101110100111001110001100011010111110101110110001001011010":1.0e200,"0111111111010000111000010110011100110000100111101111010110111011":4.74155069582505e307,"0111111110110000001000110010011100010011000110111111110010011111":1.1332007952286282e307,"0111111111010000000001111111100101011000000010010100011011000000":4.502982107355865e307,"0111111111001000110001011010111010000010011000110001101001000001":3.4791252485089464e307,"0111111111010001000011101011001101101000011010001100111110000101":4.791252485089464e307,"0111111111010000001111100101010011001110001011101011001001111111":4.562624254473161e307,"0111111111100000000000110111000110111000110110110111110111000101":8.996023856858846e307,"0111111110100011110100010101100001101000010011110100100000110100":6.958250497017893e306,"0111111111000001011110110110101001010100101100111010011100000010":2.455268389662028e307,"0111111111011101001010010001000010110110101111011100110011111100":8.190854870775348e307,"0111111111100000001100001011110111110000101001010101011110001111":9.095427435387674e307,"0111111111010111011111111000100110111101100000101001001111001001":6.600397614314116e307,"0111111111001111110001110111100010111101001101011111110111010111":4.463220675944334e307,"0111111110011110000000100111111010001111010100110111101111110111":5.268389662027833e306,"0111111111010111011011010110101101000000110010110110111111011110":6.58051689860835e307,"0111111111011110011110000100010010111001111110011110010101101001":8.558648111332008e307,"0111111111010000010001110110010000001100100010100100010001110100":4.572564612326044e307,"0111111111010001110000111110010001000111100100000011011010101011":4.990059642147117e307,"0111111110111000001101001011101010011100101010011111101011101111":1.6998011928429424e307,"0111111111011000111010011110101101111011110100010110001000010101":6.998011928429423e307,"0111111110111010001100000001000001000000101100011110100010001101":1.8389662027833e307,"0111111111010110100111010000110010100110100100010101001011011001":6.351888667992048e307,"0111111111011000011010110001011000010010110011110110011010101110":6.858846918489066e307,"0111111111000010111101111110101010001111101110011001100100111010":2.664015904572565e307,"0111111111011101010011010100110110110000001011000001010011010001":8.230616302186879e307,"0111111111000110010010111000001101110101010110010011000100111011":3.131212723658052e307,"0111111111000101100001000011010000011001011110101010011000101010":3.021868787276342e307,"0111111111100000111001011110111011001111110011001011111010110101":9.493041749502981e307,"0111111111010000011000101001000111000111100111001111101001010011":4.602385685884692e307,"0111111111001101101001111110011000011111101111111100100001100100":4.165009940357853e307,"0111111110111101000001001101001110111101010011111000010100100111":2.0377733598409542e307,"0111111111100000011101001011000001000100010101000001111000111101":9.244532803180914e307,"0111111111011001010011011001001100101001110000001010011110011101":7.107355864811133e307,"0111111111010101110000111001111011001101111110111010001111011101":6.113320079522862e307,"0111111111100000100111010111010011011100111100000010111100001101":9.33399602385686e307,"0111111111000001010101110010110101011011010001010101111100101101":2.435387673956262e307,"0111111111011001001110110111010010101101000010011000001110110100":7.087475149105368e307,"0111111111000011101011010001101101101110111000010000000001100000":2.763419483101392e307,"0111111111011010110111000011000111100001011111011011110110111111":7.544731610337972e307,"0111111111000111010110110100110011000100000101000100101111110100":3.2803180914512923e307,"0111111111001001100011001111110111011110010000011010010101010010":3.5884691848906563e307,"0111111111001110010111010001011011111110111001110010111110001010":4.26441351888668e307,"0111111111000011110100010101100001101000010011110100100000110100":2.783300198807157e307,"0111111111001010111101110101111110011100100100000111001110011110":3.78727634194831e307,"0111111111010101100101100101001010010110001100011100101000010100":6.063618290258449e307,"0111111111011110001001101011101110001000110000011100001111001011":8.469184890656063e307,"0111111111010011111011001000011000100011011000011111111000010011":5.596421471172962e307,"0111111111001110100000010101001111111000010101010111011101011110":4.284294234592445e307,"0111111110011000111010011110101101111011110100010110001000010101":4.3737574552683895e306,"0111111111011111000000000010100101100001010101110111001011000110":8.707753479125248e307,"0111111111011011000000000110111011011010111011000000010110010011":7.584493041749503e307,"0111111111100000101111010010101000110111001100001010110111100111":9.40357852882704e307,"0111111111100000101011111001001101011001101001110101001011110110":9.373757455268388e307,"0111111110101111001001000110011001011010110001011011101010011011":1.0934393638170975e307,"0111111110011010100111001100011100101100111111001100000000001011":4.671968190854871e306,"0111111110100011010000000110010010000010100101100010100011100010":6.759443339960239e306,"0111111111001001111001111001011001001101110101010101100011100101":3.6381709741550697e307,"0111111111001111111111011101010000110011010110110110100110010101":4.493041749502982e307,"0111111111010010000000110100111011111100000100010011010001011111":5.059642147117297e307,"0111111111010011001011100100011000000101110111110000010011110111":5.387673956262425e307,"0111111110110010101011110111000010011100110111010000100110010000":1.312127236580517e307,"0111111110111101010011010100110110110000001011000001010011010001":2.0576540755467199e307,"0111111110100000001000110010011100010011000110111111110010011111":5.666003976143141e306,"0111111111011111101000110011101111000011110001111011011000000010":8.886679920477137e307,"0111111110100100111100110100000000110011110000011000011011011000":7.355864811133201e306,"0111111111011111111010111011010110110110101001000100010110101100":8.9662027833002e307,"0111111111000010000011000101111000111010011011001100011001010011":2.534791252485089e307,"0111111111011100011000011100000101011010110111110100000111101100":7.972166998011929e307,"0111111111001101100000111010100100100110010100011000000010010000":4.145129224652088e307,"0111111110100001110101100000001011000100010001110101101010010110":6.262425447316105e306,"0111111111001000110101111100110011111111000110100011111000101011":3.489065606361829e307,"0111111111000101001110111011101000100110100111100001011010000001":2.9821073558648113e307,"0111111110100111110010000000001110110000010111110010001101110001":8.349900596421471e306,"0111111111001110101101111010111101101110011110101110001100011101":4.3141153081510934e307,"0111111111010111000000001011010001010100100000001001100001100001":6.461232604373758e307,"0111111111001100001111011000010001100001011100001111101000010110":3.9662027833001985e307,"0111111111010111010100100011110110000101101110001011100111111111":6.550695825049702e307,"0111111110100010101011110111000010011100110111010000100110010000":6.560636182902585e306,"0111111111000100010100000010110111010001010100010100001110011011":2.8528827037773357e307,"0111111111001110001001101011101110001000110000011100001111001011":4.2345924453280317e307,"0111111111100001100100100001000001110000100110001001001111100111":9.870775347912526e307,"0111111111010011101111110011100111101011100110000010010001001001":5.546719681908548e307,"0111111111011110101101111010111101101110011110101110001100011101":8.628230616302187e307,"0111111111010100011101000110101011001010101111111000101101110000":5.745526838966203e307,"0111111110110001001000001101000111100101000111111111001101101110":1.202783300198807e307,"0111111110000111110010000000001110110000010111110010001101110001":2.0874751491053677e306,"0111111110011011101111101010111011111000011011101111111010101111":4.870775347912525e306,"0111111110111011001011011011101100010010101101011101111101011101":1.908548707753479e307,"0111111111010000100011111101110111111111011001101101010000011101":4.652087475149106e307,"0111111111010111100100011010100000111010001110011011011110110011":6.620278330019881e307,"0111111111011110110010011100110111101011001100100000011100001000":8.648111332007953e307,"0111111101011011001011011011101100010010101101011101111101011101":2.982107355864811e305,"0111111110101001011110101101111101100001100010101000000101100111":8.946322067594433e306,"0111111111001011111000101110101111110001110111010100011010000011":3.916500994035785e307,"0111111111100001011111111111000111110011111000010110111111111101":9.831013916500995e307,"0111111111010001101100011100010111001010110110010001001011000000":4.970178926441351e307,"0111111111010010101110000111111111011011001110001001101110000101":5.25844930417495e307,"0111111111010111101000111100011010110110111100001101101110011101":6.640159045725646e307,"0111111111011000011000100000011011010100011100111101010010111000":6.848906560636182e307,"0111111111000101110011001010111000001100010101110011010111010010":3.0616302186878724e307,"0111111110101000101000010111000110001000111101001101001001101101":8.648111332007953e306,"0111111111001011111101010000101001101110100101000110101001101110":3.926441351888668e307,"0111111101110010000111100111110010110111001000111110101000111110":7.952286282306163e305,"0111111111100000111100111000010110101101010101100001100110100101":9.52286282306163e307,"0111111110100100000110011101001001011011001010111101011111011101":7.05765407554672e306,"0111111111010111111011000100000010101001110011010110101101000110":6.719681908548708e307,"0111111110111000110001011010111010000010011000110001101001000001":1.7395626242544732e307,"0111111110110010100010110011001110100011011011101100000110111100":1.3021868787276343e307,"0111111110011110100100110111001001110101000011001001101101001001":5.36779324055666e306,"0111111110101110110110111110110001100111111010010010101011110001":1.0834990059642146e307,"0111111111001111111010111011010110110110101001000100010110101100":4.4831013916501e307,"0111111111001111011111101111111011001010010110010110111000101110":4.4234592445328033e307,"0111111110111111001001000110011001011010110001011011101010011011":2.186878727634195e307,"0111111111001011100110100111000111111111000000001011011011011011":3.8767395626242547e307,"0111111111011011100100010110001011000000101001010010010011100101":7.743538767395626e307,"0111111111100000010111100000101000101000011011110011000101011001":9.194831013916502e307,"0111111110100100101010101100011001000000111001001111011100101110":7.256461232604373e306,"0111111111010111001011100000000010001100010010100111001000101011":6.510934393638172e307,"0111111110011001011110101101111101100001100010101000000101100111":4.4731610337972166e306,"0111111111011010111001010100000100011111110110010100111110110101":7.554671968190856e307,"0111111110110111010110110100110011000100000101000100101111110100":1.6401590457256461e307,"0111111111000011100110101111110011110010001010011101110001110101":2.753479125248509e307,"0111111110111010000010111101001101000111010000111010000010111001":1.8290258449304175e307,"0111111110110101110011001010111000001100010101110011010111010010":1.5308151093439362e307,"0111111111010100011010110101101110001100011000111111100101111011":5.73558648111332e307,"0111111111010110111101111010010100010110001001010000011001101100":6.451292246520875e307,"0111111110110001010001010000111011011110100011100011101101000011":1.2127236580516898e307,"0111111111011100110001010110100100001000110011101000011101110100":8.081510934393639e307,"0111111110100110010111011010000111110010000100000101010100100101":7.852882703777337e306,"0111111111011100111010011010011000000010001111001100111101001000":8.121272365805169e307,"0111111111010100110110000001001001111000101011101101000011111000":5.854870775347912e307,"0111111111011010000000101100010000001000111010000000111011000100":7.306163021868787e307,"0111111111100001101110101101010100001001001101001010010010110110":9.96023856858847e307,"0111111111100000011001110001100101100110110010101100001101001110":9.214711729622267e307,"0111111111011010001110010001111101111111000011010111101010000011":7.365805168986084e307,"0111111111000111101101011110010100110011101001111111111110000111":3.3300198807157057e307,"0111111111010001100001000111100110010011000011110011100011110111":4.920477137176938e307,"0111111111010001011000000011110010011001101000001111000100100010":4.880715705765407e307,"0111111111011110100010100110001100110110101100010000100101010100":8.578528827037774e307,"0111111110110010111101111110101010001111101110011001100100111010":1.3320079522862826e307,"0111111111010010111001011100110000010011000000100111010101001111":5.308151093439364e307,"0111111111000111011111111000100110111101100000101001001111001001":3.300198807157058e307,"0111111111001111101000110011101111000011110001111011011000000010":4.4433399602385684e307,"0111111111011000111100101111101010111010001011001111010000001010":7.007952286282306e307,"0111111111000101100101100101001010010110001100011100101000010100":3.0318091451292247e307,"0111111111010110110111000111011101011011000100100101000010001100":6.421471172962226e307,"0111111110101010010101000100110100111010001000000011000001100010":9.244532803180914e306,"0111111110110100011000100100110001001110000010000110011110000110":1.4314115308151094e307,"0111111111001110000101001001110100001100000010101001111111100001":4.224652087475149e307,"0111111110100110101001100001101111100100111011001110010011001110":7.952286282306164e306,"0111111111100001101111110101110010101000011000100110110110110001":9.970178926441353e307,"0111111111001101000101101111001000111010000001101010100100010010":4.0854870775347915e307,"0111111111011111000100100100011111011110000011101001011010110000":8.727634194831014e307,"0111111111010110100000011101111011101011011111101001110011111001":6.3220675944334e307,"0111111111011110111101110001101000100010111110111110000011010001":8.697813121272366e307,"0111111111100001010011100001111000011100111010011100110100111000":9.721669980119284e307,"0111111111010100011000100100110001001110000010000110011110000110":5.725646123260438e307,"0111111111000101000101110111110100101101001011111100111010101100":2.9622266401590456e307,"0111111111011100010011111010001011011110001010000001111000000001":7.952286282306163e307,"0111111111011111011011001110000001001101101000100100101001000100":8.827037773359841e307,"0111111111010000010110011000001010001001010000010110100001011110":4.592445328031809e307,"0111111111000000111111001001010011101011101100011010101110011010":2.385685884691849e307,"0111111111001100111100101011010101000000100110000110000100111110":4.0656063618290263e307,"0111111111010010110010101001111001010111111011111011111101101111":5.278330019880715e307,"0111111111010011011011011011000010111010011000000000001010101100":5.457256461232605e307,"0111111111010010010111011110011101101011101001001110011111110010":5.159045725646123e307,"0111111110001101011100011000101010101001100110100101110010100101":2.584493041749503e306,"0111111111000100110011110000001100111010010100110011111100000100":2.9224652087475153e307,"0111111111010101110011001010111000001100010101110011010111010010":6.123260437375745e307,"0111111111001101100101011100011110100011000010001010010001111001":4.15506958250497e307,"0111111110111100010011111010001011011110001010000001111000000001":1.9880715705765408e307,"0111111111011110001110001101101000000101011110001110011110110110":8.48906560636183e307,"0111111110001000111010011110101101111011110100010110001000010101":2.1868787276341947e306,"0111111111010001001110111111111110100000001100101010100101001110":4.840954274353877e307,"0111111110110001011010010100101111010111111111001000001100011000":1.2226640159045727e307,"0111111111010110100100111111110101101000001101011100000011100011":6.341948310139165e307,"0111111110101011101111101010111011111000011011101111111010101111":9.74155069582505e306,"0111111111100000001110011100110100101111000000001110100110000100":9.11530815109344e307,"0111111111001100001010110110010111100100101110011101011000101101":3.9562624254473164e307,"0111111111010000001000110010011100010011000110111111110010011111":4.532803180914513e307,"0111111111010000101111010010101000110111001100001010110111100111":4.70178926441352e307,"0111111110010010000111100111110010110111001000111110101000111110":3.180914512922465e306,"0111111111010010001001111000101111110101011111110111110000110011":5.099403578528827e307,"0111111111100001100001000111100110010011000011110011100011110111":9.840954274353877e307,"0111111111011111110100001000011111111011100100011000111111001100":8.936381709741551e307,"0111111111010011100100011110110110110011110011100100101010000000":5.497017892644135e307,"0111111111011001110111101000011100001111011110011100011011101111":7.266401590457256e307,"0111111111011101010001000011111001110001110100001000001011011011":8.220675944333996e307,"0111111111100000000110100001011111010100110000000110101010101010":9.04572564612326e307,"0111111111011010010101000100110100111010001000000011000001100010":7.395626242544731e307,"0111111110111100001010110110010111100100101110011101011000101101":1.9781312127236582e307,"0111111111000001011010010100101111010111111111001000001100011000":2.4453280318091453e307,"0111111110010111110010000000001110110000010111110010001101110001":4.1749502982107353e306,"0111111111011110000101001001110100001100000010101001111111100001":8.449304174950298e307,"0111111111011000011111010011010010001111100001101000101010011000":6.878727634194831e307,"0111111111010111110010000000001110110000010111110010001101110001":6.679920477137177e307,"0111111111011110000111011010110001001010011001100011000111010110":8.459244532803181e307,"0111111111100000101001101000010000011011010010111100000100000010":9.353876739562625e307,"0111111110110100000110011101001001011011001010111101011111011101":1.411530815109344e307,"0111111111010111000110111110001000001111100100110100111001000000":6.491053677932405e307,"0111111110110000011010111010000100000101111110001000110001001000":1.1530815109343936e307,"0111111110110001110101100000001011000100010001110101101010010110":1.252485089463221e307,"0111111111011000001111011100100111011011000001011000110011100100":6.809145129224652e307,"0111111110000101100001000011010000011001011110101010011000101010":1.8886679920477138e306,"0111111110111001100111110001110001011010111110001100100100111100":1.7992047713717695e307,"0111111111011010001100000001000001000000101100011110100010001101":7.3558648111332e307,"0111111110000000111111001001010011101011101100011010101110011010":1.4910536779324055e306,"0111111110111111011011001110000001001101101000100100101001000100":2.2067594433399603e307,"0111111111100001001110111111111110100000001100101010100101001110":9.681908548707753e307,"0111111111001110111011100000101011100100101000000100111011011100":4.3439363817097416e307,"0111111111010011101011010001101101101110111000010000000001100000":5.526838966202784e307,"0111111110111110101101111010111101101110011110101110001100011101":2.1570576540755467e307,"0111111111011100011100111101111111010111100101100110010111010101":7.992047713717693e307,"0111111111001010100111001100011100101100111111001100000000001011":3.7375745526838966e307,"0111111111010011100010001101111001110101011100101011100010001010":5.487077534791252e307,"0111111110101000111010011110101101111011110100010110001000010101":8.747514910536779e306,"0111111110110100001111100000111101010100100110100001111110110010":1.4214711729622268e307,"0111111111011111011000111101000100001111010001101011100001001110":8.817097415506958e307,"0111111111011010010111010101110001111000011110111100001001011000":7.405566600397615e307,"0111111111011100000110010100011101101000000000101011001001000010":7.892644135188867e307,"0111111110111011010100011111100000001100001001000010011100110001":1.9184890656063617e307,"0111111111000100100001101000100101000111011101101010111101011010":2.882703777335984e307,"0111111110100001100011011000100011010001011010101100101011101100":6.163021868787276e306,"0111111111001011001111111101100110001111011011010000001101001000":3.8270377733598413e307,"0111111111100000000100010000100010010110011001001101100010110101":9.025844930417495e307,"0111111111011001010001001000001111101011011001010001010110101000":7.09741550695825e307,"0111111110111111000000000010100101100001010101110111001011000110":2.176938369781312e307,"0111111111011000100011110101001100001100001111011010111010000010":6.898608349900596e307,"0111111111011110111011100000101011100100101000000100111011011100":8.687872763419483e307,"0111111111010010100111010101001000100000001001011110010110100101":5.228628230616301e307,"0111111111011001110101010111011111010001000111100011010011111010":7.256461232604373e307,"0111111110110011101011010001101101101110111000010000000001100000":1.381709741550696e307,"0111111110111000111010011110101101111011110100010110001000010101":1.7495029821073558e307,"0111111111011010101101111111010011101000000011110111010111101011":7.504970178926442e307,"0111111111100000110110000101011111110010010000110110001111000110":9.463220675944335e307,"0111111111010100011111010111101000001001000110110001110101100101":5.755467196819085e307,"0111111111010001001010011110000100100011011110111000010101100100":4.821073558648112e307,"0111111110111110001001101011101110001000110000011100001111001011":2.1172962226640158e307,"0111111111000001111110100011111110111101101101011010001001101010":2.524850894632207e307,"0111111111010011111101011001010101100001101111011001000000001000":5.606361829025845e307,"0111111111010111010110110100110011000100000101000100101111110100":6.560636182902585e307,"0111111111100000010000101101110001101101010111000111101101111001":9.135188866799204e307,"0111111111000100111000010010000110110111000010100110001011101101":2.9324055666003974e307,"0111111111010000101101000001101011111000110101010001101111110010":4.691848906560637e307}
-},{}],151:[function(require,module,exports){
+
+},{}],157:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -9019,7 +9348,7 @@ tape( 'the function creates double-precision floating-point numbers from literal
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/number/float64/base/from-binary-string/test/test.js")
-},{"./../lib":144,"./fixtures/julia/bits_-1e3_1e3.json":147,"./fixtures/julia/bits_1e-200_1e-308.json":148,"./fixtures/julia/bits_1e-310_5e-324.json":149,"./fixtures/julia/bits_1e200_1e308.json":150,"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-nan":111,"@stdlib/math/base/assert/is-negative-zero":113,"@stdlib/number/float64/base/to-binary-string":168,"@stdlib/utils/keys":225,"tape":351}],152:[function(require,module,exports){
+},{"./../lib":150,"./fixtures/julia/bits_-1e3_1e3.json":153,"./fixtures/julia/bits_1e-200_1e-308.json":154,"./fixtures/julia/bits_1e-310_5e-324.json":155,"./fixtures/julia/bits_1e200_1e308.json":156,"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-nan":117,"@stdlib/math/base/assert/is-negative-zero":119,"@stdlib/number/float64/base/to-binary-string":174,"@stdlib/utils/keys":241,"tape":385}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9072,14 +9401,14 @@ tape( 'the function creates double-precision floating-point numbers from literal
 
 // MODULES //
 
-var fromWords = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWords;
+module.exports = main;
 
-},{"./main.js":154}],153:[function(require,module,exports){
+},{"./main.js":160}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9128,7 +9457,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":59}],154:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":59}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9199,9 +9528,7 @@ var LOW = indices.LOW;
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
 *
-*
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
 *
 * ## References
 *
@@ -9252,7 +9579,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":153,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],155:[function(require,module,exports){
+},{"./indices.js":159,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9292,7 +9619,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":59}],156:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":59}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9327,14 +9654,14 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getHighWord;
+module.exports = main;
 
-},{"./main.js":157}],157:[function(require,module,exports){
+},{"./main.js":163}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9404,7 +9731,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9428,155 +9754,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":155,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],158:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @module @stdlib/number/float64/base/normalize
-*
-* @example
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*/
-
-// MODULES //
-
-var normalize = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./main.js":159}],159:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './normalize.js' );
-
-
-// MAIN //
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
-* // returns [ 0.0, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
-* // returns [ Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
-* // returns [ -Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], NaN );
-* // returns [ NaN, 0 ]
-*/
-function normalize( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0.0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./normalize.js":160}],160:[function(require,module,exports){
+},{"./high.js":161,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9614,17 +9792,18 @@ var SCALAR = 4503599627370496;
 // MAIN //
 
 /**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\) and assigns results to a provided output array.
 *
-* @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
+* var out = normalize( 3.14e-319, [ 0.0, 0 ], 1, 0 );
 * // returns [ 1.4141234400356668e-303, -52 ]
 *
 * var y = out[ 0 ];
@@ -9634,34 +9813,38 @@ var SCALAR = 4503599627370496;
 * // returns true
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
+* var out = normalize( 0.0, [ 0.0, 0 ], 1, 0 );
 * // returns [ 0.0, 0 ];
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ -Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], NaN );
+* var out = normalize( NaN, [ 0.0, 0 ], 1, 0 );
 * // returns [ NaN, 0 ]
 */
-function normalize( out, x ) {
+function normalize( x, out, stride, offset ) {
 	if ( isnan( x ) || isInfinite( x ) ) {
-		out[ 0 ] = x;
-		out[ 1 ] = 0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0;
 		return out;
 	}
 	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		out[ 0 ] = x * SCALAR;
-		out[ 1 ] = -52;
+		out[ offset ] = x * SCALAR;
+		out[ offset + stride ] = -52;
 		return out;
 	}
-	out[ 0 ] = x;
-	out[ 1 ] = 0;
+	out[ offset ] = x;
+	out[ offset + stride ] = 0;
 	return out;
 }
 
@@ -9670,9 +9853,152 @@ function normalize( out, x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/constants/float64/smallest-normal":101,"@stdlib/math/base/assert/is-infinite":107,"@stdlib/math/base/assert/is-nan":111,"@stdlib/math/base/special/abs":117}],161:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":59,"dup":155}],162:[function(require,module,exports){
+},{"@stdlib/constants/float64/smallest-normal":107,"@stdlib/math/base/assert/is-infinite":113,"@stdlib/math/base/assert/is-nan":117,"@stdlib/math/base/special/abs":123}],165:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @module @stdlib/number/float64/base/normalize
+*
+* @example
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0, exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize.assign( 3.14e-319, out, 1, 0 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":164,"./main.js":166,"@stdlib/utils/define-nonenumerable-read-only-property":218}],166:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @param {number} x - input value
+* @returns {NumberArray} output array
+*
+* @example
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var out = normalize( 0.0 );
+* // returns [ 0.0, 0 ]
+*
+* @example
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF );
+* // returns [ Infinity, 0 ]
+*
+* @example
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF );
+* // returns [ -Infinity, 0 ]
+*
+* @example
+* var out = normalize( NaN );
+* // returns [ NaN, 0 ]
+*/
+function normalize( x ) {
+	return fcn( x, [ 0.0, 0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = normalize;
+
+},{"./assign.js":164}],167:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":59,"dup":161}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9707,26 +10033,26 @@ arguments[4][155][0].apply(exports,arguments)
 * // returns 1.18350528745e-313
 *
 * @example
+* var PINF = require( '@stdlib/constants/float64/pinf' ); // => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 * var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
-* var PINF = require( '@stdlib/constants/float64/pinf' ); //  => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 *
 * var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
 *
 * // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
+* var y = setHighWord( PINF, high ); // => 0 01111111111 0000000000000000000000000000000000000000000000000000
 * // returns 1.0
 */
 
 // MODULES //
 
-var setHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setHighWord;
+module.exports = main;
 
-},{"./main.js":163}],163:[function(require,module,exports){
+},{"./main.js":169}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9796,7 +10122,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9810,7 +10135,7 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 * @example
 * var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
 *
-* var y = setHighWord( 3.14e201, high ); //  => 0 00000000000 0000000000000000010110010011110010110101100010000010
+* var y = setHighWord( 3.14e201, high ); // => 0 00000000000 0000000000000000010110010011110010110101100010000010
 * // returns 1.18350528745e-313
 *
 * @example
@@ -9833,7 +10158,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":161,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],164:[function(require,module,exports){
+},{"./high.js":167,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9888,14 +10213,14 @@ module.exports = setHighWord;
 
 // MODULES //
 
-var setLowWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setLowWord;
+module.exports = main;
 
-},{"./main.js":166}],165:[function(require,module,exports){
+},{"./main.js":172}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9935,7 +10260,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":59}],166:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":59}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10005,7 +10330,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -10050,7 +10374,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":165,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],167:[function(require,module,exports){
+},{"./low.js":171,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10123,7 +10447,7 @@ function div2( x ) {
 
 module.exports = div2;
 
-},{"@stdlib/math/base/special/floor":123}],168:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":129}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10185,14 +10509,14 @@ module.exports = div2;
 
 // MODULES //
 
-var toBinaryString = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = toBinaryString;
+module.exports = main;
 
-},{"./main.js":169}],169:[function(require,module,exports){
+},{"./main.js":175}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10377,7 +10701,7 @@ function toBinaryString( x ) {
 
 module.exports = toBinaryString;
 
-},{"./div2.js":167,"./mult2.js":170,"@stdlib/constants/float64/exponent-bias":92,"@stdlib/constants/float64/ninf":99,"@stdlib/constants/float64/pinf":100,"@stdlib/math/base/assert/is-nan":111,"@stdlib/math/base/assert/is-negative-zero":113,"@stdlib/math/base/special/abs":117,"@stdlib/math/base/special/floor":123,"@stdlib/string/left-pad":193,"@stdlib/string/repeat":195,"@stdlib/string/right-pad":197}],170:[function(require,module,exports){
+},{"./div2.js":173,"./mult2.js":176,"@stdlib/constants/float64/exponent-bias":94,"@stdlib/constants/float64/ninf":104,"@stdlib/constants/float64/pinf":106,"@stdlib/math/base/assert/is-nan":117,"@stdlib/math/base/assert/is-negative-zero":119,"@stdlib/math/base/special/abs":123,"@stdlib/math/base/special/floor":129,"@stdlib/string/left-pad":208,"@stdlib/string/repeat":210,"@stdlib/string/right-pad":212}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10459,125 +10783,7 @@ function mult2( x ) {
 
 module.exports = mult2;
 
-},{}],171:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/number/float64/base/to-words
-*
-* @example
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-
-// MODULES //
-
-var toWords = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./main.js":173}],172:[function(require,module,exports){
-arguments[4][153][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":59,"dup":153}],173:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './to_words.js' );
-
-
-// MAIN //
-
-/**
-* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-function toWords( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":174}],174:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10650,34 +10856,34 @@ var LOW = indices.LOW;
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
 *
 * [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
-*
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var Uint32Array = require( '@stdlib/array/uint32' );
 *
 * var out = new Uint32Array( 2 );
 *
-* var w = toWords( out, 3.14e201 );
+* var w = toWords( 3.14e201, out, 1, 0 );
 * // returns <Uint32Array>[ 1774486211, 2479577218 ]
 *
 * var bool = ( w === out );
 * // returns true
 */
-function toWords( out, x ) {
+function toWords( x, out, stride, offset ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	out[ 0 ] = UINT32_VIEW[ HIGH ];
-	out[ 1 ] = UINT32_VIEW[ LOW ];
+	out[ offset ] = UINT32_VIEW[ HIGH ];
+	out[ offset + stride ] = UINT32_VIEW[ LOW ];
 	return out;
 }
 
@@ -10686,7 +10892,117 @@ function toWords( out, x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":172,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],175:[function(require,module,exports){
+},{"./indices.js":179,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/to-words
+*
+* @example
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords.assign( 3.14e201, out, 1, 0 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":177,"./main.js":180,"@stdlib/utils/define-nonenumerable-read-only-property":218}],179:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":59,"dup":159}],180:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*/
+function toWords( x ) {
+	return fcn( x, [ 0>>>0, 0>>>0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./assign.js":177}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10732,7 +11048,7 @@ var uint32ToInt32 = require( './main.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./main.js":176}],176:[function(require,module,exports){
+},{"./main.js":182}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10781,7 +11097,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],177:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10831,20 +11147,20 @@ module.exports = uint32ToInt32;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":178,"./regexp.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":201}],178:[function(require,module,exports){
+},{"./main.js":184,"./regexp.js":185,"@stdlib/utils/define-nonenumerable-read-only-property":218}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10900,7 +11216,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],179:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10962,7 +11278,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":178}],180:[function(require,module,exports){
+},{"./main.js":184}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11048,7 +11364,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -11075,7 +11391,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":183}],181:[function(require,module,exports){
+},{"./is_number.js":189}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11192,7 +11508,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":183,"./zero_pad.js":187}],182:[function(require,module,exports){
+},{"./is_number.js":189,"./zero_pad.js":193}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11228,14 +11544,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":185}],183:[function(require,module,exports){
+},{"./main.js":191}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11283,7 +11599,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],184:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11327,7 +11643,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],185:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11360,11 +11676,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -11495,6 +11829,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -11503,9 +11838,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -11544,7 +11877,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":180,"./format_integer.js":181,"./is_string.js":184,"./space_pad.js":186,"./zero_pad.js":187}],186:[function(require,module,exports){
+},{"./format_double.js":186,"./format_integer.js":187,"./is_string.js":190,"./space_pad.js":192,"./zero_pad.js":193}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11611,7 +11944,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],187:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11697,7 +12030,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],188:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11733,14 +12066,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":189}],189:[function(require,module,exports){
+},{"./main.js":195}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11832,7 +12165,515 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],190:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Left pad a string such that the padded string has a length of at least `len`.
+*
+* @module @stdlib/string/base/left-pad
+*
+* @example
+* var lpad = require( '@stdlib/string/base/left-pad' );
+*
+* var str = lpad( 'a', 5, ' ' );
+* // returns '    a'
+*
+* str = lpad( 'beep', 10, 'b' );
+* // returns 'bbbbbbbeep'
+*
+* str = lpad( 'boop', 12, 'beep' );
+* // returns 'beepbeepboop'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":197}],197:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var repeat = require( '@stdlib/string/base/repeat' );
+var ceil = require( '@stdlib/math/base/special/ceil' );
+
+
+// MAIN //
+
+/**
+* Left pads a string such that the padded string has a length of at least `len`.
+*
+* @param {string} str - string to pad
+* @param {NonNegativeInteger} len - minimum string length
+* @param {string} pad - string used to pad
+* @returns {string} padded string
+*
+* @example
+* var str = lpad( 'a', 5, ' ' );
+* // returns '    a'
+*
+* @example
+* var str = lpad( 'beep', 10, 'b' );
+* // returns 'bbbbbbbeep'
+*
+* @example
+* var str = lpad( 'boop', 12, 'beep' );
+* // returns 'beepbeepboop'
+*/
+function lpad( str, len, pad ) {
+	var n = ( len - str.length ) / pad.length;
+	if ( n <= 0 ) {
+		return str;
+	}
+	n = ceil( n );
+	return repeat( pad, n ) + str;
+}
+
+
+// EXPORTS //
+
+module.exports = lpad;
+
+},{"@stdlib/math/base/special/ceil":125,"@stdlib/string/base/repeat":200}],198:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var repeat = String.prototype.repeat;
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],199:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.repeat !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],200:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Repeat a string a specified number of times and return the concatenated result.
+*
+* @module @stdlib/string/base/repeat
+*
+* @example
+* var replace = require( '@stdlib/string/base/repeat' );
+*
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* str = repeat( '', 100 );
+* // returns ''
+*
+* str = repeat( 'beep', 0 );
+* // returns ''
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var repeat;
+if ( HAS_BUILTIN ) {
+	repeat = main;
+} else {
+	repeat = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./has_builtin.js":199,"./main.js":201,"./polyfill.js":202}],201:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	return builtin.call( str, n );
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./builtin.js":198}],202:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* ## Method
+*
+* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
+*
+* For example,
+*
+* ```text
+* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
+* ```
+*
+* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
+*
+* The implementation is then as follows:
+*
+* 1.  Let `s` be the string to be repeated and `o` be an output string.
+*
+* 2.  Initialize an output string `o`.
+*
+* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
+*
+*     -   if the bit is a one, add
+*     -   otherwise, move on
+*
+* 4.  Double the string `s` by adding `s` to `s`.
+*
+* 5.  Right-shift the bits of `n`.
+*
+* 6.  Check if we have shifted off all bits.
+*
+*     -   if yes, done.
+*     -   otherwise, move on
+*
+* 7.  Repeat 3-6.
+*
+* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
+*
+* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
+*
+* @private
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	var rpt;
+	var cnt;
+	if ( str.length === 0 || n === 0 ) {
+		return '';
+	}
+	rpt = '';
+	cnt = n;
+	for ( ; ; ) {
+		// If the count is odd, append the current concatenated string:
+		if ( (cnt&1) === 1 ) {
+			rpt += str;
+		}
+		// Right-shift the bits:
+		cnt >>>= 1;
+		if ( cnt === 0 ) {
+			break;
+		}
+		// Double the string:
+		str += str;
+	}
+	return rpt;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],203:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Right pad a string such that the padded string has a length of at least `len`.
+*
+* @module @stdlib/string/base/right-pad
+*
+* @example
+* var rpad = require( '@stdlib/string/base/right-pad' );
+*
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":204}],204:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var repeat = require( '@stdlib/string/base/repeat' );
+var ceil = require( '@stdlib/math/base/special/ceil' );
+
+
+// MAIN //
+
+/**
+* Right pads a string such that the padded string has a length of at least `len`.
+*
+* @param {string} str - string to pad
+* @param {NonNegativeInteger} len - minimum string length
+* @param {string} pad - string used to pad
+* @returns {string} padded string
+*
+* @example
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* @example
+* var str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* @example
+* var str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+function rpad( str, len, pad ) {
+	var n = ( len - str.length ) / pad.length;
+	if ( n <= 0 ) {
+		return str;
+	}
+	n = ceil( n );
+	return str + repeat( pad, n );
+}
+
+
+// EXPORTS //
+
+module.exports = rpad;
+
+},{"@stdlib/math/base/special/ceil":125,"@stdlib/string/base/repeat":200}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11870,16 +12711,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":192}],191:[function(require,module,exports){
-arguments[4][184][0].apply(exports,arguments)
-},{"dup":184}],192:[function(require,module,exports){
+},{"./main.js":207}],206:[function(require,module,exports){
+arguments[4][190][0].apply(exports,arguments)
+},{"dup":190}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11927,18 +12768,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -11948,7 +12786,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":191,"@stdlib/string/base/format-interpolate":182,"@stdlib/string/base/format-tokenize":188}],193:[function(require,module,exports){
+},{"./is_string.js":206,"@stdlib/string/base/format-interpolate":188,"@stdlib/string/base/format-tokenize":194}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11989,14 +12827,14 @@ module.exports = format;
 
 // MODULES //
 
-var lpad = require( './left_pad.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = lpad;
+module.exports = main;
 
-},{"./left_pad.js":194}],194:[function(require,module,exports){
+},{"./main.js":209}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12021,10 +12859,9 @@ module.exports = lpad;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
 var format = require( '@stdlib/string/format' );
 var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
+var base = require( '@stdlib/string/base/left-pad' );
 
 
 // MAIN //
@@ -12054,7 +12891,6 @@ var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-inte
 * // returns 'beepbeepboop'
 */
 function lpad( str, len, pad ) {
-	var n;
 	var p;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
@@ -12076,12 +12912,7 @@ function lpad( str, len, pad ) {
 	if ( len > FLOAT64_MAX_SAFE_INTEGER ) {
 		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', len ) );
 	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return repeat( p, n ) + str;
+	return base( str, len, p );
 }
 
 
@@ -12089,7 +12920,7 @@ function lpad( str, len, pad ) {
 
 module.exports = lpad;
 
-},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/constants/float64/max-safe-integer":97,"@stdlib/math/base/special/ceil":119,"@stdlib/string/format":190,"@stdlib/string/repeat":195}],195:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/constants/float64/max-safe-integer":102,"@stdlib/string/base/left-pad":196,"@stdlib/string/format":205}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12130,14 +12961,14 @@ module.exports = lpad;
 
 // MODULES //
 
-var repeat = require( './repeat.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = repeat;
+module.exports = main;
 
-},{"./repeat.js":196}],196:[function(require,module,exports){
+},{"./main.js":211}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12162,53 +12993,14 @@ module.exports = repeat;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/repeat' );
 
 
 // MAIN //
 
 /**
 * Repeats a string a specified number of times and returns the concatenated result.
-*
-* ## Method
-*
-* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
-*
-* For example,
-*
-* ```text
-* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
-* ```
-*
-* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
-*
-* The implementation is then as follows:
-*
-* 1.  Let `s` be the string to be repeated and `o` be an output string.
-*
-* 2.  Initialize an output string `o`.
-*
-* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
-*
-*     -   if the bit is a one, add
-*     -   otherwise, move on
-*
-* 4.  Double the string `s` by adding `s` to `s`.
-*
-* 5.  Right-shift the bits of `n`.
-*
-* 6.  Check if we have shifted off all bits.
-*
-*     -   if yes, done.
-*     -   otherwise, move on
-*
-* 7.  Repeat 3-6.
-*
-* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
-*
-* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
-*
 *
 * @param {string} str - string to repeat
 * @param {NonNegativeInteger} n - number of times to repeat the string
@@ -12230,37 +13022,13 @@ var format = require( '@stdlib/string/format' );
 * // returns ''
 */
 function repeat( str, n ) {
-	var rpt;
-	var cnt;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
 	if ( !isNonNegativeInteger( n ) ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', n ) );
 	}
-	if ( str.length === 0 || n === 0 ) {
-		return '';
-	}
-	// Check that output string will not exceed the maximum string length:
-	if ( str.length * n > FLOAT64_MAX_SAFE_INTEGER ) {
-		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', str.length * n ) );
-	}
-	rpt = '';
-	cnt = n;
-	for ( ; ; ) {
-		// If the count is odd, append the current concatenated string:
-		if ( (cnt&1) === 1 ) {
-			rpt += str;
-		}
-		// Right-shift the bits:
-		cnt >>>= 1;
-		if ( cnt === 0 ) {
-			break;
-		}
-		// Double the string:
-		str += str;
-	}
-	return rpt;
+	return base( str, n );
 }
 
 
@@ -12268,7 +13036,7 @@ function repeat( str, n ) {
 
 module.exports = repeat;
 
-},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/constants/float64/max-safe-integer":97,"@stdlib/string/format":190}],197:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/string/base/repeat":200,"@stdlib/string/format":205}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12309,14 +13077,14 @@ module.exports = repeat;
 
 // MODULES //
 
-var rpad = require( './right_pad.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rpad;
+module.exports = main;
 
-},{"./right_pad.js":198}],198:[function(require,module,exports){
+},{"./main.js":213}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12341,10 +13109,9 @@ module.exports = rpad;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
 var format = require( '@stdlib/string/format' );
 var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
+var base = require( '@stdlib/string/base/right-pad' );
 
 
 // MAIN //
@@ -12374,7 +13141,6 @@ var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-inte
 * // returns 'beepboopboop'
 */
 function rpad( str, len, pad ) {
-	var n;
 	var p;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
@@ -12396,12 +13162,7 @@ function rpad( str, len, pad ) {
 	if ( len > FLOAT64_MAX_SAFE_INTEGER ) {
 		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', len ) );
 	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return str + repeat( p, n );
+	return base( str, len, p );
 }
 
 
@@ -12409,7 +13170,79 @@ function rpad( str, len, pad ) {
 
 module.exports = rpad;
 
-},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/constants/float64/max-safe-integer":97,"@stdlib/math/base/special/ceil":119,"@stdlib/string/format":190,"@stdlib/string/repeat":195}],199:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":65,"@stdlib/assert/is-string":77,"@stdlib/constants/float64/max-safe-integer":102,"@stdlib/string/base/right-pad":203,"@stdlib/string/format":205}],214:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":215}],215:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12450,14 +13283,14 @@ module.exports = rpad;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":200}],200:[function(require,module,exports){
+},{"./main.js":217}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12539,7 +13372,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":43,"@stdlib/regexp/function-name":177,"@stdlib/utils/native-class":232}],201:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":43,"@stdlib/regexp/function-name":183,"@stdlib/utils/native-class":248}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12581,14 +13414,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":202}],202:[function(require,module,exports){
+},{"./main.js":219}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12648,7 +13481,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":206}],203:[function(require,module,exports){
+},{"@stdlib/utils/define-property":223}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12711,7 +13544,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],204:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12741,7 +13574,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],205:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12794,7 +13627,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":204}],206:[function(require,module,exports){
+},{"./define_property.js":221}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12854,7 +13687,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":203,"./has_define_property_support.js":205,"./polyfill.js":207}],207:[function(require,module,exports){
+},{"./builtin.js":220,"./has_define_property_support.js":222,"./polyfill.js":224}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12978,7 +13811,88 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":190}],208:[function(require,module,exports){
+},{"@stdlib/string/format":205}],225:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":226,"./global_this.js":227,"./self.js":228,"./window.js":229,"@stdlib/assert/is-boolean":37,"@stdlib/string/format":205}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13008,7 +13922,7 @@ module.exports = defineProperty;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -13016,12 +13930,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],209:[function(require,module,exports){
-(function (global){(function (){
+},{}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13040,137 +13953,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],210:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":211}],211:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":208,"./global.js":209,"./self.js":212,"./window.js":213,"@stdlib/assert/is-boolean":37,"@stdlib/string/format":190}],212:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13200,7 +13990,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],213:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13230,7 +14020,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],214:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13298,14 +14088,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":215}],215:[function(require,module,exports){
+},{"./main.js":231}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13440,7 +14230,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":45,"@stdlib/assert/is-integer":53,"@stdlib/assert/is-nan":61,"@stdlib/assert/is-string":77,"@stdlib/string/format":190}],216:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":45,"@stdlib/assert/is-integer":53,"@stdlib/assert/is-nan":61,"@stdlib/assert/is-string":77,"@stdlib/string/format":205}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13492,7 +14282,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],217:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13554,7 +14344,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":216,"@stdlib/assert/is-arguments":32}],218:[function(require,module,exports){
+},{"./builtin.js":232,"@stdlib/assert/is-arguments":32}],234:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -13578,7 +14368,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],219:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13638,7 +14428,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":216}],220:[function(require,module,exports){
+},{"./builtin.js":232}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13716,7 +14506,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":218,"./is_constructor_prototype.js":226,"./window.js":231,"@stdlib/assert/has-own-property":16,"@stdlib/utils/index-of":214,"@stdlib/utils/type-of":243}],221:[function(require,module,exports){
+},{"./excluded_keys.json":234,"./is_constructor_prototype.js":242,"./window.js":247,"@stdlib/assert/has-own-property":16,"@stdlib/utils/index-of":230,"@stdlib/utils/type-of":259}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13746,7 +14536,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],222:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13783,7 +14573,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":48,"@stdlib/utils/noop":237}],223:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":48,"@stdlib/utils/noop":253}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13826,7 +14616,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":48}],224:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":48}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13856,7 +14646,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],225:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13896,14 +14686,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":228}],226:[function(require,module,exports){
+},{"./main.js":244}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13942,7 +14732,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],227:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13995,7 +14785,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":220,"./has_window.js":224,"./is_constructor_prototype.js":226}],228:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":236,"./has_window.js":240,"./is_constructor_prototype.js":242}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14060,7 +14850,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":216,"./builtin_wrapper.js":217,"./has_arguments_bug.js":219,"./has_builtin.js":221,"./polyfill.js":230}],229:[function(require,module,exports){
+},{"./builtin.js":232,"./builtin_wrapper.js":233,"./has_arguments_bug.js":235,"./has_builtin.js":237,"./polyfill.js":246}],245:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -14071,7 +14861,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],230:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14175,7 +14965,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":222,"./has_non_enumerable_properties_bug.js":223,"./is_constructor_prototype_wrapper.js":227,"./non_enumerable.json":229,"@stdlib/assert/has-own-property":16,"@stdlib/assert/is-arguments":32,"@stdlib/assert/is-object-like":75}],231:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":238,"./has_non_enumerable_properties_bug.js":239,"./is_constructor_prototype_wrapper.js":243,"./non_enumerable.json":245,"@stdlib/assert/has-own-property":16,"@stdlib/assert/is-arguments":32,"@stdlib/assert/is-object-like":75}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14205,7 +14995,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],232:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14250,25 +15040,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":233,"./polyfill.js":234,"@stdlib/assert/has-tostringtag-support":20}],233:[function(require,module,exports){
+},{"./main.js":249,"./polyfill.js":250,"@stdlib/assert/has-tostringtag-support":20}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14326,7 +15116,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":235}],234:[function(require,module,exports){
+},{"./tostring.js":251}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14409,7 +15199,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":235,"./tostringtag.js":236,"@stdlib/assert/has-own-property":16}],235:[function(require,module,exports){
+},{"./tostring.js":251,"./tostringtag.js":252,"@stdlib/assert/has-own-property":16}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14439,7 +15229,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],236:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14460,6 +15250,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -14469,7 +15264,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],237:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":214}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14504,14 +15299,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":238}],238:[function(require,module,exports){
+},{"./main.js":254}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14548,7 +15343,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],239:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14605,7 +15400,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":240,"./fixtures/re.js":241,"./fixtures/typedarray.js":242}],240:[function(require,module,exports){
+},{"./fixtures/nodelist.js":256,"./fixtures/re.js":257,"./fixtures/typedarray.js":258}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14641,7 +15436,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":210}],241:[function(require,module,exports){
+},{"@stdlib/utils/global":225}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14669,7 +15464,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],242:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14697,7 +15492,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],243:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14736,63 +15531,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":239,"./polyfill.js":244,"./typeof.js":245}],244:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":199}],245:[function(require,module,exports){
+},{"./check.js":255,"./main.js":260,"./polyfill.js":261}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14870,7 +15622,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":199}],246:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":216}],261:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":216}],262:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -15022,11 +15817,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],247:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 
-},{}],248:[function(require,module,exports){
-arguments[4][247][0].apply(exports,arguments)
-},{"dup":247}],249:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
+arguments[4][263][0].apply(exports,arguments)
+},{"dup":263}],265:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -16807,7 +17602,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":246,"buffer":249,"ieee754":337}],250:[function(require,module,exports){
+},{"base64-js":262,"buffer":265,"ieee754":368}],266:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17306,7 +18101,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],251:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -17839,7 +18634,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":343}],252:[function(require,module,exports){
+},{"_process":375}],268:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17970,7 +18765,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":250,"inherits":338,"readable-stream/lib/_stream_duplex.js":254,"readable-stream/lib/_stream_passthrough.js":255,"readable-stream/lib/_stream_readable.js":256,"readable-stream/lib/_stream_transform.js":257,"readable-stream/lib/_stream_writable.js":258,"readable-stream/lib/internal/streams/end-of-stream.js":262,"readable-stream/lib/internal/streams/pipeline.js":264}],253:[function(require,module,exports){
+},{"events":266,"inherits":369,"readable-stream/lib/_stream_duplex.js":270,"readable-stream/lib/_stream_passthrough.js":271,"readable-stream/lib/_stream_readable.js":272,"readable-stream/lib/_stream_transform.js":273,"readable-stream/lib/_stream_writable.js":274,"readable-stream/lib/internal/streams/end-of-stream.js":278,"readable-stream/lib/internal/streams/pipeline.js":280}],269:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -18099,7 +18894,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],254:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18241,7 +19036,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":256,"./_stream_writable":258,"_process":343,"inherits":338}],255:[function(require,module,exports){
+},{"./_stream_readable":272,"./_stream_writable":274,"_process":375,"inherits":369}],271:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18281,7 +19076,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":257,"inherits":338}],256:[function(require,module,exports){
+},{"./_stream_transform":273,"inherits":369}],272:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19408,7 +20203,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":253,"./_stream_duplex":254,"./internal/streams/async_iterator":259,"./internal/streams/buffer_list":260,"./internal/streams/destroy":261,"./internal/streams/from":263,"./internal/streams/state":265,"./internal/streams/stream":266,"_process":343,"buffer":249,"events":250,"inherits":338,"string_decoder/":350,"util":247}],257:[function(require,module,exports){
+},{"../errors":269,"./_stream_duplex":270,"./internal/streams/async_iterator":275,"./internal/streams/buffer_list":276,"./internal/streams/destroy":277,"./internal/streams/from":279,"./internal/streams/state":281,"./internal/streams/stream":282,"_process":375,"buffer":265,"events":266,"inherits":369,"string_decoder/":384,"util":263}],273:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19610,7 +20405,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":253,"./_stream_duplex":254,"inherits":338}],258:[function(require,module,exports){
+},{"../errors":269,"./_stream_duplex":270,"inherits":369}],274:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -20310,7 +21105,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":253,"./_stream_duplex":254,"./internal/streams/destroy":261,"./internal/streams/state":265,"./internal/streams/stream":266,"_process":343,"buffer":249,"inherits":338,"util-deprecate":359}],259:[function(require,module,exports){
+},{"../errors":269,"./_stream_duplex":270,"./internal/streams/destroy":277,"./internal/streams/state":281,"./internal/streams/stream":282,"_process":375,"buffer":265,"inherits":369,"util-deprecate":393}],275:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -20520,7 +21315,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":262,"_process":343}],260:[function(require,module,exports){
+},{"./end-of-stream":278,"_process":375}],276:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -20731,7 +21526,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":249,"util":247}],261:[function(require,module,exports){
+},{"buffer":265,"util":263}],277:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -20839,7 +21634,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":343}],262:[function(require,module,exports){
+},{"_process":375}],278:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -20944,12 +21739,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":253}],263:[function(require,module,exports){
+},{"../../../errors":269}],279:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],264:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -21047,7 +21842,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":253,"./end-of-stream":262}],265:[function(require,module,exports){
+},{"../../../errors":269,"./end-of-stream":278}],281:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -21075,10 +21870,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":253}],266:[function(require,module,exports){
+},{"../../../errors":269}],282:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":250}],267:[function(require,module,exports){
+},{"events":266}],283:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21095,43 +21890,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":268,"get-intrinsic":332}],268:[function(require,module,exports){
+},{"./":284,"get-intrinsic":359}],284:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -21144,7 +21927,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":331,"get-intrinsic":332}],269:[function(require,module,exports){
+},{"es-define-property":344,"es-errors/type":350,"function-bind":358,"get-intrinsic":359,"set-function-length":379}],285:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -21240,7 +22023,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":270,"./lib/keys.js":271}],270:[function(require,module,exports){
+},{"./lib/is_arguments.js":286,"./lib/keys.js":287}],286:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -21262,7 +22045,7 @@ function unsupported(object){
     false;
 };
 
-},{}],271:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -21273,7 +22056,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],272:[function(require,module,exports){
+},{}],288:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":344,"es-errors/syntax":349,"es-errors/type":350,"gopd":360}],289:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -21281,29 +22122,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -21322,14 +22163,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":333,"object-keys":341}],273:[function(require,module,exports){
+},{"define-data-property":288,"has-property-descriptors":361,"object-keys":373}],290:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],274:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -21368,13 +22209,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":304,"./ToPrimitive":306,"./Type":311}],275:[function(require,module,exports){
+},{"./ToNumber":322,"./ToPrimitive":324,"./Type":329}],292:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -21382,13 +22223,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -21400,7 +22240,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -21433,28 +22273,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":320,"../helpers/isNaN":322,"../helpers/isPrefixOf":323,"./ToNumber":304,"./ToPrimitive":306,"./Type":311,"get-intrinsic":332}],276:[function(require,module,exports){
+},{"../helpers/isFinite":337,"../helpers/isNaN":338,"../helpers/isPrefixOf":339,"./ToNumber":322,"./ToPrimitive":324,"es-errors/type":350,"get-intrinsic":359}],293:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":283,"es-errors/type":350}],294:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":332}],277:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":352}],295:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -21505,7 +22378,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":280,"./InLeapYear":284,"./MonthFromTime":294,"get-intrinsic":332}],278:[function(require,module,exports){
+},{"./DayWithinYear":298,"./InLeapYear":302,"./MonthFromTime":312,"es-errors/eval":345}],296:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -21518,7 +22391,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":327,"./floor":315}],279:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./floor":333}],297:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -21530,7 +22403,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":315}],280:[function(require,module,exports){
+},{"./floor":333}],298:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -21543,7 +22416,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":278,"./DayFromYear":279,"./YearFromTime":313}],281:[function(require,module,exports){
+},{"./Day":296,"./DayFromYear":297,"./YearFromTime":331}],299:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -21563,18 +22436,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":316}],282:[function(require,module,exports){
+},{"./modulo":334}],300:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -21583,7 +22453,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -21604,7 +22476,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":319,"./IsAccessorDescriptor":285,"./IsDataDescriptor":287,"./Type":311,"get-intrinsic":332}],283:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":341,"./IsAccessorDescriptor":303,"./IsDataDescriptor":305,"es-errors/type":350}],301:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -21620,12 +22492,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":327,"./floor":315,"./modulo":316}],284:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./floor":333,"./modulo":334}],302:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -21643,14 +22513,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":281,"./YearFromTime":313,"get-intrinsic":332}],285:[function(require,module,exports){
+},{"./DaysInYear":299,"./YearFromTime":331,"es-errors/eval":345}],303:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -21659,30 +22529,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":319,"./Type":311,"has":336}],286:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":341,"es-errors/type":350,"hasown":367}],304:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":339}],287:[function(require,module,exports){
+},{"is-callable":370}],305:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -21691,23 +22563,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":319,"./Type":311,"has":336}],288:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":341,"es-errors/type":350,"hasown":367}],306:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -21716,7 +22591,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -21725,28 +22602,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":319,"./IsAccessorDescriptor":285,"./IsDataDescriptor":287,"./Type":311}],289:[function(require,module,exports){
+},{"./IsAccessorDescriptor":303,"./IsDataDescriptor":305,"./IsPropertyDescriptor":307,"es-errors/type":350}],307:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":324,"./IsAccessorDescriptor":285,"./IsDataDescriptor":287,"./Type":311}],290:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":341}],308:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -21761,7 +22630,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":320,"../helpers/timeConstants":327}],291:[function(require,module,exports){
+},{"../helpers/isFinite":337,"../helpers/timeConstants":343}],309:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21796,7 +22665,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":320,"./DateFromTime":277,"./Day":278,"./MonthFromTime":294,"./ToInteger":303,"./YearFromTime":313,"./floor":315,"./modulo":316,"get-intrinsic":332}],292:[function(require,module,exports){
+},{"../helpers/isFinite":337,"./DateFromTime":295,"./Day":296,"./MonthFromTime":312,"./ToInteger":321,"./YearFromTime":331,"./floor":333,"./modulo":334,"get-intrinsic":359}],310:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -21821,7 +22690,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":320,"../helpers/timeConstants":327,"./ToInteger":303}],293:[function(require,module,exports){
+},{"../helpers/isFinite":337,"../helpers/timeConstants":343,"./ToInteger":321}],311:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -21837,7 +22706,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":327,"./floor":315,"./modulo":316}],294:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./floor":333,"./modulo":334}],312:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -21886,7 +22755,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":280,"./InLeapYear":284}],295:[function(require,module,exports){
+},{"./DayWithinYear":298,"./InLeapYear":302}],313:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -21901,7 +22770,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":322}],296:[function(require,module,exports){
+},{"../helpers/isNaN":338}],314:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -21917,7 +22786,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":327,"./floor":315,"./modulo":316}],297:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./floor":333,"./modulo":334}],315:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -21936,7 +22805,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":311}],298:[function(require,module,exports){
+},{"./Type":329}],316:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21959,7 +22828,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":320,"./ToNumber":304,"./abs":314,"get-intrinsic":332}],299:[function(require,module,exports){
+},{"../helpers/isFinite":337,"./ToNumber":322,"./abs":332,"get-intrinsic":359}],317:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -21972,7 +22841,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":327,"./DayFromYear":279}],300:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./DayFromYear":297}],318:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -21986,14 +22855,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":327,"./modulo":316}],301:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./modulo":334}],319:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],302:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22004,7 +22873,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":304}],303:[function(require,module,exports){
+},{"./ToNumber":322}],321:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -22024,10 +22893,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":320,"../helpers/isNaN":322,"../helpers/sign":326,"./ToNumber":304,"./abs":314,"./floor":315}],304:[function(require,module,exports){
+},{"../helpers/isFinite":337,"../helpers/isNaN":338,"../helpers/sign":342,"./ToNumber":322,"./abs":332,"./floor":333}],322:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -22037,46 +22914,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":306}],305:[function(require,module,exports){
+},{"./ToPrimitive":324,"call-bind/callBound":283,"safe-regex-test":378}],323:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":276,"get-intrinsic":332}],306:[function(require,module,exports){
+},{"es-object-atoms/ToObject":353}],324:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":328}],307:[function(require,module,exports){
+},{"es-to-primitive/es5":355}],325:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -22090,26 +22960,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -22117,13 +22987,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":286,"./ToBoolean":301,"./Type":311,"get-intrinsic":332,"has":336}],308:[function(require,module,exports){
+},{"./IsCallable":304,"./ToBoolean":319,"./Type":329,"es-errors/type":350,"hasown":367}],326:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22137,7 +23007,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":332}],309:[function(require,module,exports){
+},{"get-intrinsic":359}],327:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -22158,7 +23028,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":320,"../helpers/isNaN":322,"../helpers/sign":326,"./ToNumber":304,"./abs":314,"./floor":315,"./modulo":316}],310:[function(require,module,exports){
+},{"../helpers/isFinite":337,"../helpers/isNaN":338,"../helpers/sign":342,"./ToNumber":322,"./abs":332,"./floor":333,"./modulo":334}],328:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22169,7 +23039,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":304}],311:[function(require,module,exports){
+},{"./ToNumber":322}],329:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -22195,7 +23065,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],312:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -22207,7 +23077,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":278,"./modulo":316}],313:[function(require,module,exports){
+},{"./Day":296,"./modulo":334}],331:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22225,7 +23095,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":267,"get-intrinsic":332}],314:[function(require,module,exports){
+},{"call-bind/callBound":283,"get-intrinsic":359}],332:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22238,7 +23108,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":332}],315:[function(require,module,exports){
+},{"get-intrinsic":359}],333:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -22251,7 +23121,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],316:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -22262,7 +23132,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":325}],317:[function(require,module,exports){
+},{"../helpers/mod":340}],335:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -22275,7 +23145,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":327,"./modulo":316}],318:[function(require,module,exports){
+},{"../helpers/timeConstants":343,"./modulo":334}],336:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -22286,6 +23156,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -22328,90 +23199,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":274,"./5/AbstractRelationalComparison":275,"./5/CheckObjectCoercible":276,"./5/DateFromTime":277,"./5/Day":278,"./5/DayFromYear":279,"./5/DayWithinYear":280,"./5/DaysInYear":281,"./5/FromPropertyDescriptor":282,"./5/HourFromTime":283,"./5/InLeapYear":284,"./5/IsAccessorDescriptor":285,"./5/IsCallable":286,"./5/IsDataDescriptor":287,"./5/IsGenericDescriptor":288,"./5/IsPropertyDescriptor":289,"./5/MakeDate":290,"./5/MakeDay":291,"./5/MakeTime":292,"./5/MinFromTime":293,"./5/MonthFromTime":294,"./5/SameValue":295,"./5/SecFromTime":296,"./5/StrictEqualityComparison":297,"./5/TimeClip":298,"./5/TimeFromYear":299,"./5/TimeWithinDay":300,"./5/ToBoolean":301,"./5/ToInt32":302,"./5/ToInteger":303,"./5/ToNumber":304,"./5/ToObject":305,"./5/ToPrimitive":306,"./5/ToPropertyDescriptor":307,"./5/ToString":308,"./5/ToUint16":309,"./5/ToUint32":310,"./5/Type":311,"./5/WeekDay":312,"./5/YearFromTime":313,"./5/abs":314,"./5/floor":315,"./5/modulo":316,"./5/msFromTime":317}],319:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":291,"./5/AbstractRelationalComparison":292,"./5/Canonicalize":293,"./5/CheckObjectCoercible":294,"./5/DateFromTime":295,"./5/Day":296,"./5/DayFromYear":297,"./5/DayWithinYear":298,"./5/DaysInYear":299,"./5/FromPropertyDescriptor":300,"./5/HourFromTime":301,"./5/InLeapYear":302,"./5/IsAccessorDescriptor":303,"./5/IsCallable":304,"./5/IsDataDescriptor":305,"./5/IsGenericDescriptor":306,"./5/IsPropertyDescriptor":307,"./5/MakeDate":308,"./5/MakeDay":309,"./5/MakeTime":310,"./5/MinFromTime":311,"./5/MonthFromTime":312,"./5/SameValue":313,"./5/SecFromTime":314,"./5/StrictEqualityComparison":315,"./5/TimeClip":316,"./5/TimeFromYear":317,"./5/TimeWithinDay":318,"./5/ToBoolean":319,"./5/ToInt32":320,"./5/ToInteger":321,"./5/ToNumber":322,"./5/ToObject":323,"./5/ToPrimitive":324,"./5/ToPropertyDescriptor":325,"./5/ToString":326,"./5/ToUint16":327,"./5/ToUint32":328,"./5/Type":329,"./5/WeekDay":330,"./5/YearFromTime":331,"./5/abs":332,"./5/floor":333,"./5/modulo":334,"./5/msFromTime":335}],337:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":321,"get-intrinsic":332,"has":336}],320:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],321:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":336}],322:[function(require,module,exports){
+},{"./isNaN":338}],338:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],323:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -22426,40 +23228,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":267}],324:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":332,"has":336}],325:[function(require,module,exports){
+},{"call-bind/callBound":283}],340:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -22469,14 +23238,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],326:[function(require,module,exports){
+},{}],341:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":350,"hasown":367}],342:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],327:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -22497,7 +23304,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],328:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":359}],345:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],346:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],347:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],348:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],349:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],350:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],351:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],352:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":350}],353:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":354,"./RequireObjectCoercible":352}],354:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],355:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -22544,56 +23442,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":329,"is-callable":339}],329:[function(require,module,exports){
+},{"./helpers/isPrimitive":356,"is-callable":370}],356:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],330:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -22605,21 +23535,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],331:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":330}],332:[function(require,module,exports){
+},{"./implementation":357}],359:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -22658,18 +23594,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -22677,6 +23619,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -22684,9 +23628,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -22697,10 +23641,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -22708,15 +23652,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -22726,11 +23670,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -22747,7 +23701,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -22758,6 +23712,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -22812,11 +23767,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -22872,6 +23828,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -22944,29 +23903,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":331,"has":336,"has-symbols":334}],333:[function(require,module,exports){
+},{"es-errors":346,"es-errors/eval":345,"es-errors/range":347,"es-errors/ref":348,"es-errors/syntax":349,"es-errors/type":350,"es-errors/uri":351,"function-bind":358,"has-proto":362,"has-symbols":363,"hasown":367}],360:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":359}],361:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -22979,7 +23945,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":332}],334:[function(require,module,exports){
+},{"es-define-property":344}],362:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],363:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -22994,7 +23977,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":335}],335:[function(require,module,exports){
+},{"./shams":364}],364:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -23038,14 +24021,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],336:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":364}],366:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":331}],337:[function(require,module,exports){
+},{"function-bind":358}],367:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":358}],368:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -23132,7 +24135,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],338:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -23161,7 +24164,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],339:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -23207,37 +24210,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],340:[function(require,module,exports){
+},{}],371:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":283,"has-tostringtag/shams":365}],372:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -23361,7 +24451,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":342}],341:[function(require,module,exports){
+},{"./isArguments":374}],373:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -23395,7 +24485,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":340,"./isArguments":342}],342:[function(require,module,exports){
+},{"./implementation":372,"./isArguments":374}],374:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -23414,7 +24504,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],343:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -23600,7 +24690,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],344:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -23633,7 +24723,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":343,"through":357,"timers":358}],345:[function(require,module,exports){
+},{"_process":375,"through":391,"timers":392}],377:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -23700,7 +24790,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":249}],346:[function(require,module,exports){
+},{"buffer":265}],378:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":283,"es-errors/type":350,"is-regex":371}],379:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":288,"es-errors/type":350,"get-intrinsic":359,"gopd":360,"has-property-descriptors":361}],380:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -23715,7 +24867,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":318,"function-bind":331}],347:[function(require,module,exports){
+},{"es-abstract/es5":336,"function-bind":358}],381:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -23735,7 +24887,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":346,"./polyfill":348,"./shim":349,"define-properties":272,"function-bind":331}],348:[function(require,module,exports){
+},{"./implementation":380,"./polyfill":382,"./shim":383,"define-properties":289,"function-bind":358}],382:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -23749,7 +24901,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":346}],349:[function(require,module,exports){
+},{"./implementation":380}],383:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -23761,7 +24913,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":348,"define-properties":272}],350:[function(require,module,exports){
+},{"./polyfill":382,"define-properties":289}],384:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -24058,7 +25210,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":345}],351:[function(require,module,exports){
+},{"safe-buffer":377}],385:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -24212,7 +25364,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":352,"./lib/results":354,"./lib/test":355,"_process":343,"defined":273,"through":357,"timers":358}],352:[function(require,module,exports){
+},{"./lib/default_stream":386,"./lib/results":388,"./lib/test":389,"_process":375,"defined":290,"through":391,"timers":392}],386:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -24247,7 +25399,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":343,"fs":248,"through":357}],353:[function(require,module,exports){
+},{"_process":375,"fs":264,"through":391}],387:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -24255,7 +25407,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":343,"timers":358}],354:[function(require,module,exports){
+},{"_process":375,"timers":392}],388:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -24446,7 +25598,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":343,"events":250,"function-bind":331,"has":336,"inherits":338,"object-inspect":356,"resumer":344,"through":357,"timers":358}],355:[function(require,module,exports){
+},{"_process":375,"events":266,"function-bind":358,"has":366,"inherits":369,"object-inspect":390,"resumer":376,"through":391,"timers":392}],389:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -24947,7 +26099,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":353,"deep-equal":269,"defined":273,"events":250,"has":336,"inherits":338,"path":251,"string.prototype.trim":347}],356:[function(require,module,exports){
+},{"./next_tick":387,"deep-equal":285,"defined":290,"events":266,"has":366,"inherits":369,"path":267,"string.prototype.trim":381}],390:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -25141,7 +26293,7 @@ function inspectString (str) {
     }
 }
 
-},{}],357:[function(require,module,exports){
+},{}],391:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -25253,7 +26405,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":343,"stream":252}],358:[function(require,module,exports){
+},{"_process":375,"stream":268}],392:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -25332,7 +26484,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":343,"timers":358}],359:[function(require,module,exports){
+},{"process/browser.js":375,"timers":392}],393:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -25403,4 +26555,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[151]);
+},{}]},{},[157]);

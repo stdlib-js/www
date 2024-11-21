@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -115,9 +115,12 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#expandacronyms" class="tsd-kind-icon">expand<wbr>Acronyms</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#expandcontractions" class="tsd-kind-icon">expand<wbr>Contractions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#lda" class="tsd-kind-icon">lda</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#ordinalize" class="tsd-kind-icon">ordinalize</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#porterstemmer" class="tsd-kind-icon">porter<wbr>Stemmer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#sentencize" class="tsd-kind-icon">sentencize</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_nlp_docs_types_index_d_.namespace.html#tokenize" class="tsd-kind-icon">tokenize</a></li>
 							</ul>
 						</section>
@@ -127,12 +130,34 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="expandacronyms" class="tsd-anchor"></a>
+					<h3>expand<wbr>Acronyms</h3>
+					<div class="tsd-signature tsd-kind-icon">expand<wbr>Acronyms<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_expand_acronyms_docs_types_index_d_.html#expandacronyms" class="tsd-signature-type">expandAcronyms</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L51">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:51</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Expands acronyms in a string.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>string to convert</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>string with expanded acronyms</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="expandcontractions" class="tsd-anchor"></a>
 					<h3>expand<wbr>Contractions</h3>
 					<div class="tsd-signature tsd-kind-icon">expand<wbr>Contractions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_expand_contractions_docs_types_index_d_.html#expandcontractions" class="tsd-signature-type">expandContractions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L49">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L69">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -154,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">lda<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_lda_docs_types_index_d_.html#lda" class="tsd-signature-type">lda</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L63">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L83">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:83</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,7 +197,7 @@
 							<dd><p>options object</p>
 							</dd>
 							<dt>param</dt>
-							<dd><p>Dirichlet hyper-parameter of topic vector theta:</p>
+							<dd><p>Dirichlet hyper-parameter of topic vector theta</p>
 							</dd>
 							<dt>param</dt>
 							<dd><p>Dirichlet hyper-parameter for word vector phi</p>
@@ -190,12 +215,46 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="ordinalize" class="tsd-anchor"></a>
+					<h3>ordinalize</h3>
+					<div class="tsd-signature tsd-kind-icon">ordinalize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_ordinalize_docs_types_index_d_.html#ordinalize" class="tsd-signature-type">ordinalize</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L115">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:115</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Converts an integer to an ordinal string (e.g., <code>1st</code>, <code>2nd</code>, etc.).</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>string or number to convert</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>options</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>boolean indicating whether to return only the suffix (default: false)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>language code (default: &#39;en&#39;)</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>grammatical gender (used if applicable; either &#39;masculine&#39; or &#39;feminine&#39;; default: &#39;masculine&#39;)</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>ordinal string or suffix</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="porterstemmer" class="tsd-anchor"></a>
 					<h3>porter<wbr>Stemmer</h3>
 					<div class="tsd-signature tsd-kind-icon">porter<wbr>Stemmer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_porter_stemmer_docs_types_index_d_.html#porterstemmer" class="tsd-signature-type">porterStemmer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L91">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L143">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,12 +271,34 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="sentencize" class="tsd-anchor"></a>
+					<h3>sentencize</h3>
+					<div class="tsd-signature tsd-kind-icon">sentencize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_sentencize_docs_types_index_d_.html#sentencize" class="tsd-signature-type">sentencize</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L166">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:166</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Splits a string into an array of sentences.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>input string</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>array of sentences</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="tokenize" class="tsd-anchor"></a>
 					<h3>tokenize</h3>
 					<div class="tsd-signature tsd-kind-icon">tokenize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_nlp_tokenize_docs_types_index_d_.html#tokenize" class="tsd-signature-type">tokenize</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L115">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/nlp/docs/types/index.d.ts#L190">lib/node_modules/@stdlib/nlp/docs/types/index.d.ts:190</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -257,13 +338,22 @@
 						<a href="_nlp_docs_types_index_d_.namespace.html" class="tsd-kind-icon">Namespace</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_nlp_docs_types_index_d_.namespace.html#expandacronyms" class="tsd-kind-icon">expand<wbr>Acronyms</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_nlp_docs_types_index_d_.namespace.html#expandcontractions" class="tsd-kind-icon">expand<wbr>Contractions</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_nlp_docs_types_index_d_.namespace.html#lda" class="tsd-kind-icon">lda</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_nlp_docs_types_index_d_.namespace.html#ordinalize" class="tsd-kind-icon">ordinalize</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_nlp_docs_types_index_d_.namespace.html#porterstemmer" class="tsd-kind-icon">porter<wbr>Stemmer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_nlp_docs_types_index_d_.namespace.html#sentencize" class="tsd-kind-icon">sentencize</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_nlp_docs_types_index_d_.namespace.html#tokenize" class="tsd-kind-icon">tokenize</a>
@@ -272,6 +362,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_nlp_docs_types_index_d_.html#expandacronyms" class="tsd-kind-icon">expand<wbr>Acronyms</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_nlp_docs_types_index_d_.html#expandcontractions" class="tsd-kind-icon">expand<wbr>Contractions</a>
 					</li>
@@ -282,7 +375,13 @@
 						<a href="../modules/_nlp_docs_types_index_d_.html#ns" class="tsd-kind-icon">ns</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_nlp_docs_types_index_d_.html#ordinalize" class="tsd-kind-icon">ordinalize</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_nlp_docs_types_index_d_.html#porterstemmer" class="tsd-kind-icon">porter<wbr>Stemmer</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_nlp_docs_types_index_d_.html#sentencize" class="tsd-kind-icon">sentencize</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_nlp_docs_types_index_d_.html#tokenize" class="tsd-kind-icon">tokenize</a>
@@ -352,13 +451,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

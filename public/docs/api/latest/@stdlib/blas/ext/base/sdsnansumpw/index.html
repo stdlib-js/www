@@ -6,55 +6,44 @@
 
 <span class="hljs-keyword">var</span> v = sdsnansumpw( N, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>stride</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the sum of every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>stride</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in the strided array are accessed at runtime. For example, to compute the sum of every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">NaN</span>, -<span class="hljs-number">7.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> v = sdsnansumpw( N, x, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> v = sdsnansumpw( <span class="hljs-number">4</span>, x, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 5.0</span>
 </code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">NaN</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
 <span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
 
-<span class="hljs-keyword">var</span> N = floor( x0.length / <span class="hljs-number">2</span> );
-
-<span class="hljs-keyword">var</span> v = sdsnansumpw( N, x1, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> v = sdsnansumpw( <span class="hljs-number">4</span>, x1, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 5.0</span>
 </code></pre><h4 id="sdsnansumpwndarray-n-x-stride-offset-">sdsnansumpw.ndarray( N, x, stride, offset )</h4><p>Computes the sum of single-precision floating-point strided array elements, ignoring <code>NaN</code> values and using pairwise summation with extended accumulation and alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> N = x.length;
 
-<span class="hljs-keyword">var</span> v = sdsnansumpw.ndarray( N, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-keyword">var</span> v = sdsnansumpw.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 1.0</span>
 </code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index for <code>x</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to calculate the sum of every other value in <code>x</code> starting from the second value</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">NaN</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
-<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> v = sdsnansumpw.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> v = sdsnansumpw.ndarray( <span class="hljs-number">4</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 5.0</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li><li>Accumulated intermediate values are stored as double-precision floating-point numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
-<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li><li>Accumulated intermediate values are stored as double-precision floating-point numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
 <span class="hljs-keyword">var</span> sdsnansumpw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/sdsnansumpw'</span> );
 
-<span class="hljs-keyword">var</span> x;
-<span class="hljs-keyword">var</span> i;
-
-x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">10</span> );
-<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
-    <span class="hljs-keyword">if</span> ( randu() &#x3C; <span class="hljs-number">0.2</span> ) {
-        x[ i ] = <span class="hljs-literal">NaN</span>;
-    } <span class="hljs-keyword">else</span> {
-        x[ i ] = round( randu()*<span class="hljs-number">100.0</span> );
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randOrNan</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> ( bernoulli() &#x3C; <span class="hljs-number">0.2</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</span>;
     }
+    <span class="hljs-keyword">return</span> discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
 }
+
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float32'</span>, randOrNan );
 <span class="hljs-built_in">console</span>.log( x );
 
 <span class="hljs-keyword">var</span> v = sdsnansumpw( x.length, x, <span class="hljs-number">1</span> );

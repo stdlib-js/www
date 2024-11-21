@@ -1,0 +1,41 @@
+<h1 id="normalizeslice">normalizeSlice</h1><blockquote><p>Normalize a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normalizeSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-slice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="normalizeslice-slice-len-strict-">normalizeSlice( slice, len, strict )</h4><p>Normalizes a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object, where <code>len</code> specifies the maximum number of elements allowed in the slice.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> v = s.start;
+<span class="hljs-comment">// returns 9</span>
+
+v = s.stop;
+<span class="hljs-comment">// returns null</span>
+
+v = s.step;
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p>When <code>strict</code> is <code>true</code>, the function returns an error object if an input slice exceeds index bounds.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">1</span> ), <span class="hljs-number">10</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns { 'code': 'ERR_SLICE_OUT_OF_BOUNDS' }</span>
+</code></pre><p>A returned error object may have one of the following error codes:</p><ul><li><strong>ERR_SLICE_OUT_OF_BOUNDS</strong>: a slice exceeds index bounds.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> normalizeSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-slice'</span> );
+
+<span class="hljs-keyword">var</span> s = normalizeSlice( <span class="hljs-keyword">new</span> Slice(), <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 5. step: 1.'</span>
+
+s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span> ), <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 1. stop: 4. step: 2.'</span>
+
+s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 4. stop: null. step: -1.'</span>
+
+s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">10</span>, -<span class="hljs-number">2</span>, <span class="hljs-number">2</span> ), <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 0. stop: 3. step: 2.'</span>
+
+s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">1</span>, <span class="hljs-number">20</span>, <span class="hljs-number">2</span> ), <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'start: %s. stop: %s. step: %s.'</span>, s.start, s.stop, s.step );
+<span class="hljs-comment">// => 'start: 1. stop: 5. step: 2.'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

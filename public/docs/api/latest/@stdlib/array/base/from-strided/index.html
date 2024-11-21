@@ -1,0 +1,14 @@
+<h1 id="strided2array">strided2array</h1><blockquote><p>Convert a strided array to a non-strided generic array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> strided2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/from-strided'</span> );
+</code></pre><h4 id="strided2array-n-x-stride-offset-">strided2array( N, x, stride, offset )</h4><p>Converts a strided array to a non-strided generic array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> arr = strided2array( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 3, 5 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input array.</li><li><strong>stride</strong>: index stride.</li><li><strong>offset</strong>: index of the first indexed value in the input array.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes that the input array is compatible with the specified number of elements, index stride, and index offset.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> strided2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/from-strided'</span> );
+
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">10</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = strided2array( <span class="hljs-number">5</span>, x, -<span class="hljs-number">2</span>, x.length-<span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

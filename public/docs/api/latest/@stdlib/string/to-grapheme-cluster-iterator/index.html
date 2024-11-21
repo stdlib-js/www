@@ -1,0 +1,84 @@
+<h1 id="graphemeclusters2iterator">graphemeClusters2iterator</h1><blockquote><p>Create an iterator which iterates over <a href="http://www.unicode.org/reports/tr29/">grapheme clusters</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> graphemeClusters2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/to-grapheme-cluster-iterator'</span> );
+</code></pre><h4 id="graphemeclusters2iterator-src-mapfcn-thisarg-">graphemeClusters2iterator( src[, mapFcn[, thisArg]] )</h4><p>Returns an iterator which iterates over each <a href="http://www.unicode.org/reports/tr29/">grapheme cluster</a> in a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iter = graphemeClusters2iterator( <span class="hljs-string">'🌷🍕'</span> );
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns '🌷'</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns '🍕'</span>
+
+<span class="hljs-keyword">var</span> bool = iter.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The returned iterator protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li></ul><p>To invoke a function for each <code>src</code> value, provide a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v + v;
+}
+
+<span class="hljs-keyword">var</span> it = graphemeClusters2iterator( <span class="hljs-string">'beep'</span>, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 'bb'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 'ee'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 'ee'</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The invoked function is provided three arguments:</p><ul><li><strong>value</strong>: <a href="http://www.unicode.org/reports/tr29/">grapheme cluster</a>.</li><li><strong>index</strong>: iterated value index.</li><li><strong>src</strong>: source string.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-keyword">return</span> v + i;
+}
+
+<span class="hljs-keyword">var</span> it = graphemeClusters2iterator( <span class="hljs-string">'bar'</span>, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 'b0'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 'a1'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 'r2'</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>To set the callback function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> it = graphemeClusters2iterator( <span class="hljs-string">'🌷🍕'</span>, fcn, ctx );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns '🌷'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns '🍕'</span>
+
+<span class="hljs-keyword">var</span> count = ctx.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li><li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke a string's <code>@@iterator</code> method, regardless of whether this method is defined. To convert a string to an implementation defined iterator, invoke this method directly.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> graphemeClusters2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/to-grapheme-cluster-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">repeat</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-keyword">return</span> str + str;
+}
+
+<span class="hljs-comment">// Create an iterator which iterates over grapheme clusters:</span>
+<span class="hljs-keyword">var</span> it = graphemeClusters2iterator( <span class="hljs-string">'Iñtërnâtiônàlizætiøn'</span>, repeat );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-iterator"><code>@stdlib/array/to-iterator</code></a></span><span class="delimiter">: </span><span class="description">create an iterator from an array-like object.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/to-grapheme-cluster-iterator-right"><code>@stdlib/string/to-grapheme-cluster-iterator-right</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iterates from right to left over grapheme clusters.</span></li></ul></section><section class="links"></section>

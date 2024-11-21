@@ -1,0 +1,29 @@
+<h1 id="removelastgraphemecluster">removeLastGraphemeCluster</h1><blockquote><p>Remove the last <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLastGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-last-grapheme-cluster'</span> );
+</code></pre><h4 id="removelastgraphemecluster-str-n-">removeLastGraphemeCluster( str, n )</h4><p>Removes the last <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeLastGraphemeCluster( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'last man standin'</span>
+
+out = removeLastGraphemeCluster( <span class="hljs-string">'Hidden Treasures'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'Hidden Treasure'</span>
+
+out = removeLastGraphemeCluster( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'fo'</span>
+
+out = removeLastGraphemeCluster( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLastGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-last-grapheme-cluster'</span> );
+
+<span class="hljs-keyword">var</span> str = removeLastGraphemeCluster( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'presidential electio'</span>
+
+str = removeLastGraphemeCluster( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'JavaScrip'</span>
+
+str = removeLastGraphemeCluster( <span class="hljs-string">'The Last of the Mohicans'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'The Last of the Moh'</span>
+
+str = removeLastGraphemeCluster( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '🐶🐮🐷'</span>
+
+str = removeLastGraphemeCluster( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

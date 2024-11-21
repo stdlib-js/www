@@ -1,0 +1,40 @@
+<h1 id="kernellog1p">kernelLog1p</h1><blockquote><p>Compute <code>log(1+f) - f</code> for <code>1+f</code> in <code>~[sqrt(2)/2, sqrt(2)]</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kernelLog1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-log1p'</span> );
+</code></pre><h4 id="kernellog1p-f-">kernelLog1p( f )</h4><p>Computes <code>log(1+f) - f</code> for <code>1+f</code> in <code>~[sqrt(2)/2, sqrt(2)]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = kernelLog1p( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.1931</span>
+
+v = kernelLog1p( <span class="hljs-number">1.4142135623730951</span> );
+<span class="hljs-comment">// returns ~0.4672</span>
+
+v = kernelLog1p( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is a helper function for computing logarithms in base <code>e</code>. Argument reduction and adding the final term of the polynomial must be done by the caller for increased accuracy when different bases are used. For reference, see <a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a> and <a href="/docs/api/latest/@stdlib/math/base/special/log10"><code>@stdlib/math/base/special/log10</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
+<span class="hljs-keyword">var</span> kernelLog1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-log1p'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( sqrt( <span class="hljs-number">2.0</span> ) / <span class="hljs-number">2.0</span>, sqrt( <span class="hljs-number">2.0</span> ), <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'kernelLog1p(%d) = %d'</span>, x[ i ], kernelLog1p( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/kernel_log1p.h"</span></span>
+</code></pre><h4 id="stdlib_base_kernel_log1p-f-">stdlib_base_kernel_log1p( f )</h4><p>Computes <code>log(1+f) - f</code> for <code>1+f</code> in <code>~[sqrt(2)/2, sqrt(2)]</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_kernel_log1p( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.1931</span>
+
+out = stdlib_base_kernel_log1p( <span class="hljs-number">1.4142135623730951</span> );
+<span class="hljs-comment">// returns ~0.4672</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>f</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_kernel_log1p</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> f )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/kernel_log1p.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">0.7071</span>, <span class="hljs-number">0.7856</span>, <span class="hljs-number">0.8642</span>, <span class="hljs-number">0.9428</span>, <span class="hljs-number">1.0213</span>, <span class="hljs-number">1.0999</span>, <span class="hljs-number">1.1785</span>, <span class="hljs-number">1.2570</span>, <span class="hljs-number">1.3356</span>, <span class="hljs-number">1.4142</span> };
+
+    <span class="hljs-keyword">double</span> out;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        out = stdlib_base_kernel_log1p( x[ i ] );
+        <span class="hljs-built_in">printf</span> ( <span class="hljs-string">"x[ i ]: %lf, out: %lf\n"</span>, x[ i ], out );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

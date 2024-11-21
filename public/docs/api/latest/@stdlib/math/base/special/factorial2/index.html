@@ -1,0 +1,49 @@
+<h1 id="factorial2">factorial2</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Double_factorial">Double factorial</a> function.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> of a number <code>n</code>, denoted <code>n!!</code>, is defined as the product of all the positive integers up to <code>n</code> that have the same parity (odd or even) as <code>n</code>.</p><p>Thus, for example, <code>5!!</code> is <code>5 * 3 * 1 = 15</code> and <code>8!!</code> is <code>8 * 6 * 4 * 2 = 384</code>.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factorial2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/factorial2'</span> );
+</code></pre><h4 id="factorial2-n-">factorial2( n )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> of <code>n</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = factorial2( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 2</span>
+
+v = factorial2( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 3</span>
+
+v = factorial2( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1</span>
+
+v = factorial2( <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 8</span>
+
+v = factorial2( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 15</span>
+
+v = factorial2( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = factorial2( <span class="hljs-number">301</span> );
+<span class="hljs-comment">// returns Infinity</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> oneTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/one-to'</span> );
+<span class="hljs-keyword">var</span> factorial2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/factorial2'</span> );
+
+<span class="hljs-keyword">var</span> values = oneTo( <span class="hljs-number">300</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; values.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'f(%d): %d'</span>, values[ i ], factorial2( values[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/factorial2.h"</span></span>
+</code></pre><h4 id="stdlib_base_factorial2-n-">stdlib_base_factorial2( n )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Double_factorial">double factorial</a> of <code>n</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_factorial2( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] int32_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_factorial2</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/factorial2.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x[] = { <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span>, <span class="hljs-number">301</span>, <span class="hljs-number">302</span> };
+
+    <span class="hljs-keyword">double</span> b;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ){
+        b = stdlib_base_factorial2( x[ i ] );
+        <span class="hljs-built_in">printf</span> ( <span class="hljs-string">"factorial2(%d) = %lf\n"</span>, x[ i ], b );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/factorial"><code>@stdlib/math/base/special/factorial</code></a></span><span class="delimiter">: </span><span class="description">evaluate a factorial.</span></li></ul></section><section class="links"></section>

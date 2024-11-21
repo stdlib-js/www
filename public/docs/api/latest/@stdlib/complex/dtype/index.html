@@ -1,5 +1,5 @@
 <h1 id="dtype">dtype</h1><blockquote><p>Return the data type of a complex number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/dtype'</span> );
-</code></pre><h4 id="dtype-value-">dtype( value )</h4><p>Returns the <a href="/docs/api/latest/@stdlib/complex/dtypes">data type</a> of a complex number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre><h4 id="dtype-value-">dtype( value )</h4><p>Returns the <a href="/docs/api/latest/@stdlib/complex/dtypes">data type</a> of a complex number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
 
 <span class="hljs-keyword">var</span> dt = dtype( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ) );
 <span class="hljs-comment">// returns 'complex128'</span>
@@ -21,4 +21,4 @@
     dt = dtype( <span class="hljs-keyword">new</span> ctor( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ) );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s == %s => %s'</span>, DTYPES[ i ], dt, DTYPES[ i ] === dt );
 }
-</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/dtype"><code>@stdlib/array/dtype</code></a></span><span class="delimiter">: </span><span class="description">return the data type of an array.</span></li></ul></section><section class="links"></section>

@@ -6,14 +6,16 @@
 
 bool = isSymbolArray( [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="issymbolarrayprimitives-value-">isSymbolArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object containing only <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>symbol</code></a> primitives.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+</code></pre><h4 id="issymbolarrayprimitives-value-">isSymbolArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object containing only <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>symbol</code></a> primitives.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Object</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSymbolArray.primitives( [ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ), <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'boop'</span> ) ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSymbolArray.primitives( [ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ), <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'boop'</span> ) ) ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="issymbolarrayobjects-value-">isSymbolArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object containing only <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+</code></pre><h4 id="issymbolarrayobjects-value-">isSymbolArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object containing only <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Object</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSymbolArray.objects( [ <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) ), <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'boop'</span> ) ) ] );
 <span class="hljs-comment">// returns true</span>

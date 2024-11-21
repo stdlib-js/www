@@ -49,10 +49,10 @@
 <span class="hljs-keyword">var</span> mean = out / ctx.count;
 <span class="hljs-comment">// returns 7.5</span>
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function supports array-like objects exposing getters and setters for array element access (e.g., <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>, <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>, etc).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
 <span class="hljs-keyword">var</span> cceil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceil'</span> );
-<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/realf'</span> );
-<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imagf'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> acc, z </span>) </span>{
     <span class="hljs-keyword">var</span> re1 = realf( acc );
@@ -104,4 +104,4 @@
 <span class="hljs-built_in">console</span>.log( x.data );
 
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sum: %d'</span>, out );
-</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/map"><code>@stdlib/utils/map</code></a></span><span class="delimiter">: </span><span class="description">apply a function to each element in an array and assign the result to an element in an output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/map-reduce-right"><code>@stdlib/utils/map-reduce-right</code></a></span><span class="delimiter">: </span><span class="description">perform a single-pass map-reduce operation against each element in an array while iterating from right to left and return the accumulated result.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reduce"><code>@stdlib/utils/reduce</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in an array and return the accumulated result.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,53 @@
+<h1 id="lpad">lpad</h1><blockquote><p>Left pad a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/left-pad'</span> );
+</code></pre><h4 id="lpad-str-len-pad-">lpad( str, len, pad )</h4><p>Left pads a string such that the padded string has a length of <strong>at least</strong> <code>len</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span>, <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns '    a'</span>
+
+str = lpad( <span class="hljs-string">'beep'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span> );
+<span class="hljs-comment">// returns 'bbbbbbbeep'</span>
+
+str = lpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">12</span>, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns 'beepbeepboop'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>An output string is <strong>not</strong> guaranteed to have a length of <strong>exactly</strong> <code>len</code>, but to have a length of <strong>at least</strong> <code>len</code>. To generate a padded string having a length equal to <code>len</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> ); <span class="hljs-comment">// => length 12</span>
+<span class="hljs-comment">// returns 'beepbeepboop'</span>
+
+str = str.substring( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> ); <span class="hljs-comment">// => length 10</span>
+<span class="hljs-comment">// returns 'beepbeepbo'</span>
+
+str = str.substring( str.length-<span class="hljs-number">10</span> ); <span class="hljs-comment">// => length 10</span>
+<span class="hljs-comment">// returns 'epbeepboop'</span>
+</code></pre></li><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><code>String.prototype.padStart</code></a> in the following ways:</p><ul><li>The function is <strong>not</strong> guaranteed to return a string having a length exactly equal to <code>len</code> (as explained above).</li><li>The function does <strong>not</strong> truncate <code>pad</code> (from the end) in order to ensure the returned string has length <code>len</code>.</li></ul><p>To replicate <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><code>String.prototype.padStart</code></a> truncation behavior</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floorb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floorb'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padStart</span>(<span class="hljs-params"> str, len, pad </span>) </span>{
+    <span class="hljs-keyword">var</span> n;
+    <span class="hljs-keyword">if</span> ( len &#x3C;= str.length ) {
+        <span class="hljs-keyword">return</span> str;
+    }
+    n = floorb( len-str.length, <span class="hljs-number">1</span>, pad.length ) + str.length;
+    <span class="hljs-keyword">return</span> pad.substring( <span class="hljs-number">0</span>, len-n ) + lpad( str, n, pad );
+}
+
+<span class="hljs-keyword">var</span> str = padStart( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns 'bebeepboop'</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
+<span class="hljs-keyword">var</span> papplyRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply-right'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> map = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/left-pad'</span> );
+
+<span class="hljs-comment">// Define a string to pad:</span>
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep'</span>;
+
+<span class="hljs-comment">// Generate random lengths:</span>
+<span class="hljs-keyword">var</span> lens = discreteUniform( <span class="hljs-number">10</span>, str.length, str.length+<span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Create a function for creating padded strings:</span>
+<span class="hljs-keyword">var</span> fcn = naryFunction( papply( papplyRight( lpad, <span class="hljs-string">'b'</span> ), str ), <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Generate padded strings:</span>
+<span class="hljs-keyword">var</span> out = map( lens, fcn );
+
+<span class="hljs-comment">// Print results:</span>
+logEach( <span class="hljs-string">'%s'</span>, out );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/right-pad"><code>@stdlib/string/base/right-pad</code></a></span><span class="delimiter">: </span><span class="description">right pad a string.</span></li></ul></section><section class="links"></section>

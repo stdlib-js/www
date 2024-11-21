@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -486,7 +486,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -609,7 +609,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -732,7 +732,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -750,7 +750,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+},{"./main.js":17,"./polyfill.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -789,36 +819,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],18:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -855,7 +855,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -873,7 +873,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+},{"./main.js":20,"./polyfill.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -912,36 +942,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -978,7 +978,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -996,7 +996,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1035,36 +1065,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -1101,7 +1101,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -1119,7 +1119,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1157,36 +1187,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],28:[function(require,module,exports){
 /**
@@ -1327,7 +1327,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":28,"@stdlib/assert/is-float32array":91,"@stdlib/constants/float64/pinf":159}],31:[function(require,module,exports){
+},{"./float32array.js":28,"@stdlib/assert/is-float32array":91,"@stdlib/constants/float64/pinf":161}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1605,7 +1605,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":35,"@stdlib/assert/is-int16array":97,"@stdlib/constants/int16/max":160,"@stdlib/constants/int16/min":161}],37:[function(require,module,exports){
+},{"./int16array.js":35,"@stdlib/assert/is-int16array":97,"@stdlib/constants/int16/max":162,"@stdlib/constants/int16/min":163}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1745,7 +1745,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":38,"@stdlib/assert/is-int32array":99,"@stdlib/constants/int32/max":162,"@stdlib/constants/int32/min":163}],40:[function(require,module,exports){
+},{"./int32array.js":38,"@stdlib/assert/is-int32array":99,"@stdlib/constants/int32/max":164,"@stdlib/constants/int32/min":165}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1885,7 +1885,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":41,"@stdlib/assert/is-int8array":101,"@stdlib/constants/int8/max":164,"@stdlib/constants/int8/min":165}],43:[function(require,module,exports){
+},{"./int8array.js":41,"@stdlib/assert/is-int8array":101,"@stdlib/constants/int8/max":166,"@stdlib/constants/int8/min":167}],43:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -1917,7 +1917,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":291}],44:[function(require,module,exports){
+},{"buffer":296}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,12 +1952,12 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
 },{"./main.js":45}],45:[function(require,module,exports){
 /**
@@ -2071,12 +2071,12 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":47}],47:[function(require,module,exports){
 /**
@@ -2179,12 +2179,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2265,12 +2265,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":51}],51:[function(require,module,exports){
 /**
@@ -2434,7 +2434,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":136,"@stdlib/constants/uint16/max":166}],54:[function(require,module,exports){
+},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":136,"@stdlib/constants/uint16/max":168}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2575,7 +2575,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":138,"@stdlib/constants/uint32/max":167}],57:[function(require,module,exports){
+},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":138,"@stdlib/constants/uint32/max":169}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2716,7 +2716,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":140,"@stdlib/constants/uint8/max":168}],60:[function(require,module,exports){
+},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":140,"@stdlib/constants/uint8/max":170}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2934,12 +2934,12 @@ module.exports = main;
 
 // MODULES //
 
-var instanceOf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = instanceOf;
+module.exports = main;
 
 },{"./main.js":65}],65:[function(require,module,exports){
 /**
@@ -3010,7 +3010,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":214}],66:[function(require,module,exports){
+},{"@stdlib/string/format":218}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3184,7 +3184,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":262}],69:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3254,7 +3254,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-enumerable-property":86,"@stdlib/constants/uint32/max":167,"@stdlib/math/base/assert/is-integer":183}],70:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-enumerable-property":86,"@stdlib/constants/uint32/max":169,"@stdlib/math/base/assert/is-integer":185}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3295,12 +3295,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
 },{"./main.js":71}],71:[function(require,module,exports){
 /**
@@ -3362,7 +3362,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":156,"@stdlib/math/base/assert/is-integer":183}],72:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":158,"@stdlib/math/base/assert/is-integer":185}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3400,12 +3400,12 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":73}],73:[function(require,module,exports){
 /**
@@ -3472,7 +3472,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":262}],74:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3499,6 +3499,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -3508,7 +3509,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -3518,7 +3519,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -3531,22 +3532,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":75,"./object.js":76,"./primitive.js":77,"@stdlib/utils/define-nonenumerable-read-only-property":225}],75:[function(require,module,exports){
+},{"./main.js":75,"./object.js":76,"./primitive.js":77,"@stdlib/utils/define-nonenumerable-read-only-property":231}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3590,10 +3591,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -3631,6 +3636,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -3652,6 +3658,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -3673,7 +3681,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":79,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":262}],77:[function(require,module,exports){
+},{"./try2serialize.js":79,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/boolean/ctor":149,"@stdlib/utils/native-class":267}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3709,6 +3717,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -3862,12 +3872,12 @@ module.exports = true;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":82}],82:[function(require,module,exports){
 /**
@@ -3979,12 +3989,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":84}],84:[function(require,module,exports){
 /**
@@ -4045,7 +4055,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":157,"@stdlib/math/base/assert/is-integer":183}],85:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":159,"@stdlib/math/base/assert/is-integer":185}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4140,12 +4150,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":87}],87:[function(require,module,exports){
 /**
@@ -4323,12 +4333,12 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":90}],90:[function(require,module,exports){
 /**
@@ -4396,7 +4406,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/native-class":262}],91:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":239,"@stdlib/utils/native-class":267}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4500,7 +4510,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":262}],93:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4604,7 +4614,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":262}],95:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4643,12 +4653,12 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":96}],96:[function(require,module,exports){
 /**
@@ -4702,7 +4712,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":285}],97:[function(require,module,exports){
+},{"@stdlib/utils/type-of":290}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4806,7 +4816,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":262}],99:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4910,7 +4920,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":262}],101:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5014,7 +5024,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":262}],103:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5079,22 +5089,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":105,"./object.js":106,"./primitive.js":107,"@stdlib/utils/define-nonenumerable-read-only-property":225}],104:[function(require,module,exports){
+},{"./main.js":105,"./object.js":106,"./primitive.js":107,"@stdlib/utils/define-nonenumerable-read-only-property":231}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5144,7 +5154,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":158,"@stdlib/constants/float64/pinf":159,"@stdlib/math/base/assert/is-integer":183}],105:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":160,"@stdlib/constants/float64/pinf":161,"@stdlib/math/base/assert/is-integer":185}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5380,22 +5390,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":109,"./object.js":110,"./primitive.js":111,"@stdlib/utils/define-nonenumerable-read-only-property":225}],109:[function(require,module,exports){
+},{"./main.js":109,"./object.js":110,"./primitive.js":111,"@stdlib/utils/define-nonenumerable-read-only-property":231}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5510,7 +5520,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":185}],111:[function(require,module,exports){
+},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":187}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5569,7 +5579,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":185}],112:[function(require,module,exports){
+},{"@stdlib/assert/is-number":116,"@stdlib/math/base/assert/is-nan":187}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5635,22 +5645,22 @@ module.exports = isnan;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":113,"./object.js":114,"./primitive.js":115,"@stdlib/utils/define-nonenumerable-read-only-property":225}],113:[function(require,module,exports){
+},{"./main.js":113,"./object.js":114,"./primitive.js":115,"@stdlib/utils/define-nonenumerable-read-only-property":231}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5888,22 +5898,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":117,"./object.js":118,"./primitive.js":119,"@stdlib/utils/define-nonenumerable-read-only-property":225}],117:[function(require,module,exports){
+},{"./main.js":117,"./object.js":118,"./primitive.js":119,"@stdlib/utils/define-nonenumerable-read-only-property":231}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6031,7 +6041,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":121,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":189,"@stdlib/utils/native-class":262}],119:[function(require,module,exports){
+},{"./try2serialize.js":121,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":191,"@stdlib/utils/native-class":267}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6115,7 +6125,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":189}],121:[function(require,module,exports){
+},{"@stdlib/number/ctor":191}],121:[function(require,module,exports){
 arguments[4][79][0].apply(exports,arguments)
 },{"./tostring.js":120,"dup":79}],122:[function(require,module,exports){
 /**
@@ -6169,19 +6179,24 @@ arguments[4][79][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":123,"@stdlib/assert/tools/array-function":146,"@stdlib/utils/define-nonenumerable-read-only-property":225}],123:[function(require,module,exports){
+},{"./main.js":123,"@stdlib/assert/tools/array-function":145,"@stdlib/utils/define-nonenumerable-read-only-property":231}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6270,12 +6285,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":125}],125:[function(require,module,exports){
 /**
@@ -6373,12 +6388,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObjectArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObjectArray;
+module.exports = main;
 
 },{"./main.js":127}],127:[function(require,module,exports){
 /**
@@ -6434,7 +6449,7 @@ var isPlainObjectArray = arrayfun( isPlainObject );
 
 module.exports = isPlainObjectArray;
 
-},{"@stdlib/assert/is-plain-object":128,"@stdlib/assert/tools/array-like-function":148}],128:[function(require,module,exports){
+},{"@stdlib/assert/is-plain-object":128,"@stdlib/assert/tools/array-like-function":147}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6472,12 +6487,12 @@ module.exports = isPlainObjectArray;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":129}],129:[function(require,module,exports){
 /**
@@ -6593,7 +6608,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":95,"@stdlib/assert/is-object":124,"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/native-class":262}],130:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":95,"@stdlib/assert/is-object":124,"@stdlib/utils/get-prototype-of":239,"@stdlib/utils/native-class":267}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6653,22 +6668,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":131,"./object.js":132,"./primitive.js":133,"@stdlib/utils/define-nonenumerable-read-only-property":225}],131:[function(require,module,exports){
+},{"./main.js":131,"./object.js":132,"./primitive.js":133,"@stdlib/utils/define-nonenumerable-read-only-property":231}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6787,7 +6802,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":134,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":262}],133:[function(require,module,exports){
+},{"./try2valueof.js":134,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":267}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7013,7 +7028,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":262}],138:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7117,7 +7132,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":262}],140:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7221,7 +7236,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":262}],142:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7325,7 +7340,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":262}],144:[function(require,module,exports){
+},{"@stdlib/utils/native-class":267}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7383,7 +7398,58 @@ var IS_WINDOWS = ( PLATFORM === 'win32' );
 
 module.exports = IS_WINDOWS;
 
-},{"@stdlib/os/platform":191}],145:[function(require,module,exports){
+},{"@stdlib/os/platform":195}],145:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7470,7 +7536,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":72,"@stdlib/string/format":214}],146:[function(require,module,exports){
+},{"@stdlib/assert/is-array":72,"@stdlib/string/format":218}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7492,18 +7558,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -7514,14 +7580,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":145}],147:[function(require,module,exports){
+},{"./main.js":148}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7608,11 +7674,11 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":70,"@stdlib/string/format":214}],148:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":70,"@stdlib/string/format":218}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7630,40 +7696,43 @@ module.exports = arraylikefcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array-like object passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-like-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arraylikefcn = require( './arraylikefcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arraylikefcn;
+module.exports = main;
 
-},{"./arraylikefcn.js":147}],149:[function(require,module,exports){
+},{"./main.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7682,14 +7751,37 @@ module.exports = arraylikefcn;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":291}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7725,7 +7817,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -7743,7 +7835,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":149,"./polyfill.js":151,"@stdlib/assert/has-node-buffer-support":44}],151:[function(require,module,exports){
+},{"./main.js":152,"./polyfill.js":153,"@stdlib/assert/has-node-buffer-support":44}],152:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":296}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7782,7 +7904,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],152:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7818,7 +7940,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":95,"@stdlib/buffer/ctor":150}],153:[function(require,module,exports){
+},{"@stdlib/assert/is-function":95,"@stdlib/buffer/ctor":151}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7876,7 +7998,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":152,"./main.js":154,"./polyfill.js":155}],154:[function(require,module,exports){
+},{"./has_from.js":154,"./main.js":156,"./polyfill.js":157}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7934,7 +8056,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":150,"@stdlib/string/format":214}],155:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":151,"@stdlib/string/format":218}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7992,7 +8114,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":150,"@stdlib/string/format":214}],156:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/buffer/ctor":151,"@stdlib/string/format":218}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8043,7 +8165,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],157:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8094,7 +8216,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],158:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8156,7 +8278,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":189}],159:[function(require,module,exports){
+},{"@stdlib/number/ctor":191}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8214,7 +8336,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],160:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8277,7 +8399,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],161:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8340,7 +8462,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],162:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8403,7 +8525,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],163:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8466,7 +8588,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],164:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8529,7 +8651,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],165:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8592,7 +8714,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],166:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8655,7 +8777,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],167:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8718,7 +8840,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],168:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8781,10 +8903,10 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],169:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports=[{"education":8,"south":0,"gender":"female","experience":21,"union":1,"wage":5.1,"age":35,"race":"hispanic","occupation":"other","sector":"manufacturing","married":0},{"education":9,"south":0,"gender":"female","experience":42,"union":1,"wage":4.95,"age":57,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":1,"union":1,"wage":6.67,"age":19,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":4,"union":1,"wage":4,"age":22,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":17,"union":1,"wage":7.5,"age":35,"race":"white","occupation":"other","sector":"other","married":0},{"education":13,"south":0,"gender":"male","experience":9,"union":0,"wage":13.07,"age":28,"race":"white","occupation":"other","sector":"other","married":1},{"education":10,"south":1,"gender":"male","experience":27,"union":1,"wage":4.45,"age":43,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":9,"union":1,"wage":19.47,"age":27,"race":"white","occupation":"other","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":11,"union":1,"wage":13.28,"age":33,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":9,"union":1,"wage":8.75,"age":27,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":17,"union":0,"wage":11.35,"age":35,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":19,"union":0,"wage":11.5,"age":37,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":8,"south":1,"gender":"male","experience":27,"union":1,"wage":6.5,"age":41,"race":"white","occupation":"other","sector":"other","married":0},{"education":9,"south":1,"gender":"male","experience":30,"union":0,"wage":6.25,"age":45,"race":"white","occupation":"other","sector":"other","married":1},{"education":9,"south":1,"gender":"male","experience":29,"union":1,"wage":19.98,"age":44,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":37,"union":1,"wage":7.3,"age":55,"race":"white","occupation":"other","sector":"construction","married":0},{"education":7,"south":1,"gender":"male","experience":44,"union":1,"wage":8,"age":57,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":26,"union":0,"wage":22.2,"age":44,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":11,"south":0,"gender":"male","experience":16,"union":1,"wage":3.65,"age":33,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":33,"union":1,"wage":20.55,"age":51,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":16,"union":0,"wage":5.71,"age":34,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":7,"south":0,"gender":"male","experience":42,"union":0,"wage":7,"age":55,"race":"other","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":9,"union":1,"wage":3.75,"age":27,"race":"white","occupation":"other","sector":"other","married":1},{"education":11,"south":1,"gender":"male","experience":14,"union":1,"wage":4.5,"age":31,"race":"other","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":23,"union":1,"wage":9.56,"age":41,"race":"white","occupation":"other","sector":"other","married":0},{"education":6,"south":1,"gender":"male","experience":45,"union":1,"wage":5.75,"age":57,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":9.36,"age":26,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":10,"south":0,"gender":"male","experience":30,"union":1,"wage":6.5,"age":46,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":8,"union":1,"wage":3.35,"age":26,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":4.75,"age":26,"race":"white","occupation":"other","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":13,"union":1,"wage":8.9,"age":33,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":46,"union":1,"wage":4,"age":64,"race":"white","occupation":"other","sector":"other","married":1},{"education":8,"south":0,"gender":"male","experience":19,"union":1,"wage":4.7,"age":33,"race":"white","occupation":"other","sector":"other","married":0},{"education":17,"south":1,"gender":"female","experience":1,"union":1,"wage":5,"age":24,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":19,"union":1,"wage":9.25,"age":37,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":36,"union":1,"wage":10.67,"age":54,"race":"other","occupation":"other","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":20,"union":1,"wage":7.61,"age":38,"race":"other","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":35,"union":0,"wage":10,"age":53,"race":"other","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":3,"union":1,"wage":7.5,"age":21,"race":"white","occupation":"other","sector":"other","married":1},{"education":14,"south":1,"gender":"male","experience":10,"union":1,"wage":12.2,"age":30,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":0,"union":1,"wage":3.35,"age":18,"race":"white","occupation":"other","sector":"other","married":1},{"education":14,"south":1,"gender":"male","experience":14,"union":0,"wage":11,"age":34,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":14,"union":1,"wage":12,"age":32,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":9,"south":0,"gender":"female","experience":16,"union":1,"wage":4.85,"age":31,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":13,"south":1,"gender":"male","experience":8,"union":1,"wage":4.3,"age":27,"race":"white","occupation":"other","sector":"construction","married":1},{"education":7,"south":1,"gender":"female","experience":15,"union":1,"wage":6,"age":28,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"male","experience":12,"union":1,"wage":15,"age":34,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":10,"south":1,"gender":"male","experience":13,"union":1,"wage":4.85,"age":29,"race":"white","occupation":"other","sector":"other","married":1},{"education":8,"south":0,"gender":"male","experience":33,"union":0,"wage":9,"age":47,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":9,"union":1,"wage":6.36,"age":27,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":7,"union":1,"wage":9.15,"age":25,"race":"white","occupation":"other","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":13,"union":0,"wage":11,"age":35,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":7,"union":1,"wage":4.5,"age":25,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":16,"union":1,"wage":4.8,"age":34,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":13,"south":0,"gender":"male","experience":0,"union":1,"wage":4,"age":19,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":11,"union":1,"wage":5.5,"age":29,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":13,"south":0,"gender":"male","experience":17,"union":1,"wage":8.4,"age":36,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":10,"south":0,"gender":"male","experience":13,"union":1,"wage":6.75,"age":29,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":22,"union":0,"wage":10,"age":40,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"female","experience":28,"union":1,"wage":5,"age":46,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":11,"south":0,"gender":"male","experience":17,"union":1,"wage":6.5,"age":34,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":24,"union":0,"wage":10.75,"age":42,"race":"white","occupation":"other","sector":"construction","married":0},{"education":3,"south":1,"gender":"male","experience":55,"union":1,"wage":7,"age":64,"race":"hispanic","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":3,"union":1,"wage":11.43,"age":21,"race":"white","occupation":"other","sector":"construction","married":1},{"education":12,"south":0,"gender":"male","experience":6,"union":0,"wage":4,"age":24,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":10,"south":0,"gender":"male","experience":27,"union":1,"wage":9,"age":43,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":1,"gender":"male","experience":19,"union":0,"wage":13,"age":37,"race":"other","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":19,"union":0,"wage":12.22,"age":37,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"female","experience":38,"union":1,"wage":6.28,"age":56,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":10,"south":1,"gender":"male","experience":41,"union":0,"wage":6.75,"age":57,"race":"other","occupation":"other","sector":"manufacturing","married":0},{"education":11,"south":1,"gender":"male","experience":3,"union":1,"wage":3.35,"age":20,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":14,"south":0,"gender":"male","experience":20,"union":0,"wage":16,"age":40,"race":"white","occupation":"other","sector":"other","married":0},{"education":10,"south":0,"gender":"male","experience":15,"union":1,"wage":5.25,"age":31,"race":"white","occupation":"other","sector":"other","married":0},{"education":8,"south":1,"gender":"male","experience":8,"union":1,"wage":3.5,"age":22,"race":"hispanic","occupation":"other","sector":"manufacturing","married":0},{"education":8,"south":1,"gender":"female","experience":39,"union":1,"wage":4.22,"age":53,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":6,"south":0,"gender":"female","experience":43,"union":0,"wage":3,"age":55,"race":"hispanic","occupation":"other","sector":"manufacturing","married":0},{"education":11,"south":1,"gender":"female","experience":25,"union":0,"wage":4,"age":42,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":11,"union":0,"wage":10,"age":29,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":12,"union":1,"wage":5,"age":30,"race":"other","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":35,"union":0,"wage":16,"age":53,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"male","experience":14,"union":1,"wage":13.98,"age":34,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":16,"union":0,"wage":13.26,"age":34,"race":"white","occupation":"other","sector":"other","married":0},{"education":10,"south":0,"gender":"female","experience":44,"union":0,"wage":6.1,"age":60,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":16,"south":1,"gender":"female","experience":13,"union":1,"wage":3.75,"age":35,"race":"white","occupation":"other","sector":"other","married":1},{"education":13,"south":0,"gender":"male","experience":8,"union":0,"wage":9,"age":27,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":13,"union":1,"wage":9.45,"age":31,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":11,"south":0,"gender":"male","experience":18,"union":0,"wage":5.5,"age":35,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":18,"union":1,"wage":8.93,"age":36,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":6,"union":1,"wage":6.25,"age":24,"race":"white","occupation":"other","sector":"other","married":1},{"education":11,"south":1,"gender":"male","experience":37,"union":0,"wage":9.75,"age":54,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":2,"union":1,"wage":6.73,"age":20,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":23,"union":1,"wage":7.78,"age":41,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":1,"union":1,"wage":2.85,"age":19,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":10,"union":1,"wage":3.35,"age":28,"race":"other","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":23,"union":1,"wage":19.98,"age":41,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":8,"union":0,"wage":8.5,"age":26,"race":"other","occupation":"other","sector":"other","married":0},{"education":15,"south":0,"gender":"female","experience":9,"union":1,"wage":9.75,"age":30,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":33,"union":0,"wage":15,"age":51,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"female","experience":19,"union":1,"wage":8,"age":37,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":13,"south":0,"gender":"male","experience":14,"union":1,"wage":11.25,"age":33,"race":"white","occupation":"other","sector":"other","married":0},{"education":11,"south":0,"gender":"male","experience":13,"union":0,"wage":14,"age":30,"race":"white","occupation":"other","sector":"other","married":0},{"education":10,"south":0,"gender":"male","experience":12,"union":1,"wage":10,"age":28,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":6.5,"age":26,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":23,"union":1,"wage":9.83,"age":41,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"female","experience":13,"union":1,"wage":18.5,"age":33,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":1,"gender":"male","experience":9,"union":1,"wage":12.5,"age":27,"race":"white","occupation":"other","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":21,"union":0,"wage":26,"age":41,"race":"white","occupation":"other","sector":"other","married":0},{"education":5,"south":1,"gender":"male","experience":44,"union":1,"wage":14,"age":55,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":4,"union":0,"wage":10.5,"age":22,"race":"white","occupation":"other","sector":"other","married":0},{"education":8,"south":0,"gender":"male","experience":42,"union":1,"wage":11,"age":56,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":13,"south":0,"gender":"male","experience":10,"union":0,"wage":12.47,"age":29,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":11,"union":1,"wage":12.5,"age":29,"race":"white","occupation":"other","sector":"construction","married":1},{"education":12,"south":0,"gender":"male","experience":40,"union":0,"wage":15,"age":58,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":6,"age":26,"race":"white","occupation":"other","sector":"construction","married":1},{"education":11,"south":1,"gender":"male","experience":29,"union":1,"wage":9.5,"age":46,"race":"white","occupation":"other","sector":"construction","married":0},{"education":16,"south":0,"gender":"male","experience":3,"union":0,"wage":5,"age":25,"race":"white","occupation":"other","sector":"other","married":1},{"education":11,"south":0,"gender":"male","experience":11,"union":1,"wage":3.75,"age":28,"race":"white","occupation":"other","sector":"construction","married":1},{"education":12,"south":0,"gender":"male","experience":12,"union":0,"wage":12.57,"age":30,"race":"white","occupation":"other","sector":"other","married":0},{"education":8,"south":0,"gender":"female","experience":22,"union":1,"wage":6.88,"age":36,"race":"hispanic","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":12,"union":1,"wage":5.5,"age":30,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":7,"union":0,"wage":7,"age":25,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":4.5,"age":33,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":28,"union":1,"wage":6.5,"age":46,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":20,"union":0,"wage":12,"age":38,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":6,"union":1,"wage":5,"age":24,"race":"white","occupation":"other","sector":"construction","married":1},{"education":12,"south":1,"gender":"male","experience":5,"union":1,"wage":6.5,"age":23,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":9,"south":1,"gender":"female","experience":30,"union":1,"wage":6.8,"age":45,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":13,"south":0,"gender":"male","experience":18,"union":1,"wage":8.75,"age":37,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":6,"union":1,"wage":3.75,"age":24,"race":"other","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":16,"union":1,"wage":4.5,"age":34,"race":"hispanic","occupation":"other","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":1,"union":0,"wage":6,"age":19,"race":"hispanic","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":3,"union":1,"wage":5.5,"age":21,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":13,"age":26,"race":"white","occupation":"other","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":2,"union":1,"wage":5.65,"age":22,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":9,"south":0,"gender":"male","experience":16,"union":1,"wage":4.8,"age":31,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":10,"south":1,"gender":"male","experience":9,"union":1,"wage":7,"age":25,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":0,"gender":"male","experience":2,"union":1,"wage":5.25,"age":20,"race":"white","occupation":"other","sector":"other","married":1},{"education":7,"south":1,"gender":"male","experience":43,"union":1,"wage":3.35,"age":56,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":9,"south":0,"gender":"male","experience":38,"union":1,"wage":8.5,"age":53,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"male","experience":9,"union":1,"wage":6,"age":27,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":12,"union":1,"wage":6.75,"age":30,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":18,"union":1,"wage":8.89,"age":36,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":11,"south":0,"gender":"male","experience":15,"union":0,"wage":14.21,"age":32,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":11,"south":1,"gender":"male","experience":28,"union":0,"wage":10.78,"age":45,"race":"other","occupation":"other","sector":"construction","married":0},{"education":10,"south":1,"gender":"male","experience":27,"union":0,"wage":8.9,"age":43,"race":"white","occupation":"other","sector":"construction","married":0},{"education":12,"south":1,"gender":"male","experience":38,"union":1,"wage":7.5,"age":56,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":3,"union":1,"wage":4.5,"age":21,"race":"white","occupation":"other","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"male","experience":41,"union":0,"wage":11.25,"age":59,"race":"white","occupation":"other","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":16,"union":0,"wage":13.45,"age":34,"race":"white","occupation":"other","sector":"other","married":0},{"education":13,"south":1,"gender":"male","experience":7,"union":1,"wage":6,"age":26,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":6,"south":1,"gender":"female","experience":33,"union":1,"wage":4.62,"age":45,"race":"other","occupation":"other","sector":"manufacturing","married":1},{"education":14,"south":0,"gender":"male","experience":25,"union":1,"wage":10.58,"age":45,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":5,"union":1,"wage":5,"age":23,"race":"white","occupation":"other","sector":"other","married":0},{"education":14,"south":1,"gender":"male","experience":17,"union":1,"wage":8.2,"age":37,"race":"other","occupation":"other","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":1,"union":1,"wage":6.25,"age":19,"race":"white","occupation":"other","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":13,"union":1,"wage":8.5,"age":31,"race":"white","occupation":"other","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"male","experience":18,"union":1,"wage":24.98,"age":40,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":1,"gender":"male","experience":21,"union":1,"wage":16.65,"age":41,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":2,"union":1,"wage":6.25,"age":22,"race":"white","occupation":"management","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":4,"union":1,"wage":4.55,"age":22,"race":"hispanic","occupation":"management","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":30,"union":1,"wage":11.25,"age":48,"race":"hispanic","occupation":"management","sector":"other","married":0},{"education":13,"south":0,"gender":"male","experience":32,"union":1,"wage":21.25,"age":51,"race":"white","occupation":"management","sector":"other","married":1},{"education":17,"south":0,"gender":"female","experience":13,"union":1,"wage":12.65,"age":36,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":17,"union":1,"wage":7.5,"age":35,"race":"white","occupation":"management","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":26,"union":1,"wage":10.25,"age":46,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":9,"union":1,"wage":3.35,"age":31,"race":"white","occupation":"management","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":8,"union":1,"wage":13.45,"age":30,"race":"other","occupation":"management","sector":"other","married":1},{"education":15,"south":0,"gender":"male","experience":1,"union":0,"wage":4.84,"age":22,"race":"white","occupation":"management","sector":"other","married":0},{"education":17,"south":1,"gender":"male","experience":32,"union":1,"wage":26.29,"age":55,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":24,"union":1,"wage":6.58,"age":42,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":1,"union":1,"wage":44.5,"age":21,"race":"white","occupation":"management","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":42,"union":1,"wage":15,"age":60,"race":"white","occupation":"management","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"female","experience":3,"union":1,"wage":11.25,"age":25,"race":"other","occupation":"management","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"female","experience":32,"union":1,"wage":7,"age":50,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":22,"union":1,"wage":10,"age":42,"race":"other","occupation":"management","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":18,"union":1,"wage":14.53,"age":40,"race":"white","occupation":"management","sector":"other","married":0},{"education":18,"south":0,"gender":"female","experience":19,"union":1,"wage":20,"age":43,"race":"white","occupation":"management","sector":"other","married":0},{"education":15,"south":0,"gender":"male","experience":12,"union":1,"wage":22.5,"age":33,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":42,"union":1,"wage":3.64,"age":60,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":34,"union":1,"wage":10.62,"age":52,"race":"white","occupation":"management","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":29,"union":1,"wage":24.98,"age":53,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":8,"union":1,"wage":6,"age":30,"race":"white","occupation":"management","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":13,"union":1,"wage":19,"age":37,"race":"white","occupation":"management","sector":"manufacturing","married":1},{"education":16,"south":0,"gender":"male","experience":10,"union":1,"wage":13.2,"age":32,"race":"white","occupation":"management","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":22,"union":1,"wage":22.5,"age":44,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":10,"union":1,"wage":15,"age":32,"race":"white","occupation":"management","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":15,"union":1,"wage":6.88,"age":38,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":26,"union":1,"wage":11.84,"age":44,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":16,"union":1,"wage":16.14,"age":36,"race":"white","occupation":"management","sector":"other","married":1},{"education":18,"south":0,"gender":"female","experience":14,"union":1,"wage":13.95,"age":38,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":38,"union":1,"wage":13.16,"age":56,"race":"white","occupation":"management","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":14,"union":1,"wage":5.3,"age":32,"race":"other","occupation":"management","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":7,"union":1,"wage":4.5,"age":25,"race":"white","occupation":"management","sector":"other","married":0},{"education":18,"south":1,"gender":"female","experience":13,"union":1,"wage":10,"age":37,"race":"white","occupation":"management","sector":"other","married":1},{"education":10,"south":0,"gender":"male","experience":20,"union":1,"wage":10,"age":36,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":7,"union":0,"wage":10,"age":29,"race":"hispanic","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":26,"union":1,"wage":9.37,"age":48,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":14,"union":1,"wage":5.8,"age":36,"race":"white","occupation":"management","sector":"other","married":0},{"education":13,"south":0,"gender":"male","experience":36,"union":1,"wage":17.86,"age":55,"race":"white","occupation":"management","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":24,"union":1,"wage":1,"age":42,"race":"white","occupation":"management","sector":"other","married":0},{"education":14,"south":1,"gender":"male","experience":41,"union":1,"wage":8.8,"age":61,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":7,"union":1,"wage":9,"age":29,"race":"other","occupation":"management","sector":"other","married":0},{"education":17,"south":1,"gender":"male","experience":14,"union":1,"wage":18.16,"age":37,"race":"white","occupation":"management","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":1,"union":1,"wage":7.81,"age":19,"race":"white","occupation":"management","sector":"other","married":1},{"education":16,"south":0,"gender":"female","experience":6,"union":1,"wage":10.62,"age":28,"race":"white","occupation":"management","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":3,"union":1,"wage":4.5,"age":21,"race":"white","occupation":"management","sector":"other","married":0},{"education":15,"south":0,"gender":"male","experience":31,"union":1,"wage":17.25,"age":52,"race":"white","occupation":"management","sector":"other","married":0},{"education":13,"south":0,"gender":"female","experience":14,"union":1,"wage":10.5,"age":33,"race":"white","occupation":"management","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"female","experience":13,"union":1,"wage":9.22,"age":33,"race":"white","occupation":"management","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":26,"union":0,"wage":15,"age":48,"race":"other","occupation":"management","sector":"manufacturing","married":0},{"education":18,"south":0,"gender":"male","experience":14,"union":1,"wage":22.5,"age":38,"race":"white","occupation":"management","sector":"other","married":0},{"education":13,"south":0,"gender":"female","experience":33,"union":1,"wage":4.55,"age":52,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":16,"union":1,"wage":9,"age":34,"race":"white","occupation":"sales","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":10,"union":1,"wage":13.33,"age":34,"race":"white","occupation":"sales","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":22,"union":1,"wage":15,"age":42,"race":"white","occupation":"sales","sector":"other","married":1},{"education":14,"south":0,"gender":"male","experience":2,"union":1,"wage":7.5,"age":22,"race":"white","occupation":"sales","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":29,"union":1,"wage":4.25,"age":47,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":43,"union":1,"wage":12.5,"age":61,"race":"white","occupation":"sales","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":5,"union":1,"wage":5.13,"age":23,"race":"white","occupation":"sales","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":14,"union":1,"wage":3.35,"age":36,"race":"other","occupation":"sales","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":28,"union":1,"wage":11.11,"age":46,"race":"white","occupation":"sales","sector":"other","married":0},{"education":11,"south":1,"gender":"female","experience":25,"union":1,"wage":3.84,"age":42,"race":"other","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":45,"union":1,"wage":6.4,"age":63,"race":"white","occupation":"sales","sector":"other","married":0},{"education":14,"south":1,"gender":"male","experience":5,"union":1,"wage":5.56,"age":25,"race":"white","occupation":"sales","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":20,"union":1,"wage":10,"age":38,"race":"white","occupation":"sales","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"female","experience":6,"union":1,"wage":5.65,"age":28,"race":"white","occupation":"sales","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":16,"union":1,"wage":11.5,"age":38,"race":"white","occupation":"sales","sector":"other","married":0},{"education":11,"south":0,"gender":"female","experience":33,"union":1,"wage":3.5,"age":50,"race":"white","occupation":"sales","sector":"other","married":0},{"education":13,"south":1,"gender":"female","experience":2,"union":1,"wage":3.35,"age":21,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":10,"union":1,"wage":4.75,"age":28,"race":"white","occupation":"sales","sector":"other","married":1},{"education":14,"south":1,"gender":"male","experience":44,"union":1,"wage":19.98,"age":64,"race":"white","occupation":"sales","sector":"other","married":0},{"education":14,"south":1,"gender":"female","experience":6,"union":1,"wage":3.5,"age":26,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":4,"age":33,"race":"white","occupation":"sales","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":5,"union":1,"wage":7,"age":23,"race":"white","occupation":"sales","sector":"other","married":0},{"education":13,"south":0,"gender":"female","experience":4,"union":1,"wage":6.25,"age":23,"race":"white","occupation":"sales","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"male","experience":14,"union":1,"wage":4.5,"age":34,"race":"white","occupation":"sales","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":32,"union":1,"wage":14.29,"age":52,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":14,"union":1,"wage":5,"age":32,"race":"white","occupation":"sales","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":21,"union":1,"wage":13.75,"age":41,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":43,"union":0,"wage":13.71,"age":61,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":27,"union":1,"wage":7.5,"age":45,"race":"other","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":4,"union":1,"wage":3.8,"age":22,"race":"white","occupation":"sales","sector":"other","married":1},{"education":14,"south":0,"gender":"male","experience":0,"union":1,"wage":5,"age":20,"race":"hispanic","occupation":"sales","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":32,"union":1,"wage":9.42,"age":50,"race":"white","occupation":"sales","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":20,"union":1,"wage":5.5,"age":38,"race":"white","occupation":"sales","sector":"other","married":0},{"education":15,"south":1,"gender":"male","experience":4,"union":1,"wage":3.75,"age":25,"race":"white","occupation":"sales","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":34,"union":1,"wage":3.5,"age":52,"race":"white","occupation":"sales","sector":"other","married":0},{"education":13,"south":0,"gender":"male","experience":5,"union":1,"wage":5.8,"age":24,"race":"white","occupation":"sales","sector":"other","married":1},{"education":17,"south":0,"gender":"male","experience":13,"union":1,"wage":12,"age":36,"race":"white","occupation":"sales","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"female","experience":17,"union":1,"wage":5,"age":37,"race":"hispanic","occupation":"clerical","sector":"other","married":0},{"education":13,"south":1,"gender":"female","experience":10,"union":1,"wage":8.75,"age":29,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":7,"union":1,"wage":10,"age":29,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":25,"union":1,"wage":8.5,"age":43,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":18,"union":1,"wage":8.63,"age":36,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":27,"union":1,"wage":9,"age":49,"race":"white","occupation":"clerical","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"female","experience":2,"union":1,"wage":5.5,"age":24,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":13,"south":0,"gender":"male","experience":13,"union":1,"wage":11.11,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":24,"union":1,"wage":10,"age":44,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":18,"south":1,"gender":"female","experience":13,"union":1,"wage":5.2,"age":37,"race":"hispanic","occupation":"clerical","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":15,"union":0,"wage":8,"age":35,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":12,"union":1,"wage":3.56,"age":30,"race":"hispanic","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":24,"union":1,"wage":5.2,"age":42,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":43,"union":1,"wage":11.67,"age":61,"race":"white","occupation":"clerical","sector":"construction","married":0},{"education":12,"south":0,"gender":"female","experience":13,"union":1,"wage":11.32,"age":31,"race":"white","occupation":"clerical","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"female","experience":16,"union":1,"wage":7.5,"age":34,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":11,"south":0,"gender":"female","experience":24,"union":1,"wage":5.5,"age":41,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":4,"union":1,"wage":5,"age":26,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":24,"union":1,"wage":7.75,"age":42,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":45,"union":1,"wage":5.25,"age":63,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":20,"union":0,"wage":9,"age":38,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":38,"union":1,"wage":9.65,"age":56,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":18,"south":1,"gender":"male","experience":10,"union":1,"wage":5.21,"age":34,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":11,"south":0,"gender":"female","experience":16,"union":1,"wage":7,"age":33,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":32,"union":1,"wage":12.16,"age":50,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":2,"union":1,"wage":5.25,"age":24,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":13,"south":1,"gender":"female","experience":28,"union":1,"wage":10.32,"age":47,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":3,"union":1,"wage":3.35,"age":25,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":13,"south":0,"gender":"female","experience":8,"union":0,"wage":7.7,"age":27,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":44,"union":1,"wage":9.17,"age":62,"race":"white","occupation":"clerical","sector":"manufacturing","married":0},{"education":12,"south":1,"gender":"male","experience":12,"union":1,"wage":8.43,"age":30,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":8,"union":1,"wage":4,"age":26,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":4,"union":1,"wage":4.13,"age":22,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":28,"union":1,"wage":3,"age":46,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":13,"south":1,"gender":"female","experience":0,"union":1,"wage":4.25,"age":19,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":14,"south":1,"gender":"male","experience":1,"union":1,"wage":7.53,"age":21,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":12,"union":1,"wage":10.53,"age":32,"race":"white","occupation":"clerical","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":39,"union":1,"wage":5,"age":57,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":24,"union":1,"wage":15.03,"age":42,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":32,"union":1,"wage":11.25,"age":55,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":4,"union":1,"wage":6.25,"age":26,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":25,"union":1,"wage":3.5,"age":43,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":8,"union":1,"wage":6.85,"age":26,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":13,"south":0,"gender":"female","experience":16,"union":1,"wage":12.5,"age":35,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":5,"union":1,"wage":12,"age":23,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":13,"south":0,"gender":"male","experience":31,"union":1,"wage":6,"age":50,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":25,"union":1,"wage":9.5,"age":43,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":4.1,"age":33,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":14,"south":1,"gender":"female","experience":15,"union":1,"wage":10.43,"age":35,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":0,"union":1,"wage":5,"age":18,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":19,"union":1,"wage":7.69,"age":37,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":21,"union":1,"wage":5.5,"age":39,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":6,"union":1,"wage":6.4,"age":24,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":14,"union":0,"wage":12.5,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":13,"south":0,"gender":"female","experience":30,"union":1,"wage":6.25,"age":49,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":8,"union":1,"wage":8,"age":26,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":9,"south":0,"gender":"male","experience":33,"union":0,"wage":9.6,"age":48,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":13,"south":0,"gender":"male","experience":16,"union":1,"wage":9.1,"age":35,"race":"hispanic","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":20,"union":1,"wage":7.5,"age":38,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":13,"south":1,"gender":"female","experience":6,"union":1,"wage":5,"age":25,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":10,"union":0,"wage":7,"age":28,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":13,"south":1,"gender":"female","experience":1,"union":1,"wage":3.55,"age":20,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":2,"union":1,"wage":8.5,"age":20,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":13,"south":1,"gender":"female","experience":0,"union":1,"wage":4.5,"age":19,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":17,"union":1,"wage":7.88,"age":39,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":8,"union":1,"wage":5.25,"age":26,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":4,"union":1,"wage":5,"age":22,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":9.33,"age":33,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":29,"union":1,"wage":10.5,"age":47,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":23,"union":1,"wage":7.5,"age":41,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":39,"union":1,"wage":9.5,"age":57,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":14,"union":1,"wage":9.6,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":17,"south":1,"gender":"female","experience":6,"union":1,"wage":5.87,"age":29,"race":"other","occupation":"clerical","sector":"other","married":1},{"education":14,"south":1,"gender":"male","experience":12,"union":0,"wage":11.02,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":26,"union":1,"wage":5,"age":44,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":32,"union":1,"wage":5.62,"age":52,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":15,"south":0,"gender":"female","experience":6,"union":1,"wage":12.5,"age":27,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":40,"union":1,"wage":10.81,"age":58,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":18,"union":1,"wage":5.4,"age":36,"race":"white","occupation":"clerical","sector":"manufacturing","married":0},{"education":11,"south":0,"gender":"female","experience":12,"union":1,"wage":7,"age":29,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":36,"union":1,"wage":4.59,"age":54,"race":"white","occupation":"clerical","sector":"construction","married":0},{"education":12,"south":0,"gender":"female","experience":19,"union":1,"wage":6,"age":37,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":42,"union":1,"wage":11.71,"age":64,"race":"white","occupation":"clerical","sector":"manufacturing","married":1},{"education":13,"south":0,"gender":"female","experience":2,"union":1,"wage":5.62,"age":21,"race":"hispanic","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":33,"union":1,"wage":5.5,"age":51,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":14,"union":1,"wage":4.85,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":22,"union":1,"wage":6.75,"age":40,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":20,"union":1,"wage":4.25,"age":38,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":5.75,"age":33,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":35,"union":1,"wage":3.5,"age":53,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":7,"union":1,"wage":3.35,"age":25,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":45,"union":1,"wage":10.62,"age":63,"race":"white","occupation":"clerical","sector":"manufacturing","married":1},{"education":12,"south":0,"gender":"female","experience":9,"union":1,"wage":8,"age":27,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":2,"union":1,"wage":4.75,"age":20,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":17,"south":1,"gender":"male","experience":3,"union":1,"wage":8.5,"age":26,"race":"white","occupation":"clerical","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":19,"union":0,"wage":8.85,"age":39,"race":"other","occupation":"clerical","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":14,"union":1,"wage":8,"age":32,"race":"white","occupation":"clerical","sector":"other","married":0},{"education":4,"south":0,"gender":"male","experience":54,"union":1,"wage":6,"age":64,"race":"white","occupation":"service","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":17,"union":1,"wage":7.14,"age":37,"race":"white","occupation":"service","sector":"other","married":0},{"education":8,"south":0,"gender":"female","experience":29,"union":1,"wage":3.4,"age":43,"race":"other","occupation":"service","sector":"other","married":0},{"education":15,"south":1,"gender":"female","experience":26,"union":1,"wage":6,"age":47,"race":"white","occupation":"service","sector":"other","married":1},{"education":2,"south":0,"gender":"male","experience":16,"union":1,"wage":3.75,"age":24,"race":"hispanic","occupation":"service","sector":"other","married":1},{"education":8,"south":0,"gender":"female","experience":29,"union":1,"wage":8.89,"age":43,"race":"other","occupation":"service","sector":"other","married":1},{"education":11,"south":0,"gender":"female","experience":20,"union":1,"wage":4.35,"age":37,"race":"white","occupation":"service","sector":"other","married":0},{"education":10,"south":1,"gender":"female","experience":38,"union":1,"wage":13.1,"age":54,"race":"other","occupation":"service","sector":"other","married":0},{"education":8,"south":1,"gender":"female","experience":37,"union":1,"wage":4.35,"age":51,"race":"other","occupation":"service","sector":"other","married":0},{"education":9,"south":0,"gender":"male","experience":48,"union":1,"wage":3.5,"age":63,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":16,"union":1,"wage":3.8,"age":34,"race":"white","occupation":"service","sector":"other","married":1},{"education":8,"south":0,"gender":"female","experience":38,"union":1,"wage":5.26,"age":52,"race":"white","occupation":"service","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":0,"union":1,"wage":3.35,"age":20,"race":"other","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":14,"union":0,"wage":16.26,"age":32,"race":"other","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":2,"union":1,"wage":4.25,"age":20,"race":"white","occupation":"service","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":21,"union":1,"wage":4.5,"age":43,"race":"white","occupation":"service","sector":"other","married":0},{"education":13,"south":0,"gender":"female","experience":15,"union":1,"wage":8,"age":34,"race":"white","occupation":"service","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":20,"union":1,"wage":4,"age":42,"race":"white","occupation":"service","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":12,"union":1,"wage":7.96,"age":32,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":7,"union":1,"wage":4,"age":25,"race":"hispanic","occupation":"service","sector":"other","married":1},{"education":11,"south":0,"gender":"male","experience":4,"union":1,"wage":4.15,"age":21,"race":"white","occupation":"service","sector":"other","married":0},{"education":13,"south":1,"gender":"male","experience":9,"union":1,"wage":5.95,"age":28,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":43,"union":1,"wage":3.6,"age":61,"race":"hispanic","occupation":"service","sector":"other","married":0},{"education":10,"south":1,"gender":"male","experience":19,"union":1,"wage":8.75,"age":35,"race":"white","occupation":"service","sector":"other","married":1},{"education":8,"south":0,"gender":"female","experience":49,"union":1,"wage":3.4,"age":63,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":38,"union":1,"wage":4.28,"age":56,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":13,"union":1,"wage":5.35,"age":31,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":14,"union":1,"wage":5,"age":32,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":20,"union":1,"wage":7.65,"age":38,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":7,"union":1,"wage":6.94,"age":25,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":9,"union":0,"wage":7.5,"age":27,"race":"white","occupation":"service","sector":"manufacturing","married":0},{"education":12,"south":0,"gender":"female","experience":6,"union":1,"wage":3.6,"age":24,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":5,"union":1,"wage":1.75,"age":23,"race":"white","occupation":"service","sector":"other","married":0},{"education":13,"south":1,"gender":"female","experience":1,"union":1,"wage":3.45,"age":20,"race":"other","occupation":"service","sector":"other","married":1},{"education":14,"south":0,"gender":"male","experience":22,"union":0,"wage":9.63,"age":42,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":24,"union":1,"wage":8.49,"age":42,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":15,"union":0,"wage":8.99,"age":33,"race":"white","occupation":"service","sector":"other","married":1},{"education":11,"south":1,"gender":"female","experience":8,"union":1,"wage":3.65,"age":25,"race":"white","occupation":"service","sector":"other","married":0},{"education":11,"south":1,"gender":"female","experience":17,"union":1,"wage":3.5,"age":34,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":2,"union":1,"wage":3.43,"age":20,"race":"other","occupation":"service","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":20,"union":1,"wage":5.5,"age":38,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":26,"union":0,"wage":6.93,"age":44,"race":"white","occupation":"service","sector":"other","married":0},{"education":10,"south":1,"gender":"female","experience":37,"union":1,"wage":3.51,"age":53,"race":"other","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":41,"union":1,"wage":3.75,"age":59,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":27,"union":1,"wage":4.17,"age":45,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":5,"union":0,"wage":9.57,"age":23,"race":"white","occupation":"service","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":16,"union":1,"wage":14.67,"age":36,"race":"other","occupation":"service","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":19,"union":1,"wage":12.5,"age":39,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":10,"union":1,"wage":5.5,"age":28,"race":"white","occupation":"service","sector":"other","married":0},{"education":13,"south":1,"gender":"male","experience":1,"union":0,"wage":5.15,"age":20,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":43,"union":0,"wage":8,"age":61,"race":"other","occupation":"service","sector":"other","married":0},{"education":13,"south":0,"gender":"male","experience":3,"union":1,"wage":5.83,"age":22,"race":"other","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":0,"union":1,"wage":3.35,"age":18,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":26,"union":1,"wage":7,"age":44,"race":"white","occupation":"service","sector":"other","married":0},{"education":10,"south":0,"gender":"female","experience":25,"union":0,"wage":10,"age":41,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":15,"union":1,"wage":8,"age":33,"race":"white","occupation":"service","sector":"other","married":0},{"education":14,"south":1,"gender":"female","experience":10,"union":1,"wage":6.88,"age":30,"race":"white","occupation":"service","sector":"other","married":1},{"education":11,"south":0,"gender":"female","experience":45,"union":0,"wage":5.55,"age":62,"race":"white","occupation":"service","sector":"other","married":1},{"education":11,"south":0,"gender":"male","experience":3,"union":1,"wage":7.5,"age":20,"race":"other","occupation":"service","sector":"other","married":1},{"education":8,"south":0,"gender":"male","experience":47,"union":0,"wage":8.93,"age":61,"race":"hispanic","occupation":"service","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":6,"union":1,"wage":9,"age":28,"race":"other","occupation":"service","sector":"other","married":0},{"education":10,"south":1,"gender":"female","experience":33,"union":1,"wage":3.5,"age":49,"race":"white","occupation":"service","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":3,"union":1,"wage":5.77,"age":25,"race":"white","occupation":"service","sector":"manufacturing","married":1},{"education":14,"south":0,"gender":"male","experience":4,"union":0,"wage":25,"age":24,"race":"hispanic","occupation":"service","sector":"other","married":1},{"education":14,"south":0,"gender":"male","experience":34,"union":0,"wage":6.85,"age":54,"race":"other","occupation":"service","sector":"other","married":0},{"education":11,"south":1,"gender":"male","experience":39,"union":1,"wage":6.5,"age":56,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":1,"gender":"female","experience":17,"union":1,"wage":3.75,"age":35,"race":"white","occupation":"service","sector":"other","married":0},{"education":9,"south":0,"gender":"male","experience":47,"union":0,"wage":3.5,"age":62,"race":"white","occupation":"service","sector":"other","married":0},{"education":11,"south":0,"gender":"male","experience":2,"union":1,"wage":4.5,"age":19,"race":"white","occupation":"service","sector":"other","married":1},{"education":13,"south":1,"gender":"male","experience":0,"union":1,"wage":2.01,"age":19,"race":"white","occupation":"service","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":24,"union":1,"wage":4.17,"age":44,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"male","experience":25,"union":0,"wage":13,"age":43,"race":"other","occupation":"service","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":6,"union":1,"wage":3.98,"age":26,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":10,"union":1,"wage":7.5,"age":28,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":33,"union":1,"wage":13.12,"age":51,"race":"other","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":12,"union":1,"wage":4,"age":30,"race":"white","occupation":"service","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":9,"union":1,"wage":3.95,"age":27,"race":"white","occupation":"service","sector":"other","married":0},{"education":11,"south":1,"gender":"male","experience":18,"union":0,"wage":13,"age":35,"race":"white","occupation":"service","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":10,"union":1,"wage":9,"age":28,"race":"white","occupation":"service","sector":"other","married":0},{"education":8,"south":1,"gender":"female","experience":45,"union":1,"wage":4.55,"age":59,"race":"white","occupation":"service","sector":"other","married":1},{"education":9,"south":0,"gender":"female","experience":46,"union":0,"wage":9.5,"age":61,"race":"white","occupation":"service","sector":"other","married":0},{"education":7,"south":1,"gender":"male","experience":14,"union":1,"wage":4.5,"age":27,"race":"hispanic","occupation":"service","sector":"other","married":0},{"education":11,"south":0,"gender":"female","experience":36,"union":1,"wage":8.75,"age":53,"race":"white","occupation":"service","sector":"other","married":1},{"education":13,"south":0,"gender":"male","experience":34,"union":0,"wage":10,"age":53,"race":"white","occupation":"professional","sector":"construction","married":0},{"education":18,"south":0,"gender":"male","experience":15,"union":1,"wage":18,"age":39,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"male","experience":31,"union":1,"wage":24.98,"age":54,"race":"white","occupation":"professional","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"female","experience":6,"union":1,"wage":12.05,"age":28,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":14,"south":1,"gender":"male","experience":15,"union":1,"wage":22,"age":35,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":30,"union":1,"wage":8.75,"age":48,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":8,"union":1,"wage":22.2,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":5,"union":1,"wage":17.25,"age":29,"race":"white","occupation":"professional","sector":"manufacturing","married":0},{"education":17,"south":0,"gender":"female","experience":3,"union":0,"wage":6,"age":26,"race":"white","occupation":"professional","sector":"other","married":1},{"education":13,"south":1,"gender":"male","experience":17,"union":1,"wage":8.06,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":5,"union":0,"wage":9.24,"age":27,"race":"other","occupation":"professional","sector":"manufacturing","married":0},{"education":14,"south":0,"gender":"female","experience":10,"union":1,"wage":12,"age":30,"race":"white","occupation":"professional","sector":"other","married":0},{"education":15,"south":0,"gender":"female","experience":33,"union":1,"wage":10.61,"age":54,"race":"white","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":3,"union":1,"wage":5.71,"age":27,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":0,"union":1,"wage":10,"age":18,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":1,"gender":"male","experience":13,"union":1,"wage":17.5,"age":35,"race":"other","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":12,"union":1,"wage":15,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":6,"union":1,"wage":7.78,"age":28,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"male","experience":7,"union":1,"wage":7.8,"age":30,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":14,"union":0,"wage":10,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":5,"union":1,"wage":24.98,"age":28,"race":"white","occupation":"professional","sector":"other","married":1},{"education":15,"south":1,"gender":"female","experience":10,"union":1,"wage":10.28,"age":31,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"female","experience":11,"union":1,"wage":15,"age":35,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":24,"union":1,"wage":12,"age":47,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":9,"union":1,"wage":10.58,"age":31,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":18,"south":1,"gender":"male","experience":12,"union":1,"wage":5.85,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":19,"union":1,"wage":11.22,"age":43,"race":"white","occupation":"professional","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":14,"union":1,"wage":8.56,"age":34,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":17,"union":1,"wage":13.89,"age":39,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":18,"south":1,"gender":"male","experience":7,"union":1,"wage":5.71,"age":31,"race":"white","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":7,"union":1,"wage":15.79,"age":31,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":22,"union":1,"wage":7.5,"age":44,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":28,"union":1,"wage":11.25,"age":46,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":16,"union":1,"wage":6.15,"age":38,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":1,"gender":"male","experience":16,"union":1,"wage":13.45,"age":38,"race":"other","occupation":"professional","sector":"other","married":1},{"education":16,"south":0,"gender":"female","experience":7,"union":1,"wage":6.25,"age":29,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":11,"union":1,"wage":6.5,"age":29,"race":"white","occupation":"professional","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":11,"union":1,"wage":12,"age":29,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":16,"union":1,"wage":8.5,"age":34,"race":"white","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":33,"union":0,"wage":8,"age":57,"race":"white","occupation":"professional","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":21,"union":1,"wage":5.75,"age":39,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":4,"union":1,"wage":15.73,"age":26,"race":"white","occupation":"professional","sector":"manufacturing","married":0},{"education":15,"south":0,"gender":"male","experience":13,"union":1,"wage":9.86,"age":34,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":14,"union":0,"wage":13.51,"age":38,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":10,"union":1,"wage":5.4,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":1,"gender":"male","experience":14,"union":1,"wage":6.25,"age":38,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":29,"union":1,"wage":5.5,"age":51,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":4,"union":1,"wage":5,"age":22,"race":"hispanic","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":27,"union":1,"wage":6.25,"age":51,"race":"other","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":3,"union":1,"wage":5.75,"age":21,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":14,"union":0,"wage":20.5,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":0,"union":1,"wage":5,"age":20,"race":"white","occupation":"professional","sector":"construction","married":0},{"education":18,"south":0,"gender":"male","experience":33,"union":1,"wage":7,"age":57,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"male","experience":38,"union":1,"wage":18,"age":60,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"female","experience":18,"union":0,"wage":12,"age":42,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"male","experience":3,"union":1,"wage":20.4,"age":26,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":18,"south":0,"gender":"female","experience":40,"union":1,"wage":22.2,"age":64,"race":"white","occupation":"professional","sector":"other","married":1},{"education":14,"south":0,"gender":"male","experience":19,"union":1,"wage":16.42,"age":39,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":14,"south":0,"gender":"female","experience":4,"union":1,"wage":8.63,"age":24,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":0,"gender":"female","experience":11,"union":1,"wage":19.38,"age":33,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":16,"union":1,"wage":14,"age":38,"race":"white","occupation":"professional","sector":"other","married":0},{"education":14,"south":0,"gender":"male","experience":22,"union":1,"wage":10,"age":42,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":13,"union":0,"wage":15.95,"age":36,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":1,"gender":"female","experience":28,"union":0,"wage":20,"age":50,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":10,"union":1,"wage":10,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":5,"union":1,"wage":24.98,"age":27,"race":"white","occupation":"professional","sector":"other","married":1},{"education":15,"south":0,"gender":"male","experience":5,"union":1,"wage":11.25,"age":26,"race":"white","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"female","experience":37,"union":1,"wage":22.83,"age":61,"race":"white","occupation":"professional","sector":"manufacturing","married":1},{"education":17,"south":0,"gender":"female","experience":26,"union":0,"wage":10.2,"age":49,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":4,"union":1,"wage":10,"age":26,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"female","experience":31,"union":0,"wage":14,"age":55,"race":"white","occupation":"professional","sector":"other","married":1},{"education":17,"south":0,"gender":"female","experience":13,"union":0,"wage":12.5,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":42,"union":1,"wage":5.79,"age":60,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"male","experience":18,"union":1,"wage":24.98,"age":41,"race":"hispanic","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"female","experience":3,"union":1,"wage":4.35,"age":21,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":10,"union":1,"wage":11.25,"age":33,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":0,"gender":"female","experience":10,"union":0,"wage":6.67,"age":32,"race":"white","occupation":"professional","sector":"other","married":1},{"education":16,"south":0,"gender":"female","experience":17,"union":1,"wage":8,"age":39,"race":"hispanic","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":7,"union":1,"wage":18.16,"age":31,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":14,"union":1,"wage":12,"age":36,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":22,"union":0,"wage":8.89,"age":44,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":14,"union":1,"wage":9.5,"age":37,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":11,"union":1,"wage":13.65,"age":33,"race":"white","occupation":"professional","sector":"other","married":0},{"education":18,"south":0,"gender":"male","experience":23,"union":0,"wage":12,"age":47,"race":"white","occupation":"professional","sector":"other","married":0},{"education":12,"south":0,"gender":"male","experience":39,"union":0,"wage":15,"age":57,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":15,"union":1,"wage":12.67,"age":37,"race":"white","occupation":"professional","sector":"other","married":0},{"education":14,"south":0,"gender":"female","experience":15,"union":1,"wage":7.38,"age":35,"race":"hispanic","occupation":"professional","sector":"other","married":1},{"education":16,"south":0,"gender":"male","experience":10,"union":1,"wage":15.56,"age":32,"race":"white","occupation":"professional","sector":"other","married":1},{"education":12,"south":1,"gender":"female","experience":25,"union":1,"wage":7.45,"age":43,"race":"white","occupation":"professional","sector":"other","married":1},{"education":14,"south":0,"gender":"female","experience":12,"union":1,"wage":6.25,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":1,"gender":"female","experience":7,"union":1,"wage":6.25,"age":29,"race":"hispanic","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"male","experience":7,"union":0,"wage":9.37,"age":30,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":17,"union":1,"wage":22.5,"age":39,"race":"white","occupation":"professional","sector":"manufacturing","married":0},{"education":16,"south":0,"gender":"male","experience":10,"union":0,"wage":7.5,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":17,"south":1,"gender":"male","experience":2,"union":1,"wage":7,"age":25,"race":"white","occupation":"professional","sector":"other","married":0},{"education":9,"south":1,"gender":"female","experience":34,"union":0,"wage":5.75,"age":49,"race":"other","occupation":"professional","sector":"other","married":0},{"education":15,"south":0,"gender":"female","experience":11,"union":1,"wage":7.67,"age":32,"race":"white","occupation":"professional","sector":"other","married":0},{"education":15,"south":0,"gender":"male","experience":10,"union":1,"wage":12.5,"age":31,"race":"white","occupation":"professional","sector":"other","married":1},{"education":12,"south":1,"gender":"male","experience":12,"union":1,"wage":16,"age":30,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"female","experience":6,"union":0,"wage":11.79,"age":28,"race":"white","occupation":"professional","sector":"other","married":1},{"education":18,"south":0,"gender":"male","experience":5,"union":1,"wage":11.36,"age":29,"race":"white","occupation":"professional","sector":"other","married":1},{"education":12,"south":0,"gender":"female","experience":33,"union":1,"wage":6.1,"age":51,"race":"other","occupation":"professional","sector":"other","married":0},{"education":17,"south":0,"gender":"female","experience":25,"union":0,"wage":23.25,"age":48,"race":"other","occupation":"professional","sector":"other","married":0},{"education":12,"south":1,"gender":"male","experience":13,"union":0,"wage":19.88,"age":31,"race":"white","occupation":"professional","sector":"other","married":0},{"education":16,"south":0,"gender":"male","experience":33,"union":1,"wage":15.38,"age":55,"race":"white","occupation":"professional","sector":"manufacturing","married":0}]
 
-},{}],170:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8831,7 +8953,7 @@ function dataset() {
 
 module.exports = dataset;
 
-},{"./../data/data.json":169,"@stdlib/utils/copy":223}],171:[function(require,module,exports){
+},{"./../data/data.json":171,"@stdlib/utils/copy":228}],173:[function(require,module,exports){
 (function (__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -8876,7 +8998,6 @@ var opts = {
 *
 * -   This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
 *
-*
 * @throws {Error} unable to read data
 * @returns {ObjectArray} data
 *
@@ -8898,7 +9019,7 @@ function dataset() {
 module.exports = dataset;
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/lib")
-},{"@stdlib/fs/read-json":181,"path":293}],172:[function(require,module,exports){
+},{"@stdlib/fs/read-json":183,"path":298}],174:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/datasets/berndt-cps-wages-1985",
   "version": "0.0.0",
@@ -8985,7 +9106,7 @@ module.exports={
   ]
 }
 
-},{}],173:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -9018,7 +9139,7 @@ var dataset = require( './../lib/browser.js' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof dataset, 'function', 'main export is a function' );
+	t.strictEqual( typeof dataset, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -9049,7 +9170,7 @@ tape( 'the function returns a copy', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/test/test.browser.js")
-},{"./../lib/browser.js":170,"@stdlib/assert/is-plain-object-array":126,"tape":398}],174:[function(require,module,exports){
+},{"./../lib/browser.js":172,"@stdlib/assert/is-plain-object-array":126,"tape":421}],176:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -9253,7 +9374,7 @@ tape( 'the command-line interface prints Current Population Survey (CPS) data (n
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/test/test.cli.js","/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/test")
-},{"./../data/data.json":169,"./../package.json":172,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-windows":144,"@stdlib/fs/read-file":177,"@stdlib/process/exec-path":192,"@stdlib/regexp/eol":193,"child_process":290,"path":293,"tape":398}],175:[function(require,module,exports){
+},{"./../data/data.json":171,"./../package.json":174,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-windows":144,"@stdlib/fs/read-file":179,"@stdlib/process/exec-path":196,"@stdlib/regexp/eol":197,"child_process":295,"path":298,"tape":421}],177:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -9294,7 +9415,7 @@ var opts = {
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof dataset, 'function', 'main export is a function' );
+	t.strictEqual( typeof dataset, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -9325,7 +9446,7 @@ tape( 'the function returns a copy', opts, function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/test/test.js")
-},{"./../lib":170,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-plain-object-array":126,"tape":398}],176:[function(require,module,exports){
+},{"./../lib":172,"@stdlib/assert/is-browser":80,"@stdlib/assert/is-plain-object-array":126,"tape":421}],178:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});/**
 * @license Apache-2.0
@@ -9377,7 +9498,7 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/berndt-cps-wages-1985/test/test.main.js")
-},{"./../lib/main.js":171,"proxyquireify":390,"tape":398}],177:[function(require,module,exports){
+},{"./../lib/main.js":173,"proxyquireify":411,"tape":421}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9427,20 +9548,20 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var readFile = require( './main.js' );
+var main = require( './main.js' );
 var sync = require( './sync.js' );
 
 
 // MAIN //
 
-setReadOnly( readFile, 'sync', sync );
+setReadOnly( main, 'sync', sync );
 
 
 // EXPORTS //
 
-module.exports = readFile;
+module.exports = main;
 
-},{"./main.js":178,"./sync.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":225}],178:[function(require,module,exports){
+},{"./main.js":180,"./sync.js":181,"@stdlib/utils/define-nonenumerable-read-only-property":231}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9501,7 +9622,7 @@ function readFile() {
 
 module.exports = readFile;
 
-},{"fs":290}],179:[function(require,module,exports){
+},{"fs":295}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9564,7 +9685,7 @@ function readFileSync( file, options ) {
 
 module.exports = readFileSync;
 
-},{"fs":290}],180:[function(require,module,exports){
+},{"fs":295}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9680,7 +9801,7 @@ function readJSON( file, options, clbk ) {
 
 module.exports = readJSON;
 
-},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-function":95,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":177,"@stdlib/string/format":214,"@stdlib/string/remove-utf8-bom":217,"@stdlib/utils/parse-json":269}],181:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-function":95,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":179,"@stdlib/string/format":218,"@stdlib/string/remove-utf8-bom":221,"@stdlib/utils/parse-json":274}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9747,7 +9868,7 @@ setReadOnly( readJSON, 'sync', sync );
 
 module.exports = readJSON;
 
-},{"./async.js":180,"./sync.js":182,"@stdlib/utils/define-nonenumerable-read-only-property":225}],182:[function(require,module,exports){
+},{"./async.js":182,"./sync.js":184,"@stdlib/utils/define-nonenumerable-read-only-property":231}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9838,7 +9959,7 @@ function readJSONSync( file, options ) {
 
 module.exports = readJSONSync;
 
-},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":177,"@stdlib/string/format":214,"@stdlib/string/remove-utf8-bom":217,"@stdlib/utils/parse-json":269}],183:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":64,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/fs/read-file":179,"@stdlib/string/format":218,"@stdlib/string/remove-utf8-bom":221,"@stdlib/utils/parse-json":274}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9876,14 +9997,14 @@ module.exports = readJSONSync;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":184}],184:[function(require,module,exports){
+},{"./main.js":186}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9934,7 +10055,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":187}],185:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":189}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9972,14 +10093,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":186}],186:[function(require,module,exports){
+},{"./main.js":188}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10025,7 +10146,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],187:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10069,14 +10190,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":188}],188:[function(require,module,exports){
+},{"./main.js":190}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10128,7 +10249,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],189:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10163,14 +10284,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":190}],190:[function(require,module,exports){
+},{"./main.js":192}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10195,7 +10316,123 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],191:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":194}],194:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10231,7 +10468,7 @@ var PLATFORM = '';
 
 module.exports = PLATFORM;
 
-},{}],192:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10256,7 +10493,7 @@ module.exports = PLATFORM;
 
 module.exports = null;
 
-},{}],193:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10293,8 +10530,8 @@ module.exports = null;
 * // returns false
 *
 * @example
-* var reEOL = require( '@stdlib/regexp/eol' );
 * var replace = require( '@stdlib/string/replace' );
+* var reEOL = require( '@stdlib/regexp/eol' );
 *
 * var RE_EOL = reEOL({
 *     'flags': 'g'
@@ -10311,22 +10548,22 @@ module.exports = null;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reEOL = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP_CAPTURE = require( './regexp_capture.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reEOL, 'REGEXP', REGEXP );
-setReadOnly( reEOL, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
+setReadOnly( main, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
 
 
 // EXPORTS //
 
-module.exports = reEOL;
+module.exports = main;
 
-},{"./main.js":194,"./regexp.js":195,"./regexp_capture.js":196,"@stdlib/utils/define-nonenumerable-read-only-property":225}],194:[function(require,module,exports){
+},{"./main.js":198,"./regexp.js":199,"./regexp_capture.js":200,"@stdlib/utils/define-nonenumerable-read-only-property":231}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10405,7 +10642,7 @@ function reEOL( options ) {
 
 module.exports = reEOL;
 
-},{"./validate.js":197}],195:[function(require,module,exports){
+},{"./validate.js":201}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10455,7 +10692,7 @@ var REGEXP = reEOL();
 
 module.exports = REGEXP;
 
-},{"./main.js":194}],196:[function(require,module,exports){
+},{"./main.js":198}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10510,7 +10747,7 @@ var REGEXP_CAPTURE = reEOL({
 
 module.exports = REGEXP_CAPTURE;
 
-},{"./main.js":194}],197:[function(require,module,exports){
+},{"./main.js":198}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10586,7 +10823,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":74,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/string/format":214}],198:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":74,"@stdlib/assert/is-plain-object":128,"@stdlib/assert/is-string":130,"@stdlib/string/format":218}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10636,20 +10873,20 @@ module.exports = validate;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":199,"./regexp.js":200,"@stdlib/utils/define-nonenumerable-read-only-property":225}],199:[function(require,module,exports){
+},{"./main.js":203,"./regexp.js":204,"@stdlib/utils/define-nonenumerable-read-only-property":231}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10705,7 +10942,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],200:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10767,7 +11004,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":199}],201:[function(require,module,exports){
+},{"./main.js":203}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10816,25 +11053,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":202,"./regexp.js":203,"@stdlib/utils/define-nonenumerable-read-only-property":225}],202:[function(require,module,exports){
+},{"./main.js":206,"./regexp.js":207,"@stdlib/utils/define-nonenumerable-read-only-property":231}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10880,7 +11112,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],203:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10940,7 +11172,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -10952,7 +11183,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":202}],204:[function(require,module,exports){
+},{"./main.js":206}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11038,7 +11269,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -11065,7 +11296,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":207}],205:[function(require,module,exports){
+},{"./is_number.js":211}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11182,7 +11413,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":207,"./zero_pad.js":211}],206:[function(require,module,exports){
+},{"./is_number.js":211,"./zero_pad.js":215}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11218,14 +11449,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":209}],207:[function(require,module,exports){
+},{"./main.js":213}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11273,7 +11504,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],208:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11317,7 +11548,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],209:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11350,11 +11581,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -11485,6 +11734,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -11493,9 +11743,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -11534,7 +11782,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":204,"./format_integer.js":205,"./is_string.js":208,"./space_pad.js":210,"./zero_pad.js":211}],210:[function(require,module,exports){
+},{"./format_double.js":208,"./format_integer.js":209,"./is_string.js":212,"./space_pad.js":214,"./zero_pad.js":215}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11601,7 +11849,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],211:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11687,7 +11935,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],212:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11723,14 +11971,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":213}],213:[function(require,module,exports){
+},{"./main.js":217}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11822,7 +12070,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],214:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11860,16 +12108,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":216}],215:[function(require,module,exports){
-arguments[4][208][0].apply(exports,arguments)
-},{"dup":208}],216:[function(require,module,exports){
+},{"./main.js":220}],219:[function(require,module,exports){
+arguments[4][212][0].apply(exports,arguments)
+},{"dup":212}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11917,18 +12165,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -11938,7 +12183,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":215,"@stdlib/string/base/format-interpolate":206,"@stdlib/string/base/format-tokenize":212}],217:[function(require,module,exports){
+},{"./is_string.js":219,"@stdlib/string/base/format-interpolate":210,"@stdlib/string/base/format-tokenize":216}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11973,14 +12218,14 @@ module.exports = format;
 
 // MODULES //
 
-var removeUTF8BOM = require( './remove_utf_8_bom.js' );
+var removeUTF8BOM = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = removeUTF8BOM;
 
-},{"./remove_utf_8_bom.js":218}],218:[function(require,module,exports){
+},{"./main.js":222}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12026,7 +12271,6 @@ var BOM = 65279;
 * [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
 * [2]: http://es5.github.io/#x4.3.16
 *
-*
 * @param {string} str - input string
 * @throws {TypeError} must provide a string primitive
 * @returns {string} string with BOM removed
@@ -12050,7 +12294,79 @@ function removeUTF8BOM( str ) {
 
 module.exports = removeUTF8BOM;
 
-},{"@stdlib/assert/is-string":130,"@stdlib/string/format":214}],219:[function(require,module,exports){
+},{"@stdlib/assert/is-string":130,"@stdlib/string/format":218}],223:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":224}],224:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12091,14 +12407,14 @@ module.exports = removeUTF8BOM;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":220}],220:[function(require,module,exports){
+},{"./main.js":226}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12180,86 +12496,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":81,"@stdlib/regexp/function-name":198,"@stdlib/utils/native-class":262}],221:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":222,"@stdlib/assert/is-array":72,"@stdlib/assert/is-nonnegative-integer":112,"@stdlib/constants/float64/pinf":159,"@stdlib/string/format":214}],222:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":81,"@stdlib/regexp/function-name":202,"@stdlib/utils/native-class":267}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12307,7 +12544,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -12567,7 +12803,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":224,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-buffer":81,"@stdlib/assert/is-error":89,"@stdlib/buffer/from-buffer":153,"@stdlib/utils/define-property":230,"@stdlib/utils/get-prototype-of":234,"@stdlib/utils/index-of":244,"@stdlib/utils/keys":255,"@stdlib/utils/property-descriptor":273,"@stdlib/utils/property-names":277,"@stdlib/utils/regexp-from-string":280,"@stdlib/utils/type-of":285}],223:[function(require,module,exports){
+},{"./typed_arrays.js":230,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":72,"@stdlib/assert/is-buffer":81,"@stdlib/assert/is-error":89,"@stdlib/buffer/from-buffer":155,"@stdlib/utils/define-property":236,"@stdlib/utils/get-prototype-of":239,"@stdlib/utils/index-of":249,"@stdlib/utils/keys":260,"@stdlib/utils/property-descriptor":278,"@stdlib/utils/property-names":282,"@stdlib/utils/regexp-from-string":284,"@stdlib/utils/type-of":290}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12618,14 +12854,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":229}],229:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":221}],224:[function(require,module,exports){
+},{"./deep_copy.js":227,"@stdlib/assert/is-array":72,"@stdlib/assert/is-nonnegative-integer":112,"@stdlib/constants/float64/pinf":161,"@stdlib/string/format":218}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12796,7 +13111,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],225:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/float64":4,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12838,14 +13153,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":226}],226:[function(require,module,exports){
+},{"./main.js":232}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12905,7 +13220,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":230}],227:[function(require,module,exports){
+},{"@stdlib/utils/define-property":236}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12968,7 +13283,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],228:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12998,7 +13313,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],229:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13051,7 +13366,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":228}],230:[function(require,module,exports){
+},{"./define_property.js":234}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13111,7 +13426,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":227,"./has_define_property_support.js":229,"./polyfill.js":231}],231:[function(require,module,exports){
+},{"./builtin.js":233,"./has_define_property_support.js":235,"./polyfill.js":237}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13235,7 +13550,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":214}],232:[function(require,module,exports){
+},{"@stdlib/string/format":218}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13277,63 +13592,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":235,"./polyfill.js":236,"@stdlib/assert/is-function":95}],233:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":232}],234:[function(require,module,exports){
+},{"./native.js":241,"./polyfill.js":242,"@stdlib/assert/is-function":95}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13368,14 +13627,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":233}],235:[function(require,module,exports){
+},{"./main.js":240}],240:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":238,"@stdlib/object/ctor":193}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13405,7 +13721,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],236:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13462,7 +13778,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":237,"@stdlib/utils/native-class":262}],237:[function(require,module,exports){
+},{"./proto.js":243,"@stdlib/utils/native-class":267}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13500,7 +13816,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],238:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":245,"./global_this.js":246,"./self.js":247,"./window.js":248,"@stdlib/assert/is-boolean":74,"@stdlib/string/format":218}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13530,7 +13927,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -13538,12 +13935,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],239:[function(require,module,exports){
-(function (global){(function (){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13562,137 +13958,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],240:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":241}],241:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":238,"./global.js":239,"./self.js":242,"./window.js":243,"@stdlib/assert/is-boolean":74,"@stdlib/string/format":214}],242:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13722,7 +13995,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],243:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13752,7 +14025,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],244:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13820,14 +14093,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":245}],245:[function(require,module,exports){
+},{"./main.js":250}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13962,7 +14235,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":83,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":108,"@stdlib/assert/is-string":130,"@stdlib/string/format":214}],246:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":83,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":108,"@stdlib/assert/is-string":130,"@stdlib/string/format":218}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14014,7 +14287,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],247:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14076,7 +14349,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":246,"@stdlib/assert/is-arguments":67}],248:[function(require,module,exports){
+},{"./builtin.js":251,"@stdlib/assert/is-arguments":67}],253:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -14100,7 +14373,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],249:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14160,7 +14433,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":246}],250:[function(require,module,exports){
+},{"./builtin.js":251}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14238,7 +14511,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":248,"./is_constructor_prototype.js":256,"./window.js":261,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":244,"@stdlib/utils/type-of":285}],251:[function(require,module,exports){
+},{"./excluded_keys.json":253,"./is_constructor_prototype.js":261,"./window.js":266,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":249,"@stdlib/utils/type-of":290}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14268,7 +14541,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],252:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14305,7 +14578,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":86,"@stdlib/utils/noop":267}],253:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":86,"@stdlib/utils/noop":272}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14348,7 +14621,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":86}],254:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":86}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14378,7 +14651,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],255:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14418,14 +14691,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":258}],256:[function(require,module,exports){
+},{"./main.js":263}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14464,7 +14737,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],257:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14517,7 +14790,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":250,"./has_window.js":254,"./is_constructor_prototype.js":256}],258:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":255,"./has_window.js":259,"./is_constructor_prototype.js":261}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14582,7 +14855,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":246,"./builtin_wrapper.js":247,"./has_arguments_bug.js":249,"./has_builtin.js":251,"./polyfill.js":260}],259:[function(require,module,exports){
+},{"./builtin.js":251,"./builtin_wrapper.js":252,"./has_arguments_bug.js":254,"./has_builtin.js":256,"./polyfill.js":265}],264:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -14593,7 +14866,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],260:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14697,7 +14970,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":252,"./has_non_enumerable_properties_bug.js":253,"./is_constructor_prototype_wrapper.js":257,"./non_enumerable.json":259,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":67,"@stdlib/assert/is-object-like":122}],261:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":257,"./has_non_enumerable_properties_bug.js":258,"./is_constructor_prototype_wrapper.js":262,"./non_enumerable.json":264,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":67,"@stdlib/assert/is-object-like":122}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14727,7 +15000,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],262:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14772,25 +15045,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":263,"./polyfill.js":264,"@stdlib/assert/has-tostringtag-support":50}],263:[function(require,module,exports){
+},{"./main.js":268,"./polyfill.js":269,"@stdlib/assert/has-tostringtag-support":50}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14848,7 +15121,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":265}],264:[function(require,module,exports){
+},{"./tostring.js":270}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14931,7 +15204,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":265,"./tostringtag.js":266,"@stdlib/assert/has-own-property":46}],265:[function(require,module,exports){
+},{"./tostring.js":270,"./tostringtag.js":271,"@stdlib/assert/has-own-property":46}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14961,7 +15234,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],266:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14982,6 +15255,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -14991,7 +15269,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],267:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":223}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15026,14 +15304,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":268}],268:[function(require,module,exports){
+},{"./main.js":273}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15070,7 +15348,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],269:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15105,14 +15383,14 @@ module.exports = noop;
 
 // MODULES //
 
-var parseJSON = require( './parse_json.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = parseJSON;
+module.exports = main;
 
-},{"./parse_json.js":270}],270:[function(require,module,exports){
+},{"./main.js":275}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15176,7 +15454,7 @@ function parseJSON( str, reviver ) {
 
 module.exports = parseJSON;
 
-},{"@stdlib/assert/is-function":95,"@stdlib/assert/is-string":130,"@stdlib/string/format":214}],271:[function(require,module,exports){
+},{"@stdlib/assert/is-function":95,"@stdlib/assert/is-string":130,"@stdlib/string/format":218}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15240,7 +15518,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],272:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15270,7 +15548,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],273:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15329,7 +15607,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":271,"./has_builtin.js":272,"./polyfill.js":274}],274:[function(require,module,exports){
+},{"./builtin.js":276,"./has_builtin.js":277,"./polyfill.js":279}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15397,7 +15675,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":46}],275:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15417,6 +15695,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -15454,7 +15737,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],276:[function(require,module,exports){
+},{"@stdlib/object/ctor":193}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15484,7 +15767,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],277:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15541,7 +15824,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":275,"./has_builtin.js":276,"./polyfill.js":278}],278:[function(require,module,exports){
+},{"./builtin.js":280,"./has_builtin.js":281,"./polyfill.js":283}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15564,6 +15847,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -15599,7 +15883,49 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":255}],279:[function(require,module,exports){
+},{"@stdlib/object/ctor":193,"@stdlib/utils/keys":260}],284:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":285}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15656,49 +15982,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":130,"@stdlib/regexp/regexp":201,"@stdlib/string/format":214}],280:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":279}],281:[function(require,module,exports){
+},{"@stdlib/assert/is-string":130,"@stdlib/regexp/regexp":205,"@stdlib/string/format":218}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15755,7 +16039,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":282,"./fixtures/re.js":283,"./fixtures/typedarray.js":284}],282:[function(require,module,exports){
+},{"./fixtures/nodelist.js":287,"./fixtures/re.js":288,"./fixtures/typedarray.js":289}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15791,7 +16075,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":240}],283:[function(require,module,exports){
+},{"@stdlib/utils/global":244}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15819,7 +16103,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],284:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15847,7 +16131,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],285:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15886,63 +16170,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":281,"./polyfill.js":286,"./typeof.js":287}],286:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":219}],287:[function(require,module,exports){
+},{"./check.js":286,"./main.js":291,"./polyfill.js":292}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16020,7 +16261,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":219}],288:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":225}],292:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":225}],293:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -16172,11 +16456,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],289:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 
-},{}],290:[function(require,module,exports){
-arguments[4][289][0].apply(exports,arguments)
-},{"dup":289}],291:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
+arguments[4][294][0].apply(exports,arguments)
+},{"dup":294}],296:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -17957,7 +18241,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":288,"buffer":291,"ieee754":380}],292:[function(require,module,exports){
+},{"base64-js":293,"buffer":296,"ieee754":400}],297:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18456,7 +18740,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],293:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -18989,7 +19273,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":389}],294:[function(require,module,exports){
+},{"_process":410}],299:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19120,7 +19404,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":292,"inherits":381,"readable-stream/lib/_stream_duplex.js":296,"readable-stream/lib/_stream_passthrough.js":297,"readable-stream/lib/_stream_readable.js":298,"readable-stream/lib/_stream_transform.js":299,"readable-stream/lib/_stream_writable.js":300,"readable-stream/lib/internal/streams/end-of-stream.js":304,"readable-stream/lib/internal/streams/pipeline.js":306}],295:[function(require,module,exports){
+},{"events":297,"inherits":401,"readable-stream/lib/_stream_duplex.js":301,"readable-stream/lib/_stream_passthrough.js":302,"readable-stream/lib/_stream_readable.js":303,"readable-stream/lib/_stream_transform.js":304,"readable-stream/lib/_stream_writable.js":305,"readable-stream/lib/internal/streams/end-of-stream.js":309,"readable-stream/lib/internal/streams/pipeline.js":311}],300:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -19249,7 +19533,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],296:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19391,7 +19675,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":298,"./_stream_writable":300,"_process":389,"inherits":381}],297:[function(require,module,exports){
+},{"./_stream_readable":303,"./_stream_writable":305,"_process":410,"inherits":401}],302:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19431,7 +19715,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":299,"inherits":381}],298:[function(require,module,exports){
+},{"./_stream_transform":304,"inherits":401}],303:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -20558,7 +20842,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":295,"./_stream_duplex":296,"./internal/streams/async_iterator":301,"./internal/streams/buffer_list":302,"./internal/streams/destroy":303,"./internal/streams/from":305,"./internal/streams/state":307,"./internal/streams/stream":308,"_process":389,"buffer":291,"events":292,"inherits":381,"string_decoder/":397,"util":289}],299:[function(require,module,exports){
+},{"../errors":300,"./_stream_duplex":301,"./internal/streams/async_iterator":306,"./internal/streams/buffer_list":307,"./internal/streams/destroy":308,"./internal/streams/from":310,"./internal/streams/state":312,"./internal/streams/stream":313,"_process":410,"buffer":296,"events":297,"inherits":401,"string_decoder/":420,"util":294}],304:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20760,7 +21044,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":295,"./_stream_duplex":296,"inherits":381}],300:[function(require,module,exports){
+},{"../errors":300,"./_stream_duplex":301,"inherits":401}],305:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -21460,7 +21744,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":295,"./_stream_duplex":296,"./internal/streams/destroy":303,"./internal/streams/state":307,"./internal/streams/stream":308,"_process":389,"buffer":291,"inherits":381,"util-deprecate":406}],301:[function(require,module,exports){
+},{"../errors":300,"./_stream_duplex":301,"./internal/streams/destroy":308,"./internal/streams/state":312,"./internal/streams/stream":313,"_process":410,"buffer":296,"inherits":401,"util-deprecate":429}],306:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -21670,7 +21954,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":304,"_process":389}],302:[function(require,module,exports){
+},{"./end-of-stream":309,"_process":410}],307:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -21881,7 +22165,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":291,"util":289}],303:[function(require,module,exports){
+},{"buffer":296,"util":294}],308:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -21989,7 +22273,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":389}],304:[function(require,module,exports){
+},{"_process":410}],309:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -22094,12 +22378,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":295}],305:[function(require,module,exports){
+},{"../../../errors":300}],310:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],306:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -22197,7 +22481,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":295,"./end-of-stream":304}],307:[function(require,module,exports){
+},{"../../../errors":300,"./end-of-stream":309}],312:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -22225,10 +22509,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":295}],308:[function(require,module,exports){
+},{"../../../errors":300}],313:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":292}],309:[function(require,module,exports){
+},{"events":297}],314:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22245,43 +22529,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":310,"get-intrinsic":375}],310:[function(require,module,exports){
+},{"./":315,"get-intrinsic":391}],315:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -22294,7 +22566,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":374,"get-intrinsic":375}],311:[function(require,module,exports){
+},{"es-define-property":375,"es-errors/type":381,"function-bind":390,"get-intrinsic":391,"set-function-length":415}],316:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -22390,7 +22662,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":312,"./lib/keys.js":313}],312:[function(require,module,exports){
+},{"./lib/is_arguments.js":317,"./lib/keys.js":318}],317:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -22412,7 +22684,7 @@ function unsupported(object){
     false;
 };
 
-},{}],313:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -22423,7 +22695,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],314:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":375,"es-errors/syntax":380,"es-errors/type":381,"gopd":392}],320:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -22431,29 +22761,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -22472,14 +22802,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":376,"object-keys":387}],315:[function(require,module,exports){
+},{"define-data-property":319,"has-property-descriptors":393,"object-keys":408}],321:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],316:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -22518,13 +22848,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":346,"./ToPrimitive":348,"./Type":353}],317:[function(require,module,exports){
+},{"./ToNumber":353,"./ToPrimitive":355,"./Type":360}],323:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -22532,13 +22862,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -22550,7 +22879,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -22583,28 +22912,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":362,"../helpers/isNaN":364,"../helpers/isPrefixOf":365,"./ToNumber":346,"./ToPrimitive":348,"./Type":353,"get-intrinsic":375}],318:[function(require,module,exports){
+},{"../helpers/isFinite":368,"../helpers/isNaN":369,"../helpers/isPrefixOf":370,"./ToNumber":353,"./ToPrimitive":355,"es-errors/type":381,"get-intrinsic":391}],324:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":314,"es-errors/type":381}],325:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":375}],319:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":383}],326:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -22655,7 +23017,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":322,"./InLeapYear":326,"./MonthFromTime":336,"get-intrinsic":375}],320:[function(require,module,exports){
+},{"./DayWithinYear":329,"./InLeapYear":333,"./MonthFromTime":343,"es-errors/eval":376}],327:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22668,7 +23030,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":369,"./floor":357}],321:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./floor":364}],328:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22680,7 +23042,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":357}],322:[function(require,module,exports){
+},{"./floor":364}],329:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -22693,7 +23055,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":320,"./DayFromYear":321,"./YearFromTime":355}],323:[function(require,module,exports){
+},{"./Day":327,"./DayFromYear":328,"./YearFromTime":362}],330:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -22713,18 +23075,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":358}],324:[function(require,module,exports){
+},{"./modulo":365}],331:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -22733,7 +23092,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -22754,7 +23115,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":361,"./IsAccessorDescriptor":327,"./IsDataDescriptor":329,"./Type":353,"get-intrinsic":375}],325:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":372,"./IsAccessorDescriptor":334,"./IsDataDescriptor":336,"es-errors/type":381}],332:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22770,12 +23131,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":369,"./floor":357,"./modulo":358}],326:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./floor":364,"./modulo":365}],333:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -22793,14 +23152,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":323,"./YearFromTime":355,"get-intrinsic":375}],327:[function(require,module,exports){
+},{"./DaysInYear":330,"./YearFromTime":362,"es-errors/eval":376}],334:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -22809,30 +23168,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":361,"./Type":353,"has":379}],328:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":372,"es-errors/type":381,"hasown":399}],335:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":382}],329:[function(require,module,exports){
+},{"is-callable":402}],336:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -22841,23 +23202,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":361,"./Type":353,"has":379}],330:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":372,"es-errors/type":381,"hasown":399}],337:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -22866,7 +23230,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -22875,28 +23241,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":361,"./IsAccessorDescriptor":327,"./IsDataDescriptor":329,"./Type":353}],331:[function(require,module,exports){
+},{"./IsAccessorDescriptor":334,"./IsDataDescriptor":336,"./IsPropertyDescriptor":338,"es-errors/type":381}],338:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":366,"./IsAccessorDescriptor":327,"./IsDataDescriptor":329,"./Type":353}],332:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":372}],339:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -22911,7 +23269,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":362,"../helpers/timeConstants":369}],333:[function(require,module,exports){
+},{"../helpers/isFinite":368,"../helpers/timeConstants":374}],340:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -22946,7 +23304,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":362,"./DateFromTime":319,"./Day":320,"./MonthFromTime":336,"./ToInteger":345,"./YearFromTime":355,"./floor":357,"./modulo":358,"get-intrinsic":375}],334:[function(require,module,exports){
+},{"../helpers/isFinite":368,"./DateFromTime":326,"./Day":327,"./MonthFromTime":343,"./ToInteger":352,"./YearFromTime":362,"./floor":364,"./modulo":365,"get-intrinsic":391}],341:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -22971,7 +23329,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":362,"../helpers/timeConstants":369,"./ToInteger":345}],335:[function(require,module,exports){
+},{"../helpers/isFinite":368,"../helpers/timeConstants":374,"./ToInteger":352}],342:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -22987,7 +23345,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":369,"./floor":357,"./modulo":358}],336:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./floor":364,"./modulo":365}],343:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -23036,7 +23394,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":322,"./InLeapYear":326}],337:[function(require,module,exports){
+},{"./DayWithinYear":329,"./InLeapYear":333}],344:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -23051,7 +23409,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":364}],338:[function(require,module,exports){
+},{"../helpers/isNaN":369}],345:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -23067,7 +23425,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":369,"./floor":357,"./modulo":358}],339:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./floor":364,"./modulo":365}],346:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -23086,7 +23444,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":353}],340:[function(require,module,exports){
+},{"./Type":360}],347:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -23109,7 +23467,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":362,"./ToNumber":346,"./abs":356,"get-intrinsic":375}],341:[function(require,module,exports){
+},{"../helpers/isFinite":368,"./ToNumber":353,"./abs":363,"get-intrinsic":391}],348:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -23122,7 +23480,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":369,"./DayFromYear":321}],342:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./DayFromYear":328}],349:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -23136,14 +23494,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":369,"./modulo":358}],343:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./modulo":365}],350:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],344:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -23154,7 +23512,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":346}],345:[function(require,module,exports){
+},{"./ToNumber":353}],352:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -23174,10 +23532,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":362,"../helpers/isNaN":364,"../helpers/sign":368,"./ToNumber":346,"./abs":356,"./floor":357}],346:[function(require,module,exports){
+},{"../helpers/isFinite":368,"../helpers/isNaN":369,"../helpers/sign":373,"./ToNumber":353,"./abs":363,"./floor":364}],353:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -23187,46 +23553,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":348}],347:[function(require,module,exports){
+},{"./ToPrimitive":355,"call-bind/callBound":314,"safe-regex-test":414}],354:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":318,"get-intrinsic":375}],348:[function(require,module,exports){
+},{"es-object-atoms/ToObject":384}],355:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":370}],349:[function(require,module,exports){
+},{"es-to-primitive/es5":386}],356:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -23240,26 +23599,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -23267,13 +23626,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":328,"./ToBoolean":343,"./Type":353,"get-intrinsic":375,"has":379}],350:[function(require,module,exports){
+},{"./IsCallable":335,"./ToBoolean":350,"./Type":360,"es-errors/type":381,"hasown":399}],357:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -23287,7 +23646,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":375}],351:[function(require,module,exports){
+},{"get-intrinsic":391}],358:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -23308,7 +23667,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":362,"../helpers/isNaN":364,"../helpers/sign":368,"./ToNumber":346,"./abs":356,"./floor":357,"./modulo":358}],352:[function(require,module,exports){
+},{"../helpers/isFinite":368,"../helpers/isNaN":369,"../helpers/sign":373,"./ToNumber":353,"./abs":363,"./floor":364,"./modulo":365}],359:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -23319,7 +23678,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":346}],353:[function(require,module,exports){
+},{"./ToNumber":353}],360:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -23345,7 +23704,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],354:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -23357,7 +23716,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":320,"./modulo":358}],355:[function(require,module,exports){
+},{"./Day":327,"./modulo":365}],362:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -23375,7 +23734,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":309,"get-intrinsic":375}],356:[function(require,module,exports){
+},{"call-bind/callBound":314,"get-intrinsic":391}],363:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -23388,7 +23747,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":375}],357:[function(require,module,exports){
+},{"get-intrinsic":391}],364:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -23401,7 +23760,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],358:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -23412,7 +23771,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":367}],359:[function(require,module,exports){
+},{"../helpers/mod":371}],366:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -23425,7 +23784,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":369,"./modulo":358}],360:[function(require,module,exports){
+},{"../helpers/timeConstants":374,"./modulo":365}],367:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -23436,6 +23795,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -23478,90 +23838,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":316,"./5/AbstractRelationalComparison":317,"./5/CheckObjectCoercible":318,"./5/DateFromTime":319,"./5/Day":320,"./5/DayFromYear":321,"./5/DayWithinYear":322,"./5/DaysInYear":323,"./5/FromPropertyDescriptor":324,"./5/HourFromTime":325,"./5/InLeapYear":326,"./5/IsAccessorDescriptor":327,"./5/IsCallable":328,"./5/IsDataDescriptor":329,"./5/IsGenericDescriptor":330,"./5/IsPropertyDescriptor":331,"./5/MakeDate":332,"./5/MakeDay":333,"./5/MakeTime":334,"./5/MinFromTime":335,"./5/MonthFromTime":336,"./5/SameValue":337,"./5/SecFromTime":338,"./5/StrictEqualityComparison":339,"./5/TimeClip":340,"./5/TimeFromYear":341,"./5/TimeWithinDay":342,"./5/ToBoolean":343,"./5/ToInt32":344,"./5/ToInteger":345,"./5/ToNumber":346,"./5/ToObject":347,"./5/ToPrimitive":348,"./5/ToPropertyDescriptor":349,"./5/ToString":350,"./5/ToUint16":351,"./5/ToUint32":352,"./5/Type":353,"./5/WeekDay":354,"./5/YearFromTime":355,"./5/abs":356,"./5/floor":357,"./5/modulo":358,"./5/msFromTime":359}],361:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":322,"./5/AbstractRelationalComparison":323,"./5/Canonicalize":324,"./5/CheckObjectCoercible":325,"./5/DateFromTime":326,"./5/Day":327,"./5/DayFromYear":328,"./5/DayWithinYear":329,"./5/DaysInYear":330,"./5/FromPropertyDescriptor":331,"./5/HourFromTime":332,"./5/InLeapYear":333,"./5/IsAccessorDescriptor":334,"./5/IsCallable":335,"./5/IsDataDescriptor":336,"./5/IsGenericDescriptor":337,"./5/IsPropertyDescriptor":338,"./5/MakeDate":339,"./5/MakeDay":340,"./5/MakeTime":341,"./5/MinFromTime":342,"./5/MonthFromTime":343,"./5/SameValue":344,"./5/SecFromTime":345,"./5/StrictEqualityComparison":346,"./5/TimeClip":347,"./5/TimeFromYear":348,"./5/TimeWithinDay":349,"./5/ToBoolean":350,"./5/ToInt32":351,"./5/ToInteger":352,"./5/ToNumber":353,"./5/ToObject":354,"./5/ToPrimitive":355,"./5/ToPropertyDescriptor":356,"./5/ToString":357,"./5/ToUint16":358,"./5/ToUint32":359,"./5/Type":360,"./5/WeekDay":361,"./5/YearFromTime":362,"./5/abs":363,"./5/floor":364,"./5/modulo":365,"./5/msFromTime":366}],368:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":363,"get-intrinsic":375,"has":379}],362:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],363:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":379}],364:[function(require,module,exports){
+},{"./isNaN":369}],369:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],365:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -23576,40 +23867,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":309}],366:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":375,"has":379}],367:[function(require,module,exports){
+},{"call-bind/callBound":314}],371:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -23619,14 +23877,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],368:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":381,"hasown":399}],373:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],369:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -23647,7 +23943,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],370:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":391}],376:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],377:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],378:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],379:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],380:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],381:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],382:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],383:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":381}],384:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":385,"./RequireObjectCoercible":383}],385:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],386:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -23694,14 +24081,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":371,"is-callable":382}],371:[function(require,module,exports){
+},{"./helpers/isPrimitive":387,"is-callable":402}],387:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],372:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -23739,49 +24126,81 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":383,"merge-descriptors":384}],373:[function(require,module,exports){
+},{"is-object":403,"merge-descriptors":405}],389:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -23793,21 +24212,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],374:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":373}],375:[function(require,module,exports){
+},{"./implementation":389}],391:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -23846,18 +24271,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -23865,6 +24296,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -23872,9 +24305,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -23885,10 +24318,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -23896,15 +24329,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -23914,11 +24347,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -23935,7 +24378,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -23946,6 +24389,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -24000,11 +24444,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -24060,6 +24505,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -24132,29 +24580,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":374,"has":379,"has-symbols":377}],376:[function(require,module,exports){
+},{"es-errors":377,"es-errors/eval":376,"es-errors/range":378,"es-errors/ref":379,"es-errors/syntax":380,"es-errors/type":381,"es-errors/uri":382,"function-bind":390,"has-proto":394,"has-symbols":395,"hasown":399}],392:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":391}],393:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -24167,7 +24622,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":375}],377:[function(require,module,exports){
+},{"es-define-property":375}],394:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],395:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -24182,7 +24654,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":378}],378:[function(require,module,exports){
+},{"./shams":396}],396:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -24226,14 +24698,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],379:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":396}],398:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":374}],380:[function(require,module,exports){
+},{"function-bind":390}],399:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":390}],400:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -24320,7 +24812,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],381:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -24349,7 +24841,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],382:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -24395,44 +24887,131 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],383:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 'use strict';
 
 module.exports = function isObject(x) {
 	return typeof x === 'object' && x !== null;
 };
 
-},{}],384:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":314,"has-tostringtag/shams":397}],405:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -24494,7 +25073,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],385:[function(require,module,exports){
+},{}],406:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -24503,7 +25082,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],386:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -24627,7 +25206,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":388}],387:[function(require,module,exports){
+},{"./isArguments":409}],408:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -24661,7 +25240,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":386,"./isArguments":388}],388:[function(require,module,exports){
+},{"./implementation":407,"./isArguments":409}],409:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -24680,7 +25259,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],389:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -24866,7 +25445,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],390:[function(require,module,exports){
+},{}],411:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -24961,7 +25540,7 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":372,"module-not-found-error":385}],391:[function(require,module,exports){
+},{"fill-keys":388,"module-not-found-error":406}],412:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -24994,7 +25573,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":389,"through":404,"timers":405}],392:[function(require,module,exports){
+},{"_process":410,"through":427,"timers":428}],413:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -25061,7 +25640,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":291}],393:[function(require,module,exports){
+},{"buffer":296}],414:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":314,"es-errors/type":381,"is-regex":404}],415:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":319,"es-errors/type":381,"get-intrinsic":391,"gopd":392,"has-property-descriptors":393}],416:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -25076,7 +25717,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":360,"function-bind":374}],394:[function(require,module,exports){
+},{"es-abstract/es5":367,"function-bind":390}],417:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -25096,7 +25737,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":393,"./polyfill":395,"./shim":396,"define-properties":314,"function-bind":374}],395:[function(require,module,exports){
+},{"./implementation":416,"./polyfill":418,"./shim":419,"define-properties":320,"function-bind":390}],418:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -25110,7 +25751,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":393}],396:[function(require,module,exports){
+},{"./implementation":416}],419:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -25122,7 +25763,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":395,"define-properties":314}],397:[function(require,module,exports){
+},{"./polyfill":418,"define-properties":320}],420:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25419,7 +26060,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":392}],398:[function(require,module,exports){
+},{"safe-buffer":413}],421:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -25573,7 +26214,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":399,"./lib/results":401,"./lib/test":402,"_process":389,"defined":315,"through":404,"timers":405}],399:[function(require,module,exports){
+},{"./lib/default_stream":422,"./lib/results":424,"./lib/test":425,"_process":410,"defined":321,"through":427,"timers":428}],422:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -25608,7 +26249,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":389,"fs":290,"through":404}],400:[function(require,module,exports){
+},{"_process":410,"fs":295,"through":427}],423:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -25616,7 +26257,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":389,"timers":405}],401:[function(require,module,exports){
+},{"_process":410,"timers":428}],424:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -25807,7 +26448,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":389,"events":292,"function-bind":374,"has":379,"inherits":381,"object-inspect":403,"resumer":391,"through":404,"timers":405}],402:[function(require,module,exports){
+},{"_process":410,"events":297,"function-bind":390,"has":398,"inherits":401,"object-inspect":426,"resumer":412,"through":427,"timers":428}],425:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -26308,7 +26949,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":400,"deep-equal":311,"defined":315,"events":292,"has":379,"inherits":381,"path":293,"string.prototype.trim":394}],403:[function(require,module,exports){
+},{"./next_tick":423,"deep-equal":316,"defined":321,"events":297,"has":398,"inherits":401,"path":298,"string.prototype.trim":417}],426:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -26502,7 +27143,7 @@ function inspectString (str) {
     }
 }
 
-},{}],404:[function(require,module,exports){
+},{}],427:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -26614,7 +27255,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":389,"stream":294}],405:[function(require,module,exports){
+},{"_process":410,"stream":299}],428:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -26693,7 +27334,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":389,"timers":405}],406:[function(require,module,exports){
+},{"process/browser.js":410,"timers":428}],429:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -26764,4 +27405,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[173,174,175,176]);
+},{}]},{},[175,176,177,178]);

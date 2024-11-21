@@ -7,8 +7,36 @@
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">2.5</span> );
 <span class="hljs-comment">// returns 0.25</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
-<span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( uniform ) );
+<span class="hljs-comment">/*
+Let's consider an example where we are modeling the arrival times of guests
+at a reception event that runs from 6:00 PM to 8:00 PM, where each arrival
+within this 2-hour window is equally likely. We can model this scenario using a
+continuous  uniform distribution with a minimum value of 0 (6:00 PM) and
+a maximum value of 120 (8:00 PM).
+*/</span>
+
+<span class="hljs-keyword">var</span> min = <span class="hljs-number">0.0</span>; <span class="hljs-comment">// 6:00 PM is 0 minutes after 6:00 PM.</span>
+<span class="hljs-keyword">var</span> max = <span class="hljs-number">120.0</span>; <span class="hljs-comment">// 8:00 PM is 120 minutes after 6:00 PM.</span>
+
+<span class="hljs-keyword">var</span> mean = uniform.mean( min, max );
+<span class="hljs-comment">// returns 60.0</span>
+
+<span class="hljs-keyword">var</span> variance = uniform.variance( min, max );
+<span class="hljs-comment">// returns 1200.0</span>
+
+<span class="hljs-keyword">var</span> stdDev = uniform.stdev( min, max );
+<span class="hljs-comment">// returns ~34.641</span>
+
+<span class="hljs-keyword">var</span> entropy = uniform.entropy( min, max );
+<span class="hljs-comment">// returns ~4.787</span>
+
+<span class="hljs-comment">// Probability of arrival within 30 minutes after 6:00 PM:</span>
+<span class="hljs-keyword">var</span> p = uniform.cdf( <span class="hljs-number">30</span>, min, max );
+<span class="hljs-comment">// returns 0.25</span>
+
+<span class="hljs-comment">// Evaluate the PDF at 30 minutes after 6:00 PM:</span>
+<span class="hljs-keyword">var</span> pdf = uniform.pdf( <span class="hljs-number">30</span>, min, max );
+<span class="hljs-comment">// returns ~0.0083</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

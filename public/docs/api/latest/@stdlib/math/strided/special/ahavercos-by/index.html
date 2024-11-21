@@ -24,7 +24,7 @@ ahavercosBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hl
 <span class="hljs-comment">// y => [ ~3.142, ~1.571, 0.0, ~2.094, ~1.047 ]</span>
 
 <span class="hljs-keyword">var</span> cnt = context.count;
-<span class="hljs-comment">// returns 8</span>
+<span class="hljs-comment">// returns 5</span>
 </code></pre><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v;
 }
@@ -77,8 +77,9 @@ ahavercosBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-nu
 
 ahavercosBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y => [ 0.0, 0.0, 0.0, 0.0, 0.0 ]</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> filledarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
 <span class="hljs-keyword">var</span> ahavercosBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/ahavercos-by'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v, i </span>) </span>{
@@ -89,14 +90,10 @@ ahavercosBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hl
     <span class="hljs-keyword">return</span> v;
 }
 
-<span class="hljs-keyword">var</span> x = filledarray( <span class="hljs-number">0.0</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
-<span class="hljs-keyword">var</span> y = filledarray( <span class="hljs-literal">null</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
-
-<span class="hljs-keyword">var</span> i;
-<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
-    x[ i ] = uniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
-}
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, uniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ) );
 <span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = filledarray( <span class="hljs-literal">null</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span> );
 <span class="hljs-built_in">console</span>.log( y );
 
 ahavercosBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, accessor );

@@ -1,0 +1,45 @@
+<h1 id="rcbrtf">rcbrtf</h1><blockquote><p>Compute the reciprocal of the principal <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p></blockquote><section class="intro"><p>The reciprocal of the principal <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> is defined as</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rcbrtf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rcbrtf'</span> );
+</code></pre><h4 id="rcbrtf-x-">rcbrtf( x )</h4><p>Computes the reciprocal cube root of a single-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = rcbrtf( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = rcbrtf( <span class="hljs-number">8.0</span> );
+<span class="hljs-comment">// returns 0.5</span>
+
+v = rcbrtf( <span class="hljs-number">1000.0</span> );
+<span class="hljs-comment">// returns ~0.1</span>
+
+v = rcbrtf( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = rcbrtf( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = rcbrtf( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> rcbrtf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rcbrtf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = discreteUniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'rcbrtf(%d) = %d'</span>, x, rcbrtf( x ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/rcbrtf.h"</span></span>
+</code></pre><h4 id="stdlib_base_rcbrtf-x-">stdlib_base_rcbrtf( x )</h4><p>Computes the reciprocal <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_rcbrtf( <span class="hljs-number">8.0f</span> );
+<span class="hljs-comment">// returns 0.5f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_rcbrtf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/rcbrtf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">9.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_rcbrtf( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"rcbrt(%f) = %f\n"</span>, x[ i ], y );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

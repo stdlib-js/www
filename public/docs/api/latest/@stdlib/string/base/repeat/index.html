@@ -1,0 +1,17 @@
+<h1 id="repeat">repeat</h1><blockquote><p>Repeat a string a specified number of times and return the concatenated result.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/repeat'</span> );
+</code></pre><h4 id="repeat-str-n-">repeat( str, n )</h4><p>Repeats a string <code>n</code> times and returns the concatenated result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = repeat( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'aaaaa'</span>
+
+str = repeat( <span class="hljs-string">''</span>, <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns ''</span>
+
+str = repeat( <span class="hljs-string">'beep'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/repeat'</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( repeat( <span class="hljs-string">'beep'</span>, discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">3</span> ) ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

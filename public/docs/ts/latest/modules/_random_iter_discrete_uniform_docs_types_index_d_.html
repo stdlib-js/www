@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -97,14 +97,14 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.iterator.html" class="tsd-kind-icon">Iterator</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.options.html" class="tsd-kind-icon">Options</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.randiter.html" class="tsd-kind-icon">Rand<wbr>Iter</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_random_iter_discrete_uniform_docs_types_index_d_.html#iterator" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_random_iter_discrete_uniform_docs_types_index_d_.html#iterator-1" class="tsd-kind-icon">iterator</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,16 +113,16 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="iterator" class="tsd-anchor"></a>
+					<a name="iterator-1" class="tsd-anchor"></a>
 					<h3>iterator</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">iterator<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_random_iter_arcsine_docs_types_index_d_.randiter.html" class="tsd-signature-type">RandIter</a></li>
+						<li class="tsd-signature tsd-kind-icon">iterator<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_array_bool_docs_types_index_d_.html#iterator" class="tsd-signature-type">Iterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/random/iter/discrete-uniform/docs/types/index.d.ts#L122">lib/node_modules/@stdlib/random/iter/discrete-uniform/docs/types/index.d.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/random/iter/discrete-uniform/docs/types/index.d.ts#L122">lib/node_modules/@stdlib/random/iter/discrete-uniform/docs/types/index.d.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -137,7 +137,7 @@
 									<dd><p><code>b</code> must be an integer</p>
 									</dd>
 									<dt>throws</dt>
-									<dd><p><code>a</code> must be less than <code>b</code></p>
+									<dd><p><code>a</code> must be less than or equal to <code>b</code></p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>must provide valid options</p>
@@ -165,9 +165,12 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../interfaces/_random_iter_arcsine_docs_types_index_d_.randiter.html" class="tsd-signature-type">
-									RandIter
+								<a href="_array_bool_docs_types_index_d_.html#iterator" class="tsd-signature-type">
+									Iterator
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">number</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>iterator</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -202,14 +205,14 @@ r = iter.next().value;
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.iterator.html" class="tsd-kind-icon">Iterator</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.options.html" class="tsd-kind-icon">Options</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_random_iter_discrete_uniform_docs_types_index_d_.randiter.html" class="tsd-kind-icon">Rand<wbr>Iter</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_random_iter_discrete_uniform_docs_types_index_d_.html#iterator" class="tsd-kind-icon">iterator</a>
+						<a href="_random_iter_discrete_uniform_docs_types_index_d_.html#iterator-1" class="tsd-kind-icon">iterator</a>
 					</li>
 				</ul>
 			</nav>
@@ -276,13 +279,13 @@ r = iter.next().value;
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

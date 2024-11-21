@@ -1,0 +1,15 @@
+<h1 id="base-time">Base Time</h1><blockquote><p>Base (i.e., lower-level) time utilities.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> time = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/base'</span> );
+</code></pre><h4 id="time">time</h4><p>Namespace containing "base" (i.e., lower-level) time utilities.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = time;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>The namespace has the following utilities:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/time/base/parse-duration"><code>parseDuration</code></a></span><span class="delimiter">: </span><span class="description">parse a duration string into an object.</span></li></ul></div></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+
+<span class="hljs-comment">// Parse a duration string</span>
+<span class="hljs-keyword">var</span> obj = ns.parseDuration( <span class="hljs-string">'1m3s10ms'</span> );
+<span class="hljs-comment">// returns { 'days': 0, 'hours': 0, 'minutes': 1, 'seconds': 3, 'milliseconds': 10 }</span>
+
+obj = ns.parseDuration( <span class="hljs-string">'1m3s'</span> );
+<span class="hljs-comment">// returns { 'days': 0, 'hours': 0, 'minutes': 1, 'seconds': 3, 'milliseconds': 0 }</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

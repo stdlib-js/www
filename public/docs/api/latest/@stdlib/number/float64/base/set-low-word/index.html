@@ -54,7 +54,7 @@ stdlib_base_float64_set_low_word( low, &#x26;x );
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
     <span class="hljs-keyword">uint32_t</span> low[] = { <span class="hljs-number">1374389535</span>, <span class="hljs-number">1374389545</span>, <span class="hljs-number">1374389555</span>, <span class="hljs-number">1374389565</span> };
     <span class="hljs-keyword">double</span> x = <span class="hljs-number">3.14</span>;
 
@@ -64,4 +64,4 @@ stdlib_base_float64_set_low_word( low, &#x26;x );
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"low: %u => %.15lf\n"</span>, low[ i ], x );
     }
 }
-</code></pre></section></section><section class="related"></section><section class="links"></section>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/number/float64/base/get-low-word"><code>@stdlib/number/float64/base/get-low-word</code></a></span><span class="delimiter">: </span><span class="description">return an unsigned 32-bit integer corresponding to the less significant 32 bits of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/number/float64/base/set-high-word"><code>@stdlib/number/float64/base/set-high-word</code></a></span><span class="delimiter">: </span><span class="description">set the more significant 32 bits of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

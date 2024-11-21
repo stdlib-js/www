@@ -1,0 +1,60 @@
+<h1 id="maybebroadcastarrays">maybeBroadcastArrays</h1><blockquote><p>Broadcast <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> to a common shape.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maybeBroadcastArrays = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/maybe-broadcast-arrays'</span> );
+</code></pre><h4 id="maybebroadcastarrays-arrays-">maybeBroadcastArrays( arrays )</h4><p>Broadcasts <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> to a common shape.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-comment">// Create a 2x2 ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create a 2x2x2 ndarray:</span>
+<span class="hljs-keyword">var</span> y = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Broadcast to a common shape:</span>
+<span class="hljs-keyword">var</span> out = maybeBroadcastArrays( [ x, y ] );
+<span class="hljs-comment">// returns [ &#x3C;ndarray>, &#x3C;ndarray> ]</span>
+</code></pre><p>The function supports two (mutually exclusive) means for providing <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> arguments:</p><ol><li>providing a single array of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> arguments.</li><li>providing <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> arguments as separate arguments.</li></ol><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-comment">// Create a 2x2 ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create a 2x2x2 ndarray:</span>
+<span class="hljs-keyword">var</span> y = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Broadcast to a common shape:</span>
+<span class="hljs-keyword">var</span> out = maybeBroadcastArrays( x, y );
+<span class="hljs-comment">// returns [ &#x3C;ndarray>, &#x3C;ndarray> ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function throws an error if a provided <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">broadcast-incompatible</a> ndarrays.</li><li>If a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> has a shape matching the common shape, the function returns the provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li>If a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> has a different (broadcast compatible) shape than the common shape, the function returns a new <strong>read-only</strong> <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> view of the provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>'s data. The view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to a view may affect multiple elements. If you need to write to an input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, copy the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> <strong>before</strong> broadcasting.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ind2sub'</span> );
+<span class="hljs-keyword">var</span> maybeBroadcastArrays = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/maybe-broadcast-arrays'</span> );
+
+<span class="hljs-comment">// Create a 2x2 array:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create a 3x2x2 array:</span>
+<span class="hljs-keyword">var</span> y = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Broadcast arrays to a common shape:</span>
+<span class="hljs-keyword">var</span> out = maybeBroadcastArrays( [ x, y ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Retrieve the common shape:</span>
+<span class="hljs-keyword">var</span> sh = out[ <span class="hljs-number">0</span> ].shape;
+<span class="hljs-comment">// returns [ 3, 2, 2 ]</span>
+
+<span class="hljs-comment">// Retrieve the number of elements:</span>
+<span class="hljs-keyword">var</span> N = numel( sh );
+
+<span class="hljs-comment">// Loop through the array elements...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'X[%s] = %d'</span>, ind2sub( sh, i ).join( <span class="hljs-string">', '</span> ), out[ <span class="hljs-number">0</span> ].iget( i ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/broadcast-arrays"><code>@stdlib/ndarray/broadcast-arrays</code></a></span><span class="delimiter">: </span><span class="description">broadcast ndarrays to a common shape.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/maybe-broadcast-array"><code>@stdlib/ndarray/maybe-broadcast-array</code></a></span><span class="delimiter">: </span><span class="description">broadcast an ndarray to a specified shape if and only if the specified shape differs from the provided ndarray's shape.</span></li></ul></section><section class="links"></section>

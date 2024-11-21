@@ -1,0 +1,42 @@
+<h1 id="nditer2arrayeach">nditer2arrayEach</h1><blockquote><p>Create an iterator which <a href="/docs/api/latest/@stdlib/ndarray/to-array">converts</a> each iterated <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> to a generic array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nditer2arrayEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/to-array-each'</span> );
+</code></pre><h4 id="nditer2arrayeach-iterator-">nditer2arrayEach( iterator )</h4><p>Returns an iterator which <a href="/docs/api/latest/@stdlib/ndarray/to-array">converts</a> each iterated <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> to a generic array (which may include nested arrays).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> nditerRows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/rows'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditer2arrayEach( nditerRows( x ) );
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns [ 1, 2 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ 3, 4 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ 5, 6 ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> nditerRows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/rows'</span> );
+<span class="hljs-keyword">var</span> nditer2arrayEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/to-array-each'</span> );
+
+<span class="hljs-comment">// Define an input array:</span>
+<span class="hljs-keyword">var</span> x = array( zeroTo( <span class="hljs-number">27</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Create an iterator for iterating over rows and converting to generic arrays:</span>
+<span class="hljs-keyword">var</span> it = nditer2arrayEach( nditerRows( x ) );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/to-array"><code>@stdlib/ndarray/to-array</code></a></span><span class="delimiter">: </span><span class="description">convert an ndarray to a generic array.</span></li></ul></section><section class="links"></section>

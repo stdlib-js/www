@@ -1,0 +1,28 @@
+<h1 id="dtype2wasm">dtype2wasm</h1><blockquote><p>Return the WebAssembly data type associated with a provided array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtype2wasm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/dtype2wasm'</span> );
+</code></pre><h4 id="dtype2wasm-dtype-">dtype2wasm( dtype )</h4><p>Returns the WebAssembly data type associated with a provided array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dtype2wasm( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+
+out = dtype2wasm( <span class="hljs-string">'int8'</span> );
+<span class="hljs-comment">// returns 'int8'</span>
+</code></pre><p>If provided an unknown or unsupported array data type, the function <strong>assumes</strong> that associated values can be stored as double-precision floating-point numbers and returns <code>'float64'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dtype2wasm( <span class="hljs-string">'foobar'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtype2wasm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/dtype2wasm'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [
+    <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'int8'</span>,
+    <span class="hljs-string">'uint8'</span>,
+    <span class="hljs-string">'uint8c'</span>,
+    <span class="hljs-string">'int16'</span>,
+    <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'generic'</span>
+];
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dtypes.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, dtypes[ i ], dtype2wasm( dtypes[ i ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

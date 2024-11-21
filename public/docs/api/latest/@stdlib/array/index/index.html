@@ -1,0 +1,202 @@
+<h1 id="arrayindex">ArrayIndex</h1><blockquote><p>Array index constructor.</p></blockquote><section class="intro"><p>In JavaScript, only strings and symbols are valid property names. When providing values for property names which are not string or symbols, the values are serialized to strings <strong>prior to</strong> attempting to access property values. For example, the following</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-comment">// Define a list of indices for elements we want to retrieve from `x`:</span>
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Attempt to retrieve the desired elements:</span>
+<span class="hljs-keyword">var</span> v = x[ y ]; <span class="hljs-comment">// => desired: [ 1, 3 ]</span>
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>is equivalent to</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> v = x[ y.toString() ];
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// ...which is equivalent to:</span>
+v = x[ <span class="hljs-string">'0,2'</span> ];
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>Accordingly, in order to circumvent built-in property access behavior and support non-traditional access patterns, one can leverage <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects which allow one to intercept property access and to perform transformations before attempting to access elements in a target object.</p><p>To support the access pattern shown in the example above, one can leverage built-in string serialization behavior to reconstruct the original property value provided prior to serialization. The <code>ArrayIndex</code> constructor described below provides one such mechanism.</p><p>Specifically, instantiated <code>ArrayIndex</code> objects are assigned a unique identifier and stored in a local cache. When provided as property values to <code>ArrayIndex</code> consumers, instantiated objects serialize to a string containing their unique identifier. <code>ArrayIndex</code> consumers can then parse the serialized string to obtain the unique identifier and subsequently recover the original array from the local cache.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ArrayIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/index'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="arrayindex-x-options-">ArrayIndex( x[, options] )</h4><p>Wraps a provided array as an array index object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+</code></pre><p>The constructor accepts the following arguments:</p><ul><li><strong>x</strong>: input array.</li><li><strong>options</strong>: function options.</li></ul><p>The constructor accepts the following options:</p><ul><li><strong>persist</strong>: boolean indicating whether to continue persisting an index object after first usage. Default: <code>false</code>.</li></ul><p>By default, an <code>ArrayIndex</code> is invalidated and removed from an internal cache immediately after a consumer resolves the underlying data associated with an <code>ArrayIndex</code> instance using the <a href="#static-method-get"><code>ArrayIndex.get()</code></a> static method. Immediate invalidation and cache removal ensures that references to the underlying array are not the source of memory leaks.</p><p>One may, however, want to reuse an <code>ArrayIndex</code> instance to avoid additional memory allocation. In order to persist an <code>ArrayIndex</code> and prevent automatic cache invalidation, set the <code>persist</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( x, {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> o = ArrayIndex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-comment">// ...</span>
+
+o = ArrayIndex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Explicitly free the array index:</span>
+ArrayIndex.free( idx.id );
+</code></pre><p>In order to <strong>prevent</strong> memory leaks when working with persisted <code>ArrayIndex</code> instances, one <strong>must</strong> remember to manually free persisted instances using the <a href="#static-method-free"><code>ArrayIndex.free()</code></a> method.</p><hr><h3 id="properties">Properties</h3><p><a name="static-prop-name"></a></p><h4 id="arrayindexname">ArrayIndex.name</h4><p>String value of the <code>ArrayIndex</code> constructor name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = ArrayIndex.name;
+<span class="hljs-comment">// returns 'ArrayIndex'</span>
+</code></pre><p><a name="prop-data"></a></p><h4 id="arrayindexprototypedata">ArrayIndex.prototype.data</h4><p><strong>Read-only</strong> property returning the underlying array associated with an <code>ArrayIndex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> v = idx.data;
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 0, 1, 0 ]</span>
+</code></pre><p><a name="prop-dtype"></a></p><h4 id="arrayindexprototypedtype">ArrayIndex.prototype.dtype</h4><p><strong>Read-only</strong> property returning the data type of the underlying array associated with an <code>ArrayIndex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> dt = idx.dtype;
+<span class="hljs-comment">// returns 'uint8'</span>
+</code></pre><p><a name="prop-id"></a></p><h4 id="arrayindexprototypeid">ArrayIndex.prototype.id</h4><p><strong>Read-only</strong> property returning the unique identifier associated with an <code>ArrayIndex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> id = idx.id;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p>The identifier should be used by <code>ArrayIndex</code> consumers to resolve the underlying data associated with an <code>ArrayIndex</code> instance.</p><p><a name="prop-is-cached"></a></p><h4 id="arrayindexprototypeiscached">ArrayIndex.prototype.isCached</h4><p><strong>Read-only</strong> property returning a boolean indicating whether an <code>ArrayIndex</code> instance is actively cached.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> out = idx.isCached;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="prop-type"></a></p><h4 id="arrayindexprototypetype">ArrayIndex.prototype.type</h4><p><strong>Read-only</strong> property returning the array index type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> t = idx.type;
+<span class="hljs-comment">// returns 'mask'</span>
+</code></pre><p>The following array index types are supported:</p><ul><li><strong>mask</strong>: mask array, in which a value of zero indicates to include a respective element and a value of one indicates to exclude a respective element. A mask array is the complement of a boolean array.</li><li><strong>bool</strong>: boolean array, in which a value of <code>true</code> indicates to include a respective element and a value of <code>false</code> indicates to exclude a respective element. A boolean array is the complement of a mask array.</li><li><strong>int</strong>: integer array, in which each element is an index indicating the position of an element to include. Elements are <strong>not</strong> required to be unique (i.e., more than element may resolve to the same position).</li></ul><hr><h3 id="methods">Methods</h3><p><a name="static-method-free"></a></p><h4 id="arrayindexfree-id-">ArrayIndex.free( id )</h4><p>Frees the <code>ArrayIndex</code> associated with a provided identifier.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ), {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> out = ArrayIndex.free( idx.id );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>Once an <code>ArrayIndex</code> is freed, the instance is invalid and can no longer be used. Any subsequent <code>ArrayIndex</code> operations (i.e., property and method access) will raise an exception.</p><p><a name="static-method-get"></a></p><h4 id="arrayindexget-id-">ArrayIndex.get( id )</h4><p>Returns the array associated with the <code>ArrayIndex</code> having a provided identifier.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ), {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> o = ArrayIndex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-keyword">var</span> d = o.data;
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 0, 1, 0 ]</span>
+
+<span class="hljs-keyword">var</span> t = o.type;
+<span class="hljs-comment">// returns 'mask'</span>
+
+<span class="hljs-keyword">var</span> dt = o.dtype;
+<span class="hljs-comment">// returns 'uint8'</span>
+</code></pre><p>The returned object has the following properties:</p><ul><li><strong>data</strong>: the underlying array associated with the <code>ArrayIndex</code> identified by the provided <code>id</code>.</li><li><strong>type</strong>: the type of array index. One of the following: <code>'int'</code>, <code>'bool'</code>, or <code>'mask'</code>.</li><li><strong>dtype</strong>: the data type of the underlying array.</li></ul><p>If the <code>ArrayIndex</code> associated with a provided identifier was not explicitly persisted, calling this method will cause the <code>ArrayIndex</code> to be invalidated and removed from an internal cache. Any subsequent instance operations (i.e., property and method access) will raise an exception.</p><p><a name="method-to-string"></a></p><h4 id="arrayindexprototypetostring">ArrayIndex.prototype.toString()</h4><p>Serializes an <code>ArrayIndex</code> as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> str = idx.toString();
+<span class="hljs-comment">// e.g., 'ArrayIndex&#x3C;0>'</span>
+</code></pre><p>An <code>ArrayIndex</code> is intended to be an opaque object used by objects supporting "fancy" indexing (e.g., <a href="/docs/api/latest/@stdlib/array/to-fancy">fancy arrays</a>). As such, when serialized as a string, a serialized <code>ArrayIndex</code> includes only the unique identifier associated with the respective instance.</p><p><a name="method-to-json"></a></p><h4 id="arrayindexprototypetojson">ArrayIndex.prototype.toJSON()</h4><p>Serializes an <code>ArrayIndex</code> as a <a href="http://www.json.org/">JSON</a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> o = idx.toJSON();
+<span class="hljs-comment">// returns { 'type': 'ArrayIndex', 'data': { 'type': 'Uint8Array', 'data': [ 1, 0, 1, 0 ] } }</span>
+</code></pre><p><code>JSON.stringify()</code> implicitly calls this method when stringifying an <code>ArrayIndex</code> instance.</p></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li><p><code>ArrayIndex</code> instances have no explicit functionality; however, they are used by <a href="/docs/api/latest/@stdlib/array/to-fancy">"fancy" arrays</a> and other packages for element retrieval and assignment.</p></li><li><p>Because <code>ArrayIndex</code> instances leverage an internal cache implementing the <strong>Singleton pattern</strong>, one <strong>must</strong> be sure to use the same <code>ArrayIndex</code> constructor as <code>ArrayIndex</code> consumers. If one uses a different <code>ArrayIndex</code> constructor, the consumer will <strong>not</strong> be able to resolve the original wrapped array, as the consumer will attempt to resolve an <code>ArrayIndex</code> instance in the wrong internal cache.</p></li><li><p>Because non-persisted <code>ArrayIndex</code> instances are freed after first use, in order to avoid holding onto memory and to allow garbage collection, one should avoid scenarios in which an <code>ArrayIndex</code> is never used. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] );
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( data );
+
+<span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">if</span> ( data[ <span class="hljs-number">0</span> ] === <span class="hljs-number">0</span> ) {
+    <span class="hljs-comment">// Do something with `idx`...</span>
+    o = ArrayIndex.get( idx.id );
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>will leak memory as <code>idx</code> is only consumed within an <code>if</code> block which never evaluates. In such scenarios, one should either refactor to avoid inadvertently holding onto memory or explicitly free the <code>ArrayIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] );
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ArrayIndex( data );
+
+<span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">if</span> ( data[ <span class="hljs-number">0</span> ] === <span class="hljs-number">0</span> ) {
+    <span class="hljs-comment">// Do something with `idx`...</span>
+    o = ArrayIndex.get( idx.id );
+
+    <span class="hljs-comment">// ...</span>
+} <span class="hljs-keyword">else</span> {
+    ArrayIndex.free( idx.id );
+}
+</code></pre></li></ul></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> BooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/bool'</span> );
+<span class="hljs-keyword">var</span> ArrayIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/index'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] );
+<span class="hljs-keyword">var</span> i = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+<span class="hljs-keyword">var</span> o = ArrayIndex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+i = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+o = ArrayIndex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] );
+i = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+o = ArrayIndex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span> ] );
+i = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+o = ArrayIndex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span> ];
+i = <span class="hljs-keyword">new</span> ArrayIndex( x );
+<span class="hljs-comment">// returns &#x3C;ArrayIndex></span>
+
+o = ArrayIndex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-fancy"><code>@stdlib/array/to-fancy</code></a></span><span class="delimiter">: </span><span class="description">convert an array to an object supporting fancy indexing.</span></li></ul></section><section class="links"></section>

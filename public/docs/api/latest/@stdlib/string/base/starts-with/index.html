@@ -1,0 +1,38 @@
+<h1 id="startswith">startsWith</h1><blockquote><p>Test if a string starts with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/starts-with'</span> );
+</code></pre><h4 id="startswith-str-search-position-">startsWith( str, search, position )</h4><p>Tests if a string starts with the characters of another string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+
+<span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'To be'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = startsWith( str, <span class="hljs-string">'to be'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>To search from a specific character index, provide a <code>position</code> value (zero-based). If provided a negative <code>position</code>, the start index is determined relative to the string end (i.e., <code>pos = str.length + position</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+
+<span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'the story'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = startsWith( str, <span class="hljs-string">'the story'</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = startsWith( str, <span class="hljs-string">'you'</span>, -<span class="hljs-number">15</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+
+<span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">''</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith"><code>String.prototype.startsWith</code></a> in the following ways:</p><ul><li>The function assumes string values for the first and second arguments and assumes that the <code>position</code> argument is an integer value.</li><li>The function does <strong>not</strong> clamp negative <code>position</code> values. Instead, when provided a negative <code>position</code>, the function resolves the starting search position relative to the end of the string.</li><li>Except when provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>false</code> if a <code>position</code> resolves to a starting search position which exceeds the bounds of the input string.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/starts-with'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
+
+<span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'Fair'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = startsWith( str, <span class="hljs-string">'fair'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = startsWith( str, <span class="hljs-string">'foul'</span>, <span class="hljs-number">8</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = startsWith( str, <span class="hljs-string">'filthy'</span>, -<span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

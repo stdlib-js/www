@@ -35,4 +35,22 @@ v = lcm( <span class="hljs-number">48</span>, <span class="hljs-literal">NaN</sp
     v = lcm( a, b );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'lcm(%d,%d) = %d'</span>, a, b, v );
 }
-</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gcd"><code>@stdlib/math/base/special/gcd</code></a></span><span class="delimiter">: </span><span class="description">compute the greatest common divisor (gcd).</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/lcm.h"</span></span>
+</code></pre><h4 id="stdlib_base_lcm-a-b-">stdlib_base_lcm( a, b )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Least_common_multiple">least common multiple</a> (lcm).</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> v = stdlib_base_lcm( <span class="hljs-number">48.0</span>, <span class="hljs-number">18.0</span> );
+<span class="hljs-comment">// returns 144.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>a</strong>: <code>[in] double</code> input value.</li><li><strong>b</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_lcm</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> b )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/lcm.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> a[] = { <span class="hljs-number">24.0</span>, <span class="hljs-number">32.0</span>, <span class="hljs-number">48.0</span>, <span class="hljs-number">116.0</span>, <span class="hljs-number">33.0</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> b[] = { <span class="hljs-number">12.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">15.0</span>, <span class="hljs-number">52.0</span>, <span class="hljs-number">22.0</span> };
+
+    <span class="hljs-keyword">double</span> out;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        out = stdlib_base_lcm( a[ i ], b[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"lcm(%lf, %lf) = %lf\n"</span>, a[ i ], b[ i ], out );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gcd"><code>@stdlib/math/base/special/gcd</code></a></span><span class="delimiter">: </span><span class="description">compute the greatest common divisor (gcd).</span></li></ul></section><section class="links"></section>

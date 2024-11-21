@@ -1,0 +1,76 @@
+<h1 id="resolveparentpaths">resolveParentPaths</h1><blockquote><p>Resolve paths from a set of paths by walking parent directories.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolveParentPaths = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/resolve-parent-paths'</span> );
+</code></pre><p><a name="resolve-parent-paths"></a></p><h4 id="resolveparentpaths-paths-options-clbk-">resolveParentPaths( paths[, options], clbk )</h4><p>Asynchronously resolves paths from a set of paths by walking parent directories.</p><pre><code class="hljs language-javascript">resolveParentPaths( [ <span class="hljs-string">'package.json'</span>, <span class="hljs-string">'package-lock.json'</span> ], onPaths );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPaths</span>(<span class="hljs-params"> error, paths </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( paths );
+    <span class="hljs-comment">// => [...]</span>
+}
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><p><strong>dir</strong>: base directory from which to begin walking. May be either an absolute path or a path relative to the current working directory.</p></li><li><p><strong>mode</strong>: mode of operation. The following modes are supported:</p><ul><li><code>first</code>: return the first resolved path.</li><li><code>some</code>: return one or more paths resolved within the first directory level containing a match.</li><li><code>all</code>: return all resolved paths within the first directory level containing matches for all provided paths.</li><li><code>each</code>: independently return the first resolved path for each path at any directory level.</li></ul><p>Default: <code>'all'</code>.</p></li></ul><p>By default, the function begins walking from the current working directory. To specify an alternative directory, set the <code>dir</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: __dirname
+};
+resolveParentPaths( [ <span class="hljs-string">'package.json'</span> ], opts, onPaths );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPaths</span>(<span class="hljs-params"> error, paths </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( paths );
+    <span class="hljs-comment">// => [...]</span>
+}
+</code></pre><p>By default, the function requires that a directory contains matches for all provided paths before returning results. To specify an alternative operation mode, set the <code>mode</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: __dirname,
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'first'</span>
+};
+resolveParentPaths( [ <span class="hljs-string">'package.json'</span>, <span class="hljs-string">'package-lock.json'</span> ], opts, onPaths );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPaths</span>(<span class="hljs-params"> error, paths </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( paths );
+    <span class="hljs-comment">// => [...]</span>
+}
+</code></pre><h4 id="resolveparentpathssync-paths-options-">resolveParentPaths.sync( paths[, options] )</h4><p>Synchronously resolves paths from a set of paths by walking parent directories.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> paths = resolveParentPaths.sync( [ <span class="hljs-string">'package.json'</span>, <span class="hljs-string">'README.md'</span> ] );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre><p>The function accepts the same <code>options</code> as <a href="#resolve-parent-paths"><code>resolveParentPaths()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In <code>some</code> mode, the return order of asynchronously resolved paths is not guaranteed.</li><li>This implementation is <strong>not</strong> similar in functionality to core <a href="https://nodejs.org/api/path.html#path_path_resolve_paths"><code>path.resolve</code></a>. The latter performs string manipulation to generate a full path. This implementation walks parent directories to perform a <strong>search</strong>, thereby touching the file system. Accordingly, this implementation resolves <em>real</em> absolute file paths and is intended for use when a target's location in a parent directory is unknown relative to a child directory; e.g., when wanting to find a package root from deep within a package directory.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolveParentPaths = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/resolve-parent-paths'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: __dirname
+};
+
+<span class="hljs-comment">/* Sync */</span>
+
+<span class="hljs-keyword">var</span> out = resolveParentPaths.sync( [ <span class="hljs-string">'package.json'</span>, <span class="hljs-string">'README.md'</span> ], opts );
+<span class="hljs-comment">// returns [...]</span>
+
+out = resolveParentPaths.sync( [ <span class="hljs-string">'non_existent_basename'</span> ], opts );
+<span class="hljs-comment">// returns []</span>
+
+opts.mode = <span class="hljs-string">'first'</span>;
+out = resolveParentPaths.sync( [ <span class="hljs-string">'non_existent_basename'</span>, <span class="hljs-string">'package.json'</span> ], opts );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-comment">/* Async */</span>
+
+resolveParentPaths( [ <span class="hljs-string">'package.json'</span>, <span class="hljs-string">'README.md'</span> ], opts, onPaths );
+resolveParentPaths( [ <span class="hljs-string">'./../non_existent_path'</span> ], onPaths );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPaths</span>(<span class="hljs-params"> error, paths </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( paths );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: resolve-parent-paths [options] &#x3C;path> [&#x3C;path>...]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --dir dir             Base search directory.
+         --mode mode           Mode of operation.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ resolve-parent-paths package.json package-lock.json
+</code></pre></section></section><section class="related"></section><section class="links"></section>

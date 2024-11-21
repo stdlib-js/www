@@ -1,0 +1,66 @@
+<h1 id="argv_float64array">argv_float64array</h1><blockquote><p>Convert a Node-API value to a double-precision floating-point array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/argv-float64array'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/argv-float64array'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv_float64array.h"</span></span>
+</code></pre><h4 id="stdlib_napi_argv_float64array-env-value-data-length-message-err-">stdlib_napi_argv_float64array( env, value, **data, *length, *message, *err )</h4><p>Converts a Node-API value to a double-precision floating-point array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv_float64array.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    napi_value value;
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">double</span> *X;
+    <span class="hljs-keyword">int64_t</span> len;
+    napi_value err;
+    napi_status status = stdlib_napi_argv_float64array( env, value, &#x26;X, &#x26;len, <span class="hljs-string">"Must be a typed array."</span>, &#x26;err );
+    assert( status == napi_ok );
+    <span class="hljs-keyword">if</span> ( err != <span class="hljs-literal">NULL</span> ) {
+        assert( napi_throw( env, err ) == napi_ok );
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+    }
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>value</strong>: <code>[in] napi_value</code> Node-API value.</li><li><strong>data</strong>: <code>[out] double**</code> pointer for returning a reference to the output array.</li><li><strong>length</strong>: <code>[out] int64_t*</code> pointer for returning the number of array elements.</li><li><strong>message</strong>: <code>[in] char*</code> error message.</li><li><strong>err</strong>: <code>[out] napi_value*</code> pointer for storing a JavaScript error. If not provided a number, the function sets <code>err</code> with a JavaScript error; otherwise, <code>err</code> is set to <code>NULL</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function">napi_status <span class="hljs-title">stdlib_napi_argv_float64array</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value value, <span class="hljs-keyword">double</span> **data, <span class="hljs-keyword">int64_t</span> *length, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *message, napi_value *err )</span></span>;
+</code></pre><p>The function returns a <code>napi_status</code> status code indicating success or failure (returns <code>napi_ok</code> if success).</p><h4 id="stdlib_napi_argv_float64array-env-x-len-argv-index-">STDLIB_NAPI_ARGV_FLOAT64ARRAY( env, X, len, argv, index )</h4><p>Macro for converting an add-on callback argument to a double-precision floating-point array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv_float64array.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> xlen, <span class="hljs-keyword">double</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> ylen )</span> </span>{
+    <span class="hljs-keyword">int64_t</span> len;
+    <span class="hljs-keyword">int64_t</span> i;
+
+    <span class="hljs-keyword">if</span> ( xlen > ylen ) {
+        len = ylen;
+    } <span class="hljs-keyword">else</span> {
+        len = xlen;
+    }
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+        Y[ i ] = X[ i ];
+    }
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// Retrieve add-on callback arguments:</span>
+    STDLIB_NAPI_ARGV( env, info, argv, argc, <span class="hljs-number">2</span> );
+
+    <span class="hljs-comment">// Convert the first argument to a C type:</span>
+    STDLIB_NAPI_ARGV_FLOAT64ARRAY( env, X, xlen, argv, <span class="hljs-number">0</span> );
+
+    <span class="hljs-comment">// Convert the second argument to a C type:</span>
+    STDLIB_NAPI_ARGV_FLOAT64ARRAY( env, Y, ylen, argv, <span class="hljs-number">1</span> );
+
+    <span class="hljs-comment">// ...</span>
+
+    fcn( X, xlen, Y, ylen );
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the callback is invoked.</li><li><strong>X</strong>: output variable name for the array.</li><li><strong>len</strong>: output variable name for the array length.</li><li><strong>argv</strong>: name of the variable containing add-on callback arguments.</li><li><strong>index</strong>: argument index.</li></ul></section><section class="notes"></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

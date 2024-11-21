@@ -78,13 +78,10 @@ out = f( <span class="hljs-literal">true</span>, <span class="hljs-literal">null
     }
 }
 
-<span class="hljs-keyword">var</span> out;
-<span class="hljs-keyword">var</span> f;
-
 <span class="hljs-comment">// Synchronous...</span>
-f = wrap( beep );
+<span class="hljs-keyword">var</span> f = wrap( beep );
 
-out = f( <span class="hljs-string">'boop'</span> );
+<span class="hljs-keyword">var</span> out = f( <span class="hljs-string">'boop'</span> );
 <span class="hljs-built_in">console</span>.log( out );
 <span class="hljs-comment">// => 'beep boop'</span>
 

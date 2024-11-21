@@ -1,0 +1,62 @@
+<h1 id="function">Function</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Function</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/function/ctor'</span> );
+</code></pre><h4 id="function-argnames-body-">Function( [...argNames,] body )</h4><p>Returns a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> greet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>( <span class="hljs-string">'name'</span>, <span class="hljs-string">'return "Hello, "+name+"!"'</span> );
+
+<span class="hljs-keyword">var</span> v = greet( <span class="hljs-string">'Jane'</span> );
+<span class="hljs-comment">// returns 'Hello, Jane!'</span>
+</code></pre><p>Argument names must be strings corresponding to valid JavaScript parameters (i.e., a plain identifier, or, in environments supporting such parameters, a rest parameter or destructured parameter, optionally with a default).</p><hr><h3 id="properties">Properties</h3><p><a name="prop-length"></a></p><h4 id="functionprototypelength">Function.prototype.length</h4><p>A number representing the number of arguments expected by the function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> greet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>( <span class="hljs-string">'name'</span>, <span class="hljs-string">'return "Hello, "+name+"!"'</span> );
+<span class="hljs-keyword">var</span> v = greet.length;
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p><a name="prop-name"></a></p><h4 id="functionprototypename">Function.prototype.name</h4><p><strong>Read-only</strong> property representing the name of the function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"> name </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello, '</span>+name+<span class="hljs-string">'!'</span>;
+}
+<span class="hljs-keyword">var</span> v = greet.name;
+<span class="hljs-comment">// returns 'greet'</span>
+
+<span class="hljs-comment">// Functions created with the Function constructor are anonymous:</span>
+<span class="hljs-keyword">var</span> fcn = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>( <span class="hljs-string">'name'</span>, <span class="hljs-string">'return "Hello, "+name+"!"'</span> );
+v = fcn.name;
+<span class="hljs-comment">// returns 'anonymous'</span>
+</code></pre><p><a name="prop-prototype"></a></p><h4 id="functionprototypeprototype">Function.prototype.prototype</h4><p><strong>Read-only</strong> property representing the prototype of the function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"> name </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello, '</span>+name+<span class="hljs-string">'!'</span>;
+}
+<span class="hljs-keyword">var</span> proto = greet.prototype;
+<span class="hljs-comment">// returns {}</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="method-apply"></a></p><h4 id="functionprototypeapply-thisarg-args-">Function.prototype.apply( thisArg, args )</h4><p>Calls the specified function with the given <code>this</code> argument and arguments provided as an array-like object.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.initial + x + y;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">10</span>
+};
+
+<span class="hljs-keyword">var</span> v = add.apply( ctx, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns 13</span>
+</code></pre><p><a name="method-bind"></a></p><h4 id="functionprototypebind-thisarg-arg1-arg2--">Function.prototype.bind( thisArg[, arg1[, arg2[, ...]]] )</h4><p>Returns a new function which invokes the original function with the given <code>this</code> value and arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+<span class="hljs-keyword">var</span> add1 = add.bind( <span class="hljs-literal">null</span>, <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> v = add1( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-call"></a></p><h4 id="functionprototypecall-thisarg-arg1-arg2--">Function.prototype.call( thisArg[, arg1[, arg2[, ...]]] )</h4><p>Calls the specified function with the given <code>this</code> value and arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.initial + x + y;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">10</span>
+};
+
+<span class="hljs-keyword">var</span> v = add.call( ctx, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 13</span>
+</code></pre><p><a name="method-to-string"></a></p><h4 id="functionprototypetostring">Function.prototype.toString()</h4><p>Returns a string representing the function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+<span class="hljs-keyword">var</span> v = add.toString();
+<span class="hljs-comment">// e.g., returns 'function add( x, y ) {\n    return x + y;\n}'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In pre-ES2015 environments, only plain identifiers (without defaults) are valid JavaScript parameters.</li><li>Creating <code>Function</code> objects with the <code>Function</code> constructor is less efficient than declaring a function via a function expression or a function statement.</li><li>The <code>Function</code> constructor can be invoked without the <code>new</code> operator (using <code>new</code> and not using <code>new</code> both return a new <code>Function</code> object).</li><li>The <code>Function</code> constructor creates functions which execute in the <strong>global scope</strong>. Hence, created functions <strong>cannot</strong> access variables local to the scope in which functions were created.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Function</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/function/ctor'</span> );
+
+<span class="hljs-keyword">var</span> add = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>( <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'return x + y'</span> );
+
+<span class="hljs-keyword">var</span> v = add( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

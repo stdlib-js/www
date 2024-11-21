@@ -36,11 +36,11 @@ m = it.next().value; <span class="hljs-comment">// [3.0, -7.0, -5.0]</span>
 <span class="hljs-keyword">var</span> v;
 <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
     v = it.next();
-    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> v.value === <span class="hljs-string">'number'</span> ) {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'min: %d'</span>, v.value );
-    }
     <span class="hljs-keyword">if</span> ( v.done ) {
         <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> v.value === <span class="hljs-string">'number'</span> ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'min: %d'</span>, v.value );
     }
 }
 </code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/min"><code>@stdlib/stats/iter/min</code></a></span><span class="delimiter">: </span><span class="description">compute the minimum value of all iterated values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/mmax"><code>@stdlib/stats/iter/mmax</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving maximum value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/mmidrange"><code>@stdlib/stats/iter/mmidrange</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving mid-range.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/mrange"><code>@stdlib/stats/iter/mrange</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving range.</span></li></ul></section><section class="links"></section>

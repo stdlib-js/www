@@ -1,0 +1,46 @@
+<h1 id="anybyright">anyByRight</h1><blockquote><p>Test whether at least one element in an array passes a test implemented by a predicate function, while iterating from right to left.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> anyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/any-by-right'</span> );
+</code></pre><h4 id="anybyright-x-predicate-thisarg-">anyByRight( x, predicate[, thisArg] )</h4><p>Tests whether at least one element in an array passes a test implemented by a <code>predicate</code> function, while iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> bool = anyByRight( x, isPositive );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a <code>predicate</code> function returns a truthy value, the function <strong>immediately</strong> returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">3</span>, -<span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> bool = anyByRight( x, isPositive );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>predicate</code> function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, -<span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = anyByRight( x, predicate, context );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> cnt = context.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function performs a linear scan and returns immediately upon encountering a truthy return value. Unlike <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some"><code>Array.prototype.some</code></a>, when performing a linear scan, the function does <strong>not</strong> skip <code>undefined</code> elements.</li><li>If provided an empty array, the function returns <code>false</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> isPositiveInteger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer'</span> ).isPrimitive;
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> anyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/any-by-right'</span> );
+
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.1</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'int8'</span>
+});
+<span class="hljs-comment">// returns &#x3C;Int8Array></span>
+
+<span class="hljs-keyword">var</span> out = anyByRight( x, naryFunction( isPositiveInteger, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

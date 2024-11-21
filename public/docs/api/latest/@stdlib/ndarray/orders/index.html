@@ -1,20 +1,12 @@
 <h1 id="orders">Orders</h1><blockquote><p>List of ndarray orders.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> orders = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/orders'</span> );
 </code></pre><h4 id="orders-1">orders()</h4><p>Returns a list of ndarray orders.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = orders();
-<span class="hljs-comment">// returns [ 'row-major', 'column-major' ]</span>
-</code></pre><p>The output <code>array</code> contains the following orders:</p><ul><li><code>row-major</code>: row-major (C-style) order.</li><li><code>column-major</code>: column-major (Fortran-style) order.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+<span class="hljs-comment">// e.g., returns [ 'row-major', 'column-major' ]</span>
+</code></pre><p>The output array contains the following orders:</p><ul><li><code>row-major</code>: row-major (C-style) order.</li><li><code>column-major</code>: column-major (Fortran-style) order.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/contains'</span> ).factory;
 <span class="hljs-keyword">var</span> orders = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/orders'</span> );
 
-<span class="hljs-keyword">var</span> ORDERS = orders();
-<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> isOrder = contains( orders() );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isOrder</span>(<span class="hljs-params"> str </span>) </span>{
-    <span class="hljs-keyword">if</span> ( indexOf( ORDERS, str ) === -<span class="hljs-number">1</span> ) {
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}
-
-bool = isOrder( <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> bool = isOrder( <span class="hljs-string">'row-major'</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isOrder( <span class="hljs-string">'column-major'</span> );

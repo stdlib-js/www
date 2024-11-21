@@ -1,0 +1,112 @@
+<h1 id="arrays2ptrs">arrays2ptrs</h1><blockquote><p>Convert a list of arrays to "pointers" (i.e., byte offsets) in WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">module memory</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrays2ptrs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/arrays2ptrs'</span> );
+</code></pre><h4 id="arrays2ptrs-ctx-arrays-">arrays2ptrs( ctx, arrays )</h4><p>Converts a list of arrays to "pointers" (i.e., byte offsets) in WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">module memory</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">64</span>*<span class="hljs-number">1024</span> ); <span class="hljs-comment">// 64KiB</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isView</span>(<span class="hljs-params"> arr </span>) </span>{
+    <span class="hljs-keyword">return</span> ( arr.buffer === buf );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">realloc</span>(<span class="hljs-params"> nbytes </span>) </span>{
+    buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( nbytes );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">view</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'isView'</span>: isView,
+    <span class="hljs-string">'realloc'</span>: realloc
+};
+
+defineProperty( ctx, <span class="hljs-string">'view'</span>, {
+    <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'get'</span>: view
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> xobj = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'wdtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'length'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'data'</span>: [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ],
+    <span class="hljs-string">'stride'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> yobj = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'wdtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'length'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'data'</span>: [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ],
+    <span class="hljs-string">'stride'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> ptrs = arrays2ptrs( ctx, [ xobj, yobj ] );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre><p>Each element in the list of input arrays should have the following properties:</p><ul><li><strong>dtype</strong>: array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a>.</li><li><strong>wdtype</strong>: WebAssembly <a href="/docs/api/latest/@stdlib/wasm/base/array2dtype">array data type</a>.</li><li><strong>length</strong>: number of indexed elements.</li><li><strong>data</strong>: original array-like object.</li><li><strong>stride</strong>: index increment.</li><li><strong>offset</strong>: index offset.</li></ul><p>In addition to each element's existing properties, each element of the returned array has the following additional properties:</p><ul><li><strong>BYTES_PER_ELEMENT</strong>: number of bytes per element.</li><li><strong>ptr</strong>: byte offset.</li><li><strong>nbytes</strong>: number of bytes consumed by <strong>indexed</strong> array elements as stored in module memory.</li><li><strong>copy</strong>: boolean indicating whether an array had to be copied to module memory.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Beware that this function may reallocate module memory, resulting in <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> detachment and the invalidation of any typed array views which were views of the previously allocated memory. Additionally, this function may write to module memory and does so without regard for any existing memory content. Users are thus encouraged to take suitable precautions (e.g., copying results out of module memory prior to subsequent invocation) in order to avoid unexpected results.</li><li>If an array's data is copied to module memory, the data is copied to a contiguous segment of module memory, and the respective array object in the returned array will have unit stride and an offset of zero.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadOnlyAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-read-only-accessor'</span> );
+<span class="hljs-keyword">var</span> setReadOnly = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-read-only-property'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> dtype2wasm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/dtype2wasm'</span> );
+<span class="hljs-keyword">var</span> arrays2ptrs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/arrays2ptrs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Context</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>._buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">100</span> );
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+setReadOnly( Context.prototype, <span class="hljs-string">'isView'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isView</span>(<span class="hljs-params"> arr </span>) </span>{
+    <span class="hljs-keyword">return</span> ( arr.buffer ) ? ( arr.buffer === <span class="hljs-built_in">this</span>._buffer ) : <span class="hljs-literal">false</span>;
+});
+
+setReadOnly( Context.prototype, <span class="hljs-string">'realloc'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">realloc</span>(<span class="hljs-params"> nbytes </span>) </span>{
+    <span class="hljs-built_in">this</span>._buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( nbytes );
+});
+
+setReadOnlyAccessor( Context.prototype, <span class="hljs-string">'view'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getter</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( <span class="hljs-built_in">this</span>._buffer );
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> ctx = <span class="hljs-keyword">new</span> Context();
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">4</span> );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">4</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> xobj = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'wdtype'</span>: dtype2wasm( <span class="hljs-string">'float64'</span> ),
+    <span class="hljs-string">'length'</span>: x.length,
+    <span class="hljs-string">'data'</span>: x,
+    <span class="hljs-string">'stride'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> yobj = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'wdtype'</span>: dtype2wasm( <span class="hljs-string">'float64'</span> ),
+    <span class="hljs-string">'length'</span>: y.length,
+    <span class="hljs-string">'data'</span>: y,
+    <span class="hljs-string">'stride'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = arrays2ptrs( ctx, [ xobj, yobj ] );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

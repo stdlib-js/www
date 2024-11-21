@@ -1,11 +1,11 @@
-<h1 id="typed-array-pool">Typed Array Pool</h1><blockquote><p>Allocate typed arrays from a typed array memory pool.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typedarraypool = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/pool'</span> );
-</code></pre><h4 id="typedarraypool-dtype-">typedarraypool( [dtype] )</h4><p>Returns an <strong>uninitialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified data type <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = typedarraypool();
+<h1 id="typedarraypool">typedarraypool</h1><blockquote><p>Allocate typed arrays from a typed array memory pool.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typedarraypool = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/pool'</span> );
+</code></pre><h4 id="typedarraypool-dtype-">typedarraypool( [dtype] )</h4><p>Returns an <strong>uninitialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified <a href="/docs/api/latest/@stdlib/array/typed-dtypes">data type</a> <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = typedarraypool();
 <span class="hljs-comment">// returns &#x3C;Float64Array>[]</span>
 
 <span class="hljs-comment">// ...</span>
 
 typedarraypool.free( arr );
-</code></pre><p>The function recognizes the following data types:</p><ul><li><code>float64</code>: double-precision floating-point numbers (IEEE 754)</li><li><code>float32</code>: single-precision floating-point numbers (IEEE 754)</li><li><code>complex128</code>: double-precision complex floating-point numbers</li><li><code>complex64</code>: single-precision complex floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li></ul><p>By default, the output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> is <code>float64</code>. To specify an alternative data type, set the <code>dtype</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = typedarraypool( <span class="hljs-string">'int32'</span> );
+</code></pre><p>By default, the output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> is <code>float64</code>. To specify an alternative <a href="/docs/api/latest/@stdlib/array/typed-dtypes">data type</a>, set the <code>dtype</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = typedarraypool( <span class="hljs-string">'int32'</span> );
 <span class="hljs-comment">// returns &#x3C;Int32Array>[]</span>
 
 <span class="hljs-comment">// ...</span>
@@ -45,7 +45,7 @@ typedarraypool.free( arr3 );
 
 typedarraypool.free( arr1 );
 typedarraypool.free( arr2 );
-</code></pre><h4 id="typedarraypoolmalloc-dtype-">typedarraypool.malloc( [dtype] )</h4><p>Returns an <strong>uninitialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified data type <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = typedarraypool.malloc();
+</code></pre><h4 id="typedarraypoolmalloc-dtype-">typedarraypool.malloc( [dtype] )</h4><p>Returns an <strong>uninitialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified <a href="/docs/api/latest/@stdlib/array/typed-dtypes">data type</a> <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = typedarraypool.malloc();
 <span class="hljs-comment">// returns &#x3C;Float64Array>[]</span>
 
 <span class="hljs-keyword">var</span> arr2 = typedarraypool.malloc( <span class="hljs-string">'int32'</span> );
@@ -89,7 +89,7 @@ typedarraypool.free( arr3 );
 
 typedarraypool.free( arr1 );
 typedarraypool.free( arr2 );
-</code></pre><h4 id="typedarraypoolcalloc-dtype-">typedarraypool.calloc( [dtype] )</h4><p>Returns a <strong>zero-initialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified data type <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = typedarraypool.calloc();
+</code></pre><h4 id="typedarraypoolcalloc-dtype-">typedarraypool.calloc( [dtype] )</h4><p>Returns a <strong>zero-initialized</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified <a href="/docs/api/latest/@stdlib/array/typed-dtypes">data type</a> <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = typedarraypool.calloc();
 <span class="hljs-comment">// returns &#x3C;Float64Array>[]</span>
 
 <span class="hljs-keyword">var</span> arr2 = typedarraypool.calloc( <span class="hljs-string">'int32'</span> );

@@ -1,0 +1,112 @@
+<h1 id="decorateafter">decorateAfter</h1><blockquote><p>Decorate a provided function such that the function's return value is provided as an argument to another function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> decorateAfter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/decorate-after'</span> );
+</code></pre><h4 id="decorateafter-fcn-arity-after-thisarg-">decorateAfter( fcn, arity, after[, thisArg] )</h4><p>Decorates a provided function such that the function's return value is provided as an argument to another function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">negate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> -v;
+}
+
+<span class="hljs-keyword">var</span> f = decorateAfter( abs, abs.length, negate );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> bool = ( abs.length === f.length );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> v = f( -<span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+
+v = f( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+</code></pre><p>Decorators are intended to be transparent, meaning that, when interfacing with an API, the decorated API should have the same signature (i.e., number of parameters) as the decorated function. Thus, a typical value for <code>arity</code> is <code>fcn.length</code>. This function does not require equality, however, and the <code>arity</code> argument is allowed to diverge from that of the decorated function. Specifying a differing <code>arity</code> does <strong>not</strong> affect function evaluation behavior, as the returned function passes all provided arguments to the decorated function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">negate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> -v;
+}
+
+<span class="hljs-keyword">var</span> f = decorateAfter( abs, <span class="hljs-number">0</span>, negate );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> bool = ( abs.length === f.length );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-keyword">var</span> v = f( -<span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+
+v = f( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+</code></pre><p>To specify the function execution context for <code>after</code>, provide a <code>thisArg</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">counter</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> f = decorateAfter( abs, abs.length, counter, ctx );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = f( -<span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 5</span>
+
+v = f( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 5</span>
+
+<span class="hljs-keyword">var</span> count = ctx.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><h4 id="decorateafterfactory-fcn-arity-after-thisarg-">decorateAfter.factory( fcn, arity, after[, thisArg] )</h4><p>Uses code generation to decorate a provided function such that the function's return value is provided as an argument to another function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">negate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> -v;
+}
+
+<span class="hljs-keyword">var</span> f = decorateAfter.factory( abs, abs.length, negate );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> bool = ( abs.length === f.length );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> v = f( -<span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+
+v = f( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns -5</span>
+</code></pre><p>Argument behavior is the same as for <code>decorateAfter</code> above.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the <code>after</code> function returns <code>undefined</code>, the returned decorator returns the return value of the decorated function <code>fcn</code>; otherwise, the returned decorator returns the return value of <code>after</code>.</li><li>Code generation may be problematic in browser contexts enforcing a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">content security policy</a> (CSP). If running in or targeting an environment with a CSP, avoid using code generation.</li><li>For non-native functions, the code generation API supports returning a decorator whose API exactly matches the API of the decorated function, including function length and parameter names. For native functions, due to how native functions serialize to strings, the code generation API generates placeholder parameter names, which are unlikely to match the canonical parameter names. Using placeholder parameter names ensures that the length of the decorator (i.e., number of parameters) matches the decorated function and, except in scenarios involving function source code inspection, will not affect runtime behavior.</li><li>For the non-code generation API, the returned decorator supports an <code>arity</code> less than or equal to <code>10</code> (i.e., the maximum arity of the returned function is <code>10</code>). For an arity greater than <code>10</code>, the returned function has an arity equal to <code>0</code>. While this violates strict notions of a decorator, for all practical purposes, this is unlikely to be an issue, as the vast majority of functions have fewer than <code>10</code> parameters and the need for explicitly checking function length is relatively uncommon.</li><li>The decorators returned by the code generation and non-code generation APIs should have the same performance characteristics, and, thus, neither API should have a performance advantage over the other. The main advantage of the code generation API is the ability to return a decorator whose signature exactly matches the signature of a non-native decorated function.</li><li>Common use cases for decorating a function with additional actions <strong>after</strong> invocation include logging, capturing invocation statistics, and validating return values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+<span class="hljs-keyword">var</span> decorateAfter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/decorate-after'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello!'</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randstr</span>(<span class="hljs-params"> f </span>) </span>{
+    <span class="hljs-keyword">var</span> str;
+    <span class="hljs-keyword">var</span> i;
+
+    str = [];
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> ); i++ ) {
+        str.push( f() );
+    }
+    <span class="hljs-keyword">return</span> str.join( <span class="hljs-string">' '</span> );
+}
+
+<span class="hljs-comment">// Create an evaluation context to allow tracking how many times a function is invoked:</span>
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Decorate a function with a counter:</span>
+<span class="hljs-keyword">var</span> f = decorateAfter( greet, greet.length, count, ctx );
+
+<span class="hljs-comment">// Generate a random greeting:</span>
+<span class="hljs-keyword">var</span> str = randstr( f );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+<span class="hljs-comment">// Check how many times the function was invoked:</span>
+<span class="hljs-keyword">var</span> c = ctx.count;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

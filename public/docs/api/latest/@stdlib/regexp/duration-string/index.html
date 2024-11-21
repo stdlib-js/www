@@ -1,0 +1,54 @@
+<h1 id="redurationstring">reDurationString</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a duration string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDurationString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/duration-string'</span> );
+</code></pre><h4 id="redurationstring-1">reDurationString()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a duration string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DURATION = reDurationString();
+<span class="hljs-comment">// returns &#x3C;RegExp></span>
+
+<span class="hljs-keyword">var</span> parts = RE_DURATION.exec( <span class="hljs-string">'3d2ms'</span> );
+<span class="hljs-comment">/* returns
+    [
+        '3d2ms',
+        '3d',
+        undefined,
+        undefined,
+        undefined,
+        '2ms',
+        index: 0,
+        input: '3d2ms',
+        groups: undefined
+    ]
+*/</span>
+
+parts = RE_DURATION.exec( <span class="hljs-string">'4h3m20s'</span> );
+<span class="hljs-comment">/* returns
+    [
+        '4h3m20s',
+        undefined,
+        '4h',
+        '3m',
+        '20s',
+        undefined,
+        index: 0,
+        input: '4h3m20s',
+        groups: undefined
+    ]
+*/</span>
+</code></pre><h4 id="redurationstringregexp">reDurationString.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a duration string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reDurationString.REGEXP.test( <span class="hljs-string">'3d12h'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A duration string is a string containing a sequence of time units. A time unit is a nonnegative integer followed by a unit identifier. The following unit identifiers are supported:</p><ul><li><code>d</code>: days</li><li><code>h</code>: hours</li><li><code>m</code>: minutes</li><li><code>s</code>: seconds</li><li><code>ms</code>: milliseconds</li></ul><p>For example, the string <code>1m3s10ms</code> is a duration string containing three time units: <code>1m</code> (1 minute), <code>3s</code> (3 seconds), and <code>10ms</code> (10 milliseconds). The string <code>60m</code> is a duration string containing a single time unit: <code>60m</code> (60 minutes). Time units must be supplied in descending order of magnitude (i.e., days, hours, minutes, seconds, milliseconds).</p></li><li><p>Duration strings are case insensitive. For example, the string <code>1M3S10MS</code> is equivalent to <code>1m3s10ms</code>.</p></li><li><p>The regular expression captures the following groups:</p><ol><li>The days component.</li><li>The hours component.</li><li>The minutes component.</li><li>The seconds component.</li><li>The milliseconds component.</li></ol></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDurationString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/duration-string'</span> );
+
+<span class="hljs-keyword">var</span> RE_DURATION = reDurationString();
+
+<span class="hljs-keyword">var</span> bool = RE_DURATION.test( <span class="hljs-string">'3d12h'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DURATION.test( <span class="hljs-string">'1M3S10MS'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DURATION.test( <span class="hljs-string">'1y.0w.0d'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DURATION.test( <span class="hljs-string">'1y3w'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DURATION.test( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

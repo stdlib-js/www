@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -486,7 +486,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -609,7 +609,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -732,7 +732,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -750,7 +750,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+},{"./main.js":17,"./polyfill.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -789,36 +819,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],18:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -855,7 +855,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -873,7 +873,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+},{"./main.js":20,"./polyfill.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -912,36 +942,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -978,7 +978,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -996,7 +996,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1035,36 +1065,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -1101,7 +1101,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -1119,7 +1119,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1157,36 +1187,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],28:[function(require,module,exports){
 /**
@@ -1327,7 +1327,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":28,"@stdlib/assert/is-float32array":86,"@stdlib/constants/float64/pinf":148}],31:[function(require,module,exports){
+},{"./float32array.js":28,"@stdlib/assert/is-float32array":86,"@stdlib/constants/float64/pinf":150}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1605,7 +1605,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":35,"@stdlib/assert/is-int16array":92,"@stdlib/constants/int16/max":149,"@stdlib/constants/int16/min":150}],37:[function(require,module,exports){
+},{"./int16array.js":35,"@stdlib/assert/is-int16array":92,"@stdlib/constants/int16/max":151,"@stdlib/constants/int16/min":152}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1745,7 +1745,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":38,"@stdlib/assert/is-int32array":94,"@stdlib/constants/int32/max":151,"@stdlib/constants/int32/min":152}],40:[function(require,module,exports){
+},{"./int32array.js":38,"@stdlib/assert/is-int32array":94,"@stdlib/constants/int32/max":153,"@stdlib/constants/int32/min":154}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1885,7 +1885,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":41,"@stdlib/assert/is-int8array":96,"@stdlib/constants/int8/max":153,"@stdlib/constants/int8/min":154}],43:[function(require,module,exports){
+},{"./int8array.js":41,"@stdlib/assert/is-int8array":96,"@stdlib/constants/int8/max":155,"@stdlib/constants/int8/min":156}],43:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -1917,7 +1917,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":259}],44:[function(require,module,exports){
+},{"buffer":264}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,12 +1952,12 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
 },{"./main.js":45}],45:[function(require,module,exports){
 /**
@@ -2071,12 +2071,12 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":47}],47:[function(require,module,exports){
 /**
@@ -2179,12 +2179,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2265,12 +2265,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":51}],51:[function(require,module,exports){
 /**
@@ -2434,7 +2434,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":129,"@stdlib/constants/uint16/max":155}],54:[function(require,module,exports){
+},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":129,"@stdlib/constants/uint16/max":157}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2575,7 +2575,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":131,"@stdlib/constants/uint32/max":156}],57:[function(require,module,exports){
+},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":131,"@stdlib/constants/uint32/max":158}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2716,7 +2716,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":133,"@stdlib/constants/uint8/max":157}],60:[function(require,module,exports){
+},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":133,"@stdlib/constants/uint8/max":159}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3061,7 +3061,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":232}],67:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3131,7 +3131,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":68,"@stdlib/assert/is-enumerable-property":81,"@stdlib/constants/uint32/max":156,"@stdlib/math/base/assert/is-integer":162}],68:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":68,"@stdlib/assert/is-enumerable-property":81,"@stdlib/constants/uint32/max":158,"@stdlib/math/base/assert/is-integer":164}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3169,12 +3169,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":69}],69:[function(require,module,exports){
 /**
@@ -3241,7 +3241,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":232}],70:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3268,6 +3268,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -3277,7 +3278,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -3287,7 +3288,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -3300,22 +3301,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":71,"./object.js":72,"./primitive.js":73,"@stdlib/utils/define-nonenumerable-read-only-property":195}],71:[function(require,module,exports){
+},{"./main.js":71,"./object.js":72,"./primitive.js":73,"@stdlib/utils/define-nonenumerable-read-only-property":201}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3359,10 +3360,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -3400,6 +3405,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -3421,6 +3427,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -3442,7 +3450,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":75,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":232}],73:[function(require,module,exports){
+},{"./try2serialize.js":75,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/boolean/ctor":139,"@stdlib/utils/native-class":237}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3478,6 +3486,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -3606,12 +3616,12 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":77}],77:[function(require,module,exports){
 /**
@@ -3723,12 +3733,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":79}],79:[function(require,module,exports){
 /**
@@ -3789,7 +3799,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":146,"@stdlib/math/base/assert/is-integer":162}],80:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":148,"@stdlib/math/base/assert/is-integer":164}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3884,12 +3894,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":82}],82:[function(require,module,exports){
 /**
@@ -4067,12 +4077,12 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":85}],85:[function(require,module,exports){
 /**
@@ -4140,7 +4150,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":204,"@stdlib/utils/native-class":232}],86:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":209,"@stdlib/utils/native-class":237}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4244,7 +4254,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":232}],88:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4348,7 +4358,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":232}],90:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4387,12 +4397,12 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":91}],91:[function(require,module,exports){
 /**
@@ -4446,7 +4456,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":253}],92:[function(require,module,exports){
+},{"@stdlib/utils/type-of":258}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4550,7 +4560,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":232}],94:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4654,7 +4664,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":232}],96:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4758,7 +4768,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":232}],98:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4823,22 +4833,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":100,"./object.js":101,"./primitive.js":102,"@stdlib/utils/define-nonenumerable-read-only-property":195}],99:[function(require,module,exports){
+},{"./main.js":100,"./object.js":101,"./primitive.js":102,"@stdlib/utils/define-nonenumerable-read-only-property":201}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4888,7 +4898,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":147,"@stdlib/constants/float64/pinf":148,"@stdlib/math/base/assert/is-integer":162}],100:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":149,"@stdlib/constants/float64/pinf":150,"@stdlib/math/base/assert/is-integer":164}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5124,22 +5134,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":104,"./object.js":105,"./primitive.js":106,"@stdlib/utils/define-nonenumerable-read-only-property":195}],104:[function(require,module,exports){
+},{"./main.js":104,"./object.js":105,"./primitive.js":106,"@stdlib/utils/define-nonenumerable-read-only-property":201}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5254,7 +5264,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":111,"@stdlib/math/base/assert/is-nan":164}],106:[function(require,module,exports){
+},{"@stdlib/assert/is-number":111,"@stdlib/math/base/assert/is-nan":166}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5313,7 +5323,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":111,"@stdlib/math/base/assert/is-nan":164}],107:[function(require,module,exports){
+},{"@stdlib/assert/is-number":111,"@stdlib/math/base/assert/is-nan":166}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5379,22 +5389,22 @@ module.exports = isnan;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":108,"./object.js":109,"./primitive.js":110,"@stdlib/utils/define-nonenumerable-read-only-property":195}],108:[function(require,module,exports){
+},{"./main.js":108,"./object.js":109,"./primitive.js":110,"@stdlib/utils/define-nonenumerable-read-only-property":201}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5632,22 +5642,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":112,"./object.js":113,"./primitive.js":114,"@stdlib/utils/define-nonenumerable-read-only-property":195}],112:[function(require,module,exports){
+},{"./main.js":112,"./object.js":113,"./primitive.js":114,"@stdlib/utils/define-nonenumerable-read-only-property":201}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5775,7 +5785,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":116,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":168,"@stdlib/utils/native-class":232}],114:[function(require,module,exports){
+},{"./try2serialize.js":116,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":170,"@stdlib/utils/native-class":237}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5859,7 +5869,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":168}],116:[function(require,module,exports){
+},{"@stdlib/number/ctor":170}],116:[function(require,module,exports){
 arguments[4][75][0].apply(exports,arguments)
 },{"./tostring.js":115,"dup":75}],117:[function(require,module,exports){
 /**
@@ -5913,19 +5923,24 @@ arguments[4][75][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":118,"@stdlib/assert/tools/array-function":138,"@stdlib/utils/define-nonenumerable-read-only-property":195}],118:[function(require,module,exports){
+},{"./main.js":118,"@stdlib/assert/tools/array-function":137,"@stdlib/utils/define-nonenumerable-read-only-property":201}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6014,12 +6029,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":120}],120:[function(require,module,exports){
 /**
@@ -6114,12 +6129,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":122}],122:[function(require,module,exports){
 /**
@@ -6235,7 +6250,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":90,"@stdlib/assert/is-object":119,"@stdlib/utils/get-prototype-of":204,"@stdlib/utils/native-class":232}],123:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":90,"@stdlib/assert/is-object":119,"@stdlib/utils/get-prototype-of":209,"@stdlib/utils/native-class":237}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6295,22 +6310,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":124,"./object.js":125,"./primitive.js":126,"@stdlib/utils/define-nonenumerable-read-only-property":195}],124:[function(require,module,exports){
+},{"./main.js":124,"./object.js":125,"./primitive.js":126,"@stdlib/utils/define-nonenumerable-read-only-property":201}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6429,7 +6444,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":127,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":232}],126:[function(require,module,exports){
+},{"./try2valueof.js":127,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":237}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6655,7 +6670,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":232}],131:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6759,7 +6774,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":232}],133:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6863,7 +6878,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":232}],135:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6967,7 +6982,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":232}],137:[function(require,module,exports){
+},{"@stdlib/utils/native-class":237}],137:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":138}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7054,11 +7120,11 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":68,"@stdlib/string/format":186}],138:[function(require,module,exports){
+},{"@stdlib/assert/is-array":68,"@stdlib/string/format":190}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7076,40 +7142,43 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":137}],139:[function(require,module,exports){
+},{"./main.js":140}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -7128,14 +7197,37 @@ module.exports = arrayfcn;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":259}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7171,7 +7263,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -7189,7 +7281,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":139,"./polyfill.js":141,"@stdlib/assert/has-node-buffer-support":44}],141:[function(require,module,exports){
+},{"./main.js":142,"./polyfill.js":143,"@stdlib/assert/has-node-buffer-support":44}],142:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":264}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7228,7 +7350,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],142:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7264,7 +7386,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":90,"@stdlib/buffer/ctor":140}],143:[function(require,module,exports){
+},{"@stdlib/assert/is-function":90,"@stdlib/buffer/ctor":141}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7322,7 +7444,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":142,"./main.js":144,"./polyfill.js":145}],144:[function(require,module,exports){
+},{"./has_from.js":144,"./main.js":146,"./polyfill.js":147}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7380,7 +7502,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":76,"@stdlib/buffer/ctor":140,"@stdlib/string/format":186}],145:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":76,"@stdlib/buffer/ctor":141,"@stdlib/string/format":190}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7438,7 +7560,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":76,"@stdlib/buffer/ctor":140,"@stdlib/string/format":186}],146:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":76,"@stdlib/buffer/ctor":141,"@stdlib/string/format":190}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7489,7 +7611,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],147:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7551,7 +7673,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":168}],148:[function(require,module,exports){
+},{"@stdlib/number/ctor":170}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7609,7 +7731,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],149:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7672,7 +7794,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],150:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7735,7 +7857,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],151:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7798,7 +7920,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],152:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7861,7 +7983,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],153:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7924,7 +8046,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],154:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7987,7 +8109,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],155:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8050,7 +8172,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],156:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8113,7 +8235,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],157:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8176,9 +8298,10 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],158:[function(require,module,exports){
-module.exports={"10":"invalid operation. Cannot reset a REPL which has already closed.","11":"invalid operation. Cannot clear a REPL which has already closed.","12":"invalid operation. Cannot clear the line of a REPL which has already closed.","13":"invalid operation. Cannot clear the command buffer of a REPL which has already closed.","14":"invalid argument. Provided command either does not contain an `await` expression or contains a top-level `return` which is not allowed.","15":"invalid argument. Must provide a program AST node.","16":"invalid invocation. Insufficient arguments. Must provide a REPL instance.","17":"invalid operation. No presentation to reload. Use the `load()` method to load a presentation.","18":"invalid operation. No presentation file to watch. Use the `load()` method to load a presentation.","19":"unexpected error. Encountered a \"rename\" event for the source presentation file. No longer watching source presentation file for changes.","20":"invalid argument. Must provide a username or, to get a list of repositories an authenticated user is watching, an access token.","21":"unexpected error. Unable to resolve package directory as unable to find a `package.json` in a parent directory.","22":"invalid argument. Source code does not contain JSDoc comment with function options.","23":"unexpected error. Unable to resolve root project directory.","24":"invalid argument. An iterator must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.","25":"invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.","26":"invalid argument. Array-like object arguments must have a length which is a multiple of two. Length: `%u`.","27":"invalid argument. Array-like object and typed array arguments must have a length which is a multiple of two. Length: `%u`.","28":"invalid argument. ArrayBuffer byte length must be a multiple of `%u`. Byte length: `%u`.","29":"invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.","30":"invalid argument. Fourth argument must be a nonnegative integer. Value: `%s`.","31":"invalid argument. Fifth argument must be a function. Value: `%s`.","32":"invalid argument. Fourth argument must be a function. Value: `%s`.","33":"invalid argument. Second argument must be either an integer (starting index) or a callback function. Value: `%s`.","34":"invalid argument. Third argument must be either an integer (ending index) or a callback function. Value: `%s`.","35":"invalid argument. Second argument must be either an integer (starting view index) or a callback function. Value: `%s`.","36":"invalid argument. Third argument must be either an integer (ending view index) or a callback function. Value: `%s`.","37":"invalid argument. Second argument must be a recognized data type. Value: `%s`.","38":"invalid argument. First argument must be array-like. Value: `%s`.","39":"invalid argument. Second argument must be a string. Value: `%s`.","40":"invalid argument. Must provide either a Date object, a JavaScript timestamp (i.e., a nonnegative integer), or a date string. Value: `%s`.","41":"invalid option. Unrecognized rounding mode. Option: `%s`.","42":"invalid argument. Third argument must be either a nonnegative integer or an options object. Value: `%s`.","43":"invalid argument. Fourth argument must be an object. Value: `%s`.","44":"invalid argument. First argument must an iterator protocol-compliant object. Value: `%s`.","45":"invalid argument. Second argument must be a positive integer. Value: `%s`.","46":"invalid argument. First argument must be an iterator protocol-compliant object. Value: `%s`.","47":"invalid argument. Must provide an object. Value: `%s`.","48":"invalid argument. Object property values must be functions. Key: `%s`. Value: `%s`.","49":"invalid argument. First argument must be a number. Value: `%s`.","50":"invalid option. Second `%s` parameter option must be a positive integer. Option: `%s`.","51":"invalid argument. First argument must be an array. Value: `%s`.","52":"invalid argument. First argument must be an array of length `%u`. Value: `%s`.","53":"invalid argument. First argument must be an array of length %u. Value: `%s`.","54":"unexpected error. Scaling weight vector by nonpositive value, likely due to too large value of eta * lambda. Value: `%f`.","55":"invalid argument. Second argument must be a boolean. Value: `%s`.","56":"invalid argument. Must provide either a valid data source, options argument, or both. Value: `%s`.","57":"invalid option. `%s` option must be an array-like object, typed-array-like, a Buffer, or an ndarray. Option: `%s`.","58":"invalid option. Data source must be an array-like object, typed-array-like, a Buffer, or an ndarray. Value: `%s`.","59":"invalid option. `%s` option must be a recognized casting mode. Option: `%s`.","60":"invalid argument. Input string must have a length equal to %u. Value: `%s`.","61":"invalid assignment. `%s` must be a boolean. Value: `%s`.","62":"invalid assignment. `%s` must be a string. Value: `%s`.","63":"invalid assignment. `%s` must be one of the following: \"%s\". Value: `%s`.","64":"invalid assignment. `%s` must be a positive number. Value: `%s`.","65":"invalid assignment. `%s` must be either an array of strings or an empty array. Value: `%s`.","66":"invalid assignment. `%s` must be a number or number array. Value: `%s`.","67":"invalid assignment. A `%s` must be a number on the interval: [0, 1]. Value: `%f`.","68":"invalid assignment. `%s` must be a string or a string array. Value: `%s`","69":"invalid assignment. Unsupported/unrecognized line style. Must be one of the following: \"%s\". Value: `%s`.","70":"invalid argument. Must provide a Uint32Array. Value: `%s`.","71":"invalid argument. First argument must be a positive number. Value: `%s`.","72":"invalid argument. Second argument must be a positive number. Value: `%s`.","73":"invalid argument. Second argument must be a probability. Value: `%s`.","74":"invalid option. `%s` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `%s`.","75":"invalid option. `%s` option must have a `MIN` property specifying the minimum possible pseudorandom integer value.","76":"invalid option. `%s` option must have a `MAX` property specifying the maximum possible pseudorandom integer value.","77":"invalid argument. First argument must be an integer and not NaN. Value: `%s`.","78":"invalid argument. Second argument must be an integer and not NaN. Value: `%s`.","79":"invalid argument. Minimum support must be less than or equal to maximum support. Value: `[%d,%d]`.","80":"invalid argument. First argument must be either a string containing presentation text or an options object specifying a presentation file to load. Value: `%s`.","81":"invalid argument. Second argument must be an options object. Value: `%s`.","82":"invalid argument. Invalid presentation identifier. Must be either a string or nonnegative integer. Value: `%s`.","83":"invalid argument. Workspace name already exists. Value: `%s`.","84":"invalid argument. Must provide a string, regular expression, nonnegative integer, or an array of nonnegative integers. Value: `%s`.","85":"invalid argument. Unrecognized tutorial name. Value: `%s`.","86":"invalid argument. Documentation argument must be a string. Value: `%s`.","87":"invalid option. `%s` option must be a regular expression. Option: `%s`.","88":"internal error. Unrecognized pattern type: `%s`.","89":"invalid option. `%s` option must be a readable stream. Option: `%s`.","90":"invalid argument. Denominator degrees of freedom must be a positive number. Value: `%s`.","91":"invalid argument. Scale parameter must be a number. Value: `%s`.","92":"invalid argument. Mean parameter `%s` must be a probability. Value: `%s`.","93":"invalid argument. Population size must be a nonnegative integer. Value: `%s`.","94":"invalid argument. Subpopulation size must be a nonnegative integer. Value: `%s`.","95":"invalid argument. Number of draws must be a nonnegative integer. Value: `%s`.","96":"invalid assignment. Must be a nonnegative integer. Value: `%s`.","97":"invalid assignment. Must be larger than or equal to %u. Value: `%u`.","98":"invalid assignment. Must be less than or equal to %u. Value: `%u`.","99":"invalid argument. Number of trials until experiment is stopped must be a positive number. Value: `%s`.","00":"not implemented","01":"invalid invocation. `this` context must be a constructor.","02":"invalid invocation. `this` is not a complex number array.","03":"invalid arguments. Target array lacks sufficient storage to accommodate source values.","04":"invalid arguments. Creating a generic array from an ArrayBuffer is not supported.","05":"invalid arguments. Must provide a length, typed array, array-like object, or an iterable.","06":"invalid arguments. Generated array exceeds maximum array length.","07":"invalid arguments. If either of the first two arguments are complex numbers, the output array must be a complex number array or a \"generic\" array-like object.","08":"invalid arguments. If either of the first two arguments are complex numbers, the output array data type must be a complex number data type or \"generic\".","09":"not supported. The current environment does not support SharedArrayBuffers, and, unfortunately, SharedArrayBuffers cannot be polyfilled. For shared memory applications, upgrade your runtime environment to one which supports SharedArrayBuffers.","0A":"insufficient arguments. Must provide a search value.","0B":"invalid argument. Attempted to add duplicate listener.","0C":"exception","0D":"unexpected error. Benchmark failed.","0E":"unexpected error. Invalid benchmark.","0F":"unexpected error.","0G":"invalid invocation. Constructor must be called with the `new` keyword.","0H":"unexpected error. Max retries exceeded. Too many open files.","0I":"insufficient arguments. Must provide two or more iterators.","0J":"insufficient arguments. Must provide both an iterator and a static value.","0K":"invalid invocation. `this` is not a fluent interface iterator.","0L":"insufficient arguments. Must provide a hash function.","0M":"invalid argument. Iterator arguments must be iterator protocol-compliant objects.","0N":"insufficient arguments. Must provide at least one iterator function.","0O":"invalid argument. Providing a number is not supported.","0P":"invalid argument. Providing a complex number is not supported.","0Q":"invalid argument. Providing an ndarray is not supported.","0R":"invalid argument. Providing an array-like object is not supported.","0S":"invalid argument. If the first argument is an ndarray, the second argument must be an ndarray.","0T":"invalid argument. Output array must have the same number of elements (i.e., length) as the input array.","0U":"invalid argument. If the first argument is an array-like object, the second argument must be an array-like object.","0V":"invalid argument. Providing a number is not supported. Consider providing a zero-dimensional ndarray containing the numeric value.","0W":"invalid argument. Providing a complex number is not supported. Consider providing a zero-dimensional ndarray containing the complex number value.","0X":"invalid arguments. Must provide either a data source, array shape, or both.","0Y":"invalid arguments. Array shape is incompatible with provided data source. Number of data source elements does not match array shape.","0Z":"invalid argument. Cannot broadcast an array to a shape having fewer dimensions. Arrays can only be broadcasted to shapes having the same or more dimensions.","0a":"invalid argument. First argument must contain at least one element.","0b":"invalid arguments. The length of the first argument is incompatible with the second and third arguments.","0c":"invalid argument. Must provide an ndarray having two or more dimensions.","0d":"invalid arguments. Arrays must have the same shape.","0e":"invalid invocation. Cannot write to a read-only array.","0f":"invalid argument. Fourth argument length must be equal to 1 when creating a zero-dimensional ndarray.","0g":"invalid arguments. The input buffer is incompatible with the specified meta data. Ensure that the offset is valid with regard to the strides array and that the buffer has enough elements to satisfy the desired array shape.","0h":"invalid arguments. Interface must accept at least one input and/or output ndarray. Based on the provided arguments, `nin+nout` equals `0`.","0i":"invalid arguments. Fourth argument does not equal the number of input and output ndarrays.","0j":"invalid argument. Unexpected number of types. A type must be specified for each input and output ndarray for each provided ndarray function.","0k":"invalid argument. The third argument must have the same number of elements as the first argument.","0l":"invalid invocation. Insufficient arguments.","0m":"invalid invocation. Too many arguments.","0n":"invalid arguments. Unable to resolve an ndarray function supporting the provided array argument data types.","0o":"invalid operation. Unable to load Electron. Ensure Electron is installed and try again.","0p":"invalid operation. A browser environment has no support for changing the current working directory.","0q":"invalid operation. The environment does not support reading from `stdin`.","0r":"unexpected error. PRNG returned NaN.","0s":"invalid argument. Third argument must be less than or equal to the first argument.","0t":"invalid argument. Second argument must be less than or equal to the first argument.","0u":"invalid operation. Cannot delete the `base` workspace.","0v":"invalid invocation. Must provide either a string containing presentation text or an options object specifying a presentation file to load.","0w":"invalid argument. When not provided presentation text, an options argument must specify a presentation file to load.","0x":"invalid invocation. Not currently in a presentation workspace. Must provide either a string or nonnegative integer which corresponds to the identifier of the presentation to be stopped.","0y":"unexpected error. Command execution terminated.","0z":"invalid operation. Cannot load a file into a REPL which has already closed.","1A":"invalid arguments. First and second arguments must be arrays having the same length.","1B":"invalid arguments. Subpopulation size must be less than or equal to population size.","1C":"invalid arguments. Number of draws must be less than or equal to population size.","1D":"invalid argument. First argument must contain at least one element greater than zero (i.e., the total number number of observations must be greater than zero).","1E":"invalid arguments. First and second arguments must have the same length.","1F":"invalid arguments. First and second arguments must be arrays having the same length.","1G":"invalid arguments. First and second argument must have the same length.","1H":"invalid arguments. Not enough observations. First and second arguments must contain at least four observations.","1I":"invalid arguments. The first and second arguments must have the same length.","1J":"`x` or `x - y` cannot be zero for all elements.","1K":"invalid arguments. Strided array parameters are incompatible with the provided array-like object. Linear index exceeds array bounds.","1L":"invalid arguments. Unable to resolve a strided array function supporting the provided array argument data types.","1M":"invalid arguments. Interface must accept at least one strided input and/or output array. Based on the provided arguments, `nin+nout` equals `0`.","1N":"invalid argument. Unexpected number of types. A type must be specified for each strided input and output array for each provided strided array function.","1O":"invalid argument. Fourth argument is incompatible with the number of strided input and output arrays.","1P":"invalid argument. Input array offset must be a nonnegative integer.","1Q":"invalid argument. Output array offset must be a nonnegative integer.","1R":"invalid argument. Input array must be an array-like object.","1S":"invalid argument. Output array must be an array-like object.","1T":"invalid argument. Input array has insufficient elements based on the associated stride and the number of indexed elements.","1U":"invalid argument. Output array has insufficient elements based on the associated stride and the number of indexed elements.","1V":"insufficient arguments. Must provide either an array of code points or one or more code points as separate arguments.","1W":"invalid argument. Third argument must not be an empty string.","1X":"invalid argument. Pad string must not be an empty string.","1Y":"insufficient arguments. Must provide multiple functions to compose.","1Z":"insufficient arguments. Must provide multiple functions to execute sequentially.","1a":"invalid arguments. First and last arguments must be the same length.","1b":"insufficient arguments. Must provide at least two objects.","1c":"invalid invocation. `this` is not a compact adjacency matrix.","1d":"invalid argument. Cannot specify one or more accessors and a value or writable attribute in the property descriptor.","1e":"invalid argument. The list does not contain the provided list node.","1f":"unexpected error. Unable to resolve global object.","1g":"invalid argument. The output ndarray must be writable. Cannot write to a read-only ndarray.","1h":"invalid arguments. Input and output arrays must have the same length.","1i":"invalid arguments. Input and output arrays must have the same number of elements (i.e., length).","1j":"invalid arguments. Input ndarrays must be broadcast compatible.","1k":"invalid arguments. Input arrays must have the same number of elements (i.e., length).","1l":"insufficient arguments. Must provide both a target object and one or more source objects.","1m":"invalid invocation. `this` is not host tuple.","1n":"invalid invocation. `this` is not the host tuple factory.","1o":"not implemented. Please post an issue on the @stdlib/stdlib issue tracker if you would like this to be implemented.","1p":"invalid argument. Second argument must have a length equal to the size of the outermost input array dimension.","1q":"evaluation error. Did not receive timing results.","1r":"evaluation error. Unable to retrieve evaluation results. Ensure that the provided snippet does not return prematurely.","1s":"invalid argument. Must provide a zipped array.","1t":"invalid argument. Array must only contain arrays.","1u":"invalid argument. Indices must be specified as an array.","1v":"invalid argument. All indices must be integers.","1w":"invalid argument. Must provide valid indices (i.e., an index must be on the interval [0, len], where len is the tuple length).","1x":"insufficient arguments. Must provide at least one array.","1y":"invalid argument. Must provide a username or, to get who an authenticated user is following, an access token.","1z":"invalid argument. Must provide a username or, to get a list of repositories an authenticated user has starred, an access token.","2A":"invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.","2B":"invalid argument. First argument must be an ArrayBuffer. Value: `%s`.","2C":"invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.","2D":"invalid argument. Byte offset must be a multiple of `%u`. Value: `%u`.","2E":"invalid arguments. ArrayBuffer view byte length must be a multiple of %u. View byte length: `%u`.","2F":"invalid argument. Length must be a nonnegative integer. Value: `%s`.","2G":"invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.","2H":"invalid argument. Second argument must be a function. Value: `%s`.","2I":"invalid argument. First argument must have a length which is a multiple of two. Length: `%u`.","2J":"invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.","2K":"invalid argument. Must provide a nonnegative integer. Value: `%s`.","2L":"invalid argument. Index argument must be a nonnegative integer. Value: `%s`.","2M":"invalid argument. Index argument is out-of-bounds. Value: `%u`.","2N":"invalid argument. First argument must be either a complex number, an array-like object, or a complex number array. Value: `%s`.","2O":"invalid argument. First argument must be an array-like object. Value: `%s`.","2P":"invalid argument. Second argument must be a recognized array data type. Value: `%s`.","2Q":"invalid argument. Second argument must have a recognized/supported data type. Type: `%s`. Value: `%s`.","2R":"invalid argument. Unable to parse %s date.","2S":"invalid argument. Numeric %s date must be either a Unix or JavaScript timestamp.","2T":"invalid argument. %s date must either be a date string, Date object, Unix timestamp, or JavaScript timestamp.","2U":"invalid argument. Length must be a positive integer. Value: `%s`.","2V":"invalid argument. Options argument must be an object. Value: `%s`.","2W":"invalid option. `%s` option must be a string. Option: `%s`.","2X":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","2Y":"invalid argument. Must provide a recognized data type. Value: `%s`.","2Z":"invalid argument. Environment lacks Symbol.iterator support. Must provide a length, typed array, or array-like object. Value: `%s`.","2a":"invalid argument. Must provide a length, typed array, array-like object, or an iterable. Value: `%s`.","2b":"invalid argument. Callback argument must be a function. Value: `%s`.","2c":"invalid argument. Iterator argument must be an iterator protocol-compliant object. Value: `%s`.","2d":"invalid argument. First argument must be a nonnegative integer. Value: `%s`.","2e":"invalid argument. Third argument must be a recognized data type. Value: `%s`.","2f":"invalid argument. First argument must be either an array, typed array, or complex typed array. Value: `%s`.","2g":"invalid argument. Start must be numeric. Value: `%s`.","2h":"invalid argument. Stop must be numeric. Value: `%s`.","2i":"invalid argument. Increment must be numeric. Value: `%s`.","2j":"invalid argument. First argument must be either a real or complex number. Value: `%s`.","2k":"invalid argument. Second argument must be either a real or complex number. Value: `%s`.","2l":"invalid argument. Third argument must be an array-like object. Value: `%s`.","2m":"invalid argument. Third argument must be a nonnegative integer. Value: `%s`.","2n":"invalid option. `%s` option must be a real or complex floating-point data type or \"generic\". Option: `%s`.","2o":"invalid option. `%s` option must be a boolean. Option: `%s`.","2p":"invalid argument. Exponent of start value must be numeric. Value: `%s`.","2q":"invalid argument. Exponent of stop value must be numeric. Value: `%s`.","2r":"invalid argument. First argument must be either an array length or an array-like object. Value: `%s`.","2s":"invalid argument. Must provide a typed array or ArrayBuffer. Value: `%s`.","2t":"invalid option. `%s` option must be a nonnegative integer. Option: `%s`.","2u":"invalid argument. Must provide an array-like object. Value: `%s`.","2v":"invalid option. `%s` option must be either `1` or `-1`. Option: `%s`.","2w":"invalid argument. Second argument must be either a function or an options object. Value: `%s`.","2x":"invalid argument. Must provide a typed array. Value: `%s`.","2y":"invalid argument. Second argument must be an array-like object. Value: `%s`.","2z":"invalid argument. Third argument must be an integer. Value: `%s`.","3A":"invalid argument. Key path must be a string or a key array. Value: `%s`.","3B":"invalid argument. Must provide a string. Value: `%s`.","3C":"invalid argument. Must provide a valid position (i.e., a nonnegative integer). Value: `%s`.","3D":"invalid argument. Must provide a valid position (i.e., within string bounds). Value: `%u`.","3E":"invalid argument. Second argument must be callable. Value: `%s`.","3F":"invalid argument. First argument must be a string. Value: `%s`.","3G":"invalid argument. Fourth argument must be one of the following: \"%s\". Value: `%s`.","3H":"invalid argument. Fifth argument must be one of the following: \"%s\". Value: `%s`.","3I":"invalid argument. Second argument must be either an object (except null) or a function. Value: `%s`.","3J":"invalid argument. Must provide a function. Value: `%s`.","3K":"invalid argument. Must provide either an options object or a callback function. Value: `%s`.","3L":"invalid argument. First argument must be an object. Value: `%s`.","3M":"invalid option. `%s` option must be a writable stream. Option: `%s`.","3N":"invalid argument. Third argument must be a function. Value: `%s`.","3O":"invalid option. `%s` option must be either a positive integer or `null`. Option: `%s`.","3P":"invalid option. `%s` option must be a positive integer. Option: `%s`.","3Q":"invalid argument. First argument must be a 1-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","3R":"invalid argument. Second argument must be a 1-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","3S":"invalid argument. Arrays must be the same length. First argument length: `%u`. Second argument length: `%u`.","3T":"invalid argument. First argument must be either an array-like object or a one-dimensional ndarray. Value: `%s`.","3U":"invalid argument. Second argument must be either an array-like object or a one-dimensional ndarray. Value: `%s`.","3V":"invalid argument. First argument must be a 1-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","3W":"invalid argument. Second argument must be a 1-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","3X":"invalid argument. Second argument must be a nonnegative integer. Value: `%s`.","3Y":"invalid argument. Second argument must not exceed the number of bytes in the input ArrayBuffer. Value: `%s`.","3Z":"invalid argument. Last argument must be a nonnegative integer. Value: `%s`.","3a":"invalid argument. Last argument must not exceed the number of bytes in the input ArrayBuffer. Value: `%s`.","3b":"invalid argument. Must provide a Buffer. Value: `%s`.","3c":"invalid argument. First argument must be a function. Value: `%s`.","3d":"invalid argument. Third argument must be a constructor function. Value: `%s`.","3e":"invalid argument. Real component must be a number. Value: `%s`.","3f":"invalid argument. Imaginary component must be a number. Value: `%s`.","3g":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","3h":"invalid argument. Unsupported/unrecognized dataset name. Value: `%s`.","3i":"invalid option. Unrecognized `%s`. Option: `[%s]`.","3j":"invalid option. `%s` option must be a string or an array of strings. Option: `%s`.","3k":"invalid option. `%s` option must be a positive integer or an array of positive integers. Option: `%s`.","3l":"invalid option. `%s` option must be a positive integer array of length two. Option: `%s`.","3m":"invalid option. `%s` option cannot be less than 1790. Option: `%s`.","3n":"invalid option. `%s` option cannot be greater than 5000. Option: `%s`.","3o":"invalid argument. Must provide an error object. Value: `%s`.","3p":"invalid argument. First argument must be a valid file descriptor (i.e., nonnegative integer). Value: `%s`.","3q":"invalid argument. Last argument must be a function. Value: `%s`.","3r":"invalid argument. Must provide a valid file descriptor (i.e., a nonnegative integer). Value: `%s`.","3s":"invalid argument. First argument must be an array of strings. Value: `%s`.","3t":"invalid argument. Options argument must be either a string or an object. Value: `%s`.","3u":"invalid argument. Predicate function must be a function. Value: `%s`.","3v":"invalid argument. First argument must be an iterator. Value: `%s`.","3w":"invalid argument. Must provide an iterator. Value: `%s`.","3x":"invalid argument. Must provide an iterator protocol-compliant object. Argument: `%u`. Value: `%s`.","3y":"invalid argument. Must provide an iterator protocol-compliant object. Value: `%s`.","3z":"invalid argument. Unable to parse date string. Value: `%s`.","4A":"invalid argument. Second argument must be a number. Value: `%s`.","4B":"invalid argument. Third argument must be a number. Value: `%s`.","4C":"invalid argument. Hash function argument must be a function. Value: `%s`.","4D":"invalid option. `%s` option must be a positive number. Option: `%s`.","4E":"invalid argument. Third argument must be either a nonnegative integer or an object. Value: `%s`.","4F":"invalid arguments. All arguments must be functions. Value: `%s`.","4G":"invalid argument. Each iterator function, except the last iterator function, within an iterator pipeline must return an iterator. Value: `%s`.","4H":"invalid argument. Must provide an an iterator. Value: `%s`.","4I":"invalid return value. Callback function must return an integer. Value: `%s`.","4J":"invalid argument. Fourth argument must be a boolean. Value: `%s`.","4K":"invalid return value. Callback function must return a positive integer. Value: `%s`.","4L":"invalid argument. Fifth argument must be a callback function. Value: `%s`.","4M":"invalid argument. Third argument must be either an integer (starting index) or a callback function. Value: `%s`.","4N":"invalid argument. Fourth argument must be either an integer (ending index) or a callback function. Value: `%s`.","4O":"invalid argument. Unrecognized/unsupported scale function. Value: `%s`.","4P":"invalid argument. Must provide an iterator protocol-compliant object or a number. Argument: `%u`. Value: `%s`.","4Q":"invalid argument. First argument must be a finite number. Value: `%s`.","4R":"invalid option. `%s` option must be a positive finite number. Option: `%s`.","4S":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","4T":"invalid option. `%s` option must be less than or equal to 79. Option: `%u`.","4U":"invalid option. `%s` option must be less than or equal to 77. Option: `%u`.","4V":"invalid argument. Must provide an argument having a supported data type. Value: `%s`.","4W":"invalid option. Unsupported policy for determining an output array data type. Option: `%s`.","4X":"invalid option. `%s` option must be a recognized/supported data type. Option: `%s`.","4Y":"invalid option. `%s` option must be a recognized/supported output array data type policy. Option: `%s`.","4Z":"invalid argument. Resolution table must be an object. Value: `%s`.","4a":"invalid argument. Resolution table `%s` field value must be either a function or null. Value: `%s`.","4b":"invalid argument. First argument must be a positive integer. Value: `%s`.","4c":"invalid argument. First argument must be a one-dimensional ndarray. Value: `%s`.","4d":"invalid argument. Second argument must be either +1 or -1. Value: `%s`.","4e":"invalid argument. First argument must be a one-dimensional ndarray of length %u. Actual length: `%u`.","4f":"invalid argument. First argument must be an ndarray. Value: `%s`.","4g":"invalid argument. First argument must be an ndarray whose last dimension is of size `%u`. Actual size: `%u`.","4h":"invalid argument. Second argument is incompatible with model loss function. Probability predictions are only supported when the loss function is one of the following: \"%s\". Model loss function: `%s`.","4i":"invalid argument. Second argument must be a string value equal to either \"label\", \"probability\", or \"linear\". Value: `%s`.","4j":"invalid argument. Attempting to scale a weight vector by a nonpositive value. This is likely due to too large a value of `eta*lambda`. Value: `%f`.","4k":"invalid option. `%s` option must be a nonnegative number. Option: `%s`.","4l":"invalid option. `%s` option must be an array-like object. Option: `%s`.","4m":"invalid option. First `%s` option must be one of the following: \"%s\". Option: `%s`.","4n":"invalid option. Second `%s` option must be a positive number. Option: `%s`.","4o":"invalid option. Third `%s` option must be a number. Option: `%s`.","4p":"invalid argument. Argument specifying number of dimensions must be a positive integer. Value: `%s`.","4q":"invalid argument. First argument must either be a positive integer specifying the number of clusters or a matrix containing initial centroids. Value: `%s`.","4r":"invalid option. First `%s` parameter option must be greater than or equal to the number of clusters. Options: `%f`.","4s":"invalid argument. Must provide a 1-dimensional ndarray. Value: `%s`.","4t":"invalid argument. Vector length must match centroid dimensions. Expected: `%u``. Actual: `%u``.","4u":"invalid argument. Output argument must be a 1-dimensional ndarray. Value: `%s`.","4v":"invalid argument. Must provide a 2-dimensional ndarray. Value: `%s`.","4w":"invalid argument. Number of matrix columns must match centroid dimensions. Expected: `%u``. Actual: `%u`.","4x":"invalid argument. Output vector length must match the number of data points. Expected: `%u`. Actual: `%u`.","4y":"invalid option. `%s` option method must be one of the following: \"%s\". Option: `%s`.","4z":"invalid option. First `%s` parameter option must be a positive integer. Option: `%s`.","5A":"invalid option. `%s` option must be a recognized data type. Option: `%s`.","5B":"invalid option. Data type cast is not allowed. Casting mode: `%s`. From: `%s`. To: `%s`.","5C":"invalid option. `%s` option must be a recognized order. Option: `%s`.","5D":"invalid option. `%s` option must be an array-like object containing nonnegative integers. Option: `%s`.","5E":"invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.","5F":"invalid argument. Input array cannot be broadcast to the specified shape, as the specified shape has a dimension whose size is less than the size of the corresponding dimension in the input array. Array shape: (%s). Desired shape: (%s). Dimension: %u.","5G":"invalid argument. Input array and the specified shape are broadcast incompatible. Array shape: (%s). Desired shape: (%s). Dimension: %u.","5H":"invalid argument. Specified axis is out-of-bounds. Must be on the interval: [-%u-1, %u]. Value: `%d`.","5I":"invalid argument. Index must be on the interval: [0, %f]. Value: `%f`.","5J":"invalid argument. Subscripts must not exceed array dimensions. Subscript: `%u`. Value: `%d`.","5K":"invalid argument. First argument must be a recognized data type. Value: `%s`.","5L":"invalid argument. First argument must have a recognized data type. Value: `%s`.","5M":"invalid arguments. Number of indices must match the number of dimensions. ndims: `%u`. nargs: `%u`.","5N":"invalid argument. Indices must be integer valued. Argument: `%u`. Value: `%s`.","5O":"invalid argument. Index must be an integer. Value: `%s`.","5P":"invalid argument. First argument must be a supported ndarray data type. Value: `%s`.","5Q":"invalid argument. Second argument must be an array-like object, typed-array-like, or a Buffer. Value: `%s`.","5R":"invalid argument. Second argument `get` and `set` properties must be functions. Value: `%s`.","5S":"invalid argument. Third argument must be an array-like object containing nonnegative integers. Value: `%s`.","5T":"invalid argument. Number of dimensions must not exceed %u due to stack limits. Value: `%u`.","5U":"invalid argument. Fourth argument must be an array-like object containing integers. Value: `%s`.","5V":"invalid argument. Fourth argument length must match the number of dimensions. Expected number of dimensions: `%u`. Strides length: `%u`.","5W":"invalid argument. Fourth argument must contain a single element equal to `0`. Value: `%d`.","5X":"invalid argument. Fifth argument must be a nonnegative integer. Value: `%s`.","5Y":"invalid argument. Sixth argument must be a supported order. Value: `%s`.","5Z":"invalid argument. Indices must be integer valued. Argument: `%i`. Value: `%u`.","5a":"invalid option. `%s` option must be a recognized mode. Option: `%s`.","5b":"invalid option. `%s` option must be an array containing recognized modes. Option: `%s`.","5c":"invalid option. Each submode must be a recognized mode. Option: `%s`.","5d":"invalid argument. First argument must be either a function or an array of functions. Value: `%s`.","5e":"invalid argument. Third argument must be an array-like object or null. Value: `%s`.","5f":"invalid argument. Fourth argument must be a positive integer. Value: `%s`.","5g":"invalid argument. Sixth argument must be a nonnegative integer. Value: `%s`.","5h":"invalid argument. Input array must be an ndarray-like object. Value: `%s`.","5i":"invalid argument. Output array must be an ndarray-like object. Value: `%s`.","5j":"invalid argument. Output argument must be either an array, typed array, or object. Value: `%s`.","5k":"invalid argument. Shape argument must be an array-like object containing nonnegative integers. Value: `%s`.","5l":"invalid argument. Linear index must be integer valued. Value: `%s`.","5m":"invalid option. `%s` option must be a supported/recognized mode. Option: `%s`.","5n":"invalid option. `%s` option must be a supported/recognized order. Option: `%s`.","5o":"invalid argument. First argument must be an array-like object containing nonnegative integers. Value: `%s`.","5p":"invalid argument. Number of provided subscripts must match the number of dimensions. ndims: `%u`. Number of subscripts: `%u`.","5q":"invalid argument. Subscripts must be integer valued. Argument: `%u`. Value: `%s`.","5r":"invalid option. `%s` option cannot be an empty array.","5s":"invalid argument. First argument must be either a nonnegative integer or an array of nonnegative integers. Value: `%s`.","5t":"invalid argument. First argument must be an ndarray-like object. Value: `%s`.","5u":"invalid option. `%s` option must either be a nonnegative integer or an array of nonnegative integers. Option: `%s`.","5v":"invalid option. `%s` option must be either a Buffer or a string. Option: `%s`.","5w":"invalid argument. Request listener must be a function. Value: `%s`.","5x":"invalid argument. Third argument must be a positive integer. Value: `%s`.","5y":"invalid argument. Number of topics must be a positive integer. Value: `%s`.","5z":"invalid argument. First argument must be a nonnegative integer which is less than the total number of topics. Value: `%s`.","6A":"invalid assignment. `%s` must be a nonnegative integer or nonnegative integer array. Value: `%s`.","6B":"invalid assignment. `%s` must be a nonnegative integer. Value: `%s`.","6C":"invalid assignment. Unrecognized/unsupported `%s`. Must be one of the following: \"%s\". Value: `%s`.","6D":"invalid assignment. Unrecognized/unsupported `%s`. Value: `%s`.","6E":"invalid assignment. `%s` must be a nonnegative integer or null. Value: `%s`.","6F":"invalid assignment. `%s` must be a string or null. Value: `%s`.","6G":"invalid argument. Must provide a supported viewer. Value: `%s`.","6H":"invalid assignment. `%s` must be a function. Value: `%s`.","6I":"invalid assignment. `%s` must be either null or an array. Value: `%s`.","6J":"invalid assignment. `%s` must be a string, function, or null. Value: `%s`.","6K":"invalid argument. `options` argument must be an object. Value: `%s`.","6L":"invalid assignment. `%s` must be a number. Value: `%s`.","6M":"invalid assignment. `%s` must be a number on the interval `[0,1]`. Value: `%f`.","6N":"invalid assignment. `%s` must be array-like. Value: `%s`.","6O":"invalid arguments. Must provide equal length array-like objects. x length: `%u`, y length: `%u`.","6P":"invalid assignment. `%s` must be a string or a function. Value: `%s`.","6Q":"invalid assignment. `%s` must be a number or a function. Value: `%s`.","6R":"invalid assignment. `%s` must be one of the following: \"%s\". Value: `%s`.","6S":"invalid assignment. `%s` must be a nonnegative integer or a function. Value: `%s`.","6T":"invalid assignment. `%s` must be a supported symbol. Symbols: \"%s\". Value: `%s`.","6U":"invalid argument. `options` argument must be a plain object. Value: `%s`.","6V":"invalid assignment. `%s` must be either a string or a string array. Value: `%s`.","6W":"invalid assignment. `%s` must be a string or a string array. Value: `%s`.","6X":"invalid assignment. `%s` must be a string or string array. Value: `%s`.","6Y":"invalid assignment. Unrecognized/unsupported symbol. Value: `[%s]`.","6Z":"invalid assignment. `%s` must be an array. Value: `%s`.","6a":"invalid assignment. `%s` must be either a finite number, Date, or null. Value: `%s`.","6b":"invalid assignment. `%s` must be a boolean or boolean array. Value: `%s`.","6c":"invalid assignment. `%s` must be either a string or string array. Value: `%s`.","6d":"invalid assignment. Unrecognized/unsupported orientation. A `%s` value must be one of the following: \"%s\". Value: `%s`.","6e":"invalid assignment. `%s` must be either a finite number or null. Value: `%s`.","6f":"invalid state. x and y are different lengths. x length: `%u`, y length: `%u`.","6g":"invalid state. Each `x[i]:y[i]` pair must be the same length. x[%u].length: `%u`, y[","6h":"invalid assignment. `%s` must be a positive integer or null. Value: `%s`.","6i":"invalid assignment. `%s` size is smaller than the number of data elements. Number of elements: `%u`. Value: `%u`.","6j":"invalid assignment. `%s` must be an array-like object or an ndarray. Value: `%s`.","6k":"invalid assignment. `%s` length exceeds maximum data buffer size. Buffer size: `%u`. Length: `%u`.","6l":"invalid assignment. `%s` must be a finite number or null. Value: `%s`.","6m":"invalid assignment. `%s` must be a finite number or null. Value: `%s.","6n":"invalid assignment. Must be an array or typed array. Value: `%s`.","6o":"invalid option. `%s` option must be an array or typed array. Option: `%s`.","6p":"invalid option. `%s` option must be a function. Option: `%s`.","6q":"invalid argument. Encoding argument must be a string. Value: `%s`.","6r":"invalid argument. Must provide either a string, nonnegative integer, or an options object. Value: `%s`.","6s":"invalid argument. First argument must be either a string or nonnegative integer. Value: `%s`.","6t":"invalid argument. Unable to parse mask expression. Ensure the expression is properly formatted, only uses the class letters \"u\", \"g\", \"o\", and \"a\", only uses the operators \"+\", \"-\", and \"=\", and only uses the permission symbols \"r\", \"w\", and \"x\". Value: `%s`.","6u":"invalid option. `%s` option must be a pseudorandom number generator function. Option: `%s`.","6v":"invalid argument. First argument must be a number and not NaN. Value: `%s`.","6w":"invalid argument. Second argument must be a number and not NaN. Value: `%s`.","6x":"invalid argument. Minimum support must be less than maximum support. Value: `[%f,%f]`.","6y":"invalid argument. First argument must be a probability. Value: `%s`.","6z":"invalid option. `%s` option must be a Uint32Array. Option: `%s`.","7A":"invalid argument. First argument must be a positive number and not NaN. Value: `%s`.","7B":"invalid argument. Second argument must be a positive number and not NaN. Value: `%s`.","7C":"invalid argument. Third argument must be a number and not NaN. Value: `%s`.","7D":"invalid argument. Third argument must be less than or equal to the first argument. Value: `%u`.","7E":"invalid argument. Second argument must be less than or equal to the first argument. Value: `%u`.","7F":"invalid %s. State array has insufficient length.","7G":"invalid %s. State array has an incompatible schema version. Expected: `%s`. Actual: `%s`.","7H":"invalid %s. State array has an incompatible number of sections. Expected: `%s`. Actual: `%s`.","7I":"invalid %s. State array has an incompatible state length. Expected: `%u`. Actual: `%u`.","7J":"invalid %s. State array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.","7K":"invalid option. `%s` option must be an Int32Array. Option: `%s`.","7L":"invalid option. `%s` option must be a positive integer less than the maximum signed 32-bit integer. Option: `%u`.","7M":"invalid option. `%s` option must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integer values less than the maximum signed 32-bit integer. Option: `%s`.","7N":"invalid argument. Must provide an Int32Array. Value: `%s`.","7O":"invalid %s. State array has an incompatible table length. Expected: `%s`. Actual: `%s`.","7P":"invalid %s. `state` array has insufficient length.","7Q":"invalid %s. `state` array has an incompatible schema version. Expected: %s. Actual: %s.","7R":"invalid %s. `state` array has an incompatible number of sections. Expected: %s. Actual: %s.","7S":"invalid %s. `state` array has an incompatible state length. Expected: `%u`. Actual: `%u`.","7T":"invalid %s. `state` array has an incompatible section length. Expected: `%u`. Actual: `%u`.","7U":"invalid %s. `state` array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.","7V":"invalid option. `%s` option must be a positive integer less than or equal to the maximum unsigned 32-bit integer. Option: `%u`.","7W":"invalid option. `%s` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `%u`.","7X":"invalid argument. Second argument must be on the interval: (0, 1). Value: `%f`.","7Y":"invalid option. `%s` option cannot be undefined. Option: `%s`.","7Z":"invalid option. Unrecognized/unsupported PRNG. Option: `%s`.","7a":"invalid argument. First argument must be a positive number or an options object. Value: `%s`.","7b":"invalid arguments. Parameters must satisfy the following condition: %s. Value: `[%f, %f, %f]`.","7c":"invalid argument. Scale parameter must be a positive number. Value: `%s`.","7d":"invalid argument. Shape parameter must be a positive number. Value: `%s`.","7e":"invalid argument. First argument must be an integer. Value: `%s`.","7f":"invalid argument. Second argument must be an integer. Value: `%s`.","7g":"invalid argument. `n` must be less than or equal to `N`. Value: `%u`.","7h":"invalid argument. `K` must be less than or equal to `N`. Value: `%u`.","7i":"invalid argument. `%s` argument must be array-like. Value: `%s`.","7j":"invalid input option. `size` option must be less than or equal to the length of `x` when `replace` is `false`. Option: `%s`.","7k":"invalid input option. `size` option must be less than or equal to the population size when `replace` is `false`. Option: `%s`.","7l":"invalid option. `%s` option must be an array of probabilities that sum to one. Option: `%s`.","7m":"invalid argument. Minimum support must be less than maximum support. Value: `[%s,%s]`.","7n":"invalid option. `%s` option must be a string or null. Option: `%s`.","7o":"invalid argument. Minimum support must be less than or equal to maximum support. Value: `[%s,%s]`.","7p":"invalid argument. Must be one of the following: \"%s\". Value: `%s`.","7q":"invalid argument. Mode must be one of the following: \"%s\". Value: `%s`.","7r":"invalid argument.  Must be one of the following: \"%s\". Value: `%s`.","7s":"invalid operation. Alias already exists in the provided context. Alias: `%s`. Value: `%s`.","7t":"invalid argument. Unrecognized workspace name. Value: `%s`.","7u":"invalid operation. Cannot read from write-only variable `%s`.","7v":"Cannot assign to read only property %s of object #<Object>","7w":"invalid option. `%s` option must be a regular expression or an array-like object. Option: `%s`.","7x":"invalid option. `%s` option must be one of `%s`. Option: `%s`.","7y":"invalid argument. Must provide either an options object or a workspace name. Value: `%s`.","7z":"invalid argument. Must provide either a string or regular expression. Value: `%s`.","8A":"invalid argument. Must provide an integer. Value: `%s`.","8B":"invalid argument. Must provide a positive integer. Value: `%s`.","8C":"invalid argument. Presentation text must be a string. Value: `%s`.","8D":"invalid argument. REPL argument must be a REPL instance. Value: `%s`.","8E":"unexpected error. Unable to reload presentation. Error: %s","8F":"unexpected error. Unable to watch presentation source file. Error: %s","8G":"invalid option. `%s` option must be either a recognized string or boolean. Option: `%s`.","8H":"invalid option. `%s` option must be either a positive integer or null. Option: `%s`.","8I":"invalid operation. Alias already exists in REPL context. Alias: `%s`. Value: `%s`.","8J":"invalid argument. Third argument must be an object. Value: `%s`.","8K":"invalid option. `%s` option must be less than or equal to the period. Option: `%u`.","8L":"invalid option. `%s` option must be greater than 2. Option: `%s`.","8M":"invalid option. `%s` option must be an integer. Option: `%s`.","8N":"invalid option. `%s` option must be an positive integer. Option: `%s`.","8O":"invalid option. `%s` option must be less than the period. Option: `%s`.","8P":"invalid option. `%s` option must be a number. Option: `%s`.","8Q":"invalid option. `%s` option must be an positive even integer. Option: `%s`.","8R":"invalid argument. First argument must be a numeric array. Value: `%s`.","8S":"invalid argument. First argument must contain at least two elements. Value: `%s`.","8T":"invalid argument. Second argument must be an array. Value: `%s`.","8U":"invalid argument. Second argument must contain at least two unique elements. Value: `%s`.","8V":"invalid option. `%s` option must be a number on the interval: [0, 1]. Option: `%f`.","8W":"invalid option. `%s` option must be an array containing at least two unique elements. Option: `%s`.","8X":"invalid argument. Must provide array-like arguments. Value: `%s`.","8Y":"invalid argument. Supplied arrays cannot be empty. Value: `%s`.","8Z":"invalid option. `%s` option must be an array. Option: `%s`.","8a":"invalid argument. Minimum support must be a number. Value: `%s`.","8b":"invalid argument. Maximum support must be a number. Value: `%s`.","8c":"invalid arguments. Minimum support must be less than maximum support. Value: `%f, %f`.","8d":"invalid assignment. Must be a number. Value: `%s`.","8e":"invalid assignment. Must be less than %f. Value: `%f`.","8f":"invalid assignment. Must be greater than %f. Value: `%f`.","8g":"invalid argument. Mean parameter `p` must be a probability. Value: `%s`.","8h":"invalid assignment. Must be a probability. Value: `%s`.","8i":"invalid argument. First shape parameter must be a positive number. Value: `%s`.","8j":"invalid argument. Second shape parameter must be a positive number. Value: `%s`.","8k":"invalid assignment. Must be a positive number. Value: `%s`.","8l":"invalid argument. Number of trials must be a positive integer. Value: `%s`.","8m":"invalid argument. Success probability must be a number between 0 and 1. Value: `%s`.","8n":"invalid assignment. Must be a positive integer. Value: `%s`.","8o":"invalid assignment. Must be a number on the interval: [0, 1]. Value: `%s`.","8p":"invalid argument. Location parameter must be a number. Value: `%s`.","8q":"invalid argument. Rate parameter must be a positive number. Value: `%s`.","8r":"invalid argument. Mean parameter `%s` must be a number. Value: `%s`.","8s":"invalid argument. Minimum support must be an integer. Value: `%s`.","8t":"invalid argument. Maximum support must be an integer. Value: `%s`.","8u":"invalid arguments. Minimum support must be less than or equal to maximum support. Value: `%d, %d`.","8v":"invalid assignment. Must be an integer. Value: `%s`.","8w":"invalid assignment. Must be less than or equal to %u. Value: `%d`.","8x":"invalid assignment. Must be greater than or equal to %u. Value: `%s`.","8y":"invalid argument. Shape parameter must be a positive integer. Value: `%s`.","8z":"invalid argument. Numerator degrees of freedom must be a positive number. Value: `%s`.","9A":"invalid argument. Mean parameter `lambda` must be a positive number. Value: `%s`.","9B":"invalid argument. Mode must be a number. Value: `%s`.","9C":"invalid arguments. Parameters must satisfy the following condition: %s. a: `%f`. b: `%f`. c: `%f`.","9D":"invalid assignment. Must be less than or equal to both the maximum support and the mode. Value: `%f`.","9E":"invalid assignment. Must be greater than or equal to both the minimum support and the mode. Value: `%f`.","9F":"invalid assignment. Must be greater than or equal to the minimum support and less than or equal to the maximum support. Value: `%f`.","9G":"invalid argument. An array argument must contain two elements. Value: `%s`.","9H":"invalid argument. Must provide a nonnegative integer or a two-element array. Value: `%s`.","9I":"invalid arguments. Number of successes cannot be larger than the total number of observations. x: `%u`. n: `%u`.","9J":"invalid option. `%s` option must be a probability. Option: `%f`.","9K":"invalid argument. Unsupported/unrecognized distribution name. Value: `%s`.","9L":"invalid argument. First argument must contain nonnegative integers. Index: `%u`. Value: `%s`.","9M":"invalid argument. Probability mass function (PMF) arguments must be numbers. Argument: `%u`. Value: `%s`.","9N":"invalid argument. Second argument must be either an array-like object (or one-dimensional ndarray) of probabilities summing to one, an array-like object (or one-dimensional ndarray) of expected frequencies, or a discrete probability distribution name. Value: `%s`.","9O":"invalid argument. Second argument must only contain numbers. Index: `%u`. Value: `%s`.","9P":"invalid argument. Second argument must only contain nonnegative numbers. Index: `%u`. Value: `%d`.","9Q":"invalid option. `%s` option must be a number on the interval: [0, 1]. Value: `%s`.","9R":"invalid argument. First argument must be an array of arrays or ndarray-like object with dimension two. Value: `%s`.","9S":"invalid argument. First argument must contain nonnegative integers. Value: `%s`.","9T":"invalid argument. First argument must either specify the order of the covariance matrix or be a square 2-dimensional ndarray for storing the covariance matrix. Value: `%s`.","9U":"invalid argument. Second argument must be a 1-dimensional ndarray. Value: `%s`.","9V":"invalid argument. The number of elements (means) in the second argument must match covariance matrix dimensions. Expected: `%u`. Actual: `%u`.","9W":"invalid argument. Vector length must match covariance matrix dimensions. Expected: `%u`. Actual: `%u`.","9X":"invalid argument. Must provide a number. Value: `%s`.","9Y":"invalid argument. Must provide a nonnegative number. Value: `%s`.","9Z":"invalid argument. Must provide a nonnegative number on the interval [0,1]. Value: `%f`.","9a":"invalid argument. Output argument must be an array-like object. Value: `%s`.","9b":"invalid argument. Window size must be a positive integer. Value: `%s`.","9c":"invalid argument. Window size must be greater than or equal to 3. Value: `%s`.","9d":"invalid option. `%s` option must be on the interval [0,1]. Option: `%f`.","9e":"invalid argument. First argument must either specify the order of the correlation distance matrix or be a square 2-dimensional ndarray for storing the correlation distance matrix. Value: `%s`.","9f":"invalid argument. The number of elements (means) in the second argument must match correlation distance matrix dimensions. Expected: `%u`. Actual: `%u`.","9g":"invalid argument. Vector length must match correlation matrix dimensions. Expected: `%u`. Actual: `%u`.","9h":"invalid argument. Vector length must match correlation distance matrix dimensions. Expected: `%u`. Actual: `%u`.","9i":"invalid argument. First argument must either specify the order of the correlation matrix or be a square 2-dimensional ndarray for storing the correlation matrix. Value: `%s`.","9j":"invalid argument. Unsupported/unrecognized kernel. Value: `%s`.","9k":"invalid argument. Second argument must be a numeric array. Value: `%s`.","9l":"invalid option. Lower bound `%s` must be strictly less than the upper bound `%s`.","9m":"invalid option. `%s` option must be an array of positive numbers. Option: `%s`.","9n":"invalid option. `%s` option must be an array of length two. Option: `%s`.","9o":"invalid option. `%s` option must be a string denoting a known kernel function or a custom function. Option: `%s`.","9p":"invalid arguments. First argument and `%s` must be arrays having the same length.","9q":"invalid invocation. Incorrect number of arguments. Must provide at least two array-like arguments. Value: `%s`.","9r":"invalid option. `%s` must be a number on the interval: [0, 1]. Value: `%f`.","9s":"invalid argument. First argument must be a typed array or number array. Value: `%s`.","9t":"invalid argument. Second argument must be either a CDF function or a string. Value: `%s`.","9u":"invalid argument. Distribution parameter must be a number. Value: `%s`.","9v":"invalid option. `%s` option must contain at least two unique elements. Value: `%s`.","9w":"invalid argument. Provided arrays cannot be empty. Value: `%s`.","9x":"invalid argument. First argument must be an array of probabilities. Value: `%s`.","9y":"invalid argument. When specified, `%s` arguments must contain at least a length of %u. Value: `%u`.","9z":"invalid argument. Second argument must be one of the following: %s. Value: `%s`.","A0":"invalid option. `%s` option must be a number in `[0,1]`. Option: `%s`.","A1":"invalid option. `%s` option must be a number on the interval: [-1, 1]. Option: `%s`.","A2":"invalid argument. First argument must contain at least two elements. Value: `%s`.","A3":"invalid argument. Second argument must be either a numeric array or an options object. Value: `%s`.","A4":"invalid option. `%s` option must be either `equal` or `unequal`. Option: `%s`.","A5":"invalid argument. `%s` argument must be a numeric array. Value: `%s`.","A6":"invalid option. `%s` option must be one of the following: %s. Option: `%s`.","A7":"invalid argument. Third argument must be a positive number. Value: `%s`.","A8":"invalid argument. Fourth argument must be a positive number. Value: `%s`.","A9":"invalid operation. Serialization function must return a string or Buffer. Value: `%s`.","AA":"invalid argument. In binary mode, a provided value must be a string, Buffer, or Uint8Array. Value: `%s`.","AB":"invalid option. `%s` option must be either a string or a regular expression. Option: `%s`.","AC":"invalid argument. First input array offset must be a nonnegative integer. Value: `%s`.","AD":"invalid argument. Second input array offset must be a nonnegative integer. Value: `%s`.","AE":"invalid argument. Output array offset must be a nonnegative integer. Value: `%s`.","AF":"invalid argument. Must provided recognized data types. Unable to resolve a data type string. Value: `%s`.","AG":"invalid argument. Input array offset must be a nonnegative integer. Value: `%s`.","AH":"invalid argument. Input array stride must be an integer. Value: `%s`.","AI":"invalid argument. Output array stride must be an integer. Value: `%s`.","AJ":"invalid option. `%s` option must be an array of strings. Option: `%s`.","AK":"invalid argument. Must provide a valid position (i.e., within string bounds). Value: `%s`.","AL":"invalid argument. Third argument must be a boolean. Value: `%s`.","AM":"invalid argument. Must provide valid code points (i.e., nonnegative integers). Value: `%s`.","AN":"invalid argument. Must provide a valid code point (cannot exceed max). Value: `%s`.","AO":"invalid argument. Third argument must be a string. Value: `%s`.","AP":"invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.","AQ":"invalid argument. Third argument must be a string or an array of strings. Value: `%s`.","AR":"invalid argument. At least one padding option must have a length greater than 0. Left padding: `%s`. Right padding: `%s`.","AS":"invalid argument. Second argument must be an array of strings. Value: `%s`.","AT":"invalid argument. Second argument must be a string or regular expression. Value: `%s`.","AU":"invalid argument. Third argument must be a string or replacement function. Value: `%s`.","AV":"invalid argument. Must provide a string or an array of strings. Value: `%s`.","AW":"invalid argument. If only providing a single argument, must provide a Date object. Value: `%s`.","AX":"invalid argument. First argument must be either a string or integer. Value: `%s`.","AY":"invalid argument. Day number must be on the interval: `[1, %u]`. Value: `%d`.","AZ":"invalid argument. First argument must be either a string, integer, or Date object. Value: `%s`.","Aa":"invalid argument. An integer month value must be on the interval: [1, 12]. Value: `%s`.","Ab":"invalid argument. Must provide a recognized month. Value: `%s`.","Ac":"invalid argument. Must provide either an integer or a `Date` object. Value: `%s`.","Ad":"invalid argument. Must provide either a string, integer, or Date object. Value: `%s`.","Ae":"invalid argument. Must provide an array of nonnegative integers. Value: `%s`.","Af":"invalid argument. Input array must contain two elements. Value: `%s`.","Ag":"invalid argument. Must provide a collection. Value: `%s`.","Ah":"invalid argument. First argument must be a collection. Value: `%s`.","Ai":"invalid argument. First argument must be either an array, typed array, or an array-like object. Value: `%s`.","Aj":"invalid argument. All arguments must be functions. Value: `%s`.","Ak":"invalid argument. Number of function invocations must be a nonnegative integer. Value: `%s`.","Al":"invalid argument. First argument must be an array of functions. Value: `%s`.","Am":"invalid argument. Last argument must be a collection. Value: `%s`.","An":"invalid argument. Must provide either a valid buffer size (i.e., a positive integer) or an array-like object which can serve as the underlying buffer. Value: `%s`.","Ao":"invalid argument. An iterator must return an array-like object containing vertices. Value: `%s`.","Ap":"invalid argument. Callback must return an array-like object containing vertices. Value: `%s`.","Aq":"invalid argument. Callback must return an array-like object. Value: `%s`.","Ar":"invalid argument. Each element of the adjacency list must be an array-like object. Value: `%s`.","As":"invalid argument. Each element of the edge list must be an array-like object. Value: `%s`.","At":"invalid argument. Second argument must be an array-like object or an iterable. Value: `%s`.","Au":"invalid argument. First argument exceeds matrix dimensions. Value: `%u`.","Av":"invalid argument. Second argument exceeds matrix dimensions. Value: `%u`.","Aw":"invalid argument. Vertex cannot exceed matrix dimensions. Value: `%u`.","Ax":"invalid argument. Second argument must be a recognized output path convention. Value: `%s`.","Ay":"invalid argument. Cannot convert Windows extended-length paths to POSIX paths. Value: `%s`.","Az":"invalid argument. Arity argument must be a positive integer. Value: `%s`.","B0":"invalid argument. Property descriptor must be an object. Value: `%s`.","B1":"invalid argument. The `value` property of the property descriptor must be a function. Value: `%s`.","B2":"invalid argument. Second argument must be an object of property descriptors. Value: `%s`.","B3":"invalid argument. Path must be a string. Value: `%s`.","B4":"invalid argument. Third argument must be a recognized location. Value: `%s`.","B5":"invalid argument. Must provide a recognized iteration direction. Value: `%s`.","B6":"invalid argument. Must provide an object-like value. Value: `%s`.","B7":"invalid argument. Must provide a regular expression string. Value: `%s`.","B8":"invalid argument. Filename must be a string. Value: `%s`.","B9":"invalid argument. First argument must be an array of positive integers. Value: `%s`.","BA":"invalid argument. First argument must be object-like. Value: `%s`.","BB":"invalid argument. Must provide an array of arrays. Value: `%s`.","BC":"invalid argument. Must provide a boolean. Value: `%s`.","BD":"invalid argument. Second argument must have a prototype from which another object can inherit. Value: `%s`.","BE":"invalid argument. A provided constructor must be either an object (except null) or a function. Value: `%s`.","BF":"invalid argument. If the input array is an ndarray, the output array must also be an ndarray. Value: `%s`.","BG":"invalid argument. If the input array is an array-like object, the output array must also be an array-like object. Value: `%s`.","BH":"invalid argument. First argument must be an array-like object or an ndarray. Value: `%s`.","BI":"invalid argument. If the first input array is an ndarray, the second input array must also be an ndarray. Value: `%s`.","BJ":"invalid argument. If the input arrays are ndarrays, the output array must also be an ndarray. Value: `%s`.","BK":"invalid argument. If the first input array is an array-like object, the second input array must also be an array-like object. Value: `%s`.","BL":"invalid argument. If the input arrays are array-like objects, the output array must also be an array-like object. Value: `%s`.","BM":"invalid argument. First argument must be an array-like object containing array-like objects. Index: `%u`. Value: `%s`.","BN":"invalid argument. First argument must be a three-dimensional nested array. Index: `%u`. Value: `%s`.","BO":"invalid argument. First argument must be a four-dimensional nested array. Index: `%u`. Value: `%s`.","BP":"invalid argument. First argument must be a four-dimensional nested array. Indices: (%u, %u). Value: `%s`.","BQ":"invalid argument. First argument must be a four-dimensional nested array. Indices: (%u, %u, %u). Value: `%s`.","BR":"invalid argument. First argument must be a five-dimensional nested array. Index: `%u`. Value: `%s`.","BS":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u). Value: `%s`.","BT":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u, %u). Value: `%s`.","BU":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u, %u, %u). Value: `%s`.","BV":"invalid argument. A merge source must be an object. Value: `%s`.","BW":"invalid option. `%s` option must be either a boolean or a function. Option: `%s`.","BX":"invalid argument. Source argument must be an object. Value: `%s`.","BY":"invalid argument. Target argument must be an object. Value: `%s`.","BZ":"invalid argument. Must provide an array of strings. Value: `%s`.","Ba":"invalid argument. Field names must be distinct. Value: `%s`.","Bb":"invalid argument. Provided field name is reserved. Name: `%s`.","Bc":"invalid arguments. Arguments are incompatible with the number of tuple fields. Number of fields: `%u`. Number of data elements: `%u`.","Bd":"invalid argument. Source is incompatible with the number of tuple fields. Number of fields: `%u`. Source length: `%u`.","Be":"invalid invocation. Number of arguments is incompatible with the number of tuple fields. Number of fields: `%u`. Number of arguments: `%u`.","Bf":"invalid option. `%s` option must be a recognized data type. Option: `%s`.","Bg":"invalid argument. Second argument must be either a string or an array of strings. Value: `%s`.","Bh":"invalid argument. Must provide a valid URI. Value: `%s`.","Bi":"unexpected error. Child process failed with exit code: `%u`.","Bj":"unexpected error. Child process failed due to termination signal: `%s`.","Bk":"invalid argument. Reviver argument must be a function. Value: `%s`.","Bl":"invalid argument. Second argument must be an array-like object containing nonnegative integers. Value: `%s`.","Bm":"invalid argument. Must provide either an array, typed array, or an array-like object. Value: `%s`.","Bn":"invalid argument. Must provide a recognized type. Value: `%s`.","Bo":"invalid argument. Second argument must be an array containing only nonnegative integers. Value: `%s`.","Bp":"invalid invocation. Unexpected number of input arguments. Expected: `%u`. Actual: `%u`.","Bq":"evaluation error. Encountered an error when evaluating snippet. %s","Br":"invalid option. `%s` option must be a positive integer or null. Option: `%s`.","Bs":"insufficient arguments. Expected %u argument(s) and only received %u argument(s).","Bt":"invalid invocation. The configured arity exceeds the number of possible curried function invocations. Expected: %u. Actual: %u.","Bu":"invalid invocation. Number of arguments exceeds the number of possible curried function invocations. Expected: `%u`. Actual: `%u`.","Bv":"invalid invocation. The configured arity exceeds the number of possible curried function invocations. Expected: `%u`. Actual: `%u`.","Bw":"invalid argument. Must provide array arguments. Value: `%s`.","Bx":"invalid argument. Last argument must be either an array or an options object. Value: `%s`.","By":"invalid argument. Repository slug must be a string. Value: `%s`.","Bz":"invalid argument. Issue title must be a string. Value: `%s`.","C0":"invalid option. `%s` must be one of the following: \"%s\". Option: `%s`.","C1":"invalid argument. Repository name must be a string. Value: `%s`.","C2":"invalid option. `%s` option must be a valid URI. Option: `%s`.","C3":"invalid option. `%s` option must be a 20-character string. Option: `%s`.","C4":"invalid option. `%s` option must be a 40-character string. Option: `%s`.","C5":"invalid argument. Token id must be a nonnegative integer. Value: `%s`.","C6":"invalid argument. Workflow identifier must be a string. Value: `%s`.","C7":"invalid option. `%s` option must be an object of input key-value pairs. Option: `%s`.","C8":"invalid option. `%s` option must be a positive integer or \"last\". Option: `%s`.","C9":"invalid option. `%s` organization name option must be a string. Option: `%s`.","CA":"invalid option. Unknown method. Option: `%s`.","CB":"invalid option. Unrecognized `%s` option. Must be one of the following: \"%s\". Option: `%s`.","CC":"invalid argument. Repository slug must consist of an owner and a repository (e.g., \"stdlib-js/utils\"). Value: `%s`.","CD":"invalid argument. Topics argument must be an array of strings. Value: `%s`.","CE":"invalid option. `%s` option must be one of the following: \"%s\" or \"%s\". Option: `%s`.","CF":"invalid argument. Must provide a supported license SPDX identifier. Value: `%s`.","CG":"invalid argument. Must provide a supported file type. Value: `%s`.","CH":"invalid argument. First argument must be either a string or Buffer. Value: `%s`.","CI":"invalid argument. Second argument must be either a string or Buffer. Value: `%s`.","CJ":"invalid argument. A header object must map each filename extension to a license header string. `%s: %s`. Value: `%s`.","CK":"invalid argument. Second argument must be either a string or an object whose keys are filename extensions and whose values are header strings. Value: `%s`.","CL":"invalid argument. Second argument must be either a string, Buffer, or regular expression. Value: `%s`.","CM":"invalid argument. A header object must map each filename extension to a license header string or regular expression. `%s: %s`. Value: `%s`.","CN":"invalid argument. Second argument must be either a string, a regular expression, or an object whose keys are filename extensions and whose values are header strings or regular expressions. Value: `%s`.","CO":"invalid argument. Third argument must be either a string or Buffer. Value: `%s`.","CP":"invalid argument. Third argument must be either a string or an object whose keys are filename extensions and whose values are header strings. Value: `%s`.","CQ":"invalid argument. Database already contains an entry for the provided URI: `%s`.","CR":"invalid argument. Database already contains an entry for the provided id: `%s`.","CS":"invalid argument. First argument must be a URI. Value: `%s`.","CT":"invalid argument. Second argument must be either a string or regular expression. Value: `%s`.","CU":"invalid option. A `%s` option object must map each filename extension to a license header string or regular expression. `%s: %s`. Value: `%s`.","CV":"invalid option. `%s` option must be either a string, a regular expression, or an object whose keys are filename extensions and whose values are header strings or regular expressions. Option: `%s`.","CW":"invalid option. `%s` option must end with \"package.json\". Option: `%s`.","CX":"invalid argument. Last argument must be a callback function. Value: `%s`.","CY":"invalid option. `%s` option must be an array of package names. Option: `%s`.","CZ":"invalid argument. Version argument must be a string. Value: `%s`.","Ca":"invalid argument. Must provide either a string or a Buffer. Value: `%s`.","Cb":"invalid argument. Must provide either a string or Buffer. Value: `%s`.","Cc":"invalid argument. First argument must be either a string or array of strings. Value: `%s`.","Cd":"invalid option. `%s` option must be an object. Option: `%s`.","Ce":"unexpected error. File does not exist. Unable to resolve file: %s.","Cf":"invalid argument. Must provide either a string or an array of strings. Value: `%s`.","Cg":"invalid argument. Must provide either a string or an array of strings. Value: `%s`. Index: `%u`.","Ch":"unexpected error. Failed to sort packages. Detected the following dependency chain containing a cycle: `%s`.","Ci":"invalid node. Equation comments must have a valid label. Node: `%s`.","Cj":"invalid node. Equation comments must have valid alternate text. Node: `%s`.","Ck":"invalid node. Equation comments must have valid raw equation text. Node: `%s`.","Cl":"invalid node. Invalid equation comment. Ensure that the Markdown file includes both starting and ending equation comments. Node: `%s`.","Cm":"invalid node. Equation element must have a valid label. Node: `%s`.","Cn":"unexpected error. Code block configuration settings should be provided as comma-separated `key:value` pairs (e.g., `foo:true, bar:\"string\", baz:[\"error\",2]`). Value: `%s`.","Co":"unexpected error. Code block configuration values should be parseable as JSON. Value: `%s`.","Cp":"unexpected error. Encountered an error when executing code block. File: `%s`. Message: `%s`.","Cq":"unexpected error. Expected code block to throw an exception. File: `%s`.","Cr":"invalid node. Ensure that the Markdown file includes both a starting `<section class=\"related\">` and closing `</section>\\n\\n<!-- /.related -->`. Node: `%s`.","Cs":"invalid node. Equation comments must have valid equation text. Node: `%s`.","Ct":"invalid node. Equation comments must have valid labels. Node: `%s`.","Cu":"invalid option. `%s` option must begin with \"@stdlib/\". Option: `%s`.","Cv":"invalid argument. First argument must be a list of file paths. Value: `%s`."}
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
+module.exports={"10":"invalid operation. Cannot reset a REPL which has already closed.","11":"invalid operation. Cannot clear a REPL which has already closed.","12":"invalid operation. Cannot clear the line of a REPL which has already closed.","13":"invalid operation. Cannot clear the command buffer of a REPL which has already closed.","14":"invalid argument. Provided command either does not contain an `await` expression or contains a top-level `return` which is not allowed.","15":"invalid argument. Must provide a program AST node.","16":"invalid invocation. Insufficient arguments. Must provide a REPL instance.","17":"invalid operation. No presentation to reload. Use the `load()` method to load a presentation.","18":"invalid operation. No presentation file to watch. Use the `load()` method to load a presentation.","19":"unexpected error. Encountered a \"rename\" event for the source presentation file. No longer watching source presentation file for changes.","20":"invalid argument. Must provide a username or, to get a list of repositories an authenticated user is watching, an access token.","21":"unexpected error. Unable to resolve package directory as unable to find a `package.json` in a parent directory.","22":"invalid argument. Source code does not contain JSDoc comment with function options.","23":"unexpected error. Unable to resolve root project directory.","24":"invalid argument. An iterator must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.","25":"invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.","26":"invalid argument. Array-like object arguments must have a length which is a multiple of two. Length: `%u`.","27":"invalid argument. Array-like object and typed array arguments must have a length which is a multiple of two. Length: `%u`.","28":"invalid argument. ArrayBuffer byte length must be a multiple of `%u`. Byte length: `%u`.","29":"invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.","30":"invalid argument. Fourth argument must be a nonnegative integer. Value: `%s`.","31":"invalid argument. Fifth argument must be a function. Value: `%s`.","32":"invalid argument. Fourth argument must be a function. Value: `%s`.","33":"invalid argument. Second argument must be either an integer (starting index) or a callback function. Value: `%s`.","34":"invalid argument. Third argument must be either an integer (ending index) or a callback function. Value: `%s`.","35":"invalid argument. Second argument must be either an integer (starting view index) or a callback function. Value: `%s`.","36":"invalid argument. Third argument must be either an integer (ending view index) or a callback function. Value: `%s`.","37":"invalid argument. Second argument must be a recognized data type. Value: `%s`.","38":"invalid argument. First argument must be array-like. Value: `%s`.","39":"invalid argument. Second argument must be a string. Value: `%s`.","40":"invalid argument. Must provide either a Date object, a JavaScript timestamp (i.e., a nonnegative integer), or a date string. Value: `%s`.","41":"invalid option. Unrecognized rounding mode. Option: `%s`.","42":"invalid argument. Third argument must be either a nonnegative integer or an options object. Value: `%s`.","43":"invalid argument. Fourth argument must be an object. Value: `%s`.","44":"invalid argument. First argument must an iterator protocol-compliant object. Value: `%s`.","45":"invalid argument. Second argument must be a positive integer. Value: `%s`.","46":"invalid argument. First argument must be an iterator protocol-compliant object. Value: `%s`.","47":"invalid argument. Must provide an object. Value: `%s`.","48":"invalid argument. Object property values must be functions. Key: `%s`. Value: `%s`.","49":"invalid argument. First argument must be a number. Value: `%s`.","50":"invalid option. Second `%s` parameter option must be a positive integer. Option: `%s`.","51":"invalid argument. First argument must be an array. Value: `%s`.","52":"invalid argument. First argument must be an array of length `%u`. Value: `%s`.","53":"invalid argument. First argument must be an array of length %u. Value: `%s`.","54":"unexpected error. Scaling weight vector by nonpositive value, likely due to too large value of eta * lambda. Value: `%f`.","55":"invalid argument. Second argument must be a boolean. Value: `%s`.","56":"invalid argument. Must provide either a valid data source, options argument, or both. Value: `%s`.","57":"invalid option. `%s` option must be an array-like object, typed-array-like, a Buffer, or an ndarray. Option: `%s`.","58":"invalid option. Data source must be an array-like object, typed-array-like, a Buffer, or an ndarray. Value: `%s`.","59":"invalid option. `%s` option must be a recognized casting mode. Option: `%s`.","60":"invalid argument. Input string must have a length equal to %u. Value: `%s`.","61":"invalid assignment. `%s` must be a boolean. Value: `%s`.","62":"invalid assignment. `%s` must be a string. Value: `%s`.","63":"invalid assignment. `%s` must be one of the following: \"%s\". Value: `%s`.","64":"invalid assignment. `%s` must be a positive number. Value: `%s`.","65":"invalid assignment. `%s` must be either an array of strings or an empty array. Value: `%s`.","66":"invalid assignment. `%s` must be a number or number array. Value: `%s`.","67":"invalid assignment. A `%s` must be a number on the interval: [0, 1]. Value: `%f`.","68":"invalid assignment. `%s` must be a string or a string array. Value: `%s`","69":"invalid assignment. Unsupported/unrecognized line style. Must be one of the following: \"%s\". Value: `%s`.","70":"invalid argument. Must provide a Uint32Array. Value: `%s`.","71":"invalid argument. First argument must be a positive number. Value: `%s`.","72":"invalid argument. Second argument must be a positive number. Value: `%s`.","73":"invalid argument. Second argument must be a probability. Value: `%s`.","74":"invalid option. `%s` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `%s`.","75":"invalid option. `%s` option must have a `MIN` property specifying the minimum possible pseudorandom integer value.","76":"invalid option. `%s` option must have a `MAX` property specifying the maximum possible pseudorandom integer value.","77":"invalid argument. First argument must be an integer and not NaN. Value: `%s`.","78":"invalid argument. Second argument must be an integer and not NaN. Value: `%s`.","79":"invalid argument. Minimum support must be less than or equal to maximum support. Value: `[%d,%d]`.","80":"invalid argument. First argument must be either a string containing presentation text or an options object specifying a presentation file to load. Value: `%s`.","81":"invalid argument. Second argument must be an options object. Value: `%s`.","82":"invalid argument. Invalid presentation identifier. Must be either a string or nonnegative integer. Value: `%s`.","83":"invalid argument. Workspace name already exists. Value: `%s`.","84":"invalid argument. Must provide a string, regular expression, nonnegative integer, or an array of nonnegative integers. Value: `%s`.","85":"invalid argument. Unrecognized tutorial name. Value: `%s`.","86":"invalid argument. Documentation argument must be a string. Value: `%s`.","87":"invalid option. `%s` option must be a regular expression. Option: `%s`.","88":"internal error. Unrecognized pattern type: `%s`.","89":"invalid option. `%s` option must be a readable stream. Option: `%s`.","90":"invalid argument. Denominator degrees of freedom must be a positive number. Value: `%s`.","91":"invalid argument. Scale parameter must be a number. Value: `%s`.","92":"invalid argument. Mean parameter `%s` must be a probability. Value: `%s`.","93":"invalid argument. Population size must be a nonnegative integer. Value: `%s`.","94":"invalid argument. Subpopulation size must be a nonnegative integer. Value: `%s`.","95":"invalid argument. Number of draws must be a nonnegative integer. Value: `%s`.","96":"invalid assignment. Must be a nonnegative integer. Value: `%s`.","97":"invalid assignment. Must be larger than or equal to %u. Value: `%u`.","98":"invalid assignment. Must be less than or equal to %u. Value: `%u`.","99":"invalid argument. Number of trials until experiment is stopped must be a positive number. Value: `%s`.","00":"not implemented","01":"invalid invocation. `this` context must be a constructor.","02":"invalid invocation. `this` is not a complex number array.","03":"invalid arguments. Target array lacks sufficient storage to accommodate source values.","04":"invalid arguments. Creating a generic array from an ArrayBuffer is not supported.","05":"invalid arguments. Must provide a length, typed array, array-like object, or an iterable.","06":"invalid arguments. Generated array exceeds maximum array length.","07":"invalid arguments. If either of the first two arguments are complex numbers, the output array must be a complex number array or a \"generic\" array-like object.","08":"invalid arguments. If either of the first two arguments are complex numbers, the output array data type must be a complex number data type or \"generic\".","09":"not supported. The current environment does not support SharedArrayBuffers, and, unfortunately, SharedArrayBuffers cannot be polyfilled. For shared memory applications, upgrade your runtime environment to one which supports SharedArrayBuffers.","0A":"insufficient arguments. Must provide a search value.","0B":"invalid argument. Attempted to add duplicate listener.","0C":"exception","0D":"unexpected error. Benchmark failed.","0E":"unexpected error. Invalid benchmark.","0F":"unexpected error.","0G":"invalid invocation. Constructor must be called with the `new` keyword.","0H":"unexpected error. Max retries exceeded. Too many open files.","0I":"insufficient arguments. Must provide two or more iterators.","0J":"insufficient arguments. Must provide both an iterator and a static value.","0K":"invalid invocation. `this` is not a fluent interface iterator.","0L":"insufficient arguments. Must provide a hash function.","0M":"invalid argument. Iterator arguments must be iterator protocol-compliant objects.","0N":"insufficient arguments. Must provide at least one iterator function.","0O":"invalid argument. Providing a number is not supported.","0P":"invalid argument. Providing a complex number is not supported.","0Q":"invalid argument. Providing an ndarray is not supported.","0R":"invalid argument. Providing an array-like object is not supported.","0S":"invalid argument. If the first argument is an ndarray, the second argument must be an ndarray.","0T":"invalid argument. Output array must have the same number of elements (i.e., length) as the input array.","0U":"invalid argument. If the first argument is an array-like object, the second argument must be an array-like object.","0V":"invalid argument. Providing a number is not supported. Consider providing a zero-dimensional ndarray containing the numeric value.","0W":"invalid argument. Providing a complex number is not supported. Consider providing a zero-dimensional ndarray containing the complex number value.","0X":"invalid arguments. Must provide either a data source, array shape, or both.","0Y":"invalid arguments. Array shape is incompatible with provided data source. Number of data source elements does not match array shape.","0Z":"invalid argument. Cannot broadcast an array to a shape having fewer dimensions. Arrays can only be broadcasted to shapes having the same or more dimensions.","0a":"invalid argument. First argument must contain at least one element.","0b":"invalid arguments. The length of the first argument is incompatible with the second and third arguments.","0c":"invalid argument. Must provide an ndarray having two or more dimensions.","0d":"invalid arguments. Arrays must have the same shape.","0e":"invalid invocation. Cannot write to a read-only array.","0f":"invalid argument. Fourth argument length must be equal to 1 when creating a zero-dimensional ndarray.","0g":"invalid arguments. The input buffer is incompatible with the specified meta data. Ensure that the offset is valid with regard to the strides array and that the buffer has enough elements to satisfy the desired array shape.","0h":"invalid arguments. Interface must accept at least one input and/or output ndarray. Based on the provided arguments, `nin+nout` equals `0`.","0i":"invalid arguments. Fourth argument does not equal the number of input and output ndarrays.","0j":"invalid argument. Unexpected number of types. A type must be specified for each input and output ndarray for each provided ndarray function.","0k":"invalid argument. The third argument must have the same number of elements as the first argument.","0l":"invalid invocation. Insufficient arguments.","0m":"invalid invocation. Too many arguments.","0n":"invalid arguments. Unable to resolve an ndarray function supporting the provided array argument data types.","0o":"invalid operation. Unable to load Electron. Ensure Electron is installed and try again.","0p":"invalid operation. A browser environment has no support for changing the current working directory.","0q":"invalid operation. The environment does not support reading from `stdin`.","0r":"unexpected error. PRNG returned NaN.","0s":"invalid argument. Third argument must be less than or equal to the first argument.","0t":"invalid argument. Second argument must be less than or equal to the first argument.","0u":"invalid operation. Cannot delete the `base` workspace.","0v":"invalid invocation. Must provide either a string containing presentation text or an options object specifying a presentation file to load.","0w":"invalid argument. When not provided presentation text, an options argument must specify a presentation file to load.","0x":"invalid invocation. Not currently in a presentation workspace. Must provide either a string or nonnegative integer which corresponds to the identifier of the presentation to be stopped.","0y":"unexpected error. Command execution terminated.","0z":"invalid operation. Cannot load a file into a REPL which has already closed.","1A":"invalid arguments. First and second arguments must be arrays having the same length.","1B":"invalid arguments. Subpopulation size must be less than or equal to population size.","1C":"invalid arguments. Number of draws must be less than or equal to population size.","1D":"invalid argument. First argument must contain at least one element greater than zero (i.e., the total number number of observations must be greater than zero).","1E":"invalid arguments. First and second arguments must have the same length.","1F":"invalid arguments. First and second arguments must be arrays having the same length.","1G":"invalid arguments. First and second argument must have the same length.","1H":"invalid arguments. Not enough observations. First and second arguments must contain at least four observations.","1I":"invalid arguments. The first and second arguments must have the same length.","1J":"`x` or `x - y` cannot be zero for all elements.","1K":"invalid arguments. Strided array parameters are incompatible with the provided array-like object. Linear index exceeds array bounds.","1L":"invalid arguments. Unable to resolve a strided array function supporting the provided array argument data types.","1M":"invalid arguments. Interface must accept at least one strided input and/or output array. Based on the provided arguments, `nin+nout` equals `0`.","1N":"invalid argument. Unexpected number of types. A type must be specified for each strided input and output array for each provided strided array function.","1O":"invalid argument. Fourth argument is incompatible with the number of strided input and output arrays.","1P":"invalid argument. Input array offset must be a nonnegative integer.","1Q":"invalid argument. Output array offset must be a nonnegative integer.","1R":"invalid argument. Input array must be an array-like object.","1S":"invalid argument. Output array must be an array-like object.","1T":"invalid argument. Input array has insufficient elements based on the associated stride and the number of indexed elements.","1U":"invalid argument. Output array has insufficient elements based on the associated stride and the number of indexed elements.","1V":"insufficient arguments. Must provide either an array of code points or one or more code points as separate arguments.","1W":"invalid argument. Third argument must not be an empty string.","1X":"invalid argument. Pad string must not be an empty string.","1Y":"insufficient arguments. Must provide multiple functions to compose.","1Z":"insufficient arguments. Must provide multiple functions to execute sequentially.","1a":"invalid arguments. First and last arguments must be the same length.","1b":"insufficient arguments. Must provide at least two objects.","1c":"invalid invocation. `this` is not a compact adjacency matrix.","1d":"invalid argument. Cannot specify one or more accessors and a value or writable attribute in the property descriptor.","1e":"invalid argument. The list does not contain the provided list node.","1f":"unexpected error. Unable to resolve global object.","1g":"invalid argument. The output ndarray must be writable. Cannot write to a read-only ndarray.","1h":"invalid arguments. Input and output arrays must have the same length.","1i":"invalid arguments. Input and output arrays must have the same number of elements (i.e., length).","1j":"invalid arguments. Input ndarrays must be broadcast compatible.","1k":"invalid arguments. Input arrays must have the same number of elements (i.e., length).","1l":"insufficient arguments. Must provide both a target object and one or more source objects.","1m":"invalid invocation. `this` is not host tuple.","1n":"invalid invocation. `this` is not the host tuple factory.","1o":"not implemented. Please post an issue on the @stdlib/stdlib issue tracker if you would like this to be implemented.","1p":"invalid argument. Second argument must have a length equal to the size of the outermost input array dimension.","1q":"evaluation error. Did not receive timing results.","1r":"evaluation error. Unable to retrieve evaluation results. Ensure that the provided snippet does not return prematurely.","1s":"invalid argument. Must provide a zipped array.","1t":"invalid argument. Array must only contain arrays.","1u":"invalid argument. Indices must be specified as an array.","1v":"invalid argument. All indices must be integers.","1w":"invalid argument. Must provide valid indices (i.e., an index must be on the interval [0, len], where len is the tuple length).","1x":"insufficient arguments. Must provide at least one array.","1y":"invalid argument. Must provide a username or, to get who an authenticated user is following, an access token.","1z":"invalid argument. Must provide a username or, to get a list of repositories an authenticated user has starred, an access token.","2A":"invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.","2B":"invalid argument. First argument must be an ArrayBuffer. Value: `%s`.","2C":"invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.","2D":"invalid argument. Byte offset must be a multiple of `%u`. Value: `%u`.","2E":"invalid arguments. ArrayBuffer view byte length must be a multiple of %u. View byte length: `%u`.","2F":"invalid argument. Length must be a nonnegative integer. Value: `%s`.","2G":"invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.","2H":"invalid argument. Second argument must be a function. Value: `%s`.","2I":"invalid argument. First argument must have a length which is a multiple of two. Length: `%u`.","2J":"invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.","2K":"invalid argument. Must provide a nonnegative integer. Value: `%s`.","2L":"invalid argument. Index argument must be a nonnegative integer. Value: `%s`.","2M":"invalid argument. Index argument is out-of-bounds. Value: `%u`.","2N":"invalid argument. First argument must be either a complex number, an array-like object, or a complex number array. Value: `%s`.","2O":"invalid argument. First argument must be an array-like object. Value: `%s`.","2P":"invalid argument. Second argument must be a recognized array data type. Value: `%s`.","2Q":"invalid argument. Second argument must have a recognized/supported data type. Type: `%s`. Value: `%s`.","2R":"invalid argument. Unable to parse %s date.","2S":"invalid argument. Numeric %s date must be either a Unix or JavaScript timestamp.","2T":"invalid argument. %s date must either be a date string, Date object, Unix timestamp, or JavaScript timestamp.","2U":"invalid argument. Length must be a positive integer. Value: `%s`.","2V":"invalid argument. Options argument must be an object. Value: `%s`.","2W":"invalid option. `%s` option must be a string. Option: `%s`.","2X":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","2Y":"invalid argument. Must provide a recognized data type. Value: `%s`.","2Z":"invalid argument. Environment lacks Symbol.iterator support. Must provide a length, typed array, or array-like object. Value: `%s`.","2a":"invalid argument. Must provide a length, typed array, array-like object, or an iterable. Value: `%s`.","2b":"invalid argument. Callback argument must be a function. Value: `%s`.","2c":"invalid argument. Iterator argument must be an iterator protocol-compliant object. Value: `%s`.","2d":"invalid argument. First argument must be a nonnegative integer. Value: `%s`.","2e":"invalid argument. Third argument must be a recognized data type. Value: `%s`.","2f":"invalid argument. First argument must be either an array, typed array, or complex typed array. Value: `%s`.","2g":"invalid argument. Start must be numeric. Value: `%s`.","2h":"invalid argument. Stop must be numeric. Value: `%s`.","2i":"invalid argument. Increment must be numeric. Value: `%s`.","2j":"invalid argument. First argument must be either a real or complex number. Value: `%s`.","2k":"invalid argument. Second argument must be either a real or complex number. Value: `%s`.","2l":"invalid argument. Third argument must be an array-like object. Value: `%s`.","2m":"invalid argument. Third argument must be a nonnegative integer. Value: `%s`.","2n":"invalid option. `%s` option must be a real or complex floating-point data type or \"generic\". Option: `%s`.","2o":"invalid option. `%s` option must be a boolean. Option: `%s`.","2p":"invalid argument. Exponent of start value must be numeric. Value: `%s`.","2q":"invalid argument. Exponent of stop value must be numeric. Value: `%s`.","2r":"invalid argument. First argument must be either an array length or an array-like object. Value: `%s`.","2s":"invalid argument. Must provide a typed array or ArrayBuffer. Value: `%s`.","2t":"invalid option. `%s` option must be a nonnegative integer. Option: `%s`.","2u":"invalid argument. Must provide an array-like object. Value: `%s`.","2v":"invalid option. `%s` option must be either `1` or `-1`. Option: `%s`.","2w":"invalid argument. Second argument must be either a function or an options object. Value: `%s`.","2x":"invalid argument. Must provide a typed array. Value: `%s`.","2y":"invalid argument. Second argument must be an array-like object. Value: `%s`.","2z":"invalid argument. Third argument must be an integer. Value: `%s`.","3A":"invalid argument. Key path must be a string or a key array. Value: `%s`.","3B":"invalid argument. Must provide a string. Value: `%s`.","3C":"invalid argument. Must provide a valid position (i.e., a nonnegative integer). Value: `%s`.","3D":"invalid argument. Must provide a valid position (i.e., within string bounds). Value: `%u`.","3E":"invalid argument. Second argument must be callable. Value: `%s`.","3F":"invalid argument. First argument must be a string. Value: `%s`.","3G":"invalid argument. Fourth argument must be one of the following: \"%s\". Value: `%s`.","3H":"invalid argument. Fifth argument must be one of the following: \"%s\". Value: `%s`.","3I":"invalid argument. Second argument must be either an object (except null) or a function. Value: `%s`.","3J":"invalid argument. Must provide a function. Value: `%s`.","3K":"invalid argument. Must provide either an options object or a callback function. Value: `%s`.","3L":"invalid argument. First argument must be an object. Value: `%s`.","3M":"invalid option. `%s` option must be a writable stream. Option: `%s`.","3N":"invalid argument. Third argument must be a function. Value: `%s`.","3O":"invalid option. `%s` option must be either a positive integer or `null`. Option: `%s`.","3P":"invalid option. `%s` option must be a positive integer. Option: `%s`.","3Q":"invalid argument. First argument must be a 1-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","3R":"invalid argument. Second argument must be a 1-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","3S":"invalid argument. Arrays must be the same length. First argument length: `%u`. Second argument length: `%u`.","3T":"invalid argument. First argument must be either an array-like object or a one-dimensional ndarray. Value: `%s`.","3U":"invalid argument. Second argument must be either an array-like object or a one-dimensional ndarray. Value: `%s`.","3V":"invalid argument. First argument must be a 1-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","3W":"invalid argument. Second argument must be a 1-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","3X":"invalid argument. Second argument must be a nonnegative integer. Value: `%s`.","3Y":"invalid argument. Second argument must not exceed the number of bytes in the input ArrayBuffer. Value: `%s`.","3Z":"invalid argument. Last argument must be a nonnegative integer. Value: `%s`.","3a":"invalid argument. Last argument must not exceed the number of bytes in the input ArrayBuffer. Value: `%s`.","3b":"invalid argument. Must provide a Buffer. Value: `%s`.","3c":"invalid argument. First argument must be a function. Value: `%s`.","3d":"invalid argument. Third argument must be a constructor function. Value: `%s`.","3e":"invalid argument. Real component must be a number. Value: `%s`.","3f":"invalid argument. Imaginary component must be a number. Value: `%s`.","3g":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","3h":"invalid argument. Unsupported/unrecognized dataset name. Value: `%s`.","3i":"invalid option. Unrecognized `%s`. Option: `[%s]`.","3j":"invalid option. `%s` option must be a string or an array of strings. Option: `%s`.","3k":"invalid option. `%s` option must be a positive integer or an array of positive integers. Option: `%s`.","3l":"invalid option. `%s` option must be a positive integer array of length two. Option: `%s`.","3m":"invalid option. `%s` option cannot be less than 1790. Option: `%s`.","3n":"invalid option. `%s` option cannot be greater than 5000. Option: `%s`.","3o":"invalid argument. Must provide an error object. Value: `%s`.","3p":"invalid argument. First argument must be a valid file descriptor (i.e., nonnegative integer). Value: `%s`.","3q":"invalid argument. Last argument must be a function. Value: `%s`.","3r":"invalid argument. Must provide a valid file descriptor (i.e., a nonnegative integer). Value: `%s`.","3s":"invalid argument. First argument must be an array of strings. Value: `%s`.","3t":"invalid argument. Options argument must be either a string or an object. Value: `%s`.","3u":"invalid argument. Predicate function must be a function. Value: `%s`.","3v":"invalid argument. First argument must be an iterator. Value: `%s`.","3w":"invalid argument. Must provide an iterator. Value: `%s`.","3x":"invalid argument. Must provide an iterator protocol-compliant object. Argument: `%u`. Value: `%s`.","3y":"invalid argument. Must provide an iterator protocol-compliant object. Value: `%s`.","3z":"invalid argument. Unable to parse date string. Value: `%s`.","4A":"invalid argument. Second argument must be a number. Value: `%s`.","4B":"invalid argument. Third argument must be a number. Value: `%s`.","4C":"invalid argument. Hash function argument must be a function. Value: `%s`.","4D":"invalid option. `%s` option must be a positive number. Option: `%s`.","4E":"invalid argument. Third argument must be either a nonnegative integer or an object. Value: `%s`.","4F":"invalid arguments. All arguments must be functions. Value: `%s`.","4G":"invalid argument. Each iterator function, except the last iterator function, within an iterator pipeline must return an iterator. Value: `%s`.","4H":"invalid argument. Must provide an an iterator. Value: `%s`.","4I":"invalid return value. Callback function must return an integer. Value: `%s`.","4J":"invalid argument. Fourth argument must be a boolean. Value: `%s`.","4K":"invalid return value. Callback function must return a positive integer. Value: `%s`.","4L":"invalid argument. Fifth argument must be a callback function. Value: `%s`.","4M":"invalid argument. Third argument must be either an integer (starting index) or a callback function. Value: `%s`.","4N":"invalid argument. Fourth argument must be either an integer (ending index) or a callback function. Value: `%s`.","4O":"invalid argument. Unrecognized/unsupported scale function. Value: `%s`.","4P":"invalid argument. Must provide an iterator protocol-compliant object or a number. Argument: `%u`. Value: `%s`.","4Q":"invalid argument. First argument must be a finite number. Value: `%s`.","4R":"invalid option. `%s` option must be a positive finite number. Option: `%s`.","4S":"invalid option. `%s` option must be one of the following: \"%s\". Option: `%s`.","4T":"invalid option. `%s` option must be less than or equal to 79. Option: `%u`.","4U":"invalid option. `%s` option must be less than or equal to 77. Option: `%u`.","4V":"invalid argument. Must provide an argument having a supported data type. Value: `%s`.","4W":"invalid option. Unsupported policy for determining an output array data type. Option: `%s`.","4X":"invalid option. `%s` option must be a recognized/supported data type. Option: `%s`.","4Y":"invalid option. `%s` option must be a recognized/supported output array data type policy. Option: `%s`.","4Z":"invalid argument. Resolution table must be an object. Value: `%s`.","4a":"invalid argument. Resolution table `%s` field value must be either a function or null. Value: `%s`.","4b":"invalid argument. First argument must be a positive integer. Value: `%s`.","4c":"invalid argument. First argument must be a one-dimensional ndarray. Value: `%s`.","4d":"invalid argument. Second argument must be either +1 or -1. Value: `%s`.","4e":"invalid argument. First argument must be a one-dimensional ndarray of length %u. Actual length: `%u`.","4f":"invalid argument. First argument must be an ndarray. Value: `%s`.","4g":"invalid argument. First argument must be an ndarray whose last dimension is of size `%u`. Actual size: `%u`.","4h":"invalid argument. Second argument is incompatible with model loss function. Probability predictions are only supported when the loss function is one of the following: \"%s\". Model loss function: `%s`.","4i":"invalid argument. Second argument must be a string value equal to either \"label\", \"probability\", or \"linear\". Value: `%s`.","4j":"invalid argument. Attempting to scale a weight vector by a nonpositive value. This is likely due to too large a value of `eta*lambda`. Value: `%f`.","4k":"invalid option. `%s` option must be a nonnegative number. Option: `%s`.","4l":"invalid option. `%s` option must be an array-like object. Option: `%s`.","4m":"invalid option. First `%s` option must be one of the following: \"%s\". Option: `%s`.","4n":"invalid option. Second `%s` option must be a positive number. Option: `%s`.","4o":"invalid option. Third `%s` option must be a number. Option: `%s`.","4p":"invalid argument. Argument specifying number of dimensions must be a positive integer. Value: `%s`.","4q":"invalid argument. First argument must either be a positive integer specifying the number of clusters or a matrix containing initial centroids. Value: `%s`.","4r":"invalid option. First `%s` parameter option must be greater than or equal to the number of clusters. Options: `%f`.","4s":"invalid argument. Must provide a 1-dimensional ndarray. Value: `%s`.","4t":"invalid argument. Vector length must match centroid dimensions. Expected: `%u``. Actual: `%u``.","4u":"invalid argument. Output argument must be a 1-dimensional ndarray. Value: `%s`.","4v":"invalid argument. Must provide a 2-dimensional ndarray. Value: `%s`.","4w":"invalid argument. Number of matrix columns must match centroid dimensions. Expected: `%u``. Actual: `%u`.","4x":"invalid argument. Output vector length must match the number of data points. Expected: `%u`. Actual: `%u`.","4y":"invalid option. `%s` option method must be one of the following: \"%s\". Option: `%s`.","4z":"invalid option. First `%s` parameter option must be a positive integer. Option: `%s`.","5A":"invalid option. `%s` option must be a recognized data type. Option: `%s`.","5B":"invalid option. Data type cast is not allowed. Casting mode: `%s`. From: `%s`. To: `%s`.","5C":"invalid option. `%s` option must be a recognized order. Option: `%s`.","5D":"invalid option. `%s` option must be an array-like object containing nonnegative integers. Option: `%s`.","5E":"invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.","5F":"invalid argument. Input array cannot be broadcast to the specified shape, as the specified shape has a dimension whose size is less than the size of the corresponding dimension in the input array. Array shape: (%s). Desired shape: (%s). Dimension: %u.","5G":"invalid argument. Input array and the specified shape are broadcast incompatible. Array shape: (%s). Desired shape: (%s). Dimension: %u.","5H":"invalid argument. Specified axis is out-of-bounds. Must be on the interval: [-%u-1, %u]. Value: `%d`.","5I":"invalid argument. Index must be on the interval: [0, %f]. Value: `%f`.","5J":"invalid argument. Subscripts must not exceed array dimensions. Subscript: `%u`. Value: `%d`.","5K":"invalid argument. First argument must be a recognized data type. Value: `%s`.","5L":"invalid argument. First argument must have a recognized data type. Value: `%s`.","5M":"invalid arguments. Number of indices must match the number of dimensions. ndims: `%u`. nargs: `%u`.","5N":"invalid argument. Indices must be integer valued. Argument: `%u`. Value: `%s`.","5O":"invalid argument. Index must be an integer. Value: `%s`.","5P":"invalid argument. First argument must be a supported ndarray data type. Value: `%s`.","5Q":"invalid argument. Second argument must be an array-like object, typed-array-like, or a Buffer. Value: `%s`.","5R":"invalid argument. Second argument `get` and `set` properties must be functions. Value: `%s`.","5S":"invalid argument. Third argument must be an array-like object containing nonnegative integers. Value: `%s`.","5T":"invalid argument. Number of dimensions must not exceed %u due to stack limits. Value: `%u`.","5U":"invalid argument. Fourth argument must be an array-like object containing integers. Value: `%s`.","5V":"invalid argument. Fourth argument length must match the number of dimensions. Expected number of dimensions: `%u`. Strides length: `%u`.","5W":"invalid argument. Fourth argument must contain a single element equal to `0`. Value: `%d`.","5X":"invalid argument. Fifth argument must be a nonnegative integer. Value: `%s`.","5Y":"invalid argument. Sixth argument must be a supported order. Value: `%s`.","5Z":"invalid argument. Indices must be integer valued. Argument: `%i`. Value: `%u`.","5a":"invalid option. `%s` option must be a recognized mode. Option: `%s`.","5b":"invalid option. `%s` option must be an array containing recognized modes. Option: `%s`.","5c":"invalid option. Each submode must be a recognized mode. Option: `%s`.","5d":"invalid argument. First argument must be either a function or an array of functions. Value: `%s`.","5e":"invalid argument. Third argument must be an array-like object or null. Value: `%s`.","5f":"invalid argument. Fourth argument must be a positive integer. Value: `%s`.","5g":"invalid argument. Sixth argument must be a nonnegative integer. Value: `%s`.","5h":"invalid argument. Input array must be an ndarray-like object. Value: `%s`.","5i":"invalid argument. Output array must be an ndarray-like object. Value: `%s`.","5j":"invalid argument. Output argument must be either an array, typed array, or object. Value: `%s`.","5k":"invalid argument. Shape argument must be an array-like object containing nonnegative integers. Value: `%s`.","5l":"invalid argument. Linear index must be integer valued. Value: `%s`.","5m":"invalid option. `%s` option must be a supported/recognized mode. Option: `%s`.","5n":"invalid option. `%s` option must be a supported/recognized order. Option: `%s`.","5o":"invalid argument. First argument must be an array-like object containing nonnegative integers. Value: `%s`.","5p":"invalid argument. Number of provided subscripts must match the number of dimensions. ndims: `%u`. Number of subscripts: `%u`.","5q":"invalid argument. Subscripts must be integer valued. Argument: `%u`. Value: `%s`.","5r":"invalid option. `%s` option cannot be an empty array.","5s":"invalid argument. First argument must be either a nonnegative integer or an array of nonnegative integers. Value: `%s`.","5t":"invalid argument. First argument must be an ndarray-like object. Value: `%s`.","5u":"invalid option. `%s` option must either be a nonnegative integer or an array of nonnegative integers. Option: `%s`.","5v":"invalid option. `%s` option must be either a Buffer or a string. Option: `%s`.","5w":"invalid argument. Request listener must be a function. Value: `%s`.","5x":"invalid argument. Third argument must be a positive integer. Value: `%s`.","5y":"invalid argument. Number of topics must be a positive integer. Value: `%s`.","5z":"invalid argument. First argument must be a nonnegative integer which is less than the total number of topics. Value: `%s`.","6A":"invalid assignment. `%s` must be a nonnegative integer or nonnegative integer array. Value: `%s`.","6B":"invalid assignment. `%s` must be a nonnegative integer. Value: `%s`.","6C":"invalid assignment. Unrecognized/unsupported `%s`. Must be one of the following: \"%s\". Value: `%s`.","6D":"invalid assignment. Unrecognized/unsupported `%s`. Value: `%s`.","6E":"invalid assignment. `%s` must be a nonnegative integer or null. Value: `%s`.","6F":"invalid assignment. `%s` must be a string or null. Value: `%s`.","6G":"invalid argument. Must provide a supported viewer. Value: `%s`.","6H":"invalid assignment. `%s` must be a function. Value: `%s`.","6I":"invalid assignment. `%s` must be either null or an array. Value: `%s`.","6J":"invalid assignment. `%s` must be a string, function, or null. Value: `%s`.","6K":"invalid argument. `options` argument must be an object. Value: `%s`.","6L":"invalid assignment. `%s` must be a number. Value: `%s`.","6M":"invalid assignment. `%s` must be a number on the interval `[0,1]`. Value: `%f`.","6N":"invalid assignment. `%s` must be array-like. Value: `%s`.","6O":"invalid arguments. Must provide equal length array-like objects. x length: `%u`, y length: `%u`.","6P":"invalid assignment. `%s` must be a string or a function. Value: `%s`.","6Q":"invalid assignment. `%s` must be a number or a function. Value: `%s`.","6R":"invalid assignment. `%s` must be one of the following: \"%s\". Value: `%s`.","6S":"invalid assignment. `%s` must be a nonnegative integer or a function. Value: `%s`.","6T":"invalid assignment. `%s` must be a supported symbol. Symbols: \"%s\". Value: `%s`.","6U":"invalid argument. `options` argument must be a plain object. Value: `%s`.","6V":"invalid assignment. `%s` must be either a string or a string array. Value: `%s`.","6W":"invalid assignment. `%s` must be a string or a string array. Value: `%s`.","6X":"invalid assignment. `%s` must be a string or string array. Value: `%s`.","6Y":"invalid assignment. Unrecognized/unsupported symbol. Value: `[%s]`.","6Z":"invalid assignment. `%s` must be an array. Value: `%s`.","6a":"invalid assignment. `%s` must be either a finite number, Date, or null. Value: `%s`.","6b":"invalid assignment. `%s` must be a boolean or boolean array. Value: `%s`.","6c":"invalid assignment. `%s` must be either a string or string array. Value: `%s`.","6d":"invalid assignment. Unrecognized/unsupported orientation. A `%s` value must be one of the following: \"%s\". Value: `%s`.","6e":"invalid assignment. `%s` must be either a finite number or null. Value: `%s`.","6f":"invalid state. x and y are different lengths. x length: `%u`, y length: `%u`.","6g":"invalid state. Each `x[i]:y[i]` pair must be the same length. x[%u].length: `%u`, y[","6h":"invalid assignment. `%s` must be a positive integer or null. Value: `%s`.","6i":"invalid assignment. `%s` size is smaller than the number of data elements. Number of elements: `%u`. Value: `%u`.","6j":"invalid assignment. `%s` must be an array-like object or an ndarray. Value: `%s`.","6k":"invalid assignment. `%s` length exceeds maximum data buffer size. Buffer size: `%u`. Length: `%u`.","6l":"invalid assignment. `%s` must be a finite number or null. Value: `%s`.","6m":"invalid assignment. `%s` must be a finite number or null. Value: `%s.","6n":"invalid assignment. Must be an array or typed array. Value: `%s`.","6o":"invalid option. `%s` option must be an array or typed array. Option: `%s`.","6p":"invalid option. `%s` option must be a function. Option: `%s`.","6q":"invalid argument. Encoding argument must be a string. Value: `%s`.","6r":"invalid argument. Must provide either a string, nonnegative integer, or an options object. Value: `%s`.","6s":"invalid argument. First argument must be either a string or nonnegative integer. Value: `%s`.","6t":"invalid argument. Unable to parse mask expression. Ensure the expression is properly formatted, only uses the class letters \"u\", \"g\", \"o\", and \"a\", only uses the operators \"+\", \"-\", and \"=\", and only uses the permission symbols \"r\", \"w\", and \"x\". Value: `%s`.","6u":"invalid option. `%s` option must be a pseudorandom number generator function. Option: `%s`.","6v":"invalid argument. First argument must be a number and not NaN. Value: `%s`.","6w":"invalid argument. Second argument must be a number and not NaN. Value: `%s`.","6x":"invalid argument. Minimum support must be less than maximum support. Value: `[%f,%f]`.","6y":"invalid argument. First argument must be a probability. Value: `%s`.","6z":"invalid option. `%s` option must be a Uint32Array. Option: `%s`.","7A":"invalid argument. First argument must be a positive number and not NaN. Value: `%s`.","7B":"invalid argument. Second argument must be a positive number and not NaN. Value: `%s`.","7C":"invalid argument. Third argument must be a number and not NaN. Value: `%s`.","7D":"invalid argument. Third argument must be less than or equal to the first argument. Value: `%u`.","7E":"invalid argument. Second argument must be less than or equal to the first argument. Value: `%u`.","7F":"invalid %s. State array has insufficient length.","7G":"invalid %s. State array has an incompatible schema version. Expected: `%s`. Actual: `%s`.","7H":"invalid %s. State array has an incompatible number of sections. Expected: `%s`. Actual: `%s`.","7I":"invalid %s. State array has an incompatible state length. Expected: `%u`. Actual: `%u`.","7J":"invalid %s. State array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.","7K":"invalid option. `%s` option must be an Int32Array. Option: `%s`.","7L":"invalid option. `%s` option must be a positive integer less than the maximum signed 32-bit integer. Option: `%u`.","7M":"invalid option. `%s` option must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integer values less than the maximum signed 32-bit integer. Option: `%s`.","7N":"invalid argument. Must provide an Int32Array. Value: `%s`.","7O":"invalid %s. State array has an incompatible table length. Expected: `%s`. Actual: `%s`.","7P":"invalid %s. `state` array has insufficient length.","7Q":"invalid %s. `state` array has an incompatible schema version. Expected: %s. Actual: %s.","7R":"invalid %s. `state` array has an incompatible number of sections. Expected: %s. Actual: %s.","7S":"invalid %s. `state` array has an incompatible state length. Expected: `%u`. Actual: `%u`.","7T":"invalid %s. `state` array has an incompatible section length. Expected: `%u`. Actual: `%u`.","7U":"invalid %s. `state` array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.","7V":"invalid option. `%s` option must be a positive integer less than or equal to the maximum unsigned 32-bit integer. Option: `%u`.","7W":"invalid option. `%s` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `%u`.","7X":"invalid argument. Second argument must be on the interval: (0, 1). Value: `%f`.","7Y":"invalid option. `%s` option cannot be undefined. Option: `%s`.","7Z":"invalid option. Unrecognized/unsupported PRNG. Option: `%s`.","7a":"invalid argument. First argument must be a positive number or an options object. Value: `%s`.","7b":"invalid arguments. Parameters must satisfy the following condition: %s. Value: `[%f, %f, %f]`.","7c":"invalid argument. Scale parameter must be a positive number. Value: `%s`.","7d":"invalid argument. Shape parameter must be a positive number. Value: `%s`.","7e":"invalid argument. First argument must be an integer. Value: `%s`.","7f":"invalid argument. Second argument must be an integer. Value: `%s`.","7g":"invalid argument. `n` must be less than or equal to `N`. Value: `%u`.","7h":"invalid argument. `K` must be less than or equal to `N`. Value: `%u`.","7i":"invalid argument. `%s` argument must be array-like. Value: `%s`.","7j":"invalid input option. `size` option must be less than or equal to the length of `x` when `replace` is `false`. Option: `%s`.","7k":"invalid input option. `size` option must be less than or equal to the population size when `replace` is `false`. Option: `%s`.","7l":"invalid option. `%s` option must be an array of probabilities that sum to one. Option: `%s`.","7m":"invalid argument. Minimum support must be less than maximum support. Value: `[%s,%s]`.","7n":"invalid option. `%s` option must be a string or null. Option: `%s`.","7o":"invalid argument. Minimum support must be less than or equal to maximum support. Value: `[%s,%s]`.","7p":"invalid argument. Must be one of the following: \"%s\". Value: `%s`.","7q":"invalid argument. Mode must be one of the following: \"%s\". Value: `%s`.","7r":"invalid argument.  Must be one of the following: \"%s\". Value: `%s`.","7s":"invalid operation. Alias already exists in the provided context. Alias: `%s`. Value: `%s`.","7t":"invalid argument. Unrecognized workspace name. Value: `%s`.","7u":"invalid operation. Cannot read from write-only variable `%s`.","7v":"Cannot assign to read only property %s of object #<Object>","7w":"invalid option. `%s` option must be a regular expression or an array-like object. Option: `%s`.","7x":"invalid option. `%s` option must be one of `%s`. Option: `%s`.","7y":"invalid argument. Must provide either an options object or a workspace name. Value: `%s`.","7z":"invalid argument. Must provide either a string or regular expression. Value: `%s`.","8A":"invalid argument. Must provide an integer. Value: `%s`.","8B":"invalid argument. Must provide a positive integer. Value: `%s`.","8C":"invalid argument. Presentation text must be a string. Value: `%s`.","8D":"invalid argument. REPL argument must be a REPL instance. Value: `%s`.","8E":"unexpected error. Unable to reload presentation. Error: %s","8F":"unexpected error. Unable to watch presentation source file. Error: %s","8G":"invalid option. `%s` option must be either a recognized string or boolean. Option: `%s`.","8H":"invalid option. `%s` option must be either a positive integer or null. Option: `%s`.","8I":"invalid operation. Alias already exists in REPL context. Alias: `%s`. Value: `%s`.","8J":"invalid argument. Third argument must be an object. Value: `%s`.","8K":"invalid option. `%s` option must be less than or equal to the period. Option: `%u`.","8L":"invalid option. `%s` option must be greater than 2. Option: `%s`.","8M":"invalid option. `%s` option must be an integer. Option: `%s`.","8N":"invalid option. `%s` option must be an positive integer. Option: `%s`.","8O":"invalid option. `%s` option must be less than the period. Option: `%s`.","8P":"invalid option. `%s` option must be a number. Option: `%s`.","8Q":"invalid option. `%s` option must be an positive even integer. Option: `%s`.","8R":"invalid argument. First argument must be a numeric array. Value: `%s`.","8S":"invalid argument. First argument must contain at least two elements. Value: `%s`.","8T":"invalid argument. Second argument must be an array. Value: `%s`.","8U":"invalid argument. Second argument must contain at least two unique elements. Value: `%s`.","8V":"invalid option. `%s` option must be a number on the interval: [0, 1]. Option: `%f`.","8W":"invalid option. `%s` option must be an array containing at least two unique elements. Option: `%s`.","8X":"invalid argument. Must provide array-like arguments. Value: `%s`.","8Y":"invalid argument. Supplied arrays cannot be empty. Value: `%s`.","8Z":"invalid option. `%s` option must be an array. Option: `%s`.","8a":"invalid argument. Minimum support must be a number. Value: `%s`.","8b":"invalid argument. Maximum support must be a number. Value: `%s`.","8c":"invalid arguments. Minimum support must be less than maximum support. Value: `%f, %f`.","8d":"invalid assignment. Must be a number. Value: `%s`.","8e":"invalid assignment. Must be less than %f. Value: `%f`.","8f":"invalid assignment. Must be greater than %f. Value: `%f`.","8g":"invalid argument. Mean parameter `p` must be a probability. Value: `%s`.","8h":"invalid assignment. Must be a probability. Value: `%s`.","8i":"invalid argument. First shape parameter must be a positive number. Value: `%s`.","8j":"invalid argument. Second shape parameter must be a positive number. Value: `%s`.","8k":"invalid assignment. Must be a positive number. Value: `%s`.","8l":"invalid argument. Number of trials must be a positive integer. Value: `%s`.","8m":"invalid argument. Success probability must be a number between 0 and 1. Value: `%s`.","8n":"invalid assignment. Must be a positive integer. Value: `%s`.","8o":"invalid assignment. Must be a number on the interval: [0, 1]. Value: `%s`.","8p":"invalid argument. Location parameter must be a number. Value: `%s`.","8q":"invalid argument. Rate parameter must be a positive number. Value: `%s`.","8r":"invalid argument. Mean parameter `%s` must be a number. Value: `%s`.","8s":"invalid argument. Minimum support must be an integer. Value: `%s`.","8t":"invalid argument. Maximum support must be an integer. Value: `%s`.","8u":"invalid arguments. Minimum support must be less than or equal to maximum support. Value: `%d, %d`.","8v":"invalid assignment. Must be an integer. Value: `%s`.","8w":"invalid assignment. Must be less than or equal to %u. Value: `%d`.","8x":"invalid assignment. Must be greater than or equal to %u. Value: `%s`.","8y":"invalid argument. Shape parameter must be a positive integer. Value: `%s`.","8z":"invalid argument. Numerator degrees of freedom must be a positive number. Value: `%s`.","9A":"invalid argument. Mean parameter `lambda` must be a positive number. Value: `%s`.","9B":"invalid argument. Mode must be a number. Value: `%s`.","9C":"invalid arguments. Parameters must satisfy the following condition: %s. a: `%f`. b: `%f`. c: `%f`.","9D":"invalid assignment. Must be less than or equal to both the maximum support and the mode. Value: `%f`.","9E":"invalid assignment. Must be greater than or equal to both the minimum support and the mode. Value: `%f`.","9F":"invalid assignment. Must be greater than or equal to the minimum support and less than or equal to the maximum support. Value: `%f`.","9G":"invalid argument. An array argument must contain two elements. Value: `%s`.","9H":"invalid argument. Must provide a nonnegative integer or a two-element array. Value: `%s`.","9I":"invalid arguments. Number of successes cannot be larger than the total number of observations. x: `%u`. n: `%u`.","9J":"invalid option. `%s` option must be a probability. Option: `%f`.","9K":"invalid argument. Unsupported/unrecognized distribution name. Value: `%s`.","9L":"invalid argument. First argument must contain nonnegative integers. Index: `%u`. Value: `%s`.","9M":"invalid argument. Probability mass function (PMF) arguments must be numbers. Argument: `%u`. Value: `%s`.","9N":"invalid argument. Second argument must be either an array-like object (or one-dimensional ndarray) of probabilities summing to one, an array-like object (or one-dimensional ndarray) of expected frequencies, or a discrete probability distribution name. Value: `%s`.","9O":"invalid argument. Second argument must only contain numbers. Index: `%u`. Value: `%s`.","9P":"invalid argument. Second argument must only contain nonnegative numbers. Index: `%u`. Value: `%d`.","9Q":"invalid option. `%s` option must be a number on the interval: [0, 1]. Value: `%s`.","9R":"invalid argument. First argument must be an array of arrays or ndarray-like object with dimension two. Value: `%s`.","9S":"invalid argument. First argument must contain nonnegative integers. Value: `%s`.","9T":"invalid argument. First argument must either specify the order of the covariance matrix or be a square 2-dimensional ndarray for storing the covariance matrix. Value: `%s`.","9U":"invalid argument. Second argument must be a 1-dimensional ndarray. Value: `%s`.","9V":"invalid argument. The number of elements (means) in the second argument must match covariance matrix dimensions. Expected: `%u`. Actual: `%u`.","9W":"invalid argument. Vector length must match covariance matrix dimensions. Expected: `%u`. Actual: `%u`.","9X":"invalid argument. Must provide a number. Value: `%s`.","9Y":"invalid argument. Must provide a nonnegative number. Value: `%s`.","9Z":"invalid argument. Must provide a nonnegative number on the interval [0,1]. Value: `%f`.","9a":"invalid argument. Output argument must be an array-like object. Value: `%s`.","9b":"invalid argument. Window size must be a positive integer. Value: `%s`.","9c":"invalid argument. Window size must be greater than or equal to 3. Value: `%s`.","9d":"invalid option. `%s` option must be on the interval [0,1]. Option: `%f`.","9e":"invalid argument. First argument must either specify the order of the correlation distance matrix or be a square 2-dimensional ndarray for storing the correlation distance matrix. Value: `%s`.","9f":"invalid argument. The number of elements (means) in the second argument must match correlation distance matrix dimensions. Expected: `%u`. Actual: `%u`.","9g":"invalid argument. Vector length must match correlation matrix dimensions. Expected: `%u`. Actual: `%u`.","9h":"invalid argument. Vector length must match correlation distance matrix dimensions. Expected: `%u`. Actual: `%u`.","9i":"invalid argument. First argument must either specify the order of the correlation matrix or be a square 2-dimensional ndarray for storing the correlation matrix. Value: `%s`.","9j":"invalid argument. Unsupported/unrecognized kernel. Value: `%s`.","9k":"invalid argument. Second argument must be a numeric array. Value: `%s`.","9l":"invalid option. Lower bound `%s` must be strictly less than the upper bound `%s`.","9m":"invalid option. `%s` option must be an array of positive numbers. Option: `%s`.","9n":"invalid option. `%s` option must be an array of length two. Option: `%s`.","9o":"invalid option. `%s` option must be a string denoting a known kernel function or a custom function. Option: `%s`.","9p":"invalid arguments. First argument and `%s` must be arrays having the same length.","9q":"invalid invocation. Incorrect number of arguments. Must provide at least two array-like arguments. Value: `%s`.","9r":"invalid option. `%s` must be a number on the interval: [0, 1]. Value: `%f`.","9s":"invalid argument. First argument must be a typed array or number array. Value: `%s`.","9t":"invalid argument. Second argument must be either a CDF function or a string. Value: `%s`.","9u":"invalid argument. Distribution parameter must be a number. Value: `%s`.","9v":"invalid option. `%s` option must contain at least two unique elements. Value: `%s`.","9w":"invalid argument. Provided arrays cannot be empty. Value: `%s`.","9x":"invalid argument. First argument must be an array of probabilities. Value: `%s`.","9y":"invalid argument. When specified, `%s` arguments must contain at least a length of %u. Value: `%u`.","9z":"invalid argument. Second argument must be one of the following: %s. Value: `%s`.","A0":"invalid option. `%s` option must be a number in `[0,1]`. Option: `%s`.","A1":"invalid option. `%s` option must be a number on the interval: [-1, 1]. Option: `%s`.","A2":"invalid argument. First argument must contain at least two elements. Value: `%s`.","A3":"invalid argument. Second argument must be either a numeric array or an options object. Value: `%s`.","A4":"invalid option. `%s` option must be either `equal` or `unequal`. Option: `%s`.","A5":"invalid argument. `%s` argument must be a numeric array. Value: `%s`.","A6":"invalid option. `%s` option must be one of the following: %s. Option: `%s`.","A7":"invalid argument. Third argument must be a positive number. Value: `%s`.","A8":"invalid argument. Fourth argument must be a positive number. Value: `%s`.","A9":"invalid operation. Serialization function must return a string or Buffer. Value: `%s`.","AA":"invalid argument. In binary mode, a provided value must be a string, Buffer, or Uint8Array. Value: `%s`.","AB":"invalid option. `%s` option must be either a string or a regular expression. Option: `%s`.","AC":"invalid argument. First input array offset must be a nonnegative integer. Value: `%s`.","AD":"invalid argument. Second input array offset must be a nonnegative integer. Value: `%s`.","AE":"invalid argument. Output array offset must be a nonnegative integer. Value: `%s`.","AF":"invalid argument. Must provided recognized data types. Unable to resolve a data type string. Value: `%s`.","AG":"invalid argument. Input array offset must be a nonnegative integer. Value: `%s`.","AH":"invalid argument. Input array stride must be an integer. Value: `%s`.","AI":"invalid argument. Output array stride must be an integer. Value: `%s`.","AJ":"invalid option. `%s` option must be an array of strings. Option: `%s`.","AK":"invalid argument. Must provide a valid position (i.e., within string bounds). Value: `%s`.","AL":"invalid argument. Third argument must be a boolean. Value: `%s`.","AM":"invalid argument. Must provide valid code points (i.e., nonnegative integers). Value: `%s`.","AN":"invalid argument. Must provide a valid code point (cannot exceed max). Value: `%s`.","AO":"invalid argument. Third argument must be a string. Value: `%s`.","AP":"invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.","AQ":"invalid argument. Third argument must be a string or an array of strings. Value: `%s`.","AR":"invalid argument. At least one padding option must have a length greater than 0. Left padding: `%s`. Right padding: `%s`.","AS":"invalid argument. Second argument must be an array of strings. Value: `%s`.","AT":"invalid argument. Second argument must be a string or regular expression. Value: `%s`.","AU":"invalid argument. Third argument must be a string or replacement function. Value: `%s`.","AV":"invalid argument. Must provide a string or an array of strings. Value: `%s`.","AW":"invalid argument. If only providing a single argument, must provide a Date object. Value: `%s`.","AX":"invalid argument. First argument must be either a string or integer. Value: `%s`.","AY":"invalid argument. Day number must be on the interval: `[1, %u]`. Value: `%d`.","AZ":"invalid argument. First argument must be either a string, integer, or Date object. Value: `%s`.","Aa":"invalid argument. An integer month value must be on the interval: [1, 12]. Value: `%s`.","Ab":"invalid argument. Must provide a recognized month. Value: `%s`.","Ac":"invalid argument. Must provide either an integer or a `Date` object. Value: `%s`.","Ad":"invalid argument. Must provide either a string, integer, or Date object. Value: `%s`.","Ae":"invalid argument. Must provide an array of nonnegative integers. Value: `%s`.","Af":"invalid argument. Input array must contain two elements. Value: `%s`.","Ag":"invalid argument. Must provide a collection. Value: `%s`.","Ah":"invalid argument. First argument must be a collection. Value: `%s`.","Ai":"invalid argument. First argument must be either an array, typed array, or an array-like object. Value: `%s`.","Aj":"invalid argument. All arguments must be functions. Value: `%s`.","Ak":"invalid argument. Number of function invocations must be a nonnegative integer. Value: `%s`.","Al":"invalid argument. First argument must be an array of functions. Value: `%s`.","Am":"invalid argument. Last argument must be a collection. Value: `%s`.","An":"invalid argument. Must provide either a valid buffer size (i.e., a positive integer) or an array-like object which can serve as the underlying buffer. Value: `%s`.","Ao":"invalid argument. An iterator must return an array-like object containing vertices. Value: `%s`.","Ap":"invalid argument. Callback must return an array-like object containing vertices. Value: `%s`.","Aq":"invalid argument. Callback must return an array-like object. Value: `%s`.","Ar":"invalid argument. Each element of the adjacency list must be an array-like object. Value: `%s`.","As":"invalid argument. Each element of the edge list must be an array-like object. Value: `%s`.","At":"invalid argument. Second argument must be an array-like object or an iterable. Value: `%s`.","Au":"invalid argument. First argument exceeds matrix dimensions. Value: `%u`.","Av":"invalid argument. Second argument exceeds matrix dimensions. Value: `%u`.","Aw":"invalid argument. Vertex cannot exceed matrix dimensions. Value: `%u`.","Ax":"invalid argument. Second argument must be a recognized output path convention. Value: `%s`.","Ay":"invalid argument. Cannot convert Windows extended-length paths to POSIX paths. Value: `%s`.","Az":"invalid argument. Arity argument must be a positive integer. Value: `%s`.","B0":"invalid argument. Property descriptor must be an object. Value: `%s`.","B1":"invalid argument. The `value` property of the property descriptor must be a function. Value: `%s`.","B2":"invalid argument. Second argument must be an object of property descriptors. Value: `%s`.","B3":"invalid argument. Path must be a string. Value: `%s`.","B4":"invalid argument. Third argument must be a recognized location. Value: `%s`.","B5":"invalid argument. Must provide a recognized iteration direction. Value: `%s`.","B6":"invalid argument. Must provide an object-like value. Value: `%s`.","B7":"invalid argument. Must provide a regular expression string. Value: `%s`.","B8":"invalid argument. Filename must be a string. Value: `%s`.","B9":"invalid argument. First argument must be an array of positive integers. Value: `%s`.","BA":"invalid argument. First argument must be object-like. Value: `%s`.","BB":"invalid argument. Must provide an array of arrays. Value: `%s`.","BC":"invalid argument. Must provide a boolean. Value: `%s`.","BD":"invalid argument. Second argument must have a prototype from which another object can inherit. Value: `%s`.","BE":"invalid argument. A provided constructor must be either an object (except null) or a function. Value: `%s`.","BF":"invalid argument. If the input array is an ndarray, the output array must also be an ndarray. Value: `%s`.","BG":"invalid argument. If the input array is an array-like object, the output array must also be an array-like object. Value: `%s`.","BH":"invalid argument. First argument must be an array-like object or an ndarray. Value: `%s`.","BI":"invalid argument. If the first input array is an ndarray, the second input array must also be an ndarray. Value: `%s`.","BJ":"invalid argument. If the input arrays are ndarrays, the output array must also be an ndarray. Value: `%s`.","BK":"invalid argument. If the first input array is an array-like object, the second input array must also be an array-like object. Value: `%s`.","BL":"invalid argument. If the input arrays are array-like objects, the output array must also be an array-like object. Value: `%s`.","BM":"invalid argument. First argument must be an array-like object containing array-like objects. Index: `%u`. Value: `%s`.","BN":"invalid argument. First argument must be a three-dimensional nested array. Index: `%u`. Value: `%s`.","BO":"invalid argument. First argument must be a four-dimensional nested array. Index: `%u`. Value: `%s`.","BP":"invalid argument. First argument must be a four-dimensional nested array. Indices: (%u, %u). Value: `%s`.","BQ":"invalid argument. First argument must be a four-dimensional nested array. Indices: (%u, %u, %u). Value: `%s`.","BR":"invalid argument. First argument must be a five-dimensional nested array. Index: `%u`. Value: `%s`.","BS":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u). Value: `%s`.","BT":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u, %u). Value: `%s`.","BU":"invalid argument. First argument must be a five-dimensional nested array. Indices: (%u, %u, %u, %u). Value: `%s`.","BV":"invalid argument. A merge source must be an object. Value: `%s`.","BW":"invalid option. `%s` option must be either a boolean or a function. Option: `%s`.","BX":"invalid argument. Source argument must be an object. Value: `%s`.","BY":"invalid argument. Target argument must be an object. Value: `%s`.","BZ":"invalid argument. Must provide an array of strings. Value: `%s`.","Ba":"invalid argument. Field names must be distinct. Value: `%s`.","Bb":"invalid argument. Provided field name is reserved. Name: `%s`.","Bc":"invalid arguments. Arguments are incompatible with the number of tuple fields. Number of fields: `%u`. Number of data elements: `%u`.","Bd":"invalid argument. Source is incompatible with the number of tuple fields. Number of fields: `%u`. Source length: `%u`.","Be":"invalid invocation. Number of arguments is incompatible with the number of tuple fields. Number of fields: `%u`. Number of arguments: `%u`.","Bf":"invalid option. `%s` option must be a recognized data type. Option: `%s`.","Bg":"invalid argument. Second argument must be either a string or an array of strings. Value: `%s`.","Bh":"invalid argument. Must provide a valid URI. Value: `%s`.","Bi":"unexpected error. Child process failed with exit code: `%u`.","Bj":"unexpected error. Child process failed due to termination signal: `%s`.","Bk":"invalid argument. Reviver argument must be a function. Value: `%s`.","Bl":"invalid argument. Second argument must be an array-like object containing nonnegative integers. Value: `%s`.","Bm":"invalid argument. Must provide either an array, typed array, or an array-like object. Value: `%s`.","Bn":"invalid argument. Must provide a recognized type. Value: `%s`.","Bo":"invalid argument. Second argument must be an array containing only nonnegative integers. Value: `%s`.","Bp":"invalid invocation. Unexpected number of input arguments. Expected: `%u`. Actual: `%u`.","Bq":"evaluation error. Encountered an error when evaluating snippet. %s","Br":"invalid option. `%s` option must be a positive integer or null. Option: `%s`.","Bs":"insufficient arguments. Expected %u argument(s) and only received %u argument(s).","Bt":"invalid invocation. The configured arity exceeds the number of possible curried function invocations. Expected: %u. Actual: %u.","Bu":"invalid invocation. Number of arguments exceeds the number of possible curried function invocations. Expected: `%u`. Actual: `%u`.","Bv":"invalid invocation. The configured arity exceeds the number of possible curried function invocations. Expected: `%u`. Actual: `%u`.","Bw":"invalid argument. Must provide array arguments. Value: `%s`.","Bx":"invalid argument. Last argument must be either an array or an options object. Value: `%s`.","By":"invalid argument. Repository slug must be a string. Value: `%s`.","Bz":"invalid argument. Issue title must be a string. Value: `%s`.","C0":"invalid option. `%s` must be one of the following: \"%s\". Option: `%s`.","C1":"invalid argument. Repository name must be a string. Value: `%s`.","C2":"invalid option. `%s` option must be a valid URI. Option: `%s`.","C3":"invalid option. `%s` option must be a 20-character string. Option: `%s`.","C4":"invalid option. `%s` option must be a 40-character string. Option: `%s`.","C5":"invalid argument. Token id must be a nonnegative integer. Value: `%s`.","C6":"invalid argument. Workflow identifier must be a string. Value: `%s`.","C7":"invalid option. `%s` option must be an object of input key-value pairs. Option: `%s`.","C8":"invalid option. `%s` option must be a positive integer or \"last\". Option: `%s`.","C9":"invalid option. `%s` organization name option must be a string. Option: `%s`.","CA":"invalid option. Unknown method. Option: `%s`.","CB":"invalid option. Unrecognized `%s` option. Must be one of the following: \"%s\". Option: `%s`.","CC":"invalid argument. Repository slug must consist of an owner and a repository (e.g., \"stdlib-js/utils\"). Value: `%s`.","CD":"invalid argument. Topics argument must be an array of strings. Value: `%s`.","CE":"invalid option. `%s` option must be one of the following: \"%s\" or \"%s\". Option: `%s`.","CF":"invalid argument. Must provide a supported license SPDX identifier. Value: `%s`.","CG":"invalid argument. Must provide a supported file type. Value: `%s`.","CH":"invalid argument. First argument must be either a string or Buffer. Value: `%s`.","CI":"invalid argument. Second argument must be either a string or Buffer. Value: `%s`.","CJ":"invalid argument. A header object must map each filename extension to a license header string. `%s: %s`. Value: `%s`.","CK":"invalid argument. Second argument must be either a string or an object whose keys are filename extensions and whose values are header strings. Value: `%s`.","CL":"invalid argument. Second argument must be either a string, Buffer, or regular expression. Value: `%s`.","CM":"invalid argument. A header object must map each filename extension to a license header string or regular expression. `%s: %s`. Value: `%s`.","CN":"invalid argument. Second argument must be either a string, a regular expression, or an object whose keys are filename extensions and whose values are header strings or regular expressions. Value: `%s`.","CO":"invalid argument. Third argument must be either a string or Buffer. Value: `%s`.","CP":"invalid argument. Third argument must be either a string or an object whose keys are filename extensions and whose values are header strings. Value: `%s`.","CQ":"invalid argument. Database already contains an entry for the provided URI: `%s`.","CR":"invalid argument. Database already contains an entry for the provided id: `%s`.","CS":"invalid argument. First argument must be a URI. Value: `%s`.","CT":"invalid argument. Second argument must be either a string or regular expression. Value: `%s`.","CU":"invalid option. A `%s` option object must map each filename extension to a license header string or regular expression. `%s: %s`. Value: `%s`.","CV":"invalid option. `%s` option must be either a string, a regular expression, or an object whose keys are filename extensions and whose values are header strings or regular expressions. Option: `%s`.","CW":"invalid option. `%s` option must end with \"package.json\". Option: `%s`.","CX":"invalid argument. Last argument must be a callback function. Value: `%s`.","CY":"invalid option. `%s` option must be an array of package names. Option: `%s`.","CZ":"invalid argument. Version argument must be a string. Value: `%s`.","Ca":"invalid argument. Must provide either a string or a Buffer. Value: `%s`.","Cb":"invalid argument. Must provide either a string or Buffer. Value: `%s`.","Cc":"invalid argument. First argument must be either a string or array of strings. Value: `%s`.","Cd":"invalid option. `%s` option must be an object. Option: `%s`.","Ce":"unexpected error. File does not exist. Unable to resolve file: %s.","Cf":"invalid argument. Must provide either a string or an array of strings. Value: `%s`.","Cg":"invalid argument. Must provide either a string or an array of strings. Value: `%s`. Index: `%u`.","Ch":"unexpected error. Failed to sort packages. Detected the following dependency chain containing a cycle: `%s`.","Ci":"invalid node. Equation comments must have a valid label. Node: `%s`.","Cj":"invalid node. Equation comments must have valid alternate text. Node: `%s`.","Ck":"invalid node. Equation comments must have valid raw equation text. Node: `%s`.","Cl":"invalid node. Invalid equation comment. Ensure that the Markdown file includes both starting and ending equation comments. Node: `%s`.","Cm":"invalid node. Equation element must have a valid label. Node: `%s`.","Cn":"unexpected error. Code block configuration settings should be provided as comma-separated `key:value` pairs (e.g., `foo:true, bar:\"string\", baz:[\"error\",2]`). Value: `%s`.","Co":"unexpected error. Code block configuration values should be parseable as JSON. Value: `%s`.","Cp":"unexpected error. Encountered an error when executing code block. File: `%s`. Message: `%s`.","Cq":"unexpected error. Expected code block to throw an exception. File: `%s`.","Cr":"invalid node. Ensure that the Markdown file includes both a starting `<section class=\"related\">` and closing `</section>\\n\\n<!-- /.related -->`. Node: `%s`.","Cs":"invalid node. Equation comments must have valid equation text. Node: `%s`.","Ct":"invalid node. Equation comments must have valid labels. Node: `%s`.","Cu":"invalid option. `%s` option must begin with \"@stdlib/\". Option: `%s`.","Cv":"invalid argument. First argument must be a list of file paths. Value: `%s`.","Cw":"invalid arguments. Subpopulation size must be less than or equal to the population size.","Cx":"invalid arguments. Number of draws must be less than or equal to the population size.","Cy":"invalid arguments. Fourth argument is not compatible with the number of input and output ndarrays.","Cz":"invalid arguments. Input buffer is incompatible with the specified meta data. Ensure that the offset is valid with regard to the strides array and that the buffer has enough elements to satisfy the desired array shape.","D0":"invalid arguments. Length of the first argument is incompatible with the second and third arguments.","D1":"invalid argument. Provided collections must have the same length.","D2":"invalid argument. First argument must be an array-like object containing nonnegative integers.","D3":"invalid arguments. Input arrays must have the same length.","D4":"invalid argument. Must provide valid indices (i.e., must be a nonnegative integer less than or equal to the tuple length).","D5":"not implemented. Please post an issue on the @stdlib/stdlib issue tracker if you would like this to be implemented. https://github.com/stdlib-js/stdlib/issues/new/choose","D6":"invalid operation. Parser is unable to parse new chunks, as the parser has been closed. To parse new chunks, create a new parser instance.","D7":"invalid operation. Parser is in an unrecoverable error state. To parse new chunks, create a new parser instance.","D8":"invalid argument. First argument must be a one-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","D9":"invalid argument. Second argument must be a one-dimensional ndarray containing double-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float64Array). Value: `%s`.","DA":"invalid argument. First argument must be a one-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","DB":"invalid argument. Second argument must be a one-dimensional ndarray containing single-precision floating-point numbers (i.e., an ndarray whose underlying data buffer is a Float32Array). Value: `%s`.","DC":"invalid assignment. `%s` size is less than the number of data elements. Number of elements: `%u`. Value: `%u`.","DD":"invalid assignment. `%s` must be a string or an array of strings. Value: `%s`.","DE":"invalid assignment. `%s` must be a number or an array of numbers. Value: `%s`.","DF":"invalid assignment. `%s` must be a nonnegative integer or an array of nonnegative integers. Value: `%s`.","DG":"invalid assignment. `%s` must be a finite number, Date, or null. Value: `%s`.","DH":"invalid assignment. `%s` must be a boolean or an array of booleans. Value: `%s`.","DI":"invalid assignment. `%s` must be a number or null. Value: `%s`.","DJ":"invalid assignment. `%s` must be an array of strings or an empty array. Value: `%s`.","DK":"invalid state. x and y are different lengths. x length: `%u`. y length: `%u`.","DL":"invalid state. Each `x[i]:y[i]` pair must be the same length. x[%u].length: `%u`, y[%u].length: `%u`.","DM":"invalid assignment. `%s` must be a number on the interval: [0, 1]. Value: `%f`.","DN":"invalid assignment. `%s` must be null or an array. Value: `%s`.","DO":"invalid arguments. Must provide equal length array-like objects. x length: `%u`. y length: `%u`.","DP":"invalid argument. The number of comparisons must be greater or equal to the number of p-values to be adjusted. Value: `%u`.","DQ":"invalid argument. Second argument must be one of the following: \"%s\". Value: `%s`.","DR":"invalid option. `%s` option must be a number on the interval: [0, 1]. Option: `%s`.","DS":"invalid argument. First argument must contain nonnegative integers. Indices: (%s). Value: `%s`.","DT":"invalid argument. First argument must be an array of arrays or a two-dimensional ndarray-like object. Number of input array dimensions: %u.","DU":"invalid argument. First argument must be an array of arrays or a two-dimensional ndarray-like object. Value: `%s`.","DV":"invalid arguments. Minimum support must be less than maximum support. Value: `(%f, %f)`.","DW":"invalid arguments. Minimum support must be less than or equal to maximum support. Value: `(%d, %d)`.","DX":"invalid argument. Mean parameter must be a positive number. Value: `%s`.","DY":"invalid argument. Mean parameter must be a probability. Value: `%s`.","DZ":"invalid option. `%s` option must be on the interval: [0, 1]. Option: `%f`.","Da":"invalid argument. Must provide a nonnegative number on the interval: [0, 1]. Value: `%f`.","Db":"invalid argument. First argument must either specify the order of the covariance matrix or be a square two-dimensional ndarray for storing the covariance matrix. Value: `%s`.","Dc":"invalid argument. Second argument must be a one-dimensional ndarray. Value: `%s`.","Dd":"invalid argument. Must provide a one-dimensional ndarray. Value: `%s`.","De":"invalid argument. First argument must either specify the order of the correlation distance matrix or be a square two-dimensional ndarray for storing the correlation distance matrix. Value: `%s`.","Df":"invalid argument. First argument must either specify the order of the correlation matrix or be a square two-dimensional ndarray for storing the correlation matrix. Value: `%s`.","Dg":"invalid argument. Input array must be an array-like object. Value: `%s`.","Dh":"invalid argument. Output array must be an array-like object. Value: `%s`.","Di":"invalid argument. Mask array offset must be a nonnegative integer. Value: `%s`.","Dj":"invalid argument. Must provide recognized data types. Unable to resolve a data type string. Value: `%s`.","Dk":"invalid option. `%s` option must be one of the following: ['%s']. Option: `%s`.","Dl":"invalid argument. Database already contains an entry for the provided URI. Value: `%s`.","Dm":"invalid argument. Database already contains an entry for the provided id. Value: `%s`.","Dn":"invalid argument. First argument must be an array of objects. Value: `%s`.","Do":"unexpected error. File does not exist. Unable to resolve file: `%s`.","Dp":"invalid argument. First argument must be either a string or an array of strings. Value: `%s`.","Dq":"invalid argument. First argument must be either a string or an array of strings. Value: `%s`. Index: `%u`.","Dr":"invalid argument. Must provide either an options object or a function. Value: `%s`.","Ds":"invalid option. `%s` option must be a nonnegative integer or an array of nonnegative integers. Option: `%s`.","Dt":"invalid argument. Fourth argument must contain a single element equal to 0. Value: `%d`.","Du":"invalid argument. Indices must be integer valued. Argument: `%i`. Value: `%s`.","Dv":"invalid argument. Must provide an ndarray. Value: `%s`.","Dw":"invalid argument. Second argument must be a supported data type policy. Value: `%s`.","Dx":"invalid argument. Must provide either an integer or a Date object. Value: `%s`.","Dy":"invalid argument. Must provide a valid duration string. Value: `%s`.","Dz":"invalid argument. Day number must be on the interval: [1, %u]. Value: `%d`.","E0":"invalid argument. First argument must be a string or integer. Value: `%s`.","E1":"invalid option. `%s` option must be one of the following: \"%s\". Value: `%s`.","E2":"invalid argument. Third argument must be either an integer (starting index) or a function. Value: `%s`.","E3":"invalid argument. Fourth argument must be either an integer (ending index) or a function. Value: `%s`.","E4":"invalid argument. Second argument must be a valid position (i.e., be within string bounds). Value: `%d`.","E5":"invalid argument. Must provide a valid code point (i.e., cannot exceed %u). Value: `%s`.","E6":"invalid argument. First argument must be astring. Value: `%s`.","E7":"invalid argument. Second argument must be either an integer (starting index) or a function. Value: `%s`.","E8":"invalid argument. Third argument must be either an integer (ending index) or a function. Value: `%s`.","E9":"invalid argument. ArrayBuffer byte length must be a multiple of %u. Byte length: `%u`.","EA":"invalid argument. Byte offset must be a multiple of %u. Value: `%u`.","EB":"invalid argument. First argument must have a length which is a multiple of %u. Length: `%u`.","EC":"invalid argument. Second argument must be a supported data type. Value: `%s`.","ED":"invalid argument. First argument must be one of the following data types: \"%s\". Value: `%s`.","EE":"invalid argument. Second argument must be either an integer (starting view index) or a function. Value: `%s`.","EF":"invalid argument. Third argument must be either an integer (ending view index) or a function. Value: `%s`.","EG":"invalid option. `size` option must be less than or equal to the length of `x` when `replace` is `false`. Option: `%s`.","EH":"invalid option. `size` option must be less than or equal to the population size when `replace` is `false`. Option: `%s`.","EI":"invalid argument. Second argument must be either a scalar or an ndarray-like object. Value: `%s`.","EJ":"invalid argument. Minimum support must be less than maximum support. Value: `[%f, %f]`.","EK":"invalid argument. Minimum support must be less than or equal to maximum support. Value: `[%d, %d]`.","EL":"invalid %s. `state` array has an incompatible schema version. Expected: `%s`. Actual: `%s.`","EM":"invalid %s. `state` array has an incompatible number of sections. Expected: `%s`. Actual: `%s`.","EN":"invalid argument. Number of draws must be less than or equal to the population size. Value: `%u`.","EO":"invalid argument. Subpopulation size must be less than or equal to the population size. Value: `%u`.","EP":"invalid argument. Must provide a regular expression. Value: `%s`.","EQ":"invalid argument. Second argument must be an object containing property descriptors. Value: `%s`.","ER":"invalid argument. Must provide an object (except null). Value: `%s`.","ES":"invalid argument. First argument must be an object (except null). Value: `%s`.","ET":"unexpected error. Encountered an invalid record. Field %d on line %d contains a closing quote which is not immediately followed by a delimiter or newline.","EU":"unexpected error. Encountered an invalid record. Field %d on line %d contains an opening quote which does not immediately follow a delimiter or newline.","EV":"unexpected error. Encountered an invalid record. Field %d on line %d contains an escape sequence which is not immediately followed by a special character sequence.","EW":"unexpected error. Encountered an invalid record. Field %d on line %d contains an escape sequence within a quoted field which is not immediately followed by a quote sequence.","EX":"invalid argument. First argument must be a function having at least one parameter. Value: `%s`.","EY":"invalid argument. All arguments must be objects. Index: `%u`. Value: `%s`.","EZ":"invalid argument. First argument must be a non-null object. Value: `%s`.","Ea":"invalid argument. First argument must be an ndarray whose last dimension is of size %u. Actual size: `%u`.","Eb":"invalid argument. Attempting to scale a weight vector by a nonpositive value. This is likely due to too large a value of eta * lambda. Value: `%f`.","Ec":"invalid argument. Output argument must be a one-dimensional ndarray. Value: `%s`.","Ed":"invalid argument. Must provide a two-dimensional ndarray. Value: `%s`.","Ee":"invalid argument. Number of matrix columns must match centroid dimensions. Expected: `%u`. Actual: `%u`.","Ef":"invalid argument. First argument must be an integer, null, or undefined. Value: `%s`.","Eg":"invalid argument. Second argument must be an integer, null, or undefined. Value: `%s`.","Eh":"invalid argument. Third argument must be an integer, null, or undefined. Value: `%s`.","Ei":"invalid argument. Third argument cannot be zero. Value: `%s`.","Ej":"invalid argument. First argument must be a valid subsequence string. Value: `%s`.","Ek":"invalid argument. A subsequence string must have a non-zero increment. Value: `%s`.","El":"invalid argument. The subsequence string resolves to a slice which exceeds index bounds. Value: `%s`.","Em":"invalid argument. Provided arguments must be either a Slice, integer, null, or undefined. Argument: `%d`. Value: `%s`.","En":"invalid operation. Unsupported slice operation. Value: `%s`.","Eo":"invalid operation. Number of array dimensions does not match the number of slice dimensions. Array shape: (%s). Slice dimensions: %u.","Ep":"invalid operation. Slice exceeds array bounds. Array shape: (%s).","Eq":"invalid operation. A subsequence increment must be a non-zero integer. Value: `%s`.","Er":"invalid operation. A subsequence may only include a single ellipsis. Value: `%s`.","Es":"invalid argument. Cannot write to a read-only array.","Et":"invalid argument. Number of slice dimensions does not match the number of array dimensions. Array shape: (%s). Slice dimensions: %u.","Eu":"invalid argument. Slice arguments must be either a Slice, integer, null, or undefined. Value: `%s`.","Ev":"invalid operation. Number of slice dimensions does not match the number of array dimensions. Array shape: (%s). Slice dimensions: %u.","Ew":"invalid operation. Assigned value cannot be safely cast to the target array data type. Data types: [%s, %s].","Ex":"invalid operation. Unsupported target array data type. Data type: `%s`.","Ey":"invalid argument. Index must be on the interval: [0, %d]. Value: `%d`.","Ez":"invalid argument. Slice exceeds array bounds. Array shape: (%s).","F0":"invalid argument. Input array values cannot be safely cast to the output array data type. Data types: [%s, %s].","F1":"invalid argument. Second argument must be an ndarray. Value: `%s`.","F2":"invalid argument. First argument must be an ndarray having at least two dimensions.","F3":"invalid argument. Second argument must be an array of nonnegative integers. Value: `%s`.","F4":"invalid option. Cannot write to read-only array.","F5":"invalid argument. First argument must be an array of nonnegative integers. Value: `%s`.","F6":"invalid argument. Must provide an ndarray having a supported data type. Value: `%s`.","F7":"invalid argument. First argument must be an ndarray having one or more dimensions. Number of dimensions: %d.","F8":"invalid argument. Dimension index exceeds the number of dimensions. Number of dimensions: %d. Value: `%d`.","F9":"invalid argument. Third argument must be either a Slice, integer, null, or undefined. Value: `%s`.","FA":"invalid argument. First argument must be an ndarray having at least three dimensions.","FB":"invalid argument. Index must resolve to a value on the interval: [0, %d]. Value: `%d`.","FC":"invalid argument. First argument must be a recognized index mode. Value: `%s`.","FD":"invalid argument. Third argument exceeds the number of dimensions. Number of dimensions: %d. Value: `%d`.","FE":"invalid argument. Number of indices does not match the number of array dimensions. Array shape: (%s). Number of indices: %u.","FF":"invalid argument. Each index argument must be either an integer, null, or undefined. Value: `%s`.","FG":"invalid argument. First argument must be a complex number. Value: `%s`.","FH":"invalid arguments. Input arrays must be broadcast compatible.","FI":"invalid argument. The first and second arguments must have the same length.","FJ":"invalid argument. First argument must be either an ndarray or an array of ndarrays. Value: `%s`.","FK":"invalid argument. An ndarray argument must be an ndarray. Value: `%s`.","FL":"invalid argument. Second argument must be a valid property name. Value: `%s`.","FM":"invalid argument. First argument must have a `%s` method.","FN":"invalid argument. Second argument must an array of strings. Value: `%s`.","FO":"invalid argument. Third argument must be a supported data type. Value: `%s`.","FP":"invalid argument. Index argument is out-of-bounds. Value: `%s`.","FQ":"invalid argument. Second argument must be a complex number. Value: `%s`.","FR":"invalid argument. Index arguments must be integers. Value: `%s`.","FS":"invalid argument. Slice exceeds array bounds. Array length: %d.","FT":"invalid argument. Input array and the output array slice are broadcast incompatible. Array length: %u. Desired length: %u.","FU":"invalid operation. Slice exceeds array bounds.","FV":"invalid argument. First argument must be a valid index array.","FW":"invalid operation. This array index instance has already been freed and can no longer be used.","FX":"invalid argument. First argument must be a complex-valued floating-point array. Value: `%s`.","FY":"invalid operation. Index exceeds array bounds.","FZ":"invalid operation. Unrecognized array index type. Value: `%s`.","Fa":"invalid operation. Unable to resolve array index. Value: `%s`.","Fb":"invalid option. `%s` option is missing a `%s` method. Option: `%s`.","Fc":"invalid operation. If not provided an initial value, an array must contain at least one element.","Fd":"invalid arguments. Must provide equal length array-like objects.","Fe":"Index out of bounds","Ff":"invalid option. `%s` option must be less than or equal to 64. Option: `%u`.","Fg":"invalid argument. Unable to parse input string as a complex number. Value: `%s`.","Fh":"invalid operation. Cannot access settings for a REPL which has already closed.","Fi":"invalid argument. First argument must be a recognized setting. Value: `%s`.","Fj":"invalid invocation. `this` is not a boolean array.","Fk":"invalid argument. Unable to parse commits for package: `%s`.","Fl":"invalid argument. Unrecognized release type: `%s`.","Fm":"invalid argument. First argument must be a supported BLAS memory layout. Value: `%s`.","Fn":"invalid argument. First argument must be an existing theme name. Value: `%s`.","Fo":"invalid argument. First argument must not be the default theme name. Value: `%s`.","Fp":"invalid argument. Second argument must be an object. Value: `%s`.","Fq":"invalid arguments. Number of values does not equal the number of falsy values in the mask array.","Fr":"invalid arguments. Insufficient values to satisfy mask array.","Fs":"invalid arguments. Input arguments are not broadcast compatible.","Ft":"invalid arguments. Number of values does not equal the number of truthy values in the mask array.","Fu":"invalid argument. Third argument cannot be safely cast to the input array data type. Data types: [%s, %s].","Fv":"invalid argument. First argument must be a boolean. Value: `%s`.","Fw":"invalid argument. The third argument must be broadcast compatible with the second argument. Array shape: (%d). Desired shape: (%d).","Fx":"invalid argument. First argument must be a valid order. Value: `%s`.","Fy":"invalid argument. Second argument must specify whether the lower or upper triangular matrix is supplied. Value: `%s`.","Fz":"invalid argument. Third argument must be a nonnegative integer. Value: `%d`.","G0":"invalid argument. Eighth argument must be non-zero. Value: `%d`.","G1":"invalid argument. Twelfth argument must be non-zero. Value: `%d`.","G2":"invalid argument. Seventh argument must be non-zero. Value: `%d`.","G3":"invalid argument. Tenth argument must be non-zero. Value: `%d`.","G4":"invalid argument. Fourth argument must be greater than or equal to max(1,%d). Value: `%d`.","G5":"invalid argument. First argument must be a string or an array of strings. Value: `%s`.","G6":"invalid option. `%s` option must be a valid mode. Option: `%s`.","G7":"invalid argument. First argument must be a nonnegative integer. Value: `%d`.","G8":"invalid argument. Sixth argument must be greater than or equal to %d. Value: `%d`.","G9":"invalid argument. Eighth argument must be greater than or equal to %d. Value: `%d`.","GA":"invalid argument. Second argument must specify whether to reference the lower or upper triangular matrix. Value: `%s`.","GB":"invalid argument. Sixth argument must be non-zero. Value: `%d`.","GC":"invalid argument. Tenth argument must be greater than or equal to max(1,%d). Value: `%d`.","GD":"invalid argument. First argument must specify whether the reference the lower or upper triangular matrix. Value: `%s`.","GE":"invalid argument. Second argument must be a nonnegative integer. Value: `%d`.","GF":"invalid argument. Fifth argument must be non-zero. Value: `%d`.","GG":"invalid argument. Second argument must be a valid transpose operation. Value: `%s`.","GH":"invalid argument. Fourth argument must be a nonnegative integer. Value: `%d`.","GI":"invalid argument. Ninth argument must be non-zero.","GJ":"invalid argument. Twelfth argument must be non-zero.","GK":"invalid argument. Eleventh argument must be non-zero.","GL":"invalid argument. Fifteenth argument must be non-zero.","GM":"invalid argument. Eighth argument must be greater than or equal to max(1,%d). Value: `%d`.","GN":"invalid argument. First argument must specify whether to reference the lower or upper triangular matrix. Value: `%s`.","GO":"invalid argument. Third argument must be a valid transpose operation. Value: `%s`.","GP":"invalid argument. Fourth argument must be a valid diagonal type. Value: `%s`.","GQ":"invalid argument. Fifth argument must be a nonnegative integer. Value: `%d`.","GR":"invalid argument. Seventh argument must be greater than or equal to max(1,%d). Value: `%d`.","GS":"invalid argument. Ninth argument must be non-zero. Value: `%d`.","GT":"invalid argument. First argument must specify whether the lower or upper triangular matrix is supplied. Value: `%s`.","GU":"invalid argument. Third argument must be a valid diagonal type. Value: `%s`.","GV":"invalid argument. First argument must be a valid transpose operation. Value: `%s`.","GW":"invalid argument. Tenth argument must be non-zero.","GX":"invalid argument. Fourteenth argument must be non-zero.","GY":"invalid arguments. Array must have the same shape.","GZ":"invalid argument. Second argument must be an array of integers. Value: `%s`.","Ga":"invalid argument. First argument must be an ndarray having at least %d dimensions.","Gb":"invalid argument. Dimension indices must be sorted in ascending order. Value: `%s`.","Gc":"invalid argument. Dimension indices must be unique. Value: `%s`.","Gd":"invalid argument. First argument must be an array of ndarrays. Value: `%s`.","Ge":"invalid argument. First argument must be an array of ndarrays which are broadcast-compatible. Value: `%s`.","Gf":"invalid argument. First argument must be an array of ndarrays having at least %d dimensions after broadcasting.","Gg":"invalid argument. Index argument is out-of-bounds. Value: `%d`.","Gh":"invalid argument. Sixth argument must be a nonnegative integer. Value: `%d`.","Gi":"invalid argument. Ninth argument must be greater than or equal to max(1,%d). Value: `%d`.","Gj":"invalid argument. Eleventh argument must be greater than or equal to max(1,%d). Value: `%d`.","Gk":"invalid argument. Fourteenth argument must be greater than or equal to max(1,%d). Value: `%d`.","Gl":"invalid argument. First argument must be an ndarray containing double-precision floating-point numbers. Value: `%s`.","Gm":"invalid argument. Second argument must be an ndarray containing double-precision floating-point numbers. Value: `%s`.","Gn":"invalid argument. First argument must have at least one dimension.","Go":"invalid argument. Second argument must have at least one dimension.","Gp":"invalid argument. Third argument must be a negative integer. Value: `%s`.","Gq":"invalid argument. Third argument must be a value on the interval: [%d,%d]. Value: `%d`.","Gr":"invalid argument. The size of the contracted dimension must be the same for both input ndarrays. Dim(%s,%d) = %d. Dim(%s,%d) = %d.","Gs":"invalid arguments. Input ndarrays must be broadcast compatible. Shape(%s) = (%s). Shape(%s) = (%s).","Gt":"invalid argument. Cannot write to read-only array.","Gu":"invalid arguments. The first and second arguments must have the same shape.","Gv":"unexpected error. Environment does not support WebAssembly.","Gw":"invalid invocation. Unable to perform write operation, as the WebAssembly module is not bound to an underlying WebAssembly memory instance.","Gx":"invalid argument. Second argument is incompatible with the specified byte offset and available memory. Resize the underlying memory instance in order to accommodate the list of provided values.","Gy":"invalid invocation. Unable to perform read operation, as the WebAssembly module is not bound to an underlying WebAssembly memory instance.","Gz":"invalid argument. Second argument is incompatible with the specified byte offset and available memory. Not enough values to fill the provided output array.","H0":"invalid argument. Must provide a WebAssembly memory instance. Value: `%s`.","H1":"invalid argument. First argument must be an ndarray containing single-precision floating-point numbers. Value: `%s`.","H2":"invalid argument. Second argument must be an ndarray containing single-precision floating-point numbers. Value: `%s`.","H3":"invalid invocation. `this` is not a Float64ArrayFE.","H4":"invalid argument. First argument must be a supported byte order. Value: `%s`.","H5":"invalid argument. Second argument must a data type. Value: `%s`.","H6":"invalid argument. First argument must be an ndarray-like object having a supported data type. Value: `%s`.","H7":"invalid argument. Second argument must be an ndarray-like object having a supported data type. Value: `%s`.","H8":"invalid invocation. `this` is not %s %s.","H9":"invalid argument. First argument must be a supported data type. Value: `%s`.","HA":"invalid argument. Must provide an ArrayBuffer. Value: `%s`.","HB":"invalid argument. Second argument must be a data type. Value: `%s`."}
+
+},{}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8213,14 +8336,14 @@ module.exports={"10":"invalid operation. Cannot reset a REPL which has already c
 
 // MODULES //
 
-var database = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = database;
+module.exports = main;
 
-},{"./main.js":160}],160:[function(require,module,exports){
+},{"./main.js":162}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8267,7 +8390,7 @@ function database() {
 
 module.exports = database;
 
-},{"./../data/data.json":158,"@stdlib/utils/copy":193}],161:[function(require,module,exports){
+},{"./../data/data.json":160,"@stdlib/utils/copy":198}],163:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -8301,7 +8424,7 @@ var database = require( './../lib' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof database, 'function', 'main export is a function' );
+	t.strictEqual( typeof database, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -8314,7 +8437,7 @@ tape( 'the function returns an object mappping error codes to error messages', f
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/error/tools/database/test/test.js")
-},{"./../lib":159,"@stdlib/assert/is-plain-object":121,"@stdlib/utils/keys":225,"tape":361}],162:[function(require,module,exports){
+},{"./../lib":161,"@stdlib/assert/is-plain-object":121,"@stdlib/utils/keys":230,"tape":384}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8352,14 +8475,14 @@ tape( 'the function returns an object mappping error codes to error messages', f
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":163}],163:[function(require,module,exports){
+},{"./main.js":165}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8410,7 +8533,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":166}],164:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":168}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8448,14 +8571,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":165}],165:[function(require,module,exports){
+},{"./main.js":167}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8501,7 +8624,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],166:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8545,14 +8668,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":167}],167:[function(require,module,exports){
+},{"./main.js":169}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8604,7 +8727,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],168:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8639,14 +8762,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":169}],169:[function(require,module,exports){
+},{"./main.js":171}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8671,7 +8794,123 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],170:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":173}],173:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8721,20 +8960,20 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":171,"./regexp.js":172,"@stdlib/utils/define-nonenumerable-read-only-property":195}],171:[function(require,module,exports){
+},{"./main.js":175,"./regexp.js":176,"@stdlib/utils/define-nonenumerable-read-only-property":201}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8790,7 +9029,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],172:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8852,7 +9091,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":171}],173:[function(require,module,exports){
+},{"./main.js":175}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8901,25 +9140,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":174,"./regexp.js":175,"@stdlib/utils/define-nonenumerable-read-only-property":195}],174:[function(require,module,exports){
+},{"./main.js":178,"./regexp.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":201}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8965,7 +9199,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],175:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9025,7 +9259,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -9037,7 +9270,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":174}],176:[function(require,module,exports){
+},{"./main.js":178}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9123,7 +9356,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -9150,7 +9383,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":179}],177:[function(require,module,exports){
+},{"./is_number.js":183}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9267,7 +9500,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":179,"./zero_pad.js":183}],178:[function(require,module,exports){
+},{"./is_number.js":183,"./zero_pad.js":187}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9303,14 +9536,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":181}],179:[function(require,module,exports){
+},{"./main.js":185}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9358,7 +9591,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],180:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9402,7 +9635,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],181:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9435,11 +9668,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -9570,6 +9821,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -9578,9 +9830,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -9619,7 +9869,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":176,"./format_integer.js":177,"./is_string.js":180,"./space_pad.js":182,"./zero_pad.js":183}],182:[function(require,module,exports){
+},{"./format_double.js":180,"./format_integer.js":181,"./is_string.js":184,"./space_pad.js":186,"./zero_pad.js":187}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9686,7 +9936,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],183:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9772,7 +10022,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],184:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9808,14 +10058,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":185}],185:[function(require,module,exports){
+},{"./main.js":189}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9907,7 +10157,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],186:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9945,16 +10195,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":188}],187:[function(require,module,exports){
-arguments[4][180][0].apply(exports,arguments)
-},{"dup":180}],188:[function(require,module,exports){
+},{"./main.js":192}],191:[function(require,module,exports){
+arguments[4][184][0].apply(exports,arguments)
+},{"dup":184}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10002,18 +10252,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -10023,7 +10270,79 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":187,"@stdlib/string/base/format-interpolate":178,"@stdlib/string/base/format-tokenize":184}],189:[function(require,module,exports){
+},{"./is_string.js":191,"@stdlib/string/base/format-interpolate":182,"@stdlib/string/base/format-tokenize":188}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":194}],194:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10064,14 +10383,14 @@ module.exports = format;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":190}],190:[function(require,module,exports){
+},{"./main.js":196}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10153,86 +10472,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":76,"@stdlib/regexp/function-name":170,"@stdlib/utils/native-class":232}],191:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":192,"@stdlib/assert/is-array":68,"@stdlib/assert/is-nonnegative-integer":107,"@stdlib/constants/float64/pinf":148,"@stdlib/string/format":186}],192:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":76,"@stdlib/regexp/function-name":174,"@stdlib/utils/native-class":237}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10280,7 +10520,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -10540,7 +10779,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":194,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":68,"@stdlib/assert/is-buffer":76,"@stdlib/assert/is-error":84,"@stdlib/buffer/from-buffer":143,"@stdlib/utils/define-property":200,"@stdlib/utils/get-prototype-of":204,"@stdlib/utils/index-of":214,"@stdlib/utils/keys":225,"@stdlib/utils/property-descriptor":241,"@stdlib/utils/property-names":245,"@stdlib/utils/regexp-from-string":248,"@stdlib/utils/type-of":253}],193:[function(require,module,exports){
+},{"./typed_arrays.js":200,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":68,"@stdlib/assert/is-buffer":76,"@stdlib/assert/is-error":84,"@stdlib/buffer/from-buffer":145,"@stdlib/utils/define-property":206,"@stdlib/utils/get-prototype-of":209,"@stdlib/utils/index-of":219,"@stdlib/utils/keys":230,"@stdlib/utils/property-descriptor":246,"@stdlib/utils/property-names":250,"@stdlib/utils/regexp-from-string":252,"@stdlib/utils/type-of":258}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10591,14 +10830,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":199}],199:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":191}],194:[function(require,module,exports){
+},{"./deep_copy.js":197,"@stdlib/assert/is-array":68,"@stdlib/assert/is-nonnegative-integer":107,"@stdlib/constants/float64/pinf":150,"@stdlib/string/format":190}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10769,7 +11087,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],195:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/float64":4,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10811,14 +11129,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":196}],196:[function(require,module,exports){
+},{"./main.js":202}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10878,7 +11196,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":200}],197:[function(require,module,exports){
+},{"@stdlib/utils/define-property":206}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10941,7 +11259,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],198:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10971,7 +11289,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],199:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11024,7 +11342,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":198}],200:[function(require,module,exports){
+},{"./define_property.js":204}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11084,7 +11402,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":197,"./has_define_property_support.js":199,"./polyfill.js":201}],201:[function(require,module,exports){
+},{"./builtin.js":203,"./has_define_property_support.js":205,"./polyfill.js":207}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11208,7 +11526,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":186}],202:[function(require,module,exports){
+},{"@stdlib/string/format":190}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11250,63 +11568,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":205,"./polyfill.js":206,"@stdlib/assert/is-function":90}],203:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":202}],204:[function(require,module,exports){
+},{"./native.js":211,"./polyfill.js":212,"@stdlib/assert/is-function":90}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11341,14 +11603,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":203}],205:[function(require,module,exports){
+},{"./main.js":210}],210:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":208,"@stdlib/object/ctor":172}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11378,7 +11697,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],206:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11435,7 +11754,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":207,"@stdlib/utils/native-class":232}],207:[function(require,module,exports){
+},{"./proto.js":213,"@stdlib/utils/native-class":237}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11473,7 +11792,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],208:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":215,"./global_this.js":216,"./self.js":217,"./window.js":218,"@stdlib/assert/is-boolean":70,"@stdlib/string/format":190}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11503,7 +11903,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -11511,12 +11911,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],209:[function(require,module,exports){
-(function (global){(function (){
+},{}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -11535,137 +11934,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],210:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":211}],211:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":208,"./global.js":209,"./self.js":212,"./window.js":213,"@stdlib/assert/is-boolean":70,"@stdlib/string/format":186}],212:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11695,7 +11971,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],213:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11725,7 +12001,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],214:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11793,14 +12069,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":215}],215:[function(require,module,exports){
+},{"./main.js":220}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11935,7 +12211,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":78,"@stdlib/assert/is-integer":98,"@stdlib/assert/is-nan":103,"@stdlib/assert/is-string":123,"@stdlib/string/format":186}],216:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":78,"@stdlib/assert/is-integer":98,"@stdlib/assert/is-nan":103,"@stdlib/assert/is-string":123,"@stdlib/string/format":190}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11987,7 +12263,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],217:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12049,7 +12325,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":216,"@stdlib/assert/is-arguments":65}],218:[function(require,module,exports){
+},{"./builtin.js":221,"@stdlib/assert/is-arguments":65}],223:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -12073,7 +12349,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],219:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12133,7 +12409,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":216}],220:[function(require,module,exports){
+},{"./builtin.js":221}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12211,7 +12487,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":218,"./is_constructor_prototype.js":226,"./window.js":231,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":214,"@stdlib/utils/type-of":253}],221:[function(require,module,exports){
+},{"./excluded_keys.json":223,"./is_constructor_prototype.js":231,"./window.js":236,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":219,"@stdlib/utils/type-of":258}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12241,7 +12517,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],222:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12278,7 +12554,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":81,"@stdlib/utils/noop":237}],223:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":81,"@stdlib/utils/noop":242}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12321,7 +12597,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":81}],224:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":81}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12351,7 +12627,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],225:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12391,14 +12667,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":228}],226:[function(require,module,exports){
+},{"./main.js":233}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12437,7 +12713,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],227:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12490,7 +12766,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":220,"./has_window.js":224,"./is_constructor_prototype.js":226}],228:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":225,"./has_window.js":229,"./is_constructor_prototype.js":231}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12555,7 +12831,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":216,"./builtin_wrapper.js":217,"./has_arguments_bug.js":219,"./has_builtin.js":221,"./polyfill.js":230}],229:[function(require,module,exports){
+},{"./builtin.js":221,"./builtin_wrapper.js":222,"./has_arguments_bug.js":224,"./has_builtin.js":226,"./polyfill.js":235}],234:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -12566,7 +12842,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],230:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12670,7 +12946,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":222,"./has_non_enumerable_properties_bug.js":223,"./is_constructor_prototype_wrapper.js":227,"./non_enumerable.json":229,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":117}],231:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":227,"./has_non_enumerable_properties_bug.js":228,"./is_constructor_prototype_wrapper.js":232,"./non_enumerable.json":234,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":117}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12700,7 +12976,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],232:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12745,25 +13021,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":233,"./polyfill.js":234,"@stdlib/assert/has-tostringtag-support":50}],233:[function(require,module,exports){
+},{"./main.js":238,"./polyfill.js":239,"@stdlib/assert/has-tostringtag-support":50}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12821,7 +13097,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":235}],234:[function(require,module,exports){
+},{"./tostring.js":240}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12904,7 +13180,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":235,"./tostringtag.js":236,"@stdlib/assert/has-own-property":46}],235:[function(require,module,exports){
+},{"./tostring.js":240,"./tostringtag.js":241,"@stdlib/assert/has-own-property":46}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12934,7 +13210,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],236:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12955,6 +13231,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -12964,7 +13245,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],237:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":193}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12999,14 +13280,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":238}],238:[function(require,module,exports){
+},{"./main.js":243}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13043,7 +13324,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],239:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13107,7 +13388,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],240:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13137,7 +13418,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],241:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13196,7 +13477,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":239,"./has_builtin.js":240,"./polyfill.js":242}],242:[function(require,module,exports){
+},{"./builtin.js":244,"./has_builtin.js":245,"./polyfill.js":247}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13264,7 +13545,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":46}],243:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13284,6 +13565,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -13321,7 +13607,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],244:[function(require,module,exports){
+},{"@stdlib/object/ctor":172}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13351,7 +13637,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],245:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13408,7 +13694,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":243,"./has_builtin.js":244,"./polyfill.js":246}],246:[function(require,module,exports){
+},{"./builtin.js":248,"./has_builtin.js":249,"./polyfill.js":251}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13431,6 +13717,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -13466,7 +13753,49 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":225}],247:[function(require,module,exports){
+},{"@stdlib/object/ctor":172,"@stdlib/utils/keys":230}],252:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":253}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13523,49 +13852,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":123,"@stdlib/regexp/regexp":173,"@stdlib/string/format":186}],248:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":247}],249:[function(require,module,exports){
+},{"@stdlib/assert/is-string":123,"@stdlib/regexp/regexp":177,"@stdlib/string/format":190}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13622,7 +13909,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":250,"./fixtures/re.js":251,"./fixtures/typedarray.js":252}],250:[function(require,module,exports){
+},{"./fixtures/nodelist.js":255,"./fixtures/re.js":256,"./fixtures/typedarray.js":257}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13658,7 +13945,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":210}],251:[function(require,module,exports){
+},{"@stdlib/utils/global":214}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13686,7 +13973,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],252:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13714,7 +14001,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],253:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13753,63 +14040,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":249,"./polyfill.js":254,"./typeof.js":255}],254:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":189}],255:[function(require,module,exports){
+},{"./check.js":254,"./main.js":259,"./polyfill.js":260}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13887,7 +14131,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":189}],256:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":195}],260:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":195}],261:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -14039,11 +14326,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],257:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 
-},{}],258:[function(require,module,exports){
-arguments[4][257][0].apply(exports,arguments)
-},{"dup":257}],259:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262}],264:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -15824,7 +16111,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":256,"buffer":259,"ieee754":347}],260:[function(require,module,exports){
+},{"base64-js":261,"buffer":264,"ieee754":367}],265:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16323,7 +16610,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],261:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -16856,7 +17143,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":353}],262:[function(require,module,exports){
+},{"_process":374}],267:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16987,7 +17274,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":260,"inherits":348,"readable-stream/lib/_stream_duplex.js":264,"readable-stream/lib/_stream_passthrough.js":265,"readable-stream/lib/_stream_readable.js":266,"readable-stream/lib/_stream_transform.js":267,"readable-stream/lib/_stream_writable.js":268,"readable-stream/lib/internal/streams/end-of-stream.js":272,"readable-stream/lib/internal/streams/pipeline.js":274}],263:[function(require,module,exports){
+},{"events":265,"inherits":368,"readable-stream/lib/_stream_duplex.js":269,"readable-stream/lib/_stream_passthrough.js":270,"readable-stream/lib/_stream_readable.js":271,"readable-stream/lib/_stream_transform.js":272,"readable-stream/lib/_stream_writable.js":273,"readable-stream/lib/internal/streams/end-of-stream.js":277,"readable-stream/lib/internal/streams/pipeline.js":279}],268:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -17116,7 +17403,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],264:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17258,7 +17545,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":266,"./_stream_writable":268,"_process":353,"inherits":348}],265:[function(require,module,exports){
+},{"./_stream_readable":271,"./_stream_writable":273,"_process":374,"inherits":368}],270:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17298,7 +17585,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":267,"inherits":348}],266:[function(require,module,exports){
+},{"./_stream_transform":272,"inherits":368}],271:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18425,7 +18712,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":263,"./_stream_duplex":264,"./internal/streams/async_iterator":269,"./internal/streams/buffer_list":270,"./internal/streams/destroy":271,"./internal/streams/from":273,"./internal/streams/state":275,"./internal/streams/stream":276,"_process":353,"buffer":259,"events":260,"inherits":348,"string_decoder/":360,"util":257}],267:[function(require,module,exports){
+},{"../errors":268,"./_stream_duplex":269,"./internal/streams/async_iterator":274,"./internal/streams/buffer_list":275,"./internal/streams/destroy":276,"./internal/streams/from":278,"./internal/streams/state":280,"./internal/streams/stream":281,"_process":374,"buffer":264,"events":265,"inherits":368,"string_decoder/":383,"util":262}],272:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18627,7 +18914,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":263,"./_stream_duplex":264,"inherits":348}],268:[function(require,module,exports){
+},{"../errors":268,"./_stream_duplex":269,"inherits":368}],273:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19327,7 +19614,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":263,"./_stream_duplex":264,"./internal/streams/destroy":271,"./internal/streams/state":275,"./internal/streams/stream":276,"_process":353,"buffer":259,"inherits":348,"util-deprecate":369}],269:[function(require,module,exports){
+},{"../errors":268,"./_stream_duplex":269,"./internal/streams/destroy":276,"./internal/streams/state":280,"./internal/streams/stream":281,"_process":374,"buffer":264,"inherits":368,"util-deprecate":392}],274:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -19537,7 +19824,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":272,"_process":353}],270:[function(require,module,exports){
+},{"./end-of-stream":277,"_process":374}],275:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -19748,7 +20035,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":259,"util":257}],271:[function(require,module,exports){
+},{"buffer":264,"util":262}],276:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -19856,7 +20143,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":353}],272:[function(require,module,exports){
+},{"_process":374}],277:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -19961,12 +20248,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":263}],273:[function(require,module,exports){
+},{"../../../errors":268}],278:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],274:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -20064,7 +20351,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":263,"./end-of-stream":272}],275:[function(require,module,exports){
+},{"../../../errors":268,"./end-of-stream":277}],280:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -20092,10 +20379,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":263}],276:[function(require,module,exports){
+},{"../../../errors":268}],281:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":260}],277:[function(require,module,exports){
+},{"events":265}],282:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -20112,43 +20399,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":278,"get-intrinsic":342}],278:[function(require,module,exports){
+},{"./":283,"get-intrinsic":358}],283:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -20161,7 +20436,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":341,"get-intrinsic":342}],279:[function(require,module,exports){
+},{"es-define-property":343,"es-errors/type":349,"function-bind":357,"get-intrinsic":358,"set-function-length":378}],284:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -20257,7 +20532,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":280,"./lib/keys.js":281}],280:[function(require,module,exports){
+},{"./lib/is_arguments.js":285,"./lib/keys.js":286}],285:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -20279,7 +20554,7 @@ function unsupported(object){
     false;
 };
 
-},{}],281:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -20290,7 +20565,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],282:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":343,"es-errors/syntax":348,"es-errors/type":349,"gopd":359}],288:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -20298,29 +20631,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -20339,14 +20672,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":343,"object-keys":351}],283:[function(require,module,exports){
+},{"define-data-property":287,"has-property-descriptors":360,"object-keys":372}],289:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],284:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -20385,13 +20718,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":314,"./ToPrimitive":316,"./Type":321}],285:[function(require,module,exports){
+},{"./ToNumber":321,"./ToPrimitive":323,"./Type":328}],291:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -20399,13 +20732,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -20417,7 +20749,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -20450,28 +20782,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":330,"../helpers/isNaN":332,"../helpers/isPrefixOf":333,"./ToNumber":314,"./ToPrimitive":316,"./Type":321,"get-intrinsic":342}],286:[function(require,module,exports){
+},{"../helpers/isFinite":336,"../helpers/isNaN":337,"../helpers/isPrefixOf":338,"./ToNumber":321,"./ToPrimitive":323,"es-errors/type":349,"get-intrinsic":358}],292:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":282,"es-errors/type":349}],293:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":342}],287:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":351}],294:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -20522,7 +20887,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":290,"./InLeapYear":294,"./MonthFromTime":304,"get-intrinsic":342}],288:[function(require,module,exports){
+},{"./DayWithinYear":297,"./InLeapYear":301,"./MonthFromTime":311,"es-errors/eval":344}],295:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -20535,7 +20900,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":337,"./floor":325}],289:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./floor":332}],296:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -20547,7 +20912,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":325}],290:[function(require,module,exports){
+},{"./floor":332}],297:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -20560,7 +20925,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":288,"./DayFromYear":289,"./YearFromTime":323}],291:[function(require,module,exports){
+},{"./Day":295,"./DayFromYear":296,"./YearFromTime":330}],298:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -20580,18 +20945,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":326}],292:[function(require,module,exports){
+},{"./modulo":333}],299:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -20600,7 +20962,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -20621,7 +20985,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":329,"./IsAccessorDescriptor":295,"./IsDataDescriptor":297,"./Type":321,"get-intrinsic":342}],293:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":340,"./IsAccessorDescriptor":302,"./IsDataDescriptor":304,"es-errors/type":349}],300:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -20637,12 +21001,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":337,"./floor":325,"./modulo":326}],294:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./floor":332,"./modulo":333}],301:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -20660,14 +21022,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":291,"./YearFromTime":323,"get-intrinsic":342}],295:[function(require,module,exports){
+},{"./DaysInYear":298,"./YearFromTime":330,"es-errors/eval":344}],302:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -20676,30 +21038,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":329,"./Type":321,"has":346}],296:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":340,"es-errors/type":349,"hasown":366}],303:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":349}],297:[function(require,module,exports){
+},{"is-callable":369}],304:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -20708,23 +21072,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":329,"./Type":321,"has":346}],298:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":340,"es-errors/type":349,"hasown":366}],305:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -20733,7 +21100,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -20742,28 +21111,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":329,"./IsAccessorDescriptor":295,"./IsDataDescriptor":297,"./Type":321}],299:[function(require,module,exports){
+},{"./IsAccessorDescriptor":302,"./IsDataDescriptor":304,"./IsPropertyDescriptor":306,"es-errors/type":349}],306:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":334,"./IsAccessorDescriptor":295,"./IsDataDescriptor":297,"./Type":321}],300:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":340}],307:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -20778,7 +21139,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":330,"../helpers/timeConstants":337}],301:[function(require,module,exports){
+},{"../helpers/isFinite":336,"../helpers/timeConstants":342}],308:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -20813,7 +21174,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":330,"./DateFromTime":287,"./Day":288,"./MonthFromTime":304,"./ToInteger":313,"./YearFromTime":323,"./floor":325,"./modulo":326,"get-intrinsic":342}],302:[function(require,module,exports){
+},{"../helpers/isFinite":336,"./DateFromTime":294,"./Day":295,"./MonthFromTime":311,"./ToInteger":320,"./YearFromTime":330,"./floor":332,"./modulo":333,"get-intrinsic":358}],309:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -20838,7 +21199,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":330,"../helpers/timeConstants":337,"./ToInteger":313}],303:[function(require,module,exports){
+},{"../helpers/isFinite":336,"../helpers/timeConstants":342,"./ToInteger":320}],310:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -20854,7 +21215,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":337,"./floor":325,"./modulo":326}],304:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./floor":332,"./modulo":333}],311:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -20903,7 +21264,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":290,"./InLeapYear":294}],305:[function(require,module,exports){
+},{"./DayWithinYear":297,"./InLeapYear":301}],312:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -20918,7 +21279,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":332}],306:[function(require,module,exports){
+},{"../helpers/isNaN":337}],313:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -20934,7 +21295,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":337,"./floor":325,"./modulo":326}],307:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./floor":332,"./modulo":333}],314:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -20953,7 +21314,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":321}],308:[function(require,module,exports){
+},{"./Type":328}],315:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -20976,7 +21337,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":330,"./ToNumber":314,"./abs":324,"get-intrinsic":342}],309:[function(require,module,exports){
+},{"../helpers/isFinite":336,"./ToNumber":321,"./abs":331,"get-intrinsic":358}],316:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -20989,7 +21350,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":337,"./DayFromYear":289}],310:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./DayFromYear":296}],317:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -21003,14 +21364,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":337,"./modulo":326}],311:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./modulo":333}],318:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],312:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -21021,7 +21382,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":314}],313:[function(require,module,exports){
+},{"./ToNumber":321}],320:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -21041,10 +21402,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":330,"../helpers/isNaN":332,"../helpers/sign":336,"./ToNumber":314,"./abs":324,"./floor":325}],314:[function(require,module,exports){
+},{"../helpers/isFinite":336,"../helpers/isNaN":337,"../helpers/sign":341,"./ToNumber":321,"./abs":331,"./floor":332}],321:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -21054,46 +21423,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":316}],315:[function(require,module,exports){
+},{"./ToPrimitive":323,"call-bind/callBound":282,"safe-regex-test":377}],322:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":286,"get-intrinsic":342}],316:[function(require,module,exports){
+},{"es-object-atoms/ToObject":352}],323:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":338}],317:[function(require,module,exports){
+},{"es-to-primitive/es5":354}],324:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -21107,26 +21469,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -21134,13 +21496,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":296,"./ToBoolean":311,"./Type":321,"get-intrinsic":342,"has":346}],318:[function(require,module,exports){
+},{"./IsCallable":303,"./ToBoolean":318,"./Type":328,"es-errors/type":349,"hasown":366}],325:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21154,7 +21516,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":342}],319:[function(require,module,exports){
+},{"get-intrinsic":358}],326:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -21175,7 +21537,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":330,"../helpers/isNaN":332,"../helpers/sign":336,"./ToNumber":314,"./abs":324,"./floor":325,"./modulo":326}],320:[function(require,module,exports){
+},{"../helpers/isFinite":336,"../helpers/isNaN":337,"../helpers/sign":341,"./ToNumber":321,"./abs":331,"./floor":332,"./modulo":333}],327:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -21186,7 +21548,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":314}],321:[function(require,module,exports){
+},{"./ToNumber":321}],328:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -21212,7 +21574,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],322:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -21224,7 +21586,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":288,"./modulo":326}],323:[function(require,module,exports){
+},{"./Day":295,"./modulo":333}],330:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21242,7 +21604,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":277,"get-intrinsic":342}],324:[function(require,module,exports){
+},{"call-bind/callBound":282,"get-intrinsic":358}],331:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -21255,7 +21617,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":342}],325:[function(require,module,exports){
+},{"get-intrinsic":358}],332:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -21268,7 +21630,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],326:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -21279,7 +21641,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":335}],327:[function(require,module,exports){
+},{"../helpers/mod":339}],334:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -21292,7 +21654,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":337,"./modulo":326}],328:[function(require,module,exports){
+},{"../helpers/timeConstants":342,"./modulo":333}],335:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -21303,6 +21665,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -21345,90 +21708,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":284,"./5/AbstractRelationalComparison":285,"./5/CheckObjectCoercible":286,"./5/DateFromTime":287,"./5/Day":288,"./5/DayFromYear":289,"./5/DayWithinYear":290,"./5/DaysInYear":291,"./5/FromPropertyDescriptor":292,"./5/HourFromTime":293,"./5/InLeapYear":294,"./5/IsAccessorDescriptor":295,"./5/IsCallable":296,"./5/IsDataDescriptor":297,"./5/IsGenericDescriptor":298,"./5/IsPropertyDescriptor":299,"./5/MakeDate":300,"./5/MakeDay":301,"./5/MakeTime":302,"./5/MinFromTime":303,"./5/MonthFromTime":304,"./5/SameValue":305,"./5/SecFromTime":306,"./5/StrictEqualityComparison":307,"./5/TimeClip":308,"./5/TimeFromYear":309,"./5/TimeWithinDay":310,"./5/ToBoolean":311,"./5/ToInt32":312,"./5/ToInteger":313,"./5/ToNumber":314,"./5/ToObject":315,"./5/ToPrimitive":316,"./5/ToPropertyDescriptor":317,"./5/ToString":318,"./5/ToUint16":319,"./5/ToUint32":320,"./5/Type":321,"./5/WeekDay":322,"./5/YearFromTime":323,"./5/abs":324,"./5/floor":325,"./5/modulo":326,"./5/msFromTime":327}],329:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":290,"./5/AbstractRelationalComparison":291,"./5/Canonicalize":292,"./5/CheckObjectCoercible":293,"./5/DateFromTime":294,"./5/Day":295,"./5/DayFromYear":296,"./5/DayWithinYear":297,"./5/DaysInYear":298,"./5/FromPropertyDescriptor":299,"./5/HourFromTime":300,"./5/InLeapYear":301,"./5/IsAccessorDescriptor":302,"./5/IsCallable":303,"./5/IsDataDescriptor":304,"./5/IsGenericDescriptor":305,"./5/IsPropertyDescriptor":306,"./5/MakeDate":307,"./5/MakeDay":308,"./5/MakeTime":309,"./5/MinFromTime":310,"./5/MonthFromTime":311,"./5/SameValue":312,"./5/SecFromTime":313,"./5/StrictEqualityComparison":314,"./5/TimeClip":315,"./5/TimeFromYear":316,"./5/TimeWithinDay":317,"./5/ToBoolean":318,"./5/ToInt32":319,"./5/ToInteger":320,"./5/ToNumber":321,"./5/ToObject":322,"./5/ToPrimitive":323,"./5/ToPropertyDescriptor":324,"./5/ToString":325,"./5/ToUint16":326,"./5/ToUint32":327,"./5/Type":328,"./5/WeekDay":329,"./5/YearFromTime":330,"./5/abs":331,"./5/floor":332,"./5/modulo":333,"./5/msFromTime":334}],336:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":331,"get-intrinsic":342,"has":346}],330:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],331:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":346}],332:[function(require,module,exports){
+},{"./isNaN":337}],337:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],333:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -21443,40 +21737,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":277}],334:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":342,"has":346}],335:[function(require,module,exports){
+},{"call-bind/callBound":282}],339:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -21486,14 +21747,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],336:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":349,"hasown":366}],341:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],337:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -21514,7 +21813,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],338:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":358}],344:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],345:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],346:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],347:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],348:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],349:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],350:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],351:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":349}],352:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":353,"./RequireObjectCoercible":351}],353:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],354:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -21561,56 +21951,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":339,"is-callable":349}],339:[function(require,module,exports){
+},{"./helpers/isPrimitive":355,"is-callable":369}],355:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],340:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -21622,21 +22044,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],341:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":340}],342:[function(require,module,exports){
+},{"./implementation":356}],358:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -21675,18 +22103,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -21694,6 +22128,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -21701,9 +22137,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -21714,10 +22150,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -21725,15 +22161,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -21743,11 +22179,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -21764,7 +22210,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -21775,6 +22221,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -21829,11 +22276,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -21889,6 +22337,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -21961,29 +22412,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":341,"has":346,"has-symbols":344}],343:[function(require,module,exports){
+},{"es-errors":345,"es-errors/eval":344,"es-errors/range":346,"es-errors/ref":347,"es-errors/syntax":348,"es-errors/type":349,"es-errors/uri":350,"function-bind":357,"has-proto":361,"has-symbols":362,"hasown":366}],359:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":358}],360:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -21996,7 +22454,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":342}],344:[function(require,module,exports){
+},{"es-define-property":343}],361:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],362:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -22011,7 +22486,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":345}],345:[function(require,module,exports){
+},{"./shams":363}],363:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -22055,14 +22530,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],346:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":363}],365:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":341}],347:[function(require,module,exports){
+},{"function-bind":357}],366:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":357}],367:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -22149,7 +22644,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],348:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -22178,7 +22673,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],349:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -22224,37 +22719,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],350:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":282,"has-tostringtag/shams":364}],371:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -22378,7 +22960,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":352}],351:[function(require,module,exports){
+},{"./isArguments":373}],372:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -22412,7 +22994,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":350,"./isArguments":352}],352:[function(require,module,exports){
+},{"./implementation":371,"./isArguments":373}],373:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -22431,7 +23013,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],353:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -22617,7 +23199,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],354:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -22650,7 +23232,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":353,"through":367,"timers":368}],355:[function(require,module,exports){
+},{"_process":374,"through":390,"timers":391}],376:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -22717,7 +23299,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":259}],356:[function(require,module,exports){
+},{"buffer":264}],377:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":282,"es-errors/type":349,"is-regex":370}],378:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":287,"es-errors/type":349,"get-intrinsic":358,"gopd":359,"has-property-descriptors":360}],379:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -22732,7 +23376,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":328,"function-bind":341}],357:[function(require,module,exports){
+},{"es-abstract/es5":335,"function-bind":357}],380:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -22752,7 +23396,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":356,"./polyfill":358,"./shim":359,"define-properties":282,"function-bind":341}],358:[function(require,module,exports){
+},{"./implementation":379,"./polyfill":381,"./shim":382,"define-properties":288,"function-bind":357}],381:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -22766,7 +23410,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":356}],359:[function(require,module,exports){
+},{"./implementation":379}],382:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -22778,7 +23422,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":358,"define-properties":282}],360:[function(require,module,exports){
+},{"./polyfill":381,"define-properties":288}],383:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -23075,7 +23719,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":355}],361:[function(require,module,exports){
+},{"safe-buffer":376}],384:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -23229,7 +23873,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":362,"./lib/results":364,"./lib/test":365,"_process":353,"defined":283,"through":367,"timers":368}],362:[function(require,module,exports){
+},{"./lib/default_stream":385,"./lib/results":387,"./lib/test":388,"_process":374,"defined":289,"through":390,"timers":391}],385:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -23264,7 +23908,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":353,"fs":258,"through":367}],363:[function(require,module,exports){
+},{"_process":374,"fs":263,"through":390}],386:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -23272,7 +23916,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":353,"timers":368}],364:[function(require,module,exports){
+},{"_process":374,"timers":391}],387:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -23463,7 +24107,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":353,"events":260,"function-bind":341,"has":346,"inherits":348,"object-inspect":366,"resumer":354,"through":367,"timers":368}],365:[function(require,module,exports){
+},{"_process":374,"events":265,"function-bind":357,"has":365,"inherits":368,"object-inspect":389,"resumer":375,"through":390,"timers":391}],388:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -23964,7 +24608,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":363,"deep-equal":279,"defined":283,"events":260,"has":346,"inherits":348,"path":261,"string.prototype.trim":357}],366:[function(require,module,exports){
+},{"./next_tick":386,"deep-equal":284,"defined":289,"events":265,"has":365,"inherits":368,"path":266,"string.prototype.trim":380}],389:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -24158,7 +24802,7 @@ function inspectString (str) {
     }
 }
 
-},{}],367:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -24270,7 +24914,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":353,"stream":262}],368:[function(require,module,exports){
+},{"_process":374,"stream":267}],391:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -24349,7 +24993,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":353,"timers":368}],369:[function(require,module,exports){
+},{"process/browser.js":374,"timers":391}],392:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -24420,4 +25064,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[161]);
+},{}]},{},[163]);

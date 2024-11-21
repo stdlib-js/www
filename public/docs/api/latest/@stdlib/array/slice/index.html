@@ -1,0 +1,36 @@
+<h1 id="slice">slice</h1><blockquote><p>Return a shallow copy of a portion of an array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/slice'</span> );
+</code></pre><h4 id="slice-x-start-end-">slice( x[, start[, end]] )</h4><p>Returns a shallow copy of a portion of an array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = slice( x );
+<span class="hljs-comment">// returns [ 1, 2, 3, 4, 5, 6 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input array.</li><li><strong>start</strong>: starting index (inclusive). Default: <code>0</code>.</li><li><strong>end</strong>: ending index (exclusive). Default: <code>x.length</code>.</li></ul><p>By default, the function returns a shallow copy beginning from the first element of the provided input array. To begin copying from an alternative element, provide a starting index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = slice( x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 3, 4, 5, 6 ]</span>
+</code></pre><p>By default, the function copies through the end of the provided input array. To copy up until a specific element, provide an ending index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = slice( x, <span class="hljs-number">1</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns [ 2, 3, 4 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having a <code>slice</code> method, the function defers execution to that method and assumes that the method API has the following signature:</p><pre><code class="no-highlight language-text">x.slice( start, end )
+</code></pre></li><li><p>If provided an array-like object without a <code>slice</code> method, the function copies input array elements to a new generic array.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zero-to'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/slice'</span> );
+
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">6</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
+
+<span class="hljs-keyword">var</span> s = slice( x );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
+
+s = slice( x, <span class="hljs-number">0</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0, 2.0, 3.0 ]</span>
+
+s = slice( x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 2.0, 3.0, 4.0, 5.0 ]</span>
+
+s = slice( x, <span class="hljs-number">2</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 2.0, 3.0 ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/take"><code>@stdlib/array/take</code></a></span><span class="delimiter">: </span><span class="description">take elements from an array.</span></li></ul></section><section class="links"></section>

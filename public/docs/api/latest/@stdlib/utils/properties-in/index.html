@@ -5,11 +5,7 @@
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> propertiesIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/properties-in'</span> );
 
-<span class="hljs-keyword">var</span> hasSymbols;
-<span class="hljs-keyword">var</span> props;
-<span class="hljs-keyword">var</span> obj;
-
-hasSymbols = hasSymbolSupport();
+<span class="hljs-keyword">var</span> hasSymbols = hasSymbolSupport();
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.a = <span class="hljs-string">'b'</span>;
@@ -24,9 +20,7 @@ Foo.prototype.foo = <span class="hljs-string">'bar'</span>;
     Foo.prototype[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'foo'</span> ) ] = <span class="hljs-string">'bar'</span>;
 }
 
-obj = <span class="hljs-keyword">new</span> Foo();
-props = propertiesIn( obj );
-
-<span class="hljs-built_in">console</span>.log( props );
-<span class="hljs-comment">// e.g., => [ 'a', 'foo', ... ]</span>
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> props = propertiesIn( obj );
+<span class="hljs-comment">// returns [ 'a', 'foo', ... ]</span>
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-properties"><code>@stdlib/utils/define-properties</code></a></span><span class="delimiter">: </span><span class="description">define (and/or modify) object properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-properties"><code>@stdlib/utils/inherited-properties</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/properties"><code>@stdlib/utils/properties</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own enumerable and non-enumerable property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-names-in"><code>@stdlib/utils/property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable and non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li></ul></section><section class="links"></section>

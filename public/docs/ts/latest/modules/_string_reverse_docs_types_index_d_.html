@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -94,6 +94,12 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_string_reverse_docs_types_index_d_.options.html" class="tsd-kind-icon">Options</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
@@ -109,13 +115,13 @@
 					<a name="reversestring" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagExport assignment">Export assignment</span> reverse<wbr>String</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">reverse<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">reverse<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_string_reverse_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/string/reverse/docs/types/index.d.ts#L43">lib/node_modules/@stdlib/string/reverse/docs/types/index.d.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/string/reverse/docs/types/index.d.ts#L58">lib/node_modules/@stdlib/string/reverse/docs/types/index.d.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -131,26 +137,28 @@
 										<p>input string</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_string_reverse_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>options</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
 								<span class="tsd-signature-type">string</span>
 							</h4>
 							<p>reversed string</p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span>, {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'code_unit'</span>
+});
 <span class="hljs-comment">// returns 'gnidnats nam tsal'</span></code></pre>
 							</div>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'presidential election'</span> );
-<span class="hljs-comment">// returns 'noitcele laitnediserp'</span></code></pre>
-							</div>
-							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'javaScript'</span> );
-<span class="hljs-comment">// returns 'tpircSavaj'</span></code></pre>
-							</div>
-							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
-<span class="hljs-comment">// returns 'serusaerT neddiH'</span></code></pre>
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'grapheme'</span>
+});
+<span class="hljs-comment">// returns '🐸🐰🐷🐮🐶'</span></code></pre>
 							</div>
 						</li>
 					</ul>
@@ -170,6 +178,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_string_reverse_docs_types_index_d_.options.html" class="tsd-kind-icon">Options</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_string_reverse_docs_types_index_d_.html#reversestring" class="tsd-kind-icon">reverse<wbr>String</a>
 					</li>
@@ -238,13 +249,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

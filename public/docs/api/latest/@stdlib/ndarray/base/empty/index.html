@@ -1,0 +1,23 @@
+<h1 id="empty">empty</h1><blockquote><p>Create an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> having a specified shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty'</span> );
+</code></pre><h4 id="empty-dtype-shape-order-">empty( dtype, shape, order )</h4><p>Creates an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> having a specified shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = empty( <span class="hljs-string">'float64'</span>, [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = arr.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+<span class="hljs-keyword">var</span> dt = arr.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>dtype</strong>: underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li><li><strong>shape</strong>: array shape.</li><li><strong>order</strong>: specifies whether an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is <code>'row-major'</code> (C-style) or <code>'column-major'</code> (Fortran-style).</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>dtype</code> is <code>'generic'</code>, the function always returns a zero-filled array.</li><li>For returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarrays</a> whose underlying memory is <strong>not</strong> initialized, memory contents are unknown and may contain <strong>sensitive</strong> data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty'</span> );
+
+<span class="hljs-comment">// Get a list of data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate uninitialized arrays...</span>
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    arr = empty( dt[ i ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+    <span class="hljs-built_in">console</span>.log( arr.data );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

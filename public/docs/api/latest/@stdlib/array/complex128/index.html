@@ -24,7 +24,7 @@
 
 <span class="hljs-keyword">var</span> len = arr.length;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><h4 id="complex128array-obj-">Complex128Array( obj )</h4><p>Creates a 128-bit complex number array from an array-like object or iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre><h4 id="complex128array-obj-">Complex128Array( obj )</h4><p>Creates a 128-bit complex number array from an array-like object or iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
 
 <span class="hljs-comment">// From an array of interleaved real and imaginary components:</span>
 <span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ] );
@@ -97,7 +97,7 @@ offset = arr.byteOffset;
 
 <span class="hljs-keyword">var</span> len = arr.length;
 <span class="hljs-comment">// returns 10</span>
-</code></pre><hr><h3 id="methods">Methods</h3><p><a name="static-method-from"></a></p><h4 id="complex128arrayfrom-src-clbk-thisarg-">Complex128Array.from( src[, clbk[, thisArg]] )</h4><p>Creates a new 128-bit complex number array from an array-like object or an iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="static-method-from"></a></p><h4 id="complex128arrayfrom-src-clbk-thisarg-">Complex128Array.from( src[, clbk[, thisArg]] )</h4><p>Creates a new 128-bit complex number array from an array-like object or an iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
 
 <span class="hljs-comment">// Create an array from interleaved real and imaginary components:</span>
 <span class="hljs-keyword">var</span> arr = Complex128Array.from( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ] );
@@ -114,8 +114,8 @@ len = arr.length;
 <span class="hljs-comment">// returns 1</span>
 </code></pre><p>The iterator returned by an iterable must return either a complex number or an array-like object containing a real and imaginary component.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ITERATOR_SYMBOL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/iterator'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> iter;
 <span class="hljs-keyword">var</span> arr;
@@ -171,9 +171,9 @@ len = arr.length;
     im = imag( z );
     <span class="hljs-comment">// returns -1.0</span>
 }
-</code></pre><p>To invoke a function for each <code>src</code> value, provide a callback function. If <code>src</code> is an iterable or an array-like object containing complex numbers, the callback must return either a complex number</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>To invoke a function for each <code>src</code> value, provide a callback function. If <code>src</code> is an iterable or an array-like object containing complex numbers, the callback must return either a complex number</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>(<span class="hljs-params"> z </span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex128( real(z)*<span class="hljs-number">2.0</span>, imag(z)*<span class="hljs-number">2.0</span> );
@@ -198,9 +198,9 @@ len = arr.length;
 <span class="hljs-keyword">var</span> im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
 </code></pre><p>or an array-like object containing real and imaginary components</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-comment">// Return a callback which reuses allocated memory...</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"></span>) </span>{
@@ -242,9 +242,9 @@ re = real( z );
 im = imag( z );
 <span class="hljs-comment">// returns -4.0</span>
 </code></pre><p>If <code>src</code> is an array-like object containing interleaved real and imaginary components, the callback is invoked for each component and should return the transformed component value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
@@ -268,9 +268,9 @@ im = imag( z );
 
 <span class="hljs-keyword">var</span> im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>A callback function is provided two arguments:</p><ul><li><strong>value</strong>: source value.</li><li><strong>index</strong>: source index.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>A callback function is provided two arguments:</p><ul><li><strong>value</strong>: source value.</li><li><strong>index</strong>: source index.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>(<span class="hljs-params"> z </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
@@ -294,7 +294,7 @@ im = imag( z );
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p><a name="static-method-of"></a></p><h4 id="complex128arrayof-element0-element1-elementn-">Complex128Array.of( element0[, element1[, ...elementN]] )</h4><p>Creates a new 128-bit complex number array from a variable number of arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre><p><a name="static-method-of"></a></p><h4 id="complex128arrayof-element0-element1-elementn-">Complex128Array.of( element0[, element1[, ...elementN]] )</h4><p>Creates a new 128-bit complex number array from a variable number of arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
 
 <span class="hljs-keyword">var</span> arr = Complex128Array.of( <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns &#x3C;Complex128Array></span>
@@ -310,9 +310,45 @@ arr = Complex128Array.of( z1, z2 );
 
 len = arr.length;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p><a name="method-copy-within"></a></p><h4 id="complex128arrayprototypecopywithin-target-start-end-">Complex128Array.prototype.copyWithin( target, start[, end] )</h4><p>Copies a sequence of elements within the array starting at <code>start</code> and ending at <code>end</code> (non-inclusive) to the position starting at <code>target</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p><a name="method-at"></a></p><h4 id="complex128arrayprototypeat-i-">Complex128Array.prototype.at( i )</h4><p>Returns an array element located at integer position (index) <code>i</code>, with support for both nonnegative and negative integer positions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Set the first, second, and last elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">9.0</span>, -<span class="hljs-number">9.0</span> ], <span class="hljs-number">9</span> );
+
+<span class="hljs-comment">// Get the first element:</span>
+<span class="hljs-keyword">var</span> z = arr.at( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns -1.0</span>
+
+<span class="hljs-comment">// Get the last element:</span>
+z = arr.at( -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 9.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns -9.0</span>
+</code></pre><p>If provided an out-of-bounds index, the method returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> z = arr.at( <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns undefined</span>
+
+z = arr.at( -<span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p><a name="method-copy-within"></a></p><h4 id="complex128arrayprototypecopywithin-target-start-end-">Complex128Array.prototype.copyWithin( target, start[, end] )</h4><p>Copies a sequence of elements within the array starting at <code>start</code> and ending at <code>end</code> (non-inclusive) to the position starting at <code>target</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">4</span> );
 
@@ -364,9 +400,9 @@ re = real( z );
 
 im = imag( z );
 <span class="hljs-comment">// returns -4.0</span>
-</code></pre><p>By default, <code>end</code> equals the number of array elements (i.e., one more than the last array index). To limit the sequence length, provide an <code>end</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>By default, <code>end</code> equals the number of array elements (i.e., one more than the last array index). To limit the sequence length, provide an <code>end</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">4</span> );
 
@@ -418,9 +454,9 @@ re = real( z );
 
 im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>When a <code>target</code>, <code>start</code>, and/or <code>end</code> index is negative, the respective index is determined relative to the last array element. The following example achieves the same behavior as the previous example:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>When a <code>target</code>, <code>start</code>, and/or <code>end</code> index is negative, the respective index is determined relative to the last array element. The following example achieves the same behavior as the previous example:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">4</span> );
 
@@ -472,9 +508,9 @@ re = real( z );
 
 im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p><a name="method-entries"></a></p><h4 id="complex128arrayprototypeentries">Complex128Array.prototype.entries()</h4><p>Returns an iterator for iterating over array key-value pairs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p><a name="method-entries"></a></p><h4 id="complex128arrayprototypeentries">Complex128Array.prototype.entries()</h4><p>Returns an iterator for iterating over array key-value pairs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = [
     <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ),
@@ -516,8 +552,425 @@ im = imag( v[ <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p><a name="method-get"></a></p><h4 id="complex128arrayprototypeget-i-">Complex128Array.prototype.get( i )</h4><p>Returns an array element located at position (index) <code>i</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p><a name="method-every"></a></p><h4 id="complex128arrayprototypeevery-predicate-thisarg-">Complex128Array.prototype.every( predicate[, thisArg] )</h4><p>Returns a boolean indicating whether all elements pass a test.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Check whether all elements pass a test:</span>
+<span class="hljs-keyword">var</span> bool = arr.every( predicate );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> bool = arr.every( predicate, context );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-fill"></a></p><h4 id="complex128arrayprototypefill-value-start-end-">Complex128Array.prototype.fill( value[, start[, end]] )</h4><p>Returns a modified typed array filled with a fill value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set all elements to the same value:</span>
+arr.fill( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ) );
+
+<span class="hljs-keyword">var</span> z = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+z = arr.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-comment">// Fill all elements starting from the second element:</span>
+arr.fill( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ), <span class="hljs-number">1</span> );
+
+z = arr.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+z = arr.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-comment">// Fill all elements from first element until the second-to-last element:</span>
+arr.fill( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ), <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+
+z = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+z = arr.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 3.0</span>
+</code></pre><p>When a <code>start</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set all array elements, except the last element, to the same value:</span>
+arr.fill( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ), <span class="hljs-number">0</span>, -<span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> z = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+z = arr.get( arr.length - <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 0.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre><p><a name="method-filter"></a></p><h4 id="complex128arrayprototypefilter-predicate-thisarg-">Complex128Array.prototype.filter( predicate[, thisArg] )</h4><p>Returns a new array containing the elements of an array which pass a test implemented by a predicate function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.filter( predicate );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 1</span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> &#x26;&#x26; real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.filter( predicate, context );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-find"></a></p><h4 id="complex128arrayprototypefind-predicate-thisarg-">Complex128Array.prototype.find( predicate[, thisArg] )</h4><p>Returns the first element in an array for which a predicate function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.find( predicate );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> &#x26;&#x26; real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.find( predicate, context );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p><a name="method-find-index"></a></p><h4 id="complex128arrayprototypefindindex-predicate-thisarg-">Complex128Array.prototype.findIndex( predicate[, thisArg] )</h4><p>Returns the index of the first element in an array for which a predicate function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.findIndex( predicate );
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> &#x26;&#x26; real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.findIndex( predicate, context );
+<span class="hljs-comment">// returns -1</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-find-last"></a></p><h4 id="complex128arrayprototypefindlast-predicate-thisarg-">Complex128Array.prototype.findLast( predicate[, thisArg] )</h4><p>Returns the last element in an array for which a predicate function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.findLast( predicate );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 3.0</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> &#x26;&#x26; real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.findLast( predicate, context );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p><a name="method-find-last-index"></a></p><h4 id="complex128arrayprototypefindlastindex-predicate-thisarg-">Complex128Array.prototype.findLastIndex( predicate[, thisArg] )</h4><p>Returns the index of the last element in an array for which a predicate function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.findLastIndex( predicate );
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">0</span> &#x26;&#x26; real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.findLastIndex( predicate, context );
+<span class="hljs-comment">// returns -1</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-for-each"></a></p><h4 id="complex128arrayprototypeforeach-callbackfn-thisarg-">Complex128Array.prototype.forEach( callbackFn[, thisArg] )</h4><p>Invokes a function once for each array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, i, v.toString() );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+arr.forEach( log );
+<span class="hljs-comment">/* =>
+    0: 1 + 1i
+    1: 2 + 2i
+    2: 3 + 3i
+*/</span>
+</code></pre><p>The invoked function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, i, v.toString() );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+arr.forEach( fcn, context );
+<span class="hljs-comment">/* =>
+    0: 1 + 1i
+    1: 2 + 2i
+    2: 3 + 3i
+*/</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-get"></a></p><h4 id="complex128arrayprototypeget-i-">Complex128Array.prototype.get( i )</h4><p>Returns an array element located at position (index) <code>i</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
 
@@ -537,9 +990,273 @@ arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0<
 
 <span class="hljs-keyword">var</span> z = arr.get( <span class="hljs-number">100</span> );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre><p><a name="method-set"></a></p><h4 id="complex128arrayprototypeset-z-i-">Complex128Array.prototype.set( z[, i] )</h4><p>Sets one or more array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p><a name="method-includes"></a></p><h4 id="complex128arrayprototypeincludes-searchelement-fromindex-">Complex128Array.prototype.includes( searchElement[, fromIndex] )</h4><p>Returns a boolean indicating whether an array includes a provided value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">5</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+arr.set( [ <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ], <span class="hljs-number">3</span> );
+arr.set( [ <span class="hljs-number">5.0</span>, -<span class="hljs-number">5.0</span> ], <span class="hljs-number">4</span> );
+
+<span class="hljs-keyword">var</span> bool = arr.includes( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = arr.includes( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ), <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = arr.includes( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ), -<span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="method-index-of"></a></p><h4 id="complex128arrayprototypeindexof-searchelement-fromindex-">Complex128Array.prototype.indexOf( searchElement[, fromIndex] )</h4><p>Returns the first index at which a given element can be found.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">5</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+arr.set( [ <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ], <span class="hljs-number">3</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">4</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.indexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns 2</span>
+
+idx = arr.indexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ), <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 4</span>
+
+idx = arr.indexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ), -<span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>If <code>searchElement</code> is not present in the array, the method returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">5</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.indexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns -1</span>
+
+idx = arr.indexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ), <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p><a name="method-join"></a></p><h4 id="complex128arrayprototypejoin-separator-">Complex128Array.prototype.join( [separator] )</h4><p>Returns a new string by concatenating all array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> str = arr.join();
+<span class="hljs-comment">// returns '1 + 1i,2 - 2i,3 + 3i'</span>
+</code></pre><p>By default, the method separates serialized array elements with a comma. To use an alternative separator, provide a <code>separator</code> string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> str = arr.join( <span class="hljs-string">'/'</span> );
+<span class="hljs-comment">// returns '1 + 1i/2 - 2i/3 + 3i'</span>
+</code></pre><p><a name="method-keys"></a></p><h4 id="complex128arrayprototypekeys">Complex128Array.prototype.keys()</h4><p>Returns an iterator for iterating over each index key in a typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">2</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> iter = arr.keys();
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns 0</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+<span class="hljs-keyword">var</span> bool = iter.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul><p><a name="method-last-index-of"></a></p><h4 id="complex128arrayprototypelastindexof-searchelement-fromindex-">Complex128Array.prototype.lastIndexOf( searchElement[, fromIndex] )</h4><p>Returns the last index at which a given element can be found.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">5</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+arr.set( [ <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ], <span class="hljs-number">3</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">4</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.lastIndexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns 2</span>
+
+idx = arr.lastIndexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ), <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 1</span>
+
+idx = arr.lastIndexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">4.0</span>, -<span class="hljs-number">4.0</span> ), -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>If <code>searchElement</code> is not present in the array, the method returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">5</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> idx = arr.lastIndexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns -1</span>
+
+idx = arr.lastIndexOf( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ), <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p><a name="method-map"></a></p><h4 id="complex128arrayprototypemap-callbackfn-thisarg-">Complex128Array.prototype.map( callbackFn[, thisArg] )</h4><p>Returns a new array with each element being the result of a provided callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>*real( v ), <span class="hljs-number">2.0</span>*imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.map( scale );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns -2.0</span>
+</code></pre><p>The callback function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">2.0</span>*real( v ), <span class="hljs-number">2.0</span>*imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.map( scale, context );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-reduce"></a></p><h4 id="complex128arrayprototypereduce-reducerfn-initialvalue-">Complex128Array.prototype.reduce( reducerFn[, initialValue] )</h4><p>Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> cadd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/base/add'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.reduce( cadd );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 6.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p>The reducer function is provided four arguments:</p><ul><li><strong>acc</strong>: accumulated result.</li><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>By default, the function initializes the accumulated result to the first element in the array and passes the second array element as <code>value</code> during the first invocation of the provided callback. To begin accumulation from a different starting value and pass in the first array element as <code>value</code> during the first invocation of the provided callback, provide an <code>initialValue</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span>(<span class="hljs-params"> acc, v </span>) </span>{
+    acc += real( v );
+    <span class="hljs-keyword">return</span> acc;
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.reduce( reducer, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p><a name="method-reduce-right"></a></p><h4 id="complex128arrayprototypereduceright-reducerfn-initialvalue-">Complex128Array.prototype.reduceRight( reducerFn[, initialValue] )</h4><p>Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the following element and returning the accumulated result upon completion.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> cadd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/base/add'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.reduceRight( cadd );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 6.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p>The reducer function is provided four arguments:</p><ul><li><strong>acc</strong>: accumulated result.</li><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>By default, the function initializes the accumulated result to the last element in the array and passes the second-last array element as <code>value</code> during the first invocation of the provided callback. To begin accumulation from a different starting value and pass in the last array element as <code>value</code> during the first invocation of the provided callback, provide an <code>initialValue</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span>(<span class="hljs-params"> acc, v </span>) </span>{
+    acc += real( v );
+    <span class="hljs-keyword">return</span> acc;
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> z = arr.reduceRight( reducer, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p><a name="method-reverse"></a></p><h4 id="complex128arrayprototypereverse">Complex128Array.prototype.reverse()</h4><p>Reverses an array in-place.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.reverse();
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+z = out.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+z = out.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p><a name="method-set"></a></p><h4 id="complex128arrayprototypeset-z-i-">Complex128Array.prototype.set( z[, i] )</h4><p>Sets one or more array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
 
@@ -565,9 +1282,9 @@ re = real( z );
 
 im = imag( z );
 <span class="hljs-comment">// returns -1.0</span>
-</code></pre><p>By default, the method sets array elements starting at position (index) <code>i = 0</code>. To set elements starting elsewhere in the array, provide an index argument <code>i</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>By default, the method sets array elements starting at position (index) <code>i = 0</code>. To set elements starting elsewhere in the array, provide an index argument <code>i</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
 
@@ -593,9 +1310,9 @@ re = real( z );
 
 im = imag( z );
 <span class="hljs-comment">// returns -1.0</span>
-</code></pre><p>In addition to providing a complex number, to set one or more array elements, provide an array-like object containing either complex numbers</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>In addition to providing a complex number, to set one or more array elements, provide an array-like object containing either complex numbers</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
 
@@ -619,8 +1336,8 @@ arr.set( buf, <span class="hljs-number">4</span> );
 <span class="hljs-keyword">var</span> im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
 </code></pre><p>or interleaved real and imaginary components</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
 
@@ -639,13 +1356,432 @@ arr.set( buf, <span class="hljs-number">4</span> );
 
 <span class="hljs-keyword">var</span> im = imag( z );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>A few notes:</p><ul><li>If <code>i</code> is out-of-bounds, the method throws an error.</li><li>If a target array cannot accommodate all values (i.e., the length of source array plus <code>i</code> exceeds the target array length), the method throws an error.</li><li>If provided a <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> which shares an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> with the target array, the method will intelligently copy the source range to the destination range.</li></ul></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li><p>While a <code>Complex128Array</code> <em>strives</em> to maintain (but does not <strong>guarantee</strong>) consistency with <a href="/docs/api/latest/@stdlib/array/typed">typed arrays</a>, significant deviations from ECMAScript-defined <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> behavior are as follows:</p><ul><li>The constructor does <strong>not</strong> require the <code>new</code> operator.</li><li>The constructor and associated methods support a broader variety of input argument types in order to better accommodate complex number input.</li><li>Accessing array elements using bracket syntax (e.g., <code>Z[i]</code>) is <strong>not</strong> supported. Instead, one <strong>must</strong> use the <code>.get()</code> method which returns a value compatible with complex number output.</li><li>The <code>set</code> method has extended behavior in order to support complex numbers.</li></ul></li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre><p>A few notes:</p><ul><li>If <code>i</code> is out-of-bounds, the method throws an error.</li><li>If a target array cannot accommodate all values (i.e., the length of source array plus <code>i</code> exceeds the target array length), the method throws an error.</li><li>If provided a <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> which shares an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> with the target array, the method will intelligently copy the source range to the destination range.</li></ul><p><a name="method-slice"></a></p><h4 id="complex128arrayprototypeslice-start-end-">Complex128Array.prototype.slice( [start[, end]] )</h4><p>Copies a portion of a typed array to a new typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> out = arr.slice();
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+z = out.get( len-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 7.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre><p>By default, the method returns a typed array beginning with the first array element. To specify an alternative array index at which to begin, provide a <code>start</code> index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> out = arr.slice( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><p>By default, the method returns a typed array which includes all array elements after <code>start</code>. To limit the number of array elements after <code>start</code>, provide an <code>end</code> index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> out = arr.slice( <span class="hljs-number">1</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = out.length;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 4.0</span>
+
+z = out.get( len-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 5.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p><a name="method-some"></a></p><h4 id="complex128arrayprototypesome-predicate-thisarg-">Complex128Array.prototype.some( predicate[, thisArg] )</h4><p>Returns a boolean indicating whether at least one element passes a test.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( real( v ) === imag( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Check whether at least one element passes a test:</span>
+<span class="hljs-keyword">var</span> bool = arr.some( predicate );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( imag( v ) === real( v ) );
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-comment">// Set the first three elements:</span>
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> bool = arr.some( predicate, context );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p><a name="method-sort"></a></p><h4 id="complex128arrayprototypesort-comparefcn-">Complex128Array.prototype.sort( compareFcn )</h4><p>Sorts an array in-place.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">var</span> re1;
+    <span class="hljs-keyword">var</span> re2;
+    <span class="hljs-keyword">var</span> im1;
+    <span class="hljs-keyword">var</span> im2;
+    re1 = real( a );
+    re2 = real( b );
+    <span class="hljs-keyword">if</span> ( re1 &#x3C; re2 ) {
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> ( re1 > re2 ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    im1 = imag( a );
+    im2 = imag( b );
+    <span class="hljs-keyword">if</span> ( im1 &#x3C; im2 ) {
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> ( im1 > im2 ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.sort( compare );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns -1.0</span>
+
+z = out.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns -2.0</span>
+
+z = out.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns -3.0</span>
+</code></pre><p>The <code>compareFcn</code> determines the order of the elements. The function is called with the following arguments:</p><ul><li><strong>a</strong>: the first element for comparison.</li><li><strong>b</strong>: the second element for comparison.</li></ul><p>The function should return a number where:</p><ul><li>a negative value indicates that <code>a</code> should come before <code>b</code>.</li><li>a positive value indicates that <code>a</code> should come after <code>b</code>.</li><li>zero or <code>NaN</code> indicates that <code>a</code> and <code>b</code> are considered equal.</li></ul><p>In contrast to real numbers, one cannot define a default order relation which is compatible with multiplication. Accordingly, users <strong>must</strong> explicitly provide a <code>compareFcn</code> argument and are thus responsible for specifying a complex number ordering.</p><p><a name="method-subarray"></a></p><h4 id="complex128arrayprototypesubarray-begin-end-">Complex128Array.prototype.subarray( [begin[, end]] )</h4><p>Creates a new typed array view over the same underlying <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> subarr = arr.subarray();
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = subarr.length;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-keyword">var</span> z = subarr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+z = subarr.get( len-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 7.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre><p>By default, the method creates a typed array view beginning with the first array element. To specify an alternative array index at which to begin, provide a <code>begin</code> index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> subarr = arr.subarray( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = subarr.length;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-keyword">var</span> z = subarr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><p>By default, the method creates a typed array view which includes all array elements after <code>begin</code>. To limit the number of array elements after <code>begin</code>, provide an <code>end</code> index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> subarr = arr.subarray( <span class="hljs-number">1</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> len = subarr.length;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> z = subarr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 4.0</span>
+
+z = subarr.get( len-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 5.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p><a name="method-to-locale-string"></a></p><h4 id="complex128arrayprototypetolocalestring-locales-options-">Complex128Array.prototype.toLocaleString( [locales[, options]] )</h4><p>Serializes an array as a locale-specific string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">2</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> str = arr.toLocaleString();
+<span class="hljs-comment">// returns '1 + 1i,2 + 2i'</span>
+</code></pre><p>The method supports the following arguments:</p><ul><li><strong>locales</strong>: a string with a BCP 47 language tag or an array of such strings.</li><li><strong>options</strong>: configuration properties.</li></ul><p><a name="method-to-reversed"></a></p><h4 id="complex128arrayprototypetoreversed">Complex128Array.prototype.toReversed()</h4><p>Returns a new typed array containing the elements in reversed order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.toReversed();
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+z = out.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+z = out.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p><a name="method-to-sorted"></a></p><h4 id="complex128arrayprototypetosorted-comparefcn-">Complex128Array.prototype.toSorted( compareFcn )</h4><p>Returns a new typed array containing the elements in sorted order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compare</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">var</span> re1;
+    <span class="hljs-keyword">var</span> re2;
+    <span class="hljs-keyword">var</span> im1;
+    <span class="hljs-keyword">var</span> im2;
+    re1 = real( a );
+    re2 = real( b );
+    <span class="hljs-keyword">if</span> ( re1 &#x3C; re2 ) {
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> ( re1 > re2 ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    im1 = imag( a );
+    im2 = imag( b );
+    <span class="hljs-keyword">if</span> ( im1 &#x3C; im2 ) {
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> ( im1 > im2 ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">3.0</span>, -<span class="hljs-number">3.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = arr.toSorted( compare );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns -1.0</span>
+
+z = out.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns -2.0</span>
+
+z = out.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 3.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns -3.0</span>
+</code></pre><p>The <code>compareFcn</code> determines the order of the elements. The function is called with the following arguments:</p><ul><li><strong>a</strong>: the first element for comparison.</li><li><strong>b</strong>: the second element for comparison.</li></ul><p>The function should return a number where:</p><ul><li>a negative value indicates that <code>a</code> should come before <code>b</code>.</li><li>a positive value indicates that <code>a</code> should come after <code>b</code>.</li><li>zero or <code>NaN</code> indicates that <code>a</code> and <code>b</code> are considered equal.</li></ul><p>In contrast to real numbers, one cannot define a default order relation which is compatible with multiplication. Accordingly, users <strong>must</strong> explicitly provide a <code>compareFcn</code> argument and are thus responsible for specifying a complex number ordering.</p><p><a name="method-to-string"></a></p><h4 id="complex128arrayprototypetostring">Complex128Array.prototype.toString()</h4><p>Serializes an array as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// returns '1 + 1i,2 - 2i,3 + 3i'</span>
+</code></pre><p><a name="method-values"></a></p><h4 id="complex128arrayprototypevalues">Complex128Array.prototype.values()</h4><p>Returns an iterator for iterating over each value in a typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">2</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> iter = arr.values();
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( v );
+<span class="hljs-comment">// returns 1.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( v );
+<span class="hljs-comment">// returns -1.0</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( v );
+<span class="hljs-comment">// returns 2.0</span>
+
+im = imag( v );
+<span class="hljs-comment">// returns -2.0</span>
+
+<span class="hljs-keyword">var</span> bool = iter.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul><p><a name="method-with"></a></p><h4 id="complex128arrayprototypewith-index-value-">Complex128Array.prototype.with( index, value )</h4><p>Returns a new typed array with the element at a provided index replaced with a provided value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
+
+arr.set( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ], <span class="hljs-number">0</span> );
+arr.set( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ], <span class="hljs-number">1</span> );
+arr.set( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> out = arr.with( <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span> ) );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-keyword">var</span> z = out.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 4.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li><p>While a <code>Complex128Array</code> <em>strives</em> to maintain (but does not <strong>guarantee</strong>) consistency with <a href="/docs/api/latest/@stdlib/array/typed">typed arrays</a>, significant deviations from ECMAScript-defined <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> behavior are as follows:</p><ul><li>The constructor does <strong>not</strong> require the <code>new</code> operator.</li><li>The constructor and associated methods support a broader variety of input argument types in order to better accommodate complex number input.</li><li>Accessing array elements using bracket syntax (e.g., <code>Z[i]</code>) is <strong>not</strong> supported. Instead, one <strong>must</strong> use the <code>.get()</code> method which returns a value compatible with complex number output.</li><li>The <code>set</code> method has extended behavior in order to support complex numbers.</li></ul></li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
 <span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
 
 <span class="hljs-comment">// Create a complex array by specifying a length:</span>
 <span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">3</span> );
-<span class="hljs-built_in">console</span>.log( out );
+logEach( <span class="hljs-string">'%s'</span>, out );
 
 <span class="hljs-comment">// Create a complex array from an array of complex numbers:</span>
 <span class="hljs-keyword">var</span> arr = [
@@ -654,20 +1790,20 @@ arr.set( buf, <span class="hljs-number">4</span> );
     <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> )
 ];
 out = <span class="hljs-keyword">new</span> Complex128Array( arr );
-<span class="hljs-built_in">console</span>.log( out );
+logEach( <span class="hljs-string">'%s'</span>, out );
 
 <span class="hljs-comment">// Create a complex array from an interleaved typed array:</span>
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] );
 out = <span class="hljs-keyword">new</span> Complex128Array( arr );
-<span class="hljs-built_in">console</span>.log( out );
+logEach( <span class="hljs-string">'%s'</span>, out );
 
 <span class="hljs-comment">// Create a complex array from an array buffer:</span>
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] );
 out = <span class="hljs-keyword">new</span> Complex128Array( arr.buffer );
-<span class="hljs-built_in">console</span>.log( out );
+logEach( <span class="hljs-string">'%s'</span>, out );
 
 <span class="hljs-comment">// Create a complex array from an array buffer view:</span>
 arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] );
 out = <span class="hljs-keyword">new</span> Complex128Array( arr.buffer, <span class="hljs-number">16</span>, <span class="hljs-number">2</span> );
-<span class="hljs-built_in">console</span>.log( out );
-</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/complex64"><code>@stdlib/array/complex64</code></a></span><span class="delimiter">: </span><span class="description">Complex64Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/cmplx"><code>@stdlib/complex/cmplx</code></a></span><span class="delimiter">: </span><span class="description">create a complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64"><code>@stdlib/complex/float64</code></a></span><span class="delimiter">: </span><span class="description">128-bit complex number.</span></li></ul></section><section class="links"></section>
+logEach( <span class="hljs-string">'%s'</span>, out );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/complex64"><code>@stdlib/array/complex64</code></a></span><span class="delimiter">: </span><span class="description">Complex64Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/cmplx"><code>@stdlib/complex/cmplx</code></a></span><span class="delimiter">: </span><span class="description">create a complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64/ctor"><code>@stdlib/complex/float64/ctor</code></a></span><span class="delimiter">: </span><span class="description">128-bit complex number.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,40 @@
+<h1 id="rpad">rpad</h1><blockquote><p>Right pad a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/right-pad'</span> );
+</code></pre><h4 id="rpad-str-len-pad-">rpad( str, len, pad )</h4><p>Right pads a string such that the padded string has a length of <strong>at least</strong> <code>len</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = rpad( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span>, <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns 'a    '</span>
+
+str = rpad( <span class="hljs-string">'beep'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span> );
+<span class="hljs-comment">// returns 'beepbbbbbb'</span>
+
+str = rpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">12</span>, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns 'boopbeepbeep'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>An output string is <strong>not</strong> guaranteed to have a length of <strong>exactly</strong> <code>len</code>, but to have a length of <strong>at least</strong> <code>len</code>. To generate a padded string having a length equal to <code>len</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = rpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> ); <span class="hljs-comment">// => length 12</span>
+<span class="hljs-comment">// returns 'boopbeepbeep'</span>
+
+str = str.substring( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> ); <span class="hljs-comment">// => length 10</span>
+<span class="hljs-comment">// returns 'boopbeepbe'</span>
+
+str = str.substring( str.length-<span class="hljs-number">10</span> ); <span class="hljs-comment">// => length 10</span>
+<span class="hljs-comment">// returns 'opbeepbeep'</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
+<span class="hljs-keyword">var</span> papplyRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply-right'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> map = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> rpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/right-pad'</span> );
+
+<span class="hljs-comment">// Define a string to pad:</span>
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep'</span>;
+
+<span class="hljs-comment">// Generate random lengths:</span>
+<span class="hljs-keyword">var</span> lens = discreteUniform( <span class="hljs-number">10</span>, str.length, str.length+<span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Create a function for creating padded strings:</span>
+<span class="hljs-keyword">var</span> fcn = naryFunction( papply( papplyRight( rpad, <span class="hljs-string">'b'</span> ), str ), <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Generate padded strings:</span>
+<span class="hljs-keyword">var</span> out = map( lens, fcn );
+
+<span class="hljs-comment">// Print results:</span>
+logEach( <span class="hljs-string">'%s'</span>, out );
+</code></pre></section><section class="related"></section><section class="links"></section>

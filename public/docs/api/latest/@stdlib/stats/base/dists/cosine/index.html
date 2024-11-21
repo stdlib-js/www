@@ -7,8 +7,42 @@
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.165</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
-<span class="hljs-keyword">var</span> cosine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cosine'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cosine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cosine'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( cosine ) );
+<span class="hljs-comment">// Create a raised cosine distribution:</span>
+<span class="hljs-keyword">var</span> mu = <span class="hljs-number">2.0</span>;
+<span class="hljs-keyword">var</span> s = <span class="hljs-number">1.5</span>;
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> cosine.Cosine( mu, s );
+
+<span class="hljs-comment">// Calculate various distribution properties:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mean: %d'</span>, dist.mean );
+<span class="hljs-comment">// => 'Mean: 2'</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Median: %d'</span>, dist.median );
+<span class="hljs-comment">// => 'Median: 2'</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Mode: %d'</span>, dist.mode );
+<span class="hljs-comment">// => 'Mode: 2'</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Standard Deviation: %d'</span>, dist.stdev );
+<span class="hljs-comment">// => 'Standard Deviation: 0.5422680827869919'</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Variance: %d'</span>, dist.variance );
+<span class="hljs-comment">// => 'Variance: 0.29405467360947996'</span>
+
+<span class="hljs-comment">// Evaluate the probability density function (PDF):</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">1.5</span>;
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF( %d ): %d'</span>, x, dist.pdf( x ) );
+<span class="hljs-comment">// => 'PDF( 1.5 ): 0.5'</span>
+
+<span class="hljs-comment">// Evaluate the cumulative distribution function (CDF):</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF( %d ): %d'</span>, x, dist.cdf( x ) );
+<span class="hljs-comment">// => 'CDF( 1.5 ): 0.19550110947788535'</span>
+
+<span class="hljs-comment">// Calculate distribution moments:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Skewness: %d'</span>, cosine.skewness( mu, s ) );
+<span class="hljs-comment">// => 'Skewness: 0'</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Excess Kurtosis: %d'</span>, cosine.kurtosis( mu, s ) );
+<span class="hljs-comment">// => 'Excess Kurtosis: -0.5937628755982807'</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

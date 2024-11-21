@@ -1,0 +1,47 @@
+<h1 id="sqrtpi">sqrtpi</h1><blockquote><p>Compute the principal <a href="/docs/api/latest/@stdlib/math/base/special/sqrt">square root</a> of the product of π and a positive number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrtpi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrtpi'</span> );
+</code></pre><h4 id="sqrtpi-x-">sqrtpi( x )</h4><p>Computes the principal <a href="/docs/api/latest/@stdlib/math/base/special/sqrt">square root</a> of the product of π and a positive double-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = sqrtpi( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns ~3.5449</span>
+
+v = sqrtpi( <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns ~5.60499</span>
+
+v = sqrtpi( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = sqrtpi( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>For negative numbers, the principal <a href="/docs/api/latest/@stdlib/math/base/special/sqrt">square root</a> is <strong>not</strong> defined.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = sqrtpi( -<span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> sqrtpi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrtpi'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sqrtpi(%d) = %d'</span>, x, sqrtpi( x ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/sqrtpi.h"</span></span>
+</code></pre><h4 id="stdlib_base_sqrtpi-x-">stdlib_base_sqrtpi( x )</h4><p>Computes the principal <a href="/docs/api/latest/@stdlib/math/base/special/sqrt">square root</a> of the product of π and a positive double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> x = stdlib_base_sqrtpi( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns ~3.5449</span>
+
+x = stdlib_base_sqrtpi( <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns ~5.60499</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_sqrtpi</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/sqrtpi.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">100.0</span>;
+        v = stdlib_base_sqrtpi( x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"sqrtpi(%lf) = %lf\n"</span>, x, v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sqrt"><code>@stdlib/math/base/special/sqrt</code></a></span><span class="delimiter">: </span><span class="description">compute the principal square root of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

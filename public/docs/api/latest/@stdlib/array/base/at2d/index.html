@@ -1,0 +1,36 @@
+<h1 id="at2d">at2d</h1><blockquote><p>Return an element from a two-dimensional nested array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> at2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/at2d'</span> );
+</code></pre><h4 id="at2d-x-i0-i1-">at2d( x, i0, i1 )</h4><p>Returns an element from a two-dimensional nested array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ];
+
+<span class="hljs-keyword">var</span> out = at2d( x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = at2d( x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: two-dimensional nested input array.</li><li><strong>i0</strong>: first dimension index.</li><li><strong>i1</strong>: second dimension index.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Negative indices are resolved relative to the last element along the respective dimension, with the last element corresponding to <code>-1</code>.</li><li>If provided out-of-bounds indices, the function always returns <code>undefined</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filled2dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled2d-by'</span> );
+<span class="hljs-keyword">var</span> binary2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/binary2d'</span> );
+<span class="hljs-keyword">var</span> zeros2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros2d'</span> );
+<span class="hljs-keyword">var</span> at2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/at2d'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-comment">// Define a nested input array:</span>
+<span class="hljs-keyword">var</span> x = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Define arrays containing random index values:</span>
+<span class="hljs-keyword">var</span> i0 = filled2dBy( shape, discreteUniform( -shape[<span class="hljs-number">0</span>], shape[<span class="hljs-number">0</span>]-<span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( i0 );
+
+<span class="hljs-keyword">var</span> i1 = filled2dBy( shape, discreteUniform( -shape[<span class="hljs-number">1</span>], shape[<span class="hljs-number">1</span>]-<span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( i1 );
+
+<span class="hljs-comment">// Define an output array:</span>
+<span class="hljs-keyword">var</span> out = zeros2d( shape );
+<span class="hljs-built_in">console</span>.log( out );
+
+<span class="hljs-comment">// Fill the output array with randomly selected values from the input array:</span>
+binary2d( [ i0, i1, out ], shape, papply( at2d, x ) );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

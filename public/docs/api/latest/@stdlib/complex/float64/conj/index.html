@@ -1,0 +1,71 @@
+<h1 id="conj">conj</h1><blockquote><p>Return the <a href="https://en.wikipedia.org/wiki/Complex_conjugate">complex conjugate</a> of a double-precision complex floating-point number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> conj = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/conj'</span> );
+</code></pre><h4 id="conj-z-">conj( z )</h4><p>Returns the <a href="https://en.wikipedia.org/wiki/Complex_conjugate">complex conjugate</a> of a double-precision complex floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">var</span> str = z.toString();
+<span class="hljs-comment">// returns '5 + 3i'</span>
+
+<span class="hljs-keyword">var</span> v = conj( z );
+str = v.toString();
+<span class="hljs-comment">// returns '5 - 3i'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> conj = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/conj'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex128( discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> ), discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> ) );
+}
+
+<span class="hljs-comment">// Generate an array of random complex numbers:</span>
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">100</span>, <span class="hljs-string">'complex128'</span>, random );
+<span class="hljs-comment">// returns &#x3C;Complex128Array></span>
+
+<span class="hljs-comment">// Compute the complex conjugate of each complex number...</span>
+<span class="hljs-keyword">var</span> z;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    z = x.get( i );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'conj(%s) = %s'</span>, z.toString(), conj( z ).toString() );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/conj.h"</span></span>
+</code></pre><h4 id="stdlib_complex128_conj-z-">stdlib_complex128_conj( z )</h4><p>Returns the <a href="https://en.wikipedia.org/wiki/Complex_conjugate">complex conjugate</a> of a double-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+
+<span class="hljs-keyword">stdlib_complex128_t</span> z = stdlib_complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">2.0</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">stdlib_complex128_t</span> v = stdlib_complex128_conj( z );
+
+<span class="hljs-keyword">double</span> re = stdlib_complex128_real( v );
+<span class="hljs-comment">// returns 5.0</span>
+
+<span class="hljs-keyword">double</span> im = stdlib_complex128_imag( v );
+<span class="hljs-comment">// returns -2.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] stdlib_complex128_t</code> double-precision complex floating-point number.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">stdlib_complex128_conj</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> z )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/conj.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x[] = {
+        stdlib_complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">2.0</span> ),
+        stdlib_complex128( <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>, <span class="hljs-number">-0.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+    };
+
+    <span class="hljs-keyword">stdlib_complex128_t</span> z;
+    <span class="hljs-keyword">stdlib_complex128_t</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        z = x[ i ];
+        v = stdlib_complex128_conj( z );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"conj(%lf + %lfi) = %lf + %lfi\n"</span>, stdlib_complex128_real( z ), stdlib_complex128_imag( z ), stdlib_complex128_real( v ), stdlib_complex128_imag( v ) );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64/imag"><code>@stdlib/complex/float64/imag</code></a></span><span class="delimiter">: </span><span class="description">return the imaginary component of a double-precision complex floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64/real"><code>@stdlib/complex/float64/real</code></a></span><span class="delimiter">: </span><span class="description">return the real component of a double-precision complex floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64/reim"><code>@stdlib/complex/float64/reim</code></a></span><span class="delimiter">: </span><span class="description">return the real and imaginary components of a double-precision complex floating-point number.</span></li></ul></section><section class="links"></section>

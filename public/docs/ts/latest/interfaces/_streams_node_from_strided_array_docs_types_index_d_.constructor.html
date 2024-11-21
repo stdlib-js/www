@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -111,13 +111,13 @@
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L102">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:102</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L102">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:102</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -156,7 +156,7 @@
 								</div>
 							</li>
 							<li>
-								<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>source value</p>
 								</div>
@@ -185,9 +185,9 @@
 						</h4>
 						<p>stream instance</p>
 						<h4 class="tsd-example-title">Example</h4>
-						<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/streams/node/inspect-sink`</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/array/float64`</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/random/base/randu`</span> );
+						<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk </span>) </span>{
    <span class="hljs-built_in">console</span>.log( chunk.toString() );
@@ -232,13 +232,13 @@ stream.pipe( inspectStream( log ) );</code></pre>
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Constructor<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Constructor<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L60">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L60">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +276,7 @@ stream.pipe( inspectStream( log ) );</code></pre>
 									</div>
 								</li>
 								<li>
-									<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>source value</p>
@@ -313,9 +313,9 @@ stream.pipe( inspectStream( log ) );</code></pre>
 							</h4>
 							<p>stream instance</p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/streams/node/inspect-sink`</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/array/float64`</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/random/base/randu`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk </span>) </span>{
    <span class="hljs-built_in">console</span>.log( chunk.toString() );
@@ -342,13 +342,13 @@ stream.pipe( inspectStream( log ) );</code></pre>
 					<a name="factory" class="tsd-anchor"></a>
 					<h3>factory</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Readable</span></li>
+						<li class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Readable</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L183">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L183">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,7 +377,7 @@ stream.pipe( inspectStream( log ) );</code></pre>
 								<span class="tsd-signature-symbol">
 									:&nbsp;
 								</span>
-								<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+								<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 									Collection
 								</a>
 								,&nbsp;
@@ -400,7 +400,7 @@ stream.pipe( inspectStream( log ) );</code></pre>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -410,7 +410,7 @@ stream.pipe( inspectStream( log ) );</code></pre>
 													<h5>N: <span class="tsd-signature-type">number</span></h5>
 												</li>
 												<li>
-													<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+													<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a></h5>
 												</li>
 												<li>
 													<h5>stride: <span class="tsd-signature-type">number</span></h5>
@@ -427,8 +427,8 @@ stream.pipe( inspectStream( log ) );</code></pre>
 								</li>
 							</ul>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/array/float64`</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/random/base/randu`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
 <span class="hljs-keyword">var</span> i;
@@ -458,13 +458,13 @@ stream.pipe( inspectStream( log ) );</code></pre>
 					<a name="objectmode" class="tsd-anchor"></a>
 					<h3>object<wbr>Mode</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">object<wbr>Mode<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
+						<li class="tsd-signature tsd-kind-icon">object<wbr>Mode<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, buffer<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">?: </span><a href="_streams_node_from_strided_array_docs_types_index_d_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L222">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts#L222">lib/node_modules/@stdlib/streams/node/from-strided-array/docs/types/index.d.ts:222</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -500,7 +500,7 @@ stream.pipe( inspectStream( log ) );</code></pre>
 									</div>
 								</li>
 								<li>
-									<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>buffer: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>source value</p>
 									</div>
@@ -529,9 +529,9 @@ stream.pipe( inspectStream( log ) );</code></pre>
 							</h4>
 							<p>stream instance</p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/streams/node/inspect-sink`</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/array/float64`</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/random/base/randu`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
    <span class="hljs-built_in">console</span>.log( v );
@@ -654,13 +654,13 @@ stream.pipe( inspectStream.objectMode( log ) );</code></pre>
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

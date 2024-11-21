@@ -7,8 +7,89 @@
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.594</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gammaRandomFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/gamma'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarrayby = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> variance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/variance'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> mean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/mean'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> gamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/gamma'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( gamma ) );
+<span class="hljs-comment">// Define the shape and scale parameters:</span>
+<span class="hljs-keyword">var</span> alpha = <span class="hljs-number">3.0</span>; <span class="hljs-comment">// shape parameter (α)</span>
+<span class="hljs-keyword">var</span> beta = <span class="hljs-number">2.0</span>;  <span class="hljs-comment">// scale parameter (β)</span>
+
+<span class="hljs-comment">// Generate an array of x values:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">20.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Compute the PDF for each x:</span>
+<span class="hljs-keyword">var</span> gammaPDF = gamma.pdf.factory( alpha, beta );
+<span class="hljs-keyword">var</span> pdf = filledarrayby( x.length, <span class="hljs-string">'float64'</span>, gammaPDF );
+
+<span class="hljs-comment">// Compute the CDF for each x:</span>
+<span class="hljs-keyword">var</span> gammaCDF = gamma.cdf.factory( alpha, beta );
+<span class="hljs-keyword">var</span> cdf = filledarrayby( x.length, <span class="hljs-string">'float64'</span>, gammaCDF );
+
+<span class="hljs-comment">// Output the PDF and CDF values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x values: %s'</span>, x );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PDF values: %s'</span>, pdf );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF values: %s'</span>, cdf );
+
+<span class="hljs-comment">// Compute statistical properties:</span>
+<span class="hljs-keyword">var</span> theoreticalMean = gamma.mean( alpha, beta );
+<span class="hljs-keyword">var</span> theoreticalVariance = gamma.variance( alpha, beta );
+<span class="hljs-keyword">var</span> theoreticalSkewness = gamma.skewness( alpha, beta );
+<span class="hljs-keyword">var</span> theoreticalKurtosis = gamma.kurtosis( alpha, beta );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Mean: %s'</span>, theoreticalMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Variance: %s'</span>, theoreticalVariance );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Skewness: %s'</span>, theoreticalSkewness );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Kurtosis: %s'</span>, theoreticalKurtosis );
+
+<span class="hljs-comment">// Generate random samples from the gamma distribution:</span>
+<span class="hljs-keyword">var</span> rgamma = gammaRandomFactory( alpha, beta );
+<span class="hljs-keyword">var</span> n = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">var</span> samples = filledarrayby( n, <span class="hljs-string">'float64'</span>, rgamma );
+
+<span class="hljs-comment">// Compute sample mean and variance:</span>
+<span class="hljs-keyword">var</span> sampleMean = mean( n, samples, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sampleVariance = variance( n, <span class="hljs-number">1</span>, samples, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Mean: %s'</span>, sampleMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Variance: %s'</span>, sampleVariance );
+
+<span class="hljs-comment">// Compare sample statistics to theoretical values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Mean: %s'</span>, abs( theoreticalMean - sampleMean ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Variance: %s'</span>, abs( theoreticalVariance - sampleVariance ) );
+
+<span class="hljs-comment">// Demonstrate that the sum of `k` gamma variables is a gamma-distributed sum of `k` gamma(α, β) variables with same β is `gamma(k*α, β)`:</span>
+<span class="hljs-keyword">var</span> k = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">var</span> sumSamples = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( n );
+
+<span class="hljs-keyword">var</span> sum;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; sumSamples.length; i++ ) {
+    sum = <span class="hljs-number">0.0</span>;
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; k; j++ ) {
+        sum += rgamma();
+    }
+    sumSamples[ i ] = sum;
+}
+
+<span class="hljs-comment">// Theoretical parameters for the sum:</span>
+<span class="hljs-keyword">var</span> sumAlpha = k * alpha;
+<span class="hljs-keyword">var</span> sumMean = gamma.mean( sumAlpha, beta );
+<span class="hljs-keyword">var</span> sumVariance = gamma.variance( sumAlpha, beta );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Theoretical Mean: %s'</span>, sumMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Theoretical Variance: %s'</span>, sumVariance );
+
+<span class="hljs-comment">// Compute sample mean and variance for the sum:</span>
+<span class="hljs-keyword">var</span> sumSampleMean = mean( sumSamples.length, sumSamples, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sumSampleVariance = variance( sumSamples.length, <span class="hljs-number">1</span>, sumSamples, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Sample Mean: %s'</span>, sumSampleMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Sample Variance: %s'</span>, sumSampleVariance );
 </code></pre></section><section class="related"></section><section class="links"></section>

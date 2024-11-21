@@ -1,0 +1,31 @@
+<h1 id="bifurcateindices">bifurcateIndices</h1><blockquote><p>Split array element indices into two groups.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bifurcateIndices = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/bifurcate-indices'</span> );
+</code></pre><h4 id="bifurcateindices-x-filter-">bifurcateIndices( x, filter )</h4><p>Splits array element indices into two groups.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+<span class="hljs-keyword">var</span> filter = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+
+<span class="hljs-keyword">var</span> out = bifurcateIndices( x, filter );
+<span class="hljs-comment">// returns [ [ 0, 1, 3 ], [ 2 ] ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an element in <code>filter</code> is truthy, the corresponding element in the input array <code>x</code> belongs to the first group; otherwise, the input array element belongs to the second group.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take-indexed'</span> );
+<span class="hljs-keyword">var</span> bifurcateIndices = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/bifurcate-indices'</span> );
+
+<span class="hljs-comment">// Define an initial array of values:</span>
+<span class="hljs-keyword">var</span> values = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'woot'</span>, <span class="hljs-string">'woot'</span> ];
+
+<span class="hljs-comment">// Sample from the initial array to generate a random collection:</span>
+<span class="hljs-keyword">var</span> indices = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, values.length-<span class="hljs-number">1</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-keyword">var</span> x = take( values, indices );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-comment">// Randomly assign collection values to groups:</span>
+<span class="hljs-keyword">var</span> groups = discreteUniform( x.length, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+
+<span class="hljs-comment">// Group the values:</span>
+<span class="hljs-keyword">var</span> out = bifurcateIndices( x, groups );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

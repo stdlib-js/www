@@ -1,0 +1,26 @@
+<h1 id="minimum-data-type">Minimum Data Type</h1><blockquote><p>Determine the minimum array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> for storing a provided unsigned integer value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minUnsignedIntegerDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/min-unsigned-integer-dtype'</span> );
+</code></pre><h4 id="minunsignedintegerdatatype-value-">minUnsignedIntegerDataType( value )</h4><p>Returns the minimum array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> for storing a provided unsigned integer value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = minUnsignedIntegerDataType( <span class="hljs-number">9999</span> );
+<span class="hljs-comment">// returns 'uint16'</span>
+
+dt = minUnsignedIntegerDataType( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'uint8'</span>
+
+dt = minUnsignedIntegerDataType( <span class="hljs-number">1e100</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Once a provided integer value exceeds the maximum values of all supported unsigned integer <a href="/docs/api/latest/@stdlib/array/dtypes">data types</a>, the function defaults to returning <code>'float64'</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> exp2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/exp2'</span> );
+<span class="hljs-keyword">var</span> minUnsignedIntegerDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/min-unsigned-integer-dtype'</span> );
+
+<span class="hljs-comment">// Generate random powers:</span>
+<span class="hljs-keyword">var</span> exp = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">40</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+
+<span class="hljs-comment">// Determine the minimum data type for each generated value...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; exp.length; i++ ) {
+    v = exp2( exp[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'min(%d) => %s'</span>, v, minUnsignedIntegerDataType( v ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

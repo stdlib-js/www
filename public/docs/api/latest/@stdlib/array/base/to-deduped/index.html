@@ -1,0 +1,35 @@
+<h1 id="todeduped">toDeduped</h1><blockquote><p>Copy elements to a new "generic" array after removing consecutive duplicated values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toDeduped = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/to-deduped'</span> );
+</code></pre><h4 id="todeduped-x-limit-equalnans-">toDeduped( x, limit, equalNaNs )</h4><p>Copies elements to a new "generic" array after removing consecutive duplicated values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> y = toDeduped( x, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( x === y );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>When <code>equalNaNs</code> is <code>false</code>, <code>NaN</code> values are considered distinct, and, when <code>equalNaNs</code> is <code>true</code>, <code>NaN</code> values are considered equal.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ];
+
+<span class="hljs-keyword">var</span> y1 = toDeduped( x, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ NaN, NaN, 2, NaN, NaN ]</span>
+
+<span class="hljs-keyword">var</span> y2 = toDeduped( x, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, 2, NaN ]</span>
+</code></pre><p>To allow consecutive duplicate values up to a specified limit, provide a <code>limit</code> argument greater than one.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> y = toDeduped( x, <span class="hljs-number">2</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 1, 1, 2, 2, 3, 3 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function <strong>always</strong> returns a new "generic" array.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> toDeduped = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/to-deduped'</span> );
+
+<span class="hljs-comment">// Create an array of random numbers:</span>
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-comment">// Remove consecutive duplicates:</span>
+<span class="hljs-keyword">var</span> y = toDeduped( x, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-built_in">console</span>.log( x );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

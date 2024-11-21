@@ -14,14 +14,12 @@
 </code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
 <span class="hljs-keyword">var</span> safeCasts = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/safe-casts'</span> );
 
-<span class="hljs-keyword">var</span> DTYPES;
-<span class="hljs-keyword">var</span> list;
-<span class="hljs-keyword">var</span> i;
-
 <span class="hljs-comment">// Get the list of supported ndarray data types:</span>
-DTYPES = dtypes();
+<span class="hljs-keyword">var</span> DTYPES = dtypes();
 
 <span class="hljs-comment">// Print the list of ndarray data types to which a data type can be safely cast...</span>
+<span class="hljs-keyword">var</span> list;
+<span class="hljs-keyword">var</span> i;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; DTYPES.length; i++ ) {
     list = safeCasts( DTYPES[ i ] );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, DTYPES[ i ], list.join( <span class="hljs-string">', '</span> ) );

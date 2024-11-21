@@ -1,0 +1,38 @@
+<h1 id="arraywith">arrayWith</h1><blockquote><p>Return a new array with the element at the specified index replaced with a provided value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/with'</span> );
+</code></pre><h4 id="arraywith-x-index-value-">arrayWith( x, index, value )</h4><p>Returns a new array with the element at the specified index replaced with a provided value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = arrayWith( x, <span class="hljs-number">0</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns [ 5, 2, 3, 4 ]</span>
+
+out = arrayWith( x, -<span class="hljs-number">1</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 1, 2, 3, 6 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: an input array.</li><li><strong>index</strong>: element index.</li><li><strong>value</strong>: replacement value.</li></ul><h3 id="arraywithassign-x-index-value-out-stride-offset-">arrayWith.assign( x, index, value, out, stride, offset )</h3><p>Copies elements from one array to another array and sets the element at the specified index to a provided value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> arr = arrayWith.assign( x, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 5, 2, 3, 4 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: an input array.</li><li><strong>index</strong>: element index.</li><li><strong>value</strong>: replacement value.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having a <code>with</code> method, the <code>arrayWith</code> function defers execution to that method and assumes that the method has the following signature:</p><pre><code class="no-highlight language-text">x.with( index, value )
+</code></pre><p>If provided an array-like object without a <code>with</code> method, the <code>arrayWith</code> function shallow copies input array data to a new generic array, normalizes a provided index, and sets a specified element.</p></li><li><p>Negative indices are resolved relative to the last array element, with the last element corresponding to <code>-1</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> arrayWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/with'</span> );
+
+<span class="hljs-comment">// Define an array:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">5</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, opts );
+
+<span class="hljs-comment">// Define an array containing random index values:</span>
+<span class="hljs-keyword">var</span> indices = discreteUniform( <span class="hljs-number">100</span>, -x.length, x.length-<span class="hljs-number">1</span>, opts );
+
+<span class="hljs-comment">// Define an array with random values to set:</span>
+<span class="hljs-keyword">var</span> values = discreteUniform( indices.length, -<span class="hljs-number">10000</span>, <span class="hljs-number">10000</span>, opts );
+
+<span class="hljs-comment">// Randomly set elements in the input array:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; indices.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%s]'</span>, arrayWith( x, indices[ i ], values[ i ] ).join( <span class="hljs-string">','</span> ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

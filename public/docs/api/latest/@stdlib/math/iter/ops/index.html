@@ -1,8 +1,47 @@
 <h1 id="operators">Operators</h1><blockquote><p>Math operator iterators.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/ops'</span> );
 </code></pre><h4 id="ns">ns</h4><p>Namespace containing math operator iterators.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterators = ns;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre><p>The namespace contains the following functions for creating iterator protocol-compliant iterators:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/add"><code>iterAdd( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise addition of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/divide"><code>iterDivide( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise division of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/mod"><code>iterMod( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs an element-wise modulo operation of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/multiply"><code>iterMultiply( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise multiplication of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/subtract"><code>iterSubtract( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise subtraction of two or more iterators.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre><p>The namespace contains the following functions for creating iterator protocol-compliant iterators:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/add"><code>iterAdd( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise addition of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/divide"><code>iterDivide( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise division of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/mod"><code>iterMod( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs an element-wise modulo operation of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/multiply"><code>iterMultiply( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise multiplication of two or more iterators.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/math/iter/ops/subtract"><code>iterSubtract( iter0, ...iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which performs element-wise subtraction of two or more iterators.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 <span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/ops'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+<span class="hljs-comment">// Demonstrate operations with two iterators:</span>
+<span class="hljs-keyword">var</span> arr1 = [ <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
+<span class="hljs-keyword">var</span> arr2 = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> itAdd = ns.iterAdd( array2iterator( arr1 ), array2iterator( arr2 ) );
+<span class="hljs-keyword">var</span> itDiv = ns.iterDivide( array2iterator( arr1 ), array2iterator( arr2 ) );
+<span class="hljs-keyword">var</span> itMul = ns.iterMultiply( array2iterator( arr1 ), array2iterator( arr2 ) );
+<span class="hljs-keyword">var</span> itSub = ns.iterSubtract( array2iterator( arr1 ), array2iterator( arr2 ) );
+
+<span class="hljs-comment">// Addition: 2+1=3, 3+4=7</span>
+<span class="hljs-built_in">console</span>.log( itAdd.next().value );
+<span class="hljs-comment">// => 3.0</span>
+<span class="hljs-built_in">console</span>.log( itAdd.next().value );
+<span class="hljs-comment">// => 7.0</span>
+
+<span class="hljs-comment">// Division: 2/1=2, 3/4=0.75</span>
+<span class="hljs-built_in">console</span>.log( itDiv.next().value );
+<span class="hljs-comment">// => 2.0</span>
+<span class="hljs-built_in">console</span>.log( itDiv.next().value );
+<span class="hljs-comment">// => 0.75</span>
+
+<span class="hljs-comment">// Multiplication: 2*1=2, 3*4=12</span>
+<span class="hljs-built_in">console</span>.log( itMul.next().value );
+<span class="hljs-comment">// => 2.0</span>
+<span class="hljs-built_in">console</span>.log( itMul.next().value );
+<span class="hljs-comment">// => 12.0</span>
+
+<span class="hljs-comment">// Subtraction: 2-1=1, 3-4=-1</span>
+<span class="hljs-built_in">console</span>.log( itSub.next().value );
+<span class="hljs-comment">// => 1.0</span>
+<span class="hljs-built_in">console</span>.log( itSub.next().value );
+<span class="hljs-comment">// => -1.0</span>
+
+<span class="hljs-comment">// Demonstrate operation with iterator and constant</span>
+<span class="hljs-keyword">var</span> it3 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> itWithConstant = ns.iterAdd( it3, <span class="hljs-number">3.0</span> );
+
+<span class="hljs-built_in">console</span>.log( itWithConstant.next().value );
+<span class="hljs-comment">// => 4.0</span>
+<span class="hljs-built_in">console</span>.log( itWithConstant.next().value );
+<span class="hljs-comment">// => 5.0</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

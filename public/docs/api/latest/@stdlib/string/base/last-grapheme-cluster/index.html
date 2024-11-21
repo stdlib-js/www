@@ -1,0 +1,26 @@
+<h1 id="lastgraphemecluster">lastGraphemeCluster</h1><blockquote><p>Return the last <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lastGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last-grapheme-cluster'</span> );
+</code></pre><h4 id="lastgraphemecluster-str-n-">lastGraphemeCluster( str, n )</h4><p>Returns the last <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = lastGraphemeCluster( <span class="hljs-string">'Hello World'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'd'</span>
+
+out = lastGraphemeCluster( <span class="hljs-string">'Evening'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'ing'</span>
+
+out = lastGraphemeCluster( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lastGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last-grapheme-cluster'</span> );
+
+<span class="hljs-keyword">var</span> str = lastGraphemeCluster( <span class="hljs-string">'Hello World!'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns '!'</span>
+
+str = lastGraphemeCluster( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 'Script'</span>
+
+str = lastGraphemeCluster( <span class="hljs-string">'stdlib'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'stdlib'</span>
+
+str = lastGraphemeCluster( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '🐰🐸'</span>
+
+str = lastGraphemeCluster( <span class="hljs-string">'六书/六書'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '六書'</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/first-grapheme-cluster"><code>@stdlib/string/base/first-grapheme-cluster</code></a></span><span class="delimiter">: </span><span class="description">return the first grapheme cluster (i.e., user-perceived character) of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/last-code-point"><code>@stdlib/string/base/last-code-point</code></a></span><span class="delimiter">: </span><span class="description">return the last Unicode code point of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/last"><code>@stdlib/string/base/last</code></a></span><span class="delimiter">: </span><span class="description">return the last UTF-16 code unit of a string.</span></li></ul></section><section class="links"></section>

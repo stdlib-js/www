@@ -27,9 +27,9 @@ arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">
 };
 <span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">6</span>, opts );
 <span class="hljs-comment">// returns [ 0, 20, 40, 60, 80, 100 ]</span>
-</code></pre><p>When either <code>start</code> or <code>stop</code> is a complex number, the default output array data type is <code>'complex128'</code>. To return an output array having a different data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+</code></pre><p>When either <code>start</code> or <code>stop</code> is a complex number, the default output array data type is <code>'complex128'</code>. To return an output array having a different data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 
 <span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>

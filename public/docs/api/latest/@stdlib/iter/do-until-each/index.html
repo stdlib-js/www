@@ -1,0 +1,115 @@
+<h1 id="iterdountileach">iterDoUntilEach</h1><blockquote><p>Create an iterator which, while a test condition is false, invokes a function for each iterated value before returning the iterated value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterDoUntilEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/do-until-each'</span> );
+</code></pre><h4 id="iterdountileach-iterator-predicate-fcn-thisarg-">iterDoUntilEach( iterator, predicate, fcn[, thisArg] )</h4><p>Returns an iterator which invokes a function for each iterated value <strong>before</strong> returning the iterated value until either a <code>predicate</code> function returns <code>true</code> or the iterator has iterated over all values. Note that the condition is evaluated <strong>after</strong> executing <code>fcn</code>; thus, <code>fcn</code> <strong>always</strong> executes at least once.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v > <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assert</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">if</span> ( v !== v ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'should not be NaN'</span> );
+    }
+}
+
+<span class="hljs-keyword">var</span> it = iterDoUntilEach( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), predicate, assert );
+<span class="hljs-comment">// returns {}</span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+r = it.next().value;
+<span class="hljs-comment">// undefined</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned iterator protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a boolean value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li></ul><p>Both the <code>predicate</code> function and the function to invoke for each iterated value are provided two arguments:</p><ul><li><strong>value</strong>: iterated value</li><li><strong>index</strong>: iteration index (zero-based)</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v > <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assert</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-keyword">if</span> ( i > <span class="hljs-number">2</span> ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'unexpected error'</span> );
+    }
+}
+
+<span class="hljs-keyword">var</span> it = iterDoUntilEach( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), predicate, assert );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+r = it.next().value;
+<span class="hljs-comment">// undefined</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>To set the execution context for <code>fcn</code>, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assert</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> ( v !== v ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'should not be NaN'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v > <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-keyword">var</span> c = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> it = iterDoUntilEach( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] ), predicate, assert, c );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-keyword">var</span> count = c.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided iterator is iterable, the returned iterator is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> isnan = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-nan'</span> );
+<span class="hljs-keyword">var</span> iterDoUntilEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/do-until-each'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assert</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">if</span> ( isnan( v ) ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'should not be NaN'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v &#x3C;= <span class="hljs-number">0.75</span>;
+}
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> rand = randu({
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Create an iterator which validates generated numbers:</span>
+<span class="hljs-keyword">var</span> it = iterDoUntilEach( rand, predicate, assert );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    r = it.next();
+    <span class="hljs-keyword">if</span> ( r.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( r.value );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,32 @@
+<h1 id="mskunary2d">mskunary2d</h1><blockquote><p>Apply a unary callback to elements in a two-dimensional nested input array according to elements in a two-dimensional nested mask array and assign results to elements in a two-dimensional nested output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mskunary2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskunary2d'</span> );
+</code></pre><h4 id="mskunary2d-arrays-shape-fcn-">mskunary2d( arrays, shape, fcn )</h4><p>Applies a unary callback to elements in a two-dimensional nested input array according to elements in a two-dimensional nested mask array and assigns results to elements in a two-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-keyword">var</span> x = [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ];
+<span class="hljs-keyword">var</span> mask = [ [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] ];
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Compute the absolute values in-place:</span>
+mskunary2d( [ x, mask, x ], shape, abs );
+<span class="hljs-comment">// x => [ [ 1.0, -2.0 ], [ 3.0, 4.0 ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing one input nested array, an input nested mask array, and one output nested array.</li><li><strong>shape</strong>: array shape.</li><li><strong>fcn</strong>: unary function to apply.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes that the input and output arrays have the same shape.</li><li>An element in an input array is "masked" if the corresponding element in the mask array is non-zero.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> ).factory;
+<span class="hljs-keyword">var</span> filled2dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled2d-by'</span> );
+<span class="hljs-keyword">var</span> zeros2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros2d'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> mskunary2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskunary2d'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> x = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> mask = filled2dBy( shape, bernoulli( <span class="hljs-number">0.5</span> ) );
+<span class="hljs-built_in">console</span>.log( mask );
+
+<span class="hljs-keyword">var</span> y = zeros2d( shape );
+<span class="hljs-built_in">console</span>.log( y );
+
+mskunary2d( [ x, mask, y ], shape, abs );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

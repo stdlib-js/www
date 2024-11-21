@@ -1,0 +1,286 @@
+<h1 id="binaryfactory">binaryFactory</h1><blockquote><p>Create a factory function for generating pseudorandom values drawn from a binary PRNG.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> binaryFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/tools/binary-factory'</span> );
+</code></pre><h4 id="binaryfactory-prng-dtypes-dtype-">binaryFactory( prng, dtypes, dtype )</h4><p>Returns a factory function for generating pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>prng</strong>: binary pseudorandom number generator.</li><li><strong>dtypes</strong>: list of supported output data types.</li><li><strong>dtype</strong>: default output array data type.</li></ul><hr><h4 id="factory-param1-param2-options-">factory( [param1, param2, ][options] )</h4><p>Returns a function for generating pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>param1</strong>: first PRNG parameter.</li><li><strong>param2</strong>: second PRNG parameter.</li><li><strong>options</strong>: function options.</li></ul><p>The function supports the following options:</p><ul><li><strong>prng</strong>: pseudorandom number generator which generates uniformly distributed pseudorandom numbers.</li><li><strong>seed</strong>: pseudorandom value generator seed.</li><li><strong>state</strong>: pseudorandom value generator state.</li><li><strong>copy</strong>: boolean indicating whether to copy a provided pseudorandom value generator state.</li><li><strong>dtype</strong>: default output array data type. Setting this option overrides the default output array data type provided to the parent function.</li></ul><p>If provided PRNG parameters, the function returns a partially applied function for creating arrays, which can be useful when wanting to pass around a parameterized function for array creation.</p><hr><h3 id="full-arity">Full Arity</h3><h4 id="random-len-param1-param2-options-">random( len, param1, param2[, options] )</h4><p>Returns an array of pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = random( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>len</strong>: output array length.</li><li><strong>param1</strong>: first PRNG parameter.</li><li><strong>param2</strong>: second PRNG parameter.</li><li><strong>options</strong>: function options.</li></ul><p>The function accepts the following options:</p><ul><li><strong>dtype</strong>: output array data type. Setting this option overrides the default output array data type.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = random( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+});
+<span class="hljs-comment">// returns &#x3C;Float32Array></span>
+</code></pre><h4 id="randomassign-param1-param2-out-">random.assign( param1, param2, out )</h4><p>Fills an array with pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> out = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> v = random.assign( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span>, out );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> bool = ( out === v );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The method has the following parameters:</p><ul><li><strong>param1</strong>: first PRNG parameter.</li><li><strong>param2</strong>: second PRNG parameter.</li><li><strong>out</strong>: output array.</li></ul><h3 id="partial-application">Partial Application</h3><h4 id="random-len-options-">random( len[, options] )</h4><p>Returns an array of pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = random( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+v = random( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>len</strong>: output array length.</li><li><strong>options</strong>: function options.</li></ul><p>The function accepts the following options:</p><ul><li><strong>dtype</strong>: output array data type. Setting this option overrides the default output array data type.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> v = random( <span class="hljs-number">10</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+});
+<span class="hljs-comment">// returns &#x3C;Float32Array></span>
+
+v = random( <span class="hljs-number">10</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-comment">// returns [...]</span>
+</code></pre><h4 id="randomassign-out-">random.assign( out )</h4><p>Fills an array with pseudorandom values drawn from a binary PRNG.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> out = zeros( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> v = random.assign( out );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> bool = ( out === v );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The method has the following parameters:</p><ul><li><strong>out</strong>: output array.</li></ul><hr><h4 id="randomprng">random.PRNG</h4><p>The underlying pseudorandom number generator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> prng = random.PRNG;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><h4 id="randomseed">random.seed</h4><p>The value used to seed the underlying pseudorandom number generator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> seed = random.seed;
+<span class="hljs-comment">// returns &#x3C;Uint32Array></span>
+</code></pre><p>If the <code>factory</code> function is provided a PRNG for uniformly distributed numbers, the associated property value on the returned function is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> ).normalized;
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory({
+    <span class="hljs-string">'prng'</span>: minstd
+});
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> seed = random.seed;
+<span class="hljs-comment">// returns null</span>
+</code></pre><h4 id="randomseedlength">random.seedLength</h4><p>Length of underlying pseudorandom number generator seed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> len = random.seedLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><p>If the <code>factory</code> function is provided a PRNG for uniformly distributed numbers, the associated property value on the returned function is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> ).normalized;
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory({
+    <span class="hljs-string">'prng'</span>: minstd
+});
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> len = random.seedLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre><h4 id="randomstate">random.state</h4><p>Writable property for getting and setting the underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> state = random.state;
+<span class="hljs-comment">// returns &#x3C;Uint32Array></span>
+</code></pre><p>If the <code>factory</code> function is provided a PRNG for uniformly distributed numbers, the associated property value on the returned function is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> ).normalized;
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory({
+    <span class="hljs-string">'prng'</span>: minstd
+});
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> state = random.state;
+<span class="hljs-comment">// returns null</span>
+</code></pre><h4 id="randomstatelength">random.stateLength</h4><p>Length of underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> len = random.stateLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><p>If the <code>factory</code> function is provided a PRNG for uniformly distributed numbers, the associated property value on the returned function is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> ).normalized;
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory({
+    <span class="hljs-string">'prng'</span>: minstd
+});
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> len = random.stateLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre><h4 id="randombytelength">random.byteLength</h4><p>Size (in bytes) of underlying pseudorandom number generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> sz = random.byteLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><p>If the <code>factory</code> function is provided a PRNG for uniformly distributed numbers, the associated property value on the returned function is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> ).normalized;
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dtypes, dtypes[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory({
+    <span class="hljs-string">'prng'</span>: minstd
+});
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> sz = random.byteLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+<span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> binaryFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/tools/binary-factory'</span> );
+
+<span class="hljs-keyword">var</span> dt = dtypes( <span class="hljs-string">'real_floating_point_and_generic'</span> );
+
+<span class="hljs-keyword">var</span> factory = binaryFactory( arcsine, dt, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> random = factory();
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> x = random( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+x = random( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+});
+<span class="hljs-comment">// returns &#x3C;Float32Array></span>
+
+x = random( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-comment">// returns [...]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

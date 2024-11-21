@@ -1,0 +1,42 @@
+<h1 id="ordinalize">ordinalize</h1><blockquote><p>Convert an integer to an ordinal string (e.g., <code>1st</code>, <code>2nd</code>, etc.).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ordinalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/ordinalize'</span> );
+</code></pre><h4 id="ordinalize-value-options-">ordinalize( value[, options] )</h4><p>Converts an integer to an ordinal string (e.g., <code>1st</code>, <code>2nd</code>, etc.).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = ordinalize( <span class="hljs-string">'22'</span> );
+<span class="hljs-comment">// returns '22nd'</span>
+
+out = ordinalize( <span class="hljs-number">13</span> );
+<span class="hljs-comment">// returns '13th'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>lang</strong>: <code>string</code> indicating the language. Default: <code>'en'</code>.</li><li><strong>suffixOnly</strong>: <code>boolean</code> indicating whether to return only the ordinal suffix. Default: <code>false</code>.</li><li><strong>gender</strong>: <code>string</code> indicating whether to use the <code>masculine</code> or <code>feminine</code> grammatical form. Default: <code>'masculine'</code>.</li></ul><p>By default, the function returns an ordinal string. To return only an ordinal suffix, set the <code>suffixOnly</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = ordinalize( <span class="hljs-string">'22'</span>, {
+    <span class="hljs-string">'suffixOnly'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns 'nd'</span>
+</code></pre><p>By default, the function returns an ordinal string in English. To return an ordinal string for a different language, set the <code>lang</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = ordinalize( <span class="hljs-string">'22'</span>, {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'fr'</span>
+});
+<span class="hljs-comment">// returns '22e'</span>
+</code></pre><p>By default, if a language differentiates between masculine and feminine grammatical forms, the functions returns an ordinal string in the masculine form. To return an ordinal string in the feminine form, set the <code>gender</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'es'</span>,
+    <span class="hljs-string">'gender'</span>: <span class="hljs-string">'masculine'</span>
+};
+<span class="hljs-keyword">var</span> out = ordinalize( <span class="hljs-number">7</span>, opts );
+<span class="hljs-comment">// returns '7º'</span>
+
+opts.gender = <span class="hljs-string">'feminine'</span>;
+out = ordinalize( <span class="hljs-number">7</span>, opts );
+<span class="hljs-comment">// returns '7ª'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The following languages are supported:</p><ul><li><strong>en</strong>: English.</li><li><strong>es</strong>: Spanish.</li><li><strong>fin</strong>: Finnish.</li><li><strong>fr</strong>: French.</li><li><strong>de</strong>: German.</li><li><strong>it</strong>: Italian.</li><li><strong>pt</strong>: Portuguese.</li><li><strong>swe</strong>: Swedish.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ordinalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/ordinalize'</span> );
+
+<span class="hljs-keyword">var</span> out = ordinalize( <span class="hljs-string">'1'</span> );
+<span class="hljs-comment">// returns '1st'</span>
+
+out = ordinalize( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '2nd'</span>
+
+out = ordinalize( <span class="hljs-string">'3'</span>, {
+    <span class="hljs-string">'suffixOnly'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns 'rd'</span>
+
+out = ordinalize( <span class="hljs-string">'3'</span>, {
+    <span class="hljs-string">'lang'</span>: <span class="hljs-string">'de'</span>
+});
+<span class="hljs-comment">// returns '3.'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

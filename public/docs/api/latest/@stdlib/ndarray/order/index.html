@@ -1,0 +1,46 @@
+<h1 id="order">order</h1><blockquote><p>Return the <a href="/docs/api/latest/@stdlib/ndarray/orders">layout order</a> of a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> order = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/order'</span> );
+</code></pre><h4 id="order-x-">order( x )</h4><p>Returns the <a href="/docs/api/latest/@stdlib/ndarray/orders">layout order</a> of a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], {
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> out = order( x );
+<span class="hljs-comment">// returns 'row-major'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> order = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/order'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Define some slices:</span>
+<span class="hljs-keyword">var</span> slices = [
+    <span class="hljs-comment">// :,:,:,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 5:10,4,2:4,::-1</span>
+    E( S( <span class="hljs-number">5</span>, <span class="hljs-number">10</span> ), <span class="hljs-number">4</span>, S( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ), S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) ),
+
+    <span class="hljs-comment">// :,:,2,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,2,3,:</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,3,::2,4::2</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ), S( <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ) )
+];
+
+<span class="hljs-comment">// Determine the layout order for each slice...</span>
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; slices.length; i++ ) {
+    s = slice( x, slices[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, s.order, order( s ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/orders"><code>@stdlib/ndarray/orders</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray orders.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/shape"><code>@stdlib/ndarray/shape</code></a></span><span class="delimiter">: </span><span class="description">return the shape of a provided ndarray.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/strides"><code>@stdlib/ndarray/strides</code></a></span><span class="delimiter">: </span><span class="description">return the strides of a provided ndarray.</span></li></ul></section><section class="links"></section>

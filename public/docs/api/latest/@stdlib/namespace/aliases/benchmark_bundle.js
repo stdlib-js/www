@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -486,7 +486,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -609,7 +609,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -732,7 +732,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -750,7 +750,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+},{"./main.js":17,"./polyfill.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -789,36 +819,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],18:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -855,7 +855,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -873,7 +873,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+},{"./main.js":20,"./polyfill.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -912,36 +942,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -978,7 +978,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -996,7 +996,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1035,36 +1065,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -1101,7 +1101,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -1119,7 +1119,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1157,36 +1187,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],28:[function(require,module,exports){
 /**
@@ -1327,7 +1327,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":28,"@stdlib/assert/is-float32array":89,"@stdlib/constants/float64/pinf":225}],31:[function(require,module,exports){
+},{"./float32array.js":28,"@stdlib/assert/is-float32array":89,"@stdlib/constants/float64/pinf":223}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1605,7 +1605,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":35,"@stdlib/assert/is-int16array":95,"@stdlib/constants/int16/max":226,"@stdlib/constants/int16/min":227}],37:[function(require,module,exports){
+},{"./int16array.js":35,"@stdlib/assert/is-int16array":95,"@stdlib/constants/int16/max":224,"@stdlib/constants/int16/min":225}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1745,7 +1745,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":38,"@stdlib/assert/is-int32array":97,"@stdlib/constants/int32/max":228,"@stdlib/constants/int32/min":229}],40:[function(require,module,exports){
+},{"./int32array.js":38,"@stdlib/assert/is-int32array":97,"@stdlib/constants/int32/max":226,"@stdlib/constants/int32/min":227}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1885,7 +1885,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":41,"@stdlib/assert/is-int8array":99,"@stdlib/constants/int8/max":230,"@stdlib/constants/int8/min":231}],43:[function(require,module,exports){
+},{"./int8array.js":41,"@stdlib/assert/is-int8array":99,"@stdlib/constants/int8/max":228,"@stdlib/constants/int8/min":229}],43:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -1917,7 +1917,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":397}],44:[function(require,module,exports){
+},{"buffer":415}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,12 +1952,12 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
 },{"./main.js":45}],45:[function(require,module,exports){
 /**
@@ -2071,12 +2071,12 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":47}],47:[function(require,module,exports){
 /**
@@ -2179,12 +2179,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2265,12 +2265,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":51}],51:[function(require,module,exports){
 /**
@@ -2434,7 +2434,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":155,"@stdlib/constants/uint16/max":232}],54:[function(require,module,exports){
+},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":151,"@stdlib/constants/uint16/max":230}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2575,7 +2575,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":157,"@stdlib/constants/uint32/max":233}],57:[function(require,module,exports){
+},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":153,"@stdlib/constants/uint32/max":231}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2716,7 +2716,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":159,"@stdlib/constants/uint8/max":234}],60:[function(require,module,exports){
+},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":155,"@stdlib/constants/uint8/max":232}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2857,7 +2857,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":63,"@stdlib/assert/is-uint8clampedarray":161}],63:[function(require,module,exports){
+},{"./uint8clampedarray.js":63,"@stdlib/assert/is-uint8clampedarray":157}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3061,7 +3061,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":365}],67:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3131,7 +3131,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-enumerable-property":84,"@stdlib/constants/uint32/max":233,"@stdlib/math/base/assert/is-integer":237}],68:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-enumerable-property":84,"@stdlib/constants/uint32/max":231,"@stdlib/math/base/assert/is-integer":235}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3172,12 +3172,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
 },{"./main.js":69}],69:[function(require,module,exports){
 /**
@@ -3239,7 +3239,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":219,"@stdlib/math/base/assert/is-integer":237}],70:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":217,"@stdlib/math/base/assert/is-integer":235}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3277,12 +3277,12 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":71}],71:[function(require,module,exports){
 /**
@@ -3349,7 +3349,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":365}],72:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3376,6 +3376,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -3385,7 +3386,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -3395,7 +3396,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -3408,22 +3409,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":73,"./object.js":74,"./primitive.js":75,"@stdlib/utils/define-nonenumerable-read-only-property":320}],73:[function(require,module,exports){
+},{"./main.js":73,"./object.js":74,"./primitive.js":75,"@stdlib/utils/define-nonenumerable-read-only-property":335}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3467,10 +3468,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -3508,6 +3513,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -3529,6 +3535,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -3550,7 +3558,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":77,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":365}],75:[function(require,module,exports){
+},{"./try2serialize.js":77,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/boolean/ctor":208,"@stdlib/utils/native-class":379}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3586,6 +3594,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -3739,12 +3749,12 @@ module.exports = true;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":80}],80:[function(require,module,exports){
 /**
@@ -3856,12 +3866,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":82}],82:[function(require,module,exports){
 /**
@@ -3922,7 +3932,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":220,"@stdlib/math/base/assert/is-integer":237}],83:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":218,"@stdlib/math/base/assert/is-integer":235}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4017,12 +4027,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":85}],85:[function(require,module,exports){
 /**
@@ -4106,7 +4116,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":83,"./native.js":86,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":149}],86:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":83,"./native.js":86,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":145}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4200,12 +4210,12 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":88}],88:[function(require,module,exports){
 /**
@@ -4273,7 +4283,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":331,"@stdlib/utils/native-class":365}],89:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":345,"@stdlib/utils/native-class":379}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4377,7 +4387,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":365}],91:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4481,7 +4491,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":365}],93:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4520,12 +4530,12 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":94}],94:[function(require,module,exports){
 /**
@@ -4579,7 +4589,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":392}],95:[function(require,module,exports){
+},{"@stdlib/utils/type-of":410}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4683,7 +4693,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":365}],97:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4787,7 +4797,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":365}],99:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4891,7 +4901,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":365}],101:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4956,22 +4966,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":103,"./object.js":104,"./primitive.js":105,"@stdlib/utils/define-nonenumerable-read-only-property":320}],102:[function(require,module,exports){
+},{"./main.js":103,"./object.js":104,"./primitive.js":105,"@stdlib/utils/define-nonenumerable-read-only-property":335}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5021,7 +5031,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":224,"@stdlib/constants/float64/pinf":225,"@stdlib/math/base/assert/is-integer":237}],103:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":222,"@stdlib/constants/float64/pinf":223,"@stdlib/math/base/assert/is-integer":235}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5411,22 +5421,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":320}],110:[function(require,module,exports){
+},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":335}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5541,7 +5551,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":239}],112:[function(require,module,exports){
+},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":237}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5600,7 +5610,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":239}],113:[function(require,module,exports){
+},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":237}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5641,12 +5651,12 @@ module.exports = isnan;
 
 // MODULES //
 
-var isNodeStreamLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNodeStreamLike;
+module.exports = main;
 
 },{"./main.js":114}],114:[function(require,module,exports){
 /**
@@ -5753,12 +5763,12 @@ module.exports = isNodeStreamLike;
 
 // MODULES //
 
-var isNodeWritableStreamLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNodeWritableStreamLike;
+module.exports = main;
 
 },{"./main.js":116}],116:[function(require,module,exports){
 /**
@@ -5886,18 +5896,24 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isNonNegativeInteger.isPrimitive );
+var isObjectArray = arrayfun( isNonNegativeInteger.isObject );
+
+
 // MAIN //
 
 var isNonNegativeIntegerArray = arrayfun( isNonNegativeInteger );
-setReadOnly( isNonNegativeIntegerArray, 'primitives', arrayfun( isNonNegativeInteger.isPrimitive ) );
-setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeInteger.isObject ) );
+setReadOnly( isNonNegativeIntegerArray, 'primitives', isPrimitiveArray );
+setReadOnly( isNonNegativeIntegerArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/assert/tools/array-like-function":166,"@stdlib/utils/define-nonenumerable-read-only-property":320}],118:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/assert/tools/array-like-function":161,"@stdlib/utils/define-nonenumerable-read-only-property":335}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5963,22 +5979,22 @@ module.exports = isNonNegativeIntegerArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":119,"./object.js":120,"./primitive.js":121,"@stdlib/utils/define-nonenumerable-read-only-property":320}],119:[function(require,module,exports){
+},{"./main.js":119,"./object.js":120,"./primitive.js":121,"@stdlib/utils/define-nonenumerable-read-only-property":335}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6216,22 +6232,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeNumber;
+module.exports = main;
 
-},{"./main.js":123,"./object.js":124,"./primitive.js":125,"@stdlib/utils/define-nonenumerable-read-only-property":320}],123:[function(require,module,exports){
+},{"./main.js":123,"./object.js":124,"./primitive.js":125,"@stdlib/utils/define-nonenumerable-read-only-property":335}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6440,12 +6456,12 @@ module.exports = isNonNegativeNumber;
 
 // MODULES //
 
-var isNull = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNull;
+module.exports = main;
 
 },{"./main.js":127}],127:[function(require,module,exports){
 /**
@@ -6556,22 +6572,22 @@ module.exports = isNull;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":129,"./object.js":130,"./primitive.js":131,"@stdlib/utils/define-nonenumerable-read-only-property":320}],129:[function(require,module,exports){
+},{"./main.js":129,"./object.js":130,"./primitive.js":131,"@stdlib/utils/define-nonenumerable-read-only-property":335}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6699,7 +6715,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":133,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":256,"@stdlib/utils/native-class":365}],131:[function(require,module,exports){
+},{"./try2serialize.js":133,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":254,"@stdlib/utils/native-class":379}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6783,7 +6799,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":256}],133:[function(require,module,exports){
+},{"@stdlib/number/ctor":254}],133:[function(require,module,exports){
 arguments[4][77][0].apply(exports,arguments)
 },{"./tostring.js":132,"dup":77}],134:[function(require,module,exports){
 /**
@@ -6837,19 +6853,24 @@ arguments[4][77][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":135,"@stdlib/assert/tools/array-function":164,"@stdlib/utils/define-nonenumerable-read-only-property":320}],135:[function(require,module,exports){
+},{"./main.js":135,"@stdlib/assert/tools/array-function":159,"@stdlib/utils/define-nonenumerable-read-only-property":335}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6938,12 +6959,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":137}],137:[function(require,module,exports){
 /**
@@ -7038,12 +7059,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":139}],139:[function(require,module,exports){
 /**
@@ -7159,7 +7180,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":93,"@stdlib/assert/is-object":136,"@stdlib/utils/get-prototype-of":331,"@stdlib/utils/native-class":365}],140:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":93,"@stdlib/assert/is-object":136,"@stdlib/utils/get-prototype-of":345,"@stdlib/utils/native-class":379}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7225,22 +7246,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveInteger;
+module.exports = main;
 
-},{"./main.js":141,"./object.js":142,"./primitive.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":320}],141:[function(require,module,exports){
+},{"./main.js":141,"./object.js":142,"./primitive.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":335}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7437,195 +7458,6 @@ module.exports = isPositiveInteger;
 
 'use strict';
 
-var exec = RegExp.prototype.exec; // non-generic
-
-
-// EXPORTS //
-
-module.exports = exec;
-
-},{}],145:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a regular expression.
-*
-* @module @stdlib/assert/is-regexp
-*
-* @example
-* var isRegExp = require( '@stdlib/assert/is-regexp' );
-*
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* bool = isRegExp( {} );
-* // returns false
-*/
-
-// MODULES //
-
-var isRegExp = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./main.js":146}],146:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2exec.js' );
-
-
-// VARIABLES //
-
-var FLG = hasToStringTag();
-
-
-// MAIN //
-
-/**
-* Tests if a value is a regular expression.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a regular expression
-*
-* @example
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* @example
-* var bool = isRegExp( {} );
-* // returns false
-*/
-function isRegExp( value ) {
-	if ( typeof value === 'object' ) {
-		if ( value instanceof RegExp ) {
-			return true;
-		}
-		if ( FLG ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object RegExp]' );
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./try2exec.js":147,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":365}],147:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var exec = require( './exec.js' );
-
-
-// MAIN //
-
-/**
-* Attempts to call a `RegExp` method.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if able to call a `RegExp` method
-*/
-function test( value ) {
-	try {
-		exec.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./exec.js":144}],148:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
 /**
 * Test if a value is an array of strings.
 *
@@ -7666,18 +7498,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isString = require( '@stdlib/assert/is-string' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
 // MAIN //
 
 var isStringArray = arrayfun( isString );
-setReadOnly( isStringArray, 'primitives', arrayfun( isString.isPrimitive ) );
-setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/assert/tools/array-function":164,"@stdlib/utils/define-nonenumerable-read-only-property":320}],149:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/assert/tools/array-function":159,"@stdlib/utils/define-nonenumerable-read-only-property":335}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7737,22 +7575,22 @@ module.exports = isStringArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":150,"./object.js":151,"./primitive.js":152,"@stdlib/utils/define-nonenumerable-read-only-property":320}],150:[function(require,module,exports){
+},{"./main.js":146,"./object.js":147,"./primitive.js":148,"@stdlib/utils/define-nonenumerable-read-only-property":335}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7804,7 +7642,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":151,"./primitive.js":152}],151:[function(require,module,exports){
+},{"./object.js":147,"./primitive.js":148}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7871,7 +7709,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":153,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":365}],152:[function(require,module,exports){
+},{"./try2valueof.js":149,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":379}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7915,7 +7753,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],153:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7964,7 +7802,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":154}],154:[function(require,module,exports){
+},{"./valueof.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7993,7 +7831,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],155:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8038,7 +7876,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":156}],156:[function(require,module,exports){
+},{"./main.js":152}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8097,7 +7935,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":365}],157:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8142,7 +7980,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":158}],158:[function(require,module,exports){
+},{"./main.js":154}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8201,7 +8039,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":365}],159:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8246,7 +8084,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":160}],160:[function(require,module,exports){
+},{"./main.js":156}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8305,7 +8143,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":365}],161:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8350,7 +8188,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":162}],162:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8409,7 +8247,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":365}],163:[function(require,module,exports){
+},{"@stdlib/utils/native-class":379}],159:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":160}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8496,7 +8385,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":70,"@stdlib/string/format":295}],164:[function(require,module,exports){
+},{"@stdlib/assert/is-array":70,"@stdlib/string/format":312}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8518,18 +8407,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -8540,14 +8429,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":163}],165:[function(require,module,exports){
+},{"./main.js":162}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8634,7 +8523,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":68,"@stdlib/string/format":295}],166:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":68,"@stdlib/string/format":312}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8653,261 +8542,7 @@ module.exports = arraylikefcn;
 * limitations under the License.
 */
 
-'use strict';
-
-/**
-* Return a function which tests if every element in an array-like object passes a test condition.
-*
-* @module @stdlib/assert/tools/array-like-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arraylikefcn = require( './arraylikefcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arraylikefcn;
-
-},{"./arraylikefcn.js":165}],167:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var TransformStream = require( '@stdlib/streams/node/transform' );
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-var createHarness = require( './harness' );
-var harness = require( './get_harness.js' );
-
-
-// VARIABLES //
-
-var listeners = [];
-
-
-// FUNCTIONS //
-
-/**
-* Callback invoked when a harness finishes running all benchmarks.
-*
-* @private
-*/
-function done() {
-	var len;
-	var f;
-	var i;
-
-	len = listeners.length;
-
-	// Inform all the listeners that the harness has finished...
-	for ( i = 0; i < len; i++ ) {
-		f = listeners.shift();
-		f();
-	}
-}
-
-/**
-* Creates a results stream.
-*
-* @private
-* @param {Options} [options] - stream options
-* @throws {Error} must provide valid stream options
-* @returns {TransformStream} results stream
-*/
-function createStream( options ) {
-	var stream;
-	var bench;
-	var opts;
-	if ( arguments.length ) {
-		opts = options;
-	} else {
-		opts = {};
-	}
-	// If we have already created a harness, calling this function simply creates another results stream...
-	if ( harness.cached ) {
-		bench = harness();
-		return bench.createStream( opts );
-	}
-	stream = new TransformStream( opts );
-	opts.stream = stream;
-
-	// Create a harness which uses the created output stream:
-	harness( opts, done );
-
-	return stream;
-}
-
-/**
-* Adds a listener for when a harness finishes running all benchmarks.
-*
-* @private
-* @param {Callback} clbk - listener
-* @throws {TypeError} must provide a function
-* @throws {Error} must provide a listener only once
-* @returns {void}
-*/
-function onFinish( clbk ) {
-	var i;
-	if ( !isFunction( clbk ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', clbk ) );
-	}
-	// Allow adding a listener only once...
-	for ( i = 0; i < listeners.length; i++ ) {
-		if ( clbk === listeners[ i ] ) {
-			throw new Error( 'invalid argument. Attempted to add duplicate listener.' );
-		}
-	}
-	listeners.push( clbk );
-}
-
-
-// MAIN //
-
-/**
-* Runs a benchmark.
-*
-* @param {string} name - benchmark name
-* @param {Options} [options] - benchmark options
-* @param {boolean} [options.skip=false] - boolean indicating whether to skip a benchmark
-* @param {(PositiveInteger|null)} [options.iterations=null] - number of iterations
-* @param {PositiveInteger} [options.repeats=3] - number of repeats
-* @param {PositiveInteger} [options.timeout=300000] - number of milliseconds before a benchmark automatically fails
-* @param {Function} [benchmark] - function containing benchmark code
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} must provide valid options
-* @throws {TypeError} benchmark argument must a function
-* @returns {Benchmark} benchmark harness
-*
-* @example
-* bench( 'beep', function benchmark( b ) {
-*     var x;
-*     var i;
-*     b.tic();
-*     for ( i = 0; i < b.iterations; i++ ) {
-*         x = Math.sin( Math.random() );
-*         if ( x !== x ) {
-*             b.ok( false, 'should not return NaN' );
-*         }
-*     }
-*     b.toc();
-*     if ( x !== x ) {
-*         b.ok( false, 'should not return NaN' );
-*     }
-*     b.end();
-* });
-*/
-function bench( name, options, benchmark ) {
-	var h = harness( done );
-	if ( arguments.length < 2 ) {
-		h( name );
-	} else if ( arguments.length === 2 ) {
-		h( name, options );
-	} else {
-		h( name, options, benchmark );
-	}
-	return bench;
-}
-
-/**
-* Creates a benchmark harness.
-*
-* @name createHarness
-* @memberof bench
-* @type {Function}
-* @param {Options} [options] - harness options
-* @param {Callback} [clbk] - callback to invoke when a harness finishes running all benchmarks
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} must provide valid options
-* @throws {TypeError} callback argument must be a function
-* @returns {Function} benchmark harness
-*/
-setReadOnly( bench, 'createHarness', createHarness );
-
-/**
-* Creates a results stream.
-*
-* @name createStream
-* @memberof bench
-* @type {Function}
-* @param {Options} [options] - stream options
-* @throws {Error} must provide valid stream options
-* @returns {TransformStream} results stream
-*/
-setReadOnly( bench, 'createStream', createStream );
-
-/**
-* Adds a listener for when a harness finishes running all benchmarks.
-*
-* @name onFinish
-* @memberof bench
-* @type {Function}
-* @param {Callback} clbk - listener
-* @throws {TypeError} must provide a function
-* @throws {Error} must provide a listener only once
-* @returns {void}
-*/
-setReadOnly( bench, 'onFinish', onFinish );
-
-
-// EXPORTS //
-
-module.exports = bench;
-
-},{"./get_harness.js":189,"./harness":190,"@stdlib/assert/is-function":93,"@stdlib/streams/node/transform":281,"@stdlib/string/format":295,"@stdlib/utils/define-nonenumerable-read-only-property":320}],168:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+/* eslint-disable no-invalid-this */
 
 'use strict';
 
@@ -8926,7 +8561,6 @@ var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 * @param {Options} opts - options
 */
 function assert( ok, opts ) {
-	/* eslint-disable no-invalid-this, no-unused-vars */ // TODO: remove no-unused-vars once `err` is used
 	var result;
 	var err;
 
@@ -8946,7 +8580,7 @@ function assert( ok, opts ) {
 	}
 	if ( !ok ) {
 		result.error = opts.error || new Error( this.name );
-		err = new Error( 'exception' );
+		err = new Error( 'not implemented' ); // eslint-disable-line no-unused-vars
 
 		// TODO: generate an exception in order to locate the calling function (https://github.com/substack/tape/blob/master/lib/test.js#L215)
 	}
@@ -8959,7 +8593,7 @@ function assert( ok, opts ) {
 
 module.exports = assert;
 
-},{"@stdlib/assert/has-own-property":46}],169:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8984,7 +8618,7 @@ module.exports = assert;
 
 module.exports = clearTimeout;
 
-},{}],170:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9007,8 +8641,8 @@ module.exports = clearTimeout;
 
 // MODULES //
 
-var trim = require( '@stdlib/string/trim' );
-var replace = require( '@stdlib/string/replace' );
+var trim = require( '@stdlib/string/base/trim' );
+var replace = require( '@stdlib/string/base/replace' );
 var EOL = require( '@stdlib/regexp/eol' ).REGEXP;
 
 
@@ -9043,7 +8677,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":265,"@stdlib/string/replace":300,"@stdlib/string/trim":304}],171:[function(require,module,exports){
+},{"@stdlib/regexp/eol":269,"@stdlib/string/base/replace":299,"@stdlib/string/base/trim":309}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9086,7 +8720,7 @@ function deepEqual( actual, expected, msg ) {
 
 module.exports = deepEqual;
 
-},{}],172:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9146,7 +8780,7 @@ function end() {
 
 module.exports = end;
 
-},{"./../utils/next_tick.js":209}],173:[function(require,module,exports){
+},{"./../utils/next_tick.js":205}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9185,7 +8819,7 @@ function ended() {
 
 module.exports = ended;
 
-},{}],174:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9231,7 +8865,7 @@ function equal( actual, expected, msg ) {
 
 module.exports = equal;
 
-},{}],175:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9283,7 +8917,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],176:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9325,7 +8959,7 @@ function fail( msg ) {
 
 module.exports = fail;
 
-},{}],177:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9702,7 +9336,7 @@ setReadOnly( Benchmark.prototype, 'end', end );
 
 module.exports = Benchmark;
 
-},{"./assert.js":168,"./comment.js":170,"./deep_equal.js":171,"./end.js":172,"./ended.js":173,"./equal.js":174,"./exit.js":175,"./fail.js":176,"./not_deep_equal.js":178,"./not_equal.js":179,"./not_ok.js":180,"./ok.js":181,"./pass.js":182,"./run.js":183,"./skip.js":185,"./todo.js":186,"@stdlib/time/tic":306,"@stdlib/time/toc":310,"@stdlib/utils/define-nonenumerable-read-only-property":320,"@stdlib/utils/define-property":325,"@stdlib/utils/inherit":344,"events":398}],178:[function(require,module,exports){
+},{"./assert.js":163,"./comment.js":165,"./deep_equal.js":166,"./end.js":167,"./ended.js":168,"./equal.js":169,"./exit.js":170,"./fail.js":171,"./not_deep_equal.js":173,"./not_equal.js":174,"./not_ok.js":175,"./ok.js":176,"./pass.js":177,"./run.js":178,"./skip.js":180,"./todo.js":181,"@stdlib/time/tic":321,"@stdlib/time/toc":325,"@stdlib/utils/define-nonenumerable-read-only-property":335,"@stdlib/utils/define-property":340,"@stdlib/utils/inherit":358,"events":416}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9745,7 +9379,7 @@ function notDeepEqual( actual, expected, msg ) {
 
 module.exports = notDeepEqual;
 
-},{}],179:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9791,7 +9425,7 @@ function notEqual( actual, expected, msg ) {
 
 module.exports = notEqual;
 
-},{}],180:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9836,7 +9470,7 @@ function notOk( value, msg ) {
 
 module.exports = notOk;
 
-},{}],181:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9881,7 +9515,7 @@ function ok( value, msg ) {
 
 module.exports = ok;
 
-},{}],182:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9923,7 +9557,7 @@ function pass( msg ) {
 
 module.exports = pass;
 
-},{}],183:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10004,7 +9638,7 @@ function run() {
 
 module.exports = run;
 
-},{"./clear_timeout.js":169,"./set_timeout.js":184}],184:[function(require,module,exports){
+},{"./clear_timeout.js":164,"./set_timeout.js":179}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10029,7 +9663,7 @@ module.exports = run;
 
 module.exports = setTimeout;
 
-},{}],185:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10073,7 +9707,7 @@ function skip( value, msg ) {
 
 module.exports = skip;
 
-},{}],186:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10117,7 +9751,7 @@ function todo( value, msg ) {
 
 module.exports = todo;
 
-},{}],187:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
 	"skip": false,
 	"iterations": null,
@@ -10125,7 +9759,7 @@ module.exports={
 	"timeout": 300000
 }
 
-},{}],188:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10316,7 +9950,7 @@ function createExitHarness() {
 
 module.exports = createExitHarness;
 
-},{"./harness":190,"./log":196,"./utils/can_emit_exit.js":207,"./utils/process.js":210,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-node-writable-stream-like":115,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":295,"@stdlib/utils/noop":372,"@stdlib/utils/omit":374,"@stdlib/utils/pick":376}],189:[function(require,module,exports){
+},{"./harness":185,"./log":191,"./utils/can_emit_exit.js":203,"./utils/process.js":206,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-node-writable-stream-like":115,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":312,"@stdlib/utils/noop":386,"@stdlib/utils/omit":388,"@stdlib/utils/pick":390}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10385,7 +10019,7 @@ function getHarness( options, clbk ) {
 
 module.exports = getHarness;
 
-},{"./exit_harness.js":188,"./utils/can_emit_exit.js":207}],190:[function(require,module,exports){
+},{"./exit_harness.js":183,"./utils/can_emit_exit.js":203}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10690,7 +10324,7 @@ function createHarness( options, clbk ) {
 
 module.exports = createHarness;
 
-},{"./../benchmark-class":177,"./../defaults.json":187,"./../runner":204,"./../utils/next_tick.js":209,"./init.js":191,"./validate.js":194,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":295,"@stdlib/utils/copy":316,"@stdlib/utils/define-nonenumerable-read-only-accessor":318,"@stdlib/utils/define-nonenumerable-read-only-property":320}],191:[function(require,module,exports){
+},{"./../benchmark-class":172,"./../defaults.json":182,"./../runner":200,"./../utils/next_tick.js":205,"./init.js":186,"./validate.js":189,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":312,"@stdlib/utils/copy":330,"@stdlib/utils/define-nonenumerable-read-only-accessor":333,"@stdlib/utils/define-nonenumerable-read-only-property":335}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10790,7 +10424,7 @@ function init( name, opts, benchmark, clbk ) {
 
 module.exports = init;
 
-},{"./iterations.js":192,"./pretest.js":193}],192:[function(require,module,exports){
+},{"./iterations.js":187,"./pretest.js":188}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10898,7 +10532,7 @@ function iterations( name, options, benchmark, clbk ) {
 
 module.exports = iterations;
 
-},{"./../benchmark-class":177,"@stdlib/assert/is-string":149,"@stdlib/utils/copy":316}],193:[function(require,module,exports){
+},{"./../benchmark-class":172,"@stdlib/assert/is-string":145,"@stdlib/utils/copy":330}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11021,7 +10655,7 @@ function pretest( name, options, benchmark, clbk ) {
 
 module.exports = pretest;
 
-},{"./../benchmark-class":177,"@stdlib/assert/is-string":149,"@stdlib/utils/copy":316}],194:[function(require,module,exports){
+},{"./../benchmark-class":172,"@stdlib/assert/is-string":145,"@stdlib/utils/copy":330}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11119,7 +10753,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-null":126,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-positive-integer":140,"@stdlib/string/format":295}],195:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-null":126,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-positive-integer":140,"@stdlib/string/format":312}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11168,14 +10802,14 @@ module.exports = validate;
 
 // MODULES //
 
-var bench = require( './bench.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = bench;
+module.exports = main;
 
-},{"./bench.js":167}],196:[function(require,module,exports){
+},{"./main.js":193}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11271,7 +10905,7 @@ function createStream() {
 
 module.exports = createStream;
 
-},{"./log.js":197,"@stdlib/streams/node/transform":281,"@stdlib/string/from-code-point":298}],197:[function(require,module,exports){
+},{"./log.js":192,"@stdlib/streams/node/transform":285,"@stdlib/string/from-code-point":315}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11309,7 +10943,212 @@ function log( str ) {
 
 module.exports = log;
 
-},{}],198:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var TransformStream = require( '@stdlib/streams/node/transform' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+var createHarness = require( './harness' );
+var harness = require( './get_harness.js' );
+
+
+// VARIABLES //
+
+var listeners = [];
+
+
+// FUNCTIONS //
+
+/**
+* Callback invoked when a harness finishes running all benchmarks.
+*
+* @private
+*/
+function done() {
+	var len;
+	var f;
+	var i;
+
+	len = listeners.length;
+
+	// Inform all the listeners that the harness has finished...
+	for ( i = 0; i < len; i++ ) {
+		f = listeners.shift();
+		f();
+	}
+}
+
+/**
+* Creates a results stream.
+*
+* @private
+* @param {Options} [options] - stream options
+* @throws {Error} must provide valid stream options
+* @returns {TransformStream} results stream
+*/
+function createStream( options ) {
+	var stream;
+	var bench;
+	var opts;
+	if ( arguments.length ) {
+		opts = options;
+	} else {
+		opts = {};
+	}
+	// If we have already created a harness, calling this function simply creates another results stream...
+	if ( harness.cached ) {
+		bench = harness();
+		return bench.createStream( opts );
+	}
+	stream = new TransformStream( opts );
+	opts.stream = stream;
+
+	// Create a harness which uses the created output stream:
+	harness( opts, done );
+
+	return stream;
+}
+
+/**
+* Adds a listener for when a harness finishes running all benchmarks.
+*
+* @private
+* @param {Callback} clbk - listener
+* @throws {TypeError} must provide a function
+* @throws {Error} must provide a listener only once
+* @returns {void}
+*/
+function onFinish( clbk ) {
+	var i;
+	if ( !isFunction( clbk ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', clbk ) );
+	}
+	// Allow adding a listener only once...
+	for ( i = 0; i < listeners.length; i++ ) {
+		if ( clbk === listeners[ i ] ) {
+			throw new Error( 'invalid argument. Attempted to add duplicate listener.' );
+		}
+	}
+	listeners.push( clbk );
+}
+
+
+// MAIN //
+
+/**
+* Runs a benchmark.
+*
+* @param {string} name - benchmark name
+* @param {Options} [options] - benchmark options
+* @param {boolean} [options.skip=false] - boolean indicating whether to skip a benchmark
+* @param {(PositiveInteger|null)} [options.iterations=null] - number of iterations
+* @param {PositiveInteger} [options.repeats=3] - number of repeats
+* @param {PositiveInteger} [options.timeout=300000] - number of milliseconds before a benchmark automatically fails
+* @param {Function} [benchmark] - function containing benchmark code
+* @throws {TypeError} first argument must be a string
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {TypeError} benchmark argument must a function
+* @returns {Benchmark} benchmark harness
+*
+* @example
+* bench( 'beep', function benchmark( b ) {
+*     var x;
+*     var i;
+*     b.tic();
+*     for ( i = 0; i < b.iterations; i++ ) {
+*         x = Math.sin( Math.random() );
+*         if ( x !== x ) {
+*             b.ok( false, 'should not return NaN' );
+*         }
+*     }
+*     b.toc();
+*     if ( x !== x ) {
+*         b.ok( false, 'should not return NaN' );
+*     }
+*     b.end();
+* });
+*/
+function bench( name, options, benchmark ) {
+	var h = harness( done );
+	if ( arguments.length < 2 ) {
+		h( name );
+	} else if ( arguments.length === 2 ) {
+		h( name, options );
+	} else {
+		h( name, options, benchmark );
+	}
+	return bench;
+}
+
+/**
+* Creates a benchmark harness.
+*
+* @name createHarness
+* @memberof bench
+* @type {Function}
+* @param {Options} [options] - harness options
+* @param {Callback} [clbk] - callback to invoke when a harness finishes running all benchmarks
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {TypeError} callback argument must be a function
+* @returns {Function} benchmark harness
+*/
+setReadOnly( bench, 'createHarness', createHarness );
+
+/**
+* Creates a results stream.
+*
+* @name createStream
+* @memberof bench
+* @type {Function}
+* @param {Options} [options] - stream options
+* @throws {Error} must provide valid stream options
+* @returns {TransformStream} results stream
+*/
+setReadOnly( bench, 'createStream', createStream );
+
+/**
+* Adds a listener for when a harness finishes running all benchmarks.
+*
+* @name onFinish
+* @memberof bench
+* @type {Function}
+* @param {Callback} clbk - listener
+* @throws {TypeError} must provide a function
+* @throws {Error} must provide a listener only once
+* @returns {void}
+*/
+setReadOnly( bench, 'onFinish', onFinish );
+
+
+// EXPORTS //
+
+module.exports = bench;
+
+},{"./get_harness.js":184,"./harness":185,"@stdlib/assert/is-function":93,"@stdlib/streams/node/transform":285,"@stdlib/string/format":312,"@stdlib/utils/define-nonenumerable-read-only-property":335}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11347,7 +11186,7 @@ function clear() {
 
 module.exports = clear;
 
-},{}],199:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11422,7 +11261,7 @@ function closeRunner() {
 
 module.exports = closeRunner;
 
-},{}],200:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11613,7 +11452,7 @@ function createStream( options ) {
 
 module.exports = createStream;
 
-},{"./../utils/next_tick.js":209,"@stdlib/assert/is-string":149,"@stdlib/streams/node/transform":281}],201:[function(require,module,exports){
+},{"./../utils/next_tick.js":205,"@stdlib/assert/is-string":145,"@stdlib/streams/node/transform":285}],197:[function(require,module,exports){
 /* eslint-disable stdlib/jsdoc-require-throws-tags */
 
 /**
@@ -11638,7 +11477,7 @@ module.exports = createStream;
 
 // MODULES //
 
-var replace = require( '@stdlib/string/replace' );
+var replace = require( '@stdlib/string/base/replace' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 var RE_EOL = require( '@stdlib/regexp/eol' ).REGEXP;
 
@@ -11736,7 +11575,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/regexp/eol":265,"@stdlib/string/replace":300}],202:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/regexp/eol":269,"@stdlib/string/base/replace":299}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11787,7 +11626,7 @@ function encodeResult( result ) {
 
 module.exports = encodeResult;
 
-},{}],203:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11842,7 +11681,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],204:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12060,7 +11899,7 @@ defineProperty( Runner.prototype, 'exit', {
 
 module.exports = Runner;
 
-},{"./clear.js":198,"./close.js":199,"./create_stream.js":200,"./exit.js":203,"./push.js":205,"./run.js":206,"@stdlib/streams/node/transform":281,"@stdlib/utils/define-property":325,"@stdlib/utils/inherit":344,"events":398}],205:[function(require,module,exports){
+},{"./clear.js":194,"./close.js":195,"./create_stream.js":196,"./exit.js":199,"./push.js":201,"./run.js":202,"@stdlib/streams/node/transform":285,"@stdlib/utils/define-property":340,"@stdlib/utils/inherit":358,"events":416}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12162,7 +12001,7 @@ function push( b ) {
 
 module.exports = push;
 
-},{"./encode_assertion.js":201,"./encode_result.js":202,"@stdlib/assert/is-string":149}],206:[function(require,module,exports){
+},{"./encode_assertion.js":197,"./encode_result.js":198,"@stdlib/assert/is-string":145}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12200,7 +12039,7 @@ function run() {
 
 module.exports = run;
 
-},{}],207:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12236,7 +12075,7 @@ var bool = ( !IS_BROWSER && canExit );
 
 module.exports = bool;
 
-},{"./can_exit.js":208,"@stdlib/assert/is-browser":78}],208:[function(require,module,exports){
+},{"./can_exit.js":204,"@stdlib/assert/is-browser":78}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12271,7 +12110,7 @@ var bool = ( proc && typeof proc.exit === 'function' );
 
 module.exports = bool;
 
-},{"./process.js":210}],209:[function(require,module,exports){
+},{"./process.js":206}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12305,7 +12144,6 @@ module.exports = bool;
 * -   Only API which is universal is `setTimeout`.
 * -   Note that `0` is not actually `0ms`. Browser environments commonly have a minimum delay of `4ms`. This is acceptable. Here, the main intent of this function is to give the runtime a chance to run garbage collection, clear state, and tend to any other pending tasks before returning control to benchmark tasks. The larger aim (attainable or not) is to provide each benchmark run with as much of a fresh state as possible.
 *
-*
 * @private
 * @param {Function} fcn - function to run upon a subsequent turn of the event loop
 */
@@ -12318,7 +12156,7 @@ function nextTick( fcn ) {
 
 module.exports = nextTick;
 
-},{}],210:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12348,7 +12186,7 @@ var proc = require( 'process' );
 
 module.exports = proc;
 
-},{"process":407}],211:[function(require,module,exports){
+},{"process":425}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12404,11 +12242,65 @@ var bench = require( '@stdlib/bench/harness' );
 
 module.exports = bench;
 
-},{"@stdlib/bench/harness":195}],212:[function(require,module,exports){
+},{"@stdlib/bench/harness":190}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":209}],209:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -12427,14 +12319,37 @@ module.exports = bench;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":397}],213:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12470,7 +12385,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -12488,7 +12403,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":212,"./polyfill.js":214,"@stdlib/assert/has-node-buffer-support":44}],214:[function(require,module,exports){
+},{"./main.js":211,"./polyfill.js":212,"@stdlib/assert/has-node-buffer-support":44}],211:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":415}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12527,7 +12472,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],215:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12563,7 +12508,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":93,"@stdlib/buffer/ctor":213}],216:[function(require,module,exports){
+},{"@stdlib/assert/is-function":93,"@stdlib/buffer/ctor":210}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12621,7 +12566,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":215,"./main.js":217,"./polyfill.js":218}],217:[function(require,module,exports){
+},{"./has_from.js":213,"./main.js":215,"./polyfill.js":216}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12679,7 +12624,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":213,"@stdlib/string/format":295}],218:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":210,"@stdlib/string/format":312}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12737,7 +12682,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":213,"@stdlib/string/format":295}],219:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":210,"@stdlib/string/format":312}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12788,7 +12733,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],220:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12839,7 +12784,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],221:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12899,7 +12844,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],222:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12957,7 +12902,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],223:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13015,7 +12960,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],224:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13077,7 +13022,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":256}],225:[function(require,module,exports){
+},{"@stdlib/number/ctor":254}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13135,7 +13080,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],226:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13198,7 +13143,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],227:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13261,7 +13206,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],228:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13324,7 +13269,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],229:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13387,7 +13332,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],230:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13450,7 +13395,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],231:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13513,7 +13458,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],232:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13576,7 +13521,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],233:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13639,7 +13584,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],234:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13702,7 +13647,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],235:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13752,7 +13697,7 @@ var UNICODE_MAX_BMP = 0xFFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX_BMP;
 
-},{}],236:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13802,7 +13747,7 @@ var UNICODE_MAX = 0x10FFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX;
 
-},{}],237:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13840,14 +13785,14 @@ module.exports = UNICODE_MAX;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":238}],238:[function(require,module,exports){
+},{"./main.js":236}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13898,7 +13843,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":241}],239:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":239}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13936,14 +13881,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":240}],240:[function(require,module,exports){
+},{"./main.js":238}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13989,7 +13934,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],241:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14033,14 +13978,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":242}],242:[function(require,module,exports){
+},{"./main.js":240}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14092,123 +14037,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],243:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Decompose a double-precision floating-point number into integral and fractional parts.
-*
-* @module @stdlib/math/base/special/modf
-*
-* @example
-* var modf = require( '@stdlib/math/base/special/modf' );
-*
-* var parts = modf( 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var modf = require( '@stdlib/math/base/special/modf' );
-*
-* var out = new Float64Array( 2 );
-*
-* var parts = modf( out, 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* var bool = ( parts === out );
-* // returns true
-*/
-
-// MODULES //
-
-var modf = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = modf;
-
-},{"./main.js":244}],244:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './modf.js' );
-
-
-// MAIN //
-
-/**
-* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var parts = modf( 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-*
-* var out = new Float64Array( 2 );
-*
-* var parts = modf( out, 3.14 );
-* // returns <Float64Array>[ 3.0, 0.14000000000000012 ]
-*
-* var bool = ( parts === out );
-* // returns true
-*/
-function modf( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0.0, 0.0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = modf;
-
-},{"./modf.js":245}],245:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14246,24 +14075,26 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/hig
 var ALL_ONES = 4294967295>>>0; // asm type annotation
 
 // High/low words workspace:
-var WORDS = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var WORDS = [ 0|0, 0|0 ];
 
 
 // MAIN //
 
 /**
-* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
+* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value, and assigns results to a provided output array.
 *
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
-* var parts = modf( [ 0.0, 0.0 ], 3.14 );
+* var parts = modf( 3.14, [ 0.0, 0.0 ], 1, 0 );
 * // returns [ 3.0, 0.14000000000000012 ]
 */
-function modf( out, x ) {
+function modf( x, out, stride, offset ) {
 	var high;
 	var low;
 	var exp;
@@ -14272,34 +14103,34 @@ function modf( out, x ) {
 	// Special cases...
 	if ( x < 1.0 ) {
 		if ( x < 0.0 ) {
-			modf( out, -x );
-			out[ 0 ] *= -1.0;
-			out[ 1 ] *= -1.0;
+			modf( -x, out, stride, offset );
+			out[ offset ] *= -1.0;
+			out[ offset + stride ] *= -1.0;
 			return out;
 		}
 		if ( x === 0.0 ) { // [ +-0, +-0 ]
-			out[ 0 ] = x;
-			out[ 1 ] = x;
+			out[ offset ] = x;
+			out[ offset + stride ] = x;
 			return out;
 		}
-		out[ 0 ] = 0.0;
-		out[ 1 ] = x;
+		out[ offset ] = 0.0;
+		out[ offset + stride ] = x;
 		return out;
 	}
 	if ( isnan( x ) ) {
-		out[ 0 ] = NaN;
-		out[ 1 ] = NaN;
+		out[ offset ] = NaN;
+		out[ offset + stride ] = NaN;
 		return out;
 	}
 	if ( x === PINF ) {
-		out[ 0 ] = PINF;
-		out[ 1 ] = 0.0;
+		out[ offset ] = PINF;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	// Decompose |x|...
 
 	// Extract the high and low words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	high = WORDS[ 0 ];
 	low = WORDS[ 1 ];
 
@@ -14313,8 +14144,8 @@ function modf( out, x ) {
 
 		// Determine if `x` is integral by checking for significand bits which cannot be exponentiated away...
 		if ( ((high&i)|low) === 0 ) {
-			out[ 0 ] = x;
-			out[ 1 ] = 0.0;
+			out[ offset ] = x;
+			out[ offset + stride ] = 0.0;
 			return out;
 		}
 		// Turn off all the bits which cannot be exponentiated away:
@@ -14324,23 +14155,23 @@ function modf( out, x ) {
 		i = fromWords( high, 0 );
 
 		// The fractional part is whatever is leftover:
-		out[ 0 ] = i;
-		out[ 1 ] = x - i;
+		out[ offset ] = i;
+		out[ offset + stride ] = x - i;
 		return out;
 	}
 	// Check if `x` can even have a fractional part...
 	if ( exp > 51 ) {
 		// `x` is integral:
-		out[ 0 ] = x;
-		out[ 1 ] = 0.0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	i = ALL_ONES >>> (exp-20);
 
 	// Determine if `x` is integral by checking for less significant significand bits which cannot be exponentiated away...
 	if ( (low&i) === 0 ) {
-		out[ 0 ] = x;
-		out[ 1 ] = 0.0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	// Turn off all the bits which cannot be exponentiated away:
@@ -14350,8 +14181,8 @@ function modf( out, x ) {
 	i = fromWords( high, low );
 
 	// The fractional part is whatever is leftover:
-	out[ 0 ] = i;
-	out[ 1 ] = x - i;
+	out[ offset ] = i;
+	out[ offset + stride ] = x - i;
 	return out;
 }
 
@@ -14360,7 +14191,116 @@ function modf( out, x ) {
 
 module.exports = modf;
 
-},{"@stdlib/constants/float64/exponent-bias":221,"@stdlib/constants/float64/high-word-exponent-mask":222,"@stdlib/constants/float64/high-word-significand-mask":223,"@stdlib/constants/float64/pinf":225,"@stdlib/math/base/assert/is-nan":239,"@stdlib/number/float64/base/from-words":258,"@stdlib/number/float64/base/to-words":261}],246:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":219,"@stdlib/constants/float64/high-word-exponent-mask":220,"@stdlib/constants/float64/high-word-significand-mask":221,"@stdlib/constants/float64/pinf":223,"@stdlib/math/base/assert/is-nan":237,"@stdlib/number/float64/base/from-words":256,"@stdlib/number/float64/base/to-words":260}],242:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Decompose a double-precision floating-point number into integral and fractional parts.
+*
+* @module @stdlib/math/base/special/modf
+*
+* @example
+* var modf = require( '@stdlib/math/base/special/modf' );
+*
+* var parts = modf( 3.14 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var modf = require( '@stdlib/math/base/special/modf' );
+*
+* var out = new Float64Array( 2 );
+*
+* var parts = modf.assign( 3.14, out, 1, 0 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+* var bool = ( parts === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":241,"./main.js":243,"@stdlib/utils/define-nonenumerable-read-only-property":335}],243:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var parts = modf( 3.14 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+*/
+function modf( x ) {
+	return fcn( x, [ 0.0, 0.0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = modf;
+
+},{"./assign.js":241}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14427,14 +14367,14 @@ module.exports = modf;
 
 // MODULES //
 
-var round = require( './round.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = round;
+module.exports = main;
 
-},{"./round.js":247}],247:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14455,7 +14395,7 @@ module.exports = round;
 
 'use strict';
 
-// TODO: implementation
+// MAIN //
 
 /**
 * Rounds a numeric value to the nearest integer.
@@ -14514,9 +14454,10 @@ var round = Math.round; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = round;
 
-},{}],248:[function(require,module,exports){
-module.exports={"abs":"@stdlib/math/special/abs","acronym":"@stdlib/string/acronym","AFINN_96":"@stdlib/datasets/afinn-96","AFINN_111":"@stdlib/datasets/afinn-111","afull":"@stdlib/array/full","afullLike":"@stdlib/array/full-like","alias2pkg":"@stdlib/namespace/alias2pkg","alias2related":"@stdlib/namespace/alias2related","alias2standalone":"@stdlib/namespace/alias2standalone","aliases":"@stdlib/namespace/aliases","allocUnsafe":"@stdlib/buffer/alloc-unsafe","anova1":"@stdlib/stats/anova1","ANSCOMBES_QUARTET":"@stdlib/datasets/anscombes-quartet","any":"@stdlib/utils/any","anyBy":"@stdlib/utils/any-by","anyByAsync":"@stdlib/utils/async/any-by","anyByRight":"@stdlib/utils/any-by-right","anyByRightAsync":"@stdlib/utils/async/any-by-right","aones":"@stdlib/array/ones","aonesLike":"@stdlib/array/ones-like","APERY":"@stdlib/constants/float64/apery","append":"@stdlib/utils/append","ARCH":"@stdlib/os/arch","argumentFunction":"@stdlib/utils/argument-function","ARGV":"@stdlib/process/argv","array":"@stdlib/ndarray/array","array2buffer":"@stdlib/buffer/from-array","array2iterator":"@stdlib/array/to-iterator","array2iteratorRight":"@stdlib/array/to-iterator-right","ArrayBuffer":"@stdlib/array/buffer","arraybuffer2buffer":"@stdlib/buffer/from-arraybuffer","arrayCtors":"@stdlib/array/ctors","arrayDataType":"@stdlib/array/dtype","arrayDataTypes":"@stdlib/array/dtypes","arrayMinDataType":"@stdlib/array/min-dtype","arrayNextDataType":"@stdlib/array/next-dtype","arrayPromotionRules":"@stdlib/array/promotion-rules","arraySafeCasts":"@stdlib/array/safe-casts","arraySameKindCasts":"@stdlib/array/same-kind-casts","arrayShape":"@stdlib/array/shape","arrayStream":"@stdlib/streams/node/from-array","arrayview2iterator":"@stdlib/array/to-view-iterator","arrayview2iteratorRight":"@stdlib/array/to-view-iterator-right","AsyncIteratorSymbol":"@stdlib/symbol/async-iterator","azeros":"@stdlib/array/zeros","azerosLike":"@stdlib/array/zeros-like","bartlettTest":"@stdlib/stats/bartlett-test","base.abs":"@stdlib/math/base/special/abs","base.abs2":"@stdlib/math/base/special/abs2","base.abs2f":"@stdlib/math/base/special/abs2f","base.absdiff":"@stdlib/math/base/utils/absolute-difference","base.absf":"@stdlib/math/base/special/absf","base.acos":"@stdlib/math/base/special/acos","base.acosh":"@stdlib/math/base/special/acosh","base.acot":"@stdlib/math/base/special/acot","base.acoth":"@stdlib/math/base/special/acoth","base.acovercos":"@stdlib/math/base/special/acovercos","base.acoversin":"@stdlib/math/base/special/acoversin","base.acsc":"@stdlib/math/base/special/acsc","base.acsch":"@stdlib/math/base/special/acsch","base.add":"@stdlib/math/base/ops/add","base.addf":"@stdlib/math/base/ops/addf","base.ahavercos":"@stdlib/math/base/special/ahavercos","base.ahaversin":"@stdlib/math/base/special/ahaversin","base.asech":"@stdlib/math/base/special/asech","base.asin":"@stdlib/math/base/special/asin","base.asinh":"@stdlib/math/base/special/asinh","base.atan":"@stdlib/math/base/special/atan","base.atan2":"@stdlib/math/base/special/atan2","base.atanh":"@stdlib/math/base/special/atanh","base.avercos":"@stdlib/math/base/special/avercos","base.aversin":"@stdlib/math/base/special/aversin","base.bernoulli":"@stdlib/math/base/special/bernoulli","base.besselj0":"@stdlib/math/base/special/besselj0","base.besselj1":"@stdlib/math/base/special/besselj1","base.bessely0":"@stdlib/math/base/special/bessely0","base.bessely1":"@stdlib/math/base/special/bessely1","base.beta":"@stdlib/math/base/special/beta","base.betainc":"@stdlib/math/base/special/betainc","base.betaincinv":"@stdlib/math/base/special/betaincinv","base.betaln":"@stdlib/math/base/special/betaln","base.binet":"@stdlib/math/base/special/binet","base.binomcoef":"@stdlib/math/base/special/binomcoef","base.binomcoefln":"@stdlib/math/base/special/binomcoefln","base.boxcox":"@stdlib/math/base/special/boxcox","base.boxcox1p":"@stdlib/math/base/special/boxcox1p","base.boxcox1pinv":"@stdlib/math/base/special/boxcox1pinv","base.boxcoxinv":"@stdlib/math/base/special/boxcoxinv","base.cabs":"@stdlib/math/base/special/cabs","base.cabs2":"@stdlib/math/base/special/cabs2","base.cabs2f":"@stdlib/math/base/special/cabs2f","base.cabsf":"@stdlib/math/base/special/cabsf","base.cadd":"@stdlib/math/base/ops/cadd","base.caddf":"@stdlib/math/base/ops/caddf","base.cbrt":"@stdlib/math/base/special/cbrt","base.cbrtf":"@stdlib/math/base/special/cbrtf","base.cceil":"@stdlib/math/base/special/cceil","base.cceilf":"@stdlib/math/base/special/cceilf","base.cceiln":"@stdlib/math/base/special/cceiln","base.ccis":"@stdlib/math/base/special/ccis","base.cdiv":"@stdlib/math/base/ops/cdiv","base.ceil":"@stdlib/math/base/special/ceil","base.ceil2":"@stdlib/math/base/special/ceil2","base.ceil10":"@stdlib/math/base/special/ceil10","base.ceilb":"@stdlib/math/base/special/ceilb","base.ceilf":"@stdlib/math/base/special/ceilf","base.ceiln":"@stdlib/math/base/special/ceiln","base.ceilsd":"@stdlib/math/base/special/ceilsd","base.cexp":"@stdlib/math/base/special/cexp","base.cflipsign":"@stdlib/math/base/special/cflipsign","base.cflipsignf":"@stdlib/math/base/special/cflipsignf","base.cfloor":"@stdlib/math/base/special/cfloor","base.cfloorn":"@stdlib/math/base/special/cfloorn","base.cidentity":"@stdlib/math/base/special/cidentity","base.cidentityf":"@stdlib/math/base/special/cidentityf","base.cinv":"@stdlib/math/base/special/cinv","base.clamp":"@stdlib/math/base/special/clamp","base.clampf":"@stdlib/math/base/special/clampf","base.cmul":"@stdlib/math/base/ops/cmul","base.cmulf":"@stdlib/math/base/ops/cmulf","base.cneg":"@stdlib/math/base/ops/cneg","base.continuedFraction":"@stdlib/math/base/tools/continued-fraction","base.copysign":"@stdlib/math/base/special/copysign","base.copysignf":"@stdlib/math/base/special/copysignf","base.cos":"@stdlib/math/base/special/cos","base.cosh":"@stdlib/math/base/special/cosh","base.cosm1":"@stdlib/math/base/special/cosm1","base.cospi":"@stdlib/math/base/special/cospi","base.cot":"@stdlib/math/base/special/cot","base.coth":"@stdlib/math/base/special/coth","base.covercos":"@stdlib/math/base/special/covercos","base.coversin":"@stdlib/math/base/special/coversin","base.cphase":"@stdlib/math/base/special/cphase","base.cpolar":"@stdlib/math/base/special/cpolar","base.cround":"@stdlib/math/base/special/cround","base.croundn":"@stdlib/math/base/special/croundn","base.csch":"@stdlib/math/base/special/csch","base.csignum":"@stdlib/math/base/special/csignum","base.csub":"@stdlib/math/base/ops/csub","base.csubf":"@stdlib/math/base/ops/csubf","base.deg2rad":"@stdlib/math/base/special/deg2rad","base.deg2radf":"@stdlib/math/base/special/deg2radf","base.digamma":"@stdlib/math/base/special/digamma","base.diracDelta":"@stdlib/math/base/special/dirac-delta","base.dists.arcsine.Arcsine":"@stdlib/stats/base/dists/arcsine/ctor","base.dists.arcsine.cdf":"@stdlib/stats/base/dists/arcsine/cdf","base.dists.arcsine.entropy":"@stdlib/stats/base/dists/arcsine/entropy","base.dists.arcsine.kurtosis":"@stdlib/stats/base/dists/arcsine/kurtosis","base.dists.arcsine.logcdf":"@stdlib/stats/base/dists/arcsine/logcdf","base.dists.arcsine.logpdf":"@stdlib/stats/base/dists/arcsine/logpdf","base.dists.arcsine.mean":"@stdlib/stats/base/dists/arcsine/mean","base.dists.arcsine.median":"@stdlib/stats/base/dists/arcsine/median","base.dists.arcsine.mode":"@stdlib/stats/base/dists/arcsine/mode","base.dists.arcsine.pdf":"@stdlib/stats/base/dists/arcsine/pdf","base.dists.arcsine.quantile":"@stdlib/stats/base/dists/arcsine/quantile","base.dists.arcsine.skewness":"@stdlib/stats/base/dists/arcsine/skewness","base.dists.arcsine.stdev":"@stdlib/stats/base/dists/arcsine/stdev","base.dists.arcsine.variance":"@stdlib/stats/base/dists/arcsine/variance","base.dists.bernoulli.Bernoulli":"@stdlib/stats/base/dists/bernoulli/ctor","base.dists.bernoulli.cdf":"@stdlib/stats/base/dists/bernoulli/cdf","base.dists.bernoulli.entropy":"@stdlib/stats/base/dists/bernoulli/entropy","base.dists.bernoulli.kurtosis":"@stdlib/stats/base/dists/bernoulli/kurtosis","base.dists.bernoulli.mean":"@stdlib/stats/base/dists/bernoulli/mean","base.dists.bernoulli.median":"@stdlib/stats/base/dists/bernoulli/median","base.dists.bernoulli.mgf":"@stdlib/stats/base/dists/bernoulli/mgf","base.dists.bernoulli.mode":"@stdlib/stats/base/dists/bernoulli/mode","base.dists.bernoulli.pmf":"@stdlib/stats/base/dists/bernoulli/pmf","base.dists.bernoulli.quantile":"@stdlib/stats/base/dists/bernoulli/quantile","base.dists.bernoulli.skewness":"@stdlib/stats/base/dists/bernoulli/skewness","base.dists.bernoulli.stdev":"@stdlib/stats/base/dists/bernoulli/stdev","base.dists.bernoulli.variance":"@stdlib/stats/base/dists/bernoulli/variance","base.dists.beta.Beta":"@stdlib/stats/base/dists/beta/ctor","base.dists.beta.cdf":"@stdlib/stats/base/dists/beta/cdf","base.dists.beta.entropy":"@stdlib/stats/base/dists/beta/entropy","base.dists.beta.kurtosis":"@stdlib/stats/base/dists/beta/kurtosis","base.dists.beta.logcdf":"@stdlib/stats/base/dists/beta/logcdf","base.dists.beta.logpdf":"@stdlib/stats/base/dists/beta/logpdf","base.dists.beta.mean":"@stdlib/stats/base/dists/beta/mean","base.dists.beta.median":"@stdlib/stats/base/dists/beta/median","base.dists.beta.mgf":"@stdlib/stats/base/dists/beta/mgf","base.dists.beta.mode":"@stdlib/stats/base/dists/beta/mode","base.dists.beta.pdf":"@stdlib/stats/base/dists/beta/pdf","base.dists.beta.quantile":"@stdlib/stats/base/dists/beta/quantile","base.dists.beta.skewness":"@stdlib/stats/base/dists/beta/skewness","base.dists.beta.stdev":"@stdlib/stats/base/dists/beta/stdev","base.dists.beta.variance":"@stdlib/stats/base/dists/beta/variance","base.dists.betaprime.BetaPrime":"@stdlib/stats/base/dists/betaprime/ctor","base.dists.betaprime.cdf":"@stdlib/stats/base/dists/betaprime/cdf","base.dists.betaprime.kurtosis":"@stdlib/stats/base/dists/betaprime/kurtosis","base.dists.betaprime.logcdf":"@stdlib/stats/base/dists/betaprime/logcdf","base.dists.betaprime.logpdf":"@stdlib/stats/base/dists/betaprime/logpdf","base.dists.betaprime.mean":"@stdlib/stats/base/dists/betaprime/mean","base.dists.betaprime.mode":"@stdlib/stats/base/dists/betaprime/mode","base.dists.betaprime.pdf":"@stdlib/stats/base/dists/betaprime/pdf","base.dists.betaprime.quantile":"@stdlib/stats/base/dists/betaprime/quantile","base.dists.betaprime.skewness":"@stdlib/stats/base/dists/betaprime/skewness","base.dists.betaprime.stdev":"@stdlib/stats/base/dists/betaprime/stdev","base.dists.betaprime.variance":"@stdlib/stats/base/dists/betaprime/variance","base.dists.binomial.Binomial":"@stdlib/stats/base/dists/binomial/ctor","base.dists.binomial.cdf":"@stdlib/stats/base/dists/binomial/cdf","base.dists.binomial.entropy":"@stdlib/stats/base/dists/binomial/entropy","base.dists.binomial.kurtosis":"@stdlib/stats/base/dists/binomial/kurtosis","base.dists.binomial.logpmf":"@stdlib/stats/base/dists/binomial/logpmf","base.dists.binomial.mean":"@stdlib/stats/base/dists/binomial/mean","base.dists.binomial.median":"@stdlib/stats/base/dists/binomial/median","base.dists.binomial.mgf":"@stdlib/stats/base/dists/binomial/mgf","base.dists.binomial.mode":"@stdlib/stats/base/dists/binomial/mode","base.dists.binomial.pmf":"@stdlib/stats/base/dists/binomial/pmf","base.dists.binomial.quantile":"@stdlib/stats/base/dists/binomial/quantile","base.dists.binomial.skewness":"@stdlib/stats/base/dists/binomial/skewness","base.dists.binomial.stdev":"@stdlib/stats/base/dists/binomial/stdev","base.dists.binomial.variance":"@stdlib/stats/base/dists/binomial/variance","base.dists.cauchy.Cauchy":"@stdlib/stats/base/dists/cauchy/ctor","base.dists.cauchy.cdf":"@stdlib/stats/base/dists/cauchy/cdf","base.dists.cauchy.entropy":"@stdlib/stats/base/dists/cauchy/entropy","base.dists.cauchy.logcdf":"@stdlib/stats/base/dists/cauchy/logcdf","base.dists.cauchy.logpdf":"@stdlib/stats/base/dists/cauchy/logpdf","base.dists.cauchy.median":"@stdlib/stats/base/dists/cauchy/median","base.dists.cauchy.mode":"@stdlib/stats/base/dists/cauchy/mode","base.dists.cauchy.pdf":"@stdlib/stats/base/dists/cauchy/pdf","base.dists.cauchy.quantile":"@stdlib/stats/base/dists/cauchy/quantile","base.dists.chi.cdf":"@stdlib/stats/base/dists/chi/cdf","base.dists.chi.Chi":"@stdlib/stats/base/dists/chi/ctor","base.dists.chi.entropy":"@stdlib/stats/base/dists/chi/entropy","base.dists.chi.kurtosis":"@stdlib/stats/base/dists/chi/kurtosis","base.dists.chi.logpdf":"@stdlib/stats/base/dists/chi/logpdf","base.dists.chi.mean":"@stdlib/stats/base/dists/chi/mean","base.dists.chi.mode":"@stdlib/stats/base/dists/chi/mode","base.dists.chi.pdf":"@stdlib/stats/base/dists/chi/pdf","base.dists.chi.quantile":"@stdlib/stats/base/dists/chi/quantile","base.dists.chi.skewness":"@stdlib/stats/base/dists/chi/skewness","base.dists.chi.stdev":"@stdlib/stats/base/dists/chi/stdev","base.dists.chi.variance":"@stdlib/stats/base/dists/chi/variance","base.dists.chisquare.cdf":"@stdlib/stats/base/dists/chisquare/cdf","base.dists.chisquare.ChiSquare":"@stdlib/stats/base/dists/chisquare/ctor","base.dists.chisquare.entropy":"@stdlib/stats/base/dists/chisquare/entropy","base.dists.chisquare.kurtosis":"@stdlib/stats/base/dists/chisquare/kurtosis","base.dists.chisquare.logpdf":"@stdlib/stats/base/dists/chisquare/logpdf","base.dists.chisquare.mean":"@stdlib/stats/base/dists/chisquare/mean","base.dists.chisquare.median":"@stdlib/stats/base/dists/chisquare/median","base.dists.chisquare.mgf":"@stdlib/stats/base/dists/chisquare/mgf","base.dists.chisquare.mode":"@stdlib/stats/base/dists/chisquare/mode","base.dists.chisquare.pdf":"@stdlib/stats/base/dists/chisquare/pdf","base.dists.chisquare.quantile":"@stdlib/stats/base/dists/chisquare/quantile","base.dists.chisquare.skewness":"@stdlib/stats/base/dists/chisquare/skewness","base.dists.chisquare.stdev":"@stdlib/stats/base/dists/chisquare/stdev","base.dists.chisquare.variance":"@stdlib/stats/base/dists/chisquare/variance","base.dists.cosine.cdf":"@stdlib/stats/base/dists/cosine/cdf","base.dists.cosine.Cosine":"@stdlib/stats/base/dists/cosine/ctor","base.dists.cosine.kurtosis":"@stdlib/stats/base/dists/cosine/kurtosis","base.dists.cosine.logcdf":"@stdlib/stats/base/dists/cosine/logcdf","base.dists.cosine.logpdf":"@stdlib/stats/base/dists/cosine/logpdf","base.dists.cosine.mean":"@stdlib/stats/base/dists/cosine/mean","base.dists.cosine.median":"@stdlib/stats/base/dists/cosine/median","base.dists.cosine.mgf":"@stdlib/stats/base/dists/cosine/mgf","base.dists.cosine.mode":"@stdlib/stats/base/dists/cosine/mode","base.dists.cosine.pdf":"@stdlib/stats/base/dists/cosine/pdf","base.dists.cosine.quantile":"@stdlib/stats/base/dists/cosine/quantile","base.dists.cosine.skewness":"@stdlib/stats/base/dists/cosine/skewness","base.dists.cosine.stdev":"@stdlib/stats/base/dists/cosine/stdev","base.dists.cosine.variance":"@stdlib/stats/base/dists/cosine/variance","base.dists.degenerate.cdf":"@stdlib/stats/base/dists/degenerate/cdf","base.dists.degenerate.Degenerate":"@stdlib/stats/base/dists/degenerate/ctor","base.dists.degenerate.entropy":"@stdlib/stats/base/dists/degenerate/entropy","base.dists.degenerate.logcdf":"@stdlib/stats/base/dists/degenerate/logcdf","base.dists.degenerate.logpdf":"@stdlib/stats/base/dists/degenerate/logpdf","base.dists.degenerate.logpmf":"@stdlib/stats/base/dists/degenerate/logpmf","base.dists.degenerate.mean":"@stdlib/stats/base/dists/degenerate/mean","base.dists.degenerate.median":"@stdlib/stats/base/dists/degenerate/median","base.dists.degenerate.mgf":"@stdlib/stats/base/dists/degenerate/mgf","base.dists.degenerate.mode":"@stdlib/stats/base/dists/degenerate/mode","base.dists.degenerate.pdf":"@stdlib/stats/base/dists/degenerate/pdf","base.dists.degenerate.pmf":"@stdlib/stats/base/dists/degenerate/pmf","base.dists.degenerate.quantile":"@stdlib/stats/base/dists/degenerate/quantile","base.dists.degenerate.stdev":"@stdlib/stats/base/dists/degenerate/stdev","base.dists.degenerate.variance":"@stdlib/stats/base/dists/degenerate/variance","base.dists.discreteUniform.cdf":"@stdlib/stats/base/dists/discrete-uniform/cdf","base.dists.discreteUniform.DiscreteUniform":"@stdlib/stats/base/dists/discrete-uniform/ctor","base.dists.discreteUniform.kurtosis":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","base.dists.discreteUniform.logcdf":"@stdlib/stats/base/dists/discrete-uniform/logcdf","base.dists.discreteUniform.logpmf":"@stdlib/stats/base/dists/discrete-uniform/logpmf","base.dists.discreteUniform.mean":"@stdlib/stats/base/dists/discrete-uniform/mean","base.dists.discreteUniform.median":"@stdlib/stats/base/dists/discrete-uniform/median","base.dists.discreteUniform.mgf":"@stdlib/stats/base/dists/discrete-uniform/mgf","base.dists.discreteUniform.pmf":"@stdlib/stats/base/dists/discrete-uniform/pmf","base.dists.discreteUniform.quantile":"@stdlib/stats/base/dists/discrete-uniform/quantile","base.dists.discreteUniform.skewness":"@stdlib/stats/base/dists/discrete-uniform/skewness","base.dists.discreteUniform.stdev":"@stdlib/stats/base/dists/discrete-uniform/stdev","base.dists.discreteUniform.variance":"@stdlib/stats/base/dists/discrete-uniform/variance","base.dists.erlang.cdf":"@stdlib/stats/base/dists/erlang/cdf","base.dists.erlang.entropy":"@stdlib/stats/base/dists/erlang/entropy","base.dists.erlang.Erlang":"@stdlib/stats/base/dists/erlang/ctor","base.dists.erlang.kurtosis":"@stdlib/stats/base/dists/erlang/kurtosis","base.dists.erlang.logpdf":"@stdlib/stats/base/dists/erlang/logpdf","base.dists.erlang.mean":"@stdlib/stats/base/dists/erlang/mean","base.dists.erlang.mgf":"@stdlib/stats/base/dists/erlang/mgf","base.dists.erlang.mode":"@stdlib/stats/base/dists/erlang/mode","base.dists.erlang.pdf":"@stdlib/stats/base/dists/erlang/pdf","base.dists.erlang.quantile":"@stdlib/stats/base/dists/erlang/quantile","base.dists.erlang.skewness":"@stdlib/stats/base/dists/erlang/skewness","base.dists.erlang.stdev":"@stdlib/stats/base/dists/erlang/stdev","base.dists.erlang.variance":"@stdlib/stats/base/dists/erlang/variance","base.dists.exponential.cdf":"@stdlib/stats/base/dists/exponential/cdf","base.dists.exponential.entropy":"@stdlib/stats/base/dists/exponential/entropy","base.dists.exponential.Exponential":"@stdlib/stats/base/dists/exponential/ctor","base.dists.exponential.kurtosis":"@stdlib/stats/base/dists/exponential/kurtosis","base.dists.exponential.logcdf":"@stdlib/stats/base/dists/exponential/logcdf","base.dists.exponential.logpdf":"@stdlib/stats/base/dists/exponential/logpdf","base.dists.exponential.mean":"@stdlib/stats/base/dists/exponential/mean","base.dists.exponential.median":"@stdlib/stats/base/dists/exponential/median","base.dists.exponential.mgf":"@stdlib/stats/base/dists/exponential/mgf","base.dists.exponential.mode":"@stdlib/stats/base/dists/exponential/mode","base.dists.exponential.pdf":"@stdlib/stats/base/dists/exponential/pdf","base.dists.exponential.quantile":"@stdlib/stats/base/dists/exponential/quantile","base.dists.exponential.skewness":"@stdlib/stats/base/dists/exponential/skewness","base.dists.exponential.stdev":"@stdlib/stats/base/dists/exponential/stdev","base.dists.exponential.variance":"@stdlib/stats/base/dists/exponential/variance","base.dists.f.cdf":"@stdlib/stats/base/dists/f/cdf","base.dists.f.entropy":"@stdlib/stats/base/dists/f/entropy","base.dists.f.F":"@stdlib/stats/base/dists/f/ctor","base.dists.f.kurtosis":"@stdlib/stats/base/dists/f/kurtosis","base.dists.f.mean":"@stdlib/stats/base/dists/f/mean","base.dists.f.mode":"@stdlib/stats/base/dists/f/mode","base.dists.f.pdf":"@stdlib/stats/base/dists/f/pdf","base.dists.f.quantile":"@stdlib/stats/base/dists/f/quantile","base.dists.f.skewness":"@stdlib/stats/base/dists/f/skewness","base.dists.f.stdev":"@stdlib/stats/base/dists/f/stdev","base.dists.f.variance":"@stdlib/stats/base/dists/f/variance","base.dists.frechet.cdf":"@stdlib/stats/base/dists/frechet/cdf","base.dists.frechet.entropy":"@stdlib/stats/base/dists/frechet/entropy","base.dists.frechet.Frechet":"@stdlib/stats/base/dists/frechet/ctor","base.dists.frechet.kurtosis":"@stdlib/stats/base/dists/frechet/kurtosis","base.dists.frechet.logcdf":"@stdlib/stats/base/dists/frechet/logcdf","base.dists.frechet.logpdf":"@stdlib/stats/base/dists/frechet/logpdf","base.dists.frechet.mean":"@stdlib/stats/base/dists/frechet/mean","base.dists.frechet.median":"@stdlib/stats/base/dists/frechet/median","base.dists.frechet.mode":"@stdlib/stats/base/dists/frechet/mode","base.dists.frechet.pdf":"@stdlib/stats/base/dists/frechet/pdf","base.dists.frechet.quantile":"@stdlib/stats/base/dists/frechet/quantile","base.dists.frechet.skewness":"@stdlib/stats/base/dists/frechet/skewness","base.dists.frechet.stdev":"@stdlib/stats/base/dists/frechet/stdev","base.dists.frechet.variance":"@stdlib/stats/base/dists/frechet/variance","base.dists.gamma.cdf":"@stdlib/stats/base/dists/gamma/cdf","base.dists.gamma.entropy":"@stdlib/stats/base/dists/gamma/entropy","base.dists.gamma.Gamma":"@stdlib/stats/base/dists/gamma/ctor","base.dists.gamma.kurtosis":"@stdlib/stats/base/dists/gamma/kurtosis","base.dists.gamma.logcdf":"@stdlib/stats/base/dists/gamma/logcdf","base.dists.gamma.logpdf":"@stdlib/stats/base/dists/gamma/logpdf","base.dists.gamma.mean":"@stdlib/stats/base/dists/gamma/mean","base.dists.gamma.mgf":"@stdlib/stats/base/dists/gamma/mgf","base.dists.gamma.mode":"@stdlib/stats/base/dists/gamma/mode","base.dists.gamma.pdf":"@stdlib/stats/base/dists/gamma/pdf","base.dists.gamma.quantile":"@stdlib/stats/base/dists/gamma/quantile","base.dists.gamma.skewness":"@stdlib/stats/base/dists/gamma/skewness","base.dists.gamma.stdev":"@stdlib/stats/base/dists/gamma/stdev","base.dists.gamma.variance":"@stdlib/stats/base/dists/gamma/variance","base.dists.geometric.cdf":"@stdlib/stats/base/dists/geometric/cdf","base.dists.geometric.entropy":"@stdlib/stats/base/dists/geometric/entropy","base.dists.geometric.Geometric":"@stdlib/stats/base/dists/geometric/ctor","base.dists.geometric.kurtosis":"@stdlib/stats/base/dists/geometric/kurtosis","base.dists.geometric.logcdf":"@stdlib/stats/base/dists/geometric/logcdf","base.dists.geometric.logpmf":"@stdlib/stats/base/dists/geometric/logpmf","base.dists.geometric.mean":"@stdlib/stats/base/dists/geometric/mean","base.dists.geometric.median":"@stdlib/stats/base/dists/geometric/median","base.dists.geometric.mgf":"@stdlib/stats/base/dists/geometric/mgf","base.dists.geometric.mode":"@stdlib/stats/base/dists/geometric/mode","base.dists.geometric.pmf":"@stdlib/stats/base/dists/geometric/pmf","base.dists.geometric.quantile":"@stdlib/stats/base/dists/geometric/quantile","base.dists.geometric.skewness":"@stdlib/stats/base/dists/geometric/skewness","base.dists.geometric.stdev":"@stdlib/stats/base/dists/geometric/stdev","base.dists.geometric.variance":"@stdlib/stats/base/dists/geometric/variance","base.dists.gumbel.cdf":"@stdlib/stats/base/dists/gumbel/cdf","base.dists.gumbel.entropy":"@stdlib/stats/base/dists/gumbel/entropy","base.dists.gumbel.Gumbel":"@stdlib/stats/base/dists/gumbel/ctor","base.dists.gumbel.kurtosis":"@stdlib/stats/base/dists/gumbel/kurtosis","base.dists.gumbel.logcdf":"@stdlib/stats/base/dists/gumbel/logcdf","base.dists.gumbel.logpdf":"@stdlib/stats/base/dists/gumbel/logpdf","base.dists.gumbel.mean":"@stdlib/stats/base/dists/gumbel/mean","base.dists.gumbel.median":"@stdlib/stats/base/dists/gumbel/median","base.dists.gumbel.mgf":"@stdlib/stats/base/dists/gumbel/mgf","base.dists.gumbel.mode":"@stdlib/stats/base/dists/gumbel/mode","base.dists.gumbel.pdf":"@stdlib/stats/base/dists/gumbel/pdf","base.dists.gumbel.quantile":"@stdlib/stats/base/dists/gumbel/quantile","base.dists.gumbel.skewness":"@stdlib/stats/base/dists/gumbel/skewness","base.dists.gumbel.stdev":"@stdlib/stats/base/dists/gumbel/stdev","base.dists.gumbel.variance":"@stdlib/stats/base/dists/gumbel/variance","base.dists.hypergeometric.cdf":"@stdlib/stats/base/dists/hypergeometric/cdf","base.dists.hypergeometric.Hypergeometric":"@stdlib/stats/base/dists/hypergeometric/ctor","base.dists.hypergeometric.kurtosis":"@stdlib/stats/base/dists/hypergeometric/kurtosis","base.dists.hypergeometric.logpmf":"@stdlib/stats/base/dists/hypergeometric/logpmf","base.dists.hypergeometric.mean":"@stdlib/stats/base/dists/hypergeometric/mean","base.dists.hypergeometric.mode":"@stdlib/stats/base/dists/hypergeometric/mode","base.dists.hypergeometric.pmf":"@stdlib/stats/base/dists/hypergeometric/pmf","base.dists.hypergeometric.quantile":"@stdlib/stats/base/dists/hypergeometric/quantile","base.dists.hypergeometric.skewness":"@stdlib/stats/base/dists/hypergeometric/skewness","base.dists.hypergeometric.stdev":"@stdlib/stats/base/dists/hypergeometric/stdev","base.dists.hypergeometric.variance":"@stdlib/stats/base/dists/hypergeometric/variance","base.dists.invgamma.cdf":"@stdlib/stats/base/dists/invgamma/cdf","base.dists.invgamma.entropy":"@stdlib/stats/base/dists/invgamma/entropy","base.dists.invgamma.InvGamma":"@stdlib/stats/base/dists/invgamma/ctor","base.dists.invgamma.kurtosis":"@stdlib/stats/base/dists/invgamma/kurtosis","base.dists.invgamma.logpdf":"@stdlib/stats/base/dists/invgamma/logpdf","base.dists.invgamma.mean":"@stdlib/stats/base/dists/invgamma/mean","base.dists.invgamma.mode":"@stdlib/stats/base/dists/invgamma/mode","base.dists.invgamma.pdf":"@stdlib/stats/base/dists/invgamma/pdf","base.dists.invgamma.quantile":"@stdlib/stats/base/dists/invgamma/quantile","base.dists.invgamma.skewness":"@stdlib/stats/base/dists/invgamma/skewness","base.dists.invgamma.stdev":"@stdlib/stats/base/dists/invgamma/stdev","base.dists.invgamma.variance":"@stdlib/stats/base/dists/invgamma/variance","base.dists.kumaraswamy.cdf":"@stdlib/stats/base/dists/kumaraswamy/cdf","base.dists.kumaraswamy.Kumaraswamy":"@stdlib/stats/base/dists/kumaraswamy/ctor","base.dists.kumaraswamy.kurtosis":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","base.dists.kumaraswamy.logcdf":"@stdlib/stats/base/dists/kumaraswamy/logcdf","base.dists.kumaraswamy.logpdf":"@stdlib/stats/base/dists/kumaraswamy/logpdf","base.dists.kumaraswamy.mean":"@stdlib/stats/base/dists/kumaraswamy/mean","base.dists.kumaraswamy.median":"@stdlib/stats/base/dists/kumaraswamy/median","base.dists.kumaraswamy.mode":"@stdlib/stats/base/dists/kumaraswamy/mode","base.dists.kumaraswamy.pdf":"@stdlib/stats/base/dists/kumaraswamy/pdf","base.dists.kumaraswamy.quantile":"@stdlib/stats/base/dists/kumaraswamy/quantile","base.dists.kumaraswamy.skewness":"@stdlib/stats/base/dists/kumaraswamy/skewness","base.dists.kumaraswamy.stdev":"@stdlib/stats/base/dists/kumaraswamy/stdev","base.dists.kumaraswamy.variance":"@stdlib/stats/base/dists/kumaraswamy/variance","base.dists.laplace.cdf":"@stdlib/stats/base/dists/laplace/cdf","base.dists.laplace.entropy":"@stdlib/stats/base/dists/laplace/entropy","base.dists.laplace.kurtosis":"@stdlib/stats/base/dists/laplace/kurtosis","base.dists.laplace.Laplace":"@stdlib/stats/base/dists/laplace/ctor","base.dists.laplace.logcdf":"@stdlib/stats/base/dists/laplace/logcdf","base.dists.laplace.logpdf":"@stdlib/stats/base/dists/laplace/logpdf","base.dists.laplace.mean":"@stdlib/stats/base/dists/laplace/mean","base.dists.laplace.median":"@stdlib/stats/base/dists/laplace/median","base.dists.laplace.mgf":"@stdlib/stats/base/dists/laplace/mgf","base.dists.laplace.mode":"@stdlib/stats/base/dists/laplace/mode","base.dists.laplace.pdf":"@stdlib/stats/base/dists/laplace/pdf","base.dists.laplace.quantile":"@stdlib/stats/base/dists/laplace/quantile","base.dists.laplace.skewness":"@stdlib/stats/base/dists/laplace/skewness","base.dists.laplace.stdev":"@stdlib/stats/base/dists/laplace/stdev","base.dists.laplace.variance":"@stdlib/stats/base/dists/laplace/variance","base.dists.levy.cdf":"@stdlib/stats/base/dists/levy/cdf","base.dists.levy.entropy":"@stdlib/stats/base/dists/levy/entropy","base.dists.levy.Levy":"@stdlib/stats/base/dists/levy/ctor","base.dists.levy.logcdf":"@stdlib/stats/base/dists/levy/logcdf","base.dists.levy.logpdf":"@stdlib/stats/base/dists/levy/logpdf","base.dists.levy.mean":"@stdlib/stats/base/dists/levy/mean","base.dists.levy.median":"@stdlib/stats/base/dists/levy/median","base.dists.levy.mode":"@stdlib/stats/base/dists/levy/mode","base.dists.levy.pdf":"@stdlib/stats/base/dists/levy/pdf","base.dists.levy.quantile":"@stdlib/stats/base/dists/levy/quantile","base.dists.levy.stdev":"@stdlib/stats/base/dists/levy/stdev","base.dists.levy.variance":"@stdlib/stats/base/dists/levy/variance","base.dists.logistic.cdf":"@stdlib/stats/base/dists/logistic/cdf","base.dists.logistic.entropy":"@stdlib/stats/base/dists/logistic/entropy","base.dists.logistic.kurtosis":"@stdlib/stats/base/dists/logistic/kurtosis","base.dists.logistic.logcdf":"@stdlib/stats/base/dists/logistic/logcdf","base.dists.logistic.Logistic":"@stdlib/stats/base/dists/logistic/ctor","base.dists.logistic.logpdf":"@stdlib/stats/base/dists/logistic/logpdf","base.dists.logistic.mean":"@stdlib/stats/base/dists/logistic/mean","base.dists.logistic.median":"@stdlib/stats/base/dists/logistic/median","base.dists.logistic.mgf":"@stdlib/stats/base/dists/logistic/mgf","base.dists.logistic.mode":"@stdlib/stats/base/dists/logistic/mode","base.dists.logistic.pdf":"@stdlib/stats/base/dists/logistic/pdf","base.dists.logistic.quantile":"@stdlib/stats/base/dists/logistic/quantile","base.dists.logistic.skewness":"@stdlib/stats/base/dists/logistic/skewness","base.dists.logistic.stdev":"@stdlib/stats/base/dists/logistic/stdev","base.dists.logistic.variance":"@stdlib/stats/base/dists/logistic/variance","base.dists.lognormal.cdf":"@stdlib/stats/base/dists/lognormal/cdf","base.dists.lognormal.entropy":"@stdlib/stats/base/dists/lognormal/entropy","base.dists.lognormal.kurtosis":"@stdlib/stats/base/dists/lognormal/kurtosis","base.dists.lognormal.LogNormal":"@stdlib/stats/base/dists/lognormal/ctor","base.dists.lognormal.logpdf":"@stdlib/stats/base/dists/lognormal/logpdf","base.dists.lognormal.mean":"@stdlib/stats/base/dists/lognormal/mean","base.dists.lognormal.median":"@stdlib/stats/base/dists/lognormal/median","base.dists.lognormal.mode":"@stdlib/stats/base/dists/lognormal/mode","base.dists.lognormal.pdf":"@stdlib/stats/base/dists/lognormal/pdf","base.dists.lognormal.quantile":"@stdlib/stats/base/dists/lognormal/quantile","base.dists.lognormal.skewness":"@stdlib/stats/base/dists/lognormal/skewness","base.dists.lognormal.stdev":"@stdlib/stats/base/dists/lognormal/stdev","base.dists.lognormal.variance":"@stdlib/stats/base/dists/lognormal/variance","base.dists.negativeBinomial.cdf":"@stdlib/stats/base/dists/negative-binomial/cdf","base.dists.negativeBinomial.kurtosis":"@stdlib/stats/base/dists/negative-binomial/kurtosis","base.dists.negativeBinomial.logpmf":"@stdlib/stats/base/dists/negative-binomial/logpmf","base.dists.negativeBinomial.mean":"@stdlib/stats/base/dists/negative-binomial/mean","base.dists.negativeBinomial.mgf":"@stdlib/stats/base/dists/negative-binomial/mgf","base.dists.negativeBinomial.mode":"@stdlib/stats/base/dists/negative-binomial/mode","base.dists.negativeBinomial.NegativeBinomial":"@stdlib/stats/base/dists/negative-binomial/ctor","base.dists.negativeBinomial.pmf":"@stdlib/stats/base/dists/negative-binomial/pmf","base.dists.negativeBinomial.quantile":"@stdlib/stats/base/dists/negative-binomial/quantile","base.dists.negativeBinomial.skewness":"@stdlib/stats/base/dists/negative-binomial/skewness","base.dists.negativeBinomial.stdev":"@stdlib/stats/base/dists/negative-binomial/stdev","base.dists.negativeBinomial.variance":"@stdlib/stats/base/dists/negative-binomial/variance","base.dists.normal.cdf":"@stdlib/stats/base/dists/normal/cdf","base.dists.normal.entropy":"@stdlib/stats/base/dists/normal/entropy","base.dists.normal.kurtosis":"@stdlib/stats/base/dists/normal/kurtosis","base.dists.normal.logpdf":"@stdlib/stats/base/dists/normal/logpdf","base.dists.normal.mean":"@stdlib/stats/base/dists/normal/mean","base.dists.normal.median":"@stdlib/stats/base/dists/normal/median","base.dists.normal.mgf":"@stdlib/stats/base/dists/normal/mgf","base.dists.normal.mode":"@stdlib/stats/base/dists/normal/mode","base.dists.normal.Normal":"@stdlib/stats/base/dists/normal/ctor","base.dists.normal.pdf":"@stdlib/stats/base/dists/normal/pdf","base.dists.normal.quantile":"@stdlib/stats/base/dists/normal/quantile","base.dists.normal.skewness":"@stdlib/stats/base/dists/normal/skewness","base.dists.normal.stdev":"@stdlib/stats/base/dists/normal/stdev","base.dists.normal.variance":"@stdlib/stats/base/dists/normal/variance","base.dists.pareto1.cdf":"@stdlib/stats/base/dists/pareto-type1/cdf","base.dists.pareto1.entropy":"@stdlib/stats/base/dists/pareto-type1/entropy","base.dists.pareto1.kurtosis":"@stdlib/stats/base/dists/pareto-type1/kurtosis","base.dists.pareto1.logcdf":"@stdlib/stats/base/dists/pareto-type1/logcdf","base.dists.pareto1.logpdf":"@stdlib/stats/base/dists/pareto-type1/logpdf","base.dists.pareto1.mean":"@stdlib/stats/base/dists/pareto-type1/mean","base.dists.pareto1.median":"@stdlib/stats/base/dists/pareto-type1/median","base.dists.pareto1.mode":"@stdlib/stats/base/dists/pareto-type1/mode","base.dists.pareto1.Pareto1":"@stdlib/stats/base/dists/pareto-type1/ctor","base.dists.pareto1.pdf":"@stdlib/stats/base/dists/pareto-type1/pdf","base.dists.pareto1.quantile":"@stdlib/stats/base/dists/pareto-type1/quantile","base.dists.pareto1.skewness":"@stdlib/stats/base/dists/pareto-type1/skewness","base.dists.pareto1.stdev":"@stdlib/stats/base/dists/pareto-type1/stdev","base.dists.pareto1.variance":"@stdlib/stats/base/dists/pareto-type1/variance","base.dists.poisson.cdf":"@stdlib/stats/base/dists/poisson/cdf","base.dists.poisson.entropy":"@stdlib/stats/base/dists/poisson/entropy","base.dists.poisson.kurtosis":"@stdlib/stats/base/dists/poisson/kurtosis","base.dists.poisson.logpmf":"@stdlib/stats/base/dists/poisson/logpmf","base.dists.poisson.mean":"@stdlib/stats/base/dists/poisson/mean","base.dists.poisson.median":"@stdlib/stats/base/dists/poisson/median","base.dists.poisson.mgf":"@stdlib/stats/base/dists/poisson/mgf","base.dists.poisson.mode":"@stdlib/stats/base/dists/poisson/mode","base.dists.poisson.pmf":"@stdlib/stats/base/dists/poisson/pmf","base.dists.poisson.Poisson":"@stdlib/stats/base/dists/poisson/ctor","base.dists.poisson.quantile":"@stdlib/stats/base/dists/poisson/quantile","base.dists.poisson.skewness":"@stdlib/stats/base/dists/poisson/skewness","base.dists.poisson.stdev":"@stdlib/stats/base/dists/poisson/stdev","base.dists.poisson.variance":"@stdlib/stats/base/dists/poisson/variance","base.dists.rayleigh.cdf":"@stdlib/stats/base/dists/rayleigh/cdf","base.dists.rayleigh.entropy":"@stdlib/stats/base/dists/rayleigh/entropy","base.dists.rayleigh.kurtosis":"@stdlib/stats/base/dists/rayleigh/kurtosis","base.dists.rayleigh.logcdf":"@stdlib/stats/base/dists/rayleigh/logcdf","base.dists.rayleigh.logpdf":"@stdlib/stats/base/dists/rayleigh/logpdf","base.dists.rayleigh.mean":"@stdlib/stats/base/dists/rayleigh/mean","base.dists.rayleigh.median":"@stdlib/stats/base/dists/rayleigh/median","base.dists.rayleigh.mgf":"@stdlib/stats/base/dists/rayleigh/mgf","base.dists.rayleigh.mode":"@stdlib/stats/base/dists/rayleigh/mode","base.dists.rayleigh.pdf":"@stdlib/stats/base/dists/rayleigh/pdf","base.dists.rayleigh.quantile":"@stdlib/stats/base/dists/rayleigh/quantile","base.dists.rayleigh.Rayleigh":"@stdlib/stats/base/dists/rayleigh/ctor","base.dists.rayleigh.skewness":"@stdlib/stats/base/dists/rayleigh/skewness","base.dists.rayleigh.stdev":"@stdlib/stats/base/dists/rayleigh/stdev","base.dists.rayleigh.variance":"@stdlib/stats/base/dists/rayleigh/variance","base.dists.signrank.cdf":"@stdlib/stats/base/dists/signrank/cdf","base.dists.signrank.pdf":"@stdlib/stats/base/dists/signrank/pdf","base.dists.signrank.quantile":"@stdlib/stats/base/dists/signrank/quantile","base.dists.t.cdf":"@stdlib/stats/base/dists/t/cdf","base.dists.t.entropy":"@stdlib/stats/base/dists/t/entropy","base.dists.t.kurtosis":"@stdlib/stats/base/dists/t/kurtosis","base.dists.t.mean":"@stdlib/stats/base/dists/t/mean","base.dists.t.median":"@stdlib/stats/base/dists/t/median","base.dists.t.mode":"@stdlib/stats/base/dists/t/mode","base.dists.t.pdf":"@stdlib/stats/base/dists/t/pdf","base.dists.t.quantile":"@stdlib/stats/base/dists/t/quantile","base.dists.t.skewness":"@stdlib/stats/base/dists/t/skewness","base.dists.t.stdev":"@stdlib/stats/base/dists/t/stdev","base.dists.t.T":"@stdlib/stats/base/dists/t/ctor","base.dists.t.variance":"@stdlib/stats/base/dists/t/variance","base.dists.triangular.cdf":"@stdlib/stats/base/dists/triangular/cdf","base.dists.triangular.entropy":"@stdlib/stats/base/dists/triangular/entropy","base.dists.triangular.kurtosis":"@stdlib/stats/base/dists/triangular/kurtosis","base.dists.triangular.logcdf":"@stdlib/stats/base/dists/triangular/logcdf","base.dists.triangular.logpdf":"@stdlib/stats/base/dists/triangular/logpdf","base.dists.triangular.mean":"@stdlib/stats/base/dists/triangular/mean","base.dists.triangular.median":"@stdlib/stats/base/dists/triangular/median","base.dists.triangular.mgf":"@stdlib/stats/base/dists/triangular/mgf","base.dists.triangular.mode":"@stdlib/stats/base/dists/triangular/mode","base.dists.triangular.pdf":"@stdlib/stats/base/dists/triangular/pdf","base.dists.triangular.quantile":"@stdlib/stats/base/dists/triangular/quantile","base.dists.triangular.skewness":"@stdlib/stats/base/dists/triangular/skewness","base.dists.triangular.stdev":"@stdlib/stats/base/dists/triangular/stdev","base.dists.triangular.Triangular":"@stdlib/stats/base/dists/triangular/ctor","base.dists.triangular.variance":"@stdlib/stats/base/dists/triangular/variance","base.dists.uniform.cdf":"@stdlib/stats/base/dists/uniform/cdf","base.dists.uniform.entropy":"@stdlib/stats/base/dists/uniform/entropy","base.dists.uniform.kurtosis":"@stdlib/stats/base/dists/uniform/kurtosis","base.dists.uniform.logcdf":"@stdlib/stats/base/dists/uniform/logcdf","base.dists.uniform.logpdf":"@stdlib/stats/base/dists/uniform/logpdf","base.dists.uniform.mean":"@stdlib/stats/base/dists/uniform/mean","base.dists.uniform.median":"@stdlib/stats/base/dists/uniform/median","base.dists.uniform.mgf":"@stdlib/stats/base/dists/uniform/mgf","base.dists.uniform.pdf":"@stdlib/stats/base/dists/uniform/pdf","base.dists.uniform.quantile":"@stdlib/stats/base/dists/uniform/quantile","base.dists.uniform.skewness":"@stdlib/stats/base/dists/uniform/skewness","base.dists.uniform.stdev":"@stdlib/stats/base/dists/uniform/stdev","base.dists.uniform.Uniform":"@stdlib/stats/base/dists/uniform/ctor","base.dists.uniform.variance":"@stdlib/stats/base/dists/uniform/variance","base.dists.weibull.cdf":"@stdlib/stats/base/dists/weibull/cdf","base.dists.weibull.entropy":"@stdlib/stats/base/dists/weibull/entropy","base.dists.weibull.kurtosis":"@stdlib/stats/base/dists/weibull/kurtosis","base.dists.weibull.logcdf":"@stdlib/stats/base/dists/weibull/logcdf","base.dists.weibull.logpdf":"@stdlib/stats/base/dists/weibull/logpdf","base.dists.weibull.mean":"@stdlib/stats/base/dists/weibull/mean","base.dists.weibull.median":"@stdlib/stats/base/dists/weibull/median","base.dists.weibull.mgf":"@stdlib/stats/base/dists/weibull/mgf","base.dists.weibull.mode":"@stdlib/stats/base/dists/weibull/mode","base.dists.weibull.pdf":"@stdlib/stats/base/dists/weibull/pdf","base.dists.weibull.quantile":"@stdlib/stats/base/dists/weibull/quantile","base.dists.weibull.skewness":"@stdlib/stats/base/dists/weibull/skewness","base.dists.weibull.stdev":"@stdlib/stats/base/dists/weibull/stdev","base.dists.weibull.variance":"@stdlib/stats/base/dists/weibull/variance","base.dists.weibull.Weibull":"@stdlib/stats/base/dists/weibull/ctor","base.ellipe":"@stdlib/math/base/special/ellipe","base.ellipk":"@stdlib/math/base/special/ellipk","base.epsdiff":"@stdlib/math/base/utils/float64-epsilon-difference","base.erf":"@stdlib/math/base/special/erf","base.erfc":"@stdlib/math/base/special/erfc","base.erfcinv":"@stdlib/math/base/special/erfcinv","base.erfinv":"@stdlib/math/base/special/erfinv","base.eta":"@stdlib/math/base/special/dirichlet-eta","base.evalpoly":"@stdlib/math/base/tools/evalpoly","base.evalrational":"@stdlib/math/base/tools/evalrational","base.exp":"@stdlib/math/base/special/exp","base.exp2":"@stdlib/math/base/special/exp2","base.exp10":"@stdlib/math/base/special/exp10","base.expit":"@stdlib/math/base/special/expit","base.expm1":"@stdlib/math/base/special/expm1","base.expm1rel":"@stdlib/math/base/special/expm1rel","base.exponent":"@stdlib/number/float64/base/exponent","base.exponentf":"@stdlib/number/float32/base/exponent","base.factorial":"@stdlib/math/base/special/factorial","base.factorialln":"@stdlib/math/base/special/factorialln","base.fallingFactorial":"@stdlib/math/base/special/falling-factorial","base.fibonacci":"@stdlib/math/base/special/fibonacci","base.fibonacciIndex":"@stdlib/math/base/special/fibonacci-index","base.fibpoly":"@stdlib/math/base/tools/fibpoly","base.flipsign":"@stdlib/math/base/special/flipsign","base.flipsignf":"@stdlib/math/base/special/flipsignf","base.float32ToInt32":"@stdlib/number/float32/base/to-int32","base.float32ToUint32":"@stdlib/number/float32/base/to-uint32","base.float64ToFloat32":"@stdlib/number/float64/base/to-float32","base.float64ToInt32":"@stdlib/number/float64/base/to-int32","base.float64ToInt64Bytes":"@stdlib/number/float64/base/to-int64-bytes","base.float64ToUint32":"@stdlib/number/float64/base/to-uint32","base.floor":"@stdlib/math/base/special/floor","base.floor2":"@stdlib/math/base/special/floor2","base.floor10":"@stdlib/math/base/special/floor10","base.floorb":"@stdlib/math/base/special/floorb","base.floorf":"@stdlib/math/base/special/floorf","base.floorn":"@stdlib/math/base/special/floorn","base.floorsd":"@stdlib/math/base/special/floorsd","base.fresnel":"@stdlib/math/base/special/fresnel","base.fresnelc":"@stdlib/math/base/special/fresnelc","base.fresnels":"@stdlib/math/base/special/fresnels","base.frexp":"@stdlib/math/base/special/frexp","base.fromBinaryString":"@stdlib/number/float64/base/from-binary-string","base.fromBinaryStringf":"@stdlib/number/float32/base/from-binary-string","base.fromBinaryStringUint8":"@stdlib/number/uint8/base/from-binary-string","base.fromBinaryStringUint16":"@stdlib/number/uint16/base/from-binary-string","base.fromBinaryStringUint32":"@stdlib/number/uint32/base/from-binary-string","base.fromInt64Bytes":"@stdlib/number/float64/base/from-int64-bytes","base.fromWordf":"@stdlib/number/float32/base/from-word","base.fromWords":"@stdlib/number/float64/base/from-words","base.gamma":"@stdlib/math/base/special/gamma","base.gamma1pm1":"@stdlib/math/base/special/gamma1pm1","base.gammaDeltaRatio":"@stdlib/math/base/special/gamma-delta-ratio","base.gammainc":"@stdlib/math/base/special/gammainc","base.gammaincinv":"@stdlib/math/base/special/gammaincinv","base.gammaLanczosSum":"@stdlib/math/base/special/gamma-lanczos-sum","base.gammaLanczosSumExpGScaled":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","base.gammaln":"@stdlib/math/base/special/gammaln","base.gcd":"@stdlib/math/base/special/gcd","base.getHighWord":"@stdlib/number/float64/base/get-high-word","base.getLowWord":"@stdlib/number/float64/base/get-low-word","base.hacovercos":"@stdlib/math/base/special/hacovercos","base.hacoversin":"@stdlib/math/base/special/hacoversin","base.havercos":"@stdlib/math/base/special/havercos","base.haversin":"@stdlib/math/base/special/haversin","base.heaviside":"@stdlib/math/base/special/heaviside","base.hermitepoly":"@stdlib/math/base/tools/hermitepoly","base.hypot":"@stdlib/math/base/special/hypot","base.hypotf":"@stdlib/math/base/special/hypotf","base.identity":"@stdlib/math/base/special/identity","base.identityf":"@stdlib/math/base/special/identityf","base.imul":"@stdlib/math/base/ops/imul","base.imuldw":"@stdlib/math/base/ops/imuldw","base.int32ToUint32":"@stdlib/number/int32/base/to-uint32","base.inv":"@stdlib/math/base/special/inv","base.invf":"@stdlib/math/base/special/invf","base.isComposite":"@stdlib/math/base/assert/is-composite","base.isCoprime":"@stdlib/math/base/assert/is-coprime","base.isEven":"@stdlib/math/base/assert/is-even","base.isEvenInt32":"@stdlib/math/base/assert/int32-is-even","base.isFinite":"@stdlib/math/base/assert/is-finite","base.isFinitef":"@stdlib/math/base/assert/is-finitef","base.isInfinite":"@stdlib/math/base/assert/is-infinite","base.isInfinitef":"@stdlib/math/base/assert/is-infinitef","base.isInteger":"@stdlib/math/base/assert/is-integer","base.isnan":"@stdlib/math/base/assert/is-nan","base.isnanf":"@stdlib/math/base/assert/is-nanf","base.isNegativeInteger":"@stdlib/math/base/assert/is-negative-integer","base.isNegativeZero":"@stdlib/math/base/assert/is-negative-zero","base.isNegativeZerof":"@stdlib/math/base/assert/is-negative-zerof","base.isNonNegativeInteger":"@stdlib/math/base/assert/is-nonnegative-integer","base.isNonPositiveInteger":"@stdlib/math/base/assert/is-nonpositive-integer","base.isOdd":"@stdlib/math/base/assert/is-odd","base.isOddInt32":"@stdlib/math/base/assert/int32-is-odd","base.isPositiveInteger":"@stdlib/math/base/assert/is-positive-integer","base.isPositiveZero":"@stdlib/math/base/assert/is-positive-zero","base.isPositiveZerof":"@stdlib/math/base/assert/is-positive-zerof","base.isPow2Uint32":"@stdlib/math/base/assert/uint32-is-pow2","base.isPrime":"@stdlib/math/base/assert/is-prime","base.isProbability":"@stdlib/math/base/assert/is-probability","base.isSafeInteger":"@stdlib/math/base/assert/is-safe-integer","base.kernelBetainc":"@stdlib/math/base/special/kernel-betainc","base.kernelBetaincinv":"@stdlib/math/base/special/kernel-betaincinv","base.kernelCos":"@stdlib/math/base/special/kernel-cos","base.kernelSin":"@stdlib/math/base/special/kernel-sin","base.kernelTan":"@stdlib/math/base/special/kernel-tan","base.kroneckerDelta":"@stdlib/math/base/special/kronecker-delta","base.kroneckerDeltaf":"@stdlib/math/base/special/kronecker-deltaf","base.labs":"@stdlib/math/base/special/labs","base.lcm":"@stdlib/math/base/special/lcm","base.ldexp":"@stdlib/math/base/special/ldexp","base.ln":"@stdlib/math/base/special/ln","base.log":"@stdlib/math/base/special/log","base.log1mexp":"@stdlib/math/base/special/log1mexp","base.log1p":"@stdlib/math/base/special/log1p","base.log1pexp":"@stdlib/math/base/special/log1pexp","base.log2":"@stdlib/math/base/special/log2","base.log10":"@stdlib/math/base/special/log10","base.logaddexp":"@stdlib/math/base/special/logaddexp","base.logit":"@stdlib/math/base/special/logit","base.lucas":"@stdlib/math/base/special/lucas","base.lucaspoly":"@stdlib/math/base/tools/lucaspoly","base.max":"@stdlib/math/base/special/max","base.maxabs":"@stdlib/math/base/special/maxabs","base.min":"@stdlib/math/base/special/min","base.minabs":"@stdlib/math/base/special/minabs","base.minmax":"@stdlib/math/base/special/minmax","base.minmaxabs":"@stdlib/math/base/special/minmaxabs","base.modf":"@stdlib/math/base/special/modf","base.mul":"@stdlib/math/base/ops/mul","base.mulf":"@stdlib/math/base/ops/mulf","base.ndarray":"@stdlib/ndarray/base/ctor","base.ndarrayUnary":"@stdlib/ndarray/base/unary","base.ndzeros":"@stdlib/ndarray/base/zeros","base.ndzerosLike":"@stdlib/ndarray/base/zeros-like","base.negafibonacci":"@stdlib/math/base/special/negafibonacci","base.negalucas":"@stdlib/math/base/special/negalucas","base.nonfibonacci":"@stdlib/math/base/special/nonfibonacci","base.normalize":"@stdlib/number/float64/base/normalize","base.normalizef":"@stdlib/number/float32/base/normalize","base.normhermitepoly":"@stdlib/math/base/tools/normhermitepoly","base.pdiff":"@stdlib/math/base/special/pdiff","base.pdifff":"@stdlib/math/base/special/pdifff","base.polygamma":"@stdlib/math/base/special/polygamma","base.pow":"@stdlib/math/base/special/pow","base.powm1":"@stdlib/math/base/special/powm1","base.rad2deg":"@stdlib/math/base/special/rad2deg","base.ramp":"@stdlib/math/base/special/ramp","base.rampf":"@stdlib/math/base/special/rampf","base.random.arcsine":"@stdlib/random/base/arcsine","base.random.bernoulli":"@stdlib/random/base/bernoulli","base.random.beta":"@stdlib/random/base/beta","base.random.betaprime":"@stdlib/random/base/betaprime","base.random.binomial":"@stdlib/random/base/binomial","base.random.boxMuller":"@stdlib/random/base/box-muller","base.random.cauchy":"@stdlib/random/base/cauchy","base.random.chi":"@stdlib/random/base/chi","base.random.chisquare":"@stdlib/random/base/chisquare","base.random.cosine":"@stdlib/random/base/cosine","base.random.discreteUniform":"@stdlib/random/base/discrete-uniform","base.random.erlang":"@stdlib/random/base/erlang","base.random.exponential":"@stdlib/random/base/exponential","base.random.f":"@stdlib/random/base/f","base.random.frechet":"@stdlib/random/base/frechet","base.random.gamma":"@stdlib/random/base/gamma","base.random.geometric":"@stdlib/random/base/geometric","base.random.gumbel":"@stdlib/random/base/gumbel","base.random.hypergeometric":"@stdlib/random/base/hypergeometric","base.random.improvedZiggurat":"@stdlib/random/base/improved-ziggurat","base.random.invgamma":"@stdlib/random/base/invgamma","base.random.kumaraswamy":"@stdlib/random/base/kumaraswamy","base.random.laplace":"@stdlib/random/base/laplace","base.random.levy":"@stdlib/random/base/levy","base.random.logistic":"@stdlib/random/base/logistic","base.random.lognormal":"@stdlib/random/base/lognormal","base.random.minstd":"@stdlib/random/base/minstd","base.random.minstdShuffle":"@stdlib/random/base/minstd-shuffle","base.random.mt19937":"@stdlib/random/base/mt19937","base.random.negativeBinomial":"@stdlib/random/base/negative-binomial","base.random.normal":"@stdlib/random/base/normal","base.random.pareto1":"@stdlib/random/base/pareto-type1","base.random.poisson":"@stdlib/random/base/poisson","base.random.randi":"@stdlib/random/base/randi","base.random.randn":"@stdlib/random/base/randn","base.random.randu":"@stdlib/random/base/randu","base.random.rayleigh":"@stdlib/random/base/rayleigh","base.random.t":"@stdlib/random/base/t","base.random.triangular":"@stdlib/random/base/triangular","base.random.uniform":"@stdlib/random/base/uniform","base.random.weibull":"@stdlib/random/base/weibull","base.reldiff":"@stdlib/math/base/utils/relative-difference","base.rempio2":"@stdlib/math/base/special/rempio2","base.risingFactorial":"@stdlib/math/base/special/rising-factorial","base.rotl32":"@stdlib/number/uint32/base/rotl","base.rotr32":"@stdlib/number/uint32/base/rotr","base.round":"@stdlib/math/base/special/round","base.round2":"@stdlib/math/base/special/round2","base.round10":"@stdlib/math/base/special/round10","base.roundb":"@stdlib/math/base/special/roundb","base.roundn":"@stdlib/math/base/special/roundn","base.roundsd":"@stdlib/math/base/special/roundsd","base.rsqrt":"@stdlib/math/base/special/rsqrt","base.rsqrtf":"@stdlib/math/base/special/rsqrtf","base.scalar2ndarray":"@stdlib/ndarray/base/from-scalar","base.setHighWord":"@stdlib/number/float64/base/set-high-word","base.setLowWord":"@stdlib/number/float64/base/set-low-word","base.sici":"@stdlib/math/base/special/sici","base.signbit":"@stdlib/number/float64/base/signbit","base.signbitf":"@stdlib/number/float32/base/signbit","base.significandf":"@stdlib/number/float32/base/significand","base.signum":"@stdlib/math/base/special/signum","base.signumf":"@stdlib/math/base/special/signumf","base.sin":"@stdlib/math/base/special/sin","base.sinc":"@stdlib/math/base/special/sinc","base.sincos":"@stdlib/math/base/special/sincos","base.sincospi":"@stdlib/math/base/special/sincospi","base.sinh":"@stdlib/math/base/special/sinh","base.sinpi":"@stdlib/math/base/special/sinpi","base.spence":"@stdlib/math/base/special/spence","base.sqrt":"@stdlib/math/base/special/sqrt","base.sqrt1pm1":"@stdlib/math/base/special/sqrt1pm1","base.sqrtf":"@stdlib/math/base/special/sqrtf","base.strided.binary":"@stdlib/strided/base/binary","base.strided.ccopy":"@stdlib/blas/base/ccopy","base.strided.cmap":"@stdlib/strided/base/cmap","base.strided.cswap":"@stdlib/blas/base/cswap","base.strided.cumax":"@stdlib/stats/base/cumax","base.strided.cumaxabs":"@stdlib/stats/base/cumaxabs","base.strided.cumin":"@stdlib/stats/base/cumin","base.strided.cuminabs":"@stdlib/stats/base/cuminabs","base.strided.dabs":"@stdlib/math/strided/special/dabs","base.strided.dabs2":"@stdlib/math/strided/special/dabs2","base.strided.dapx":"@stdlib/blas/ext/base/dapx","base.strided.dapxsum":"@stdlib/blas/ext/base/dapxsum","base.strided.dapxsumkbn":"@stdlib/blas/ext/base/dapxsumkbn","base.strided.dapxsumkbn2":"@stdlib/blas/ext/base/dapxsumkbn2","base.strided.dapxsumors":"@stdlib/blas/ext/base/dapxsumors","base.strided.dapxsumpw":"@stdlib/blas/ext/base/dapxsumpw","base.strided.dasum":"@stdlib/blas/base/dasum","base.strided.dasumpw":"@stdlib/blas/ext/base/dasumpw","base.strided.daxpy":"@stdlib/blas/base/daxpy","base.strided.dcbrt":"@stdlib/math/strided/special/dcbrt","base.strided.dceil":"@stdlib/math/strided/special/dceil","base.strided.dcopy":"@stdlib/blas/base/dcopy","base.strided.dcumax":"@stdlib/stats/base/dcumax","base.strided.dcumaxabs":"@stdlib/stats/base/dcumaxabs","base.strided.dcumin":"@stdlib/stats/base/dcumin","base.strided.dcuminabs":"@stdlib/stats/base/dcuminabs","base.strided.dcusum":"@stdlib/blas/ext/base/dcusum","base.strided.dcusumkbn":"@stdlib/blas/ext/base/dcusumkbn","base.strided.dcusumkbn2":"@stdlib/blas/ext/base/dcusumkbn2","base.strided.dcusumors":"@stdlib/blas/ext/base/dcusumors","base.strided.dcusumpw":"@stdlib/blas/ext/base/dcusumpw","base.strided.ddeg2rad":"@stdlib/math/strided/special/ddeg2rad","base.strided.ddot":"@stdlib/blas/base/ddot","base.strided.dfill":"@stdlib/blas/ext/base/dfill","base.strided.dfloor":"@stdlib/math/strided/special/dfloor","base.strided.dinv":"@stdlib/math/strided/special/dinv","base.strided.dmap":"@stdlib/strided/base/dmap","base.strided.dmap2":"@stdlib/strided/base/dmap2","base.strided.dmax":"@stdlib/stats/base/dmax","base.strided.dmaxabs":"@stdlib/stats/base/dmaxabs","base.strided.dmaxabssorted":"@stdlib/stats/base/dmaxabssorted","base.strided.dmaxsorted":"@stdlib/stats/base/dmaxsorted","base.strided.dmean":"@stdlib/stats/base/dmean","base.strided.dmeankbn":"@stdlib/stats/base/dmeankbn","base.strided.dmeankbn2":"@stdlib/stats/base/dmeankbn2","base.strided.dmeanli":"@stdlib/stats/base/dmeanli","base.strided.dmeanlipw":"@stdlib/stats/base/dmeanlipw","base.strided.dmeanors":"@stdlib/stats/base/dmeanors","base.strided.dmeanpn":"@stdlib/stats/base/dmeanpn","base.strided.dmeanpw":"@stdlib/stats/base/dmeanpw","base.strided.dmeanstdev":"@stdlib/stats/base/dmeanstdev","base.strided.dmeanstdevpn":"@stdlib/stats/base/dmeanstdevpn","base.strided.dmeanvar":"@stdlib/stats/base/dmeanvar","base.strided.dmeanvarpn":"@stdlib/stats/base/dmeanvarpn","base.strided.dmeanwd":"@stdlib/stats/base/dmeanwd","base.strided.dmediansorted":"@stdlib/stats/base/dmediansorted","base.strided.dmidrange":"@stdlib/stats/base/dmidrange","base.strided.dmin":"@stdlib/stats/base/dmin","base.strided.dminabs":"@stdlib/stats/base/dminabs","base.strided.dminsorted":"@stdlib/stats/base/dminsorted","base.strided.dmskabs":"@stdlib/math/strided/special/dmskabs","base.strided.dmskabs2":"@stdlib/math/strided/special/dmskabs2","base.strided.dmskcbrt":"@stdlib/math/strided/special/dmskcbrt","base.strided.dmskceil":"@stdlib/math/strided/special/dmskceil","base.strided.dmskdeg2rad":"@stdlib/math/strided/special/dmskdeg2rad","base.strided.dmskfloor":"@stdlib/math/strided/special/dmskfloor","base.strided.dmskinv":"@stdlib/math/strided/special/dmskinv","base.strided.dmskmap":"@stdlib/strided/base/dmskmap","base.strided.dmskmap2":"@stdlib/strided/base/dmskmap2","base.strided.dmskmax":"@stdlib/stats/base/dmskmax","base.strided.dmskmin":"@stdlib/stats/base/dmskmin","base.strided.dmskramp":"@stdlib/math/strided/special/dmskramp","base.strided.dmskrange":"@stdlib/stats/base/dmskrange","base.strided.dmskrsqrt":"@stdlib/math/strided/special/dmskrsqrt","base.strided.dmsksqrt":"@stdlib/math/strided/special/dmsksqrt","base.strided.dmsktrunc":"@stdlib/math/strided/special/dmsktrunc","base.strided.dnanasum":"@stdlib/blas/ext/base/dnanasum","base.strided.dnanasumors":"@stdlib/blas/ext/base/dnanasumors","base.strided.dnanmax":"@stdlib/stats/base/dnanmax","base.strided.dnanmaxabs":"@stdlib/stats/base/dnanmaxabs","base.strided.dnanmean":"@stdlib/stats/base/dnanmean","base.strided.dnanmeanors":"@stdlib/stats/base/dnanmeanors","base.strided.dnanmeanpn":"@stdlib/stats/base/dnanmeanpn","base.strided.dnanmeanpw":"@stdlib/stats/base/dnanmeanpw","base.strided.dnanmeanwd":"@stdlib/stats/base/dnanmeanwd","base.strided.dnanmin":"@stdlib/stats/base/dnanmin","base.strided.dnanminabs":"@stdlib/stats/base/dnanminabs","base.strided.dnanmskmax":"@stdlib/stats/base/dnanmskmax","base.strided.dnanmskmin":"@stdlib/stats/base/dnanmskmin","base.strided.dnanmskrange":"@stdlib/stats/base/dnanmskrange","base.strided.dnannsum":"@stdlib/blas/ext/base/dnannsum","base.strided.dnannsumkbn":"@stdlib/blas/ext/base/dnannsumkbn","base.strided.dnannsumkbn2":"@stdlib/blas/ext/base/dnannsumkbn2","base.strided.dnannsumors":"@stdlib/blas/ext/base/dnannsumors","base.strided.dnannsumpw":"@stdlib/blas/ext/base/dnannsumpw","base.strided.dnanrange":"@stdlib/stats/base/dnanrange","base.strided.dnanstdev":"@stdlib/stats/base/dnanstdev","base.strided.dnanstdevch":"@stdlib/stats/base/dnanstdevch","base.strided.dnanstdevpn":"@stdlib/stats/base/dnanstdevpn","base.strided.dnanstdevtk":"@stdlib/stats/base/dnanstdevtk","base.strided.dnanstdevwd":"@stdlib/stats/base/dnanstdevwd","base.strided.dnanstdevyc":"@stdlib/stats/base/dnanstdevyc","base.strided.dnansum":"@stdlib/blas/ext/base/dnansum","base.strided.dnansumkbn":"@stdlib/blas/ext/base/dnansumkbn","base.strided.dnansumkbn2":"@stdlib/blas/ext/base/dnansumkbn2","base.strided.dnansumors":"@stdlib/blas/ext/base/dnansumors","base.strided.dnansumpw":"@stdlib/blas/ext/base/dnansumpw","base.strided.dnanvariance":"@stdlib/stats/base/dnanvariance","base.strided.dnanvariancech":"@stdlib/stats/base/dnanvariancech","base.strided.dnanvariancepn":"@stdlib/stats/base/dnanvariancepn","base.strided.dnanvariancetk":"@stdlib/stats/base/dnanvariancetk","base.strided.dnanvariancewd":"@stdlib/stats/base/dnanvariancewd","base.strided.dnanvarianceyc":"@stdlib/stats/base/dnanvarianceyc","base.strided.dnrm2":"@stdlib/blas/base/dnrm2","base.strided.dramp":"@stdlib/math/strided/special/dramp","base.strided.drange":"@stdlib/stats/base/drange","base.strided.drev":"@stdlib/blas/ext/base/drev","base.strided.drsqrt":"@stdlib/math/strided/special/drsqrt","base.strided.dsapxsum":"@stdlib/blas/ext/base/dsapxsum","base.strided.dsapxsumpw":"@stdlib/blas/ext/base/dsapxsumpw","base.strided.dscal":"@stdlib/blas/base/dscal","base.strided.dsdot":"@stdlib/blas/base/dsdot","base.strided.dsem":"@stdlib/stats/base/dsem","base.strided.dsemch":"@stdlib/stats/base/dsemch","base.strided.dsempn":"@stdlib/stats/base/dsempn","base.strided.dsemtk":"@stdlib/stats/base/dsemtk","base.strided.dsemwd":"@stdlib/stats/base/dsemwd","base.strided.dsemyc":"@stdlib/stats/base/dsemyc","base.strided.dsmean":"@stdlib/stats/base/dsmean","base.strided.dsmeanors":"@stdlib/stats/base/dsmeanors","base.strided.dsmeanpn":"@stdlib/stats/base/dsmeanpn","base.strided.dsmeanpw":"@stdlib/stats/base/dsmeanpw","base.strided.dsmeanwd":"@stdlib/stats/base/dsmeanwd","base.strided.dsnanmean":"@stdlib/stats/base/dsnanmean","base.strided.dsnanmeanors":"@stdlib/stats/base/dsnanmeanors","base.strided.dsnanmeanpn":"@stdlib/stats/base/dsnanmeanpn","base.strided.dsnanmeanwd":"@stdlib/stats/base/dsnanmeanwd","base.strided.dsnannsumors":"@stdlib/blas/ext/base/dsnannsumors","base.strided.dsnansum":"@stdlib/blas/ext/base/dsnansum","base.strided.dsnansumors":"@stdlib/blas/ext/base/dsnansumors","base.strided.dsnansumpw":"@stdlib/blas/ext/base/dsnansumpw","base.strided.dsort2hp":"@stdlib/blas/ext/base/dsort2hp","base.strided.dsort2ins":"@stdlib/blas/ext/base/dsort2ins","base.strided.dsort2sh":"@stdlib/blas/ext/base/dsort2sh","base.strided.dsorthp":"@stdlib/blas/ext/base/dsorthp","base.strided.dsortins":"@stdlib/blas/ext/base/dsortins","base.strided.dsortsh":"@stdlib/blas/ext/base/dsortsh","base.strided.dsqrt":"@stdlib/math/strided/special/dsqrt","base.strided.dssum":"@stdlib/blas/ext/base/dssum","base.strided.dssumors":"@stdlib/blas/ext/base/dssumors","base.strided.dssumpw":"@stdlib/blas/ext/base/dssumpw","base.strided.dstdev":"@stdlib/stats/base/dstdev","base.strided.dstdevch":"@stdlib/stats/base/dstdevch","base.strided.dstdevpn":"@stdlib/stats/base/dstdevpn","base.strided.dstdevtk":"@stdlib/stats/base/dstdevtk","base.strided.dstdevwd":"@stdlib/stats/base/dstdevwd","base.strided.dstdevyc":"@stdlib/stats/base/dstdevyc","base.strided.dsum":"@stdlib/blas/ext/base/dsum","base.strided.dsumkbn":"@stdlib/blas/ext/base/dsumkbn","base.strided.dsumkbn2":"@stdlib/blas/ext/base/dsumkbn2","base.strided.dsumors":"@stdlib/blas/ext/base/dsumors","base.strided.dsumpw":"@stdlib/blas/ext/base/dsumpw","base.strided.dsvariance":"@stdlib/stats/base/dsvariance","base.strided.dsvariancepn":"@stdlib/stats/base/dsvariancepn","base.strided.dswap":"@stdlib/blas/base/dswap","base.strided.dtrunc":"@stdlib/math/strided/special/dtrunc","base.strided.dvariance":"@stdlib/stats/base/dvariance","base.strided.dvariancech":"@stdlib/stats/base/dvariancech","base.strided.dvariancepn":"@stdlib/stats/base/dvariancepn","base.strided.dvariancetk":"@stdlib/stats/base/dvariancetk","base.strided.dvariancewd":"@stdlib/stats/base/dvariancewd","base.strided.dvarianceyc":"@stdlib/stats/base/dvarianceyc","base.strided.dvarm":"@stdlib/stats/base/dvarm","base.strided.dvarmpn":"@stdlib/stats/base/dvarmpn","base.strided.dvarmtk":"@stdlib/stats/base/dvarmtk","base.strided.gapx":"@stdlib/blas/ext/base/gapx","base.strided.gapxsum":"@stdlib/blas/ext/base/gapxsum","base.strided.gapxsumkbn":"@stdlib/blas/ext/base/gapxsumkbn","base.strided.gapxsumkbn2":"@stdlib/blas/ext/base/gapxsumkbn2","base.strided.gapxsumors":"@stdlib/blas/ext/base/gapxsumors","base.strided.gapxsumpw":"@stdlib/blas/ext/base/gapxsumpw","base.strided.gasum":"@stdlib/blas/base/gasum","base.strided.gasumpw":"@stdlib/blas/ext/base/gasumpw","base.strided.gaxpy":"@stdlib/blas/base/gaxpy","base.strided.gcopy":"@stdlib/blas/base/gcopy","base.strided.gcusum":"@stdlib/blas/ext/base/gcusum","base.strided.gcusumkbn":"@stdlib/blas/ext/base/gcusumkbn","base.strided.gcusumkbn2":"@stdlib/blas/ext/base/gcusumkbn2","base.strided.gcusumors":"@stdlib/blas/ext/base/gcusumors","base.strided.gcusumpw":"@stdlib/blas/ext/base/gcusumpw","base.strided.gdot":"@stdlib/blas/base/gdot","base.strided.gfill":"@stdlib/blas/ext/base/gfill","base.strided.gfillBy":"@stdlib/blas/ext/base/gfill-by","base.strided.gnannsumkbn":"@stdlib/blas/ext/base/gnannsumkbn","base.strided.gnansum":"@stdlib/blas/ext/base/gnansum","base.strided.gnansumkbn":"@stdlib/blas/ext/base/gnansumkbn","base.strided.gnansumkbn2":"@stdlib/blas/ext/base/gnansumkbn2","base.strided.gnansumors":"@stdlib/blas/ext/base/gnansumors","base.strided.gnansumpw":"@stdlib/blas/ext/base/gnansumpw","base.strided.gnrm2":"@stdlib/blas/base/gnrm2","base.strided.grev":"@stdlib/blas/ext/base/grev","base.strided.gscal":"@stdlib/blas/base/gscal","base.strided.gsort2hp":"@stdlib/blas/ext/base/gsort2hp","base.strided.gsort2ins":"@stdlib/blas/ext/base/gsort2ins","base.strided.gsort2sh":"@stdlib/blas/ext/base/gsort2sh","base.strided.gsorthp":"@stdlib/blas/ext/base/gsorthp","base.strided.gsortins":"@stdlib/blas/ext/base/gsortins","base.strided.gsortsh":"@stdlib/blas/ext/base/gsortsh","base.strided.gsum":"@stdlib/blas/ext/base/gsum","base.strided.gsumkbn":"@stdlib/blas/ext/base/gsumkbn","base.strided.gsumkbn2":"@stdlib/blas/ext/base/gsumkbn2","base.strided.gsumors":"@stdlib/blas/ext/base/gsumors","base.strided.gsumpw":"@stdlib/blas/ext/base/gsumpw","base.strided.gswap":"@stdlib/blas/base/gswap","base.strided.mapBy":"@stdlib/strided/base/map-by","base.strided.mapBy2":"@stdlib/strided/base/map-by2","base.strided.max":"@stdlib/stats/base/max","base.strided.maxabs":"@stdlib/stats/base/maxabs","base.strided.maxBy":"@stdlib/stats/base/max-by","base.strided.maxsorted":"@stdlib/stats/base/maxsorted","base.strided.mean":"@stdlib/stats/base/mean","base.strided.meankbn":"@stdlib/stats/base/meankbn","base.strided.meankbn2":"@stdlib/stats/base/meankbn2","base.strided.meanors":"@stdlib/stats/base/meanors","base.strided.meanpn":"@stdlib/stats/base/meanpn","base.strided.meanpw":"@stdlib/stats/base/meanpw","base.strided.meanwd":"@stdlib/stats/base/meanwd","base.strided.mediansorted":"@stdlib/stats/base/mediansorted","base.strided.min":"@stdlib/stats/base/min","base.strided.minabs":"@stdlib/stats/base/minabs","base.strided.minBy":"@stdlib/stats/base/min-by","base.strided.minsorted":"@stdlib/stats/base/minsorted","base.strided.mskmax":"@stdlib/stats/base/mskmax","base.strided.mskmin":"@stdlib/stats/base/mskmin","base.strided.mskrange":"@stdlib/stats/base/mskrange","base.strided.mskunary":"@stdlib/strided/base/mskunary","base.strided.nanmax":"@stdlib/stats/base/nanmax","base.strided.nanmaxabs":"@stdlib/stats/base/nanmaxabs","base.strided.nanmaxBy":"@stdlib/stats/base/nanmax-by","base.strided.nanmean":"@stdlib/stats/base/nanmean","base.strided.nanmeanors":"@stdlib/stats/base/nanmeanors","base.strided.nanmeanpn":"@stdlib/stats/base/nanmeanpn","base.strided.nanmeanwd":"@stdlib/stats/base/nanmeanwd","base.strided.nanmin":"@stdlib/stats/base/nanmin","base.strided.nanminabs":"@stdlib/stats/base/nanminabs","base.strided.nanminBy":"@stdlib/stats/base/nanmin-by","base.strided.nanmskmax":"@stdlib/stats/base/nanmskmax","base.strided.nanmskmin":"@stdlib/stats/base/nanmskmin","base.strided.nanmskrange":"@stdlib/stats/base/nanmskrange","base.strided.nanrange":"@stdlib/stats/base/nanrange","base.strided.nanrangeBy":"@stdlib/stats/base/nanrange-by","base.strided.nanstdev":"@stdlib/stats/base/nanstdev","base.strided.nanstdevch":"@stdlib/stats/base/nanstdevch","base.strided.nanstdevpn":"@stdlib/stats/base/nanstdevpn","base.strided.nanstdevtk":"@stdlib/stats/base/nanstdevtk","base.strided.nanstdevwd":"@stdlib/stats/base/nanstdevwd","base.strided.nanstdevyc":"@stdlib/stats/base/nanstdevyc","base.strided.nanvariance":"@stdlib/stats/base/nanvariance","base.strided.nanvariancech":"@stdlib/stats/base/nanvariancech","base.strided.nanvariancepn":"@stdlib/stats/base/nanvariancepn","base.strided.nanvariancetk":"@stdlib/stats/base/nanvariancetk","base.strided.nanvariancewd":"@stdlib/stats/base/nanvariancewd","base.strided.nanvarianceyc":"@stdlib/stats/base/nanvarianceyc","base.strided.nullary":"@stdlib/strided/base/nullary","base.strided.quaternary":"@stdlib/strided/base/quaternary","base.strided.quinary":"@stdlib/strided/base/quinary","base.strided.range":"@stdlib/stats/base/range","base.strided.rangeBy":"@stdlib/stats/base/range-by","base.strided.sabs":"@stdlib/math/strided/special/sabs","base.strided.sabs2":"@stdlib/math/strided/special/sabs2","base.strided.sapx":"@stdlib/blas/ext/base/sapx","base.strided.sapxsum":"@stdlib/blas/ext/base/sapxsum","base.strided.sapxsumkbn":"@stdlib/blas/ext/base/sapxsumkbn","base.strided.sapxsumkbn2":"@stdlib/blas/ext/base/sapxsumkbn2","base.strided.sapxsumors":"@stdlib/blas/ext/base/sapxsumors","base.strided.sapxsumpw":"@stdlib/blas/ext/base/sapxsumpw","base.strided.sasum":"@stdlib/blas/base/sasum","base.strided.sasumpw":"@stdlib/blas/ext/base/sasumpw","base.strided.saxpy":"@stdlib/blas/base/saxpy","base.strided.scbrt":"@stdlib/math/strided/special/scbrt","base.strided.sceil":"@stdlib/math/strided/special/sceil","base.strided.scopy":"@stdlib/blas/base/scopy","base.strided.scumax":"@stdlib/stats/base/scumax","base.strided.scumaxabs":"@stdlib/stats/base/scumaxabs","base.strided.scumin":"@stdlib/stats/base/scumin","base.strided.scuminabs":"@stdlib/stats/base/scuminabs","base.strided.scusum":"@stdlib/blas/ext/base/scusum","base.strided.scusumkbn":"@stdlib/blas/ext/base/scusumkbn","base.strided.scusumkbn2":"@stdlib/blas/ext/base/scusumkbn2","base.strided.scusumors":"@stdlib/blas/ext/base/scusumors","base.strided.scusumpw":"@stdlib/blas/ext/base/scusumpw","base.strided.sdeg2rad":"@stdlib/math/strided/special/sdeg2rad","base.strided.sdot":"@stdlib/blas/base/sdot","base.strided.sdsapxsum":"@stdlib/blas/ext/base/sdsapxsum","base.strided.sdsapxsumpw":"@stdlib/blas/ext/base/sdsapxsumpw","base.strided.sdsdot":"@stdlib/blas/base/sdsdot","base.strided.sdsmean":"@stdlib/stats/base/sdsmean","base.strided.sdsmeanors":"@stdlib/stats/base/sdsmeanors","base.strided.sdsnanmean":"@stdlib/stats/base/sdsnanmean","base.strided.sdsnanmeanors":"@stdlib/stats/base/sdsnanmeanors","base.strided.sdsnansum":"@stdlib/blas/ext/base/sdsnansum","base.strided.sdsnansumpw":"@stdlib/blas/ext/base/sdsnansumpw","base.strided.sdssum":"@stdlib/blas/ext/base/sdssum","base.strided.sdssumpw":"@stdlib/blas/ext/base/sdssumpw","base.strided.sfill":"@stdlib/blas/ext/base/sfill","base.strided.sfloor":"@stdlib/math/strided/special/sfloor","base.strided.sinv":"@stdlib/math/strided/special/sinv","base.strided.smap":"@stdlib/strided/base/smap","base.strided.smap2":"@stdlib/strided/base/smap2","base.strided.smax":"@stdlib/stats/base/smax","base.strided.smaxabs":"@stdlib/stats/base/smaxabs","base.strided.smaxabssorted":"@stdlib/stats/base/smaxabssorted","base.strided.smaxsorted":"@stdlib/stats/base/smaxsorted","base.strided.smean":"@stdlib/stats/base/smean","base.strided.smeankbn":"@stdlib/stats/base/smeankbn","base.strided.smeankbn2":"@stdlib/stats/base/smeankbn2","base.strided.smeanli":"@stdlib/stats/base/smeanli","base.strided.smeanlipw":"@stdlib/stats/base/smeanlipw","base.strided.smeanors":"@stdlib/stats/base/smeanors","base.strided.smeanpn":"@stdlib/stats/base/smeanpn","base.strided.smeanpw":"@stdlib/stats/base/smeanpw","base.strided.smeanwd":"@stdlib/stats/base/smeanwd","base.strided.smediansorted":"@stdlib/stats/base/smediansorted","base.strided.smidrange":"@stdlib/stats/base/smidrange","base.strided.smin":"@stdlib/stats/base/smin","base.strided.sminabs":"@stdlib/stats/base/sminabs","base.strided.sminsorted":"@stdlib/stats/base/sminsorted","base.strided.smskabs":"@stdlib/math/strided/special/smskabs","base.strided.smskabs2":"@stdlib/math/strided/special/smskabs2","base.strided.smskcbrt":"@stdlib/math/strided/special/smskcbrt","base.strided.smskceil":"@stdlib/math/strided/special/smskceil","base.strided.smskdeg2rad":"@stdlib/math/strided/special/smskdeg2rad","base.strided.smskfloor":"@stdlib/math/strided/special/smskfloor","base.strided.smskinv":"@stdlib/math/strided/special/smskinv","base.strided.smskmap":"@stdlib/strided/base/smskmap","base.strided.smskmap2":"@stdlib/strided/base/smskmap2","base.strided.smskmax":"@stdlib/stats/base/smskmax","base.strided.smskmin":"@stdlib/stats/base/smskmin","base.strided.smskramp":"@stdlib/math/strided/special/smskramp","base.strided.smskrange":"@stdlib/stats/base/smskrange","base.strided.smskrsqrt":"@stdlib/math/strided/special/smskrsqrt","base.strided.smsksqrt":"@stdlib/math/strided/special/smsksqrt","base.strided.smsktrunc":"@stdlib/math/strided/special/smsktrunc","base.strided.snanmax":"@stdlib/stats/base/snanmax","base.strided.snanmaxabs":"@stdlib/stats/base/snanmaxabs","base.strided.snanmean":"@stdlib/stats/base/snanmean","base.strided.snanmeanors":"@stdlib/stats/base/snanmeanors","base.strided.snanmeanpn":"@stdlib/stats/base/snanmeanpn","base.strided.snanmeanwd":"@stdlib/stats/base/snanmeanwd","base.strided.snanmin":"@stdlib/stats/base/snanmin","base.strided.snanminabs":"@stdlib/stats/base/snanminabs","base.strided.snanmskmax":"@stdlib/stats/base/snanmskmax","base.strided.snanmskmin":"@stdlib/stats/base/snanmskmin","base.strided.snanmskrange":"@stdlib/stats/base/snanmskrange","base.strided.snanrange":"@stdlib/stats/base/snanrange","base.strided.snanstdev":"@stdlib/stats/base/snanstdev","base.strided.snanstdevch":"@stdlib/stats/base/snanstdevch","base.strided.snanstdevpn":"@stdlib/stats/base/snanstdevpn","base.strided.snanstdevtk":"@stdlib/stats/base/snanstdevtk","base.strided.snanstdevwd":"@stdlib/stats/base/snanstdevwd","base.strided.snanstdevyc":"@stdlib/stats/base/snanstdevyc","base.strided.snansum":"@stdlib/blas/ext/base/snansum","base.strided.snansumkbn":"@stdlib/blas/ext/base/snansumkbn","base.strided.snansumkbn2":"@stdlib/blas/ext/base/snansumkbn2","base.strided.snansumors":"@stdlib/blas/ext/base/snansumors","base.strided.snansumpw":"@stdlib/blas/ext/base/snansumpw","base.strided.snanvariance":"@stdlib/stats/base/snanvariance","base.strided.snanvariancech":"@stdlib/stats/base/snanvariancech","base.strided.snanvariancepn":"@stdlib/stats/base/snanvariancepn","base.strided.snanvariancetk":"@stdlib/stats/base/snanvariancetk","base.strided.snanvariancewd":"@stdlib/stats/base/snanvariancewd","base.strided.snanvarianceyc":"@stdlib/stats/base/snanvarianceyc","base.strided.snrm2":"@stdlib/blas/base/snrm2","base.strided.sramp":"@stdlib/math/strided/special/sramp","base.strided.srange":"@stdlib/stats/base/srange","base.strided.srev":"@stdlib/blas/ext/base/srev","base.strided.srsqrt":"@stdlib/math/strided/special/srsqrt","base.strided.sscal":"@stdlib/blas/base/sscal","base.strided.ssort2hp":"@stdlib/blas/ext/base/ssort2hp","base.strided.ssort2ins":"@stdlib/blas/ext/base/ssort2ins","base.strided.ssort2sh":"@stdlib/blas/ext/base/ssort2sh","base.strided.ssorthp":"@stdlib/blas/ext/base/ssorthp","base.strided.ssortins":"@stdlib/blas/ext/base/ssortins","base.strided.ssortsh":"@stdlib/blas/ext/base/ssortsh","base.strided.ssqrt":"@stdlib/math/strided/special/ssqrt","base.strided.sstdev":"@stdlib/stats/base/sstdev","base.strided.sstdevch":"@stdlib/stats/base/sstdevch","base.strided.sstdevpn":"@stdlib/stats/base/sstdevpn","base.strided.sstdevtk":"@stdlib/stats/base/sstdevtk","base.strided.sstdevwd":"@stdlib/stats/base/sstdevwd","base.strided.sstdevyc":"@stdlib/stats/base/sstdevyc","base.strided.ssum":"@stdlib/blas/ext/base/ssum","base.strided.ssumkbn":"@stdlib/blas/ext/base/ssumkbn","base.strided.ssumkbn2":"@stdlib/blas/ext/base/ssumkbn2","base.strided.ssumors":"@stdlib/blas/ext/base/ssumors","base.strided.ssumpw":"@stdlib/blas/ext/base/ssumpw","base.strided.sswap":"@stdlib/blas/base/sswap","base.strided.stdev":"@stdlib/stats/base/stdev","base.strided.stdevch":"@stdlib/stats/base/stdevch","base.strided.stdevpn":"@stdlib/stats/base/stdevpn","base.strided.stdevtk":"@stdlib/stats/base/stdevtk","base.strided.stdevwd":"@stdlib/stats/base/stdevwd","base.strided.stdevyc":"@stdlib/stats/base/stdevyc","base.strided.strunc":"@stdlib/math/strided/special/strunc","base.strided.svariance":"@stdlib/stats/base/svariance","base.strided.svariancech":"@stdlib/stats/base/svariancech","base.strided.svariancepn":"@stdlib/stats/base/svariancepn","base.strided.svariancetk":"@stdlib/stats/base/svariancetk","base.strided.svariancewd":"@stdlib/stats/base/svariancewd","base.strided.svarianceyc":"@stdlib/stats/base/svarianceyc","base.strided.ternary":"@stdlib/strided/base/ternary","base.strided.unary":"@stdlib/strided/base/unary","base.strided.variance":"@stdlib/stats/base/variance","base.strided.variancech":"@stdlib/stats/base/variancech","base.strided.variancepn":"@stdlib/stats/base/variancepn","base.strided.variancetk":"@stdlib/stats/base/variancetk","base.strided.variancewd":"@stdlib/stats/base/variancewd","base.strided.varianceyc":"@stdlib/stats/base/varianceyc","base.strided.zmap":"@stdlib/strided/base/zmap","base.sub":"@stdlib/math/base/ops/sub","base.subf":"@stdlib/math/base/ops/subf","base.sumSeries":"@stdlib/math/base/tools/sum-series","base.tan":"@stdlib/math/base/special/tan","base.tanh":"@stdlib/math/base/special/tanh","base.toBinaryString":"@stdlib/number/float64/base/to-binary-string","base.toBinaryStringf":"@stdlib/number/float32/base/to-binary-string","base.toBinaryStringUint8":"@stdlib/number/uint8/base/to-binary-string","base.toBinaryStringUint16":"@stdlib/number/uint16/base/to-binary-string","base.toBinaryStringUint32":"@stdlib/number/uint32/base/to-binary-string","base.toWordf":"@stdlib/number/float32/base/to-word","base.toWords":"@stdlib/number/float64/base/to-words","base.transpose":"@stdlib/ndarray/base/transpose","base.tribonacci":"@stdlib/math/base/special/tribonacci","base.trigamma":"@stdlib/math/base/special/trigamma","base.trunc":"@stdlib/math/base/special/trunc","base.trunc2":"@stdlib/math/base/special/trunc2","base.trunc10":"@stdlib/math/base/special/trunc10","base.truncb":"@stdlib/math/base/special/truncb","base.truncf":"@stdlib/math/base/special/truncf","base.truncn":"@stdlib/math/base/special/truncn","base.truncsd":"@stdlib/math/base/special/truncsd","base.umul":"@stdlib/math/base/ops/umul","base.umuldw":"@stdlib/math/base/ops/umuldw","base.uint32ToInt32":"@stdlib/number/uint32/base/to-int32","base.vercos":"@stdlib/math/base/special/vercos","base.versin":"@stdlib/math/base/special/versin","base.wrap":"@stdlib/math/base/special/wrap","base.xlog1py":"@stdlib/math/base/special/xlog1py","base.xlogy":"@stdlib/math/base/special/xlogy","base.zeta":"@stdlib/math/base/special/riemann-zeta","bench":"@stdlib/bench","BERNDT_CPS_WAGES_1985":"@stdlib/datasets/berndt-cps-wages-1985","bifurcate":"@stdlib/utils/bifurcate","bifurcateBy":"@stdlib/utils/bifurcate-by","bifurcateByAsync":"@stdlib/utils/async/bifurcate-by","bifurcateIn":"@stdlib/utils/bifurcate-in","bifurcateOwn":"@stdlib/utils/bifurcate-own","BigInt":"@stdlib/bigint/ctor","binomialTest":"@stdlib/stats/binomial-test","Buffer":"@stdlib/buffer/ctor","buffer2json":"@stdlib/buffer/to-json","BYTE_ORDER":"@stdlib/os/byte-order","camelcase":"@stdlib/string/camelcase","capitalize":"@stdlib/string/capitalize","capitalizeKeys":"@stdlib/utils/capitalize-keys","CATALAN":"@stdlib/constants/float64/catalan","CBRT_EPS":"@stdlib/constants/float64/cbrt-eps","CDC_NCHS_US_BIRTHS_1969_1988":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","CDC_NCHS_US_BIRTHS_1994_2003":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","chdir":"@stdlib/process/chdir","chi2gof":"@stdlib/stats/chi2gof","chi2test":"@stdlib/stats/chi2test","circarray2iterator":"@stdlib/array/to-circular-iterator","circularArrayStream":"@stdlib/streams/node/from-circular-array","CircularBuffer":"@stdlib/utils/circular-buffer","close":"@stdlib/fs/close","CMUDICT":"@stdlib/datasets/cmudict","codePointAt":"@stdlib/string/code-point-at","commonKeys":"@stdlib/utils/common-keys","commonKeysIn":"@stdlib/utils/common-keys-in","complex":"@stdlib/complex/cmplx","Complex64":"@stdlib/complex/float32","COMPLEX64_NUM_BYTES":"@stdlib/constants/complex64/num-bytes","Complex64Array":"@stdlib/array/complex64","Complex128":"@stdlib/complex/float64","COMPLEX128_NUM_BYTES":"@stdlib/constants/complex128/num-bytes","Complex128Array":"@stdlib/array/complex128","complexarray":"@stdlib/array/typed-complex","complexarrayCtors":"@stdlib/array/typed-complex-ctors","complexarrayDataTypes":"@stdlib/array/typed-complex-dtypes","complexCtors":"@stdlib/complex/ctors","complexDataType":"@stdlib/complex/dtype","complexDataTypes":"@stdlib/complex/dtypes","complexPromotionRules":"@stdlib/complex/promotion-rules","compose":"@stdlib/utils/compose","composeAsync":"@stdlib/utils/async/compose","configdir":"@stdlib/os/configdir","conj":"@stdlib/complex/conj","conjf":"@stdlib/complex/conjf","constantcase":"@stdlib/string/constantcase","constantFunction":"@stdlib/utils/constant-function","constantStream":"@stdlib/streams/node/from-constant","constructorName":"@stdlib/utils/constructor-name","contains":"@stdlib/assert/contains","convertArray":"@stdlib/array/convert","convertArraySame":"@stdlib/array/convert-same","convertPath":"@stdlib/utils/convert-path","copy":"@stdlib/utils/copy","copyBuffer":"@stdlib/buffer/from-buffer","countBy":"@stdlib/utils/count-by","countByAsync":"@stdlib/utils/async/count-by","curry":"@stdlib/utils/curry","curryRight":"@stdlib/utils/curry-right","cwd":"@stdlib/process/cwd","DALE_CHALL_NEW":"@stdlib/datasets/dale-chall-new","datasets":"@stdlib/datasets","DataView":"@stdlib/array/dataview","datespace":"@stdlib/array/datespace","dayOfQuarter":"@stdlib/time/day-of-quarter","dayOfYear":"@stdlib/time/day-of-year","daysInMonth":"@stdlib/time/days-in-month","daysInYear":"@stdlib/time/days-in-year","ddot":"@stdlib/blas/ddot","debugSinkStream":"@stdlib/streams/node/debug-sink","debugStream":"@stdlib/streams/node/debug","deepEqual":"@stdlib/assert/deep-equal","deepGet":"@stdlib/utils/deep-get","deepHasOwnProp":"@stdlib/assert/deep-has-own-property","deepHasProp":"@stdlib/assert/deep-has-property","deepPluck":"@stdlib/utils/deep-pluck","deepSet":"@stdlib/utils/deep-set","defineMemoizedProperty":"@stdlib/utils/define-memoized-property","defineProperties":"@stdlib/utils/define-properties","defineProperty":"@stdlib/utils/define-property","dirname":"@stdlib/utils/dirname","DoublyLinkedList":"@stdlib/utils/doubly-linked-list","doUntil":"@stdlib/utils/do-until","doUntilAsync":"@stdlib/utils/async/do-until","doUntilEach":"@stdlib/utils/do-until-each","doUntilEachRight":"@stdlib/utils/do-until-each-right","doWhile":"@stdlib/utils/do-while","doWhileAsync":"@stdlib/utils/async/do-while","doWhileEach":"@stdlib/utils/do-while-each","doWhileEachRight":"@stdlib/utils/do-while-each-right","dswap":"@stdlib/blas/dswap","E":"@stdlib/constants/float64/e","EMOJI":"@stdlib/datasets/emoji","EMOJI_CODE_PICTO":"@stdlib/datasets/emoji-code-picto","EMOJI_PICTO_CODE":"@stdlib/datasets/emoji-picto-code","emptyStream":"@stdlib/streams/node/empty","endsWith":"@stdlib/string/ends-with","enumerableProperties":"@stdlib/utils/enumerable-properties","enumerablePropertiesIn":"@stdlib/utils/enumerable-properties-in","enumerablePropertySymbols":"@stdlib/utils/enumerable-property-symbols","enumerablePropertySymbolsIn":"@stdlib/utils/enumerable-property-symbols-in","ENV":"@stdlib/process/env","EPS":"@stdlib/constants/float64/eps","error2json":"@stdlib/error/to-json","EULERGAMMA":"@stdlib/constants/float64/eulergamma","every":"@stdlib/utils/every","everyBy":"@stdlib/utils/every-by","everyByAsync":"@stdlib/utils/async/every-by","everyByRight":"@stdlib/utils/every-by-right","everyByRightAsync":"@stdlib/utils/async/every-by-right","evil":"@stdlib/utils/eval","EXEC_PATH":"@stdlib/process/exec-path","exists":"@stdlib/fs/exists","expandContractions":"@stdlib/nlp/expand-contractions","extname":"@stdlib/utils/extname","fastmath.abs":"@stdlib/math/base/special/fast/abs","fastmath.acosh":"@stdlib/math/base/special/fast/acosh","fastmath.ampbm":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","fastmath.asinh":"@stdlib/math/base/special/fast/asinh","fastmath.atanh":"@stdlib/math/base/special/fast/atanh","fastmath.hypot":"@stdlib/math/base/special/fast/hypot","fastmath.log2Uint32":"@stdlib/math/base/special/fast/uint32-log2","fastmath.max":"@stdlib/math/base/special/fast/max","fastmath.min":"@stdlib/math/base/special/fast/min","fastmath.powint":"@stdlib/math/base/special/fast/pow-int","fastmath.sqrtUint32":"@stdlib/math/base/special/fast/uint32-sqrt","FEMALE_FIRST_NAMES_EN":"@stdlib/datasets/female-first-names-en","FIFO":"@stdlib/utils/fifo","filledarray":"@stdlib/array/filled","filledarrayBy":"@stdlib/array/filled-by","filterArguments":"@stdlib/utils/filter-arguments","find":"@stdlib/utils/find","FIVETHIRTYEIGHT_FFQ":"@stdlib/datasets/fivethirtyeight-ffq","flattenArray":"@stdlib/utils/flatten-array","flattenObject":"@stdlib/utils/flatten-object","flignerTest":"@stdlib/stats/fligner-test","FLOAT_WORD_ORDER":"@stdlib/os/float-word-order","FLOAT16_CBRT_EPS":"@stdlib/constants/float16/cbrt-eps","FLOAT16_EPS":"@stdlib/constants/float16/eps","FLOAT16_EXPONENT_BIAS":"@stdlib/constants/float16/exponent-bias","FLOAT16_MAX":"@stdlib/constants/float16/max","FLOAT16_MAX_SAFE_INTEGER":"@stdlib/constants/float16/max-safe-integer","FLOAT16_MIN_SAFE_INTEGER":"@stdlib/constants/float16/min-safe-integer","FLOAT16_NINF":"@stdlib/constants/float16/ninf","FLOAT16_NUM_BYTES":"@stdlib/constants/float16/num-bytes","FLOAT16_PINF":"@stdlib/constants/float16/pinf","FLOAT16_PRECISION":"@stdlib/constants/float16/precision","FLOAT16_SMALLEST_NORMAL":"@stdlib/constants/float16/smallest-normal","FLOAT16_SMALLEST_SUBNORMAL":"@stdlib/constants/float16/smallest-subnormal","FLOAT16_SQRT_EPS":"@stdlib/constants/float16/sqrt-eps","FLOAT32_CBRT_EPS":"@stdlib/constants/float32/cbrt-eps","FLOAT32_EPS":"@stdlib/constants/float32/eps","FLOAT32_EXPONENT_BIAS":"@stdlib/constants/float32/exponent-bias","FLOAT32_MAX":"@stdlib/constants/float32/max","FLOAT32_MAX_SAFE_INTEGER":"@stdlib/constants/float32/max-safe-integer","FLOAT32_MIN_SAFE_INTEGER":"@stdlib/constants/float32/min-safe-integer","FLOAT32_NINF":"@stdlib/constants/float32/ninf","FLOAT32_NUM_BYTES":"@stdlib/constants/float32/num-bytes","FLOAT32_PINF":"@stdlib/constants/float32/pinf","FLOAT32_PRECISION":"@stdlib/constants/float32/precision","FLOAT32_SMALLEST_NORMAL":"@stdlib/constants/float32/smallest-normal","FLOAT32_SMALLEST_SUBNORMAL":"@stdlib/constants/float32/smallest-subnormal","FLOAT32_SQRT_EPS":"@stdlib/constants/float32/sqrt-eps","Float32Array":"@stdlib/array/float32","FLOAT64_EXPONENT_BIAS":"@stdlib/constants/float64/exponent-bias","FLOAT64_HIGH_WORD_EXPONENT_MASK":"@stdlib/constants/float64/high-word-exponent-mask","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK":"@stdlib/constants/float64/high-word-significand-mask","FLOAT64_MAX":"@stdlib/constants/float64/max","FLOAT64_MAX_BASE2_EXPONENT":"@stdlib/constants/float64/max-base2-exponent","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base2-exponent-subnormal","FLOAT64_MAX_BASE10_EXPONENT":"@stdlib/constants/float64/max-base10-exponent","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base10-exponent-subnormal","FLOAT64_MAX_LN":"@stdlib/constants/float64/max-ln","FLOAT64_MAX_SAFE_FIBONACCI":"@stdlib/constants/float64/max-safe-fibonacci","FLOAT64_MAX_SAFE_INTEGER":"@stdlib/constants/float64/max-safe-integer","FLOAT64_MAX_SAFE_LUCAS":"@stdlib/constants/float64/max-safe-lucas","FLOAT64_MAX_SAFE_NTH_FIBONACCI":"@stdlib/constants/float64/max-safe-nth-fibonacci","FLOAT64_MAX_SAFE_NTH_LUCAS":"@stdlib/constants/float64/max-safe-nth-lucas","FLOAT64_MIN_BASE2_EXPONENT":"@stdlib/constants/float64/min-base2-exponent","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base2-exponent-subnormal","FLOAT64_MIN_BASE10_EXPONENT":"@stdlib/constants/float64/min-base10-exponent","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base10-exponent-subnormal","FLOAT64_MIN_LN":"@stdlib/constants/float64/min-ln","FLOAT64_MIN_SAFE_INTEGER":"@stdlib/constants/float64/min-safe-integer","FLOAT64_NUM_BYTES":"@stdlib/constants/float64/num-bytes","FLOAT64_PRECISION":"@stdlib/constants/float64/precision","FLOAT64_SMALLEST_NORMAL":"@stdlib/constants/float64/smallest-normal","FLOAT64_SMALLEST_SUBNORMAL":"@stdlib/constants/float64/smallest-subnormal","Float64Array":"@stdlib/array/float64","forEach":"@stdlib/utils/for-each","forEachAsync":"@stdlib/utils/async/for-each","forEachRight":"@stdlib/utils/for-each-right","forEachRightAsync":"@stdlib/utils/async/for-each-right","forIn":"@stdlib/utils/for-in","forOwn":"@stdlib/utils/for-own","FOURTH_PI":"@stdlib/constants/float64/fourth-pi","FOURTH_ROOT_EPS":"@stdlib/constants/float64/fourth-root-eps","FRB_SF_WAGE_RIGIDITY":"@stdlib/datasets/frb-sf-wage-rigidity","fromCodePoint":"@stdlib/string/from-code-point","functionName":"@stdlib/utils/function-name","functionSequence":"@stdlib/utils/function-sequence","functionSequenceAsync":"@stdlib/utils/async/function-sequence","GAMMA_LANCZOS_G":"@stdlib/constants/float64/gamma-lanczos-g","gdot":"@stdlib/blas/gdot","getegid":"@stdlib/process/getegid","geteuid":"@stdlib/process/geteuid","getgid":"@stdlib/process/getgid","getGlobal":"@stdlib/utils/global","getPrototypeOf":"@stdlib/utils/get-prototype-of","getuid":"@stdlib/process/getuid","GLAISHER":"@stdlib/constants/float64/glaisher-kinkelin","group":"@stdlib/utils/group","groupBy":"@stdlib/utils/group-by","groupByAsync":"@stdlib/utils/async/group-by","groupIn":"@stdlib/utils/group-in","groupOwn":"@stdlib/utils/group-own","gswap":"@stdlib/blas/gswap","HALF_LN2":"@stdlib/constants/float64/half-ln-two","HALF_PI":"@stdlib/constants/float64/half-pi","HARRISON_BOSTON_HOUSE_PRICES":"@stdlib/datasets/harrison-boston-house-prices","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED":"@stdlib/datasets/harrison-boston-house-prices-corrected","hasArrayBufferSupport":"@stdlib/assert/has-arraybuffer-support","hasAsyncAwaitSupport":"@stdlib/assert/has-async-await-support","hasAsyncIteratorSymbolSupport":"@stdlib/assert/has-async-iterator-symbol-support","hasBigInt64ArraySupport":"@stdlib/assert/has-bigint64array-support","hasBigIntSupport":"@stdlib/assert/has-bigint-support","hasBigUint64ArraySupport":"@stdlib/assert/has-biguint64array-support","hasClassSupport":"@stdlib/assert/has-class-support","hasDataViewSupport":"@stdlib/assert/has-dataview-support","hasDefinePropertiesSupport":"@stdlib/assert/has-define-properties-support","hasDefinePropertySupport":"@stdlib/assert/has-define-property-support","hasFloat32ArraySupport":"@stdlib/assert/has-float32array-support","hasFloat64ArraySupport":"@stdlib/assert/has-float64array-support","hasFunctionNameSupport":"@stdlib/assert/has-function-name-support","hasGeneratorSupport":"@stdlib/assert/has-generator-support","hasGlobalThisSupport":"@stdlib/assert/has-globalthis-support","hasInt8ArraySupport":"@stdlib/assert/has-int8array-support","hasInt16ArraySupport":"@stdlib/assert/has-int16array-support","hasInt32ArraySupport":"@stdlib/assert/has-int32array-support","hasIteratorSymbolSupport":"@stdlib/assert/has-iterator-symbol-support","hasMapSupport":"@stdlib/assert/has-map-support","hasNodeBufferSupport":"@stdlib/assert/has-node-buffer-support","hasOwnProp":"@stdlib/assert/has-own-property","hasProp":"@stdlib/assert/has-property","hasProxySupport":"@stdlib/assert/has-proxy-support","hasSetSupport":"@stdlib/assert/has-set-support","hasSharedArrayBufferSupport":"@stdlib/assert/has-sharedarraybuffer-support","hasSymbolSupport":"@stdlib/assert/has-symbol-support","hasToStringTagSupport":"@stdlib/assert/has-tostringtag-support","hasUint8ArraySupport":"@stdlib/assert/has-uint8array-support","hasUint8ClampedArraySupport":"@stdlib/assert/has-uint8clampedarray-support","hasUint16ArraySupport":"@stdlib/assert/has-uint16array-support","hasUint32ArraySupport":"@stdlib/assert/has-uint32array-support","hasUTF16SurrogatePairAt":"@stdlib/assert/has-utf16-surrogate-pair-at","hasWeakMapSupport":"@stdlib/assert/has-weakmap-support","hasWeakSetSupport":"@stdlib/assert/has-weakset-support","hasWebAssemblySupport":"@stdlib/assert/has-wasm-support","HERNDON_VENUS_SEMIDIAMETERS":"@stdlib/datasets/herndon-venus-semidiameters","homedir":"@stdlib/os/homedir","HOURS_IN_DAY":"@stdlib/constants/time/hours-in-day","HOURS_IN_WEEK":"@stdlib/constants/time/hours-in-week","hoursInMonth":"@stdlib/time/hours-in-month","hoursInYear":"@stdlib/time/hours-in-year","httpServer":"@stdlib/net/http-server","identity":"@stdlib/utils/identity-function","ifelse":"@stdlib/utils/if-else","ifelseAsync":"@stdlib/utils/async/if-else","ifthen":"@stdlib/utils/if-then","ifthenAsync":"@stdlib/utils/async/if-then","imag":"@stdlib/complex/imag","imagf":"@stdlib/complex/imagf","IMG_ACANTHUS_MOLLIS":"@stdlib/datasets/img-acanthus-mollis","IMG_AIRPLANE_FROM_ABOVE":"@stdlib/datasets/img-airplane-from-above","IMG_ALLIUM_OREOPHILUM":"@stdlib/datasets/img-allium-oreophilum","IMG_BLACK_CANYON":"@stdlib/datasets/img-black-canyon","IMG_DUST_BOWL_HOME":"@stdlib/datasets/img-dust-bowl-home","IMG_FRENCH_ALPINE_LANDSCAPE":"@stdlib/datasets/img-french-alpine-landscape","IMG_LOCOMOTION_HOUSE_CAT":"@stdlib/datasets/img-locomotion-house-cat","IMG_LOCOMOTION_NUDE_MALE":"@stdlib/datasets/img-locomotion-nude-male","IMG_MARCH_PASTORAL":"@stdlib/datasets/img-march-pastoral","IMG_NAGASAKI_BOATS":"@stdlib/datasets/img-nagasaki-boats","incrapcorr":"@stdlib/stats/incr/apcorr","incrBinaryClassification":"@stdlib/ml/incr/binary-classification","incrcount":"@stdlib/stats/incr/count","incrcovariance":"@stdlib/stats/incr/covariance","incrcovmat":"@stdlib/stats/incr/covmat","incrcv":"@stdlib/stats/incr/cv","increwmean":"@stdlib/stats/incr/ewmean","increwstdev":"@stdlib/stats/incr/ewstdev","increwvariance":"@stdlib/stats/incr/ewvariance","incrgmean":"@stdlib/stats/incr/gmean","incrgrubbs":"@stdlib/stats/incr/grubbs","incrhmean":"@stdlib/stats/incr/hmean","incrkmeans":"@stdlib/ml/incr/kmeans","incrkurtosis":"@stdlib/stats/incr/kurtosis","incrmaape":"@stdlib/stats/incr/maape","incrmae":"@stdlib/stats/incr/mae","incrmapcorr":"@stdlib/stats/incr/mapcorr","incrmape":"@stdlib/stats/incr/mape","incrmax":"@stdlib/stats/incr/max","incrmaxabs":"@stdlib/stats/incr/maxabs","incrmcovariance":"@stdlib/stats/incr/mcovariance","incrmcv":"@stdlib/stats/incr/mcv","incrmda":"@stdlib/stats/incr/mda","incrme":"@stdlib/stats/incr/me","incrmean":"@stdlib/stats/incr/mean","incrmeanabs":"@stdlib/stats/incr/meanabs","incrmeanabs2":"@stdlib/stats/incr/meanabs2","incrmeanstdev":"@stdlib/stats/incr/meanstdev","incrmeanvar":"@stdlib/stats/incr/meanvar","incrmgmean":"@stdlib/stats/incr/mgmean","incrmgrubbs":"@stdlib/stats/incr/mgrubbs","incrmhmean":"@stdlib/stats/incr/mhmean","incrmidrange":"@stdlib/stats/incr/midrange","incrmin":"@stdlib/stats/incr/min","incrminabs":"@stdlib/stats/incr/minabs","incrminmax":"@stdlib/stats/incr/minmax","incrminmaxabs":"@stdlib/stats/incr/minmaxabs","incrmmaape":"@stdlib/stats/incr/mmaape","incrmmae":"@stdlib/stats/incr/mmae","incrmmape":"@stdlib/stats/incr/mmape","incrmmax":"@stdlib/stats/incr/mmax","incrmmaxabs":"@stdlib/stats/incr/mmaxabs","incrmmda":"@stdlib/stats/incr/mmda","incrmme":"@stdlib/stats/incr/mme","incrmmean":"@stdlib/stats/incr/mmean","incrmmeanabs":"@stdlib/stats/incr/mmeanabs","incrmmeanabs2":"@stdlib/stats/incr/mmeanabs2","incrmmeanstdev":"@stdlib/stats/incr/mmeanstdev","incrmmeanvar":"@stdlib/stats/incr/mmeanvar","incrmmidrange":"@stdlib/stats/incr/mmidrange","incrmmin":"@stdlib/stats/incr/mmin","incrmminabs":"@stdlib/stats/incr/mminabs","incrmminmax":"@stdlib/stats/incr/mminmax","incrmminmaxabs":"@stdlib/stats/incr/mminmaxabs","incrmmpe":"@stdlib/stats/incr/mmpe","incrmmse":"@stdlib/stats/incr/mmse","incrmpcorr":"@stdlib/stats/incr/mpcorr","incrmpcorr2":"@stdlib/stats/incr/mpcorr2","incrmpcorrdist":"@stdlib/stats/incr/mpcorrdist","incrmpe":"@stdlib/stats/incr/mpe","incrmprod":"@stdlib/stats/incr/mprod","incrmrange":"@stdlib/stats/incr/mrange","incrmrmse":"@stdlib/stats/incr/mrmse","incrmrss":"@stdlib/stats/incr/mrss","incrmse":"@stdlib/stats/incr/mse","incrmstdev":"@stdlib/stats/incr/mstdev","incrmsum":"@stdlib/stats/incr/msum","incrmsumabs":"@stdlib/stats/incr/msumabs","incrmsumabs2":"@stdlib/stats/incr/msumabs2","incrmsummary":"@stdlib/stats/incr/msummary","incrmsumprod":"@stdlib/stats/incr/msumprod","incrmvariance":"@stdlib/stats/incr/mvariance","incrmvmr":"@stdlib/stats/incr/mvmr","incrnancount":"@stdlib/stats/incr/nancount","incrnansum":"@stdlib/stats/incr/nansum","incrnansumabs":"@stdlib/stats/incr/nansumabs","incrnansumabs2":"@stdlib/stats/incr/nansumabs2","incrpcorr":"@stdlib/stats/incr/pcorr","incrpcorr2":"@stdlib/stats/incr/pcorr2","incrpcorrdist":"@stdlib/stats/incr/pcorrdist","incrpcorrdistmat":"@stdlib/stats/incr/pcorrdistmat","incrpcorrmat":"@stdlib/stats/incr/pcorrmat","incrprod":"@stdlib/stats/incr/prod","incrrange":"@stdlib/stats/incr/range","incrrmse":"@stdlib/stats/incr/rmse","incrrss":"@stdlib/stats/incr/rss","incrSGDRegression":"@stdlib/ml/incr/sgd-regression","incrskewness":"@stdlib/stats/incr/skewness","incrspace":"@stdlib/array/incrspace","incrstdev":"@stdlib/stats/incr/stdev","incrsum":"@stdlib/stats/incr/sum","incrsumabs":"@stdlib/stats/incr/sumabs","incrsumabs2":"@stdlib/stats/incr/sumabs2","incrsummary":"@stdlib/stats/incr/summary","incrsumprod":"@stdlib/stats/incr/sumprod","incrvariance":"@stdlib/stats/incr/variance","incrvmr":"@stdlib/stats/incr/vmr","incrwmean":"@stdlib/stats/incr/wmean","ind2sub":"@stdlib/ndarray/ind2sub","indexOf":"@stdlib/utils/index-of","inherit":"@stdlib/utils/inherit","inheritedEnumerableProperties":"@stdlib/utils/inherited-enumerable-properties","inheritedEnumerablePropertySymbols":"@stdlib/utils/inherited-enumerable-property-symbols","inheritedKeys":"@stdlib/utils/inherited-keys","inheritedNonEnumerableProperties":"@stdlib/utils/inherited-nonenumerable-properties","inheritedNonEnumerablePropertyNames":"@stdlib/utils/inherited-nonenumerable-property-names","inheritedNonEnumerablePropertySymbols":"@stdlib/utils/inherited-nonenumerable-property-symbols","inheritedProperties":"@stdlib/utils/inherited-properties","inheritedPropertyDescriptor":"@stdlib/utils/inherited-property-descriptor","inheritedPropertyDescriptors":"@stdlib/utils/inherited-property-descriptors","inheritedPropertyNames":"@stdlib/utils/inherited-property-names","inheritedPropertySymbols":"@stdlib/utils/inherited-property-symbols","inheritedWritableProperties":"@stdlib/utils/inherited-writable-properties","inheritedWritablePropertyNames":"@stdlib/utils/inherited-writable-property-names","inheritedWritablePropertySymbols":"@stdlib/utils/inherited-writable-property-symbols","inmap":"@stdlib/utils/inmap","inmapAsync":"@stdlib/utils/async/inmap","inmapRight":"@stdlib/utils/inmap-right","inmapRightAsync":"@stdlib/utils/async/inmap-right","inspectSinkStream":"@stdlib/streams/node/inspect-sink","inspectStream":"@stdlib/streams/node/inspect","instanceOf":"@stdlib/assert/instance-of","INT8_MAX":"@stdlib/constants/int8/max","INT8_MIN":"@stdlib/constants/int8/min","INT8_NUM_BYTES":"@stdlib/constants/int8/num-bytes","Int8Array":"@stdlib/array/int8","INT16_MAX":"@stdlib/constants/int16/max","INT16_MIN":"@stdlib/constants/int16/min","INT16_NUM_BYTES":"@stdlib/constants/int16/num-bytes","Int16Array":"@stdlib/array/int16","INT32_MAX":"@stdlib/constants/int32/max","INT32_MIN":"@stdlib/constants/int32/min","INT32_NUM_BYTES":"@stdlib/constants/int32/num-bytes","Int32Array":"@stdlib/array/int32","IS_BIG_ENDIAN":"@stdlib/assert/is-big-endian","IS_BROWSER":"@stdlib/assert/is-browser","IS_DARWIN":"@stdlib/assert/is-darwin","IS_ELECTRON":"@stdlib/assert/is-electron","IS_ELECTRON_MAIN":"@stdlib/assert/is-electron-main","IS_ELECTRON_RENDERER":"@stdlib/assert/is-electron-renderer","IS_LITTLE_ENDIAN":"@stdlib/assert/is-little-endian","IS_NODE":"@stdlib/assert/is-node","IS_WEB_WORKER":"@stdlib/assert/is-web-worker","IS_WINDOWS":"@stdlib/assert/is-windows","isAbsolutePath":"@stdlib/assert/is-absolute-path","isAccessorProperty":"@stdlib/assert/is-accessor-property","isAccessorPropertyIn":"@stdlib/assert/is-accessor-property-in","isAlphagram":"@stdlib/assert/is-alphagram","isAlphaNumeric":"@stdlib/assert/is-alphanumeric","isAnagram":"@stdlib/assert/is-anagram","isArguments":"@stdlib/assert/is-arguments","isArray":"@stdlib/assert/is-array","isArrayArray":"@stdlib/assert/is-array-array","isArrayBuffer":"@stdlib/assert/is-arraybuffer","isArrayBufferView":"@stdlib/assert/is-arraybuffer-view","isArrayLength":"@stdlib/assert/is-array-length","isArrayLike":"@stdlib/assert/is-array-like","isArrayLikeObject":"@stdlib/assert/is-array-like-object","isASCII":"@stdlib/assert/is-ascii","isBetween":"@stdlib/assert/is-between","isBetweenArray":"@stdlib/assert/is-between-array","isBigInt":"@stdlib/assert/is-bigint","isBigInt64Array":"@stdlib/assert/is-bigint64array","isBigUint64Array":"@stdlib/assert/is-biguint64array","isBinaryString":"@stdlib/assert/is-binary-string","isBoolean":"@stdlib/assert/is-boolean","isBooleanArray":"@stdlib/assert/is-boolean-array","isBoxedPrimitive":"@stdlib/assert/is-boxed-primitive","isBuffer":"@stdlib/assert/is-buffer","isCapitalized":"@stdlib/assert/is-capitalized","isCentrosymmetricMatrix":"@stdlib/assert/is-centrosymmetric-matrix","isCircular":"@stdlib/assert/is-circular","isCircularArray":"@stdlib/assert/is-circular-array","isCircularPlainObject":"@stdlib/assert/is-circular-plain-object","isClass":"@stdlib/assert/is-class","isCollection":"@stdlib/assert/is-collection","isComplex":"@stdlib/assert/is-complex","isComplex64":"@stdlib/assert/is-complex64","isComplex64Array":"@stdlib/assert/is-complex64array","isComplex128":"@stdlib/assert/is-complex128","isComplex128Array":"@stdlib/assert/is-complex128array","isComplexLike":"@stdlib/assert/is-complex-like","isComplexTypedArray":"@stdlib/assert/is-complex-typed-array","isComplexTypedArrayLike":"@stdlib/assert/is-complex-typed-array-like","isComposite":"@stdlib/assert/is-composite","isConfigurableProperty":"@stdlib/assert/is-configurable-property","isConfigurablePropertyIn":"@stdlib/assert/is-configurable-property-in","isCubeNumber":"@stdlib/assert/is-cube-number","isDataProperty":"@stdlib/assert/is-data-property","isDataPropertyIn":"@stdlib/assert/is-data-property-in","isDataView":"@stdlib/assert/is-dataview","isDateObject":"@stdlib/assert/is-date-object","isDigitString":"@stdlib/assert/is-digit-string","isEmailAddress":"@stdlib/assert/is-email-address","isEmptyArray":"@stdlib/assert/is-empty-array","isEmptyArrayLikeObject":"@stdlib/assert/is-empty-array-like-object","isEmptyCollection":"@stdlib/assert/is-empty-collection","isEmptyObject":"@stdlib/assert/is-empty-object","isEmptyString":"@stdlib/assert/is-empty-string","isEnumerableProperty":"@stdlib/assert/is-enumerable-property","isEnumerablePropertyIn":"@stdlib/assert/is-enumerable-property-in","isError":"@stdlib/assert/is-error","isEvalError":"@stdlib/assert/is-eval-error","isEven":"@stdlib/assert/is-even","isFalsy":"@stdlib/assert/is-falsy","isFalsyArray":"@stdlib/assert/is-falsy-array","isFinite":"@stdlib/assert/is-finite","isFiniteArray":"@stdlib/assert/is-finite-array","isFloat32Array":"@stdlib/assert/is-float32array","isFloat32MatrixLike":"@stdlib/assert/is-float32matrix-like","isFloat32ndarrayLike":"@stdlib/assert/is-float32ndarray-like","isFloat32VectorLike":"@stdlib/assert/is-float32vector-like","isFloat64Array":"@stdlib/assert/is-float64array","isFloat64MatrixLike":"@stdlib/assert/is-float64matrix-like","isFloat64ndarrayLike":"@stdlib/assert/is-float64ndarray-like","isFloat64VectorLike":"@stdlib/assert/is-float64vector-like","isFunction":"@stdlib/assert/is-function","isFunctionArray":"@stdlib/assert/is-function-array","isGeneratorObject":"@stdlib/assert/is-generator-object","isGeneratorObjectLike":"@stdlib/assert/is-generator-object-like","isgzipBuffer":"@stdlib/assert/is-gzip-buffer","isHexString":"@stdlib/assert/is-hex-string","isInfinite":"@stdlib/assert/is-infinite","isInheritedProperty":"@stdlib/assert/is-inherited-property","isInt8Array":"@stdlib/assert/is-int8array","isInt16Array":"@stdlib/assert/is-int16array","isInt32Array":"@stdlib/assert/is-int32array","isInteger":"@stdlib/assert/is-integer","isIntegerArray":"@stdlib/assert/is-integer-array","isIterableLike":"@stdlib/assert/is-iterable-like","isIteratorLike":"@stdlib/assert/is-iterator-like","isJSON":"@stdlib/assert/is-json","isLeapYear":"@stdlib/assert/is-leap-year","isLocalhost":"@stdlib/assert/is-localhost","isLowercase":"@stdlib/assert/is-lowercase","isMatrixLike":"@stdlib/assert/is-matrix-like","isMethod":"@stdlib/assert/is-method","isMethodIn":"@stdlib/assert/is-method-in","isNamedTypedTupleLike":"@stdlib/assert/is-named-typed-tuple-like","isnan":"@stdlib/assert/is-nan","isNaNArray":"@stdlib/assert/is-nan-array","isNativeFunction":"@stdlib/assert/is-native-function","isndarrayLike":"@stdlib/assert/is-ndarray-like","isNegativeInteger":"@stdlib/assert/is-negative-integer","isNegativeIntegerArray":"@stdlib/assert/is-negative-integer-array","isNegativeNumber":"@stdlib/assert/is-negative-number","isNegativeNumberArray":"@stdlib/assert/is-negative-number-array","isNegativeZero":"@stdlib/assert/is-negative-zero","isNodeBuiltin":"@stdlib/assert/is-node-builtin","isNodeDuplexStreamLike":"@stdlib/assert/is-node-duplex-stream-like","isNodeReadableStreamLike":"@stdlib/assert/is-node-readable-stream-like","isNodeREPL":"@stdlib/assert/is-node-repl","isNodeStreamLike":"@stdlib/assert/is-node-stream-like","isNodeTransformStreamLike":"@stdlib/assert/is-node-transform-stream-like","isNodeWritableStreamLike":"@stdlib/assert/is-node-writable-stream-like","isNonConfigurableProperty":"@stdlib/assert/is-nonconfigurable-property","isNonConfigurablePropertyIn":"@stdlib/assert/is-nonconfigurable-property-in","isNonEnumerableProperty":"@stdlib/assert/is-nonenumerable-property","isNonEnumerablePropertyIn":"@stdlib/assert/is-nonenumerable-property-in","isNonNegativeInteger":"@stdlib/assert/is-nonnegative-integer","isNonNegativeIntegerArray":"@stdlib/assert/is-nonnegative-integer-array","isNonNegativeNumber":"@stdlib/assert/is-nonnegative-number","isNonNegativeNumberArray":"@stdlib/assert/is-nonnegative-number-array","isNonPositiveInteger":"@stdlib/assert/is-nonpositive-integer","isNonPositiveIntegerArray":"@stdlib/assert/is-nonpositive-integer-array","isNonPositiveNumber":"@stdlib/assert/is-nonpositive-number","isNonPositiveNumberArray":"@stdlib/assert/is-nonpositive-number-array","isNonSymmetricMatrix":"@stdlib/assert/is-nonsymmetric-matrix","isNull":"@stdlib/assert/is-null","isNullArray":"@stdlib/assert/is-null-array","isNumber":"@stdlib/assert/is-number","isNumberArray":"@stdlib/assert/is-number-array","isNumericArray":"@stdlib/assert/is-numeric-array","isObject":"@stdlib/assert/is-object","isObjectArray":"@stdlib/assert/is-object-array","isObjectLike":"@stdlib/assert/is-object-like","isOdd":"@stdlib/assert/is-odd","isoWeeksInYear":"@stdlib/time/iso-weeks-in-year","isPersymmetricMatrix":"@stdlib/assert/is-persymmetric-matrix","isPlainObject":"@stdlib/assert/is-plain-object","isPlainObjectArray":"@stdlib/assert/is-plain-object-array","isPositiveInteger":"@stdlib/assert/is-positive-integer","isPositiveIntegerArray":"@stdlib/assert/is-positive-integer-array","isPositiveNumber":"@stdlib/assert/is-positive-number","isPositiveNumberArray":"@stdlib/assert/is-positive-number-array","isPositiveZero":"@stdlib/assert/is-positive-zero","isPrime":"@stdlib/assert/is-prime","isPrimitive":"@stdlib/assert/is-primitive","isPrimitiveArray":"@stdlib/assert/is-primitive-array","isPRNGLike":"@stdlib/assert/is-prng-like","isProbability":"@stdlib/assert/is-probability","isProbabilityArray":"@stdlib/assert/is-probability-array","isPropertyKey":"@stdlib/assert/is-property-key","isPrototypeOf":"@stdlib/assert/is-prototype-of","isRangeError":"@stdlib/assert/is-range-error","isReadableProperty":"@stdlib/assert/is-readable-property","isReadablePropertyIn":"@stdlib/assert/is-readable-property-in","isReadOnlyProperty":"@stdlib/assert/is-read-only-property","isReadOnlyPropertyIn":"@stdlib/assert/is-read-only-property-in","isReadWriteProperty":"@stdlib/assert/is-read-write-property","isReadWritePropertyIn":"@stdlib/assert/is-read-write-property-in","isReferenceError":"@stdlib/assert/is-reference-error","isRegExp":"@stdlib/assert/is-regexp","isRegExpString":"@stdlib/assert/is-regexp-string","isRelativePath":"@stdlib/assert/is-relative-path","isSafeInteger":"@stdlib/assert/is-safe-integer","isSafeIntegerArray":"@stdlib/assert/is-safe-integer-array","isSameNativeClass":"@stdlib/assert/is-same-native-class","isSameType":"@stdlib/assert/is-same-type","isSameValue":"@stdlib/assert/is-same-value","isSameValueZero":"@stdlib/assert/is-same-value-zero","isSharedArrayBuffer":"@stdlib/assert/is-sharedarraybuffer","isSkewCentrosymmetricMatrix":"@stdlib/assert/is-skew-centrosymmetric-matrix","isSkewPersymmetricMatrix":"@stdlib/assert/is-skew-persymmetric-matrix","isSkewSymmetricMatrix":"@stdlib/assert/is-skew-symmetric-matrix","isSquareMatrix":"@stdlib/assert/is-square-matrix","isSquareNumber":"@stdlib/assert/is-square-number","isSquareTriangularNumber":"@stdlib/assert/is-square-triangular-number","isStrictEqual":"@stdlib/assert/is-strict-equal","isString":"@stdlib/assert/is-string","isStringArray":"@stdlib/assert/is-string-array","isSymbol":"@stdlib/assert/is-symbol","isSymbolArray":"@stdlib/assert/is-symbol-array","isSymmetricMatrix":"@stdlib/assert/is-symmetric-matrix","isSyntaxError":"@stdlib/assert/is-syntax-error","isTriangularNumber":"@stdlib/assert/is-triangular-number","isTruthy":"@stdlib/assert/is-truthy","isTruthyArray":"@stdlib/assert/is-truthy-array","isTypedArray":"@stdlib/assert/is-typed-array","isTypedArrayLength":"@stdlib/assert/is-typed-array-length","isTypedArrayLike":"@stdlib/assert/is-typed-array-like","isTypeError":"@stdlib/assert/is-type-error","isUint8Array":"@stdlib/assert/is-uint8array","isUint8ClampedArray":"@stdlib/assert/is-uint8clampedarray","isUint16Array":"@stdlib/assert/is-uint16array","isUint32Array":"@stdlib/assert/is-uint32array","isUNCPath":"@stdlib/assert/is-unc-path","isUndefined":"@stdlib/assert/is-undefined","isUndefinedOrNull":"@stdlib/assert/is-undefined-or-null","isUnityProbabilityArray":"@stdlib/assert/is-unity-probability-array","isUppercase":"@stdlib/assert/is-uppercase","isURI":"@stdlib/assert/is-uri","isURIError":"@stdlib/assert/is-uri-error","isVectorLike":"@stdlib/assert/is-vector-like","isWhitespace":"@stdlib/assert/is-whitespace","isWritableProperty":"@stdlib/assert/is-writable-property","isWritablePropertyIn":"@stdlib/assert/is-writable-property-in","isWriteOnlyProperty":"@stdlib/assert/is-write-only-property","isWriteOnlyPropertyIn":"@stdlib/assert/is-write-only-property-in","iterAbs":"@stdlib/math/iter/special/abs","iterAbs2":"@stdlib/math/iter/special/abs2","iterAcos":"@stdlib/math/iter/special/acos","iterAcosh":"@stdlib/math/iter/special/acosh","iterAcot":"@stdlib/math/iter/special/acot","iterAcoth":"@stdlib/math/iter/special/acoth","iterAcovercos":"@stdlib/math/iter/special/acovercos","iterAcoversin":"@stdlib/math/iter/special/acoversin","iterAdd":"@stdlib/math/iter/ops/add","iterAdvance":"@stdlib/iter/advance","iterAhavercos":"@stdlib/math/iter/special/ahavercos","iterAhaversin":"@stdlib/math/iter/special/ahaversin","iterAny":"@stdlib/iter/any","iterAnyBy":"@stdlib/iter/any-by","iterAsin":"@stdlib/math/iter/special/asin","iterAsinh":"@stdlib/math/iter/special/asinh","iterAtan":"@stdlib/math/iter/special/atan","iterAtan2":"@stdlib/math/iter/special/atan2","iterAtanh":"@stdlib/math/iter/special/atanh","iterator2array":"@stdlib/array/from-iterator","iterator2arrayview":"@stdlib/iter/to-array-view","iterator2arrayviewRight":"@stdlib/iter/to-array-view-right","iteratorStream":"@stdlib/streams/node/from-iterator","IteratorSymbol":"@stdlib/symbol/iterator","iterAvercos":"@stdlib/math/iter/special/avercos","iterAversin":"@stdlib/math/iter/special/aversin","iterawgn":"@stdlib/simulate/iter/awgn","iterawln":"@stdlib/simulate/iter/awln","iterawun":"@stdlib/simulate/iter/awun","iterBartlettHannPulse":"@stdlib/simulate/iter/bartlett-hann-pulse","iterBartlettPulse":"@stdlib/simulate/iter/bartlett-pulse","iterBesselj0":"@stdlib/math/iter/special/besselj0","iterBesselj1":"@stdlib/math/iter/special/besselj1","iterBessely0":"@stdlib/math/iter/special/bessely0","iterBessely1":"@stdlib/math/iter/special/bessely1","iterBeta":"@stdlib/math/iter/special/beta","iterBetaln":"@stdlib/math/iter/special/betaln","iterBinet":"@stdlib/math/iter/special/binet","iterCbrt":"@stdlib/math/iter/special/cbrt","iterCeil":"@stdlib/math/iter/special/ceil","iterCeil2":"@stdlib/math/iter/special/ceil2","iterCeil10":"@stdlib/math/iter/special/ceil10","iterCompositesSeq":"@stdlib/math/iter/sequences/composites","iterConcat":"@stdlib/iter/concat","iterConstant":"@stdlib/iter/constant","iterContinuedFraction":"@stdlib/math/iter/utils/continued-fraction","iterContinuedFractionSeq":"@stdlib/math/iter/sequences/continued-fraction","iterCos":"@stdlib/math/iter/special/cos","iterCosh":"@stdlib/math/iter/special/cosh","iterCosineWave":"@stdlib/simulate/iter/cosine-wave","iterCosm1":"@stdlib/math/iter/special/cosm1","iterCospi":"@stdlib/math/iter/special/cospi","iterCounter":"@stdlib/iter/counter","iterCovercos":"@stdlib/math/iter/special/covercos","iterCoversin":"@stdlib/math/iter/special/coversin","iterCubesSeq":"@stdlib/math/iter/sequences/cubes","itercugmean":"@stdlib/stats/iter/cugmean","itercuhmean":"@stdlib/stats/iter/cuhmean","itercumax":"@stdlib/stats/iter/cumax","itercumaxabs":"@stdlib/stats/iter/cumaxabs","itercumean":"@stdlib/stats/iter/cumean","itercumeanabs":"@stdlib/stats/iter/cumeanabs","itercumeanabs2":"@stdlib/stats/iter/cumeanabs2","itercumidrange":"@stdlib/stats/iter/cumidrange","itercumin":"@stdlib/stats/iter/cumin","itercuminabs":"@stdlib/stats/iter/cuminabs","itercuprod":"@stdlib/stats/iter/cuprod","itercurange":"@stdlib/stats/iter/curange","itercusum":"@stdlib/stats/iter/cusum","itercusumabs":"@stdlib/stats/iter/cusumabs","itercusumabs2":"@stdlib/stats/iter/cusumabs2","iterDatespace":"@stdlib/iter/datespace","iterDedupe":"@stdlib/iter/dedupe","iterDedupeBy":"@stdlib/iter/dedupe-by","iterDeg2rad":"@stdlib/math/iter/special/deg2rad","iterDigamma":"@stdlib/math/iter/special/digamma","iterDiracComb":"@stdlib/simulate/iter/dirac-comb","iterDiracDelta":"@stdlib/math/iter/special/dirac-delta","iterDivide":"@stdlib/math/iter/ops/divide","iterEllipe":"@stdlib/math/iter/special/ellipe","iterEllipk":"@stdlib/math/iter/special/ellipk","iterEmpty":"@stdlib/iter/empty","iterErf":"@stdlib/math/iter/special/erf","iterErfc":"@stdlib/math/iter/special/erfc","iterErfcinv":"@stdlib/math/iter/special/erfcinv","iterErfinv":"@stdlib/math/iter/special/erfinv","iterEta":"@stdlib/math/iter/special/dirichlet-eta","iterEvenIntegersSeq":"@stdlib/math/iter/sequences/even-integers","iterEvery":"@stdlib/iter/every","iterEveryBy":"@stdlib/iter/every-by","iterExp":"@stdlib/math/iter/special/exp","iterExp2":"@stdlib/math/iter/special/exp2","iterExp10":"@stdlib/math/iter/special/exp10","iterExpit":"@stdlib/math/iter/special/expit","iterExpm1":"@stdlib/math/iter/special/expm1","iterExpm1rel":"@stdlib/math/iter/special/expm1rel","iterFactorial":"@stdlib/math/iter/special/factorial","iterFactorialln":"@stdlib/math/iter/special/factorialln","iterFactorialsSeq":"@stdlib/math/iter/sequences/factorials","iterFibonacciSeq":"@stdlib/math/iter/sequences/fibonacci","iterFifthPowersSeq":"@stdlib/math/iter/sequences/fifth-powers","iterFill":"@stdlib/iter/fill","iterFilter":"@stdlib/iter/filter","iterFilterMap":"@stdlib/iter/filter-map","iterFirst":"@stdlib/iter/first","iterFlatTopPulse":"@stdlib/simulate/iter/flat-top-pulse","iterFloor":"@stdlib/math/iter/special/floor","iterFloor2":"@stdlib/math/iter/special/floor2","iterFloor10":"@stdlib/math/iter/special/floor10","iterFlow":"@stdlib/iter/flow","iterForEach":"@stdlib/iter/for-each","iterFourthPowersSeq":"@stdlib/math/iter/sequences/fourth-powers","iterFresnelc":"@stdlib/math/iter/special/fresnelc","iterFresnels":"@stdlib/math/iter/special/fresnels","iterGamma":"@stdlib/math/iter/special/gamma","iterGamma1pm1":"@stdlib/math/iter/special/gamma1pm1","iterGammaln":"@stdlib/math/iter/special/gammaln","iterHacovercos":"@stdlib/math/iter/special/hacovercos","iterHacoversin":"@stdlib/math/iter/special/hacoversin","iterHannPulse":"@stdlib/simulate/iter/hann-pulse","iterHavercos":"@stdlib/math/iter/special/havercos","iterHaversin":"@stdlib/math/iter/special/haversin","iterHead":"@stdlib/iter/head","iterIncrspace":"@stdlib/iter/incrspace","iterIntegersSeq":"@stdlib/math/iter/sequences/integers","iterIntersection":"@stdlib/iter/intersection","iterIntersectionByHash":"@stdlib/iter/intersection-by-hash","iterInv":"@stdlib/math/iter/special/inv","iterLanczosPulse":"@stdlib/simulate/iter/lanczos-pulse","iterLast":"@stdlib/iter/last","iterLength":"@stdlib/iter/length","iterLinspace":"@stdlib/iter/linspace","iterLn":"@stdlib/math/iter/special/ln","iterLog":"@stdlib/math/iter/special/log","iterLog1mexp":"@stdlib/math/iter/special/log1mexp","iterLog1p":"@stdlib/math/iter/special/log1p","iterLog1pexp":"@stdlib/math/iter/special/log1pexp","iterLog2":"@stdlib/math/iter/special/log2","iterLog10":"@stdlib/math/iter/special/log10","iterLogit":"@stdlib/math/iter/special/logit","iterLogspace":"@stdlib/iter/logspace","iterLucasSeq":"@stdlib/math/iter/sequences/lucas","iterMap":"@stdlib/iter/map","iterMapN":"@stdlib/iter/mapn","itermax":"@stdlib/stats/iter/max","itermaxabs":"@stdlib/stats/iter/maxabs","itermean":"@stdlib/stats/iter/mean","itermeanabs":"@stdlib/stats/iter/meanabs","itermeanabs2":"@stdlib/stats/iter/meanabs2","itermidrange":"@stdlib/stats/iter/midrange","itermin":"@stdlib/stats/iter/min","iterminabs":"@stdlib/stats/iter/minabs","itermmax":"@stdlib/stats/iter/mmax","itermmaxabs":"@stdlib/stats/iter/mmaxabs","itermmean":"@stdlib/stats/iter/mmean","itermmeanabs":"@stdlib/stats/iter/mmeanabs","itermmeanabs2":"@stdlib/stats/iter/mmeanabs2","itermmidrange":"@stdlib/stats/iter/mmidrange","itermmin":"@stdlib/stats/iter/mmin","itermminabs":"@stdlib/stats/iter/mminabs","iterMod":"@stdlib/math/iter/ops/mod","itermprod":"@stdlib/stats/iter/mprod","itermrange":"@stdlib/stats/iter/mrange","itermsum":"@stdlib/stats/iter/msum","itermsumabs":"@stdlib/stats/iter/msumabs","itermsumabs2":"@stdlib/stats/iter/msumabs2","iterMultiply":"@stdlib/math/iter/ops/multiply","iterNegaFibonacciSeq":"@stdlib/math/iter/sequences/negafibonacci","iterNegaLucasSeq":"@stdlib/math/iter/sequences/negalucas","iterNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/negative-even-integers","iterNegativeIntegersSeq":"@stdlib/math/iter/sequences/negative-integers","iterNegativeOddIntegersSeq":"@stdlib/math/iter/sequences/negative-odd-integers","iterNone":"@stdlib/iter/none","iterNoneBy":"@stdlib/iter/none-by","iterNonFibonacciSeq":"@stdlib/math/iter/sequences/nonfibonacci","iterNonNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-even-integers","iterNonNegativeIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-integers","iterNonPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-even-integers","iterNonPositiveIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-integers","iterNonSquaresSeq":"@stdlib/math/iter/sequences/nonsquares","iterNth":"@stdlib/iter/nth","iterOddIntegersSeq":"@stdlib/math/iter/sequences/odd-integers","iterPeriodicSinc":"@stdlib/simulate/iter/periodic-sinc","iterPipeline":"@stdlib/iter/pipeline","iterPop":"@stdlib/iter/pop","iterPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/positive-even-integers","iterPositiveIntegersSeq":"@stdlib/math/iter/sequences/positive-integers","iterPositiveOddIntegersSeq":"@stdlib/math/iter/sequences/positive-odd-integers","iterPow":"@stdlib/math/iter/special/pow","iterPrimesSeq":"@stdlib/math/iter/sequences/primes","iterprod":"@stdlib/stats/iter/prod","iterPulse":"@stdlib/simulate/iter/pulse","iterPush":"@stdlib/iter/push","iterRad2deg":"@stdlib/math/iter/special/rad2deg","iterRamp":"@stdlib/math/iter/special/ramp","iterrange":"@stdlib/stats/iter/range","iterReject":"@stdlib/iter/reject","iterReplicate":"@stdlib/iter/replicate","iterReplicateBy":"@stdlib/iter/replicate-by","iterRound":"@stdlib/math/iter/special/round","iterRound2":"@stdlib/math/iter/special/round2","iterRound10":"@stdlib/math/iter/special/round10","iterRsqrt":"@stdlib/math/iter/special/rsqrt","iterSawtoothWave":"@stdlib/simulate/iter/sawtooth-wave","iterShift":"@stdlib/iter/shift","iterSignum":"@stdlib/math/iter/special/signum","iterSin":"@stdlib/math/iter/special/sin","iterSinc":"@stdlib/math/iter/special/sinc","iterSineWave":"@stdlib/simulate/iter/sine-wave","iterSinh":"@stdlib/math/iter/special/sinh","iterSinpi":"@stdlib/math/iter/special/sinpi","iterSlice":"@stdlib/iter/slice","iterSome":"@stdlib/iter/some","iterSomeBy":"@stdlib/iter/some-by","iterSpence":"@stdlib/math/iter/special/spence","iterSqrt":"@stdlib/math/iter/special/sqrt","iterSqrt1pm1":"@stdlib/math/iter/special/sqrt1pm1","iterSquaredTriangularSeq":"@stdlib/math/iter/sequences/squared-triangular","iterSquaresSeq":"@stdlib/math/iter/sequences/squares","iterSquareWave":"@stdlib/simulate/iter/square-wave","iterstdev":"@stdlib/stats/iter/stdev","iterStep":"@stdlib/iter/step","iterStrided":"@stdlib/iter/strided","iterStridedBy":"@stdlib/iter/strided-by","iterSubtract":"@stdlib/math/iter/ops/subtract","itersum":"@stdlib/stats/iter/sum","itersumabs":"@stdlib/stats/iter/sumabs","itersumabs2":"@stdlib/stats/iter/sumabs2","iterTan":"@stdlib/math/iter/special/tan","iterTanh":"@stdlib/math/iter/special/tanh","iterThunk":"@stdlib/iter/pipeline-thunk","iterTriangleWave":"@stdlib/simulate/iter/triangle-wave","iterTriangularSeq":"@stdlib/math/iter/sequences/triangular","iterTrigamma":"@stdlib/math/iter/special/trigamma","iterTrunc":"@stdlib/math/iter/special/trunc","iterTrunc2":"@stdlib/math/iter/special/trunc2","iterTrunc10":"@stdlib/math/iter/special/trunc10","iterUnion":"@stdlib/iter/union","iterUnique":"@stdlib/iter/unique","iterUniqueBy":"@stdlib/iter/unique-by","iterUniqueByHash":"@stdlib/iter/unique-by-hash","iterUnitspace":"@stdlib/iter/unitspace","iterUnshift":"@stdlib/iter/unshift","itervariance":"@stdlib/stats/iter/variance","iterVercos":"@stdlib/math/iter/special/vercos","iterVersin":"@stdlib/math/iter/special/versin","iterZeta":"@stdlib/math/iter/special/riemann-zeta","joinStream":"@stdlib/streams/node/join","kde2d":"@stdlib/stats/kde2d","kebabcase":"@stdlib/string/kebabcase","keyBy":"@stdlib/utils/key-by","keyByRight":"@stdlib/utils/key-by-right","keysIn":"@stdlib/utils/keys-in","kruskalTest":"@stdlib/stats/kruskal-test","kstest":"@stdlib/stats/kstest","lda":"@stdlib/nlp/lda","leveneTest":"@stdlib/stats/levene-test","LinkedList":"@stdlib/utils/linked-list","linspace":"@stdlib/array/linspace","LIU_NEGATIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-negative-opinion-words-en","LIU_POSITIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-positive-opinion-words-en","LN_HALF":"@stdlib/constants/float64/ln-half","LN_PI":"@stdlib/constants/float64/ln-pi","LN_SQRT_TWO_PI":"@stdlib/constants/float64/ln-sqrt-two-pi","LN_TWO_PI":"@stdlib/constants/float64/ln-two-pi","LN2":"@stdlib/constants/float64/ln-two","LN10":"@stdlib/constants/float64/ln-ten","LOG2E":"@stdlib/constants/float64/log2-e","LOG10E":"@stdlib/constants/float64/log10-e","logspace":"@stdlib/array/logspace","lowercase":"@stdlib/string/lowercase","lowercaseKeys":"@stdlib/utils/lowercase-keys","lowess":"@stdlib/stats/lowess","lpad":"@stdlib/string/left-pad","ltrim":"@stdlib/string/left-trim","MALE_FIRST_NAMES_EN":"@stdlib/datasets/male-first-names-en","map":"@stdlib/utils/map","map2":"@stdlib/utils/map2","map2d":"@stdlib/utils/map2d","map2Right":"@stdlib/utils/map2-right","map3d":"@stdlib/utils/map3d","map4d":"@stdlib/utils/map4d","map5d":"@stdlib/utils/map5d","mapArguments":"@stdlib/utils/map-arguments","mapFun":"@stdlib/utils/map-function","mapFunAsync":"@stdlib/utils/async/map-function","mapKeys":"@stdlib/utils/map-keys","mapKeysAsync":"@stdlib/utils/async/map-keys","mapReduce":"@stdlib/utils/map-reduce","mapReduceRight":"@stdlib/utils/map-reduce-right","mapRight":"@stdlib/utils/map-right","mapValues":"@stdlib/utils/map-values","mapValuesAsync":"@stdlib/utils/async/map-values","maskArguments":"@stdlib/utils/mask-arguments","MAX_ARRAY_LENGTH":"@stdlib/constants/array/max-array-length","MAX_TYPED_ARRAY_LENGTH":"@stdlib/constants/array/max-typed-array-length","memoize":"@stdlib/utils/memoize","merge":"@stdlib/utils/merge","MILLISECONDS_IN_DAY":"@stdlib/constants/time/milliseconds-in-day","MILLISECONDS_IN_HOUR":"@stdlib/constants/time/milliseconds-in-hour","MILLISECONDS_IN_MINUTE":"@stdlib/constants/time/milliseconds-in-minute","MILLISECONDS_IN_SECOND":"@stdlib/constants/time/milliseconds-in-second","MILLISECONDS_IN_WEEK":"@stdlib/constants/time/milliseconds-in-week","MINARD_NAPOLEONS_MARCH":"@stdlib/datasets/minard-napoleons-march","MINUTES_IN_DAY":"@stdlib/constants/time/minutes-in-day","MINUTES_IN_HOUR":"@stdlib/constants/time/minutes-in-hour","MINUTES_IN_WEEK":"@stdlib/constants/time/minutes-in-week","minutesInMonth":"@stdlib/time/minutes-in-month","minutesInYear":"@stdlib/time/minutes-in-year","MOBY_DICK":"@stdlib/datasets/moby-dick","MONTH_NAMES_EN":"@stdlib/datasets/month-names-en","MONTHS_IN_YEAR":"@stdlib/constants/time/months-in-year","moveProperty":"@stdlib/utils/move-property","namedtypedtuple":"@stdlib/utils/named-typed-tuple","naryFunction":"@stdlib/utils/nary-function","nativeClass":"@stdlib/utils/native-class","ndarray":"@stdlib/ndarray/ctor","ndarrayCastingModes":"@stdlib/ndarray/casting-modes","ndarrayDataTypes":"@stdlib/ndarray/dtypes","ndarrayDispatch":"@stdlib/ndarray/dispatch","ndarrayIndexModes":"@stdlib/ndarray/index-modes","ndarrayMinDataType":"@stdlib/ndarray/min-dtype","ndarrayNextDataType":"@stdlib/ndarray/next-dtype","ndarrayOrders":"@stdlib/ndarray/orders","ndarrayPromotionRules":"@stdlib/ndarray/promotion-rules","ndarraySafeCasts":"@stdlib/ndarray/safe-casts","ndarraySameKindCasts":"@stdlib/ndarray/same-kind-casts","ndzeros":"@stdlib/ndarray/zeros","ndzerosLike":"@stdlib/ndarray/zeros-like","nextGraphemeClusterBreak":"@stdlib/string/next-grapheme-cluster-break","nextTick":"@stdlib/utils/next-tick","NIGHTINGALES_ROSE":"@stdlib/datasets/nightingales-rose","NINF":"@stdlib/constants/float64/ninf","NODE_VERSION":"@stdlib/process/node-version","none":"@stdlib/utils/none","noneBy":"@stdlib/utils/none-by","noneByAsync":"@stdlib/utils/async/none-by","noneByRight":"@stdlib/utils/none-by-right","noneByRightAsync":"@stdlib/utils/async/none-by-right","nonEnumerableProperties":"@stdlib/utils/nonenumerable-properties","nonEnumerablePropertiesIn":"@stdlib/utils/nonenumerable-properties-in","nonEnumerablePropertyNames":"@stdlib/utils/nonenumerable-property-names","nonEnumerablePropertyNamesIn":"@stdlib/utils/nonenumerable-property-names-in","nonEnumerablePropertySymbols":"@stdlib/utils/nonenumerable-property-symbols","nonEnumerablePropertySymbolsIn":"@stdlib/utils/nonenumerable-property-symbols-in","nonIndexKeys":"@stdlib/utils/nonindex-keys","noop":"@stdlib/utils/noop","now":"@stdlib/time/now","NUM_CPUS":"@stdlib/os/num-cpus","Number":"@stdlib/number/ctor","numGraphemeClusters":"@stdlib/string/num-grapheme-clusters","objectEntries":"@stdlib/utils/entries","objectEntriesIn":"@stdlib/utils/entries-in","objectFromEntries":"@stdlib/utils/from-entries","objectInverse":"@stdlib/utils/object-inverse","objectInverseBy":"@stdlib/utils/object-inverse-by","objectKeys":"@stdlib/utils/keys","objectValues":"@stdlib/utils/values","objectValuesIn":"@stdlib/utils/values-in","omit":"@stdlib/utils/omit","omitBy":"@stdlib/utils/omit-by","open":"@stdlib/fs/open","openURL":"@stdlib/utils/open-url","PACE_BOSTON_HOUSE_PRICES":"@stdlib/datasets/pace-boston-house-prices","pad":"@stdlib/string/pad","padjust":"@stdlib/stats/padjust","papply":"@stdlib/utils/papply","papplyRight":"@stdlib/utils/papply-right","parallel":"@stdlib/utils/parallel","parseJSON":"@stdlib/utils/parse-json","pascalcase":"@stdlib/string/pascalcase","PATH_DELIMITER":"@stdlib/constants/path/delimiter","PATH_DELIMITER_POSIX":"@stdlib/constants/path/delimiter-posix","PATH_DELIMITER_WIN32":"@stdlib/constants/path/delimiter-win32","PATH_SEP":"@stdlib/constants/path/sep","PATH_SEP_POSIX":"@stdlib/constants/path/sep-posix","PATH_SEP_WIN32":"@stdlib/constants/path/sep-win32","pcorrtest":"@stdlib/stats/pcorrtest","percentEncode":"@stdlib/string/percent-encode","PHI":"@stdlib/constants/float64/phi","PI":"@stdlib/constants/float64/pi","PI_SQUARED":"@stdlib/constants/float64/pi-squared","pick":"@stdlib/utils/pick","pickArguments":"@stdlib/utils/pick-arguments","pickBy":"@stdlib/utils/pick-by","PINF":"@stdlib/constants/float64/pinf","pkg2alias":"@stdlib/namespace/pkg2alias","pkg2related":"@stdlib/namespace/pkg2related","pkg2standalone":"@stdlib/namespace/pkg2standalone","PLATFORM":"@stdlib/os/platform","plot":"@stdlib/plot","Plot":"@stdlib/plot/ctor","pluck":"@stdlib/utils/pluck","pop":"@stdlib/utils/pop","porterStemmer":"@stdlib/nlp/porter-stemmer","prepend":"@stdlib/utils/prepend","PRIMES_100K":"@stdlib/datasets/primes-100k","properties":"@stdlib/utils/properties","propertiesIn":"@stdlib/utils/properties-in","propertyDescriptor":"@stdlib/utils/property-descriptor","propertyDescriptorIn":"@stdlib/utils/property-descriptor-in","propertyDescriptors":"@stdlib/utils/property-descriptors","propertyDescriptorsIn":"@stdlib/utils/property-descriptors-in","propertyNames":"@stdlib/utils/property-names","propertyNamesIn":"@stdlib/utils/property-names-in","propertySymbols":"@stdlib/utils/property-symbols","propertySymbolsIn":"@stdlib/utils/property-symbols-in","Proxy":"@stdlib/proxy/ctor","push":"@stdlib/utils/push","quarterOfYear":"@stdlib/time/quarter-of-year","random.iterators.arcsine":"@stdlib/random/iter/arcsine","random.iterators.bernoulli":"@stdlib/random/iter/bernoulli","random.iterators.beta":"@stdlib/random/iter/beta","random.iterators.betaprime":"@stdlib/random/iter/betaprime","random.iterators.binomial":"@stdlib/random/iter/binomial","random.iterators.boxMuller":"@stdlib/random/iter/box-muller","random.iterators.cauchy":"@stdlib/random/iter/cauchy","random.iterators.chi":"@stdlib/random/iter/chi","random.iterators.chisquare":"@stdlib/random/iter/chisquare","random.iterators.cosine":"@stdlib/random/iter/cosine","random.iterators.discreteUniform":"@stdlib/random/iter/discrete-uniform","random.iterators.erlang":"@stdlib/random/iter/erlang","random.iterators.exponential":"@stdlib/random/iter/exponential","random.iterators.f":"@stdlib/random/iter/f","random.iterators.frechet":"@stdlib/random/iter/frechet","random.iterators.gamma":"@stdlib/random/iter/gamma","random.iterators.geometric":"@stdlib/random/iter/geometric","random.iterators.gumbel":"@stdlib/random/iter/gumbel","random.iterators.hypergeometric":"@stdlib/random/iter/hypergeometric","random.iterators.improvedZiggurat":"@stdlib/random/iter/improved-ziggurat","random.iterators.invgamma":"@stdlib/random/iter/invgamma","random.iterators.kumaraswamy":"@stdlib/random/iter/kumaraswamy","random.iterators.laplace":"@stdlib/random/iter/laplace","random.iterators.levy":"@stdlib/random/iter/levy","random.iterators.logistic":"@stdlib/random/iter/logistic","random.iterators.lognormal":"@stdlib/random/iter/lognormal","random.iterators.minstd":"@stdlib/random/iter/minstd","random.iterators.minstdShuffle":"@stdlib/random/iter/minstd-shuffle","random.iterators.mt19937":"@stdlib/random/iter/mt19937","random.iterators.negativeBinomial":"@stdlib/random/iter/negative-binomial","random.iterators.normal":"@stdlib/random/iter/normal","random.iterators.pareto1":"@stdlib/random/iter/pareto-type1","random.iterators.poisson":"@stdlib/random/iter/poisson","random.iterators.randi":"@stdlib/random/iter/randi","random.iterators.randn":"@stdlib/random/iter/randn","random.iterators.randu":"@stdlib/random/iter/randu","random.iterators.rayleigh":"@stdlib/random/iter/rayleigh","random.iterators.t":"@stdlib/random/iter/t","random.iterators.triangular":"@stdlib/random/iter/triangular","random.iterators.uniform":"@stdlib/random/iter/uniform","random.iterators.weibull":"@stdlib/random/iter/weibull","random.streams.arcsine":"@stdlib/random/streams/arcsine","random.streams.bernoulli":"@stdlib/random/streams/bernoulli","random.streams.beta":"@stdlib/random/streams/beta","random.streams.betaprime":"@stdlib/random/streams/betaprime","random.streams.binomial":"@stdlib/random/streams/binomial","random.streams.boxMuller":"@stdlib/random/streams/box-muller","random.streams.cauchy":"@stdlib/random/streams/cauchy","random.streams.chi":"@stdlib/random/streams/chi","random.streams.chisquare":"@stdlib/random/streams/chisquare","random.streams.cosine":"@stdlib/random/streams/cosine","random.streams.discreteUniform":"@stdlib/random/streams/discrete-uniform","random.streams.erlang":"@stdlib/random/streams/erlang","random.streams.exponential":"@stdlib/random/streams/exponential","random.streams.f":"@stdlib/random/streams/f","random.streams.frechet":"@stdlib/random/streams/frechet","random.streams.gamma":"@stdlib/random/streams/gamma","random.streams.geometric":"@stdlib/random/streams/geometric","random.streams.gumbel":"@stdlib/random/streams/gumbel","random.streams.hypergeometric":"@stdlib/random/streams/hypergeometric","random.streams.improvedZiggurat":"@stdlib/random/streams/improved-ziggurat","random.streams.invgamma":"@stdlib/random/streams/invgamma","random.streams.kumaraswamy":"@stdlib/random/streams/kumaraswamy","random.streams.laplace":"@stdlib/random/streams/laplace","random.streams.levy":"@stdlib/random/streams/levy","random.streams.logistic":"@stdlib/random/streams/logistic","random.streams.lognormal":"@stdlib/random/streams/lognormal","random.streams.minstd":"@stdlib/random/streams/minstd","random.streams.minstdShuffle":"@stdlib/random/streams/minstd-shuffle","random.streams.mt19937":"@stdlib/random/streams/mt19937","random.streams.negativeBinomial":"@stdlib/random/streams/negative-binomial","random.streams.normal":"@stdlib/random/streams/normal","random.streams.pareto1":"@stdlib/random/streams/pareto-type1","random.streams.poisson":"@stdlib/random/streams/poisson","random.streams.randi":"@stdlib/random/streams/randi","random.streams.randn":"@stdlib/random/streams/randn","random.streams.randu":"@stdlib/random/streams/randu","random.streams.rayleigh":"@stdlib/random/streams/rayleigh","random.streams.t":"@stdlib/random/streams/t","random.streams.triangular":"@stdlib/random/streams/triangular","random.streams.uniform":"@stdlib/random/streams/uniform","random.streams.weibull":"@stdlib/random/streams/weibull","ranks":"@stdlib/stats/ranks","readDir":"@stdlib/fs/read-dir","readFile":"@stdlib/fs/read-file","readFileList":"@stdlib/fs/read-file-list","readJSON":"@stdlib/fs/read-json","readWASM":"@stdlib/fs/read-wasm","real":"@stdlib/complex/real","realarray":"@stdlib/array/typed-real","realarrayCtors":"@stdlib/array/typed-real-ctors","realarrayDataTypes":"@stdlib/array/typed-real-dtypes","realf":"@stdlib/complex/realf","realmax":"@stdlib/utils/real-max","realmin":"@stdlib/utils/real-min","reBasename":"@stdlib/regexp/basename","reBasenamePosix":"@stdlib/regexp/basename-posix","reBasenameWindows":"@stdlib/regexp/basename-windows","reColorHexadecimal":"@stdlib/regexp/color-hexadecimal","reDecimalNumber":"@stdlib/regexp/decimal-number","reDirname":"@stdlib/regexp/dirname","reDirnamePosix":"@stdlib/regexp/dirname-posix","reDirnameWindows":"@stdlib/regexp/dirname-windows","reduce":"@stdlib/utils/reduce","reduce2d":"@stdlib/utils/reduce2d","reduceAsync":"@stdlib/utils/async/reduce","reduceRight":"@stdlib/utils/reduce-right","reduceRightAsync":"@stdlib/utils/async/reduce-right","reEOL":"@stdlib/regexp/eol","reExtendedLengthPath":"@stdlib/regexp/extended-length-path","reExtname":"@stdlib/regexp/extname","reExtnamePosix":"@stdlib/regexp/extname-posix","reExtnameWindows":"@stdlib/regexp/extname-windows","reFilename":"@stdlib/regexp/filename","reFilenamePosix":"@stdlib/regexp/filename-posix","reFilenameWindows":"@stdlib/regexp/filename-windows","reFromString":"@stdlib/utils/regexp-from-string","reFunctionName":"@stdlib/regexp/function-name","reim":"@stdlib/complex/reim","reimf":"@stdlib/complex/reimf","rejectArguments":"@stdlib/utils/reject-arguments","removeFirst":"@stdlib/string/remove-first","removeLast":"@stdlib/string/remove-last","removePunctuation":"@stdlib/string/remove-punctuation","removeUTF8BOM":"@stdlib/string/remove-utf8-bom","removeWords":"@stdlib/string/remove-words","rename":"@stdlib/fs/rename","reNativeFunction":"@stdlib/regexp/native-function","reorderArguments":"@stdlib/utils/reorder-arguments","repeat":"@stdlib/string/repeat","replace":"@stdlib/string/replace","reRegExp":"@stdlib/regexp/regexp","rescape":"@stdlib/utils/escape-regexp-string","resolveParentPath":"@stdlib/fs/resolve-parent-path","resolveParentPathBy":"@stdlib/fs/resolve-parent-path-by","reUncPath":"@stdlib/regexp/unc-path","reUtf16SurrogatePair":"@stdlib/regexp/utf16-surrogate-pair","reUtf16UnpairedSurrogate":"@stdlib/regexp/utf16-unpaired-surrogate","reverseArguments":"@stdlib/utils/reverse-arguments","reverseString":"@stdlib/string/reverse","reviveBasePRNG":"@stdlib/random/base/reviver","reviveBuffer":"@stdlib/buffer/reviver","reviveComplex":"@stdlib/complex/reviver","reviveComplex64":"@stdlib/complex/reviver-float32","reviveComplex128":"@stdlib/complex/reviver-float64","reviveError":"@stdlib/error/reviver","reviveTypedArray":"@stdlib/array/reviver","reWhitespace":"@stdlib/regexp/whitespace","rpad":"@stdlib/string/right-pad","rtrim":"@stdlib/string/right-trim","safeintmax":"@stdlib/utils/safe-int-max","safeintmin":"@stdlib/utils/safe-int-min","sample":"@stdlib/random/sample","SAVOY_STOPWORDS_FIN":"@stdlib/datasets/savoy-stopwords-fin","SAVOY_STOPWORDS_FR":"@stdlib/datasets/savoy-stopwords-fr","SAVOY_STOPWORDS_GER":"@stdlib/datasets/savoy-stopwords-ger","SAVOY_STOPWORDS_IT":"@stdlib/datasets/savoy-stopwords-it","SAVOY_STOPWORDS_POR":"@stdlib/datasets/savoy-stopwords-por","SAVOY_STOPWORDS_SP":"@stdlib/datasets/savoy-stopwords-sp","SAVOY_STOPWORDS_SWE":"@stdlib/datasets/savoy-stopwords-swe","scalar2ndarray":"@stdlib/ndarray/from-scalar","sdot":"@stdlib/blas/sdot","SECONDS_IN_DAY":"@stdlib/constants/time/seconds-in-day","SECONDS_IN_HOUR":"@stdlib/constants/time/seconds-in-hour","SECONDS_IN_MINUTE":"@stdlib/constants/time/seconds-in-minute","SECONDS_IN_WEEK":"@stdlib/constants/time/seconds-in-week","secondsInMonth":"@stdlib/time/seconds-in-month","secondsInYear":"@stdlib/time/seconds-in-year","setConfigurableReadOnly":"@stdlib/utils/define-configurable-read-only-property","setConfigurableReadOnlyAccessor":"@stdlib/utils/define-configurable-read-only-accessor","setConfigurableReadWriteAccessor":"@stdlib/utils/define-configurable-read-write-accessor","setConfigurableWriteOnlyAccessor":"@stdlib/utils/define-configurable-write-only-accessor","setMemoizedConfigurableReadOnly":"@stdlib/utils/define-memoized-configurable-read-only-property","setMemoizedReadOnly":"@stdlib/utils/define-memoized-read-only-property","setNonEnumerableProperty":"@stdlib/utils/define-nonenumerable-property","setNonEnumerableReadOnly":"@stdlib/utils/define-nonenumerable-read-only-property","setNonEnumerableReadOnlyAccessor":"@stdlib/utils/define-nonenumerable-read-only-accessor","setNonEnumerableReadWriteAccessor":"@stdlib/utils/define-nonenumerable-read-write-accessor","setNonEnumerableWriteOnlyAccessor":"@stdlib/utils/define-nonenumerable-write-only-accessor","setReadOnly":"@stdlib/utils/define-read-only-property","setReadOnlyAccessor":"@stdlib/utils/define-read-only-accessor","setReadWriteAccessor":"@stdlib/utils/define-read-write-accessor","setWriteOnlyAccessor":"@stdlib/utils/define-write-only-accessor","SharedArrayBuffer":"@stdlib/array/shared-buffer","shift":"@stdlib/utils/shift","shuffle":"@stdlib/random/shuffle","sizeOf":"@stdlib/utils/size-of","snakecase":"@stdlib/string/snakecase","some":"@stdlib/utils/some","someBy":"@stdlib/utils/some-by","someByAsync":"@stdlib/utils/async/some-by","someByRight":"@stdlib/utils/some-by-right","someByRightAsync":"@stdlib/utils/async/some-by-right","SOTU":"@stdlib/datasets/sotu","SPACHE_REVISED":"@stdlib/datasets/spache-revised","SPAM_ASSASSIN":"@stdlib/datasets/spam-assassin","SparklineBase":"@stdlib/plot/sparklines/base/ctor","sparsearray2iterator":"@stdlib/array/to-sparse-iterator","sparsearray2iteratorRight":"@stdlib/array/to-sparse-iterator-right","splitStream":"@stdlib/streams/node/split","SQRT_EPS":"@stdlib/constants/float64/sqrt-eps","SQRT_HALF":"@stdlib/constants/float64/sqrt-half","SQRT_HALF_PI":"@stdlib/constants/float64/sqrt-half-pi","SQRT_PHI":"@stdlib/constants/float64/sqrt-phi","SQRT_PI":"@stdlib/constants/float64/sqrt-pi","SQRT_THREE":"@stdlib/constants/float64/sqrt-three","SQRT_TWO":"@stdlib/constants/float64/sqrt-two","SQRT_TWO_PI":"@stdlib/constants/float64/sqrt-two-pi","SSA_US_BIRTHS_2000_2014":"@stdlib/datasets/ssa-us-births-2000-2014","sswap":"@stdlib/blas/sswap","Stack":"@stdlib/utils/stack","standalone2pkg":"@stdlib/namespace/standalone2pkg","STANDARD_CARD_DECK":"@stdlib/datasets/standard-card-deck","startcase":"@stdlib/string/startcase","startsWith":"@stdlib/string/starts-with","STOPWORDS_EN":"@stdlib/datasets/stopwords-en","strided.abs":"@stdlib/math/strided/special/abs","strided.abs2":"@stdlib/math/strided/special/abs2","strided.abs2By":"@stdlib/math/strided/special/abs2-by","strided.absBy":"@stdlib/math/strided/special/abs-by","strided.add":"@stdlib/math/strided/ops/add","strided.cbrt":"@stdlib/math/strided/special/cbrt","strided.ceil":"@stdlib/math/strided/special/ceil","strided.deg2rad":"@stdlib/math/strided/special/deg2rad","strided.dispatch":"@stdlib/strided/dispatch","strided.floor":"@stdlib/math/strided/special/floor","strided.inv":"@stdlib/math/strided/special/inv","strided.mul":"@stdlib/math/strided/ops/mul","strided.ramp":"@stdlib/math/strided/special/ramp","strided.rsqrt":"@stdlib/math/strided/special/rsqrt","strided.sqrt":"@stdlib/math/strided/special/sqrt","strided.sub":"@stdlib/math/strided/ops/sub","strided.trunc":"@stdlib/math/strided/special/trunc","stridedarray2iterator":"@stdlib/array/to-strided-iterator","stridedArrayStream":"@stdlib/streams/node/from-strided-array","string2buffer":"@stdlib/buffer/from-string","sub2ind":"@stdlib/ndarray/sub2ind","substringAfter":"@stdlib/string/substring-after","substringAfterLast":"@stdlib/string/substring-after-last","substringBefore":"@stdlib/string/substring-before","substringBeforeLast":"@stdlib/string/substring-before-last","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-single-hop-sensor-network","Symbol":"@stdlib/symbol/ctor","tabulate":"@stdlib/utils/tabulate","tabulateBy":"@stdlib/utils/tabulate-by","tabulateByAsync":"@stdlib/utils/async/tabulate-by","tic":"@stdlib/time/tic","timeit":"@stdlib/utils/timeit","tmpdir":"@stdlib/os/tmpdir","toc":"@stdlib/time/toc","tokenize":"@stdlib/nlp/tokenize","transformStream":"@stdlib/streams/node/transform","trim":"@stdlib/string/trim","truncate":"@stdlib/string/truncate","truncateMiddle":"@stdlib/string/truncate-middle","trycatch":"@stdlib/utils/try-catch","trycatchAsync":"@stdlib/utils/async/try-catch","tryFunction":"@stdlib/utils/try-function","tryRequire":"@stdlib/utils/try-require","trythen":"@stdlib/utils/try-then","trythenAsync":"@stdlib/utils/async/try-then","ttest":"@stdlib/stats/ttest","ttest2":"@stdlib/stats/ttest2","TWO_PI":"@stdlib/constants/float64/two-pi","typedarray":"@stdlib/array/typed","typedarray2json":"@stdlib/array/to-json","typedarrayCtors":"@stdlib/array/typed-ctors","typedarrayDataTypes":"@stdlib/array/typed-dtypes","typedarraypool":"@stdlib/array/pool","typemax":"@stdlib/utils/type-max","typemin":"@stdlib/utils/type-min","typeOf":"@stdlib/utils/type-of","UINT8_MAX":"@stdlib/constants/uint8/max","UINT8_NUM_BYTES":"@stdlib/constants/uint8/num-bytes","Uint8Array":"@stdlib/array/uint8","Uint8ClampedArray":"@stdlib/array/uint8c","UINT16_MAX":"@stdlib/constants/uint16/max","UINT16_NUM_BYTES":"@stdlib/constants/uint16/num-bytes","Uint16Array":"@stdlib/array/uint16","UINT32_MAX":"@stdlib/constants/uint32/max","UINT32_NUM_BYTES":"@stdlib/constants/uint32/num-bytes","Uint32Array":"@stdlib/array/uint32","umask":"@stdlib/process/umask","uncapitalize":"@stdlib/string/uncapitalize","uncapitalizeKeys":"@stdlib/utils/uncapitalize-keys","uncurry":"@stdlib/utils/uncurry","uncurryRight":"@stdlib/utils/uncurry-right","UNICODE_MAX":"@stdlib/constants/unicode/max","UNICODE_MAX_BMP":"@stdlib/constants/unicode/max-bmp","UnicodeColumnChartSparkline":"@stdlib/plot/sparklines/unicode/column","UnicodeLineChartSparkline":"@stdlib/plot/sparklines/unicode/line","UnicodeSparkline":"@stdlib/plot/sparklines/unicode","UnicodeTristateChartSparkline":"@stdlib/plot/sparklines/unicode/tristate","UnicodeUpDownChartSparkline":"@stdlib/plot/sparklines/unicode/up-down","UnicodeWinLossChartSparkline":"@stdlib/plot/sparklines/unicode/win-loss","unlink":"@stdlib/fs/unlink","unshift":"@stdlib/utils/unshift","until":"@stdlib/utils/until","untilAsync":"@stdlib/utils/async/until","untilEach":"@stdlib/utils/until-each","untilEachRight":"@stdlib/utils/until-each-right","unzip":"@stdlib/utils/unzip","uppercase":"@stdlib/string/uppercase","uppercaseKeys":"@stdlib/utils/uppercase-keys","US_STATES_ABBR":"@stdlib/datasets/us-states-abbr","US_STATES_CAPITALS":"@stdlib/datasets/us-states-capitals","US_STATES_CAPITALS_NAMES":"@stdlib/datasets/us-states-capitals-names","US_STATES_NAMES":"@stdlib/datasets/us-states-names","US_STATES_NAMES_CAPITALS":"@stdlib/datasets/us-states-names-capitals","utf16ToUTF8Array":"@stdlib/string/utf16-to-utf8-array","vartest":"@stdlib/stats/vartest","waterfall":"@stdlib/utils/async/series-waterfall","whileAsync":"@stdlib/utils/async/while","whileEach":"@stdlib/utils/while-each","whileEachRight":"@stdlib/utils/while-each-right","whilst":"@stdlib/utils/while","wilcoxon":"@stdlib/stats/wilcoxon","writableProperties":"@stdlib/utils/writable-properties","writablePropertiesIn":"@stdlib/utils/writable-properties-in","writablePropertyNames":"@stdlib/utils/writable-property-names","writablePropertyNamesIn":"@stdlib/utils/writable-property-names-in","writablePropertySymbols":"@stdlib/utils/writable-property-symbols","writablePropertySymbolsIn":"@stdlib/utils/writable-property-symbols-in","writeFile":"@stdlib/fs/write-file","zip":"@stdlib/utils/zip","ztest":"@stdlib/stats/ztest","ztest2":"@stdlib/stats/ztest2"}
-},{}],249:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
+module.exports={"abs":"@stdlib/math/special/abs","acartesianPower":"@stdlib/array/cartesian-power","acartesianProduct":"@stdlib/array/cartesian-product","acartesianSquare":"@stdlib/array/cartesian-square","acronym":"@stdlib/string/acronym","aempty":"@stdlib/array/empty","aemptyLike":"@stdlib/array/empty-like","AFINN_96":"@stdlib/datasets/afinn-96","AFINN_111":"@stdlib/datasets/afinn-111","afull":"@stdlib/array/full","afullLike":"@stdlib/array/full-like","alias2pkg":"@stdlib/namespace/alias2pkg","alias2related":"@stdlib/namespace/alias2related","alias2standalone":"@stdlib/namespace/alias2standalone","aliases":"@stdlib/namespace/aliases","allocUnsafe":"@stdlib/buffer/alloc-unsafe","amskfilter":"@stdlib/array/mskfilter","amskput":"@stdlib/array/mskput","amskreject":"@stdlib/array/mskreject","anans":"@stdlib/array/nans","anansLike":"@stdlib/array/nans-like","anova1":"@stdlib/stats/anova1","ANSCOMBES_QUARTET":"@stdlib/datasets/anscombes-quartet","any":"@stdlib/utils/any","anyBy":"@stdlib/utils/any-by","anyByAsync":"@stdlib/utils/async/any-by","anyByRight":"@stdlib/utils/any-by-right","anyByRightAsync":"@stdlib/utils/async/any-by-right","anyInBy":"@stdlib/utils/any-in-by","anyOwnBy":"@stdlib/utils/any-own-by","aones":"@stdlib/array/ones","aonesLike":"@stdlib/array/ones-like","aoneTo":"@stdlib/array/one-to","aoneToLike":"@stdlib/array/one-to-like","APERY":"@stdlib/constants/float64/apery","aplace":"@stdlib/array/place","append":"@stdlib/utils/append","aput":"@stdlib/array/put","ARCH":"@stdlib/os/arch","argumentFunction":"@stdlib/utils/argument-function","ARGV":"@stdlib/process/argv","array":"@stdlib/ndarray/array","array2buffer":"@stdlib/buffer/from-array","array2fancy":"@stdlib/array/to-fancy","array2iterator":"@stdlib/array/to-iterator","array2iteratorRight":"@stdlib/array/to-iterator-right","ArrayBuffer":"@stdlib/array/buffer","arraybuffer2buffer":"@stdlib/buffer/from-arraybuffer","arrayCtors":"@stdlib/array/ctors","arrayDataType":"@stdlib/array/dtype","arrayDataTypes":"@stdlib/array/dtypes","ArrayIndex":"@stdlib/array/index","arrayMinDataType":"@stdlib/array/min-dtype","arrayMostlySafeCasts":"@stdlib/array/mostly-safe-casts","arrayNextDataType":"@stdlib/array/next-dtype","arrayPromotionRules":"@stdlib/array/promotion-rules","arraySafeCasts":"@stdlib/array/safe-casts","arraySameKindCasts":"@stdlib/array/same-kind-casts","arrayShape":"@stdlib/array/shape","arrayStream":"@stdlib/streams/node/from-array","arrayview2iterator":"@stdlib/array/to-view-iterator","arrayview2iteratorRight":"@stdlib/array/to-view-iterator-right","aslice":"@stdlib/array/slice","AsyncIteratorSymbol":"@stdlib/symbol/async-iterator","atake":"@stdlib/array/take","azeros":"@stdlib/array/zeros","azerosLike":"@stdlib/array/zeros-like","azeroTo":"@stdlib/array/zero-to","azeroToLike":"@stdlib/array/zero-to-like","bartlettTest":"@stdlib/stats/bartlett-test","base.abs":"@stdlib/math/base/special/abs","base.abs2":"@stdlib/math/base/special/abs2","base.abs2f":"@stdlib/math/base/special/abs2f","base.absdiff":"@stdlib/math/base/utils/absolute-difference","base.absf":"@stdlib/math/base/special/absf","base.acartesianPower":"@stdlib/array/base/cartesian-power","base.acartesianProduct":"@stdlib/array/base/cartesian-product","base.acartesianSquare":"@stdlib/array/base/cartesian-square","base.acos":"@stdlib/math/base/special/acos","base.acosd":"@stdlib/math/base/special/acosd","base.acosf":"@stdlib/math/base/special/acosf","base.acosh":"@stdlib/math/base/special/acosh","base.acot":"@stdlib/math/base/special/acot","base.acotd":"@stdlib/math/base/special/acotd","base.acotf":"@stdlib/math/base/special/acotf","base.acoth":"@stdlib/math/base/special/acoth","base.acovercos":"@stdlib/math/base/special/acovercos","base.acoversin":"@stdlib/math/base/special/acoversin","base.acsc":"@stdlib/math/base/special/acsc","base.acscd":"@stdlib/math/base/special/acscd","base.acscdf":"@stdlib/math/base/special/acscdf","base.acscf":"@stdlib/math/base/special/acscf","base.acsch":"@stdlib/math/base/special/acsch","base.add":"@stdlib/math/base/ops/add","base.add3":"@stdlib/math/base/ops/add3","base.add4":"@stdlib/math/base/ops/add4","base.add5":"@stdlib/math/base/ops/add5","base.addf":"@stdlib/math/base/ops/addf","base.afilled":"@stdlib/array/base/filled","base.afilled2d":"@stdlib/array/base/filled2d","base.afilled2dBy":"@stdlib/array/base/filled2d-by","base.afilled3d":"@stdlib/array/base/filled3d","base.afilled3dBy":"@stdlib/array/base/filled3d-by","base.afilled4d":"@stdlib/array/base/filled4d","base.afilled4dBy":"@stdlib/array/base/filled4d-by","base.afilled5d":"@stdlib/array/base/filled5d","base.afilled5dBy":"@stdlib/array/base/filled5d-by","base.afilledBy":"@stdlib/array/base/filled-by","base.afillednd":"@stdlib/array/base/fillednd","base.afilledndBy":"@stdlib/array/base/fillednd-by","base.afilter":"@stdlib/array/base/filter","base.afirst":"@stdlib/array/base/first","base.aflatten":"@stdlib/array/base/flatten","base.aflatten2d":"@stdlib/array/base/flatten2d","base.aflatten2dBy":"@stdlib/array/base/flatten2d-by","base.aflatten3d":"@stdlib/array/base/flatten3d","base.aflatten3dBy":"@stdlib/array/base/flatten3d-by","base.aflatten4d":"@stdlib/array/base/flatten4d","base.aflatten4dBy":"@stdlib/array/base/flatten4d-by","base.aflatten5d":"@stdlib/array/base/flatten5d","base.aflatten5dBy":"@stdlib/array/base/flatten5d-by","base.aflattenBy":"@stdlib/array/base/flatten-by","base.afliplr2d":"@stdlib/array/base/fliplr2d","base.afliplr3d":"@stdlib/array/base/fliplr3d","base.afliplr4d":"@stdlib/array/base/fliplr4d","base.afliplr5d":"@stdlib/array/base/fliplr5d","base.aflipud2d":"@stdlib/array/base/flipud2d","base.aflipud3d":"@stdlib/array/base/flipud3d","base.aflipud4d":"@stdlib/array/base/flipud4d","base.aflipud5d":"@stdlib/array/base/flipud5d","base.ahavercos":"@stdlib/math/base/special/ahavercos","base.ahaversin":"@stdlib/math/base/special/ahaversin","base.altcase":"@stdlib/string/base/altcase","base.aones":"@stdlib/array/base/ones","base.aones2d":"@stdlib/array/base/ones2d","base.aones3d":"@stdlib/array/base/ones3d","base.aones4d":"@stdlib/array/base/ones4d","base.aones5d":"@stdlib/array/base/ones5d","base.aonesnd":"@stdlib/array/base/onesnd","base.aoneTo":"@stdlib/array/base/one-to","base.args2multislice":"@stdlib/slice/base/args2multislice","base.asec":"@stdlib/math/base/special/asec","base.asecd":"@stdlib/math/base/special/asecd","base.asecdf":"@stdlib/math/base/special/asecdf","base.asecf":"@stdlib/math/base/special/asecf","base.asech":"@stdlib/math/base/special/asech","base.asin":"@stdlib/math/base/special/asin","base.asind":"@stdlib/math/base/special/asind","base.asindf":"@stdlib/math/base/special/asindf","base.asinf":"@stdlib/math/base/special/asinf","base.asinh":"@stdlib/math/base/special/asinh","base.atan":"@stdlib/math/base/special/atan","base.atan2":"@stdlib/math/base/special/atan2","base.atand":"@stdlib/math/base/special/atand","base.atanf":"@stdlib/math/base/special/atanf","base.atanh":"@stdlib/math/base/special/atanh","base.avercos":"@stdlib/math/base/special/avercos","base.aversin":"@stdlib/math/base/special/aversin","base.azeros":"@stdlib/array/base/zeros","base.azeros2d":"@stdlib/array/base/zeros2d","base.azeros3d":"@stdlib/array/base/zeros3d","base.azeros4d":"@stdlib/array/base/zeros4d","base.azeros5d":"@stdlib/array/base/zeros5d","base.azerosnd":"@stdlib/array/base/zerosnd","base.azeroTo":"@stdlib/array/base/zero-to","base.bernoulli":"@stdlib/math/base/special/bernoulli","base.besselj0":"@stdlib/math/base/special/besselj0","base.besselj1":"@stdlib/math/base/special/besselj1","base.bessely0":"@stdlib/math/base/special/bessely0","base.bessely1":"@stdlib/math/base/special/bessely1","base.beta":"@stdlib/math/base/special/beta","base.betainc":"@stdlib/math/base/special/betainc","base.betaincinv":"@stdlib/math/base/special/betaincinv","base.betaln":"@stdlib/math/base/special/betaln","base.binet":"@stdlib/math/base/special/binet","base.binomcoef":"@stdlib/math/base/special/binomcoef","base.binomcoefln":"@stdlib/math/base/special/binomcoefln","base.boxcox":"@stdlib/math/base/special/boxcox","base.boxcox1p":"@stdlib/math/base/special/boxcox1p","base.boxcox1pinv":"@stdlib/math/base/special/boxcox1pinv","base.boxcoxinv":"@stdlib/math/base/special/boxcoxinv","base.cabs":"@stdlib/math/base/special/cabs","base.cabs2":"@stdlib/math/base/special/cabs2","base.cabs2f":"@stdlib/math/base/special/cabs2f","base.cabsf":"@stdlib/math/base/special/cabsf","base.cadd":"@stdlib/complex/float64/base/add","base.caddf":"@stdlib/complex/float32/base/add","base.camelcase":"@stdlib/string/base/camelcase","base.capitalize":"@stdlib/string/base/capitalize","base.cbrt":"@stdlib/math/base/special/cbrt","base.cbrtf":"@stdlib/math/base/special/cbrtf","base.cceil":"@stdlib/math/base/special/cceil","base.cceilf":"@stdlib/math/base/special/cceilf","base.cceiln":"@stdlib/math/base/special/cceiln","base.ccis":"@stdlib/math/base/special/ccis","base.cdiv":"@stdlib/math/base/ops/cdiv","base.ceil":"@stdlib/math/base/special/ceil","base.ceil2":"@stdlib/math/base/special/ceil2","base.ceil10":"@stdlib/math/base/special/ceil10","base.ceilb":"@stdlib/math/base/special/ceilb","base.ceilf":"@stdlib/math/base/special/ceilf","base.ceiln":"@stdlib/math/base/special/ceiln","base.ceilsd":"@stdlib/math/base/special/ceilsd","base.cexp":"@stdlib/math/base/special/cexp","base.cflipsign":"@stdlib/math/base/special/cflipsign","base.cflipsignf":"@stdlib/math/base/special/cflipsignf","base.cfloor":"@stdlib/math/base/special/cfloor","base.cfloorn":"@stdlib/math/base/special/cfloorn","base.cidentity":"@stdlib/math/base/special/cidentity","base.cidentityf":"@stdlib/math/base/special/cidentityf","base.cinv":"@stdlib/math/base/special/cinv","base.clamp":"@stdlib/math/base/special/clamp","base.clampf":"@stdlib/math/base/special/clampf","base.cmul":"@stdlib/complex/float64/base/mul","base.cmulf":"@stdlib/complex/float32/base/mul","base.cneg":"@stdlib/math/base/ops/cneg","base.cnegf":"@stdlib/math/base/ops/cnegf","base.codePointAt":"@stdlib/string/base/code-point-at","base.constantcase":"@stdlib/string/base/constantcase","base.continuedFraction":"@stdlib/math/base/tools/continued-fraction","base.copysign":"@stdlib/math/base/special/copysign","base.copysignf":"@stdlib/math/base/special/copysignf","base.cos":"@stdlib/math/base/special/cos","base.cosd":"@stdlib/math/base/special/cosd","base.cosh":"@stdlib/math/base/special/cosh","base.cosm1":"@stdlib/math/base/special/cosm1","base.cospi":"@stdlib/math/base/special/cospi","base.cot":"@stdlib/math/base/special/cot","base.cotd":"@stdlib/math/base/special/cotd","base.coth":"@stdlib/math/base/special/coth","base.covercos":"@stdlib/math/base/special/covercos","base.coversin":"@stdlib/math/base/special/coversin","base.cphase":"@stdlib/math/base/special/cphase","base.cpolar":"@stdlib/math/base/special/cpolar","base.cround":"@stdlib/math/base/special/cround","base.croundn":"@stdlib/math/base/special/croundn","base.csc":"@stdlib/math/base/special/csc","base.cscd":"@stdlib/math/base/special/cscd","base.csch":"@stdlib/math/base/special/csch","base.csignum":"@stdlib/math/base/special/csignum","base.csub":"@stdlib/math/base/ops/csub","base.csubf":"@stdlib/math/base/ops/csubf","base.deg2rad":"@stdlib/math/base/special/deg2rad","base.deg2radf":"@stdlib/math/base/special/deg2radf","base.digamma":"@stdlib/math/base/special/digamma","base.diracDelta":"@stdlib/math/base/special/dirac-delta","base.div":"@stdlib/math/base/ops/div","base.divf":"@stdlib/math/base/ops/divf","base.dotcase":"@stdlib/string/base/dotcase","base.dists.arcsine.Arcsine":"@stdlib/stats/base/dists/arcsine/ctor","base.dists.arcsine.cdf":"@stdlib/stats/base/dists/arcsine/cdf","base.dists.arcsine.entropy":"@stdlib/stats/base/dists/arcsine/entropy","base.dists.arcsine.kurtosis":"@stdlib/stats/base/dists/arcsine/kurtosis","base.dists.arcsine.logcdf":"@stdlib/stats/base/dists/arcsine/logcdf","base.dists.arcsine.logpdf":"@stdlib/stats/base/dists/arcsine/logpdf","base.dists.arcsine.mean":"@stdlib/stats/base/dists/arcsine/mean","base.dists.arcsine.median":"@stdlib/stats/base/dists/arcsine/median","base.dists.arcsine.mode":"@stdlib/stats/base/dists/arcsine/mode","base.dists.arcsine.pdf":"@stdlib/stats/base/dists/arcsine/pdf","base.dists.arcsine.quantile":"@stdlib/stats/base/dists/arcsine/quantile","base.dists.arcsine.skewness":"@stdlib/stats/base/dists/arcsine/skewness","base.dists.arcsine.stdev":"@stdlib/stats/base/dists/arcsine/stdev","base.dists.arcsine.variance":"@stdlib/stats/base/dists/arcsine/variance","base.dists.bernoulli.Bernoulli":"@stdlib/stats/base/dists/bernoulli/ctor","base.dists.bernoulli.cdf":"@stdlib/stats/base/dists/bernoulli/cdf","base.dists.bernoulli.entropy":"@stdlib/stats/base/dists/bernoulli/entropy","base.dists.bernoulli.kurtosis":"@stdlib/stats/base/dists/bernoulli/kurtosis","base.dists.bernoulli.mean":"@stdlib/stats/base/dists/bernoulli/mean","base.dists.bernoulli.median":"@stdlib/stats/base/dists/bernoulli/median","base.dists.bernoulli.mgf":"@stdlib/stats/base/dists/bernoulli/mgf","base.dists.bernoulli.mode":"@stdlib/stats/base/dists/bernoulli/mode","base.dists.bernoulli.pmf":"@stdlib/stats/base/dists/bernoulli/pmf","base.dists.bernoulli.quantile":"@stdlib/stats/base/dists/bernoulli/quantile","base.dists.bernoulli.skewness":"@stdlib/stats/base/dists/bernoulli/skewness","base.dists.bernoulli.stdev":"@stdlib/stats/base/dists/bernoulli/stdev","base.dists.bernoulli.variance":"@stdlib/stats/base/dists/bernoulli/variance","base.dists.beta.Beta":"@stdlib/stats/base/dists/beta/ctor","base.dists.beta.cdf":"@stdlib/stats/base/dists/beta/cdf","base.dists.beta.entropy":"@stdlib/stats/base/dists/beta/entropy","base.dists.beta.kurtosis":"@stdlib/stats/base/dists/beta/kurtosis","base.dists.beta.logcdf":"@stdlib/stats/base/dists/beta/logcdf","base.dists.beta.logpdf":"@stdlib/stats/base/dists/beta/logpdf","base.dists.beta.mean":"@stdlib/stats/base/dists/beta/mean","base.dists.beta.median":"@stdlib/stats/base/dists/beta/median","base.dists.beta.mgf":"@stdlib/stats/base/dists/beta/mgf","base.dists.beta.mode":"@stdlib/stats/base/dists/beta/mode","base.dists.beta.pdf":"@stdlib/stats/base/dists/beta/pdf","base.dists.beta.quantile":"@stdlib/stats/base/dists/beta/quantile","base.dists.beta.skewness":"@stdlib/stats/base/dists/beta/skewness","base.dists.beta.stdev":"@stdlib/stats/base/dists/beta/stdev","base.dists.beta.variance":"@stdlib/stats/base/dists/beta/variance","base.dists.betaprime.BetaPrime":"@stdlib/stats/base/dists/betaprime/ctor","base.dists.betaprime.cdf":"@stdlib/stats/base/dists/betaprime/cdf","base.dists.betaprime.kurtosis":"@stdlib/stats/base/dists/betaprime/kurtosis","base.dists.betaprime.logcdf":"@stdlib/stats/base/dists/betaprime/logcdf","base.dists.betaprime.logpdf":"@stdlib/stats/base/dists/betaprime/logpdf","base.dists.betaprime.mean":"@stdlib/stats/base/dists/betaprime/mean","base.dists.betaprime.mode":"@stdlib/stats/base/dists/betaprime/mode","base.dists.betaprime.pdf":"@stdlib/stats/base/dists/betaprime/pdf","base.dists.betaprime.quantile":"@stdlib/stats/base/dists/betaprime/quantile","base.dists.betaprime.skewness":"@stdlib/stats/base/dists/betaprime/skewness","base.dists.betaprime.stdev":"@stdlib/stats/base/dists/betaprime/stdev","base.dists.betaprime.variance":"@stdlib/stats/base/dists/betaprime/variance","base.dists.binomial.Binomial":"@stdlib/stats/base/dists/binomial/ctor","base.dists.binomial.cdf":"@stdlib/stats/base/dists/binomial/cdf","base.dists.binomial.entropy":"@stdlib/stats/base/dists/binomial/entropy","base.dists.binomial.kurtosis":"@stdlib/stats/base/dists/binomial/kurtosis","base.dists.binomial.logpmf":"@stdlib/stats/base/dists/binomial/logpmf","base.dists.binomial.mean":"@stdlib/stats/base/dists/binomial/mean","base.dists.binomial.median":"@stdlib/stats/base/dists/binomial/median","base.dists.binomial.mgf":"@stdlib/stats/base/dists/binomial/mgf","base.dists.binomial.mode":"@stdlib/stats/base/dists/binomial/mode","base.dists.binomial.pmf":"@stdlib/stats/base/dists/binomial/pmf","base.dists.binomial.quantile":"@stdlib/stats/base/dists/binomial/quantile","base.dists.binomial.skewness":"@stdlib/stats/base/dists/binomial/skewness","base.dists.binomial.stdev":"@stdlib/stats/base/dists/binomial/stdev","base.dists.binomial.variance":"@stdlib/stats/base/dists/binomial/variance","base.dists.cauchy.Cauchy":"@stdlib/stats/base/dists/cauchy/ctor","base.dists.cauchy.cdf":"@stdlib/stats/base/dists/cauchy/cdf","base.dists.cauchy.entropy":"@stdlib/stats/base/dists/cauchy/entropy","base.dists.cauchy.logcdf":"@stdlib/stats/base/dists/cauchy/logcdf","base.dists.cauchy.logpdf":"@stdlib/stats/base/dists/cauchy/logpdf","base.dists.cauchy.median":"@stdlib/stats/base/dists/cauchy/median","base.dists.cauchy.mode":"@stdlib/stats/base/dists/cauchy/mode","base.dists.cauchy.pdf":"@stdlib/stats/base/dists/cauchy/pdf","base.dists.cauchy.quantile":"@stdlib/stats/base/dists/cauchy/quantile","base.dists.chi.cdf":"@stdlib/stats/base/dists/chi/cdf","base.dists.chi.Chi":"@stdlib/stats/base/dists/chi/ctor","base.dists.chi.entropy":"@stdlib/stats/base/dists/chi/entropy","base.dists.chi.kurtosis":"@stdlib/stats/base/dists/chi/kurtosis","base.dists.chi.logpdf":"@stdlib/stats/base/dists/chi/logpdf","base.dists.chi.mean":"@stdlib/stats/base/dists/chi/mean","base.dists.chi.mode":"@stdlib/stats/base/dists/chi/mode","base.dists.chi.pdf":"@stdlib/stats/base/dists/chi/pdf","base.dists.chi.quantile":"@stdlib/stats/base/dists/chi/quantile","base.dists.chi.skewness":"@stdlib/stats/base/dists/chi/skewness","base.dists.chi.stdev":"@stdlib/stats/base/dists/chi/stdev","base.dists.chi.variance":"@stdlib/stats/base/dists/chi/variance","base.dists.chisquare.cdf":"@stdlib/stats/base/dists/chisquare/cdf","base.dists.chisquare.ChiSquare":"@stdlib/stats/base/dists/chisquare/ctor","base.dists.chisquare.entropy":"@stdlib/stats/base/dists/chisquare/entropy","base.dists.chisquare.kurtosis":"@stdlib/stats/base/dists/chisquare/kurtosis","base.dists.chisquare.logpdf":"@stdlib/stats/base/dists/chisquare/logpdf","base.dists.chisquare.mean":"@stdlib/stats/base/dists/chisquare/mean","base.dists.chisquare.median":"@stdlib/stats/base/dists/chisquare/median","base.dists.chisquare.mgf":"@stdlib/stats/base/dists/chisquare/mgf","base.dists.chisquare.mode":"@stdlib/stats/base/dists/chisquare/mode","base.dists.chisquare.pdf":"@stdlib/stats/base/dists/chisquare/pdf","base.dists.chisquare.quantile":"@stdlib/stats/base/dists/chisquare/quantile","base.dists.chisquare.skewness":"@stdlib/stats/base/dists/chisquare/skewness","base.dists.chisquare.stdev":"@stdlib/stats/base/dists/chisquare/stdev","base.dists.chisquare.variance":"@stdlib/stats/base/dists/chisquare/variance","base.dists.cosine.cdf":"@stdlib/stats/base/dists/cosine/cdf","base.dists.cosine.Cosine":"@stdlib/stats/base/dists/cosine/ctor","base.dists.cosine.kurtosis":"@stdlib/stats/base/dists/cosine/kurtosis","base.dists.cosine.logcdf":"@stdlib/stats/base/dists/cosine/logcdf","base.dists.cosine.logpdf":"@stdlib/stats/base/dists/cosine/logpdf","base.dists.cosine.mean":"@stdlib/stats/base/dists/cosine/mean","base.dists.cosine.median":"@stdlib/stats/base/dists/cosine/median","base.dists.cosine.mgf":"@stdlib/stats/base/dists/cosine/mgf","base.dists.cosine.mode":"@stdlib/stats/base/dists/cosine/mode","base.dists.cosine.pdf":"@stdlib/stats/base/dists/cosine/pdf","base.dists.cosine.quantile":"@stdlib/stats/base/dists/cosine/quantile","base.dists.cosine.skewness":"@stdlib/stats/base/dists/cosine/skewness","base.dists.cosine.stdev":"@stdlib/stats/base/dists/cosine/stdev","base.dists.cosine.variance":"@stdlib/stats/base/dists/cosine/variance","base.dists.degenerate.cdf":"@stdlib/stats/base/dists/degenerate/cdf","base.dists.degenerate.Degenerate":"@stdlib/stats/base/dists/degenerate/ctor","base.dists.degenerate.entropy":"@stdlib/stats/base/dists/degenerate/entropy","base.dists.degenerate.logcdf":"@stdlib/stats/base/dists/degenerate/logcdf","base.dists.degenerate.logpdf":"@stdlib/stats/base/dists/degenerate/logpdf","base.dists.degenerate.logpmf":"@stdlib/stats/base/dists/degenerate/logpmf","base.dists.degenerate.mean":"@stdlib/stats/base/dists/degenerate/mean","base.dists.degenerate.median":"@stdlib/stats/base/dists/degenerate/median","base.dists.degenerate.mgf":"@stdlib/stats/base/dists/degenerate/mgf","base.dists.degenerate.mode":"@stdlib/stats/base/dists/degenerate/mode","base.dists.degenerate.pdf":"@stdlib/stats/base/dists/degenerate/pdf","base.dists.degenerate.pmf":"@stdlib/stats/base/dists/degenerate/pmf","base.dists.degenerate.quantile":"@stdlib/stats/base/dists/degenerate/quantile","base.dists.degenerate.stdev":"@stdlib/stats/base/dists/degenerate/stdev","base.dists.degenerate.variance":"@stdlib/stats/base/dists/degenerate/variance","base.dists.discreteUniform.cdf":"@stdlib/stats/base/dists/discrete-uniform/cdf","base.dists.discreteUniform.DiscreteUniform":"@stdlib/stats/base/dists/discrete-uniform/ctor","base.dists.discreteUniform.entropy":"@stdlib/stats/base/dists/discrete-uniform/entropy","base.dists.discreteUniform.kurtosis":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","base.dists.discreteUniform.logcdf":"@stdlib/stats/base/dists/discrete-uniform/logcdf","base.dists.discreteUniform.logpmf":"@stdlib/stats/base/dists/discrete-uniform/logpmf","base.dists.discreteUniform.mean":"@stdlib/stats/base/dists/discrete-uniform/mean","base.dists.discreteUniform.median":"@stdlib/stats/base/dists/discrete-uniform/median","base.dists.discreteUniform.mgf":"@stdlib/stats/base/dists/discrete-uniform/mgf","base.dists.discreteUniform.pmf":"@stdlib/stats/base/dists/discrete-uniform/pmf","base.dists.discreteUniform.quantile":"@stdlib/stats/base/dists/discrete-uniform/quantile","base.dists.discreteUniform.skewness":"@stdlib/stats/base/dists/discrete-uniform/skewness","base.dists.discreteUniform.stdev":"@stdlib/stats/base/dists/discrete-uniform/stdev","base.dists.discreteUniform.variance":"@stdlib/stats/base/dists/discrete-uniform/variance","base.dists.erlang.cdf":"@stdlib/stats/base/dists/erlang/cdf","base.dists.erlang.entropy":"@stdlib/stats/base/dists/erlang/entropy","base.dists.erlang.Erlang":"@stdlib/stats/base/dists/erlang/ctor","base.dists.erlang.kurtosis":"@stdlib/stats/base/dists/erlang/kurtosis","base.dists.erlang.logpdf":"@stdlib/stats/base/dists/erlang/logpdf","base.dists.erlang.mean":"@stdlib/stats/base/dists/erlang/mean","base.dists.erlang.mgf":"@stdlib/stats/base/dists/erlang/mgf","base.dists.erlang.mode":"@stdlib/stats/base/dists/erlang/mode","base.dists.erlang.pdf":"@stdlib/stats/base/dists/erlang/pdf","base.dists.erlang.quantile":"@stdlib/stats/base/dists/erlang/quantile","base.dists.erlang.skewness":"@stdlib/stats/base/dists/erlang/skewness","base.dists.erlang.stdev":"@stdlib/stats/base/dists/erlang/stdev","base.dists.erlang.variance":"@stdlib/stats/base/dists/erlang/variance","base.dists.exponential.cdf":"@stdlib/stats/base/dists/exponential/cdf","base.dists.exponential.entropy":"@stdlib/stats/base/dists/exponential/entropy","base.dists.exponential.Exponential":"@stdlib/stats/base/dists/exponential/ctor","base.dists.exponential.kurtosis":"@stdlib/stats/base/dists/exponential/kurtosis","base.dists.exponential.logcdf":"@stdlib/stats/base/dists/exponential/logcdf","base.dists.exponential.logpdf":"@stdlib/stats/base/dists/exponential/logpdf","base.dists.exponential.mean":"@stdlib/stats/base/dists/exponential/mean","base.dists.exponential.median":"@stdlib/stats/base/dists/exponential/median","base.dists.exponential.mgf":"@stdlib/stats/base/dists/exponential/mgf","base.dists.exponential.mode":"@stdlib/stats/base/dists/exponential/mode","base.dists.exponential.pdf":"@stdlib/stats/base/dists/exponential/pdf","base.dists.exponential.quantile":"@stdlib/stats/base/dists/exponential/quantile","base.dists.exponential.skewness":"@stdlib/stats/base/dists/exponential/skewness","base.dists.exponential.stdev":"@stdlib/stats/base/dists/exponential/stdev","base.dists.exponential.variance":"@stdlib/stats/base/dists/exponential/variance","base.dists.f.cdf":"@stdlib/stats/base/dists/f/cdf","base.dists.f.entropy":"@stdlib/stats/base/dists/f/entropy","base.dists.f.F":"@stdlib/stats/base/dists/f/ctor","base.dists.f.kurtosis":"@stdlib/stats/base/dists/f/kurtosis","base.dists.f.mean":"@stdlib/stats/base/dists/f/mean","base.dists.f.mode":"@stdlib/stats/base/dists/f/mode","base.dists.f.pdf":"@stdlib/stats/base/dists/f/pdf","base.dists.f.quantile":"@stdlib/stats/base/dists/f/quantile","base.dists.f.skewness":"@stdlib/stats/base/dists/f/skewness","base.dists.f.stdev":"@stdlib/stats/base/dists/f/stdev","base.dists.f.variance":"@stdlib/stats/base/dists/f/variance","base.dists.frechet.cdf":"@stdlib/stats/base/dists/frechet/cdf","base.dists.frechet.entropy":"@stdlib/stats/base/dists/frechet/entropy","base.dists.frechet.Frechet":"@stdlib/stats/base/dists/frechet/ctor","base.dists.frechet.kurtosis":"@stdlib/stats/base/dists/frechet/kurtosis","base.dists.frechet.logcdf":"@stdlib/stats/base/dists/frechet/logcdf","base.dists.frechet.logpdf":"@stdlib/stats/base/dists/frechet/logpdf","base.dists.frechet.mean":"@stdlib/stats/base/dists/frechet/mean","base.dists.frechet.median":"@stdlib/stats/base/dists/frechet/median","base.dists.frechet.mode":"@stdlib/stats/base/dists/frechet/mode","base.dists.frechet.pdf":"@stdlib/stats/base/dists/frechet/pdf","base.dists.frechet.quantile":"@stdlib/stats/base/dists/frechet/quantile","base.dists.frechet.skewness":"@stdlib/stats/base/dists/frechet/skewness","base.dists.frechet.stdev":"@stdlib/stats/base/dists/frechet/stdev","base.dists.frechet.variance":"@stdlib/stats/base/dists/frechet/variance","base.dists.gamma.cdf":"@stdlib/stats/base/dists/gamma/cdf","base.dists.gamma.entropy":"@stdlib/stats/base/dists/gamma/entropy","base.dists.gamma.Gamma":"@stdlib/stats/base/dists/gamma/ctor","base.dists.gamma.kurtosis":"@stdlib/stats/base/dists/gamma/kurtosis","base.dists.gamma.logcdf":"@stdlib/stats/base/dists/gamma/logcdf","base.dists.gamma.logpdf":"@stdlib/stats/base/dists/gamma/logpdf","base.dists.gamma.mean":"@stdlib/stats/base/dists/gamma/mean","base.dists.gamma.mgf":"@stdlib/stats/base/dists/gamma/mgf","base.dists.gamma.mode":"@stdlib/stats/base/dists/gamma/mode","base.dists.gamma.pdf":"@stdlib/stats/base/dists/gamma/pdf","base.dists.gamma.quantile":"@stdlib/stats/base/dists/gamma/quantile","base.dists.gamma.skewness":"@stdlib/stats/base/dists/gamma/skewness","base.dists.gamma.stdev":"@stdlib/stats/base/dists/gamma/stdev","base.dists.gamma.variance":"@stdlib/stats/base/dists/gamma/variance","base.dists.geometric.cdf":"@stdlib/stats/base/dists/geometric/cdf","base.dists.geometric.entropy":"@stdlib/stats/base/dists/geometric/entropy","base.dists.geometric.Geometric":"@stdlib/stats/base/dists/geometric/ctor","base.dists.geometric.kurtosis":"@stdlib/stats/base/dists/geometric/kurtosis","base.dists.geometric.logcdf":"@stdlib/stats/base/dists/geometric/logcdf","base.dists.geometric.logpmf":"@stdlib/stats/base/dists/geometric/logpmf","base.dists.geometric.mean":"@stdlib/stats/base/dists/geometric/mean","base.dists.geometric.median":"@stdlib/stats/base/dists/geometric/median","base.dists.geometric.mgf":"@stdlib/stats/base/dists/geometric/mgf","base.dists.geometric.mode":"@stdlib/stats/base/dists/geometric/mode","base.dists.geometric.pmf":"@stdlib/stats/base/dists/geometric/pmf","base.dists.geometric.quantile":"@stdlib/stats/base/dists/geometric/quantile","base.dists.geometric.skewness":"@stdlib/stats/base/dists/geometric/skewness","base.dists.geometric.stdev":"@stdlib/stats/base/dists/geometric/stdev","base.dists.geometric.variance":"@stdlib/stats/base/dists/geometric/variance","base.dists.gumbel.cdf":"@stdlib/stats/base/dists/gumbel/cdf","base.dists.gumbel.entropy":"@stdlib/stats/base/dists/gumbel/entropy","base.dists.gumbel.Gumbel":"@stdlib/stats/base/dists/gumbel/ctor","base.dists.gumbel.kurtosis":"@stdlib/stats/base/dists/gumbel/kurtosis","base.dists.gumbel.logcdf":"@stdlib/stats/base/dists/gumbel/logcdf","base.dists.gumbel.logpdf":"@stdlib/stats/base/dists/gumbel/logpdf","base.dists.gumbel.mean":"@stdlib/stats/base/dists/gumbel/mean","base.dists.gumbel.median":"@stdlib/stats/base/dists/gumbel/median","base.dists.gumbel.mgf":"@stdlib/stats/base/dists/gumbel/mgf","base.dists.gumbel.mode":"@stdlib/stats/base/dists/gumbel/mode","base.dists.gumbel.pdf":"@stdlib/stats/base/dists/gumbel/pdf","base.dists.gumbel.quantile":"@stdlib/stats/base/dists/gumbel/quantile","base.dists.gumbel.skewness":"@stdlib/stats/base/dists/gumbel/skewness","base.dists.gumbel.stdev":"@stdlib/stats/base/dists/gumbel/stdev","base.dists.gumbel.variance":"@stdlib/stats/base/dists/gumbel/variance","base.dists.hypergeometric.cdf":"@stdlib/stats/base/dists/hypergeometric/cdf","base.dists.hypergeometric.Hypergeometric":"@stdlib/stats/base/dists/hypergeometric/ctor","base.dists.hypergeometric.kurtosis":"@stdlib/stats/base/dists/hypergeometric/kurtosis","base.dists.hypergeometric.logpmf":"@stdlib/stats/base/dists/hypergeometric/logpmf","base.dists.hypergeometric.mean":"@stdlib/stats/base/dists/hypergeometric/mean","base.dists.hypergeometric.mode":"@stdlib/stats/base/dists/hypergeometric/mode","base.dists.hypergeometric.pmf":"@stdlib/stats/base/dists/hypergeometric/pmf","base.dists.hypergeometric.quantile":"@stdlib/stats/base/dists/hypergeometric/quantile","base.dists.hypergeometric.skewness":"@stdlib/stats/base/dists/hypergeometric/skewness","base.dists.hypergeometric.stdev":"@stdlib/stats/base/dists/hypergeometric/stdev","base.dists.hypergeometric.variance":"@stdlib/stats/base/dists/hypergeometric/variance","base.dists.invgamma.cdf":"@stdlib/stats/base/dists/invgamma/cdf","base.dists.invgamma.entropy":"@stdlib/stats/base/dists/invgamma/entropy","base.dists.invgamma.InvGamma":"@stdlib/stats/base/dists/invgamma/ctor","base.dists.invgamma.kurtosis":"@stdlib/stats/base/dists/invgamma/kurtosis","base.dists.invgamma.logpdf":"@stdlib/stats/base/dists/invgamma/logpdf","base.dists.invgamma.mean":"@stdlib/stats/base/dists/invgamma/mean","base.dists.invgamma.mode":"@stdlib/stats/base/dists/invgamma/mode","base.dists.invgamma.pdf":"@stdlib/stats/base/dists/invgamma/pdf","base.dists.invgamma.quantile":"@stdlib/stats/base/dists/invgamma/quantile","base.dists.invgamma.skewness":"@stdlib/stats/base/dists/invgamma/skewness","base.dists.invgamma.stdev":"@stdlib/stats/base/dists/invgamma/stdev","base.dists.invgamma.variance":"@stdlib/stats/base/dists/invgamma/variance","base.dists.kumaraswamy.cdf":"@stdlib/stats/base/dists/kumaraswamy/cdf","base.dists.kumaraswamy.Kumaraswamy":"@stdlib/stats/base/dists/kumaraswamy/ctor","base.dists.kumaraswamy.kurtosis":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","base.dists.kumaraswamy.logcdf":"@stdlib/stats/base/dists/kumaraswamy/logcdf","base.dists.kumaraswamy.logpdf":"@stdlib/stats/base/dists/kumaraswamy/logpdf","base.dists.kumaraswamy.mean":"@stdlib/stats/base/dists/kumaraswamy/mean","base.dists.kumaraswamy.median":"@stdlib/stats/base/dists/kumaraswamy/median","base.dists.kumaraswamy.mode":"@stdlib/stats/base/dists/kumaraswamy/mode","base.dists.kumaraswamy.pdf":"@stdlib/stats/base/dists/kumaraswamy/pdf","base.dists.kumaraswamy.quantile":"@stdlib/stats/base/dists/kumaraswamy/quantile","base.dists.kumaraswamy.skewness":"@stdlib/stats/base/dists/kumaraswamy/skewness","base.dists.kumaraswamy.stdev":"@stdlib/stats/base/dists/kumaraswamy/stdev","base.dists.kumaraswamy.variance":"@stdlib/stats/base/dists/kumaraswamy/variance","base.dists.laplace.cdf":"@stdlib/stats/base/dists/laplace/cdf","base.dists.laplace.entropy":"@stdlib/stats/base/dists/laplace/entropy","base.dists.laplace.kurtosis":"@stdlib/stats/base/dists/laplace/kurtosis","base.dists.laplace.Laplace":"@stdlib/stats/base/dists/laplace/ctor","base.dists.laplace.logcdf":"@stdlib/stats/base/dists/laplace/logcdf","base.dists.laplace.logpdf":"@stdlib/stats/base/dists/laplace/logpdf","base.dists.laplace.mean":"@stdlib/stats/base/dists/laplace/mean","base.dists.laplace.median":"@stdlib/stats/base/dists/laplace/median","base.dists.laplace.mgf":"@stdlib/stats/base/dists/laplace/mgf","base.dists.laplace.mode":"@stdlib/stats/base/dists/laplace/mode","base.dists.laplace.pdf":"@stdlib/stats/base/dists/laplace/pdf","base.dists.laplace.quantile":"@stdlib/stats/base/dists/laplace/quantile","base.dists.laplace.skewness":"@stdlib/stats/base/dists/laplace/skewness","base.dists.laplace.stdev":"@stdlib/stats/base/dists/laplace/stdev","base.dists.laplace.variance":"@stdlib/stats/base/dists/laplace/variance","base.dists.levy.cdf":"@stdlib/stats/base/dists/levy/cdf","base.dists.levy.entropy":"@stdlib/stats/base/dists/levy/entropy","base.dists.levy.Levy":"@stdlib/stats/base/dists/levy/ctor","base.dists.levy.logcdf":"@stdlib/stats/base/dists/levy/logcdf","base.dists.levy.logpdf":"@stdlib/stats/base/dists/levy/logpdf","base.dists.levy.mean":"@stdlib/stats/base/dists/levy/mean","base.dists.levy.median":"@stdlib/stats/base/dists/levy/median","base.dists.levy.mode":"@stdlib/stats/base/dists/levy/mode","base.dists.levy.pdf":"@stdlib/stats/base/dists/levy/pdf","base.dists.levy.quantile":"@stdlib/stats/base/dists/levy/quantile","base.dists.levy.stdev":"@stdlib/stats/base/dists/levy/stdev","base.dists.levy.variance":"@stdlib/stats/base/dists/levy/variance","base.dists.logistic.cdf":"@stdlib/stats/base/dists/logistic/cdf","base.dists.logistic.entropy":"@stdlib/stats/base/dists/logistic/entropy","base.dists.logistic.kurtosis":"@stdlib/stats/base/dists/logistic/kurtosis","base.dists.logistic.logcdf":"@stdlib/stats/base/dists/logistic/logcdf","base.dists.logistic.Logistic":"@stdlib/stats/base/dists/logistic/ctor","base.dists.logistic.logpdf":"@stdlib/stats/base/dists/logistic/logpdf","base.dists.logistic.mean":"@stdlib/stats/base/dists/logistic/mean","base.dists.logistic.median":"@stdlib/stats/base/dists/logistic/median","base.dists.logistic.mgf":"@stdlib/stats/base/dists/logistic/mgf","base.dists.logistic.mode":"@stdlib/stats/base/dists/logistic/mode","base.dists.logistic.pdf":"@stdlib/stats/base/dists/logistic/pdf","base.dists.logistic.quantile":"@stdlib/stats/base/dists/logistic/quantile","base.dists.logistic.skewness":"@stdlib/stats/base/dists/logistic/skewness","base.dists.logistic.stdev":"@stdlib/stats/base/dists/logistic/stdev","base.dists.logistic.variance":"@stdlib/stats/base/dists/logistic/variance","base.dists.lognormal.cdf":"@stdlib/stats/base/dists/lognormal/cdf","base.dists.lognormal.entropy":"@stdlib/stats/base/dists/lognormal/entropy","base.dists.lognormal.kurtosis":"@stdlib/stats/base/dists/lognormal/kurtosis","base.dists.lognormal.LogNormal":"@stdlib/stats/base/dists/lognormal/ctor","base.dists.lognormal.logcdf":"@stdlib/stats/base/dists/lognormal/logcdf","base.dists.lognormal.logpdf":"@stdlib/stats/base/dists/lognormal/logpdf","base.dists.lognormal.mean":"@stdlib/stats/base/dists/lognormal/mean","base.dists.lognormal.median":"@stdlib/stats/base/dists/lognormal/median","base.dists.lognormal.mode":"@stdlib/stats/base/dists/lognormal/mode","base.dists.lognormal.pdf":"@stdlib/stats/base/dists/lognormal/pdf","base.dists.lognormal.quantile":"@stdlib/stats/base/dists/lognormal/quantile","base.dists.lognormal.skewness":"@stdlib/stats/base/dists/lognormal/skewness","base.dists.lognormal.stdev":"@stdlib/stats/base/dists/lognormal/stdev","base.dists.lognormal.variance":"@stdlib/stats/base/dists/lognormal/variance","base.dists.negativeBinomial.cdf":"@stdlib/stats/base/dists/negative-binomial/cdf","base.dists.negativeBinomial.kurtosis":"@stdlib/stats/base/dists/negative-binomial/kurtosis","base.dists.negativeBinomial.logpmf":"@stdlib/stats/base/dists/negative-binomial/logpmf","base.dists.negativeBinomial.mean":"@stdlib/stats/base/dists/negative-binomial/mean","base.dists.negativeBinomial.mgf":"@stdlib/stats/base/dists/negative-binomial/mgf","base.dists.negativeBinomial.mode":"@stdlib/stats/base/dists/negative-binomial/mode","base.dists.negativeBinomial.NegativeBinomial":"@stdlib/stats/base/dists/negative-binomial/ctor","base.dists.negativeBinomial.pmf":"@stdlib/stats/base/dists/negative-binomial/pmf","base.dists.negativeBinomial.quantile":"@stdlib/stats/base/dists/negative-binomial/quantile","base.dists.negativeBinomial.skewness":"@stdlib/stats/base/dists/negative-binomial/skewness","base.dists.negativeBinomial.stdev":"@stdlib/stats/base/dists/negative-binomial/stdev","base.dists.negativeBinomial.variance":"@stdlib/stats/base/dists/negative-binomial/variance","base.dists.normal.cdf":"@stdlib/stats/base/dists/normal/cdf","base.dists.normal.entropy":"@stdlib/stats/base/dists/normal/entropy","base.dists.normal.kurtosis":"@stdlib/stats/base/dists/normal/kurtosis","base.dists.normal.logcdf":"@stdlib/stats/base/dists/normal/logcdf","base.dists.normal.logpdf":"@stdlib/stats/base/dists/normal/logpdf","base.dists.normal.mean":"@stdlib/stats/base/dists/normal/mean","base.dists.normal.median":"@stdlib/stats/base/dists/normal/median","base.dists.normal.mgf":"@stdlib/stats/base/dists/normal/mgf","base.dists.normal.mode":"@stdlib/stats/base/dists/normal/mode","base.dists.normal.Normal":"@stdlib/stats/base/dists/normal/ctor","base.dists.normal.pdf":"@stdlib/stats/base/dists/normal/pdf","base.dists.normal.quantile":"@stdlib/stats/base/dists/normal/quantile","base.dists.normal.skewness":"@stdlib/stats/base/dists/normal/skewness","base.dists.normal.stdev":"@stdlib/stats/base/dists/normal/stdev","base.dists.normal.variance":"@stdlib/stats/base/dists/normal/variance","base.dists.pareto1.cdf":"@stdlib/stats/base/dists/pareto-type1/cdf","base.dists.pareto1.entropy":"@stdlib/stats/base/dists/pareto-type1/entropy","base.dists.pareto1.kurtosis":"@stdlib/stats/base/dists/pareto-type1/kurtosis","base.dists.pareto1.logcdf":"@stdlib/stats/base/dists/pareto-type1/logcdf","base.dists.pareto1.logpdf":"@stdlib/stats/base/dists/pareto-type1/logpdf","base.dists.pareto1.mean":"@stdlib/stats/base/dists/pareto-type1/mean","base.dists.pareto1.median":"@stdlib/stats/base/dists/pareto-type1/median","base.dists.pareto1.mode":"@stdlib/stats/base/dists/pareto-type1/mode","base.dists.pareto1.Pareto1":"@stdlib/stats/base/dists/pareto-type1/ctor","base.dists.pareto1.pdf":"@stdlib/stats/base/dists/pareto-type1/pdf","base.dists.pareto1.quantile":"@stdlib/stats/base/dists/pareto-type1/quantile","base.dists.pareto1.skewness":"@stdlib/stats/base/dists/pareto-type1/skewness","base.dists.pareto1.stdev":"@stdlib/stats/base/dists/pareto-type1/stdev","base.dists.pareto1.variance":"@stdlib/stats/base/dists/pareto-type1/variance","base.dists.poisson.cdf":"@stdlib/stats/base/dists/poisson/cdf","base.dists.poisson.entropy":"@stdlib/stats/base/dists/poisson/entropy","base.dists.poisson.kurtosis":"@stdlib/stats/base/dists/poisson/kurtosis","base.dists.poisson.logpmf":"@stdlib/stats/base/dists/poisson/logpmf","base.dists.poisson.mean":"@stdlib/stats/base/dists/poisson/mean","base.dists.poisson.median":"@stdlib/stats/base/dists/poisson/median","base.dists.poisson.mgf":"@stdlib/stats/base/dists/poisson/mgf","base.dists.poisson.mode":"@stdlib/stats/base/dists/poisson/mode","base.dists.poisson.pmf":"@stdlib/stats/base/dists/poisson/pmf","base.dists.poisson.Poisson":"@stdlib/stats/base/dists/poisson/ctor","base.dists.poisson.quantile":"@stdlib/stats/base/dists/poisson/quantile","base.dists.poisson.skewness":"@stdlib/stats/base/dists/poisson/skewness","base.dists.poisson.stdev":"@stdlib/stats/base/dists/poisson/stdev","base.dists.poisson.variance":"@stdlib/stats/base/dists/poisson/variance","base.dists.rayleigh.cdf":"@stdlib/stats/base/dists/rayleigh/cdf","base.dists.rayleigh.entropy":"@stdlib/stats/base/dists/rayleigh/entropy","base.dists.rayleigh.kurtosis":"@stdlib/stats/base/dists/rayleigh/kurtosis","base.dists.rayleigh.logcdf":"@stdlib/stats/base/dists/rayleigh/logcdf","base.dists.rayleigh.logpdf":"@stdlib/stats/base/dists/rayleigh/logpdf","base.dists.rayleigh.mean":"@stdlib/stats/base/dists/rayleigh/mean","base.dists.rayleigh.median":"@stdlib/stats/base/dists/rayleigh/median","base.dists.rayleigh.mgf":"@stdlib/stats/base/dists/rayleigh/mgf","base.dists.rayleigh.mode":"@stdlib/stats/base/dists/rayleigh/mode","base.dists.rayleigh.pdf":"@stdlib/stats/base/dists/rayleigh/pdf","base.dists.rayleigh.quantile":"@stdlib/stats/base/dists/rayleigh/quantile","base.dists.rayleigh.Rayleigh":"@stdlib/stats/base/dists/rayleigh/ctor","base.dists.rayleigh.skewness":"@stdlib/stats/base/dists/rayleigh/skewness","base.dists.rayleigh.stdev":"@stdlib/stats/base/dists/rayleigh/stdev","base.dists.rayleigh.variance":"@stdlib/stats/base/dists/rayleigh/variance","base.dists.signrank.cdf":"@stdlib/stats/base/dists/signrank/cdf","base.dists.signrank.pdf":"@stdlib/stats/base/dists/signrank/pdf","base.dists.signrank.quantile":"@stdlib/stats/base/dists/signrank/quantile","base.dists.studentizedRange.cdf":"@stdlib/stats/base/dists/studentized-range/cdf","base.dists.studentizedRange.quantile":"@stdlib/stats/base/dists/studentized-range/quantile","base.dists.t.cdf":"@stdlib/stats/base/dists/t/cdf","base.dists.t.entropy":"@stdlib/stats/base/dists/t/entropy","base.dists.t.kurtosis":"@stdlib/stats/base/dists/t/kurtosis","base.dists.t.logcdf":"@stdlib/stats/base/dists/t/logcdf","base.dists.t.logpdf":"@stdlib/stats/base/dists/t/logpdf","base.dists.t.mean":"@stdlib/stats/base/dists/t/mean","base.dists.t.median":"@stdlib/stats/base/dists/t/median","base.dists.t.mode":"@stdlib/stats/base/dists/t/mode","base.dists.t.pdf":"@stdlib/stats/base/dists/t/pdf","base.dists.t.quantile":"@stdlib/stats/base/dists/t/quantile","base.dists.t.skewness":"@stdlib/stats/base/dists/t/skewness","base.dists.t.stdev":"@stdlib/stats/base/dists/t/stdev","base.dists.t.T":"@stdlib/stats/base/dists/t/ctor","base.dists.t.variance":"@stdlib/stats/base/dists/t/variance","base.dists.triangular.cdf":"@stdlib/stats/base/dists/triangular/cdf","base.dists.triangular.entropy":"@stdlib/stats/base/dists/triangular/entropy","base.dists.triangular.kurtosis":"@stdlib/stats/base/dists/triangular/kurtosis","base.dists.triangular.logcdf":"@stdlib/stats/base/dists/triangular/logcdf","base.dists.triangular.logpdf":"@stdlib/stats/base/dists/triangular/logpdf","base.dists.triangular.mean":"@stdlib/stats/base/dists/triangular/mean","base.dists.triangular.median":"@stdlib/stats/base/dists/triangular/median","base.dists.triangular.mgf":"@stdlib/stats/base/dists/triangular/mgf","base.dists.triangular.mode":"@stdlib/stats/base/dists/triangular/mode","base.dists.triangular.pdf":"@stdlib/stats/base/dists/triangular/pdf","base.dists.triangular.quantile":"@stdlib/stats/base/dists/triangular/quantile","base.dists.triangular.skewness":"@stdlib/stats/base/dists/triangular/skewness","base.dists.triangular.stdev":"@stdlib/stats/base/dists/triangular/stdev","base.dists.triangular.Triangular":"@stdlib/stats/base/dists/triangular/ctor","base.dists.triangular.variance":"@stdlib/stats/base/dists/triangular/variance","base.dists.truncatedNormal.pdf":"@stdlib/stats/base/dists/truncated-normal/pdf","base.dists.uniform.cdf":"@stdlib/stats/base/dists/uniform/cdf","base.dists.uniform.entropy":"@stdlib/stats/base/dists/uniform/entropy","base.dists.uniform.kurtosis":"@stdlib/stats/base/dists/uniform/kurtosis","base.dists.uniform.logcdf":"@stdlib/stats/base/dists/uniform/logcdf","base.dists.uniform.logpdf":"@stdlib/stats/base/dists/uniform/logpdf","base.dists.uniform.mean":"@stdlib/stats/base/dists/uniform/mean","base.dists.uniform.median":"@stdlib/stats/base/dists/uniform/median","base.dists.uniform.mgf":"@stdlib/stats/base/dists/uniform/mgf","base.dists.uniform.pdf":"@stdlib/stats/base/dists/uniform/pdf","base.dists.uniform.quantile":"@stdlib/stats/base/dists/uniform/quantile","base.dists.uniform.skewness":"@stdlib/stats/base/dists/uniform/skewness","base.dists.uniform.stdev":"@stdlib/stats/base/dists/uniform/stdev","base.dists.uniform.Uniform":"@stdlib/stats/base/dists/uniform/ctor","base.dists.uniform.variance":"@stdlib/stats/base/dists/uniform/variance","base.dists.weibull.cdf":"@stdlib/stats/base/dists/weibull/cdf","base.dists.weibull.entropy":"@stdlib/stats/base/dists/weibull/entropy","base.dists.weibull.kurtosis":"@stdlib/stats/base/dists/weibull/kurtosis","base.dists.weibull.logcdf":"@stdlib/stats/base/dists/weibull/logcdf","base.dists.weibull.logpdf":"@stdlib/stats/base/dists/weibull/logpdf","base.dists.weibull.mean":"@stdlib/stats/base/dists/weibull/mean","base.dists.weibull.median":"@stdlib/stats/base/dists/weibull/median","base.dists.weibull.mgf":"@stdlib/stats/base/dists/weibull/mgf","base.dists.weibull.mode":"@stdlib/stats/base/dists/weibull/mode","base.dists.weibull.pdf":"@stdlib/stats/base/dists/weibull/pdf","base.dists.weibull.quantile":"@stdlib/stats/base/dists/weibull/quantile","base.dists.weibull.skewness":"@stdlib/stats/base/dists/weibull/skewness","base.dists.weibull.stdev":"@stdlib/stats/base/dists/weibull/stdev","base.dists.weibull.variance":"@stdlib/stats/base/dists/weibull/variance","base.dists.weibull.Weibull":"@stdlib/stats/base/dists/weibull/ctor","base.ellipe":"@stdlib/math/base/special/ellipe","base.ellipj":"@stdlib/math/base/special/ellipj","base.ellipk":"@stdlib/math/base/special/ellipk","base.endsWith":"@stdlib/string/base/ends-with","base.epsdiff":"@stdlib/math/base/utils/float64-epsilon-difference","base.erf":"@stdlib/math/base/special/erf","base.erfc":"@stdlib/math/base/special/erfc","base.erfcinv":"@stdlib/math/base/special/erfcinv","base.erfcx":"@stdlib/math/base/special/erfcx","base.erfinv":"@stdlib/math/base/special/erfinv","base.eta":"@stdlib/math/base/special/dirichlet-eta","base.evalpoly":"@stdlib/math/base/tools/evalpoly","base.evalrational":"@stdlib/math/base/tools/evalrational","base.exp":"@stdlib/math/base/special/exp","base.exp2":"@stdlib/math/base/special/exp2","base.exp10":"@stdlib/math/base/special/exp10","base.expit":"@stdlib/math/base/special/expit","base.expm1":"@stdlib/math/base/special/expm1","base.expm1rel":"@stdlib/math/base/special/expm1rel","base.exponent":"@stdlib/number/float64/base/exponent","base.exponentf":"@stdlib/number/float32/base/exponent","base.factorial":"@stdlib/math/base/special/factorial","base.factorial2":"@stdlib/math/base/special/factorial2","base.factorialln":"@stdlib/math/base/special/factorialln","base.fallingFactorial":"@stdlib/math/base/special/falling-factorial","base.fibonacci":"@stdlib/math/base/special/fibonacci","base.fibonacciIndex":"@stdlib/math/base/special/fibonacci-index","base.fibpoly":"@stdlib/math/base/tools/fibpoly","base.firstCodePoint":"@stdlib/string/base/first-code-point","base.firstCodeUnit":"@stdlib/string/base/first","base.firstGraphemeCluster":"@stdlib/string/base/first-grapheme-cluster","base.flipsign":"@stdlib/math/base/special/flipsign","base.flipsignf":"@stdlib/math/base/special/flipsignf","base.float32ToInt32":"@stdlib/number/float32/base/to-int32","base.float32ToUint32":"@stdlib/number/float32/base/to-uint32","base.float64ToFloat32":"@stdlib/number/float64/base/to-float32","base.float64ToInt32":"@stdlib/number/float64/base/to-int32","base.float64ToInt64Bytes":"@stdlib/number/float64/base/to-int64-bytes","base.float64ToUint32":"@stdlib/number/float64/base/to-uint32","base.floor":"@stdlib/math/base/special/floor","base.floor2":"@stdlib/math/base/special/floor2","base.floor10":"@stdlib/math/base/special/floor10","base.floorb":"@stdlib/math/base/special/floorb","base.floorf":"@stdlib/math/base/special/floorf","base.floorn":"@stdlib/math/base/special/floorn","base.floorsd":"@stdlib/math/base/special/floorsd","base.forEachChar":"@stdlib/string/base/for-each","base.forEachCodePoint":"@stdlib/string/base/for-each-code-point","base.forEachCodePointRight":"@stdlib/string/base/for-each-code-point-right","base.forEachGraphemeCluster":"@stdlib/string/base/for-each-grapheme-cluster","base.forEachRight":"@stdlib/string/base/for-each-right","base.formatInterpolate":"@stdlib/string/base/format-interpolate","base.formatTokenize":"@stdlib/string/base/format-tokenize","base.fresnel":"@stdlib/math/base/special/fresnel","base.fresnelc":"@stdlib/math/base/special/fresnelc","base.fresnels":"@stdlib/math/base/special/fresnels","base.frexp":"@stdlib/math/base/special/frexp","base.fromBinaryString":"@stdlib/number/float64/base/from-binary-string","base.fromBinaryStringf":"@stdlib/number/float32/base/from-binary-string","base.fromBinaryStringUint8":"@stdlib/number/uint8/base/from-binary-string","base.fromBinaryStringUint16":"@stdlib/number/uint16/base/from-binary-string","base.fromBinaryStringUint32":"@stdlib/number/uint32/base/from-binary-string","base.fromInt64Bytes":"@stdlib/number/float64/base/from-int64-bytes","base.fromWordf":"@stdlib/number/float32/base/from-word","base.fromWords":"@stdlib/number/float64/base/from-words","base.gamma":"@stdlib/math/base/special/gamma","base.gamma1pm1":"@stdlib/math/base/special/gamma1pm1","base.gammaDeltaRatio":"@stdlib/math/base/special/gamma-delta-ratio","base.gammainc":"@stdlib/math/base/special/gammainc","base.gammaincinv":"@stdlib/math/base/special/gammaincinv","base.gammaLanczosSum":"@stdlib/math/base/special/gamma-lanczos-sum","base.gammaLanczosSumExpGScaled":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","base.gammaln":"@stdlib/math/base/special/gammaln","base.gammasgn":"@stdlib/math/base/special/gammasgn","base.gcd":"@stdlib/math/base/special/gcd","base.getHighWord":"@stdlib/number/float64/base/get-high-word","base.getLowWord":"@stdlib/number/float64/base/get-low-word","base.hacovercos":"@stdlib/math/base/special/hacovercos","base.hacoversin":"@stdlib/math/base/special/hacoversin","base.havercos":"@stdlib/math/base/special/havercos","base.haversin":"@stdlib/math/base/special/haversin","base.headercase":"@stdlib/string/base/headercase","base.heaviside":"@stdlib/math/base/special/heaviside","base.hermitepoly":"@stdlib/math/base/tools/hermitepoly","base.hypot":"@stdlib/math/base/special/hypot","base.hypotf":"@stdlib/math/base/special/hypotf","base.identity":"@stdlib/math/base/special/identity","base.identityf":"@stdlib/math/base/special/identityf","base.imul":"@stdlib/math/base/ops/imul","base.imuldw":"@stdlib/math/base/ops/imuldw","base.int2slice":"@stdlib/slice/base/int2slice","base.int32ToUint32":"@stdlib/number/int32/base/to-uint32","base.inv":"@stdlib/math/base/special/inv","base.invcase":"@stdlib/string/base/invcase","base.invf":"@stdlib/math/base/special/invf","base.isComposite":"@stdlib/math/base/assert/is-composite","base.isCoprime":"@stdlib/math/base/assert/is-coprime","base.isEven":"@stdlib/math/base/assert/is-even","base.isEvenInt32":"@stdlib/math/base/assert/int32-is-even","base.isFinite":"@stdlib/math/base/assert/is-finite","base.isFinitef":"@stdlib/math/base/assert/is-finitef","base.isInfinite":"@stdlib/math/base/assert/is-infinite","base.isInfinitef":"@stdlib/math/base/assert/is-infinitef","base.isInteger":"@stdlib/math/base/assert/is-integer","base.isnan":"@stdlib/math/base/assert/is-nan","base.isnanf":"@stdlib/math/base/assert/is-nanf","base.isNegativeFinite":"@stdlib/math/base/assert/is-negative-finite","base.isNegativeInteger":"@stdlib/math/base/assert/is-negative-integer","base.isNegativeZero":"@stdlib/math/base/assert/is-negative-zero","base.isNegativeZerof":"@stdlib/math/base/assert/is-negative-zerof","base.isNonNegativeFinite":"@stdlib/math/base/assert/is-nonnegative-finite","base.isNonNegativeInteger":"@stdlib/math/base/assert/is-nonnegative-integer","base.isNonPositiveFinite":"@stdlib/math/base/assert/is-nonpositive-finite","base.isNonPositiveInteger":"@stdlib/math/base/assert/is-nonpositive-integer","base.isOdd":"@stdlib/math/base/assert/is-odd","base.isOddInt32":"@stdlib/math/base/assert/int32-is-odd","base.isPositiveFinite":"@stdlib/math/base/assert/is-positive-finite","base.isPositiveInteger":"@stdlib/math/base/assert/is-positive-integer","base.isPositiveZero":"@stdlib/math/base/assert/is-positive-zero","base.isPositiveZerof":"@stdlib/math/base/assert/is-positive-zerof","base.isPow2Uint32":"@stdlib/math/base/assert/uint32-is-pow2","base.isPrime":"@stdlib/math/base/assert/is-prime","base.isProbability":"@stdlib/math/base/assert/is-probability","base.isSafeInteger":"@stdlib/math/base/assert/is-safe-integer","base.kebabcase":"@stdlib/string/base/kebabcase","base.kernelBetainc":"@stdlib/math/base/special/kernel-betainc","base.kernelBetaincinv":"@stdlib/math/base/special/kernel-betaincinv","base.kernelCos":"@stdlib/math/base/special/kernel-cos","base.kernelLog1p":"@stdlib/math/base/special/kernel-log1p","base.kernelSin":"@stdlib/math/base/special/kernel-sin","base.kernelTan":"@stdlib/math/base/special/kernel-tan","base.kroneckerDelta":"@stdlib/math/base/special/kronecker-delta","base.kroneckerDeltaf":"@stdlib/math/base/special/kronecker-deltaf","base.labs":"@stdlib/math/base/special/labs","base.last":"@stdlib/string/base/last","base.lastCodePoint":"@stdlib/string/base/last-code-point","base.lastGraphemeCluster":"@stdlib/string/base/last-grapheme-cluster","base.lcm":"@stdlib/math/base/special/lcm","base.ldexp":"@stdlib/math/base/special/ldexp","base.leftPad":"@stdlib/string/base/left-pad","base.leftTrim":"@stdlib/string/base/left-trim","base.ln":"@stdlib/math/base/special/ln","base.log":"@stdlib/math/base/special/log","base.log1mexp":"@stdlib/math/base/special/log1mexp","base.log1p":"@stdlib/math/base/special/log1p","base.log1pexp":"@stdlib/math/base/special/log1pexp","base.log1pmx":"@stdlib/math/base/special/log1pmx","base.log2":"@stdlib/math/base/special/log2","base.log10":"@stdlib/math/base/special/log10","base.logaddexp":"@stdlib/math/base/special/logaddexp","base.logit":"@stdlib/math/base/special/logit","base.lowercase":"@stdlib/string/base/lowercase","base.lucas":"@stdlib/math/base/special/lucas","base.lucaspoly":"@stdlib/math/base/tools/lucaspoly","base.max":"@stdlib/math/base/special/max","base.maxabs":"@stdlib/math/base/special/maxabs","base.maxabsn":"@stdlib/math/base/special/maxabsn","base.maxn":"@stdlib/math/base/special/maxn","base.min":"@stdlib/math/base/special/min","base.minabs":"@stdlib/math/base/special/minabs","base.minabsn":"@stdlib/math/base/special/minabsn","base.minmax":"@stdlib/math/base/special/minmax","base.minmaxabs":"@stdlib/math/base/special/minmaxabs","base.minmaxabsn":"@stdlib/math/base/special/minmaxabsn","base.minmaxn":"@stdlib/math/base/special/minmaxn","base.minn":"@stdlib/math/base/special/minn","base.modf":"@stdlib/math/base/special/modf","base.mul":"@stdlib/math/base/ops/mul","base.mulf":"@stdlib/math/base/ops/mulf","base.ndarray":"@stdlib/ndarray/base/ctor","base.ndarrayUnary":"@stdlib/ndarray/base/unary","base.ndzeros":"@stdlib/ndarray/base/zeros","base.ndzerosLike":"@stdlib/ndarray/base/zeros-like","base.negafibonacci":"@stdlib/math/base/special/negafibonacci","base.negalucas":"@stdlib/math/base/special/negalucas","base.nonfibonacci":"@stdlib/math/base/special/nonfibonacci","base.normalize":"@stdlib/number/float64/base/normalize","base.normalizef":"@stdlib/number/float32/base/normalize","base.normalizeMultiSlice":"@stdlib/slice/base/normalize-multi-slice","base.normalizeSlice":"@stdlib/slice/base/normalize-slice","base.normhermitepoly":"@stdlib/math/base/tools/normhermitepoly","base.pascalcase":"@stdlib/string/base/pascalcase","base.pdiff":"@stdlib/math/base/special/pdiff","base.pdifff":"@stdlib/math/base/special/pdifff","base.percentEncode":"@stdlib/string/base/percent-encode","base.polygamma":"@stdlib/math/base/special/polygamma","base.pow":"@stdlib/math/base/special/pow","base.powm1":"@stdlib/math/base/special/powm1","base.rad2deg":"@stdlib/math/base/special/rad2deg","base.rad2degf":"@stdlib/math/base/special/rad2degf","base.ramp":"@stdlib/math/base/special/ramp","base.rampf":"@stdlib/math/base/special/rampf","base.random.arcsine":"@stdlib/random/base/arcsine","base.random.bernoulli":"@stdlib/random/base/bernoulli","base.random.beta":"@stdlib/random/base/beta","base.random.betaprime":"@stdlib/random/base/betaprime","base.random.binomial":"@stdlib/random/base/binomial","base.random.boxMuller":"@stdlib/random/base/box-muller","base.random.cauchy":"@stdlib/random/base/cauchy","base.random.chi":"@stdlib/random/base/chi","base.random.chisquare":"@stdlib/random/base/chisquare","base.random.cosine":"@stdlib/random/base/cosine","base.random.discreteUniform":"@stdlib/random/base/discrete-uniform","base.random.erlang":"@stdlib/random/base/erlang","base.random.exponential":"@stdlib/random/base/exponential","base.random.f":"@stdlib/random/base/f","base.random.frechet":"@stdlib/random/base/frechet","base.random.gamma":"@stdlib/random/base/gamma","base.random.geometric":"@stdlib/random/base/geometric","base.random.gumbel":"@stdlib/random/base/gumbel","base.random.hypergeometric":"@stdlib/random/base/hypergeometric","base.random.improvedZiggurat":"@stdlib/random/base/improved-ziggurat","base.random.invgamma":"@stdlib/random/base/invgamma","base.random.kumaraswamy":"@stdlib/random/base/kumaraswamy","base.random.laplace":"@stdlib/random/base/laplace","base.random.levy":"@stdlib/random/base/levy","base.random.logistic":"@stdlib/random/base/logistic","base.random.lognormal":"@stdlib/random/base/lognormal","base.random.minstd":"@stdlib/random/base/minstd","base.random.minstdShuffle":"@stdlib/random/base/minstd-shuffle","base.random.mt19937":"@stdlib/random/base/mt19937","base.random.negativeBinomial":"@stdlib/random/base/negative-binomial","base.random.normal":"@stdlib/random/base/normal","base.random.pareto1":"@stdlib/random/base/pareto-type1","base.random.poisson":"@stdlib/random/base/poisson","base.random.randi":"@stdlib/random/base/randi","base.random.randn":"@stdlib/random/base/randn","base.random.randu":"@stdlib/random/base/randu","base.random.rayleigh":"@stdlib/random/base/rayleigh","base.random.t":"@stdlib/random/base/t","base.random.triangular":"@stdlib/random/base/triangular","base.random.uniform":"@stdlib/random/base/uniform","base.random.weibull":"@stdlib/random/base/weibull","base.rcbrt":"@stdlib/math/base/special/rcbrt","base.rcbrtf":"@stdlib/math/base/special/rcbrtf","base.reldiff":"@stdlib/math/base/utils/relative-difference","base.removeFirst":"@stdlib/string/base/remove-first","base.removeFirstCodePoint":"@stdlib/string/base/remove-first-code-point","base.removeFirstGraphemeCluster":"@stdlib/string/base/remove-first-grapheme-cluster","base.removeLast":"@stdlib/string/base/remove-last","base.removeLastCodePoint":"@stdlib/string/base/remove-last-code-point","base.removeLastGraphemeCluster":"@stdlib/string/base/remove-last-grapheme-cluster","base.rempio2":"@stdlib/math/base/special/rempio2","base.repeat":"@stdlib/string/base/repeat","base.replace":"@stdlib/string/base/replace","base.replaceAfter":"@stdlib/string/base/replace-after","base.replaceAfterLast":"@stdlib/string/base/replace-after-last","base.replaceBefore":"@stdlib/string/base/replace-before","base.replaceBeforeLast":"@stdlib/string/base/replace-before-last","base.reverse":"@stdlib/string/base/reverse","base.reverseCodePoints":"@stdlib/string/base/reverse-code-points","base.reverseGraphemeClusters":"@stdlib/string/base/reverse-grapheme-clusters","base.rightPad":"@stdlib/string/base/right-pad","base.rightTrim":"@stdlib/string/base/right-trim","base.risingFactorial":"@stdlib/math/base/special/rising-factorial","base.rotl32":"@stdlib/number/uint32/base/rotl","base.rotr32":"@stdlib/number/uint32/base/rotr","base.round":"@stdlib/math/base/special/round","base.round2":"@stdlib/math/base/special/round2","base.round10":"@stdlib/math/base/special/round10","base.roundb":"@stdlib/math/base/special/roundb","base.roundn":"@stdlib/math/base/special/roundn","base.roundsd":"@stdlib/math/base/special/roundsd","base.rsqrt":"@stdlib/math/base/special/rsqrt","base.rsqrtf":"@stdlib/math/base/special/rsqrtf","base.sargs2multislice":"@stdlib/slice/base/sargs2multislice","base.scalar2ndarray":"@stdlib/ndarray/base/from-scalar","base.secd":"@stdlib/math/base/special/secd","base.seq2multislice":"@stdlib/slice/base/seq2multislice","base.seq2slice":"@stdlib/slice/base/seq2slice","base.setHighWord":"@stdlib/number/float64/base/set-high-word","base.setLowWord":"@stdlib/number/float64/base/set-low-word","base.sici":"@stdlib/math/base/special/sici","base.signbit":"@stdlib/number/float64/base/signbit","base.signbitf":"@stdlib/number/float32/base/signbit","base.significandf":"@stdlib/number/float32/base/significand","base.signum":"@stdlib/math/base/special/signum","base.signumf":"@stdlib/math/base/special/signumf","base.sin":"@stdlib/math/base/special/sin","base.sinc":"@stdlib/math/base/special/sinc","base.sincos":"@stdlib/math/base/special/sincos","base.sincospi":"@stdlib/math/base/special/sincospi","base.sinh":"@stdlib/math/base/special/sinh","base.sinpi":"@stdlib/math/base/special/sinpi","base.slice2seq":"@stdlib/slice/base/slice2seq","base.sliceLength":"@stdlib/slice/base/length","base.sliceNonReducedDimensions":"@stdlib/slice/base/nonreduced-dimensions","base.sliceReducedDimensions":"@stdlib/slice/base/reduced-dimensions","base.sliceShape":"@stdlib/slice/base/shape","base.snakecase":"@stdlib/string/base/snakecase","base.spence":"@stdlib/math/base/special/spence","base.sqrt":"@stdlib/math/base/special/sqrt","base.sqrt1pm1":"@stdlib/math/base/special/sqrt1pm1","base.sqrtf":"@stdlib/math/base/special/sqrtf","base.sqrtpi":"@stdlib/math/base/special/sqrtpi","base.startcase":"@stdlib/string/base/startcase","base.startsWith":"@stdlib/string/base/starts-with","base.stickycase":"@stdlib/string/base/stickycase","base.strided.binary":"@stdlib/strided/base/binary","base.strided.binaryDtypeSignatures":"@stdlib/strided/base/binary-dtype-signatures","base.strided.binarySignatureCallbacks":"@stdlib/strided/base/binary-signature-callbacks","base.strided.ccopy":"@stdlib/blas/base/ccopy","base.strided.cmap":"@stdlib/strided/base/cmap","base.strided.cswap":"@stdlib/blas/base/cswap","base.strided.cumax":"@stdlib/stats/base/cumax","base.strided.cumaxabs":"@stdlib/stats/base/cumaxabs","base.strided.cumin":"@stdlib/stats/base/cumin","base.strided.cuminabs":"@stdlib/stats/base/cuminabs","base.strided.dabs":"@stdlib/math/strided/special/dabs","base.strided.dabs2":"@stdlib/math/strided/special/dabs2","base.strided.dapx":"@stdlib/blas/ext/base/dapx","base.strided.dapxsum":"@stdlib/blas/ext/base/dapxsum","base.strided.dapxsumkbn":"@stdlib/blas/ext/base/dapxsumkbn","base.strided.dapxsumkbn2":"@stdlib/blas/ext/base/dapxsumkbn2","base.strided.dapxsumors":"@stdlib/blas/ext/base/dapxsumors","base.strided.dapxsumpw":"@stdlib/blas/ext/base/dapxsumpw","base.strided.dasum":"@stdlib/blas/base/dasum","base.strided.dasumpw":"@stdlib/blas/ext/base/dasumpw","base.strided.daxpy":"@stdlib/blas/base/daxpy","base.strided.dcbrt":"@stdlib/math/strided/special/dcbrt","base.strided.dceil":"@stdlib/math/strided/special/dceil","base.strided.dcopy":"@stdlib/blas/base/dcopy","base.strided.dcumax":"@stdlib/stats/base/dcumax","base.strided.dcumaxabs":"@stdlib/stats/base/dcumaxabs","base.strided.dcumin":"@stdlib/stats/base/dcumin","base.strided.dcuminabs":"@stdlib/stats/base/dcuminabs","base.strided.dcusum":"@stdlib/blas/ext/base/dcusum","base.strided.dcusumkbn":"@stdlib/blas/ext/base/dcusumkbn","base.strided.dcusumkbn2":"@stdlib/blas/ext/base/dcusumkbn2","base.strided.dcusumors":"@stdlib/blas/ext/base/dcusumors","base.strided.dcusumpw":"@stdlib/blas/ext/base/dcusumpw","base.strided.ddeg2rad":"@stdlib/math/strided/special/ddeg2rad","base.strided.ddot":"@stdlib/blas/base/ddot","base.strided.dfill":"@stdlib/blas/ext/base/dfill","base.strided.dfloor":"@stdlib/math/strided/special/dfloor","base.strided.dinv":"@stdlib/math/strided/special/dinv","base.strided.dmap":"@stdlib/strided/base/dmap","base.strided.dmap2":"@stdlib/strided/base/dmap2","base.strided.dmax":"@stdlib/stats/base/dmax","base.strided.dmaxabs":"@stdlib/stats/base/dmaxabs","base.strided.dmaxabssorted":"@stdlib/stats/base/dmaxabssorted","base.strided.dmaxsorted":"@stdlib/stats/base/dmaxsorted","base.strided.dmean":"@stdlib/stats/base/dmean","base.strided.dmeankbn":"@stdlib/stats/base/dmeankbn","base.strided.dmeankbn2":"@stdlib/stats/base/dmeankbn2","base.strided.dmeanli":"@stdlib/stats/base/dmeanli","base.strided.dmeanlipw":"@stdlib/stats/base/dmeanlipw","base.strided.dmeanors":"@stdlib/stats/base/dmeanors","base.strided.dmeanpn":"@stdlib/stats/base/dmeanpn","base.strided.dmeanpw":"@stdlib/stats/base/dmeanpw","base.strided.dmeanstdev":"@stdlib/stats/base/dmeanstdev","base.strided.dmeanstdevpn":"@stdlib/stats/base/dmeanstdevpn","base.strided.dmeanvar":"@stdlib/stats/base/dmeanvar","base.strided.dmeanvarpn":"@stdlib/stats/base/dmeanvarpn","base.strided.dmeanwd":"@stdlib/stats/base/dmeanwd","base.strided.dmediansorted":"@stdlib/stats/base/dmediansorted","base.strided.dmidrange":"@stdlib/stats/base/dmidrange","base.strided.dmin":"@stdlib/stats/base/dmin","base.strided.dminabs":"@stdlib/stats/base/dminabs","base.strided.dminsorted":"@stdlib/stats/base/dminsorted","base.strided.dmskabs":"@stdlib/math/strided/special/dmskabs","base.strided.dmskabs2":"@stdlib/math/strided/special/dmskabs2","base.strided.dmskcbrt":"@stdlib/math/strided/special/dmskcbrt","base.strided.dmskceil":"@stdlib/math/strided/special/dmskceil","base.strided.dmskdeg2rad":"@stdlib/math/strided/special/dmskdeg2rad","base.strided.dmskfloor":"@stdlib/math/strided/special/dmskfloor","base.strided.dmskinv":"@stdlib/math/strided/special/dmskinv","base.strided.dmskmap":"@stdlib/strided/base/dmskmap","base.strided.dmskmap2":"@stdlib/strided/base/dmskmap2","base.strided.dmskmax":"@stdlib/stats/base/dmskmax","base.strided.dmskmin":"@stdlib/stats/base/dmskmin","base.strided.dmskramp":"@stdlib/math/strided/special/dmskramp","base.strided.dmskrange":"@stdlib/stats/base/dmskrange","base.strided.dmskrsqrt":"@stdlib/math/strided/special/dmskrsqrt","base.strided.dmsksqrt":"@stdlib/math/strided/special/dmsksqrt","base.strided.dmsktrunc":"@stdlib/math/strided/special/dmsktrunc","base.strided.dnanasum":"@stdlib/blas/ext/base/dnanasum","base.strided.dnanasumors":"@stdlib/blas/ext/base/dnanasumors","base.strided.dnanmax":"@stdlib/stats/base/dnanmax","base.strided.dnanmaxabs":"@stdlib/stats/base/dnanmaxabs","base.strided.dnanmean":"@stdlib/stats/base/dnanmean","base.strided.dnanmeanors":"@stdlib/stats/base/dnanmeanors","base.strided.dnanmeanpn":"@stdlib/stats/base/dnanmeanpn","base.strided.dnanmeanpw":"@stdlib/stats/base/dnanmeanpw","base.strided.dnanmeanwd":"@stdlib/stats/base/dnanmeanwd","base.strided.dnanmin":"@stdlib/stats/base/dnanmin","base.strided.dnanminabs":"@stdlib/stats/base/dnanminabs","base.strided.dnanmskmax":"@stdlib/stats/base/dnanmskmax","base.strided.dnanmskmin":"@stdlib/stats/base/dnanmskmin","base.strided.dnanmskrange":"@stdlib/stats/base/dnanmskrange","base.strided.dnannsum":"@stdlib/blas/ext/base/dnannsum","base.strided.dnannsumkbn":"@stdlib/blas/ext/base/dnannsumkbn","base.strided.dnannsumkbn2":"@stdlib/blas/ext/base/dnannsumkbn2","base.strided.dnannsumors":"@stdlib/blas/ext/base/dnannsumors","base.strided.dnannsumpw":"@stdlib/blas/ext/base/dnannsumpw","base.strided.dnanrange":"@stdlib/stats/base/dnanrange","base.strided.dnanstdev":"@stdlib/stats/base/dnanstdev","base.strided.dnanstdevch":"@stdlib/stats/base/dnanstdevch","base.strided.dnanstdevpn":"@stdlib/stats/base/dnanstdevpn","base.strided.dnanstdevtk":"@stdlib/stats/base/dnanstdevtk","base.strided.dnanstdevwd":"@stdlib/stats/base/dnanstdevwd","base.strided.dnanstdevyc":"@stdlib/stats/base/dnanstdevyc","base.strided.dnansum":"@stdlib/blas/ext/base/dnansum","base.strided.dnansumkbn":"@stdlib/blas/ext/base/dnansumkbn","base.strided.dnansumkbn2":"@stdlib/blas/ext/base/dnansumkbn2","base.strided.dnansumors":"@stdlib/blas/ext/base/dnansumors","base.strided.dnansumpw":"@stdlib/blas/ext/base/dnansumpw","base.strided.dnanvariance":"@stdlib/stats/base/dnanvariance","base.strided.dnanvariancech":"@stdlib/stats/base/dnanvariancech","base.strided.dnanvariancepn":"@stdlib/stats/base/dnanvariancepn","base.strided.dnanvariancetk":"@stdlib/stats/base/dnanvariancetk","base.strided.dnanvariancewd":"@stdlib/stats/base/dnanvariancewd","base.strided.dnanvarianceyc":"@stdlib/stats/base/dnanvarianceyc","base.strided.dnrm2":"@stdlib/blas/base/dnrm2","base.strided.dramp":"@stdlib/math/strided/special/dramp","base.strided.drange":"@stdlib/stats/base/drange","base.strided.drev":"@stdlib/blas/ext/base/drev","base.strided.drsqrt":"@stdlib/math/strided/special/drsqrt","base.strided.dsapxsum":"@stdlib/blas/ext/base/dsapxsum","base.strided.dsapxsumpw":"@stdlib/blas/ext/base/dsapxsumpw","base.strided.dscal":"@stdlib/blas/base/dscal","base.strided.dsdot":"@stdlib/blas/base/dsdot","base.strided.dsem":"@stdlib/stats/base/dsem","base.strided.dsemch":"@stdlib/stats/base/dsemch","base.strided.dsempn":"@stdlib/stats/base/dsempn","base.strided.dsemtk":"@stdlib/stats/base/dsemtk","base.strided.dsemwd":"@stdlib/stats/base/dsemwd","base.strided.dsemyc":"@stdlib/stats/base/dsemyc","base.strided.dsmean":"@stdlib/stats/base/dsmean","base.strided.dsmeanors":"@stdlib/stats/base/dsmeanors","base.strided.dsmeanpn":"@stdlib/stats/base/dsmeanpn","base.strided.dsmeanpw":"@stdlib/stats/base/dsmeanpw","base.strided.dsmeanwd":"@stdlib/stats/base/dsmeanwd","base.strided.dsnanmean":"@stdlib/stats/base/dsnanmean","base.strided.dsnanmeanors":"@stdlib/stats/base/dsnanmeanors","base.strided.dsnanmeanpn":"@stdlib/stats/base/dsnanmeanpn","base.strided.dsnanmeanwd":"@stdlib/stats/base/dsnanmeanwd","base.strided.dsnannsumors":"@stdlib/blas/ext/base/dsnannsumors","base.strided.dsnansum":"@stdlib/blas/ext/base/dsnansum","base.strided.dsnansumors":"@stdlib/blas/ext/base/dsnansumors","base.strided.dsnansumpw":"@stdlib/blas/ext/base/dsnansumpw","base.strided.dsort2hp":"@stdlib/blas/ext/base/dsort2hp","base.strided.dsort2ins":"@stdlib/blas/ext/base/dsort2ins","base.strided.dsort2sh":"@stdlib/blas/ext/base/dsort2sh","base.strided.dsorthp":"@stdlib/blas/ext/base/dsorthp","base.strided.dsortins":"@stdlib/blas/ext/base/dsortins","base.strided.dsortsh":"@stdlib/blas/ext/base/dsortsh","base.strided.dsqrt":"@stdlib/math/strided/special/dsqrt","base.strided.dssum":"@stdlib/blas/ext/base/dssum","base.strided.dssumors":"@stdlib/blas/ext/base/dssumors","base.strided.dssumpw":"@stdlib/blas/ext/base/dssumpw","base.strided.dstdev":"@stdlib/stats/base/dstdev","base.strided.dstdevch":"@stdlib/stats/base/dstdevch","base.strided.dstdevpn":"@stdlib/stats/base/dstdevpn","base.strided.dstdevtk":"@stdlib/stats/base/dstdevtk","base.strided.dstdevwd":"@stdlib/stats/base/dstdevwd","base.strided.dstdevyc":"@stdlib/stats/base/dstdevyc","base.strided.dsum":"@stdlib/blas/ext/base/dsum","base.strided.dsumkbn":"@stdlib/blas/ext/base/dsumkbn","base.strided.dsumkbn2":"@stdlib/blas/ext/base/dsumkbn2","base.strided.dsumors":"@stdlib/blas/ext/base/dsumors","base.strided.dsumpw":"@stdlib/blas/ext/base/dsumpw","base.strided.dsvariance":"@stdlib/stats/base/dsvariance","base.strided.dsvariancepn":"@stdlib/stats/base/dsvariancepn","base.strided.dswap":"@stdlib/blas/base/dswap","base.strided.dtrunc":"@stdlib/math/strided/special/dtrunc","base.strided.dtypeEnum2Str":"@stdlib/strided/base/dtype-enum2str","base.strided.dtypeResolveEnum":"@stdlib/strided/base/dtype-resolve-enum","base.strided.dtypeResolveStr":"@stdlib/strided/base/dtype-resolve-str","base.strided.dtypeStr2Enum":"@stdlib/strided/base/dtype-str2enum","base.strided.dvariance":"@stdlib/stats/base/dvariance","base.strided.dvariancech":"@stdlib/stats/base/dvariancech","base.strided.dvariancepn":"@stdlib/stats/base/dvariancepn","base.strided.dvariancetk":"@stdlib/stats/base/dvariancetk","base.strided.dvariancewd":"@stdlib/stats/base/dvariancewd","base.strided.dvarianceyc":"@stdlib/stats/base/dvarianceyc","base.strided.dvarm":"@stdlib/stats/base/dvarm","base.strided.dvarmpn":"@stdlib/stats/base/dvarmpn","base.strided.dvarmtk":"@stdlib/stats/base/dvarmtk","base.strided.functionObject":"@stdlib/strided/base/function-object","base.strided.gapx":"@stdlib/blas/ext/base/gapx","base.strided.gapxsum":"@stdlib/blas/ext/base/gapxsum","base.strided.gapxsumkbn":"@stdlib/blas/ext/base/gapxsumkbn","base.strided.gapxsumkbn2":"@stdlib/blas/ext/base/gapxsumkbn2","base.strided.gapxsumors":"@stdlib/blas/ext/base/gapxsumors","base.strided.gapxsumpw":"@stdlib/blas/ext/base/gapxsumpw","base.strided.gasum":"@stdlib/blas/base/gasum","base.strided.gasumpw":"@stdlib/blas/ext/base/gasumpw","base.strided.gaxpy":"@stdlib/blas/base/gaxpy","base.strided.gcopy":"@stdlib/blas/base/gcopy","base.strided.gcusum":"@stdlib/blas/ext/base/gcusum","base.strided.gcusumkbn":"@stdlib/blas/ext/base/gcusumkbn","base.strided.gcusumkbn2":"@stdlib/blas/ext/base/gcusumkbn2","base.strided.gcusumors":"@stdlib/blas/ext/base/gcusumors","base.strided.gcusumpw":"@stdlib/blas/ext/base/gcusumpw","base.strided.gdot":"@stdlib/blas/base/gdot","base.strided.gfill":"@stdlib/blas/ext/base/gfill","base.strided.gfillBy":"@stdlib/blas/ext/base/gfill-by","base.strided.gnannsumkbn":"@stdlib/blas/ext/base/gnannsumkbn","base.strided.gnansum":"@stdlib/blas/ext/base/gnansum","base.strided.gnansumkbn":"@stdlib/blas/ext/base/gnansumkbn","base.strided.gnansumkbn2":"@stdlib/blas/ext/base/gnansumkbn2","base.strided.gnansumors":"@stdlib/blas/ext/base/gnansumors","base.strided.gnansumpw":"@stdlib/blas/ext/base/gnansumpw","base.strided.gnrm2":"@stdlib/blas/base/gnrm2","base.strided.grev":"@stdlib/blas/ext/base/grev","base.strided.gscal":"@stdlib/blas/base/gscal","base.strided.gsort2hp":"@stdlib/blas/ext/base/gsort2hp","base.strided.gsort2ins":"@stdlib/blas/ext/base/gsort2ins","base.strided.gsort2sh":"@stdlib/blas/ext/base/gsort2sh","base.strided.gsorthp":"@stdlib/blas/ext/base/gsorthp","base.strided.gsortins":"@stdlib/blas/ext/base/gsortins","base.strided.gsortsh":"@stdlib/blas/ext/base/gsortsh","base.strided.gsum":"@stdlib/blas/ext/base/gsum","base.strided.gsumkbn":"@stdlib/blas/ext/base/gsumkbn","base.strided.gsumkbn2":"@stdlib/blas/ext/base/gsumkbn2","base.strided.gsumors":"@stdlib/blas/ext/base/gsumors","base.strided.gsumpw":"@stdlib/blas/ext/base/gsumpw","base.strided.gswap":"@stdlib/blas/base/gswap","base.strided.mapBy":"@stdlib/strided/base/map-by","base.strided.mapBy2":"@stdlib/strided/base/map-by2","base.strided.max":"@stdlib/stats/base/max","base.strided.maxabs":"@stdlib/stats/base/maxabs","base.strided.maxBy":"@stdlib/stats/base/max-by","base.strided.maxsorted":"@stdlib/stats/base/maxsorted","base.strided.maxViewBufferIndex":"@stdlib/strided/base/max-view-buffer-index","base.strided.mean":"@stdlib/stats/base/mean","base.strided.meankbn":"@stdlib/stats/base/meankbn","base.strided.meankbn2":"@stdlib/stats/base/meankbn2","base.strided.meanors":"@stdlib/stats/base/meanors","base.strided.meanpn":"@stdlib/stats/base/meanpn","base.strided.meanpw":"@stdlib/stats/base/meanpw","base.strided.meanwd":"@stdlib/stats/base/meanwd","base.strided.mediansorted":"@stdlib/stats/base/mediansorted","base.strided.metaDataProps":"@stdlib/strided/base/meta-data-props","base.strided.min":"@stdlib/stats/base/min","base.strided.minabs":"@stdlib/stats/base/minabs","base.strided.minBy":"@stdlib/stats/base/min-by","base.strided.minsorted":"@stdlib/stats/base/minsorted","base.strided.minViewBufferIndex":"@stdlib/strided/base/min-view-buffer-index","base.strided.mskmax":"@stdlib/stats/base/mskmax","base.strided.mskmin":"@stdlib/stats/base/mskmin","base.strided.mskrange":"@stdlib/stats/base/mskrange","base.strided.mskunary":"@stdlib/strided/base/mskunary","base.strided.mskunaryDtypeSignatures":"@stdlib/strided/base/mskunary-dtype-signatures","base.strided.mskunarySignatureCallbacks":"@stdlib/strided/base/mskunary-signature-callbacks","base.strided.nanmax":"@stdlib/stats/base/nanmax","base.strided.nanmaxabs":"@stdlib/stats/base/nanmaxabs","base.strided.nanmaxBy":"@stdlib/stats/base/nanmax-by","base.strided.nanmean":"@stdlib/stats/base/nanmean","base.strided.nanmeanors":"@stdlib/stats/base/nanmeanors","base.strided.nanmeanpn":"@stdlib/stats/base/nanmeanpn","base.strided.nanmeanwd":"@stdlib/stats/base/nanmeanwd","base.strided.nanmin":"@stdlib/stats/base/nanmin","base.strided.nanminabs":"@stdlib/stats/base/nanminabs","base.strided.nanminBy":"@stdlib/stats/base/nanmin-by","base.strided.nanmskmax":"@stdlib/stats/base/nanmskmax","base.strided.nanmskmin":"@stdlib/stats/base/nanmskmin","base.strided.nanmskrange":"@stdlib/stats/base/nanmskrange","base.strided.nanrange":"@stdlib/stats/base/nanrange","base.strided.nanrangeBy":"@stdlib/stats/base/nanrange-by","base.strided.nanstdev":"@stdlib/stats/base/nanstdev","base.strided.nanstdevch":"@stdlib/stats/base/nanstdevch","base.strided.nanstdevpn":"@stdlib/stats/base/nanstdevpn","base.strided.nanstdevtk":"@stdlib/stats/base/nanstdevtk","base.strided.nanstdevwd":"@stdlib/stats/base/nanstdevwd","base.strided.nanstdevyc":"@stdlib/stats/base/nanstdevyc","base.strided.nanvariance":"@stdlib/stats/base/nanvariance","base.strided.nanvariancech":"@stdlib/stats/base/nanvariancech","base.strided.nanvariancepn":"@stdlib/stats/base/nanvariancepn","base.strided.nanvariancetk":"@stdlib/stats/base/nanvariancetk","base.strided.nanvariancewd":"@stdlib/stats/base/nanvariancewd","base.strided.nanvarianceyc":"@stdlib/stats/base/nanvarianceyc","base.strided.nullary":"@stdlib/strided/base/nullary","base.strided.offsetView":"@stdlib/strided/base/offset-view","base.strided.quaternary":"@stdlib/strided/base/quaternary","base.strided.quinary":"@stdlib/strided/base/quinary","base.strided.range":"@stdlib/stats/base/range","base.strided.rangeBy":"@stdlib/stats/base/range-by","base.strided.reinterpretComplex":"@stdlib/strided/base/reinterpret-complex","base.strided.reinterpretComplex64":"@stdlib/strided/base/reinterpret-complex64","base.strided.reinterpretComplex128":"@stdlib/strided/base/reinterpret-complex128","base.strided.sabs":"@stdlib/math/strided/special/sabs","base.strided.sabs2":"@stdlib/math/strided/special/sabs2","base.strided.sapx":"@stdlib/blas/ext/base/sapx","base.strided.sapxsum":"@stdlib/blas/ext/base/sapxsum","base.strided.sapxsumkbn":"@stdlib/blas/ext/base/sapxsumkbn","base.strided.sapxsumkbn2":"@stdlib/blas/ext/base/sapxsumkbn2","base.strided.sapxsumors":"@stdlib/blas/ext/base/sapxsumors","base.strided.sapxsumpw":"@stdlib/blas/ext/base/sapxsumpw","base.strided.sasum":"@stdlib/blas/base/sasum","base.strided.sasumpw":"@stdlib/blas/ext/base/sasumpw","base.strided.saxpy":"@stdlib/blas/base/saxpy","base.strided.scbrt":"@stdlib/math/strided/special/scbrt","base.strided.sceil":"@stdlib/math/strided/special/sceil","base.strided.scopy":"@stdlib/blas/base/scopy","base.strided.scumax":"@stdlib/stats/base/scumax","base.strided.scumaxabs":"@stdlib/stats/base/scumaxabs","base.strided.scumin":"@stdlib/stats/base/scumin","base.strided.scuminabs":"@stdlib/stats/base/scuminabs","base.strided.scusum":"@stdlib/blas/ext/base/scusum","base.strided.scusumkbn":"@stdlib/blas/ext/base/scusumkbn","base.strided.scusumkbn2":"@stdlib/blas/ext/base/scusumkbn2","base.strided.scusumors":"@stdlib/blas/ext/base/scusumors","base.strided.scusumpw":"@stdlib/blas/ext/base/scusumpw","base.strided.sdeg2rad":"@stdlib/math/strided/special/sdeg2rad","base.strided.sdot":"@stdlib/blas/base/sdot","base.strided.sdsapxsum":"@stdlib/blas/ext/base/sdsapxsum","base.strided.sdsapxsumpw":"@stdlib/blas/ext/base/sdsapxsumpw","base.strided.sdsdot":"@stdlib/blas/base/sdsdot","base.strided.sdsmean":"@stdlib/stats/base/sdsmean","base.strided.sdsmeanors":"@stdlib/stats/base/sdsmeanors","base.strided.sdsnanmean":"@stdlib/stats/base/sdsnanmean","base.strided.sdsnanmeanors":"@stdlib/stats/base/sdsnanmeanors","base.strided.sdsnansum":"@stdlib/blas/ext/base/sdsnansum","base.strided.sdsnansumpw":"@stdlib/blas/ext/base/sdsnansumpw","base.strided.sdssum":"@stdlib/blas/ext/base/sdssum","base.strided.sdssumpw":"@stdlib/blas/ext/base/sdssumpw","base.strided.sfill":"@stdlib/blas/ext/base/sfill","base.strided.sfloor":"@stdlib/math/strided/special/sfloor","base.strided.sinv":"@stdlib/math/strided/special/sinv","base.strided.smap":"@stdlib/strided/base/smap","base.strided.smap2":"@stdlib/strided/base/smap2","base.strided.smax":"@stdlib/stats/base/smax","base.strided.smaxabs":"@stdlib/stats/base/smaxabs","base.strided.smaxabssorted":"@stdlib/stats/base/smaxabssorted","base.strided.smaxsorted":"@stdlib/stats/base/smaxsorted","base.strided.smean":"@stdlib/stats/base/smean","base.strided.smeankbn":"@stdlib/stats/base/smeankbn","base.strided.smeankbn2":"@stdlib/stats/base/smeankbn2","base.strided.smeanli":"@stdlib/stats/base/smeanli","base.strided.smeanlipw":"@stdlib/stats/base/smeanlipw","base.strided.smeanors":"@stdlib/stats/base/smeanors","base.strided.smeanpn":"@stdlib/stats/base/smeanpn","base.strided.smeanpw":"@stdlib/stats/base/smeanpw","base.strided.smeanwd":"@stdlib/stats/base/smeanwd","base.strided.smediansorted":"@stdlib/stats/base/smediansorted","base.strided.smidrange":"@stdlib/stats/base/smidrange","base.strided.smin":"@stdlib/stats/base/smin","base.strided.sminabs":"@stdlib/stats/base/sminabs","base.strided.sminsorted":"@stdlib/stats/base/sminsorted","base.strided.smskabs":"@stdlib/math/strided/special/smskabs","base.strided.smskabs2":"@stdlib/math/strided/special/smskabs2","base.strided.smskcbrt":"@stdlib/math/strided/special/smskcbrt","base.strided.smskceil":"@stdlib/math/strided/special/smskceil","base.strided.smskdeg2rad":"@stdlib/math/strided/special/smskdeg2rad","base.strided.smskfloor":"@stdlib/math/strided/special/smskfloor","base.strided.smskinv":"@stdlib/math/strided/special/smskinv","base.strided.smskmap":"@stdlib/strided/base/smskmap","base.strided.smskmap2":"@stdlib/strided/base/smskmap2","base.strided.smskmax":"@stdlib/stats/base/smskmax","base.strided.smskmin":"@stdlib/stats/base/smskmin","base.strided.smskramp":"@stdlib/math/strided/special/smskramp","base.strided.smskrange":"@stdlib/stats/base/smskrange","base.strided.smskrsqrt":"@stdlib/math/strided/special/smskrsqrt","base.strided.smsksqrt":"@stdlib/math/strided/special/smsksqrt","base.strided.smsktrunc":"@stdlib/math/strided/special/smsktrunc","base.strided.snanmax":"@stdlib/stats/base/snanmax","base.strided.snanmaxabs":"@stdlib/stats/base/snanmaxabs","base.strided.snanmean":"@stdlib/stats/base/snanmean","base.strided.snanmeanors":"@stdlib/stats/base/snanmeanors","base.strided.snanmeanpn":"@stdlib/stats/base/snanmeanpn","base.strided.snanmeanwd":"@stdlib/stats/base/snanmeanwd","base.strided.snanmin":"@stdlib/stats/base/snanmin","base.strided.snanminabs":"@stdlib/stats/base/snanminabs","base.strided.snanmskmax":"@stdlib/stats/base/snanmskmax","base.strided.snanmskmin":"@stdlib/stats/base/snanmskmin","base.strided.snanmskrange":"@stdlib/stats/base/snanmskrange","base.strided.snanrange":"@stdlib/stats/base/snanrange","base.strided.snanstdev":"@stdlib/stats/base/snanstdev","base.strided.snanstdevch":"@stdlib/stats/base/snanstdevch","base.strided.snanstdevpn":"@stdlib/stats/base/snanstdevpn","base.strided.snanstdevtk":"@stdlib/stats/base/snanstdevtk","base.strided.snanstdevwd":"@stdlib/stats/base/snanstdevwd","base.strided.snanstdevyc":"@stdlib/stats/base/snanstdevyc","base.strided.snansum":"@stdlib/blas/ext/base/snansum","base.strided.snansumkbn":"@stdlib/blas/ext/base/snansumkbn","base.strided.snansumkbn2":"@stdlib/blas/ext/base/snansumkbn2","base.strided.snansumors":"@stdlib/blas/ext/base/snansumors","base.strided.snansumpw":"@stdlib/blas/ext/base/snansumpw","base.strided.snanvariance":"@stdlib/stats/base/snanvariance","base.strided.snanvariancech":"@stdlib/stats/base/snanvariancech","base.strided.snanvariancepn":"@stdlib/stats/base/snanvariancepn","base.strided.snanvariancetk":"@stdlib/stats/base/snanvariancetk","base.strided.snanvariancewd":"@stdlib/stats/base/snanvariancewd","base.strided.snanvarianceyc":"@stdlib/stats/base/snanvarianceyc","base.strided.snrm2":"@stdlib/blas/base/snrm2","base.strided.sramp":"@stdlib/math/strided/special/sramp","base.strided.srange":"@stdlib/stats/base/srange","base.strided.srev":"@stdlib/blas/ext/base/srev","base.strided.srsqrt":"@stdlib/math/strided/special/srsqrt","base.strided.sscal":"@stdlib/blas/base/sscal","base.strided.ssort2hp":"@stdlib/blas/ext/base/ssort2hp","base.strided.ssort2ins":"@stdlib/blas/ext/base/ssort2ins","base.strided.ssort2sh":"@stdlib/blas/ext/base/ssort2sh","base.strided.ssorthp":"@stdlib/blas/ext/base/ssorthp","base.strided.ssortins":"@stdlib/blas/ext/base/ssortins","base.strided.ssortsh":"@stdlib/blas/ext/base/ssortsh","base.strided.ssqrt":"@stdlib/math/strided/special/ssqrt","base.strided.sstdev":"@stdlib/stats/base/sstdev","base.strided.sstdevch":"@stdlib/stats/base/sstdevch","base.strided.sstdevpn":"@stdlib/stats/base/sstdevpn","base.strided.sstdevtk":"@stdlib/stats/base/sstdevtk","base.strided.sstdevwd":"@stdlib/stats/base/sstdevwd","base.strided.sstdevyc":"@stdlib/stats/base/sstdevyc","base.strided.ssum":"@stdlib/blas/ext/base/ssum","base.strided.ssumkbn":"@stdlib/blas/ext/base/ssumkbn","base.strided.ssumkbn2":"@stdlib/blas/ext/base/ssumkbn2","base.strided.ssumors":"@stdlib/blas/ext/base/ssumors","base.strided.ssumpw":"@stdlib/blas/ext/base/ssumpw","base.strided.sswap":"@stdlib/blas/base/sswap","base.strided.stdev":"@stdlib/stats/base/stdev","base.strided.stdevch":"@stdlib/stats/base/stdevch","base.strided.stdevpn":"@stdlib/stats/base/stdevpn","base.strided.stdevtk":"@stdlib/stats/base/stdevtk","base.strided.stdevwd":"@stdlib/stats/base/stdevwd","base.strided.stdevyc":"@stdlib/stats/base/stdevyc","base.strided.strunc":"@stdlib/math/strided/special/strunc","base.strided.svariance":"@stdlib/stats/base/svariance","base.strided.svariancech":"@stdlib/stats/base/svariancech","base.strided.svariancepn":"@stdlib/stats/base/svariancepn","base.strided.svariancetk":"@stdlib/stats/base/svariancetk","base.strided.svariancewd":"@stdlib/stats/base/svariancewd","base.strided.svarianceyc":"@stdlib/stats/base/svarianceyc","base.strided.ternary":"@stdlib/strided/base/ternary","base.strided.unary":"@stdlib/strided/base/unary","base.strided.unaryBy":"@stdlib/strided/base/unary-by","base.strided.unaryDtypeSignatures":"@stdlib/strided/base/unary-dtype-signatures","base.strided.unarySignatureCallbacks":"@stdlib/strided/base/unary-signature-callbacks","base.strided.variance":"@stdlib/stats/base/variance","base.strided.variancech":"@stdlib/stats/base/variancech","base.strided.variancepn":"@stdlib/stats/base/variancepn","base.strided.variancetk":"@stdlib/stats/base/variancetk","base.strided.variancewd":"@stdlib/stats/base/variancewd","base.strided.varianceyc":"@stdlib/stats/base/varianceyc","base.strided.zmap":"@stdlib/strided/base/zmap","base.str2multislice":"@stdlib/slice/base/str2multislice","base.str2slice":"@stdlib/slice/base/str2slice","base.sub":"@stdlib/math/base/ops/sub","base.subf":"@stdlib/math/base/ops/subf","base.sumSeries":"@stdlib/math/base/tools/sum-series","base.tan":"@stdlib/math/base/special/tan","base.tand":"@stdlib/math/base/special/tand","base.tanh":"@stdlib/math/base/special/tanh","base.toBinaryString":"@stdlib/number/float64/base/to-binary-string","base.toBinaryStringf":"@stdlib/number/float32/base/to-binary-string","base.toBinaryStringUint8":"@stdlib/number/uint8/base/to-binary-string","base.toBinaryStringUint16":"@stdlib/number/uint16/base/to-binary-string","base.toBinaryStringUint32":"@stdlib/number/uint32/base/to-binary-string","base.toWordf":"@stdlib/number/float32/base/to-word","base.toWords":"@stdlib/number/float64/base/to-words","base.transpose":"@stdlib/ndarray/base/transpose","base.tribonacci":"@stdlib/math/base/special/tribonacci","base.trigamma":"@stdlib/math/base/special/trigamma","base.trim":"@stdlib/string/base/trim","base.trunc":"@stdlib/math/base/special/trunc","base.trunc2":"@stdlib/math/base/special/trunc2","base.trunc10":"@stdlib/math/base/special/trunc10","base.truncateMiddle":"@stdlib/string/base/truncate-middle","base.truncb":"@stdlib/math/base/special/truncb","base.truncf":"@stdlib/math/base/special/truncf","base.truncn":"@stdlib/math/base/special/truncn","base.truncsd":"@stdlib/math/base/special/truncsd","base.uint32ToInt32":"@stdlib/number/uint32/base/to-int32","base.umul":"@stdlib/math/base/ops/umul","base.umuldw":"@stdlib/math/base/ops/umuldw","base.uncapitalize":"@stdlib/string/base/uncapitalize","base.uppercase":"@stdlib/string/base/uppercase","base.vercos":"@stdlib/math/base/special/vercos","base.versin":"@stdlib/math/base/special/versin","base.wrap":"@stdlib/math/base/special/wrap","base.xlog1py":"@stdlib/math/base/special/xlog1py","base.xlogy":"@stdlib/math/base/special/xlogy","base.zeta":"@stdlib/math/base/special/riemann-zeta","bench":"@stdlib/bench","BERNDT_CPS_WAGES_1985":"@stdlib/datasets/berndt-cps-wages-1985","bifurcate":"@stdlib/utils/bifurcate","bifurcateBy":"@stdlib/utils/bifurcate-by","bifurcateByAsync":"@stdlib/utils/async/bifurcate-by","bifurcateIn":"@stdlib/utils/bifurcate-in","bifurcateOwn":"@stdlib/utils/bifurcate-own","BigInt":"@stdlib/bigint/ctor","binomialTest":"@stdlib/stats/binomial-test","Boolean":"@stdlib/boolean/ctor","BooleanArray":"@stdlib/array/bool","broadcastArray":"@stdlib/ndarray/broadcast-array","broadcastArrays":"@stdlib/ndarray/broadcast-arrays","Buffer":"@stdlib/buffer/ctor","buffer2json":"@stdlib/buffer/to-json","BYTE_ORDER":"@stdlib/os/byte-order","camelcase":"@stdlib/string/camelcase","capitalize":"@stdlib/string/capitalize","capitalizeKeys":"@stdlib/utils/capitalize-keys","CATALAN":"@stdlib/constants/float64/catalan","CBRT_EPS":"@stdlib/constants/float64/cbrt-eps","CDC_NCHS_US_BIRTHS_1969_1988":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","CDC_NCHS_US_BIRTHS_1994_2003":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","chdir":"@stdlib/process/chdir","chi2gof":"@stdlib/stats/chi2gof","chi2test":"@stdlib/stats/chi2test","circarray2iterator":"@stdlib/array/to-circular-iterator","circularArrayStream":"@stdlib/streams/node/from-circular-array","CircularBuffer":"@stdlib/utils/circular-buffer","close":"@stdlib/fs/close","CMUDICT":"@stdlib/datasets/cmudict","codePointAt":"@stdlib/string/code-point-at","commonKeys":"@stdlib/utils/common-keys","commonKeysIn":"@stdlib/utils/common-keys-in","complex":"@stdlib/complex/cmplx","Complex64":"@stdlib/complex/float32/ctor","COMPLEX64_NAN":"@stdlib/constants/complex64/nan","COMPLEX64_NUM_BYTES":"@stdlib/constants/complex64/num-bytes","COMPLEX64_ZERO":"@stdlib/constants/complex64/zero","Complex64Array":"@stdlib/array/complex64","Complex128":"@stdlib/complex/float64/ctor","COMPLEX128_NAN":"@stdlib/constants/complex128/nan","COMPLEX128_NUM_BYTES":"@stdlib/constants/complex128/num-bytes","COMPLEX128_ZERO":"@stdlib/constants/complex128/zero","Complex128Array":"@stdlib/array/complex128","complexarray":"@stdlib/array/typed-complex","complexarrayCtors":"@stdlib/array/typed-complex-ctors","complexarrayDataTypes":"@stdlib/array/typed-complex-dtypes","complexCtors":"@stdlib/complex/ctors","complexDataType":"@stdlib/complex/dtype","complexDataTypes":"@stdlib/complex/dtypes","complexPromotionRules":"@stdlib/complex/promotion-rules","compose":"@stdlib/utils/compose","composeAsync":"@stdlib/utils/async/compose","configdir":"@stdlib/os/configdir","conj":"@stdlib/complex/float64/conj","conjf":"@stdlib/complex/float32/conj","constantcase":"@stdlib/string/constantcase","constantFunction":"@stdlib/utils/constant-function","constantStream":"@stdlib/streams/node/from-constant","constructorName":"@stdlib/utils/constructor-name","contains":"@stdlib/assert/contains","convertArray":"@stdlib/array/convert","convertArraySame":"@stdlib/array/convert-same","convertPath":"@stdlib/utils/convert-path","copy":"@stdlib/utils/copy","copyBuffer":"@stdlib/buffer/from-buffer","countBy":"@stdlib/utils/count-by","countByAsync":"@stdlib/utils/async/count-by","currentYear":"@stdlib/time/current-year","curry":"@stdlib/utils/curry","curryRight":"@stdlib/utils/curry-right","cwd":"@stdlib/process/cwd","DALE_CHALL_NEW":"@stdlib/datasets/dale-chall-new","datasets":"@stdlib/datasets","DataView":"@stdlib/array/dataview","datespace":"@stdlib/array/datespace","dayOfQuarter":"@stdlib/time/day-of-quarter","dayOfYear":"@stdlib/time/day-of-year","daysInMonth":"@stdlib/time/days-in-month","daysInYear":"@stdlib/time/days-in-year","ddot":"@stdlib/blas/ddot","debugSinkStream":"@stdlib/streams/node/debug-sink","debugStream":"@stdlib/streams/node/debug","decorateAfter":"@stdlib/utils/decorate-after","deepEqual":"@stdlib/assert/deep-equal","deepGet":"@stdlib/utils/deep-get","deepHasOwnProp":"@stdlib/assert/deep-has-own-property","deepHasProp":"@stdlib/assert/deep-has-property","deepPluck":"@stdlib/utils/deep-pluck","deepSet":"@stdlib/utils/deep-set","defineMemoizedProperty":"@stdlib/utils/define-memoized-property","defineProperties":"@stdlib/utils/define-properties","defineProperty":"@stdlib/utils/define-property","dirname":"@stdlib/utils/dirname","dotcase":"@stdlib/string/dotcase","DoublyLinkedList":"@stdlib/utils/doubly-linked-list","doUntil":"@stdlib/utils/do-until","doUntilAsync":"@stdlib/utils/async/do-until","doUntilEach":"@stdlib/utils/do-until-each","doUntilEachRight":"@stdlib/utils/do-until-each-right","doWhile":"@stdlib/utils/do-while","doWhileAsync":"@stdlib/utils/async/do-while","doWhileEach":"@stdlib/utils/do-while-each","doWhileEachRight":"@stdlib/utils/do-while-each-right","dswap":"@stdlib/blas/dswap","E":"@stdlib/constants/float64/e","EMOJI":"@stdlib/datasets/emoji","EMOJI_CODE_PICTO":"@stdlib/datasets/emoji-code-picto","EMOJI_PICTO_CODE":"@stdlib/datasets/emoji-picto-code","emptyStream":"@stdlib/streams/node/empty","endsWith":"@stdlib/string/ends-with","enumerableProperties":"@stdlib/utils/enumerable-properties","enumerablePropertiesIn":"@stdlib/utils/enumerable-properties-in","enumerablePropertySymbols":"@stdlib/utils/enumerable-property-symbols","enumerablePropertySymbolsIn":"@stdlib/utils/enumerable-property-symbols-in","ENV":"@stdlib/process/env","EPS":"@stdlib/constants/float64/eps","error2json":"@stdlib/error/to-json","EULERGAMMA":"@stdlib/constants/float64/eulergamma","every":"@stdlib/utils/every","everyBy":"@stdlib/utils/every-by","everyByAsync":"@stdlib/utils/async/every-by","everyByRight":"@stdlib/utils/every-by-right","everyByRightAsync":"@stdlib/utils/async/every-by-right","everyInBy":"@stdlib/utils/every-in-by","everyOwnBy":"@stdlib/utils/every-own-by","evil":"@stdlib/utils/eval","EXEC_PATH":"@stdlib/process/exec-path","exists":"@stdlib/fs/exists","expandAcronyms":"@stdlib/nlp/expand-acronyms","expandContractions":"@stdlib/nlp/expand-contractions","extname":"@stdlib/utils/extname","FancyArray":"@stdlib/ndarray/fancy","fastmath.abs":"@stdlib/math/base/special/fast/abs","fastmath.acosh":"@stdlib/math/base/special/fast/acosh","fastmath.ampbm":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","fastmath.asinh":"@stdlib/math/base/special/fast/asinh","fastmath.atanh":"@stdlib/math/base/special/fast/atanh","fastmath.hypot":"@stdlib/math/base/special/fast/hypot","fastmath.log2Uint32":"@stdlib/math/base/special/fast/uint32-log2","fastmath.max":"@stdlib/math/base/special/fast/max","fastmath.min":"@stdlib/math/base/special/fast/min","fastmath.powint":"@stdlib/math/base/special/fast/pow-int","fastmath.sqrtUint32":"@stdlib/math/base/special/fast/uint32-sqrt","FEMALE_FIRST_NAMES_EN":"@stdlib/datasets/female-first-names-en","FIFO":"@stdlib/utils/fifo","filledarray":"@stdlib/array/filled","filledarrayBy":"@stdlib/array/filled-by","filterArguments":"@stdlib/utils/filter-arguments","find":"@stdlib/utils/find","firstChar":"@stdlib/string/first","FIVETHIRTYEIGHT_FFQ":"@stdlib/datasets/fivethirtyeight-ffq","flattenArray":"@stdlib/utils/flatten-array","flattenObject":"@stdlib/utils/flatten-object","flignerTest":"@stdlib/stats/fligner-test","FLOAT_WORD_ORDER":"@stdlib/os/float-word-order","FLOAT16_CBRT_EPS":"@stdlib/constants/float16/cbrt-eps","FLOAT16_EPS":"@stdlib/constants/float16/eps","FLOAT16_EXPONENT_BIAS":"@stdlib/constants/float16/exponent-bias","FLOAT16_MAX":"@stdlib/constants/float16/max","FLOAT16_MAX_SAFE_INTEGER":"@stdlib/constants/float16/max-safe-integer","FLOAT16_MIN_SAFE_INTEGER":"@stdlib/constants/float16/min-safe-integer","FLOAT16_NINF":"@stdlib/constants/float16/ninf","FLOAT16_NUM_BYTES":"@stdlib/constants/float16/num-bytes","FLOAT16_PINF":"@stdlib/constants/float16/pinf","FLOAT16_PRECISION":"@stdlib/constants/float16/precision","FLOAT16_SMALLEST_NORMAL":"@stdlib/constants/float16/smallest-normal","FLOAT16_SMALLEST_SUBNORMAL":"@stdlib/constants/float16/smallest-subnormal","FLOAT16_SQRT_EPS":"@stdlib/constants/float16/sqrt-eps","FLOAT32_ABS_MASK":"@stdlib/constants/float32/abs-mask","FLOAT32_CBRT_EPS":"@stdlib/constants/float32/cbrt-eps","FLOAT32_EPS":"@stdlib/constants/float32/eps","FLOAT32_EXPONENT_BIAS":"@stdlib/constants/float32/exponent-bias","FLOAT32_EXPONENT_MASK":"@stdlib/constants/float32/exponent-mask","FLOAT32_FOURTH_PI":"@stdlib/constants/float32/fourth-pi","FLOAT32_HALF_PI":"@stdlib/constants/float32/half-pi","FLOAT32_MAX":"@stdlib/constants/float32/max","FLOAT32_MAX_SAFE_INTEGER":"@stdlib/constants/float32/max-safe-integer","FLOAT32_MIN_SAFE_INTEGER":"@stdlib/constants/float32/min-safe-integer","FLOAT32_NAN":"@stdlib/constants/float32/nan","FLOAT32_NINF":"@stdlib/constants/float32/ninf","FLOAT32_NUM_BYTES":"@stdlib/constants/float32/num-bytes","FLOAT32_PI":"@stdlib/constants/float32/pi","FLOAT32_PINF":"@stdlib/constants/float32/pinf","FLOAT32_PRECISION":"@stdlib/constants/float32/precision","FLOAT32_SIGN_MASK":"@stdlib/constants/float32/sign-mask","FLOAT32_SIGNIFICAND_MASK":"@stdlib/constants/float32/significand-mask","FLOAT32_SMALLEST_NORMAL":"@stdlib/constants/float32/smallest-normal","FLOAT32_SMALLEST_SUBNORMAL":"@stdlib/constants/float32/smallest-subnormal","FLOAT32_SQRT_EPS":"@stdlib/constants/float32/sqrt-eps","FLOAT32_TWO_PI":"@stdlib/constants/float32/two-pi","Float32Array":"@stdlib/array/float32","Float32ArrayFE":"@stdlib/array/fixed-endian-float32","Float32ArrayLE":"@stdlib/array/little-endian-float32","FLOAT64_EXPONENT_BIAS":"@stdlib/constants/float64/exponent-bias","FLOAT64_HIGH_WORD_ABS_MASK":"@stdlib/constants/float64/high-word-abs-mask","FLOAT64_HIGH_WORD_EXPONENT_MASK":"@stdlib/constants/float64/high-word-exponent-mask","FLOAT64_HIGH_WORD_SIGN_MASK":"@stdlib/constants/float64/high-word-sign-mask","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK":"@stdlib/constants/float64/high-word-significand-mask","FLOAT64_MAX":"@stdlib/constants/float64/max","FLOAT64_MAX_BASE2_EXPONENT":"@stdlib/constants/float64/max-base2-exponent","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base2-exponent-subnormal","FLOAT64_MAX_BASE10_EXPONENT":"@stdlib/constants/float64/max-base10-exponent","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/max-base10-exponent-subnormal","FLOAT64_MAX_LN":"@stdlib/constants/float64/max-ln","FLOAT64_MAX_SAFE_FIBONACCI":"@stdlib/constants/float64/max-safe-fibonacci","FLOAT64_MAX_SAFE_INTEGER":"@stdlib/constants/float64/max-safe-integer","FLOAT64_MAX_SAFE_LUCAS":"@stdlib/constants/float64/max-safe-lucas","FLOAT64_MAX_SAFE_NTH_FIBONACCI":"@stdlib/constants/float64/max-safe-nth-fibonacci","FLOAT64_MAX_SAFE_NTH_LUCAS":"@stdlib/constants/float64/max-safe-nth-lucas","FLOAT64_MIN_BASE2_EXPONENT":"@stdlib/constants/float64/min-base2-exponent","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base2-exponent-subnormal","FLOAT64_MIN_BASE10_EXPONENT":"@stdlib/constants/float64/min-base10-exponent","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL":"@stdlib/constants/float64/min-base10-exponent-subnormal","FLOAT64_MIN_LN":"@stdlib/constants/float64/min-ln","FLOAT64_MIN_SAFE_INTEGER":"@stdlib/constants/float64/min-safe-integer","FLOAT64_NUM_BYTES":"@stdlib/constants/float64/num-bytes","FLOAT64_PRECISION":"@stdlib/constants/float64/precision","FLOAT64_SMALLEST_NORMAL":"@stdlib/constants/float64/smallest-normal","FLOAT64_SMALLEST_SUBNORMAL":"@stdlib/constants/float64/smallest-subnormal","Float64Array":"@stdlib/array/float64","Float64ArrayFE":"@stdlib/array/fixed-endian-float64","Float64ArrayLE":"@stdlib/array/little-endian-float64","forEach":"@stdlib/utils/for-each","forEachAsync":"@stdlib/utils/async/for-each","forEachChar":"@stdlib/string/for-each","forEachRight":"@stdlib/utils/for-each-right","forEachRightAsync":"@stdlib/utils/async/for-each-right","forIn":"@stdlib/utils/for-in","format":"@stdlib/string/format","forOwn":"@stdlib/utils/for-own","FOURTH_PI":"@stdlib/constants/float64/fourth-pi","FOURTH_ROOT_EPS":"@stdlib/constants/float64/fourth-root-eps","FRB_SF_WAGE_RIGIDITY":"@stdlib/datasets/frb-sf-wage-rigidity","fromCodePoint":"@stdlib/string/from-code-point","Function":"@stdlib/function/ctor","function2string":"@stdlib/function/to-string","functionName":"@stdlib/utils/function-name","functionSequence":"@stdlib/utils/function-sequence","functionSequenceAsync":"@stdlib/utils/async/function-sequence","GAMMA_LANCZOS_G":"@stdlib/constants/float64/gamma-lanczos-g","gdot":"@stdlib/blas/gdot","getegid":"@stdlib/process/getegid","geteuid":"@stdlib/process/geteuid","getgid":"@stdlib/process/getgid","getGlobal":"@stdlib/utils/global","getPrototypeOf":"@stdlib/utils/get-prototype-of","getuid":"@stdlib/process/getuid","GLAISHER":"@stdlib/constants/float64/glaisher-kinkelin","graphemeClusters2iterator":"@stdlib/string/to-grapheme-cluster-iterator","graphemeClusters2iteratorRight":"@stdlib/string/to-grapheme-cluster-iterator-right","group":"@stdlib/utils/group","groupBy":"@stdlib/utils/group-by","groupByAsync":"@stdlib/utils/async/group-by","groupIn":"@stdlib/utils/group-in","groupOwn":"@stdlib/utils/group-own","gswap":"@stdlib/blas/gswap","HALF_LN2":"@stdlib/constants/float64/half-ln-two","HALF_PI":"@stdlib/constants/float64/half-pi","HARRISON_BOSTON_HOUSE_PRICES":"@stdlib/datasets/harrison-boston-house-prices","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED":"@stdlib/datasets/harrison-boston-house-prices-corrected","hasArrayBufferSupport":"@stdlib/assert/has-arraybuffer-support","hasArrowFunctionSupport":"@stdlib/assert/has-arrow-function-support","hasAsyncAwaitSupport":"@stdlib/assert/has-async-await-support","hasAsyncIteratorSymbolSupport":"@stdlib/assert/has-async-iterator-symbol-support","hasAtobSupport":"@stdlib/assert/has-atob-support","hasBigInt64ArraySupport":"@stdlib/assert/has-bigint64array-support","hasBigIntSupport":"@stdlib/assert/has-bigint-support","hasBigUint64ArraySupport":"@stdlib/assert/has-biguint64array-support","hasBtoaSupport":"@stdlib/assert/has-btoa-support","hasClassSupport":"@stdlib/assert/has-class-support","hasDataViewSupport":"@stdlib/assert/has-dataview-support","hasDefinePropertiesSupport":"@stdlib/assert/has-define-properties-support","hasDefinePropertySupport":"@stdlib/assert/has-define-property-support","hasFloat32ArraySupport":"@stdlib/assert/has-float32array-support","hasFloat64ArraySupport":"@stdlib/assert/has-float64array-support","hasFunctionNameSupport":"@stdlib/assert/has-function-name-support","hasGeneratorSupport":"@stdlib/assert/has-generator-support","hasGlobalThisSupport":"@stdlib/assert/has-globalthis-support","hasInt8ArraySupport":"@stdlib/assert/has-int8array-support","hasInt16ArraySupport":"@stdlib/assert/has-int16array-support","hasInt32ArraySupport":"@stdlib/assert/has-int32array-support","hasIteratorSymbolSupport":"@stdlib/assert/has-iterator-symbol-support","hasMapSupport":"@stdlib/assert/has-map-support","hasNodeBufferSupport":"@stdlib/assert/has-node-buffer-support","hasOwnProp":"@stdlib/assert/has-own-property","hasProp":"@stdlib/assert/has-property","hasProxySupport":"@stdlib/assert/has-proxy-support","hasSetSupport":"@stdlib/assert/has-set-support","hasSharedArrayBufferSupport":"@stdlib/assert/has-sharedarraybuffer-support","hasSymbolSupport":"@stdlib/assert/has-symbol-support","hasToStringTagSupport":"@stdlib/assert/has-tostringtag-support","hasUint8ArraySupport":"@stdlib/assert/has-uint8array-support","hasUint8ClampedArraySupport":"@stdlib/assert/has-uint8clampedarray-support","hasUint16ArraySupport":"@stdlib/assert/has-uint16array-support","hasUint32ArraySupport":"@stdlib/assert/has-uint32array-support","hasUTF16SurrogatePairAt":"@stdlib/assert/has-utf16-surrogate-pair-at","hasWeakMapSupport":"@stdlib/assert/has-weakmap-support","hasWeakSetSupport":"@stdlib/assert/has-weakset-support","hasWebAssemblySupport":"@stdlib/assert/has-wasm-support","headercase":"@stdlib/string/headercase","HERNDON_VENUS_SEMIDIAMETERS":"@stdlib/datasets/herndon-venus-semidiameters","homedir":"@stdlib/os/homedir","HOURS_IN_DAY":"@stdlib/constants/time/hours-in-day","HOURS_IN_WEEK":"@stdlib/constants/time/hours-in-week","hoursInMonth":"@stdlib/time/hours-in-month","hoursInYear":"@stdlib/time/hours-in-year","httpServer":"@stdlib/net/http-server","identity":"@stdlib/utils/identity-function","ifelse":"@stdlib/utils/if-else","ifelseAsync":"@stdlib/utils/async/if-else","ifthen":"@stdlib/utils/if-then","ifthenAsync":"@stdlib/utils/async/if-then","imag":"@stdlib/complex/float64/imag","imagf":"@stdlib/complex/float32/imag","IMG_ACANTHUS_MOLLIS":"@stdlib/datasets/img-acanthus-mollis","IMG_AIRPLANE_FROM_ABOVE":"@stdlib/datasets/img-airplane-from-above","IMG_ALLIUM_OREOPHILUM":"@stdlib/datasets/img-allium-oreophilum","IMG_BLACK_CANYON":"@stdlib/datasets/img-black-canyon","IMG_DUST_BOWL_HOME":"@stdlib/datasets/img-dust-bowl-home","IMG_FRENCH_ALPINE_LANDSCAPE":"@stdlib/datasets/img-french-alpine-landscape","IMG_LOCOMOTION_HOUSE_CAT":"@stdlib/datasets/img-locomotion-house-cat","IMG_LOCOMOTION_NUDE_MALE":"@stdlib/datasets/img-locomotion-nude-male","IMG_MARCH_PASTORAL":"@stdlib/datasets/img-march-pastoral","IMG_NAGASAKI_BOATS":"@stdlib/datasets/img-nagasaki-boats","incrapcorr":"@stdlib/stats/incr/apcorr","incrBinaryClassification":"@stdlib/ml/incr/binary-classification","incrcount":"@stdlib/stats/incr/count","incrcovariance":"@stdlib/stats/incr/covariance","incrcovmat":"@stdlib/stats/incr/covmat","incrcv":"@stdlib/stats/incr/cv","increwmean":"@stdlib/stats/incr/ewmean","increwstdev":"@stdlib/stats/incr/ewstdev","increwvariance":"@stdlib/stats/incr/ewvariance","incrgmean":"@stdlib/stats/incr/gmean","incrgrubbs":"@stdlib/stats/incr/grubbs","incrhmean":"@stdlib/stats/incr/hmean","incrkmeans":"@stdlib/ml/incr/kmeans","incrkurtosis":"@stdlib/stats/incr/kurtosis","incrmaape":"@stdlib/stats/incr/maape","incrmae":"@stdlib/stats/incr/mae","incrmapcorr":"@stdlib/stats/incr/mapcorr","incrmape":"@stdlib/stats/incr/mape","incrmax":"@stdlib/stats/incr/max","incrmaxabs":"@stdlib/stats/incr/maxabs","incrmcovariance":"@stdlib/stats/incr/mcovariance","incrmcv":"@stdlib/stats/incr/mcv","incrmda":"@stdlib/stats/incr/mda","incrme":"@stdlib/stats/incr/me","incrmean":"@stdlib/stats/incr/mean","incrmeanabs":"@stdlib/stats/incr/meanabs","incrmeanabs2":"@stdlib/stats/incr/meanabs2","incrmeanstdev":"@stdlib/stats/incr/meanstdev","incrmeanvar":"@stdlib/stats/incr/meanvar","incrmgmean":"@stdlib/stats/incr/mgmean","incrmgrubbs":"@stdlib/stats/incr/mgrubbs","incrmhmean":"@stdlib/stats/incr/mhmean","incrmidrange":"@stdlib/stats/incr/midrange","incrmin":"@stdlib/stats/incr/min","incrminabs":"@stdlib/stats/incr/minabs","incrminmax":"@stdlib/stats/incr/minmax","incrminmaxabs":"@stdlib/stats/incr/minmaxabs","incrmmaape":"@stdlib/stats/incr/mmaape","incrmmae":"@stdlib/stats/incr/mmae","incrmmape":"@stdlib/stats/incr/mmape","incrmmax":"@stdlib/stats/incr/mmax","incrmmaxabs":"@stdlib/stats/incr/mmaxabs","incrmmda":"@stdlib/stats/incr/mmda","incrmme":"@stdlib/stats/incr/mme","incrmmean":"@stdlib/stats/incr/mmean","incrmmeanabs":"@stdlib/stats/incr/mmeanabs","incrmmeanabs2":"@stdlib/stats/incr/mmeanabs2","incrmmeanstdev":"@stdlib/stats/incr/mmeanstdev","incrmmeanvar":"@stdlib/stats/incr/mmeanvar","incrmmidrange":"@stdlib/stats/incr/mmidrange","incrmmin":"@stdlib/stats/incr/mmin","incrmminabs":"@stdlib/stats/incr/mminabs","incrmminmax":"@stdlib/stats/incr/mminmax","incrmminmaxabs":"@stdlib/stats/incr/mminmaxabs","incrmmpe":"@stdlib/stats/incr/mmpe","incrmmse":"@stdlib/stats/incr/mmse","incrmpcorr":"@stdlib/stats/incr/mpcorr","incrmpcorr2":"@stdlib/stats/incr/mpcorr2","incrmpcorrdist":"@stdlib/stats/incr/mpcorrdist","incrmpe":"@stdlib/stats/incr/mpe","incrmprod":"@stdlib/stats/incr/mprod","incrmrange":"@stdlib/stats/incr/mrange","incrmrmse":"@stdlib/stats/incr/mrmse","incrmrss":"@stdlib/stats/incr/mrss","incrmse":"@stdlib/stats/incr/mse","incrmstdev":"@stdlib/stats/incr/mstdev","incrmsum":"@stdlib/stats/incr/msum","incrmsumabs":"@stdlib/stats/incr/msumabs","incrmsumabs2":"@stdlib/stats/incr/msumabs2","incrmsummary":"@stdlib/stats/incr/msummary","incrmsumprod":"@stdlib/stats/incr/msumprod","incrmvariance":"@stdlib/stats/incr/mvariance","incrmvmr":"@stdlib/stats/incr/mvmr","incrnancount":"@stdlib/stats/incr/nancount","incrnansum":"@stdlib/stats/incr/nansum","incrnansumabs":"@stdlib/stats/incr/nansumabs","incrnansumabs2":"@stdlib/stats/incr/nansumabs2","incrpcorr":"@stdlib/stats/incr/pcorr","incrpcorr2":"@stdlib/stats/incr/pcorr2","incrpcorrdist":"@stdlib/stats/incr/pcorrdist","incrpcorrdistmat":"@stdlib/stats/incr/pcorrdistmat","incrpcorrmat":"@stdlib/stats/incr/pcorrmat","incrprod":"@stdlib/stats/incr/prod","incrrange":"@stdlib/stats/incr/range","incrrmse":"@stdlib/stats/incr/rmse","incrrss":"@stdlib/stats/incr/rss","incrSGDRegression":"@stdlib/ml/incr/sgd-regression","incrskewness":"@stdlib/stats/incr/skewness","incrspace":"@stdlib/array/incrspace","incrstdev":"@stdlib/stats/incr/stdev","incrsum":"@stdlib/stats/incr/sum","incrsumabs":"@stdlib/stats/incr/sumabs","incrsumabs2":"@stdlib/stats/incr/sumabs2","incrsummary":"@stdlib/stats/incr/summary","incrsumprod":"@stdlib/stats/incr/sumprod","incrvariance":"@stdlib/stats/incr/variance","incrvmr":"@stdlib/stats/incr/vmr","incrwmean":"@stdlib/stats/incr/wmean","ind2sub":"@stdlib/ndarray/ind2sub","indexOf":"@stdlib/utils/index-of","inherit":"@stdlib/utils/inherit","inheritedEnumerableProperties":"@stdlib/utils/inherited-enumerable-properties","inheritedEnumerablePropertySymbols":"@stdlib/utils/inherited-enumerable-property-symbols","inheritedKeys":"@stdlib/utils/inherited-keys","inheritedNonEnumerableProperties":"@stdlib/utils/inherited-nonenumerable-properties","inheritedNonEnumerablePropertyNames":"@stdlib/utils/inherited-nonenumerable-property-names","inheritedNonEnumerablePropertySymbols":"@stdlib/utils/inherited-nonenumerable-property-symbols","inheritedProperties":"@stdlib/utils/inherited-properties","inheritedPropertyDescriptor":"@stdlib/utils/inherited-property-descriptor","inheritedPropertyDescriptors":"@stdlib/utils/inherited-property-descriptors","inheritedPropertyNames":"@stdlib/utils/inherited-property-names","inheritedPropertySymbols":"@stdlib/utils/inherited-property-symbols","inheritedWritableProperties":"@stdlib/utils/inherited-writable-properties","inheritedWritablePropertyNames":"@stdlib/utils/inherited-writable-property-names","inheritedWritablePropertySymbols":"@stdlib/utils/inherited-writable-property-symbols","inmap":"@stdlib/utils/inmap","inmapAsync":"@stdlib/utils/async/inmap","inmapRight":"@stdlib/utils/inmap-right","inmapRightAsync":"@stdlib/utils/async/inmap-right","inspectSinkStream":"@stdlib/streams/node/inspect-sink","inspectStream":"@stdlib/streams/node/inspect","instanceOf":"@stdlib/assert/instance-of","INT8_MAX":"@stdlib/constants/int8/max","INT8_MIN":"@stdlib/constants/int8/min","INT8_NUM_BYTES":"@stdlib/constants/int8/num-bytes","Int8Array":"@stdlib/array/int8","INT16_MAX":"@stdlib/constants/int16/max","INT16_MIN":"@stdlib/constants/int16/min","INT16_NUM_BYTES":"@stdlib/constants/int16/num-bytes","Int16Array":"@stdlib/array/int16","INT32_MAX":"@stdlib/constants/int32/max","INT32_MIN":"@stdlib/constants/int32/min","INT32_NUM_BYTES":"@stdlib/constants/int32/num-bytes","Int32Array":"@stdlib/array/int32","IS_BIG_ENDIAN":"@stdlib/assert/is-big-endian","IS_BROWSER":"@stdlib/assert/is-browser","IS_DARWIN":"@stdlib/assert/is-darwin","IS_DOCKER":"@stdlib/assert/is-docker","IS_ELECTRON":"@stdlib/assert/is-electron","IS_ELECTRON_MAIN":"@stdlib/assert/is-electron-main","IS_ELECTRON_RENDERER":"@stdlib/assert/is-electron-renderer","IS_LITTLE_ENDIAN":"@stdlib/assert/is-little-endian","IS_MOBILE":"@stdlib/assert/is-mobile","IS_NODE":"@stdlib/assert/is-node","IS_TOUCH_DEVICE":"@stdlib/assert/is-touch-device","IS_WEB_WORKER":"@stdlib/assert/is-web-worker","IS_WINDOWS":"@stdlib/assert/is-windows","isAbsoluteHttpURI":"@stdlib/assert/is-absolute-http-uri","isAbsolutePath":"@stdlib/assert/is-absolute-path","isAbsoluteURI":"@stdlib/assert/is-absolute-uri","isAccessorArray":"@stdlib/assert/is-accessor-array","isAccessorProperty":"@stdlib/assert/is-accessor-property","isAccessorPropertyIn":"@stdlib/assert/is-accessor-property-in","isAlphagram":"@stdlib/assert/is-alphagram","isAlphaNumeric":"@stdlib/assert/is-alphanumeric","isAnagram":"@stdlib/assert/is-anagram","isArguments":"@stdlib/assert/is-arguments","isArray":"@stdlib/assert/is-array","isArrayArray":"@stdlib/assert/is-array-array","isArrayBuffer":"@stdlib/assert/is-arraybuffer","isArrayBufferView":"@stdlib/assert/is-arraybuffer-view","isArrayLength":"@stdlib/assert/is-array-length","isArrayLike":"@stdlib/assert/is-array-like","isArrayLikeObject":"@stdlib/assert/is-array-like-object","isArrowFunction":"@stdlib/assert/is-arrow-function","isASCII":"@stdlib/assert/is-ascii","isBetween":"@stdlib/assert/is-between","isBetweenArray":"@stdlib/assert/is-between-array","isBigInt":"@stdlib/assert/is-bigint","isBigInt64Array":"@stdlib/assert/is-bigint64array","isBigUint64Array":"@stdlib/assert/is-biguint64array","isBinaryString":"@stdlib/assert/is-binary-string","isBlankString":"@stdlib/assert/is-blank-string","isBoolean":"@stdlib/assert/is-boolean","isBooleanArray":"@stdlib/assert/is-boolean-array","isBoxedPrimitive":"@stdlib/assert/is-boxed-primitive","isBuffer":"@stdlib/assert/is-buffer","isCamelcase":"@stdlib/assert/is-camelcase","isCapitalized":"@stdlib/assert/is-capitalized","isCentrosymmetricMatrix":"@stdlib/assert/is-centrosymmetric-matrix","isCircular":"@stdlib/assert/is-circular","isCircularArray":"@stdlib/assert/is-circular-array","isCircularPlainObject":"@stdlib/assert/is-circular-plain-object","isClass":"@stdlib/assert/is-class","isCollection":"@stdlib/assert/is-collection","isComplex":"@stdlib/assert/is-complex","isComplex64":"@stdlib/assert/is-complex64","isComplex64Array":"@stdlib/assert/is-complex64array","isComplex64MatrixLike":"@stdlib/assert/is-complex64matrix-like","isComplex64ndarrayLike":"@stdlib/assert/is-complex64ndarray-like","isComplex64VectorLike":"@stdlib/assert/is-complex64vector-like","isComplex128":"@stdlib/assert/is-complex128","isComplex128Array":"@stdlib/assert/is-complex128array","isComplex128MatrixLike":"@stdlib/assert/is-complex128matrix-like","isComplex128ndarrayLike":"@stdlib/assert/is-complex128ndarray-like","isComplex128VectorLike":"@stdlib/assert/is-complex128vector-like","isComplexLike":"@stdlib/assert/is-complex-like","isComplexTypedArray":"@stdlib/assert/is-complex-typed-array","isComplexTypedArrayLike":"@stdlib/assert/is-complex-typed-array-like","isComposite":"@stdlib/assert/is-composite","isConfigurableProperty":"@stdlib/assert/is-configurable-property","isConfigurablePropertyIn":"@stdlib/assert/is-configurable-property-in","isConstantcase":"@stdlib/assert/is-constantcase","isCubeNumber":"@stdlib/assert/is-cube-number","isCurrentYear":"@stdlib/assert/is-current-year","isDataProperty":"@stdlib/assert/is-data-property","isDataPropertyIn":"@stdlib/assert/is-data-property-in","isDataView":"@stdlib/assert/is-dataview","isDateObject":"@stdlib/assert/is-date-object","isDateObjectArray":"@stdlib/assert/is-date-object-array","isDigitString":"@stdlib/assert/is-digit-string","isDomainName":"@stdlib/assert/is-domain-name","isDurationString":"@stdlib/assert/is-duration-string","isEmailAddress":"@stdlib/assert/is-email-address","isEmptyArray":"@stdlib/assert/is-empty-array","isEmptyArrayLikeObject":"@stdlib/assert/is-empty-array-like-object","isEmptyCollection":"@stdlib/assert/is-empty-collection","isEmptyObject":"@stdlib/assert/is-empty-object","isEmptyString":"@stdlib/assert/is-empty-string","isEnumerableProperty":"@stdlib/assert/is-enumerable-property","isEnumerablePropertyIn":"@stdlib/assert/is-enumerable-property-in","isEqualArray":"@stdlib/assert/is-equal-array","isError":"@stdlib/assert/is-error","isEvalError":"@stdlib/assert/is-eval-error","isEven":"@stdlib/assert/is-even","isFalsy":"@stdlib/assert/is-falsy","isFalsyArray":"@stdlib/assert/is-falsy-array","isFinite":"@stdlib/assert/is-finite","isFiniteArray":"@stdlib/assert/is-finite-array","isFloat32Array":"@stdlib/assert/is-float32array","isFloat32MatrixLike":"@stdlib/assert/is-float32matrix-like","isFloat32ndarrayLike":"@stdlib/assert/is-float32ndarray-like","isFloat32VectorLike":"@stdlib/assert/is-float32vector-like","isFloat64Array":"@stdlib/assert/is-float64array","isFloat64MatrixLike":"@stdlib/assert/is-float64matrix-like","isFloat64ndarrayLike":"@stdlib/assert/is-float64ndarray-like","isFloat64VectorLike":"@stdlib/assert/is-float64vector-like","isFunction":"@stdlib/assert/is-function","isFunctionArray":"@stdlib/assert/is-function-array","isGeneratorObject":"@stdlib/assert/is-generator-object","isGeneratorObjectLike":"@stdlib/assert/is-generator-object-like","isgzipBuffer":"@stdlib/assert/is-gzip-buffer","isHexString":"@stdlib/assert/is-hex-string","isInfinite":"@stdlib/assert/is-infinite","isInheritedProperty":"@stdlib/assert/is-inherited-property","isInt8Array":"@stdlib/assert/is-int8array","isInt16Array":"@stdlib/assert/is-int16array","isInt32Array":"@stdlib/assert/is-int32array","isInteger":"@stdlib/assert/is-integer","isIntegerArray":"@stdlib/assert/is-integer-array","isIterableLike":"@stdlib/assert/is-iterable-like","isIteratorLike":"@stdlib/assert/is-iterator-like","isJSON":"@stdlib/assert/is-json","isKebabcase":"@stdlib/assert/is-kebabcase","isLeapYear":"@stdlib/assert/is-leap-year","isLocalhost":"@stdlib/assert/is-localhost","isLowercase":"@stdlib/assert/is-lowercase","isMatrixLike":"@stdlib/assert/is-matrix-like","isMethod":"@stdlib/assert/is-method","isMethodIn":"@stdlib/assert/is-method-in","isMultiSlice":"@stdlib/assert/is-multi-slice","isNamedTypedTupleLike":"@stdlib/assert/is-named-typed-tuple-like","isnan":"@stdlib/assert/is-nan","isNaNArray":"@stdlib/assert/is-nan-array","isNativeFunction":"@stdlib/assert/is-native-function","isndarrayLike":"@stdlib/assert/is-ndarray-like","isndarrayLikeWithDataType":"@stdlib/assert/is-ndarray-like-with-data-type","isNegativeFinite":"@stdlib/assert/is-negative-finite","isNegativeInteger":"@stdlib/assert/is-negative-integer","isNegativeIntegerArray":"@stdlib/assert/is-negative-integer-array","isNegativeNumber":"@stdlib/assert/is-negative-number","isNegativeNumberArray":"@stdlib/assert/is-negative-number-array","isNegativeZero":"@stdlib/assert/is-negative-zero","isNodeBuiltin":"@stdlib/assert/is-node-builtin","isNodeDuplexStreamLike":"@stdlib/assert/is-node-duplex-stream-like","isNodeReadableStreamLike":"@stdlib/assert/is-node-readable-stream-like","isNodeREPL":"@stdlib/assert/is-node-repl","isNodeStreamLike":"@stdlib/assert/is-node-stream-like","isNodeTransformStreamLike":"@stdlib/assert/is-node-transform-stream-like","isNodeWritableStreamLike":"@stdlib/assert/is-node-writable-stream-like","isNonConfigurableProperty":"@stdlib/assert/is-nonconfigurable-property","isNonConfigurablePropertyIn":"@stdlib/assert/is-nonconfigurable-property-in","isNonEnumerableProperty":"@stdlib/assert/is-nonenumerable-property","isNonEnumerablePropertyIn":"@stdlib/assert/is-nonenumerable-property-in","isNonNegativeFinite":"@stdlib/assert/is-nonnegative-finite","isNonNegativeInteger":"@stdlib/assert/is-nonnegative-integer","isNonNegativeIntegerArray":"@stdlib/assert/is-nonnegative-integer-array","isNonNegativeNumber":"@stdlib/assert/is-nonnegative-number","isNonNegativeNumberArray":"@stdlib/assert/is-nonnegative-number-array","isNonPositiveFinite":"@stdlib/assert/is-nonpositive-finite","isNonPositiveInteger":"@stdlib/assert/is-nonpositive-integer","isNonPositiveIntegerArray":"@stdlib/assert/is-nonpositive-integer-array","isNonPositiveNumber":"@stdlib/assert/is-nonpositive-number","isNonPositiveNumberArray":"@stdlib/assert/is-nonpositive-number-array","isNonSymmetricMatrix":"@stdlib/assert/is-nonsymmetric-matrix","isNull":"@stdlib/assert/is-null","isNullArray":"@stdlib/assert/is-null-array","isNumber":"@stdlib/assert/is-number","isNumberArray":"@stdlib/assert/is-number-array","isNumericArray":"@stdlib/assert/is-numeric-array","isObject":"@stdlib/assert/is-object","isObjectArray":"@stdlib/assert/is-object-array","isObjectLike":"@stdlib/assert/is-object-like","isOdd":"@stdlib/assert/is-odd","isoWeeksInYear":"@stdlib/time/iso-weeks-in-year","isPascalcase":"@stdlib/assert/is-pascalcase","isPersymmetricMatrix":"@stdlib/assert/is-persymmetric-matrix","isPlainObject":"@stdlib/assert/is-plain-object","isPlainObjectArray":"@stdlib/assert/is-plain-object-array","isPositiveFinite":"@stdlib/assert/is-positive-finite","isPositiveInteger":"@stdlib/assert/is-positive-integer","isPositiveIntegerArray":"@stdlib/assert/is-positive-integer-array","isPositiveNumber":"@stdlib/assert/is-positive-number","isPositiveNumberArray":"@stdlib/assert/is-positive-number-array","isPositiveZero":"@stdlib/assert/is-positive-zero","isPrime":"@stdlib/assert/is-prime","isPrimitive":"@stdlib/assert/is-primitive","isPrimitiveArray":"@stdlib/assert/is-primitive-array","isPRNGLike":"@stdlib/assert/is-prng-like","isProbability":"@stdlib/assert/is-probability","isProbabilityArray":"@stdlib/assert/is-probability-array","isPropertyKey":"@stdlib/assert/is-property-key","isPrototypeOf":"@stdlib/assert/is-prototype-of","isRaggedNestedArray":"@stdlib/assert/is-ragged-nested-array","isRangeError":"@stdlib/assert/is-range-error","isReadableProperty":"@stdlib/assert/is-readable-property","isReadablePropertyIn":"@stdlib/assert/is-readable-property-in","isReadOnlyProperty":"@stdlib/assert/is-read-only-property","isReadOnlyPropertyIn":"@stdlib/assert/is-read-only-property-in","isReadWriteProperty":"@stdlib/assert/is-read-write-property","isReadWritePropertyIn":"@stdlib/assert/is-read-write-property-in","isReferenceError":"@stdlib/assert/is-reference-error","isRegExp":"@stdlib/assert/is-regexp","isRegExpString":"@stdlib/assert/is-regexp-string","isRelativePath":"@stdlib/assert/is-relative-path","isRelativeURI":"@stdlib/assert/is-relative-uri","isSafeInteger":"@stdlib/assert/is-safe-integer","isSafeIntegerArray":"@stdlib/assert/is-safe-integer-array","isSameArray":"@stdlib/assert/is-same-array","isSameArrayLike":"@stdlib/assert/is-same-array-like","isSameComplex64":"@stdlib/assert/is-same-complex64","isSameComplex64Array":"@stdlib/assert/is-same-complex64array","isSameComplex128":"@stdlib/assert/is-same-complex128","isSameComplex128Array":"@stdlib/assert/is-same-complex128array","isSameDateObject":"@stdlib/assert/is-same-date-object","isSameFloat32Array":"@stdlib/assert/is-same-float32array","isSameFloat64Array":"@stdlib/assert/is-same-float64array","isSameNativeClass":"@stdlib/assert/is-same-native-class","isSameType":"@stdlib/assert/is-same-type","isSameValue":"@stdlib/assert/is-same-value","isSameValueZero":"@stdlib/assert/is-same-value-zero","isSemVer":"@stdlib/assert/is-semver","isSharedArrayBuffer":"@stdlib/assert/is-sharedarraybuffer","isSkewCentrosymmetricMatrix":"@stdlib/assert/is-skew-centrosymmetric-matrix","isSkewPersymmetricMatrix":"@stdlib/assert/is-skew-persymmetric-matrix","isSkewSymmetricMatrix":"@stdlib/assert/is-skew-symmetric-matrix","isSlice":"@stdlib/assert/is-slice","isSnakecase":"@stdlib/assert/is-snakecase","isSquareMatrix":"@stdlib/assert/is-square-matrix","isSquareNumber":"@stdlib/assert/is-square-number","isSquareTriangularNumber":"@stdlib/assert/is-square-triangular-number","isStartcase":"@stdlib/assert/is-startcase","isStrictEqual":"@stdlib/assert/is-strict-equal","isString":"@stdlib/assert/is-string","isStringArray":"@stdlib/assert/is-string-array","isSymbol":"@stdlib/assert/is-symbol","isSymbolArray":"@stdlib/assert/is-symbol-array","isSymmetricMatrix":"@stdlib/assert/is-symmetric-matrix","isSyntaxError":"@stdlib/assert/is-syntax-error","isTriangularNumber":"@stdlib/assert/is-triangular-number","isTruthy":"@stdlib/assert/is-truthy","isTruthyArray":"@stdlib/assert/is-truthy-array","isTypedArray":"@stdlib/assert/is-typed-array","isTypedArrayLength":"@stdlib/assert/is-typed-array-length","isTypedArrayLike":"@stdlib/assert/is-typed-array-like","isTypeError":"@stdlib/assert/is-type-error","isUint8Array":"@stdlib/assert/is-uint8array","isUint8ClampedArray":"@stdlib/assert/is-uint8clampedarray","isUint16Array":"@stdlib/assert/is-uint16array","isUint32Array":"@stdlib/assert/is-uint32array","isUNCPath":"@stdlib/assert/is-unc-path","isUndefined":"@stdlib/assert/is-undefined","isUndefinedOrNull":"@stdlib/assert/is-undefined-or-null","isUnityProbabilityArray":"@stdlib/assert/is-unity-probability-array","isUppercase":"@stdlib/assert/is-uppercase","isURI":"@stdlib/assert/is-uri","isURIError":"@stdlib/assert/is-uri-error","isVectorLike":"@stdlib/assert/is-vector-like","isWebAssemblyMemory":"@stdlib/assert/is-wasm-memory","isWellFormedString":"@stdlib/assert/is-well-formed-string","isWhitespace":"@stdlib/assert/is-whitespace","isWritableProperty":"@stdlib/assert/is-writable-property","isWritablePropertyIn":"@stdlib/assert/is-writable-property-in","isWriteOnlyProperty":"@stdlib/assert/is-write-only-property","isWriteOnlyPropertyIn":"@stdlib/assert/is-write-only-property-in","iterAbs":"@stdlib/math/iter/special/abs","iterAbs2":"@stdlib/math/iter/special/abs2","iterAcos":"@stdlib/math/iter/special/acos","iterAcosh":"@stdlib/math/iter/special/acosh","iterAcot":"@stdlib/math/iter/special/acot","iterAcoth":"@stdlib/math/iter/special/acoth","iterAcovercos":"@stdlib/math/iter/special/acovercos","iterAcoversin":"@stdlib/math/iter/special/acoversin","iterAdd":"@stdlib/math/iter/ops/add","iterAdvance":"@stdlib/iter/advance","iterAhavercos":"@stdlib/math/iter/special/ahavercos","iterAhaversin":"@stdlib/math/iter/special/ahaversin","iterAny":"@stdlib/iter/any","iterAnyBy":"@stdlib/iter/any-by","iterAsin":"@stdlib/math/iter/special/asin","iterAsinh":"@stdlib/math/iter/special/asinh","iterAtan":"@stdlib/math/iter/special/atan","iterAtan2":"@stdlib/math/iter/special/atan2","iterAtanh":"@stdlib/math/iter/special/atanh","iterator2array":"@stdlib/array/from-iterator","iterator2arrayview":"@stdlib/iter/to-array-view","iterator2arrayviewRight":"@stdlib/iter/to-array-view-right","iteratorStream":"@stdlib/streams/node/from-iterator","IteratorSymbol":"@stdlib/symbol/iterator","iterAvercos":"@stdlib/math/iter/special/avercos","iterAversin":"@stdlib/math/iter/special/aversin","iterawgn":"@stdlib/simulate/iter/awgn","iterawln":"@stdlib/simulate/iter/awln","iterawun":"@stdlib/simulate/iter/awun","iterBartlettHannPulse":"@stdlib/simulate/iter/bartlett-hann-pulse","iterBartlettPulse":"@stdlib/simulate/iter/bartlett-pulse","iterBesselj0":"@stdlib/math/iter/special/besselj0","iterBesselj1":"@stdlib/math/iter/special/besselj1","iterBessely0":"@stdlib/math/iter/special/bessely0","iterBessely1":"@stdlib/math/iter/special/bessely1","iterBeta":"@stdlib/math/iter/special/beta","iterBetaln":"@stdlib/math/iter/special/betaln","iterBinet":"@stdlib/math/iter/special/binet","iterCbrt":"@stdlib/math/iter/special/cbrt","iterCeil":"@stdlib/math/iter/special/ceil","iterCeil2":"@stdlib/math/iter/special/ceil2","iterCeil10":"@stdlib/math/iter/special/ceil10","iterCompositesSeq":"@stdlib/math/iter/sequences/composites","iterConcat":"@stdlib/iter/concat","iterConstant":"@stdlib/iter/constant","iterContinuedFraction":"@stdlib/math/iter/utils/continued-fraction","iterContinuedFractionSeq":"@stdlib/math/iter/sequences/continued-fraction","iterCos":"@stdlib/math/iter/special/cos","iterCosh":"@stdlib/math/iter/special/cosh","iterCosineWave":"@stdlib/simulate/iter/cosine-wave","iterCosm1":"@stdlib/math/iter/special/cosm1","iterCospi":"@stdlib/math/iter/special/cospi","iterCounter":"@stdlib/iter/counter","iterCovercos":"@stdlib/math/iter/special/covercos","iterCoversin":"@stdlib/math/iter/special/coversin","iterCubesSeq":"@stdlib/math/iter/sequences/cubes","itercugmean":"@stdlib/stats/iter/cugmean","itercuhmean":"@stdlib/stats/iter/cuhmean","itercumax":"@stdlib/stats/iter/cumax","itercumaxabs":"@stdlib/stats/iter/cumaxabs","itercumean":"@stdlib/stats/iter/cumean","itercumeanabs":"@stdlib/stats/iter/cumeanabs","itercumeanabs2":"@stdlib/stats/iter/cumeanabs2","itercumidrange":"@stdlib/stats/iter/cumidrange","itercumin":"@stdlib/stats/iter/cumin","itercuminabs":"@stdlib/stats/iter/cuminabs","itercuprod":"@stdlib/stats/iter/cuprod","itercurange":"@stdlib/stats/iter/curange","itercusum":"@stdlib/stats/iter/cusum","itercusumabs":"@stdlib/stats/iter/cusumabs","itercusumabs2":"@stdlib/stats/iter/cusumabs2","iterDatespace":"@stdlib/iter/datespace","iterDedupe":"@stdlib/iter/dedupe","iterDedupeBy":"@stdlib/iter/dedupe-by","iterDeg2rad":"@stdlib/math/iter/special/deg2rad","iterDigamma":"@stdlib/math/iter/special/digamma","iterDiracComb":"@stdlib/simulate/iter/dirac-comb","iterDiracDelta":"@stdlib/math/iter/special/dirac-delta","iterDivide":"@stdlib/math/iter/ops/divide","iterDoUntilEach":"@stdlib/iter/do-until-each","iterDoWhileEach":"@stdlib/iter/do-while-each","iterEllipe":"@stdlib/math/iter/special/ellipe","iterEllipk":"@stdlib/math/iter/special/ellipk","iterEmpty":"@stdlib/iter/empty","iterErf":"@stdlib/math/iter/special/erf","iterErfc":"@stdlib/math/iter/special/erfc","iterErfcinv":"@stdlib/math/iter/special/erfcinv","iterErfinv":"@stdlib/math/iter/special/erfinv","iterEta":"@stdlib/math/iter/special/dirichlet-eta","iterEvenIntegersSeq":"@stdlib/math/iter/sequences/even-integers","iterEvery":"@stdlib/iter/every","iterEveryBy":"@stdlib/iter/every-by","iterExp":"@stdlib/math/iter/special/exp","iterExp2":"@stdlib/math/iter/special/exp2","iterExp10":"@stdlib/math/iter/special/exp10","iterExpit":"@stdlib/math/iter/special/expit","iterExpm1":"@stdlib/math/iter/special/expm1","iterExpm1rel":"@stdlib/math/iter/special/expm1rel","iterFactorial":"@stdlib/math/iter/special/factorial","iterFactorialln":"@stdlib/math/iter/special/factorialln","iterFactorialsSeq":"@stdlib/math/iter/sequences/factorials","iterFibonacciSeq":"@stdlib/math/iter/sequences/fibonacci","iterFifthPowersSeq":"@stdlib/math/iter/sequences/fifth-powers","iterFill":"@stdlib/iter/fill","iterFilter":"@stdlib/iter/filter","iterFilterMap":"@stdlib/iter/filter-map","iterFirst":"@stdlib/iter/first","iterFlatTopPulse":"@stdlib/simulate/iter/flat-top-pulse","iterFloor":"@stdlib/math/iter/special/floor","iterFloor2":"@stdlib/math/iter/special/floor2","iterFloor10":"@stdlib/math/iter/special/floor10","iterFlow":"@stdlib/iter/flow","iterForEach":"@stdlib/iter/for-each","iterFourthPowersSeq":"@stdlib/math/iter/sequences/fourth-powers","iterFresnelc":"@stdlib/math/iter/special/fresnelc","iterFresnels":"@stdlib/math/iter/special/fresnels","iterGamma":"@stdlib/math/iter/special/gamma","iterGamma1pm1":"@stdlib/math/iter/special/gamma1pm1","iterGammaln":"@stdlib/math/iter/special/gammaln","iterHacovercos":"@stdlib/math/iter/special/hacovercos","iterHacoversin":"@stdlib/math/iter/special/hacoversin","iterHannPulse":"@stdlib/simulate/iter/hann-pulse","iterHavercos":"@stdlib/math/iter/special/havercos","iterHaversin":"@stdlib/math/iter/special/haversin","iterHead":"@stdlib/iter/head","iterIncrspace":"@stdlib/iter/incrspace","iterIntegersSeq":"@stdlib/math/iter/sequences/integers","iterIntersection":"@stdlib/iter/intersection","iterIntersectionByHash":"@stdlib/iter/intersection-by-hash","iterInv":"@stdlib/math/iter/special/inv","iterLanczosPulse":"@stdlib/simulate/iter/lanczos-pulse","iterLast":"@stdlib/iter/last","iterLength":"@stdlib/iter/length","iterLinspace":"@stdlib/iter/linspace","iterLn":"@stdlib/math/iter/special/ln","iterLog":"@stdlib/math/iter/special/log","iterLog1mexp":"@stdlib/math/iter/special/log1mexp","iterLog1p":"@stdlib/math/iter/special/log1p","iterLog1pexp":"@stdlib/math/iter/special/log1pexp","iterLog2":"@stdlib/math/iter/special/log2","iterLog10":"@stdlib/math/iter/special/log10","iterLogit":"@stdlib/math/iter/special/logit","iterLogspace":"@stdlib/iter/logspace","iterLucasSeq":"@stdlib/math/iter/sequences/lucas","iterMap":"@stdlib/iter/map","iterMapN":"@stdlib/iter/mapn","itermax":"@stdlib/stats/iter/max","itermaxabs":"@stdlib/stats/iter/maxabs","itermean":"@stdlib/stats/iter/mean","itermeanabs":"@stdlib/stats/iter/meanabs","itermeanabs2":"@stdlib/stats/iter/meanabs2","itermidrange":"@stdlib/stats/iter/midrange","itermin":"@stdlib/stats/iter/min","iterminabs":"@stdlib/stats/iter/minabs","itermmax":"@stdlib/stats/iter/mmax","itermmaxabs":"@stdlib/stats/iter/mmaxabs","itermmean":"@stdlib/stats/iter/mmean","itermmeanabs":"@stdlib/stats/iter/mmeanabs","itermmeanabs2":"@stdlib/stats/iter/mmeanabs2","itermmidrange":"@stdlib/stats/iter/mmidrange","itermmin":"@stdlib/stats/iter/mmin","itermminabs":"@stdlib/stats/iter/mminabs","iterMod":"@stdlib/math/iter/ops/mod","itermprod":"@stdlib/stats/iter/mprod","itermrange":"@stdlib/stats/iter/mrange","itermsum":"@stdlib/stats/iter/msum","itermsumabs":"@stdlib/stats/iter/msumabs","itermsumabs2":"@stdlib/stats/iter/msumabs2","iterMultiply":"@stdlib/math/iter/ops/multiply","iterNegaFibonacciSeq":"@stdlib/math/iter/sequences/negafibonacci","iterNegaLucasSeq":"@stdlib/math/iter/sequences/negalucas","iterNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/negative-even-integers","iterNegativeIntegersSeq":"@stdlib/math/iter/sequences/negative-integers","iterNegativeOddIntegersSeq":"@stdlib/math/iter/sequences/negative-odd-integers","iterNone":"@stdlib/iter/none","iterNoneBy":"@stdlib/iter/none-by","iterNonFibonacciSeq":"@stdlib/math/iter/sequences/nonfibonacci","iterNonNegativeEvenIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-even-integers","iterNonNegativeIntegersSeq":"@stdlib/math/iter/sequences/nonnegative-integers","iterNonPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-even-integers","iterNonPositiveIntegersSeq":"@stdlib/math/iter/sequences/nonpositive-integers","iterNonSquaresSeq":"@stdlib/math/iter/sequences/nonsquares","iterNth":"@stdlib/iter/nth","iterOddIntegersSeq":"@stdlib/math/iter/sequences/odd-integers","iterPeriodicSinc":"@stdlib/simulate/iter/periodic-sinc","iterPipeline":"@stdlib/iter/pipeline","iterPop":"@stdlib/iter/pop","iterPositiveEvenIntegersSeq":"@stdlib/math/iter/sequences/positive-even-integers","iterPositiveIntegersSeq":"@stdlib/math/iter/sequences/positive-integers","iterPositiveOddIntegersSeq":"@stdlib/math/iter/sequences/positive-odd-integers","iterPow":"@stdlib/math/iter/special/pow","iterPrimesSeq":"@stdlib/math/iter/sequences/primes","iterprod":"@stdlib/stats/iter/prod","iterPulse":"@stdlib/simulate/iter/pulse","iterPush":"@stdlib/iter/push","iterRad2deg":"@stdlib/math/iter/special/rad2deg","iterRamp":"@stdlib/math/iter/special/ramp","iterrange":"@stdlib/stats/iter/range","iterReject":"@stdlib/iter/reject","iterReplicate":"@stdlib/iter/replicate","iterReplicateBy":"@stdlib/iter/replicate-by","iterRound":"@stdlib/math/iter/special/round","iterRound2":"@stdlib/math/iter/special/round2","iterRound10":"@stdlib/math/iter/special/round10","iterRsqrt":"@stdlib/math/iter/special/rsqrt","iterSawtoothWave":"@stdlib/simulate/iter/sawtooth-wave","iterShift":"@stdlib/iter/shift","iterSignum":"@stdlib/math/iter/special/signum","iterSin":"@stdlib/math/iter/special/sin","iterSinc":"@stdlib/math/iter/special/sinc","iterSineWave":"@stdlib/simulate/iter/sine-wave","iterSinh":"@stdlib/math/iter/special/sinh","iterSinpi":"@stdlib/math/iter/special/sinpi","iterSlice":"@stdlib/iter/slice","iterSome":"@stdlib/iter/some","iterSomeBy":"@stdlib/iter/some-by","iterSpence":"@stdlib/math/iter/special/spence","iterSqrt":"@stdlib/math/iter/special/sqrt","iterSqrt1pm1":"@stdlib/math/iter/special/sqrt1pm1","iterSquaredTriangularSeq":"@stdlib/math/iter/sequences/squared-triangular","iterSquaresSeq":"@stdlib/math/iter/sequences/squares","iterSquareWave":"@stdlib/simulate/iter/square-wave","iterstdev":"@stdlib/stats/iter/stdev","iterStep":"@stdlib/iter/step","iterStrided":"@stdlib/iter/strided","iterStridedBy":"@stdlib/iter/strided-by","iterSubtract":"@stdlib/math/iter/ops/subtract","itersum":"@stdlib/stats/iter/sum","itersumabs":"@stdlib/stats/iter/sumabs","itersumabs2":"@stdlib/stats/iter/sumabs2","iterTan":"@stdlib/math/iter/special/tan","iterTanh":"@stdlib/math/iter/special/tanh","iterThunk":"@stdlib/iter/pipeline-thunk","iterTriangleWave":"@stdlib/simulate/iter/triangle-wave","iterTriangularSeq":"@stdlib/math/iter/sequences/triangular","iterTribonnaciSeq":"@stdlib/math/iter/sequences/tribonacci","iterTrigamma":"@stdlib/math/iter/special/trigamma","iterTrunc":"@stdlib/math/iter/special/trunc","iterTrunc2":"@stdlib/math/iter/special/trunc2","iterTrunc10":"@stdlib/math/iter/special/trunc10","iterUnion":"@stdlib/iter/union","iterUnique":"@stdlib/iter/unique","iterUniqueBy":"@stdlib/iter/unique-by","iterUniqueByHash":"@stdlib/iter/unique-by-hash","iterUnitspace":"@stdlib/iter/unitspace","iterUnshift":"@stdlib/iter/unshift","iterUntilEach":"@stdlib/iter/until-each","itervariance":"@stdlib/stats/iter/variance","iterVercos":"@stdlib/math/iter/special/vercos","iterVersin":"@stdlib/math/iter/special/versin","iterWhileEach":"@stdlib/iter/while-each","iterZeta":"@stdlib/math/iter/special/riemann-zeta","joinStream":"@stdlib/streams/node/join","kde2d":"@stdlib/stats/kde2d","kebabcase":"@stdlib/string/kebabcase","keyBy":"@stdlib/utils/key-by","keyByRight":"@stdlib/utils/key-by-right","keysIn":"@stdlib/utils/keys-in","kruskalTest":"@stdlib/stats/kruskal-test","kstest":"@stdlib/stats/kstest","last":"@stdlib/string/last","lda":"@stdlib/nlp/lda","leveneTest":"@stdlib/stats/levene-test","LinkedList":"@stdlib/utils/linked-list","linspace":"@stdlib/array/linspace","LIU_NEGATIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-negative-opinion-words-en","LIU_POSITIVE_OPINION_WORDS_EN":"@stdlib/datasets/liu-positive-opinion-words-en","LN_HALF":"@stdlib/constants/float64/ln-half","LN_PI":"@stdlib/constants/float64/ln-pi","LN_SQRT_TWO_PI":"@stdlib/constants/float64/ln-sqrt-two-pi","LN_TWO_PI":"@stdlib/constants/float64/ln-two-pi","LN2":"@stdlib/constants/float64/ln-two","LN10":"@stdlib/constants/float64/ln-ten","LOG2E":"@stdlib/constants/float64/log2-e","LOG10E":"@stdlib/constants/float64/log10-e","logspace":"@stdlib/array/logspace","lowercase":"@stdlib/string/lowercase","lowercaseKeys":"@stdlib/utils/lowercase-keys","lowess":"@stdlib/stats/lowess","lpad":"@stdlib/string/left-pad","ltrim":"@stdlib/string/left-trim","ltrimN":"@stdlib/string/left-trim-n","MALE_FIRST_NAMES_EN":"@stdlib/datasets/male-first-names-en","map":"@stdlib/utils/map","map2":"@stdlib/utils/map2","map2d":"@stdlib/utils/map2d","map2Right":"@stdlib/utils/map2-right","map3d":"@stdlib/utils/map3d","map4d":"@stdlib/utils/map4d","map5d":"@stdlib/utils/map5d","mapArguments":"@stdlib/utils/map-arguments","mapFun":"@stdlib/utils/map-function","mapFunAsync":"@stdlib/utils/async/map-function","mapKeys":"@stdlib/utils/map-keys","mapKeysAsync":"@stdlib/utils/async/map-keys","mapReduce":"@stdlib/utils/map-reduce","mapReduceRight":"@stdlib/utils/map-reduce-right","mapRight":"@stdlib/utils/map-right","mapValues":"@stdlib/utils/map-values","mapValuesAsync":"@stdlib/utils/async/map-values","maskArguments":"@stdlib/utils/mask-arguments","MAX_ARRAY_LENGTH":"@stdlib/constants/array/max-array-length","MAX_TYPED_ARRAY_LENGTH":"@stdlib/constants/array/max-typed-array-length","maybeBroadcastArray":"@stdlib/ndarray/maybe-broadcast-array","maybeBroadcastArrays":"@stdlib/ndarray/maybe-broadcast-arrays","memoize":"@stdlib/utils/memoize","merge":"@stdlib/utils/merge","MILLISECONDS_IN_DAY":"@stdlib/constants/time/milliseconds-in-day","MILLISECONDS_IN_HOUR":"@stdlib/constants/time/milliseconds-in-hour","MILLISECONDS_IN_MINUTE":"@stdlib/constants/time/milliseconds-in-minute","MILLISECONDS_IN_SECOND":"@stdlib/constants/time/milliseconds-in-second","MILLISECONDS_IN_WEEK":"@stdlib/constants/time/milliseconds-in-week","MINARD_NAPOLEONS_MARCH":"@stdlib/datasets/minard-napoleons-march","MINUTES_IN_DAY":"@stdlib/constants/time/minutes-in-day","MINUTES_IN_HOUR":"@stdlib/constants/time/minutes-in-hour","MINUTES_IN_WEEK":"@stdlib/constants/time/minutes-in-week","minutesInMonth":"@stdlib/time/minutes-in-month","minutesInYear":"@stdlib/time/minutes-in-year","MOBY_DICK":"@stdlib/datasets/moby-dick","MONTH_NAMES_EN":"@stdlib/datasets/month-names-en","MONTHS_IN_YEAR":"@stdlib/constants/time/months-in-year","moveProperty":"@stdlib/utils/move-property","MultiSlice":"@stdlib/slice/multi","namedtypedtuple":"@stdlib/utils/named-typed-tuple","NAN":"@stdlib/constants/float64/nan","naryFunction":"@stdlib/utils/nary-function","nativeClass":"@stdlib/utils/native-class","ndarray":"@stdlib/ndarray/ctor","ndarray2array":"@stdlib/ndarray/to-array","ndarrayCastingModes":"@stdlib/ndarray/casting-modes","ndarrayDataBuffer":"@stdlib/ndarray/data-buffer","ndarrayDataType":"@stdlib/ndarray/dtype","ndarrayDataTypes":"@stdlib/ndarray/dtypes","ndarrayDispatch":"@stdlib/ndarray/dispatch","ndarrayFlag":"@stdlib/ndarray/flag","ndarrayFlags":"@stdlib/ndarray/flags","ndarrayIndexModes":"@stdlib/ndarray/index-modes","ndarraylike2ndarray":"@stdlib/ndarray/ndarraylike2ndarray","ndarrayMinDataType":"@stdlib/ndarray/min-dtype","ndarrayMostlySafeCasts":"@stdlib/ndarray/mostly-safe-casts","ndarrayNextDataType":"@stdlib/ndarray/next-dtype","ndarrayOffset":"@stdlib/ndarray/offset","ndarrayOrder":"@stdlib/ndarray/order","ndarrayOrders":"@stdlib/ndarray/orders","ndarrayPromotionRules":"@stdlib/ndarray/promotion-rules","ndarraySafeCasts":"@stdlib/ndarray/safe-casts","ndarraySameKindCasts":"@stdlib/ndarray/same-kind-casts","ndarrayShape":"@stdlib/ndarray/shape","ndarrayStride":"@stdlib/ndarray/stride","ndarrayStrides":"@stdlib/ndarray/strides","ndat":"@stdlib/ndarray/at","ndempty":"@stdlib/ndarray/empty","ndemptyLike":"@stdlib/ndarray/empty-like","ndims":"@stdlib/ndarray/ndims","nditer2arrayEach":"@stdlib/ndarray/iter/to-array-each","nditerColumnEntries":"@stdlib/ndarray/iter/column-entries","nditerColumns":"@stdlib/ndarray/iter/columns","nditerEntries":"@stdlib/ndarray/iter/entries","nditerIndices":"@stdlib/ndarray/iter/indices","nditerInterleaveSubarrays":"@stdlib/ndarray/iter/interleave-subarrays","nditerMatrices":"@stdlib/ndarray/iter/matrices","nditerMatrixEntries":"@stdlib/ndarray/iter/matrix-entries","nditerRowEntries":"@stdlib/ndarray/iter/row-entries","nditerRows":"@stdlib/ndarray/iter/rows","nditerSelectDimension":"@stdlib/ndarray/iter/select-dimension","nditerStacks":"@stdlib/ndarray/iter/stacks","nditerSubarrays":"@stdlib/ndarray/iter/subarrays","nditerValues":"@stdlib/ndarray/iter/values","ndslice":"@stdlib/ndarray/slice","ndsliceAssign":"@stdlib/ndarray/slice-assign","ndsliceDimension":"@stdlib/ndarray/slice-dimension","ndsliceDimensionFrom":"@stdlib/ndarray/slice-dimension-from","ndsliceDimensionTo":"@stdlib/ndarray/slice-dimension-to","ndsliceFrom":"@stdlib/ndarray/slice-from","ndsliceTo":"@stdlib/ndarray/slice-to","ndzeros":"@stdlib/ndarray/zeros","ndzerosLike":"@stdlib/ndarray/zeros-like","nextGraphemeClusterBreak":"@stdlib/string/next-grapheme-cluster-break","nextTick":"@stdlib/utils/next-tick","NIGHTINGALES_ROSE":"@stdlib/datasets/nightingales-rose","NINF":"@stdlib/constants/float64/ninf","NODE_VERSION":"@stdlib/process/node-version","none":"@stdlib/utils/none","noneBy":"@stdlib/utils/none-by","noneByAsync":"@stdlib/utils/async/none-by","noneByRight":"@stdlib/utils/none-by-right","noneByRightAsync":"@stdlib/utils/async/none-by-right","noneInBy":"@stdlib/utils/none-in-by","nonEnumerableProperties":"@stdlib/utils/nonenumerable-properties","nonEnumerablePropertiesIn":"@stdlib/utils/nonenumerable-properties-in","nonEnumerablePropertyNames":"@stdlib/utils/nonenumerable-property-names","nonEnumerablePropertyNamesIn":"@stdlib/utils/nonenumerable-property-names-in","nonEnumerablePropertySymbols":"@stdlib/utils/nonenumerable-property-symbols","nonEnumerablePropertySymbolsIn":"@stdlib/utils/nonenumerable-property-symbols-in","noneOwnBy":"@stdlib/utils/none-own-by","nonIndexKeys":"@stdlib/utils/nonindex-keys","noop":"@stdlib/utils/noop","now":"@stdlib/time/now","NUM_CPUS":"@stdlib/os/num-cpus","num2words":"@stdlib/string/num2words","Number":"@stdlib/number/ctor","numel":"@stdlib/ndarray/numel","numelDimension":"@stdlib/ndarray/numel-dimension","numGraphemeClusters":"@stdlib/string/num-grapheme-clusters","Object":"@stdlib/object/ctor","objectEntries":"@stdlib/utils/entries","objectEntriesIn":"@stdlib/utils/entries-in","objectFromEntries":"@stdlib/utils/from-entries","objectInverse":"@stdlib/utils/object-inverse","objectInverseBy":"@stdlib/utils/object-inverse-by","objectKeys":"@stdlib/utils/keys","objectValues":"@stdlib/utils/values","objectValuesIn":"@stdlib/utils/values-in","omit":"@stdlib/utils/omit","omitBy":"@stdlib/utils/omit-by","open":"@stdlib/fs/open","openURL":"@stdlib/utils/open-url","ordinalize":"@stdlib/nlp/ordinalize","PACE_BOSTON_HOUSE_PRICES":"@stdlib/datasets/pace-boston-house-prices","pad":"@stdlib/string/pad","padjust":"@stdlib/stats/padjust","papply":"@stdlib/utils/papply","papplyRight":"@stdlib/utils/papply-right","parallel":"@stdlib/utils/parallel","parseJSON":"@stdlib/utils/parse-json","pascalcase":"@stdlib/string/pascalcase","PATH_DELIMITER":"@stdlib/constants/path/delimiter","PATH_DELIMITER_POSIX":"@stdlib/constants/path/delimiter-posix","PATH_DELIMITER_WIN32":"@stdlib/constants/path/delimiter-win32","PATH_SEP":"@stdlib/constants/path/sep","PATH_SEP_POSIX":"@stdlib/constants/path/sep-posix","PATH_SEP_WIN32":"@stdlib/constants/path/sep-win32","pcorrtest":"@stdlib/stats/pcorrtest","percentEncode":"@stdlib/string/percent-encode","PHI":"@stdlib/constants/float64/phi","PI":"@stdlib/constants/float64/pi","PI_SQUARED":"@stdlib/constants/float64/pi-squared","pick":"@stdlib/utils/pick","pickArguments":"@stdlib/utils/pick-arguments","pickBy":"@stdlib/utils/pick-by","PINF":"@stdlib/constants/float64/pinf","pkg2alias":"@stdlib/namespace/pkg2alias","pkg2related":"@stdlib/namespace/pkg2related","pkg2standalone":"@stdlib/namespace/pkg2standalone","PLATFORM":"@stdlib/os/platform","plot":"@stdlib/plot","Plot":"@stdlib/plot/ctor","pluck":"@stdlib/utils/pluck","pop":"@stdlib/utils/pop","porterStemmer":"@stdlib/nlp/porter-stemmer","prepend":"@stdlib/utils/prepend","prevGraphemeClusterBreak":"@stdlib/string/prev-grapheme-cluster-break","PRIMES_100K":"@stdlib/datasets/primes-100k","properties":"@stdlib/utils/properties","propertiesIn":"@stdlib/utils/properties-in","propertyDescriptor":"@stdlib/utils/property-descriptor","propertyDescriptorIn":"@stdlib/utils/property-descriptor-in","propertyDescriptors":"@stdlib/utils/property-descriptors","propertyDescriptorsIn":"@stdlib/utils/property-descriptors-in","propertyNames":"@stdlib/utils/property-names","propertyNamesIn":"@stdlib/utils/property-names-in","propertySymbols":"@stdlib/utils/property-symbols","propertySymbolsIn":"@stdlib/utils/property-symbols-in","Proxy":"@stdlib/proxy/ctor","push":"@stdlib/utils/push","quarterOfYear":"@stdlib/time/quarter-of-year","random.array.arcsine":"@stdlib/random/array/arcsine","random.array.bernoulli":"@stdlib/random/array/bernoulli","random.array.beta":"@stdlib/random/array/beta","random.array.betaprime":"@stdlib/random/array/betaprime","random.array.binomial":"@stdlib/random/array/binomial","random.array.cauchy":"@stdlib/random/array/cauchy","random.array.chi":"@stdlib/random/array/chi","random.array.chisquare":"@stdlib/random/array/chisquare","random.array.cosine":"@stdlib/random/array/cosine","random.array.discreteUniform":"@stdlib/random/array/discrete-uniform","random.array.erlang":"@stdlib/random/array/erlang","random.array.exponential":"@stdlib/random/array/exponential","random.array.f":"@stdlib/random/array/f","random.array.frechet":"@stdlib/random/array/frechet","random.array.gamma":"@stdlib/random/array/gamma","random.array.geometric":"@stdlib/random/array/geometric","random.array.gumbel":"@stdlib/random/array/gumbel","random.array.hypergeometric":"@stdlib/random/array/hypergeometric","random.array.invgamma":"@stdlib/random/array/invgamma","random.array.kumaraswamy":"@stdlib/random/array/kumaraswamy","random.array.laplace":"@stdlib/random/array/laplace","random.array.levy":"@stdlib/random/array/levy","random.array.logistic":"@stdlib/random/array/logistic","random.array.lognormal":"@stdlib/random/array/lognormal","random.array.minstd":"@stdlib/random/array/minstd","random.array.minstdShuffle":"@stdlib/random/array/minstd-shuffle","random.array.mt19937":"@stdlib/random/array/mt19937","random.array.negativeBinomial":"@stdlib/random/array/negative-binomial","random.array.normal":"@stdlib/random/array/normal","random.array.pareto1":"@stdlib/random/array/pareto-type1","random.array.poisson":"@stdlib/random/array/poisson","random.array.randu":"@stdlib/random/array/randu","random.array.rayleigh":"@stdlib/random/array/rayleigh","random.array.t":"@stdlib/random/array/t","random.array.triangular":"@stdlib/random/array/triangular","random.array.uniform":"@stdlib/random/array/uniform","random.array.weibull":"@stdlib/random/array/weibull","random.iterators.arcsine":"@stdlib/random/iter/arcsine","random.iterators.bernoulli":"@stdlib/random/iter/bernoulli","random.iterators.beta":"@stdlib/random/iter/beta","random.iterators.betaprime":"@stdlib/random/iter/betaprime","random.iterators.binomial":"@stdlib/random/iter/binomial","random.iterators.boxMuller":"@stdlib/random/iter/box-muller","random.iterators.cauchy":"@stdlib/random/iter/cauchy","random.iterators.chi":"@stdlib/random/iter/chi","random.iterators.chisquare":"@stdlib/random/iter/chisquare","random.iterators.cosine":"@stdlib/random/iter/cosine","random.iterators.discreteUniform":"@stdlib/random/iter/discrete-uniform","random.iterators.erlang":"@stdlib/random/iter/erlang","random.iterators.exponential":"@stdlib/random/iter/exponential","random.iterators.f":"@stdlib/random/iter/f","random.iterators.frechet":"@stdlib/random/iter/frechet","random.iterators.gamma":"@stdlib/random/iter/gamma","random.iterators.geometric":"@stdlib/random/iter/geometric","random.iterators.gumbel":"@stdlib/random/iter/gumbel","random.iterators.hypergeometric":"@stdlib/random/iter/hypergeometric","random.iterators.improvedZiggurat":"@stdlib/random/iter/improved-ziggurat","random.iterators.invgamma":"@stdlib/random/iter/invgamma","random.iterators.kumaraswamy":"@stdlib/random/iter/kumaraswamy","random.iterators.laplace":"@stdlib/random/iter/laplace","random.iterators.levy":"@stdlib/random/iter/levy","random.iterators.logistic":"@stdlib/random/iter/logistic","random.iterators.lognormal":"@stdlib/random/iter/lognormal","random.iterators.minstd":"@stdlib/random/iter/minstd","random.iterators.minstdShuffle":"@stdlib/random/iter/minstd-shuffle","random.iterators.mt19937":"@stdlib/random/iter/mt19937","random.iterators.negativeBinomial":"@stdlib/random/iter/negative-binomial","random.iterators.normal":"@stdlib/random/iter/normal","random.iterators.pareto1":"@stdlib/random/iter/pareto-type1","random.iterators.poisson":"@stdlib/random/iter/poisson","random.iterators.randi":"@stdlib/random/iter/randi","random.iterators.randn":"@stdlib/random/iter/randn","random.iterators.randu":"@stdlib/random/iter/randu","random.iterators.rayleigh":"@stdlib/random/iter/rayleigh","random.iterators.t":"@stdlib/random/iter/t","random.iterators.triangular":"@stdlib/random/iter/triangular","random.iterators.uniform":"@stdlib/random/iter/uniform","random.iterators.weibull":"@stdlib/random/iter/weibull","random.streams.arcsine":"@stdlib/random/streams/arcsine","random.streams.bernoulli":"@stdlib/random/streams/bernoulli","random.streams.beta":"@stdlib/random/streams/beta","random.streams.betaprime":"@stdlib/random/streams/betaprime","random.streams.binomial":"@stdlib/random/streams/binomial","random.streams.boxMuller":"@stdlib/random/streams/box-muller","random.streams.cauchy":"@stdlib/random/streams/cauchy","random.streams.chi":"@stdlib/random/streams/chi","random.streams.chisquare":"@stdlib/random/streams/chisquare","random.streams.cosine":"@stdlib/random/streams/cosine","random.streams.discreteUniform":"@stdlib/random/streams/discrete-uniform","random.streams.erlang":"@stdlib/random/streams/erlang","random.streams.exponential":"@stdlib/random/streams/exponential","random.streams.f":"@stdlib/random/streams/f","random.streams.frechet":"@stdlib/random/streams/frechet","random.streams.gamma":"@stdlib/random/streams/gamma","random.streams.geometric":"@stdlib/random/streams/geometric","random.streams.gumbel":"@stdlib/random/streams/gumbel","random.streams.hypergeometric":"@stdlib/random/streams/hypergeometric","random.streams.improvedZiggurat":"@stdlib/random/streams/improved-ziggurat","random.streams.invgamma":"@stdlib/random/streams/invgamma","random.streams.kumaraswamy":"@stdlib/random/streams/kumaraswamy","random.streams.laplace":"@stdlib/random/streams/laplace","random.streams.levy":"@stdlib/random/streams/levy","random.streams.logistic":"@stdlib/random/streams/logistic","random.streams.lognormal":"@stdlib/random/streams/lognormal","random.streams.minstd":"@stdlib/random/streams/minstd","random.streams.minstdShuffle":"@stdlib/random/streams/minstd-shuffle","random.streams.mt19937":"@stdlib/random/streams/mt19937","random.streams.negativeBinomial":"@stdlib/random/streams/negative-binomial","random.streams.normal":"@stdlib/random/streams/normal","random.streams.pareto1":"@stdlib/random/streams/pareto-type1","random.streams.poisson":"@stdlib/random/streams/poisson","random.streams.randi":"@stdlib/random/streams/randi","random.streams.randn":"@stdlib/random/streams/randn","random.streams.randu":"@stdlib/random/streams/randu","random.streams.rayleigh":"@stdlib/random/streams/rayleigh","random.streams.t":"@stdlib/random/streams/t","random.streams.triangular":"@stdlib/random/streams/triangular","random.streams.uniform":"@stdlib/random/streams/uniform","random.streams.weibull":"@stdlib/random/streams/weibull","random.strided.arcsine":"@stdlib/random/strided/arcsine","random.strided.bernoulli":"@stdlib/random/strided/bernoulli","random.strided.beta":"@stdlib/random/strided/beta","random.strided.betaprime":"@stdlib/random/strided/betaprime","random.strided.chi":"@stdlib/random/strided/chi","random.strided.chisquare":"@stdlib/random/strided/chisquare","random.strided.cosine":"@stdlib/random/strided/cosine","random.strided.discreteUniform":"@stdlib/random/strided/discrete-uniform","random.strided.exponential":"@stdlib/random/strided/exponential","random.strided.gamma":"@stdlib/random/strided/gamma","random.strided.geometric":"@stdlib/random/strided/geometric","random.strided.invgamma":"@stdlib/random/strided/invgamma","random.strided.lognormal":"@stdlib/random/strided/lognormal","random.strided.minstd":"@stdlib/random/strided/minstd","random.strided.minstdShuffle":"@stdlib/random/strided/minstd-shuffle","random.strided.mt19937":"@stdlib/random/strided/mt19937","random.strided.normal":"@stdlib/random/strided/normal","random.strided.poisson":"@stdlib/random/strided/poisson","random.strided.randu":"@stdlib/random/strided/randu","random.strided.rayleigh":"@stdlib/random/strided/rayleigh","random.strided.t":"@stdlib/random/strided/t","random.strided.uniform":"@stdlib/random/strided/uniform","random.strided.weibull":"@stdlib/random/strided/weibull","ranks":"@stdlib/stats/ranks","readDir":"@stdlib/fs/read-dir","readFile":"@stdlib/fs/read-file","readFileList":"@stdlib/fs/read-file-list","readJSON":"@stdlib/fs/read-json","readWASM":"@stdlib/fs/read-wasm","real":"@stdlib/complex/float64/real","realarray":"@stdlib/array/typed-real","realarrayCtors":"@stdlib/array/typed-real-ctors","realarrayDataTypes":"@stdlib/array/typed-real-dtypes","realf":"@stdlib/complex/float32/real","realmax":"@stdlib/utils/real-max","realmin":"@stdlib/utils/real-min","reBasename":"@stdlib/regexp/basename","reBasenamePosix":"@stdlib/regexp/basename-posix","reBasenameWindows":"@stdlib/regexp/basename-windows","reColorHexadecimal":"@stdlib/regexp/color-hexadecimal","reDecimalNumber":"@stdlib/regexp/decimal-number","reDirname":"@stdlib/regexp/dirname","reDirnamePosix":"@stdlib/regexp/dirname-posix","reDirnameWindows":"@stdlib/regexp/dirname-windows","reduce":"@stdlib/utils/reduce","reduce2d":"@stdlib/utils/reduce2d","reduceAsync":"@stdlib/utils/async/reduce","reduceRight":"@stdlib/utils/reduce-right","reduceRightAsync":"@stdlib/utils/async/reduce-right","reDurationString":"@stdlib/regexp/duration-string","reEOL":"@stdlib/regexp/eol","reExtendedLengthPath":"@stdlib/regexp/extended-length-path","reExtname":"@stdlib/regexp/extname","reExtnamePosix":"@stdlib/regexp/extname-posix","reExtnameWindows":"@stdlib/regexp/extname-windows","reFilename":"@stdlib/regexp/filename","reFilenamePosix":"@stdlib/regexp/filename-posix","reFilenameWindows":"@stdlib/regexp/filename-windows","reFromString":"@stdlib/utils/regexp-from-string","reFunctionName":"@stdlib/regexp/function-name","regexp2json":"@stdlib/regexp/to-json","reim":"@stdlib/complex/float64/reim","reimf":"@stdlib/complex/float32/reim","rejectArguments":"@stdlib/utils/reject-arguments","removeFirst":"@stdlib/string/remove-first","removeLast":"@stdlib/string/remove-last","removePunctuation":"@stdlib/string/remove-punctuation","removeUTF8BOM":"@stdlib/string/remove-utf8-bom","removeWords":"@stdlib/string/remove-words","rename":"@stdlib/fs/rename","reNativeFunction":"@stdlib/regexp/native-function","reorderArguments":"@stdlib/utils/reorder-arguments","repeat":"@stdlib/string/repeat","replace":"@stdlib/string/replace","replaceBefore":"@stdlib/string/replace-before","reRegExp":"@stdlib/regexp/regexp","rescape":"@stdlib/utils/escape-regexp-string","reSemVer":"@stdlib/regexp/semver","resolveParentPath":"@stdlib/fs/resolve-parent-path","resolveParentPathBy":"@stdlib/fs/resolve-parent-path-by","reUncPath":"@stdlib/regexp/unc-path","reUtf16SurrogatePair":"@stdlib/regexp/utf16-surrogate-pair","reUtf16UnpairedSurrogate":"@stdlib/regexp/utf16-unpaired-surrogate","reverseArguments":"@stdlib/utils/reverse-arguments","reverseString":"@stdlib/string/reverse","reviveBasePRNG":"@stdlib/random/base/reviver","reviveBuffer":"@stdlib/buffer/reviver","reviveComplex":"@stdlib/complex/reviver","reviveComplex64":"@stdlib/complex/float32/reviver","reviveComplex128":"@stdlib/complex/float64/reviver","reviveError":"@stdlib/error/reviver","reviveRegExp":"@stdlib/regexp/reviver","reviveTypedArray":"@stdlib/array/reviver","reWhitespace":"@stdlib/regexp/whitespace","rpad":"@stdlib/string/right-pad","rtrim":"@stdlib/string/right-trim","rtrimN":"@stdlib/string/right-trim-n","safeintmax":"@stdlib/utils/safe-int-max","safeintmin":"@stdlib/utils/safe-int-min","sample":"@stdlib/random/sample","SAVOY_STOPWORDS_FIN":"@stdlib/datasets/savoy-stopwords-fin","SAVOY_STOPWORDS_FR":"@stdlib/datasets/savoy-stopwords-fr","SAVOY_STOPWORDS_GER":"@stdlib/datasets/savoy-stopwords-ger","SAVOY_STOPWORDS_IT":"@stdlib/datasets/savoy-stopwords-it","SAVOY_STOPWORDS_POR":"@stdlib/datasets/savoy-stopwords-por","SAVOY_STOPWORDS_SP":"@stdlib/datasets/savoy-stopwords-sp","SAVOY_STOPWORDS_SWE":"@stdlib/datasets/savoy-stopwords-swe","scalar2array":"@stdlib/array/from-scalar","scalar2ndarray":"@stdlib/ndarray/from-scalar","sdot":"@stdlib/blas/sdot","SECONDS_IN_DAY":"@stdlib/constants/time/seconds-in-day","SECONDS_IN_HOUR":"@stdlib/constants/time/seconds-in-hour","SECONDS_IN_MINUTE":"@stdlib/constants/time/seconds-in-minute","SECONDS_IN_WEEK":"@stdlib/constants/time/seconds-in-week","secondsInMonth":"@stdlib/time/seconds-in-month","secondsInYear":"@stdlib/time/seconds-in-year","sentencize":"@stdlib/nlp/sentencize","seq2slice":"@stdlib/slice/seq2slice","setConfigurableReadOnly":"@stdlib/utils/define-configurable-read-only-property","setConfigurableReadOnlyAccessor":"@stdlib/utils/define-configurable-read-only-accessor","setConfigurableReadWriteAccessor":"@stdlib/utils/define-configurable-read-write-accessor","setConfigurableWriteOnlyAccessor":"@stdlib/utils/define-configurable-write-only-accessor","setMemoizedConfigurableReadOnly":"@stdlib/utils/define-memoized-configurable-read-only-property","setMemoizedReadOnly":"@stdlib/utils/define-memoized-read-only-property","setNonEnumerableProperty":"@stdlib/utils/define-nonenumerable-property","setNonEnumerableReadOnly":"@stdlib/utils/define-nonenumerable-read-only-property","setNonEnumerableReadOnlyAccessor":"@stdlib/utils/define-nonenumerable-read-only-accessor","setNonEnumerableReadWriteAccessor":"@stdlib/utils/define-nonenumerable-read-write-accessor","setNonEnumerableWriteOnlyAccessor":"@stdlib/utils/define-nonenumerable-write-only-accessor","setReadOnly":"@stdlib/utils/define-read-only-property","setReadOnlyAccessor":"@stdlib/utils/define-read-only-accessor","setReadWriteAccessor":"@stdlib/utils/define-read-write-accessor","setWriteOnlyAccessor":"@stdlib/utils/define-write-only-accessor","SharedArrayBuffer":"@stdlib/array/shared-buffer","shift":"@stdlib/utils/shift","shuffle":"@stdlib/random/shuffle","sizeOf":"@stdlib/utils/size-of","Slice":"@stdlib/slice/ctor","snakecase":"@stdlib/string/snakecase","some":"@stdlib/utils/some","someBy":"@stdlib/utils/some-by","someByAsync":"@stdlib/utils/async/some-by","someByRight":"@stdlib/utils/some-by-right","someByRightAsync":"@stdlib/utils/async/some-by-right","someInBy":"@stdlib/utils/some-in-by","someOwnBy":"@stdlib/utils/some-own-by","SOTU":"@stdlib/datasets/sotu","SPACHE_REVISED":"@stdlib/datasets/spache-revised","SPAM_ASSASSIN":"@stdlib/datasets/spam-assassin","SparklineBase":"@stdlib/plot/sparklines/base/ctor","sparsearray2iterator":"@stdlib/array/to-sparse-iterator","sparsearray2iteratorRight":"@stdlib/array/to-sparse-iterator-right","splitStream":"@stdlib/streams/node/split","SQRT_EPS":"@stdlib/constants/float64/sqrt-eps","SQRT_HALF":"@stdlib/constants/float64/sqrt-half","SQRT_HALF_PI":"@stdlib/constants/float64/sqrt-half-pi","SQRT_PHI":"@stdlib/constants/float64/sqrt-phi","SQRT_PI":"@stdlib/constants/float64/sqrt-pi","SQRT_THREE":"@stdlib/constants/float64/sqrt-three","SQRT_TWO":"@stdlib/constants/float64/sqrt-two","SQRT_TWO_PI":"@stdlib/constants/float64/sqrt-two-pi","SSA_US_BIRTHS_2000_2014":"@stdlib/datasets/ssa-us-births-2000-2014","sswap":"@stdlib/blas/sswap","Stack":"@stdlib/utils/stack","standalone2pkg":"@stdlib/namespace/standalone2pkg","STANDARD_CARD_DECK":"@stdlib/datasets/standard-card-deck","startcase":"@stdlib/string/startcase","startsWith":"@stdlib/string/starts-with","STOPWORDS_EN":"@stdlib/datasets/stopwords-en","strided.abs":"@stdlib/math/strided/special/abs","strided.abs2":"@stdlib/math/strided/special/abs2","strided.abs2By":"@stdlib/math/strided/special/abs2-by","strided.absBy":"@stdlib/math/strided/special/abs-by","strided.acosBy":"@stdlib/math/strided/special/acos-by","strided.acoshBy":"@stdlib/math/strided/special/acosh-by","strided.acotBy":"@stdlib/math/strided/special/acot-by","strided.acothBy":"@stdlib/math/strided/special/acoth-by","strided.acovercosBy":"@stdlib/math/strided/special/acovercos-by","strided.acoversinBy":"@stdlib/math/strided/special/acoversin-by","strided.add":"@stdlib/math/strided/ops/add","strided.addBy":"@stdlib/math/strided/ops/add-by","strided.ahavercosBy":"@stdlib/math/strided/special/ahavercos-by","strided.ahaversinBy":"@stdlib/math/strided/special/ahaversin-by","strided.asinBy":"@stdlib/math/strided/special/asin-by","strided.asinhBy":"@stdlib/math/strided/special/asinh-by","strided.atanBy":"@stdlib/math/strided/special/atan-by","strided.atanhBy":"@stdlib/math/strided/special/atanh-by","strided.avercosBy":"@stdlib/math/strided/special/avercos-by","strided.aversinBy":"@stdlib/math/strided/special/aversin-by","strided.besselj0By":"@stdlib/math/strided/special/besselj0-by","strided.besselj1By":"@stdlib/math/strided/special/besselj1-by","strided.bessely0By":"@stdlib/math/strided/special/bessely0-by","strided.bessely1By":"@stdlib/math/strided/special/bessely1-by","strided.binetBy":"@stdlib/math/strided/special/binet-by","strided.cbrt":"@stdlib/math/strided/special/cbrt","strided.cbrtBy":"@stdlib/math/strided/special/cbrt-by","strided.ceil":"@stdlib/math/strided/special/ceil","strided.cosBy":"@stdlib/math/strided/special/cos-by","strided.deg2rad":"@stdlib/math/strided/special/deg2rad","strided.dataTypes":"@stdlib/strided/dtypes","strided.dcbrtBy":"@stdlib/math/strided/special/dcbrt-by","strided.dispatch":"@stdlib/strided/dispatch","strided.dispatchBy":"@stdlib/strided/dispatch-by","strided.floor":"@stdlib/math/strided/special/floor","strided.inv":"@stdlib/math/strided/special/inv","strided.mul":"@stdlib/math/strided/ops/mul","strided.mulBy":"@stdlib/math/strided/ops/mul-by","strided.ramp":"@stdlib/math/strided/special/ramp","strided.rsqrt":"@stdlib/math/strided/special/rsqrt","strided.sinBy":"@stdlib/math/strided/special/sin-by","strided.sqrt":"@stdlib/math/strided/special/sqrt","strided.sqrtBy":"@stdlib/math/strided/special/sqrt-by","strided.sub":"@stdlib/math/strided/ops/sub","strided.subBy":"@stdlib/math/strided/ops/sub-by","strided.trunc":"@stdlib/math/strided/special/trunc","stridedarray2iterator":"@stdlib/array/to-strided-iterator","stridedArrayStream":"@stdlib/streams/node/from-strided-array","string2buffer":"@stdlib/buffer/from-string","sub2ind":"@stdlib/ndarray/sub2ind","substringAfter":"@stdlib/string/substring-after","substringAfterLast":"@stdlib/string/substring-after-last","substringBefore":"@stdlib/string/substring-before","substringBeforeLast":"@stdlib/string/substring-before-last","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK":"@stdlib/datasets/suthaharan-single-hop-sensor-network","Symbol":"@stdlib/symbol/ctor","tabulate":"@stdlib/utils/tabulate","tabulateBy":"@stdlib/utils/tabulate-by","tabulateByAsync":"@stdlib/utils/async/tabulate-by","thunk":"@stdlib/utils/thunk","tic":"@stdlib/time/tic","timeit":"@stdlib/utils/timeit","tmpdir":"@stdlib/os/tmpdir","toc":"@stdlib/time/toc","tokenize":"@stdlib/nlp/tokenize","transformStream":"@stdlib/streams/node/transform","trim":"@stdlib/string/trim","truncate":"@stdlib/string/truncate","truncateMiddle":"@stdlib/string/truncate-middle","trycatch":"@stdlib/utils/try-catch","trycatchAsync":"@stdlib/utils/async/try-catch","tryFunction":"@stdlib/utils/try-function","tryRequire":"@stdlib/utils/try-require","trythen":"@stdlib/utils/try-then","trythenAsync":"@stdlib/utils/async/try-then","ttest":"@stdlib/stats/ttest","ttest2":"@stdlib/stats/ttest2","TWO_PI":"@stdlib/constants/float64/two-pi","typedarray":"@stdlib/array/typed","typedarray2json":"@stdlib/array/to-json","typedarrayCtors":"@stdlib/array/typed-ctors","typedarrayDataTypes":"@stdlib/array/typed-dtypes","typedarraypool":"@stdlib/array/pool","typemax":"@stdlib/utils/type-max","typemin":"@stdlib/utils/type-min","typeOf":"@stdlib/utils/type-of","UINT8_MAX":"@stdlib/constants/uint8/max","UINT8_NUM_BYTES":"@stdlib/constants/uint8/num-bytes","Uint8Array":"@stdlib/array/uint8","Uint8ClampedArray":"@stdlib/array/uint8c","UINT16_MAX":"@stdlib/constants/uint16/max","UINT16_NUM_BYTES":"@stdlib/constants/uint16/num-bytes","Uint16Array":"@stdlib/array/uint16","UINT32_MAX":"@stdlib/constants/uint32/max","UINT32_NUM_BYTES":"@stdlib/constants/uint32/num-bytes","Uint32Array":"@stdlib/array/uint32","umask":"@stdlib/process/umask","uncapitalize":"@stdlib/string/uncapitalize","uncapitalizeKeys":"@stdlib/utils/uncapitalize-keys","uncurry":"@stdlib/utils/uncurry","uncurryRight":"@stdlib/utils/uncurry-right","UNICODE_MAX":"@stdlib/constants/unicode/max","UNICODE_MAX_BMP":"@stdlib/constants/unicode/max-bmp","UnicodeColumnChartSparkline":"@stdlib/plot/sparklines/unicode/column","UnicodeLineChartSparkline":"@stdlib/plot/sparklines/unicode/line","UnicodeSparkline":"@stdlib/plot/sparklines/unicode","UnicodeTristateChartSparkline":"@stdlib/plot/sparklines/unicode/tristate","UnicodeUpDownChartSparkline":"@stdlib/plot/sparklines/unicode/up-down","UnicodeWinLossChartSparkline":"@stdlib/plot/sparklines/unicode/win-loss","unlink":"@stdlib/fs/unlink","unshift":"@stdlib/utils/unshift","until":"@stdlib/utils/until","untilAsync":"@stdlib/utils/async/until","untilEach":"@stdlib/utils/until-each","untilEachRight":"@stdlib/utils/until-each-right","unzip":"@stdlib/utils/unzip","uppercase":"@stdlib/string/uppercase","uppercaseKeys":"@stdlib/utils/uppercase-keys","US_STATES_ABBR":"@stdlib/datasets/us-states-abbr","US_STATES_CAPITALS":"@stdlib/datasets/us-states-capitals","US_STATES_CAPITALS_NAMES":"@stdlib/datasets/us-states-capitals-names","US_STATES_NAMES":"@stdlib/datasets/us-states-names","US_STATES_NAMES_CAPITALS":"@stdlib/datasets/us-states-names-capitals","utf16ToUTF8Array":"@stdlib/string/utf16-to-utf8-array","vartest":"@stdlib/stats/vartest","waterfall":"@stdlib/utils/async/series-waterfall","WebAssemblyMemory":"@stdlib/wasm/memory","whileAsync":"@stdlib/utils/async/while","whileEach":"@stdlib/utils/while-each","whileEachRight":"@stdlib/utils/while-each-right","whilst":"@stdlib/utils/while","wilcoxon":"@stdlib/stats/wilcoxon","writableProperties":"@stdlib/utils/writable-properties","writablePropertiesIn":"@stdlib/utils/writable-properties-in","writablePropertyNames":"@stdlib/utils/writable-property-names","writablePropertyNamesIn":"@stdlib/utils/writable-property-names-in","writablePropertySymbols":"@stdlib/utils/writable-property-symbols","writablePropertySymbolsIn":"@stdlib/utils/writable-property-symbols-in","writeFile":"@stdlib/fs/write-file","zip":"@stdlib/utils/zip","ztest":"@stdlib/stats/ztest","ztest2":"@stdlib/stats/ztest2"}
+
+},{}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14558,7 +14499,7 @@ var alias2pkg = require( './main.js' );
 
 module.exports = alias2pkg;
 
-},{"./main.js":250}],250:[function(require,module,exports){
+},{"./main.js":248}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14615,7 +14556,7 @@ function alias2pkg( alias ) {
 
 module.exports = alias2pkg;
 
-},{"./../data/data.json":248,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],251:[function(require,module,exports){
+},{"./../data/data.json":246,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":145,"@stdlib/string/format":312}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14684,9 +14625,10 @@ bench( pkg+'::filter', function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":253,"./../package.json":255,"@stdlib/assert/is-string-array":148,"@stdlib/bench":211}],252:[function(require,module,exports){
-module.exports=["abs","acronym","AFINN_96","AFINN_111","afull","afullLike","alias2pkg","alias2related","alias2standalone","aliases","allocUnsafe","anova1","ANSCOMBES_QUARTET","any","anyBy","anyByAsync","anyByRight","anyByRightAsync","aones","aonesLike","APERY","append","ARCH","argumentFunction","ARGV","array","array2buffer","array2iterator","array2iteratorRight","ArrayBuffer","arraybuffer2buffer","arrayCtors","arrayDataType","arrayDataTypes","arrayMinDataType","arrayNextDataType","arrayPromotionRules","arraySafeCasts","arraySameKindCasts","arrayShape","arrayStream","arrayview2iterator","arrayview2iteratorRight","AsyncIteratorSymbol","azeros","azerosLike","bartlettTest","base.abs","base.abs2","base.abs2f","base.absdiff","base.absf","base.acos","base.acosh","base.acot","base.acoth","base.acovercos","base.acoversin","base.acsc","base.acsch","base.add","base.addf","base.ahavercos","base.ahaversin","base.asech","base.asin","base.asinh","base.atan","base.atan2","base.atanh","base.avercos","base.aversin","base.bernoulli","base.besselj0","base.besselj1","base.bessely0","base.bessely1","base.beta","base.betainc","base.betaincinv","base.betaln","base.binet","base.binomcoef","base.binomcoefln","base.boxcox","base.boxcox1p","base.boxcox1pinv","base.boxcoxinv","base.cabs","base.cabs2","base.cabs2f","base.cabsf","base.cadd","base.caddf","base.cbrt","base.cbrtf","base.cceil","base.cceilf","base.cceiln","base.ccis","base.cdiv","base.ceil","base.ceil2","base.ceil10","base.ceilb","base.ceilf","base.ceiln","base.ceilsd","base.cexp","base.cflipsign","base.cflipsignf","base.cfloor","base.cfloorn","base.cidentity","base.cidentityf","base.cinv","base.clamp","base.clampf","base.cmul","base.cmulf","base.cneg","base.continuedFraction","base.copysign","base.copysignf","base.cos","base.cosh","base.cosm1","base.cospi","base.cot","base.coth","base.covercos","base.coversin","base.cphase","base.cpolar","base.cround","base.croundn","base.csch","base.csignum","base.csub","base.csubf","base.deg2rad","base.deg2radf","base.digamma","base.diracDelta","base.dists.arcsine.Arcsine","base.dists.arcsine.cdf","base.dists.arcsine.entropy","base.dists.arcsine.kurtosis","base.dists.arcsine.logcdf","base.dists.arcsine.logpdf","base.dists.arcsine.mean","base.dists.arcsine.median","base.dists.arcsine.mode","base.dists.arcsine.pdf","base.dists.arcsine.quantile","base.dists.arcsine.skewness","base.dists.arcsine.stdev","base.dists.arcsine.variance","base.dists.bernoulli.Bernoulli","base.dists.bernoulli.cdf","base.dists.bernoulli.entropy","base.dists.bernoulli.kurtosis","base.dists.bernoulli.mean","base.dists.bernoulli.median","base.dists.bernoulli.mgf","base.dists.bernoulli.mode","base.dists.bernoulli.pmf","base.dists.bernoulli.quantile","base.dists.bernoulli.skewness","base.dists.bernoulli.stdev","base.dists.bernoulli.variance","base.dists.beta.Beta","base.dists.beta.cdf","base.dists.beta.entropy","base.dists.beta.kurtosis","base.dists.beta.logcdf","base.dists.beta.logpdf","base.dists.beta.mean","base.dists.beta.median","base.dists.beta.mgf","base.dists.beta.mode","base.dists.beta.pdf","base.dists.beta.quantile","base.dists.beta.skewness","base.dists.beta.stdev","base.dists.beta.variance","base.dists.betaprime.BetaPrime","base.dists.betaprime.cdf","base.dists.betaprime.kurtosis","base.dists.betaprime.logcdf","base.dists.betaprime.logpdf","base.dists.betaprime.mean","base.dists.betaprime.mode","base.dists.betaprime.pdf","base.dists.betaprime.quantile","base.dists.betaprime.skewness","base.dists.betaprime.stdev","base.dists.betaprime.variance","base.dists.binomial.Binomial","base.dists.binomial.cdf","base.dists.binomial.entropy","base.dists.binomial.kurtosis","base.dists.binomial.logpmf","base.dists.binomial.mean","base.dists.binomial.median","base.dists.binomial.mgf","base.dists.binomial.mode","base.dists.binomial.pmf","base.dists.binomial.quantile","base.dists.binomial.skewness","base.dists.binomial.stdev","base.dists.binomial.variance","base.dists.cauchy.Cauchy","base.dists.cauchy.cdf","base.dists.cauchy.entropy","base.dists.cauchy.logcdf","base.dists.cauchy.logpdf","base.dists.cauchy.median","base.dists.cauchy.mode","base.dists.cauchy.pdf","base.dists.cauchy.quantile","base.dists.chi.cdf","base.dists.chi.Chi","base.dists.chi.entropy","base.dists.chi.kurtosis","base.dists.chi.logpdf","base.dists.chi.mean","base.dists.chi.mode","base.dists.chi.pdf","base.dists.chi.quantile","base.dists.chi.skewness","base.dists.chi.stdev","base.dists.chi.variance","base.dists.chisquare.cdf","base.dists.chisquare.ChiSquare","base.dists.chisquare.entropy","base.dists.chisquare.kurtosis","base.dists.chisquare.logpdf","base.dists.chisquare.mean","base.dists.chisquare.median","base.dists.chisquare.mgf","base.dists.chisquare.mode","base.dists.chisquare.pdf","base.dists.chisquare.quantile","base.dists.chisquare.skewness","base.dists.chisquare.stdev","base.dists.chisquare.variance","base.dists.cosine.cdf","base.dists.cosine.Cosine","base.dists.cosine.kurtosis","base.dists.cosine.logcdf","base.dists.cosine.logpdf","base.dists.cosine.mean","base.dists.cosine.median","base.dists.cosine.mgf","base.dists.cosine.mode","base.dists.cosine.pdf","base.dists.cosine.quantile","base.dists.cosine.skewness","base.dists.cosine.stdev","base.dists.cosine.variance","base.dists.degenerate.cdf","base.dists.degenerate.Degenerate","base.dists.degenerate.entropy","base.dists.degenerate.logcdf","base.dists.degenerate.logpdf","base.dists.degenerate.logpmf","base.dists.degenerate.mean","base.dists.degenerate.median","base.dists.degenerate.mgf","base.dists.degenerate.mode","base.dists.degenerate.pdf","base.dists.degenerate.pmf","base.dists.degenerate.quantile","base.dists.degenerate.stdev","base.dists.degenerate.variance","base.dists.discreteUniform.cdf","base.dists.discreteUniform.DiscreteUniform","base.dists.discreteUniform.kurtosis","base.dists.discreteUniform.logcdf","base.dists.discreteUniform.logpmf","base.dists.discreteUniform.mean","base.dists.discreteUniform.median","base.dists.discreteUniform.mgf","base.dists.discreteUniform.pmf","base.dists.discreteUniform.quantile","base.dists.discreteUniform.skewness","base.dists.discreteUniform.stdev","base.dists.discreteUniform.variance","base.dists.erlang.cdf","base.dists.erlang.entropy","base.dists.erlang.Erlang","base.dists.erlang.kurtosis","base.dists.erlang.logpdf","base.dists.erlang.mean","base.dists.erlang.mgf","base.dists.erlang.mode","base.dists.erlang.pdf","base.dists.erlang.quantile","base.dists.erlang.skewness","base.dists.erlang.stdev","base.dists.erlang.variance","base.dists.exponential.cdf","base.dists.exponential.entropy","base.dists.exponential.Exponential","base.dists.exponential.kurtosis","base.dists.exponential.logcdf","base.dists.exponential.logpdf","base.dists.exponential.mean","base.dists.exponential.median","base.dists.exponential.mgf","base.dists.exponential.mode","base.dists.exponential.pdf","base.dists.exponential.quantile","base.dists.exponential.skewness","base.dists.exponential.stdev","base.dists.exponential.variance","base.dists.f.cdf","base.dists.f.entropy","base.dists.f.F","base.dists.f.kurtosis","base.dists.f.mean","base.dists.f.mode","base.dists.f.pdf","base.dists.f.quantile","base.dists.f.skewness","base.dists.f.stdev","base.dists.f.variance","base.dists.frechet.cdf","base.dists.frechet.entropy","base.dists.frechet.Frechet","base.dists.frechet.kurtosis","base.dists.frechet.logcdf","base.dists.frechet.logpdf","base.dists.frechet.mean","base.dists.frechet.median","base.dists.frechet.mode","base.dists.frechet.pdf","base.dists.frechet.quantile","base.dists.frechet.skewness","base.dists.frechet.stdev","base.dists.frechet.variance","base.dists.gamma.cdf","base.dists.gamma.entropy","base.dists.gamma.Gamma","base.dists.gamma.kurtosis","base.dists.gamma.logcdf","base.dists.gamma.logpdf","base.dists.gamma.mean","base.dists.gamma.mgf","base.dists.gamma.mode","base.dists.gamma.pdf","base.dists.gamma.quantile","base.dists.gamma.skewness","base.dists.gamma.stdev","base.dists.gamma.variance","base.dists.geometric.cdf","base.dists.geometric.entropy","base.dists.geometric.Geometric","base.dists.geometric.kurtosis","base.dists.geometric.logcdf","base.dists.geometric.logpmf","base.dists.geometric.mean","base.dists.geometric.median","base.dists.geometric.mgf","base.dists.geometric.mode","base.dists.geometric.pmf","base.dists.geometric.quantile","base.dists.geometric.skewness","base.dists.geometric.stdev","base.dists.geometric.variance","base.dists.gumbel.cdf","base.dists.gumbel.entropy","base.dists.gumbel.Gumbel","base.dists.gumbel.kurtosis","base.dists.gumbel.logcdf","base.dists.gumbel.logpdf","base.dists.gumbel.mean","base.dists.gumbel.median","base.dists.gumbel.mgf","base.dists.gumbel.mode","base.dists.gumbel.pdf","base.dists.gumbel.quantile","base.dists.gumbel.skewness","base.dists.gumbel.stdev","base.dists.gumbel.variance","base.dists.hypergeometric.cdf","base.dists.hypergeometric.Hypergeometric","base.dists.hypergeometric.kurtosis","base.dists.hypergeometric.logpmf","base.dists.hypergeometric.mean","base.dists.hypergeometric.mode","base.dists.hypergeometric.pmf","base.dists.hypergeometric.quantile","base.dists.hypergeometric.skewness","base.dists.hypergeometric.stdev","base.dists.hypergeometric.variance","base.dists.invgamma.cdf","base.dists.invgamma.entropy","base.dists.invgamma.InvGamma","base.dists.invgamma.kurtosis","base.dists.invgamma.logpdf","base.dists.invgamma.mean","base.dists.invgamma.mode","base.dists.invgamma.pdf","base.dists.invgamma.quantile","base.dists.invgamma.skewness","base.dists.invgamma.stdev","base.dists.invgamma.variance","base.dists.kumaraswamy.cdf","base.dists.kumaraswamy.Kumaraswamy","base.dists.kumaraswamy.kurtosis","base.dists.kumaraswamy.logcdf","base.dists.kumaraswamy.logpdf","base.dists.kumaraswamy.mean","base.dists.kumaraswamy.median","base.dists.kumaraswamy.mode","base.dists.kumaraswamy.pdf","base.dists.kumaraswamy.quantile","base.dists.kumaraswamy.skewness","base.dists.kumaraswamy.stdev","base.dists.kumaraswamy.variance","base.dists.laplace.cdf","base.dists.laplace.entropy","base.dists.laplace.kurtosis","base.dists.laplace.Laplace","base.dists.laplace.logcdf","base.dists.laplace.logpdf","base.dists.laplace.mean","base.dists.laplace.median","base.dists.laplace.mgf","base.dists.laplace.mode","base.dists.laplace.pdf","base.dists.laplace.quantile","base.dists.laplace.skewness","base.dists.laplace.stdev","base.dists.laplace.variance","base.dists.levy.cdf","base.dists.levy.entropy","base.dists.levy.Levy","base.dists.levy.logcdf","base.dists.levy.logpdf","base.dists.levy.mean","base.dists.levy.median","base.dists.levy.mode","base.dists.levy.pdf","base.dists.levy.quantile","base.dists.levy.stdev","base.dists.levy.variance","base.dists.logistic.cdf","base.dists.logistic.entropy","base.dists.logistic.kurtosis","base.dists.logistic.logcdf","base.dists.logistic.Logistic","base.dists.logistic.logpdf","base.dists.logistic.mean","base.dists.logistic.median","base.dists.logistic.mgf","base.dists.logistic.mode","base.dists.logistic.pdf","base.dists.logistic.quantile","base.dists.logistic.skewness","base.dists.logistic.stdev","base.dists.logistic.variance","base.dists.lognormal.cdf","base.dists.lognormal.entropy","base.dists.lognormal.kurtosis","base.dists.lognormal.LogNormal","base.dists.lognormal.logpdf","base.dists.lognormal.mean","base.dists.lognormal.median","base.dists.lognormal.mode","base.dists.lognormal.pdf","base.dists.lognormal.quantile","base.dists.lognormal.skewness","base.dists.lognormal.stdev","base.dists.lognormal.variance","base.dists.negativeBinomial.cdf","base.dists.negativeBinomial.kurtosis","base.dists.negativeBinomial.logpmf","base.dists.negativeBinomial.mean","base.dists.negativeBinomial.mgf","base.dists.negativeBinomial.mode","base.dists.negativeBinomial.NegativeBinomial","base.dists.negativeBinomial.pmf","base.dists.negativeBinomial.quantile","base.dists.negativeBinomial.skewness","base.dists.negativeBinomial.stdev","base.dists.negativeBinomial.variance","base.dists.normal.cdf","base.dists.normal.entropy","base.dists.normal.kurtosis","base.dists.normal.logpdf","base.dists.normal.mean","base.dists.normal.median","base.dists.normal.mgf","base.dists.normal.mode","base.dists.normal.Normal","base.dists.normal.pdf","base.dists.normal.quantile","base.dists.normal.skewness","base.dists.normal.stdev","base.dists.normal.variance","base.dists.pareto1.cdf","base.dists.pareto1.entropy","base.dists.pareto1.kurtosis","base.dists.pareto1.logcdf","base.dists.pareto1.logpdf","base.dists.pareto1.mean","base.dists.pareto1.median","base.dists.pareto1.mode","base.dists.pareto1.Pareto1","base.dists.pareto1.pdf","base.dists.pareto1.quantile","base.dists.pareto1.skewness","base.dists.pareto1.stdev","base.dists.pareto1.variance","base.dists.poisson.cdf","base.dists.poisson.entropy","base.dists.poisson.kurtosis","base.dists.poisson.logpmf","base.dists.poisson.mean","base.dists.poisson.median","base.dists.poisson.mgf","base.dists.poisson.mode","base.dists.poisson.pmf","base.dists.poisson.Poisson","base.dists.poisson.quantile","base.dists.poisson.skewness","base.dists.poisson.stdev","base.dists.poisson.variance","base.dists.rayleigh.cdf","base.dists.rayleigh.entropy","base.dists.rayleigh.kurtosis","base.dists.rayleigh.logcdf","base.dists.rayleigh.logpdf","base.dists.rayleigh.mean","base.dists.rayleigh.median","base.dists.rayleigh.mgf","base.dists.rayleigh.mode","base.dists.rayleigh.pdf","base.dists.rayleigh.quantile","base.dists.rayleigh.Rayleigh","base.dists.rayleigh.skewness","base.dists.rayleigh.stdev","base.dists.rayleigh.variance","base.dists.signrank.cdf","base.dists.signrank.pdf","base.dists.signrank.quantile","base.dists.t.cdf","base.dists.t.entropy","base.dists.t.kurtosis","base.dists.t.mean","base.dists.t.median","base.dists.t.mode","base.dists.t.pdf","base.dists.t.quantile","base.dists.t.skewness","base.dists.t.stdev","base.dists.t.T","base.dists.t.variance","base.dists.triangular.cdf","base.dists.triangular.entropy","base.dists.triangular.kurtosis","base.dists.triangular.logcdf","base.dists.triangular.logpdf","base.dists.triangular.mean","base.dists.triangular.median","base.dists.triangular.mgf","base.dists.triangular.mode","base.dists.triangular.pdf","base.dists.triangular.quantile","base.dists.triangular.skewness","base.dists.triangular.stdev","base.dists.triangular.Triangular","base.dists.triangular.variance","base.dists.uniform.cdf","base.dists.uniform.entropy","base.dists.uniform.kurtosis","base.dists.uniform.logcdf","base.dists.uniform.logpdf","base.dists.uniform.mean","base.dists.uniform.median","base.dists.uniform.mgf","base.dists.uniform.pdf","base.dists.uniform.quantile","base.dists.uniform.skewness","base.dists.uniform.stdev","base.dists.uniform.Uniform","base.dists.uniform.variance","base.dists.weibull.cdf","base.dists.weibull.entropy","base.dists.weibull.kurtosis","base.dists.weibull.logcdf","base.dists.weibull.logpdf","base.dists.weibull.mean","base.dists.weibull.median","base.dists.weibull.mgf","base.dists.weibull.mode","base.dists.weibull.pdf","base.dists.weibull.quantile","base.dists.weibull.skewness","base.dists.weibull.stdev","base.dists.weibull.variance","base.dists.weibull.Weibull","base.ellipe","base.ellipk","base.epsdiff","base.erf","base.erfc","base.erfcinv","base.erfinv","base.eta","base.evalpoly","base.evalrational","base.exp","base.exp2","base.exp10","base.expit","base.expm1","base.expm1rel","base.exponent","base.exponentf","base.factorial","base.factorialln","base.fallingFactorial","base.fibonacci","base.fibonacciIndex","base.fibpoly","base.flipsign","base.flipsignf","base.float32ToInt32","base.float32ToUint32","base.float64ToFloat32","base.float64ToInt32","base.float64ToInt64Bytes","base.float64ToUint32","base.floor","base.floor2","base.floor10","base.floorb","base.floorf","base.floorn","base.floorsd","base.fresnel","base.fresnelc","base.fresnels","base.frexp","base.fromBinaryString","base.fromBinaryStringf","base.fromBinaryStringUint8","base.fromBinaryStringUint16","base.fromBinaryStringUint32","base.fromInt64Bytes","base.fromWordf","base.fromWords","base.gamma","base.gamma1pm1","base.gammaDeltaRatio","base.gammainc","base.gammaincinv","base.gammaLanczosSum","base.gammaLanczosSumExpGScaled","base.gammaln","base.gcd","base.getHighWord","base.getLowWord","base.hacovercos","base.hacoversin","base.havercos","base.haversin","base.heaviside","base.hermitepoly","base.hypot","base.hypotf","base.identity","base.identityf","base.imul","base.imuldw","base.int32ToUint32","base.inv","base.invf","base.isComposite","base.isCoprime","base.isEven","base.isEvenInt32","base.isFinite","base.isFinitef","base.isInfinite","base.isInfinitef","base.isInteger","base.isnan","base.isnanf","base.isNegativeInteger","base.isNegativeZero","base.isNegativeZerof","base.isNonNegativeInteger","base.isNonPositiveInteger","base.isOdd","base.isOddInt32","base.isPositiveInteger","base.isPositiveZero","base.isPositiveZerof","base.isPow2Uint32","base.isPrime","base.isProbability","base.isSafeInteger","base.kernelBetainc","base.kernelBetaincinv","base.kernelCos","base.kernelSin","base.kernelTan","base.kroneckerDelta","base.kroneckerDeltaf","base.labs","base.lcm","base.ldexp","base.ln","base.log","base.log1mexp","base.log1p","base.log1pexp","base.log2","base.log10","base.logaddexp","base.logit","base.lucas","base.lucaspoly","base.max","base.maxabs","base.min","base.minabs","base.minmax","base.minmaxabs","base.modf","base.mul","base.mulf","base.ndarray","base.ndarrayUnary","base.ndzeros","base.ndzerosLike","base.negafibonacci","base.negalucas","base.nonfibonacci","base.normalize","base.normalizef","base.normhermitepoly","base.pdiff","base.pdifff","base.polygamma","base.pow","base.powm1","base.rad2deg","base.ramp","base.rampf","base.random.arcsine","base.random.bernoulli","base.random.beta","base.random.betaprime","base.random.binomial","base.random.boxMuller","base.random.cauchy","base.random.chi","base.random.chisquare","base.random.cosine","base.random.discreteUniform","base.random.erlang","base.random.exponential","base.random.f","base.random.frechet","base.random.gamma","base.random.geometric","base.random.gumbel","base.random.hypergeometric","base.random.improvedZiggurat","base.random.invgamma","base.random.kumaraswamy","base.random.laplace","base.random.levy","base.random.logistic","base.random.lognormal","base.random.minstd","base.random.minstdShuffle","base.random.mt19937","base.random.negativeBinomial","base.random.normal","base.random.pareto1","base.random.poisson","base.random.randi","base.random.randn","base.random.randu","base.random.rayleigh","base.random.t","base.random.triangular","base.random.uniform","base.random.weibull","base.reldiff","base.rempio2","base.risingFactorial","base.rotl32","base.rotr32","base.round","base.round2","base.round10","base.roundb","base.roundn","base.roundsd","base.rsqrt","base.rsqrtf","base.scalar2ndarray","base.setHighWord","base.setLowWord","base.sici","base.signbit","base.signbitf","base.significandf","base.signum","base.signumf","base.sin","base.sinc","base.sincos","base.sincospi","base.sinh","base.sinpi","base.spence","base.sqrt","base.sqrt1pm1","base.sqrtf","base.strided.binary","base.strided.ccopy","base.strided.cmap","base.strided.cswap","base.strided.cumax","base.strided.cumaxabs","base.strided.cumin","base.strided.cuminabs","base.strided.dabs","base.strided.dabs2","base.strided.dapx","base.strided.dapxsum","base.strided.dapxsumkbn","base.strided.dapxsumkbn2","base.strided.dapxsumors","base.strided.dapxsumpw","base.strided.dasum","base.strided.dasumpw","base.strided.daxpy","base.strided.dcbrt","base.strided.dceil","base.strided.dcopy","base.strided.dcumax","base.strided.dcumaxabs","base.strided.dcumin","base.strided.dcuminabs","base.strided.dcusum","base.strided.dcusumkbn","base.strided.dcusumkbn2","base.strided.dcusumors","base.strided.dcusumpw","base.strided.ddeg2rad","base.strided.ddot","base.strided.dfill","base.strided.dfloor","base.strided.dinv","base.strided.dmap","base.strided.dmap2","base.strided.dmax","base.strided.dmaxabs","base.strided.dmaxabssorted","base.strided.dmaxsorted","base.strided.dmean","base.strided.dmeankbn","base.strided.dmeankbn2","base.strided.dmeanli","base.strided.dmeanlipw","base.strided.dmeanors","base.strided.dmeanpn","base.strided.dmeanpw","base.strided.dmeanstdev","base.strided.dmeanstdevpn","base.strided.dmeanvar","base.strided.dmeanvarpn","base.strided.dmeanwd","base.strided.dmediansorted","base.strided.dmidrange","base.strided.dmin","base.strided.dminabs","base.strided.dminsorted","base.strided.dmskabs","base.strided.dmskabs2","base.strided.dmskcbrt","base.strided.dmskceil","base.strided.dmskdeg2rad","base.strided.dmskfloor","base.strided.dmskinv","base.strided.dmskmap","base.strided.dmskmap2","base.strided.dmskmax","base.strided.dmskmin","base.strided.dmskramp","base.strided.dmskrange","base.strided.dmskrsqrt","base.strided.dmsksqrt","base.strided.dmsktrunc","base.strided.dnanasum","base.strided.dnanasumors","base.strided.dnanmax","base.strided.dnanmaxabs","base.strided.dnanmean","base.strided.dnanmeanors","base.strided.dnanmeanpn","base.strided.dnanmeanpw","base.strided.dnanmeanwd","base.strided.dnanmin","base.strided.dnanminabs","base.strided.dnanmskmax","base.strided.dnanmskmin","base.strided.dnanmskrange","base.strided.dnannsum","base.strided.dnannsumkbn","base.strided.dnannsumkbn2","base.strided.dnannsumors","base.strided.dnannsumpw","base.strided.dnanrange","base.strided.dnanstdev","base.strided.dnanstdevch","base.strided.dnanstdevpn","base.strided.dnanstdevtk","base.strided.dnanstdevwd","base.strided.dnanstdevyc","base.strided.dnansum","base.strided.dnansumkbn","base.strided.dnansumkbn2","base.strided.dnansumors","base.strided.dnansumpw","base.strided.dnanvariance","base.strided.dnanvariancech","base.strided.dnanvariancepn","base.strided.dnanvariancetk","base.strided.dnanvariancewd","base.strided.dnanvarianceyc","base.strided.dnrm2","base.strided.dramp","base.strided.drange","base.strided.drev","base.strided.drsqrt","base.strided.dsapxsum","base.strided.dsapxsumpw","base.strided.dscal","base.strided.dsdot","base.strided.dsem","base.strided.dsemch","base.strided.dsempn","base.strided.dsemtk","base.strided.dsemwd","base.strided.dsemyc","base.strided.dsmean","base.strided.dsmeanors","base.strided.dsmeanpn","base.strided.dsmeanpw","base.strided.dsmeanwd","base.strided.dsnanmean","base.strided.dsnanmeanors","base.strided.dsnanmeanpn","base.strided.dsnanmeanwd","base.strided.dsnannsumors","base.strided.dsnansum","base.strided.dsnansumors","base.strided.dsnansumpw","base.strided.dsort2hp","base.strided.dsort2ins","base.strided.dsort2sh","base.strided.dsorthp","base.strided.dsortins","base.strided.dsortsh","base.strided.dsqrt","base.strided.dssum","base.strided.dssumors","base.strided.dssumpw","base.strided.dstdev","base.strided.dstdevch","base.strided.dstdevpn","base.strided.dstdevtk","base.strided.dstdevwd","base.strided.dstdevyc","base.strided.dsum","base.strided.dsumkbn","base.strided.dsumkbn2","base.strided.dsumors","base.strided.dsumpw","base.strided.dsvariance","base.strided.dsvariancepn","base.strided.dswap","base.strided.dtrunc","base.strided.dvariance","base.strided.dvariancech","base.strided.dvariancepn","base.strided.dvariancetk","base.strided.dvariancewd","base.strided.dvarianceyc","base.strided.dvarm","base.strided.dvarmpn","base.strided.dvarmtk","base.strided.gapx","base.strided.gapxsum","base.strided.gapxsumkbn","base.strided.gapxsumkbn2","base.strided.gapxsumors","base.strided.gapxsumpw","base.strided.gasum","base.strided.gasumpw","base.strided.gaxpy","base.strided.gcopy","base.strided.gcusum","base.strided.gcusumkbn","base.strided.gcusumkbn2","base.strided.gcusumors","base.strided.gcusumpw","base.strided.gdot","base.strided.gfill","base.strided.gfillBy","base.strided.gnannsumkbn","base.strided.gnansum","base.strided.gnansumkbn","base.strided.gnansumkbn2","base.strided.gnansumors","base.strided.gnansumpw","base.strided.gnrm2","base.strided.grev","base.strided.gscal","base.strided.gsort2hp","base.strided.gsort2ins","base.strided.gsort2sh","base.strided.gsorthp","base.strided.gsortins","base.strided.gsortsh","base.strided.gsum","base.strided.gsumkbn","base.strided.gsumkbn2","base.strided.gsumors","base.strided.gsumpw","base.strided.gswap","base.strided.mapBy","base.strided.mapBy2","base.strided.max","base.strided.maxabs","base.strided.maxBy","base.strided.maxsorted","base.strided.mean","base.strided.meankbn","base.strided.meankbn2","base.strided.meanors","base.strided.meanpn","base.strided.meanpw","base.strided.meanwd","base.strided.mediansorted","base.strided.min","base.strided.minabs","base.strided.minBy","base.strided.minsorted","base.strided.mskmax","base.strided.mskmin","base.strided.mskrange","base.strided.mskunary","base.strided.nanmax","base.strided.nanmaxabs","base.strided.nanmaxBy","base.strided.nanmean","base.strided.nanmeanors","base.strided.nanmeanpn","base.strided.nanmeanwd","base.strided.nanmin","base.strided.nanminabs","base.strided.nanminBy","base.strided.nanmskmax","base.strided.nanmskmin","base.strided.nanmskrange","base.strided.nanrange","base.strided.nanrangeBy","base.strided.nanstdev","base.strided.nanstdevch","base.strided.nanstdevpn","base.strided.nanstdevtk","base.strided.nanstdevwd","base.strided.nanstdevyc","base.strided.nanvariance","base.strided.nanvariancech","base.strided.nanvariancepn","base.strided.nanvariancetk","base.strided.nanvariancewd","base.strided.nanvarianceyc","base.strided.nullary","base.strided.quaternary","base.strided.quinary","base.strided.range","base.strided.rangeBy","base.strided.sabs","base.strided.sabs2","base.strided.sapx","base.strided.sapxsum","base.strided.sapxsumkbn","base.strided.sapxsumkbn2","base.strided.sapxsumors","base.strided.sapxsumpw","base.strided.sasum","base.strided.sasumpw","base.strided.saxpy","base.strided.scbrt","base.strided.sceil","base.strided.scopy","base.strided.scumax","base.strided.scumaxabs","base.strided.scumin","base.strided.scuminabs","base.strided.scusum","base.strided.scusumkbn","base.strided.scusumkbn2","base.strided.scusumors","base.strided.scusumpw","base.strided.sdeg2rad","base.strided.sdot","base.strided.sdsapxsum","base.strided.sdsapxsumpw","base.strided.sdsdot","base.strided.sdsmean","base.strided.sdsmeanors","base.strided.sdsnanmean","base.strided.sdsnanmeanors","base.strided.sdsnansum","base.strided.sdsnansumpw","base.strided.sdssum","base.strided.sdssumpw","base.strided.sfill","base.strided.sfloor","base.strided.sinv","base.strided.smap","base.strided.smap2","base.strided.smax","base.strided.smaxabs","base.strided.smaxabssorted","base.strided.smaxsorted","base.strided.smean","base.strided.smeankbn","base.strided.smeankbn2","base.strided.smeanli","base.strided.smeanlipw","base.strided.smeanors","base.strided.smeanpn","base.strided.smeanpw","base.strided.smeanwd","base.strided.smediansorted","base.strided.smidrange","base.strided.smin","base.strided.sminabs","base.strided.sminsorted","base.strided.smskabs","base.strided.smskabs2","base.strided.smskcbrt","base.strided.smskceil","base.strided.smskdeg2rad","base.strided.smskfloor","base.strided.smskinv","base.strided.smskmap","base.strided.smskmap2","base.strided.smskmax","base.strided.smskmin","base.strided.smskramp","base.strided.smskrange","base.strided.smskrsqrt","base.strided.smsksqrt","base.strided.smsktrunc","base.strided.snanmax","base.strided.snanmaxabs","base.strided.snanmean","base.strided.snanmeanors","base.strided.snanmeanpn","base.strided.snanmeanwd","base.strided.snanmin","base.strided.snanminabs","base.strided.snanmskmax","base.strided.snanmskmin","base.strided.snanmskrange","base.strided.snanrange","base.strided.snanstdev","base.strided.snanstdevch","base.strided.snanstdevpn","base.strided.snanstdevtk","base.strided.snanstdevwd","base.strided.snanstdevyc","base.strided.snansum","base.strided.snansumkbn","base.strided.snansumkbn2","base.strided.snansumors","base.strided.snansumpw","base.strided.snanvariance","base.strided.snanvariancech","base.strided.snanvariancepn","base.strided.snanvariancetk","base.strided.snanvariancewd","base.strided.snanvarianceyc","base.strided.snrm2","base.strided.sramp","base.strided.srange","base.strided.srev","base.strided.srsqrt","base.strided.sscal","base.strided.ssort2hp","base.strided.ssort2ins","base.strided.ssort2sh","base.strided.ssorthp","base.strided.ssortins","base.strided.ssortsh","base.strided.ssqrt","base.strided.sstdev","base.strided.sstdevch","base.strided.sstdevpn","base.strided.sstdevtk","base.strided.sstdevwd","base.strided.sstdevyc","base.strided.ssum","base.strided.ssumkbn","base.strided.ssumkbn2","base.strided.ssumors","base.strided.ssumpw","base.strided.sswap","base.strided.stdev","base.strided.stdevch","base.strided.stdevpn","base.strided.stdevtk","base.strided.stdevwd","base.strided.stdevyc","base.strided.strunc","base.strided.svariance","base.strided.svariancech","base.strided.svariancepn","base.strided.svariancetk","base.strided.svariancewd","base.strided.svarianceyc","base.strided.ternary","base.strided.unary","base.strided.variance","base.strided.variancech","base.strided.variancepn","base.strided.variancetk","base.strided.variancewd","base.strided.varianceyc","base.strided.zmap","base.sub","base.subf","base.sumSeries","base.tan","base.tanh","base.toBinaryString","base.toBinaryStringf","base.toBinaryStringUint8","base.toBinaryStringUint16","base.toBinaryStringUint32","base.toWordf","base.toWords","base.transpose","base.tribonacci","base.trigamma","base.trunc","base.trunc2","base.trunc10","base.truncb","base.truncf","base.truncn","base.truncsd","base.umul","base.umuldw","base.uint32ToInt32","base.vercos","base.versin","base.wrap","base.xlog1py","base.xlogy","base.zeta","bench","BERNDT_CPS_WAGES_1985","bifurcate","bifurcateBy","bifurcateByAsync","bifurcateIn","bifurcateOwn","BigInt","binomialTest","Buffer","buffer2json","BYTE_ORDER","camelcase","capitalize","capitalizeKeys","CATALAN","CBRT_EPS","CDC_NCHS_US_BIRTHS_1969_1988","CDC_NCHS_US_BIRTHS_1994_2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013","chdir","chi2gof","chi2test","circarray2iterator","circularArrayStream","CircularBuffer","close","CMUDICT","codePointAt","commonKeys","commonKeysIn","complex","Complex64","COMPLEX64_NUM_BYTES","Complex64Array","Complex128","COMPLEX128_NUM_BYTES","Complex128Array","complexarray","complexarrayCtors","complexarrayDataTypes","complexCtors","complexDataType","complexDataTypes","complexPromotionRules","compose","composeAsync","configdir","conj","conjf","constantcase","constantFunction","constantStream","constructorName","contains","convertArray","convertArraySame","convertPath","copy","copyBuffer","countBy","countByAsync","curry","curryRight","cwd","DALE_CHALL_NEW","datasets","DataView","datespace","dayOfQuarter","dayOfYear","daysInMonth","daysInYear","ddot","debugSinkStream","debugStream","deepEqual","deepGet","deepHasOwnProp","deepHasProp","deepPluck","deepSet","defineMemoizedProperty","defineProperties","defineProperty","dirname","DoublyLinkedList","doUntil","doUntilAsync","doUntilEach","doUntilEachRight","doWhile","doWhileAsync","doWhileEach","doWhileEachRight","dswap","E","EMOJI","EMOJI_CODE_PICTO","EMOJI_PICTO_CODE","emptyStream","endsWith","enumerableProperties","enumerablePropertiesIn","enumerablePropertySymbols","enumerablePropertySymbolsIn","ENV","EPS","error2json","EULERGAMMA","every","everyBy","everyByAsync","everyByRight","everyByRightAsync","evil","EXEC_PATH","exists","expandContractions","extname","fastmath.abs","fastmath.acosh","fastmath.ampbm","fastmath.asinh","fastmath.atanh","fastmath.hypot","fastmath.log2Uint32","fastmath.max","fastmath.min","fastmath.powint","fastmath.sqrtUint32","FEMALE_FIRST_NAMES_EN","FIFO","filledarray","filledarrayBy","filterArguments","find","FIVETHIRTYEIGHT_FFQ","flattenArray","flattenObject","flignerTest","FLOAT_WORD_ORDER","FLOAT16_CBRT_EPS","FLOAT16_EPS","FLOAT16_EXPONENT_BIAS","FLOAT16_MAX","FLOAT16_MAX_SAFE_INTEGER","FLOAT16_MIN_SAFE_INTEGER","FLOAT16_NINF","FLOAT16_NUM_BYTES","FLOAT16_PINF","FLOAT16_PRECISION","FLOAT16_SMALLEST_NORMAL","FLOAT16_SMALLEST_SUBNORMAL","FLOAT16_SQRT_EPS","FLOAT32_CBRT_EPS","FLOAT32_EPS","FLOAT32_EXPONENT_BIAS","FLOAT32_MAX","FLOAT32_MAX_SAFE_INTEGER","FLOAT32_MIN_SAFE_INTEGER","FLOAT32_NINF","FLOAT32_NUM_BYTES","FLOAT32_PINF","FLOAT32_PRECISION","FLOAT32_SMALLEST_NORMAL","FLOAT32_SMALLEST_SUBNORMAL","FLOAT32_SQRT_EPS","Float32Array","FLOAT64_EXPONENT_BIAS","FLOAT64_HIGH_WORD_EXPONENT_MASK","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK","FLOAT64_MAX","FLOAT64_MAX_BASE2_EXPONENT","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MAX_BASE10_EXPONENT","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MAX_LN","FLOAT64_MAX_SAFE_FIBONACCI","FLOAT64_MAX_SAFE_INTEGER","FLOAT64_MAX_SAFE_LUCAS","FLOAT64_MAX_SAFE_NTH_FIBONACCI","FLOAT64_MAX_SAFE_NTH_LUCAS","FLOAT64_MIN_BASE2_EXPONENT","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MIN_BASE10_EXPONENT","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MIN_LN","FLOAT64_MIN_SAFE_INTEGER","FLOAT64_NUM_BYTES","FLOAT64_PRECISION","FLOAT64_SMALLEST_NORMAL","FLOAT64_SMALLEST_SUBNORMAL","Float64Array","forEach","forEachAsync","forEachRight","forEachRightAsync","forIn","forOwn","FOURTH_PI","FOURTH_ROOT_EPS","FRB_SF_WAGE_RIGIDITY","fromCodePoint","functionName","functionSequence","functionSequenceAsync","GAMMA_LANCZOS_G","gdot","getegid","geteuid","getgid","getGlobal","getPrototypeOf","getuid","GLAISHER","group","groupBy","groupByAsync","groupIn","groupOwn","gswap","HALF_LN2","HALF_PI","HARRISON_BOSTON_HOUSE_PRICES","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED","hasArrayBufferSupport","hasAsyncAwaitSupport","hasAsyncIteratorSymbolSupport","hasBigInt64ArraySupport","hasBigIntSupport","hasBigUint64ArraySupport","hasClassSupport","hasDataViewSupport","hasDefinePropertiesSupport","hasDefinePropertySupport","hasFloat32ArraySupport","hasFloat64ArraySupport","hasFunctionNameSupport","hasGeneratorSupport","hasGlobalThisSupport","hasInt8ArraySupport","hasInt16ArraySupport","hasInt32ArraySupport","hasIteratorSymbolSupport","hasMapSupport","hasNodeBufferSupport","hasOwnProp","hasProp","hasProxySupport","hasSetSupport","hasSharedArrayBufferSupport","hasSymbolSupport","hasToStringTagSupport","hasUint8ArraySupport","hasUint8ClampedArraySupport","hasUint16ArraySupport","hasUint32ArraySupport","hasUTF16SurrogatePairAt","hasWeakMapSupport","hasWeakSetSupport","hasWebAssemblySupport","HERNDON_VENUS_SEMIDIAMETERS","homedir","HOURS_IN_DAY","HOURS_IN_WEEK","hoursInMonth","hoursInYear","httpServer","identity","ifelse","ifelseAsync","ifthen","ifthenAsync","imag","imagf","IMG_ACANTHUS_MOLLIS","IMG_AIRPLANE_FROM_ABOVE","IMG_ALLIUM_OREOPHILUM","IMG_BLACK_CANYON","IMG_DUST_BOWL_HOME","IMG_FRENCH_ALPINE_LANDSCAPE","IMG_LOCOMOTION_HOUSE_CAT","IMG_LOCOMOTION_NUDE_MALE","IMG_MARCH_PASTORAL","IMG_NAGASAKI_BOATS","incrapcorr","incrBinaryClassification","incrcount","incrcovariance","incrcovmat","incrcv","increwmean","increwstdev","increwvariance","incrgmean","incrgrubbs","incrhmean","incrkmeans","incrkurtosis","incrmaape","incrmae","incrmapcorr","incrmape","incrmax","incrmaxabs","incrmcovariance","incrmcv","incrmda","incrme","incrmean","incrmeanabs","incrmeanabs2","incrmeanstdev","incrmeanvar","incrmgmean","incrmgrubbs","incrmhmean","incrmidrange","incrmin","incrminabs","incrminmax","incrminmaxabs","incrmmaape","incrmmae","incrmmape","incrmmax","incrmmaxabs","incrmmda","incrmme","incrmmean","incrmmeanabs","incrmmeanabs2","incrmmeanstdev","incrmmeanvar","incrmmidrange","incrmmin","incrmminabs","incrmminmax","incrmminmaxabs","incrmmpe","incrmmse","incrmpcorr","incrmpcorr2","incrmpcorrdist","incrmpe","incrmprod","incrmrange","incrmrmse","incrmrss","incrmse","incrmstdev","incrmsum","incrmsumabs","incrmsumabs2","incrmsummary","incrmsumprod","incrmvariance","incrmvmr","incrnancount","incrnansum","incrnansumabs","incrnansumabs2","incrpcorr","incrpcorr2","incrpcorrdist","incrpcorrdistmat","incrpcorrmat","incrprod","incrrange","incrrmse","incrrss","incrSGDRegression","incrskewness","incrspace","incrstdev","incrsum","incrsumabs","incrsumabs2","incrsummary","incrsumprod","incrvariance","incrvmr","incrwmean","ind2sub","indexOf","inherit","inheritedEnumerableProperties","inheritedEnumerablePropertySymbols","inheritedKeys","inheritedNonEnumerableProperties","inheritedNonEnumerablePropertyNames","inheritedNonEnumerablePropertySymbols","inheritedProperties","inheritedPropertyDescriptor","inheritedPropertyDescriptors","inheritedPropertyNames","inheritedPropertySymbols","inheritedWritableProperties","inheritedWritablePropertyNames","inheritedWritablePropertySymbols","inmap","inmapAsync","inmapRight","inmapRightAsync","inspectSinkStream","inspectStream","instanceOf","INT8_MAX","INT8_MIN","INT8_NUM_BYTES","Int8Array","INT16_MAX","INT16_MIN","INT16_NUM_BYTES","Int16Array","INT32_MAX","INT32_MIN","INT32_NUM_BYTES","Int32Array","IS_BIG_ENDIAN","IS_BROWSER","IS_DARWIN","IS_ELECTRON","IS_ELECTRON_MAIN","IS_ELECTRON_RENDERER","IS_LITTLE_ENDIAN","IS_NODE","IS_WEB_WORKER","IS_WINDOWS","isAbsolutePath","isAccessorProperty","isAccessorPropertyIn","isAlphagram","isAlphaNumeric","isAnagram","isArguments","isArray","isArrayArray","isArrayBuffer","isArrayBufferView","isArrayLength","isArrayLike","isArrayLikeObject","isASCII","isBetween","isBetweenArray","isBigInt","isBigInt64Array","isBigUint64Array","isBinaryString","isBoolean","isBooleanArray","isBoxedPrimitive","isBuffer","isCapitalized","isCentrosymmetricMatrix","isCircular","isCircularArray","isCircularPlainObject","isClass","isCollection","isComplex","isComplex64","isComplex64Array","isComplex128","isComplex128Array","isComplexLike","isComplexTypedArray","isComplexTypedArrayLike","isComposite","isConfigurableProperty","isConfigurablePropertyIn","isCubeNumber","isDataProperty","isDataPropertyIn","isDataView","isDateObject","isDigitString","isEmailAddress","isEmptyArray","isEmptyArrayLikeObject","isEmptyCollection","isEmptyObject","isEmptyString","isEnumerableProperty","isEnumerablePropertyIn","isError","isEvalError","isEven","isFalsy","isFalsyArray","isFinite","isFiniteArray","isFloat32Array","isFloat32MatrixLike","isFloat32ndarrayLike","isFloat32VectorLike","isFloat64Array","isFloat64MatrixLike","isFloat64ndarrayLike","isFloat64VectorLike","isFunction","isFunctionArray","isGeneratorObject","isGeneratorObjectLike","isgzipBuffer","isHexString","isInfinite","isInheritedProperty","isInt8Array","isInt16Array","isInt32Array","isInteger","isIntegerArray","isIterableLike","isIteratorLike","isJSON","isLeapYear","isLocalhost","isLowercase","isMatrixLike","isMethod","isMethodIn","isNamedTypedTupleLike","isnan","isNaNArray","isNativeFunction","isndarrayLike","isNegativeInteger","isNegativeIntegerArray","isNegativeNumber","isNegativeNumberArray","isNegativeZero","isNodeBuiltin","isNodeDuplexStreamLike","isNodeReadableStreamLike","isNodeREPL","isNodeStreamLike","isNodeTransformStreamLike","isNodeWritableStreamLike","isNonConfigurableProperty","isNonConfigurablePropertyIn","isNonEnumerableProperty","isNonEnumerablePropertyIn","isNonNegativeInteger","isNonNegativeIntegerArray","isNonNegativeNumber","isNonNegativeNumberArray","isNonPositiveInteger","isNonPositiveIntegerArray","isNonPositiveNumber","isNonPositiveNumberArray","isNonSymmetricMatrix","isNull","isNullArray","isNumber","isNumberArray","isNumericArray","isObject","isObjectArray","isObjectLike","isOdd","isoWeeksInYear","isPersymmetricMatrix","isPlainObject","isPlainObjectArray","isPositiveInteger","isPositiveIntegerArray","isPositiveNumber","isPositiveNumberArray","isPositiveZero","isPrime","isPrimitive","isPrimitiveArray","isPRNGLike","isProbability","isProbabilityArray","isPropertyKey","isPrototypeOf","isRangeError","isReadableProperty","isReadablePropertyIn","isReadOnlyProperty","isReadOnlyPropertyIn","isReadWriteProperty","isReadWritePropertyIn","isReferenceError","isRegExp","isRegExpString","isRelativePath","isSafeInteger","isSafeIntegerArray","isSameNativeClass","isSameType","isSameValue","isSameValueZero","isSharedArrayBuffer","isSkewCentrosymmetricMatrix","isSkewPersymmetricMatrix","isSkewSymmetricMatrix","isSquareMatrix","isSquareNumber","isSquareTriangularNumber","isStrictEqual","isString","isStringArray","isSymbol","isSymbolArray","isSymmetricMatrix","isSyntaxError","isTriangularNumber","isTruthy","isTruthyArray","isTypedArray","isTypedArrayLength","isTypedArrayLike","isTypeError","isUint8Array","isUint8ClampedArray","isUint16Array","isUint32Array","isUNCPath","isUndefined","isUndefinedOrNull","isUnityProbabilityArray","isUppercase","isURI","isURIError","isVectorLike","isWhitespace","isWritableProperty","isWritablePropertyIn","isWriteOnlyProperty","isWriteOnlyPropertyIn","iterAbs","iterAbs2","iterAcos","iterAcosh","iterAcot","iterAcoth","iterAcovercos","iterAcoversin","iterAdd","iterAdvance","iterAhavercos","iterAhaversin","iterAny","iterAnyBy","iterAsin","iterAsinh","iterAtan","iterAtan2","iterAtanh","iterator2array","iterator2arrayview","iterator2arrayviewRight","iteratorStream","IteratorSymbol","iterAvercos","iterAversin","iterawgn","iterawln","iterawun","iterBartlettHannPulse","iterBartlettPulse","iterBesselj0","iterBesselj1","iterBessely0","iterBessely1","iterBeta","iterBetaln","iterBinet","iterCbrt","iterCeil","iterCeil2","iterCeil10","iterCompositesSeq","iterConcat","iterConstant","iterContinuedFraction","iterContinuedFractionSeq","iterCos","iterCosh","iterCosineWave","iterCosm1","iterCospi","iterCounter","iterCovercos","iterCoversin","iterCubesSeq","itercugmean","itercuhmean","itercumax","itercumaxabs","itercumean","itercumeanabs","itercumeanabs2","itercumidrange","itercumin","itercuminabs","itercuprod","itercurange","itercusum","itercusumabs","itercusumabs2","iterDatespace","iterDedupe","iterDedupeBy","iterDeg2rad","iterDigamma","iterDiracComb","iterDiracDelta","iterDivide","iterEllipe","iterEllipk","iterEmpty","iterErf","iterErfc","iterErfcinv","iterErfinv","iterEta","iterEvenIntegersSeq","iterEvery","iterEveryBy","iterExp","iterExp2","iterExp10","iterExpit","iterExpm1","iterExpm1rel","iterFactorial","iterFactorialln","iterFactorialsSeq","iterFibonacciSeq","iterFifthPowersSeq","iterFill","iterFilter","iterFilterMap","iterFirst","iterFlatTopPulse","iterFloor","iterFloor2","iterFloor10","iterFlow","iterForEach","iterFourthPowersSeq","iterFresnelc","iterFresnels","iterGamma","iterGamma1pm1","iterGammaln","iterHacovercos","iterHacoversin","iterHannPulse","iterHavercos","iterHaversin","iterHead","iterIncrspace","iterIntegersSeq","iterIntersection","iterIntersectionByHash","iterInv","iterLanczosPulse","iterLast","iterLength","iterLinspace","iterLn","iterLog","iterLog1mexp","iterLog1p","iterLog1pexp","iterLog2","iterLog10","iterLogit","iterLogspace","iterLucasSeq","iterMap","iterMapN","itermax","itermaxabs","itermean","itermeanabs","itermeanabs2","itermidrange","itermin","iterminabs","itermmax","itermmaxabs","itermmean","itermmeanabs","itermmeanabs2","itermmidrange","itermmin","itermminabs","iterMod","itermprod","itermrange","itermsum","itermsumabs","itermsumabs2","iterMultiply","iterNegaFibonacciSeq","iterNegaLucasSeq","iterNegativeEvenIntegersSeq","iterNegativeIntegersSeq","iterNegativeOddIntegersSeq","iterNone","iterNoneBy","iterNonFibonacciSeq","iterNonNegativeEvenIntegersSeq","iterNonNegativeIntegersSeq","iterNonPositiveEvenIntegersSeq","iterNonPositiveIntegersSeq","iterNonSquaresSeq","iterNth","iterOddIntegersSeq","iterPeriodicSinc","iterPipeline","iterPop","iterPositiveEvenIntegersSeq","iterPositiveIntegersSeq","iterPositiveOddIntegersSeq","iterPow","iterPrimesSeq","iterprod","iterPulse","iterPush","iterRad2deg","iterRamp","iterrange","iterReject","iterReplicate","iterReplicateBy","iterRound","iterRound2","iterRound10","iterRsqrt","iterSawtoothWave","iterShift","iterSignum","iterSin","iterSinc","iterSineWave","iterSinh","iterSinpi","iterSlice","iterSome","iterSomeBy","iterSpence","iterSqrt","iterSqrt1pm1","iterSquaredTriangularSeq","iterSquaresSeq","iterSquareWave","iterstdev","iterStep","iterStrided","iterStridedBy","iterSubtract","itersum","itersumabs","itersumabs2","iterTan","iterTanh","iterThunk","iterTriangleWave","iterTriangularSeq","iterTrigamma","iterTrunc","iterTrunc2","iterTrunc10","iterUnion","iterUnique","iterUniqueBy","iterUniqueByHash","iterUnitspace","iterUnshift","itervariance","iterVercos","iterVersin","iterZeta","joinStream","kde2d","kebabcase","keyBy","keyByRight","keysIn","kruskalTest","kstest","lda","leveneTest","LinkedList","linspace","LIU_NEGATIVE_OPINION_WORDS_EN","LIU_POSITIVE_OPINION_WORDS_EN","LN_HALF","LN_PI","LN_SQRT_TWO_PI","LN_TWO_PI","LN2","LN10","LOG2E","LOG10E","logspace","lowercase","lowercaseKeys","lowess","lpad","ltrim","MALE_FIRST_NAMES_EN","map","map2","map2d","map2Right","map3d","map4d","map5d","mapArguments","mapFun","mapFunAsync","mapKeys","mapKeysAsync","mapReduce","mapReduceRight","mapRight","mapValues","mapValuesAsync","maskArguments","MAX_ARRAY_LENGTH","MAX_TYPED_ARRAY_LENGTH","memoize","merge","MILLISECONDS_IN_DAY","MILLISECONDS_IN_HOUR","MILLISECONDS_IN_MINUTE","MILLISECONDS_IN_SECOND","MILLISECONDS_IN_WEEK","MINARD_NAPOLEONS_MARCH","MINUTES_IN_DAY","MINUTES_IN_HOUR","MINUTES_IN_WEEK","minutesInMonth","minutesInYear","MOBY_DICK","MONTH_NAMES_EN","MONTHS_IN_YEAR","moveProperty","namedtypedtuple","naryFunction","nativeClass","ndarray","ndarrayCastingModes","ndarrayDataTypes","ndarrayDispatch","ndarrayIndexModes","ndarrayMinDataType","ndarrayNextDataType","ndarrayOrders","ndarrayPromotionRules","ndarraySafeCasts","ndarraySameKindCasts","ndzeros","ndzerosLike","nextGraphemeClusterBreak","nextTick","NIGHTINGALES_ROSE","NINF","NODE_VERSION","none","noneBy","noneByAsync","noneByRight","noneByRightAsync","nonEnumerableProperties","nonEnumerablePropertiesIn","nonEnumerablePropertyNames","nonEnumerablePropertyNamesIn","nonEnumerablePropertySymbols","nonEnumerablePropertySymbolsIn","nonIndexKeys","noop","now","NUM_CPUS","Number","numGraphemeClusters","objectEntries","objectEntriesIn","objectFromEntries","objectInverse","objectInverseBy","objectKeys","objectValues","objectValuesIn","omit","omitBy","open","openURL","PACE_BOSTON_HOUSE_PRICES","pad","padjust","papply","papplyRight","parallel","parseJSON","pascalcase","PATH_DELIMITER","PATH_DELIMITER_POSIX","PATH_DELIMITER_WIN32","PATH_SEP","PATH_SEP_POSIX","PATH_SEP_WIN32","pcorrtest","percentEncode","PHI","PI","PI_SQUARED","pick","pickArguments","pickBy","PINF","pkg2alias","pkg2related","pkg2standalone","PLATFORM","plot","Plot","pluck","pop","porterStemmer","prepend","PRIMES_100K","properties","propertiesIn","propertyDescriptor","propertyDescriptorIn","propertyDescriptors","propertyDescriptorsIn","propertyNames","propertyNamesIn","propertySymbols","propertySymbolsIn","Proxy","push","quarterOfYear","random.iterators.arcsine","random.iterators.bernoulli","random.iterators.beta","random.iterators.betaprime","random.iterators.binomial","random.iterators.boxMuller","random.iterators.cauchy","random.iterators.chi","random.iterators.chisquare","random.iterators.cosine","random.iterators.discreteUniform","random.iterators.erlang","random.iterators.exponential","random.iterators.f","random.iterators.frechet","random.iterators.gamma","random.iterators.geometric","random.iterators.gumbel","random.iterators.hypergeometric","random.iterators.improvedZiggurat","random.iterators.invgamma","random.iterators.kumaraswamy","random.iterators.laplace","random.iterators.levy","random.iterators.logistic","random.iterators.lognormal","random.iterators.minstd","random.iterators.minstdShuffle","random.iterators.mt19937","random.iterators.negativeBinomial","random.iterators.normal","random.iterators.pareto1","random.iterators.poisson","random.iterators.randi","random.iterators.randn","random.iterators.randu","random.iterators.rayleigh","random.iterators.t","random.iterators.triangular","random.iterators.uniform","random.iterators.weibull","random.streams.arcsine","random.streams.bernoulli","random.streams.beta","random.streams.betaprime","random.streams.binomial","random.streams.boxMuller","random.streams.cauchy","random.streams.chi","random.streams.chisquare","random.streams.cosine","random.streams.discreteUniform","random.streams.erlang","random.streams.exponential","random.streams.f","random.streams.frechet","random.streams.gamma","random.streams.geometric","random.streams.gumbel","random.streams.hypergeometric","random.streams.improvedZiggurat","random.streams.invgamma","random.streams.kumaraswamy","random.streams.laplace","random.streams.levy","random.streams.logistic","random.streams.lognormal","random.streams.minstd","random.streams.minstdShuffle","random.streams.mt19937","random.streams.negativeBinomial","random.streams.normal","random.streams.pareto1","random.streams.poisson","random.streams.randi","random.streams.randn","random.streams.randu","random.streams.rayleigh","random.streams.t","random.streams.triangular","random.streams.uniform","random.streams.weibull","ranks","readDir","readFile","readFileList","readJSON","readWASM","real","realarray","realarrayCtors","realarrayDataTypes","realf","realmax","realmin","reBasename","reBasenamePosix","reBasenameWindows","reColorHexadecimal","reDecimalNumber","reDirname","reDirnamePosix","reDirnameWindows","reduce","reduce2d","reduceAsync","reduceRight","reduceRightAsync","reEOL","reExtendedLengthPath","reExtname","reExtnamePosix","reExtnameWindows","reFilename","reFilenamePosix","reFilenameWindows","reFromString","reFunctionName","reim","reimf","rejectArguments","removeFirst","removeLast","removePunctuation","removeUTF8BOM","removeWords","rename","reNativeFunction","reorderArguments","repeat","replace","reRegExp","rescape","resolveParentPath","resolveParentPathBy","reUncPath","reUtf16SurrogatePair","reUtf16UnpairedSurrogate","reverseArguments","reverseString","reviveBasePRNG","reviveBuffer","reviveComplex","reviveComplex64","reviveComplex128","reviveError","reviveTypedArray","reWhitespace","rpad","rtrim","safeintmax","safeintmin","sample","SAVOY_STOPWORDS_FIN","SAVOY_STOPWORDS_FR","SAVOY_STOPWORDS_GER","SAVOY_STOPWORDS_IT","SAVOY_STOPWORDS_POR","SAVOY_STOPWORDS_SP","SAVOY_STOPWORDS_SWE","scalar2ndarray","sdot","SECONDS_IN_DAY","SECONDS_IN_HOUR","SECONDS_IN_MINUTE","SECONDS_IN_WEEK","secondsInMonth","secondsInYear","setConfigurableReadOnly","setConfigurableReadOnlyAccessor","setConfigurableReadWriteAccessor","setConfigurableWriteOnlyAccessor","setMemoizedConfigurableReadOnly","setMemoizedReadOnly","setNonEnumerableProperty","setNonEnumerableReadOnly","setNonEnumerableReadOnlyAccessor","setNonEnumerableReadWriteAccessor","setNonEnumerableWriteOnlyAccessor","setReadOnly","setReadOnlyAccessor","setReadWriteAccessor","setWriteOnlyAccessor","SharedArrayBuffer","shift","shuffle","sizeOf","snakecase","some","someBy","someByAsync","someByRight","someByRightAsync","SOTU","SPACHE_REVISED","SPAM_ASSASSIN","SparklineBase","sparsearray2iterator","sparsearray2iteratorRight","splitStream","SQRT_EPS","SQRT_HALF","SQRT_HALF_PI","SQRT_PHI","SQRT_PI","SQRT_THREE","SQRT_TWO","SQRT_TWO_PI","SSA_US_BIRTHS_2000_2014","sswap","Stack","standalone2pkg","STANDARD_CARD_DECK","startcase","startsWith","STOPWORDS_EN","strided.abs","strided.abs2","strided.abs2By","strided.absBy","strided.add","strided.cbrt","strided.ceil","strided.deg2rad","strided.dispatch","strided.floor","strided.inv","strided.mul","strided.ramp","strided.rsqrt","strided.sqrt","strided.sub","strided.trunc","stridedarray2iterator","stridedArrayStream","string2buffer","sub2ind","substringAfter","substringAfterLast","substringBefore","substringBeforeLast","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK","Symbol","tabulate","tabulateBy","tabulateByAsync","tic","timeit","tmpdir","toc","tokenize","transformStream","trim","truncate","truncateMiddle","trycatch","trycatchAsync","tryFunction","tryRequire","trythen","trythenAsync","ttest","ttest2","TWO_PI","typedarray","typedarray2json","typedarrayCtors","typedarrayDataTypes","typedarraypool","typemax","typemin","typeOf","UINT8_MAX","UINT8_NUM_BYTES","Uint8Array","Uint8ClampedArray","UINT16_MAX","UINT16_NUM_BYTES","Uint16Array","UINT32_MAX","UINT32_NUM_BYTES","Uint32Array","umask","uncapitalize","uncapitalizeKeys","uncurry","uncurryRight","UNICODE_MAX","UNICODE_MAX_BMP","UnicodeColumnChartSparkline","UnicodeLineChartSparkline","UnicodeSparkline","UnicodeTristateChartSparkline","UnicodeUpDownChartSparkline","UnicodeWinLossChartSparkline","unlink","unshift","until","untilAsync","untilEach","untilEachRight","unzip","uppercase","uppercaseKeys","US_STATES_ABBR","US_STATES_CAPITALS","US_STATES_CAPITALS_NAMES","US_STATES_NAMES","US_STATES_NAMES_CAPITALS","utf16ToUTF8Array","vartest","waterfall","whileAsync","whileEach","whileEachRight","whilst","wilcoxon","writableProperties","writablePropertiesIn","writablePropertyNames","writablePropertyNamesIn","writablePropertySymbols","writablePropertySymbolsIn","writeFile","zip","ztest","ztest2"]
-},{}],253:[function(require,module,exports){
+},{"./../lib":251,"./../package.json":253,"@stdlib/assert/is-string-array":144,"@stdlib/bench":207}],250:[function(require,module,exports){
+module.exports=["abs","acartesianPower","acartesianProduct","acartesianSquare","acronym","aempty","aemptyLike","AFINN_96","AFINN_111","afull","afullLike","alias2pkg","alias2related","alias2standalone","aliases","allocUnsafe","amskfilter","amskput","amskreject","anans","anansLike","anova1","ANSCOMBES_QUARTET","any","anyBy","anyByAsync","anyByRight","anyByRightAsync","anyInBy","anyOwnBy","aones","aonesLike","aoneTo","aoneToLike","APERY","aplace","append","aput","ARCH","argumentFunction","ARGV","array","array2buffer","array2fancy","array2iterator","array2iteratorRight","ArrayBuffer","arraybuffer2buffer","arrayCtors","arrayDataType","arrayDataTypes","ArrayIndex","arrayMinDataType","arrayMostlySafeCasts","arrayNextDataType","arrayPromotionRules","arraySafeCasts","arraySameKindCasts","arrayShape","arrayStream","arrayview2iterator","arrayview2iteratorRight","aslice","AsyncIteratorSymbol","atake","azeros","azerosLike","azeroTo","azeroToLike","bartlettTest","base.abs","base.abs2","base.abs2f","base.absdiff","base.absf","base.acartesianPower","base.acartesianProduct","base.acartesianSquare","base.acos","base.acosd","base.acosf","base.acosh","base.acot","base.acotd","base.acotf","base.acoth","base.acovercos","base.acoversin","base.acsc","base.acscd","base.acscdf","base.acscf","base.acsch","base.add","base.add3","base.add4","base.add5","base.addf","base.afilled","base.afilled2d","base.afilled2dBy","base.afilled3d","base.afilled3dBy","base.afilled4d","base.afilled4dBy","base.afilled5d","base.afilled5dBy","base.afilledBy","base.afillednd","base.afilledndBy","base.afilter","base.afirst","base.aflatten","base.aflatten2d","base.aflatten2dBy","base.aflatten3d","base.aflatten3dBy","base.aflatten4d","base.aflatten4dBy","base.aflatten5d","base.aflatten5dBy","base.aflattenBy","base.afliplr2d","base.afliplr3d","base.afliplr4d","base.afliplr5d","base.aflipud2d","base.aflipud3d","base.aflipud4d","base.aflipud5d","base.ahavercos","base.ahaversin","base.altcase","base.aones","base.aones2d","base.aones3d","base.aones4d","base.aones5d","base.aonesnd","base.aoneTo","base.args2multislice","base.asec","base.asecd","base.asecdf","base.asecf","base.asech","base.asin","base.asind","base.asindf","base.asinf","base.asinh","base.atan","base.atan2","base.atand","base.atanf","base.atanh","base.avercos","base.aversin","base.azeros","base.azeros2d","base.azeros3d","base.azeros4d","base.azeros5d","base.azerosnd","base.azeroTo","base.bernoulli","base.besselj0","base.besselj1","base.bessely0","base.bessely1","base.beta","base.betainc","base.betaincinv","base.betaln","base.binet","base.binomcoef","base.binomcoefln","base.boxcox","base.boxcox1p","base.boxcox1pinv","base.boxcoxinv","base.cabs","base.cabs2","base.cabs2f","base.cabsf","base.cadd","base.caddf","base.camelcase","base.capitalize","base.cbrt","base.cbrtf","base.cceil","base.cceilf","base.cceiln","base.ccis","base.cdiv","base.ceil","base.ceil2","base.ceil10","base.ceilb","base.ceilf","base.ceiln","base.ceilsd","base.cexp","base.cflipsign","base.cflipsignf","base.cfloor","base.cfloorn","base.cidentity","base.cidentityf","base.cinv","base.clamp","base.clampf","base.cmul","base.cmulf","base.cneg","base.cnegf","base.codePointAt","base.constantcase","base.continuedFraction","base.copysign","base.copysignf","base.cos","base.cosd","base.cosh","base.cosm1","base.cospi","base.cot","base.cotd","base.coth","base.covercos","base.coversin","base.cphase","base.cpolar","base.cround","base.croundn","base.csc","base.cscd","base.csch","base.csignum","base.csub","base.csubf","base.deg2rad","base.deg2radf","base.digamma","base.diracDelta","base.div","base.divf","base.dotcase","base.dists.arcsine.Arcsine","base.dists.arcsine.cdf","base.dists.arcsine.entropy","base.dists.arcsine.kurtosis","base.dists.arcsine.logcdf","base.dists.arcsine.logpdf","base.dists.arcsine.mean","base.dists.arcsine.median","base.dists.arcsine.mode","base.dists.arcsine.pdf","base.dists.arcsine.quantile","base.dists.arcsine.skewness","base.dists.arcsine.stdev","base.dists.arcsine.variance","base.dists.bernoulli.Bernoulli","base.dists.bernoulli.cdf","base.dists.bernoulli.entropy","base.dists.bernoulli.kurtosis","base.dists.bernoulli.mean","base.dists.bernoulli.median","base.dists.bernoulli.mgf","base.dists.bernoulli.mode","base.dists.bernoulli.pmf","base.dists.bernoulli.quantile","base.dists.bernoulli.skewness","base.dists.bernoulli.stdev","base.dists.bernoulli.variance","base.dists.beta.Beta","base.dists.beta.cdf","base.dists.beta.entropy","base.dists.beta.kurtosis","base.dists.beta.logcdf","base.dists.beta.logpdf","base.dists.beta.mean","base.dists.beta.median","base.dists.beta.mgf","base.dists.beta.mode","base.dists.beta.pdf","base.dists.beta.quantile","base.dists.beta.skewness","base.dists.beta.stdev","base.dists.beta.variance","base.dists.betaprime.BetaPrime","base.dists.betaprime.cdf","base.dists.betaprime.kurtosis","base.dists.betaprime.logcdf","base.dists.betaprime.logpdf","base.dists.betaprime.mean","base.dists.betaprime.mode","base.dists.betaprime.pdf","base.dists.betaprime.quantile","base.dists.betaprime.skewness","base.dists.betaprime.stdev","base.dists.betaprime.variance","base.dists.binomial.Binomial","base.dists.binomial.cdf","base.dists.binomial.entropy","base.dists.binomial.kurtosis","base.dists.binomial.logpmf","base.dists.binomial.mean","base.dists.binomial.median","base.dists.binomial.mgf","base.dists.binomial.mode","base.dists.binomial.pmf","base.dists.binomial.quantile","base.dists.binomial.skewness","base.dists.binomial.stdev","base.dists.binomial.variance","base.dists.cauchy.Cauchy","base.dists.cauchy.cdf","base.dists.cauchy.entropy","base.dists.cauchy.logcdf","base.dists.cauchy.logpdf","base.dists.cauchy.median","base.dists.cauchy.mode","base.dists.cauchy.pdf","base.dists.cauchy.quantile","base.dists.chi.cdf","base.dists.chi.Chi","base.dists.chi.entropy","base.dists.chi.kurtosis","base.dists.chi.logpdf","base.dists.chi.mean","base.dists.chi.mode","base.dists.chi.pdf","base.dists.chi.quantile","base.dists.chi.skewness","base.dists.chi.stdev","base.dists.chi.variance","base.dists.chisquare.cdf","base.dists.chisquare.ChiSquare","base.dists.chisquare.entropy","base.dists.chisquare.kurtosis","base.dists.chisquare.logpdf","base.dists.chisquare.mean","base.dists.chisquare.median","base.dists.chisquare.mgf","base.dists.chisquare.mode","base.dists.chisquare.pdf","base.dists.chisquare.quantile","base.dists.chisquare.skewness","base.dists.chisquare.stdev","base.dists.chisquare.variance","base.dists.cosine.cdf","base.dists.cosine.Cosine","base.dists.cosine.kurtosis","base.dists.cosine.logcdf","base.dists.cosine.logpdf","base.dists.cosine.mean","base.dists.cosine.median","base.dists.cosine.mgf","base.dists.cosine.mode","base.dists.cosine.pdf","base.dists.cosine.quantile","base.dists.cosine.skewness","base.dists.cosine.stdev","base.dists.cosine.variance","base.dists.degenerate.cdf","base.dists.degenerate.Degenerate","base.dists.degenerate.entropy","base.dists.degenerate.logcdf","base.dists.degenerate.logpdf","base.dists.degenerate.logpmf","base.dists.degenerate.mean","base.dists.degenerate.median","base.dists.degenerate.mgf","base.dists.degenerate.mode","base.dists.degenerate.pdf","base.dists.degenerate.pmf","base.dists.degenerate.quantile","base.dists.degenerate.stdev","base.dists.degenerate.variance","base.dists.discreteUniform.cdf","base.dists.discreteUniform.DiscreteUniform","base.dists.discreteUniform.entropy","base.dists.discreteUniform.kurtosis","base.dists.discreteUniform.logcdf","base.dists.discreteUniform.logpmf","base.dists.discreteUniform.mean","base.dists.discreteUniform.median","base.dists.discreteUniform.mgf","base.dists.discreteUniform.pmf","base.dists.discreteUniform.quantile","base.dists.discreteUniform.skewness","base.dists.discreteUniform.stdev","base.dists.discreteUniform.variance","base.dists.erlang.cdf","base.dists.erlang.entropy","base.dists.erlang.Erlang","base.dists.erlang.kurtosis","base.dists.erlang.logpdf","base.dists.erlang.mean","base.dists.erlang.mgf","base.dists.erlang.mode","base.dists.erlang.pdf","base.dists.erlang.quantile","base.dists.erlang.skewness","base.dists.erlang.stdev","base.dists.erlang.variance","base.dists.exponential.cdf","base.dists.exponential.entropy","base.dists.exponential.Exponential","base.dists.exponential.kurtosis","base.dists.exponential.logcdf","base.dists.exponential.logpdf","base.dists.exponential.mean","base.dists.exponential.median","base.dists.exponential.mgf","base.dists.exponential.mode","base.dists.exponential.pdf","base.dists.exponential.quantile","base.dists.exponential.skewness","base.dists.exponential.stdev","base.dists.exponential.variance","base.dists.f.cdf","base.dists.f.entropy","base.dists.f.F","base.dists.f.kurtosis","base.dists.f.mean","base.dists.f.mode","base.dists.f.pdf","base.dists.f.quantile","base.dists.f.skewness","base.dists.f.stdev","base.dists.f.variance","base.dists.frechet.cdf","base.dists.frechet.entropy","base.dists.frechet.Frechet","base.dists.frechet.kurtosis","base.dists.frechet.logcdf","base.dists.frechet.logpdf","base.dists.frechet.mean","base.dists.frechet.median","base.dists.frechet.mode","base.dists.frechet.pdf","base.dists.frechet.quantile","base.dists.frechet.skewness","base.dists.frechet.stdev","base.dists.frechet.variance","base.dists.gamma.cdf","base.dists.gamma.entropy","base.dists.gamma.Gamma","base.dists.gamma.kurtosis","base.dists.gamma.logcdf","base.dists.gamma.logpdf","base.dists.gamma.mean","base.dists.gamma.mgf","base.dists.gamma.mode","base.dists.gamma.pdf","base.dists.gamma.quantile","base.dists.gamma.skewness","base.dists.gamma.stdev","base.dists.gamma.variance","base.dists.geometric.cdf","base.dists.geometric.entropy","base.dists.geometric.Geometric","base.dists.geometric.kurtosis","base.dists.geometric.logcdf","base.dists.geometric.logpmf","base.dists.geometric.mean","base.dists.geometric.median","base.dists.geometric.mgf","base.dists.geometric.mode","base.dists.geometric.pmf","base.dists.geometric.quantile","base.dists.geometric.skewness","base.dists.geometric.stdev","base.dists.geometric.variance","base.dists.gumbel.cdf","base.dists.gumbel.entropy","base.dists.gumbel.Gumbel","base.dists.gumbel.kurtosis","base.dists.gumbel.logcdf","base.dists.gumbel.logpdf","base.dists.gumbel.mean","base.dists.gumbel.median","base.dists.gumbel.mgf","base.dists.gumbel.mode","base.dists.gumbel.pdf","base.dists.gumbel.quantile","base.dists.gumbel.skewness","base.dists.gumbel.stdev","base.dists.gumbel.variance","base.dists.hypergeometric.cdf","base.dists.hypergeometric.Hypergeometric","base.dists.hypergeometric.kurtosis","base.dists.hypergeometric.logpmf","base.dists.hypergeometric.mean","base.dists.hypergeometric.mode","base.dists.hypergeometric.pmf","base.dists.hypergeometric.quantile","base.dists.hypergeometric.skewness","base.dists.hypergeometric.stdev","base.dists.hypergeometric.variance","base.dists.invgamma.cdf","base.dists.invgamma.entropy","base.dists.invgamma.InvGamma","base.dists.invgamma.kurtosis","base.dists.invgamma.logpdf","base.dists.invgamma.mean","base.dists.invgamma.mode","base.dists.invgamma.pdf","base.dists.invgamma.quantile","base.dists.invgamma.skewness","base.dists.invgamma.stdev","base.dists.invgamma.variance","base.dists.kumaraswamy.cdf","base.dists.kumaraswamy.Kumaraswamy","base.dists.kumaraswamy.kurtosis","base.dists.kumaraswamy.logcdf","base.dists.kumaraswamy.logpdf","base.dists.kumaraswamy.mean","base.dists.kumaraswamy.median","base.dists.kumaraswamy.mode","base.dists.kumaraswamy.pdf","base.dists.kumaraswamy.quantile","base.dists.kumaraswamy.skewness","base.dists.kumaraswamy.stdev","base.dists.kumaraswamy.variance","base.dists.laplace.cdf","base.dists.laplace.entropy","base.dists.laplace.kurtosis","base.dists.laplace.Laplace","base.dists.laplace.logcdf","base.dists.laplace.logpdf","base.dists.laplace.mean","base.dists.laplace.median","base.dists.laplace.mgf","base.dists.laplace.mode","base.dists.laplace.pdf","base.dists.laplace.quantile","base.dists.laplace.skewness","base.dists.laplace.stdev","base.dists.laplace.variance","base.dists.levy.cdf","base.dists.levy.entropy","base.dists.levy.Levy","base.dists.levy.logcdf","base.dists.levy.logpdf","base.dists.levy.mean","base.dists.levy.median","base.dists.levy.mode","base.dists.levy.pdf","base.dists.levy.quantile","base.dists.levy.stdev","base.dists.levy.variance","base.dists.logistic.cdf","base.dists.logistic.entropy","base.dists.logistic.kurtosis","base.dists.logistic.logcdf","base.dists.logistic.Logistic","base.dists.logistic.logpdf","base.dists.logistic.mean","base.dists.logistic.median","base.dists.logistic.mgf","base.dists.logistic.mode","base.dists.logistic.pdf","base.dists.logistic.quantile","base.dists.logistic.skewness","base.dists.logistic.stdev","base.dists.logistic.variance","base.dists.lognormal.cdf","base.dists.lognormal.entropy","base.dists.lognormal.kurtosis","base.dists.lognormal.LogNormal","base.dists.lognormal.logcdf","base.dists.lognormal.logpdf","base.dists.lognormal.mean","base.dists.lognormal.median","base.dists.lognormal.mode","base.dists.lognormal.pdf","base.dists.lognormal.quantile","base.dists.lognormal.skewness","base.dists.lognormal.stdev","base.dists.lognormal.variance","base.dists.negativeBinomial.cdf","base.dists.negativeBinomial.kurtosis","base.dists.negativeBinomial.logpmf","base.dists.negativeBinomial.mean","base.dists.negativeBinomial.mgf","base.dists.negativeBinomial.mode","base.dists.negativeBinomial.NegativeBinomial","base.dists.negativeBinomial.pmf","base.dists.negativeBinomial.quantile","base.dists.negativeBinomial.skewness","base.dists.negativeBinomial.stdev","base.dists.negativeBinomial.variance","base.dists.normal.cdf","base.dists.normal.entropy","base.dists.normal.kurtosis","base.dists.normal.logcdf","base.dists.normal.logpdf","base.dists.normal.mean","base.dists.normal.median","base.dists.normal.mgf","base.dists.normal.mode","base.dists.normal.Normal","base.dists.normal.pdf","base.dists.normal.quantile","base.dists.normal.skewness","base.dists.normal.stdev","base.dists.normal.variance","base.dists.pareto1.cdf","base.dists.pareto1.entropy","base.dists.pareto1.kurtosis","base.dists.pareto1.logcdf","base.dists.pareto1.logpdf","base.dists.pareto1.mean","base.dists.pareto1.median","base.dists.pareto1.mode","base.dists.pareto1.Pareto1","base.dists.pareto1.pdf","base.dists.pareto1.quantile","base.dists.pareto1.skewness","base.dists.pareto1.stdev","base.dists.pareto1.variance","base.dists.poisson.cdf","base.dists.poisson.entropy","base.dists.poisson.kurtosis","base.dists.poisson.logpmf","base.dists.poisson.mean","base.dists.poisson.median","base.dists.poisson.mgf","base.dists.poisson.mode","base.dists.poisson.pmf","base.dists.poisson.Poisson","base.dists.poisson.quantile","base.dists.poisson.skewness","base.dists.poisson.stdev","base.dists.poisson.variance","base.dists.rayleigh.cdf","base.dists.rayleigh.entropy","base.dists.rayleigh.kurtosis","base.dists.rayleigh.logcdf","base.dists.rayleigh.logpdf","base.dists.rayleigh.mean","base.dists.rayleigh.median","base.dists.rayleigh.mgf","base.dists.rayleigh.mode","base.dists.rayleigh.pdf","base.dists.rayleigh.quantile","base.dists.rayleigh.Rayleigh","base.dists.rayleigh.skewness","base.dists.rayleigh.stdev","base.dists.rayleigh.variance","base.dists.signrank.cdf","base.dists.signrank.pdf","base.dists.signrank.quantile","base.dists.studentizedRange.cdf","base.dists.studentizedRange.quantile","base.dists.t.cdf","base.dists.t.entropy","base.dists.t.kurtosis","base.dists.t.logcdf","base.dists.t.logpdf","base.dists.t.mean","base.dists.t.median","base.dists.t.mode","base.dists.t.pdf","base.dists.t.quantile","base.dists.t.skewness","base.dists.t.stdev","base.dists.t.T","base.dists.t.variance","base.dists.triangular.cdf","base.dists.triangular.entropy","base.dists.triangular.kurtosis","base.dists.triangular.logcdf","base.dists.triangular.logpdf","base.dists.triangular.mean","base.dists.triangular.median","base.dists.triangular.mgf","base.dists.triangular.mode","base.dists.triangular.pdf","base.dists.triangular.quantile","base.dists.triangular.skewness","base.dists.triangular.stdev","base.dists.triangular.Triangular","base.dists.triangular.variance","base.dists.truncatedNormal.pdf","base.dists.uniform.cdf","base.dists.uniform.entropy","base.dists.uniform.kurtosis","base.dists.uniform.logcdf","base.dists.uniform.logpdf","base.dists.uniform.mean","base.dists.uniform.median","base.dists.uniform.mgf","base.dists.uniform.pdf","base.dists.uniform.quantile","base.dists.uniform.skewness","base.dists.uniform.stdev","base.dists.uniform.Uniform","base.dists.uniform.variance","base.dists.weibull.cdf","base.dists.weibull.entropy","base.dists.weibull.kurtosis","base.dists.weibull.logcdf","base.dists.weibull.logpdf","base.dists.weibull.mean","base.dists.weibull.median","base.dists.weibull.mgf","base.dists.weibull.mode","base.dists.weibull.pdf","base.dists.weibull.quantile","base.dists.weibull.skewness","base.dists.weibull.stdev","base.dists.weibull.variance","base.dists.weibull.Weibull","base.ellipe","base.ellipj","base.ellipk","base.endsWith","base.epsdiff","base.erf","base.erfc","base.erfcinv","base.erfcx","base.erfinv","base.eta","base.evalpoly","base.evalrational","base.exp","base.exp2","base.exp10","base.expit","base.expm1","base.expm1rel","base.exponent","base.exponentf","base.factorial","base.factorial2","base.factorialln","base.fallingFactorial","base.fibonacci","base.fibonacciIndex","base.fibpoly","base.firstCodePoint","base.firstCodeUnit","base.firstGraphemeCluster","base.flipsign","base.flipsignf","base.float32ToInt32","base.float32ToUint32","base.float64ToFloat32","base.float64ToInt32","base.float64ToInt64Bytes","base.float64ToUint32","base.floor","base.floor2","base.floor10","base.floorb","base.floorf","base.floorn","base.floorsd","base.forEachChar","base.forEachCodePoint","base.forEachCodePointRight","base.forEachGraphemeCluster","base.forEachRight","base.formatInterpolate","base.formatTokenize","base.fresnel","base.fresnelc","base.fresnels","base.frexp","base.fromBinaryString","base.fromBinaryStringf","base.fromBinaryStringUint8","base.fromBinaryStringUint16","base.fromBinaryStringUint32","base.fromInt64Bytes","base.fromWordf","base.fromWords","base.gamma","base.gamma1pm1","base.gammaDeltaRatio","base.gammainc","base.gammaincinv","base.gammaLanczosSum","base.gammaLanczosSumExpGScaled","base.gammaln","base.gammasgn","base.gcd","base.getHighWord","base.getLowWord","base.hacovercos","base.hacoversin","base.havercos","base.haversin","base.headercase","base.heaviside","base.hermitepoly","base.hypot","base.hypotf","base.identity","base.identityf","base.imul","base.imuldw","base.int2slice","base.int32ToUint32","base.inv","base.invcase","base.invf","base.isComposite","base.isCoprime","base.isEven","base.isEvenInt32","base.isFinite","base.isFinitef","base.isInfinite","base.isInfinitef","base.isInteger","base.isnan","base.isnanf","base.isNegativeFinite","base.isNegativeInteger","base.isNegativeZero","base.isNegativeZerof","base.isNonNegativeFinite","base.isNonNegativeInteger","base.isNonPositiveFinite","base.isNonPositiveInteger","base.isOdd","base.isOddInt32","base.isPositiveFinite","base.isPositiveInteger","base.isPositiveZero","base.isPositiveZerof","base.isPow2Uint32","base.isPrime","base.isProbability","base.isSafeInteger","base.kebabcase","base.kernelBetainc","base.kernelBetaincinv","base.kernelCos","base.kernelLog1p","base.kernelSin","base.kernelTan","base.kroneckerDelta","base.kroneckerDeltaf","base.labs","base.last","base.lastCodePoint","base.lastGraphemeCluster","base.lcm","base.ldexp","base.leftPad","base.leftTrim","base.ln","base.log","base.log1mexp","base.log1p","base.log1pexp","base.log1pmx","base.log2","base.log10","base.logaddexp","base.logit","base.lowercase","base.lucas","base.lucaspoly","base.max","base.maxabs","base.maxabsn","base.maxn","base.min","base.minabs","base.minabsn","base.minmax","base.minmaxabs","base.minmaxabsn","base.minmaxn","base.minn","base.modf","base.mul","base.mulf","base.ndarray","base.ndarrayUnary","base.ndzeros","base.ndzerosLike","base.negafibonacci","base.negalucas","base.nonfibonacci","base.normalize","base.normalizef","base.normalizeMultiSlice","base.normalizeSlice","base.normhermitepoly","base.pascalcase","base.pdiff","base.pdifff","base.percentEncode","base.polygamma","base.pow","base.powm1","base.rad2deg","base.rad2degf","base.ramp","base.rampf","base.random.arcsine","base.random.bernoulli","base.random.beta","base.random.betaprime","base.random.binomial","base.random.boxMuller","base.random.cauchy","base.random.chi","base.random.chisquare","base.random.cosine","base.random.discreteUniform","base.random.erlang","base.random.exponential","base.random.f","base.random.frechet","base.random.gamma","base.random.geometric","base.random.gumbel","base.random.hypergeometric","base.random.improvedZiggurat","base.random.invgamma","base.random.kumaraswamy","base.random.laplace","base.random.levy","base.random.logistic","base.random.lognormal","base.random.minstd","base.random.minstdShuffle","base.random.mt19937","base.random.negativeBinomial","base.random.normal","base.random.pareto1","base.random.poisson","base.random.randi","base.random.randn","base.random.randu","base.random.rayleigh","base.random.t","base.random.triangular","base.random.uniform","base.random.weibull","base.rcbrt","base.rcbrtf","base.reldiff","base.removeFirst","base.removeFirstCodePoint","base.removeFirstGraphemeCluster","base.removeLast","base.removeLastCodePoint","base.removeLastGraphemeCluster","base.rempio2","base.repeat","base.replace","base.replaceAfter","base.replaceAfterLast","base.replaceBefore","base.replaceBeforeLast","base.reverse","base.reverseCodePoints","base.reverseGraphemeClusters","base.rightPad","base.rightTrim","base.risingFactorial","base.rotl32","base.rotr32","base.round","base.round2","base.round10","base.roundb","base.roundn","base.roundsd","base.rsqrt","base.rsqrtf","base.sargs2multislice","base.scalar2ndarray","base.secd","base.seq2multislice","base.seq2slice","base.setHighWord","base.setLowWord","base.sici","base.signbit","base.signbitf","base.significandf","base.signum","base.signumf","base.sin","base.sinc","base.sincos","base.sincospi","base.sinh","base.sinpi","base.slice2seq","base.sliceLength","base.sliceNonReducedDimensions","base.sliceReducedDimensions","base.sliceShape","base.snakecase","base.spence","base.sqrt","base.sqrt1pm1","base.sqrtf","base.sqrtpi","base.startcase","base.startsWith","base.stickycase","base.strided.binary","base.strided.binaryDtypeSignatures","base.strided.binarySignatureCallbacks","base.strided.ccopy","base.strided.cmap","base.strided.cswap","base.strided.cumax","base.strided.cumaxabs","base.strided.cumin","base.strided.cuminabs","base.strided.dabs","base.strided.dabs2","base.strided.dapx","base.strided.dapxsum","base.strided.dapxsumkbn","base.strided.dapxsumkbn2","base.strided.dapxsumors","base.strided.dapxsumpw","base.strided.dasum","base.strided.dasumpw","base.strided.daxpy","base.strided.dcbrt","base.strided.dceil","base.strided.dcopy","base.strided.dcumax","base.strided.dcumaxabs","base.strided.dcumin","base.strided.dcuminabs","base.strided.dcusum","base.strided.dcusumkbn","base.strided.dcusumkbn2","base.strided.dcusumors","base.strided.dcusumpw","base.strided.ddeg2rad","base.strided.ddot","base.strided.dfill","base.strided.dfloor","base.strided.dinv","base.strided.dmap","base.strided.dmap2","base.strided.dmax","base.strided.dmaxabs","base.strided.dmaxabssorted","base.strided.dmaxsorted","base.strided.dmean","base.strided.dmeankbn","base.strided.dmeankbn2","base.strided.dmeanli","base.strided.dmeanlipw","base.strided.dmeanors","base.strided.dmeanpn","base.strided.dmeanpw","base.strided.dmeanstdev","base.strided.dmeanstdevpn","base.strided.dmeanvar","base.strided.dmeanvarpn","base.strided.dmeanwd","base.strided.dmediansorted","base.strided.dmidrange","base.strided.dmin","base.strided.dminabs","base.strided.dminsorted","base.strided.dmskabs","base.strided.dmskabs2","base.strided.dmskcbrt","base.strided.dmskceil","base.strided.dmskdeg2rad","base.strided.dmskfloor","base.strided.dmskinv","base.strided.dmskmap","base.strided.dmskmap2","base.strided.dmskmax","base.strided.dmskmin","base.strided.dmskramp","base.strided.dmskrange","base.strided.dmskrsqrt","base.strided.dmsksqrt","base.strided.dmsktrunc","base.strided.dnanasum","base.strided.dnanasumors","base.strided.dnanmax","base.strided.dnanmaxabs","base.strided.dnanmean","base.strided.dnanmeanors","base.strided.dnanmeanpn","base.strided.dnanmeanpw","base.strided.dnanmeanwd","base.strided.dnanmin","base.strided.dnanminabs","base.strided.dnanmskmax","base.strided.dnanmskmin","base.strided.dnanmskrange","base.strided.dnannsum","base.strided.dnannsumkbn","base.strided.dnannsumkbn2","base.strided.dnannsumors","base.strided.dnannsumpw","base.strided.dnanrange","base.strided.dnanstdev","base.strided.dnanstdevch","base.strided.dnanstdevpn","base.strided.dnanstdevtk","base.strided.dnanstdevwd","base.strided.dnanstdevyc","base.strided.dnansum","base.strided.dnansumkbn","base.strided.dnansumkbn2","base.strided.dnansumors","base.strided.dnansumpw","base.strided.dnanvariance","base.strided.dnanvariancech","base.strided.dnanvariancepn","base.strided.dnanvariancetk","base.strided.dnanvariancewd","base.strided.dnanvarianceyc","base.strided.dnrm2","base.strided.dramp","base.strided.drange","base.strided.drev","base.strided.drsqrt","base.strided.dsapxsum","base.strided.dsapxsumpw","base.strided.dscal","base.strided.dsdot","base.strided.dsem","base.strided.dsemch","base.strided.dsempn","base.strided.dsemtk","base.strided.dsemwd","base.strided.dsemyc","base.strided.dsmean","base.strided.dsmeanors","base.strided.dsmeanpn","base.strided.dsmeanpw","base.strided.dsmeanwd","base.strided.dsnanmean","base.strided.dsnanmeanors","base.strided.dsnanmeanpn","base.strided.dsnanmeanwd","base.strided.dsnannsumors","base.strided.dsnansum","base.strided.dsnansumors","base.strided.dsnansumpw","base.strided.dsort2hp","base.strided.dsort2ins","base.strided.dsort2sh","base.strided.dsorthp","base.strided.dsortins","base.strided.dsortsh","base.strided.dsqrt","base.strided.dssum","base.strided.dssumors","base.strided.dssumpw","base.strided.dstdev","base.strided.dstdevch","base.strided.dstdevpn","base.strided.dstdevtk","base.strided.dstdevwd","base.strided.dstdevyc","base.strided.dsum","base.strided.dsumkbn","base.strided.dsumkbn2","base.strided.dsumors","base.strided.dsumpw","base.strided.dsvariance","base.strided.dsvariancepn","base.strided.dswap","base.strided.dtrunc","base.strided.dtypeEnum2Str","base.strided.dtypeResolveEnum","base.strided.dtypeResolveStr","base.strided.dtypeStr2Enum","base.strided.dvariance","base.strided.dvariancech","base.strided.dvariancepn","base.strided.dvariancetk","base.strided.dvariancewd","base.strided.dvarianceyc","base.strided.dvarm","base.strided.dvarmpn","base.strided.dvarmtk","base.strided.functionObject","base.strided.gapx","base.strided.gapxsum","base.strided.gapxsumkbn","base.strided.gapxsumkbn2","base.strided.gapxsumors","base.strided.gapxsumpw","base.strided.gasum","base.strided.gasumpw","base.strided.gaxpy","base.strided.gcopy","base.strided.gcusum","base.strided.gcusumkbn","base.strided.gcusumkbn2","base.strided.gcusumors","base.strided.gcusumpw","base.strided.gdot","base.strided.gfill","base.strided.gfillBy","base.strided.gnannsumkbn","base.strided.gnansum","base.strided.gnansumkbn","base.strided.gnansumkbn2","base.strided.gnansumors","base.strided.gnansumpw","base.strided.gnrm2","base.strided.grev","base.strided.gscal","base.strided.gsort2hp","base.strided.gsort2ins","base.strided.gsort2sh","base.strided.gsorthp","base.strided.gsortins","base.strided.gsortsh","base.strided.gsum","base.strided.gsumkbn","base.strided.gsumkbn2","base.strided.gsumors","base.strided.gsumpw","base.strided.gswap","base.strided.mapBy","base.strided.mapBy2","base.strided.max","base.strided.maxabs","base.strided.maxBy","base.strided.maxsorted","base.strided.maxViewBufferIndex","base.strided.mean","base.strided.meankbn","base.strided.meankbn2","base.strided.meanors","base.strided.meanpn","base.strided.meanpw","base.strided.meanwd","base.strided.mediansorted","base.strided.metaDataProps","base.strided.min","base.strided.minabs","base.strided.minBy","base.strided.minsorted","base.strided.minViewBufferIndex","base.strided.mskmax","base.strided.mskmin","base.strided.mskrange","base.strided.mskunary","base.strided.mskunaryDtypeSignatures","base.strided.mskunarySignatureCallbacks","base.strided.nanmax","base.strided.nanmaxabs","base.strided.nanmaxBy","base.strided.nanmean","base.strided.nanmeanors","base.strided.nanmeanpn","base.strided.nanmeanwd","base.strided.nanmin","base.strided.nanminabs","base.strided.nanminBy","base.strided.nanmskmax","base.strided.nanmskmin","base.strided.nanmskrange","base.strided.nanrange","base.strided.nanrangeBy","base.strided.nanstdev","base.strided.nanstdevch","base.strided.nanstdevpn","base.strided.nanstdevtk","base.strided.nanstdevwd","base.strided.nanstdevyc","base.strided.nanvariance","base.strided.nanvariancech","base.strided.nanvariancepn","base.strided.nanvariancetk","base.strided.nanvariancewd","base.strided.nanvarianceyc","base.strided.nullary","base.strided.offsetView","base.strided.quaternary","base.strided.quinary","base.strided.range","base.strided.rangeBy","base.strided.reinterpretComplex","base.strided.reinterpretComplex64","base.strided.reinterpretComplex128","base.strided.sabs","base.strided.sabs2","base.strided.sapx","base.strided.sapxsum","base.strided.sapxsumkbn","base.strided.sapxsumkbn2","base.strided.sapxsumors","base.strided.sapxsumpw","base.strided.sasum","base.strided.sasumpw","base.strided.saxpy","base.strided.scbrt","base.strided.sceil","base.strided.scopy","base.strided.scumax","base.strided.scumaxabs","base.strided.scumin","base.strided.scuminabs","base.strided.scusum","base.strided.scusumkbn","base.strided.scusumkbn2","base.strided.scusumors","base.strided.scusumpw","base.strided.sdeg2rad","base.strided.sdot","base.strided.sdsapxsum","base.strided.sdsapxsumpw","base.strided.sdsdot","base.strided.sdsmean","base.strided.sdsmeanors","base.strided.sdsnanmean","base.strided.sdsnanmeanors","base.strided.sdsnansum","base.strided.sdsnansumpw","base.strided.sdssum","base.strided.sdssumpw","base.strided.sfill","base.strided.sfloor","base.strided.sinv","base.strided.smap","base.strided.smap2","base.strided.smax","base.strided.smaxabs","base.strided.smaxabssorted","base.strided.smaxsorted","base.strided.smean","base.strided.smeankbn","base.strided.smeankbn2","base.strided.smeanli","base.strided.smeanlipw","base.strided.smeanors","base.strided.smeanpn","base.strided.smeanpw","base.strided.smeanwd","base.strided.smediansorted","base.strided.smidrange","base.strided.smin","base.strided.sminabs","base.strided.sminsorted","base.strided.smskabs","base.strided.smskabs2","base.strided.smskcbrt","base.strided.smskceil","base.strided.smskdeg2rad","base.strided.smskfloor","base.strided.smskinv","base.strided.smskmap","base.strided.smskmap2","base.strided.smskmax","base.strided.smskmin","base.strided.smskramp","base.strided.smskrange","base.strided.smskrsqrt","base.strided.smsksqrt","base.strided.smsktrunc","base.strided.snanmax","base.strided.snanmaxabs","base.strided.snanmean","base.strided.snanmeanors","base.strided.snanmeanpn","base.strided.snanmeanwd","base.strided.snanmin","base.strided.snanminabs","base.strided.snanmskmax","base.strided.snanmskmin","base.strided.snanmskrange","base.strided.snanrange","base.strided.snanstdev","base.strided.snanstdevch","base.strided.snanstdevpn","base.strided.snanstdevtk","base.strided.snanstdevwd","base.strided.snanstdevyc","base.strided.snansum","base.strided.snansumkbn","base.strided.snansumkbn2","base.strided.snansumors","base.strided.snansumpw","base.strided.snanvariance","base.strided.snanvariancech","base.strided.snanvariancepn","base.strided.snanvariancetk","base.strided.snanvariancewd","base.strided.snanvarianceyc","base.strided.snrm2","base.strided.sramp","base.strided.srange","base.strided.srev","base.strided.srsqrt","base.strided.sscal","base.strided.ssort2hp","base.strided.ssort2ins","base.strided.ssort2sh","base.strided.ssorthp","base.strided.ssortins","base.strided.ssortsh","base.strided.ssqrt","base.strided.sstdev","base.strided.sstdevch","base.strided.sstdevpn","base.strided.sstdevtk","base.strided.sstdevwd","base.strided.sstdevyc","base.strided.ssum","base.strided.ssumkbn","base.strided.ssumkbn2","base.strided.ssumors","base.strided.ssumpw","base.strided.sswap","base.strided.stdev","base.strided.stdevch","base.strided.stdevpn","base.strided.stdevtk","base.strided.stdevwd","base.strided.stdevyc","base.strided.strunc","base.strided.svariance","base.strided.svariancech","base.strided.svariancepn","base.strided.svariancetk","base.strided.svariancewd","base.strided.svarianceyc","base.strided.ternary","base.strided.unary","base.strided.unaryBy","base.strided.unaryDtypeSignatures","base.strided.unarySignatureCallbacks","base.strided.variance","base.strided.variancech","base.strided.variancepn","base.strided.variancetk","base.strided.variancewd","base.strided.varianceyc","base.strided.zmap","base.str2multislice","base.str2slice","base.sub","base.subf","base.sumSeries","base.tan","base.tand","base.tanh","base.toBinaryString","base.toBinaryStringf","base.toBinaryStringUint8","base.toBinaryStringUint16","base.toBinaryStringUint32","base.toWordf","base.toWords","base.transpose","base.tribonacci","base.trigamma","base.trim","base.trunc","base.trunc2","base.trunc10","base.truncateMiddle","base.truncb","base.truncf","base.truncn","base.truncsd","base.uint32ToInt32","base.umul","base.umuldw","base.uncapitalize","base.uppercase","base.vercos","base.versin","base.wrap","base.xlog1py","base.xlogy","base.zeta","bench","BERNDT_CPS_WAGES_1985","bifurcate","bifurcateBy","bifurcateByAsync","bifurcateIn","bifurcateOwn","BigInt","binomialTest","Boolean","BooleanArray","broadcastArray","broadcastArrays","Buffer","buffer2json","BYTE_ORDER","camelcase","capitalize","capitalizeKeys","CATALAN","CBRT_EPS","CDC_NCHS_US_BIRTHS_1969_1988","CDC_NCHS_US_BIRTHS_1994_2003","CDC_NCHS_US_INFANT_MORTALITY_BW_1915_2013","chdir","chi2gof","chi2test","circarray2iterator","circularArrayStream","CircularBuffer","close","CMUDICT","codePointAt","commonKeys","commonKeysIn","complex","Complex64","COMPLEX64_NAN","COMPLEX64_NUM_BYTES","COMPLEX64_ZERO","Complex64Array","Complex128","COMPLEX128_NAN","COMPLEX128_NUM_BYTES","COMPLEX128_ZERO","Complex128Array","complexarray","complexarrayCtors","complexarrayDataTypes","complexCtors","complexDataType","complexDataTypes","complexPromotionRules","compose","composeAsync","configdir","conj","conjf","constantcase","constantFunction","constantStream","constructorName","contains","convertArray","convertArraySame","convertPath","copy","copyBuffer","countBy","countByAsync","currentYear","curry","curryRight","cwd","DALE_CHALL_NEW","datasets","DataView","datespace","dayOfQuarter","dayOfYear","daysInMonth","daysInYear","ddot","debugSinkStream","debugStream","decorateAfter","deepEqual","deepGet","deepHasOwnProp","deepHasProp","deepPluck","deepSet","defineMemoizedProperty","defineProperties","defineProperty","dirname","dotcase","DoublyLinkedList","doUntil","doUntilAsync","doUntilEach","doUntilEachRight","doWhile","doWhileAsync","doWhileEach","doWhileEachRight","dswap","E","EMOJI","EMOJI_CODE_PICTO","EMOJI_PICTO_CODE","emptyStream","endsWith","enumerableProperties","enumerablePropertiesIn","enumerablePropertySymbols","enumerablePropertySymbolsIn","ENV","EPS","error2json","EULERGAMMA","every","everyBy","everyByAsync","everyByRight","everyByRightAsync","everyInBy","everyOwnBy","evil","EXEC_PATH","exists","expandAcronyms","expandContractions","extname","FancyArray","fastmath.abs","fastmath.acosh","fastmath.ampbm","fastmath.asinh","fastmath.atanh","fastmath.hypot","fastmath.log2Uint32","fastmath.max","fastmath.min","fastmath.powint","fastmath.sqrtUint32","FEMALE_FIRST_NAMES_EN","FIFO","filledarray","filledarrayBy","filterArguments","find","firstChar","FIVETHIRTYEIGHT_FFQ","flattenArray","flattenObject","flignerTest","FLOAT_WORD_ORDER","FLOAT16_CBRT_EPS","FLOAT16_EPS","FLOAT16_EXPONENT_BIAS","FLOAT16_MAX","FLOAT16_MAX_SAFE_INTEGER","FLOAT16_MIN_SAFE_INTEGER","FLOAT16_NINF","FLOAT16_NUM_BYTES","FLOAT16_PINF","FLOAT16_PRECISION","FLOAT16_SMALLEST_NORMAL","FLOAT16_SMALLEST_SUBNORMAL","FLOAT16_SQRT_EPS","FLOAT32_ABS_MASK","FLOAT32_CBRT_EPS","FLOAT32_EPS","FLOAT32_EXPONENT_BIAS","FLOAT32_EXPONENT_MASK","FLOAT32_FOURTH_PI","FLOAT32_HALF_PI","FLOAT32_MAX","FLOAT32_MAX_SAFE_INTEGER","FLOAT32_MIN_SAFE_INTEGER","FLOAT32_NAN","FLOAT32_NINF","FLOAT32_NUM_BYTES","FLOAT32_PI","FLOAT32_PINF","FLOAT32_PRECISION","FLOAT32_SIGN_MASK","FLOAT32_SIGNIFICAND_MASK","FLOAT32_SMALLEST_NORMAL","FLOAT32_SMALLEST_SUBNORMAL","FLOAT32_SQRT_EPS","FLOAT32_TWO_PI","Float32Array","Float32ArrayFE","Float32ArrayLE","FLOAT64_EXPONENT_BIAS","FLOAT64_HIGH_WORD_ABS_MASK","FLOAT64_HIGH_WORD_EXPONENT_MASK","FLOAT64_HIGH_WORD_SIGN_MASK","FLOAT64_HIGH_WORD_SIGNIFICAND_MASK","FLOAT64_MAX","FLOAT64_MAX_BASE2_EXPONENT","FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MAX_BASE10_EXPONENT","FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MAX_LN","FLOAT64_MAX_SAFE_FIBONACCI","FLOAT64_MAX_SAFE_INTEGER","FLOAT64_MAX_SAFE_LUCAS","FLOAT64_MAX_SAFE_NTH_FIBONACCI","FLOAT64_MAX_SAFE_NTH_LUCAS","FLOAT64_MIN_BASE2_EXPONENT","FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL","FLOAT64_MIN_BASE10_EXPONENT","FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL","FLOAT64_MIN_LN","FLOAT64_MIN_SAFE_INTEGER","FLOAT64_NUM_BYTES","FLOAT64_PRECISION","FLOAT64_SMALLEST_NORMAL","FLOAT64_SMALLEST_SUBNORMAL","Float64Array","Float64ArrayFE","Float64ArrayLE","forEach","forEachAsync","forEachChar","forEachRight","forEachRightAsync","forIn","format","forOwn","FOURTH_PI","FOURTH_ROOT_EPS","FRB_SF_WAGE_RIGIDITY","fromCodePoint","Function","function2string","functionName","functionSequence","functionSequenceAsync","GAMMA_LANCZOS_G","gdot","getegid","geteuid","getgid","getGlobal","getPrototypeOf","getuid","GLAISHER","graphemeClusters2iterator","graphemeClusters2iteratorRight","group","groupBy","groupByAsync","groupIn","groupOwn","gswap","HALF_LN2","HALF_PI","HARRISON_BOSTON_HOUSE_PRICES","HARRISON_BOSTON_HOUSE_PRICES_CORRECTED","hasArrayBufferSupport","hasArrowFunctionSupport","hasAsyncAwaitSupport","hasAsyncIteratorSymbolSupport","hasAtobSupport","hasBigInt64ArraySupport","hasBigIntSupport","hasBigUint64ArraySupport","hasBtoaSupport","hasClassSupport","hasDataViewSupport","hasDefinePropertiesSupport","hasDefinePropertySupport","hasFloat32ArraySupport","hasFloat64ArraySupport","hasFunctionNameSupport","hasGeneratorSupport","hasGlobalThisSupport","hasInt8ArraySupport","hasInt16ArraySupport","hasInt32ArraySupport","hasIteratorSymbolSupport","hasMapSupport","hasNodeBufferSupport","hasOwnProp","hasProp","hasProxySupport","hasSetSupport","hasSharedArrayBufferSupport","hasSymbolSupport","hasToStringTagSupport","hasUint8ArraySupport","hasUint8ClampedArraySupport","hasUint16ArraySupport","hasUint32ArraySupport","hasUTF16SurrogatePairAt","hasWeakMapSupport","hasWeakSetSupport","hasWebAssemblySupport","headercase","HERNDON_VENUS_SEMIDIAMETERS","homedir","HOURS_IN_DAY","HOURS_IN_WEEK","hoursInMonth","hoursInYear","httpServer","identity","ifelse","ifelseAsync","ifthen","ifthenAsync","imag","imagf","IMG_ACANTHUS_MOLLIS","IMG_AIRPLANE_FROM_ABOVE","IMG_ALLIUM_OREOPHILUM","IMG_BLACK_CANYON","IMG_DUST_BOWL_HOME","IMG_FRENCH_ALPINE_LANDSCAPE","IMG_LOCOMOTION_HOUSE_CAT","IMG_LOCOMOTION_NUDE_MALE","IMG_MARCH_PASTORAL","IMG_NAGASAKI_BOATS","incrapcorr","incrBinaryClassification","incrcount","incrcovariance","incrcovmat","incrcv","increwmean","increwstdev","increwvariance","incrgmean","incrgrubbs","incrhmean","incrkmeans","incrkurtosis","incrmaape","incrmae","incrmapcorr","incrmape","incrmax","incrmaxabs","incrmcovariance","incrmcv","incrmda","incrme","incrmean","incrmeanabs","incrmeanabs2","incrmeanstdev","incrmeanvar","incrmgmean","incrmgrubbs","incrmhmean","incrmidrange","incrmin","incrminabs","incrminmax","incrminmaxabs","incrmmaape","incrmmae","incrmmape","incrmmax","incrmmaxabs","incrmmda","incrmme","incrmmean","incrmmeanabs","incrmmeanabs2","incrmmeanstdev","incrmmeanvar","incrmmidrange","incrmmin","incrmminabs","incrmminmax","incrmminmaxabs","incrmmpe","incrmmse","incrmpcorr","incrmpcorr2","incrmpcorrdist","incrmpe","incrmprod","incrmrange","incrmrmse","incrmrss","incrmse","incrmstdev","incrmsum","incrmsumabs","incrmsumabs2","incrmsummary","incrmsumprod","incrmvariance","incrmvmr","incrnancount","incrnansum","incrnansumabs","incrnansumabs2","incrpcorr","incrpcorr2","incrpcorrdist","incrpcorrdistmat","incrpcorrmat","incrprod","incrrange","incrrmse","incrrss","incrSGDRegression","incrskewness","incrspace","incrstdev","incrsum","incrsumabs","incrsumabs2","incrsummary","incrsumprod","incrvariance","incrvmr","incrwmean","ind2sub","indexOf","inherit","inheritedEnumerableProperties","inheritedEnumerablePropertySymbols","inheritedKeys","inheritedNonEnumerableProperties","inheritedNonEnumerablePropertyNames","inheritedNonEnumerablePropertySymbols","inheritedProperties","inheritedPropertyDescriptor","inheritedPropertyDescriptors","inheritedPropertyNames","inheritedPropertySymbols","inheritedWritableProperties","inheritedWritablePropertyNames","inheritedWritablePropertySymbols","inmap","inmapAsync","inmapRight","inmapRightAsync","inspectSinkStream","inspectStream","instanceOf","INT8_MAX","INT8_MIN","INT8_NUM_BYTES","Int8Array","INT16_MAX","INT16_MIN","INT16_NUM_BYTES","Int16Array","INT32_MAX","INT32_MIN","INT32_NUM_BYTES","Int32Array","IS_BIG_ENDIAN","IS_BROWSER","IS_DARWIN","IS_DOCKER","IS_ELECTRON","IS_ELECTRON_MAIN","IS_ELECTRON_RENDERER","IS_LITTLE_ENDIAN","IS_MOBILE","IS_NODE","IS_TOUCH_DEVICE","IS_WEB_WORKER","IS_WINDOWS","isAbsoluteHttpURI","isAbsolutePath","isAbsoluteURI","isAccessorArray","isAccessorProperty","isAccessorPropertyIn","isAlphagram","isAlphaNumeric","isAnagram","isArguments","isArray","isArrayArray","isArrayBuffer","isArrayBufferView","isArrayLength","isArrayLike","isArrayLikeObject","isArrowFunction","isASCII","isBetween","isBetweenArray","isBigInt","isBigInt64Array","isBigUint64Array","isBinaryString","isBlankString","isBoolean","isBooleanArray","isBoxedPrimitive","isBuffer","isCamelcase","isCapitalized","isCentrosymmetricMatrix","isCircular","isCircularArray","isCircularPlainObject","isClass","isCollection","isComplex","isComplex64","isComplex64Array","isComplex64MatrixLike","isComplex64ndarrayLike","isComplex64VectorLike","isComplex128","isComplex128Array","isComplex128MatrixLike","isComplex128ndarrayLike","isComplex128VectorLike","isComplexLike","isComplexTypedArray","isComplexTypedArrayLike","isComposite","isConfigurableProperty","isConfigurablePropertyIn","isConstantcase","isCubeNumber","isCurrentYear","isDataProperty","isDataPropertyIn","isDataView","isDateObject","isDateObjectArray","isDigitString","isDomainName","isDurationString","isEmailAddress","isEmptyArray","isEmptyArrayLikeObject","isEmptyCollection","isEmptyObject","isEmptyString","isEnumerableProperty","isEnumerablePropertyIn","isEqualArray","isError","isEvalError","isEven","isFalsy","isFalsyArray","isFinite","isFiniteArray","isFloat32Array","isFloat32MatrixLike","isFloat32ndarrayLike","isFloat32VectorLike","isFloat64Array","isFloat64MatrixLike","isFloat64ndarrayLike","isFloat64VectorLike","isFunction","isFunctionArray","isGeneratorObject","isGeneratorObjectLike","isgzipBuffer","isHexString","isInfinite","isInheritedProperty","isInt8Array","isInt16Array","isInt32Array","isInteger","isIntegerArray","isIterableLike","isIteratorLike","isJSON","isKebabcase","isLeapYear","isLocalhost","isLowercase","isMatrixLike","isMethod","isMethodIn","isMultiSlice","isNamedTypedTupleLike","isnan","isNaNArray","isNativeFunction","isndarrayLike","isndarrayLikeWithDataType","isNegativeFinite","isNegativeInteger","isNegativeIntegerArray","isNegativeNumber","isNegativeNumberArray","isNegativeZero","isNodeBuiltin","isNodeDuplexStreamLike","isNodeReadableStreamLike","isNodeREPL","isNodeStreamLike","isNodeTransformStreamLike","isNodeWritableStreamLike","isNonConfigurableProperty","isNonConfigurablePropertyIn","isNonEnumerableProperty","isNonEnumerablePropertyIn","isNonNegativeFinite","isNonNegativeInteger","isNonNegativeIntegerArray","isNonNegativeNumber","isNonNegativeNumberArray","isNonPositiveFinite","isNonPositiveInteger","isNonPositiveIntegerArray","isNonPositiveNumber","isNonPositiveNumberArray","isNonSymmetricMatrix","isNull","isNullArray","isNumber","isNumberArray","isNumericArray","isObject","isObjectArray","isObjectLike","isOdd","isoWeeksInYear","isPascalcase","isPersymmetricMatrix","isPlainObject","isPlainObjectArray","isPositiveFinite","isPositiveInteger","isPositiveIntegerArray","isPositiveNumber","isPositiveNumberArray","isPositiveZero","isPrime","isPrimitive","isPrimitiveArray","isPRNGLike","isProbability","isProbabilityArray","isPropertyKey","isPrototypeOf","isRaggedNestedArray","isRangeError","isReadableProperty","isReadablePropertyIn","isReadOnlyProperty","isReadOnlyPropertyIn","isReadWriteProperty","isReadWritePropertyIn","isReferenceError","isRegExp","isRegExpString","isRelativePath","isRelativeURI","isSafeInteger","isSafeIntegerArray","isSameArray","isSameArrayLike","isSameComplex64","isSameComplex64Array","isSameComplex128","isSameComplex128Array","isSameDateObject","isSameFloat32Array","isSameFloat64Array","isSameNativeClass","isSameType","isSameValue","isSameValueZero","isSemVer","isSharedArrayBuffer","isSkewCentrosymmetricMatrix","isSkewPersymmetricMatrix","isSkewSymmetricMatrix","isSlice","isSnakecase","isSquareMatrix","isSquareNumber","isSquareTriangularNumber","isStartcase","isStrictEqual","isString","isStringArray","isSymbol","isSymbolArray","isSymmetricMatrix","isSyntaxError","isTriangularNumber","isTruthy","isTruthyArray","isTypedArray","isTypedArrayLength","isTypedArrayLike","isTypeError","isUint8Array","isUint8ClampedArray","isUint16Array","isUint32Array","isUNCPath","isUndefined","isUndefinedOrNull","isUnityProbabilityArray","isUppercase","isURI","isURIError","isVectorLike","isWebAssemblyMemory","isWellFormedString","isWhitespace","isWritableProperty","isWritablePropertyIn","isWriteOnlyProperty","isWriteOnlyPropertyIn","iterAbs","iterAbs2","iterAcos","iterAcosh","iterAcot","iterAcoth","iterAcovercos","iterAcoversin","iterAdd","iterAdvance","iterAhavercos","iterAhaversin","iterAny","iterAnyBy","iterAsin","iterAsinh","iterAtan","iterAtan2","iterAtanh","iterator2array","iterator2arrayview","iterator2arrayviewRight","iteratorStream","IteratorSymbol","iterAvercos","iterAversin","iterawgn","iterawln","iterawun","iterBartlettHannPulse","iterBartlettPulse","iterBesselj0","iterBesselj1","iterBessely0","iterBessely1","iterBeta","iterBetaln","iterBinet","iterCbrt","iterCeil","iterCeil2","iterCeil10","iterCompositesSeq","iterConcat","iterConstant","iterContinuedFraction","iterContinuedFractionSeq","iterCos","iterCosh","iterCosineWave","iterCosm1","iterCospi","iterCounter","iterCovercos","iterCoversin","iterCubesSeq","itercugmean","itercuhmean","itercumax","itercumaxabs","itercumean","itercumeanabs","itercumeanabs2","itercumidrange","itercumin","itercuminabs","itercuprod","itercurange","itercusum","itercusumabs","itercusumabs2","iterDatespace","iterDedupe","iterDedupeBy","iterDeg2rad","iterDigamma","iterDiracComb","iterDiracDelta","iterDivide","iterDoUntilEach","iterDoWhileEach","iterEllipe","iterEllipk","iterEmpty","iterErf","iterErfc","iterErfcinv","iterErfinv","iterEta","iterEvenIntegersSeq","iterEvery","iterEveryBy","iterExp","iterExp2","iterExp10","iterExpit","iterExpm1","iterExpm1rel","iterFactorial","iterFactorialln","iterFactorialsSeq","iterFibonacciSeq","iterFifthPowersSeq","iterFill","iterFilter","iterFilterMap","iterFirst","iterFlatTopPulse","iterFloor","iterFloor2","iterFloor10","iterFlow","iterForEach","iterFourthPowersSeq","iterFresnelc","iterFresnels","iterGamma","iterGamma1pm1","iterGammaln","iterHacovercos","iterHacoversin","iterHannPulse","iterHavercos","iterHaversin","iterHead","iterIncrspace","iterIntegersSeq","iterIntersection","iterIntersectionByHash","iterInv","iterLanczosPulse","iterLast","iterLength","iterLinspace","iterLn","iterLog","iterLog1mexp","iterLog1p","iterLog1pexp","iterLog2","iterLog10","iterLogit","iterLogspace","iterLucasSeq","iterMap","iterMapN","itermax","itermaxabs","itermean","itermeanabs","itermeanabs2","itermidrange","itermin","iterminabs","itermmax","itermmaxabs","itermmean","itermmeanabs","itermmeanabs2","itermmidrange","itermmin","itermminabs","iterMod","itermprod","itermrange","itermsum","itermsumabs","itermsumabs2","iterMultiply","iterNegaFibonacciSeq","iterNegaLucasSeq","iterNegativeEvenIntegersSeq","iterNegativeIntegersSeq","iterNegativeOddIntegersSeq","iterNone","iterNoneBy","iterNonFibonacciSeq","iterNonNegativeEvenIntegersSeq","iterNonNegativeIntegersSeq","iterNonPositiveEvenIntegersSeq","iterNonPositiveIntegersSeq","iterNonSquaresSeq","iterNth","iterOddIntegersSeq","iterPeriodicSinc","iterPipeline","iterPop","iterPositiveEvenIntegersSeq","iterPositiveIntegersSeq","iterPositiveOddIntegersSeq","iterPow","iterPrimesSeq","iterprod","iterPulse","iterPush","iterRad2deg","iterRamp","iterrange","iterReject","iterReplicate","iterReplicateBy","iterRound","iterRound2","iterRound10","iterRsqrt","iterSawtoothWave","iterShift","iterSignum","iterSin","iterSinc","iterSineWave","iterSinh","iterSinpi","iterSlice","iterSome","iterSomeBy","iterSpence","iterSqrt","iterSqrt1pm1","iterSquaredTriangularSeq","iterSquaresSeq","iterSquareWave","iterstdev","iterStep","iterStrided","iterStridedBy","iterSubtract","itersum","itersumabs","itersumabs2","iterTan","iterTanh","iterThunk","iterTriangleWave","iterTriangularSeq","iterTribonnaciSeq","iterTrigamma","iterTrunc","iterTrunc2","iterTrunc10","iterUnion","iterUnique","iterUniqueBy","iterUniqueByHash","iterUnitspace","iterUnshift","iterUntilEach","itervariance","iterVercos","iterVersin","iterWhileEach","iterZeta","joinStream","kde2d","kebabcase","keyBy","keyByRight","keysIn","kruskalTest","kstest","last","lda","leveneTest","LinkedList","linspace","LIU_NEGATIVE_OPINION_WORDS_EN","LIU_POSITIVE_OPINION_WORDS_EN","LN_HALF","LN_PI","LN_SQRT_TWO_PI","LN_TWO_PI","LN2","LN10","LOG2E","LOG10E","logspace","lowercase","lowercaseKeys","lowess","lpad","ltrim","ltrimN","MALE_FIRST_NAMES_EN","map","map2","map2d","map2Right","map3d","map4d","map5d","mapArguments","mapFun","mapFunAsync","mapKeys","mapKeysAsync","mapReduce","mapReduceRight","mapRight","mapValues","mapValuesAsync","maskArguments","MAX_ARRAY_LENGTH","MAX_TYPED_ARRAY_LENGTH","maybeBroadcastArray","maybeBroadcastArrays","memoize","merge","MILLISECONDS_IN_DAY","MILLISECONDS_IN_HOUR","MILLISECONDS_IN_MINUTE","MILLISECONDS_IN_SECOND","MILLISECONDS_IN_WEEK","MINARD_NAPOLEONS_MARCH","MINUTES_IN_DAY","MINUTES_IN_HOUR","MINUTES_IN_WEEK","minutesInMonth","minutesInYear","MOBY_DICK","MONTH_NAMES_EN","MONTHS_IN_YEAR","moveProperty","MultiSlice","namedtypedtuple","NAN","naryFunction","nativeClass","ndarray","ndarray2array","ndarrayCastingModes","ndarrayDataBuffer","ndarrayDataType","ndarrayDataTypes","ndarrayDispatch","ndarrayFlag","ndarrayFlags","ndarrayIndexModes","ndarraylike2ndarray","ndarrayMinDataType","ndarrayMostlySafeCasts","ndarrayNextDataType","ndarrayOffset","ndarrayOrder","ndarrayOrders","ndarrayPromotionRules","ndarraySafeCasts","ndarraySameKindCasts","ndarrayShape","ndarrayStride","ndarrayStrides","ndat","ndempty","ndemptyLike","ndims","nditer2arrayEach","nditerColumnEntries","nditerColumns","nditerEntries","nditerIndices","nditerInterleaveSubarrays","nditerMatrices","nditerMatrixEntries","nditerRowEntries","nditerRows","nditerSelectDimension","nditerStacks","nditerSubarrays","nditerValues","ndslice","ndsliceAssign","ndsliceDimension","ndsliceDimensionFrom","ndsliceDimensionTo","ndsliceFrom","ndsliceTo","ndzeros","ndzerosLike","nextGraphemeClusterBreak","nextTick","NIGHTINGALES_ROSE","NINF","NODE_VERSION","none","noneBy","noneByAsync","noneByRight","noneByRightAsync","noneInBy","nonEnumerableProperties","nonEnumerablePropertiesIn","nonEnumerablePropertyNames","nonEnumerablePropertyNamesIn","nonEnumerablePropertySymbols","nonEnumerablePropertySymbolsIn","noneOwnBy","nonIndexKeys","noop","now","NUM_CPUS","num2words","Number","numel","numelDimension","numGraphemeClusters","Object","objectEntries","objectEntriesIn","objectFromEntries","objectInverse","objectInverseBy","objectKeys","objectValues","objectValuesIn","omit","omitBy","open","openURL","ordinalize","PACE_BOSTON_HOUSE_PRICES","pad","padjust","papply","papplyRight","parallel","parseJSON","pascalcase","PATH_DELIMITER","PATH_DELIMITER_POSIX","PATH_DELIMITER_WIN32","PATH_SEP","PATH_SEP_POSIX","PATH_SEP_WIN32","pcorrtest","percentEncode","PHI","PI","PI_SQUARED","pick","pickArguments","pickBy","PINF","pkg2alias","pkg2related","pkg2standalone","PLATFORM","plot","Plot","pluck","pop","porterStemmer","prepend","prevGraphemeClusterBreak","PRIMES_100K","properties","propertiesIn","propertyDescriptor","propertyDescriptorIn","propertyDescriptors","propertyDescriptorsIn","propertyNames","propertyNamesIn","propertySymbols","propertySymbolsIn","Proxy","push","quarterOfYear","random.array.arcsine","random.array.bernoulli","random.array.beta","random.array.betaprime","random.array.binomial","random.array.cauchy","random.array.chi","random.array.chisquare","random.array.cosine","random.array.discreteUniform","random.array.erlang","random.array.exponential","random.array.f","random.array.frechet","random.array.gamma","random.array.geometric","random.array.gumbel","random.array.hypergeometric","random.array.invgamma","random.array.kumaraswamy","random.array.laplace","random.array.levy","random.array.logistic","random.array.lognormal","random.array.minstd","random.array.minstdShuffle","random.array.mt19937","random.array.negativeBinomial","random.array.normal","random.array.pareto1","random.array.poisson","random.array.randu","random.array.rayleigh","random.array.t","random.array.triangular","random.array.uniform","random.array.weibull","random.iterators.arcsine","random.iterators.bernoulli","random.iterators.beta","random.iterators.betaprime","random.iterators.binomial","random.iterators.boxMuller","random.iterators.cauchy","random.iterators.chi","random.iterators.chisquare","random.iterators.cosine","random.iterators.discreteUniform","random.iterators.erlang","random.iterators.exponential","random.iterators.f","random.iterators.frechet","random.iterators.gamma","random.iterators.geometric","random.iterators.gumbel","random.iterators.hypergeometric","random.iterators.improvedZiggurat","random.iterators.invgamma","random.iterators.kumaraswamy","random.iterators.laplace","random.iterators.levy","random.iterators.logistic","random.iterators.lognormal","random.iterators.minstd","random.iterators.minstdShuffle","random.iterators.mt19937","random.iterators.negativeBinomial","random.iterators.normal","random.iterators.pareto1","random.iterators.poisson","random.iterators.randi","random.iterators.randn","random.iterators.randu","random.iterators.rayleigh","random.iterators.t","random.iterators.triangular","random.iterators.uniform","random.iterators.weibull","random.streams.arcsine","random.streams.bernoulli","random.streams.beta","random.streams.betaprime","random.streams.binomial","random.streams.boxMuller","random.streams.cauchy","random.streams.chi","random.streams.chisquare","random.streams.cosine","random.streams.discreteUniform","random.streams.erlang","random.streams.exponential","random.streams.f","random.streams.frechet","random.streams.gamma","random.streams.geometric","random.streams.gumbel","random.streams.hypergeometric","random.streams.improvedZiggurat","random.streams.invgamma","random.streams.kumaraswamy","random.streams.laplace","random.streams.levy","random.streams.logistic","random.streams.lognormal","random.streams.minstd","random.streams.minstdShuffle","random.streams.mt19937","random.streams.negativeBinomial","random.streams.normal","random.streams.pareto1","random.streams.poisson","random.streams.randi","random.streams.randn","random.streams.randu","random.streams.rayleigh","random.streams.t","random.streams.triangular","random.streams.uniform","random.streams.weibull","random.strided.arcsine","random.strided.bernoulli","random.strided.beta","random.strided.betaprime","random.strided.chi","random.strided.chisquare","random.strided.cosine","random.strided.discreteUniform","random.strided.exponential","random.strided.gamma","random.strided.geometric","random.strided.invgamma","random.strided.lognormal","random.strided.minstd","random.strided.minstdShuffle","random.strided.mt19937","random.strided.normal","random.strided.poisson","random.strided.randu","random.strided.rayleigh","random.strided.t","random.strided.uniform","random.strided.weibull","ranks","readDir","readFile","readFileList","readJSON","readWASM","real","realarray","realarrayCtors","realarrayDataTypes","realf","realmax","realmin","reBasename","reBasenamePosix","reBasenameWindows","reColorHexadecimal","reDecimalNumber","reDirname","reDirnamePosix","reDirnameWindows","reduce","reduce2d","reduceAsync","reduceRight","reduceRightAsync","reDurationString","reEOL","reExtendedLengthPath","reExtname","reExtnamePosix","reExtnameWindows","reFilename","reFilenamePosix","reFilenameWindows","reFromString","reFunctionName","regexp2json","reim","reimf","rejectArguments","removeFirst","removeLast","removePunctuation","removeUTF8BOM","removeWords","rename","reNativeFunction","reorderArguments","repeat","replace","replaceBefore","reRegExp","rescape","reSemVer","resolveParentPath","resolveParentPathBy","reUncPath","reUtf16SurrogatePair","reUtf16UnpairedSurrogate","reverseArguments","reverseString","reviveBasePRNG","reviveBuffer","reviveComplex","reviveComplex64","reviveComplex128","reviveError","reviveRegExp","reviveTypedArray","reWhitespace","rpad","rtrim","rtrimN","safeintmax","safeintmin","sample","SAVOY_STOPWORDS_FIN","SAVOY_STOPWORDS_FR","SAVOY_STOPWORDS_GER","SAVOY_STOPWORDS_IT","SAVOY_STOPWORDS_POR","SAVOY_STOPWORDS_SP","SAVOY_STOPWORDS_SWE","scalar2array","scalar2ndarray","sdot","SECONDS_IN_DAY","SECONDS_IN_HOUR","SECONDS_IN_MINUTE","SECONDS_IN_WEEK","secondsInMonth","secondsInYear","sentencize","seq2slice","setConfigurableReadOnly","setConfigurableReadOnlyAccessor","setConfigurableReadWriteAccessor","setConfigurableWriteOnlyAccessor","setMemoizedConfigurableReadOnly","setMemoizedReadOnly","setNonEnumerableProperty","setNonEnumerableReadOnly","setNonEnumerableReadOnlyAccessor","setNonEnumerableReadWriteAccessor","setNonEnumerableWriteOnlyAccessor","setReadOnly","setReadOnlyAccessor","setReadWriteAccessor","setWriteOnlyAccessor","SharedArrayBuffer","shift","shuffle","sizeOf","Slice","snakecase","some","someBy","someByAsync","someByRight","someByRightAsync","someInBy","someOwnBy","SOTU","SPACHE_REVISED","SPAM_ASSASSIN","SparklineBase","sparsearray2iterator","sparsearray2iteratorRight","splitStream","SQRT_EPS","SQRT_HALF","SQRT_HALF_PI","SQRT_PHI","SQRT_PI","SQRT_THREE","SQRT_TWO","SQRT_TWO_PI","SSA_US_BIRTHS_2000_2014","sswap","Stack","standalone2pkg","STANDARD_CARD_DECK","startcase","startsWith","STOPWORDS_EN","strided.abs","strided.abs2","strided.abs2By","strided.absBy","strided.acosBy","strided.acoshBy","strided.acotBy","strided.acothBy","strided.acovercosBy","strided.acoversinBy","strided.add","strided.addBy","strided.ahavercosBy","strided.ahaversinBy","strided.asinBy","strided.asinhBy","strided.atanBy","strided.atanhBy","strided.avercosBy","strided.aversinBy","strided.besselj0By","strided.besselj1By","strided.bessely0By","strided.bessely1By","strided.binetBy","strided.cbrt","strided.cbrtBy","strided.ceil","strided.cosBy","strided.deg2rad","strided.dataTypes","strided.dcbrtBy","strided.dispatch","strided.dispatchBy","strided.floor","strided.inv","strided.mul","strided.mulBy","strided.ramp","strided.rsqrt","strided.sinBy","strided.sqrt","strided.sqrtBy","strided.sub","strided.subBy","strided.trunc","stridedarray2iterator","stridedArrayStream","string2buffer","sub2ind","substringAfter","substringAfterLast","substringBefore","substringBeforeLast","SUTHAHARAN_MULTI_HOP_SENSOR_NETWORK","SUTHAHARAN_SINGLE_HOP_SENSOR_NETWORK","Symbol","tabulate","tabulateBy","tabulateByAsync","thunk","tic","timeit","tmpdir","toc","tokenize","transformStream","trim","truncate","truncateMiddle","trycatch","trycatchAsync","tryFunction","tryRequire","trythen","trythenAsync","ttest","ttest2","TWO_PI","typedarray","typedarray2json","typedarrayCtors","typedarrayDataTypes","typedarraypool","typemax","typemin","typeOf","UINT8_MAX","UINT8_NUM_BYTES","Uint8Array","Uint8ClampedArray","UINT16_MAX","UINT16_NUM_BYTES","Uint16Array","UINT32_MAX","UINT32_NUM_BYTES","Uint32Array","umask","uncapitalize","uncapitalizeKeys","uncurry","uncurryRight","UNICODE_MAX","UNICODE_MAX_BMP","UnicodeColumnChartSparkline","UnicodeLineChartSparkline","UnicodeSparkline","UnicodeTristateChartSparkline","UnicodeUpDownChartSparkline","UnicodeWinLossChartSparkline","unlink","unshift","until","untilAsync","untilEach","untilEachRight","unzip","uppercase","uppercaseKeys","US_STATES_ABBR","US_STATES_CAPITALS","US_STATES_CAPITALS_NAMES","US_STATES_NAMES","US_STATES_NAMES_CAPITALS","utf16ToUTF8Array","vartest","waterfall","WebAssemblyMemory","whileAsync","whileEach","whileEachRight","whilst","wilcoxon","writableProperties","writablePropertiesIn","writablePropertyNames","writablePropertyNamesIn","writablePropertySymbols","writablePropertySymbolsIn","writeFile","zip","ztest","ztest2"]
+
+},{}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14727,14 +14669,14 @@ module.exports=["abs","acronym","AFINN_96","AFINN_111","afull","afullLike","alia
 
 // MODULES //
 
-var aliases = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = aliases;
+module.exports = main;
 
-},{"./main.js":254}],254:[function(require,module,exports){
+},{"./main.js":252}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14834,7 +14776,7 @@ function aliases( namespace ) {
 
 module.exports = aliases;
 
-},{"./../data/data.json":252,"@stdlib/assert/is-string":149,"@stdlib/namespace/alias2pkg":249,"@stdlib/string/format":295,"@stdlib/string/starts-with":302}],255:[function(require,module,exports){
+},{"./../data/data.json":250,"@stdlib/assert/is-string":145,"@stdlib/namespace/alias2pkg":247,"@stdlib/string/format":312,"@stdlib/string/starts-with":317}],253:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/namespace/aliases",
   "version": "0.0.0",
@@ -14903,7 +14845,7 @@ module.exports={
   ]
 }
 
-},{}],256:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14938,14 +14880,14 @@ module.exports={
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":257}],257:[function(require,module,exports){
+},{"./main.js":255}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14970,7 +14912,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],258:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15023,14 +14965,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var fromWords = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWords;
+module.exports = main;
 
-},{"./main.js":260}],259:[function(require,module,exports){
+},{"./main.js":258}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15079,7 +15021,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":107}],260:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":107}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15150,9 +15092,7 @@ var LOW = indices.LOW;
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
 *
-*
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
 *
 * ## References
 *
@@ -15203,125 +15143,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":259,"@stdlib/array/float64":5,"@stdlib/array/uint32":19}],261:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/number/float64/base/to-words
-*
-* @example
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-
-// MODULES //
-
-var toWords = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./main.js":263}],262:[function(require,module,exports){
-arguments[4][259][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":107,"dup":259}],263:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './to_words.js' );
-
-
-// MAIN //
-
-/**
-* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-function toWords( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":264}],264:[function(require,module,exports){
+},{"./indices.js":257,"@stdlib/array/float64":4,"@stdlib/array/uint32":19}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15394,34 +15216,34 @@ var LOW = indices.LOW;
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
 *
 * [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
-*
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var Uint32Array = require( '@stdlib/array/uint32' );
 *
 * var out = new Uint32Array( 2 );
 *
-* var w = toWords( out, 3.14e201 );
+* var w = toWords( 3.14e201, out, 1, 0 );
 * // returns <Uint32Array>[ 1774486211, 2479577218 ]
 *
 * var bool = ( w === out );
 * // returns true
 */
-function toWords( out, x ) {
+function toWords( x, out, stride, offset ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	out[ 0 ] = UINT32_VIEW[ HIGH ];
-	out[ 1 ] = UINT32_VIEW[ LOW ];
+	out[ offset ] = UINT32_VIEW[ HIGH ];
+	out[ offset + stride ] = UINT32_VIEW[ LOW ];
 	return out;
 }
 
@@ -15430,7 +15252,465 @@ function toWords( out, x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":262,"@stdlib/array/float64":5,"@stdlib/array/uint32":19}],265:[function(require,module,exports){
+},{"./indices.js":261,"@stdlib/array/float64":4,"@stdlib/array/uint32":19}],260:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/to-words
+*
+* @example
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords.assign( 3.14e201, out, 1, 0 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":259,"./main.js":262,"@stdlib/utils/define-nonenumerable-read-only-property":335}],261:[function(require,module,exports){
+arguments[4][257][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":107,"dup":257}],262:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*/
+function toWords( x ) {
+	return fcn( x, [ 0>>>0, 0>>>0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./assign.js":259}],263:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Copies own enumerable properties from source objects to a target object.
+*
+* ## Notes
+*
+* -   If a property key is present in multiple sources, the property from the last source that defines the key prevails.
+* -   The target object is mutated.
+*
+* @name assign
+* @type {Function}
+* @param {Object} target - target object
+* @param {...Object} source - source object(s)
+* @throws {TypeError} first argument must not be null or undefined
+* @returns {Object} target object
+*
+* @example
+* var obj1 = {
+*     'a': 'beep'
+* };
+* var obj2 = {
+*     'b': 'boop'
+* };
+*
+* var out = assign( obj1, obj2 );
+* // returns { 'a': 'beep', 'b': 'boop' }
+*/
+var assign = Object.assign; // eslint-disable-line node/no-unsupported-features/es-builtins
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{}],264:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// MAIN //
+
+var bool = isFunction( Object.assign ); // eslint-disable-line node/no-unsupported-features/es-builtins
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{"@stdlib/assert/is-function":93}],265:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Copy enumerable own properties from one or more source objects to a target object.
+*
+* @module @stdlib/object/assign
+*
+* @example
+* var assign = require( '@stdlib/object/assign' );
+*
+* var out = assign( {}, { 'foo': 'bar' }, { 'baz': 'beep' } );
+* // returns { 'foo': 'bar', 'baz': 'beep' }
+*/
+
+// MODULES //
+
+var hasObjectAssign = require( './has_object_assign.js' );
+var main = require( './builtin.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var assign;
+if ( hasObjectAssign ) {
+	assign = main;
+} else {
+	assign = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{"./builtin.js":263,"./has_object_assign.js":264,"./polyfill.js":266}],266:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var enumerableProperties = require( '@stdlib/utils/enumerable-properties' );
+var Object = require( '@stdlib/object/ctor' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Copies own enumerable properties from source objects to a target object.
+*
+* ## Notes
+*
+* -   If a property key is present in multiple sources, the property from the last source that defines the key prevails.
+* -   The target object is mutated.
+*
+* @param {Object} target - target object
+* @param {...Object} source - source object(s)
+* @throws {TypeError} first argument must not be null or undefined
+* @returns {Object} target object
+*
+* @example
+* var obj1 = {
+*     'a': 'beep'
+* };
+* var obj2 = {
+*     'b': 'boop'
+* };
+*
+* var out = assign( obj1, obj2 );
+* // returns { 'a': 'beep', 'b': 'boop' }
+*/
+function assign( target ) {
+	var source;
+	var keys;
+	var key;
+	var len;
+	var to;
+	var i;
+	var j;
+	if ( target === void 0 || target === null ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a non-null object. Value: `%s`.', target ) );
+	}
+	to = Object( target );
+	for ( i = 1; i < arguments.length; i++ ) {
+		source = arguments[ i ];
+		if ( source === void 0 || source === null ) {
+			continue;
+		}
+
+		keys = enumerableProperties( Object( source ) );
+		len = keys.length;
+		for ( j = 0; j < len; j++ ) {
+			key = keys[ j ];
+			to[ key ] = source[ key ];
+		}
+	}
+	return to;
+}
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{"@stdlib/object/ctor":267,"@stdlib/string/format":312,"@stdlib/utils/enumerable-properties":342}],267:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":268}],268:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15467,8 +15747,8 @@ module.exports = toWords;
 * // returns false
 *
 * @example
-* var reEOL = require( '@stdlib/regexp/eol' );
 * var replace = require( '@stdlib/string/replace' );
+* var reEOL = require( '@stdlib/regexp/eol' );
 *
 * var RE_EOL = reEOL({
 *     'flags': 'g'
@@ -15485,22 +15765,22 @@ module.exports = toWords;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reEOL = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP_CAPTURE = require( './regexp_capture.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reEOL, 'REGEXP', REGEXP );
-setReadOnly( reEOL, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
+setReadOnly( main, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
 
 
 // EXPORTS //
 
-module.exports = reEOL;
+module.exports = main;
 
-},{"./main.js":266,"./regexp.js":267,"./regexp_capture.js":268,"@stdlib/utils/define-nonenumerable-read-only-property":320}],266:[function(require,module,exports){
+},{"./main.js":270,"./regexp.js":271,"./regexp_capture.js":272,"@stdlib/utils/define-nonenumerable-read-only-property":335}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15579,7 +15859,7 @@ function reEOL( options ) {
 
 module.exports = reEOL;
 
-},{"./validate.js":269}],267:[function(require,module,exports){
+},{"./validate.js":273}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15629,7 +15909,7 @@ var REGEXP = reEOL();
 
 module.exports = REGEXP;
 
-},{"./main.js":266}],268:[function(require,module,exports){
+},{"./main.js":270}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15684,7 +15964,7 @@ var REGEXP_CAPTURE = reEOL({
 
 module.exports = REGEXP_CAPTURE;
 
-},{"./main.js":266}],269:[function(require,module,exports){
+},{"./main.js":270}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15760,7 +16040,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],270:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":312}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15810,20 +16090,20 @@ module.exports = validate;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":271,"./regexp.js":272,"@stdlib/utils/define-nonenumerable-read-only-property":320}],271:[function(require,module,exports){
+},{"./main.js":275,"./regexp.js":276,"@stdlib/utils/define-nonenumerable-read-only-property":335}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15879,7 +16159,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],272:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15941,7 +16221,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":271}],273:[function(require,module,exports){
+},{"./main.js":275}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15990,25 +16270,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":274,"./regexp.js":275,"@stdlib/utils/define-nonenumerable-read-only-property":320}],274:[function(require,module,exports){
+},{"./main.js":278,"./regexp.js":279,"@stdlib/utils/define-nonenumerable-read-only-property":335}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16054,7 +16329,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],275:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16114,7 +16389,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -16126,7 +16400,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":274}],276:[function(require,module,exports){
+},{"./main.js":278}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16177,7 +16451,7 @@ function transform( chunk, encoding, clbk ) {
 
 module.exports = transform;
 
-},{"debug":401}],277:[function(require,module,exports){
+},{"debug":419}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16203,7 +16477,7 @@ module.exports = transform;
 var logger = require( 'debug' );
 var Transform = require( 'readable-stream' ).Transform;
 var inherit = require( '@stdlib/utils/inherit' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var DEFAULTS = require( './defaults.json' );
 var validate = require( './validate.js' );
 var destroy = require( './destroy.js' );
@@ -16262,7 +16536,7 @@ function ctor( options ) {
 	var copts;
 	var err;
 
-	copts = copy( DEFAULTS );
+	copts = assign( {}, DEFAULTS );
 	if ( arguments.length ) {
 		err = validate( copts, options );
 		if ( err ) {
@@ -16313,7 +16587,7 @@ function ctor( options ) {
 			}
 			return new TransformStream();
 		}
-		opts = copy( copts );
+		opts = assign( {}, copts );
 		if ( arguments.length ) {
 			err = validate( opts, options );
 			if ( err ) {
@@ -16377,7 +16651,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":276,"./defaults.json":278,"./destroy.js":279,"./validate.js":284,"@stdlib/utils/copy":316,"@stdlib/utils/inherit":344,"debug":401,"readable-stream":418}],278:[function(require,module,exports){
+},{"./_transform.js":280,"./defaults.json":282,"./destroy.js":283,"./validate.js":288,"@stdlib/object/assign":265,"@stdlib/utils/inherit":358,"debug":419,"readable-stream":436}],282:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -16385,7 +16659,7 @@ module.exports={
 	"decodeStrings": true
 }
 
-},{}],279:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16460,7 +16734,7 @@ function destroy( error ) {
 
 module.exports = destroy;
 
-},{"@stdlib/utils/next-tick":370,"debug":401}],280:[function(require,module,exports){
+},{"@stdlib/utils/next-tick":384,"debug":419}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16485,7 +16759,7 @@ module.exports = destroy;
 
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var format = require( '@stdlib/string/format' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var Stream = require( './main.js' );
 
 
@@ -16530,7 +16804,7 @@ function streamFactory( options ) {
 		if ( !isObject( options ) ) {
 			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
 		}
-		opts = copy( options );
+		opts = assign( {}, options );
 	} else {
 		opts = {};
 	}
@@ -16563,7 +16837,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./main.js":282,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":295,"@stdlib/utils/copy":316}],281:[function(require,module,exports){
+},{"./main.js":286,"@stdlib/assert/is-plain-object":138,"@stdlib/object/assign":265,"@stdlib/string/format":312}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16611,7 +16885,6 @@ module.exports = streamFactory;
 * stream.end();
 * // => '1\n2\n3\n'
 *
-*
 * @example
 * var transformStream = require( '@stdlib/streams/node/transform' );
 *
@@ -16634,7 +16907,6 @@ module.exports = streamFactory;
 * for ( i = 0; i < 10; i++ ) {
 *     streams.push( factory( transform ) );
 * }
-*
 *
 * @example
 * var stdout = require( '@stdlib/streams/node/stdout' );
@@ -16665,7 +16937,6 @@ module.exports = streamFactory;
 * s1.end();
 * // => '{"value":"a"}\n{"value":"b"}\n{"value":"c"}\n'
 *
-*
 * @example
 * var stdout = require( '@stdlib/streams/node/stdout' );
 * var transformStream = require( '@stdlib/streams/node/transform' );
@@ -16695,7 +16966,7 @@ module.exports = streamFactory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var transform = require( './main.js' );
+var main = require( './main.js' );
 var objectMode = require( './object_mode.js' );
 var factory = require( './factory.js' );
 var ctor = require( './ctor.js' );
@@ -16703,16 +16974,16 @@ var ctor = require( './ctor.js' );
 
 // MAIN //
 
-setReadOnly( transform, 'objectMode', objectMode );
-setReadOnly( transform, 'factory', factory );
-setReadOnly( transform, 'ctor', ctor );
+setReadOnly( main, 'objectMode', objectMode );
+setReadOnly( main, 'factory', factory );
+setReadOnly( main, 'ctor', ctor );
 
 
 // EXPORTS //
 
-module.exports = transform;
+module.exports = main;
 
-},{"./ctor.js":277,"./factory.js":280,"./main.js":282,"./object_mode.js":283,"@stdlib/utils/define-nonenumerable-read-only-property":320}],282:[function(require,module,exports){
+},{"./ctor.js":281,"./factory.js":284,"./main.js":286,"./object_mode.js":287,"@stdlib/utils/define-nonenumerable-read-only-property":335}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16738,7 +17009,7 @@ module.exports = transform;
 var logger = require( 'debug' );
 var Transform = require( 'readable-stream' ).Transform;
 var inherit = require( '@stdlib/utils/inherit' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var DEFAULTS = require( './defaults.json' );
 var validate = require( './validate.js' );
 var destroy = require( './destroy.js' );
@@ -16789,7 +17060,7 @@ var debug = logger( 'transform-stream:main' );
 *
 * // prints: '1\n2\n3\n'
 */
-function TransformStream( options ) {
+function TransformStream( options ) { // eslint-disable-line stdlib/no-redeclare
 	var opts;
 	var err;
 	if ( !( this instanceof TransformStream ) ) {
@@ -16798,7 +17069,7 @@ function TransformStream( options ) {
 		}
 		return new TransformStream();
 	}
-	opts = copy( DEFAULTS );
+	opts = assign( {}, DEFAULTS );
 	if ( arguments.length ) {
 		err = validate( opts, options );
 		if ( err ) {
@@ -16840,7 +17111,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":276,"./defaults.json":278,"./destroy.js":279,"./validate.js":284,"@stdlib/utils/copy":316,"@stdlib/utils/inherit":344,"debug":401,"readable-stream":418}],283:[function(require,module,exports){
+},{"./_transform.js":280,"./defaults.json":282,"./destroy.js":283,"./validate.js":288,"@stdlib/object/assign":265,"@stdlib/utils/inherit":358,"debug":419,"readable-stream":436}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16865,7 +17136,7 @@ module.exports = TransformStream;
 
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var format = require( '@stdlib/string/format' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var Stream = require( './main.js' );
 
 
@@ -16920,7 +17191,7 @@ function objectMode( options ) {
 		if ( !isObject( options ) ) {
 			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
 		}
-		opts = copy( options );
+		opts = assign( {}, options );
 	} else {
 		opts = {};
 	}
@@ -16933,7 +17204,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./main.js":282,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":295,"@stdlib/utils/copy":316}],284:[function(require,module,exports){
+},{"./main.js":286,"@stdlib/assert/is-plain-object":138,"@stdlib/object/assign":265,"@stdlib/string/format":312}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17036,7 +17307,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-nonnegative-number":122,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],285:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-nonnegative-number":122,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":312}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17122,7 +17393,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -17149,7 +17420,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":288}],286:[function(require,module,exports){
+},{"./is_number.js":292}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17266,7 +17537,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":288,"./zero_pad.js":292}],287:[function(require,module,exports){
+},{"./is_number.js":292,"./zero_pad.js":296}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17302,14 +17573,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":290}],288:[function(require,module,exports){
+},{"./main.js":294}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17357,7 +17628,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],289:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17401,7 +17672,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],290:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17434,11 +17705,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -17569,6 +17858,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -17577,9 +17867,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -17618,7 +17906,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":285,"./format_integer.js":286,"./is_string.js":289,"./space_pad.js":291,"./zero_pad.js":292}],291:[function(require,module,exports){
+},{"./format_double.js":289,"./format_integer.js":290,"./is_string.js":293,"./space_pad.js":295,"./zero_pad.js":296}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17685,7 +17973,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],292:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17771,7 +18059,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],293:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17807,14 +18095,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":294}],294:[function(require,module,exports){
+},{"./main.js":298}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17906,7 +18194,696 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],295:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/base/replace
+*
+* @example
+* var replace = require( '@stdlib/string/base/replace' );
+*
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":300}],300:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Replaces search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {RegExp} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/base/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer );
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+function replace( str, search, newval ) {
+	return str.replace( search, newval );
+}
+
+
+// EXPORTS //
+
+module.exports = replace;
+
+},{}],301:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var startsWith = String.prototype.startsWith;
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{}],302:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.startsWith !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],303:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a string starts with the characters of another string.
+*
+* @module @stdlib/string/base/starts-with
+*
+* @example
+* var startsWith = require( '@stdlib/string/base/starts-with' );
+*
+* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
+* var bool = startsWith( str, 'Fair', 0 );
+* // returns true
+*
+* bool = startsWith( str, 'fair', 0 );
+* // returns false
+*
+* bool = startsWith( str, 'foul', 8 );
+* // returns true
+*
+* bool = startsWith( str, 'filthy', -10 );
+* // returns true
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var startsWith;
+if ( HAS_BUILTIN ) {
+	startsWith = main;
+} else {
+	startsWith = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{"./has_builtin.js":302,"./main.js":304,"./polyfill.js":305}],304:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} position - position at which to start searching
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+function startsWith( str, search, position ) {
+	var pos;
+	if ( position < 0 ) {
+		pos = str.length + position;
+	} else {
+		pos = position;
+	}
+	if ( search.length === 0 ) {
+		return true;
+	}
+	if (
+		pos < 0 ||
+		pos + search.length > str.length
+	) {
+		return false;
+	}
+	return builtin.call( str, search, pos );
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{"./builtin.js":301}],305:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @private
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} position - position at which to start searching
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be', 0 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 0 );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+function startsWith( str, search, position ) {
+	var pos;
+	var i;
+	if ( position < 0 ) {
+		pos = str.length + position;
+	} else {
+		pos = position;
+	}
+	if ( search.length === 0 ) {
+		return true;
+	}
+	if (
+		pos < 0 ||
+		pos + search.length > str.length
+	) {
+		return false;
+	}
+	for ( i = 0; i < search.length; i++ ) {
+		if ( str.charCodeAt( pos + i ) !== search.charCodeAt( i ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// EXPORTS //
+
+module.exports = startsWith;
+
+},{}],306:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var trim = String.prototype.trim;
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{}],307:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var trim = require( './builtin.js' );
+
+
+// VARIABLES //
+
+var str1 = ' \n\t\r\n\f\v\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff';
+var str2 = '\u180e';
+
+
+// MAIN //
+
+/**
+* Tests the built-in `String.prototype.trim()` implementation when provided whitespace.
+*
+* ## Notes
+*
+* -   For context, see <https://github.com/stdlib-js/stdlib/commit/c3d6458aa08bbd4bd6bf13e3643422f3b2a65dd9>. In short, we can only rely on the built-in `trim` method when it does not consider the Mongolian space separator as whitespace.
+*
+* @private
+* @returns {boolean} boolean indicating whether the built-in implementation returns the expected value
+*
+* @example
+* var b = test();
+* // returns <boolean>
+*/
+function test() {
+	return ( trim.call( str1 ) === '' ) && ( trim.call( str2 ) === str2 );
+}
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./builtin.js":306}],308:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.trim !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],309:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Trim whitespace characters from the beginning and end of a string.
+*
+* @module @stdlib/string/base/trim
+*
+* @example
+* var trim = require( '@stdlib/string/base/trim' );
+*
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var check = require( './check.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var trim;
+if ( HAS_BUILTIN && check() ) {
+	trim = main;
+} else {
+	trim = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"./check.js":307,"./has_builtin.js":308,"./main.js":310,"./polyfill.js":311}],310:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Trims whitespace characters from the beginning and end of a string.
+*
+* @param {string} str - input string
+* @returns {string} trimmed string
+*
+* @example
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* @example
+* var out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* @example
+* var out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+function trim( str ) {
+	return builtin.call( str );
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"./builtin.js":306}],311:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var replace = require( '@stdlib/string/base/replace' );
+
+
+// VARIABLES //
+
+// The following regular expression should suffice to polyfill (most?) all environments.
+var RE = /^[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*([\S\s]*?)[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*$/;
+
+
+// MAIN //
+
+/**
+* Trims whitespace characters from the beginning and end of a string.
+*
+* @private
+* @param {string} str - input string
+* @returns {string} trimmed string
+*
+* @example
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* @example
+* var out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* @example
+* var out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+function trim( str ) {
+	return replace( str, RE, '$1' );
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"@stdlib/string/base/replace":299}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17944,16 +18921,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":297}],296:[function(require,module,exports){
-arguments[4][289][0].apply(exports,arguments)
-},{"dup":289}],297:[function(require,module,exports){
+},{"./main.js":314}],313:[function(require,module,exports){
+arguments[4][293][0].apply(exports,arguments)
+},{"dup":293}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18001,18 +18978,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -18022,7 +18996,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":296,"@stdlib/string/base/format-interpolate":287,"@stdlib/string/base/format-tokenize":293}],298:[function(require,module,exports){
+},{"./is_string.js":313,"@stdlib/string/base/format-interpolate":291,"@stdlib/string/base/format-tokenize":297}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18057,14 +19031,14 @@ module.exports = format;
 
 // MODULES //
 
-var fromCodePoint = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromCodePoint;
+module.exports = main;
 
-},{"./main.js":299}],299:[function(require,module,exports){
+},{"./main.js":316}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18121,7 +19095,6 @@ var Ox3FF = 1023|0;
 * -   UTF-16 encoding uses one 16-bit unit for non-surrogates (U+0000 to U+D7FF and U+E000 to U+FFFF).
 * -   UTF-16 encoding uses two 16-bit units (surrogate pairs) for U+10000 to U+10FFFF and encodes U+10000-U+10FFFF by subtracting 0x10000 from the code point, expressing the result as a 20-bit binary, and splitting the 20 bits of 0x0-0xFFFFF as upper and lower 10-bits. The respective 10-bits are stored in two 16-bit words: a high and a low surrogate.
 *
-*
 * @param {...NonNegativeInteger} args - sequence of code points
 * @throws {Error} must provide either an array-like object of code points or one or more code points as separate arguments
 * @throws {TypeError} a code point must be a nonnegative integer
@@ -18161,7 +19134,7 @@ function fromCodePoint( args ) {
 			throw new TypeError( format( 'invalid argument. Must provide valid code points (i.e., nonnegative integers). Value: `%s`.', pt ) );
 		}
 		if ( pt > UNICODE_MAX ) {
-			throw new RangeError( format( 'invalid argument. Must provide a valid code point (cannot exceed max). Value: `%s`.', pt ) );
+			throw new RangeError( format( 'invalid argument. Must provide a valid code point (i.e., cannot exceed %u). Value: `%s`.', UNICODE_MAX, pt ) );
 		}
 		if ( pt <= UNICODE_MAX_BMP ) {
 			str += fromCharCode( pt );
@@ -18181,141 +19154,7 @@ function fromCodePoint( args ) {
 
 module.exports = fromCodePoint;
 
-},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/unicode/max":236,"@stdlib/constants/unicode/max-bmp":235,"@stdlib/string/format":295}],300:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Replace search occurrences with a replacement string.
-*
-* @module @stdlib/string/replace
-*
-* @example
-* var replace = require( '@stdlib/string/replace' );
-*
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* str = 'Hello World';
-* out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
-*/
-
-// MODULES //
-
-var replace = require( './replace.js' );
-
-
-// EXPORTS //
-
-module.exports = replace;
-
-},{"./replace.js":301}],301:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var rescape = require( '@stdlib/utils/escape-regexp-string' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var isRegExp = require( '@stdlib/assert/is-regexp' );
-var format = require( '@stdlib/string/format' );
-
-
-// MAIN //
-
-/**
-* Replace search occurrences with a replacement string.
-*
-* @param {string} str - input string
-* @param {(string|RegExp)} search - search expression
-* @param {(string|Function)} newval - replacement value or function
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument argument must be a string or regular expression
-* @throws {TypeError} third argument must be a string or function
-* @returns {string} new string containing replacement(s)
-*
-* @example
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* @example
-* var str = 'Hello World';
-* var out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
-*
-* @example
-* var capitalize = require( '@stdlib/string/capitalize' );
-*
-* var str = 'Oranges and lemons say the bells of St. Clement\'s';
-*
-* function replacer( match, p1 ) {
-*     return capitalize( p1 );
-* }
-*
-* var out = replace( str, /([^\s]*)/gi, replacer);
-* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
-*/
-function replace( str, search, newval ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
-	}
-	if ( isString( search ) ) {
-		search = rescape( search );
-		search = new RegExp( search, 'g' );
-	}
-	else if ( !isRegExp( search ) ) {
-		throw new TypeError( format( 'invalid argument. Second argument must be a string or regular expression. Value: `%s`.', search ) );
-	}
-	if ( !isString( newval ) && !isFunction( newval ) ) {
-		throw new TypeError( format( 'invalid argument. Third argument must be a string or replacement function. Value: `%s`.', newval ) );
-	}
-	return str.replace( search, newval );
-}
-
-
-// EXPORTS //
-
-module.exports = replace;
-
-},{"@stdlib/assert/is-function":93,"@stdlib/assert/is-regexp":145,"@stdlib/assert/is-string":149,"@stdlib/string/format":295,"@stdlib/utils/escape-regexp-string":327}],302:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/unicode/max":234,"@stdlib/constants/unicode/max-bmp":233,"@stdlib/string/format":312}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18360,14 +19199,14 @@ module.exports = replace;
 
 // MODULES //
 
-var startsWith = require( './starts_with.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = startsWith;
+module.exports = main;
 
-},{"./starts_with.js":303}],303:[function(require,module,exports){
+},{"./main.js":318}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18393,6 +19232,7 @@ module.exports = startsWith;
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/starts-with' );
 
 
 // MAIN //
@@ -18434,7 +19274,6 @@ var format = require( '@stdlib/string/format' );
 */
 function startsWith( str, search, position ) {
 	var pos;
-	var i;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
@@ -18445,29 +19284,11 @@ function startsWith( str, search, position ) {
 		if ( !isInteger( position ) ) {
 			throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', position ) );
 		}
-		if ( position < 0 ) {
-			pos = str.length + position;
-		} else {
-			pos = position;
-		}
+		pos = position;
 	} else {
 		pos = 0;
 	}
-	if ( search.length === 0 ) {
-		return true;
-	}
-	if (
-		pos < 0 ||
-		pos + search.length > str.length
-	) {
-		return false;
-	}
-	for ( i = 0; i < search.length; i++ ) {
-		if ( str.charCodeAt( pos + i ) !== search.charCodeAt( i ) ) {
-			return false;
-		}
-	}
-	return true;
+	return base( str, search, pos );
 }
 
 
@@ -18475,7 +19296,7 @@ function startsWith( str, search, position ) {
 
 module.exports = startsWith;
 
-},{"@stdlib/assert/is-integer":101,"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],304:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":101,"@stdlib/assert/is-string":145,"@stdlib/string/base/starts-with":303,"@stdlib/string/format":312}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18497,33 +19318,27 @@ module.exports = startsWith;
 'use strict';
 
 /**
-* Trim whitespace characters from the beginning and end of a string.
+* Symbol factory.
 *
-* @module @stdlib/string/trim
+* @module @stdlib/symbol/ctor
 *
 * @example
-* var trim = require( '@stdlib/string/trim' );
+* var Symbol = require( '@stdlib/symbol/ctor' );
 *
-* var out = trim( '   Whitespace   ' );
-* // returns 'Whitespace'
-*
-* out = trim( '\t\t\tTabs\t\t\t' );
-* // returns 'Tabs'
-*
-* out = trim( '\n\n\nNew Lines\n\n\n' );
-* // returns 'New Lines'
+* var s = Symbol( 'beep' );
+* // returns <symbol>
 */
 
 // MODULES //
 
-var trim = require( './trim.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = trim;
+module.exports = main;
 
-},{"./trim.js":305}],305:[function(require,module,exports){
+},{"./main.js":320}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18543,54 +19358,17 @@ module.exports = trim;
 */
 
 'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var replace = require( '@stdlib/string/replace' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-// The following regular expression should suffice to polyfill (most?) all environments.
-var RE = /^[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*([\S\s]*?)[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*$/;
-
 
 // MAIN //
 
-/**
-* Trim whitespace characters from beginning and end of a string.
-*
-* @param {string} str - input string
-* @throws {TypeError} must provide a string primitive
-* @returns {string} trimmed string
-*
-* @example
-* var out = trim( '   Whitespace   ' );
-* // returns 'Whitespace'
-*
-* @example
-* var out = trim( '\t\t\tTabs\t\t\t' );
-* // returns 'Tabs'
-*
-* @example
-* var out = trim( '\n\n\nNew Lines\n\n\n' );
-* // returns 'New Lines'
-*/
-function trim( str ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a string. Value: `%s`.', str ) );
-	}
-	return replace( str, RE, '$1' );
-}
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = trim;
+module.exports = Sym;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/string/format":295,"@stdlib/string/replace":300}],306:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18655,7 +19433,6 @@ if ( ns.now ) {
 *
 * -   Output format: `[seconds, nanoseconds]`.
 *
-*
 * @private
 * @returns {NumberArray} high-resolution time
 *
@@ -18685,7 +19462,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":308,"@stdlib/assert/is-object":136,"@stdlib/math/base/special/modf":243,"@stdlib/math/base/special/round":246,"@stdlib/utils/global":337}],307:[function(require,module,exports){
+},{"./now.js":323,"@stdlib/assert/is-object":136,"@stdlib/math/base/special/modf":242,"@stdlib/math/base/special/round":244,"@stdlib/utils/global":350}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18720,7 +19497,7 @@ var bool = isFunction( Date.now );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":93}],308:[function(require,module,exports){
+},{"@stdlib/assert/is-function":93}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18761,7 +19538,7 @@ if ( bool ) {
 
 module.exports = now;
 
-},{"./detect.js":307,"./polyfill.js":309}],309:[function(require,module,exports){
+},{"./detect.js":322,"./polyfill.js":324}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18804,7 +19581,7 @@ function now() {
 
 module.exports = now;
 
-},{}],310:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18841,14 +19618,14 @@ module.exports = now;
 
 // MODULES //
 
-var toc = require( './toc.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = toc;
+module.exports = main;
 
-},{"./toc.js":311}],311:[function(require,module,exports){
+},{"./main.js":326}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18884,7 +19661,6 @@ var tic = require( '@stdlib/time/tic' );
 * ## Notes
 *
 * -   Output format: `[seconds, nanoseconds]`.
-*
 *
 * @param {NonNegativeIntegerArray} time - high-resolution time
 * @throws {TypeError} must provide a nonnegative integer array
@@ -18926,7 +19702,7 @@ function toc( time ) {
 
 module.exports = toc;
 
-},{"@stdlib/assert/is-nonnegative-integer-array":117,"@stdlib/string/format":295,"@stdlib/time/tic":306}],312:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer-array":117,"@stdlib/string/format":312,"@stdlib/time/tic":321}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18967,14 +19743,14 @@ module.exports = toc;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":313}],313:[function(require,module,exports){
+},{"./main.js":328}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19056,86 +19832,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/regexp/function-name":270,"@stdlib/utils/native-class":365}],314:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":315,"@stdlib/assert/is-array":70,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/float64/pinf":225,"@stdlib/string/format":295}],315:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/regexp/function-name":274,"@stdlib/utils/native-class":379}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19183,7 +19880,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -19443,7 +20139,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":317,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-buffer":79,"@stdlib/assert/is-error":87,"@stdlib/buffer/from-buffer":216,"@stdlib/utils/define-property":325,"@stdlib/utils/get-prototype-of":331,"@stdlib/utils/index-of":341,"@stdlib/utils/keys":358,"@stdlib/utils/property-descriptor":380,"@stdlib/utils/property-names":384,"@stdlib/utils/regexp-from-string":387,"@stdlib/utils/type-of":392}],316:[function(require,module,exports){
+},{"./typed_arrays.js":332,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-buffer":79,"@stdlib/assert/is-error":87,"@stdlib/buffer/from-buffer":214,"@stdlib/utils/define-property":340,"@stdlib/utils/get-prototype-of":345,"@stdlib/utils/index-of":355,"@stdlib/utils/keys":372,"@stdlib/utils/property-descriptor":394,"@stdlib/utils/property-names":398,"@stdlib/utils/regexp-from-string":404,"@stdlib/utils/type-of":410}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19494,14 +20190,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":331}],331:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":314}],317:[function(require,module,exports){
+},{"./deep_copy.js":329,"@stdlib/assert/is-array":70,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/float64/pinf":223,"@stdlib/string/format":312}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19672,7 +20447,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],318:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/float64":4,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19718,14 +20493,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnlyAccessor = require( './main.js' ); // eslint-disable-line id-length
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnlyAccessor;
+module.exports = main;
 
-},{"./main.js":319}],319:[function(require,module,exports){
+},{"./main.js":334}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19788,7 +20563,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":325}],320:[function(require,module,exports){
+},{"@stdlib/utils/define-property":340}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19830,14 +20605,14 @@ module.exports = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":321}],321:[function(require,module,exports){
+},{"./main.js":336}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19897,7 +20672,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":325}],322:[function(require,module,exports){
+},{"@stdlib/utils/define-property":340}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19960,7 +20735,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],323:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19990,7 +20765,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],324:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20043,7 +20818,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":323}],325:[function(require,module,exports){
+},{"./define_property.js":338}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20103,7 +20878,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":322,"./has_define_property_support.js":324,"./polyfill.js":326}],326:[function(require,module,exports){
+},{"./builtin.js":337,"./has_define_property_support.js":339,"./polyfill.js":341}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20227,7 +21002,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":295}],327:[function(require,module,exports){
+},{"@stdlib/string/format":312}],342:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20249,27 +21024,30 @@ module.exports = defineProperty;
 'use strict';
 
 /**
-* Escape a regular expression string or pattern.
+* Return an array of an object's own enumerable property names and symbols.
 *
-* @module @stdlib/utils/escape-regexp-string
+* @module @stdlib/utils/enumerable-properties
 *
 * @example
-* var rescape = require( '@stdlib/utils/escape-regexp-string' );
+* var enumerableProperties = require( '@stdlib/utils/enumerable-properties' );
 *
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
+* var props = enumerableProperties({
+*   'foo': 'bar',
+*   'beep': 'boop'
+* });
+* // e.g., returns [ 'foo', 'beep' ]
 */
 
 // MODULES //
 
-var rescape = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rescape;
+module.exports = main;
 
-},{"./main.js":328}],328:[function(require,module,exports){
+},{"./main.js":343}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20292,68 +21070,49 @@ module.exports = rescape;
 
 // MODULES //
 
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var RE_CHARS = /[-\/\\^$*+?.()|[\]{}]/g; // eslint-disable-line no-useless-escape
+var keys = require( '@stdlib/utils/keys' );
+var propertySymbols = require( '@stdlib/utils/property-symbols' );
+var isEnumerable = require( '@stdlib/assert/is-enumerable-property' );
 
 
 // MAIN //
 
 /**
-* Escapes a regular expression string.
+* Returns an array of an object's own enumerable property names and symbols.
 *
-* @param {string} str - regular expression string
-* @throws {TypeError} first argument must be a string
-* @returns {string} escaped string
+* @param {*} value - input object
+* @returns {Array} a list of own property enumerable names and symbols
 *
 * @example
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var props = enumerableProperties( obj );
+* // e.g., returns [ 'beep', 'foo' ]
 */
-function rescape( str ) {
-	var len;
-	var s;
+function enumerableProperties( value ) {
+	var out;
+	var tmp;
 	var i;
 
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a regular expression string. Value: `%s`.', str ) );
-	}
-	// Check if the string starts with a forward slash...
-	if ( str[ 0 ] === '/' ) {
-		// Find the last forward slash...
-		len = str.length;
-		for ( i = len-1; i >= 0; i-- ) {
-			if ( str[ i ] === '/' ) {
-				break;
-			}
+	out = keys( value );
+	tmp = propertySymbols( value );
+	for ( i = 0; i < tmp.length; i++ ) {
+		if ( isEnumerable( value, tmp[ i ] ) ) {
+			out.push( tmp[ i ] );
 		}
 	}
-	// If we searched the string to no avail or if the first letter is not `/`, assume that the string is not of the form `/[...]/[guimy]`:
-	if ( i === void 0 || i <= 0 ) {
-		return str.replace( RE_CHARS, '\\$&' );
-	}
-	// We need to de-construct the string...
-	s = str.substring( 1, i );
-
-	// Only escape the characters between the `/`:
-	s = s.replace( RE_CHARS, '\\$&' );
-
-	// Reassemble:
-	str = str[ 0 ] + s + str.substring( i );
-
-	return str;
+	return out;
 }
 
 
 // EXPORTS //
 
-module.exports = rescape;
+module.exports = enumerableProperties;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],329:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/keys":372,"@stdlib/utils/property-symbols":402}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20395,63 +21154,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":332,"./polyfill.js":333,"@stdlib/assert/is-function":93}],330:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":329}],331:[function(require,module,exports){
+},{"./native.js":347,"./polyfill.js":348,"@stdlib/assert/is-function":93}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20486,14 +21189,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":330}],332:[function(require,module,exports){
+},{"./main.js":346}],346:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":344,"@stdlib/object/ctor":267}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20523,7 +21283,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],333:[function(require,module,exports){
+},{}],348:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20580,7 +21340,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":334,"@stdlib/utils/native-class":365}],334:[function(require,module,exports){
+},{"./proto.js":349,"@stdlib/utils/native-class":379}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20618,7 +21378,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],335:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":351,"./global_this.js":352,"./self.js":353,"./window.js":354,"@stdlib/assert/is-boolean":72,"@stdlib/string/format":312}],351:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20648,7 +21489,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -20656,12 +21497,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],336:[function(require,module,exports){
-(function (global){(function (){
+},{}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20680,137 +21520,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],337:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":338}],338:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":335,"./global.js":336,"./self.js":339,"./window.js":340,"@stdlib/assert/is-boolean":72,"@stdlib/string/format":295}],339:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20840,7 +21557,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],340:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20870,7 +21587,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],341:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20938,14 +21655,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":342}],342:[function(require,module,exports){
+},{"./main.js":356}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21080,7 +21797,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":149,"@stdlib/string/format":295}],343:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":145,"@stdlib/string/format":312}],357:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21121,7 +21838,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = createObject;
 
-},{"./native.js":346,"./polyfill.js":347}],344:[function(require,module,exports){
+},{"./native.js":360,"./polyfill.js":361}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21170,14 +21887,14 @@ module.exports = createObject;
 
 // MODULES //
 
-var inherit = require( './inherit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = inherit;
+module.exports = main;
 
-},{"./inherit.js":345}],345:[function(require,module,exports){
+},{"./main.js":359}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21215,7 +21932,6 @@ var createObject = require( './detect.js' );
 *
 * -   This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
 * -   For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
-*
 *
 * @param {(Object|Function)} ctor - constructor which will inherit
 * @param {(Object|Function)} superCtor - super (parent) constructor
@@ -21273,7 +21989,7 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":343,"./validate.js":348,"@stdlib/string/format":295,"@stdlib/utils/define-property":325}],346:[function(require,module,exports){
+},{"./detect.js":357,"./validate.js":362,"@stdlib/string/format":312,"@stdlib/utils/define-property":340}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21298,7 +22014,7 @@ module.exports = inherit;
 
 module.exports = Object.create;
 
-},{}],347:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21354,7 +22070,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],348:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21414,7 +22130,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":295}],349:[function(require,module,exports){
+},{"@stdlib/string/format":312}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21466,7 +22182,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],350:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21528,7 +22244,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":349,"@stdlib/assert/is-arguments":65}],351:[function(require,module,exports){
+},{"./builtin.js":363,"@stdlib/assert/is-arguments":65}],365:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -21552,7 +22268,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],352:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21612,7 +22328,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":349}],353:[function(require,module,exports){
+},{"./builtin.js":363}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21690,7 +22406,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":351,"./is_constructor_prototype.js":359,"./window.js":364,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":341,"@stdlib/utils/type-of":392}],354:[function(require,module,exports){
+},{"./excluded_keys.json":365,"./is_constructor_prototype.js":373,"./window.js":378,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":355,"@stdlib/utils/type-of":410}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21720,7 +22436,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],355:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21757,7 +22473,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/noop":372}],356:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/noop":386}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21800,7 +22516,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":84}],357:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21830,7 +22546,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],358:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21870,14 +22586,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":361}],359:[function(require,module,exports){
+},{"./main.js":375}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21916,7 +22632,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],360:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21969,7 +22685,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":353,"./has_window.js":357,"./is_constructor_prototype.js":359}],361:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":367,"./has_window.js":371,"./is_constructor_prototype.js":373}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22034,7 +22750,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":349,"./builtin_wrapper.js":350,"./has_arguments_bug.js":352,"./has_builtin.js":354,"./polyfill.js":363}],362:[function(require,module,exports){
+},{"./builtin.js":363,"./builtin_wrapper.js":364,"./has_arguments_bug.js":366,"./has_builtin.js":368,"./polyfill.js":377}],376:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -22045,7 +22761,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],363:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22149,7 +22865,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":355,"./has_non_enumerable_properties_bug.js":356,"./is_constructor_prototype_wrapper.js":360,"./non_enumerable.json":362,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":134}],364:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":369,"./has_non_enumerable_properties_bug.js":370,"./is_constructor_prototype_wrapper.js":374,"./non_enumerable.json":376,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":134}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22179,7 +22895,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],365:[function(require,module,exports){
+},{}],379:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22224,25 +22940,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":366,"./polyfill.js":367,"@stdlib/assert/has-tostringtag-support":50}],366:[function(require,module,exports){
+},{"./main.js":380,"./polyfill.js":381,"@stdlib/assert/has-tostringtag-support":50}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22300,7 +23016,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":368}],367:[function(require,module,exports){
+},{"./tostring.js":382}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22383,7 +23099,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":368,"./tostringtag.js":369,"@stdlib/assert/has-own-property":46}],368:[function(require,module,exports){
+},{"./tostring.js":382,"./tostringtag.js":383,"@stdlib/assert/has-own-property":46}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22413,7 +23129,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],369:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22434,6 +23150,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -22443,7 +23164,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],370:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":319}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22481,14 +23202,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var nextTick = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = nextTick;
+module.exports = main;
 
-},{"./main.js":371}],371:[function(require,module,exports){
+},{"./main.js":385}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22562,7 +23283,7 @@ function nextTick( clbk ) {
 
 module.exports = nextTick;
 
-},{"process":407}],372:[function(require,module,exports){
+},{"process":425}],386:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22597,14 +23318,14 @@ module.exports = nextTick;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":373}],373:[function(require,module,exports){
+},{"./main.js":387}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22641,7 +23362,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],374:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22681,14 +23402,14 @@ module.exports = noop;
 
 // MODULES //
 
-var omit = require( './omit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = omit;
+module.exports = main;
 
-},{"./omit.js":375}],375:[function(require,module,exports){
+},{"./main.js":389}],389:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22774,7 +23495,7 @@ function omit( obj, keys ) {
 
 module.exports = omit;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/assert/is-string-array":148,"@stdlib/string/format":295,"@stdlib/utils/index-of":341,"@stdlib/utils/keys":358}],376:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/string/format":312,"@stdlib/utils/index-of":355,"@stdlib/utils/keys":372}],390:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22814,14 +23535,14 @@ module.exports = omit;
 
 // MODULES //
 
-var pick = require( './pick.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = pick;
+module.exports = main;
 
-},{"./pick.js":377}],377:[function(require,module,exports){
+},{"./main.js":391}],391:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22901,7 +23622,7 @@ function pick( obj, keys ) {
 
 module.exports = pick;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":149,"@stdlib/assert/is-string-array":148,"@stdlib/string/format":295}],378:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/string/format":312}],392:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22965,7 +23686,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],379:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22995,7 +23716,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],380:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23054,7 +23775,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":378,"./has_builtin.js":379,"./polyfill.js":381}],381:[function(require,module,exports){
+},{"./builtin.js":392,"./has_builtin.js":393,"./polyfill.js":395}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23122,7 +23843,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":46}],382:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],396:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23142,6 +23863,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -23179,7 +23905,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],383:[function(require,module,exports){
+},{"@stdlib/object/ctor":267}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23209,7 +23935,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],384:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23266,7 +23992,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":382,"./has_builtin.js":383,"./polyfill.js":385}],385:[function(require,module,exports){
+},{"./builtin.js":396,"./has_builtin.js":397,"./polyfill.js":399}],399:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23289,6 +24015,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -23324,7 +24051,235 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":358}],386:[function(require,module,exports){
+},{"@stdlib/object/ctor":267,"@stdlib/utils/keys":372}],400:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
+
+// VARIABLES //
+
+var propertySymbols = Object.getOwnPropertySymbols;
+
+
+// MAIN //
+
+/**
+* Returns an array of an object's own symbol properties.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertySymbols()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own symbol properties
+*
+* @example
+* var symbols = getOwnPropertySymbols( {} );
+*/
+function getOwnPropertySymbols( value ) {
+	return propertySymbols( Object( value ) );
+}
+
+
+// EXPORTS //
+
+module.exports = getOwnPropertySymbols;
+
+},{"@stdlib/object/ctor":267}],401:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof Object.getOwnPropertySymbols !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],402:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an array of an object's own symbol properties.
+*
+* @module @stdlib/utils/property-symbols
+*
+* @example
+* var getOwnPropertySymbols = require( '@stdlib/utils/property-symbols' );
+*
+* var symbols = getOwnPropertySymbols( {} );
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var builtin = require( './builtin.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var main;
+if ( HAS_BUILTIN ) {
+	main = builtin;
+} else {
+	main = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./builtin.js":400,"./has_builtin.js":401,"./polyfill.js":403}],403:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an array of an object's own symbol properties.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertySymbols()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {EmptyArray} a list of own symbol properties
+*
+* @example
+* var symbols = getOwnPropertySymbols( {} );
+* // returns []
+*/
+function getOwnPropertySymbols() {
+	return [];
+}
+
+
+// EXPORTS //
+
+module.exports = getOwnPropertySymbols;
+
+},{}],404:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":405}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23381,49 +24336,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/regexp/regexp":273,"@stdlib/string/format":295}],387:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":386}],388:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/regexp/regexp":277,"@stdlib/string/format":312}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23480,7 +24393,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":389,"./fixtures/re.js":390,"./fixtures/typedarray.js":391}],389:[function(require,module,exports){
+},{"./fixtures/nodelist.js":407,"./fixtures/re.js":408,"./fixtures/typedarray.js":409}],407:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23516,7 +24429,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":337}],390:[function(require,module,exports){
+},{"@stdlib/utils/global":350}],408:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23544,7 +24457,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],391:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23572,7 +24485,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],392:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23611,63 +24524,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":388,"./polyfill.js":393,"./typeof.js":394}],393:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":312}],394:[function(require,module,exports){
+},{"./check.js":406,"./main.js":411,"./polyfill.js":412}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23745,7 +24615,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":312}],395:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":327}],412:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":327}],413:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -23897,9 +24810,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],396:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 
-},{}],397:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -25680,7 +26593,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":395,"buffer":397,"ieee754":403}],398:[function(require,module,exports){
+},{"base64-js":413,"buffer":415,"ieee754":421}],416:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -26179,7 +27092,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],399:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -26288,7 +27201,7 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-},{"buffer":397}],400:[function(require,module,exports){
+},{"buffer":415}],418:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -26442,7 +27355,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],401:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 (function (process){(function (){
 /**
  * This is the web browser implementation of `debug()`.
@@ -26631,7 +27544,7 @@ function localstorage() {
 }
 
 }).call(this)}).call(this,require('_process'))
-},{"./debug":402,"_process":407}],402:[function(require,module,exports){
+},{"./debug":420,"_process":425}],420:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -26835,7 +27748,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":400}],403:[function(require,module,exports){
+},{"ms":418}],421:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -26922,7 +27835,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],404:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -26951,14 +27864,14 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],405:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],406:[function(require,module,exports){
+},{}],424:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -27007,7 +27920,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":407}],407:[function(require,module,exports){
+},{"_process":425}],425:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -27193,7 +28106,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],408:[function(require,module,exports){
+},{}],426:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -27325,7 +28238,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":410,"./_stream_writable":412,"core-util-is":399,"inherits":404,"process-nextick-args":406}],409:[function(require,module,exports){
+},{"./_stream_readable":428,"./_stream_writable":430,"core-util-is":417,"inherits":422,"process-nextick-args":424}],427:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -27373,7 +28286,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":411,"core-util-is":399,"inherits":404}],410:[function(require,module,exports){
+},{"./_stream_transform":429,"core-util-is":417,"inherits":422}],428:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -27430,7 +28343,7 @@ var Stream = require('./internal/streams/stream');
 /*<replacement>*/
 
 var Buffer = require('safe-buffer').Buffer;
-var OurUint8Array = global.Uint8Array || function () {};
+var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
@@ -28000,8 +28913,8 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
       // also returned false.
       // => Check whether `dest` is still a piping destination.
       if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-        debug('false write response, pause', src._readableState.awaitDrain);
-        src._readableState.awaitDrain++;
+        debug('false write response, pause', state.awaitDrain);
+        state.awaitDrain++;
         increasedAwaitDrain = true;
       }
       src.pause();
@@ -28095,7 +29008,7 @@ Readable.prototype.unpipe = function (dest) {
     state.flowing = false;
 
     for (var i = 0; i < len; i++) {
-      dests[i].emit('unpipe', this, unpipeInfo);
+      dests[i].emit('unpipe', this, { hasUnpiped: false });
     }return this;
   }
 
@@ -28395,7 +29308,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":408,"./internal/streams/BufferList":413,"./internal/streams/destroy":414,"./internal/streams/stream":415,"_process":407,"core-util-is":399,"events":398,"inherits":404,"isarray":405,"process-nextick-args":406,"safe-buffer":416,"string_decoder/":417,"util":396}],411:[function(require,module,exports){
+},{"./_stream_duplex":426,"./internal/streams/BufferList":431,"./internal/streams/destroy":432,"./internal/streams/stream":433,"_process":425,"core-util-is":417,"events":416,"inherits":422,"isarray":423,"process-nextick-args":424,"safe-buffer":434,"string_decoder/":435,"util":414}],429:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28610,7 +29523,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":408,"core-util-is":399,"inherits":404}],412:[function(require,module,exports){
+},{"./_stream_duplex":426,"core-util-is":417,"inherits":422}],430:[function(require,module,exports){
 (function (process,global,setImmediate){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -28695,7 +29608,7 @@ var Stream = require('./internal/streams/stream');
 /*<replacement>*/
 
 var Buffer = require('safe-buffer').Buffer;
-var OurUint8Array = global.Uint8Array || function () {};
+var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
@@ -28963,7 +29876,7 @@ Writable.prototype.uncork = function () {
   if (state.corked) {
     state.corked--;
 
-    if (!state.writing && !state.corked && !state.finished && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
+    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
   }
 };
 
@@ -29205,7 +30118,7 @@ Writable.prototype.end = function (chunk, encoding, cb) {
   }
 
   // ignore unnecessary end() calls.
-  if (!state.ending && !state.finished) endWritable(this, state, cb);
+  if (!state.ending) endWritable(this, state, cb);
 };
 
 function needFinish(state) {
@@ -29266,11 +30179,9 @@ function onCorkedFinish(corkReq, state, err) {
     cb(err);
     entry = entry.next;
   }
-  if (state.corkedRequestsFree) {
-    state.corkedRequestsFree.next = corkReq;
-  } else {
-    state.corkedRequestsFree = corkReq;
-  }
+
+  // reuse the free corkReq.
+  state.corkedRequestsFree.next = corkReq;
 }
 
 Object.defineProperty(Writable.prototype, 'destroyed', {
@@ -29300,7 +30211,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":408,"./internal/streams/destroy":414,"./internal/streams/stream":415,"_process":407,"core-util-is":399,"inherits":404,"process-nextick-args":406,"safe-buffer":416,"timers":419,"util-deprecate":420}],413:[function(require,module,exports){
+},{"./_stream_duplex":426,"./internal/streams/destroy":432,"./internal/streams/stream":433,"_process":425,"core-util-is":417,"inherits":422,"process-nextick-args":424,"safe-buffer":434,"timers":437,"util-deprecate":438}],431:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29359,7 +30270,6 @@ module.exports = function () {
 
   BufferList.prototype.concat = function concat(n) {
     if (this.length === 0) return Buffer.alloc(0);
-    if (this.length === 1) return this.head.data;
     var ret = Buffer.allocUnsafe(n >>> 0);
     var p = this.head;
     var i = 0;
@@ -29380,7 +30290,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":416,"util":396}],414:[function(require,module,exports){
+},{"safe-buffer":434,"util":414}],432:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -29398,9 +30308,15 @@ function destroy(err, cb) {
   if (readableDestroyed || writableDestroyed) {
     if (cb) {
       cb(err);
-    } else if (err && (!this._writableState || !this._writableState.errorEmitted)) {
-      pna.nextTick(emitErrorNT, this, err);
+    } else if (err) {
+      if (!this._writableState) {
+        pna.nextTick(emitErrorNT, this, err);
+      } else if (!this._writableState.errorEmitted) {
+        this._writableState.errorEmitted = true;
+        pna.nextTick(emitErrorNT, this, err);
+      }
     }
+
     return this;
   }
 
@@ -29418,9 +30334,11 @@ function destroy(err, cb) {
 
   this._destroy(err || null, function (err) {
     if (!cb && err) {
-      pna.nextTick(emitErrorNT, _this, err);
-      if (_this._writableState) {
+      if (!_this._writableState) {
+        pna.nextTick(emitErrorNT, _this, err);
+      } else if (!_this._writableState.errorEmitted) {
         _this._writableState.errorEmitted = true;
+        pna.nextTick(emitErrorNT, _this, err);
       }
     } else if (cb) {
       cb(err);
@@ -29442,6 +30360,8 @@ function undestroy() {
     this._writableState.destroyed = false;
     this._writableState.ended = false;
     this._writableState.ending = false;
+    this._writableState.finalCalled = false;
+    this._writableState.prefinished = false;
     this._writableState.finished = false;
     this._writableState.errorEmitted = false;
   }
@@ -29455,10 +30375,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":406}],415:[function(require,module,exports){
+},{"process-nextick-args":424}],433:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":398}],416:[function(require,module,exports){
+},{"events":416}],434:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -29522,7 +30442,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":397}],417:[function(require,module,exports){
+},{"buffer":415}],435:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -29819,7 +30739,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":416}],418:[function(require,module,exports){
+},{"safe-buffer":434}],436:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -29828,7 +30748,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":408,"./lib/_stream_passthrough.js":409,"./lib/_stream_readable.js":410,"./lib/_stream_transform.js":411,"./lib/_stream_writable.js":412}],419:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":426,"./lib/_stream_passthrough.js":427,"./lib/_stream_readable.js":428,"./lib/_stream_transform.js":429,"./lib/_stream_writable.js":430}],437:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -29907,7 +30827,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":407,"timers":419}],420:[function(require,module,exports){
+},{"process/browser.js":425,"timers":437}],438:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -29978,4 +30898,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[251]);
+},{}]},{},[249]);

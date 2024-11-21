@@ -15,13 +15,11 @@
 }
 
 <span class="hljs-keyword">var</span> symbols = writablePropertySymbols( obj );
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Property order is not guaranteed, as <code>object</code> property enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s properties, thus allowing for deterministic extraction.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Property order is not guaranteed, as <code>object</code> property enumeration is not specified according to the <a href="https://262.ecma-international.org/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s properties, thus allowing for deterministic extraction.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> writablePropertySymbols = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/writable-property-symbols'</span> );
 
 <span class="hljs-keyword">var</span> hasSymbols = hasSymbolSupport();
-<span class="hljs-keyword">var</span> symbols;
-<span class="hljs-keyword">var</span> obj;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">if</span> ( hasSymbols ) {
@@ -34,8 +32,7 @@
     Foo.prototype[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'bip'</span> ) ] = <span class="hljs-string">'bop'</span>;
 }
 
-obj = <span class="hljs-keyword">new</span> Foo();
-symbols = writablePropertySymbols( obj );
-
-<span class="hljs-built_in">console</span>.log( symbols );
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> symbols = writablePropertySymbols( obj );
+<span class="hljs-comment">// e.g., returns [ Symbol( 'baz' ) ]</span>
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-writable-property-symbols"><code>@stdlib/utils/inherited-writable-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited writable symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/writable-properties"><code>@stdlib/utils/writable-properties</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own writable property names and symbols.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/writable-property-names"><code>@stdlib/utils/writable-property-names</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own writable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/writable-property-symbols-in"><code>@stdlib/utils/writable-property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited writable symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols"><code>@stdlib/utils/property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own symbol properties.</span></li></ul></section><section class="links"></section>

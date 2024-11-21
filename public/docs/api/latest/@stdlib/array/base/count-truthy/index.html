@@ -1,0 +1,16 @@
+<h1 id="counttruthy">countTruthy</h1><blockquote><p>Count the number of truthy elements in an array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> countTruthy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/count-truthy'</span> );
+</code></pre><h4 id="counttruthy-x-">countTruthy( x )</h4><p>Counts the number of truthy elements in an array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> out = countTruthy( x );
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> countTruthy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/count-truthy'</span> );
+
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">100</span>, <span class="hljs-number">0.5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> n = countTruthy( x );
+<span class="hljs-built_in">console</span>.log( n );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

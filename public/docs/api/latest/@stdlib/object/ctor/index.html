@@ -1,0 +1,171 @@
+<h1 id="object">Object</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Object</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/ctor'</span> );
+</code></pre><h4 id="object-value-">Object( value )</h4><p>Returns a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns {}</span>
+</code></pre><hr><h3 id="properties">Properties</h3><p><a name="prop-constructor"></a></p><h4 id="objectprototypeconstructor">Object.prototype.constructor</h4><p>Property whose value is a reference to the constructor function that created the instance object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>( <span class="hljs-literal">null</span> );
+<span class="hljs-keyword">var</span> ctr = o.constructor;
+<span class="hljs-comment">// returns Object</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="static-method-assign"></a></p><h4 id="objectassign-target-sources-">Object.assign( target, ...sources )</h4><p>Assigns enumerable properties of one or more source objects to a target object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-built_in">Object</span>.assign( {}, { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> } );
+<span class="hljs-comment">// returns { 'a': 1, 'b': 2 }</span>
+</code></pre><p><a name="static-method-create"></a></p><h4 id="objectcreate-prototype-properties-">Object.create( prototype, properties )</h4><p>Returns a new object with the given prototype and properties.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span>, {
+    <span class="hljs-string">'a'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-number">1</span>
+    },
+    <span class="hljs-string">'b'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-number">2</span>
+    }
+});
+<span class="hljs-comment">// returns { 'a': 1, 'b': 2 }</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"> first, last </span>) </span>{
+    <span class="hljs-built_in">this</span>.first = first;
+    <span class="hljs-built_in">this</span>.last = last;
+}
+
+<span class="hljs-keyword">var</span> p = <span class="hljs-built_in">Object</span>.create( Person.prototype, {
+    <span class="hljs-string">'first'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'Jane'</span>
+    },
+    <span class="hljs-string">'last'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'Doe'</span>
+    }
+});
+<span class="hljs-comment">// returns Person { 'first': 'Jane', 'last': 'Doe' }</span>
+</code></pre><p><a name="static-method-define-properties"></a></p><h4 id="objectdefineproperties-target-properties-">Object.defineProperties( target, properties )</h4><p>Defines new or modifies existing properties directly on an object, returning the object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-built_in">Object</span>.defineProperties( {}, {
+    <span class="hljs-string">'a'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-number">1</span>
+    },
+    <span class="hljs-string">'b'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-number">2</span>
+    }
+});
+<span class="hljs-comment">// returns { 'a': 1, 'b': 2 }</span>
+</code></pre><p><a name="static-method-define-property"></a></p><h4 id="objectdefineproperty-target-property-descriptor-">Object.defineProperty( target, property, descriptor )</h4><p>Defines a new property directly on an object, or modifies an existing property on an object, and returns the object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = <span class="hljs-built_in">Object</span>.defineProperty( {}, <span class="hljs-string">'a'</span>, {
+    <span class="hljs-string">'value'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'writable'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns { 'a': 1 }</span>
+</code></pre><p><a name="static-method-entries"></a></p><h4 id="objectentries-obj-">Object.entries( obj )</h4><p>Returns an array of a given object's own enumerable string-keyed property entries, i.e. <code>[key, value]</code> pairs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.entries( o );
+<span class="hljs-comment">// e.g., returns [ [ 'a', 1 ], [ 'b', 2 ] ]</span>
+</code></pre><p><a name="static-method-freeze"></a></p><h4 id="objectfreeze-o-">Object.freeze( o )</h4><p>Freezes an object. A frozen object can no longer be changed; freezing an object prevents new properties from being added to it, existing properties from being removed, and existing properties from being changed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-built_in">Object</span>.freeze( o );
+<span class="hljs-comment">// returns { 'a': 1 }</span>
+
+o.b = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> v = o.b;
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p><a name="static-method-get-own-property-descriptor"></a></p><h4 id="objectgetownpropertydescriptor-o-p-">Object.getOwnPropertyDescriptor( o, p )</h4><p>Returns an object that contains the properties of the given object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> d = <span class="hljs-built_in">Object</span>.getOwnPropertyDescriptor( o, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns { 'value': 1, 'writable': true, 'enumerable': true, 'configurable': true }</span>
+</code></pre><p><a name="static-method-get-own-property-descriptors"></a></p><h4 id="objectgetownpropertydescriptors-o-">Object.getOwnPropertyDescriptors( o )</h4><p>Returns an object whose properties are the result of calling <code>Object.getOwnPropertyDescriptor()</code> on every property of the given object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">var</span> d = <span class="hljs-built_in">Object</span>.getOwnPropertyDescriptors( o );
+<span class="hljs-comment">// returns { 'a': { 'value': 1, 'writable': true, 'enumerable': true, 'configurable': true }, 'b': { 'value': 2, 'writable': true, 'enumerable': true, 'configurable': true } }</span>
+</code></pre><p><a name="static-method-get-own-property-names"></a></p><h4 id="objectgetownpropertynames-o-">Object.getOwnPropertyNames( o )</h4><p>Returns an array of a given object's own property names.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.getOwnPropertyNames( o );
+<span class="hljs-comment">// e.g., returns [ 'a', 'b' ]</span>
+</code></pre><p><a name="static-method-get-own-property-symbols"></a></p><h4 id="objectgetownpropertysymbols-o-">Object.getOwnPropertySymbols( o )</h4><p>Returns an array of a given object's own property symbols.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+o[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'b'</span> ) ] = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.getOwnPropertySymbols( o );
+<span class="hljs-comment">// returns [ Symbol(b) ]</span>
+</code></pre><p><a name="static-method-get-prototype-of"></a></p><h4 id="objectgetprototypeof-o-">Object.getPrototypeOf( o )</h4><p>Returns the prototype of an object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> p = <span class="hljs-built_in">Object</span>.getPrototypeOf( o );
+<span class="hljs-comment">// returns {}</span>
+</code></pre><p><a name="static-method-has-own"></a></p><h4 id="objecthasown-o-p-">Object.hasOwn( o, p )</h4><p>Returns a boolean indicating whether an object has a property with the specified name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Object</span>.hasOwn( o, <span class="hljs-string">'b'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p><a name="method-proto-has-own-prop"></a></p><h4 id="objectprototypehasownproperty-p-">Object.prototype.hasOwnProperty( p )</h4><p>Returns a boolean indicating whether an object has a property with the specified name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = o.hasOwnProperty( <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="static-method-is"></a></p><h4 id="objectis-value1-value2-">Object.is( value1, value2 )</h4><p>Returns a boolean indicating whether two values are the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Object</span>.is( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns true</span>
+
+b = <span class="hljs-built_in">Object</span>.is( <span class="hljs-number">1</span>, <span class="hljs-string">'1'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p><a name="static-method-is-extensible"></a></p><h4 id="objectisextensible-o-">Object.isExtensible( o )</h4><p>Returns a boolean indicating whether an object is extensible (whether new properties can be added to it).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Object</span>.isExtensible( o );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">Object</span>.preventExtensions( o );
+b = <span class="hljs-built_in">Object</span>.isExtensible( o );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p><a name="static-method-is-frozen"></a></p><h4 id="objectisfrozen-o-">Object.isFrozen( o )</h4><p>Returns a boolean indicating whether an object is frozen. Frozen objects can no longer be changed; freezing an object prevents new properties from being added to it, existing properties from being removed, and existing properties from being changed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Object</span>.isFrozen( o );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-built_in">Object</span>.freeze( o );
+b = <span class="hljs-built_in">Object</span>.isFrozen( o );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="method-is-prototype-of"></a></p><h4 id="objectprototypeisprototypeof-o-">Object.prototype.isPrototypeOf( o )</h4><p>Returns a boolean indicating whether an object is in the prototype chain of another object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> p = { <span class="hljs-string">'__proto__'</span>: o };
+<span class="hljs-keyword">var</span> b = o.isPrototypeOf( p );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="static-method-is-sealed"></a></p><h4 id="objectissealed-o-">Object.isSealed( o )</h4><p>Returns a boolean indicating whether an object is sealed. An object is sealed if it is not extensible and all of its properties are non-configurable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Object</span>.isSealed( o );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-built_in">Object</span>.seal( o );
+b = <span class="hljs-built_in">Object</span>.isSealed( o );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="static-method-keys"></a></p><h4 id="objectkeys-o-">Object.keys( o )</h4><p>Returns an array of a given object's own enumerable property names.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.keys( o );
+<span class="hljs-comment">// e.g., returns [ 'a', 'b' ]</span>
+</code></pre><p><a name="static-method-prevent-extensions"></a></p><h4 id="objectpreventextensions-o-">Object.preventExtensions( o )</h4><p>Prevents new properties from being added to an object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-built_in">Object</span>.preventExtensions( o );
+o.b = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> b = ( o.b === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns true</span>
+
+o.a = <span class="hljs-number">3</span>;
+b = ( o.a === <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="method-prop-is-enumerable"></a></p><h4 id="objectprototypepropertyisenumerable-p-">Object.prototype.propertyIsEnumerable( p )</h4><p>Returns a boolean indicating whether a property is enumerable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> b = o.propertyIsEnumerable( <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+b = arr.propertyIsEnumerable( <span class="hljs-string">'length'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p><a name="static-method-seal"></a></p><h4 id="objectseal-o-">Object.seal( o )</h4><p>Seals an object, preventing new properties from being added to it (i.e., making it non extensible) and marking all existing properties as non-configurable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-built_in">Object</span>.seal( o );
+
+o.b = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> b = ( o.b === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="static-method-set-prototype-of"></a></p><h4 id="objectsetprototypeof-o-proto-">Object.setPrototypeOf( o, proto )</h4><p>Sets the prototype of an object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> p = { <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-built_in">Object</span>.setPrototypeOf( o, p );
+
+<span class="hljs-keyword">var</span> b = ( o.b === <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="method-to-locale-string"></a></p><h4 id="objectprototypetolocalestring">Object.prototype.toLocaleString()</h4><p>Returns a string representing the object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> str = o.toLocaleString();
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p><a name="method-to-string"></a></p><h4 id="objectprototypetostring">Object.prototype.toString()</h4><p>Returns a string representing the object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> str = o.toString();
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p><a name="method-to-value-of"></a></p><h4 id="objectprototypevalueof">Object.prototype.valueOf()</h4><p>Returns the primitive value of the object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = {};
+<span class="hljs-keyword">var</span> v = o.valueOf();
+<span class="hljs-comment">// returns {}</span>
+</code></pre><p><a name="static-method-values"></a></p><h4 id="objectvalues-o-">Object.values( o )</h4><p>Returns an array of a given object's own enumerable property values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Object</span>.values( o );
+<span class="hljs-comment">// e.g., returns [ 1, 2 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If provided <code>null</code> or <code>undefined</code>, the function returns an empty object.</li><li>If provided an existing object, the function returns the input value unchanged.</li><li>Otherwise, if provided any other value (e.g., a number, string, etc), the function will return an object of the corresponding type.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Object</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/object/ctor'</span> );
+
+<span class="hljs-keyword">var</span> values = [
+    <span class="hljs-string">'5'</span>,
+    <span class="hljs-number">5</span>,
+    <span class="hljs-literal">true</span>,
+    <span class="hljs-literal">false</span>,
+    <span class="hljs-literal">null</span>,
+    <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
+    [],
+    {}
+];
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; values.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>( values[ i ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

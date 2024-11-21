@@ -1,0 +1,44 @@
+<h1 id="offset">offset</h1><blockquote><p>Return the index offset specifying the underlying buffer index of the first iterated <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> element.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/offset'</span> );
+</code></pre><h4 id="offset-x-">offset( x )</h4><p>Returns the index offset specifying the underlying buffer index of the first iterated <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> n = offset( x );
+<span class="hljs-comment">// returns 0</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/offset'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Define some slices:</span>
+<span class="hljs-keyword">var</span> slices = [
+    <span class="hljs-comment">// :,:,:,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 5:10,4,2:4,::-1</span>
+    E( S( <span class="hljs-number">5</span>, <span class="hljs-number">10</span> ), <span class="hljs-number">4</span>, S( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ), S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) ),
+
+    <span class="hljs-comment">// :,:,2,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,2,3,:</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,3,::2,4::2</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ), S( <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ) )
+];
+
+<span class="hljs-comment">// Determine the index offset for each slice...</span>
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; slices.length; i++ ) {
+    s = slice( x, slices[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %d'</span>, s.shape.join( <span class="hljs-string">'x'</span> ), offset( s ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,60 @@
+<h1 id="normalized-hermite-polynomial">Normalized Hermite Polynomial</h1><blockquote><p>Evaluate a normalized <a href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomial</a> using single-precision floating-point arithmetic.</p></blockquote><section class="intro"><p>The normalized (aka "probabilist") <a href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomials</a> are given by</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normhermitepolyf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/normhermitepolyf'</span> );
+</code></pre><h4 id="normhermitepolyf-n-x-">normhermitepolyf( n, x )</h4><p>Evaluates a normalized <a href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomial</a> of degree <code>n</code> using single-precision floating-point arithmetic.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = normhermitepolyf( <span class="hljs-number">1</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = normhermitepolyf( <span class="hljs-number">1</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns 0.5</span>
+
+v = normhermitepolyf( <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = normhermitepolyf( <span class="hljs-number">2</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns -0.75</span>
+
+v = normhermitepolyf( -<span class="hljs-number">1</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><h4 id="normhermitepolyffactory-n-">normhermitepolyf.factory( n )</h4><p>Returns a function for evaluating a normalized <a href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomial</a> of degree <code>n</code> using single-precision floating-point arithmetic.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> polyval = normhermitepolyf.factory( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = polyval( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns -0.75</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/uniform'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> smap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/smap'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> normhermitepolyf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/normhermitepolyf'</span> );
+
+<span class="hljs-comment">// Generate random values at which to evaluate a polynomial:</span>
+<span class="hljs-keyword">var</span> x = uniform( <span class="hljs-number">10</span>, -<span class="hljs-number">50.0</span>, <span class="hljs-number">50.0</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+});
+
+<span class="hljs-comment">// Create a polynomial function of degree 1:</span>
+<span class="hljs-keyword">var</span> f = normhermitepolyf.factory( <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Allocate an output array:</span>
+<span class="hljs-keyword">var</span> y = zeros( x.length, <span class="hljs-string">'float32'</span> );
+
+<span class="hljs-comment">// Evaluate the polynomial:</span>
+smap( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, f );
+logEach( <span class="hljs-string">'He_%d(%.3f) = %.3f'</span>, <span class="hljs-number">1</span>, x, y );
+
+<span class="hljs-comment">// Create a polynomial function of degree 2:</span>
+f = normhermitepolyf.factory( <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Allocate an output array:</span>
+y = zeros( x.length, <span class="hljs-string">'float32'</span> );
+
+<span class="hljs-comment">// Evaluate the polynomial:</span>
+smap( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, f );
+logEach( <span class="hljs-string">'He_%d(%.3f) = %.3f'</span>, <span class="hljs-number">2</span>, x, y );
+
+<span class="hljs-comment">// Create a polynomial function of degree 3:</span>
+f = normhermitepolyf.factory( <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Allocate an output array:</span>
+y = zeros( x.length, <span class="hljs-string">'float32'</span> );
+
+<span class="hljs-comment">// Evaluate the polynomial:</span>
+smap( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, f );
+logEach( <span class="hljs-string">'He_%d(%.3f) = %.3f'</span>, <span class="hljs-number">3</span>, x, y );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

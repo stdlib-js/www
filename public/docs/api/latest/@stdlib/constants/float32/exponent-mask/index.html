@@ -1,0 +1,20 @@
+<h1 id="float32_exponent_mask">FLOAT32_EXPONENT_MASK</h1><blockquote><p>Mask for the exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT32_EXPONENT_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/exponent-mask'</span> );
+</code></pre><h4 id="float32_exponent_mask-1">FLOAT32_EXPONENT_MASK</h4><p>Mask for the exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// 0x7f800000 = 2139095040 => 0 11111111 00000000000000000000000</span>
+<span class="hljs-keyword">var</span> bool = ( FLOAT32_EXPONENT_MASK === <span class="hljs-number">0x7f800000</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/to-word'</span> );
+<span class="hljs-keyword">var</span> FLOAT32_EXPONENT_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/exponent-mask'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">11.5</span>;
+<span class="hljs-keyword">var</span> w = toWord( x ); <span class="hljs-comment">// 0 10000010 01110000000000000000000</span>
+<span class="hljs-comment">// returns 1094189056</span>
+
+<span class="hljs-comment">// Mask off all bits except for the exponent bits:</span>
+<span class="hljs-keyword">var</span> out = w &#x26; FLOAT32_EXPONENT_MASK; <span class="hljs-comment">// 0 10000010 00000000000000000000000</span>
+<span class="hljs-comment">// returns 1090519040</span>
+
+<span class="hljs-comment">// Mask on the exponent bits and leave other bits unchanged:</span>
+out = w | FLOAT32_EXPONENT_MASK; <span class="hljs-comment">// 0 11111111 01110000000000000000000</span>
+<span class="hljs-comment">// returns 2142765056</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/constants/float32/exponent_mask.h"</span></span>
+</code></pre><h4 id="stdlib_constant_float32_exponent_mask">STDLIB_CONSTANT_FLOAT32_EXPONENT_MASK</h4><p>Macro for the mask for the exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></section><section class="notes"></section><section class="examples"></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/sign-mask"><code>@stdlib/constants/float32/sign-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for the sign bit of a single-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/significand-mask"><code>@stdlib/constants/float32/significand-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for the significand of a single-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/abs-mask"><code>@stdlib/constants/float32/abs-mask</code></a></span><span class="delimiter">: </span><span class="description">mask for excluding the sign bit of a single-precision floating-point number.</span></li></ul></section><section class="links"></section>

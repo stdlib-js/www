@@ -1,0 +1,25 @@
+<h1 id="issamecomplex64">isSameComplex64</h1><blockquote><p>Test if two arguments are both <a href="/docs/api/latest/@stdlib/complex/float32/ctor">single-precision complex floating-point numbers</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same value</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameComplex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-complex64'</span> );
+</code></pre><h4 id="issamecomplex64-v1-v2-">isSameComplex64( v1, v2 )</h4><p>Tests if two arguments are both <a href="/docs/api/latest/@stdlib/complex/float32/ctor">single-precision complex floating-point numbers</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same value</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-keyword">var</span> bool = isSameComplex64( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code> and treats <code>NaNs</code> as the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same value</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> isSameComplex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-complex64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-keyword">var</span> out = isSameComplex64( x, y );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+y = <span class="hljs-keyword">new</span> Complex64( -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+out = isSameComplex64( x, y );
+<span class="hljs-comment">// returns false</span>
+
+x = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+y = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+out = isSameComplex64( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex64"><code>@stdlib/assert/is-complex64</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 64-bit complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-complex128"><code>@stdlib/assert/is-same-complex128</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are both double-precision complex floating-point numbers and have the same value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li></ul></section><section class="links"></section>

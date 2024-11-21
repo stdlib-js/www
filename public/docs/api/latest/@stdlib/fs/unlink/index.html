@@ -1,5 +1,5 @@
 <h1 id="unlink">Unlink</h1><blockquote><p>Remove a directory entry.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unlink = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/unlink'</span> );
-</code></pre><h4 id="unlink-path-clbk-">unlink( path, clbk )</h4><p>Asynchronously remove a directory entry specified by <code>path</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre><h4 id="unlink-path-clbk-">unlink( path, clbk )</h4><p>Asynchronously removes a directory entry specified by <code>path</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
 
 unlink( fpath, done );

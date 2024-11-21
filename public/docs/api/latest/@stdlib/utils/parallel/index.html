@@ -1,93 +1,93 @@
 <h1 id="parallel">Parallel</h1><blockquote><p>Execute scripts in parallel.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parallel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parallel'</span> );
-</code></pre><h4 id="parallel-files-options-clbk-">parallel( files, [options,] clbk )</h4><p>Executes scripts in parallel.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
-    <span class="hljs-string">'./a.js'</span>,
-    <span class="hljs-string">'./b.js'</span>
+</code></pre><h4 id="parallel-files-options-clbk-">parallel( files, [options,] clbk )</h4><p>Executes scripts in parallel.</p><pre><code class="no-highlight language-text">var files = [
+    './a.js',
+    './b.js'
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
-    <span class="hljs-keyword">if</span> ( error ) {
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Exit code: '</span>+error.code );
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Signal: '</span>+error.signal );
-        <span class="hljs-keyword">throw</span> error;
+function done( error ) {
+    if ( error ) {
+        console.error( 'Exit code: '+error.code );
+        console.error( 'Signal: '+error.signal );
+        throw error;
     }
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Done!'</span> );
+    console.log( 'Done!' );
 }
 
 parallel( files, done );
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>cmd</strong>: executable file/command. Default: <code>'node'</code>.</li><li><strong>workers</strong>: number of workers. Default: number of CPUs minus <code>1</code>.</li><li><strong>concurrency</strong>: number of scripts to execute concurrently. Default: <code>options.workers</code>.</li><li><strong>ordered</strong>: <code>boolean</code> indicating whether to preserve the order of script output. Default: <code>false</code>.</li><li><strong>maxBuffer</strong>: maximum child process <code>stdio</code> buffer size. This option is <strong>only</strong> applied when <code>options.ordered = true</code>. Default: <code>200*1024*1024</code> bytes.</li><li><strong>uid</strong>: child process user identity.</li><li><strong>gid</strong>: child process group identity.</li></ul><p>By default, the number of workers running scripts is equal to the number of CPUs minus <code>1</code> (master process). To adjust the number of workers, set the <code>workers</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
-    <span class="hljs-string">'./a.js'</span>,
-    <span class="hljs-string">'./b.js'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>cmd</strong>: executable file/command. Default: <code>'node'</code>.</li><li><strong>workers</strong>: number of workers. Default: number of CPUs minus <code>1</code>.</li><li><strong>concurrency</strong>: number of scripts to execute concurrently. Default: <code>options.workers</code>.</li><li><strong>ordered</strong>: <code>boolean</code> indicating whether to preserve the order of script output. Default: <code>false</code>.</li><li><strong>maxBuffer</strong>: maximum child process <code>stdio</code> buffer size. This option is <strong>only</strong> applied when <code>options.ordered = true</code>. Default: <code>200*1024*1024</code> bytes.</li><li><strong>uid</strong>: child process user identity.</li><li><strong>gid</strong>: child process group identity.</li></ul><p>By default, the number of workers running scripts is equal to the number of CPUs minus <code>1</code> (master process). To adjust the number of workers, set the <code>workers</code> option.</p><pre><code class="no-highlight language-text">var files = [
+    './a.js',
+    './b.js'
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
-    <span class="hljs-keyword">if</span> ( error ) {
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Exit code: '</span>+error.code );
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Signal: '</span>+error.signal );
-        <span class="hljs-keyword">throw</span> error;
+function done( error ) {
+    if ( error ) {
+        console.error( 'Exit code: '+error.code );
+        console.error( 'Signal: '+error.signal );
+        throw error;
     }
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Done!'</span> );
+    console.log( 'Done!' );
 }
 
-<span class="hljs-keyword">var</span> opts = {
-    <span class="hljs-string">'workers'</span>: <span class="hljs-number">8</span>
+var opts = {
+    'workers': 8
 };
 
 parallel( files, opts, done );
-</code></pre><p>By default, the number of scripts running concurrently is equal to the number of workers. To adjust the concurrency, set the <code>concurrency</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
-    <span class="hljs-string">'./a.js'</span>,
-    <span class="hljs-string">'./b.js'</span>
+</code></pre><p>By default, the number of scripts running concurrently is equal to the number of workers. To adjust the concurrency, set the <code>concurrency</code> option.</p><pre><code class="no-highlight language-text">var files = [
+    './a.js',
+    './b.js'
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
-    <span class="hljs-keyword">if</span> ( error ) {
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Exit code: '</span>+error.code );
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Signal: '</span>+error.signal );
-        <span class="hljs-keyword">throw</span> error;
+function done( error ) {
+    if ( error ) {
+        console.error( 'Exit code: '+error.code );
+        console.error( 'Signal: '+error.signal );
+        throw error;
     }
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Done!'</span> );
+    console.log( 'Done!' );
 }
 
-<span class="hljs-keyword">var</span> opts = {
-    <span class="hljs-string">'concurrency'</span>: <span class="hljs-number">6</span>
+var opts = {
+    'concurrency': 6
 };
 
 parallel( files, opts, done );
 </code></pre><p>By specifying a concurrency greater than the number of workers, a worker may be executing more than <code>1</code> script at any one time. While not likely to be advantageous for synchronous scripts, setting a higher concurrency may be advantageous for scripts performing asynchronous tasks.</p><p>By default, each script is executed as a <a href="http://nodejs.org/">Node.js</a> script.</p><pre><code class="no-highlight language-text">$ node &#x3C;script_path>
-</code></pre><p>To run scripts via an alternative executable or none at all, set the <code>cmd</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
-    <span class="hljs-string">'./a.js'</span>,
-    <span class="hljs-string">'./b.js'</span>
+</code></pre><p>To run scripts via an alternative executable or none at all, set the <code>cmd</code> option.</p><pre><code class="no-highlight language-text">var files = [
+    './a.js',
+    './b.js'
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
-    <span class="hljs-keyword">if</span> ( error ) {
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Exit code: '</span>+error.code );
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Signal: '</span>+error.signal );
-        <span class="hljs-keyword">throw</span> error;
+function done( error ) {
+    if ( error ) {
+        console.error( 'Exit code: '+error.code );
+        console.error( 'Signal: '+error.signal );
+        throw error;
     }
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Done!'</span> );
+    console.log( 'Done!' );
 }
 
-<span class="hljs-keyword">var</span> opts = {
-    <span class="hljs-string">'cmd'</span>: <span class="hljs-string">''</span> <span class="hljs-comment">// e.g., if scripts contain a shebang</span>
+var opts = {
+    'cmd': '' // e.g., if scripts contain a shebang
 };
 
 parallel( files, opts, done );
-</code></pre><p>By default, the <code>stdio</code> output for each script is interleaved; i.e., the <code>stdio</code> output from one script <strong>may</strong> be interleaved with the <code>stdio</code> output from one or more other scripts. To preserve the <code>stdio</code> output order for each script, set the <code>ordered</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
-    <span class="hljs-string">'./a.js'</span>,
-    <span class="hljs-string">'./b.js'</span>
+</code></pre><p>By default, the <code>stdio</code> output for each script is interleaved; i.e., the <code>stdio</code> output from one script <strong>may</strong> be interleaved with the <code>stdio</code> output from one or more other scripts. To preserve the <code>stdio</code> output order for each script, set the <code>ordered</code> option to <code>true</code>.</p><pre><code class="no-highlight language-text">var files = [
+    './a.js',
+    './b.js'
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
-    <span class="hljs-keyword">if</span> ( error ) {
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Exit code: '</span>+error.code );
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Signal: '</span>+error.signal );
-        <span class="hljs-keyword">throw</span> error;
+function done( error ) {
+    if ( error ) {
+        console.error( 'Exit code: '+error.code );
+        console.error( 'Signal: '+error.signal );
+        throw error;
     }
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Done!'</span> );
+    console.log( 'Done!' );
 }
 
-<span class="hljs-keyword">var</span> opts = {
-    <span class="hljs-string">'ordered'</span>: <span class="hljs-literal">true</span>
+var opts = {
+    'ordered': true
 };
 
 parallel( files, opts, done );

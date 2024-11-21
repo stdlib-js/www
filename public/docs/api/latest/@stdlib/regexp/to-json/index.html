@@ -1,0 +1,29 @@
+<h1 id="regexp2json">regexp2json</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> regexp2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/to-json'</span> );
+</code></pre><h4 id="regexp2json-regexp-">regexp2json( regexp )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> json = regexp2json( <span class="hljs-regexp">/ab+c/</span> );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'RegExp',
+        'pattern': 'ab+c',
+        'flags': ''
+    }
+*/</span>
+</code></pre><p>The returned object has the following properties:</p><ul><li><strong>type</strong>: value type. The assigned value is always <code>'RegExp'</code>.</li><li><strong>pattern</strong>: regular expression pattern.</li><li><strong>flags</strong>: regular expression flags.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> regexp2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/to-json'</span> );
+
+<span class="hljs-keyword">var</span> out = regexp2json( <span class="hljs-regexp">/.*/</span> );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'RegExp',
+        'pattern': '.*',
+        'flags': ''
+    }
+*/</span>
+
+out = regexp2json( <span class="hljs-regexp">/ab+c/g</span> );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'RegExp',
+        'pattern': 'ab+c',
+        'flags': 'g'
+    }
+*/</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/reviver"><code>@stdlib/regexp/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized regular expression.</span></li></ul></section><section class="links"></section>

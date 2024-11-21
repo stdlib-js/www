@@ -1,0 +1,46 @@
+<h1 id="memory">Memory</h1><blockquote><p>WebAssembly <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Memory">memory</a> constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+</code></pre><h4 id="memory-descriptor-">Memory( descriptor )</h4><p>Returns a new WebAssembly <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Memory">memory</a> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">0</span>
+});
+<span class="hljs-comment">// returns &#x3C;Memory></span>
+</code></pre><p>The <code>descriptor</code> argument is an object which supports the following properties:</p><ul><li><strong>initial</strong>: (<em>required</em>) initial memory size in units of WebAssembly pages (i.e., 64KiB).</li><li><strong>maximum</strong>: maximum memory size in units of WebAssembly pages (i.e., 64KiB).</li><li><strong>shared</strong>: boolean indicating whether the memory is shared. Default: <code>false</code>.</li></ul><hr><p><a name="prop-buffer"></a></p><h4 id="memoryprototypebuffer">Memory.prototype.buffer</h4><p><strong>Read-only</strong> property which returns the <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> (or <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a>) referenced by memory instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">0</span>
+});
+
+<span class="hljs-keyword">var</span> buf = mem.buffer;
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="method-grow"></a></p><h4 id="memoryprototypegrow-delta-">Memory.prototype.grow( delta )</h4><p>Increases the size of the memory instance by a specified number of WebAssembly pages (i.e., 64KiB).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">0</span>
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> prevSize = mem.grow( <span class="hljs-number">1</span> );
+</code></pre><p>The method returns the size of the previous <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> (or <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a>).</p></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li>Upon increasing the size, the previous <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> is detached, thus invalidating any typed arrays which were views over the previous <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</li><li><strong>Detachment</strong> means that the previous <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> byte length becomes zero, and it no longer has bytes accessible to JavaScript.</li><li>When calling <code>grow</code>, <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> detachment applies even when <code>delta</code> is zero.</li><li>Detachment only applies for non-shared memory instances. For a shared memory instance, the initial buffer (which is a <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a>) will not become detached and, instead, its length will not be updated.</li><li>Accesses to the <code>buffer</code> property after growing a <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a> will yield a larger <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a> which may access a larger span of memory than the buffer before growing memory.</li><li>Every <a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>SharedArrayBuffer</code></a> accessed via the <code>buffer</code> property will always refer to the start of the same memory address range and thus manipulate the same data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasWebAssemblySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-wasm-support'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+<span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> view;
+    <span class="hljs-keyword">var</span> mem;
+    <span class="hljs-keyword">var</span> v;
+    <span class="hljs-keyword">if</span> ( !hasWebAssemblySupport() ) {
+        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Environment does not support WebAssembly.'</span> );
+        <span class="hljs-keyword">return</span>;
+    }
+    mem = <span class="hljs-keyword">new</span> Memory({
+        <span class="hljs-string">'initial'</span>: <span class="hljs-number">1</span>
+    });
+    view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( mem.buffer );
+
+    view.setFloat64( <span class="hljs-number">0</span>, <span class="hljs-number">3.14</span> );
+
+    <span class="hljs-comment">// ...</span>
+
+    v = view.getFloat64( <span class="hljs-number">0</span> );
+    <span class="hljs-built_in">console</span>.log( v );
+    <span class="hljs-comment">// => 3.14</span>
+}
+
+main();
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

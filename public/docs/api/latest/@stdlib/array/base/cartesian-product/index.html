@@ -1,0 +1,20 @@
+<h1 id="cartesianproduct">cartesianProduct</h1><blockquote><p>Return the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cartesianProduct = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-product'</span> );
+</code></pre><h4 id="cartesianproduct-x1-x2-">cartesianProduct( x1, x2 )</h4><p>Returns the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x1 = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> x2 = [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> out = cartesianProduct( x1, x2 );
+<span class="hljs-comment">// returns [ [ 1, 4 ], [ 1, 5 ], [ 2, 4 ], [ 2, 5 ], [ 3, 4 ], [ 3, 5 ] ]</span>
+</code></pre><p>If provided one or more empty arrays, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x1 = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> x2 = [];
+
+<span class="hljs-keyword">var</span> out = cartesianProduct( x1, x2 );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> cartesianProduct = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-product'</span> );
+
+<span class="hljs-keyword">var</span> x1 = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> );
+<span class="hljs-keyword">var</span> x2 = linspace( <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">6</span> );
+
+<span class="hljs-keyword">var</span> out = cartesianProduct( x1, x2 );
+<span class="hljs-comment">// returns [ [ 0, 10 ], [ 0, 11 ], ..., [ 5, 14 ], [ 5, 15 ] ]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

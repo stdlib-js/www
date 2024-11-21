@@ -1,0 +1,23 @@
+<h1 id="hasequalshape">hasEqualShape</h1><blockquote><p>Test if two ndarrays have the same shape.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasEqualShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/has-equal-shape'</span> );
+</code></pre><h4 id="hasequalshape-x-y-">hasEqualShape( x, y )</h4><p>Tests if two ndarrays have the same shape.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> y = array( [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] );
+
+<span class="hljs-keyword">var</span> bool = hasEqualShape( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> hasEqualShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/has-equal-shape'</span> );
+
+<span class="hljs-keyword">var</span> x1 = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-keyword">var</span> y1 = array( [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] );
+
+<span class="hljs-keyword">var</span> bool = hasEqualShape( x1, y1 );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> x2 = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-keyword">var</span> y2 = array( [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ], [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] ] );
+
+bool = hasEqualShape( x2, y2 );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

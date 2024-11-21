@@ -1,0 +1,26 @@
+<h1 id="tools">Tools</h1><blockquote><p>Pseudorandom number generator (PRNG) array creation function tools.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/tools'</span> );
+</code></pre><h4 id="ns">ns</h4><p>Namespace containing array creation pseudorandom number generator (PRNG) function tools.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>The namespace contains the following:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/binary-factory"><code>binaryFactory( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">create a factory function for generating pseudorandom values drawn from a binary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/binary"><code>binary( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">constructor for creating arrays filled with pseudorandom values drawn from a binary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/nullary"><code>nullary( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">constructor for creating arrays filled with pseudorandom values drawn from a nullary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/ternary-factory"><code>ternaryFactory( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">create a factory function for generating pseudorandom values drawn from a ternary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/ternary"><code>ternary( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">constructor for creating arrays filled with pseudorandom values drawn from a ternary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/unary-factory"><code>unaryFactory( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">create a factory function for generating pseudorandom values drawn from a unary PRNG.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/random/array/tools/unary"><code>unary( prng, dtypes, dtype )</code></a></span><span class="delimiter">: </span><span class="description">constructor for creating arrays filled with pseudorandom values drawn from a unary PRNG.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> exponential = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/exponential'</span> );
+<span class="hljs-keyword">var</span> arcsine = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/arcsine'</span> );
+<span class="hljs-keyword">var</span> randn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/improved-ziggurat'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/tools'</span> );
+
+<span class="hljs-comment">// Create a binary PRNG array:</span>
+<span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span> ];
+<span class="hljs-keyword">var</span> defaultDType = <span class="hljs-string">'float64'</span>;
+
+<span class="hljs-keyword">var</span> rand = <span class="hljs-keyword">new</span> ns.binary( arcsine, dtypes, defaultDType );
+<span class="hljs-keyword">var</span> x = rand.generate( <span class="hljs-number">10</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ ~3.65, ~4.34, ~3.52, ~4.68, ~2.62, ... ]</span>
+
+<span class="hljs-comment">// Create a unary PRNG array:</span>
+rand = <span class="hljs-keyword">new</span> ns.unary( exponential, dtypes, defaultDType );
+x = rand.generate( <span class="hljs-number">10</span>, <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ ~0.22, ~2.89, ~0.69, ~2.48, ~0.82, ... ]</span>
+
+<span class="hljs-comment">// Create a nullary PRNG array:</span>
+rand = <span class="hljs-keyword">new</span> ns.nullary( randn, dtypes, defaultDType );
+x = rand.generate( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// e.g., returns &#x3C;Float64Array>[ ~-0.22, ~1.89, ~-0.69, ~0.48, ~-0.82, ... ]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

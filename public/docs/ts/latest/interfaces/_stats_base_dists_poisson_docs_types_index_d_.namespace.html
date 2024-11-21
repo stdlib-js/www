@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -117,6 +117,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#poisson" class="tsd-kind-icon">Poisson</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#cdf" class="tsd-kind-icon">cdf</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#entropy" class="tsd-kind-icon">entropy</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#kurtosis" class="tsd-kind-icon">kurtosis</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#logpmf" class="tsd-kind-icon">logpmf</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#mean" class="tsd-kind-icon">mean</a></li>
@@ -141,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">Poisson<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../classes/_stats_base_dists_poisson_ctor_docs_types_index_d_.poisson.html" class="tsd-signature-type">Poisson</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L71">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L71">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:71</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">cdf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_cdf_docs_types_index_d_.html#cdf-1" class="tsd-signature-type">cdf</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L66">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L66">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,12 +177,40 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="entropy" class="tsd-anchor"></a>
+					<h3>entropy</h3>
+					<div class="tsd-signature tsd-kind-icon">entropy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_entropy_docs_types_index_d_.html#entropy" class="tsd-signature-type">entropy</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L99">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:99</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Returns the entropy of a Poisson distribution.</p>
+						</div>
+						<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
+							<h2>Notes</h2>
+						</a>
+						<ul>
+							<li>If provided a negative value for <code>λ</code>, the function returns <code>NaN</code>.</li>
+						</ul>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>mean parameter</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>entropy</p>
+							</dd>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="kurtosis" class="tsd-anchor"></a>
 					<h3>kurtosis</h3>
 					<div class="tsd-signature tsd-kind-icon">kurtosis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_kurtosis_docs_types_index_d_.html#kurtosis" class="tsd-signature-type">kurtosis</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L99">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:99</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L127">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:127</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -209,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">logpmf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_binomial_docs_types_index_d_.html#logpmf" class="tsd-signature-type">logpmf</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L125">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:125</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L153">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:153</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,7 +263,7 @@
 					<div class="tsd-signature tsd-kind-icon">mean<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_mean_docs_types_index_d_.html#mean" class="tsd-signature-type">mean</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L153">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:153</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L181">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:181</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,7 +291,7 @@
 					<div class="tsd-signature tsd-kind-icon">median<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_median_docs_types_index_d_.html#median" class="tsd-signature-type">median</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L181">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:181</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L209">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:209</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -290,7 +319,7 @@
 					<div class="tsd-signature tsd-kind-icon">mgf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_bernoulli_mgf_docs_types_index_d_.html#mgf-1" class="tsd-signature-type">mgf</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L198">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:198</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L226">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:226</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -315,7 +344,7 @@
 					<div class="tsd-signature tsd-kind-icon">mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_mode_docs_types_index_d_.html#mode" class="tsd-signature-type">mode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L226">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:226</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L254">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:254</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -343,7 +372,7 @@
 					<div class="tsd-signature tsd-kind-icon">pmf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_bernoulli_pmf_docs_types_index_d_.html#pmf-1" class="tsd-signature-type">pmf</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L252">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L280">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:280</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -368,7 +397,7 @@
 					<div class="tsd-signature tsd-kind-icon">quantile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_quantile_docs_types_index_d_.html#quantile-1" class="tsd-signature-type">quantile</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L281">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:281</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L309">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:309</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -393,7 +422,7 @@
 					<div class="tsd-signature tsd-kind-icon">skewness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_skewness_docs_types_index_d_.html#skewness" class="tsd-signature-type">skewness</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L309">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:309</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L337">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:337</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -421,7 +450,7 @@
 					<div class="tsd-signature tsd-kind-icon">stdev<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_stdev_docs_types_index_d_.html#stdev" class="tsd-signature-type">stdev</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L337">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:337</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L365">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:365</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -449,7 +478,7 @@
 					<div class="tsd-signature tsd-kind-icon">variance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../modules/_stats_base_dists_arcsine_variance_docs_types_index_d_.html#variance" class="tsd-signature-type">variance</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L365">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:365</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts#L393">lib/node_modules/@stdlib/stats/base/dists/poisson/docs/types/index.d.ts:393</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -498,6 +527,9 @@
 								<a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#cdf" class="tsd-kind-icon">cdf</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#entropy" class="tsd-kind-icon">entropy</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_stats_base_dists_poisson_docs_types_index_d_.namespace.html#kurtosis" class="tsd-kind-icon">kurtosis</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
@@ -539,6 +571,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_stats_base_dists_poisson_docs_types_index_d_.html#cdf" class="tsd-kind-icon">cdf</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_stats_base_dists_poisson_docs_types_index_d_.html#entropy" class="tsd-kind-icon">entropy</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_stats_base_dists_poisson_docs_types_index_d_.html#kurtosis" class="tsd-kind-icon">kurtosis</a>
@@ -641,13 +676,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

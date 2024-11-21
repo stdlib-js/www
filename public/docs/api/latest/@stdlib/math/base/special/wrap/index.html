@@ -37,4 +37,26 @@ v = wrap( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</
     v = discreteUniform( -<span class="hljs-number">20.0</span>, <span class="hljs-number">20.0</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'wrap(%d,%d,%d) => %d'</span>, v, min, max, wrap( v, min, max ) );
 }
-</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/clamp"><code>@stdlib/math/base/special/clamp</code></a></span><span class="delimiter">: </span><span class="description">restrict a double-precision floating-point number to a specified range.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/wrap.h"</span></span>
+</code></pre><h4 id="stdlib_base_wrap-v-min-max-">stdlib_base_wrap( v, min, max )</h4><p>Wraps a value on the half-open interval <code>[min,max)</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> v = stdlib_base_wrap( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+v = stdlib_base_wrap( <span class="hljs-number">-3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns ~1.86</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>v</strong>: <code>[in] double</code> input value to wrap.</li><li><strong>min</strong>: <code>[in] double</code> minimum value.</li><li><strong>max</strong>: <code>[in] double</code> maximum value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_wrap</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> v, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> min, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> max )</span>
+</span></code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/wrap.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> min[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-3.14</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> max[] = { <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">-0.0</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> v[] = { <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">-0.0</span>, <span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> out;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        out = stdlib_base_wrap( v[i], min[i], max[i] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"wrap(%lf,%lf,%lf) => %lf\n"</span>, v[i], min[i], max[i], out );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/clamp"><code>@stdlib/math/base/special/clamp</code></a></span><span class="delimiter">: </span><span class="description">restrict a double-precision floating-point number to a specified range.</span></li></ul></section><section class="links"></section>

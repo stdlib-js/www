@@ -1,0 +1,45 @@
+<h1 id="noneownby">noneOwnBy</h1><blockquote><p>Tests whether every own property of an object fails a test implemented by a predicate function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noneOwnBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/none-own-by'</span> );
+</code></pre><h4 id="noneownby-object-predicate-thisarg--">noneOwnBy( object, predicate[, thisArg ] )</h4><p>Tests whether every <code>own</code> property of an object fails a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUnderage</span>(<span class="hljs-params"> age </span>) </span>{
+    <span class="hljs-keyword">return</span> ( age &#x3C; <span class="hljs-number">18</span> );
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">28</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">22</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">25</span>
+};
+
+<span class="hljs-keyword">var</span> bool = noneOwnBy( obj, isUnderage );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a <code>predicate</code> function returns a truthy value, the function <strong>immediately</strong> returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUnderage</span>(<span class="hljs-params"> age </span>) </span>{
+    <span class="hljs-keyword">return</span> ( age &#x3C; <span class="hljs-number">18</span> );
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">12</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">22</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">25</span>
+};
+
+<span class="hljs-keyword">var</span> bool = noneOwnBy( obj, isUnderage );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If the 1st argument is not an object or the second argument is not a fuction , the function throws a Type Error.</p></li><li><p>If provided an empty object, the function returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">truthy</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+<span class="hljs-keyword">var</span> bool = noneOwnBy( {}, truthy );
+<span class="hljs-comment">// returns true</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noneOwnBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/none-own-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUnderage</span>(<span class="hljs-params"> age </span>) </span>{
+    <span class="hljs-keyword">return</span> age &#x3C; <span class="hljs-number">18</span>;
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">26</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">20</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">25</span>
+};
+
+<span class="hljs-keyword">var</span> bool = noneOwnBy( obj, isUnderage );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2></section><section class="links"></section>

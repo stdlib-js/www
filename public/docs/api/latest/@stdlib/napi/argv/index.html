@@ -1,0 +1,20 @@
+<h1 id="argv">argv</h1><blockquote><p>C utilities for retrieving Node-API add-on callback arguments.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/argv'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/argv'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv.h"</span></span>
+</code></pre><h4 id="stdlib_napi_argv-env-info-argv-argc-nargs-">STDLIB_NAPI_ARGV( env, info, argv, argc, nargs )</h4><p>Macro for retrieving add-on callback arguments.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// Retrieve callback arguments:</span>
+    STDLIB_NAPI_ARGV( env, info, argv, argc, <span class="hljs-number">6</span> );
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the callback is invoked.</li><li><strong>info</strong>: callback data.</li><li><strong>argv</strong>: variable name for storing argument values.</li><li><strong>argc</strong>: variable name for storing the number of provided arguments.</li><li><strong>nargs</strong>: expected number of arguments.</li></ul><p>If the number of provided arguments does <strong>not</strong> equal the expected number of arguments, the macro's generated code raises an exception.</p><h4 id="stdlib_napi_argv_index2ordinal-index-">STDLIB_NAPI_ARGV_INDEX2ORDINAL( index )</h4><p>Macro for converting an index to an ordinal numeral.</p><pre><code class="hljs language-c">STDLIB_NAPI_ARGV_INDEX2ORDINAL( <span class="hljs-number">2</span> )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>index</strong>: argument index value.</li></ul><p>The first few ordinal numerals are as follows:</p><ul><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 0 )</code>: "First".</li><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 1 )</code>: "Second".</li><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 2 )</code>: "Third".</li><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 3 )</code>: "Fourth".</li><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 4 )</code>: "Fifth".</li><li>...</li><li><code>STDLIB_NAPI_ARGV_INDEX2ORDINAL( 29 )</code>: "Thirtieth".</li></ul><p>This macro can be useful when generating error messages which state which argument is invalid (e.g., "invalid argument. <strong>First</strong> argument must be a number." ).</p></section><section class="notes"></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

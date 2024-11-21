@@ -38,7 +38,6 @@
 plot.view();
 </code></pre><p>To generate a particular plot view without updating the <a href="#prop-viewer"><code>viewer</code></a> property, provide a <code>viewer</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
 plot.view( <span class="hljs-string">'stdout'</span> );
-<span class="hljs-comment">// => '{...}'</span>
 </code></pre><hr><h3 id="writable-properties">Writable Properties</h3><p><a name="prop-x"></a></p><h4 id="plotprototypex">Plot.prototype.x</h4><p><code>x</code> values. The <code>x</code> property value must be an <code>array</code>, where each element corresponds to a plotted dataset.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
 
 <span class="hljs-comment">// Set:</span>
@@ -635,4 +634,4 @@ h.on( <span class="hljs-string">'render'</span>, onRender );
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRender</span>(<span class="hljs-params"> html </span>) </span>{
     <span class="hljs-built_in">console</span>.log( html );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">standard library plotting.</span></li></ul></section><section class="links"></section>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">plotting.</span></li></ul></section><section class="links"></section>

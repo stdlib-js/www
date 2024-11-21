@@ -1,0 +1,99 @@
+<h1 id="sgetrans">sgetrans</h1><blockquote><p>Convert a matrix from row-major layout to column-major layout or vice versa.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sgetrans = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/lapack/base/sge-trans'</span> );
+</code></pre><h4 id="sgetrans-order-m-n-a-lda-out-ldo-">sgetrans( order, M, N, A, LDA, out, LDO )</h4><p>Converts a matrix from row-major layout to column-major layout or vice versa.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">6</span> );
+
+out = sgetrans( <span class="hljs-string">'row-major'</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, A, <span class="hljs-number">3</span>, out, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.0, 4.0, 2.0, 5.0, 3.0, 6.0 ]</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>order</strong>: storage layout.</li><li><strong>M</strong>: number of rows in <code>A</code>.</li><li><strong>N</strong>: number of columns in <code>A</code>.</li><li><strong>A</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>LDA</strong>: stride of the first dimension of <code>A</code> (a.k.a., leading dimension of the matrix <code>A</code>).</li><li><strong>out</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>LDO</strong>: stride of the first dimension of <code>out</code> (a.k.a., leading dimension of the matrix <code>out</code>).</li></ul><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> A0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> Out0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> A1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( A0.buffer, A0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> Out1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( Out0.buffer, Out0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+
+sgetrans( <span class="hljs-string">'row-major'</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, A1, <span class="hljs-number">2</span>, Out1, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// Out0 => &#x3C;Float32Array>[ 0.0, 1.0, 3.0, 2.0, 4.0 ]</span>
+</code></pre><h4 id="sgetransndarray-m-n-a-sa1-sa2-oa-out-so1-so2-oo-">sgetrans.ndarray( M, N, A, sa1, sa2, oa, out, so1, so2, oo )</h4><p>Converts a matrix from row-major layout to column-major layout or vice versa using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">6</span> );
+
+out = sgetrans.ndarray( <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, A, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, out, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.0, 4.0, 2.0, 5.0, 3.0, 6.0 ]</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>M</strong>: number of rows in <code>A</code>.</li><li><strong>N</strong>: number of columns in <code>A</code>.</li><li><strong>A</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>sa1</strong>: stride of the first dimension of <code>A</code>.</li><li><strong>sa2</strong>: stride of the second dimension of <code>A</code>.</li><li><strong>oa</strong>: starting index for <code>A</code>.</li><li><strong>out</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>so1</strong>: stride of the first dimension of <code>out</code>.</li><li><strong>so2</strong>: stride of the second dimension of <code>out</code>.</li><li><strong>oo</strong>: starting index for <code>out</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying buffer, the offset parameters support indexing semantics based on starting indices. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">312.0</span>, <span class="hljs-number">53.0</span>, <span class="hljs-number">412.0</span> ] );
+
+sgetrans.ndarray( <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, A, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, out, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// out => &#x3C;Float32Array>[ 0.0, 0.0, 1.0, 3.0, 2.0, 4.0 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><code>sgetrans()</code> corresponds to the <a href="https://www.netlib.org/lapack/explore-html/">LAPACK</a> utility routine <a href="https://github.com/OpenMathLib/OpenBLAS/blob/develop/lapack-netlib/LAPACKE/utils/lapacke_sge_trans.c"><code>sge_trans</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
+<span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> sgetrans = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/lapack/base/sge-trans'</span> );
+
+<span class="hljs-keyword">var</span> shapeA = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> shapeOut = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Row-major layout...</span>
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+
+<span class="hljs-keyword">var</span> stridesA = shape2strides( shapeA, order );
+<span class="hljs-keyword">var</span> stridesOut = shape2strides( shapeOut, order );
+
+<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( A, shapeA, stridesA, <span class="hljs-number">0</span>, order ) );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( numel( shapeA ) );
+
+out = sgetrans( order, shapeA[<span class="hljs-number">0</span>], shapeA[<span class="hljs-number">1</span>], A, stridesA[<span class="hljs-number">0</span>], out, stridesOut[<span class="hljs-number">0</span>] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( out, shapeOut, stridesOut, <span class="hljs-number">0</span>, order ) );
+
+<span class="hljs-comment">// Column-major layout...</span>
+order = <span class="hljs-string">'column-major'</span>;
+
+stridesA = shape2strides( shapeA, order );
+stridesOut = shape2strides( shapeOut, order );
+
+A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( A, shapeA, stridesA, <span class="hljs-number">0</span>, order ) );
+
+out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( numel( shapeA ) );
+
+out = sgetrans( order, shapeA[<span class="hljs-number">0</span>], shapeA[<span class="hljs-number">1</span>], A, stridesA[<span class="hljs-number">1</span>], out, stridesOut[<span class="hljs-number">1</span>] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( out, shapeOut, stridesOut, <span class="hljs-number">0</span>, order ) );
+
+<span class="hljs-comment">// Input and output arrays have different layouts...</span>
+stridesA = shape2strides( shapeA, <span class="hljs-string">'row-major'</span> );
+stridesOut = shape2strides( shapeOut, <span class="hljs-string">'column-major'</span> );
+
+A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( A, shapeA, stridesA, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> ) );
+
+out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( numel( shapeA ) );
+
+out = sgetrans.ndarray( shapeA[<span class="hljs-number">0</span>], shapeA[<span class="hljs-number">1</span>], A, stridesA[<span class="hljs-number">0</span>], stridesA[<span class="hljs-number">1</span>], <span class="hljs-number">0</span>, out, stridesOut[<span class="hljs-number">0</span>], stridesOut[<span class="hljs-number">1</span>], <span class="hljs-number">0</span> );
+<span class="hljs-built_in">console</span>.log( ndarray2array( out, shapeOut, stridesOut, <span class="hljs-number">0</span>, <span class="hljs-string">'column-major'</span> ) );
+
+<span class="hljs-comment">// Input and output arrays have different layouts...</span>
+stridesA = shape2strides( shapeA, <span class="hljs-string">'column-major'</span> );
+stridesOut = shape2strides( shapeOut, <span class="hljs-string">'row-major'</span> );
+
+A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-built_in">console</span>.log( ndarray2array( A, shapeA, stridesA, <span class="hljs-number">0</span>, <span class="hljs-string">'column-major'</span> ) );
+
+out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( numel( shapeA ) );
+
+out = sgetrans.ndarray( shapeA[<span class="hljs-number">0</span>], shapeA[<span class="hljs-number">1</span>], A, stridesA[<span class="hljs-number">0</span>], stridesA[<span class="hljs-number">1</span>], <span class="hljs-number">0</span>, out, stridesOut[<span class="hljs-number">0</span>], stridesOut[<span class="hljs-number">1</span>], <span class="hljs-number">0</span> );
+<span class="hljs-built_in">console</span>.log( ndarray2array( out, shapeOut, stridesOut, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> ) );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c">TODO
+</code></pre><h4 id="todo">TODO</h4><p>TODO.</p><pre><code class="hljs language-c">TODO
+</code></pre><p>TODO</p><pre><code class="hljs language-c">TODO
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c">TODO
+</code></pre></section></section><section class="related"></section><section class="links"></section>

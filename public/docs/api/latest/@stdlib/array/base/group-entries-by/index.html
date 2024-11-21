@@ -1,0 +1,56 @@
+<h1 id="groupentriesby">groupEntriesBy</h1><blockquote><p>Group element entries according to an indicator function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> groupEntriesBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/group-entries-by'</span> );
+</code></pre><h4 id="groupentriesby-x-indicator-thisarg-">groupEntriesBy( x, indicator[, thisArg] )</h4><p>Groups element entries according to an indicator function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indicator</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ];
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = groupEntriesBy( x, indicator );
+<span class="hljs-comment">// returns { 'b': [ [ 0, 'beep' ], [ 1, 'boop' ], [ 3, 'bar' ] ], 'f': [ [ 2, 'foo' ] ] }</span>
+</code></pre><p>An <code>indicator</code> function is provided the following arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>indicator</code> function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indicator</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ];
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> out = groupEntriesBy( x, indicator, context );
+<span class="hljs-comment">// returns { 'b': [ [ 0, 'beep' ], [ 1, 'boop' ], [ 3, 'bar' ] ], 'f': [ [ 2, 'foo' ] ] }</span>
+
+<span class="hljs-keyword">var</span> cnt = context.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The value returned by an <code>indicator</code> function should be a value which can be serialized as an object key. As a counterexample,</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indicator</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> {};
+}
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = groupEntriesBy( x, indicator );
+<span class="hljs-comment">// returns { '[object Object]': [ [ 0, 'beep' ], [ 1, 'boop' ], [ 2, 'foo' ], [ 3, 'bar' ] ] }</span>
+</code></pre><p>while each group identifier is unique, all input array elements resolve to the same group because each group identifier serializes to the same string.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take-indexed'</span> );
+<span class="hljs-keyword">var</span> groupEntriesBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/group-entries-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indicator</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-comment">// Use the first letter of each element to define groups:</span>
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ];
+}
+
+<span class="hljs-comment">// Define an initial array of values:</span>
+<span class="hljs-keyword">var</span> values = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'woot'</span>, <span class="hljs-string">'woot'</span> ];
+
+<span class="hljs-comment">// Sample from the initial array to generate a random collection:</span>
+<span class="hljs-keyword">var</span> indices = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, values.length-<span class="hljs-number">1</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-keyword">var</span> x = take( values, indices );
+<span class="hljs-comment">// returns [...]</span>
+
+<span class="hljs-comment">// Group the values:</span>
+<span class="hljs-keyword">var</span> out = groupEntriesBy( x, indicator );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

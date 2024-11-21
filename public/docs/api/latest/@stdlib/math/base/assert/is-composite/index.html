@@ -11,4 +11,24 @@ bool = isComposite( <span class="hljs-number">7.0</span> );
 
 bool = isComposite( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-integer"><code>@stdlib/math/base/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a finite double-precision floating-point number is an integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-prime"><code>@stdlib/math/base/assert/is-prime</code></a></span><span class="delimiter">: </span><span class="description">test if a number is prime.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/is_composite.h"</span></span>
+</code></pre><h4 id="stdlib_base_is_composite-x-">stdlib_base_is_composite( x )</h4><p>Tests if a finite double-precision floating-point number is a composite number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-keyword">bool</span> out = stdlib_base_is_composite( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stdlib_base_is_composite</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/is_composite.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">-1.0</span> , <span class="hljs-number">4.0</span> };
+
+    <span class="hljs-keyword">bool</span> r;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        r = stdlib_base_is_composite( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Value: %lf. Is Composite? %s.\n"</span>, x[ i ], ( r ) ? <span class="hljs-string">"True"</span> : <span class="hljs-string">"False"</span> );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-integer"><code>@stdlib/math/base/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a finite double-precision floating-point number is an integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-prime"><code>@stdlib/math/base/assert/is-prime</code></a></span><span class="delimiter">: </span><span class="description">test if a number is prime.</span></li></ul></section><section class="links"></section>

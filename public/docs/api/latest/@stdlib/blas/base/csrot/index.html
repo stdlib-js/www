@@ -1,0 +1,196 @@
+<h1 id="csrot">csrot</h1><blockquote><p>Applies a plane rotation.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> csrot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/csrot'</span> );
+</code></pre><h4 id="csrot-n-cx-stridex-cy-stridey-c-s-">csrot( N, cx, strideX, cy, strideY, c, s )</h4><p>Applies a plane rotation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> cx = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> cy = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+csrot( cx.length, cx, <span class="hljs-number">1</span>, cy, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-keyword">var</span> z = cy.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns ~-0.6</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns ~-1.2</span>
+
+z = cx.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( z );
+<span class="hljs-comment">// returns ~0.8</span>
+
+im = imagf( z );
+<span class="hljs-comment">// returns ~1.6</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>cx</strong>: first input <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>cx</code>.</li><li><strong>cy</strong>: second input <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>cy</code>.</li></ul><p>The <code>N</code> and stride parameters determine how values from <code>cx</code> and <code>cy</code> are accessed at runtime. For example, to apply a plane rotation to every other element,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> cx = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> cy = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+csrot( <span class="hljs-number">2</span>, cx, <span class="hljs-number">2</span>, cy, <span class="hljs-number">2</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-keyword">var</span> z = cy.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns ~-0.6</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns ~-1.2</span>
+
+z = cx.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( z );
+<span class="hljs-comment">// returns ~0.8</span>
+
+im = imagf( z );
+<span class="hljs-comment">// returns ~1.6</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> cx0 = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> cy0 = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> cx1 = <span class="hljs-keyword">new</span> Complex64Array( cx0.buffer, cx0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> cy1 = <span class="hljs-keyword">new</span> Complex64Array( cy0.buffer, cy0.BYTES_PER_ELEMENT*<span class="hljs-number">2</span> ); <span class="hljs-comment">// start at 3rd element</span>
+
+csrot( <span class="hljs-number">2</span>, cx1, -<span class="hljs-number">2</span>, cy1, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-keyword">var</span> z = cy0.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns ~-4.2</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns ~-4.8</span>
+
+z = cx0.get( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( z );
+<span class="hljs-comment">// returns ~5.6</span>
+
+im = imagf( z );
+<span class="hljs-comment">// returns ~6.4</span>
+</code></pre><h4 id="csrotndarray-n-cx-stridex-offsetx-cy-stridey-offsety-c-s-">csrot.ndarray( N, cx, strideX, offsetX, cy, strideY, offsetY, c, s )</h4><p>Applies a plane rotation using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> cx = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> cy = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+csrot.ndarray( cx.length, cx, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, cy, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-keyword">var</span> z = cy.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns ~-0.6</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns ~-1.2</span>
+
+z = cx.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( z );
+<span class="hljs-comment">// returns ~0.8</span>
+
+im = imagf( z );
+<span class="hljs-comment">// returns ~1.6</span>
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: starting index for <code>cx</code>.</li><li><strong>offsetY</strong>: starting index for <code>cy</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying buffer, the offset parameters support indexing semantics based on starting indices. For example, to apply a plane rotation to every other element starting from the second element,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
+
+<span class="hljs-keyword">var</span> cx = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> cy = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+csrot.ndarray( <span class="hljs-number">2</span>, cx, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, cy, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-keyword">var</span> z = cy.get( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( z );
+<span class="hljs-comment">// returns ~-4.2</span>
+
+<span class="hljs-keyword">var</span> im = imagf( z );
+<span class="hljs-comment">// returns ~-4.8</span>
+
+z = cx.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+re = realf( z );
+<span class="hljs-comment">// returns ~2.4</span>
+
+im = imagf( z );
+<span class="hljs-comment">// returns ~3.2</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions leave <code>cx</code> and <code>cy</code> unchanged.</li><li><code>csrot()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/da/df6/group__complex__blas__level1.html"><code>csrot</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> ccopy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/ccopy'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> csrot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/csrot'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rand</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex64( discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> ), discreteUniform( -<span class="hljs-number">5</span>, <span class="hljs-number">5</span> ) );
+}
+
+<span class="hljs-comment">// Generate random input arrays:</span>
+<span class="hljs-keyword">var</span> cx = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'complex64'</span>, rand );
+<span class="hljs-keyword">var</span> cxc = ccopy( cx.length, cx, <span class="hljs-number">1</span>, zeros( cx.length, <span class="hljs-string">'complex64'</span> ), <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> cy = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'complex64'</span>, rand );
+<span class="hljs-keyword">var</span> cyc = ccopy( cy.length, cy, <span class="hljs-number">1</span>, zeros( cy.length, <span class="hljs-string">'complex64'</span> ), <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Apply a plane rotation:</span>
+csrot( cx.length, cx, <span class="hljs-number">1</span>, cy, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+
+<span class="hljs-comment">// Print the results:</span>
+logEach( <span class="hljs-string">'(%s,%s) => (%s,%s)'</span>, cxc, cyc, cx, cy );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/csrot.h"</span></span>
+</code></pre><h4 id="c_csrot-n-x-stridex-y-stridey-c-s-">c_csrot( N, *X, strideX, *Y, strideY, c, s )</h4><p>Applies a plane rotation.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span> }; <span class="hljs-comment">// interleaved real and imaginary components</span>
+<span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+
+c_csrot( <span class="hljs-number">2</span>, (<span class="hljs-keyword">void</span> *)x, <span class="hljs-number">1</span>, (<span class="hljs-keyword">void</span> *)y, <span class="hljs-number">1</span>, <span class="hljs-number">0.8f</span>, <span class="hljs-number">0.6f</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>CX</strong>: <code>[inout] void*</code> first input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CX</code>.</li><li><strong>CY</strong>: <code>[inout] void*</code> second input array.</li><li><strong>strideY</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CY</code>.</li><li><strong>c</strong>: <code>[in] float</code> cosine of the angle of rotation.</li><li><strong>s</strong>: <code>[in] float</code> sine of the angle of rotation.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_csrot</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">void</span> *CX, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">void</span> *CY, <span class="hljs-keyword">const</span> CBLAS_INT strideY, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> c, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> s )</span></span>;
+</code></pre><h4 id="c_csrot_ndarray-n-x-stridex-offsetx-y-stridey-offsety-c-s-">c_csrot_ndarray( N, *X, strideX, offsetX, *Y, strideY, offsetY, c, s )</h4><p>Applies a plane rotation using alternative indexing semantics.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span> }; <span class="hljs-comment">// interleaved real and imaginary components</span>
+<span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+
+c_csrot_ndarray( <span class="hljs-number">2</span>, (<span class="hljs-keyword">void</span> *)x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, (<span class="hljs-keyword">void</span> *)y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.8f</span>, <span class="hljs-number">0.6f</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>CX</strong>: <code>[inout] void*</code> first input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CX</code>.</li><li><strong>offsetX</strong>: <code>[in] CBLAS_INT</code> starting index for <code>CX</code>.</li><li><strong>CY</strong>: <code>[inout] void*</code> second input array.</li><li><strong>strideY</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CY</code>.</li><li><strong>offsetY</strong>: <code>[in] CBLAS_INT</code> starting index for <code>CY</code>.</li><li><strong>c</strong>: <code>[in] float</code> cosine of the angle of rotation.</li><li><strong>s</strong>: <code>[in] float</code> sine of the angle of rotation.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_csrot_ndarray</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">void</span> *CX, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">const</span> CBLAS_INT offsetX, <span class="hljs-keyword">void</span> *CY, <span class="hljs-keyword">const</span> CBLAS_INT strideY, <span class="hljs-keyword">const</span> CBLAS_INT offsetY, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> c, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> s )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/csrot.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create strided arrays:</span>
+    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+    <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-comment">// Specify the number of elements:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">4</span>;
+
+    <span class="hljs-comment">// Specify stride lengths:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideX = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideY = <span class="hljs-number">-1</span>;
+
+    <span class="hljs-comment">// Copy elements:</span>
+    c_csrot( N, (<span class="hljs-keyword">void</span> *)x, strideX, (<span class="hljs-keyword">void</span> *)y, strideY, <span class="hljs-number">0.8f</span>, <span class="hljs-number">0.6f</span> );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x[ %i ] = %f + %fj\n"</span>, i, x[ i*<span class="hljs-number">2</span> ], x[ (i*<span class="hljs-number">2</span>)+<span class="hljs-number">1</span> ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"y[ %i ] = %f + %fj\n"</span>, i, y[ i*<span class="hljs-number">2</span> ], y[ (i*<span class="hljs-number">2</span>)+<span class="hljs-number">1</span> ] );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

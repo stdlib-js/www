@@ -37,4 +37,25 @@ out = xlog1py( <span class="hljs-literal">NaN</span>, <span class="hljs-number">
     y = ( randu() * <span class="hljs-number">20.0</span> ) - <span class="hljs-number">5.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'xlog1py(%d, %d) = %d'</span>, x, y, xlog1py( x, y ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/xlogy"><code>@stdlib/math/base/special/xlogy</code></a></span><span class="delimiter">: </span><span class="description">compute <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code>.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/xlog1py.h"</span></span>
+</code></pre><h4 id="stdlib_base_xlog1py-x-y-">stdlib_base_xlog1py( x, y )</h4><p>Computes <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> v = stdlib_base_xlog1py( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~3.296</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li><li><strong>y</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_xlog1py</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/xlog1py.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> out;
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">100.0</span>;
+        y = ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">5.0</span>;
+        out = stdlib_base_xlog1py( x, y );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"xlog1py(%lf, %lf) = %lf\n"</span>, x, y, out );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/xlogy"><code>@stdlib/math/base/special/xlogy</code></a></span><span class="delimiter">: </span><span class="description">compute <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code>.</span></li></ul></section><section class="links"></section>

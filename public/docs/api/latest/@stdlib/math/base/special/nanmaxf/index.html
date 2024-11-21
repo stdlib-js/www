@@ -1,0 +1,52 @@
+<h1 id="nanmaxf">nanmaxf</h1><blockquote><p>Return the maximum value of two single-precision floating-point numbers, ignoring NaN.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nanmaxf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/nanmaxf'</span> );
+</code></pre><h4 id="nanmaxf-x-y-">nanmaxf( x, y )</h4><p>Returns the maximum value of two single-precision floating-point numbers, ignoring NaN.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = nanmaxf( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 4.2</span>
+
+v = nanmaxf( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns +0.0</span>
+</code></pre><p>If any argument is <code>NaN</code>, the function returns the other operand.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = nanmaxf( <span class="hljs-number">4.2</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns 4.2</span>
+
+v = nanmaxf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 3.14</span>
+</code></pre><p>If both arguments are <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = nanmaxf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nanmaxf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/nanmaxf'</span> );
+
+<span class="hljs-keyword">var</span> m = nanmaxf( <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> );
+<span class="hljs-built_in">console</span>.log( m );
+<span class="hljs-comment">// => 4.0</span>
+
+m = nanmaxf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">4.0</span> );
+<span class="hljs-built_in">console</span>.log( m );
+<span class="hljs-comment">// => 4.0</span>
+
+m = nanmaxf( <span class="hljs-number">4.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-built_in">console</span>.log( m );
+<span class="hljs-comment">// => 4.0</span>
+
+m = nanmaxf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-built_in">console</span>.log( m );
+<span class="hljs-comment">// => NaN</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/nanmaxf.h"</span></span>
+</code></pre><h4 id="stdlib_base_nanmaxf-x-y-">stdlib_base_nanmaxf( x, y )</h4><p>Returns the maximum value of two single-precision floating-point numbers, ignoring NaN.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> out = stdlib_base_nanmaxf( <span class="hljs-number">4.2f</span>, <span class="hljs-number">3.14f</span> );
+<span class="hljs-comment">// returns 4.2f</span>
+
+out = stdlib_base_nanmaxf( <span class="hljs-number">4.14f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span> );
+<span class="hljs-comment">// returns 4.14f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li><li><strong>y</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_nanmaxf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/nanmaxf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">0.45f</span>, <span class="hljs-number">-0.89f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span>, <span class="hljs-number">-0.78f</span>, <span class="hljs-number">-0.22f</span>, <span class="hljs-number">0.66f</span>, <span class="hljs-number">0.11f</span>, <span class="hljs-number">-0.55f</span>, <span class="hljs-number">0.0f</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">-0.22f</span>, <span class="hljs-number">0.66f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">-0.55f</span>, <span class="hljs-number">0.33f</span>, <span class="hljs-number">1.0f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.11f</span>, <span class="hljs-number">0.45f</span>, <span class="hljs-number">-0.78f</span> };
+
+    <span class="hljs-keyword">float</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_nanmaxf( x[ i ], y[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x[ %d ]: %f, y[ %d ]: %f, nanmaxf( x[ %d ], y[ %d ] ): %f\n"</span>, i, x[ i ], i, y[ i ], i, i, v );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

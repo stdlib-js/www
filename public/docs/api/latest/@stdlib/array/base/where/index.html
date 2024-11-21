@@ -1,0 +1,103 @@
+<h1 id="where">where</h1><blockquote><p>Take elements from either one of two arrays depending on a condition.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> where = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/where'</span> );
+</code></pre><h4 id="where-condition-x-y-">where( condition, x, y )</h4><p>Takes elements from either <code>x</code> or <code>y</code> depending on a condition.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> condition = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+
+<span class="hljs-keyword">var</span> z = where( condition, x, y );
+<span class="hljs-comment">// returns [ 1, 6, 3, 8 ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>condition</strong>: array of values indicating whether to take an element from either <code>x</code> or <code>y</code>. If a condition element is truthy, the function takes a respective element from <code>x</code>; otherwise, the function takes a respective element from <code>y</code>. If non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the resolved output array length.</li><li><strong>x</strong>: first input array. If <code>condition</code> is non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the resolved output array length.</li><li><strong>y</strong>: second input array. If <code>condition</code> is non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the resolved output array length.</li></ul><p>When all input arrays are non-empty, the function supports broadcasting single-element arrays to the resolved output array length, which is equal to the maximum length of all provided input arrays.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> condition = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+
+<span class="hljs-keyword">var</span> z = where( condition, x, y );
+<span class="hljs-comment">// returns [ 1, 5, 3, 5 ]</span>
+
+z = where( condition, y, x );
+<span class="hljs-comment">// returns [ 5, 2, 5, 4 ]</span>
+
+z = where( [ <span class="hljs-literal">true</span> ], x, y );
+<span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
+
+z = where( [ <span class="hljs-literal">false</span> ], x, y );
+<span class="hljs-comment">// returns [ 5, 5, 5, 5 ]</span>
+
+z = where( condition, [ <span class="hljs-number">1</span> ], y );
+<span class="hljs-comment">// returns [ 1, 5, 1, 5 ]</span>
+</code></pre><p>If <code>condition</code> is an empty array, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> condition = [];
+
+<span class="hljs-keyword">var</span> z = where( condition, x, y );
+<span class="hljs-comment">// returns []</span>
+</code></pre><h4 id="whereassign-condition-x-y-out-stride-offset-">where.assign( condition, x, y, out, stride, offset )</h4><p>Takes elements from either <code>x</code> or <code>y</code> depending on a condition and assigns the values to elements in a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> condition = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+
+<span class="hljs-keyword">var</span> arr = where.assign( condition, x, y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 6, 3, 8 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>condition</strong>: array of values indicating whether to take an element from either <code>x</code> or <code>y</code>. If a condition element is truthy, the function takes a respective element from <code>x</code>; otherwise, the function takes a respective element from <code>y</code>. If non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the output array.</li><li><strong>x</strong>: first input array. If <code>condition</code> is non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the output array.</li><li><strong>y</strong>: second input array. If <code>condition</code> is non-empty, must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a> with the output array.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li></ul><p>The function supports broadcasting single-element arrays to the output array length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> condition = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> arr = where.assign( condition, x, y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 5, 3, 5 ]</span>
+
+out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+arr = where.assign( condition, y, x, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 5, 2, 5, 4 ]</span>
+
+out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+arr = where.assign( [ <span class="hljs-literal">true</span> ], x, y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
+
+out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+arr = where.assign( [ <span class="hljs-literal">false</span> ], x, y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 5, 5, 5, 5 ]</span>
+
+out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+arr = where.assign( condition, [ <span class="hljs-number">1</span> ], y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1, 5, 1, 5 ]</span>
+</code></pre><p>When <code>condition</code> is an empty array, the function returns the output array unchanged.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> condition = [];
+
+<span class="hljs-keyword">var</span> arr = where.assign( condition, x, y, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> where = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/where'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+
+<span class="hljs-comment">// Generate an array of indicator values:</span>
+<span class="hljs-keyword">var</span> condition = bernoulli( <span class="hljs-number">20</span>, <span class="hljs-number">0.9</span>, opts );
+<span class="hljs-built_in">console</span>.log( condition );
+
+<span class="hljs-comment">// Generate an array of random values:</span>
+<span class="hljs-keyword">var</span> x = discreteUniform( condition.length, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, opts );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Define an array containing a broadcasted "missing" value:</span>
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-literal">NaN</span> ];
+
+<span class="hljs-comment">// Return an array with randomly placed missing values:</span>
+<span class="hljs-keyword">var</span> z = where( condition, x, y );
+<span class="hljs-built_in">console</span>.log( z );
+</code></pre></section><section class="related"></section><section class="links"></section>

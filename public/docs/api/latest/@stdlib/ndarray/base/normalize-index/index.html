@@ -1,0 +1,24 @@
+<h1 id="normalizeindex">normalizeIndex</h1><blockquote><p>Normalize an index to the interval <code>[0,max]</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normalizeIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/normalize-index'</span> );
+</code></pre><h4 id="normalizeindex-idx-max-">normalizeIndex( idx, max )</h4><p>Normalizes an index to the interval <code>[0,max]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = normalizeIndex( <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 2</span>
+
+idx = normalizeIndex( -<span class="hljs-number">5</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p>If provided an out-of-bounds index, the function returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = normalizeIndex( <span class="hljs-number">15</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns -1</span>
+
+idx = normalizeIndex( -<span class="hljs-number">15</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> normalizeIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/normalize-index'</span> );
+
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = discreteUniform( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span> );
+    out = normalizeIndex( idx, <span class="hljs-number">15</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => [%d,%d] => %d'</span>, idx, <span class="hljs-number">0</span>, <span class="hljs-number">15</span>, out );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

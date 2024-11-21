@@ -1,0 +1,23 @@
+<h1 id="issamebooleanarray">isSameBooleanArray</h1><blockquote><p>Test if two arguments are both <a href="/docs/api/latest/@stdlib/array/bool">BooleanArrays</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameBooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-booleanarray'</span> );
+</code></pre><h4 id="issamebooleanarray-v1-v2-">isSameBooleanArray( v1, v2 )</h4><p>Tests if two arguments are both <a href="/docs/api/latest/@stdlib/array/bool">BooleanArrays</a> and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/bool'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] );
+<span class="hljs-keyword">var</span> bool = isSameBooleanArray( x, y );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameBooleanArray( x, [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/bool'</span> );
+<span class="hljs-keyword">var</span> isSameBooleanArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-booleanarray'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ] );
+<span class="hljs-keyword">var</span> out = isSameBooleanArray( x, y );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ] );
+y = <span class="hljs-keyword">new</span> BooleanArray( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> ] );
+out = isSameBooleanArray( x, y );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

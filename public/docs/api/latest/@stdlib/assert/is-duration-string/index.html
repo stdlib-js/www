@@ -1,0 +1,41 @@
+<h1 id="isdurationstring">isDurationString</h1><blockquote><p>Test if a value is a duration string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isDurationString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-duration-string'</span> );
+</code></pre><h4 id="isdurationstring-value-">isDurationString( value )</h4><p>Tests if a <code>value</code> is a duration <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isDurationString( <span class="hljs-string">'1d'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isDurationString( <span class="hljs-string">'1d2h'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function validates that a <code>value</code> is a <code>string</code>. For all other types, the function returns <code>false</code>.</p></li><li><p>A duration string is a string containing a sequence of time units. A time unit is a non-negative integer followed by a unit identifier. The following unit identifiers are supported:</p><ul><li><code>d</code>: days</li><li><code>h</code>: hours</li><li><code>m</code>: minutes</li><li><code>s</code>: seconds</li><li><code>ms</code>: milliseconds</li></ul><p>For example, the string <code>1m3s10ms</code> is a duration string containing three time units: <code>1m</code> (1 minute), <code>3s</code> (3 seconds), and <code>10ms</code> (10 milliseconds). The string <code>60m</code> is a duration string containing a single time unit: <code>60m</code> (60 minutes). Time units must be supplied in descending order of magnitude (i.e., days, hours, minutes, seconds, milliseconds).</p></li><li><p>Duration strings are case insensitive. For example, the string <code>1M3S10MS</code> is equivalent to <code>1m3s10ms</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isDurationString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-duration-string'</span> );
+
+<span class="hljs-keyword">var</span> bool = isDurationString( <span class="hljs-string">'1h'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isDurationString( <span class="hljs-string">'1m20ms'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isDurationString( <span class="hljs-string">'1d 2h 3m 4s'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isDurationString( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isDurationString( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-duration-string [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'3m20s\n50ms'</span> | is-duration-string --split /\r?\n/
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'3m20s\n50ms'</span> | is-duration-string --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-duration-string <span class="hljs-string">'1h'</span>
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'1x'</span> | is-duration-string
+<span class="hljs-literal">false</span>
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'1h2m3s\tboop'</span> | is-duration-string --split <span class="hljs-string">'\t'</span>
+<span class="hljs-literal">true</span>
+<span class="hljs-literal">false</span>
+</code></pre></section></section><section class="related"><section class="links"></section></section>

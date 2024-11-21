@@ -1,7 +1,7 @@
 <h1 id="cmap">cmap</h1><blockquote><p>Apply a unary function to a single-precision floating-point strided input array and assign results to a single-precision floating-point strided output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cmap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/cmap'</span> );
 </code></pre><h4 id="cmap-n-x-stridex-y-stridey-fcn-">cmap( N, x, strideX, y, strideY, fcn )</h4><p>Applies a unary function to a single-precision complex floating-point strided input array and assigns results to a single-precision complex floating-point strided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 <span class="hljs-keyword">var</span> cceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceilf'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ -<span class="hljs-number">2.3</span>, <span class="hljs-number">1.5</span>, <span class="hljs-number">3.1</span>, -<span class="hljs-number">5.2</span>, <span class="hljs-number">4.8</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.6</span>, <span class="hljs-number">3.4</span> ] );
@@ -18,8 +18,8 @@ cmap( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-numb
 <span class="hljs-keyword">var</span> im = imag( v );
 <span class="hljs-comment">// returns 2.0</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>fcn</strong>: function to apply.</li></ul><p>The <code>N</code> and stride parameters determine which elements in the strided arrays are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 <span class="hljs-keyword">var</span> cceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceilf'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ -<span class="hljs-number">2.3</span>, <span class="hljs-number">1.5</span>, <span class="hljs-number">3.1</span>, -<span class="hljs-number">5.2</span>, <span class="hljs-number">4.8</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.6</span>, <span class="hljs-number">3.4</span> ] );
@@ -36,8 +36,8 @@ cmap( <span class="hljs-number">2</span>, x, <span class="hljs-number">2</span>,
 <span class="hljs-keyword">var</span> im = imag( v );
 <span class="hljs-comment">// returns 0.0</span>
 </code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/complex64"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 <span class="hljs-keyword">var</span> cceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceilf'</span> );
 
 <span class="hljs-comment">// Initial arrays...</span>
@@ -59,8 +59,8 @@ cmap( <span class="hljs-number">2</span>, x1, -<span class="hljs-number">2</span
 <span class="hljs-keyword">var</span> im = imag( v );
 <span class="hljs-comment">// returns 4.0</span>
 </code></pre><h4 id="cmapndarray-n-x-stridex-offsetx-y-stridey-offsety-fcn-">cmap.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, fcn )</h4><p>Applies a unary function to a single-precision complex floating-point strided input array and assigns results to a single-precision complex floating-point strided output array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 <span class="hljs-keyword">var</span> cceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceilf'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ -<span class="hljs-number">2.3</span>, <span class="hljs-number">1.5</span>, <span class="hljs-number">3.1</span>, -<span class="hljs-number">5.2</span>, <span class="hljs-number">4.8</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.6</span>, <span class="hljs-number">3.4</span> ] );
@@ -77,8 +77,8 @@ cmap.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs
 <span class="hljs-keyword">var</span> im = imag( v );
 <span class="hljs-comment">// returns 2.0</span>
 </code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="/docs/api/latest/@stdlib/array/complex64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
 <span class="hljs-keyword">var</span> cceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceilf'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ -<span class="hljs-number">2.3</span>, <span class="hljs-number">1.5</span>, <span class="hljs-number">3.1</span>, -<span class="hljs-number">5.2</span>, <span class="hljs-number">4.8</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.6</span>, <span class="hljs-number">3.4</span> ] );
@@ -97,9 +97,9 @@ cmap.ndarray( <span class="hljs-number">2</span>, x, <span class="hljs-number">2
 </code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
 <span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
-<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
 <span class="hljs-keyword">var</span> cmap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/cmap'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> x </span>) </span>{
@@ -147,7 +147,7 @@ stdlib_strided_cmap( N, X, <span class="hljs-number">1</span>, Y, <span class="h
     <span class="hljs-keyword">return</span> ( re+<span class="hljs-number">10.0f</span> ) + ( im+<span class="hljs-number">10.0f</span> )*I;
 }
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
     <span class="hljs-comment">// Create an input strided array:</span>
     <span class="hljs-keyword">float</span> <span class="hljs-built_in">complex</span> X[] = { <span class="hljs-number">1.0</span>+<span class="hljs-number">1.0</span>*I, <span class="hljs-number">2.0</span>+<span class="hljs-number">2.0</span>*I, <span class="hljs-number">3.0</span>+<span class="hljs-number">3.0</span>*I, <span class="hljs-number">4.0</span>+<span class="hljs-number">4.0</span>*I, <span class="hljs-number">5.0</span>+<span class="hljs-number">5.0</span>*I, <span class="hljs-number">6.0</span>+<span class="hljs-number">6.0</span>*I };
 
@@ -169,4 +169,4 @@ stdlib_strided_cmap( N, X, <span class="hljs-number">1</span>, Y, <span class="h
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Y[ %"</span>PRId64<span class="hljs-string">" ] = %f + %fi\n"</span>, i, creal( Y[i] ), cimag( Y[i] ) );
     }
 }
-</code></pre></section></section><section class="related"></section><section class="links"></section>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/zmap"><code>@stdlib/strided/base/zmap</code></a></span><span class="delimiter">: </span><span class="description">apply a unary function to a double-precision complex floating-point strided input array and assign results to a double-precision complex floating-point strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/unary"><code>@stdlib/strided/base/unary</code></a></span><span class="delimiter">: </span><span class="description">apply a unary callback to elements in a strided input array and assign results to elements in a strided output array.</span></li></ul></section><section class="links"></section>

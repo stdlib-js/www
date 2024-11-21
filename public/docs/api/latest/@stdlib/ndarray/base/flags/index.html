@@ -1,0 +1,54 @@
+<h1 id="flags">flags</h1><blockquote><p>Return the flags of a provided <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flags = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/flags'</span> );
+</code></pre><h4 id="flags-x-copy-">flags( x, copy )</h4><p>Returns the flags of a provided <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> o = flags( x, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>When <code>copy</code> is <code>false</code>, changes to the returned object may mutate the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> flags. If there is a chance that the returned object will be mutated (either directly or by downstream consumers), set <code>copy</code> to <code>true</code> to prevent unintended side effects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> o = flags( x, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-keyword">var</span> bool = ( x.flags === o );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+<span class="hljs-keyword">var</span> slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/slice'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> flags = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/flags'</span> );
+
+<span class="hljs-comment">// Create an array:</span>
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Define some slices:</span>
+<span class="hljs-keyword">var</span> slices = [
+    <span class="hljs-comment">// :,:,:,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 5:10,4,2:4,::-1</span>
+    E( S( <span class="hljs-number">5</span>, <span class="hljs-number">10</span> ), <span class="hljs-number">4</span>, S( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ), S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) ),
+
+    <span class="hljs-comment">// :,:,2,:</span>
+    E( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,2,3,:</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span> ),
+
+    <span class="hljs-comment">// 1,3,::2,4::2</span>
+    E( <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, S( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ), S( <span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span> ) )
+];
+
+<span class="hljs-comment">// Retrieve the flags for each slice...</span>
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; slices.length; i++ ) {
+    s = slice( x, slices[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s'</span>, <span class="hljs-built_in">JSON</span>.stringify( flags( s, <span class="hljs-literal">false</span> ) ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

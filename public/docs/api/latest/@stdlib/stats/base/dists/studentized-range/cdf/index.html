@@ -1,0 +1,42 @@
+<h1 id="cumulative-distribution-function">Cumulative Distribution Function</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">Studentized range</a> distribution <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">cumulative distribution function</a> (CDF).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range/cdf'</span> );
+</code></pre><h4 id="cdf-x-r-v-nranges1-">cdf( x, r, v[, nranges=1] )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">cumulative distribution function</a> (CDF) for a <a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">studentized range</a> distribution with sample size <code>r</code> and <code>v</code> degrees of freedom. Optionally, the number of groups whose maximum range is considered can be specified via the <code>nranges</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = cdf( <span class="hljs-number">0.5</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~0.0644</span>
+
+y = cdf( <span class="hljs-number">12.1</span>, <span class="hljs-number">17.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~0.913</span>
+
+y = cdf( <span class="hljs-number">0.5</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns ~0.01</span>
+</code></pre><p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = cdf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = cdf( <span class="hljs-number">1.5</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If provided <code>v &#x3C; 2</code> or <code>r &#x3C; 2</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = cdf( <span class="hljs-number">2.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = cdf( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">1.5</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><h4 id="cdffactory-r-v-nranges1-">cdf.factory( r, v[, nranges=1] )</h4><p>Returns a <code>function</code> for evaluating the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">cdf</a> of a <a href="https://en.wikipedia.org/wiki/Studentized_range_distribution">studentized range</a> distribution with sample size <code>r</code> and <code>v</code> degrees of freedom. Optionally. Optionally, the number of groups whose maximum range is considered can be specified via the <code>nranges</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mycdf = cdf.factory( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-keyword">var</span> y = mycdf( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~0.712</span>
+
+y = mycdf( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.216</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> cdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/studentized-range/cdf'</span> );
+
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> q;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    q = randu() * <span class="hljs-number">12.0</span>;
+    r = ( randu() * <span class="hljs-number">20.0</span> ) + <span class="hljs-number">2.0</span>;
+    v = ( randu() * <span class="hljs-number">10.0</span> ) + <span class="hljs-number">2.0</span>;
+    y = cdf( q, r, v );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'q: %d, r: %d, v: %d, F(x;v): %d'</span>, q.toFixed( <span class="hljs-number">4</span> ), r.toFixed( <span class="hljs-number">4</span> ), v.toFixed( <span class="hljs-number">4</span> ), y.toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

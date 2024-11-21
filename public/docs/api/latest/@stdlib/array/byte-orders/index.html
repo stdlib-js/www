@@ -1,0 +1,17 @@
+<h1 id="byteorders">byteOrders</h1><blockquote><p>List of byte orders.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> byteOrders = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/byte-orders'</span> );
+</code></pre><h4 id="byteorders-1">byteOrders()</h4><p>Returns a list of byte orders.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = byteOrders();
+<span class="hljs-comment">// e.g., returns [ 'little-endian', 'big-endian' ]</span>
+</code></pre><p>The output array contains the following orders:</p><ul><li><strong>little-endian</strong>: bytes are ordered from least-to-most significant byte.</li><li><strong>big-endian</strong>: bytes are ordered from most-to-least significant byte.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/contains'</span> ).factory;
+<span class="hljs-keyword">var</span> byteOrders = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/byte-orders'</span> );
+
+<span class="hljs-keyword">var</span> isByteOrder = contains( byteOrders() );
+
+<span class="hljs-keyword">var</span> bool = isByteOrder( <span class="hljs-string">'little-endian'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isByteOrder( <span class="hljs-string">'big-endian'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isByteOrder( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

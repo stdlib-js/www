@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -109,13 +109,13 @@
 					<a name="dtypes" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagExport assignment">Export assignment</span> dtypes</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">dtypes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_types_index_d_.__stdlib_types_array_.html#datatype" class="tsd-signature-type">DataType</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">dtypes<span class="tsd-signature-symbol">(</span>kind<span class="tsd-signature-symbol">?: </span><a href="_types_index_d_.__stdlib_types_array_.html#datatypekind" class="tsd-signature-type">DataTypeKind</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_types_index_d_.__stdlib_types_array_.html#datatype" class="tsd-signature-type">DataType</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/array/dtypes/docs/types/index.d.ts#L34">lib/node_modules/@stdlib/array/dtypes/docs/types/index.d.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/array/dtypes/docs/types/index.d.ts#L39">lib/node_modules/@stdlib/array/dtypes/docs/types/index.d.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -123,6 +123,15 @@
 									<p>Returns a list of array data types.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> kind: <a href="_types_index_d_.__stdlib_types_array_.html#datatypekind" class="tsd-signature-type">DataTypeKind</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>data type kind</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns
 								<span class="tsd-signature-type">Array</span>
 								<span class="tsd-signature-symbol">&lt;</span>
@@ -134,7 +143,11 @@
 							<p>list of array data types</p>
 							<h4 class="tsd-example-title">Example</h4>
 							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> list = dtypes();
-<span class="hljs-comment">// e.g., returns [ 'float32', 'float64', 'generic', 'int16', 'int32', 'int8', 'uint16', 'uint32', 'uint8', 'uint8c', 'complex64', 'complex128' ]</span></code></pre>
+<span class="hljs-comment">// e.g., returns [ 'float32', 'float64', ... ]</span></code></pre>
+							</div>
+							<h4 class="tsd-example-title">Example</h4>
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> list = dtypes( <span class="hljs-string">'floating_point'</span> );
+<span class="hljs-comment">// returns [...]</span></code></pre>
 							</div>
 						</li>
 					</ul>
@@ -222,13 +235,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

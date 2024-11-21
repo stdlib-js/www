@@ -61,6 +61,10 @@ sigma = lognormal.sigma;
 
 <span class="hljs-keyword">var</span> y = lognormal.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.25</span>
+</code></pre><h4 id="lognormalprototypelogcdf-x-">LogNormal.prototype.logcdf( x )</h4><p>Evaluates the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">cumulative distribution function</a> (CDF).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lognormal = <span class="hljs-keyword">new</span> LogNormal( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+
+<span class="hljs-keyword">var</span> y = lognormal.logcdf( <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~-0.2799</span>
 </code></pre><h4 id="lognormalprototypelogpdf-x-">LogNormal.prototype.logpdf( x )</h4><p>Evaluates the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability density function</a> (PDF).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lognormal = <span class="hljs-keyword">new</span> LogNormal( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
 
 <span class="hljs-keyword">var</span> y = lognormal.logpdf( <span class="hljs-number">2.0</span> );

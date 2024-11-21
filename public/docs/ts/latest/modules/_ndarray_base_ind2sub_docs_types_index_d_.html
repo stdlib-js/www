@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -115,7 +115,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ind2sub/docs/types/index.d.ts#L126">lib/node_modules/@stdlib/ndarray/base/ind2sub/docs/types/index.d.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ind2sub/docs/types/index.d.ts#L127">lib/node_modules/@stdlib/ndarray/base/ind2sub/docs/types/index.d.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -128,9 +128,10 @@
 								<ul>
 									<li><p>The function accepts the following &quot;modes&quot;:</p>
 										<ul>
-											<li><code>throw</code>: throws an error when a linear index exceeds array dimensions.</li>
-											<li><code>wrap</code>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
-											<li><code>clamp</code>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+											<li><strong>throw</strong>: throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>normalize</strong>: normalize negative indices and throw an error when a linear index exceeds array dimensions.</li>
+											<li><strong>wrap</strong>: wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+											<li><strong>clamp</strong>: set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
 										</ul>
 									</li>
 									<li><p>When provided a stride array containing negative strides, if an <code>offset</code> is greater than <code>0</code>, the function interprets the linear index as an index into the underlying data buffer for the array, thus returning subscripts from the perspective of that buffer. If an <code>offset</code> is equal to <code>0</code>, the function treats the linear index as an index into an array view, thus returning subscripts from the perspective of that view.</p>
@@ -343,13 +344,13 @@ s = ind2sub( shape, strides, offset, order, <span class="hljs-number">3</span>, 
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

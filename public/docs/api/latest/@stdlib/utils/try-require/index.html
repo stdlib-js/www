@@ -13,9 +13,7 @@
 }
 </code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tryRequire = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/try-require'</span> );
 
-<span class="hljs-keyword">var</span> out;
-
-out = tryRequire( <span class="hljs-string">'_abcdefghijklmnopqrstuvwxyz123456789_'</span> );
+<span class="hljs-keyword">var</span> out = tryRequire( <span class="hljs-string">'_abcdefghijklmnopqrstuvwxyz123456789_'</span> );
 <span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
     <span class="hljs-built_in">console</span>.error( out.message );
 } <span class="hljs-keyword">else</span> {

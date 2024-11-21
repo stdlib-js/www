@@ -1,0 +1,51 @@
+<h1 id="emptylike">emptyLike</h1><blockquote><p>Create an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> having the same shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty-like'</span> );
+</code></pre><h4 id="emptylike-x-options-">emptyLike( x[, options] )</h4><p>Creates an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> having the same shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> y = emptyLike( x );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+<span class="hljs-keyword">var</span> dt = y.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>dtype</strong>: output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. Overrides the input ndarray's inferred <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li><li><strong>shape</strong>: output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> shape. Overrides the input ndarray's inferred shape.</li><li><strong>order</strong>: specifies whether the output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> should be <code>'row-major'</code> (C-style) or <code>'column-major'</code> (Fortran-style). Overrides the input ndarray's inferred order.</li><li><strong>mode</strong>: specifies how to handle indices which exceed array dimensions (see <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). Default: <code>'throw'</code>.</li><li><strong>submode</strong>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions (see <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). If provided fewer modes than dimensions, the constructor recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</li></ul><p>To override either the <code>dtype</code>, <code>shape</code>, or <code>order</code>, specify the corresponding option. For example, to override the inferred <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> dt = x.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+
+<span class="hljs-keyword">var</span> y = emptyLike( x, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'int32'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+dt = y.dtype;
+<span class="hljs-comment">// returns 'int32'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the resolved output data type is <code>'generic'</code>, the function always returns a zero-filled array.</li><li>For returned <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> whose underlying memory is <strong>not</strong> initialized, memory contents are unknown and may contain <strong>sensitive</strong> data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty'</span> );
+<span class="hljs-keyword">var</span> emptyLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty-like'</span> );
+
+<span class="hljs-comment">// Get a list of data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate uninitialized arrays...</span>
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    x = empty( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], {
+        <span class="hljs-string">'dtype'</span>: dt[ i ]
+    });
+    y = emptyLike( x );
+    <span class="hljs-built_in">console</span>.log( y.data );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/empty"><code>@stdlib/ndarray/empty</code></a></span><span class="delimiter">: </span><span class="description">create an uninitialized ndarray having a specified shape and data type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/zeros-like"><code>@stdlib/ndarray/zeros-like</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled ndarray having the same shape and data type as a provided ndarray.</span></li></ul></section><section class="links"></section>

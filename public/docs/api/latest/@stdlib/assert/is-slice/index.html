@@ -1,0 +1,19 @@
+<h1 id="isslice">isSlice</h1><blockquote><p>Test if a value is a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-slice'</span> );
+</code></pre><h4 id="isslice-value-">isSlice( value )</h4><p>Tests if a value is a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> bool = isSlice( s );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> isSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-slice'</span> );
+
+<span class="hljs-keyword">var</span> out = isSlice( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+out = isSlice( {} );
+<span class="hljs-comment">// returns false</span>
+
+out = isSlice( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-multi-slice"><code>@stdlib/assert/is-multi-slice</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a MultiSlice object.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/slice/ctor"><code>@stdlib/slice/ctor</code></a></span><span class="delimiter">: </span><span class="description">slice constructor.</span></li></ul></section><section class="links"></section>

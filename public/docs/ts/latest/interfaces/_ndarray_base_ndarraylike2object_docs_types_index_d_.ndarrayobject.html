@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -115,15 +115,14 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#accessorprotocol" class="tsd-kind-icon">accessor<wbr>Protocol</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#accessors" class="tsd-kind-icon">accessors</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#data" class="tsd-kind-icon">data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#dtype" class="tsd-kind-icon">dtype</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#getter" class="tsd-kind-icon">getter</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#length" class="tsd-kind-icon">length</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#offset" class="tsd-kind-icon">offset</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#order" class="tsd-kind-icon">order</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#ref" class="tsd-kind-icon">ref</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#setter" class="tsd-kind-icon">setter</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#shape" class="tsd-kind-icon">shape</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#strides" class="tsd-kind-icon">strides</a></li>
 							</ul>
@@ -134,17 +133,32 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="accessors" class="tsd-anchor"></a>
-					<h3>accessors</h3>
-					<div class="tsd-signature tsd-kind-icon">accessors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="accessorprotocol" class="tsd-anchor"></a>
+					<h3>accessor<wbr>Protocol</h3>
+					<div class="tsd-signature tsd-kind-icon">accessor<wbr>Protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L91">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L92">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Boolean indicating whether the data buffer uses accessors for getting and setting elements.</p>
+							<p>Boolean indicating whether the data buffer supports the get/set protocol (i.e., uses accessors for getting and setting elements).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="accessors" class="tsd-anchor"></a>
+					<h3>accessors</h3>
+					<div class="tsd-signature tsd-kind-icon">accessors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L97">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:97</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Two-element array whose first element is an accessor for retrieving an array element and whose second element is an accessor for setting an array element.</p>
 						</div>
 					</div>
 				</section>
@@ -154,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"data"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L61">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L62">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -169,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">dtype<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"dtype"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L56">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L57">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -179,27 +193,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="getter" class="tsd-anchor"></a>
-					<h3>getter</h3>
-					<div class="tsd-signature tsd-kind-icon">getter<span class="tsd-signature-symbol">:</span> <a href="../modules/_ndarray_base_ndarraylike2object_docs_types_index_d_.html#getter" class="tsd-signature-type">Getter</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L96">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:96</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Accessor for retrieving a data buffer element.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="length" class="tsd-anchor"></a>
 					<h3>length</h3>
 					<div class="tsd-signature tsd-kind-icon">length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L66">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L67">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"offset"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L81">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L82">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"order"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L86">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L87">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -244,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">ref<span class="tsd-signature-symbol">:</span> <a href="_types_index_d_.__stdlib_types_ndarray_.ndarray.html" class="tsd-signature-type">ndarray</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L51">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L52">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -254,27 +253,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="setter" class="tsd-anchor"></a>
-					<h3>setter</h3>
-					<div class="tsd-signature tsd-kind-icon">setter<span class="tsd-signature-symbol">:</span> <a href="../modules/_ndarray_base_ndarraylike2object_docs_types_index_d_.html#setter" class="tsd-signature-type">Setter</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L101">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:101</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Accessor for setting a data buffer element.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="shape" class="tsd-anchor"></a>
 					<h3>shape</h3>
 					<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"shape"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L71">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L72">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -289,7 +273,7 @@
 					<div class="tsd-signature tsd-kind-icon">strides<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ndarray</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"strides"</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L76">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:76</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts#L77">lib/node_modules/@stdlib/ndarray/base/ndarraylike2object/docs/types/index.d.ts:77</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -319,6 +303,9 @@
 						<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html" class="tsd-kind-icon">ndarray<wbr>Object</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#accessorprotocol" class="tsd-kind-icon">accessor<wbr>Protocol</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#accessors" class="tsd-kind-icon">accessors</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
@@ -326,9 +313,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#dtype" class="tsd-kind-icon">dtype</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#getter" class="tsd-kind-icon">getter</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#length" class="tsd-kind-icon">length</a>
@@ -341,9 +325,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#ref" class="tsd-kind-icon">ref</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#setter" class="tsd-kind-icon">setter</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_ndarray_base_ndarraylike2object_docs_types_index_d_.ndarrayobject.html#shape" class="tsd-kind-icon">shape</a>
@@ -429,13 +410,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

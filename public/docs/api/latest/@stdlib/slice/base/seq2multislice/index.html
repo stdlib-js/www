@@ -1,0 +1,56 @@
+<h1 id="seq2multislice">seq2multislice</h1><blockquote><p>Convert a multidimensional subsequence string to a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> seq2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/seq2multislice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="seq2multislice-str-shape-strict-">seq2multislice( str, shape, strict )</h4><p>Converts a multidimensional subsequence string to a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object, where <code>shape</code> specifies the maximum allowed slice shape.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2multislice( <span class="hljs-string">':5'</span>, [ <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> s0 = s.data[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> v = s0.start;
+<span class="hljs-comment">// returns 0</span>
+
+v = s0.stop;
+<span class="hljs-comment">// returns 5</span>
+
+v = s0.step;
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>A multidimensional subsequence string is a comma-separated list of single-dimension indexing expressions (i.e., integers and/or <a href="/docs/api/latest/@stdlib/slice/base/seq2slice">subsequence strings</a>). For example, the following</p><pre><code class="no-highlight language-text">2
+:
+2:
+:10
+2:10
+::-1
+10:2:-1
+:2:
+2:10:
+2::2
+:10:2
+:, :, :
+1, 2, 3
+0:10, 1:20:2, ::-1
+...
+:, ..., 2
+</code></pre><p>are all valid multidimensional subsequence strings. The function returns an error object if provided an invalid subsequence string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2multislice( <span class="hljs-string">'1:2:3:4'</span>, [ <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns { 'code': 'ERR_SLICE_INVALID_SUBSEQUENCE' }</span>
+</code></pre><p>When <code>strict</code> is <code>true</code>, the function returns an error object if a subsequence string resolves to a slice exceeding index bounds.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = seq2multislice( <span class="hljs-string">'10:20'</span>, [ <span class="hljs-number">10</span> ], <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns { 'code': 'ERR_SLICE_OUT_OF_BOUNDS' }</span>
+</code></pre><p>A returned error object may have one of the following error codes:</p><ul><li><strong>ERR_SLICE_INVALID_SUBSEQUENCE</strong>: a subsequence string is invalid.</li><li><strong>ERR_SLICE_INVALID_INCREMENT</strong>: a subsequence string must have a non-zero increment.</li><li><strong>ERR_SLICE_OUT_OF_BOUNDS</strong>: a subsequence string resolves to a slice exceeding index bounds.</li><li><strong>ERR_SLICE_TOO_MANY_DIMENSIONS</strong>: a subsequence string has more dimensions than the provided shape.</li><li><strong>ERR_SLICE_INSUFFICIENT_DIMENSIONS</strong>: a subsequence string has too few dimensions.</li><li><strong>ERR_SLICE_INVALID_ELLIPSIS</strong>: a subsequence string must only contain at most one ellipsis.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Providing a single nonnegative integer <code>i</code> as a single-dimension index indexes the same elements as the subsequence <code>i:i+1</code>.</li><li>Providing a single negative integer <code>i</code> as a single-dimension index indexes the same elements as the subsequence <code>n+i:n+i+i</code>, where <code>n</code> is the dimension size.</li><li>While integers index the same elements as equivalent subsequences, providing an integer as a single-dimension index indicates to reduce the number of dimensions by one (e.g., if the provided shape corresponds to an array having rank <code>2</code>, then <code>rank(A)-1 == rank(A['0,:'])</code>). In contrast, providing a subsequence indicates to retain a respective dimension (e.g., if the provided shape corresponds to an array having rank <code>2</code>, then <code>rank(A) == rank(A[':,:'])</code>).</li><li>A multidimensional subsequence string can only contain <strong>one</strong> ellipsis ('...') operator. An ellipsis indicates to apply <code>:</code> to each dimension necessary to index all dimensions (e.g., if <code>A</code> has rank <code>4</code>, <code>A['1:, ..., 2:5'] == A['1:, :, :, 2:5']</code>).</li><li>Except in the case of providing a single ellipsis, the number of single-dimension indexing expressions must equal the number of dimensions in the input shape.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> seq2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/seq2multislice'</span> );
+
+<span class="hljs-keyword">var</span> s = seq2multislice( <span class="hljs-string">':,:,:'</span>, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ &#x3C;Slice>, &#x3C;Slice>, &#x3C;Slice> ]</span>
+
+s = seq2multislice( <span class="hljs-string">'3,2:10,:'</span>, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+d = s.data;
+<span class="hljs-comment">// returns [ 3, &#x3C;Slice>, &#x3C;Slice> ]</span>
+
+s = seq2multislice( <span class="hljs-string">'2,2:,-5'</span>, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+d = s.data;
+<span class="hljs-comment">// returns [ 2, &#x3C;Slice>, -5 ]</span>
+
+s = seq2multislice( <span class="hljs-string">'::-2,-1,...,:'</span>, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+d = s.data;
+<span class="hljs-comment">// returns [ &#x3C;Slice>, -1, &#x3C;Slice>, &#x3C;Slice>, &#x3C;Slice>, &#x3C;Slice> ]</span>
+
+s = seq2multislice( <span class="hljs-string">'foo,bar'</span>, [ <span class="hljs-number">10</span>, <span class="hljs-number">10</span> ], <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns { 'code': 'ERR_SLICE_INVALID_SUBSEQUENCE' }</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

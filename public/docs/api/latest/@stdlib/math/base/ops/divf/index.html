@@ -1,0 +1,46 @@
+<h1 id="divf">divf</h1><blockquote><p>Divide two single-precision floating-point numbers.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> divf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/divf'</span> );
+</code></pre><h4 id="divf-x-y-">divf( x, y )</h4><p>Divides two single-precision floating-point numbers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = divf( -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns ~-0.2</span>
+
+v = divf( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns ~0.4</span>
+
+v = divf( <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = divf( -<span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+
+v = divf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> divf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/divf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = rand( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+    y = rand( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d / %d = %d'</span>, x, y, divf( x, y ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/ops/divf.h"</span></span>
+</code></pre><h4 id="stdlib_base_divf-x-y-">stdlib_base_divf( x, y )</h4><p>Divides two single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> v = stdlib_base_divf( <span class="hljs-number">-5.0f</span>, <span class="hljs-number">2.0f</span> );
+<span class="hljs-comment">// returns -2.5f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> first input value (dividend).</li><li><strong>y</strong>: <code>[in] float</code> second input value (divisor).</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_divf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/ops/divf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-5.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-keyword">float</span> z;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        z = stdlib_base_divf( x[ i ], y[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%f / %f = %f\n"</span>, x[ i ], y[ i ], z );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/addf"><code>@stdlib/math/base/ops/addf</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of two single-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/div"><code>@stdlib/math/base/ops/div</code></a></span><span class="delimiter">: </span><span class="description">divide two double-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/mulf"><code>@stdlib/math/base/ops/mulf</code></a></span><span class="delimiter">: </span><span class="description">multiply two single-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/subf"><code>@stdlib/math/base/ops/subf</code></a></span><span class="delimiter">: </span><span class="description">subtract two single-precision floating-point numbers.</span></li></ul></section><section class="links"></section>

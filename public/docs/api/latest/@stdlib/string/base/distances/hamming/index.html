@@ -1,0 +1,29 @@
+<h1 id="hammingdistance">hammingDistance</h1><blockquote><p>Calculate the <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two equal-length strings.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hammingDistance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/distances/hamming'</span> );
+</code></pre><h4 id="hammingdistance-s1-s2-">hammingDistance( s1, s2 )</h4><p>Calculates the <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two equal-length strings.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = hammingDistance( <span class="hljs-string">'frog'</span>, <span class="hljs-string">'from'</span> );
+<span class="hljs-comment">// returns 1</span>
+
+dist = hammingDistance( <span class="hljs-string">'tooth'</span>, <span class="hljs-string">'froth'</span> );
+<span class="hljs-comment">// returns 2</span>
+
+dist = hammingDistance( <span class="hljs-string">'cat'</span>, <span class="hljs-string">'cot'</span> );
+<span class="hljs-comment">// returns 1</span>
+
+dist = hammingDistance( <span class="hljs-string">''</span>, <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns 0</span>
+
+dist = hammingDistance( <span class="hljs-string">'1638452297'</span>, <span class="hljs-string">'2311638451'</span> );
+<span class="hljs-comment">// returns 10</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the two strings differ in length, the <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> is not defined. Consequently, when provided two input strings of unequal length, the function returns a sentinel value of <code>-1</code>.</li><li>As the function calculates the <a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> by comparing UTF-16 code units, the function should behave as expected for strings composed of most characters. However, the function is likely to not behave as expected if strings contain visual characters composed of multiple Unicode code points, such as certain mathematical symbols and grapheme clusters (e.g., emojis).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hammingDistance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/distances/hamming'</span> );
+
+<span class="hljs-keyword">var</span> dist = hammingDistance( <span class="hljs-string">'algorithms'</span>, <span class="hljs-string">'altruistic'</span> );
+<span class="hljs-comment">// returns 7</span>
+
+dist = hammingDistance( <span class="hljs-string">'elephant'</span>, <span class="hljs-string">'Tashkent'</span> );
+<span class="hljs-comment">// returns 6</span>
+
+dist = hammingDistance( <span class="hljs-string">'javascript'</span>, <span class="hljs-string">'typescript'</span> );
+<span class="hljs-comment">// returns 4</span>
+
+dist = hammingDistance( <span class="hljs-string">'hamming'</span>, <span class="hljs-string">'ladybug'</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

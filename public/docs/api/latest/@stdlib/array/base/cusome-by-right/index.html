@@ -1,0 +1,55 @@
+<h1 id="cusomebyright">cusomeByRight</h1><blockquote><p>Cumulatively test whether at least <code>n</code> elements in a provided array pass a test implemented by a predicate function, while iterating from right-to-left.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cusomeByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cusome-by-right'</span> );
+</code></pre><h4 id="cusomebyright-x-n-predicate-thisarg--">cusomeByRight( x, n, predicate[, thisArg ] )</h4><p>Cumulatively tests whether at least <code>n</code> elements in a provided array pass a test implemented by a <code>predicate</code> function, while iterating from right-to-left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value > <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> y = cusomeByRight( x, <span class="hljs-number">2</span>, fcn );
+<span class="hljs-comment">// returns [ false, false, false, false, true ];</span>
+</code></pre><p>The invoked <code>predicate</code> function is provided three arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li><li><strong>collection</strong>: input collection.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = cusomeByRight( x, <span class="hljs-number">2</span>, fcn, context );
+<span class="hljs-comment">// returns [ false, false, false, false, true ]</span>
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 5</span>
+</code></pre><h4 id="cusomebyrightassign-x-n-out-stride-offset-predicate-thisarg--">cusomeByRight.assign( x, n, out, stride, offset, predicate[, thisArg ] )</h4><p>Cumulatively tests whether at least <code>n</code> elements in a provided array pass a test implemented by a <code>predicate</code> function, while iterating from right-to-left, and assigns the results to the elements in the output array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v > <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span> ];
+
+<span class="hljs-keyword">var</span> out = cusomeByRight.assign( x, <span class="hljs-number">2</span>, y, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, fcn );
+<span class="hljs-comment">// returns [ false, null, false, null, false, null, false, null, true, null ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> cusomeByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cusome-by-right'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-comment">// Create an array of random values:</span>
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.3</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Minimum number of required positive array elements:</span>
+<span class="hljs-keyword">var</span> n = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Cumulatively test whether at least `n` array elements pass a test, while iterating from right-to-left:</span>
+<span class="hljs-keyword">var</span> out = cusomeByRight( x, n, fcn );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

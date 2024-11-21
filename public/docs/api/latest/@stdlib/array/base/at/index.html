@@ -1,0 +1,27 @@
+<h1 id="at">at</h1><blockquote><p>Return an element from an array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> at = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/at'</span> );
+</code></pre><h4 id="at-x-index-">at( x, index )</h4><p>Returns an element from an array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = at( x, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1</span>
+
+out = at( x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = at( x, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: an input array.</li><li><strong>index</strong>: element index.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having an <code>at</code> method , the function defers execution to that method and assumes that the method has the following signature:</p><pre><code class="no-highlight language-text">x.at( index )
+</code></pre><p>If provided an array-like object without an <code>at</code> method, the function normalizes a provided index and returns a specified element.</p></li><li><p>Negative indices are resolved relative to the last array element, with the last element corresponding to <code>-1</code>.</p></li><li><p>If provided out-of-bounds indices, the function always returns <code>undefined</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> at = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/at'</span> );
+
+<span class="hljs-comment">// Define an array:</span>
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Define an array containing random index values:</span>
+<span class="hljs-keyword">var</span> indices = discreteUniform( <span class="hljs-number">100</span>, -x.length, x.length-<span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Randomly selected values from the input array:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; indices.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x[%d] = %d'</span>, indices[ i ], at( x, indices[ i ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,57 @@
+<h1 id="create_complex_like">create_complex_like</h1><blockquote><p>Create a Node-API value representing a complex number-like object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/create-complex-like'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/napi/create-complex-like'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/create_complex_like.h"</span></span>
+</code></pre><h4 id="stdlib_napi_create_complex_like-env-re-im-out-">stdlib_napi_create_complex_like( env, re, im, *out )</h4><p>Returns a Node-API value representing a complex number-like object.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/create_complex_like.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    
+    <span class="hljs-comment">// ...</span>
+
+    napi_value value;
+    napi_status status = stdlib_napi_create_complex_like( env, <span class="hljs-number">3.0</span>, <span class="hljs-number">5.0</span>, &#x26;value );
+    assert( status == napi_ok );
+    <span class="hljs-keyword">if</span> ( err != <span class="hljs-literal">NULL</span> ) {
+        assert( napi_throw( env, err ) == napi_ok );
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+    }
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>re</strong>: <code>[in] double</code> double-precision floating-point number corresponding to the real component.</li><li><strong>im</strong>: <code>[in] double</code> double-precision floating-point number corresponding to the imaginary component.</li><li><strong>out</strong>: <code>[out] napi_value*</code> destination for storing output value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function">napi_status <span class="hljs-title">stdlib_napi_create_complex_like</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> re, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> im, napi_value *out )</span></span>;
+</code></pre><p>The function returns a <code>napi_status</code> status code indicating success or failure (returns <code>napi_ok</code> if success).</p><h4 id="stdlib_napi_create_complex_like-env-re-im-name-">STDLIB_NAPI_CREATE_COMPLEX_LIKE( env, re, im, name )</h4><p>Macro for creating a Node-API value representing a complex number-like object.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/create_complex_like.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv_complex128.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/napi/argv.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> v )</span> </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-comment">// Retrieve add-on callback arguments:</span>
+    STDLIB_NAPI_ARGV( env, info, argv, argc, <span class="hljs-number">1</span> );
+
+    <span class="hljs-comment">// Convert the first argument to a C type:</span>
+    STDLIB_NAPI_ARGV_COMPLEX128( env, value, argv, <span class="hljs-number">0</span> );
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">stdlib_complex128_t</span> z = fcn( value );
+
+    <span class="hljs-comment">// Convert a value having a C type to a Node-API value:</span>
+    STDLIB_NAPI_CREATE_COMPLEX_LIKE( env, stdlib_complex128_real( z ), stdlib_complex128_imag( z ), out );
+
+    <span class="hljs-keyword">return</span> out;
+}
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>env</strong>: environment under which the callback is invoked.</li><li><strong>re</strong>: expression returning a double-precision floating-point number corresponding to the real component.</li><li><strong>im</strong>: expression returning a double-precision floating-point number corresponding to the imaginary component.</li><li><strong>name</strong>: output variable name.</li></ul></section><section class="notes"></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

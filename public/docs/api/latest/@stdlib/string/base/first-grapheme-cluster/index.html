@@ -1,0 +1,29 @@
+<h1 id="firstgraphemecluster">firstGraphemeCluster</h1><blockquote><p>Return the first <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> firstGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/first-grapheme-cluster'</span> );
+</code></pre><h4 id="firstgraphemecluster-str-n-">firstGraphemeCluster( str, n )</h4><p>Returns the first <code>n</code> grapheme clusters (i.e., user-perceived characters) of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = firstGraphemeCluster( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'l'</span>
+
+out = firstGraphemeCluster( <span class="hljs-string">'Hidden Treasures'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'H'</span>
+
+out = firstGraphemeCluster( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'foo b'</span>
+
+out = firstGraphemeCluster( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> firstGraphemeCluster = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/first-grapheme-cluster'</span> );
+
+<span class="hljs-keyword">var</span> str = firstGraphemeCluster( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'p'</span>
+
+str = firstGraphemeCluster( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'J'</span>
+
+str = firstGraphemeCluster( <span class="hljs-string">'The Last of the Mohicans'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'The L'</span>
+
+str = firstGraphemeCluster( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '🐶🐮'</span>
+
+str = firstGraphemeCluster( <span class="hljs-string">'🐶🐮🐷🐰🐸'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns '🐶🐮🐷🐰🐸'</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/first"><code>@stdlib/string/base/first</code></a></span><span class="delimiter">: </span><span class="description">return the first UTF-16 code unit of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/base/first-code-point"><code>@stdlib/string/base/first-code-point</code></a></span><span class="delimiter">: </span><span class="description">return the first Unicode code point of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/first"><code>@stdlib/string/first</code></a></span><span class="delimiter">: </span><span class="description">return the first character(s) of a string.</span></li></ul></section><section class="links"></section>

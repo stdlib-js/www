@@ -1,0 +1,61 @@
+<h1 id="nditerentries">nditerEntries</h1><blockquote><p>Create an iterator which returns <code>[index, value]</code> pairs for each element in a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nditerEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/entries'</span> );
+</code></pre><h4 id="nditerentries-x-options-">nditerEntries( x[, options] )</h4><p>Returns an iterator which returns <code>[index, value]</code> pairs for each element in a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditerEntries( x );
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 0, 0, 0 ], 1 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 0, 0, 1 ], 2 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 0, 1, 0 ], 3 ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>order</strong>: index iteration order. By default, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns values according to the layout order of the provided array. Accordingly, for row-major input arrays, the last dimension indices increment fastest. For column-major input arrays, the first dimension indices increment fastest. To override the inferred order and ensure that indices increment in a specific manor, regardless of the input array's layout order, explicitly set the iteration order. Note, however, that iterating according to an order which does not match that of the input array may, in some circumstances, result in performance degradation due to cache misses. Must be either <code>'row-major'</code> or <code>'column-major'</code>.</li></ul><p>By default, the iterator iterates according to the layout order of the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. To iterate according to a specified order, set the <code>order</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], [ [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ], [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ] ] ], {
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> iter = nditerEntries( x, {
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+});
+
+<span class="hljs-keyword">var</span> v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 0, 0, 0 ], 1 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 1, 0, 0 ], 5 ]</span>
+
+v = iter.next().value;
+<span class="hljs-comment">// returns [ [ 0, 1, 0 ], 3 ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Each returned index is a Cartesian index (i.e., an array of subscripts/dimension indices).</li><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li><li>A returned iterator does <strong>not</strong> copy a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. To ensure iterable reproducibility, copy the input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> <strong>before</strong> creating an iterator. Otherwise, any changes to the contents of input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> will be reflected in the returned iterator.</li><li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an ndarray's <code>@@iterator</code> method, regardless of whether this method is defined.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> nditerEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/iter/entries'</span> );
+
+<span class="hljs-comment">// Define an input array:</span>
+<span class="hljs-keyword">var</span> x = array( zeroTo( <span class="hljs-number">27</span> ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Create an iterator for returning [index, value] pairs:</span>
+<span class="hljs-keyword">var</span> it = nditerEntries( x );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/iter/indices"><code>@stdlib/ndarray/iter/indices</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns indices for use indexing into an ndarray having a specified shape.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/iter/values"><code>@stdlib/ndarray/iter/values</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns individual elements from a provided ndarray.</span></li></ul></section><section class="links"></section>

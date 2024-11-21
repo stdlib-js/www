@@ -1,5 +1,5 @@
 <h1 id="modf">modf</h1><blockquote><p>Decompose a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> modf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/modf'</span> );
-</code></pre><h4 id="modf-out-x-">modf( [out,] x )</h4><p>Decomposes a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts, each having the same type and sign as <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = modf( <span class="hljs-number">3.14</span> );
+</code></pre><h4 id="modf-x-">modf( x )</h4><p>Decomposes a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts, each having the same type and sign as <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = modf( <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns [ 3.0, 0.14000000000000012 ]</span>
 
 parts = modf( +<span class="hljs-number">0.0</span> );
@@ -16,11 +16,11 @@ parts = modf( -<span class="hljs-literal">Infinity</span> );
 
 parts = modf( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns [ NaN, NaN ]</span>
-</code></pre><p>To avoid unnecessary memory allocation, the function supports providing an output (destination) object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="modfassign-x-out-stride-offset-">modf.assign( x, out, stride, offset )</h4><p>Decomposes a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts, each having the same type and sign as <code>x</code>, and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> parts = modf( out, <span class="hljs-number">3.14</span> );
+<span class="hljs-keyword">var</span> parts = modf.assign( <span class="hljs-number">3.14</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 3.0, 0.14000000000000012 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( parts === out );
@@ -37,4 +37,24 @@ parts = modf( <span class="hljs-literal">NaN</span> );
     parts = modf( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'modf(%d) => integral: %d. fraction: %d.'</span>, x, parts[ <span class="hljs-number">0</span> ], parts[ <span class="hljs-number">1</span> ] );
 }
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/modf.h"</span></span>
+</code></pre><h4 id="stdlib_base_modf-x-integral-frac-">stdlib_base_modf( x, integral, frac )</h4><p>Decomposes a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts, each having the same type and sign as <code>x</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> integral;
+<span class="hljs-keyword">double</span> frac;
+
+stdlib_base_modf( <span class="hljs-number">4.0</span>, &#x26;integral, &#x26;frac );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li><li><strong>frac</strong>: <code>[out] double*</code> destination for the integral part.</li><li><strong>exp</strong>: <code>[out] double*</code> destination for the fractional part.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_modf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">double</span> *integral, <span class="hljs-keyword">double</span> *frac )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/modf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">1.0e308</span>, <span class="hljs-number">-1.0e308</span>, <span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> integral;
+    <span class="hljs-keyword">double</span> frac;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">12</span>; i++ ) {
+        stdlib_base_modf( x[ i ], &#x26;integral, &#x26;frac );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x: %lf => integral: %lf, frac: %lf\n"</span>, x[ i ], integral, frac );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

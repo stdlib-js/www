@@ -1,0 +1,20 @@
+<h1 id="onesnd">onesnd</h1><blockquote><p>Create an n-dimensional nested array filled with ones.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> onesnd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/onesnd'</span> );
+</code></pre><h4 id="onesnd-shape-">onesnd( shape )</h4><p>Returns an n-dimensional nested array filled with ones.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = onesnd( [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ 1.0, 1.0, 1.0 ], [ 1.0, 1.0, 1.0 ] ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> onesnd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/onesnd'</span> );
+
+<span class="hljs-keyword">var</span> out = onesnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ 1.0, 1.0, 1.0 ] ]</span>
+
+out = onesnd( [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ 1.0 ], [ 1.0 ], [ 1.0 ] ]</span>
+
+out = onesnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ 1.0, 1.0, 1.0 ] ] ]</span>
+
+out = onesnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ [ 1.0 ], [ 1.0 ], [ 1.0 ] ] ]</span>
+
+out = onesnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ [ 1.0, 1.0, 1.0 ] ] ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zerosnd"><code>@stdlib/array/base/zerosnd</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled n-dimensional nested array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/ones"><code>@stdlib/array/base/ones</code></a></span><span class="delimiter">: </span><span class="description">create a generic array filled with ones.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/ones2d"><code>@stdlib/array/base/ones2d</code></a></span><span class="delimiter">: </span><span class="description">create a two-dimensional nested array filled with ones.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/ones3d"><code>@stdlib/array/base/ones3d</code></a></span><span class="delimiter">: </span><span class="description">create a three-dimensional nested array filled with ones.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/ones4d"><code>@stdlib/array/base/ones4d</code></a></span><span class="delimiter">: </span><span class="description">create a four-dimensional nested array filled with ones.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/ones5d"><code>@stdlib/array/base/ones5d</code></a></span><span class="delimiter">: </span><span class="description">create a five-dimensional nested array filled with ones.</span></li></ul></section><section class="links"></section>

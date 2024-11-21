@@ -1,0 +1,30 @@
+<h1 id="nextcodepointindex">nextCodePointIndex</h1><blockquote><p>Return the position of the next Unicode code point in a string after a specified position.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextCodePointIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/next-code-point-index'</span> );
+</code></pre><h4 id="nextcodepointindex-string-fromindex-">nextCodePointIndex( string[, fromIndex] )</h4><p>Returns the position of the next Unicode code point in a string after a specified position.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextCodePointIndex( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>By default, the function searches for a Unicode code point starting from the first index. To specify an alternative starting search index, provide a <code>fromIndex</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextCodePointIndex( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>string</code> is an empty string, the function returns <code>-1</code> irrespective of <code>fromIndex</code>.</li><li>If a code point does not exist after <code>fromIndex</code>, the function returns <code>-1</code>.</li><li>Note that <code>fromIndex</code> does <strong>not</strong> refer to a visual character position, but to an index in the ordered sequence of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextCodePointIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/next-code-point-index'</span> );
+
+<span class="hljs-keyword">var</span> out = nextCodePointIndex( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 5</span>
+
+out = nextCodePointIndex( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">8</span> );
+<span class="hljs-comment">// returns 9</span>
+
+out = nextCodePointIndex( <span class="hljs-string">'𐒻𐓟𐒻𐓟'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = nextCodePointIndex( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: next-code-point-index [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --from index          Starting search position in string. Default: 0.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ next-code-point-index --from=0 𐒻𐓟𐒻𐓟
+2
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'𐒻𐓟𐒻𐓟'</span> | next-code-point-index --from=0
+2
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

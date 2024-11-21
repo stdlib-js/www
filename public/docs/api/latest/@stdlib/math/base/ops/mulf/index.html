@@ -32,9 +32,9 @@ v = mulf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN<
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/ops/mulf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
-    <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
 
     <span class="hljs-keyword">float</span> z;
     <span class="hljs-keyword">int</span> i;
@@ -43,4 +43,4 @@ v = mulf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN<
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%f x %f = %f\n"</span>, x[ i ], y[ i ], z );
     }
 }
-</code></pre></section></section><section class="related"></section><section class="links"></section>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/addf"><code>@stdlib/math/base/ops/addf</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of two single-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/divf"><code>@stdlib/math/base/ops/divf</code></a></span><span class="delimiter">: </span><span class="description">divide two single-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/mul"><code>@stdlib/math/base/ops/mul</code></a></span><span class="delimiter">: </span><span class="description">multiply two double-precision floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/subf"><code>@stdlib/math/base/ops/subf</code></a></span><span class="delimiter">: </span><span class="description">subtract two single-precision floating-point numbers.</span></li></ul></section><section class="links"></section>

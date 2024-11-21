@@ -1,0 +1,25 @@
+<h1 id="issamearraylike">isSameArrayLike</h1><blockquote><p>Test if two arguments are both array-like and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameArrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-array-like'</span> );
+</code></pre><h4 id="issamearraylike-v1-v2-">isSameArrayLike( v1, v2 )</h4><p>Tests if two arguments are both array-like and have the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same values</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> bool = isSameArrayLike( x, y );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameArrayLike( x, [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code> and treats <code>NaNs</code> as the <a href="/docs/api/latest/@stdlib/assert/is-same-value">same value</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameArrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-array-like'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
+<span class="hljs-keyword">var</span> out = isSameArrayLike( x, y );
+<span class="hljs-comment">// returns true</span>
+
+x = [ -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> ];
+y = [ <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+out = isSameArrayLike( x, y );
+<span class="hljs-comment">// returns false</span>
+
+x = [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ];
+y = [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ];
+out = isSameArrayLike( x, y );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

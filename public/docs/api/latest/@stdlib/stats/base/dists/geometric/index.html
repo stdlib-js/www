@@ -10,8 +10,94 @@
 
 y = dist.logpmf( <span class="hljs-number">2.3</span> );
 <span class="hljs-comment">// returns -Infinity</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> geometricRandomFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/geometric'</span> ).factory;
+<span class="hljs-keyword">var</span> negativeBinomial = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/negative-binomial'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> variance = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/variance'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> mean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/mean'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> geometric = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/geometric'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( geometric ) );
+<span class="hljs-comment">// Define the success probability:</span>
+<span class="hljs-keyword">var</span> p = <span class="hljs-number">0.3</span>; <span class="hljs-comment">// Probability of success on each trial</span>
+
+<span class="hljs-comment">// Generate an array of x values (number of failures before first success):</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span> ); <span class="hljs-comment">// Geometric distribution is discrete</span>
+
+<span class="hljs-comment">// Compute the PMF for each x:</span>
+<span class="hljs-keyword">var</span> geometricPMF = geometric.pmf.factory( p );
+<span class="hljs-keyword">var</span> pmf = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, geometricPMF );
+
+<span class="hljs-comment">// Compute the CDF for each x:</span>
+<span class="hljs-keyword">var</span> geometricCDF = geometric.cdf.factory( p );
+<span class="hljs-keyword">var</span> cdf = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, geometricCDF );
+
+<span class="hljs-comment">// Output the PMF and CDF values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x values: '</span>, x );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'PMF values: '</span>, pmf );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'CDF values: '</span>, cdf );
+
+<span class="hljs-comment">// Compute statistical properties:</span>
+<span class="hljs-keyword">var</span> theoreticalMean = geometric.mean( p );
+<span class="hljs-keyword">var</span> theoreticalVariance = geometric.variance( p );
+<span class="hljs-keyword">var</span> theoreticalSkewness = geometric.skewness( p );
+<span class="hljs-keyword">var</span> theoreticalKurtosis = geometric.kurtosis( p );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Mean: '</span>, theoreticalMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Theoretical Variance: '</span>, theoreticalVariance );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Skewness: '</span>, theoreticalSkewness );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Kurtosis: '</span>, theoreticalKurtosis );
+
+<span class="hljs-comment">// Generate random samples from the geometric distribution:</span>
+<span class="hljs-keyword">var</span> rgeom = geometricRandomFactory( p );
+<span class="hljs-keyword">var</span> n = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">var</span> samples = filledarrayBy( n, <span class="hljs-string">'float64'</span>, rgeom );
+
+<span class="hljs-comment">// Compute sample mean and variance:</span>
+<span class="hljs-keyword">var</span> sampleMean = mean( n, samples, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sampleVariance = variance( n, <span class="hljs-number">1</span>, samples, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Mean: '</span>, sampleMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sample Variance: '</span>, sampleVariance );
+
+<span class="hljs-comment">// Demonstrate the memoryless property:</span>
+<span class="hljs-keyword">var</span> s = <span class="hljs-number">2.0</span>;
+<span class="hljs-keyword">var</span> t = <span class="hljs-number">3.0</span>;
+<span class="hljs-keyword">var</span> prob1 = ( <span class="hljs-number">1.0</span> - geometric.cdf( s + t - <span class="hljs-number">1.0</span>, p ) ) /
+    ( <span class="hljs-number">1.0</span> - geometric.cdf( s - <span class="hljs-number">1.0</span>, p ) );
+<span class="hljs-keyword">var</span> prob2 = <span class="hljs-number">1.0</span> - geometric.cdf( t - <span class="hljs-number">1.0</span>, p );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'P(X > s + t | X > s): '</span>, prob1 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'P(X > t): '</span>, prob2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference: '</span>, abs( prob1 - prob2 ) );
+
+<span class="hljs-comment">// Demonstrate that the sum of k independent geometric random variables follows a negative binomial distribution:</span>
+<span class="hljs-keyword">var</span> k = <span class="hljs-number">5</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">drawSum</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">var</span> j;
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; k; j++ ) {
+        sum += rgeom();
+    }
+    <span class="hljs-keyword">return</span> sum;
+}
+<span class="hljs-keyword">var</span> sumSamples = filledarrayBy( n, <span class="hljs-string">'float64'</span>, drawSum );
+
+<span class="hljs-comment">// Compute sample mean and variance for the sum:</span>
+<span class="hljs-keyword">var</span> sumSampleMean = mean( n, sumSamples, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> sumSampleVariance = variance( n, <span class="hljs-number">1</span>, sumSamples, <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Theoretical mean and variance of Negative Binomial distribution:</span>
+<span class="hljs-keyword">var</span> nbMean = negativeBinomial.mean( k, p );
+<span class="hljs-keyword">var</span> nbVariance = negativeBinomial.variance( k, p );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Sample Mean: '</span>, sumSampleMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Sum Sample Variance: '</span>, sumSampleVariance );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Negative Binomial Mean: '</span>, nbMean );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Negative Binomial Variance: '</span>, nbVariance );
+
+<span class="hljs-comment">// Compare sample statistics to theoretical values:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Mean: '</span>, abs( nbMean - sumSampleMean ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Difference in Variance: '</span>, abs( nbVariance - sumSampleVariance ) );
 </code></pre></section><section class="related"></section><section class="links"></section>

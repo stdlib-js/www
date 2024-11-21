@@ -1,0 +1,19 @@
+<h1 id="ismostlysafecast">isMostlySafeCast</h1><blockquote><p>Determine whether an ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast or, for floating-point data types, downcast to another ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isMostlySafeCast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast'</span> );
+</code></pre><h4 id="ismostlysafecast-from-to-">isMostlySafeCast( from, to )</h4><p>Returns a <code>boolean</code> indicating whether an ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast or, for floating-point data types, downcast to another ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isMostlySafeCast( <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isMostlySafeCast( <span class="hljs-string">'float64'</span>, <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cartesianSquare = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/cartesian-square'</span> );
+<span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> isMostlySafeCast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast'</span> );
+
+<span class="hljs-comment">// Generate a list of dtype pairs:</span>
+<span class="hljs-keyword">var</span> dt = cartesianSquare( dtypes() );
+
+<span class="hljs-comment">// For each data type pair, determine whether one can cast to another data type...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s. Can cast? %s.'</span>, dt[i].join( <span class="hljs-string">' => '</span> ), isMostlySafeCast.apply( <span class="hljs-literal">null</span>, dt[i] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

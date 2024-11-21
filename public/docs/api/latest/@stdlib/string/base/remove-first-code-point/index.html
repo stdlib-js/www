@@ -1,0 +1,26 @@
+<h1 id="removefirstcodepoint">removeFirstCodePoint</h1><blockquote><p>Remove the first <code>n</code> Unicode code points of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirstCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-first-code-point'</span> );
+</code></pre><h4 id="removefirstcodepoint-str-n-">removeFirstCodePoint( str, n )</h4><p>Removes the first <code>n</code> Unicode code points of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeFirstCodePoint( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'ast man standing'</span>
+
+out = removeFirstCodePoint( <span class="hljs-string">'Hidden Treasures'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'idden Treasures'</span>
+
+out = removeFirstCodePoint( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'ar'</span>
+
+out = removeFirstCodePoint( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirstCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/remove-first-code-point'</span> );
+
+<span class="hljs-keyword">var</span> str = removeFirstCodePoint( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'residential election'</span>
+
+str = removeFirstCodePoint( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'avaScript'</span>
+
+str = removeFirstCodePoint( <span class="hljs-string">'The Last of the Mohicans'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'ast of the Mohicans'</span>
+
+str = removeFirstCodePoint( <span class="hljs-string">'अनुच्छेद'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'नुच्छेद'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

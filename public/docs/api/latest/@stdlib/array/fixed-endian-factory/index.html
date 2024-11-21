@@ -1,0 +1,251 @@
+<h1 id="fixedendianfactory">fixedEndianFactory</h1><blockquote><p>Return a typed array constructor for creating typed arrays having a specified byte order.</p></blockquote><section class="intro"><p>In contrast to built-in typed array constructors which store values according to the host platform byte order, the typed array constructors returned by the factory function allow enforcing a specific byte order. Such enforcement can be particularly advantageous when working with memory buffers which do not necessarily follow host platform byte order, such as <a href="/docs/api/latest/@stdlib/wasm/memory">WebAssembly memory</a>.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fixedEndianFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/fixed-endian-factory'</span> );
+</code></pre><h4 id="fixedendianfactory-dtype-">fixedEndianFactory( dtype )</h4><p>Returns a typed array constructor for creating typed arrays having a specified <a href="/docs/api/latest/@stdlib/array/typed-dtypes">data type</a> and byte order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> Float32ArrayFE = fixedEndianFactory( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><hr><h3 id="typed-array-constructor">Typed Array Constructor</h3><h4 id="typedarrayfe-endianness-">TypedArrayFE( endianness )</h4><p>A typed array constructor which returns a typed array representing values stored in a specified byte order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span> );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+</code></pre><h4 id="typedarrayfe-endianness-length-">TypedArrayFE( endianness, length )</h4><p>Returns a typed array having a specified length and byte order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+</code></pre><h4 id="typedarrayfe-endianness-typedarray-">TypedArrayFE( endianness, typedarray )</h4><p>Creates a typed array from another typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] );
+<span class="hljs-keyword">var</span> arr2 = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, arr1 );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr2.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 0.5</span>
+</code></pre><h4 id="typedarrayfe-endianness-obj-">TypedArrayFE( endianness, obj )</h4><p>Creates a typed array from an array-like object or iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 0.5</span>
+</code></pre><h4 id="typedarrayfe-endianness-buffer-byteoffset-length-">TypedArrayFE( endianness, buffer[, byteOffset[, length]] )</h4><p>Returns a typed array view of an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, buf, <span class="hljs-number">0</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+</code></pre><hr><h3 id="typed-array-properties">Typed Array Properties</h3><p><a name="static-prop-bytes-per-element"></a></p><h4 id="typedarrayfebytes_per_element">TypedArrayFE.BYTES_PER_ELEMENT</h4><p>Number of bytes per view element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> nbytes = Float64ArrayFE.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 8</span>
+</code></pre><p><a name="static-prop-name"></a></p><h4 id="typedarrayfename">TypedArrayFE.name</h4><p>Typed array constructor name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> str = Float64ArrayFE.name;
+<span class="hljs-comment">// returns 'Float64ArrayFE'</span>
+</code></pre><p><a name="prop-buffer"></a></p><h4 id="typedarrayfeprototypebuffer">TypedArrayFE.prototype.buffer</h4><p><strong>Read-only</strong> property which returns the <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> referenced by the typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> buf = arr.buffer;
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+</code></pre><p><a name="prop-byte-length"></a></p><h4 id="typedarrayfeprototypebytelength">TypedArrayFE.prototype.byteLength</h4><p><strong>Read-only</strong> property which returns the length (in bytes) of the typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> byteLength = arr.byteLength;
+<span class="hljs-comment">// returns 40</span>
+</code></pre><p><a name="prop-byte-offset"></a></p><h4 id="typedarrayfeprototypebyteoffset">TypedArrayFE.prototype.byteOffset</h4><p><strong>Read-only</strong> property which returns the offset (in bytes) of the typed array from the start of its <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> byteOffset = arr.byteOffset;
+<span class="hljs-comment">// returns 0</span>
+</code></pre><p><a name="prop-bytes-per-element"></a></p><h4 id="typedarrayfeprototypebytes_per_element">TypedArrayFE.prototype.BYTES_PER_ELEMENT</h4><p>Number of bytes per view element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 8</span>
+</code></pre><p><a name="prop-length"></a></p><h4 id="typedarrayfeprototypelength">TypedArrayFE.prototype.length</h4><p><strong>Read-only</strong> property which returns the number of view elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> len = arr.length;
+<span class="hljs-comment">// returns 5</span>
+</code></pre><hr><h3 id="typed-array-methods">Typed Array Methods</h3><p><a name="static-method-from"></a></p><h4 id="typedarrayfefrom-endianness-src-map-thisarg-">TypedArrayFE.from( endianness, src[, map[, thisArg]] )</h4><p>Creates a new typed array from an array-like object or an iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = Float64ArrayFE.from( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p>To invoke a function for each <code>src</code> value, provide a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
+}
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = Float64ArrayFE.from( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], mapFcn );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2.0</span>
+</code></pre><p>A callback function is provided two arguments:</p><ul><li><strong>value</strong>: source value.</li><li><strong>index</strong>: source index.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
+}
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> arr = Float64ArrayFE.from( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> ], mapFcn, ctx );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> n = ctx.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p><a name="static-method-of"></a></p><h4 id="typedarrayfeof-endianness-element0-element1-elementn-">TypedArrayFE.of( endianness, element0[, element1[, ...elementN]] )</h4><p>Creates a new typed array from a variable number of arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = Float64ArrayFE.of( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p><a name="method-at"></a></p><h4 id="typedarrayfeprototypeat-i-">TypedArrayFE.prototype.at( i )</h4><p>Returns an array element located at integer position (index) <code>i</code>, with support for both nonnegative and negative integer positions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> out = arr.at( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+out = arr.at( -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 3.0</span>
+</code></pre><p>If provided an out-of-bounds index, the method returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> v = arr.at( <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns undefined</span>
+
+v = arr.at( -<span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p><a name="method-for-each"></a></p><h4 id="typedarrayfeprototypeforeach-callbackfn-thisarg-">TypedArrayFE.prototype.forEach( callbackFn[, thisArg] )</h4><p>Invokes a function once for each array element.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, i.toString(), v.toString() );
+}
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">3</span> );
+
+arr.set( <span class="hljs-number">1.5</span>, <span class="hljs-number">0</span> );
+arr.set( <span class="hljs-number">2.5</span>, <span class="hljs-number">1</span> );
+arr.set( <span class="hljs-number">3.5</span>, <span class="hljs-number">2</span> );
+
+arr.forEach( log );
+<span class="hljs-comment">/* =>
+    0: 1.5
+    1: 2.5
+    2: 3.5
+*/</span>
+</code></pre><p>The invoked function is provided three arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>index</strong>: current array element index.</li><li><strong>arr</strong>: the array on which this method was called.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, i.toString(), v.toString() );
+}
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+arr.set( <span class="hljs-number">1.0</span>, <span class="hljs-number">0</span> );
+arr.set( <span class="hljs-number">2.0</span>, <span class="hljs-number">1</span> );
+arr.set( <span class="hljs-number">3.0</span>, <span class="hljs-number">2</span> );
+
+arr.forEach( fcn, context );
+
+<span class="hljs-keyword">var</span> count = context.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><a name="method-get"></a></p><h4 id="typedarrayfeprototypeget-i-">TypedArrayFE.prototype.get( i )</h4><p>Returns an array element located at a nonnegative integer position (index) <code>i</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Set the first element:</span>
+arr.set( <span class="hljs-number">1.0</span>, <span class="hljs-number">0</span> );
+
+<span class="hljs-comment">// Get the first element:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre><p>If provided an out-of-bounds index, the method returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p><a name="method-set"></a></p><h4 id="typedarrayfeprototypeset-arr-offset-">TypedArrayFE.prototype.set( arr[, offset] )</h4><p>Sets array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = arr.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-comment">// Set the first two array elements:</span>
+arr.set( [ <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
+
+v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+v = arr.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 5.0</span>
+</code></pre><p>By default, the method starts writing values at the first array index. To specify an alternative index, provide an index <code>offset</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Float64ArrayFE></span>
+
+<span class="hljs-comment">// Set the last two array elements:</span>
+arr.set( [ <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ], <span class="hljs-number">1</span> );
+
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+v = arr.get( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 5.0</span>
+</code></pre><p>A few notes:</p><ul><li>If <code>i</code> is out-of-bounds, the method throws an error.</li><li>If a target array cannot accommodate all values (i.e., the length of source array plus <code>i</code> exceeds the target array length), the method throws an error.</li><li>If provided a typed array which shares an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> with the target array, the method will intelligently copy the source range to the destination range.</li></ul><p><a name="method-to-string"></a></p><h4 id="typedarrayfeprototypetostring">TypedArrayFE.prototype.toString()</h4><p>Serializes an array as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// returns '1,2,3'</span>
+</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li><p>A returned constructor supports the following byte orders:</p><ul><li><strong>little-endian</strong>: store values such that bytes are stored from least-to-most significant bytes. This is the dominant ordering for processor architectures and their associated memory. This is also the ordering for <a href="/docs/api/latest/@stdlib/wasm/memory">WebAssembly memory</a>.</li><li><strong>big-endian</strong>: store values such that bytes are stored from most-to-least significant bytes. This is the dominant ordering in network protocols.</li></ul></li><li><p>While returned constructors <em>strive</em> to maintain (but do not <strong>guarantee</strong>) consistency with <a href="/docs/api/latest/@stdlib/array/typed">typed arrays</a>, significant deviations from ECMAScript-defined <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> behavior are as follows:</p><ul><li>Constructors do <strong>not</strong> require the <code>new</code> operator.</li><li>Accessing array elements using bracket syntax (e.g., <code>X[i]</code>) is <strong>not</strong> supported. Instead, one <strong>must</strong> use the <code>.get()</code> method.</li></ul></li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> fixedEndianFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/fixed-endian-factory'</span> );
+
+<span class="hljs-keyword">var</span> Float64ArrayFE = fixedEndianFactory( <span class="hljs-string">'float64'</span> );
+
+<span class="hljs-comment">// Create a typed array by specifying a length:</span>
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, <span class="hljs-number">3</span> );
+logEach( <span class="hljs-string">'%s'</span>, out );
+
+<span class="hljs-comment">// Create a typed array from an array:</span>
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ];
+out = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'big-endian'</span>, arr );
+logEach( <span class="hljs-string">'%s'</span>, out );
+
+<span class="hljs-comment">// Create a typed array from an array buffer:</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] ); <span class="hljs-comment">// host byte order</span>
+out = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'little-endian'</span>, arr.buffer );
+logEach( <span class="hljs-string">'%s'</span>, out );
+
+<span class="hljs-comment">// Create a typed array from an array buffer view:</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.14</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span> ] ); <span class="hljs-comment">// host byte order</span>
+out = <span class="hljs-keyword">new</span> Float64ArrayFE( <span class="hljs-string">'big-endian'</span>, arr.buffer, <span class="hljs-number">8</span>, <span class="hljs-number">2</span> );
+logEach( <span class="hljs-string">'%s'</span>, out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

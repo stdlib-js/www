@@ -1,0 +1,58 @@
+<h1 id="xlogyf">xlogyf</h1><blockquote><p>Compute <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code> for single-precision floating-point numbers <code>x</code> and <code>y</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> xlogyf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlogyf'</span> );
+</code></pre><h4 id="xlogyf-x-y-">xlogyf( x, y )</h4><p>Computes <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code> for single-precision floating-point numbers <code>x</code> and <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = xlogyf( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~2.079</span>
+
+out = xlogyf( <span class="hljs-number">1.5</span>, <span class="hljs-number">5.9</span> );
+<span class="hljs-comment">// returns ~2.662</span>
+
+out = xlogyf( <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = xlogyf( <span class="hljs-number">0.0</span>, -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = xlogyf( <span class="hljs-number">1.5</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+out = xlogyf( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+out = xlogyf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.3</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> xlogyf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlogyf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = randu();
+    <span class="hljs-keyword">if</span> ( x &#x3C; <span class="hljs-number">0.5</span> ) {
+        x = <span class="hljs-number">0.0</span>;
+    }
+    y = ( randu() * <span class="hljs-number">20.0</span> ) - <span class="hljs-number">5.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'xlogyf(%d, %d) = %d'</span>, x, y, xlogyf( x, y ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/xlogyf.h"</span></span>
+</code></pre><h4 id="stdlib_base_xlogyf-x-y-">stdlib_base_xlogyf( x, y )</h4><p>Computes <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code> for single-precision floating-point numbers <code>x</code> and <code>y</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> v = stdlib_base_xlogyf( <span class="hljs-number">3.0f</span>, <span class="hljs-number">2.0f</span> );
+<span class="hljs-comment">// returns ~2.079f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li><li><strong>y</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_xlogyf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/xlogyf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">float</span> out;
+    <span class="hljs-keyword">float</span> x;
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( (<span class="hljs-keyword">float</span>)rand() / (<span class="hljs-keyword">float</span>)RAND_MAX ) * <span class="hljs-number">100.0f</span>;
+        y = ( (<span class="hljs-keyword">float</span>)rand() / (<span class="hljs-keyword">float</span>)RAND_MAX ) * <span class="hljs-number">5.0f</span>;
+        out = stdlib_base_xlogyf( x, y );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"xlogyf(%f, %f) = %f\n"</span>, x, y, out );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

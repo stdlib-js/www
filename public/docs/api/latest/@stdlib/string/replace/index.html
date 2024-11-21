@@ -1,33 +1,29 @@
-<h1 id="replace">Replace</h1><blockquote><p>Replace search occurrences with a replacement string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
-</code></pre><h4 id="replace-str-search-newval-">replace( str, search, newval )</h4><p>Replaces search occurrences with a replacement <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
+<h1 id="replace">replace</h1><blockquote><p>Replace search occurrences with a replacement string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
+</code></pre><h4 id="replace-str-search-newval-">replace( str, search, newval )</h4><p>Replaces search occurrences with a replacement string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 'boop'</span>
-</code></pre><p>If provided a <code>function</code> as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter">third argument</a>, the function is invoked for each match, and the function's return value is used as the replacement <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
+</code></pre><p>If provided a function as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace">third argument</a>, the function is invoked for each match, and the function's return value is used as the replacement string.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">'/'</span> + p1 + <span class="hljs-string">'/'</span>;
 }
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'Oranges and lemons'</span>;
 <span class="hljs-keyword">var</span> out = replace( str, <span class="hljs-regexp">/([^\s]+)/gi</span>, replacer );
 <span class="hljs-comment">// returns '/Oranges/ /and/ /lemons/'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function has one notable difference from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a>. When provided a <code>string</code> as the <code>search</code> value, the function replaces <strong>all</strong> occurrences. To remove only the first match, use a regular expression.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-regexp">/e/</span>, <span class="hljs-string">'o'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function has one notable difference from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a>. When provided a string as the <code>search</code> value, the function replaces <strong>all</strong> occurrences. To remove only the first match, use a regular expression.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-regexp">/e/</span>, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 'boep'</span>
 </code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
 <span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
 
-<span class="hljs-keyword">var</span> out;
-<span class="hljs-keyword">var</span> str;
-
-out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
+<span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 'boop'</span>
 
 out = replace( <span class="hljs-string">'Hello World'</span>, <span class="hljs-regexp">/world/i</span>, <span class="hljs-string">'Mr. President'</span> );
 <span class="hljs-comment">// returns 'Hello Mr. President'</span>
 
-str = <span class="hljs-string">'Oranges and lemons say the bells of St. Clement\'s'</span>;
-out = replace( str, <span class="hljs-regexp">/([^\s]*)/gi</span>, replacer );
-<span class="hljs-comment">// returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'</span>
-
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
     <span class="hljs-keyword">return</span> capitalize( p1 );
 }
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Oranges and lemons say the bells of St. Clement\'s'</span>;
+out = replace( str, <span class="hljs-regexp">/([^\s]*)/gi</span>, replacer );
+<span class="hljs-comment">// returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'</span>
 </code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: replace [options] [&#x3C;string>] --search=&#x3C;string> --newval=&#x3C;string>
 
 Options:
@@ -36,8 +32,17 @@ Options:
   -V,    --version             Print the package version.
          --search string       Search string.
          --newval string       Replacement string.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ replace --search=<span class="hljs-string">'/[eo]/'</span> --newval=a beep
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar'</span> | replace --search=<span class="hljs-string">'o'</span> --newval=<span class="hljs-string">'e'</span> --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar'</span> | replace --search=<span class="hljs-string">'o'</span> --newval=<span class="hljs-string">'e'</span> --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ replace --search=<span class="hljs-string">'/[eo]/'</span> --newval=a beep
 baap
-</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | replace --search=<span class="hljs-string">'o'</span> newval=<span class="hljs-string">'e'</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | replace --search=<span class="hljs-string">'o'</span> --newval=<span class="hljs-string">'e'</span>
 beep
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop\tfoo'</span> | replace --search=<span class="hljs-string">'o'</span> --newval=<span class="hljs-string">'e'</span> --split <span class="hljs-string">'\t'</span>
+beep
+fee
 </code></pre></section></section><section class="related"></section><section class="links"></section>

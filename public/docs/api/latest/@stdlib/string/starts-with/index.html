@@ -1,12 +1,12 @@
 <h1 id="startswith">startsWith</h1><blockquote><p>Test if a string starts with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/starts-with'</span> );
-</code></pre><h4 id="startswith-str-search-position-">startsWith( str, search[, position] )</h4><p>Tests if a <code>string</code> starts with the characters of another <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+</code></pre><h4 id="startswith-str-search-position-">startsWith( str, search[, position] )</h4><p>Tests if a string starts with the characters of another string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
 
 <span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'To be'</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = startsWith( str, <span class="hljs-string">'to be'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>By default, the function searches from the beginning of the input <code>string</code>. To search from a different character index, provide a <code>position</code> value (zero-based). If provided a negative <code>position</code>, the start index is determined relative to the string end (<code>pos = str.length + position</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+</code></pre><p>By default, the function searches from the beginning of the input string. To search from a different character index, provide a <code>position</code> value (zero-based). If provided a negative <code>position</code>, the start index is determined relative to the string end (i.e., <code>pos = str.length + position</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
 
 <span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'the story'</span> );
 <span class="hljs-comment">// returns false</span>
@@ -20,14 +20,11 @@ bool = startsWith( str, <span class="hljs-string">'you'</span>, -<span class="hl
 
 <span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/starts-with'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith"><code>String.prototype.startsWith</code></a> in the following ways:</p><ul><li>The function requires string values for the first and second arguments and requires that the <code>position</code> argument be an integer value.</li><li>The function does <strong>not</strong> clamp negative <code>position</code> values. Instead, when provided a negative <code>position</code>, the function resolves the starting search position relative to the end of the string.</li><li>Except when provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>false</code> if a <code>position</code> resolves to a starting search position which exceeds the bounds of the input string.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/starts-with'</span> );
 
-<span class="hljs-keyword">var</span> bool;
-<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
 
-str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
-
-bool = startsWith( str, <span class="hljs-string">'Fair'</span> );
+<span class="hljs-keyword">var</span> bool = startsWith( str, <span class="hljs-string">'Fair'</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = startsWith( str, <span class="hljs-string">'fair'</span> );
@@ -47,7 +44,7 @@ Options:
          --search string       Search string.
          --pos int             Search position.
          --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
-</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | starts-with --search=Beep --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>

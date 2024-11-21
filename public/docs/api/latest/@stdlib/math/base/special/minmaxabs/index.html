@@ -1,22 +1,19 @@
 <h1 id="minmaxabs">minmaxabs</h1><blockquote><p>Return the minimum and maximum absolute values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/minmaxabs'</span> );
-</code></pre><h4 id="minmaxabs-out-x-y-args-">minmaxabs( [out,] x[, y[, ...args]] )</h4><p>Returns the minimum and maximum absolute values in a single pass.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = minmaxabs( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+</code></pre><h4 id="minmaxabs-x-y-">minmaxabs( x, y )</h4><p>Returns the minimum and maximum absolute values in a single pass.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = minmaxabs( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns [ 3.14, 4.2 ]</span>
 
 v = minmaxabs( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns [ 0.0, 0.0 ]</span>
-
-v = minmaxabs( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">6.8</span> );
-<span class="hljs-comment">// returns [ 1.0, 6.8 ]</span>
 </code></pre><p>If any argument is <code>NaN</code>, the function returns <code>NaN</code> for both the minimum value and the maximum value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = minmaxabs( <span class="hljs-number">4.2</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns [ NaN, NaN ]</span>
 
 v = minmaxabs( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns [ NaN, NaN ]</span>
-</code></pre><p>By default, the function returns minimum and maximum absolute values as a two-element <code>array</code>. To avoid unnecessary memory allocation, the function supports providing an output (destination) object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="minmaxabsassign-x-y-out-stride-offset-">minmaxabs.assign( x, y, out, stride, offset )</h4><p>Returns the minimum and maximum absolute values in a single pass and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> v = minmaxabs( out, <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-keyword">var</span> v = minmaxabs.assign( <span class="hljs-number">5.0</span>, -<span class="hljs-number">1.0</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 5.0 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( v === out );

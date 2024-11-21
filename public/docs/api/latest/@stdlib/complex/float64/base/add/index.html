@@ -1,0 +1,75 @@
+<h1 id="add">add</h1><blockquote><p>Add two double-precision complex floating-point numbers.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/base/add'</span> );
+</code></pre><h4 id="add-z1-z2-">add( z1, z2 )</h4><p>Adds two double-precision complex floating-point numbers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/imag'</span> );
+
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( -<span class="hljs-number">1.5</span>, <span class="hljs-number">2.5</span> );
+
+<span class="hljs-keyword">var</span> v = add( z, z );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( v );
+<span class="hljs-comment">// returns -3.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( v );
+<span class="hljs-comment">// returns 5.0</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/base/add'</span> );
+
+<span class="hljs-keyword">var</span> rand = discreteUniform( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+
+<span class="hljs-keyword">var</span> z1;
+<span class="hljs-keyword">var</span> z2;
+<span class="hljs-keyword">var</span> z3;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    z1 = <span class="hljs-keyword">new</span> Complex128( rand(), rand() );
+    z2 = <span class="hljs-keyword">new</span> Complex128( rand(), rand() );
+    z3 = add( z1, z2 );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'(%s) + (%s) = %s'</span>, z1.toString(), z2.toString(), z3.toString() );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/base/add.h"</span></span>
+</code></pre><h4 id="stdlib_base_complex128_add-z1-z2-">stdlib_base_complex128_add( z1, z2 )</h4><p>Adds two double-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/real.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/imag.h"</span></span>
+
+<span class="hljs-keyword">stdlib_complex128_t</span> z = stdlib_complex128( <span class="hljs-number">3.0</span>, <span class="hljs-number">-2.0</span> );
+
+<span class="hljs-keyword">stdlib_complex128_t</span> out = stdlib_base_complex128_add( z, z );
+
+<span class="hljs-keyword">double</span> re = stdlib_complex128_real( out );
+<span class="hljs-comment">// returns 6.0</span>
+
+<span class="hljs-keyword">double</span> im = stdlib_complex128_imag( out );
+<span class="hljs-comment">// returns -4.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z1</strong>: <code>[in] stdlib_complex128_t</code> input value.</li><li><strong>z2</strong>: <code>[in] stdlib_complex128_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">stdlib_base_complex128_add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> z1, <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> z2 )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/base/add.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x[] = {
+        stdlib_complex128( <span class="hljs-number">3.14</span>, <span class="hljs-number">1.5</span> ),
+        stdlib_complex128( <span class="hljs-number">-3.14</span>, <span class="hljs-number">1.5</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>, <span class="hljs-number">-0.0</span> ),
+        stdlib_complex128( <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+    };
+
+    <span class="hljs-keyword">stdlib_complex128_t</span> v;
+    <span class="hljs-keyword">stdlib_complex128_t</span> y;
+    <span class="hljs-keyword">double</span> re;
+    <span class="hljs-keyword">double</span> im;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        v = x[ i ];
+        stdlib_complex128_reim( v, &#x26;re, &#x26;im );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"z = %lf + %lfi\n"</span>, re, im );
+
+        y = stdlib_base_complex128_add( v, v );
+        stdlib_complex128_reim( y, &#x26;re, &#x26;im );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"add(z, z) = %lf + %lfi\n"</span>, re, im );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/cdiv"><code>@stdlib/math/base/ops/cdiv</code></a></span><span class="delimiter">: </span><span class="description">divide two complex numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64/base/mul"><code>@stdlib/complex/float64/base/mul</code></a></span><span class="delimiter">: </span><span class="description">multiply two double-precision complex floating-point numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/csub"><code>@stdlib/math/base/ops/csub</code></a></span><span class="delimiter">: </span><span class="description">subtract two double-precision complex floating-point numbers.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,49 @@
+<h1 id="atand">atand</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> in degrees of a double-precision floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atand = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atand'</span> );
+</code></pre><h4 id="atand-x-">atand( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> (in degrees) of a double-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
+<span class="hljs-keyword">var</span> v = atand( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = atand( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns ~26.57</span>
+
+v = atand( <span class="hljs-number">1.0</span> / sqrt( <span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns ~30.0</span>
+
+v = atand( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 45.0</span>
+
+v = atand( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns 90.0</span>
+
+v = atand( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> atand = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atand'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( atand( x[ i ] ) );
+}
+</code></pre></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/atand.h"</span></span>
+</code></pre><h4 id="stdlib_base_atand-x-">stdlib_base_atand( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> (in degrees) of a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_atand( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = stdlib_base_atand( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns ~26.57</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_atand</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/atand.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">1.45</span>, <span class="hljs-number">1.89</span>, <span class="hljs-number">2.33</span>, <span class="hljs-number">2.78</span>, <span class="hljs-number">3.22</span>, <span class="hljs-number">3.66</span>, <span class="hljs-number">4.11</span>, <span class="hljs-number">4.55</span>, <span class="hljs-number">5.0</span> };
+    
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_atand( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"atand(%lf) = %lf\n"</span>, x[ i ], v );
+    }
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atan"><code>@stdlib/math/base/special/atan</code></a></span><span class="delimiter">: </span><span class="description">compute the arctangent of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atanh"><code>@stdlib/math/base/special/atanh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arctangent of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acosd"><code>@stdlib/math/base/special/acosd</code></a></span><span class="delimiter">: </span><span class="description">compute the arccosine (in degrees) of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

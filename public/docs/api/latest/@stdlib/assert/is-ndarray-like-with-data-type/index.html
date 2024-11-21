@@ -1,0 +1,22 @@
+<h1 id="isndarraylikewithdatatype">isndarrayLikeWithDataType</h1><blockquote><p>Test if a value is an <a href="/docs/api/latest/@stdlib/assert/is-ndarray-like">ndarray-like object</a> having a specified <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isndarrayLikeWithDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-ndarray-like-with-data-type'</span> );
+</code></pre><h4 id="isndarraylikewithdatatype-value-dtype-">isndarrayLikeWithDataType( value, dtype )</h4><p>Tests if a value is an <a href="/docs/api/latest/@stdlib/assert/is-ndarray-like">ndarray-like object</a> having a specified <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> bool = isndarrayLikeWithDataType( arr, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> isndarrayLikeWithDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-ndarray-like-with-data-type'</span> );
+
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> bool = isndarrayLikeWithDataType( arr, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isndarrayLikeWithDataType( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isndarrayLikeWithDataType( {}, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isndarrayLikeWithDataType( <span class="hljs-literal">null</span>, <span class="hljs-string">'generic'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

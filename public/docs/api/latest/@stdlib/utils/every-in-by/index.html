@@ -1,0 +1,41 @@
+<h1 id="everyinby">everyInBy</h1><blockquote><p>Test whether all properties (own and inherited) of an object pass a test implemented by a predicate function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> everyInBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every-in-by'</span> );
+</code></pre><h4 id="everyinby-object-predicate-thisarg--">everyInBy( object, predicate[, thisArg ] )</h4><p>Tests whether all properties (own and inherited) of an <code>object</code> pass a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">var</span> bool;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+o = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+bool = everyInBy( o, isPositive );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If provided an empty <code>object</code>, the function returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params">v</span>) </span>{
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> bool = everyInBy( {}, isPositive );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> everyInBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every-in-by'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params">v</span>) </span>{
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+o = {};
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    o[ i ] = ( randu() &#x3C; <span class="hljs-number">0.95</span> );
+}
+
+bool = everyInBy( o, isPositive );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="references"></section><section class="related"></section>

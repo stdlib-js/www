@@ -124,12 +124,12 @@ s1.end();
     <span class="hljs-string">'flush'</span>: flush
 };
 
-<span class="hljs-keyword">var</span> TransformStream = transformStream.ctor( opts );
+<span class="hljs-keyword">var</span> MyStream = transformStream.ctor( opts );
 
-<span class="hljs-keyword">var</span> bool = ( TransformStream.prototype._transform === transform );
+<span class="hljs-keyword">var</span> bool = ( MyStream.prototype._transform === transform );
 <span class="hljs-comment">// returns true</span>
 
-bool = ( TransformStream.prototype._flush === flush );
+bool = ( MyStream.prototype._flush === flush );
 <span class="hljs-comment">// returns true</span>
 </code></pre><p>The returned constructor accepts the same <code>options</code> as documented above, <strong>except</strong> for the <code>transform</code> and <code>flush</code> options, which are not supported. Any <code>options</code> provided to the constructor <strong>override</strong> <code>options</code> provided to the constructor factory.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 <span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/transform'</span> ).factory;

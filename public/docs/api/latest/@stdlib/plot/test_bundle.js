@@ -102,26 +102,41 @@
 
 'use strict';
 
-// MAIN //
-
 /**
-* Returns an array element using an accessor method.
+* Return an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @module @stdlib/array/base/accessor-getter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/accessor-getter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x.get( idx );
-}
+
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getter;
+module.exports = main;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -142,18 +157,135 @@ module.exports = getter;
 
 'use strict';
 
+// VARIABLES //
+
+var GETTERS = {
+	'complex128': getComplex128,
+	'complex64': getComplex64,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex128( arr, 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 3.0
+*
+* var im = imag( v );
+* // returns 4.0
+*/
+function getComplex128( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex64( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
+*/
+function getComplex64( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr.get( idx );
+}
+
+
 // MAIN //
 
 /**
-* Returns an array element.
+* Returns an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x[ idx ];
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
 }
 
 
@@ -162,6 +294,230 @@ function getter( x, idx ) {
 module.exports = getter;
 
 },{}],3:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @module @stdlib/array/base/accessor-setter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var setter = require( '@stdlib/array/base/accessor-setter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":4}],4:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'complex128': setComplex128,
+	'complex64': setComplex64,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex128( arr, 1, new Complex128( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 10.0
+*
+* var im = imag( v );
+* // returns 11.0
+*/
+function setComplex128( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex64( arr, 1, new Complex64( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setComplex64( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* setArrayLike( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+function setArrayLike( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = setter;
+
+},{}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -203,7 +559,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":4}],4:[function(require,module,exports){
+},{"./main.js":6}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -226,10 +582,12 @@ module.exports = main;
 
 // MODULES //
 
-var getIndexed = require( './getter.js' );
-var getAccessor = require( './getter.accessor.js' );
-var setIndexed = require( './setter.js' );
-var setAccessor = require( './setter.accessor.js' );
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var getter = require( '@stdlib/array/base/getter' );
+var setter = require( '@stdlib/array/base/setter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
+var dtype = require( '@stdlib/array/dtype' );
 
 
 // MAIN //
@@ -243,10 +601,10 @@ var setAccessor = require( './setter.accessor.js' );
 *
 * -   The returned object has the following properties:
 *
-*     -   **data**: data buffer.
-*     -   **accessors**: `boolean` indicating whether the data buffer uses accessors for getting and setting elements.
-*     -   **getter**: accessor for retrieving a data buffer element.
-*     -   **setter**: accessor for setting a data buffer element.
+*     -   **data**: reference to the input array.
+*     -   **dtype**: array data type.
+*     -   **accessorProtocol**: `boolean` indicating whether the input array uses accessors for getting and setting elements.
+*     -   **accessors**: a two-element array whose first element is an accessor for retrieving an array element and whose second element is an accessor for setting an array element.
 *
 * @param {Collection} x - array-like object
 * @returns {Object} object containing array meta data
@@ -256,12 +614,26 @@ var setAccessor = require( './setter.accessor.js' );
 * // returns {...}
 */
 function arraylike2object( x ) {
-	var bool = Boolean( x.get && x.set ); // Note: intentional weak check, as we don't explicitly check for functions for (perhaps marginally) better performance.
+	var dt = dtype( x );
+	if ( isAccessorArray( x ) ) {
+		return {
+			'data': x,
+			'dtype': dt,
+			'accessorProtocol': true,
+			'accessors': [
+				accessorGetter( dt ),
+				accessorSetter( dt )
+			]
+		};
+	}
 	return {
 		'data': x,
-		'accessors': bool,
-		'getter': ( bool ) ? getAccessor : getIndexed,
-		'setter': ( bool ) ? setAccessor : setIndexed
+		'dtype': dt,
+		'accessorProtocol': false,
+		'accessors': [
+			getter( dt ),
+			setter( dt )
+		]
 	};
 }
 
@@ -270,7 +642,7 @@ function arraylike2object( x ) {
 
 module.exports = arraylike2object;
 
-},{"./getter.accessor.js":1,"./getter.js":2,"./setter.accessor.js":5,"./setter.js":6}],5:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":7,"@stdlib/array/base/getter":13,"@stdlib/array/base/setter":15,"@stdlib/array/dtype":35}],7:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -291,18 +663,977 @@ module.exports = arraylike2object;
 
 'use strict';
 
+/**
+* Test if an array-like object supports the accessor (get/set) protocol.
+*
+* @module @stdlib/array/base/assert/is-accessor-array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128array' );
+* var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isAccessorArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":8}],8:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var TYPE = 'function';
+
+
 // MAIN //
 
 /**
-* Sets an array element using an accessor method.
+* Tests if an array-like object supports the accessor (get/set) protocol.
+*
+* @param {Object} value - value to test
+* @returns {boolean} boolean indicating whether a value is an accessor array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isAccessorArray( [] );
+* // returns false
+*/
+function isAccessorArray( value ) {
+	return ( typeof value.get === TYPE && typeof value.set === TYPE ); // eslint-disable-line valid-typeof
+}
+
+
+// EXPORTS //
+
+module.exports = isAccessorArray;
+
+},{}],9:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex128Array`.
+*
+* @module @stdlib/array/base/assert/is-complex128array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":10}],10:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 16; // 8 bytes per float64 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex128Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex128Array`
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+function isComplex128Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex128Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex128array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex128Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex128Array;
+
+},{}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex64Array`.
+*
+* @module @stdlib/array/base/assert/is-complex64array
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":12}],12:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 8; // 4 bytes per float32 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex64Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+function isComplex64Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex64Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex64array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex64Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex64Array;
+
+},{}],13:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for retrieving an element from an indexed array-like object.
+*
+* @module @stdlib/array/base/getter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/getter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":14}],14:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var GETTERS = {
+	'float64': getFloat64,
+	'float32': getFloat32,
+	'int32': getInt32,
+	'int16': getInt16,
+	'int8': getInt8,
+	'uint32': getUint32,
+	'uint16': getUint16,
+	'uint8': getUint8,
+	'uint8c': getUint8c,
+	'generic': getGeneric,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Float64Array`.
 *
 * @private
-* @param {Collection} x - input array
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat64( arr, 2 );
+* // returns 3.0
+*/
+function getFloat64( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat32( arr, 2 );
+* // returns 3.0
+*/
+function getFloat32( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt32( arr, 2 );
+* // returns 3
+*/
+function getInt32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt16( arr, 2 );
+* // returns 3
+*/
+function getInt16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt8( arr, 2 );
+* // returns 3
+*/
+function getInt8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint32( arr, 2 );
+* // returns 3
+*/
+function getUint32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint16( arr, 2 );
+* // returns 3
+*/
+function getUint16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8( arr, 2 );
+* // returns 3
+*/
+function getUint8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8c( arr, 2 );
+* // returns 3
+*/
+function getUint8c( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getGeneric( arr, 2 );
+* // returns 3
+*/
+function getGeneric( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr[ idx ];
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for retrieving an element from an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = getter;
+
+},{}],15:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an indexed array-like object.
+*
+* @module @stdlib/array/base/setter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var set = require( '@stdlib/array/base/setter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":16}],16:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'float64': setFloat64,
+	'float32': setFloat32,
+	'int32': setInt32,
+	'int16': setInt16,
+	'int8': setInt8,
+	'uint32': setUint32,
+	'uint16': setUint16,
+	'uint8': setUint8,
+	'uint8c': setUint8c,
+	'generic': setGeneric,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( 4 );
+*
+* setFloat64( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat64( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( 4 );
+*
+* setFloat32( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( 4 );
+*
+* setInt32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( 4 );
+*
+* setInt16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( 4 );
+*
+* setInt8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( 4 );
+*
+* setUint32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( 4 );
+*
+* setUint16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( 4 );
+*
+* setUint8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( 4 );
+*
+* setUint8c( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8c( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
 * @param {NonNegativeInteger} idx - element index
 * @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setGeneric( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
 */
-function setter( x, idx, value ) {
-	x.set( value, idx );
+function setGeneric( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setArrayLike( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setArrayLike( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
 }
 
 
@@ -310,11 +1641,11 @@ function setter( x, idx, value ) {
 
 module.exports = setter;
 
-},{}],6:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -331,26 +1662,2743 @@ module.exports = setter;
 
 'use strict';
 
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
 // MAIN //
+
+/**
+* Fills an output array with "boolean" values.
+*
+* @private
+* @param {Uint8Array} buf - output array
+* @param {Array} arr - input array
+* @returns {Uint8Array} output array
+*/
+function fromArray( buf, arr ) {
+	var len;
+	var i;
+
+	len = arr.length;
+	for ( i = 0; i < len; i++ ) {
+		buf[ i ] = Boolean( arr[ i ] );
+	}
+	return buf;
+}
+
+
+// EXPORTS //
+
+module.exports = fromArray;
+
+},{"@stdlib/boolean/ctor":229}],18:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @returns {Array} output array
+*/
+function fromIterator( it ) {
+	var out;
+	var v;
+
+	out = [];
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		out.push( Boolean( v.value ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIterator;
+
+},{"@stdlib/boolean/ctor":229}],19:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @param {Function} clbk - callback to invoke for each iterated value
+* @param {*} thisArg - invocation context
+* @returns {Array} output array
+*/
+function fromIteratorMap( it, clbk, thisArg ) {
+	var out;
+	var v;
+	var i;
+
+	out = [];
+	i = -1;
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		i += 1;
+		out.push( Boolean( clbk.call( thisArg, v.value, i ) ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIteratorMap;
+
+},{"@stdlib/boolean/ctor":229}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean array.
+*
+* @module @stdlib/array/bool
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":21}],21:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable no-restricted-syntax, no-invalid-this */
+
+'use strict';
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isCollection = require( '@stdlib/assert/is-collection' );
+var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
+var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Boolean = require( '@stdlib/boolean/ctor' );
+var getter = require( '@stdlib/array/base/getter' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var format = require( '@stdlib/string/format' );
+var fromIterator = require( './from_iterator.js' );
+var fromIteratorMap = require( './from_iterator_map.js' );
+var fromArray = require( './from_array.js' );
+
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = Uint8Array.BYTES_PER_ELEMENT;
+var HAS_ITERATOR_SYMBOL = hasIteratorSymbolSupport();
+
+
+// FUNCTIONS //
+
+/**
+* Returns a boolean indicating if a value is a `BooleanArray`.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `BooleanArray`
+*/
+function isBooleanArray( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'BooleanArray' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+/**
+* Returns a boolean indicating if a value is a boolean typed array constructor.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean typed array constructor
+*/
+function isBooleanArrayConstructor( value ) {
+	return ( value === BooleanArray );
+}
+
+
+// MAIN //
+
+/**
+* Boolean array constructor.
+*
+* @constructor
+* @param {(NonNegativeInteger|Collection|ArrayBuffer|Iterable)} [arg] - length, typed array, array-like object, buffer, or an iterable
+* @param {NonNegativeInteger} [byteOffset=0] - byte offset
+* @param {NonNegativeInteger} [length] - view length
+* @throws {TypeError} if provided only a single argument, must provide a valid argument
+* @throws {TypeError} byte offset must be a nonnegative integer
+* @throws {RangeError} must provide sufficient memory to accommodate byte offset and view length requirements
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+function BooleanArray() {
+	var byteOffset;
+	var nargs;
+	var buf;
+	var len;
+	var arg;
+
+	nargs = arguments.length;
+	if ( !(this instanceof BooleanArray) ) {
+		if ( nargs === 0 ) {
+			return new BooleanArray();
+		}
+		if ( nargs === 1 ) {
+			return new BooleanArray( arguments[0] );
+		}
+		if ( nargs === 2 ) {
+			return new BooleanArray( arguments[0], arguments[1] );
+		}
+		return new BooleanArray( arguments[0], arguments[1], arguments[2] );
+	}
+	// Create the underlying data buffer...
+	if ( nargs === 0 ) {
+		buf = new Uint8Array( 0 ); // backward-compatibility
+	} else if ( nargs === 1 ) {
+		arg = arguments[ 0 ];
+		if ( isNonNegativeInteger( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isCollection( arg ) ) {
+			buf = fromArray( new Uint8Array( arg.length ), arg );
+		} else if ( isArrayBuffer( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isObject( arg ) ) {
+			if ( HAS_ITERATOR_SYMBOL === false ) {
+				throw new TypeError( format( 'invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.', arg ) );
+			}
+			if ( !isFunction( arg[ ITERATOR_SYMBOL ] ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = arg[ ITERATOR_SYMBOL ]();
+			if ( !isFunction( buf.next ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = new Uint8Array( fromIterator( buf ) );
+		} else {
+			throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+		}
+	} else {
+		buf = arguments[ 0 ];
+		if ( !isArrayBuffer( buf ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an ArrayBuffer. Value: `%s`.', buf ) );
+		}
+		byteOffset = arguments[ 1 ];
+		if ( !isNonNegativeInteger( byteOffset ) ) {
+			throw new TypeError( format( 'invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.', byteOffset ) );
+		}
+		if ( nargs === 2 ) {
+			buf = new Uint8Array( buf, byteOffset );
+		} else {
+			len = arguments[ 2 ];
+			if ( !isNonNegativeInteger( len ) ) {
+				throw new TypeError( format( 'invalid argument. Length must be a nonnegative integer. Value: `%s`.', len ) );
+			}
+			if ( (len*BYTES_PER_ELEMENT) > (buf.byteLength-byteOffset) ) {
+				throw new RangeError( format( 'invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.', len*BYTES_PER_ELEMENT ) );
+			}
+			buf = new Uint8Array( buf, byteOffset, len );
+		}
+	}
+	setReadOnly( this, '_buffer', buf );
+	setReadOnly( this, '_length', buf.length );
+
+	return this;
+}
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var nbytes = BooleanArray.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray, 'BYTES_PER_ELEMENT', BYTES_PER_ELEMENT );
+
+/**
+* Constructor name.
+*
+* @name name
+* @memberof BooleanArray
+* @readonly
+* @type {string}
+* @default 'BooleanArray'
+*
+* @example
+* var str = BooleanArray.name;
+* // returns 'BooleanArray'
+*/
+setReadOnly( BooleanArray, 'name', 'BooleanArray' );
+
+/**
+* Creates a new boolean array from an array-like object or an iterable.
+*
+* @name from
+* @memberof BooleanArray
+* @type {Function}
+* @param {(Collection|Iterable)} src - array-like object or iterable
+* @param {Function} [clbk] - callback to invoke for each source element
+* @param {*} [thisArg] - context
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an array-like object or an iterable
+* @throws {TypeError} second argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.from( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* function clbk( v ) {
+*     return !v;
+* }
+*
+* var arr = BooleanArray.from( [ true, false ], clbk );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+setReadOnly( BooleanArray, 'from', function from( src ) {
+	var thisArg;
+	var nargs;
+	var clbk;
+	var out;
+	var buf;
+	var tmp;
+	var get;
+	var len;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	nargs = arguments.length;
+	if ( nargs > 1 ) {
+		clbk = arguments[ 1 ];
+		if ( !isFunction( clbk ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a function. Value: `%s`.', clbk ) );
+		}
+		if ( nargs > 2 ) {
+			thisArg = arguments[ 2 ];
+		}
+	}
+	if ( isCollection( src ) ) {
+		if ( clbk ) {
+			len = src.length;
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
+			out = new this( len );
+			buf = out._buffer; // eslint-disable-line no-underscore-dangle
+			for ( i = 0; i < len; i++ ) {
+				buf[ i ] = Boolean( clbk.call( thisArg, get( src, i ), i ) );
+			}
+			return out;
+		}
+		return new this( src );
+	}
+	if ( isObject( src ) && HAS_ITERATOR_SYMBOL && isFunction( src[ ITERATOR_SYMBOL ] ) ) { // eslint-disable-line max-len
+		buf = src[ ITERATOR_SYMBOL ]();
+		if ( !isFunction( buf.next ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+		}
+		if ( clbk ) {
+			tmp = fromIteratorMap( buf, clbk, thisArg );
+		} else {
+			tmp = fromIterator( buf );
+		}
+		len = tmp.length;
+		out = new this( len );
+		buf = out._buffer; // eslint-disable-line no-underscore-dangle
+		for ( i = 0; i < len; i++ ) {
+			buf[ i ] = tmp[ i ];
+		}
+		return out;
+	}
+	throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+});
+
+/**
+* Creates a new boolean array from a variable number of arguments.
+*
+* @name of
+* @memberof BooleanArray
+* @type {Function}
+* @param {...*} element - array elements
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.of( true, true, true, true );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 4
+*/
+setReadOnly( BooleanArray, 'of', function of() {
+	var args;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	args = [];
+	for ( i = 0; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
+	}
+	return new this( args );
+});
+
+/**
+* Returns an array element located at integer position (index) `i`, with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide an integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.at( 0 );
+* // returns true
+*
+* v = arr.at( -1 );
+* // returns true
+*
+* v = arr.at( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'at', function at( idx ) {
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	len = this._length;
+	buf = this._buffer;
+	if ( idx < 0 ) {
+		idx += len;
+	}
+	if ( idx < 0 || idx >= len ) {
+		return;
+	}
+	return Boolean( buf[ idx ] );
+});
+
+/**
+* Pointer to the underlying data buffer.
+*
+* @name buffer
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {ArrayBuffer}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var buf = arr.buffer;
+* // returns <ArrayBuffer>
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'buffer', function get() {
+	return this._buffer.buffer;
+});
+
+/**
+* Size (in bytes) of the array.
+*
+* @name byteLength
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteLength = arr.byteLength;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteLength', function get() {
+	return this._buffer.byteLength;
+});
+
+/**
+* Offset (in bytes) of the array from the start of its underlying `ArrayBuffer`.
+*
+* @name byteOffset
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteOffset = arr.byteOffset;
+* // returns 0
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteOffset', function get() {
+	return this._buffer.byteOffset;
+});
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var nbytes = arr.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray.prototype, 'BYTES_PER_ELEMENT', BooleanArray.BYTES_PER_ELEMENT );
+
+/**
+* Copies a sequence of elements within the array to the position starting at `target`.
+*
+* @name copyWithin
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} target - index at which to start copying elements
+* @param {integer} start - source index at which to copy elements from
+* @param {integer} [end] - source index at which to stop copying elements from
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 4 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+* arr.set( true, 3 );
+*
+* // Copy the first two elements to the last two elements:
+* arr.copyWithin( 2, 0, 2 );
+*
+* var v = arr.get( 2 );
+* // returns true
+*
+* v = arr.get( 3 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'copyWithin', function copyWithin( target, start ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	// FIXME: prefer a functional `copyWithin` implementation which addresses lack of universal browser support (e.g., IE11 and Safari) or ensure that typed arrays are polyfilled
+	if ( arguments.length === 2 ) {
+		this._buffer.copyWithin( target, start );
+	} else {
+		this._buffer.copyWithin( target, start, arguments[2] );
+	}
+	return this;
+});
+
+/**
+* Returns an iterator for iterating over array key-value pairs.
+*
+* @name entries
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var it = arr.entries();
+*
+* var v = it.next().value;
+* // returns [ 0, true ]
+*
+* v = it.next().value;
+* // returns [ 1, false ]
+*
+* v = it.next().value;
+* // returns [ 2, true ]
+*
+* var bool = it.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'entries', function entries() {
+	var self;
+	var iter;
+	var len;
+	var buf;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': [ i, Boolean( buf[ i ] ) ],
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.entries();
+	}
+});
+
+/**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.fill( true, 1 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var val;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	if ( value ) {
+		val = 1;
+	} else {
+		val = 0;
+	}
+	for ( i = start; i < end; i++ ) {
+		buf[ i ] = val;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* function predicate( v ) {
+*     return ( v === true );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 2
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var v;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			out.push( v );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.find( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findIndex( predicate );
+* // returns 0
+*/
+setReadOnly( BooleanArray.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLast( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLastIndex( predicate );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( BooleanArray.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		fcn.call( thisArg, Boolean( buf[ i ] ), i, this );
+	}
+});
+
+/**
+* Returns an array element.
+*
+* @name get
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {NonNegativeInteger} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide a nonnegative integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'get', function get( idx ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isNonNegativeInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a nonnegative integer. Value: `%s`.', idx ) );
+	}
+	if ( idx >= this._length ) {
+		return;
+	}
+	return Boolean( this._buffer[ idx ] );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a value
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var bool = arr.includes( true );
+* // returns true
+*
+* bool = arr.includes( false, 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.indexOf( true );
+* // returns 0
+*
+* idx = arr.indexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.indexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.join();
+* // returns 'true,false,true'
+*
+* str = arr.join( '|' );
+* // returns 'true|false|true'
+*/
+setReadOnly( BooleanArray.prototype, 'join', function join( separator ) {
+	var buf;
+	var out;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length > 0 ) {
+		if ( !isString( separator ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+		}
+	} else {
+		separator = ',';
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( separator );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.lastIndexOf( true );
+* // returns 4
+*
+* idx = arr.lastIndexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Number of array elements.
+*
+* @name length
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var len = arr.length;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'length', function get() {
+	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} new boolean array
+*
+* @example
+* function invert( v ) {
+*     return !v;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.map( invert );
+* // returns <BooleanArray>
+*
+* var z = out.get( 0 );
+* // returns false
+*
+* z = out.get( 1 );
+* // returns true
+*
+* z = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( 'invalid argument. First argument must be a function. Value: `%s`.', fcn );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		outbuf[ i ] = Boolean( fcn.call( thisArg, Boolean( buf[ i ] ), i, this ) );
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduce( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ 0 ] );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduceRight( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len - 1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ len-1 ] );
+		i = len - 2;
+	}
+	for ( ; i >= 0; i-- ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.reverse();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ i ];
+		buf[ i ] = buf[ j ];
+		buf[ j ] = tmp;
+	}
+	return this;
+});
 
 /**
 * Sets an array element.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @param {*} value - value to set
+* ## Notes
+*
+* -   When provided a typed array, we must check whether the source array shares the same buffer as the target array and whether the underlying memory overlaps. In particular, we are concerned with the following scenario:
+*
+*     ```text
+*     buf:                ---------------------
+*     src: ---------------------
+*     ```
+*
+*     In the above, as we copy values from `src`, we will overwrite values in the `src` view, resulting in duplicated values copied into the end of `buf`, which is not intended. Hence, to avoid overwriting source values, we must **copy** source values to a temporary array.
+*
+*     In the other overlapping scenario,
+*
+*     ```text
+*     buf: ---------------------
+*     src:                ---------------------
+*     ```
+*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
+*
+* @name set
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(Collection|BooleanArray|*)} value - value(s)
+* @param {NonNegativeInteger} [i=0] - element index at which to start writing values
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} index argument must be a nonnegative integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {RangeError} target array lacks sufficient storage to accommodate source values
+* @returns {void}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
 */
-function setter( x, idx, value ) {
-	x[ idx ] = value;
-}
+setReadOnly( BooleanArray.prototype, 'set', function set( value ) {
+	var sbuf;
+	var idx;
+	var buf;
+	var tmp;
+	var N;
+	var i;
+	var j;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length > 1 ) {
+		idx = arguments[ 1 ];
+		if ( !isNonNegativeInteger( idx ) ) {
+			throw new TypeError( format( 'invalid argument. Index argument must be a nonnegative integer. Value: `%s`.', idx ) );
+		}
+	} else {
+		idx = 0;
+	}
+	if ( isCollection( value ) ) {
+		N = value.length;
+		if ( idx+N > this._length ) {
+			throw new RangeError( 'invalid arguments. Target array lacks sufficient storage to accommodate source values.' );
+		}
+		if ( isBooleanArray( value ) ) {
+			sbuf = value._buffer; // eslint-disable-line no-underscore-dangle
+		} else {
+			sbuf = value;
+		}
+		// Check for overlapping memory...
+		j = buf.byteOffset + (idx*BYTES_PER_ELEMENT);
+		if (
+			sbuf.buffer === buf.buffer &&
+			(
+				sbuf.byteOffset < j &&
+				sbuf.byteOffset+sbuf.byteLength > j
+			)
+		) {
+			// We need to copy source values...
+			tmp = new Uint8Array( sbuf.length );
+			for ( i = 0; i < sbuf.length; i++ ) {
+				tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
+			}
+			sbuf = tmp;
+		}
+		for ( i = 0; i < N; idx++, i++ ) {
+			buf[ idx ] = ( sbuf[ i ] ) ? 1 : 0;
+		}
+		return;
+	}
+	if ( idx >= this._length ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%u`.', idx ) );
+	}
+	buf[ idx ] = ( value ) ? 1 : 0;
+});
+
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be integer
+* @throws {TypeError} second argument must be integer
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var out = arr.slice();
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 5
+*
+* var bool = out.get( 0 );
+* // returns true
+*
+* bool = out.get( len-1 );
+* // returns true
+*
+* out = arr.slice( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = out.length;
+* // returns 2
+*
+* bool = out.get( 0 );
+* // returns false
+*
+* bool = out.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'slice', function slice( begin, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var buf;
+	var len;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin < end ) {
+		outlen = end - begin;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		outbuf[ i ] = buf[ i+begin ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( false, 0 );
+* arr.set( true, 1 );
+* arr.set( false, 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.sort( compare );
+*
+* var v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'sort', function sort( compareFcn ) {
+	var buf;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length === 0 ) {
+		buf.sort();
+		return this;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf.sort( compare );
+	return this;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {BooleanArray} subarray
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var subarr = arr.subarray();
+* // returns <BooleanArray>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var bool = subarr.get( 0 );
+* // returns true
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = subarr.length;
+* // returns 2
+*
+* bool = subarr.get( 0 );
+* // returns false
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toLocaleString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( Boolean( buf[ i ] ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.toReversed();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ len - i - 1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.sort( compare );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*
+* v = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ i ];
+	}
+	if ( arguments.length === 0 ) {
+		outbuf.sort();
+		return out;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	outbuf.sort( compare );
+	return out;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns true
+*
+* v = iter.next().value;
+* // returns false
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': Boolean( buf[ i ] ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {boolean} value - new value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a boolean
+* @returns {BooleanArray} new typed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.with( 0, false );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a boolean. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	if ( value ) {
+		buf[ index ] = 1;
+	} else {
+		buf[ index ] = 0;
+	}
+	return out;
+});
 
 
 // EXPORTS //
 
-module.exports = setter;
+module.exports = BooleanArray;
 
-},{}],7:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":88,"@stdlib/assert/is-arraybuffer":123,"@stdlib/assert/is-boolean":126,"@stdlib/assert/is-collection":136,"@stdlib/assert/is-function":156,"@stdlib/assert/is-integer":164,"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-object":190,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/boolean/ctor":229,"@stdlib/math/base/special/floor":273,"@stdlib/string/format":707,"@stdlib/symbol/iterator":712,"@stdlib/utils/define-nonenumerable-read-only-accessor":722,"@stdlib/utils/define-nonenumerable-read-only-property":724}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -374,8 +4422,8 @@ module.exports = setter;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -413,7 +4461,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imag":222,"@stdlib/complex/real":226}],8:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float64/imag":250,"@stdlib/complex/float64/real":252}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -439,8 +4487,8 @@ module.exports = fromArray;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -480,7 +4528,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imag":222,"@stdlib/complex/real":226,"@stdlib/string/format":679}],9:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float64/imag":250,"@stdlib/complex/float64/real":252,"@stdlib/string/format":707}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -506,8 +4554,8 @@ module.exports = fromIterator;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -552,7 +4600,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imag":222,"@stdlib/complex/real":226,"@stdlib/string/format":679}],10:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float64/imag":250,"@stdlib/complex/float64/real":252,"@stdlib/string/format":707}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -625,7 +4673,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex128Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -648,13 +4696,13 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":11}],11:[function(require,module,exports){
+},{"./main.js":26}],26:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -679,21 +4727,27 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' );
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float64Array = require( '@stdlib/array/float64' );
-var Complex128 = require( '@stdlib/complex/float64' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var format = require( '@stdlib/string/format' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
@@ -750,35 +4804,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float64Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex128} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT/2
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
+function getComplex128( buf, idx ) {
+	idx *= 2;
+	return new Complex128( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -1019,7 +5054,7 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = Complex128Array.from( [ new Complex128( 1.0, 1.0 ) ] );
 * // returns <Complex128Array>
@@ -1028,9 +5063,9 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * function clbk( v ) {
 *     return new Complex128( real(v)*2.0, imag(v)*2.0 );
@@ -1049,6 +5084,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -1098,11 +5134,14 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -1115,7 +5154,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -1124,7 +5163,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = real( v );
 					buf[ j+1 ] = imag( v );
@@ -1196,6 +5235,76 @@ setReadOnly( Complex128Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex128|void)} array element
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 10 );
+*
+* var z = arr.at( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 0.0
+*
+* var im = imag( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 9.0
+*
+* im = imag( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex128Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1282,9 +5391,9 @@ setReadOnly( Complex128Array.prototype, 'BYTES_PER_ELEMENT', Complex128Array.BYT
 * @returns {Complex128Array} modified array
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 4 );
 *
@@ -1329,7 +5438,7 @@ setReadOnly( Complex128Array.prototype, 'copyWithin', function copyWithin( targe
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = [
 *     new Complex128( 1.0, 1.0 ),
@@ -1437,6 +5546,461 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex128Array} modified array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.fill( new Complex128( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = real( value );
+	im = imag( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns 2.0
+*/
+setReadOnly( Complex128Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex128Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+setReadOnly( Complex128Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex128Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -1449,8 +6013,8 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex128Array( 10 );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex128>
@@ -1476,7 +6040,6 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -1486,9 +6049,7 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
-	buf = this._buffer;
-	idx *= 2;
-	return new Complex128( buf[ idx ], buf[ idx+1 ] );
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1507,6 +6068,638 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex128( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex128( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex128( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex128( 4.0, -4.0 ), -3 );
+* // returns 3
+*/
+setReadOnly( Complex128Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex128( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex128( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex128( 2.0*real( v ), 2.0*imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns -2.0
+*/
+setReadOnly( Complex128Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex128( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = real( v );
+			outbuf[ (2*i)+1 ] = imag( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -1532,7 +6725,6 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 *
 *     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
 *
-*
 * @name set
 * @memberof Complex128Array.prototype
 * @type {Function}
@@ -1547,8 +6739,8 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 10 );
 *
@@ -1701,12 +6893,849 @@ setReadOnly( Complex128Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = real( tmp[i] );
+		buf[ j+1 ] = imag( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex128Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex128Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 1.0
+*
+* var im = imag( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex128>
+*
+* re = real( v );
+* // returns 2.0
+*
+* im = imag( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex128( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex128Array} new typed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex128( 4.0, 4.0 ) );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 4.0
+*
+* var im = imag( z );
+* // returns 4.0
+*/
+setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = real( value );
+	buf[ (2*index)+1 ] = imag( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":7,"./from_iterator.js":8,"./from_iterator_map.js":9,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float64":21,"@stdlib/assert/has-iterator-symbol-support":68,"@stdlib/assert/is-array":101,"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-arraybuffer":103,"@stdlib/assert/is-collection":114,"@stdlib/assert/is-complex-like":116,"@stdlib/assert/is-function":134,"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-object":168,"@stdlib/complex/float64":218,"@stdlib/complex/imag":222,"@stdlib/complex/real":226,"@stdlib/math/base/assert/is-even":243,"@stdlib/math/base/assert/is-integer":245,"@stdlib/strided/base/reinterpret-complex128":665,"@stdlib/strided/base/reinterpret-complex64":667,"@stdlib/string/format":679,"@stdlib/symbol/iterator":682,"@stdlib/utils/define-nonenumerable-read-only-accessor":692,"@stdlib/utils/define-nonenumerable-read-only-property":694}],12:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":88,"@stdlib/assert/is-array":121,"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-arraybuffer":123,"@stdlib/assert/is-collection":136,"@stdlib/assert/is-complex-like":138,"@stdlib/assert/is-function":156,"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-object":190,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/complex/float64/ctor":246,"@stdlib/complex/float64/imag":250,"@stdlib/complex/float64/real":252,"@stdlib/math/base/assert/is-even":267,"@stdlib/math/base/assert/is-integer":269,"@stdlib/math/base/special/floor":273,"@stdlib/strided/base/reinterpret-complex128":693,"@stdlib/strided/base/reinterpret-complex64":695,"@stdlib/string/format":707,"@stdlib/symbol/iterator":712,"@stdlib/utils/define-nonenumerable-read-only-accessor":722,"@stdlib/utils/define-nonenumerable-read-only-property":724}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1730,8 +7759,8 @@ module.exports = Complex128Array;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 
 
 // MAIN //
@@ -1769,7 +7798,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imagf":224,"@stdlib/complex/realf":228}],13:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float32/imag":242,"@stdlib/complex/float32/real":244}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1794,8 +7823,8 @@ module.exports = fromArray;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -1836,7 +7865,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imagf":224,"@stdlib/complex/realf":228,"@stdlib/string/format":679}],14:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float32/imag":242,"@stdlib/complex/float32/real":244,"@stdlib/string/format":707}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1861,8 +7890,8 @@ module.exports = fromIterator;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -1908,7 +7937,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":116,"@stdlib/complex/imagf":224,"@stdlib/complex/realf":228,"@stdlib/string/format":679}],15:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-complex-like":138,"@stdlib/complex/float32/imag":242,"@stdlib/complex/float32/real":244,"@stdlib/string/format":707}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1970,7 +7999,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex64Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -2004,7 +8033,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":16}],16:[function(require,module,exports){
+},{"./main.js":31}],31:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -2035,22 +8064,28 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float32Array = require( '@stdlib/array/float32' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 var format = require( '@stdlib/string/format' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
 var fromArray = require( './from_array.js' );
@@ -2106,35 +8141,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float32Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex64} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT*2
-	);
+function getComplex64( buf, idx ) {
+	idx *= 2;
+	return new Complex64( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -2274,7 +8290,7 @@ function Complex64Array() {
 			}
 			buf = buf[ ITERATOR_SYMBOL ]();
 			if ( !isFunction( buf.next ) ) {
-				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) );
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) ); // FIXME: `buf` is what is returned from above, NOT the original value
 			}
 			buf = fromIterator( buf );
 			if ( buf instanceof Error ) {
@@ -2375,7 +8391,7 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = Complex64Array.from( [ new Complex64( 1.0, 1.0 ) ] );
 * // returns <Complex64Array>
@@ -2384,9 +8400,9 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function clbk( v ) {
 *     return new Complex64( realf(v)*2.0, imagf(v)*2.0 );
@@ -2405,6 +8421,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -2454,11 +8471,14 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -2466,12 +8486,12 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// If an array does not contain only complex number objects, then we assume interleaved real and imaginary components...
 			if ( flg ) {
 				if ( !isEven( len ) ) {
-					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of two. Length: `%u`.', len ) );
+					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of %u. Length: `%u`.', 2, len ) );
 				}
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -2480,7 +8500,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = realf( v );
 					buf[ j+1 ] = imagf( v );
@@ -2552,6 +8572,75 @@ setReadOnly( Complex64Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex64|void)} array element
+*
+* @example
+* var arr = new Complex64Array( 10 );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z = arr.at( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 0.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 9.0
+*
+* im = imagf( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex64Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex64( this._buffer, idx );
 });
 
 /**
@@ -2638,9 +8727,9 @@ setReadOnly( Complex64Array.prototype, 'BYTES_PER_ELEMENT', Complex64Array.BYTES
 * @returns {Complex64Array} modified array
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 4 );
 *
@@ -2685,7 +8774,7 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = [
 *     new Complex64( 1.0, 1.0 ),
@@ -2711,23 +8800,21 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * // returns true
 */
 setReadOnly( Complex64Array.prototype, 'entries', function entries() {
-	var buffer;
 	var self;
 	var iter;
 	var len;
+	var buf;
 	var FLG;
 	var i;
-	var j;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
 	self = this;
-	buffer = this._buffer;
+	buf = this._buffer;
 	len = this._length;
 
-	// Initialize the iteration indices:
+	// Initialize an iteration index:
 	i = -1;
-	j = -2;
 
 	// Create an iterator protocol-compliant object:
 	iter = {};
@@ -2746,17 +8833,14 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 	* @returns {Object} iterator protocol-compliant object
 	*/
 	function next() {
-		var z;
 		i += 1;
 		if ( FLG || i >= len ) {
 			return {
 				'done': true
 			};
 		}
-		j += 2;
-		z = new Complex64( buffer[ j ], buffer[ j+1 ] );
 		return {
-			'value': [ i, z ],
+			'value': [ i, getComplex64( buf, i ) ],
 			'done': false
 		};
 	}
@@ -2793,6 +8877,465 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex64Array} modified array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.fill( new Complex64( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = realf( value );
+	im = imagf( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2.0
+*
+* var im = imagf( z );
+* // returns 2.0
+*/
+setReadOnly( Complex64Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex64Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*/
+setReadOnly( Complex64Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex64Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -2805,8 +9348,8 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex64Array( 10 );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex64>
@@ -2832,7 +9375,6 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -2842,9 +9384,366 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
+	return getComplex64( this._buffer, idx );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex64( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex64( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex64( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
 	buf = this._buffer;
-	idx *= 2;
-	return new Complex64( buf[ idx ], buf[ idx+1 ] );
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 10 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex64( 4.0, -4.0 ), -3 );
+* // returns -1
+*/
+setReadOnly( Complex64Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex64( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex64( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
 });
 
 /**
@@ -2863,6 +9762,279 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex64( 2.0*realf( v ), 2.0*imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2
+*
+* var im = imagf( z );
+* // returns -2
+*/
+setReadOnly( Complex64Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex64( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = realf( v );
+			outbuf[ (2*i)+1 ] = imagf( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -2886,8 +10058,7 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 *     src:                ---------------------
 *     ```
 *
-*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
-*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
 *
 * @name set
 * @memberof Complex64Array.prototype
@@ -2903,8 +10074,8 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 10 );
 *
@@ -3024,7 +10195,7 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 				// We need to copy source values...
 				tmp = new Float32Array( N );
 				for ( i = 0; i < N; i++ ) {
-					tmp[ i ] = sbuf[ i ];
+					tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
 				}
 				sbuf = tmp;
 			}
@@ -3057,12 +10228,998 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = realf( tmp[i] );
+		buf[ j+1 ] = imagf( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex64Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + (begin*BYTES_PER_ELEMENT);
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex64Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 1.0
+*
+* var im = imagf( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex64>
+*
+* re = realf( v );
+* // returns 2.0
+*
+* im = imagf( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex64( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex64Array} new typed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex64( 4.0, 4.0 ) );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 4.0
+*
+* var im = imagf( z );
+* // returns 4.0
+*/
+setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = realf( value );
+	buf[ (2*index)+1 ] = imagf( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":12,"./from_iterator.js":13,"./from_iterator_map.js":14,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float32":18,"@stdlib/assert/has-iterator-symbol-support":68,"@stdlib/assert/is-array":101,"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-arraybuffer":103,"@stdlib/assert/is-collection":114,"@stdlib/assert/is-complex-like":116,"@stdlib/assert/is-function":134,"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-object":168,"@stdlib/complex/float32":214,"@stdlib/complex/imagf":224,"@stdlib/complex/realf":228,"@stdlib/math/base/assert/is-even":243,"@stdlib/math/base/assert/is-integer":245,"@stdlib/strided/base/reinterpret-complex128":665,"@stdlib/strided/base/reinterpret-complex64":667,"@stdlib/string/format":679,"@stdlib/symbol/iterator":682,"@stdlib/utils/define-nonenumerable-read-only-accessor":692,"@stdlib/utils/define-nonenumerable-read-only-property":694}],17:[function(require,module,exports){
+},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":88,"@stdlib/assert/is-array":121,"@stdlib/assert/is-array-like-object":117,"@stdlib/assert/is-arraybuffer":123,"@stdlib/assert/is-collection":136,"@stdlib/assert/is-complex-like":138,"@stdlib/assert/is-function":156,"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-object":190,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/complex/float32/ctor":238,"@stdlib/complex/float32/imag":242,"@stdlib/complex/float32/real":244,"@stdlib/math/base/assert/is-even":267,"@stdlib/math/base/assert/is-integer":269,"@stdlib/math/base/special/floor":273,"@stdlib/strided/base/reinterpret-complex128":693,"@stdlib/strided/base/reinterpret-complex64":695,"@stdlib/string/format":707,"@stdlib/symbol/iterator":712,"@stdlib/utils/define-nonenumerable-read-only-accessor":722,"@stdlib/utils/define-nonenumerable-read-only-property":724}],32:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Mapping from array constructors to data types...
+var ctor2dtypes = {
+	'Float32Array': 'float32',
+	'Float64Array': 'float64',
+	'Array': 'generic',
+	'Int16Array': 'int16',
+	'Int32Array': 'int32',
+	'Int8Array': 'int8',
+	'Uint16Array': 'uint16',
+	'Uint32Array': 'uint32',
+	'Uint8Array': 'uint8',
+	'Uint8ClampedArray': 'uint8c',
+	'Complex64Array': 'complex64',
+	'Complex128Array': 'complex128',
+	'BooleanArray': 'bool'
+};
+
+
+// EXPORTS //
+
+module.exports = ctor2dtypes;
+
+},{}],33:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Float64Array = require( '@stdlib/array/float64' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int8Array = require( '@stdlib/array/int8' );
+var Complex64Array = require( '@stdlib/array/complex64' );
+var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
+
+
+// MAIN //
+
+// Note: order should match `dtypes` order
+var CTORS = [
+	Float64Array,
+	Float32Array,
+	Int32Array,
+	Uint32Array,
+	Int16Array,
+	Uint16Array,
+	Int8Array,
+	Uint8Array,
+	Uint8ClampedArray,
+	Complex64Array,
+	Complex128Array,
+	BooleanArray
+];
+
+
+// EXPORTS //
+
+module.exports = CTORS;
+
+},{"@stdlib/array/bool":20,"@stdlib/array/complex128":25,"@stdlib/array/complex64":30,"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],34:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Note: order should match `ctors` order
+var DTYPES = [
+	'float64',
+	'float32',
+	'int32',
+	'uint32',
+	'int16',
+	'uint16',
+	'int8',
+	'uint8',
+	'uint8c',
+	'complex64',
+	'complex128',
+	'bool'
+];
+
+
+// EXPORTS //
+
+module.exports = DTYPES;
+
+},{}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3083,16 +11240,110 @@ module.exports = Complex64Array;
 
 'use strict';
 
-// MAIN //
+/**
+* Return the data type of an array.
+*
+* @module @stdlib/array/dtype
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Float64Array( 10 );
+*
+* var dt = dtype( arr );
+* // returns 'float64'
+*
+* dt = dtype( {} );
+* // returns null
+*
+* dt = dtype( 'beep' );
+* // returns null
+*/
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = main;
 
-},{}],18:[function(require,module,exports){
+},{"./main.js":36}],36:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var isArray = require( '@stdlib/assert/is-array' );
+var constructorName = require( '@stdlib/utils/constructor-name' );
+var ctor2dtype = require( './ctor2dtype.js' );
+var CTORS = require( './ctors.js' );
+var DTYPES = require( './dtypes.js' );
+
+
+// VARIABLES //
+
+var NTYPES = DTYPES.length;
+
+
+// MAIN //
+
+/**
+* Returns the data type of an array.
+*
+* @param {*} value - input value
+* @returns {(string|null)} data type
+*
+* @example
+* var dt = dtype( [ 1, 2, 3 ] );
+* // returns 'generic'
+*
+* var dt = dtype( 'beep' );
+* // returns null
+*/
+function dtype( value ) {
+	var i;
+	if ( isArray( value ) ) {
+		return 'generic';
+	}
+	if ( isBuffer( value ) ) {
+		return null;
+	}
+	for ( i = 0; i < NTYPES; i++ ) {
+		if ( value instanceof CTORS[ i ] ) {
+			return DTYPES[ i ];
+		}
+	}
+	// If the above failed, fall back to a more robust (and significantly slower) means for resolving underlying data types:
+	return ctor2dtype[ constructorName( value ) ] || null;
+}
+
+
+// EXPORTS //
+
+module.exports = dtype;
+
+},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":121,"@stdlib/assert/is-buffer":134,"@stdlib/utils/constructor-name":716}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3128,7 +11379,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3146,7 +11397,37 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float32array.js":17,"./polyfill.js":19,"@stdlib/assert/has-float32array-support":51}],19:[function(require,module,exports){
+},{"./main.js":38,"./polyfill.js":39,"@stdlib/assert/has-float32array-support":71}],38:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3185,37 +11466,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],20:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],21:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3251,7 +11502,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3269,7 +11520,37 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float64array.js":20,"./polyfill.js":22,"@stdlib/assert/has-float64array-support":54}],22:[function(require,module,exports){
+},{"./main.js":41,"./polyfill.js":42,"@stdlib/assert/has-float64array-support":74}],41:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3308,7 +11589,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],23:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3344,7 +11625,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3362,7 +11643,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":24,"./polyfill.js":25,"@stdlib/assert/has-int16array-support":59}],24:[function(require,module,exports){
+},{"./main.js":44,"./polyfill.js":45,"@stdlib/assert/has-int16array-support":79}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3392,7 +11673,7 @@ var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],25:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3431,7 +11712,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],26:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3467,7 +11748,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3485,7 +11766,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":27,"./polyfill.js":28,"@stdlib/assert/has-int32array-support":62}],27:[function(require,module,exports){
+},{"./main.js":47,"./polyfill.js":48,"@stdlib/assert/has-int32array-support":82}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3515,7 +11796,7 @@ var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],28:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3554,7 +11835,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],29:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3590,7 +11871,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3608,7 +11889,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":30,"./polyfill.js":31,"@stdlib/assert/has-int8array-support":65}],30:[function(require,module,exports){
+},{"./main.js":50,"./polyfill.js":51,"@stdlib/assert/has-int8array-support":85}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3638,7 +11919,7 @@ var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : void 0; // eslint-d
 
 module.exports = ctor;
 
-},{}],31:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3677,11 +11958,11 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],32:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3711,6 +11992,7 @@ var Float32Array = require( '@stdlib/array/float32' );
 var Float64Array = require( '@stdlib/array/float64' );
 var Complex64Array = require( '@stdlib/array/complex64' );
 var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
 
 
 // MAIN //
@@ -3726,7 +12008,8 @@ var CTORS = [
 	[ Uint8Array, 'Uint8Array' ],
 	[ Uint8ClampedArray, 'Uint8ClampedArray' ],
 	[ Complex64Array, 'Complex64Array' ],
-	[ Complex128Array, 'Complex128Array' ]
+	[ Complex128Array, 'Complex128Array' ],
+	[ BooleanArray, 'BooleanArray' ]
 ];
 
 
@@ -3734,7 +12017,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/complex128":10,"@stdlib/array/complex64":15,"@stdlib/array/float32":18,"@stdlib/array/float64":21,"@stdlib/array/int16":23,"@stdlib/array/int32":26,"@stdlib/array/int8":29,"@stdlib/array/uint16":36,"@stdlib/array/uint32":39,"@stdlib/array/uint8":42,"@stdlib/array/uint8c":45}],33:[function(require,module,exports){
+},{"@stdlib/array/bool":20,"@stdlib/array/complex128":25,"@stdlib/array/complex64":30,"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3762,10 +12045,10 @@ module.exports = CTORS;
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
-* var toJSON = require( '@stdlib/array/to-json' );
+* var typedarray2json = require( '@stdlib/array/to-json' );
 *
 * var arr = new Float64Array( [ 5.0, 3.0 ] );
-* var json = toJSON( arr );
+* var json = typedarray2json( arr );
 * // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
 */
 
@@ -3778,11 +12061,11 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":34}],34:[function(require,module,exports){
+},{"./main.js":54}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3803,8 +12086,10 @@ module.exports = main;
 
 var isTypedArray = require( '@stdlib/assert/is-typed-array' );
 var isComplexTypedArray = require( '@stdlib/assert/is-complex-typed-array' );
+var isBooleanArray = require( '@stdlib/assert/is-booleanarray' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
+var reinterpretBoolean = require( '@stdlib/strided/base/reinterpret-boolean' );
 var format = require( '@stdlib/string/format' );
 var typeName = require( './type.js' );
 
@@ -3828,10 +12113,10 @@ var typeName = require( './type.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var arr = new Float64Array( [ 5.0, 3.0 ] );
-* var json = toJSON( arr );
+* var json = typedarray2json( arr );
 * // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
 */
-function toJSON( arr ) {
+function typedarray2json( arr ) {
 	var data;
 	var out;
 	var i;
@@ -3844,6 +12129,8 @@ function toJSON( arr ) {
 		} else { // arr.BYTES_PER_ELEMENT === 16
 			data = reinterpret128( arr, 0 );
 		}
+	} else if ( isBooleanArray( arr ) ) {
+		data = reinterpretBoolean( arr, 0 );
 	} else {
 		throw new TypeError( format( 'invalid argument. Must provide a typed array. Value: `%s`.', arr ) );
 	}
@@ -3860,9 +12147,9 @@ function toJSON( arr ) {
 
 // EXPORTS //
 
-module.exports = toJSON;
+module.exports = typedarray2json;
 
-},{"./type.js":35,"@stdlib/assert/is-complex-typed-array":119,"@stdlib/assert/is-typed-array":188,"@stdlib/strided/base/reinterpret-complex128":665,"@stdlib/strided/base/reinterpret-complex64":667,"@stdlib/string/format":679}],35:[function(require,module,exports){
+},{"./type.js":55,"@stdlib/assert/is-booleanarray":132,"@stdlib/assert/is-complex-typed-array":141,"@stdlib/assert/is-typed-array":210,"@stdlib/strided/base/reinterpret-boolean":691,"@stdlib/strided/base/reinterpret-complex128":693,"@stdlib/strided/base/reinterpret-complex64":695,"@stdlib/string/format":707}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3934,7 +12221,7 @@ function typeName( arr ) {
 
 module.exports = typeName;
 
-},{"./ctors.js":32,"@stdlib/assert/instance-of":91,"@stdlib/utils/constructor-name":686,"@stdlib/utils/get-prototype-of":709}],36:[function(require,module,exports){
+},{"./ctors.js":52,"@stdlib/assert/instance-of":111,"@stdlib/utils/constructor-name":716,"@stdlib/utils/get-prototype-of":738}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3970,7 +12257,7 @@ module.exports = typeName;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3988,7 +12275,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":37,"./uint16array.js":38,"@stdlib/assert/has-uint16array-support":79}],37:[function(require,module,exports){
+},{"./main.js":57,"./polyfill.js":58,"@stdlib/assert/has-uint16array-support":99}],57:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4027,37 +12344,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],38:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],39:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4093,7 +12380,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4111,7 +12398,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":40,"./uint32array.js":41,"@stdlib/assert/has-uint32array-support":82}],40:[function(require,module,exports){
+},{"./main.js":60,"./polyfill.js":61,"@stdlib/assert/has-uint32array-support":102}],60:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4150,37 +12467,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],41:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],42:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4216,7 +12503,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4234,7 +12521,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":43,"./uint8array.js":44,"@stdlib/assert/has-uint8array-support":85}],43:[function(require,module,exports){
+},{"./main.js":63,"./polyfill.js":64,"@stdlib/assert/has-uint8array-support":105}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4273,37 +12590,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],44:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],45:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4339,7 +12626,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4357,7 +12644,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":46,"./uint8clampedarray.js":47,"@stdlib/assert/has-uint8clampedarray-support":88}],46:[function(require,module,exports){
+},{"./main.js":66,"./polyfill.js":67,"@stdlib/assert/has-uint8clampedarray-support":108}],66:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4396,7 +12713,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],47:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4417,16 +12734,37 @@ module.exports = polyfill;
 
 'use strict';
 
-// MAIN //
+/**
+* Test if an array-like value contains another value.
+*
+* @module @stdlib/assert/contains
+*
+* @example
+* var contains = require( '@stdlib/assert/contains' );
+*
+* var bool = contains( 'Hello World', 'World' );
+* // returns true
+*
+* bool = contains( 'Hello World', 'world' );
+* // returns false
+*
+* bool = contains( [ 1, 2, 3, 4 ], 2 );
+* // returns true
+*
+* bool = contains( [ NaN, 2, 3, 4 ], NaN );
+* // returns true
+*/
 
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = main;
 
-},{}],48:[function(require,module,exports){
+},{"./main.js":69}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4547,58 +12885,7 @@ function contains( val, searchValue, position ) {
 
 module.exports = contains;
 
-},{"@stdlib/assert/is-collection":114,"@stdlib/assert/is-integer":142,"@stdlib/assert/is-nan":147,"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],49:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if an array-like value contains another value.
-*
-* @module @stdlib/assert/contains
-*
-* @example
-* var contains = require( '@stdlib/assert/contains' );
-*
-* var bool = contains( 'Hello World', 'World' );
-* // returns true
-*
-* bool = contains( 'Hello World', 'world' );
-* // returns false
-*
-* bool = contains( [ 1, 2, 3, 4 ], 2 );
-* // returns true
-*
-* bool = contains( [ NaN, 2, 3, 4 ], NaN );
-* // returns true
-*/
-
-// MODULES //
-
-var contains = require( './contains.js' );
-
-
-// EXPORTS //
-
-module.exports = contains;
-
-},{"./contains.js":48}],50:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":136,"@stdlib/assert/is-integer":164,"@stdlib/assert/is-nan":169,"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4628,7 +12915,7 @@ var main = ( typeof Float32Array === 'function' ) ? Float32Array : null; // esli
 
 module.exports = main;
 
-},{}],51:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4670,7 +12957,7 @@ var hasFloat32ArraySupport = require( './main.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./main.js":52}],52:[function(require,module,exports){
+},{"./main.js":72}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4737,7 +13024,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":50,"@stdlib/assert/is-float32array":130,"@stdlib/constants/float64/pinf":233}],53:[function(require,module,exports){
+},{"./float32array.js":70,"@stdlib/assert/is-float32array":152,"@stdlib/constants/float64/pinf":257}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4767,7 +13054,7 @@ var main = ( typeof Float64Array === 'function' ) ? Float64Array : null; // esli
 
 module.exports = main;
 
-},{}],54:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4809,7 +13096,7 @@ var hasFloat64ArraySupport = require( './main.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./main.js":55}],55:[function(require,module,exports){
+},{"./main.js":75}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4875,7 +13162,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":53,"@stdlib/assert/is-float64array":132}],56:[function(require,module,exports){
+},{"./float64array.js":73,"@stdlib/assert/is-float64array":154}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4910,7 +13197,7 @@ function foo() {
 
 module.exports = foo;
 
-},{}],57:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4945,14 +13232,14 @@ module.exports = foo;
 
 // MODULES //
 
-var hasFunctionNameSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasFunctionNameSupport;
+module.exports = main;
 
-},{"./main.js":58}],58:[function(require,module,exports){
+},{"./main.js":78}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4998,7 +13285,7 @@ function hasFunctionNameSupport() {
 
 module.exports = hasFunctionNameSupport;
 
-},{"./foo.js":56}],59:[function(require,module,exports){
+},{"./foo.js":76}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5040,7 +13327,7 @@ var hasInt16ArraySupport = require( './main.js' );
 
 module.exports = hasInt16ArraySupport;
 
-},{"./main.js":61}],60:[function(require,module,exports){
+},{"./main.js":81}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5070,7 +13357,7 @@ var main = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],61:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5138,7 +13425,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":60,"@stdlib/assert/is-int16array":136,"@stdlib/constants/int16/max":234,"@stdlib/constants/int16/min":235}],62:[function(require,module,exports){
+},{"./int16array.js":80,"@stdlib/assert/is-int16array":158,"@stdlib/constants/int16/max":258,"@stdlib/constants/int16/min":259}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5180,7 +13467,7 @@ var hasInt32ArraySupport = require( './main.js' );
 
 module.exports = hasInt32ArraySupport;
 
-},{"./main.js":64}],63:[function(require,module,exports){
+},{"./main.js":84}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5210,7 +13497,7 @@ var main = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],64:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5278,7 +13565,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":63,"@stdlib/assert/is-int32array":138,"@stdlib/constants/int32/max":236,"@stdlib/constants/int32/min":237}],65:[function(require,module,exports){
+},{"./int32array.js":83,"@stdlib/assert/is-int32array":160,"@stdlib/constants/int32/max":260,"@stdlib/constants/int32/min":261}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5320,7 +13607,7 @@ var hasInt8ArraySupport = require( './main.js' );
 
 module.exports = hasInt8ArraySupport;
 
-},{"./main.js":67}],66:[function(require,module,exports){
+},{"./main.js":87}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5350,7 +13637,7 @@ var main = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-dis
 
 module.exports = main;
 
-},{}],67:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5418,7 +13705,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":66,"@stdlib/assert/is-int8array":140,"@stdlib/constants/int8/max":238,"@stdlib/constants/int8/min":239}],68:[function(require,module,exports){
+},{"./int8array.js":86,"@stdlib/assert/is-int8array":162,"@stdlib/constants/int8/max":262,"@stdlib/constants/int8/min":263}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5453,14 +13740,14 @@ module.exports = hasInt8ArraySupport;
 
 // MODULES //
 
-var hasIteratorSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasIteratorSymbolSupport;
+module.exports = main;
 
-},{"./main.js":69}],69:[function(require,module,exports){
+},{"./main.js":89}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5484,6 +13771,7 @@ module.exports = hasIteratorSymbolSupport;
 // MODULES //
 
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var Symbol = require( '@stdlib/symbol/ctor' );
 
 
 // MAIN //
@@ -5511,7 +13799,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":73}],70:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93,"@stdlib/symbol/ctor":710}],90:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -5543,7 +13831,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":780}],71:[function(require,module,exports){
+},{"buffer":809}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5578,14 +13866,14 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
-},{"./main.js":72}],72:[function(require,module,exports){
+},{"./main.js":92}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5655,7 +13943,7 @@ function hasNodeBufferSupport() {
 
 module.exports = hasNodeBufferSupport;
 
-},{"./buffer.js":70,"@stdlib/assert/is-buffer":112}],73:[function(require,module,exports){
+},{"./buffer.js":90,"@stdlib/assert/is-buffer":134}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5697,14 +13985,14 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
-},{"./main.js":74}],74:[function(require,module,exports){
+},{"./main.js":94}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5770,7 +14058,7 @@ function hasOwnProp( value, property ) {
 
 module.exports = hasOwnProp;
 
-},{}],75:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5805,14 +14093,14 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
-},{"./main.js":76}],76:[function(require,module,exports){
+},{"./main.js":96}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5856,7 +14144,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],77:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5891,14 +14179,14 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
-},{"./main.js":78}],78:[function(require,module,exports){
+},{"./main.js":98}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5949,7 +14237,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/assert/has-symbol-support":75}],79:[function(require,module,exports){
+},{"@stdlib/assert/has-symbol-support":95}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5991,7 +14279,7 @@ var hasUint16ArraySupport = require( './main.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./main.js":80}],80:[function(require,module,exports){
+},{"./main.js":100}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6060,7 +14348,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":81,"@stdlib/assert/is-uint16array":191,"@stdlib/constants/uint16/max":240}],81:[function(require,module,exports){
+},{"./uint16array.js":101,"@stdlib/assert/is-uint16array":213,"@stdlib/constants/uint16/max":264}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6090,7 +14378,7 @@ var main = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint
 
 module.exports = main;
 
-},{}],82:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6132,7 +14420,7 @@ var hasUint32ArraySupport = require( './main.js' );
 
 module.exports = hasUint32ArraySupport;
 
-},{"./main.js":83}],83:[function(require,module,exports){
+},{"./main.js":103}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6201,7 +14489,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":84,"@stdlib/assert/is-uint32array":193,"@stdlib/constants/uint32/max":241}],84:[function(require,module,exports){
+},{"./uint32array.js":104,"@stdlib/assert/is-uint32array":215,"@stdlib/constants/uint32/max":265}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6231,7 +14519,7 @@ var main = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint
 
 module.exports = main;
 
-},{}],85:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6273,7 +14561,7 @@ var hasUint8ArraySupport = require( './main.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./main.js":86}],86:[function(require,module,exports){
+},{"./main.js":106}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6342,7 +14630,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":87,"@stdlib/assert/is-uint8array":195,"@stdlib/constants/uint8/max":242}],87:[function(require,module,exports){
+},{"./uint8array.js":107,"@stdlib/assert/is-uint8array":217,"@stdlib/constants/uint8/max":266}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6372,7 +14660,7 @@ var main = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],88:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6414,7 +14702,7 @@ var hasUint8ClampedArraySupport = require( './main.js' );
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./main.js":89}],89:[function(require,module,exports){
+},{"./main.js":109}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6483,7 +14771,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":90,"@stdlib/assert/is-uint8clampedarray":197}],90:[function(require,module,exports){
+},{"./uint8clampedarray.js":110,"@stdlib/assert/is-uint8clampedarray":219}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6513,7 +14801,7 @@ var main = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : nul
 
 module.exports = main;
 
-},{}],91:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6560,14 +14848,14 @@ module.exports = main;
 
 // MODULES //
 
-var instanceOf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = instanceOf;
+module.exports = main;
 
-},{"./main.js":92}],92:[function(require,module,exports){
+},{"./main.js":112}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6636,7 +14924,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":679}],93:[function(require,module,exports){
+},{"@stdlib/string/format":707}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6693,7 +14981,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./main.js":95}],94:[function(require,module,exports){
+},{"./main.js":115}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6754,7 +15042,7 @@ if ( hasArgumentsClass ) {
 
 module.exports = isArguments;
 
-},{"./detect.js":93,"./main.js":95,"./polyfill.js":96}],95:[function(require,module,exports){
+},{"./detect.js":113,"./main.js":115,"./polyfill.js":116}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6810,7 +15098,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":752}],96:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6880,7 +15168,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-array":101,"@stdlib/assert/is-enumerable-property":125,"@stdlib/constants/uint32/max":241,"@stdlib/math/base/assert/is-integer":245}],97:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-array":121,"@stdlib/assert/is-enumerable-property":147,"@stdlib/constants/uint32/max":265,"@stdlib/math/base/assert/is-integer":269}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6921,14 +15209,14 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLikeObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLikeObject;
+module.exports = main;
 
-},{"./main.js":98}],98:[function(require,module,exports){
+},{"./main.js":118}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6991,7 +15279,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":230,"@stdlib/math/base/assert/is-integer":245}],99:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":254,"@stdlib/math/base/assert/is-integer":269}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7032,14 +15320,14 @@ module.exports = isArrayLikeObject;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":120}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7099,7 +15387,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":230,"@stdlib/math/base/assert/is-integer":245}],101:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":254,"@stdlib/math/base/assert/is-integer":269}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7137,14 +15425,14 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
-},{"./main.js":102}],102:[function(require,module,exports){
+},{"./main.js":122}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7209,7 +15497,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":752}],103:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7248,14 +15536,14 @@ module.exports = f;
 
 // MODULES //
 
-var isArrayBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayBuffer;
+module.exports = main;
 
-},{"./main.js":104}],104:[function(require,module,exports){
+},{"./main.js":124}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7316,7 +15604,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":752}],105:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7352,6 +15640,7 @@ module.exports = isArrayBuffer;
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).primitives;
 *
 * var bool = isBooleanArray( [ true, false ] );
@@ -7361,6 +15650,7 @@ module.exports = isArrayBuffer;
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).objects;
 *
 * var bool = isBooleanArray( [ new Boolean( false ), new Boolean( true ) ] );
@@ -7377,18 +15667,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 var isBoolean = require( '@stdlib/assert/is-boolean' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isBoolean.isPrimitive );
+var isObjectArray = arrayfun( isBoolean.isObject );
+
+
 // MAIN //
 
 var isBooleanArray = arrayfun( isBoolean );
-setReadOnly( isBooleanArray, 'primitives', arrayfun( isBoolean.isPrimitive ) );
-setReadOnly( isBooleanArray, 'objects', arrayfun( isBoolean.isObject ) );
+setReadOnly( isBooleanArray, 'primitives', isPrimitiveArray );
+setReadOnly( isBooleanArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isBooleanArray;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/assert/tools/array-like-function":202,"@stdlib/utils/define-nonenumerable-read-only-property":694}],106:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/assert/tools/array-like-function":223,"@stdlib/utils/define-nonenumerable-read-only-property":724}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7415,6 +15711,7 @@ module.exports = isBooleanArray;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -7424,7 +15721,7 @@ module.exports = isBooleanArray;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -7434,7 +15731,7 @@ module.exports = isBooleanArray;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -7447,22 +15744,22 @@ module.exports = isBooleanArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":107,"./object.js":108,"./primitive.js":109,"@stdlib/utils/define-nonenumerable-read-only-property":694}],107:[function(require,module,exports){
+},{"./main.js":127,"./object.js":128,"./primitive.js":129,"@stdlib/utils/define-nonenumerable-read-only-property":724}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7506,10 +15803,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -7522,7 +15823,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":108,"./primitive.js":109}],108:[function(require,module,exports){
+},{"./object.js":128,"./primitive.js":129}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7547,6 +15848,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -7568,6 +15870,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -7589,7 +15893,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":111,"@stdlib/assert/has-tostringtag-support":77,"@stdlib/utils/native-class":752}],109:[function(require,module,exports){
+},{"./try2serialize.js":131,"@stdlib/assert/has-tostringtag-support":97,"@stdlib/boolean/ctor":229,"@stdlib/utils/native-class":781}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7625,6 +15929,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -7637,7 +15943,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],110:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7666,7 +15972,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],111:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7715,7 +16021,110 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":110}],112:[function(require,module,exports){
+},{"./tostring.js":130}],132:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a BooleanArray.
+*
+* @module @stdlib/assert/is-booleanarray
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+* var isBooleanArray = require( '@stdlib/assert/is-booleanarray' );
+*
+* var bool = isBooleanArray( new BooleanArray( 10 ) );
+* // returns true
+*
+* bool = isBooleanArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isBooleanArray = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = isBooleanArray;
+
+},{"./main.js":133}],133:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var BooleanArray = require( '@stdlib/array/bool' );
+var constructorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Complex64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is a BooleanArray
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var bool = isBooleanArray( new BooleanArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isBooleanArray( [] );
+* // returns false
+*/
+function isBooleanArray( value ) {
+	return (
+		value instanceof BooleanArray ||
+		constructorName( value ) === 'BooleanArray'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isBooleanArray;
+
+},{"@stdlib/array/bool":20,"@stdlib/utils/constructor-name":716}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7753,14 +16162,14 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
-},{"./main.js":113}],113:[function(require,module,exports){
+},{"./main.js":135}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7832,7 +16241,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":166}],114:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":188}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7870,14 +16279,14 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
-},{"./main.js":115}],115:[function(require,module,exports){
+},{"./main.js":137}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7936,7 +16345,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":231,"@stdlib/math/base/assert/is-integer":245}],116:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":255,"@stdlib/math/base/assert/is-integer":269}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7963,8 +16372,8 @@ module.exports = isCollection;
 * @module @stdlib/assert/is-complex-like
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 * var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 *
 * var x = new Complex128( 4.0, 2.0 );
@@ -7978,14 +16387,14 @@ module.exports = isCollection;
 
 // MODULES //
 
-var isComplexLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isComplexLike;
+module.exports = main;
 
-},{"./main.js":117}],117:[function(require,module,exports){
+},{"./main.js":139}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8008,8 +16417,8 @@ module.exports = isComplexLike;
 
 // MODULES //
 
-var Complex128 = require( '@stdlib/complex/float64' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 
 
 // MAIN //
@@ -8021,8 +16430,8 @@ var Complex64 = require( '@stdlib/complex/float32' );
 * @returns {boolean} boolean indicating if a value is a complex number-like object.
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var x = new Complex128( 4.0, 2.0 );
 * var bool = isComplexLike( x );
@@ -8049,7 +16458,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32":214,"@stdlib/complex/float64":218}],118:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":238,"@stdlib/complex/float64/ctor":246}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8088,7 +16497,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/complex128":10,"@stdlib/array/complex64":15}],119:[function(require,module,exports){
+},{"@stdlib/array/complex128":25,"@stdlib/array/complex64":30}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8124,14 +16533,14 @@ module.exports = CTORS;
 
 // MODULES //
 
-var isComplexTypedArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isComplexTypedArray;
+module.exports = main;
 
-},{"./main.js":120}],120:[function(require,module,exports){
+},{"./main.js":142}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8206,13 +16615,13 @@ function isComplexTypedArray( value ) {
 
 module.exports = isComplexTypedArray;
 
-},{"./ctors.js":118,"./names.json":121,"@stdlib/utils/constructor-name":686,"@stdlib/utils/get-prototype-of":709}],121:[function(require,module,exports){
+},{"./ctors.js":140,"./names.json":143,"@stdlib/utils/constructor-name":716,"@stdlib/utils/get-prototype-of":738}],143:[function(require,module,exports){
 module.exports=[
 	"Complex64Array",
 	"Complex128Array"
 ]
 
-},{}],122:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8253,14 +16662,14 @@ module.exports=[
 
 // MODULES //
 
-var isEmptyArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEmptyArray;
+module.exports = main;
 
-},{"./main.js":123}],123:[function(require,module,exports){
+},{"./main.js":145}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8318,7 +16727,7 @@ function isEmptyArray( value ) {
 
 module.exports = isEmptyArray;
 
-},{"@stdlib/assert/is-array":101}],124:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8371,7 +16780,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./native.js":127}],125:[function(require,module,exports){
+},{"./native.js":149}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8413,14 +16822,14 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
-},{"./main.js":126}],126:[function(require,module,exports){
+},{"./main.js":148}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8502,7 +16911,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":124,"./native.js":127,"@stdlib/assert/is-integer":142,"@stdlib/assert/is-nan":147,"@stdlib/assert/is-string":181}],127:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":146,"./native.js":149,"@stdlib/assert/is-integer":164,"@stdlib/assert/is-nan":169,"@stdlib/assert/is-string":203}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8558,7 +16967,7 @@ var isEnumerableProperty = Object.prototype.propertyIsEnumerable;
 
 module.exports = isEnumerableProperty;
 
-},{}],128:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8596,14 +17005,14 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
-},{"./main.js":129}],129:[function(require,module,exports){
+},{"./main.js":151}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8669,7 +17078,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":709,"@stdlib/utils/native-class":752}],130:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":738,"@stdlib/utils/native-class":781}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8714,7 +17123,7 @@ var isFloat32Array = require( './main.js' );
 
 module.exports = isFloat32Array;
 
-},{"./main.js":131}],131:[function(require,module,exports){
+},{"./main.js":153}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8773,7 +17182,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":752}],132:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8818,7 +17227,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":133}],133:[function(require,module,exports){
+},{"./main.js":155}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8877,7 +17286,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":752}],134:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8916,14 +17325,14 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
-},{"./main.js":135}],135:[function(require,module,exports){
+},{"./main.js":157}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8975,7 +17384,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":773}],136:[function(require,module,exports){
+},{"@stdlib/utils/type-of":802}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9020,7 +17429,7 @@ var isInt16Array = require( './main.js' );
 
 module.exports = isInt16Array;
 
-},{"./main.js":137}],137:[function(require,module,exports){
+},{"./main.js":159}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9079,7 +17488,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":752}],138:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9124,7 +17533,7 @@ var isInt32Array = require( './main.js' );
 
 module.exports = isInt32Array;
 
-},{"./main.js":139}],139:[function(require,module,exports){
+},{"./main.js":161}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9183,7 +17592,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":752}],140:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9228,7 +17637,7 @@ var isInt8Array = require( './main.js' );
 
 module.exports = isInt8Array;
 
-},{"./main.js":141}],141:[function(require,module,exports){
+},{"./main.js":163}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9287,7 +17696,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":752}],142:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9352,22 +17761,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":144,"./object.js":145,"./primitive.js":146,"@stdlib/utils/define-nonenumerable-read-only-property":694}],143:[function(require,module,exports){
+},{"./main.js":166,"./object.js":167,"./primitive.js":168,"@stdlib/utils/define-nonenumerable-read-only-property":724}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9417,7 +17826,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":232,"@stdlib/constants/float64/pinf":233,"@stdlib/math/base/assert/is-integer":245}],144:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":256,"@stdlib/constants/float64/pinf":257,"@stdlib/math/base/assert/is-integer":269}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9477,7 +17886,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":145,"./primitive.js":146}],145:[function(require,module,exports){
+},{"./object.js":167,"./primitive.js":168}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9532,7 +17941,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":143,"@stdlib/assert/is-number":160}],146:[function(require,module,exports){
+},{"./integer.js":165,"@stdlib/assert/is-number":182}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9587,7 +17996,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":143,"@stdlib/assert/is-number":160}],147:[function(require,module,exports){
+},{"./integer.js":165,"@stdlib/assert/is-number":182}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9653,22 +18062,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":148,"./object.js":149,"./primitive.js":150,"@stdlib/utils/define-nonenumerable-read-only-property":694}],148:[function(require,module,exports){
+},{"./main.js":170,"./object.js":171,"./primitive.js":172,"@stdlib/utils/define-nonenumerable-read-only-property":724}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9728,7 +18137,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":149,"./primitive.js":150}],149:[function(require,module,exports){
+},{"./object.js":171,"./primitive.js":172}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9783,7 +18192,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/math/base/assert/is-nan":247}],150:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/math/base/assert/is-nan":271}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9842,7 +18251,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/math/base/assert/is-nan":247}],151:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/math/base/assert/is-nan":271}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9877,7 +18286,7 @@ var f = constantFcn( false );
 
 module.exports = f;
 
-},{"@stdlib/utils/constant-function":685}],152:[function(require,module,exports){
+},{"@stdlib/utils/constant-function":714}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9938,18 +18347,24 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isNonNegativeInteger.isPrimitive );
+var isObjectArray = arrayfun( isNonNegativeInteger.isObject );
+
+
 // MAIN //
 
 var isNonNegativeIntegerArray = arrayfun( isNonNegativeInteger );
-setReadOnly( isNonNegativeIntegerArray, 'primitives', arrayfun( isNonNegativeInteger.isPrimitive ) );
-setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeInteger.isObject ) );
+setReadOnly( isNonNegativeIntegerArray, 'primitives', isPrimitiveArray );
+setReadOnly( isNonNegativeIntegerArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/tools/array-like-function":202,"@stdlib/utils/define-nonenumerable-read-only-property":694}],153:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/tools/array-like-function":223,"@stdlib/utils/define-nonenumerable-read-only-property":724}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10015,22 +18430,22 @@ module.exports = isNonNegativeIntegerArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":154,"./object.js":155,"./primitive.js":156,"@stdlib/utils/define-nonenumerable-read-only-property":694}],154:[function(require,module,exports){
+},{"./main.js":176,"./object.js":177,"./primitive.js":178,"@stdlib/utils/define-nonenumerable-read-only-property":724}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10094,7 +18509,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":155,"./primitive.js":156}],155:[function(require,module,exports){
+},{"./object.js":177,"./primitive.js":178}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10148,7 +18563,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":142}],156:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":164}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10202,7 +18617,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":142}],157:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":164}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10239,14 +18654,14 @@ module.exports = isNonNegativeInteger;
 
 // MODULES //
 
-var isNull = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNull;
+module.exports = main;
 
-},{"./main.js":158}],158:[function(require,module,exports){
+},{"./main.js":180}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10289,7 +18704,7 @@ function isNull( value ) {
 
 module.exports = isNull;
 
-},{}],159:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10350,18 +18765,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 var isNumber = require( '@stdlib/assert/is-number' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isNumber.isPrimitive );
+var isObjectArray = arrayfun( isNumber.isObject );
+
+
 // MAIN //
 
 var isNumberArray = arrayfun( isNumber );
-setReadOnly( isNumberArray, 'primitives', arrayfun( isNumber.isPrimitive ) );
-setReadOnly( isNumberArray, 'objects', arrayfun( isNumber.isObject ) );
+setReadOnly( isNumberArray, 'primitives', isPrimitiveArray );
+setReadOnly( isNumberArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isNumberArray;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/assert/tools/array-like-function":202,"@stdlib/utils/define-nonenumerable-read-only-property":694}],160:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/assert/tools/array-like-function":223,"@stdlib/utils/define-nonenumerable-read-only-property":724}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10427,22 +18848,22 @@ module.exports = isNumberArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":161,"./object.js":162,"./primitive.js":163,"@stdlib/utils/define-nonenumerable-read-only-property":694}],161:[function(require,module,exports){
+},{"./main.js":183,"./object.js":184,"./primitive.js":185,"@stdlib/utils/define-nonenumerable-read-only-property":724}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10502,7 +18923,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":162,"./primitive.js":163}],162:[function(require,module,exports){
+},{"./object.js":184,"./primitive.js":185}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10570,7 +18991,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":165,"@stdlib/assert/has-tostringtag-support":77,"@stdlib/number/ctor":251,"@stdlib/utils/native-class":752}],163:[function(require,module,exports){
+},{"./try2serialize.js":187,"@stdlib/assert/has-tostringtag-support":97,"@stdlib/number/ctor":275,"@stdlib/utils/native-class":781}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10618,7 +19039,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],164:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10654,9 +19075,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":251}],165:[function(require,module,exports){
-arguments[4][111][0].apply(exports,arguments)
-},{"./tostring.js":164,"dup":111}],166:[function(require,module,exports){
+},{"@stdlib/number/ctor":275}],187:[function(require,module,exports){
+arguments[4][131][0].apply(exports,arguments)
+},{"./tostring.js":186,"dup":131}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10708,19 +19129,24 @@ arguments[4][111][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":167,"@stdlib/assert/tools/array-function":200,"@stdlib/utils/define-nonenumerable-read-only-property":694}],167:[function(require,module,exports){
+},{"./main.js":189,"@stdlib/assert/tools/array-function":221,"@stdlib/utils/define-nonenumerable-read-only-property":724}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10771,7 +19197,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],168:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10809,14 +19235,14 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
-},{"./main.js":169}],169:[function(require,module,exports){
+},{"./main.js":191}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10871,7 +19297,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":101}],170:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10909,14 +19335,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
-},{"./main.js":171}],171:[function(require,module,exports){
+},{"./main.js":193}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11030,7 +19456,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-function":134,"@stdlib/assert/is-object":168,"@stdlib/utils/get-prototype-of":709,"@stdlib/utils/native-class":752}],172:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-function":156,"@stdlib/assert/is-object":190,"@stdlib/utils/get-prototype-of":738,"@stdlib/utils/native-class":781}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11096,22 +19522,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveInteger;
+module.exports = main;
 
-},{"./main.js":173,"./object.js":174,"./primitive.js":175,"@stdlib/utils/define-nonenumerable-read-only-property":694}],173:[function(require,module,exports){
+},{"./main.js":195,"./object.js":196,"./primitive.js":197,"@stdlib/utils/define-nonenumerable-read-only-property":724}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11179,7 +19605,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":174,"./primitive.js":175}],174:[function(require,module,exports){
+},{"./object.js":196,"./primitive.js":197}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11233,7 +19659,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":142}],175:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":164}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11287,7 +19713,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":142}],176:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":164}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11353,22 +19779,22 @@ module.exports = isPositiveInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveNumber;
+module.exports = main;
 
-},{"./main.js":177,"./object.js":178,"./primitive.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":694}],177:[function(require,module,exports){
+},{"./main.js":199,"./object.js":200,"./primitive.js":201,"@stdlib/utils/define-nonenumerable-read-only-property":724}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11432,7 +19858,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"./object.js":178,"./primitive.js":179}],178:[function(require,module,exports){
+},{"./object.js":200,"./primitive.js":201}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11486,7 +19912,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":160}],179:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11540,7 +19966,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":160}],180:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11601,18 +20027,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isString = require( '@stdlib/assert/is-string' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
 // MAIN //
 
 var isStringArray = arrayfun( isString );
-setReadOnly( isStringArray, 'primitives', arrayfun( isString.isPrimitive ) );
-setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/assert/tools/array-function":200,"@stdlib/utils/define-nonenumerable-read-only-property":694}],181:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/assert/tools/array-function":221,"@stdlib/utils/define-nonenumerable-read-only-property":724}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11672,22 +20104,22 @@ module.exports = isStringArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":182,"./object.js":183,"./primitive.js":184,"@stdlib/utils/define-nonenumerable-read-only-property":694}],182:[function(require,module,exports){
+},{"./main.js":204,"./object.js":205,"./primitive.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":724}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11739,7 +20171,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":183,"./primitive.js":184}],183:[function(require,module,exports){
+},{"./object.js":205,"./primitive.js":206}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11806,7 +20238,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":185,"@stdlib/assert/has-tostringtag-support":77,"@stdlib/utils/native-class":752}],184:[function(require,module,exports){
+},{"./try2valueof.js":207,"@stdlib/assert/has-tostringtag-support":97,"@stdlib/utils/native-class":781}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11850,7 +20282,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],185:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11899,7 +20331,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":186}],186:[function(require,module,exports){
+},{"./valueof.js":208}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11928,7 +20360,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],187:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11981,7 +20413,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/float32":18,"@stdlib/array/float64":21,"@stdlib/array/int16":23,"@stdlib/array/int32":26,"@stdlib/array/int8":29,"@stdlib/array/uint16":36,"@stdlib/array/uint32":39,"@stdlib/array/uint8":42,"@stdlib/array/uint8c":45}],188:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12017,14 +20449,14 @@ module.exports = CTORS;
 
 // MODULES //
 
-var isTypedArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isTypedArray;
+module.exports = main;
 
-},{"./main.js":189}],189:[function(require,module,exports){
+},{"./main.js":211}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12125,7 +20557,7 @@ function isTypedArray( value ) {
 
 module.exports = isTypedArray;
 
-},{"./ctors.js":187,"./names.json":190,"@stdlib/array/float64":21,"@stdlib/assert/has-float64array-support":54,"@stdlib/utils/constructor-name":686,"@stdlib/utils/function-name":706,"@stdlib/utils/get-prototype-of":709}],190:[function(require,module,exports){
+},{"./ctors.js":209,"./names.json":212,"@stdlib/array/float64":40,"@stdlib/assert/has-float64array-support":74,"@stdlib/utils/constructor-name":716,"@stdlib/utils/function-name":735,"@stdlib/utils/get-prototype-of":738}],212:[function(require,module,exports){
 module.exports=[
 	"Int8Array",
 	"Uint8Array",
@@ -12138,7 +20570,7 @@ module.exports=[
 	"Float64Array"
 ]
 
-},{}],191:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12183,7 +20615,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":192}],192:[function(require,module,exports){
+},{"./main.js":214}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12242,7 +20674,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":752}],193:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12287,7 +20719,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":194}],194:[function(require,module,exports){
+},{"./main.js":216}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12346,7 +20778,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":752}],195:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12391,7 +20823,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":196}],196:[function(require,module,exports){
+},{"./main.js":218}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12450,7 +20882,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":752}],197:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12495,7 +20927,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":198}],198:[function(require,module,exports){
+},{"./main.js":220}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12554,7 +20986,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":752}],199:[function(require,module,exports){
+},{"@stdlib/utils/native-class":781}],221:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":222}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12641,7 +21124,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":101,"@stdlib/string/format":679}],200:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121,"@stdlib/string/format":707}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12663,18 +21146,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -12685,14 +21168,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":199}],201:[function(require,module,exports){
+},{"./main.js":224}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12779,58 +21262,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679}],202:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a function which tests if every element in an array-like object passes a test condition.
-*
-* @module @stdlib/assert/tools/array-like-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arraylikefcn = require( './arraylikefcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arraylikefcn;
-
-},{"./arraylikefcn.js":201}],203:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12860,19 +21292,19 @@ module.exports = arraylikefcn;
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Object} x - input array object
 * @param {Collection} x.data - input array data
-* @param {Function} x.get - getter
+* @param {Array<Function>} x.accessors - array element accessors
 * @param {integer} strideX - `x` stride length
 * @param {NonNegativeInteger} offsetX - starting `x` index
 * @param {Object} y - output array object
 * @param {Collection} y.data - output array data
-* @param {Function} y.set - setter
+* @param {Array<Function>} y.accessors - array element accessors
 * @param {integer} strideY - `y` stride length
 * @param {NonNegativeInteger} offsetY - starting `y` index
 * @returns {Object} output array object
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 * var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 *
 * function setter( data, idx, value ) {
@@ -12885,14 +21317,12 @@ module.exports = arraylikefcn;
 *
 * var x = {
 *     'data': new Complex64Array( [ 1.0, 2.0, 3.0, 4.0 ] ),
-*     'setter': setter,
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 *
 * var y = {
 *     'data': new Complex64Array( [ 5.0, 6.0, 7.0, 8.0 ] ),
-*     'setter': setter,
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 *
 * gcopy( x.data.length, x, 1, 0, y, 1, 0 );
@@ -12914,8 +21344,8 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 	ybuf = y.data;
 
 	// Cache a reference to the element accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	ix = offsetX;
 	iy = offsetY;
@@ -12932,7 +21362,7 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcopy;
 
-},{}],204:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12993,7 +21423,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":205,"./ndarray.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":694}],205:[function(require,module,exports){
+},{"./main.js":227,"./ndarray.js":228,"@stdlib/utils/define-nonenumerable-read-only-property":724}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13030,12 +21460,12 @@ var M = 8;
 /**
 * Copies values from `x` into `y`.
 *
-* @param {PositiveInteger} N - number of values to copy
+* @param {PositiveInteger} N - number of indexed elements
 * @param {Collection} x - input array
 * @param {integer} strideX - `x` stride length
-* @param {Collection} y - destination array
+* @param {Collection} y - output array
 * @param {integer} strideY - `y` stride length
-* @returns {Collection} `y`
+* @returns {Collection} output array
 *
 * @example
 * var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
@@ -13057,7 +21487,7 @@ function gcopy( N, x, strideX, y, strideY ) {
 	}
 	ox = arraylike2object( x );
 	oy = arraylike2object( y );
-	if ( ox.accessors || oy.accessors ) {
+	if ( ox.accessorProtocol || oy.accessorProtocol ) {
 		if ( strideX < 0 ) {
 			ix = (1-N) * strideX;
 		} else {
@@ -13119,7 +21549,7 @@ function gcopy( N, x, strideX, y, strideY ) {
 
 module.exports = gcopy;
 
-},{"./accessors.js":203,"@stdlib/array/base/arraylike2object":3}],206:[function(require,module,exports){
+},{"./accessors.js":225,"@stdlib/array/base/arraylike2object":5}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13156,14 +21586,14 @@ var M = 8;
 /**
 * Copies values from `x` into `y`.
 *
-* @param {PositiveInteger} N - number of values to copy
+* @param {PositiveInteger} N - number of indexed elements
 * @param {Collection} x - input array
 * @param {integer} strideX - `x` stride length
 * @param {NonNegativeInteger} offsetX - starting `x` index
-* @param {Collection} y - destination array
+* @param {Collection} y - output array
 * @param {integer} strideY - `y` stride length
 * @param {NonNegativeInteger} offsetY - starting `y` index
-* @returns {Collection} `y`
+* @returns {Collection} output array
 *
 * @example
 * var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
@@ -13185,7 +21615,7 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 	}
 	ox = arraylike2object( x );
 	oy = arraylike2object( y );
-	if ( ox.accessors || oy.accessors ) {
+	if ( ox.accessorProtocol || oy.accessorProtocol ) {
 		accessors( N, ox, strideX, offsetX, oy, strideY, offsetY );
 		return oy.data;
 	}
@@ -13234,11 +21664,65 @@ function gcopy( N, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcopy;
 
-},{"./accessors.js":203,"@stdlib/array/base/arraylike2object":3}],207:[function(require,module,exports){
+},{"./accessors.js":225,"@stdlib/array/base/arraylike2object":5}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":230}],230:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13257,14 +21741,37 @@ module.exports = gcopy;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":780}],208:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13300,7 +21807,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -13318,7 +21825,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":207,"./polyfill.js":209,"@stdlib/assert/has-node-buffer-support":71}],209:[function(require,module,exports){
+},{"./main.js":232,"./polyfill.js":233,"@stdlib/assert/has-node-buffer-support":91}],232:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":809}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13357,7 +21894,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],210:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13393,7 +21930,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/buffer/ctor":208}],211:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/buffer/ctor":231}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13451,7 +21988,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":210,"./main.js":212,"./polyfill.js":213}],212:[function(require,module,exports){
+},{"./has_from.js":234,"./main.js":236,"./polyfill.js":237}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13509,7 +22046,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":112,"@stdlib/buffer/ctor":208,"@stdlib/string/format":679}],213:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":134,"@stdlib/buffer/ctor":231,"@stdlib/string/format":707}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13567,7 +22104,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":112,"@stdlib/buffer/ctor":208,"@stdlib/string/format":679}],214:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":134,"@stdlib/buffer/ctor":231,"@stdlib/string/format":707}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13591,10 +22128,10 @@ module.exports = fromBuffer;
 /**
 * 64-bit complex number constructor.
 *
-* @module @stdlib/complex/float32
+* @module @stdlib/complex/float32/ctor
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var z = new Complex64( 5.0, 3.0 );
 * // returns <Complex64>
@@ -13609,7 +22146,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":215}],215:[function(require,module,exports){
+},{"./main.js":239}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13752,7 +22289,6 @@ setReadOnly( Complex64.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex64` instance.
 *
-*
 * @name toJSON
 * @memberof Complex64.prototype
 * @type {Function}
@@ -13771,7 +22307,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":216,"./tostring.js":217,"@stdlib/assert/is-number":160,"@stdlib/number/float64/base/to-float32":253,"@stdlib/string/format":679,"@stdlib/utils/define-nonenumerable-read-only-property":694,"@stdlib/utils/define-property":701}],216:[function(require,module,exports){
+},{"./tojson.js":240,"./tostring.js":241,"@stdlib/assert/is-number":182,"@stdlib/number/float64/base/to-float32":277,"@stdlib/string/format":707,"@stdlib/utils/define-nonenumerable-read-only-property":724,"@stdlib/utils/define-property":731}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13812,7 +22348,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],217:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13856,7 +22392,185 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],218:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the imaginary component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/imag
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var imag = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":243}],243:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the imaginary component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} imaginary component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+function imag( z ) {
+	return z.im;
+}
+
+
+// EXPORTS //
+
+module.exports = imag;
+
+},{}],244:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/real
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var real = require( '@stdlib/complex/float32/real' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":245}],245:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the real component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} real component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+function real( z ) {
+	return z.re;
+}
+
+
+// EXPORTS //
+
+module.exports = real;
+
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13880,10 +22594,10 @@ module.exports = toString;
 /**
 * 128-bit complex number constructor.
 *
-* @module @stdlib/complex/float64
+* @module @stdlib/complex/float64/ctor
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 * // returns <Complex128>
@@ -13898,7 +22612,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":219}],219:[function(require,module,exports){
+},{"./main.js":247}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14040,7 +22754,6 @@ setReadOnly( Complex128.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex128` instance.
 *
-*
 * @name toJSON
 * @memberof Complex128.prototype
 * @type {Function}
@@ -14059,7 +22772,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":220,"./tostring.js":221,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"@stdlib/utils/define-nonenumerable-read-only-property":694,"@stdlib/utils/define-property":701}],220:[function(require,module,exports){
+},{"./tojson.js":248,"./tostring.js":249,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"@stdlib/utils/define-nonenumerable-read-only-property":724,"@stdlib/utils/define-property":731}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14100,9 +22813,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],221:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],222:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
+arguments[4][241][0].apply(exports,arguments)
+},{"dup":241}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14126,11 +22839,11 @@ arguments[4][217][0].apply(exports,arguments)
 /**
 * Return the imaginary component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/imag
+* @module @stdlib/complex/float64/imag
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -14147,7 +22860,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":223}],223:[function(require,module,exports){
+},{"./main.js":251}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14175,7 +22888,7 @@ module.exports = main;
 * @returns {number} imaginary component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -14191,96 +22904,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],224:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the imaginary component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/imagf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var imagf = require( '@stdlib/complex/imagf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":225}],225:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the imaginary component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} imaginary component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-function imagf( z ) {
-	return z.im;
-}
-
-
-// EXPORTS //
-
-module.exports = imagf;
-
-},{}],226:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14304,11 +22928,11 @@ module.exports = imagf;
 /**
 * Return the real component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/real
+* @module @stdlib/complex/float64/real
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -14325,7 +22949,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":227}],227:[function(require,module,exports){
+},{"./main.js":253}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14353,7 +22977,7 @@ module.exports = main;
 * @returns {number} real component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -14369,96 +22993,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],228:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/realf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":229}],229:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the real component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} real component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-function realf( z ) {
-	return z.re;
-}
-
-
-// EXPORTS //
-
-module.exports = realf;
-
-},{}],230:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14509,7 +23044,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],231:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14560,7 +23095,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],232:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14622,7 +23157,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":251}],233:[function(require,module,exports){
+},{"@stdlib/number/ctor":275}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14680,7 +23215,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],234:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14743,7 +23278,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],235:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14806,7 +23341,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],236:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14869,7 +23404,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],237:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14932,7 +23467,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],238:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14995,7 +23530,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],239:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15058,7 +23593,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],240:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15121,7 +23656,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],241:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15184,7 +23719,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],242:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15247,7 +23782,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],243:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15291,14 +23826,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":244}],244:[function(require,module,exports){
+},{"./main.js":268}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15357,7 +23892,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":245}],245:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":269}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15395,14 +23930,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":246}],246:[function(require,module,exports){
+},{"./main.js":270}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15453,7 +23988,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":249}],247:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":273}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15491,14 +24026,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":248}],248:[function(require,module,exports){
+},{"./main.js":272}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15544,7 +24079,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],249:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15588,14 +24123,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":250}],250:[function(require,module,exports){
+},{"./main.js":274}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15647,7 +24182,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],251:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15682,14 +24217,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":252}],252:[function(require,module,exports){
+},{"./main.js":276}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15714,7 +24249,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],253:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15749,13 +24284,16 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var float64ToFloat32 = require( './main.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-if ( typeof float64ToFloat32 !== 'function' ) {
+var float64ToFloat32;
+if ( typeof builtin === 'function' ) {
+	float64ToFloat32 = builtin;
+} else {
 	float64ToFloat32 = polyfill;
 }
 
@@ -15764,7 +24302,7 @@ if ( typeof float64ToFloat32 !== 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":254,"./polyfill.js":255}],254:[function(require,module,exports){
+},{"./main.js":278,"./polyfill.js":279}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15794,7 +24332,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],255:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15847,7 +24385,123 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":18}],256:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],280:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":281}],281:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15881,14 +24535,14 @@ module.exports = float64ToFloat32;
 
 // MODULES //
 
-var Annotations = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Annotations;
+module.exports = main;
 
-},{"./main.js":257}],257:[function(require,module,exports){
+},{"./main.js":283}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16001,7 +24655,7 @@ setReadOnly( Annotations.prototype, 'render', render );
 
 module.exports = Annotations;
 
-},{"./render.js":258,"@stdlib/assert/instance-of":91,"@stdlib/utils/define-nonenumerable-read-only-property":694,"@stdlib/utils/inherit":724,"debug":812,"events":781}],258:[function(require,module,exports){
+},{"./render.js":284,"@stdlib/assert/instance-of":111,"@stdlib/utils/define-nonenumerable-read-only-property":724,"@stdlib/utils/inherit":753,"debug":841,"events":810}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16025,7 +24679,7 @@ module.exports = Annotations;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -16072,7 +24726,707 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],259:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],285:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* For manually constructing SVG paths, see [MDN]{@link https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d}
+*/
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:domain' );
+var ELEMENT = 'path';
+
+
+// MAIN //
+
+/**
+* Renders an axis domain.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
+	var orient;
+	var stroke;
+	var range0;
+	var range1;
+	var offset;
+	var range;
+	var props;
+	var d;
+
+	orient = ctx._orientation;
+	debug( 'Axis orientation: %s.', orient );
+
+	range = ctx._scale.range();
+	debug( 'Axis range: %s.', JSON.stringify( range ) );
+
+	range0 = range[ 0 ] + 0.5;
+	range1 = range[ range.length-1 ] + 0.5;
+
+	offset = ctx.tickDir * ctx._outerTickSize;
+	d = '';
+	if ( orient === 'left' || orient === 'right' ) {
+		d += 'M' + offset + ',' + range0;
+		d += 'H0.5';
+		d += 'V' + range1;
+		d += 'H' + offset;
+
+		stroke = 'none';
+	} else {
+		d += 'M' + range0 + ',' + offset;
+		d += 'V0.5';
+		d += 'H' + range1;
+		d += 'V' + offset;
+
+		stroke = '#aaa';
+	}
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'axis.domain',
+		'className': 'domain',
+		'attributes': {
+			'fill': 'none',
+			'stroke': stroke,
+			'stroke-width': 1,
+			'd': d
+		}
+	};
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, [] );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"debug":841,"virtual-dom/h.js":966}],286:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var textAnchor = require( './../utils/text_anchor.js' );
+var domain = require( './domain.js' );
+var ticks = require( './ticks.js' );
+var label = require( './label.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:main' );
+var ELEMENT = 'g';
+
+
+// MAIN //
+
+/**
+* Renders an axis.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	var children;
+	var props;
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'axis',
+		'className': 'axis',
+		'attributes': {
+			'fill': 'none',
+			'font-size': 10, // TODO: option
+			'font-family': 'sans-serif', // TODO: option
+			'text-anchor': textAnchor( ctx._orientation ) // eslint-disable-line no-underscore-dangle
+		}
+	};
+
+	debug( 'Rendering tick marks...' );
+	children = ticks( ctx );
+
+	debug( 'Rendering domain line...' );
+	children.unshift( domain( ctx ) );
+
+	debug( 'Rendering label...' );
+	children.push( label( ctx ) );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, children );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./../utils/text_anchor.js":328,"./domain.js":285,"./label.js":287,"./ticks.js":291,"debug":841,"virtual-dom/h.js":966}],287:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var labelTransform = require( './../utils/label_transform.js' );
+var labelXPos = require( './../utils/label_x_pos.js' );
+var labelYPos = require( './../utils/label_y_pos.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:label' );
+var ELEMENT = 'text';
+
+
+// MAIN //
+
+/**
+* Renders an axis label.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
+	var orient;
+	var props;
+
+	orient = ctx._orientation;
+	debug( 'Axis orientation: %s.', orient );
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'axis.label',
+		'className': 'label noselect',
+		'attributes': {
+			'fill': '#000',
+			'stroke': 'none',
+			'text-anchor': 'middle',
+			'transform': labelTransform( orient ),
+			'x': labelXPos( orient, ctx._scale.range() ),
+			'y': labelYPos( orient )
+		}
+	};
+
+	debug( 'Axis label: %s.', ctx._label );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, ctx._label );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./../utils/label_transform.js":325,"./../utils/label_x_pos.js":326,"./../utils/label_y_pos.js":327,"debug":841,"virtual-dom/h.js":966}],288:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var xAttr = require( './../utils/x_attr.js' );
+var yAttr = require( './../utils/y_attr.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:line' );
+var ELEMENT = 'line';
+
+
+// MAIN //
+
+/**
+* Renders a tick line.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
+	var props;
+	var x;
+	var y;
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'attributes': {
+			'stroke': '#aaa',
+			'stroke-width': 1
+		}
+	};
+
+	x = xAttr( ctx._orientation );
+	y = yAttr( ctx._orientation );
+
+	props.attributes[ x+'2' ] = ctx.tickDir * ctx._innerTickSize;
+	props.attributes[ y+'1' ] = 0.5;
+	props.attributes[ y+'2' ] = 0.5;
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, [] );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./../utils/x_attr.js":333,"./../utils/y_attr.js":334,"debug":841,"virtual-dom/h.js":966}],289:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var dy = require( './../utils/text_dy.js' );
+var xAttr = require( './../utils/x_attr.js' );
+var yAttr = require( './../utils/y_attr.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:text' );
+var ELEMENT = 'text';
+
+
+// MAIN //
+
+/**
+* Renders tick text.
+*
+* @private
+* @param {Object} ctx - context
+* @param {*} d - tick value
+* @returns {VTree} virtual tree
+*/
+function render( ctx, d ) {
+	/* eslint-disable no-underscore-dangle */
+	var orient;
+	var props;
+	var txt;
+	var x;
+	var y;
+
+	orient = ctx._orientation;
+	debug( 'Axis orientation: %s.', orient );
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'attributes': {
+			'fill': '#000',
+			'dy': dy( orient )
+		}
+	};
+
+	x = xAttr( orient );
+	y = yAttr( orient );
+
+	props.attributes[ x ] = ctx.tickDir * ctx.tickSpacing;
+	props.attributes[ y ] = 0.5;
+
+	txt = ctx.tickFormat( d );
+	debug( 'Tick text: %s.', txt );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, txt );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./../utils/text_dy.js":329,"./../utils/x_attr.js":333,"./../utils/y_attr.js":334,"debug":841,"virtual-dom/h.js":966}],290:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var line = require( './line.js' );
+var text = require( './text.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:tick' );
+var ELEMENT = 'g';
+
+
+// MAIN //
+
+/**
+* Renders an axis tick.
+*
+* @private
+* @param {Object} ctx - context
+* @param {*} d - tick value
+* @param {Function} transform - tick transform
+* @returns {VTree} virtual tree
+*/
+function render( ctx, d, transform ) {
+	var children;
+	var props;
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'axis.tick',
+		'className': 'tick',
+		'attributes': {
+			'opacity': 1,
+			'transform': transform( d )
+		}
+	};
+	children = new Array( 2 );
+
+	debug( 'Rendering a tick line...' );
+	children[ 0 ] = line( ctx );
+
+	debug( 'Rendering tick text...' );
+	children[ 1 ] = text( ctx, d );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, children );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./line.js":288,"./text.js":289,"debug":841,"virtual-dom/h.js":966}],291:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var tickTransform = require( './../utils/tick_transform.js' );
+var tick = require( './tick.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:ticks' );
+
+
+// MAIN //
+
+/**
+* Renders axis ticks.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {Array<VTree>} array of virtual DOM trees
+*/
+function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
+	var transform;
+	var values;
+	var out;
+	var i;
+
+	values = ctx.ticks;
+	debug( 'Tick values: %s.', JSON.stringify( values ) );
+
+	debug( 'Generating tick transform...' );
+	transform = tickTransform( ctx._orientation, ctx._scale );
+
+	debug( 'Rendering ticks...' );
+	out = new Array( values.length );
+	for ( i = 0; i < values.length; i++ ) {
+		debug( 'Rendering tick %d with value %s...', i, values[i] );
+		out[ i ] = tick( ctx, values[i], transform );
+	}
+	debug( 'Finished rendering ticks.' );
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./../utils/tick_transform.js":330,"./tick.js":290,"debug":841}],292:[function(require,module,exports){
+module.exports={
+	"scale": null,
+	"label": "",
+	"ticks": null,
+	"numTicks": null,
+	"tickFormat": null,
+	"tickSize": 6,
+	"innerTickSize": 6,
+	"outerTickSize": 6,
+	"tickPadding": 3,
+	"orientation": "bottom",
+	"autoRender": false
+}
+
+},{}],293:[function(require,module,exports){
+module.exports=[
+	"left",
+	"right",
+	"top",
+	"bottom"
+]
+
+},{}],294:[function(require,module,exports){
+module.exports={
+	"label": "change",
+	"numTicks": "change",
+	"orientation": "change",
+	"scale": "change",
+	"tickFormat": "change",
+	"tickPadding": "change",
+	"ticks": "change",
+	"tickSize": "change",
+	"innerTickSize": "change",
+	"outerTickSize": "change",
+	"autoRender": "change"
+}
+
+},{}],295:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var EVENTS = require( './events.json' );
+
+
+// MAIN //
+
+/**
+* Provided a property, returns a corresponding event name for when a property value changes.
+*
+* @private
+* @param {string} prop - property
+* @returns {string} event name
+*/
+function get( prop ) {
+	return EVENTS[ prop ];
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"./events.json":294}],296:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// TODO: remove d3-scale
+
+/**
+* Plot axis.
+*
+* @module @stdlib/plot/components/svg/axis
+*
+* @example
+* var linear = require( 'd3-scale' ).scaleLinear();
+* var Axis = require( '@stdlib/plot/components/svg/axis' );
+*
+* var axis = new Axis({
+*     'scale': linear(),
+*     'orient': 'bottom'
+* });
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":297}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16647,707 +26001,7 @@ setReadOnly( Axis.prototype, 'render', render );
 
 module.exports = Axis;
 
-},{"./defaults.json":267,"./methods/render.js":272,"./props/auto-render/get.js":273,"./props/auto-render/set.js":274,"./props/inner-tick-size/get.js":275,"./props/inner-tick-size/set.js":276,"./props/label/get.js":277,"./props/label/set.js":278,"./props/num-ticks/get.js":279,"./props/num-ticks/set.js":280,"./props/orientation/get.js":281,"./props/orientation/set.js":282,"./props/outer-tick-size/get.js":283,"./props/outer-tick-size/set.js":284,"./props/scale/get.js":285,"./props/scale/set.js":286,"./props/tick-dir/get.js":287,"./props/tick-format/get.js":288,"./props/tick-format/set.js":289,"./props/tick-padding/get.js":290,"./props/tick-padding/set.js":291,"./props/tick-pos/get.js":293,"./props/tick-size/get.js":294,"./props/tick-size/set.js":295,"./props/tick-spacing/get.js":296,"./props/ticks/get.js":297,"./props/ticks/set.js":298,"./validate.js":309,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"d3-scale":803,"debug":812,"events":781}],260:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/*
-* For manually constructing SVG paths, see [MDN]{@link https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d}
-*/
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:domain' );
-var ELEMENT = 'path';
-
-
-// MAIN //
-
-/**
-* Renders an axis domain.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	/* eslint-disable no-underscore-dangle */
-	var orient;
-	var stroke;
-	var range0;
-	var range1;
-	var offset;
-	var range;
-	var props;
-	var d;
-
-	orient = ctx._orientation;
-	debug( 'Axis orientation: %s.', orient );
-
-	range = ctx._scale.range();
-	debug( 'Axis range: %s.', JSON.stringify( range ) );
-
-	range0 = range[ 0 ] + 0.5;
-	range1 = range[ range.length-1 ] + 0.5;
-
-	offset = ctx.tickDir * ctx._outerTickSize;
-	d = '';
-	if ( orient === 'left' || orient === 'right' ) {
-		d += 'M' + offset + ',' + range0;
-		d += 'H0.5';
-		d += 'V' + range1;
-		d += 'H' + offset;
-
-		stroke = 'none';
-	} else {
-		d += 'M' + range0 + ',' + offset;
-		d += 'V0.5';
-		d += 'H' + range1;
-		d += 'V' + offset;
-
-		stroke = '#aaa';
-	}
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'axis.domain',
-		'className': 'domain',
-		'attributes': {
-			'fill': 'none',
-			'stroke': stroke,
-			'stroke-width': 1,
-			'd': d
-		}
-	};
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, [] );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"debug":812,"virtual-dom/h":919}],261:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var textAnchor = require( './../utils/text_anchor.js' );
-var domain = require( './domain.js' );
-var ticks = require( './ticks.js' );
-var label = require( './label.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:main' );
-var ELEMENT = 'g';
-
-
-// MAIN //
-
-/**
-* Renders an axis.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	var children;
-	var props;
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'axis',
-		'className': 'axis',
-		'attributes': {
-			'fill': 'none',
-			'font-size': 10, // TODO: option
-			'font-family': 'sans-serif', // TODO: option
-			'text-anchor': textAnchor( ctx._orientation ) // eslint-disable-line no-underscore-dangle
-		}
-	};
-
-	debug( 'Rendering tick marks...' );
-	children = ticks( ctx );
-
-	debug( 'Rendering domain line...' );
-	children.unshift( domain( ctx ) );
-
-	debug( 'Rendering label...' );
-	children.push( label( ctx ) );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, children );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./../utils/text_anchor.js":302,"./domain.js":260,"./label.js":262,"./ticks.js":266,"debug":812,"virtual-dom/h":919}],262:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var labelTransform = require( './../utils/label_transform.js' );
-var labelXPos = require( './../utils/label_x_pos.js' );
-var labelYPos = require( './../utils/label_y_pos.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:label' );
-var ELEMENT = 'text';
-
-
-// MAIN //
-
-/**
-* Renders an axis label.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	/* eslint-disable no-underscore-dangle */
-	var orient;
-	var props;
-
-	orient = ctx._orientation;
-	debug( 'Axis orientation: %s.', orient );
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'axis.label',
-		'className': 'label noselect',
-		'attributes': {
-			'fill': '#000',
-			'stroke': 'none',
-			'text-anchor': 'middle',
-			'transform': labelTransform( orient ),
-			'x': labelXPos( orient, ctx._scale.range() ),
-			'y': labelYPos( orient )
-		}
-	};
-
-	debug( 'Axis label: %s.', ctx._label );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, ctx._label );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./../utils/label_transform.js":299,"./../utils/label_x_pos.js":300,"./../utils/label_y_pos.js":301,"debug":812,"virtual-dom/h":919}],263:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var xAttr = require( './../utils/x_attr.js' );
-var yAttr = require( './../utils/y_attr.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:line' );
-var ELEMENT = 'line';
-
-
-// MAIN //
-
-/**
-* Renders a tick line.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	/* eslint-disable no-underscore-dangle */
-	var props;
-	var x;
-	var y;
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'attributes': {
-			'stroke': '#aaa',
-			'stroke-width': 1
-		}
-	};
-
-	x = xAttr( ctx._orientation );
-	y = yAttr( ctx._orientation );
-
-	props.attributes[ x+'2' ] = ctx.tickDir * ctx._innerTickSize;
-	props.attributes[ y+'1' ] = 0.5;
-	props.attributes[ y+'2' ] = 0.5;
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, [] );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./../utils/x_attr.js":307,"./../utils/y_attr.js":308,"debug":812,"virtual-dom/h":919}],264:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var dy = require( './../utils/text_dy.js' );
-var xAttr = require( './../utils/x_attr.js' );
-var yAttr = require( './../utils/y_attr.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:text' );
-var ELEMENT = 'text';
-
-
-// MAIN //
-
-/**
-* Renders tick text.
-*
-* @private
-* @param {Object} ctx - context
-* @param {*} d - tick value
-* @returns {VTree} virtual tree
-*/
-function render( ctx, d ) {
-	/* eslint-disable no-underscore-dangle */
-	var orient;
-	var props;
-	var txt;
-	var x;
-	var y;
-
-	orient = ctx._orientation;
-	debug( 'Axis orientation: %s.', orient );
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'attributes': {
-			'fill': '#000',
-			'dy': dy( orient )
-		}
-	};
-
-	x = xAttr( orient );
-	y = yAttr( orient );
-
-	props.attributes[ x ] = ctx.tickDir * ctx.tickSpacing;
-	props.attributes[ y ] = 0.5;
-
-	txt = ctx.tickFormat( d );
-	debug( 'Tick text: %s.', txt );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, txt );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./../utils/text_dy.js":303,"./../utils/x_attr.js":307,"./../utils/y_attr.js":308,"debug":812,"virtual-dom/h":919}],265:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var line = require( './line.js' );
-var text = require( './text.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:tick' );
-var ELEMENT = 'g';
-
-
-// MAIN //
-
-/**
-* Renders an axis tick.
-*
-* @private
-* @param {Object} ctx - context
-* @param {*} d - tick value
-* @param {Function} transform - tick transform
-* @returns {VTree} virtual tree
-*/
-function render( ctx, d, transform ) {
-	var children;
-	var props;
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'axis.tick',
-		'className': 'tick',
-		'attributes': {
-			'opacity': 1,
-			'transform': transform( d )
-		}
-	};
-	children = new Array( 2 );
-
-	debug( 'Rendering a tick line...' );
-	children[ 0 ] = line( ctx );
-
-	debug( 'Rendering tick text...' );
-	children[ 1 ] = text( ctx, d );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, children );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./line.js":263,"./text.js":264,"debug":812,"virtual-dom/h":919}],266:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var tickTransform = require( './../utils/tick_transform.js' );
-var tick = require( './tick.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'axis:components:ticks' );
-
-
-// MAIN //
-
-/**
-* Renders axis ticks.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {Array<VTree>} array of virtual DOM trees
-*/
-function render( ctx ) {
-	/* eslint-disable no-underscore-dangle */
-	var transform;
-	var values;
-	var out;
-	var i;
-
-	values = ctx.ticks;
-	debug( 'Tick values: %s.', JSON.stringify( values ) );
-
-	debug( 'Generating tick transform...' );
-	transform = tickTransform( ctx._orientation, ctx._scale );
-
-	debug( 'Rendering ticks...' );
-	out = new Array( values.length );
-	for ( i = 0; i < values.length; i++ ) {
-		debug( 'Rendering tick %d with value %s...', i, values[i] );
-		out[ i ] = tick( ctx, values[i], transform );
-	}
-	debug( 'Finished rendering ticks.' );
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./../utils/tick_transform.js":304,"./tick.js":265,"debug":812}],267:[function(require,module,exports){
-module.exports={
-	"scale": null,
-	"label": "",
-	"ticks": null,
-	"numTicks": null,
-	"tickFormat": null,
-	"tickSize": 6,
-	"innerTickSize": 6,
-	"outerTickSize": 6,
-	"tickPadding": 3,
-	"orientation": "bottom",
-	"autoRender": false
-}
-
-},{}],268:[function(require,module,exports){
-module.exports=[
-	"left",
-	"right",
-	"top",
-	"bottom"
-]
-
-},{}],269:[function(require,module,exports){
-module.exports={
-	"label": "change",
-	"numTicks": "change",
-	"orientation": "change",
-	"scale": "change",
-	"tickFormat": "change",
-	"tickPadding": "change",
-	"ticks": "change",
-	"tickSize": "change",
-	"innerTickSize": "change",
-	"outerTickSize": "change",
-	"autoRender": "change"
-}
-
-},{}],270:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var EVENTS = require( './events.json' );
-
-
-// MAIN //
-
-/**
-* Provided a property, returns a corresponding event name for when a property value changes.
-*
-* @private
-* @param {string} prop - property
-* @returns {string} event name
-*/
-function get( prop ) {
-	return EVENTS[ prop ];
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"./events.json":269}],271:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: remove d3-scale
-
-/**
-* Plot axis.
-*
-* @module @stdlib/plot/components/svg/axis
-*
-* @example
-* var linear = require( 'd3-scale' ).scaleLinear();
-* var Axis = require( '@stdlib/plot/components/svg/axis' );
-*
-* var axis = new Axis({
-*     'scale': linear(),
-*     'orient': 'bottom'
-* });
-*/
-
-// MODULES //
-
-var Axis = require( './axis.js' );
-
-
-// EXPORTS //
-
-module.exports = Axis;
-
-},{"./axis.js":259}],272:[function(require,module,exports){
+},{"./defaults.json":292,"./methods/render.js":298,"./props/auto-render/get.js":299,"./props/auto-render/set.js":300,"./props/inner-tick-size/get.js":301,"./props/inner-tick-size/set.js":302,"./props/label/get.js":303,"./props/label/set.js":304,"./props/num-ticks/get.js":305,"./props/num-ticks/set.js":306,"./props/orientation/get.js":307,"./props/orientation/set.js":308,"./props/outer-tick-size/get.js":309,"./props/outer-tick-size/set.js":310,"./props/scale/get.js":311,"./props/scale/set.js":312,"./props/tick-dir/get.js":313,"./props/tick-format/get.js":314,"./props/tick-format/set.js":315,"./props/tick-padding/get.js":316,"./props/tick-padding/set.js":317,"./props/tick-pos/get.js":319,"./props/tick-size/get.js":320,"./props/tick-size/set.js":321,"./props/tick-spacing/get.js":322,"./props/ticks/get.js":323,"./props/ticks/set.js":324,"./validate.js":335,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"d3-scale":832,"debug":841,"events":810}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17405,7 +26059,7 @@ function render() {
 
 module.exports = render;
 
-},{"./../components":261,"debug":812}],273:[function(require,module,exports){
+},{"./../components":286,"debug":841}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17442,7 +26096,7 @@ function get() {
 
 module.exports = get;
 
-},{}],274:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17504,7 +26158,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/auto_render.js":310,"debug":812}],275:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/auto_render.js":336,"debug":841}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17541,7 +26195,7 @@ function get() {
 
 module.exports = get;
 
-},{}],276:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17603,7 +26257,7 @@ function set( size ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/inner_tick_size.js":312,"debug":812}],277:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/inner_tick_size.js":338,"debug":841}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17640,7 +26294,7 @@ function get() {
 
 module.exports = get;
 
-},{}],278:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17702,7 +26356,7 @@ function set( label ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/label.js":313,"debug":812}],279:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/label.js":339,"debug":841}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17739,7 +26393,7 @@ function get() {
 
 module.exports = get;
 
-},{}],280:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17801,7 +26455,7 @@ function set( num ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/num_ticks.js":314,"debug":812}],281:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/num_ticks.js":340,"debug":841}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17838,7 +26492,7 @@ function get() {
 
 module.exports = get;
 
-},{}],282:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17900,7 +26554,7 @@ function set( orient ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/orientation.js":315,"debug":812}],283:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/orientation.js":341,"debug":841}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17937,7 +26591,7 @@ function get() {
 
 module.exports = get;
 
-},{}],284:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17999,7 +26653,7 @@ function set( size ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/outer_tick_size.js":316,"debug":812}],285:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/outer_tick_size.js":342,"debug":841}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18036,7 +26690,7 @@ function get() {
 
 module.exports = get;
 
-},{}],286:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18098,7 +26752,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/scale.js":317,"debug":812}],287:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/scale.js":343,"debug":841}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18141,7 +26795,7 @@ function get() {
 
 module.exports = get;
 
-},{}],288:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18197,7 +26851,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-string":181,"@stdlib/utils/identity-function":720,"d3-format":801}],289:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-string":203,"@stdlib/utils/identity-function":748,"d3-format":830}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18259,7 +26913,7 @@ function set( fmt ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/tick_format.js":318,"debug":812}],290:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/tick_format.js":344,"debug":841}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18296,7 +26950,7 @@ function get() {
 
 module.exports = get;
 
-},{}],291:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18358,7 +27012,7 @@ function set( padding ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/tick_padding.js":319,"debug":812}],292:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/tick_padding.js":345,"debug":841}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18421,7 +27075,7 @@ function center() {
 
 module.exports = center;
 
-},{"debug":812}],293:[function(require,module,exports){
+},{"debug":841}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18469,7 +27123,7 @@ function get() {
 
 module.exports = get;
 
-},{"./center.js":292}],294:[function(require,module,exports){
+},{"./center.js":318}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18506,7 +27160,7 @@ function get() {
 
 module.exports = get;
 
-},{}],295:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18568,7 +27222,7 @@ function set( size ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/tick_size.js":320,"debug":812}],296:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/tick_size.js":346,"debug":841}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18605,7 +27259,7 @@ function get() {
 
 module.exports = get;
 
-},{}],297:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18655,7 +27309,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":157}],298:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18722,7 +27376,7 @@ function set( ticks ) {
 
 module.exports = set;
 
-},{"./../../events":270,"./../../validators/ticks.js":321,"@stdlib/assert/is-null":157,"debug":812}],299:[function(require,module,exports){
+},{"./../../events":295,"./../../validators/ticks.js":347,"@stdlib/assert/is-null":179,"debug":841}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18766,7 +27420,7 @@ function labelTransform( orient ) {
 
 module.exports = labelTransform;
 
-},{}],300:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18807,7 +27461,7 @@ function labelXPos( orient, range ) {
 
 module.exports = labelXPos;
 
-},{}],301:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18854,7 +27508,7 @@ function labelYPos( orient ) {
 
 module.exports = labelYPos;
 
-},{}],302:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18897,7 +27551,7 @@ function textAnchor( orient ) {
 
 module.exports = textAnchor;
 
-},{}],303:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18940,7 +27594,7 @@ function dy( orient ) {
 
 module.exports = dy;
 
-},{}],304:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18989,7 +27643,7 @@ function tickTransform( orient, scale ) {
 
 module.exports = tickTransform;
 
-},{"./translate_x.js":305,"./translate_y.js":306}],305:[function(require,module,exports){
+},{"./translate_x.js":331,"./translate_y.js":332}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19051,7 +27705,7 @@ function translateX( scale ) {
 
 module.exports = translateX;
 
-},{"debug":812}],306:[function(require,module,exports){
+},{"debug":841}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19113,7 +27767,7 @@ function translateY( scale ) {
 
 module.exports = translateY;
 
-},{"debug":812}],307:[function(require,module,exports){
+},{"debug":841}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19153,7 +27807,7 @@ function xAttr( orient ) {
 
 module.exports = xAttr;
 
-},{}],308:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19193,7 +27847,7 @@ function yAttr( orient ) {
 
 module.exports = yAttr;
 
-},{}],309:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19287,7 +27941,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":311,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],310:[function(require,module,exports){
+},{"./validators":337,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19335,7 +27989,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679}],311:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19392,7 +28046,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":310,"./inner_tick_size.js":312,"./label.js":313,"./num_ticks.js":314,"./orientation.js":315,"./outer_tick_size.js":316,"./scale.js":317,"./tick_format.js":318,"./tick_padding.js":319,"./tick_size.js":320,"./ticks.js":321}],312:[function(require,module,exports){
+},{"./auto_render.js":336,"./inner_tick_size.js":338,"./label.js":339,"./num_ticks.js":340,"./orientation.js":341,"./outer_tick_size.js":342,"./scale.js":343,"./tick_format.js":344,"./tick_padding.js":345,"./tick_size.js":346,"./ticks.js":347}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19440,7 +28094,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],313:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19488,7 +28142,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],314:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19540,7 +28194,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-null":157,"@stdlib/string/format":679}],315:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-null":179,"@stdlib/string/format":707}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19589,7 +28243,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"./../etc/orientations.json":268,"@stdlib/string/format":679,"@stdlib/utils/index-of":721}],316:[function(require,module,exports){
+},{"./../etc/orientations.json":293,"@stdlib/string/format":707,"@stdlib/utils/index-of":750}],342:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19637,7 +28291,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],317:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19685,7 +28339,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679}],318:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19739,7 +28393,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-null":157,"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],319:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-null":179,"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19787,7 +28441,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],320:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19835,7 +28489,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],321:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19887,7 +28541,67 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-array":101,"@stdlib/assert/is-null":157,"@stdlib/string/format":679}],322:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121,"@stdlib/assert/is-null":179,"@stdlib/string/format":707}],348:[function(require,module,exports){
+module.exports={
+	"width": 400,
+	"height": 400,
+	"autoRender": false
+}
+
+},{}],349:[function(require,module,exports){
+module.exports={
+	"width": "change",
+	"height": "change",
+	"autoRender": "change"
+}
+
+},{}],350:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":349,"dup":295}],351:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Background.
+*
+* @module @stdlib/plot/components/svg/background
+*
+* @example
+* var Background = require( '@stdlib/plot/components/svg/background' );
+*
+* var bkgd = new Background({
+*     'width': 400,
+*     'height': 400
+* });
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":352}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20122,67 +28836,7 @@ setReadOnly( Background.prototype, 'render', render );
 
 module.exports = Background;
 
-},{"./defaults.json":323,"./methods/render.js":327,"./props/auto-render/get.js":328,"./props/auto-render/set.js":329,"./props/height/get.js":330,"./props/height/set.js":331,"./props/width/get.js":332,"./props/width/set.js":333,"./validate.js":334,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],323:[function(require,module,exports){
-module.exports={
-	"width": 400,
-	"height": 400,
-	"autoRender": false
-}
-
-},{}],324:[function(require,module,exports){
-module.exports={
-	"width": "change",
-	"height": "change",
-	"autoRender": "change"
-}
-
-},{}],325:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":324,"dup":270}],326:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Background.
-*
-* @module @stdlib/plot/components/svg/background
-*
-* @example
-* var Background = require( '@stdlib/plot/components/svg/background' );
-*
-* var bkgd = new Background({
-*     'width': 400,
-*     'height': 400
-* });
-*/
-
-// MODULES //
-
-var Background = require( './background.js' );
-
-
-// EXPORTS //
-
-module.exports = Background;
-
-},{"./background.js":322}],327:[function(require,module,exports){
+},{"./defaults.json":348,"./methods/render.js":353,"./props/auto-render/get.js":354,"./props/auto-render/set.js":355,"./props/height/get.js":356,"./props/height/set.js":357,"./props/width/get.js":358,"./props/width/set.js":359,"./validate.js":360,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20206,7 +28860,7 @@ module.exports = Background;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -20256,9 +28910,9 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],328:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],329:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],354:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],355:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20320,7 +28974,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"./../../events":325,"./../../validators/auto_render.js":335,"debug":812}],330:[function(require,module,exports){
+},{"./../../events":350,"./../../validators/auto_render.js":361,"debug":841}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20357,7 +29011,7 @@ function get() {
 
 module.exports = get;
 
-},{}],331:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20419,7 +29073,7 @@ function set( height ) {
 
 module.exports = set;
 
-},{"./../../events":325,"./../../validators/height.js":336,"debug":812}],332:[function(require,module,exports){
+},{"./../../events":350,"./../../validators/height.js":362,"debug":841}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20456,7 +29110,7 @@ function get() {
 
 module.exports = get;
 
-},{}],333:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20518,7 +29172,7 @@ function set( width ) {
 
 module.exports = set;
 
-},{"./../../events":325,"./../../validators/width.js":338,"debug":812}],334:[function(require,module,exports){
+},{"./../../events":350,"./../../validators/width.js":364,"debug":841}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20604,9 +29258,9 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":337,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],335:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],336:[function(require,module,exports){
+},{"./validators":363,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],361:[function(require,module,exports){
+arguments[4][336][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20654,7 +29308,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679}],337:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20695,7 +29349,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":335,"./height.js":336,"./width.js":338}],338:[function(require,module,exports){
+},{"./auto_render.js":361,"./height.js":362,"./width.js":364}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20743,7 +29397,57 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679}],339:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707}],365:[function(require,module,exports){
+arguments[4][348][0].apply(exports,arguments)
+},{"dup":348}],366:[function(require,module,exports){
+arguments[4][349][0].apply(exports,arguments)
+},{"dup":349}],367:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":366,"dup":295}],368:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Canvas.
+*
+* @module @stdlib/plot/components/svg/canvas
+*
+* @example
+* var Canvas = require( '@stdlib/plot/components/svg/canvas' );
+*
+* var canvas = new Canvas({
+*     'width': 400,
+*     'height': 400
+* });
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":369}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20978,57 +29682,7 @@ setReadOnly( Canvas.prototype, 'render', render );
 
 module.exports = Canvas;
 
-},{"./defaults.json":340,"./methods/render.js":344,"./props/auto-render/get.js":345,"./props/auto-render/set.js":346,"./props/height/get.js":347,"./props/height/set.js":348,"./props/width/get.js":349,"./props/width/set.js":350,"./validate.js":351,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],340:[function(require,module,exports){
-arguments[4][323][0].apply(exports,arguments)
-},{"dup":323}],341:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],342:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":341,"dup":270}],343:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Canvas.
-*
-* @module @stdlib/plot/components/svg/canvas
-*
-* @example
-* var Canvas = require( '@stdlib/plot/components/svg/canvas' );
-*
-* var canvas = new Canvas({
-*     'width': 400,
-*     'height': 400
-* });
-*/
-
-// MODULES //
-
-var Canvas = require( './canvas.js' );
-
-
-// EXPORTS //
-
-module.exports = Canvas;
-
-},{"./canvas.js":339}],344:[function(require,module,exports){
+},{"./defaults.json":365,"./methods/render.js":370,"./props/auto-render/get.js":371,"./props/auto-render/set.js":372,"./props/height/get.js":373,"./props/height/set.js":374,"./props/width/get.js":375,"./props/width/set.js":376,"./validate.js":377,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21052,7 +29706,7 @@ module.exports = Canvas;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -21099,9 +29753,9 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],345:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],346:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],371:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21163,9 +29817,9 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"./../../events":342,"./../../validators/auto_render.js":352,"debug":812}],347:[function(require,module,exports){
-arguments[4][330][0].apply(exports,arguments)
-},{"dup":330}],348:[function(require,module,exports){
+},{"./../../events":367,"./../../validators/auto_render.js":378,"debug":841}],373:[function(require,module,exports){
+arguments[4][356][0].apply(exports,arguments)
+},{"dup":356}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21227,9 +29881,9 @@ function set( height ) {
 
 module.exports = set;
 
-},{"./../../events":342,"./../../validators/height.js":353,"debug":812}],349:[function(require,module,exports){
-arguments[4][332][0].apply(exports,arguments)
-},{"dup":332}],350:[function(require,module,exports){
+},{"./../../events":367,"./../../validators/height.js":379,"debug":841}],375:[function(require,module,exports){
+arguments[4][358][0].apply(exports,arguments)
+},{"dup":358}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21291,17 +29945,208 @@ function set( width ) {
 
 module.exports = set;
 
-},{"./../../events":342,"./../../validators/width.js":355,"debug":812}],351:[function(require,module,exports){
-arguments[4][334][0].apply(exports,arguments)
-},{"./validators":354,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738,"dup":334}],352:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],353:[function(require,module,exports){
+},{"./../../events":367,"./../../validators/width.js":381,"debug":841}],377:[function(require,module,exports){
+arguments[4][360][0].apply(exports,arguments)
+},{"./validators":380,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767,"dup":360}],378:[function(require,module,exports){
 arguments[4][336][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"dup":336}],354:[function(require,module,exports){
-arguments[4][337][0].apply(exports,arguments)
-},{"./auto_render.js":352,"./height.js":353,"./width.js":355,"dup":337}],355:[function(require,module,exports){
-arguments[4][338][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"dup":338}],356:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],379:[function(require,module,exports){
+arguments[4][362][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"dup":362}],380:[function(require,module,exports){
+arguments[4][363][0].apply(exports,arguments)
+},{"./auto_render.js":378,"./height.js":379,"./width.js":381,"dup":363}],381:[function(require,module,exports){
+arguments[4][364][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"dup":364}],382:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var rect = require( './rect.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'clippath:components:main' );
+var ELEMENT = 'clipPath';
+
+
+// MAIN //
+
+/**
+* Renders a clipping path.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	var children;
+	var props;
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'id': ctx.id
+	};
+
+	debug( 'Rendering clipping path rectangle...' );
+	children = [
+		rect( ctx )
+	];
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, children );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./rect.js":383,"debug":841,"virtual-dom/h.js":966}],383:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'clippath:components:rect' );
+var ELEMENT = 'rect';
+
+
+// MAIN //
+
+/**
+* Renders a clipping path rectangle.
+*
+* @private
+* @param {Object} ctx - context
+* @returns {VTree} virtual tree
+*/
+function render( ctx ) {
+	var props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'className': 'clipPath',
+		'attributes': {
+			'width': ctx.width,
+			'height': ctx.height
+		}
+	};
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+
+	return h( ELEMENT, props, [] );
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"debug":841,"virtual-dom/h.js":966}],384:[function(require,module,exports){
+module.exports={
+	"width": 400,
+	"height": 400,
+	"id": "",
+	"autoRender": false
+}
+
+},{}],385:[function(require,module,exports){
+module.exports={
+	"width": "change",
+	"height": "change",
+	"id": "change",
+	"autoRender": "change"
+}
+
+},{}],386:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":385,"dup":295}],387:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Clipping path.
+*
+* @module @stdlib/plot/components/svg/clip-path
+*
+* @example
+* var ClipPath = require( '@stdlib/plot/components/svg/clip-path' );
+*
+* var clipPath = new ClipPath({
+*     'width': 400,
+*     'height': 400
+* });
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":388}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21569,198 +30414,7 @@ setReadOnly( ClipPath.prototype, 'render', render );
 
 module.exports = ClipPath;
 
-},{"./defaults.json":359,"./methods/render.js":363,"./props/auto-render/get.js":364,"./props/auto-render/set.js":365,"./props/height/get.js":366,"./props/height/set.js":367,"./props/id/get.js":368,"./props/id/set.js":369,"./props/width/get.js":370,"./props/width/set.js":371,"./validate.js":372,"@stdlib/random/base/minstd":656,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],357:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var rect = require( './rect.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'clippath:components:main' );
-var ELEMENT = 'clipPath';
-
-
-// MAIN //
-
-/**
-* Renders a clipping path.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	var children;
-	var props;
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'id': ctx.id
-	};
-
-	debug( 'Rendering clipping path rectangle...' );
-	children = [
-		rect( ctx )
-	];
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, children );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./rect.js":358,"debug":812,"virtual-dom/h":919}],358:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-
-
-// VARIABLES //
-
-var debug = logger( 'clippath:components:rect' );
-var ELEMENT = 'rect';
-
-
-// MAIN //
-
-/**
-* Renders a clipping path rectangle.
-*
-* @private
-* @param {Object} ctx - context
-* @returns {VTree} virtual tree
-*/
-function render( ctx ) {
-	var props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'className': 'clipPath',
-		'attributes': {
-			'width': ctx.width,
-			'height': ctx.height
-		}
-	};
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-
-	return h( ELEMENT, props, [] );
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"debug":812,"virtual-dom/h":919}],359:[function(require,module,exports){
-module.exports={
-	"width": 400,
-	"height": 400,
-	"id": "",
-	"autoRender": false
-}
-
-},{}],360:[function(require,module,exports){
-module.exports={
-	"width": "change",
-	"height": "change",
-	"id": "change",
-	"autoRender": "change"
-}
-
-},{}],361:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":360,"dup":270}],362:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Clipping path.
-*
-* @module @stdlib/plot/components/svg/clip-path
-*
-* @example
-* var ClipPath = require( '@stdlib/plot/components/svg/clip-path' );
-*
-* var clipPath = new ClipPath({
-*     'width': 400,
-*     'height': 400
-* });
-*/
-
-// MODULES //
-
-var ClipPath = require( './clippath.js' );
-
-
-// EXPORTS //
-
-module.exports = ClipPath;
-
-},{"./clippath.js":356}],363:[function(require,module,exports){
+},{"./defaults.json":384,"./methods/render.js":389,"./props/auto-render/get.js":390,"./props/auto-render/set.js":391,"./props/height/get.js":392,"./props/height/set.js":393,"./props/id/get.js":394,"./props/id/set.js":395,"./props/width/get.js":396,"./props/width/set.js":397,"./validate.js":398,"@stdlib/random/base/minstd":682,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],389:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21818,9 +30472,9 @@ function render() {
 
 module.exports = render;
 
-},{"./../components":357,"debug":812}],364:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],365:[function(require,module,exports){
+},{"./../components":382,"debug":841}],390:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],391:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21882,9 +30536,9 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"./../../events":361,"./../../validators/auto_render.js":373,"debug":812}],366:[function(require,module,exports){
-arguments[4][330][0].apply(exports,arguments)
-},{"dup":330}],367:[function(require,module,exports){
+},{"./../../events":386,"./../../validators/auto_render.js":399,"debug":841}],392:[function(require,module,exports){
+arguments[4][356][0].apply(exports,arguments)
+},{"dup":356}],393:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21946,7 +30600,7 @@ function set( height ) {
 
 module.exports = set;
 
-},{"./../../events":361,"./../../validators/height.js":374,"debug":812}],368:[function(require,module,exports){
+},{"./../../events":386,"./../../validators/height.js":400,"debug":841}],394:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21983,7 +30637,7 @@ function get() {
 
 module.exports = get;
 
-},{}],369:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22045,9 +30699,9 @@ function set( id ) {
 
 module.exports = set;
 
-},{"./../../events":361,"./../../validators/id.js":375,"debug":812}],370:[function(require,module,exports){
-arguments[4][332][0].apply(exports,arguments)
-},{"dup":332}],371:[function(require,module,exports){
+},{"./../../events":386,"./../../validators/id.js":401,"debug":841}],396:[function(require,module,exports){
+arguments[4][358][0].apply(exports,arguments)
+},{"dup":358}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22109,7 +30763,7 @@ function set( width ) {
 
 module.exports = set;
 
-},{"./../../events":361,"./../../validators/width.js":377,"debug":812}],372:[function(require,module,exports){
+},{"./../../events":386,"./../../validators/width.js":403,"debug":841}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22196,11 +30850,11 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":376,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],373:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],374:[function(require,module,exports){
+},{"./validators":402,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],399:[function(require,module,exports){
 arguments[4][336][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"dup":336}],375:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],400:[function(require,module,exports){
+arguments[4][362][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"dup":362}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22248,7 +30902,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],376:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],402:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22291,9 +30945,9 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":373,"./height.js":374,"./id.js":375,"./width.js":377}],377:[function(require,module,exports){
-arguments[4][338][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"dup":338}],378:[function(require,module,exports){
+},{"./auto_render.js":399,"./height.js":400,"./id.js":401,"./width.js":403}],403:[function(require,module,exports){
+arguments[4][364][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"dup":364}],404:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22328,14 +30982,14 @@ arguments[4][338][0].apply(exports,arguments)
 
 // MODULES //
 
-var Defs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Defs;
+module.exports = main;
 
-},{"./main.js":379}],379:[function(require,module,exports){
+},{"./main.js":405}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22449,7 +31103,7 @@ setReadOnly( Defs.prototype, 'render', render );
 
 module.exports = Defs;
 
-},{"./render.js":380,"@stdlib/assert/instance-of":91,"@stdlib/utils/define-nonenumerable-read-only-property":694,"@stdlib/utils/inherit":724,"debug":812,"events":781}],380:[function(require,module,exports){
+},{"./render.js":406,"@stdlib/assert/instance-of":111,"@stdlib/utils/define-nonenumerable-read-only-property":724,"@stdlib/utils/inherit":753,"debug":841,"events":810}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22473,7 +31127,7 @@ module.exports = Defs;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -22515,23 +31169,67 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],381:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],407:[function(require,module,exports){
 module.exports={
 	"translateX": 0,
 	"translateY": 0,
 	"autoRender": false
 }
 
-},{}],382:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 module.exports={
 	"translateX": "change",
 	"translateY": "change",
 	"autoRender": "change"
 }
 
-},{}],383:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":382,"dup":270}],384:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":408,"dup":295}],410:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Graph component.
+*
+* @module @stdlib/plot/components/svg/graph
+*
+* @example
+* var Graph = require( '@stdlib/plot/components/svg/graph' );
+*
+* var graph = new Graph({
+*     'translateX': 90,
+*     'translateY': 20
+* });
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":411}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22766,51 +31464,7 @@ setReadOnly( Graph.prototype, 'render', render );
 
 module.exports = Graph;
 
-},{"./defaults.json":381,"./methods/render.js":386,"./props/auto-render/get.js":387,"./props/auto-render/set.js":388,"./props/translate-x/get.js":389,"./props/translate-x/set.js":390,"./props/translate-y/get.js":391,"./props/translate-y/set.js":392,"./validate.js":393,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],385:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Graph component.
-*
-* @module @stdlib/plot/components/svg/graph
-*
-* @example
-* var Graph = require( '@stdlib/plot/components/svg/graph' );
-*
-* var graph = new Graph({
-*     'translateX': 90,
-*     'translateY': 20
-* });
-*/
-
-// MODULES //
-
-var Graph = require( './graph.js' );
-
-
-// EXPORTS //
-
-module.exports = Graph;
-
-},{"./graph.js":384}],386:[function(require,module,exports){
+},{"./defaults.json":407,"./methods/render.js":412,"./props/auto-render/get.js":413,"./props/auto-render/set.js":414,"./props/translate-x/get.js":415,"./props/translate-x/set.js":416,"./props/translate-y/get.js":417,"./props/translate-y/set.js":418,"./validate.js":419,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],412:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22834,7 +31488,7 @@ module.exports = Graph;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -22880,11 +31534,11 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],387:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],388:[function(require,module,exports){
-arguments[4][346][0].apply(exports,arguments)
-},{"./../../events":383,"./../../validators/auto_render.js":394,"debug":812,"dup":346}],389:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],413:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],414:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"./../../events":409,"./../../validators/auto_render.js":420,"debug":841,"dup":372}],415:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22921,7 +31575,7 @@ function get() {
 
 module.exports = get;
 
-},{}],390:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22983,7 +31637,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./../../events":383,"./../../validators/translate_x.js":396,"debug":812}],391:[function(require,module,exports){
+},{"./../../events":409,"./../../validators/translate_x.js":422,"debug":841}],417:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23020,7 +31674,7 @@ function get() {
 
 module.exports = get;
 
-},{}],392:[function(require,module,exports){
+},{}],418:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23082,7 +31736,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./../../events":383,"./../../validators/translate_y.js":397,"debug":812}],393:[function(require,module,exports){
+},{"./../../events":409,"./../../validators/translate_y.js":423,"debug":841}],419:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23168,9 +31822,9 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":395,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],394:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],395:[function(require,module,exports){
+},{"./validators":421,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],420:[function(require,module,exports){
+arguments[4][336][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],421:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23211,7 +31865,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":394,"./translate_x.js":396,"./translate_y.js":397}],396:[function(require,module,exports){
+},{"./auto_render.js":420,"./translate_x.js":422,"./translate_y.js":423}],422:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23259,7 +31913,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],397:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23307,21 +31961,21 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679}],398:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707}],424:[function(require,module,exports){
 module.exports={
 	"clipPathId": "",
 	"autoRender": false
 }
 
-},{}],399:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 module.exports={
 	"clipPathId": "change",
 	"autoRender": "change"
 }
 
-},{}],400:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":399,"dup":270}],401:[function(require,module,exports){
+},{}],426:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":425,"dup":295}],427:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23357,14 +32011,14 @@ arguments[4][270][0].apply(exports,arguments)
 
 // MODULES //
 
-var Marks = require( './marks.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Marks;
+module.exports = main;
 
-},{"./marks.js":402}],402:[function(require,module,exports){
+},{"./main.js":428}],428:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23564,7 +32218,7 @@ setReadOnly( Marks.prototype, 'render', render );
 
 module.exports = Marks;
 
-},{"./defaults.json":398,"./methods/render.js":403,"./props/auto-render/get.js":404,"./props/auto-render/set.js":405,"./props/clip-path-id/get.js":406,"./props/clip-path-id/set.js":407,"./validate.js":408,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],403:[function(require,module,exports){
+},{"./defaults.json":424,"./methods/render.js":429,"./props/auto-render/get.js":430,"./props/auto-render/set.js":431,"./props/clip-path-id/get.js":432,"./props/clip-path-id/set.js":433,"./validate.js":434,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],429:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23588,7 +32242,7 @@ module.exports = Marks;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 
 
 // VARIABLES //
@@ -23635,9 +32289,9 @@ function render() {
 
 module.exports = render;
 
-},{"debug":812,"virtual-dom/h":919}],404:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],405:[function(require,module,exports){
+},{"debug":841,"virtual-dom/h.js":966}],430:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],431:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23699,7 +32353,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"./../../events":400,"./../../validators/auto_render.js":409,"debug":812}],406:[function(require,module,exports){
+},{"./../../events":426,"./../../validators/auto_render.js":435,"debug":841}],432:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23736,7 +32390,7 @@ function get() {
 
 module.exports = get;
 
-},{}],407:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23798,7 +32452,7 @@ function set( id ) {
 
 module.exports = set;
 
-},{"./../../events":400,"./../../validators/clip_path_id.js":410,"debug":812}],408:[function(require,module,exports){
+},{"./../../events":426,"./../../validators/clip_path_id.js":436,"debug":841}],434:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23882,9 +32536,9 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":411,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],409:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],410:[function(require,module,exports){
+},{"./validators":437,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],435:[function(require,module,exports){
+arguments[4][336][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],436:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23932,7 +32586,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],411:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],437:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23971,7 +32625,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":409,"./clip_path_id.js":410}],412:[function(require,module,exports){
+},{"./auto_render.js":435,"./clip_path_id.js":436}],438:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24023,7 +32677,7 @@ function isDefined( d ) {
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":147,"debug":812}],413:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":169,"debug":841}],439:[function(require,module,exports){
 module.exports={
 	"autoRender": false,
 	"color": "#000",
@@ -24038,7 +32692,7 @@ module.exports={
 	"yScale": null
 }
 
-},{}],414:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24075,14 +32729,14 @@ module.exports={
 
 // MODULES //
 
-var Path = require( './path.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Path;
+module.exports = main;
 
-},{"./path.js":415}],415:[function(require,module,exports){
+},{"./main.js":441}],441:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24625,9 +33279,9 @@ setReadOnly( Path.prototype, 'render', render );
 
 module.exports = Path;
 
-},{"./accessors/is_defined.js":412,"./defaults.json":413,"./props/auto-render/get.js":416,"./props/auto-render/set.js":417,"./props/color/get.js":418,"./props/color/set.js":419,"./props/is-defined/get.js":420,"./props/is-defined/set.js":421,"./props/label/get.js":422,"./props/label/set.js":423,"./props/line/get.js":424,"./props/opacity/get.js":425,"./props/opacity/set.js":426,"./props/style/get.js":427,"./props/style/set.js":428,"./props/width/get.js":429,"./props/width/set.js":430,"./props/x-pos/get.js":431,"./props/x-scale/get.js":432,"./props/x-scale/set.js":433,"./props/x/get.js":434,"./props/x/set.js":435,"./props/y-pos/get.js":436,"./props/y-scale/get.js":437,"./props/y-scale/set.js":438,"./props/y/get.js":439,"./props/y/set.js":440,"./render":441,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"@stdlib/utils/keys":738,"@stdlib/utils/merge":748,"d3-scale":803,"debug":812,"events":781}],416:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],417:[function(require,module,exports){
+},{"./accessors/is_defined.js":438,"./defaults.json":439,"./props/auto-render/get.js":442,"./props/auto-render/set.js":443,"./props/color/get.js":444,"./props/color/set.js":445,"./props/is-defined/get.js":446,"./props/is-defined/set.js":447,"./props/label/get.js":448,"./props/label/set.js":449,"./props/line/get.js":450,"./props/opacity/get.js":451,"./props/opacity/set.js":452,"./props/style/get.js":453,"./props/style/set.js":454,"./props/width/get.js":455,"./props/width/set.js":456,"./props/x-pos/get.js":457,"./props/x-scale/get.js":458,"./props/x-scale/set.js":459,"./props/x/get.js":460,"./props/x/set.js":461,"./props/y-pos/get.js":462,"./props/y-scale/get.js":463,"./props/y-scale/set.js":464,"./props/y/get.js":465,"./props/y/set.js":466,"./render":467,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"@stdlib/utils/keys":767,"@stdlib/utils/merge":777,"d3-scale":832,"debug":841,"events":810}],442:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],443:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24687,7 +33341,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"debug":812}],418:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"debug":841}],444:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24724,7 +33378,7 @@ function get() {
 
 module.exports = get;
 
-},{}],419:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24784,7 +33438,7 @@ function set( color ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],420:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],446:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24821,7 +33475,7 @@ function get() {
 
 module.exports = get;
 
-},{}],421:[function(require,module,exports){
+},{}],447:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24881,7 +33535,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],422:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],448:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24918,7 +33572,7 @@ function get() {
 
 module.exports = get;
 
-},{}],423:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24978,7 +33632,7 @@ function set( label ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],424:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],450:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25029,7 +33683,7 @@ function get() {
 
 module.exports = get;
 
-},{"d3-shape":808}],425:[function(require,module,exports){
+},{"d3-shape":837}],451:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25066,7 +33720,7 @@ function get() {
 
 module.exports = get;
 
-},{}],426:[function(require,module,exports){
+},{}],452:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25133,7 +33787,7 @@ function set( opacity ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],427:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],453:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25170,7 +33824,7 @@ function get() {
 
 module.exports = get;
 
-},{}],428:[function(require,module,exports){
+},{}],454:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25230,7 +33884,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],429:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],455:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25267,7 +33921,7 @@ function get() {
 
 module.exports = get;
 
-},{}],430:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25327,7 +33981,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],431:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],457:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25390,7 +34044,7 @@ function get() {
 
 module.exports = get;
 
-},{"debug":812}],432:[function(require,module,exports){
+},{"debug":841}],458:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25427,7 +34081,7 @@ function get() {
 
 module.exports = get;
 
-},{}],433:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25487,7 +34141,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],434:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],460:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25524,7 +34178,7 @@ function get() {
 
 module.exports = get;
 
-},{}],435:[function(require,module,exports){
+},{}],461:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25584,7 +34238,7 @@ function set( x ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679,"debug":812}],436:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707,"debug":841}],462:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25647,7 +34301,7 @@ function get() {
 
 module.exports = get;
 
-},{"debug":812}],437:[function(require,module,exports){
+},{"debug":841}],463:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25684,7 +34338,7 @@ function get() {
 
 module.exports = get;
 
-},{}],438:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25744,7 +34398,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],439:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],465:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25781,7 +34435,7 @@ function get() {
 
 module.exports = get;
 
-},{}],440:[function(require,module,exports){
+},{}],466:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25841,7 +34495,7 @@ function set( y ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679,"debug":812}],441:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707,"debug":841}],467:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25865,7 +34519,7 @@ module.exports = set;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 var zip = require( './utils/zip.js' );
 var style = require( './utils/style.js' );
 
@@ -25920,7 +34574,7 @@ function render() {
 
 module.exports = render;
 
-},{"./utils/style.js":442,"./utils/zip.js":443,"debug":812,"virtual-dom/h":919}],442:[function(require,module,exports){
+},{"./utils/style.js":468,"./utils/zip.js":469,"debug":841,"virtual-dom/h.js":966}],468:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25982,7 +34636,7 @@ function style( v ) {
 
 module.exports = style;
 
-},{}],443:[function(require,module,exports){
+},{}],469:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26037,7 +34691,7 @@ function zip( x, y ) {
 
 module.exports = zip;
 
-},{"@stdlib/string/format":679}],444:[function(require,module,exports){
+},{"@stdlib/string/format":707}],470:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26090,7 +34744,7 @@ function isDefined( d ) {
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":147,"debug":812}],445:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":169,"debug":841}],471:[function(require,module,exports){
 module.exports={
 	"autoRender": false,
 	"color": "#aaa",
@@ -26103,7 +34757,7 @@ module.exports={
 	"size": 6
 }
 
-},{}],446:[function(require,module,exports){
+},{}],472:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26140,14 +34794,14 @@ module.exports={
 
 // MODULES //
 
-var Rug = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Rug;
+module.exports = main;
 
-},{"./main.js":447}],447:[function(require,module,exports){
+},{"./main.js":473}],473:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26594,9 +35248,9 @@ setReadOnly( Rug.prototype, 'render', render );
 
 module.exports = Rug;
 
-},{"./accessors/is_defined.js":444,"./defaults.json":445,"./props/auto-render/get.js":448,"./props/auto-render/set.js":449,"./props/color/get.js":450,"./props/color/set.js":451,"./props/data/get.js":452,"./props/data/set.js":453,"./props/is-defined/get.js":454,"./props/is-defined/set.js":455,"./props/label/get.js":456,"./props/label/set.js":457,"./props/opacity/get.js":458,"./props/opacity/set.js":459,"./props/orientation/get.js":460,"./props/orientation/set.js":462,"./props/pos/get.js":463,"./props/scale/get.js":464,"./props/scale/set.js":465,"./props/size/get.js":466,"./props/size/set.js":467,"./render":468,"@stdlib/assert/instance-of":91,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"@stdlib/utils/inherit":724,"@stdlib/utils/keys":738,"@stdlib/utils/merge":748,"d3-scale":803,"debug":812,"events":781}],448:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],449:[function(require,module,exports){
+},{"./accessors/is_defined.js":470,"./defaults.json":471,"./props/auto-render/get.js":474,"./props/auto-render/set.js":475,"./props/color/get.js":476,"./props/color/set.js":477,"./props/data/get.js":478,"./props/data/set.js":479,"./props/is-defined/get.js":480,"./props/is-defined/set.js":481,"./props/label/get.js":482,"./props/label/set.js":483,"./props/opacity/get.js":484,"./props/opacity/set.js":485,"./props/orientation/get.js":486,"./props/orientation/set.js":488,"./props/pos/get.js":489,"./props/scale/get.js":490,"./props/scale/set.js":491,"./props/size/get.js":492,"./props/size/set.js":493,"./render":494,"@stdlib/assert/instance-of":111,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"@stdlib/utils/inherit":753,"@stdlib/utils/keys":767,"@stdlib/utils/merge":777,"d3-scale":832,"debug":841,"events":810}],474:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],475:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26658,7 +35312,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"debug":812}],450:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"debug":841}],476:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26716,7 +35370,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":181}],451:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203}],477:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26779,7 +35433,7 @@ function set( color ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],452:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],478:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26816,7 +35470,7 @@ function get() {
 
 module.exports = get;
 
-},{}],453:[function(require,module,exports){
+},{}],479:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26880,7 +35534,7 @@ function set( data ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679,"debug":812}],454:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707,"debug":841}],480:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26917,7 +35571,7 @@ function get() {
 
 module.exports = get;
 
-},{}],455:[function(require,module,exports){
+},{}],481:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26979,7 +35633,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],456:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],482:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27037,7 +35691,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":181}],457:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203}],483:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27100,7 +35754,7 @@ function set( label ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],458:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],484:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27158,7 +35812,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-number":160}],459:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182}],485:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27226,7 +35880,7 @@ function set( opacity ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],460:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],486:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27263,7 +35917,7 @@ function get() {
 
 module.exports = get;
 
-},{}],461:[function(require,module,exports){
+},{}],487:[function(require,module,exports){
 module.exports=[
 	"bottom",
 	"left",
@@ -27271,7 +35925,7 @@ module.exports=[
 	"top"
 ]
 
-},{}],462:[function(require,module,exports){
+},{}],488:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27334,7 +35988,7 @@ function set( orient ) {
 
 module.exports = set;
 
-},{"./orientations.json":461,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],463:[function(require,module,exports){
+},{"./orientations.json":487,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],489:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27397,9 +36051,9 @@ function get() {
 
 module.exports = get;
 
-},{"debug":812}],464:[function(require,module,exports){
-arguments[4][285][0].apply(exports,arguments)
-},{"dup":285}],465:[function(require,module,exports){
+},{"debug":841}],490:[function(require,module,exports){
+arguments[4][311][0].apply(exports,arguments)
+},{"dup":311}],491:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27461,7 +36115,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],466:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],492:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27500,7 +36154,7 @@ function get() {
 
 module.exports = get;
 
-},{}],467:[function(require,module,exports){
+},{}],493:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27562,7 +36216,7 @@ function set( size ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],468:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],494:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27586,7 +36240,7 @@ module.exports = set;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 var ticks = require( './ticks.js' );
 
 
@@ -27634,7 +36288,7 @@ function render() {
 
 module.exports = render;
 
-},{"./ticks.js":469,"debug":812,"virtual-dom/h":919}],469:[function(require,module,exports){
+},{"./ticks.js":495,"debug":841,"virtual-dom/h.js":966}],495:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27658,7 +36312,7 @@ module.exports = render;
 // MODULES //
 
 var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
+var h = require( 'virtual-dom/h.js' );
 var xAttr = require( './utils/x_attr.js' );
 var yAttr = require( './utils/y_attr.js' );
 var tickDir = require( './utils/tick_dir.js' );
@@ -27739,7 +36393,7 @@ function render( ctx ) {
 
 module.exports = render;
 
-},{"./utils/tick_dir.js":470,"./utils/x_attr.js":471,"./utils/y_attr.js":472,"debug":812,"virtual-dom/h":919}],470:[function(require,module,exports){
+},{"./utils/tick_dir.js":496,"./utils/x_attr.js":497,"./utils/y_attr.js":498,"debug":841,"virtual-dom/h.js":966}],496:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27779,7 +36433,7 @@ function tickDir( orient ) {
 
 module.exports = tickDir;
 
-},{}],471:[function(require,module,exports){
+},{}],497:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27819,7 +36473,7 @@ function xAttr( orient ) {
 
 module.exports = xAttr;
 
-},{}],472:[function(require,module,exports){
+},{}],498:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27859,7 +36513,7 @@ function yAttr( orient ) {
 
 module.exports = yAttr;
 
-},{}],473:[function(require,module,exports){
+},{}],499:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27911,7 +36565,7 @@ function isDefined( d ) {
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":147,"debug":812}],474:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":169,"debug":841}],500:[function(require,module,exports){
 module.exports={
 	"autoRender": false,
 	"color": "#000",
@@ -27926,7 +36580,7 @@ module.exports={
 	"yScale": null
 }
 
-},{}],475:[function(require,module,exports){
+},{}],501:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27963,1401 +36617,14 @@ module.exports={
 
 // MODULES //
 
-var Symbols = require( './symbols.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Symbols;
+module.exports = main;
 
-},{"./symbols.js":504}],476:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],477:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:auto-render' );
-
-
-// MAIN //
-
-/**
-* Sets the rendering mode.
-*
-* @private
-* @param {boolean} bool - boolean indicating whether to re-render on a change event
-* @throws {TypeError} must be a boolean
-*/
-function set( bool ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isBoolean( bool ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a boolean. Value: `%s`.', 'autoRender', bool ) );
-	}
-	debug( 'Current value: %d.', this._autoRender );
-
-	this._autoRender = bool;
-	debug( 'New Value: %d.', this._autoRender );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"debug":812}],478:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-
-
-// MAIN //
-
-/**
-* Returns a function to get a symbol's color.
-*
-* @private
-* @returns {Function} color accessor
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var self = this;
-	if ( isString( this._color ) ) {
-		return color;
-	}
-	return this._color;
-
-	/**
-	* Returns the color.
-	*
-	* @private
-	* @returns {string} color
-	*/
-	function color() {
-		return self._color; // eslint-disable-line no-underscore-dangle
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"@stdlib/assert/is-string":181}],479:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:color' );
-
-
-// MAIN //
-
-/**
-* Sets the color.
-*
-* @private
-* @param {(string|Function)} color - color
-* @throws {TypeError} must be a string or function
-*/
-function set( color ) {
-	/* eslint-disable no-invalid-this */
-	if (
-		!isString( color ) &&
-		!isFunction( color )
-	) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a string or a function. Value: `%s`.', 'color', color ) );
-	}
-	debug( 'Current value: %d.', this._color );
-
-	this._color = color;
-	debug( 'New Value: %d.', this._color );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],480:[function(require,module,exports){
-arguments[4][420][0].apply(exports,arguments)
-},{"dup":420}],481:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:is-defined' );
-
-
-// MAIN //
-
-/**
-* Sets the accessor for defined values.
-*
-* @private
-* @param {Function} fcn - accessor
-* @throws {TypeError} must be a function
-*/
-function set( fcn ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isFunction( fcn ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'isDefined', fcn ) );
-	}
-	debug( 'Current value: %s.', this._isDefined );
-
-	this._isDefined = fcn;
-	debug( 'New Value: %s.', this._isDefined );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],482:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-
-
-// MAIN //
-
-/**
-* Returns a function to get a symbol's label.
-*
-* @private
-* @returns {Function} label accessor
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var self = this;
-	if ( isString( this._label ) ) {
-		return label;
-	}
-	return this._label;
-
-	/**
-	* Returns the label.
-	*
-	* @private
-	* @returns {string} label
-	*/
-	function label() {
-		return self._label; // eslint-disable-line no-underscore-dangle
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"@stdlib/assert/is-string":181}],483:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:label' );
-
-
-// MAIN //
-
-/**
-* Sets the label.
-*
-* @private
-* @param {(string|Function)} label - label
-* @throws {TypeError} must be a string or a function
-*/
-function set( label ) {
-	/* eslint-disable no-invalid-this */
-	if (
-		!isString( label ) &&
-		!isFunction( label )
-	) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a string or a function. Value: `%s`.', 'label', label ) );
-	}
-	debug( 'Current value: %d.', this._label );
-
-	this._label = label;
-	debug( 'New Value: %d.', this._label );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],484:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-
-
-// MAIN //
-
-/**
-* Returns a function to get a symbol's opacity.
-*
-* @private
-* @returns {Function} opacity accessor
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var self = this;
-	if ( isNumber( this._opacity ) ) {
-		return opacity;
-	}
-	return this._opacity;
-
-	/**
-	* Returns the opacity.
-	*
-	* @private
-	* @returns {number} opacity
-	*/
-	function opacity() {
-		return self._opacity; // eslint-disable-line no-underscore-dangle
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"@stdlib/assert/is-number":160}],485:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:opacity' );
-
-
-// MAIN //
-
-/**
-* Sets the symbol opacity.
-*
-* @private
-* @param {(number|Function)} opacity - opacity
-* @throws {TypeError} must be a number or a function
-* @throws {RangeError} must be a number on the interval `[0,1]`
-*/
-function set( opacity ) {
-	/* eslint-disable no-invalid-this */
-	var isNum = isNumber( opacity );
-	if (
-		!isNum &&
-		!isFunction( opacity )
-	) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a number or a function. Value: `%s`.', 'opacity', opacity ) );
-	}
-	if (
-		isNum &&
-		(opacity < 0.0 || opacity > 1.0)
-	) {
-		throw new RangeError( format( 'invalid assignment. `%s` must be a number on the interval: [0, 1]. Value: `%f`.', 'opacity', opacity ) );
-	}
-	debug( 'Current value: %d.', this._opacity );
-
-	this._opacity = opacity;
-	debug( 'New Value: %d.', this._opacity );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],486:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-
-
-// MAIN //
-
-/**
-* Returns a function to get a symbol's size.
-*
-* @private
-* @returns {Function} size accessor
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var self = this;
-	if ( isNumber( this._size ) ) {
-		return size;
-	}
-	return this._size;
-
-	/**
-	* Returns the size.
-	*
-	* @private
-	* @returns {number} size
-	*/
-	function size() {
-		return self._size; // eslint-disable-line no-underscore-dangle
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"@stdlib/assert/is-number":160}],487:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:size' );
-
-
-// MAIN //
-
-/**
-* Sets the symbol size.
-*
-* @private
-* @param {(NonNegativeInteger|Function)} size - size
-* @throws {TypeError} must be a nonnegative integer or a function
-*/
-function set( size ) {
-	/* eslint-disable no-invalid-this */
-	if (
-		!isNonNegativeInteger( size ) &&
-		!isFunction( size )
-	) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a nonnegative integer or a function. Value: `%s`.', 'size', size ) );
-	}
-	debug( 'Current value: %d.', this._size );
-
-	this._size = size;
-	debug( 'New Value: %d.', this._size );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],488:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the symbol.
-*
-* @private
-* @returns {string} symbol
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	return this._symbol;
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{}],489:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var indexOf = require( '@stdlib/utils/index-of' );
-var format = require( '@stdlib/string/format' );
-var SYMBOLS = require( './symbols.json' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:symbol' );
-
-
-// MAIN //
-
-/**
-* Sets the symbol.
-*
-* @private
-* @param {string} symbol - symbol
-* @throws {TypeError} must be a supported symbol
-*/
-function set( symbol ) {
-	/* eslint-disable no-invalid-this */
-	if ( indexOf( SYMBOLS, symbol ) === -1 ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a supported symbol. Symbols: "%s". Value: `%s`.', 'symbol', SYMBOLS.join( '", "' ), symbol ) );
-	}
-	debug( 'Current value: %d.', this._symbol );
-
-	this._symbol = symbol;
-	debug( 'New Value: %d.', this._symbol );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"./symbols.json":490,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],490:[function(require,module,exports){
-module.exports=[
-	"closed-circle",
-	"open-circle"
-]
-
-},{}],491:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:xpos' );
-
-
-// MAIN //
-
-/**
-* Returns a function to map values to x coordinate values.
-*
-* @private
-* @returns {Function} map function
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var scale = this.xScale;
-
-	return xPos;
-	/**
-	* Maps a value to a x coordinate value.
-	*
-	* @private
-	* @param {*} d - datum
-	* @returns {number} pixel value
-	*/
-	function xPos( d ) {
-		var px = scale( d );
-		debug( 'Value: %d => Pixel: %d.', d, px );
-		return px;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"debug":812}],492:[function(require,module,exports){
-arguments[4][432][0].apply(exports,arguments)
-},{"dup":432}],493:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:xscale' );
-
-
-// MAIN //
-
-/**
-* Sets the x-scale function.
-*
-* @private
-* @param {Function} fcn - scale
-* @throws {TypeError} must be a function
-*/
-function set( fcn ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isFunction( fcn ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'xScale', fcn ) );
-	}
-	debug( 'Current value: %s.', this._xScale );
-
-	this._xScale = fcn;
-	debug( 'New Value: %s.', this._xScale );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],494:[function(require,module,exports){
-arguments[4][434][0].apply(exports,arguments)
-},{"dup":434}],495:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isArrayLike = require( '@stdlib/assert/is-array-like' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:x' );
-
-
-// MAIN //
-
-/**
-* Sets the `x` values.
-*
-* @private
-* @param {ArrayLike} x - x values
-* @throws {TypeError} must be array-like
-*/
-function set( x ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isArrayLike( x ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be array-like. Value: `%s`.', 'x', x ) );
-	}
-	debug( 'Current value: %s.', JSON.stringify( this._xData ) );
-
-	this._xData = x;
-	debug( 'New Value: %s.', JSON.stringify( this._xData ) );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679,"debug":812}],496:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:ypos' );
-
-
-// MAIN //
-
-/**
-* Returns a function to map values to y coordinate values.
-*
-* @private
-* @returns {Function} map function
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	var scale = this.yScale;
-	return yPos;
-
-	/**
-	* Maps a value to a y coordinate value.
-	*
-	* @private
-	* @param {*} d - datum
-	* @returns {number} pixel value
-	*/
-	function yPos( d ) {
-		var px = scale( d );
-		debug( 'Value: %d => Pixel: %d.', d, px );
-		return px;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{"debug":812}],497:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437}],498:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:yscale' );
-
-
-// MAIN //
-
-/**
-* Sets the y-scale function.
-*
-* @private
-* @param {Function} fcn - scale
-* @throws {TypeError} must be a function
-*/
-function set( fcn ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isFunction( fcn ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'yScale', fcn ) );
-	}
-	debug( 'Current value: %s.', this._yScale );
-
-	this._yScale = fcn;
-	debug( 'New Value: %s.', this._yScale );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],499:[function(require,module,exports){
-arguments[4][439][0].apply(exports,arguments)
-},{"dup":439}],500:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var isArrayLike = require( '@stdlib/assert/is-array-like' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:set:y' );
-
-
-// MAIN //
-
-/**
-* Sets the `y` values.
-*
-* @private
-* @param {ArrayLike} y - y values
-* @throws {TypeError} must be array-like
-*/
-function set( y ) {
-	/* eslint-disable no-invalid-this */
-	if ( !isArrayLike( y ) ) {
-		throw new TypeError( format( 'invalid assignment. `%s` must be array-like. Value: `%s`.', 'y', y ) );
-	}
-	debug( 'Current value: %s.', JSON.stringify( this._yData ) );
-
-	this._yData = y;
-	debug( 'New Value: %s.', JSON.stringify( this._yData ) );
-
-	this.emit( 'change' );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":679,"debug":812}],501:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:render:closed-circles' );
-var ELEMENT = 'circle';
-
-
-// MAIN //
-
-/**
-* Renders data as a closed circles.
-*
-* @private
-* @param {Object} state - state
-* @returns {Array<VTree>} array of virtual trees
-*/
-function render( state ) {
-	var isDefined;
-	var opacity;
-	var label;
-	var color;
-	var props;
-	var size;
-	var xPos;
-	var yPos;
-	var out;
-	var xi;
-	var yi;
-	var x;
-	var y;
-	var i;
-
-	debug( 'Rendering closed circles...' );
-
-	isDefined = state.isDefined;
-	opacity = state.opacity;
-	label = state.label;
-	color = state.color;
-	size = state.size;
-	xPos = state.xPos;
-	yPos = state.yPos;
-	x = state.x;
-	y = state.y;
-
-	out = new Array( x.length );
-	for ( i = 0; i < x.length; i++ ) {
-		xi = x[ i ];
-		yi = y[ i ];
-		if ( !isDefined( xi ) || !isDefined( yi ) ) {
-			debug( 'Datum %d is undefined. [%s,%s].', i, xi, yi );
-			continue;
-		}
-		debug( 'Rendering datum %d...', i );
-		props = {
-			'namespace': 'http://www.w3.org/2000/svg',
-			'property': 'closed-circle',
-			'className': 'closed-circle',
-			'attributes': {
-				'cx': xPos( xi ),
-				'cy': yPos( yi ),
-				'r': size( xi, yi, i ) / 2,
-				'stroke': 'none',
-				'opacity': opacity( xi, yi, i ),
-				'fill': color( xi, yi, i ),
-				'data-label': label( xi, yi, i )
-			}
-		};
-		debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-		out[ i ] = h( ELEMENT, props, [] );
-	}
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"debug":812,"virtual-dom/h":919}],502:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-var closedCircles = require( './closed_circles.js' );
-var openCircles = require( './open_circles.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:render' );
-var ELEMENT = 'g';
-var RENDER = {
-	'closed-circle': closedCircles,
-	'open-circle': openCircles
-};
-
-
-// MAIN //
-
-/**
-* Renders a virtual DOM tree.
-*
-* @private
-* @returns {VTree} virtual DOM tree
-*/
-function render() {
-	/* eslint-disable no-invalid-this */
-	var children;
-	var props;
-	var vtree;
-	var f;
-
-	debug( 'Rendering...' );
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'symbols',
-		'className': 'symbols'
-	};
-	debug( 'Symbol: %s.', this.symbol );
-
-	f = RENDER[ this.symbol ];
-	children = f( this );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-	vtree = h( ELEMENT, props, children );
-
-	// Announce that a new tree has been rendered:
-	this.emit( '_render', vtree );
-
-	return vtree;
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"./closed_circles.js":501,"./open_circles.js":503,"debug":812,"virtual-dom/h":919}],503:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-
-
-// VARIABLES //
-
-var debug = logger( 'symbols:render:open-circles' );
-var ELEMENT = 'circle';
-
-
-// MAIN //
-
-/**
-* Renders data as a open circles.
-*
-* @private
-* @param {Object} state - state
-* @returns {Array<VTree>} array of virtual trees
-*/
-function render( state ) {
-	var isDefined;
-	var opacity;
-	var label;
-	var color;
-	var props;
-	var size;
-	var xPos;
-	var yPos;
-	var out;
-	var xi;
-	var yi;
-	var x;
-	var y;
-	var i;
-
-	debug( 'Rendering open circles...' );
-
-	isDefined = state.isDefined;
-	opacity = state.opacity;
-	label = state.label;
-	color = state.color;
-	size = state.size;
-	xPos = state.xPos;
-	yPos = state.yPos;
-	x = state.x;
-	y = state.y;
-
-	out = new Array( x.length );
-	for ( i = 0; i < x.length; i++ ) {
-		xi = x[ i ];
-		yi = y[ i ];
-		if ( !isDefined( xi ) || !isDefined( yi ) ) {
-			debug( 'Datum %d is undefined. [%s,%s].', i, xi, yi );
-			continue;
-		}
-		debug( 'Rendering datum %d...', i );
-		props = {
-			'namespace': 'http://www.w3.org/2000/svg',
-			'property': 'open-circle',
-			'className': 'open-circle',
-			'attributes': {
-				'cx': xPos( xi ),
-				'cy': yPos( yi ),
-				'r': size( xi, yi, i ) / 2,
-				'fill': 'none',
-				'opacity': opacity( xi, yi, i ),
-				'stroke': color( xi, yi, i ),
-				'stroke-width': 1, // TODO: make property? I certainly don't see a good reason or use case why this should be a function.
-				'data-label': label( xi, yi, i )
-			}
-		};
-		debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-		out[ i ] = h( ELEMENT, props, [] );
-	}
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"debug":812,"virtual-dom/h":919}],504:[function(require,module,exports){
+},{"./main.js":502}],502:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29880,21 +37147,1408 @@ setReadOnly( Symbols.prototype, 'render', render );
 
 module.exports = Symbols;
 
-},{"./accessors/is_defined.js":473,"./defaults.json":474,"./props/auto-render/get.js":476,"./props/auto-render/set.js":477,"./props/color/get.js":478,"./props/color/set.js":479,"./props/is-defined/get.js":480,"./props/is-defined/set.js":481,"./props/label/get.js":482,"./props/label/set.js":483,"./props/opacity/get.js":484,"./props/opacity/set.js":485,"./props/size/get.js":486,"./props/size/set.js":487,"./props/symbol/get.js":488,"./props/symbol/set.js":489,"./props/x-pos/get.js":491,"./props/x-scale/get.js":492,"./props/x-scale/set.js":493,"./props/x/get.js":494,"./props/x/set.js":495,"./props/y-pos/get.js":496,"./props/y-scale/get.js":497,"./props/y-scale/set.js":498,"./props/y/get.js":499,"./props/y/set.js":500,"./render":502,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"@stdlib/utils/keys":738,"@stdlib/utils/merge":748,"d3-scale":803,"debug":812,"events":781}],505:[function(require,module,exports){
+},{"./accessors/is_defined.js":499,"./defaults.json":500,"./props/auto-render/get.js":503,"./props/auto-render/set.js":504,"./props/color/get.js":505,"./props/color/set.js":506,"./props/is-defined/get.js":507,"./props/is-defined/set.js":508,"./props/label/get.js":509,"./props/label/set.js":510,"./props/opacity/get.js":511,"./props/opacity/set.js":512,"./props/size/get.js":513,"./props/size/set.js":514,"./props/symbol/get.js":515,"./props/symbol/set.js":516,"./props/x-pos/get.js":518,"./props/x-scale/get.js":519,"./props/x-scale/set.js":520,"./props/x/get.js":521,"./props/x/set.js":522,"./props/y-pos/get.js":523,"./props/y-scale/get.js":524,"./props/y-scale/set.js":525,"./props/y/get.js":526,"./props/y/set.js":527,"./render":529,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"@stdlib/utils/keys":767,"@stdlib/utils/merge":777,"d3-scale":832,"debug":841,"events":810}],503:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],504:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:auto-render' );
+
+
+// MAIN //
+
+/**
+* Sets the rendering mode.
+*
+* @private
+* @param {boolean} bool - boolean indicating whether to re-render on a change event
+* @throws {TypeError} must be a boolean
+*/
+function set( bool ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isBoolean( bool ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a boolean. Value: `%s`.', 'autoRender', bool ) );
+	}
+	debug( 'Current value: %d.', this._autoRender );
+
+	this._autoRender = bool;
+	debug( 'New Value: %d.', this._autoRender );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"debug":841}],505:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Returns a function to get a symbol's color.
+*
+* @private
+* @returns {Function} color accessor
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var self = this;
+	if ( isString( this._color ) ) {
+		return color;
+	}
+	return this._color;
+
+	/**
+	* Returns the color.
+	*
+	* @private
+	* @returns {string} color
+	*/
+	function color() {
+		return self._color; // eslint-disable-line no-underscore-dangle
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"@stdlib/assert/is-string":203}],506:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:color' );
+
+
+// MAIN //
+
+/**
+* Sets the color.
+*
+* @private
+* @param {(string|Function)} color - color
+* @throws {TypeError} must be a string or function
+*/
+function set( color ) {
+	/* eslint-disable no-invalid-this */
+	if (
+		!isString( color ) &&
+		!isFunction( color )
+	) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a string or a function. Value: `%s`.', 'color', color ) );
+	}
+	debug( 'Current value: %d.', this._color );
+
+	this._color = color;
+	debug( 'New Value: %d.', this._color );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],507:[function(require,module,exports){
+arguments[4][446][0].apply(exports,arguments)
+},{"dup":446}],508:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:is-defined' );
+
+
+// MAIN //
+
+/**
+* Sets the accessor for defined values.
+*
+* @private
+* @param {Function} fcn - accessor
+* @throws {TypeError} must be a function
+*/
+function set( fcn ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'isDefined', fcn ) );
+	}
+	debug( 'Current value: %s.', this._isDefined );
+
+	this._isDefined = fcn;
+	debug( 'New Value: %s.', this._isDefined );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],509:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Returns a function to get a symbol's label.
+*
+* @private
+* @returns {Function} label accessor
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var self = this;
+	if ( isString( this._label ) ) {
+		return label;
+	}
+	return this._label;
+
+	/**
+	* Returns the label.
+	*
+	* @private
+	* @returns {string} label
+	*/
+	function label() {
+		return self._label; // eslint-disable-line no-underscore-dangle
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"@stdlib/assert/is-string":203}],510:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:label' );
+
+
+// MAIN //
+
+/**
+* Sets the label.
+*
+* @private
+* @param {(string|Function)} label - label
+* @throws {TypeError} must be a string or a function
+*/
+function set( label ) {
+	/* eslint-disable no-invalid-this */
+	if (
+		!isString( label ) &&
+		!isFunction( label )
+	) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a string or a function. Value: `%s`.', 'label', label ) );
+	}
+	debug( 'Current value: %d.', this._label );
+
+	this._label = label;
+	debug( 'New Value: %d.', this._label );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],511:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Returns a function to get a symbol's opacity.
+*
+* @private
+* @returns {Function} opacity accessor
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var self = this;
+	if ( isNumber( this._opacity ) ) {
+		return opacity;
+	}
+	return this._opacity;
+
+	/**
+	* Returns the opacity.
+	*
+	* @private
+	* @returns {number} opacity
+	*/
+	function opacity() {
+		return self._opacity; // eslint-disable-line no-underscore-dangle
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"@stdlib/assert/is-number":182}],512:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:opacity' );
+
+
+// MAIN //
+
+/**
+* Sets the symbol opacity.
+*
+* @private
+* @param {(number|Function)} opacity - opacity
+* @throws {TypeError} must be a number or a function
+* @throws {RangeError} must be a number on the interval `[0,1]`
+*/
+function set( opacity ) {
+	/* eslint-disable no-invalid-this */
+	var isNum = isNumber( opacity );
+	if (
+		!isNum &&
+		!isFunction( opacity )
+	) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a number or a function. Value: `%s`.', 'opacity', opacity ) );
+	}
+	if (
+		isNum &&
+		(opacity < 0.0 || opacity > 1.0)
+	) {
+		throw new RangeError( format( 'invalid assignment. `%s` must be a number on the interval: [0, 1]. Value: `%f`.', 'opacity', opacity ) );
+	}
+	debug( 'Current value: %d.', this._opacity );
+
+	this._opacity = opacity;
+	debug( 'New Value: %d.', this._opacity );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],513:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Returns a function to get a symbol's size.
+*
+* @private
+* @returns {Function} size accessor
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var self = this;
+	if ( isNumber( this._size ) ) {
+		return size;
+	}
+	return this._size;
+
+	/**
+	* Returns the size.
+	*
+	* @private
+	* @returns {number} size
+	*/
+	function size() {
+		return self._size; // eslint-disable-line no-underscore-dangle
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"@stdlib/assert/is-number":182}],514:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:size' );
+
+
+// MAIN //
+
+/**
+* Sets the symbol size.
+*
+* @private
+* @param {(NonNegativeInteger|Function)} size - size
+* @throws {TypeError} must be a nonnegative integer or a function
+*/
+function set( size ) {
+	/* eslint-disable no-invalid-this */
+	if (
+		!isNonNegativeInteger( size ) &&
+		!isFunction( size )
+	) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a nonnegative integer or a function. Value: `%s`.', 'size', size ) );
+	}
+	debug( 'Current value: %d.', this._size );
+
+	this._size = size;
+	debug( 'New Value: %d.', this._size );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],515:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the symbol.
+*
+* @private
+* @returns {string} symbol
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	return this._symbol;
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{}],516:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var indexOf = require( '@stdlib/utils/index-of' );
+var format = require( '@stdlib/string/format' );
+var SYMBOLS = require( './symbols.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:symbol' );
+
+
+// MAIN //
+
+/**
+* Sets the symbol.
+*
+* @private
+* @param {string} symbol - symbol
+* @throws {TypeError} must be a supported symbol
+*/
+function set( symbol ) {
+	/* eslint-disable no-invalid-this */
+	if ( indexOf( SYMBOLS, symbol ) === -1 ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a supported symbol. Symbols: "%s". Value: `%s`.', 'symbol', SYMBOLS.join( '", "' ), symbol ) );
+	}
+	debug( 'Current value: %d.', this._symbol );
+
+	this._symbol = symbol;
+	debug( 'New Value: %d.', this._symbol );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"./symbols.json":517,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],517:[function(require,module,exports){
+module.exports=[
+	"closed-circle",
+	"open-circle"
+]
+
+},{}],518:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:xpos' );
+
+
+// MAIN //
+
+/**
+* Returns a function to map values to x coordinate values.
+*
+* @private
+* @returns {Function} map function
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var scale = this.xScale;
+
+	return xPos;
+	/**
+	* Maps a value to a x coordinate value.
+	*
+	* @private
+	* @param {*} d - datum
+	* @returns {number} pixel value
+	*/
+	function xPos( d ) {
+		var px = scale( d );
+		debug( 'Value: %d => Pixel: %d.', d, px );
+		return px;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"debug":841}],519:[function(require,module,exports){
+arguments[4][458][0].apply(exports,arguments)
+},{"dup":458}],520:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:xscale' );
+
+
+// MAIN //
+
+/**
+* Sets the x-scale function.
+*
+* @private
+* @param {Function} fcn - scale
+* @throws {TypeError} must be a function
+*/
+function set( fcn ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'xScale', fcn ) );
+	}
+	debug( 'Current value: %s.', this._xScale );
+
+	this._xScale = fcn;
+	debug( 'New Value: %s.', this._xScale );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],521:[function(require,module,exports){
+arguments[4][460][0].apply(exports,arguments)
+},{"dup":460}],522:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isArrayLike = require( '@stdlib/assert/is-array-like' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:x' );
+
+
+// MAIN //
+
+/**
+* Sets the `x` values.
+*
+* @private
+* @param {ArrayLike} x - x values
+* @throws {TypeError} must be array-like
+*/
+function set( x ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isArrayLike( x ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be array-like. Value: `%s`.', 'x', x ) );
+	}
+	debug( 'Current value: %s.', JSON.stringify( this._xData ) );
+
+	this._xData = x;
+	debug( 'New Value: %s.', JSON.stringify( this._xData ) );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707,"debug":841}],523:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:ypos' );
+
+
+// MAIN //
+
+/**
+* Returns a function to map values to y coordinate values.
+*
+* @private
+* @returns {Function} map function
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	var scale = this.yScale;
+	return yPos;
+
+	/**
+	* Maps a value to a y coordinate value.
+	*
+	* @private
+	* @param {*} d - datum
+	* @returns {number} pixel value
+	*/
+	function yPos( d ) {
+		var px = scale( d );
+		debug( 'Value: %d => Pixel: %d.', d, px );
+		return px;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"debug":841}],524:[function(require,module,exports){
+arguments[4][463][0].apply(exports,arguments)
+},{"dup":463}],525:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:yscale' );
+
+
+// MAIN //
+
+/**
+* Sets the y-scale function.
+*
+* @private
+* @param {Function} fcn - scale
+* @throws {TypeError} must be a function
+*/
+function set( fcn ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be a function. Value: `%s`.', 'yScale', fcn ) );
+	}
+	debug( 'Current value: %s.', this._yScale );
+
+	this._yScale = fcn;
+	debug( 'New Value: %s.', this._yScale );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],526:[function(require,module,exports){
+arguments[4][465][0].apply(exports,arguments)
+},{"dup":465}],527:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var isArrayLike = require( '@stdlib/assert/is-array-like' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:y' );
+
+
+// MAIN //
+
+/**
+* Sets the `y` values.
+*
+* @private
+* @param {ArrayLike} y - y values
+* @throws {TypeError} must be array-like
+*/
+function set( y ) {
+	/* eslint-disable no-invalid-this */
+	if ( !isArrayLike( y ) ) {
+		throw new TypeError( format( 'invalid assignment. `%s` must be array-like. Value: `%s`.', 'y', y ) );
+	}
+	debug( 'Current value: %s.', JSON.stringify( this._yData ) );
+
+	this._yData = y;
+	debug( 'New Value: %s.', JSON.stringify( this._yData ) );
+
+	this.emit( 'change' );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"@stdlib/assert/is-array-like":119,"@stdlib/string/format":707,"debug":841}],528:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:render:closed-circles' );
+var ELEMENT = 'circle';
+
+
+// MAIN //
+
+/**
+* Renders data as a closed circles.
+*
+* @private
+* @param {Object} state - state
+* @returns {Array<VTree>} array of virtual trees
+*/
+function render( state ) {
+	var isDefined;
+	var opacity;
+	var label;
+	var color;
+	var props;
+	var size;
+	var xPos;
+	var yPos;
+	var out;
+	var xi;
+	var yi;
+	var x;
+	var y;
+	var i;
+
+	debug( 'Rendering closed circles...' );
+
+	isDefined = state.isDefined;
+	opacity = state.opacity;
+	label = state.label;
+	color = state.color;
+	size = state.size;
+	xPos = state.xPos;
+	yPos = state.yPos;
+	x = state.x;
+	y = state.y;
+
+	out = new Array( x.length );
+	for ( i = 0; i < x.length; i++ ) {
+		xi = x[ i ];
+		yi = y[ i ];
+		if ( !isDefined( xi ) || !isDefined( yi ) ) {
+			debug( 'Datum %d is undefined. [%s,%s].', i, xi, yi );
+			continue;
+		}
+		debug( 'Rendering datum %d...', i );
+		props = {
+			'namespace': 'http://www.w3.org/2000/svg',
+			'property': 'closed-circle',
+			'className': 'closed-circle',
+			'attributes': {
+				'cx': xPos( xi ),
+				'cy': yPos( yi ),
+				'r': size( xi, yi, i ) / 2,
+				'stroke': 'none',
+				'opacity': opacity( xi, yi, i ),
+				'fill': color( xi, yi, i ),
+				'data-label': label( xi, yi, i )
+			}
+		};
+		debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+		out[ i ] = h( ELEMENT, props, [] );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"debug":841,"virtual-dom/h.js":966}],529:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+var closedCircles = require( './closed_circles.js' );
+var openCircles = require( './open_circles.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:render' );
+var ELEMENT = 'g';
+var RENDER = {
+	'closed-circle': closedCircles,
+	'open-circle': openCircles
+};
+
+
+// MAIN //
+
+/**
+* Renders a virtual DOM tree.
+*
+* @private
+* @returns {VTree} virtual DOM tree
+*/
+function render() {
+	/* eslint-disable no-invalid-this */
+	var children;
+	var props;
+	var vtree;
+	var f;
+
+	debug( 'Rendering...' );
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'symbols',
+		'className': 'symbols'
+	};
+	debug( 'Symbol: %s.', this.symbol );
+
+	f = RENDER[ this.symbol ];
+	children = f( this );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+	vtree = h( ELEMENT, props, children );
+
+	// Announce that a new tree has been rendered:
+	this.emit( '_render', vtree );
+
+	return vtree;
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"./closed_circles.js":528,"./open_circles.js":530,"debug":841,"virtual-dom/h.js":966}],530:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:render:open-circles' );
+var ELEMENT = 'circle';
+
+
+// MAIN //
+
+/**
+* Renders data as a open circles.
+*
+* @private
+* @param {Object} state - state
+* @returns {Array<VTree>} array of virtual trees
+*/
+function render( state ) {
+	var isDefined;
+	var opacity;
+	var label;
+	var color;
+	var props;
+	var size;
+	var xPos;
+	var yPos;
+	var out;
+	var xi;
+	var yi;
+	var x;
+	var y;
+	var i;
+
+	debug( 'Rendering open circles...' );
+
+	isDefined = state.isDefined;
+	opacity = state.opacity;
+	label = state.label;
+	color = state.color;
+	size = state.size;
+	xPos = state.xPos;
+	yPos = state.yPos;
+	x = state.x;
+	y = state.y;
+
+	out = new Array( x.length );
+	for ( i = 0; i < x.length; i++ ) {
+		xi = x[ i ];
+		yi = y[ i ];
+		if ( !isDefined( xi ) || !isDefined( yi ) ) {
+			debug( 'Datum %d is undefined. [%s,%s].', i, xi, yi );
+			continue;
+		}
+		debug( 'Rendering datum %d...', i );
+		props = {
+			'namespace': 'http://www.w3.org/2000/svg',
+			'property': 'open-circle',
+			'className': 'open-circle',
+			'attributes': {
+				'cx': xPos( xi ),
+				'cy': yPos( yi ),
+				'r': size( xi, yi, i ) / 2,
+				'fill': 'none',
+				'opacity': opacity( xi, yi, i ),
+				'stroke': color( xi, yi, i ),
+				'stroke-width': 1, // TODO: make property? I certainly don't see a good reason or use case why this should be a function.
+				'data-label': label( xi, yi, i )
+			}
+		};
+		debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+		out[ i ] = h( ELEMENT, props, [] );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"debug":841,"virtual-dom/h.js":966}],531:[function(require,module,exports){
 module.exports={
 	"text": "",
 	"autoRender": false
 }
 
-},{}],506:[function(require,module,exports){
+},{}],532:[function(require,module,exports){
 module.exports={
 	"text": "change",
 	"autoRender": "change"
 }
 
-},{}],507:[function(require,module,exports){
-arguments[4][270][0].apply(exports,arguments)
-},{"./events.json":506,"dup":270}],508:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
+arguments[4][295][0].apply(exports,arguments)
+},{"./events.json":532,"dup":295}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29930,254 +38584,14 @@ arguments[4][270][0].apply(exports,arguments)
 
 // MODULES //
 
-var Title = require( './title.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Title;
+module.exports = main;
 
-},{"./title.js":514}],509:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var h = require( 'virtual-dom/h' );
-
-
-// VARIABLES //
-
-var debug = logger( 'title:render' );
-var ELEMENT = 'text';
-
-
-// MAIN //
-
-/**
-* Renders a virtual DOM tree.
-*
-* @private
-* @returns {VTree} virtual DOM tree
-*/
-function render() {
-	/* eslint-disable no-invalid-this */
-	var props;
-	var vtree;
-	var text;
-
-	debug( 'Rendering...' );
-
-	props = {
-		'namespace': 'http://www.w3.org/2000/svg',
-		'property': 'title',
-		'className': 'title noselect',
-		'attributes': {
-			'x': 0,
-			'y': 0,
-			'text-anchor': 'middle'
-		}
-	};
-
-	text = this.text;
-	debug( 'Title: %s.', text );
-
-	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
-	vtree = h( ELEMENT, props, text );
-
-	// Announce that a new tree has been rendered:
-	this.emit( '_render', vtree );
-
-	return vtree;
-}
-
-
-// EXPORTS //
-
-module.exports = render;
-
-},{"debug":812,"virtual-dom/h":919}],510:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],511:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var events = require( './../../events' );
-var isValid = require( './../../validators/auto_render.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'title:set:auto-render' );
-var CHANGE_EVENT = events( 'autoRender' );
-
-
-// MAIN //
-
-/**
-* Sets the rendering mode.
-*
-* @private
-* @param {boolean} bool - boolean indicating whether to re-render on a change event
-* @throws {TypeError} must be a positive number
-*/
-function set( bool ) {
-	/* eslint-disable no-invalid-this */
-	var err = isValid( bool );
-	if ( err ) {
-		throw err;
-	}
-	debug( 'Current value: %d.', this._autoRender );
-
-	this._autoRender = bool;
-	debug( 'New Value: %d.', this._autoRender );
-
-	this.emit( CHANGE_EVENT );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"./../../events":507,"./../../validators/auto_render.js":516,"debug":812}],512:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the title text.
-*
-* @private
-* @returns {string} text
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	return this._text;
-}
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{}],513:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var logger = require( 'debug' );
-var events = require( './../../events' );
-var isValid = require( './../../validators/text.js' );
-
-
-// VARIABLES //
-
-var debug = logger( 'title:set:text' );
-var CHANGE_EVENT = events( 'text' );
-
-
-// MAIN //
-
-/**
-* Sets the title text.
-*
-* @private
-* @param {string} text - text
-* @throws {TypeError} must be a string
-*/
-function set( text ) {
-	/* eslint-disable no-invalid-this */
-	var err = isValid( text );
-	if ( err ) {
-		throw err;
-	}
-	debug( 'Current value: %d.', this._text );
-
-	this._text = text;
-	debug( 'New Value: %d.', this._text );
-
-	this.emit( CHANGE_EVENT );
-}
-
-
-// EXPORTS //
-
-module.exports = set;
-
-},{"./../../events":507,"./../../validators/text.js":518,"debug":812}],514:[function(require,module,exports){
+},{"./main.js":535}],535:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30377,7 +38791,247 @@ setReadOnly( Title.prototype, 'render', render );
 
 module.exports = Title;
 
-},{"./defaults.json":505,"./methods/render.js":509,"./props/auto-render/get.js":510,"./props/auto-render/set.js":511,"./props/text/get.js":512,"./props/text/set.js":513,"./validate.js":515,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"debug":812,"events":781}],515:[function(require,module,exports){
+},{"./defaults.json":531,"./methods/render.js":536,"./props/auto-render/get.js":537,"./props/auto-render/set.js":538,"./props/text/get.js":539,"./props/text/set.js":540,"./validate.js":541,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"debug":841,"events":810}],536:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var h = require( 'virtual-dom/h.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'title:render' );
+var ELEMENT = 'text';
+
+
+// MAIN //
+
+/**
+* Renders a virtual DOM tree.
+*
+* @private
+* @returns {VTree} virtual DOM tree
+*/
+function render() {
+	/* eslint-disable no-invalid-this */
+	var props;
+	var vtree;
+	var text;
+
+	debug( 'Rendering...' );
+
+	props = {
+		'namespace': 'http://www.w3.org/2000/svg',
+		'property': 'title',
+		'className': 'title noselect',
+		'attributes': {
+			'x': 0,
+			'y': 0,
+			'text-anchor': 'middle'
+		}
+	};
+
+	text = this.text;
+	debug( 'Title: %s.', text );
+
+	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
+	vtree = h( ELEMENT, props, text );
+
+	// Announce that a new tree has been rendered:
+	this.emit( '_render', vtree );
+
+	return vtree;
+}
+
+
+// EXPORTS //
+
+module.exports = render;
+
+},{"debug":841,"virtual-dom/h.js":966}],537:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],538:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var events = require( './../../events' );
+var isValid = require( './../../validators/auto_render.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'title:set:auto-render' );
+var CHANGE_EVENT = events( 'autoRender' );
+
+
+// MAIN //
+
+/**
+* Sets the rendering mode.
+*
+* @private
+* @param {boolean} bool - boolean indicating whether to re-render on a change event
+* @throws {TypeError} must be a positive number
+*/
+function set( bool ) {
+	/* eslint-disable no-invalid-this */
+	var err = isValid( bool );
+	if ( err ) {
+		throw err;
+	}
+	debug( 'Current value: %d.', this._autoRender );
+
+	this._autoRender = bool;
+	debug( 'New Value: %d.', this._autoRender );
+
+	this.emit( CHANGE_EVENT );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"./../../events":533,"./../../validators/auto_render.js":542,"debug":841}],539:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the title text.
+*
+* @private
+* @returns {string} text
+*/
+function get() {
+	/* eslint-disable no-invalid-this */
+	return this._text;
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{}],540:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var logger = require( 'debug' );
+var events = require( './../../events' );
+var isValid = require( './../../validators/text.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'title:set:text' );
+var CHANGE_EVENT = events( 'text' );
+
+
+// MAIN //
+
+/**
+* Sets the title text.
+*
+* @private
+* @param {string} text - text
+* @throws {TypeError} must be a string
+*/
+function set( text ) {
+	/* eslint-disable no-invalid-this */
+	var err = isValid( text );
+	if ( err ) {
+		throw err;
+	}
+	debug( 'Current value: %d.', this._text );
+
+	this._text = text;
+	debug( 'New Value: %d.', this._text );
+
+	this.emit( CHANGE_EVENT );
+}
+
+
+// EXPORTS //
+
+module.exports = set;
+
+},{"./../../events":533,"./../../validators/text.js":544,"debug":841}],541:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30461,9 +39115,9 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"./validators":517,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/keys":738}],516:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"dup":310}],517:[function(require,module,exports){
+},{"./validators":543,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/keys":767}],542:[function(require,module,exports){
+arguments[4][336][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"dup":336}],543:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30502,7 +39156,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":516,"./text.js":518}],518:[function(require,module,exports){
+},{"./auto_render.js":542,"./text.js":544}],544:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30550,7 +39204,7 @@ function test( v ) {
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],519:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],545:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30603,7 +39257,7 @@ function isDefined( d ) {
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":147,"debug":812}],520:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":169,"debug":841}],546:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30796,7 +39450,7 @@ function defaults() {
 
 module.exports = defaults;
 
-},{"./accessors/is_defined.js":519,"@stdlib/assert/is-node-repl":151}],521:[function(require,module,exports){
+},{"./accessors/is_defined.js":545,"@stdlib/assert/is-node-repl":173}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30878,7 +39532,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./main.js":523,"@stdlib/assert/is-plain-object":170,"@stdlib/string/format":679,"@stdlib/utils/copy":690}],522:[function(require,module,exports){
+},{"./main.js":549,"@stdlib/assert/is-plain-object":192,"@stdlib/string/format":707,"@stdlib/utils/copy":719}],548:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30928,20 +39582,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var Plot = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( Plot, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = Plot;
+module.exports = main;
 
-},{"./factory.js":521,"./main.js":523,"@stdlib/utils/define-nonenumerable-read-only-property":694}],523:[function(require,module,exports){
+},{"./factory.js":547,"./main.js":549,"@stdlib/utils/define-nonenumerable-read-only-property":724}],549:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32854,9 +41508,9 @@ setReadOnly( Plot.prototype, 'view', viewMethod );
 
 module.exports = Plot;
 
-},{"./defaults.js":520,"./props/auto-render/get.js":524,"./props/auto-render/set.js":525,"./props/auto-view/get.js":526,"./props/auto-view/set.js":527,"./props/colors/get.js":529,"./props/colors/set.js":530,"./props/description/get.js":531,"./props/description/set.js":532,"./props/engine/get.js":534,"./props/engine/set.js":535,"./props/graph-height/get.js":536,"./props/graph-width/get.js":537,"./props/height/get.js":538,"./props/height/set.js":539,"./props/is-defined/get.js":540,"./props/is-defined/set.js":541,"./props/labels/get.js":542,"./props/labels/set.js":543,"./props/line-opacity/get.js":544,"./props/line-opacity/set.js":545,"./props/line-style/get.js":546,"./props/line-style/set.js":548,"./props/line-width/get.js":549,"./props/line-width/set.js":550,"./props/padding-bottom/get.js":551,"./props/padding-bottom/set.js":552,"./props/padding-left/get.js":553,"./props/padding-left/set.js":554,"./props/padding-right/get.js":555,"./props/padding-right/set.js":556,"./props/padding-top/get.js":557,"./props/padding-top/set.js":558,"./props/render-format/get.js":560,"./props/render-format/set.js":561,"./props/symbols-opacity/get.js":562,"./props/symbols-opacity/set.js":563,"./props/symbols-size/get.js":564,"./props/symbols-size/set.js":565,"./props/symbols/get.js":566,"./props/symbols/set.js":567,"./props/title/get.js":569,"./props/title/set.js":570,"./props/viewer/get.js":571,"./props/viewer/set.js":572,"./props/width/get.js":574,"./props/width/set.js":575,"./props/x-axis-orient/get.js":576,"./props/x-axis-orient/set.js":578,"./props/x-domain/get.js":579,"./props/x-label/get.js":580,"./props/x-label/set.js":581,"./props/x-max/get.js":582,"./props/x-max/set.js":583,"./props/x-min/get.js":584,"./props/x-min/set.js":585,"./props/x-num-ticks/get.js":586,"./props/x-num-ticks/set.js":587,"./props/x-pos/get.js":588,"./props/x-range/get.js":589,"./props/x-rug-opacity/get.js":590,"./props/x-rug-opacity/set.js":591,"./props/x-rug-orient/get.js":592,"./props/x-rug-orient/set.js":594,"./props/x-rug-size/get.js":595,"./props/x-rug-size/set.js":596,"./props/x-rug/get.js":597,"./props/x-rug/set.js":598,"./props/x-scale/get.js":599,"./props/x-scale/set.js":600,"./props/x-tick-format/get.js":601,"./props/x-tick-format/set.js":602,"./props/x/get.js":603,"./props/x/set.js":604,"./props/y-axis-orient/get.js":605,"./props/y-axis-orient/set.js":607,"./props/y-domain/get.js":608,"./props/y-label/get.js":609,"./props/y-label/set.js":610,"./props/y-max/get.js":611,"./props/y-max/set.js":612,"./props/y-min/get.js":613,"./props/y-min/set.js":614,"./props/y-num-ticks/get.js":615,"./props/y-num-ticks/set.js":616,"./props/y-pos/get.js":617,"./props/y-range/get.js":618,"./props/y-rug-opacity/get.js":619,"./props/y-rug-opacity/set.js":620,"./props/y-rug-orient/get.js":621,"./props/y-rug-orient/set.js":623,"./props/y-rug-size/get.js":624,"./props/y-rug-size/set.js":625,"./props/y-rug/get.js":626,"./props/y-rug/set.js":627,"./props/y-scale/get.js":628,"./props/y-scale/set.js":629,"./props/y-tick-format/get.js":630,"./props/y-tick-format/set.js":631,"./props/y/get.js":632,"./props/y/set.js":633,"./render":634,"./view":650,"./view/view.js":652,"@stdlib/assert/is-plain-object":170,"@stdlib/random/base/minstd":656,"@stdlib/string/format":679,"@stdlib/utils/copy":690,"@stdlib/utils/define-property":701,"@stdlib/utils/define-read-only-property":703,"@stdlib/utils/inherit":724,"@stdlib/utils/keys":738,"@stdlib/utils/merge":748,"debug":812,"events":781}],524:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273}],525:[function(require,module,exports){
+},{"./defaults.js":546,"./props/auto-render/get.js":550,"./props/auto-render/set.js":551,"./props/auto-view/get.js":552,"./props/auto-view/set.js":553,"./props/colors/get.js":555,"./props/colors/set.js":556,"./props/description/get.js":557,"./props/description/set.js":558,"./props/engine/get.js":560,"./props/engine/set.js":561,"./props/graph-height/get.js":562,"./props/graph-width/get.js":563,"./props/height/get.js":564,"./props/height/set.js":565,"./props/is-defined/get.js":566,"./props/is-defined/set.js":567,"./props/labels/get.js":568,"./props/labels/set.js":569,"./props/line-opacity/get.js":570,"./props/line-opacity/set.js":571,"./props/line-style/get.js":572,"./props/line-style/set.js":574,"./props/line-width/get.js":575,"./props/line-width/set.js":576,"./props/padding-bottom/get.js":577,"./props/padding-bottom/set.js":578,"./props/padding-left/get.js":579,"./props/padding-left/set.js":580,"./props/padding-right/get.js":581,"./props/padding-right/set.js":582,"./props/padding-top/get.js":583,"./props/padding-top/set.js":584,"./props/render-format/get.js":586,"./props/render-format/set.js":587,"./props/symbols-opacity/get.js":588,"./props/symbols-opacity/set.js":589,"./props/symbols-size/get.js":590,"./props/symbols-size/set.js":591,"./props/symbols/get.js":592,"./props/symbols/set.js":593,"./props/title/get.js":595,"./props/title/set.js":596,"./props/viewer/get.js":597,"./props/viewer/set.js":598,"./props/width/get.js":600,"./props/width/set.js":601,"./props/x-axis-orient/get.js":602,"./props/x-axis-orient/set.js":604,"./props/x-domain/get.js":605,"./props/x-label/get.js":606,"./props/x-label/set.js":607,"./props/x-max/get.js":608,"./props/x-max/set.js":609,"./props/x-min/get.js":610,"./props/x-min/set.js":611,"./props/x-num-ticks/get.js":612,"./props/x-num-ticks/set.js":613,"./props/x-pos/get.js":614,"./props/x-range/get.js":615,"./props/x-rug-opacity/get.js":616,"./props/x-rug-opacity/set.js":617,"./props/x-rug-orient/get.js":618,"./props/x-rug-orient/set.js":620,"./props/x-rug-size/get.js":621,"./props/x-rug-size/set.js":622,"./props/x-rug/get.js":623,"./props/x-rug/set.js":624,"./props/x-scale/get.js":625,"./props/x-scale/set.js":626,"./props/x-tick-format/get.js":627,"./props/x-tick-format/set.js":628,"./props/x/get.js":629,"./props/x/set.js":630,"./props/y-axis-orient/get.js":631,"./props/y-axis-orient/set.js":633,"./props/y-domain/get.js":634,"./props/y-label/get.js":635,"./props/y-label/set.js":636,"./props/y-max/get.js":637,"./props/y-max/set.js":638,"./props/y-min/get.js":639,"./props/y-min/set.js":640,"./props/y-num-ticks/get.js":641,"./props/y-num-ticks/set.js":642,"./props/y-pos/get.js":643,"./props/y-range/get.js":644,"./props/y-rug-opacity/get.js":645,"./props/y-rug-opacity/set.js":646,"./props/y-rug-orient/get.js":647,"./props/y-rug-orient/set.js":649,"./props/y-rug-size/get.js":650,"./props/y-rug-size/set.js":651,"./props/y-rug/get.js":652,"./props/y-rug/set.js":653,"./props/y-scale/get.js":654,"./props/y-scale/set.js":655,"./props/y-tick-format/get.js":656,"./props/y-tick-format/set.js":657,"./props/y/get.js":658,"./props/y/set.js":659,"./render":660,"./view":676,"./view/view.js":678,"@stdlib/assert/is-plain-object":192,"@stdlib/random/base/minstd":682,"@stdlib/string/format":707,"@stdlib/utils/copy":719,"@stdlib/utils/define-property":731,"@stdlib/utils/define-read-only-property":733,"@stdlib/utils/inherit":753,"@stdlib/utils/keys":767,"@stdlib/utils/merge":777,"debug":841,"events":810}],550:[function(require,module,exports){
+arguments[4][299][0].apply(exports,arguments)
+},{"dup":299}],551:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32918,7 +41572,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"debug":812}],526:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"debug":841}],552:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32955,7 +41609,7 @@ function get() {
 
 module.exports = get;
 
-},{}],527:[function(require,module,exports){
+},{}],553:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33017,7 +41671,7 @@ function set( bool ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679,"debug":812}],528:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707,"debug":841}],554:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33131,7 +41785,7 @@ COLORS.category20c = [
 
 module.exports = COLORS;
 
-},{}],529:[function(require,module,exports){
+},{}],555:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33168,7 +41822,7 @@ function get() {
 
 module.exports = get;
 
-},{}],530:[function(require,module,exports){
+},{}],556:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33241,7 +41895,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./colors.js":528,"@stdlib/assert/is-string":181,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"debug":812}],531:[function(require,module,exports){
+},{"./colors.js":554,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"debug":841}],557:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33278,7 +41932,7 @@ function get() {
 
 module.exports = get;
 
-},{}],532:[function(require,module,exports){
+},{}],558:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33340,12 +41994,12 @@ function set( str ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],533:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],559:[function(require,module,exports){
 module.exports=[
 	"svg"
 ]
 
-},{}],534:[function(require,module,exports){
+},{}],560:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33382,7 +42036,7 @@ function get() {
 
 module.exports = get;
 
-},{}],535:[function(require,module,exports){
+},{}],561:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33445,7 +42099,7 @@ function set( engine ) {
 
 module.exports = set;
 
-},{"./engines.json":533,"@stdlib/assert/contains":49,"@stdlib/string/format":679,"debug":812}],536:[function(require,module,exports){
+},{"./engines.json":559,"@stdlib/assert/contains":68,"@stdlib/string/format":707,"debug":841}],562:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33482,7 +42136,7 @@ function get() {
 
 module.exports = get;
 
-},{}],537:[function(require,module,exports){
+},{}],563:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33519,9 +42173,9 @@ function get() {
 
 module.exports = get;
 
-},{}],538:[function(require,module,exports){
-arguments[4][330][0].apply(exports,arguments)
-},{"dup":330}],539:[function(require,module,exports){
+},{}],564:[function(require,module,exports){
+arguments[4][356][0].apply(exports,arguments)
+},{"dup":356}],565:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33584,9 +42238,9 @@ function set( height ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"debug":812}],540:[function(require,module,exports){
-arguments[4][420][0].apply(exports,arguments)
-},{"dup":420}],541:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"debug":841}],566:[function(require,module,exports){
+arguments[4][446][0].apply(exports,arguments)
+},{"dup":446}],567:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33648,7 +42302,7 @@ function set( fcn ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":134,"@stdlib/string/format":679,"debug":812}],542:[function(require,module,exports){
+},{"@stdlib/assert/is-function":156,"@stdlib/string/format":707,"debug":841}],568:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33685,7 +42339,7 @@ function get() {
 
 module.exports = get;
 
-},{}],543:[function(require,module,exports){
+},{}],569:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33750,7 +42404,7 @@ function set( labels ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-empty-array":122,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"debug":812}],544:[function(require,module,exports){
+},{"@stdlib/assert/is-empty-array":144,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"debug":841}],570:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33787,7 +42441,7 @@ function get() {
 
 module.exports = get;
 
-},{}],545:[function(require,module,exports){
+},{}],571:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33862,7 +42516,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/assert/is-number-array":159,"@stdlib/string/format":679,"debug":812}],546:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/assert/is-number-array":181,"@stdlib/string/format":707,"debug":841}],572:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33899,7 +42553,7 @@ function get() {
 
 module.exports = get;
 
-},{}],547:[function(require,module,exports){
+},{}],573:[function(require,module,exports){
 module.exports=[
 	"-",
 	"--",
@@ -33908,7 +42562,7 @@ module.exports=[
 	"none"
 ]
 
-},{}],548:[function(require,module,exports){
+},{}],574:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33985,7 +42639,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./line_styles.json":547,"@stdlib/assert/is-string":181,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],549:[function(require,module,exports){
+},{"./line_styles.json":573,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],575:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34022,7 +42676,7 @@ function get() {
 
 module.exports = get;
 
-},{}],550:[function(require,module,exports){
+},{}],576:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34090,7 +42744,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-nonnegative-integer-array":152,"@stdlib/string/format":679,"debug":812}],551:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-nonnegative-integer-array":174,"@stdlib/string/format":707,"debug":841}],577:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34127,7 +42781,7 @@ function get() {
 
 module.exports = get;
 
-},{}],552:[function(require,module,exports){
+},{}],578:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34189,7 +42843,7 @@ function set( padding ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],553:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],579:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34226,7 +42880,7 @@ function get() {
 
 module.exports = get;
 
-},{}],554:[function(require,module,exports){
+},{}],580:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34288,7 +42942,7 @@ function set( padding ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],555:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],581:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34325,7 +42979,7 @@ function get() {
 
 module.exports = get;
 
-},{}],556:[function(require,module,exports){
+},{}],582:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34387,7 +43041,7 @@ function set( padding ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],557:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],583:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34424,7 +43078,7 @@ function get() {
 
 module.exports = get;
 
-},{}],558:[function(require,module,exports){
+},{}],584:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34486,13 +43140,13 @@ function set( padding ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/string/format":679,"debug":812}],559:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/string/format":707,"debug":841}],585:[function(require,module,exports){
 module.exports=[
 	"vdom",
 	"html"
 ]
 
-},{}],560:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34529,7 +43183,7 @@ function get() {
 
 module.exports = get;
 
-},{}],561:[function(require,module,exports){
+},{}],587:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34592,7 +43246,7 @@ function set( fmt ) {
 
 module.exports = set;
 
-},{"./formats.json":559,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],562:[function(require,module,exports){
+},{"./formats.json":585,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],588:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34629,7 +43283,7 @@ function get() {
 
 module.exports = get;
 
-},{}],563:[function(require,module,exports){
+},{}],589:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34704,7 +43358,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/assert/is-number-array":159,"@stdlib/string/format":679,"debug":812}],564:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/assert/is-number-array":181,"@stdlib/string/format":707,"debug":841}],590:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34741,7 +43395,7 @@ function get() {
 
 module.exports = get;
 
-},{}],565:[function(require,module,exports){
+},{}],591:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34809,7 +43463,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-nonnegative-integer-array":152,"@stdlib/string/format":679,"debug":812}],566:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-nonnegative-integer-array":174,"@stdlib/string/format":707,"debug":841}],592:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34846,7 +43500,7 @@ function get() {
 
 module.exports = get;
 
-},{}],567:[function(require,module,exports){
+},{}],593:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34923,14 +43577,14 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./symbols.json":568,"@stdlib/assert/is-string":181,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],568:[function(require,module,exports){
+},{"./symbols.json":594,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],594:[function(require,module,exports){
 module.exports=[
 	"closed-circle",
 	"open-circle",
 	"none"
 ]
 
-},{}],569:[function(require,module,exports){
+},{}],595:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34967,7 +43621,7 @@ function get() {
 
 module.exports = get;
 
-},{}],570:[function(require,module,exports){
+},{}],596:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35029,7 +43683,7 @@ function set( str ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],571:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],597:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35066,7 +43720,7 @@ function get() {
 
 module.exports = get;
 
-},{}],572:[function(require,module,exports){
+},{}],598:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35129,7 +43783,7 @@ function set( viewer ) {
 
 module.exports = set;
 
-},{"./viewers.json":573,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],573:[function(require,module,exports){
+},{"./viewers.json":599,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],599:[function(require,module,exports){
 module.exports=[
 	"none",
 	"browser",
@@ -35138,9 +43792,9 @@ module.exports=[
 	"window"
 ]
 
-},{}],574:[function(require,module,exports){
-arguments[4][332][0].apply(exports,arguments)
-},{"dup":332}],575:[function(require,module,exports){
+},{}],600:[function(require,module,exports){
+arguments[4][358][0].apply(exports,arguments)
+},{"dup":358}],601:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35202,7 +43856,7 @@ function set( width ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-positive-number":176,"@stdlib/string/format":679,"debug":812}],576:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":198,"@stdlib/string/format":707,"debug":841}],602:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35239,13 +43893,13 @@ function get() {
 
 module.exports = get;
 
-},{}],577:[function(require,module,exports){
+},{}],603:[function(require,module,exports){
 module.exports=[
 	"bottom",
 	"top"
 ]
 
-},{}],578:[function(require,module,exports){
+},{}],604:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35308,7 +43962,7 @@ function set( orientation ) {
 
 module.exports = set;
 
-},{"./orientations.json":577,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],579:[function(require,module,exports){
+},{"./orientations.json":603,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],605:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35345,7 +43999,7 @@ function get() {
 
 module.exports = get;
 
-},{}],580:[function(require,module,exports){
+},{}],606:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35382,7 +44036,7 @@ function get() {
 
 module.exports = get;
 
-},{}],581:[function(require,module,exports){
+},{}],607:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35444,7 +44098,7 @@ function set( label ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],582:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],608:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35517,7 +44171,7 @@ function get() {
 
 module.exports = get;
 
-},{"./../../utils/max.js":648,"@stdlib/assert/is-null":157}],583:[function(require,module,exports){
+},{"./../../utils/max.js":674,"@stdlib/assert/is-null":179}],609:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35587,7 +44241,7 @@ function set( max ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],584:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],610:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35660,7 +44314,7 @@ function get() {
 
 module.exports = get;
 
-},{"./../../utils/min.js":649,"@stdlib/assert/is-null":157}],585:[function(require,module,exports){
+},{"./../../utils/min.js":675,"@stdlib/assert/is-null":179}],611:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35729,7 +44383,7 @@ function set( min ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],586:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],612:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35766,7 +44420,7 @@ function get() {
 
 module.exports = get;
 
-},{}],587:[function(require,module,exports){
+},{}],613:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35829,7 +44483,7 @@ function set( ticks ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-null":157,"@stdlib/string/format":679,"debug":812}],588:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-null":179,"@stdlib/string/format":707,"debug":841}],614:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35892,7 +44546,7 @@ function get() {
 
 module.exports = get;
 
-},{"debug":812}],589:[function(require,module,exports){
+},{"debug":841}],615:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35929,7 +44583,7 @@ function get() {
 
 module.exports = get;
 
-},{}],590:[function(require,module,exports){
+},{}],616:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35966,7 +44620,7 @@ function get() {
 
 module.exports = get;
 
-},{}],591:[function(require,module,exports){
+},{}],617:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36040,7 +44694,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/assert/is-number-array":159,"@stdlib/string/format":679,"debug":812}],592:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/assert/is-number-array":181,"@stdlib/string/format":707,"debug":841}],618:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36077,9 +44731,9 @@ function get() {
 
 module.exports = get;
 
-},{}],593:[function(require,module,exports){
-arguments[4][577][0].apply(exports,arguments)
-},{"dup":577}],594:[function(require,module,exports){
+},{}],619:[function(require,module,exports){
+arguments[4][603][0].apply(exports,arguments)
+},{"dup":603}],620:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36155,7 +44809,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./orientations.json":593,"@stdlib/assert/is-string":181,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],595:[function(require,module,exports){
+},{"./orientations.json":619,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],621:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36192,7 +44846,7 @@ function get() {
 
 module.exports = get;
 
-},{}],596:[function(require,module,exports){
+},{}],622:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36259,7 +44913,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-nonnegative-integer-array":152,"@stdlib/string/format":679,"debug":812}],597:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-nonnegative-integer-array":174,"@stdlib/string/format":707,"debug":841}],623:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36296,7 +44950,7 @@ function get() {
 
 module.exports = get;
 
-},{}],598:[function(require,module,exports){
+},{}],624:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36361,7 +45015,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/assert/is-boolean-array":105,"@stdlib/string/format":679,"debug":812}],599:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/assert/is-boolean-array":125,"@stdlib/string/format":707,"debug":841}],625:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36417,7 +45071,7 @@ function get() {
 
 module.exports = get;
 
-},{"d3-scale":803}],600:[function(require,module,exports){
+},{"d3-scale":832}],626:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36482,7 +45136,7 @@ function set( scale ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],601:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],627:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36534,7 +45188,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":157,"d3-format":801,"d3-time-format":809}],602:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"d3-format":830,"d3-time-format":838}],628:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36597,7 +45251,7 @@ function set( fmt ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],603:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],629:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36634,7 +45288,7 @@ function get() {
 
 module.exports = get;
 
-},{}],604:[function(require,module,exports){
+},{}],630:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36695,7 +45349,7 @@ function set( x ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array":101,"@stdlib/string/format":679,"debug":812}],605:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121,"@stdlib/string/format":707,"debug":841}],631:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36732,13 +45386,13 @@ function get() {
 
 module.exports = get;
 
-},{}],606:[function(require,module,exports){
+},{}],632:[function(require,module,exports){
 module.exports=[
 	"left",
 	"right"
 ]
 
-},{}],607:[function(require,module,exports){
+},{}],633:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36801,7 +45455,7 @@ function set( orientation ) {
 
 module.exports = set;
 
-},{"./orientations.json":606,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],608:[function(require,module,exports){
+},{"./orientations.json":632,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],634:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36838,7 +45492,7 @@ function get() {
 
 module.exports = get;
 
-},{}],609:[function(require,module,exports){
+},{}],635:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36875,7 +45529,7 @@ function get() {
 
 module.exports = get;
 
-},{}],610:[function(require,module,exports){
+},{}],636:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36937,7 +45591,7 @@ function set( label ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],611:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],637:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37010,7 +45664,7 @@ function get() {
 
 module.exports = get;
 
-},{"./../../utils/max.js":648,"@stdlib/assert/is-null":157}],612:[function(require,module,exports){
+},{"./../../utils/max.js":674,"@stdlib/assert/is-null":179}],638:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37077,7 +45731,7 @@ function set( max ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],613:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],639:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37150,7 +45804,7 @@ function get() {
 
 module.exports = get;
 
-},{"./../../utils/min.js":649,"@stdlib/assert/is-null":157}],614:[function(require,module,exports){
+},{"./../../utils/min.js":675,"@stdlib/assert/is-null":179}],640:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37217,7 +45871,7 @@ function set( min ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-number":160,"@stdlib/string/format":679,"debug":812}],615:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-number":182,"@stdlib/string/format":707,"debug":841}],641:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37254,7 +45908,7 @@ function get() {
 
 module.exports = get;
 
-},{}],616:[function(require,module,exports){
+},{}],642:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37317,7 +45971,7 @@ function set( ticks ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-null":157,"@stdlib/string/format":679,"debug":812}],617:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-null":179,"@stdlib/string/format":707,"debug":841}],643:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37380,7 +46034,7 @@ function get() {
 
 module.exports = get;
 
-},{"debug":812}],618:[function(require,module,exports){
+},{"debug":841}],644:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37417,7 +46071,7 @@ function get() {
 
 module.exports = get;
 
-},{}],619:[function(require,module,exports){
+},{}],645:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37454,7 +46108,7 @@ function get() {
 
 module.exports = get;
 
-},{}],620:[function(require,module,exports){
+},{}],646:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37528,7 +46182,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":160,"@stdlib/assert/is-number-array":159,"@stdlib/string/format":679,"debug":812}],621:[function(require,module,exports){
+},{"@stdlib/assert/is-number":182,"@stdlib/assert/is-number-array":181,"@stdlib/string/format":707,"debug":841}],647:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37565,9 +46219,9 @@ function get() {
 
 module.exports = get;
 
-},{}],622:[function(require,module,exports){
-arguments[4][606][0].apply(exports,arguments)
-},{"dup":606}],623:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
+arguments[4][632][0].apply(exports,arguments)
+},{"dup":632}],649:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37643,7 +46297,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"./orientations.json":622,"@stdlib/assert/is-string":181,"@stdlib/assert/is-string-array":180,"@stdlib/string/format":679,"@stdlib/utils/index-of":721,"debug":812}],624:[function(require,module,exports){
+},{"./orientations.json":648,"@stdlib/assert/is-string":203,"@stdlib/assert/is-string-array":202,"@stdlib/string/format":707,"@stdlib/utils/index-of":750,"debug":841}],650:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37680,7 +46334,7 @@ function get() {
 
 module.exports = get;
 
-},{}],625:[function(require,module,exports){
+},{}],651:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37747,7 +46401,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/assert/is-nonnegative-integer-array":152,"@stdlib/string/format":679,"debug":812}],626:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/assert/is-nonnegative-integer-array":174,"@stdlib/string/format":707,"debug":841}],652:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37784,7 +46438,7 @@ function get() {
 
 module.exports = get;
 
-},{}],627:[function(require,module,exports){
+},{}],653:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37849,7 +46503,7 @@ function set( v ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":106,"@stdlib/assert/is-boolean-array":105,"@stdlib/string/format":679,"debug":812}],628:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":126,"@stdlib/assert/is-boolean-array":125,"@stdlib/string/format":707,"debug":841}],654:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37905,7 +46559,7 @@ function get() {
 
 module.exports = get;
 
-},{"d3-scale":803}],629:[function(require,module,exports){
+},{"d3-scale":832}],655:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37968,7 +46622,7 @@ function set( scale ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],630:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],656:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38020,7 +46674,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":157,"d3-format":801,"d3-time-format":809}],631:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"d3-format":830,"d3-time-format":838}],657:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38083,7 +46737,7 @@ function set( fmt ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":157,"@stdlib/assert/is-string":181,"@stdlib/string/format":679,"debug":812}],632:[function(require,module,exports){
+},{"@stdlib/assert/is-null":179,"@stdlib/assert/is-string":203,"@stdlib/string/format":707,"debug":841}],658:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38120,7 +46774,7 @@ function get() {
 
 module.exports = get;
 
-},{}],633:[function(require,module,exports){
+},{}],659:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38181,7 +46835,7 @@ function set( y ) {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array":101,"@stdlib/string/format":679,"debug":812}],634:[function(require,module,exports){
+},{"@stdlib/assert/is-array":121,"@stdlib/string/format":707,"debug":841}],660:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38264,7 +46918,7 @@ function render( format ) {
 
 module.exports = render;
 
-},{"./svg":635,"./validate.js":647,"debug":812,"vdom-to-html":916}],635:[function(require,module,exports){
+},{"./svg":661,"./validate.js":673,"debug":841,"vdom-to-html":963}],661:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38424,7 +47078,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"./init.js":636,"./marks":637,"./sync.js":642,"./utils/x_axis_transform.js":643,"./utils/y_axis_transform.js":645,"debug":812}],636:[function(require,module,exports){
+},{"./init.js":662,"./marks":663,"./sync.js":668,"./utils/x_axis_transform.js":669,"./utils/y_axis_transform.js":671,"debug":841}],662:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38631,7 +47285,7 @@ function init( state ) {
 
 module.exports = init;
 
-},{"@stdlib/plot/components/svg/annotations":256,"@stdlib/plot/components/svg/axis":271,"@stdlib/plot/components/svg/background":326,"@stdlib/plot/components/svg/canvas":343,"@stdlib/plot/components/svg/clip-path":362,"@stdlib/plot/components/svg/defs":378,"@stdlib/plot/components/svg/graph":385,"@stdlib/plot/components/svg/marks":401,"@stdlib/plot/components/svg/path":414,"@stdlib/plot/components/svg/rug":446,"@stdlib/plot/components/svg/symbols":475,"@stdlib/plot/components/svg/title":508,"@stdlib/utils/define-property":701,"debug":812}],637:[function(require,module,exports){
+},{"@stdlib/plot/components/svg/annotations":282,"@stdlib/plot/components/svg/axis":296,"@stdlib/plot/components/svg/background":351,"@stdlib/plot/components/svg/canvas":368,"@stdlib/plot/components/svg/clip-path":387,"@stdlib/plot/components/svg/defs":404,"@stdlib/plot/components/svg/graph":410,"@stdlib/plot/components/svg/marks":427,"@stdlib/plot/components/svg/path":440,"@stdlib/plot/components/svg/rug":472,"@stdlib/plot/components/svg/symbols":501,"@stdlib/plot/components/svg/title":534,"@stdlib/utils/define-property":731,"debug":841}],663:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38717,7 +47371,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"./lines.js":638,"./symbols.js":639,"./x_rug.js":640,"./y_rug.js":641,"debug":812}],638:[function(require,module,exports){
+},{"./lines.js":664,"./symbols.js":665,"./x_rug.js":666,"./y_rug.js":667,"debug":841}],664:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38818,7 +47472,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"debug":812}],639:[function(require,module,exports){
+},{"debug":841}],665:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38919,7 +47573,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"debug":812}],640:[function(require,module,exports){
+},{"debug":841}],666:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39035,7 +47689,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"./../utils/x_rug_transform.js":644,"debug":812}],641:[function(require,module,exports){
+},{"./../utils/x_rug_transform.js":670,"debug":841}],667:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39151,7 +47805,7 @@ function render( state ) {
 
 module.exports = render;
 
-},{"./../utils/y_rug_transform.js":646,"debug":812}],642:[function(require,module,exports){
+},{"./../utils/y_rug_transform.js":672,"debug":841}],668:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39269,7 +47923,7 @@ function sync( state ) {
 
 module.exports = sync;
 
-},{"debug":812}],643:[function(require,module,exports){
+},{"debug":841}],669:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39310,7 +47964,7 @@ function xAxisTransform( orient, height ) {
 
 module.exports = xAxisTransform;
 
-},{}],644:[function(require,module,exports){
+},{}],670:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39351,7 +48005,7 @@ function xRugTransform( orient, height ) {
 
 module.exports = xRugTransform;
 
-},{}],645:[function(require,module,exports){
+},{}],671:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39392,7 +48046,7 @@ function yAxisTransform( orient, width ) {
 
 module.exports = yAxisTransform;
 
-},{}],646:[function(require,module,exports){
+},{}],672:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39433,7 +48087,7 @@ function yRugTransform( orient, width ) {
 
 module.exports = yRugTransform;
 
-},{}],647:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39492,7 +48146,7 @@ function validate( state ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":679}],648:[function(require,module,exports){
+},{"@stdlib/string/format":707}],674:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39540,7 +48194,7 @@ function getMax( arr ) {
 
 module.exports = getMax;
 
-},{}],649:[function(require,module,exports){
+},{}],675:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39588,7 +48242,7 @@ function getMin( arr ) {
 
 module.exports = getMin;
 
-},{}],650:[function(require,module,exports){
+},{}],676:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39649,7 +48303,7 @@ function view( viewer ) {
 
 module.exports = view;
 
-},{"./view.js":652,"debug":812}],651:[function(require,module,exports){
+},{"./view.js":678,"debug":841}],677:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39685,7 +48339,7 @@ function view( plot ) {
 
 module.exports = view;
 
-},{}],652:[function(require,module,exports){
+},{}],678:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39746,7 +48400,7 @@ function view( plot, viewer, vtree ) {
 
 module.exports = view;
 
-},{"./stdout":651,"@stdlib/string/format":679}],653:[function(require,module,exports){
+},{"./stdout":677,"@stdlib/string/format":707}],679:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39790,7 +48444,7 @@ var plot = require( '@stdlib/plot/ctor' );
 
 module.exports = plot;
 
-},{"@stdlib/plot/ctor":522}],654:[function(require,module,exports){
+},{"@stdlib/plot/ctor":548}],680:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -39833,7 +48487,7 @@ tape( 'the main export is a plot constructor', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/plot/test/test.js")
-},{"./../lib":653,"@stdlib/plot/ctor":522,"tape":906}],655:[function(require,module,exports){
+},{"./../lib":679,"@stdlib/plot/ctor":548,"tape":953}],681:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40251,7 +48905,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_int32.js":658,"@stdlib/array/int32":26,"@stdlib/array/to-json":33,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-boolean":106,"@stdlib/assert/is-collection":114,"@stdlib/assert/is-int32array":138,"@stdlib/assert/is-plain-object":170,"@stdlib/assert/is-positive-integer":172,"@stdlib/blas/base/gcopy":204,"@stdlib/constants/int32/max":236,"@stdlib/string/format":679,"@stdlib/utils/define-nonenumerable-read-only-accessor":692,"@stdlib/utils/define-nonenumerable-read-only-property":694,"@stdlib/utils/define-nonenumerable-read-write-accessor":696}],656:[function(require,module,exports){
+},{"./rand_int32.js":684,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-boolean":126,"@stdlib/assert/is-collection":136,"@stdlib/assert/is-int32array":160,"@stdlib/assert/is-plain-object":192,"@stdlib/assert/is-positive-integer":194,"@stdlib/blas/base/gcopy":226,"@stdlib/constants/int32/max":260,"@stdlib/string/format":707,"@stdlib/utils/define-nonenumerable-read-only-accessor":722,"@stdlib/utils/define-nonenumerable-read-only-property":724,"@stdlib/utils/define-nonenumerable-read-write-accessor":726}],682:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40297,20 +48951,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var minstd = require( './main.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( minstd, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = minstd;
+module.exports = main;
 
-},{"./factory.js":655,"./main.js":657,"@stdlib/utils/define-nonenumerable-read-only-property":694}],657:[function(require,module,exports){
+},{"./factory.js":681,"./main.js":683,"@stdlib/utils/define-nonenumerable-read-only-property":724}],683:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40417,7 +49071,7 @@ var minstd = factory({
 
 module.exports = minstd;
 
-},{"./factory.js":655,"./rand_int32.js":658}],658:[function(require,module,exports){
+},{"./factory.js":681,"./rand_int32.js":684}],684:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40471,7 +49125,7 @@ function randint32() {
 
 module.exports = randint32;
 
-},{"@stdlib/constants/int32/max":236,"@stdlib/math/base/special/floor":249}],659:[function(require,module,exports){
+},{"@stdlib/constants/int32/max":260,"@stdlib/math/base/special/floor":273}],685:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40521,20 +49175,20 @@ module.exports = randint32;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":660,"./regexp.js":661,"@stdlib/utils/define-nonenumerable-read-only-property":694}],660:[function(require,module,exports){
+},{"./main.js":686,"./regexp.js":687,"@stdlib/utils/define-nonenumerable-read-only-property":724}],686:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40590,7 +49244,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],661:[function(require,module,exports){
+},{}],687:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40652,7 +49306,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":660}],662:[function(require,module,exports){
+},{"./main.js":686}],688:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40701,25 +49355,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":663,"./regexp.js":664,"@stdlib/utils/define-nonenumerable-read-only-property":694}],663:[function(require,module,exports){
+},{"./main.js":689,"./regexp.js":690,"@stdlib/utils/define-nonenumerable-read-only-property":724}],689:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40765,7 +49414,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],664:[function(require,module,exports){
+},{}],690:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40825,7 +49474,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -40837,7 +49485,110 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":663}],665:[function(require,module,exports){
+},{"./main.js":689}],691:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Reinterpret a `BooleanArray` as a `Uint8Array`.
+*
+* @module @stdlib/strided/base/reinterpret-boolean
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+* var reinterpret = require( '@stdlib/strided/base/reinterpret-boolean' );
+*
+* var x = new BooleanArray( 10 );
+*
+* var out = reinterpret( x, 0 );
+* // returns <Uint8Array>
+*
+* var bool = ( out.buffer === x.buffer );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":692}],692:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Uint8Array = require( '@stdlib/array/uint8' );
+
+
+// MAIN //
+
+/**
+* Reinterprets a `BooleanArray` as a `Uint8Array`.
+*
+* @param {BooleanArray} x - input array
+* @param {NonNegativeInteger} offset - starting index
+* @returns {Uint8Array} `Uint8Array` view
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var x = new BooleanArray( 10 );
+*
+* var out = reinterpret( x, 0 );
+* // returns <Uint8Array>
+*
+* var bool = ( out.buffer === x.buffer );
+* // returns true
+*/
+function reinterpret( x, offset ) {
+	return new Uint8Array( x.buffer, x.byteOffset+(x.BYTES_PER_ELEMENT*offset), x.length-offset ); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = reinterpret;
+
+},{"@stdlib/array/uint8":62}],693:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40885,7 +49636,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":666}],666:[function(require,module,exports){
+},{"./main.js":694}],694:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40940,7 +49691,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":21}],667:[function(require,module,exports){
+},{"@stdlib/array/float64":40}],695:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40988,7 +49739,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":668}],668:[function(require,module,exports){
+},{"./main.js":696}],696:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41043,7 +49794,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":18}],669:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],697:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41129,7 +49880,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -41156,7 +49907,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":672}],670:[function(require,module,exports){
+},{"./is_number.js":700}],698:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41273,7 +50024,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":672,"./zero_pad.js":676}],671:[function(require,module,exports){
+},{"./is_number.js":700,"./zero_pad.js":704}],699:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41309,14 +50060,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":674}],672:[function(require,module,exports){
+},{"./main.js":702}],700:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41364,7 +50115,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],673:[function(require,module,exports){
+},{}],701:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41408,7 +50159,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],674:[function(require,module,exports){
+},{}],702:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41441,11 +50192,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -41576,6 +50345,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -41584,9 +50354,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -41625,7 +50393,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":669,"./format_integer.js":670,"./is_string.js":673,"./space_pad.js":675,"./zero_pad.js":676}],675:[function(require,module,exports){
+},{"./format_double.js":697,"./format_integer.js":698,"./is_string.js":701,"./space_pad.js":703,"./zero_pad.js":704}],703:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41692,7 +50460,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],676:[function(require,module,exports){
+},{}],704:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41778,7 +50546,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],677:[function(require,module,exports){
+},{}],705:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41814,14 +50582,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":678}],678:[function(require,module,exports){
+},{"./main.js":706}],706:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41913,7 +50681,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],679:[function(require,module,exports){
+},{}],707:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41951,16 +50719,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":681}],680:[function(require,module,exports){
-arguments[4][673][0].apply(exports,arguments)
-},{"dup":673}],681:[function(require,module,exports){
+},{"./main.js":709}],708:[function(require,module,exports){
+arguments[4][701][0].apply(exports,arguments)
+},{"dup":701}],709:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42008,18 +50776,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -42029,7 +50794,79 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":680,"@stdlib/string/base/format-interpolate":671,"@stdlib/string/base/format-tokenize":677}],682:[function(require,module,exports){
+},{"./is_string.js":708,"@stdlib/string/base/format-interpolate":699,"@stdlib/string/base/format-tokenize":705}],710:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":711}],711:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],712:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42099,14 +50936,14 @@ module.exports = format;
 
 // MAIN //
 
-var IteratorSymbol = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = IteratorSymbol;
+module.exports = main;
 
-},{"./main.js":683}],683:[function(require,module,exports){
+},{"./main.js":713}],713:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42187,7 +51024,57 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":68}],684:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":88}],714:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a constant function.
+*
+* @module @stdlib/utils/constant-function
+*
+* @example
+* var constantFunction = require( '@stdlib/utils/constant-function' );
+*
+* var fcn = constantFunction( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":715}],715:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42245,57 +51132,7 @@ function wrap( value ) {
 
 module.exports = wrap;
 
-},{}],685:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a constant function.
-*
-* @module @stdlib/utils/constant-function
-*
-* @example
-* var constantFunction = require( '@stdlib/utils/constant-function' );
-*
-* var fcn = constantFunction( 3.14 );
-*
-* var v = fcn();
-* // returns 3.14
-*
-* v = fcn();
-* // returns 3.14
-*
-* v = fcn();
-* // returns 3.14
-*/
-
-// MODULES //
-
-var constantFunction = require( './constant_function.js' );
-
-
-// EXPORTS //
-
-module.exports = constantFunction;
-
-},{"./constant_function.js":684}],686:[function(require,module,exports){
+},{}],716:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42336,14 +51173,14 @@ module.exports = constantFunction;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":687}],687:[function(require,module,exports){
+},{"./main.js":717}],717:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42425,86 +51262,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":112,"@stdlib/regexp/function-name":659,"@stdlib/utils/native-class":752}],688:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":689,"@stdlib/assert/is-array":101,"@stdlib/assert/is-nonnegative-integer":153,"@stdlib/constants/float64/pinf":233,"@stdlib/string/format":679}],689:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":134,"@stdlib/regexp/function-name":685,"@stdlib/utils/native-class":781}],718:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42552,7 +51310,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -42812,7 +51569,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":691,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-array":101,"@stdlib/assert/is-buffer":112,"@stdlib/assert/is-error":128,"@stdlib/buffer/from-buffer":211,"@stdlib/utils/define-property":701,"@stdlib/utils/get-prototype-of":709,"@stdlib/utils/index-of":721,"@stdlib/utils/keys":738,"@stdlib/utils/property-descriptor":761,"@stdlib/utils/property-names":765,"@stdlib/utils/regexp-from-string":768,"@stdlib/utils/type-of":773}],690:[function(require,module,exports){
+},{"./typed_arrays.js":721,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-array":121,"@stdlib/assert/is-buffer":134,"@stdlib/assert/is-error":150,"@stdlib/buffer/from-buffer":235,"@stdlib/utils/define-property":731,"@stdlib/utils/get-prototype-of":738,"@stdlib/utils/index-of":750,"@stdlib/utils/keys":767,"@stdlib/utils/property-descriptor":790,"@stdlib/utils/property-names":794,"@stdlib/utils/regexp-from-string":796,"@stdlib/utils/type-of":802}],719:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42863,14 +51620,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":720}],720:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":688}],691:[function(require,module,exports){
+},{"./deep_copy.js":718,"@stdlib/assert/is-array":121,"@stdlib/assert/is-nonnegative-integer":175,"@stdlib/constants/float64/pinf":257,"@stdlib/string/format":707}],721:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43041,7 +51877,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":18,"@stdlib/array/float64":21,"@stdlib/array/int16":23,"@stdlib/array/int32":26,"@stdlib/array/int8":29,"@stdlib/array/uint16":36,"@stdlib/array/uint32":39,"@stdlib/array/uint8":42,"@stdlib/array/uint8c":45}],692:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],722:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43087,14 +51923,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnlyAccessor = require( './main.js' ); // eslint-disable-line id-length
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnlyAccessor;
+module.exports = main;
 
-},{"./main.js":693}],693:[function(require,module,exports){
+},{"./main.js":723}],723:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43157,7 +51993,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":701}],694:[function(require,module,exports){
+},{"@stdlib/utils/define-property":731}],724:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43199,14 +52035,14 @@ module.exports = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":695}],695:[function(require,module,exports){
+},{"./main.js":725}],725:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43266,7 +52102,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":701}],696:[function(require,module,exports){
+},{"@stdlib/utils/define-property":731}],726:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43319,14 +52155,14 @@ module.exports = setNonEnumerableReadOnly;
 
 // MODULES //
 
-var setNonEnumerableReadWriteAccessor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadWriteAccessor;
+module.exports = main;
 
-},{"./main.js":697}],697:[function(require,module,exports){
+},{"./main.js":727}],727:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43398,7 +52234,7 @@ function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // esl
 
 module.exports = setNonEnumerableReadWriteAccessor;
 
-},{"@stdlib/utils/define-property":701}],698:[function(require,module,exports){
+},{"@stdlib/utils/define-property":731}],728:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43461,7 +52297,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],699:[function(require,module,exports){
+},{}],729:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43491,7 +52327,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],700:[function(require,module,exports){
+},{}],730:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43544,7 +52380,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":699}],701:[function(require,module,exports){
+},{"./define_property.js":729}],731:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43604,7 +52440,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":698,"./has_define_property_support.js":700,"./polyfill.js":702}],702:[function(require,module,exports){
+},{"./builtin.js":728,"./has_define_property_support.js":730,"./polyfill.js":732}],732:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43728,7 +52564,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":679}],703:[function(require,module,exports){
+},{"@stdlib/string/format":707}],733:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43770,14 +52606,14 @@ module.exports = defineProperty;
 
 // MODULES //
 
-var setReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setReadOnly;
+module.exports = main;
 
-},{"./main.js":704}],704:[function(require,module,exports){
+},{"./main.js":734}],734:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43837,7 +52673,55 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":701}],705:[function(require,module,exports){
+},{"@stdlib/utils/define-property":731}],735:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the name of a function.
+*
+* @module @stdlib/utils/function-name
+*
+* @example
+* var functionName = require( '@stdlib/utils/function-name' );
+*
+* var v = functionName( String );
+* // returns 'String'
+*
+* v = functionName( function foo(){} );
+* // returns 'foo'
+*
+* v = functionName( function(){} );
+* // returns '' || 'anonymous'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":736}],736:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43912,55 +52796,7 @@ function functionName( fcn ) {
 
 module.exports = functionName;
 
-},{"@stdlib/assert/has-function-name-support":57,"@stdlib/assert/is-function":134,"@stdlib/regexp/function-name":659,"@stdlib/string/format":679}],706:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the name of a function.
-*
-* @module @stdlib/utils/function-name
-*
-* @example
-* var functionName = require( '@stdlib/utils/function-name' );
-*
-* var v = functionName( String );
-* // returns 'String'
-*
-* v = functionName( function foo(){} );
-* // returns 'foo'
-*
-* v = functionName( function(){} );
-* // returns '' || 'anonymous'
-*/
-
-// MODULES //
-
-var functionName = require( './function_name.js' );
-
-
-// EXPORTS //
-
-module.exports = functionName;
-
-},{"./function_name.js":705}],707:[function(require,module,exports){
+},{"@stdlib/assert/has-function-name-support":77,"@stdlib/assert/is-function":156,"@stdlib/regexp/function-name":685,"@stdlib/string/format":707}],737:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44002,63 +52838,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":710,"./polyfill.js":711,"@stdlib/assert/is-function":134}],708:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":707}],709:[function(require,module,exports){
+},{"./native.js":740,"./polyfill.js":741,"@stdlib/assert/is-function":156}],738:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44093,14 +52873,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":708}],710:[function(require,module,exports){
+},{"./main.js":739}],739:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":737,"@stdlib/object/ctor":280}],740:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44130,7 +52967,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],711:[function(require,module,exports){
+},{}],741:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44187,7 +53024,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":712,"@stdlib/utils/native-class":752}],712:[function(require,module,exports){
+},{"./proto.js":742,"@stdlib/utils/native-class":781}],742:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44225,7 +53062,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],713:[function(require,module,exports){
+},{}],743:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":744,"./global_this.js":745,"./self.js":746,"./window.js":747,"@stdlib/assert/is-boolean":126,"@stdlib/string/format":707}],744:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44255,7 +53173,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -44263,12 +53181,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],714:[function(require,module,exports){
-(function (global){(function (){
+},{}],745:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -44287,137 +53204,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],715:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":716}],716:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":713,"./global.js":714,"./self.js":717,"./window.js":718,"@stdlib/assert/is-boolean":106,"@stdlib/string/format":679}],717:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44447,7 +53241,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],718:[function(require,module,exports){
+},{}],747:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44477,7 +53271,52 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],719:[function(require,module,exports){
+},{}],748:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Identity function.
+*
+* @module @stdlib/utils/identity-function
+*
+* @example
+* var identity = require( '@stdlib/utils/identity-function' );
+*
+* var input = [];
+* var output = identity( input );
+*
+* var bool = ( input === output );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":749}],749:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44517,52 +53356,7 @@ function identity( x ) {
 
 module.exports = identity;
 
-},{}],720:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Identity function.
-*
-* @module @stdlib/utils/identity-function
-*
-* @example
-* var identity = require( '@stdlib/utils/identity-function' );
-*
-* var input = [];
-* var output = identity( input );
-*
-* var bool = ( input === output );
-* // returns true
-*/
-
-// MODULES //
-
-var identity = require( './identity.js' );
-
-
-// EXPORTS //
-
-module.exports = identity;
-
-},{"./identity.js":719}],721:[function(require,module,exports){
+},{}],750:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44630,14 +53424,14 @@ module.exports = identity;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":722}],722:[function(require,module,exports){
+},{"./main.js":751}],751:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44772,7 +53566,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":114,"@stdlib/assert/is-integer":142,"@stdlib/assert/is-nan":147,"@stdlib/assert/is-string":181,"@stdlib/string/format":679}],723:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":136,"@stdlib/assert/is-integer":164,"@stdlib/assert/is-nan":169,"@stdlib/assert/is-string":203,"@stdlib/string/format":707}],752:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44813,7 +53607,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = createObject;
 
-},{"./native.js":726,"./polyfill.js":727}],724:[function(require,module,exports){
+},{"./native.js":755,"./polyfill.js":756}],753:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44862,14 +53656,14 @@ module.exports = createObject;
 
 // MODULES //
 
-var inherit = require( './inherit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = inherit;
+module.exports = main;
 
-},{"./inherit.js":725}],725:[function(require,module,exports){
+},{"./main.js":754}],754:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44907,7 +53701,6 @@ var createObject = require( './detect.js' );
 *
 * -   This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
 * -   For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
-*
 *
 * @param {(Object|Function)} ctor - constructor which will inherit
 * @param {(Object|Function)} superCtor - super (parent) constructor
@@ -44965,7 +53758,7 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":723,"./validate.js":728,"@stdlib/string/format":679,"@stdlib/utils/define-property":701}],726:[function(require,module,exports){
+},{"./detect.js":752,"./validate.js":757,"@stdlib/string/format":707,"@stdlib/utils/define-property":731}],755:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44990,7 +53783,7 @@ module.exports = inherit;
 
 module.exports = Object.create;
 
-},{}],727:[function(require,module,exports){
+},{}],756:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45046,7 +53839,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],728:[function(require,module,exports){
+},{}],757:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45106,7 +53899,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":679}],729:[function(require,module,exports){
+},{"@stdlib/string/format":707}],758:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45158,7 +53951,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],730:[function(require,module,exports){
+},{}],759:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45220,7 +54013,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":729,"@stdlib/assert/is-arguments":94}],731:[function(require,module,exports){
+},{"./builtin.js":758,"@stdlib/assert/is-arguments":114}],760:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -45244,7 +54037,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],732:[function(require,module,exports){
+},{}],761:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45304,7 +54097,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":729}],733:[function(require,module,exports){
+},{"./builtin.js":758}],762:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45382,7 +54175,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":731,"./is_constructor_prototype.js":739,"./window.js":744,"@stdlib/assert/has-own-property":73,"@stdlib/utils/index-of":721,"@stdlib/utils/type-of":773}],734:[function(require,module,exports){
+},{"./excluded_keys.json":760,"./is_constructor_prototype.js":768,"./window.js":773,"@stdlib/assert/has-own-property":93,"@stdlib/utils/index-of":750,"@stdlib/utils/type-of":802}],763:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45412,7 +54205,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],735:[function(require,module,exports){
+},{}],764:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45449,7 +54242,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":125,"@stdlib/utils/noop":757}],736:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":147,"@stdlib/utils/noop":786}],765:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45492,7 +54285,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":125}],737:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":147}],766:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45522,7 +54315,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],738:[function(require,module,exports){
+},{}],767:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45562,14 +54355,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":741}],739:[function(require,module,exports){
+},{"./main.js":770}],768:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45608,7 +54401,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],740:[function(require,module,exports){
+},{}],769:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45661,7 +54454,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":733,"./has_window.js":737,"./is_constructor_prototype.js":739}],741:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":762,"./has_window.js":766,"./is_constructor_prototype.js":768}],770:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45726,7 +54519,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":729,"./builtin_wrapper.js":730,"./has_arguments_bug.js":732,"./has_builtin.js":734,"./polyfill.js":743}],742:[function(require,module,exports){
+},{"./builtin.js":758,"./builtin_wrapper.js":759,"./has_arguments_bug.js":761,"./has_builtin.js":763,"./polyfill.js":772}],771:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -45737,7 +54530,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],743:[function(require,module,exports){
+},{}],772:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45841,7 +54634,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":735,"./has_non_enumerable_properties_bug.js":736,"./is_constructor_prototype_wrapper.js":740,"./non_enumerable.json":742,"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-arguments":94,"@stdlib/assert/is-object-like":166}],744:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":764,"./has_non_enumerable_properties_bug.js":765,"./is_constructor_prototype_wrapper.js":769,"./non_enumerable.json":771,"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-arguments":114,"@stdlib/assert/is-object-like":188}],773:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45871,7 +54664,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],745:[function(require,module,exports){
+},{}],774:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45994,7 +54787,7 @@ function deepMerge( target, source, level, copy, override, extend ) {
 
 module.exports = deepMerge;
 
-},{"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-buffer":112,"@stdlib/assert/is-function":134,"@stdlib/assert/is-object":168,"@stdlib/utils/copy":690,"@stdlib/utils/keys":738,"@stdlib/utils/type-of":773}],746:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-buffer":134,"@stdlib/assert/is-function":156,"@stdlib/assert/is-object":190,"@stdlib/utils/copy":719,"@stdlib/utils/keys":767,"@stdlib/utils/type-of":802}],775:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46022,19 +54815,27 @@ var PINF = require( '@stdlib/constants/float64/pinf' );
 
 // MAIN //
 
-var DEFAULTS = {
-	'level': PINF,
-	'override': true,
-	'extend': true,
-	'copy': true
-};
+/**
+* Returns default options.
+*
+* @private
+* @returns {Object} default options
+*/
+function defaults() {
+	return {
+		'level': PINF,
+		'override': true,
+		'extend': true,
+		'copy': true
+	};
+}
 
 
 // EXPORTS //
 
-module.exports = DEFAULTS;
+module.exports = defaults;
 
-},{"@stdlib/constants/float64/pinf":233}],747:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":257}],776:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46057,7 +54858,6 @@ module.exports = DEFAULTS;
 
 // MODULES //
 
-var copy = require( '@stdlib/utils/copy' );
 var validate = require( './validate.js' );
 var defaults = require( './defaults.js' );
 var mergefcn = require( './mergefcn.js' );
@@ -46090,7 +54890,7 @@ var mergefcn = require( './mergefcn.js' );
 function factory( options ) {
 	var opts;
 	var err;
-	opts = copy( defaults );
+	opts = defaults();
 	err = validate( opts, options );
 	if ( err ) {
 		throw err;
@@ -46103,7 +54903,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./defaults.js":746,"./mergefcn.js":750,"./validate.js":751,"@stdlib/utils/copy":690}],748:[function(require,module,exports){
+},{"./defaults.js":775,"./mergefcn.js":779,"./validate.js":780}],777:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46160,20 +54960,20 @@ module.exports = factory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var merge = require( './merge.js' );
+var main = require( './main.js' );
 var factory = require( './factory.js' );
 
 
 // MAIN //
 
-setReadOnly( merge, 'factory', factory );
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = merge;
+module.exports = main;
 
-},{"./factory.js":747,"./merge.js":749,"@stdlib/utils/define-nonenumerable-read-only-property":694}],749:[function(require,module,exports){
+},{"./factory.js":776,"./main.js":778,"@stdlib/utils/define-nonenumerable-read-only-property":724}],778:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46226,14 +55026,14 @@ var mergefcn = require( './mergefcn.js' );
 * var out = merge( target, source );
 * // returns {'a':'boop', 'b':'bap'}
 */
-var merge = mergefcn( defaults );
+var merge = mergefcn( defaults() );
 
 
 // EXPORTS //
 
 module.exports = merge;
 
-},{"./defaults.js":746,"./mergefcn.js":750}],750:[function(require,module,exports){
+},{"./defaults.js":775,"./mergefcn.js":779}],779:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46328,7 +55128,7 @@ function mergefcn( opts ) {
 
 			// WARNING: this is a porous check. Buffers, Numbers, Booleans, Strings, Dates, RegExp, custom class instances,... will all pass.
 			if ( !isObject( arg ) ) {
-				throw new TypeError( format( 'invalid argument. A merge source must be an object. Value: `%s`.', arg ) );
+				throw new TypeError( format( 'invalid argument. All arguments must be objects. Index: `%u`. Value: `%s`.', i, arg ) );
 			}
 			src[ i ] = arg;
 		}
@@ -46344,7 +55144,7 @@ function mergefcn( opts ) {
 
 module.exports = mergefcn;
 
-},{"./deepmerge.js":745,"@stdlib/assert/is-object":168,"@stdlib/string/format":679}],751:[function(require,module,exports){
+},{"./deepmerge.js":774,"@stdlib/assert/is-object":190,"@stdlib/string/format":707}],780:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46428,7 +55228,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":73,"@stdlib/assert/is-boolean":106,"@stdlib/assert/is-function":134,"@stdlib/assert/is-plain-object":170,"@stdlib/assert/is-positive-integer":172,"@stdlib/string/format":679}],752:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93,"@stdlib/assert/is-boolean":126,"@stdlib/assert/is-function":156,"@stdlib/assert/is-plain-object":192,"@stdlib/assert/is-positive-integer":194,"@stdlib/string/format":707}],781:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46473,25 +55273,25 @@ module.exports = validate;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":753,"./polyfill.js":754,"@stdlib/assert/has-tostringtag-support":77}],753:[function(require,module,exports){
+},{"./main.js":782,"./polyfill.js":783,"@stdlib/assert/has-tostringtag-support":97}],782:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46549,7 +55349,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":755}],754:[function(require,module,exports){
+},{"./tostring.js":784}],783:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46632,7 +55432,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":755,"./tostringtag.js":756,"@stdlib/assert/has-own-property":73}],755:[function(require,module,exports){
+},{"./tostring.js":784,"./tostringtag.js":785,"@stdlib/assert/has-own-property":93}],784:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46662,7 +55462,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],756:[function(require,module,exports){
+},{}],785:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46683,6 +55483,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -46692,7 +55497,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],757:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":710}],786:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46727,14 +55532,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":758}],758:[function(require,module,exports){
+},{"./main.js":787}],787:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46771,7 +55576,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],759:[function(require,module,exports){
+},{}],788:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46835,7 +55640,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],760:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46865,7 +55670,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],761:[function(require,module,exports){
+},{}],790:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46924,7 +55729,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":759,"./has_builtin.js":760,"./polyfill.js":762}],762:[function(require,module,exports){
+},{"./builtin.js":788,"./has_builtin.js":789,"./polyfill.js":791}],791:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46992,7 +55797,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":73}],763:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":93}],792:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47012,6 +55817,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -47049,7 +55859,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],764:[function(require,module,exports){
+},{"@stdlib/object/ctor":280}],793:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47079,7 +55889,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],765:[function(require,module,exports){
+},{}],794:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47136,7 +55946,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":763,"./has_builtin.js":764,"./polyfill.js":766}],766:[function(require,module,exports){
+},{"./builtin.js":792,"./has_builtin.js":793,"./polyfill.js":795}],795:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47159,6 +55969,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -47194,7 +56005,49 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":738}],767:[function(require,module,exports){
+},{"@stdlib/object/ctor":280,"@stdlib/utils/keys":767}],796:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":797}],797:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47251,49 +56104,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":181,"@stdlib/regexp/regexp":662,"@stdlib/string/format":679}],768:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":767}],769:[function(require,module,exports){
+},{"@stdlib/assert/is-string":203,"@stdlib/regexp/regexp":688,"@stdlib/string/format":707}],798:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47350,7 +56161,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":770,"./fixtures/re.js":771,"./fixtures/typedarray.js":772}],770:[function(require,module,exports){
+},{"./fixtures/nodelist.js":799,"./fixtures/re.js":800,"./fixtures/typedarray.js":801}],799:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47386,7 +56197,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":715}],771:[function(require,module,exports){
+},{"@stdlib/utils/global":743}],800:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47414,7 +56225,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],772:[function(require,module,exports){
+},{}],801:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47442,7 +56253,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],773:[function(require,module,exports){
+},{}],802:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47481,63 +56292,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":769,"./polyfill.js":774,"./typeof.js":775}],774:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":686}],775:[function(require,module,exports){
+},{"./check.js":798,"./main.js":803,"./polyfill.js":804}],803:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47615,7 +56383,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":686}],776:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":716}],804:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":716}],805:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -47767,9 +56578,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],777:[function(require,module,exports){
+},{}],806:[function(require,module,exports){
 
-},{}],778:[function(require,module,exports){
+},{}],807:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -47877,9 +56688,9 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],779:[function(require,module,exports){
-arguments[4][777][0].apply(exports,arguments)
-},{"dup":777}],780:[function(require,module,exports){
+},{}],808:[function(require,module,exports){
+arguments[4][806][0].apply(exports,arguments)
+},{"dup":806}],809:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -49660,7 +58471,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":776,"buffer":780,"ieee754":884}],781:[function(require,module,exports){
+},{"base64-js":805,"buffer":809,"ieee754":928}],810:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -50159,7 +58970,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],782:[function(require,module,exports){
+},{}],811:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -50692,7 +59503,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":894}],783:[function(require,module,exports){
+},{"_process":939}],812:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -50823,7 +59634,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":781,"inherits":887,"readable-stream/lib/_stream_duplex.js":785,"readable-stream/lib/_stream_passthrough.js":786,"readable-stream/lib/_stream_readable.js":787,"readable-stream/lib/_stream_transform.js":788,"readable-stream/lib/_stream_writable.js":789,"readable-stream/lib/internal/streams/end-of-stream.js":793,"readable-stream/lib/internal/streams/pipeline.js":795}],784:[function(require,module,exports){
+},{"events":810,"inherits":931,"readable-stream/lib/_stream_duplex.js":814,"readable-stream/lib/_stream_passthrough.js":815,"readable-stream/lib/_stream_readable.js":816,"readable-stream/lib/_stream_transform.js":817,"readable-stream/lib/_stream_writable.js":818,"readable-stream/lib/internal/streams/end-of-stream.js":822,"readable-stream/lib/internal/streams/pipeline.js":824}],813:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -50952,7 +59763,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],785:[function(require,module,exports){
+},{}],814:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -51094,7 +59905,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":787,"./_stream_writable":789,"_process":894,"inherits":887}],786:[function(require,module,exports){
+},{"./_stream_readable":816,"./_stream_writable":818,"_process":939,"inherits":931}],815:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -51134,7 +59945,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":788,"inherits":887}],787:[function(require,module,exports){
+},{"./_stream_transform":817,"inherits":931}],816:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -52261,7 +61072,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":784,"./_stream_duplex":785,"./internal/streams/async_iterator":790,"./internal/streams/buffer_list":791,"./internal/streams/destroy":792,"./internal/streams/from":794,"./internal/streams/state":796,"./internal/streams/stream":797,"_process":894,"buffer":780,"events":781,"inherits":887,"string_decoder/":905,"util":777}],788:[function(require,module,exports){
+},{"../errors":813,"./_stream_duplex":814,"./internal/streams/async_iterator":819,"./internal/streams/buffer_list":820,"./internal/streams/destroy":821,"./internal/streams/from":823,"./internal/streams/state":825,"./internal/streams/stream":826,"_process":939,"buffer":809,"events":810,"inherits":931,"string_decoder/":952,"util":806}],817:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -52463,7 +61274,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":784,"./_stream_duplex":785,"inherits":887}],789:[function(require,module,exports){
+},{"../errors":813,"./_stream_duplex":814,"inherits":931}],818:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -53163,7 +61974,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":784,"./_stream_duplex":785,"./internal/streams/destroy":792,"./internal/streams/state":796,"./internal/streams/stream":797,"_process":894,"buffer":780,"inherits":887,"util-deprecate":914}],790:[function(require,module,exports){
+},{"../errors":813,"./_stream_duplex":814,"./internal/streams/destroy":821,"./internal/streams/state":825,"./internal/streams/stream":826,"_process":939,"buffer":809,"inherits":931,"util-deprecate":961}],819:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -53373,7 +62184,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":793,"_process":894}],791:[function(require,module,exports){
+},{"./end-of-stream":822,"_process":939}],820:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -53584,7 +62395,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":780,"util":777}],792:[function(require,module,exports){
+},{"buffer":809,"util":806}],821:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -53692,7 +62503,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":894}],793:[function(require,module,exports){
+},{"_process":939}],822:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -53797,12 +62608,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":784}],794:[function(require,module,exports){
+},{"../../../errors":813}],823:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],795:[function(require,module,exports){
+},{}],824:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -53900,7 +62711,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":784,"./end-of-stream":793}],796:[function(require,module,exports){
+},{"../../../errors":813,"./end-of-stream":822}],825:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -53928,10 +62739,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":784}],797:[function(require,module,exports){
+},{"../../../errors":813}],826:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":781}],798:[function(require,module,exports){
+},{"events":810}],827:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -53948,43 +62759,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":799,"get-intrinsic":879}],799:[function(require,module,exports){
+},{"./":828,"get-intrinsic":919}],828:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -53997,7 +62796,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":878,"get-intrinsic":879}],800:[function(require,module,exports){
+},{"es-define-property":902,"es-errors/type":908,"function-bind":918,"get-intrinsic":919,"set-function-length":947}],829:[function(require,module,exports){
 // https://d3js.org/d3-collection/ v1.0.7 Copyright 2018 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -54216,7 +63015,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],801:[function(require,module,exports){
+},{}],830:[function(require,module,exports){
 // https://d3js.org/d3-format/ v1.4.5 Copyright 2020 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -54563,7 +63362,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],802:[function(require,module,exports){
+},{}],831:[function(require,module,exports){
 // https://d3js.org/d3-path/ v1.0.9 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -54706,7 +63505,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{}],803:[function(require,module,exports){
+},{}],832:[function(require,module,exports){
 // https://d3js.org/d3-scale/ Version 1.0.7. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-time'), require('d3-time-format'), require('d3-color')) :
@@ -55633,7 +64432,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-array":804,"d3-collection":800,"d3-color":805,"d3-format":801,"d3-interpolate":806,"d3-time":807,"d3-time-format":809}],804:[function(require,module,exports){
+},{"d3-array":833,"d3-collection":829,"d3-color":834,"d3-format":830,"d3-interpolate":835,"d3-time":836,"d3-time-format":838}],833:[function(require,module,exports){
 // https://d3js.org/d3-array/ v1.2.4 Copyright 2018 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -56225,7 +65024,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],805:[function(require,module,exports){
+},{}],834:[function(require,module,exports){
 // https://d3js.org/d3-color/ v1.4.1 Copyright 2020 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -56808,7 +65607,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{}],806:[function(require,module,exports){
+},{}],835:[function(require,module,exports){
 // https://d3js.org/d3-interpolate/ v1.4.0 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-color')) :
@@ -57403,7 +66202,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{"d3-color":805}],807:[function(require,module,exports){
+},{"d3-color":834}],836:[function(require,module,exports){
 // https://d3js.org/d3-time/ v1.1.0 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -57778,7 +66577,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{}],808:[function(require,module,exports){
+},{}],837:[function(require,module,exports){
 // https://d3js.org/d3-shape/ v1.3.7 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-path')) :
@@ -59729,7 +68528,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{"d3-path":802}],809:[function(require,module,exports){
+},{"d3-path":831}],838:[function(require,module,exports){
 // https://d3js.org/d3-time-format/ v2.3.0 Copyright 2020 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-time')) :
@@ -60474,9 +69273,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{"d3-time":810}],810:[function(require,module,exports){
-arguments[4][807][0].apply(exports,arguments)
-},{"dup":807}],811:[function(require,module,exports){
+},{"d3-time":839}],839:[function(require,module,exports){
+arguments[4][836][0].apply(exports,arguments)
+},{"dup":836}],840:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -60630,7 +69429,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],812:[function(require,module,exports){
+},{}],841:[function(require,module,exports){
 (function (process){(function (){
 /**
  * This is the web browser implementation of `debug()`.
@@ -60819,7 +69618,7 @@ function localstorage() {
 }
 
 }).call(this)}).call(this,require('_process'))
-},{"./debug":813,"_process":894}],813:[function(require,module,exports){
+},{"./debug":842,"_process":939}],842:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -61023,7 +69822,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":811}],814:[function(require,module,exports){
+},{"ms":840}],843:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -61119,7 +69918,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":815,"./lib/keys.js":816}],815:[function(require,module,exports){
+},{"./lib/is_arguments.js":844,"./lib/keys.js":845}],844:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -61141,7 +69940,7 @@ function unsupported(object){
     false;
 };
 
-},{}],816:[function(require,module,exports){
+},{}],845:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -61152,7 +69951,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],817:[function(require,module,exports){
+},{}],846:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":902,"es-errors/syntax":907,"es-errors/type":908,"gopd":920}],847:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -61160,29 +70017,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -61201,14 +70058,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":880,"object-keys":891}],818:[function(require,module,exports){
+},{"define-data-property":846,"has-property-descriptors":921,"object-keys":936}],848:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],819:[function(require,module,exports){
+},{}],849:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -61247,13 +70104,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":849,"./ToPrimitive":851,"./Type":856}],820:[function(require,module,exports){
+},{"./ToNumber":880,"./ToPrimitive":882,"./Type":887}],850:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -61261,13 +70118,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -61279,7 +70135,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -61312,28 +70168,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":865,"../helpers/isNaN":867,"../helpers/isPrefixOf":868,"./ToNumber":849,"./ToPrimitive":851,"./Type":856,"get-intrinsic":879}],821:[function(require,module,exports){
+},{"../helpers/isFinite":895,"../helpers/isNaN":896,"../helpers/isPrefixOf":897,"./ToNumber":880,"./ToPrimitive":882,"es-errors/type":908,"get-intrinsic":919}],851:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":827,"es-errors/type":908}],852:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":879}],822:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":910}],853:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -61384,7 +70273,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":825,"./InLeapYear":829,"./MonthFromTime":839,"get-intrinsic":879}],823:[function(require,module,exports){
+},{"./DayWithinYear":856,"./InLeapYear":860,"./MonthFromTime":870,"es-errors/eval":903}],854:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61397,7 +70286,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":872,"./floor":860}],824:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./floor":891}],855:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61409,7 +70298,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":860}],825:[function(require,module,exports){
+},{"./floor":891}],856:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -61422,7 +70311,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":823,"./DayFromYear":824,"./YearFromTime":858}],826:[function(require,module,exports){
+},{"./Day":854,"./DayFromYear":855,"./YearFromTime":889}],857:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -61442,18 +70331,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":861}],827:[function(require,module,exports){
+},{"./modulo":892}],858:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -61462,7 +70348,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -61483,7 +70371,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":864,"./IsAccessorDescriptor":830,"./IsDataDescriptor":832,"./Type":856,"get-intrinsic":879}],828:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":899,"./IsAccessorDescriptor":861,"./IsDataDescriptor":863,"es-errors/type":908}],859:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61499,12 +70387,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":872,"./floor":860,"./modulo":861}],829:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./floor":891,"./modulo":892}],860:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -61522,14 +70408,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":826,"./YearFromTime":858,"get-intrinsic":879}],830:[function(require,module,exports){
+},{"./DaysInYear":857,"./YearFromTime":889,"es-errors/eval":903}],861:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -61538,30 +70424,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":864,"./Type":856,"has":883}],831:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":899,"es-errors/type":908,"hasown":927}],862:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":888}],832:[function(require,module,exports){
+},{"is-callable":932}],863:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -61570,23 +70458,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":864,"./Type":856,"has":883}],833:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":899,"es-errors/type":908,"hasown":927}],864:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -61595,7 +70486,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -61604,28 +70497,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":864,"./IsAccessorDescriptor":830,"./IsDataDescriptor":832,"./Type":856}],834:[function(require,module,exports){
+},{"./IsAccessorDescriptor":861,"./IsDataDescriptor":863,"./IsPropertyDescriptor":865,"es-errors/type":908}],865:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":869,"./IsAccessorDescriptor":830,"./IsDataDescriptor":832,"./Type":856}],835:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":899}],866:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -61640,7 +70525,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":865,"../helpers/timeConstants":872}],836:[function(require,module,exports){
+},{"../helpers/isFinite":895,"../helpers/timeConstants":901}],867:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61675,7 +70560,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":865,"./DateFromTime":822,"./Day":823,"./MonthFromTime":839,"./ToInteger":848,"./YearFromTime":858,"./floor":860,"./modulo":861,"get-intrinsic":879}],837:[function(require,module,exports){
+},{"../helpers/isFinite":895,"./DateFromTime":853,"./Day":854,"./MonthFromTime":870,"./ToInteger":879,"./YearFromTime":889,"./floor":891,"./modulo":892,"get-intrinsic":919}],868:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -61700,7 +70585,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":865,"../helpers/timeConstants":872,"./ToInteger":848}],838:[function(require,module,exports){
+},{"../helpers/isFinite":895,"../helpers/timeConstants":901,"./ToInteger":879}],869:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61716,7 +70601,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":872,"./floor":860,"./modulo":861}],839:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./floor":891,"./modulo":892}],870:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -61765,7 +70650,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":825,"./InLeapYear":829}],840:[function(require,module,exports){
+},{"./DayWithinYear":856,"./InLeapYear":860}],871:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -61780,7 +70665,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":867}],841:[function(require,module,exports){
+},{"../helpers/isNaN":896}],872:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61796,7 +70681,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":872,"./floor":860,"./modulo":861}],842:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./floor":891,"./modulo":892}],873:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -61815,7 +70700,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":856}],843:[function(require,module,exports){
+},{"./Type":887}],874:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61838,7 +70723,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":865,"./ToNumber":849,"./abs":859,"get-intrinsic":879}],844:[function(require,module,exports){
+},{"../helpers/isFinite":895,"./ToNumber":880,"./abs":890,"get-intrinsic":919}],875:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -61851,7 +70736,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":872,"./DayFromYear":824}],845:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./DayFromYear":855}],876:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -61865,14 +70750,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":872,"./modulo":861}],846:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./modulo":892}],877:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],847:[function(require,module,exports){
+},{}],878:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -61883,7 +70768,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":849}],848:[function(require,module,exports){
+},{"./ToNumber":880}],879:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -61903,10 +70788,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":865,"../helpers/isNaN":867,"../helpers/sign":871,"./ToNumber":849,"./abs":859,"./floor":860}],849:[function(require,module,exports){
+},{"../helpers/isFinite":895,"../helpers/isNaN":896,"../helpers/sign":900,"./ToNumber":880,"./abs":890,"./floor":891}],880:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -61916,46 +70809,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":851}],850:[function(require,module,exports){
+},{"./ToPrimitive":882,"call-bind/callBound":827,"safe-regex-test":942}],881:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":821,"get-intrinsic":879}],851:[function(require,module,exports){
+},{"es-object-atoms/ToObject":911}],882:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":873}],852:[function(require,module,exports){
+},{"es-to-primitive/es5":913}],883:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -61969,26 +70855,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -61996,13 +70882,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":831,"./ToBoolean":846,"./Type":856,"get-intrinsic":879,"has":883}],853:[function(require,module,exports){
+},{"./IsCallable":862,"./ToBoolean":877,"./Type":887,"es-errors/type":908,"hasown":927}],884:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -62016,7 +70902,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":879}],854:[function(require,module,exports){
+},{"get-intrinsic":919}],885:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -62037,7 +70923,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":865,"../helpers/isNaN":867,"../helpers/sign":871,"./ToNumber":849,"./abs":859,"./floor":860,"./modulo":861}],855:[function(require,module,exports){
+},{"../helpers/isFinite":895,"../helpers/isNaN":896,"../helpers/sign":900,"./ToNumber":880,"./abs":890,"./floor":891,"./modulo":892}],886:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -62048,7 +70934,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":849}],856:[function(require,module,exports){
+},{"./ToNumber":880}],887:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -62074,7 +70960,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],857:[function(require,module,exports){
+},{}],888:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -62086,7 +70972,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":823,"./modulo":861}],858:[function(require,module,exports){
+},{"./Day":854,"./modulo":892}],889:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -62104,7 +70990,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":798,"get-intrinsic":879}],859:[function(require,module,exports){
+},{"call-bind/callBound":827,"get-intrinsic":919}],890:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -62117,7 +71003,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":879}],860:[function(require,module,exports){
+},{"get-intrinsic":919}],891:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -62130,7 +71016,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],861:[function(require,module,exports){
+},{}],892:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -62141,7 +71027,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":870}],862:[function(require,module,exports){
+},{"../helpers/mod":898}],893:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -62154,7 +71040,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":872,"./modulo":861}],863:[function(require,module,exports){
+},{"../helpers/timeConstants":901,"./modulo":892}],894:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -62165,6 +71051,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -62207,90 +71094,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":819,"./5/AbstractRelationalComparison":820,"./5/CheckObjectCoercible":821,"./5/DateFromTime":822,"./5/Day":823,"./5/DayFromYear":824,"./5/DayWithinYear":825,"./5/DaysInYear":826,"./5/FromPropertyDescriptor":827,"./5/HourFromTime":828,"./5/InLeapYear":829,"./5/IsAccessorDescriptor":830,"./5/IsCallable":831,"./5/IsDataDescriptor":832,"./5/IsGenericDescriptor":833,"./5/IsPropertyDescriptor":834,"./5/MakeDate":835,"./5/MakeDay":836,"./5/MakeTime":837,"./5/MinFromTime":838,"./5/MonthFromTime":839,"./5/SameValue":840,"./5/SecFromTime":841,"./5/StrictEqualityComparison":842,"./5/TimeClip":843,"./5/TimeFromYear":844,"./5/TimeWithinDay":845,"./5/ToBoolean":846,"./5/ToInt32":847,"./5/ToInteger":848,"./5/ToNumber":849,"./5/ToObject":850,"./5/ToPrimitive":851,"./5/ToPropertyDescriptor":852,"./5/ToString":853,"./5/ToUint16":854,"./5/ToUint32":855,"./5/Type":856,"./5/WeekDay":857,"./5/YearFromTime":858,"./5/abs":859,"./5/floor":860,"./5/modulo":861,"./5/msFromTime":862}],864:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":849,"./5/AbstractRelationalComparison":850,"./5/Canonicalize":851,"./5/CheckObjectCoercible":852,"./5/DateFromTime":853,"./5/Day":854,"./5/DayFromYear":855,"./5/DayWithinYear":856,"./5/DaysInYear":857,"./5/FromPropertyDescriptor":858,"./5/HourFromTime":859,"./5/InLeapYear":860,"./5/IsAccessorDescriptor":861,"./5/IsCallable":862,"./5/IsDataDescriptor":863,"./5/IsGenericDescriptor":864,"./5/IsPropertyDescriptor":865,"./5/MakeDate":866,"./5/MakeDay":867,"./5/MakeTime":868,"./5/MinFromTime":869,"./5/MonthFromTime":870,"./5/SameValue":871,"./5/SecFromTime":872,"./5/StrictEqualityComparison":873,"./5/TimeClip":874,"./5/TimeFromYear":875,"./5/TimeWithinDay":876,"./5/ToBoolean":877,"./5/ToInt32":878,"./5/ToInteger":879,"./5/ToNumber":880,"./5/ToObject":881,"./5/ToPrimitive":882,"./5/ToPropertyDescriptor":883,"./5/ToString":884,"./5/ToUint16":885,"./5/ToUint32":886,"./5/Type":887,"./5/WeekDay":888,"./5/YearFromTime":889,"./5/abs":890,"./5/floor":891,"./5/modulo":892,"./5/msFromTime":893}],895:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":866,"get-intrinsic":879,"has":883}],865:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],866:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":883}],867:[function(require,module,exports){
+},{"./isNaN":896}],896:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],868:[function(require,module,exports){
+},{}],897:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -62305,40 +71123,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":798}],869:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":879,"has":883}],870:[function(require,module,exports){
+},{"call-bind/callBound":827}],898:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -62348,14 +71133,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],871:[function(require,module,exports){
+},{}],899:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":908,"hasown":927}],900:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],872:[function(require,module,exports){
+},{}],901:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -62376,7 +71199,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],873:[function(require,module,exports){
+},{}],902:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":919}],903:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],904:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],905:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],906:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],907:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],908:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],909:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],910:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":908}],911:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":912,"./RequireObjectCoercible":910}],912:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],913:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -62423,14 +71337,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":874,"is-callable":888}],874:[function(require,module,exports){
+},{"./helpers/isPrimitive":914,"is-callable":932}],914:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],875:[function(require,module,exports){
+},{}],915:[function(require,module,exports){
 /*!
  * escape-html
  * Copyright(c) 2012-2013 TJ Holowaychuk
@@ -62510,7 +71424,7 @@ function escapeHtml(string) {
     : html;
 }
 
-},{}],876:[function(require,module,exports){
+},{}],916:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -62532,49 +71446,81 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":886}],877:[function(require,module,exports){
+},{"individual/one-version":930}],917:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -62586,21 +71532,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],878:[function(require,module,exports){
+},{}],918:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":877}],879:[function(require,module,exports){
+},{"./implementation":917}],919:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -62639,18 +71591,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -62658,6 +71616,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -62665,9 +71625,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -62678,10 +71638,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -62689,15 +71649,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -62707,11 +71667,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -62728,7 +71698,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -62739,6 +71709,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -62793,11 +71764,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -62853,6 +71825,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -62925,29 +71900,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":878,"has":883,"has-symbols":881}],880:[function(require,module,exports){
+},{"es-errors":904,"es-errors/eval":903,"es-errors/range":905,"es-errors/ref":906,"es-errors/syntax":907,"es-errors/type":908,"es-errors/uri":909,"function-bind":918,"has-proto":922,"has-symbols":923,"hasown":927}],920:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":919}],921:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -62960,7 +71942,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":879}],881:[function(require,module,exports){
+},{"es-define-property":902}],922:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],923:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -62975,7 +71974,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":882}],882:[function(require,module,exports){
+},{"./shams":924}],924:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -63019,14 +72018,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],883:[function(require,module,exports){
+},{}],925:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":924}],926:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":878}],884:[function(require,module,exports){
+},{"function-bind":918}],927:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":918}],928:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -63113,7 +72132,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],885:[function(require,module,exports){
+},{}],929:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -63136,7 +72155,7 @@ function Individual(key, value) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],886:[function(require,module,exports){
+},{}],930:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -63160,7 +72179,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":885}],887:[function(require,module,exports){
+},{"./index.js":929}],931:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -63189,7 +72208,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],888:[function(require,module,exports){
+},{}],932:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -63235,37 +72254,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],889:[function(require,module,exports){
+},{}],933:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":827,"has-tostringtag/shams":925}],934:[function(require,module,exports){
 /**
  * Special language-specific overrides.
  *
@@ -63321,7 +72427,7 @@ module.exports = function (str, locale) {
   return str.toLowerCase()
 }
 
-},{}],890:[function(require,module,exports){
+},{}],935:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -63445,7 +72551,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":892}],891:[function(require,module,exports){
+},{"./isArguments":937}],936:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -63479,7 +72585,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":890,"./isArguments":892}],892:[function(require,module,exports){
+},{"./implementation":935,"./isArguments":937}],937:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -63498,7 +72604,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],893:[function(require,module,exports){
+},{}],938:[function(require,module,exports){
 var sentenceCase = require('sentence-case')
 
 /**
@@ -63512,7 +72618,7 @@ module.exports = function (string, locale) {
   return sentenceCase(string, locale, '-')
 }
 
-},{"sentence-case":897}],894:[function(require,module,exports){
+},{"sentence-case":943}],939:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -63698,7 +72804,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],895:[function(require,module,exports){
+},{}],940:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -63731,7 +72837,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":894,"through":912,"timers":913}],896:[function(require,module,exports){
+},{"_process":939,"through":959,"timers":960}],941:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -63798,7 +72904,25 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":780}],897:[function(require,module,exports){
+},{"buffer":809}],942:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":827,"es-errors/type":908,"is-regex":933}],943:[function(require,module,exports){
 var lowerCase = require('lower-case')
 
 var NON_WORD_REGEXP = require('./vendor/non-word-regexp')
@@ -63840,16 +72964,60 @@ module.exports = function (str, locale, replacement) {
   return lowerCase(str, locale)
 }
 
-},{"./vendor/camel-case-regexp":898,"./vendor/non-word-regexp":899,"./vendor/trailing-digit-regexp":900,"lower-case":889}],898:[function(require,module,exports){
+},{"./vendor/camel-case-regexp":944,"./vendor/non-word-regexp":945,"./vendor/trailing-digit-regexp":946,"lower-case":934}],944:[function(require,module,exports){
 module.exports = /([\u0061-\u007A\u00B5\u00DF-\u00F6\u00F8-\u00FF\u0101\u0103\u0105\u0107\u0109\u010B\u010D\u010F\u0111\u0113\u0115\u0117\u0119\u011B\u011D\u011F\u0121\u0123\u0125\u0127\u0129\u012B\u012D\u012F\u0131\u0133\u0135\u0137\u0138\u013A\u013C\u013E\u0140\u0142\u0144\u0146\u0148\u0149\u014B\u014D\u014F\u0151\u0153\u0155\u0157\u0159\u015B\u015D\u015F\u0161\u0163\u0165\u0167\u0169\u016B\u016D\u016F\u0171\u0173\u0175\u0177\u017A\u017C\u017E-\u0180\u0183\u0185\u0188\u018C\u018D\u0192\u0195\u0199-\u019B\u019E\u01A1\u01A3\u01A5\u01A8\u01AA\u01AB\u01AD\u01B0\u01B4\u01B6\u01B9\u01BA\u01BD-\u01BF\u01C6\u01C9\u01CC\u01CE\u01D0\u01D2\u01D4\u01D6\u01D8\u01DA\u01DC\u01DD\u01DF\u01E1\u01E3\u01E5\u01E7\u01E9\u01EB\u01ED\u01EF\u01F0\u01F3\u01F5\u01F9\u01FB\u01FD\u01FF\u0201\u0203\u0205\u0207\u0209\u020B\u020D\u020F\u0211\u0213\u0215\u0217\u0219\u021B\u021D\u021F\u0221\u0223\u0225\u0227\u0229\u022B\u022D\u022F\u0231\u0233-\u0239\u023C\u023F\u0240\u0242\u0247\u0249\u024B\u024D\u024F-\u0293\u0295-\u02AF\u0371\u0373\u0377\u037B-\u037D\u0390\u03AC-\u03CE\u03D0\u03D1\u03D5-\u03D7\u03D9\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F3\u03F5\u03F8\u03FB\u03FC\u0430-\u045F\u0461\u0463\u0465\u0467\u0469\u046B\u046D\u046F\u0471\u0473\u0475\u0477\u0479\u047B\u047D\u047F\u0481\u048B\u048D\u048F\u0491\u0493\u0495\u0497\u0499\u049B\u049D\u049F\u04A1\u04A3\u04A5\u04A7\u04A9\u04AB\u04AD\u04AF\u04B1\u04B3\u04B5\u04B7\u04B9\u04BB\u04BD\u04BF\u04C2\u04C4\u04C6\u04C8\u04CA\u04CC\u04CE\u04CF\u04D1\u04D3\u04D5\u04D7\u04D9\u04DB\u04DD\u04DF\u04E1\u04E3\u04E5\u04E7\u04E9\u04EB\u04ED\u04EF\u04F1\u04F3\u04F5\u04F7\u04F9\u04FB\u04FD\u04FF\u0501\u0503\u0505\u0507\u0509\u050B\u050D\u050F\u0511\u0513\u0515\u0517\u0519\u051B\u051D\u051F\u0521\u0523\u0525\u0527\u0561-\u0587\u1D00-\u1D2B\u1D6B-\u1D77\u1D79-\u1D9A\u1E01\u1E03\u1E05\u1E07\u1E09\u1E0B\u1E0D\u1E0F\u1E11\u1E13\u1E15\u1E17\u1E19\u1E1B\u1E1D\u1E1F\u1E21\u1E23\u1E25\u1E27\u1E29\u1E2B\u1E2D\u1E2F\u1E31\u1E33\u1E35\u1E37\u1E39\u1E3B\u1E3D\u1E3F\u1E41\u1E43\u1E45\u1E47\u1E49\u1E4B\u1E4D\u1E4F\u1E51\u1E53\u1E55\u1E57\u1E59\u1E5B\u1E5D\u1E5F\u1E61\u1E63\u1E65\u1E67\u1E69\u1E6B\u1E6D\u1E6F\u1E71\u1E73\u1E75\u1E77\u1E79\u1E7B\u1E7D\u1E7F\u1E81\u1E83\u1E85\u1E87\u1E89\u1E8B\u1E8D\u1E8F\u1E91\u1E93\u1E95-\u1E9D\u1E9F\u1EA1\u1EA3\u1EA5\u1EA7\u1EA9\u1EAB\u1EAD\u1EAF\u1EB1\u1EB3\u1EB5\u1EB7\u1EB9\u1EBB\u1EBD\u1EBF\u1EC1\u1EC3\u1EC5\u1EC7\u1EC9\u1ECB\u1ECD\u1ECF\u1ED1\u1ED3\u1ED5\u1ED7\u1ED9\u1EDB\u1EDD\u1EDF\u1EE1\u1EE3\u1EE5\u1EE7\u1EE9\u1EEB\u1EED\u1EEF\u1EF1\u1EF3\u1EF5\u1EF7\u1EF9\u1EFB\u1EFD\u1EFF-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB0-\u1FB4\u1FB6\u1FB7\u1FBE\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD0-\u1FD3\u1FD6\u1FD7\u1FE0-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u210A\u210E\u210F\u2113\u212F\u2134\u2139\u213C\u213D\u2146-\u2149\u214E\u2184\u2C30-\u2C5E\u2C61\u2C65\u2C66\u2C68\u2C6A\u2C6C\u2C71\u2C73\u2C74\u2C76-\u2C7B\u2C81\u2C83\u2C85\u2C87\u2C89\u2C8B\u2C8D\u2C8F\u2C91\u2C93\u2C95\u2C97\u2C99\u2C9B\u2C9D\u2C9F\u2CA1\u2CA3\u2CA5\u2CA7\u2CA9\u2CAB\u2CAD\u2CAF\u2CB1\u2CB3\u2CB5\u2CB7\u2CB9\u2CBB\u2CBD\u2CBF\u2CC1\u2CC3\u2CC5\u2CC7\u2CC9\u2CCB\u2CCD\u2CCF\u2CD1\u2CD3\u2CD5\u2CD7\u2CD9\u2CDB\u2CDD\u2CDF\u2CE1\u2CE3\u2CE4\u2CEC\u2CEE\u2CF3\u2D00-\u2D25\u2D27\u2D2D\uA641\uA643\uA645\uA647\uA649\uA64B\uA64D\uA64F\uA651\uA653\uA655\uA657\uA659\uA65B\uA65D\uA65F\uA661\uA663\uA665\uA667\uA669\uA66B\uA66D\uA681\uA683\uA685\uA687\uA689\uA68B\uA68D\uA68F\uA691\uA693\uA695\uA697\uA723\uA725\uA727\uA729\uA72B\uA72D\uA72F-\uA731\uA733\uA735\uA737\uA739\uA73B\uA73D\uA73F\uA741\uA743\uA745\uA747\uA749\uA74B\uA74D\uA74F\uA751\uA753\uA755\uA757\uA759\uA75B\uA75D\uA75F\uA761\uA763\uA765\uA767\uA769\uA76B\uA76D\uA76F\uA771-\uA778\uA77A\uA77C\uA77F\uA781\uA783\uA785\uA787\uA78C\uA78E\uA791\uA793\uA7A1\uA7A3\uA7A5\uA7A7\uA7A9\uA7FA\uFB00-\uFB06\uFB13-\uFB17\uFF41-\uFF5A])([\u0041-\u005A\u00C0-\u00D6\u00D8-\u00DE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178\u0179\u017B\u017D\u0181\u0182\u0184\u0186\u0187\u0189-\u018B\u018E-\u0191\u0193\u0194\u0196-\u0198\u019C\u019D\u019F\u01A0\u01A2\u01A4\u01A6\u01A7\u01A9\u01AC\u01AE\u01AF\u01B1-\u01B3\u01B5\u01B7\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A\u023B\u023D\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u0386\u0388-\u038A\u038C\u038E\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E\u213F\u2145\u2183\u2C00-\u2C2E\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA\uFF21-\uFF3A\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])/g
 
-},{}],899:[function(require,module,exports){
+},{}],945:[function(require,module,exports){
 module.exports = /[^\u0041-\u005A\u0061-\u007A\u00AA\u00B5\u00BA\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19]+/g
 
-},{}],900:[function(require,module,exports){
+},{}],946:[function(require,module,exports){
 module.exports = /([\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])([^\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])/g
 
-},{}],901:[function(require,module,exports){
+},{}],947:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":846,"es-errors/type":908,"get-intrinsic":919,"gopd":920,"has-property-descriptors":921}],948:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -63864,7 +73032,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":863,"function-bind":878}],902:[function(require,module,exports){
+},{"es-abstract/es5":894,"function-bind":918}],949:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -63884,7 +73052,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":901,"./polyfill":903,"./shim":904,"define-properties":817,"function-bind":878}],903:[function(require,module,exports){
+},{"./implementation":948,"./polyfill":950,"./shim":951,"define-properties":847,"function-bind":918}],950:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -63898,7 +73066,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":901}],904:[function(require,module,exports){
+},{"./implementation":948}],951:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -63910,7 +73078,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":903,"define-properties":817}],905:[function(require,module,exports){
+},{"./polyfill":950,"define-properties":847}],952:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -64207,7 +73375,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":896}],906:[function(require,module,exports){
+},{"safe-buffer":941}],953:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -64361,7 +73529,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":907,"./lib/results":909,"./lib/test":910,"_process":894,"defined":818,"through":912,"timers":913}],907:[function(require,module,exports){
+},{"./lib/default_stream":954,"./lib/results":956,"./lib/test":957,"_process":939,"defined":848,"through":959,"timers":960}],954:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -64396,7 +73564,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":894,"fs":779,"through":912}],908:[function(require,module,exports){
+},{"_process":939,"fs":808,"through":959}],955:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -64404,7 +73572,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":894,"timers":913}],909:[function(require,module,exports){
+},{"_process":939,"timers":960}],956:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -64595,7 +73763,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":894,"events":781,"function-bind":878,"has":883,"inherits":887,"object-inspect":911,"resumer":895,"through":912,"timers":913}],910:[function(require,module,exports){
+},{"_process":939,"events":810,"function-bind":918,"has":926,"inherits":931,"object-inspect":958,"resumer":940,"through":959,"timers":960}],957:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -65096,7 +74264,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":908,"deep-equal":814,"defined":818,"events":781,"has":883,"inherits":887,"path":782,"string.prototype.trim":902}],911:[function(require,module,exports){
+},{"./next_tick":955,"deep-equal":843,"defined":848,"events":810,"has":926,"inherits":931,"path":811,"string.prototype.trim":949}],958:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -65290,7 +74458,7 @@ function inspectString (str) {
     }
 }
 
-},{}],912:[function(require,module,exports){
+},{}],959:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -65402,7 +74570,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":894,"stream":783}],913:[function(require,module,exports){
+},{"_process":939,"stream":812}],960:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -65481,7 +74649,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":894,"timers":913}],914:[function(require,module,exports){
+},{"process/browser.js":939,"timers":960}],961:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -65552,7 +74720,7 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],915:[function(require,module,exports){
+},{}],962:[function(require,module,exports){
 var escape = require('escape-html');
 var propConfig = require('./property-config');
 var types = propConfig.attributeTypes;
@@ -65622,7 +74790,7 @@ function memoizeString(callback) {
     }
   };
 }
-},{"./property-config":917,"escape-html":875}],916:[function(require,module,exports){
+},{"./property-config":964,"escape-html":915}],963:[function(require,module,exports){
 var escape = require('escape-html');
 var extend = require('xtend');
 var isVNode = require('virtual-dom/vnode/is-vnode');
@@ -65725,7 +74893,7 @@ function closeTag(node) {
   return voidElements[tag] ? '' : '</' + tag + '>';
 }
 
-},{"./create-attribute":915,"./void-elements":918,"escape-html":875,"param-case":893,"virtual-dom/virtual-hyperscript/hooks/attribute-hook":920,"virtual-dom/virtual-hyperscript/hooks/soft-set-hook":922,"virtual-dom/vnode/is-thunk":925,"virtual-dom/vnode/is-vnode":927,"virtual-dom/vnode/is-vtext":928,"virtual-dom/vnode/is-widget":929,"xtend":934}],917:[function(require,module,exports){
+},{"./create-attribute":962,"./void-elements":965,"escape-html":915,"param-case":938,"virtual-dom/virtual-hyperscript/hooks/attribute-hook":967,"virtual-dom/virtual-hyperscript/hooks/soft-set-hook":969,"virtual-dom/vnode/is-thunk":972,"virtual-dom/vnode/is-vnode":974,"virtual-dom/vnode/is-vtext":975,"virtual-dom/vnode/is-widget":976,"xtend":981}],964:[function(require,module,exports){
 /**
  * Attribute types.
  */
@@ -65887,7 +75055,7 @@ module.exports = {
   properties: properties,
   attributeNames: attributeNames
 };
-},{}],918:[function(require,module,exports){
+},{}],965:[function(require,module,exports){
 
 /**
  * Void elements.
@@ -65912,12 +75080,12 @@ module.exports = {
   'track': true,
   'wbr': true
 };
-},{}],919:[function(require,module,exports){
+},{}],966:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":923}],920:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":970}],967:[function(require,module,exports){
 'use strict';
 
 module.exports = AttributeHook;
@@ -65954,7 +75122,7 @@ AttributeHook.prototype.unhook = function (node, prop, next) {
 
 AttributeHook.prototype.type = 'AttributeHook';
 
-},{}],921:[function(require,module,exports){
+},{}],968:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -65983,7 +75151,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":876}],922:[function(require,module,exports){
+},{"ev-store":916}],969:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -66002,7 +75170,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],923:[function(require,module,exports){
+},{}],970:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -66141,7 +75309,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":925,"../vnode/is-vhook":926,"../vnode/is-vnode":927,"../vnode/is-vtext":928,"../vnode/is-widget":929,"../vnode/vnode.js":931,"../vnode/vtext.js":932,"./hooks/ev-hook.js":921,"./hooks/soft-set-hook.js":922,"./parse-tag.js":924,"x-is-array":933}],924:[function(require,module,exports){
+},{"../vnode/is-thunk":972,"../vnode/is-vhook":973,"../vnode/is-vnode":974,"../vnode/is-vtext":975,"../vnode/is-widget":976,"../vnode/vnode.js":978,"../vnode/vtext.js":979,"./hooks/ev-hook.js":968,"./hooks/soft-set-hook.js":969,"./parse-tag.js":971,"x-is-array":980}],971:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -66197,14 +75365,14 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":778}],925:[function(require,module,exports){
+},{"browser-split":807}],972:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],926:[function(require,module,exports){
+},{}],973:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -66213,7 +75381,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],927:[function(require,module,exports){
+},{}],974:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -66222,7 +75390,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":930}],928:[function(require,module,exports){
+},{"./version":977}],975:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -66231,17 +75399,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":930}],929:[function(require,module,exports){
+},{"./version":977}],976:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],930:[function(require,module,exports){
+},{}],977:[function(require,module,exports){
 module.exports = "2"
 
-},{}],931:[function(require,module,exports){
+},{}],978:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -66315,7 +75483,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":925,"./is-vhook":926,"./is-vnode":927,"./is-widget":929,"./version":930}],932:[function(require,module,exports){
+},{"./is-thunk":972,"./is-vhook":973,"./is-vnode":974,"./is-widget":976,"./version":977}],979:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -66327,7 +75495,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":930}],933:[function(require,module,exports){
+},{"./version":977}],980:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -66337,7 +75505,7 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}],934:[function(require,module,exports){
+},{}],981:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -66358,4 +75526,4 @@ function extend() {
     return target
 }
 
-},{}]},{},[654]);
+},{}]},{},[680]);

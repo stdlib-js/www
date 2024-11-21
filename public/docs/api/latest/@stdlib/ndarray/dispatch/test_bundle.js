@@ -102,26 +102,41 @@
 
 'use strict';
 
-// MAIN //
-
 /**
-* Returns an array element using an accessor method.
+* Return an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @module @stdlib/array/base/accessor-getter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/accessor-getter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x.get( idx );
-}
+
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getter;
+module.exports = main;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -142,18 +157,135 @@ module.exports = getter;
 
 'use strict';
 
+// VARIABLES //
+
+var GETTERS = {
+	'complex128': getComplex128,
+	'complex64': getComplex64,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex128( arr, 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 3.0
+*
+* var im = imag( v );
+* // returns 4.0
+*/
+function getComplex128( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getComplex64( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
+*/
+function getComplex64( arr, idx ) {
+	return arr.get( idx );
+}
+
+/**
+* Returns an element from an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr.get( idx );
+}
+
+
 // MAIN //
 
 /**
-* Returns an array element.
+* Returns an accessor function for retrieving an element from an array-like object supporting the get/set protocol.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 3.0
+*
+* var im = imagf( v );
+* // returns 4.0
 */
-function getter( x, idx ) {
-	return x[ idx ];
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
 }
 
 
@@ -162,6 +294,230 @@ function getter( x, idx ) {
 module.exports = getter;
 
 },{}],3:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @module @stdlib/array/base/accessor-setter
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+* var setter = require( '@stdlib/array/base/accessor-setter' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":4}],4:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'complex128': setComplex128,
+	'complex64': setComplex64,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Complex128Array`.
+*
+* @private
+* @param {Complex128Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex128( arr, 1, new Complex128( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 10.0
+*
+* var im = imag( v );
+* // returns 11.0
+*/
+function setComplex128( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in a `Complex64Array`.
+*
+* @private
+* @param {Complex64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* setComplex64( arr, 1, new Complex64( 10.0, 11.0 ) );
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setComplex64( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+/**
+* Sets an element in an array-like object supporting the get/set protocol.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {(Collection|Complex|ComplexArray)} value - value(s)
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* function get( idx ) {
+*    return arr[ idx ];
+* }
+*
+* function set( value, idx ) {
+*    arr[ idx ] = value;
+* }
+*
+* arr.get = get;
+* arr.set = set;
+*
+* setArrayLike( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+function setArrayLike( arr, idx, value ) {
+	arr.set( value, idx );
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an array-like object supporting the get/set protocol.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Complex64Array( [ 1, 2, 3, 4 ] );
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 1, new Complex64( 10.0, 11.0 ) );
+*
+* var v = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 11.0
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = setter;
+
+},{}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -203,7 +559,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":4}],4:[function(require,module,exports){
+},{"./main.js":6}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -226,10 +582,12 @@ module.exports = main;
 
 // MODULES //
 
-var getIndexed = require( './getter.js' );
-var getAccessor = require( './getter.accessor.js' );
-var setIndexed = require( './setter.js' );
-var setAccessor = require( './setter.accessor.js' );
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var getter = require( '@stdlib/array/base/getter' );
+var setter = require( '@stdlib/array/base/setter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
+var dtype = require( '@stdlib/array/dtype' );
 
 
 // MAIN //
@@ -243,10 +601,10 @@ var setAccessor = require( './setter.accessor.js' );
 *
 * -   The returned object has the following properties:
 *
-*     -   **data**: data buffer.
-*     -   **accessors**: `boolean` indicating whether the data buffer uses accessors for getting and setting elements.
-*     -   **getter**: accessor for retrieving a data buffer element.
-*     -   **setter**: accessor for setting a data buffer element.
+*     -   **data**: reference to the input array.
+*     -   **dtype**: array data type.
+*     -   **accessorProtocol**: `boolean` indicating whether the input array uses accessors for getting and setting elements.
+*     -   **accessors**: a two-element array whose first element is an accessor for retrieving an array element and whose second element is an accessor for setting an array element.
 *
 * @param {Collection} x - array-like object
 * @returns {Object} object containing array meta data
@@ -256,12 +614,26 @@ var setAccessor = require( './setter.accessor.js' );
 * // returns {...}
 */
 function arraylike2object( x ) {
-	var bool = Boolean( x.get && x.set ); // Note: intentional weak check, as we don't explicitly check for functions for (perhaps marginally) better performance.
+	var dt = dtype( x );
+	if ( isAccessorArray( x ) ) {
+		return {
+			'data': x,
+			'dtype': dt,
+			'accessorProtocol': true,
+			'accessors': [
+				accessorGetter( dt ),
+				accessorSetter( dt )
+			]
+		};
+	}
 	return {
 		'data': x,
-		'accessors': bool,
-		'getter': ( bool ) ? getAccessor : getIndexed,
-		'setter': ( bool ) ? setAccessor : setIndexed
+		'dtype': dt,
+		'accessorProtocol': false,
+		'accessors': [
+			getter( dt ),
+			setter( dt )
+		]
 	};
 }
 
@@ -270,7 +642,587 @@ function arraylike2object( x ) {
 
 module.exports = arraylike2object;
 
-},{"./getter.accessor.js":1,"./getter.js":2,"./setter.accessor.js":5,"./setter.js":6}],5:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/base/getter":20,"@stdlib/array/base/setter":22,"@stdlib/array/dtype":55}],7:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isCollection = require( '@stdlib/assert/is-collection' );
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var dtype = require( '@stdlib/array/dtype' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Returns a function to tests if an array contains a provided search value.
+*
+* @param {Collection} x - input array
+* @throws {TypeError} must provide an array-like object
+* @returns {Function} function to test if an array contains a search value
+*
+* @example
+* var contains = factory( [ 1, 2, 3 ] );
+* // returns <Function>
+*
+* var bool = contains( 2 );
+* // returns true
+*/
+function factory( x ) {
+	var get;
+	var len;
+	var dt;
+
+	if ( !isCollection( x ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an array-like object. Value: `%s`.', x ) );
+	}
+	// Resolve the input array data type:
+	dt = dtype( x );
+
+	// Resolve an accessor for retrieving input array elements:
+	if ( isAccessorArray( x ) ) {
+		get = accessorGetter( dt );
+	}
+	// Get the number of elements over which to iterate:
+	len = x.length;
+
+	return ( get === void 0 ) ? contains : accessors;
+	/**
+	* Tests if an array contains a provided search value.
+	*
+	* @private
+	* @param {*} value - search value
+	* @returns {boolean} boolean indicating if an array contains a search value
+	*
+	* @example
+	* var out = contains( [ 1, 2, 3 ], 2 );
+	* // returns true
+	*/
+	function contains( value ) {
+		var i;
+		for ( i = 0; i < len; i++ ) {
+			if ( x[ i ] === value ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	* Tests if an array contains a provided search value.
+	*
+	* @private
+	* @param {*} value - search value
+	* @returns {boolean} boolean indicating if an array contains a search value
+	*/
+	function accessors( value ) {
+		var i;
+		for ( i = 0; i < len; i++ ) {
+			if ( get( x, i ) === value ) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = factory;
+
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/dtype":55,"@stdlib/assert/is-collection":147,"@stdlib/string/format":477}],8:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if an array contains a provided search value.
+*
+* @module @stdlib/array/base/assert/contains
+*
+* @example
+* var contains = require( '@stdlib/array/base/assert/contains' );
+*
+* var out = contains( [ 1, 2, 3 ], 2 );
+* // returns true
+*/
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var factory = require( './factory.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'factory', factory );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+// exports: { "factory": "main.factory" }
+
+},{"./factory.js":7,"./main.js":9,"@stdlib/utils/define-nonenumerable-read-only-property":490}],9:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var getter = require( '@stdlib/array/base/getter' );
+var dtype = require( '@stdlib/array/dtype' );
+
+
+// MAIN //
+
+/**
+* Tests if an array contains a provided search value.
+*
+* @param {Collection} x - input array
+* @param {*} value - search value
+* @returns {boolean} boolean indicating if an array contains a search value
+*
+* @example
+* var out = contains( [ 1, 2, 3 ], 2 );
+* // returns true
+*/
+function contains( x, value ) {
+	var len;
+	var get;
+	var dt;
+	var i;
+
+	// Resolve the input array data type:
+	dt = dtype( x );
+
+	// Resolve an accessor for retrieving input array elements:
+	if ( isAccessorArray( x ) ) {
+		get = accessorGetter( dt );
+	} else {
+		get = getter( dt );
+	}
+	// Get the number of elements over which to iterate:
+	len = x.length;
+
+	// Loop over the elements...
+	for ( i = 0; i < len; i++ ) {
+		if ( get( x, i ) === value ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = contains;
+
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/base/getter":20,"@stdlib/array/dtype":55}],10:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if an array-like object supports the accessor (get/set) protocol.
+*
+* @module @stdlib/array/base/assert/is-accessor-array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128array' );
+* var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isAccessorArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":11}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var TYPE = 'function';
+
+
+// MAIN //
+
+/**
+* Tests if an array-like object supports the accessor (get/set) protocol.
+*
+* @param {Object} value - value to test
+* @returns {boolean} boolean indicating whether a value is an accessor array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isAccessorArray( new Complex128Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isAccessorArray( [] );
+* // returns false
+*/
+function isAccessorArray( value ) {
+	return ( typeof value.get === TYPE && typeof value.set === TYPE ); // eslint-disable-line valid-typeof
+}
+
+
+// EXPORTS //
+
+module.exports = isAccessorArray;
+
+},{}],12:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex128Array`.
+*
+* @module @stdlib/array/base/assert/is-complex128array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":13}],13:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 16; // 8 bytes per float64 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex128Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex128Array`
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+*
+* var bool = isComplex128Array( new Complex128Array( 10 ) );
+* // returns true
+*
+* bool = isComplex128Array( [] );
+* // returns false
+*/
+function isComplex128Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex128Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex128array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex128Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex128Array;
+
+},{}],14:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a `Complex64Array`.
+*
+* @module @stdlib/array/base/assert/is-complex64array
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":15}],15:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = 8; // 4 bytes per float32 x (1 real + 1 imag component)
+
+
+// MAIN //
+
+/**
+* Returns a boolean indicating if a value is a `Complex64Array`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+*
+* var bool = isComplex64Array( new Complex64Array( 10 ) );
+* // returns true
+*
+* bool = isComplex64Array( [] );
+* // returns false
+*/
+function isComplex64Array( value ) {
+	// Note: the following is not robust and that is intentional. In this case, we are seeking a lower cost way to reasonably determine whether an input value is a `Complex64Array` in order to avoid walking the prototype chain and resolving constructors, which is necessary for robust identification of cross-realm instances. For more robust validation, see `@stdlib/assert/is-complex64array`.
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'Complex64Array' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isComplex64Array;
+
+},{}],16:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Copy the elements of an indexed array-like object to a new "generic" array.
+*
+* @module @stdlib/array/base/copy-indexed
+*
+* @example
+* var copy = require( '@stdlib/array/base/copy-indexed' );
+*
+* var out = copy( [ 1, 2, 3 ] );
+* // returns [ 1, 2, 3 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":17}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -294,15 +1246,821 @@ module.exports = arraylike2object;
 // MAIN //
 
 /**
-* Sets an array element using an accessor method.
+* Copies the elements of an indexed array-like object to a new "generic" array.
+*
+* @param {Collection} x - input array
+* @returns {Array} output array
+*
+* @example
+* var out = copy( [ 1, 2, 3 ] );
+* // returns [ 1, 2, 3 ]
+*/
+function copy( x ) {
+	var out;
+	var len;
+	var i;
+
+	len = x.length;
+	out = [];
+	for ( i = 0; i < len; i++ ) {
+		out.push( x[ i ] ); // use `Array#push` to ensure "fast" elements
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = copy;
+
+},{}],18:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a filled "generic" array.
+*
+* @module @stdlib/array/base/filled
+*
+* @example
+* var filled = require( '@stdlib/array/base/filled' );
+*
+* var out = filled( 0.0, 3 );
+* // returns [ 0.0, 0.0, 0.0 ]
+*
+* @example
+* var filled = require( '@stdlib/array/base/filled' );
+*
+* var out = filled( 'beep', 3 );
+* // returns [ 'beep', 'beep', 'beep' ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":19}],19:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a filled "generic" array.
+*
+* @param {*} value - fill value
+* @param {NonNegativeInteger} len - array length
+* @returns {Array} filled array
+*
+* @example
+* var out = filled( 0.0, 3 );
+* // returns [ 0.0, 0.0, 0.0 ]
+*
+* @example
+* var out = filled( 'beep', 3 );
+* // returns [ 'beep', 'beep', 'beep' ]
+*/
+function filled( value, len ) {
+	var arr;
+	var i;
+
+	// Manually push elements in order to ensure "fast" elements...
+	arr = [];
+	for ( i = 0; i < len; i++ ) {
+		arr.push( value );
+	}
+	return arr;
+}
+
+
+// EXPORTS //
+
+module.exports = filled;
+
+},{}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for retrieving an element from an indexed array-like object.
+*
+* @module @stdlib/array/base/getter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var getter = require( '@stdlib/array/base/getter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":21}],21:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var GETTERS = {
+	'float64': getFloat64,
+	'float32': getFloat32,
+	'int32': getInt32,
+	'int16': getInt16,
+	'int8': getInt8,
+	'uint32': getUint32,
+	'uint16': getUint16,
+	'uint8': getUint8,
+	'uint8c': getUint8c,
+	'generic': getGeneric,
+	'default': getArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an element from a `Float64Array`.
 *
 * @private
-* @param {Collection} x - input array
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat64( arr, 2 );
+* // returns 3.0
+*/
+function getFloat64( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getFloat32( arr, 2 );
+* // returns 3.0
+*/
+function getFloat32( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt32( arr, 2 );
+* // returns 3
+*/
+function getInt32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt16( arr, 2 );
+* // returns 3
+*/
+function getInt16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getInt8( arr, 2 );
+* // returns 3
+*/
+function getInt8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint32( arr, 2 );
+* // returns 3
+*/
+function getUint32( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint16( arr, 2 );
+* // returns 3
+*/
+function getUint16( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8( arr, 2 );
+* // returns 3
+*/
+function getUint8( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {number} element value
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( [ 1, 2, 3, 4 ] );
+*
+* var v = getUint8c( arr, 2 );
+* // returns 3
+*/
+function getUint8c( arr, idx ) { // eslint-disable-line stdlib/jsdoc-doctest-decimal-point
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getGeneric( arr, 2 );
+* // returns 3
+*/
+function getGeneric( arr, idx ) {
+	return arr[ idx ];
+}
+
+/**
+* Returns an element from an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @returns {*} element value
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var v = getArrayLike( arr, 2 );
+* // returns 3
+*/
+function getArrayLike( arr, idx ) {
+	return arr[ idx ];
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for retrieving an element from an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var get = getter( dtype( arr ) );
+* var v = get( arr, 2 );
+* // returns 3
+*/
+function getter( dtype ) {
+	var f = GETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return GETTERS.default;
+}
+
+
+// EXPORTS //
+
+module.exports = getter;
+
+},{}],22:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an accessor function for setting an element in an indexed array-like object.
+*
+* @module @stdlib/array/base/setter
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+* var set = require( '@stdlib/array/base/setter' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 10 );
+*
+* var v = arr[ 2 ];
+* // returns 10
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":23}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// VARIABLES //
+
+var SETTERS = {
+	'float64': setFloat64,
+	'float32': setFloat32,
+	'int32': setInt32,
+	'int16': setInt16,
+	'int8': setInt8,
+	'uint32': setUint32,
+	'uint16': setUint16,
+	'uint8': setUint8,
+	'uint8c': setUint8c,
+	'generic': setGeneric,
+	'default': setArrayLike
+};
+
+
+// FUNCTIONS //
+
+/**
+* Sets an element in a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( 4 );
+*
+* setFloat64( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat64( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Float32Array = require( '@stdlib/array/float32' );
+*
+* var arr = new Float32Array( 4 );
+*
+* setFloat32( arr, 2, 3.0 );
+*
+* var v = arr[ 2 ];
+* // returns 3.0
+*/
+function setFloat32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int32Array = require( '@stdlib/array/int32' );
+*
+* var arr = new Int32Array( 4 );
+*
+* setInt32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int16Array = require( '@stdlib/array/int16' );
+*
+* var arr = new Int16Array( 4 );
+*
+* setInt16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var arr = new Int8Array( 4 );
+*
+* setInt8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setInt8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var arr = new Uint32Array( 4 );
+*
+* setUint32( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint32( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint16Array = require( '@stdlib/array/uint16' );
+*
+* var arr = new Uint16Array( 4 );
+*
+* setUint16( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint16( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8Array = require( '@stdlib/array/uint8' );
+*
+* var arr = new Uint8Array( 4 );
+*
+* setUint8( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {number} value - value to set
+*
+* @example
+* var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+*
+* var arr = new Uint8ClampedArray( 4 );
+*
+* setUint8c( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setUint8c( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in a generic `Array`.
+*
+* @private
+* @param {Array} arr - input array
 * @param {NonNegativeInteger} idx - element index
 * @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setGeneric( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
 */
-function setter( x, idx, value ) {
-	x.set( value, idx );
+function setGeneric( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+/**
+* Sets an element in an indexed array-like object.
+*
+* @private
+* @param {Collection} arr - input array
+* @param {NonNegativeInteger} idx - element index
+* @param {*} value - value to set
+*
+* @example
+* var arr = [ 1, 2, 3, 4 ];
+*
+* setArrayLike( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setArrayLike( arr, idx, value ) {
+	arr[ idx ] = value;
+}
+
+
+// MAIN //
+
+/**
+* Returns an accessor function for setting an element in an indexed array-like object.
+*
+* @param {string} dtype - array dtype
+* @returns {Function} accessor
+*
+* @example
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var set = setter( dtype( arr ) );
+* set( arr, 2, 3 );
+*
+* var v = arr[ 2 ];
+* // returns 3
+*/
+function setter( dtype ) {
+	var f = SETTERS[ dtype ];
+	if ( typeof f === 'function' ) {
+		return f;
+	}
+	return SETTERS.default;
 }
 
 
@@ -310,7 +2068,362 @@ function setter( x, idx, value ) {
 
 module.exports = setter;
 
-},{}],6:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Take elements from an indexed array.
+*
+* @module @stdlib/array/base/take-indexed
+*
+* @example
+* var take = require( '@stdlib/array/base/take-indexed' );
+*
+* var x = [ 1, 2, 3, 4 ];
+*
+* var indices = [ 0, 0, 1, 1, 3, 3 ];
+* var y = take( x, indices );
+* // returns [ 1, 1, 2, 2, 4, 4 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":25}],25:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Takes elements from an indexed array.
+*
+* @param {Collection} x - input array
+* @param {NonNegativeIntegerArray} indices - list of indices
+* @returns {Array} output array
+*
+* @example
+* var x = [ 1, 2, 3, 4 ];
+* var indices = [ 3, 1, 2, 0 ];
+*
+* var y = take( x, indices );
+* // returns [ 4, 2, 3, 1 ]
+*/
+function take( x, indices ) {
+	var out;
+	var i;
+
+	out = [];
+	for ( i = 0; i < indices.length; i++ ) {
+		out.push( x[ indices[ i ] ] ); // use `Array#push` to ensure "fast" elements
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = take;
+
+},{}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
+var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
+
+
+// FUNCTIONS //
+
+/**
+* Fills an indexed array with linearly spaced numeric elements which increment by 1 starting from zero.
+*
+* @private
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
+*
+* @example
+* var out = [ 0, 0, 0, 0, 0, 0 ];
+*
+* var arr = indexed( out, 1, 0 );
+* // returns [ 0, 1, 2, 3, 4, 5 ]
+*
+* @example
+* var out = [ 0, 0, 0, 0, 0, 0 ];
+*
+* var arr = indexed( out, -1, out.length-1 );
+* // returns [ 5, 4, 3, 2, 1, 0 ]
+*/
+function indexed( out, stride, offset ) {
+	var v;
+	var i;
+
+	i = offset;
+	v = 0;
+	while ( i >= 0 && i < out.length ) {
+		out[ i ] = v;
+		i += stride;
+		v += 1;
+	}
+	return out;
+}
+
+/**
+* Fills a complex number array with linearly spaced numeric elements which increment by 1 starting from zero.
+*
+* @private
+* @param {(Complex128Array|Complex64Array)} out - output complex number array
+* @param {(Float64Array|Float32Array)} data - output array data
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {(Complex128Array|Complex64Array)} output array
+*
+* @example
+* var Complex128Array = require( '@stdlib/array/complex128' );
+* var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
+*
+* var out = new Complex128Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
+* // returns <Complex128Array>
+*
+* var data = reinterpret128( out, 0 );
+* // returns <Float64Array>[ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+*
+* var arr = complex( out, data, 1, 0 );
+* // returns <Complex128Array>
+*
+* var bool = ( arr === out );
+* // returns true
+*
+* data = reinterpret128( out, 0 );
+* returns <Float64Array>[ 0.0, 0.0, 1.0, 0.0, 2.0, 0.0 ]
+*/
+function complex( out, data, stride, offset ) {
+	var v;
+	var s;
+	var i;
+
+	s = stride * 2;
+	i = offset * 2;
+	v = 0.0;
+	while ( i >= 0 && i < data.length ) {
+		data[ i ] = v;     // real component
+		data[ i+1 ] = 0.0; // imaginary component
+		i += s;
+		v += 1.0;
+	}
+	return out;
+}
+
+/**
+* Fills an accessor array with linearly spaced numeric elements which increment by 1 starting from zero.
+*
+* @private
+* @param {Object} out - output array object
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
+*
+* @example
+* var toAccessorArray = require( '@stdlib/array/base/to-accessor-array' );
+* var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+
+* var out = toAccessorArray( [ 0, 0, 0, 0, 0, 0 ] );
+* var arr = accessors( arraylike2object( out ), 1, 0 );
+*
+* var bool = ( arr === out );
+* // returns true
+*
+* var v = out.get( 0 );
+* // returns 0
+*
+* v = out.get( out.length-1 );
+* // returns 5
+*/
+function accessors( out, stride, offset ) {
+	var data;
+	var set;
+	var v;
+	var i;
+
+	data = out.data;
+	set = out.accessors[ 1 ];
+
+	i = offset;
+	v = 0;
+	while ( i >= 0 && i < data.length ) {
+		set( data, i, v );
+		i += stride;
+		v += 1;
+	}
+	return data;
+}
+
+
+// MAIN //
+
+/**
+* Fills an array with linearly spaced numeric elements which increment by 1 starting from zero.
+*
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
+*
+* @example
+* var out = [ 0, 0, 0, 0, 0, 0 ];
+*
+* var arr = assign( out, 1, 0 );
+* // returns [ 0, 1, 2, 3, 4, 5 ]
+*
+* @example
+* var out = [ 0, 0, 0, 0, 0, 0 ];
+*
+* var arr = assign( out, -1, out.length-1 );
+* // returns [ 5, 4, 3, 2, 1, 0 ]
+*/
+function assign( out, stride, offset ) {
+	var obj = arraylike2object( out );
+	if ( obj.accessorProtocol ) {
+		// If provided a complex number array, reinterpret as a real typed array and only set the real components...
+		if ( obj.dtype === 'complex128' ) {
+			return complex( out, reinterpret128( out, 0 ), stride, offset );
+		}
+		if ( obj.dtype === 'complex64' ) {
+			return complex( out, reinterpret64( out, 0 ), stride, offset );
+		}
+		return accessors( obj, stride, offset );
+	}
+	return indexed( out, stride, offset );
+}
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{"@stdlib/array/base/arraylike2object":5,"@stdlib/strided/base/reinterpret-complex128":461,"@stdlib/strided/base/reinterpret-complex64":463}],27:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Generate a linearly spaced numeric array whose elements increment by 1 starting from zero.
+*
+* @module @stdlib/array/base/zero-to
+*
+* @example
+* var zeroTo = require( '@stdlib/array/base/zero-to' );
+*
+* var arr = zeroTo( 6 );
+* // returns [ 0, 1, 2, 3, 4, 5 ]
+*
+* @example
+* var zeroTo = require( '@stdlib/array/base/zero-to' );
+*
+* var out = [ 0, 0, 0, 0, 0, 0 ];
+* var arr = zeroTo.assign( out, 1, 0 );
+* // returns [ 0, 1, 2, 3, 4, 5 ]
+*
+* var bool = ( out === arr );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":26,"./main.js":28,"@stdlib/utils/define-nonenumerable-read-only-property":490}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -332,55 +2445,2883 @@ module.exports = setter;
 'use strict';
 
 // MAIN //
+
+/**
+* Generates a linearly spaced numeric array whose elements increment by 1 starting from zero.
+*
+* @param {number} n - number of elements
+* @returns {Array<number>} linearly spaced numeric array
+*
+* @example
+* var arr = zeroTo( 6 );
+* // returns [ 0, 1, 2, 3, 4, 5 ]
+*/
+function zeroTo( n ) {
+	var arr;
+	var i;
+
+	arr = [];
+	if ( n <= 0 ) {
+		return arr;
+	}
+	for ( i = 0; i < n; i++ ) {
+		arr.push( i );
+	}
+	return arr;
+}
+
+
+// EXPORTS //
+
+module.exports = zeroTo;
+
+},{}],29:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a zero-filled "generic" array.
+*
+* @module @stdlib/array/base/zeros
+*
+* @example
+* var zeros = require( '@stdlib/array/base/zeros' );
+*
+* var out = zeros( 3 );
+* // returns [ 0.0, 0.0, 0.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":30}],30:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var filled = require( '@stdlib/array/base/filled' );
+
+
+// MAIN //
+
+/**
+* Returns a zero-filled "generic" array.
+*
+* @param {NonNegativeInteger} len - array length
+* @returns {Array} output array
+*
+* @example
+* var out = zeros( 3 );
+* // returns [ 0.0, 0.0, 0.0 ]
+*/
+function zeros( len ) {
+	return filled( 0.0, len );
+}
+
+
+// EXPORTS //
+
+module.exports = zeros;
+
+},{"@stdlib/array/base/filled":18}],31:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Fills an output array with "boolean" values.
+*
+* @private
+* @param {Uint8Array} buf - output array
+* @param {Array} arr - input array
+* @returns {Uint8Array} output array
+*/
+function fromArray( buf, arr ) {
+	var len;
+	var i;
+
+	len = arr.length;
+	for ( i = 0; i < len; i++ ) {
+		buf[ i ] = Boolean( arr[ i ] );
+	}
+	return buf;
+}
+
+
+// EXPORTS //
+
+module.exports = fromArray;
+
+},{"@stdlib/boolean/ctor":235}],32:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @returns {Array} output array
+*/
+function fromIterator( it ) {
+	var out;
+	var v;
+
+	out = [];
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		out.push( Boolean( v.value ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIterator;
+
+},{"@stdlib/boolean/ctor":235}],33:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @param {Function} clbk - callback to invoke for each iterated value
+* @param {*} thisArg - invocation context
+* @returns {Array} output array
+*/
+function fromIteratorMap( it, clbk, thisArg ) {
+	var out;
+	var v;
+	var i;
+
+	out = [];
+	i = -1;
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		i += 1;
+		out.push( Boolean( clbk.call( thisArg, v.value, i ) ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIteratorMap;
+
+},{"@stdlib/boolean/ctor":235}],34:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean array.
+*
+* @module @stdlib/array/bool
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":35}],35:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable no-restricted-syntax, no-invalid-this */
+
+'use strict';
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isCollection = require( '@stdlib/assert/is-collection' );
+var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
+var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Boolean = require( '@stdlib/boolean/ctor' );
+var getter = require( '@stdlib/array/base/getter' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var format = require( '@stdlib/string/format' );
+var fromIterator = require( './from_iterator.js' );
+var fromIteratorMap = require( './from_iterator_map.js' );
+var fromArray = require( './from_array.js' );
+
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = Uint8Array.BYTES_PER_ELEMENT;
+var HAS_ITERATOR_SYMBOL = hasIteratorSymbolSupport();
+
+
+// FUNCTIONS //
+
+/**
+* Returns a boolean indicating if a value is a `BooleanArray`.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `BooleanArray`
+*/
+function isBooleanArray( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'BooleanArray' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+/**
+* Returns a boolean indicating if a value is a boolean typed array constructor.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean typed array constructor
+*/
+function isBooleanArrayConstructor( value ) {
+	return ( value === BooleanArray );
+}
+
+
+// MAIN //
+
+/**
+* Boolean array constructor.
+*
+* @constructor
+* @param {(NonNegativeInteger|Collection|ArrayBuffer|Iterable)} [arg] - length, typed array, array-like object, buffer, or an iterable
+* @param {NonNegativeInteger} [byteOffset=0] - byte offset
+* @param {NonNegativeInteger} [length] - view length
+* @throws {TypeError} if provided only a single argument, must provide a valid argument
+* @throws {TypeError} byte offset must be a nonnegative integer
+* @throws {RangeError} must provide sufficient memory to accommodate byte offset and view length requirements
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+function BooleanArray() {
+	var byteOffset;
+	var nargs;
+	var buf;
+	var len;
+	var arg;
+
+	nargs = arguments.length;
+	if ( !(this instanceof BooleanArray) ) {
+		if ( nargs === 0 ) {
+			return new BooleanArray();
+		}
+		if ( nargs === 1 ) {
+			return new BooleanArray( arguments[0] );
+		}
+		if ( nargs === 2 ) {
+			return new BooleanArray( arguments[0], arguments[1] );
+		}
+		return new BooleanArray( arguments[0], arguments[1], arguments[2] );
+	}
+	// Create the underlying data buffer...
+	if ( nargs === 0 ) {
+		buf = new Uint8Array( 0 ); // backward-compatibility
+	} else if ( nargs === 1 ) {
+		arg = arguments[ 0 ];
+		if ( isNonNegativeInteger( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isCollection( arg ) ) {
+			buf = fromArray( new Uint8Array( arg.length ), arg );
+		} else if ( isArrayBuffer( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isObject( arg ) ) {
+			if ( HAS_ITERATOR_SYMBOL === false ) {
+				throw new TypeError( format( 'invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.', arg ) );
+			}
+			if ( !isFunction( arg[ ITERATOR_SYMBOL ] ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = arg[ ITERATOR_SYMBOL ]();
+			if ( !isFunction( buf.next ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = new Uint8Array( fromIterator( buf ) );
+		} else {
+			throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+		}
+	} else {
+		buf = arguments[ 0 ];
+		if ( !isArrayBuffer( buf ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an ArrayBuffer. Value: `%s`.', buf ) );
+		}
+		byteOffset = arguments[ 1 ];
+		if ( !isNonNegativeInteger( byteOffset ) ) {
+			throw new TypeError( format( 'invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.', byteOffset ) );
+		}
+		if ( nargs === 2 ) {
+			buf = new Uint8Array( buf, byteOffset );
+		} else {
+			len = arguments[ 2 ];
+			if ( !isNonNegativeInteger( len ) ) {
+				throw new TypeError( format( 'invalid argument. Length must be a nonnegative integer. Value: `%s`.', len ) );
+			}
+			if ( (len*BYTES_PER_ELEMENT) > (buf.byteLength-byteOffset) ) {
+				throw new RangeError( format( 'invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.', len*BYTES_PER_ELEMENT ) );
+			}
+			buf = new Uint8Array( buf, byteOffset, len );
+		}
+	}
+	setReadOnly( this, '_buffer', buf );
+	setReadOnly( this, '_length', buf.length );
+
+	return this;
+}
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var nbytes = BooleanArray.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray, 'BYTES_PER_ELEMENT', BYTES_PER_ELEMENT );
+
+/**
+* Constructor name.
+*
+* @name name
+* @memberof BooleanArray
+* @readonly
+* @type {string}
+* @default 'BooleanArray'
+*
+* @example
+* var str = BooleanArray.name;
+* // returns 'BooleanArray'
+*/
+setReadOnly( BooleanArray, 'name', 'BooleanArray' );
+
+/**
+* Creates a new boolean array from an array-like object or an iterable.
+*
+* @name from
+* @memberof BooleanArray
+* @type {Function}
+* @param {(Collection|Iterable)} src - array-like object or iterable
+* @param {Function} [clbk] - callback to invoke for each source element
+* @param {*} [thisArg] - context
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an array-like object or an iterable
+* @throws {TypeError} second argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.from( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* function clbk( v ) {
+*     return !v;
+* }
+*
+* var arr = BooleanArray.from( [ true, false ], clbk );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+setReadOnly( BooleanArray, 'from', function from( src ) {
+	var thisArg;
+	var nargs;
+	var clbk;
+	var out;
+	var buf;
+	var tmp;
+	var get;
+	var len;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	nargs = arguments.length;
+	if ( nargs > 1 ) {
+		clbk = arguments[ 1 ];
+		if ( !isFunction( clbk ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a function. Value: `%s`.', clbk ) );
+		}
+		if ( nargs > 2 ) {
+			thisArg = arguments[ 2 ];
+		}
+	}
+	if ( isCollection( src ) ) {
+		if ( clbk ) {
+			len = src.length;
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
+			out = new this( len );
+			buf = out._buffer; // eslint-disable-line no-underscore-dangle
+			for ( i = 0; i < len; i++ ) {
+				buf[ i ] = Boolean( clbk.call( thisArg, get( src, i ), i ) );
+			}
+			return out;
+		}
+		return new this( src );
+	}
+	if ( isObject( src ) && HAS_ITERATOR_SYMBOL && isFunction( src[ ITERATOR_SYMBOL ] ) ) { // eslint-disable-line max-len
+		buf = src[ ITERATOR_SYMBOL ]();
+		if ( !isFunction( buf.next ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+		}
+		if ( clbk ) {
+			tmp = fromIteratorMap( buf, clbk, thisArg );
+		} else {
+			tmp = fromIterator( buf );
+		}
+		len = tmp.length;
+		out = new this( len );
+		buf = out._buffer; // eslint-disable-line no-underscore-dangle
+		for ( i = 0; i < len; i++ ) {
+			buf[ i ] = tmp[ i ];
+		}
+		return out;
+	}
+	throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+});
+
+/**
+* Creates a new boolean array from a variable number of arguments.
+*
+* @name of
+* @memberof BooleanArray
+* @type {Function}
+* @param {...*} element - array elements
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.of( true, true, true, true );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 4
+*/
+setReadOnly( BooleanArray, 'of', function of() {
+	var args;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	args = [];
+	for ( i = 0; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
+	}
+	return new this( args );
+});
+
+/**
+* Returns an array element located at integer position (index) `i`, with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide an integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.at( 0 );
+* // returns true
+*
+* v = arr.at( -1 );
+* // returns true
+*
+* v = arr.at( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'at', function at( idx ) {
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	len = this._length;
+	buf = this._buffer;
+	if ( idx < 0 ) {
+		idx += len;
+	}
+	if ( idx < 0 || idx >= len ) {
+		return;
+	}
+	return Boolean( buf[ idx ] );
+});
+
+/**
+* Pointer to the underlying data buffer.
+*
+* @name buffer
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {ArrayBuffer}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var buf = arr.buffer;
+* // returns <ArrayBuffer>
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'buffer', function get() {
+	return this._buffer.buffer;
+});
+
+/**
+* Size (in bytes) of the array.
+*
+* @name byteLength
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteLength = arr.byteLength;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteLength', function get() {
+	return this._buffer.byteLength;
+});
+
+/**
+* Offset (in bytes) of the array from the start of its underlying `ArrayBuffer`.
+*
+* @name byteOffset
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteOffset = arr.byteOffset;
+* // returns 0
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteOffset', function get() {
+	return this._buffer.byteOffset;
+});
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var nbytes = arr.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray.prototype, 'BYTES_PER_ELEMENT', BooleanArray.BYTES_PER_ELEMENT );
+
+/**
+* Copies a sequence of elements within the array to the position starting at `target`.
+*
+* @name copyWithin
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} target - index at which to start copying elements
+* @param {integer} start - source index at which to copy elements from
+* @param {integer} [end] - source index at which to stop copying elements from
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 4 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+* arr.set( true, 3 );
+*
+* // Copy the first two elements to the last two elements:
+* arr.copyWithin( 2, 0, 2 );
+*
+* var v = arr.get( 2 );
+* // returns true
+*
+* v = arr.get( 3 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'copyWithin', function copyWithin( target, start ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	// FIXME: prefer a functional `copyWithin` implementation which addresses lack of universal browser support (e.g., IE11 and Safari) or ensure that typed arrays are polyfilled
+	if ( arguments.length === 2 ) {
+		this._buffer.copyWithin( target, start );
+	} else {
+		this._buffer.copyWithin( target, start, arguments[2] );
+	}
+	return this;
+});
+
+/**
+* Returns an iterator for iterating over array key-value pairs.
+*
+* @name entries
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var it = arr.entries();
+*
+* var v = it.next().value;
+* // returns [ 0, true ]
+*
+* v = it.next().value;
+* // returns [ 1, false ]
+*
+* v = it.next().value;
+* // returns [ 2, true ]
+*
+* var bool = it.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'entries', function entries() {
+	var self;
+	var iter;
+	var len;
+	var buf;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': [ i, Boolean( buf[ i ] ) ],
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.entries();
+	}
+});
+
+/**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.fill( true, 1 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var val;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	if ( value ) {
+		val = 1;
+	} else {
+		val = 0;
+	}
+	for ( i = start; i < end; i++ ) {
+		buf[ i ] = val;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* function predicate( v ) {
+*     return ( v === true );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 2
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var v;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			out.push( v );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.find( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findIndex( predicate );
+* // returns 0
+*/
+setReadOnly( BooleanArray.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLast( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLastIndex( predicate );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( BooleanArray.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		fcn.call( thisArg, Boolean( buf[ i ] ), i, this );
+	}
+});
+
+/**
+* Returns an array element.
+*
+* @name get
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {NonNegativeInteger} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide a nonnegative integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'get', function get( idx ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isNonNegativeInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a nonnegative integer. Value: `%s`.', idx ) );
+	}
+	if ( idx >= this._length ) {
+		return;
+	}
+	return Boolean( this._buffer[ idx ] );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a value
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var bool = arr.includes( true );
+* // returns true
+*
+* bool = arr.includes( false, 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.indexOf( true );
+* // returns 0
+*
+* idx = arr.indexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.indexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.join();
+* // returns 'true,false,true'
+*
+* str = arr.join( '|' );
+* // returns 'true|false|true'
+*/
+setReadOnly( BooleanArray.prototype, 'join', function join( separator ) {
+	var buf;
+	var out;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length > 0 ) {
+		if ( !isString( separator ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+		}
+	} else {
+		separator = ',';
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( separator );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.lastIndexOf( true );
+* // returns 4
+*
+* idx = arr.lastIndexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Number of array elements.
+*
+* @name length
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var len = arr.length;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'length', function get() {
+	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} new boolean array
+*
+* @example
+* function invert( v ) {
+*     return !v;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.map( invert );
+* // returns <BooleanArray>
+*
+* var z = out.get( 0 );
+* // returns false
+*
+* z = out.get( 1 );
+* // returns true
+*
+* z = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( 'invalid argument. First argument must be a function. Value: `%s`.', fcn );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		outbuf[ i ] = Boolean( fcn.call( thisArg, Boolean( buf[ i ] ), i, this ) );
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduce( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ 0 ] );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduceRight( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len - 1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ len-1 ] );
+		i = len - 2;
+	}
+	for ( ; i >= 0; i-- ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.reverse();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ i ];
+		buf[ i ] = buf[ j ];
+		buf[ j ] = tmp;
+	}
+	return this;
+});
 
 /**
 * Sets an array element.
 *
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeInteger} idx - element index
-* @param {*} value - value to set
+* ## Notes
+*
+* -   When provided a typed array, we must check whether the source array shares the same buffer as the target array and whether the underlying memory overlaps. In particular, we are concerned with the following scenario:
+*
+*     ```text
+*     buf:                ---------------------
+*     src: ---------------------
+*     ```
+*
+*     In the above, as we copy values from `src`, we will overwrite values in the `src` view, resulting in duplicated values copied into the end of `buf`, which is not intended. Hence, to avoid overwriting source values, we must **copy** source values to a temporary array.
+*
+*     In the other overlapping scenario,
+*
+*     ```text
+*     buf: ---------------------
+*     src:                ---------------------
+*     ```
+*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
+*
+* @name set
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(Collection|BooleanArray|*)} value - value(s)
+* @param {NonNegativeInteger} [i=0] - element index at which to start writing values
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} index argument must be a nonnegative integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {RangeError} target array lacks sufficient storage to accommodate source values
+* @returns {void}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
 */
-function setter( x, idx, value ) {
-	x[ idx ] = value;
-}
+setReadOnly( BooleanArray.prototype, 'set', function set( value ) {
+	var sbuf;
+	var idx;
+	var buf;
+	var tmp;
+	var N;
+	var i;
+	var j;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length > 1 ) {
+		idx = arguments[ 1 ];
+		if ( !isNonNegativeInteger( idx ) ) {
+			throw new TypeError( format( 'invalid argument. Index argument must be a nonnegative integer. Value: `%s`.', idx ) );
+		}
+	} else {
+		idx = 0;
+	}
+	if ( isCollection( value ) ) {
+		N = value.length;
+		if ( idx+N > this._length ) {
+			throw new RangeError( 'invalid arguments. Target array lacks sufficient storage to accommodate source values.' );
+		}
+		if ( isBooleanArray( value ) ) {
+			sbuf = value._buffer; // eslint-disable-line no-underscore-dangle
+		} else {
+			sbuf = value;
+		}
+		// Check for overlapping memory...
+		j = buf.byteOffset + (idx*BYTES_PER_ELEMENT);
+		if (
+			sbuf.buffer === buf.buffer &&
+			(
+				sbuf.byteOffset < j &&
+				sbuf.byteOffset+sbuf.byteLength > j
+			)
+		) {
+			// We need to copy source values...
+			tmp = new Uint8Array( sbuf.length );
+			for ( i = 0; i < sbuf.length; i++ ) {
+				tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
+			}
+			sbuf = tmp;
+		}
+		for ( i = 0; i < N; idx++, i++ ) {
+			buf[ idx ] = ( sbuf[ i ] ) ? 1 : 0;
+		}
+		return;
+	}
+	if ( idx >= this._length ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%u`.', idx ) );
+	}
+	buf[ idx ] = ( value ) ? 1 : 0;
+});
 
-
-// EXPORTS //
-
-module.exports = setter;
-
-},{}],7:[function(require,module,exports){
 /**
-* @license Apache-2.0
+* Copies a portion of a typed array to a new typed array.
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* @name slice
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be integer
+* @throws {TypeError} second argument must be integer
+* @returns {BooleanArray} boolean array
 *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
+* @example
+* var arr = new BooleanArray( 5 );
 *
-*    http://www.apache.org/licenses/LICENSE-2.0
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
 *
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+* var out = arr.slice();
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 5
+*
+* var bool = out.get( 0 );
+* // returns true
+*
+* bool = out.get( len-1 );
+* // returns true
+*
+* out = arr.slice( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = out.length;
+* // returns 2
+*
+* bool = out.get( 0 );
+* // returns false
+*
+* bool = out.get( len-1 );
+* // returns true
 */
+setReadOnly( BooleanArray.prototype, 'slice', function slice( begin, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var buf;
+	var len;
+	var i;
 
-'use strict';
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin < end ) {
+		outlen = end - begin;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		outbuf[ i ] = buf[ i+begin ];
+	}
+	return out;
+});
 
-// MAIN //
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( false, 0 );
+* arr.set( true, 1 );
+* arr.set( false, 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
 
-var ctor = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : void 0; // eslint-disable-line stdlib/require-globals
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.sort( compare );
+*
+* var v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'sort', function sort( compareFcn ) {
+	var buf;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length === 0 ) {
+		buf.sort();
+		return this;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf.sort( compare );
+	return this;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {BooleanArray} subarray
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var subarr = arr.subarray();
+* // returns <BooleanArray>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var bool = subarr.get( 0 );
+* // returns true
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = subarr.length;
+* // returns 2
+*
+* bool = subarr.get( 0 );
+* // returns false
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toLocaleString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( Boolean( buf[ i ] ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.toReversed();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ len - i - 1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.sort( compare );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*
+* v = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ i ];
+	}
+	if ( arguments.length === 0 ) {
+		outbuf.sort();
+		return out;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	outbuf.sort( compare );
+	return out;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns true
+*
+* v = iter.next().value;
+* // returns false
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': Boolean( buf[ i ] ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {boolean} value - new value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a boolean
+* @returns {BooleanArray} new typed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.with( 0, false );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a boolean. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	if ( value ) {
+		buf[ index ] = 1;
+	} else {
+		buf[ index ] = 0;
+	}
+	return out;
+});
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = BooleanArray;
 
-},{}],8:[function(require,module,exports){
+},{"./from_array.js":31,"./from_iterator.js":32,"./from_iterator_map.js":33,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":20,"@stdlib/array/uint8":78,"@stdlib/assert/has-iterator-symbol-support":107,"@stdlib/assert/is-arraybuffer":137,"@stdlib/assert/is-boolean":139,"@stdlib/assert/is-collection":147,"@stdlib/assert/is-function":162,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/is-object":198,"@stdlib/assert/is-string":211,"@stdlib/assert/is-string-array":210,"@stdlib/boolean/ctor":235,"@stdlib/math/base/special/floor":276,"@stdlib/string/format":477,"@stdlib/symbol/iterator":484,"@stdlib/utils/define-nonenumerable-read-only-accessor":488,"@stdlib/utils/define-nonenumerable-read-only-property":490}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -416,7 +5357,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasArrayBufferSupport = require( '@stdlib/assert/has-arraybuffer-support' );
-var builtin = require( './arraybuffer.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -434,7 +5375,37 @@ if ( hasArrayBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./arraybuffer.js":7,"./polyfill.js":9,"@stdlib/assert/has-arraybuffer-support":51}],9:[function(require,module,exports){
+},{"./main.js":37,"./polyfill.js":38,"@stdlib/assert/has-arraybuffer-support":85}],37:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -473,7 +5444,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],10:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -497,8 +5468,8 @@ module.exports = polyfill;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -536,7 +5507,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imag":204,"@stdlib/complex/real":208}],11:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -562,8 +5533,8 @@ module.exports = fromArray;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -603,7 +5574,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imag":204,"@stdlib/complex/real":208,"@stdlib/string/format":404}],12:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251,"@stdlib/string/format":477}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -629,8 +5600,8 @@ module.exports = fromIterator;
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var format = require( '@stdlib/string/format' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -675,7 +5646,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imag":204,"@stdlib/complex/real":208,"@stdlib/string/format":404}],13:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251,"@stdlib/string/format":477}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -748,7 +5719,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex128Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -771,13 +5742,13 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":14}],14:[function(require,module,exports){
+},{"./main.js":43}],43:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -802,21 +5773,27 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' );
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float64Array = require( '@stdlib/array/float64' );
-var Complex128 = require( '@stdlib/complex/float64' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var format = require( '@stdlib/string/format' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
@@ -873,35 +5850,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float64Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex128} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT/2
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
+function getComplex128( buf, idx ) {
+	idx *= 2;
+	return new Complex128( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -1142,7 +6100,7 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = Complex128Array.from( [ new Complex128( 1.0, 1.0 ) ] );
 * // returns <Complex128Array>
@@ -1151,9 +6109,9 @@ setReadOnly( Complex128Array, 'name', 'Complex128Array' );
 * // returns 1
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * function clbk( v ) {
 *     return new Complex128( real(v)*2.0, imag(v)*2.0 );
@@ -1172,6 +6130,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -1221,11 +6180,14 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -1238,7 +6200,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -1247,7 +6209,7 @@ setReadOnly( Complex128Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = real( v );
 					buf[ j+1 ] = imag( v );
@@ -1319,6 +6281,76 @@ setReadOnly( Complex128Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex128|void)} array element
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 10 );
+*
+* var z = arr.at( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 0.0
+*
+* var im = imag( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 9.0
+*
+* im = imag( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex128Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1405,9 +6437,9 @@ setReadOnly( Complex128Array.prototype, 'BYTES_PER_ELEMENT', Complex128Array.BYT
 * @returns {Complex128Array} modified array
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 4 );
 *
@@ -1452,7 +6484,7 @@ setReadOnly( Complex128Array.prototype, 'copyWithin', function copyWithin( targe
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var arr = [
 *     new Complex128( 1.0, 1.0 ),
@@ -1560,6 +6592,461 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex128Array} modified array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.fill( new Complex128( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = real( value );
+	im = imag( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns 2.0
+*/
+setReadOnly( Complex128Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex128Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex128|void)} array element or undefined
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+setReadOnly( Complex128Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex128( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex128Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex128( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -1572,8 +7059,8 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex128Array( 10 );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex128>
@@ -1599,7 +7086,6 @@ setReadOnly( Complex128Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -1609,9 +7095,7 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
-	buf = this._buffer;
-	idx *= 2;
-	return new Complex128( buf[ idx ], buf[ idx+1 ] );
+	return getComplex128( this._buffer, idx );
 });
 
 /**
@@ -1630,6 +7114,638 @@ setReadOnly( Complex128Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex128( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex128( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex128( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex128( 4.0, -4.0 ), -3 );
+* // returns 3
+*/
+setReadOnly( Complex128Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex128( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex128( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex128( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex128Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = real( searchElement );
+	im = imag( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex128( 2.0*real( v ), 2.0*imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 2.0
+*
+* var im = imag( z );
+* // returns -2.0
+*/
+setReadOnly( Complex128Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex128( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = real( v );
+			outbuf[ (2*i)+1 ] = imag( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( cadd );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 6.0
+*
+* var im = imag( z );
+* // returns 6.0
+*/
+setReadOnly( Complex128Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex128( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex128( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -1655,7 +7771,6 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 *
 *     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
 *
-*
 * @name set
 * @memberof Complex128Array.prototype
 * @type {Function}
@@ -1670,8 +7785,8 @@ setReadOnlyAccessor( Complex128Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var arr = new Complex128Array( 10 );
 *
@@ -1824,12 +7939,849 @@ setReadOnly( Complex128Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex128Array} complex number array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex128Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function predicate( v ) {
+*     return ( real( v ) === imag( v ) );
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex128( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = real( tmp[i] );
+		buf[ j+1 ] = imag( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex128Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 5.0
+*
+* im = imag( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex128Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex128Array} reversed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 3.0
+*
+* var im = imag( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 1.0
+*
+* im = imag( z );
+* // returns 1.0
+*/
+setReadOnly( Complex128Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex128Array} sorted array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = real( a );
+*     re2 = real( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imag( a );
+*     im2 = imag( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 1.0
+*
+* var im = imag( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 2.0
+*
+* im = imag( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex128>
+*
+* re = real( z );
+* // returns 3.0
+*
+* im = imag( z );
+* // returns -3.0
+*/
+setReadOnly( Complex128Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex128( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex128Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex128Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex128( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var arr = new Complex128Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 1.0
+*
+* var im = imag( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex128>
+*
+* re = real( v );
+* // returns 2.0
+*
+* im = imag( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex128Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex128( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex128Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex128Array} new typed array
+*
+* @example
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var arr = new Complex128Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex128( 4.0, 4.0 ) );
+* // returns <Complex128Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex128>
+*
+* var re = real( z );
+* // returns 4.0
+*
+* var im = imag( z );
+* // returns 4.0
+*/
+setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = real( value );
+	buf[ (2*index)+1 ] = imag( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":10,"./from_iterator.js":11,"./from_iterator_map.js":12,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float64":27,"@stdlib/assert/has-iterator-symbol-support":73,"@stdlib/assert/is-array":101,"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-arraybuffer":103,"@stdlib/assert/is-collection":113,"@stdlib/assert/is-complex-like":115,"@stdlib/assert/is-function":128,"@stdlib/assert/is-nonnegative-integer":152,"@stdlib/assert/is-object":164,"@stdlib/complex/float64":200,"@stdlib/complex/imag":204,"@stdlib/complex/real":208,"@stdlib/math/base/assert/is-even":225,"@stdlib/math/base/assert/is-integer":227,"@stdlib/strided/base/reinterpret-complex128":390,"@stdlib/strided/base/reinterpret-complex64":392,"@stdlib/string/format":404,"@stdlib/symbol/iterator":409,"@stdlib/utils/define-nonenumerable-read-only-accessor":413,"@stdlib/utils/define-nonenumerable-read-only-property":415}],15:[function(require,module,exports){
+},{"./from_array.js":39,"./from_iterator.js":40,"./from_iterator_map.js":41,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":12,"@stdlib/array/base/assert/is-complex64array":14,"@stdlib/array/base/getter":20,"@stdlib/array/float64":60,"@stdlib/assert/has-iterator-symbol-support":107,"@stdlib/assert/is-array":135,"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-arraybuffer":137,"@stdlib/assert/is-collection":147,"@stdlib/assert/is-complex-like":149,"@stdlib/assert/is-function":162,"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/is-object":198,"@stdlib/assert/is-string":211,"@stdlib/assert/is-string-array":210,"@stdlib/complex/float64/ctor":245,"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251,"@stdlib/math/base/assert/is-even":266,"@stdlib/math/base/assert/is-integer":268,"@stdlib/math/base/special/floor":276,"@stdlib/strided/base/reinterpret-complex128":461,"@stdlib/strided/base/reinterpret-complex64":463,"@stdlib/string/format":477,"@stdlib/symbol/iterator":484,"@stdlib/utils/define-nonenumerable-read-only-accessor":488,"@stdlib/utils/define-nonenumerable-read-only-property":490}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1853,8 +8805,8 @@ module.exports = Complex128Array;
 // MODULES //
 
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 
 
 // MAIN //
@@ -1892,7 +8844,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imagf":206,"@stdlib/complex/realf":210}],16:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float32/imag":241,"@stdlib/complex/float32/real":243}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1917,8 +8869,8 @@ module.exports = fromArray;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -1959,7 +8911,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imagf":206,"@stdlib/complex/realf":210,"@stdlib/string/format":404}],17:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float32/imag":241,"@stdlib/complex/float32/real":243,"@stdlib/string/format":477}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1984,8 +8936,8 @@ module.exports = fromIterator;
 
 var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -2031,7 +8983,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-complex-like":115,"@stdlib/complex/imagf":206,"@stdlib/complex/realf":210,"@stdlib/string/format":404}],18:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-complex-like":149,"@stdlib/complex/float32/imag":241,"@stdlib/complex/float32/real":243,"@stdlib/string/format":477}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2093,7 +9045,7 @@ module.exports = fromIteratorMap;
 * // returns <Complex64Array>
 *
 * var len = arr.length;
-* // returns 2
+* // returns 1
 *
 * @example
 * var ArrayBuffer = require( '@stdlib/array/buffer' );
@@ -2127,7 +9079,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":19}],19:[function(require,module,exports){
+},{"./main.js":48}],48:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -2158,22 +9110,28 @@ var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
 var isObject = require( '@stdlib/assert/is-object' );
 var isArray = require( '@stdlib/assert/is-array' );
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
 var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 var isEven = require( '@stdlib/math/base/assert/is-even' );
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isComplex64Array = require( '@stdlib/array/base/assert/is-complex64array' );
+var isComplex128Array = require( '@stdlib/array/base/assert/is-complex128array' );
 var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
 var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var Float32Array = require( '@stdlib/array/float32' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 var format = require( '@stdlib/string/format' );
-var realf = require( '@stdlib/complex/realf' );
-var imagf = require( '@stdlib/complex/imagf' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
+var floor = require( '@stdlib/math/base/special/floor' );
 var reinterpret64 = require( '@stdlib/strided/base/reinterpret-complex64' );
 var reinterpret128 = require( '@stdlib/strided/base/reinterpret-complex128' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
+var getter = require( '@stdlib/array/base/getter' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
 var fromIterator = require( './from_iterator.js' );
 var fromIteratorMap = require( './from_iterator_map.js' );
 var fromArray = require( './from_array.js' );
@@ -2229,35 +9187,16 @@ function isComplexArrayConstructor( value ) {
 }
 
 /**
-* Returns a boolean indicating if a value is a `Complex64Array`.
+* Retrieves a complex number from a complex number array buffer.
 *
 * @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex64Array`
+* @param {Float32Array} buf - array buffer
+* @param {NonNegativeInteger} idx - element index
+* @returns {Complex64} complex number
 */
-function isComplex64Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex64Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
-	);
-}
-
-/**
-* Returns a boolean indicating if a value is a `Complex128Array`.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a `Complex128Array`
-*/
-function isComplex128Array( value ) {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor.name === 'Complex128Array' &&
-		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT*2
-	);
+function getComplex64( buf, idx ) {
+	idx *= 2;
+	return new Complex64( buf[ idx ], buf[ idx+1 ] );
 }
 
 
@@ -2397,7 +9336,7 @@ function Complex64Array() {
 			}
 			buf = buf[ ITERATOR_SYMBOL ]();
 			if ( !isFunction( buf.next ) ) {
-				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) );
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', buf ) ); // FIXME: `buf` is what is returned from above, NOT the original value
 			}
 			buf = fromIterator( buf );
 			if ( buf instanceof Error ) {
@@ -2498,7 +9437,7 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = Complex64Array.from( [ new Complex64( 1.0, 1.0 ) ] );
 * // returns <Complex64Array>
@@ -2507,9 +9446,9 @@ setReadOnly( Complex64Array, 'name', 'Complex64Array' );
 * // returns 1
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function clbk( v ) {
 *     return new Complex64( realf(v)*2.0, imagf(v)*2.0 );
@@ -2528,6 +9467,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 	var out;
 	var buf;
 	var tmp;
+	var get;
 	var len;
 	var flg;
 	var v;
@@ -2577,11 +9517,14 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// Note: array contents affect how we iterate over a provided data source. If only complex number objects, we can extract real and imaginary components. Otherwise, for non-complex number arrays (e.g., `Float64Array`, etc), we assume a strided array where real and imaginary components are interleaved. In the former case, we expect a callback to return real and imaginary components (possibly as a complex number). In the latter case, we expect a callback to return *either* a real or imaginary component.
 
 			len = src.length;
-			tmp = arraylike2object( src );
-
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
 			// Detect whether we've been provided an array which returns complex number objects...
 			for ( i = 0; i < len; i++ ) {
-				if ( !isComplexLike( tmp.getter( src, i ) ) ) {
+				if ( !isComplexLike( get( src, i ) ) ) {
 					flg = true;
 					break;
 				}
@@ -2589,12 +9532,12 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			// If an array does not contain only complex number objects, then we assume interleaved real and imaginary components...
 			if ( flg ) {
 				if ( !isEven( len ) ) {
-					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of two. Length: `%u`.', len ) );
+					throw new RangeError( format( 'invalid argument. First argument must have a length which is a multiple of %u. Length: `%u`.', 2, len ) );
 				}
 				out = new this( len/2 );
 				buf = out._buffer; // eslint-disable-line no-underscore-dangle
 				for ( i = 0; i < len; i++ ) {
-					buf[ i ] = clbk.call( thisArg, tmp.getter( src, i ), i );
+					buf[ i ] = clbk.call( thisArg, get( src, i ), i );
 				}
 				return out;
 			}
@@ -2603,7 +9546,7 @@ setReadOnly( Complex64Array, 'from', function from( src ) {
 			buf = out._buffer; // eslint-disable-line no-underscore-dangle
 			j = 0;
 			for ( i = 0; i < len; i++ ) {
-				v = clbk.call( thisArg, tmp.getter( src, i ), i );
+				v = clbk.call( thisArg, get( src, i ), i );
 				if ( isComplexLike( v ) ) {
 					buf[ j ] = realf( v );
 					buf[ j+1 ] = imagf( v );
@@ -2675,6 +9618,75 @@ setReadOnly( Complex64Array, 'of', function of() {
 		args.push( arguments[ i ] );
 	}
 	return new this( args );
+});
+
+/**
+* Returns an array element with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} must provide an integer
+* @returns {(Complex64|void)} array element
+*
+* @example
+* var arr = new Complex64Array( 10 );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z = arr.at( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 0.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 9.0, -9.0 ], 9 );
+*
+* z = arr.at( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns -1.0
+*
+* z = arr.at( -1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 9.0
+*
+* im = imagf( z );
+* // returns -9.0
+*
+* z = arr.at( 100 );
+* // returns undefined
+*
+* z = arr.at( -100 );
+* // returns undefined
+*/
+setReadOnly( Complex64Array.prototype, 'at', function at( idx ) {
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	if ( idx < 0 ) {
+		idx += this._length;
+	}
+	if ( idx < 0 || idx >= this._length ) {
+		return;
+	}
+	return getComplex64( this._buffer, idx );
 });
 
 /**
@@ -2761,9 +9773,9 @@ setReadOnly( Complex64Array.prototype, 'BYTES_PER_ELEMENT', Complex64Array.BYTES
 * @returns {Complex64Array} modified array
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 4 );
 *
@@ -2808,7 +9820,7 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * @returns {Iterator} iterator
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var arr = [
 *     new Complex64( 1.0, 1.0 ),
@@ -2834,23 +9846,21 @@ setReadOnly( Complex64Array.prototype, 'copyWithin', function copyWithin( target
 * // returns true
 */
 setReadOnly( Complex64Array.prototype, 'entries', function entries() {
-	var buffer;
 	var self;
 	var iter;
 	var len;
+	var buf;
 	var FLG;
 	var i;
-	var j;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
 	self = this;
-	buffer = this._buffer;
+	buf = this._buffer;
 	len = this._length;
 
-	// Initialize the iteration indices:
+	// Initialize an iteration index:
 	i = -1;
-	j = -2;
 
 	// Create an iterator protocol-compliant object:
 	iter = {};
@@ -2869,17 +9879,14 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 	* @returns {Object} iterator protocol-compliant object
 	*/
 	function next() {
-		var z;
 		i += 1;
 		if ( FLG || i >= len ) {
 			return {
 				'done': true
 			};
 		}
-		j += 2;
-		z = new Complex64( buffer[ j ], buffer[ j+1 ] );
 		return {
-			'value': [ i, z ],
+			'value': [ i, getComplex64( buf, i ) ],
 			'done': false
 		};
 	}
@@ -2916,6 +9923,465 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 });
 
 /**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {Complex64Array} modified array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.fill( new Complex64( 1.0, 1.0 ), 1 );
+*
+* var z = arr.get( 1 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*
+* z = arr.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	re = realf( value );
+	im = imagf( value );
+	for ( i = start; i < end; i++ ) {
+		idx = 2*i;
+		buf[ idx ] = re;
+		buf[ idx+1 ] = im;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 1
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2.0
+*
+* var im = imagf( z );
+* // returns 2.0
+*/
+setReadOnly( Complex64Array.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			out.push( z );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.find( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var idx = arr.findIndex( predicate );
+* // returns 2
+*/
+setReadOnly( Complex64Array.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {(Complex64|void)} array element or undefined
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.findLast( predicate );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*/
+setReadOnly( Complex64Array.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return z;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var idx = arr.findLastIndex( predicate );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		z = getComplex64( buf, i );
+		if ( predicate.call( thisArg, z, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( Complex64Array.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+	var z;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		z = getComplex64( buf, i );
+		fcn.call( thisArg, z, i, this );
+	}
+});
+
+/**
 * Returns an array element.
 *
 * @name get
@@ -2928,8 +10394,8 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 *
 * @example
 * var arr = new Complex64Array( 10 );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var z = arr.get( 0 );
 * // returns <Complex64>
@@ -2955,7 +10421,6 @@ setReadOnly( Complex64Array.prototype, 'entries', function entries() {
 * // returns undefined
 */
 setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
-	var buf;
 	if ( !isComplexArray( this ) ) {
 		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
 	}
@@ -2965,9 +10430,366 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 	if ( idx >= this._length ) {
 		return;
 	}
+	return getComplex64( this._buffer, idx );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a provided value
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var bool = arr.includes( new Complex64( 3.0, -3.0 ) );
+* // returns true
+*
+* bool = arr.includes( new Complex64( 3.0, -3.0 ), 3 );
+* // returns false
+*
+* bool = arr.includes( new Complex64( 4.0, -4.0 ), -3 );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
 	buf = this._buffer;
-	idx *= 2;
-	return new Complex64( buf[ idx ], buf[ idx+1 ] );
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 10 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var idx = arr.indexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 2
+*
+* idx = arr.indexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns -1
+*
+* idx = arr.indexOf( new Complex64( 4.0, -4.0 ), -3 );
+* // returns -1
+*/
+setReadOnly( Complex64Array.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.join();
+* // returns '1 + 1i,2 + 2i'
+*
+* str = arr.join( '/' );
+* // returns '1 + 1i/2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'join', function join( separator ) {
+	var out;
+	var buf;
+	var sep;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		sep = ',';
+	} else if ( isString( separator ) ) {
+		sep = separator;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( sep );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {ComplexLike} searchElement - element to find
+* @param {integer} [fromIndex] - index at which to start searching backward (inclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a complex number
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 3.0, -3.0 ], 4 );
+*
+* var idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ) );
+* // returns 4
+*
+* idx = arr.lastIndexOf( new Complex64( 3.0, -3.0 ), 3 );
+* // returns 2
+*
+* idx = arr.lastIndexOf( new Complex64( 5.0, -5.0 ), 3 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( new Complex64( 2.0, -2.0 ), -3 );
+* // returns 1
+*/
+setReadOnly( Complex64Array.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var idx;
+	var re;
+	var im;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isComplexLike( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a complex number. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	re = realf( searchElement );
+	im = imagf( searchElement );
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		idx = 2 * i;
+		if ( re === buf[ idx ] && im === buf[ idx+1 ] ) {
+			return i;
+		}
+	}
+	return -1;
 });
 
 /**
@@ -2986,6 +10808,279 @@ setReadOnly( Complex64Array.prototype, 'get', function get( idx ) {
 */
 setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( v, i ) {
+*     return new Complex64( 2.0*realf( v ), 2.0*imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var out = arr.map( scale );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 2
+*
+* var im = imagf( z );
+* // returns -2
+*/
+setReadOnly( Complex64Array.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var buf;
+	var out;
+	var i;
+	var v;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		v = fcn.call( thisArg, getComplex64( buf, i ), i, this );
+		if ( isComplexLike( v ) ) {
+			outbuf[ 2*i ] = realf( v );
+			outbuf[ (2*i)+1 ] = imagf( v );
+		} else if ( isArrayLikeObject( v ) && v.length === 2 ) {
+			outbuf[ 2*i ] = v[ 0 ];
+			outbuf[ (2*i)+1 ] = v[ 1 ];
+		} else {
+			throw new TypeError( format( 'invalid argument. Callback must return either a two-element array containing real and imaginary components or a complex number. Value: `%s`.', v ) );
+		}
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduce( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, 0 );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var z = arr.reduceRight( caddf );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 6.0
+*
+* var im = imagf( z );
+* // returns 6.0
+*/
+setReadOnly( Complex64Array.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var acc;
+	var len;
+	var v;
+	var i;
+
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len-1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = getComplex64( buf, len-1 );
+		i = len-2;
+	}
+	for ( ; i >= 0; i-- ) {
+		v = getComplex64( buf, i );
+		acc = reducer( acc, v, i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.reverse();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	buf = this._buffer;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ (2*i) ];
+		buf[ (2*i) ] = buf[ (2*j) ];
+		buf[ (2*j) ] = tmp;
+		tmp = buf[ (2*i)+1 ];
+		buf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+		buf[ (2*j)+1 ] = tmp;
+	}
+	return this;
 });
 
 /**
@@ -3009,8 +11104,7 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 *     src:                ---------------------
 *     ```
 *
-*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values as intended.
-*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
 *
 * @name set
 * @memberof Complex64Array.prototype
@@ -3026,8 +11120,8 @@ setReadOnlyAccessor( Complex64Array.prototype, 'length', function get() {
 * @returns {void}
 *
 * @example
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * var arr = new Complex64Array( 10 );
 *
@@ -3147,7 +11241,7 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 				// We need to copy source values...
 				tmp = new Float32Array( N );
 				for ( i = 0; i < N; i++ ) {
-					tmp[ i ] = sbuf[ i ];
+					tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
 				}
 				sbuf = tmp;
 			}
@@ -3180,12 +11274,849 @@ setReadOnly( Complex64Array.prototype, 'set', function set( value ) {
 	/* eslint-enable no-underscore-dangle */
 });
 
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} complex number array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var out = arr.slice();
+* // returns <Complex64Array>
+*
+* var len = out.length;
+* // returns 5
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* out = arr.slice( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = out.length;
+* // returns 2
+*
+* z = out.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'slice', function slice( start, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var idx;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		start = 0;
+		end = len;
+	} else {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( start < end ) {
+		outlen = end - start;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		idx = 2*(i+start);
+		outbuf[ 2*i ] = buf[ idx ];
+		outbuf[ (2*i)+1 ] = buf[ idx+1 ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function predicate( v ) {
+*     return ( realf( v ) === imagf( v ) );
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, getComplex64( buf, i ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'sort', function sort( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	for ( i = 0; i < len; i++ ) {
+		j = 2 * i;
+		buf[ j ] = realf( tmp[i] );
+		buf[ j+1 ] = imagf( tmp[i] );
+	}
+	return this;
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} [begin=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {Complex64Array} subarray
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 5 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+* arr.set( [ 3.0, -3.0 ], 2 );
+* arr.set( [ 4.0, -4.0 ], 3 );
+* arr.set( [ 5.0, -5.0 ], 4 );
+*
+* var subarr = arr.subarray();
+* // returns <Complex64Array>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 5.0
+*
+* im = imagf( z );
+* // returns -5.0
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <Complex64Array>
+*
+* len = subarr.length;
+* // returns 2
+*
+* z = subarr.get( 0 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = subarr.get( len-1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + (begin*BYTES_PER_ELEMENT);
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toLocaleString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Complex64Array} reversed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.toReversed();
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 3.0
+*
+* var im = imagf( z );
+* // returns 3.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns 2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 1.0
+*
+* im = imagf( z );
+* // returns 1.0
+*/
+setReadOnly( Complex64Array.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+	var j;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		j = len - i - 1;
+		outbuf[ (2*i) ] = buf[ (2*j) ];
+		outbuf[ (2*i)+1 ] = buf[ (2*j)+1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {Function} compareFcn - comparison function
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be a function
+* @returns {Complex64Array} sorted array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function compare( a, b ) {
+*     var re1;
+*     var re2;
+*     var im1;
+*     var im2;
+*     re1 = realf( a );
+*     re2 = realf( b );
+*     if ( re1 < re2 ) {
+*         return -1;
+*     }
+*     if ( re1 > re2 ) {
+*         return 1;
+*     }
+*     im1 = imagf( a );
+*     im2 = imagf( b );
+*     if ( im1 < im2 ) {
+*         return -1;
+*     }
+*     if ( im1 > im2 ) {
+*         return 1;
+*     }
+*     return 0;
+* }
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 3.0, -3.0 ], 0 );
+* arr.set( [ 1.0, -1.0 ], 1 );
+* arr.set( [ 2.0, -2.0 ], 2 );
+*
+* var out = arr.sort( compare );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 1.0
+*
+* var im = imagf( z );
+* // returns -1.0
+*
+* z = out.get( 1 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 2.0
+*
+* im = imagf( z );
+* // returns -2.0
+*
+* z = out.get( 2 );
+* // returns <Complex64>
+*
+* re = realf( z );
+* // returns 3.0
+*
+* im = imagf( z );
+* // returns -3.0
+*/
+setReadOnly( Complex64Array.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var tmp;
+	var buf;
+	var len;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	tmp = [];
+	for ( i = 0; i < len; i++ ) {
+		tmp.push( getComplex64( buf, i ) );
+	}
+	tmp.sort( compareFcn );
+	return new Complex64Array( tmp );
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {string} string representation
+*
+* @example
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+*
+* var str = arr.toString();
+* // returns '1 + 1i,2 + 2i'
+*/
+setReadOnly( Complex64Array.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( getComplex64( buf, i ).toString() );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a complex number array
+* @returns {Iterator} iterator
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var arr = new Complex64Array( 2 );
+*
+* arr.set( [ 1.0, -1.0 ], 0 );
+* arr.set( [ 2.0, -2.0 ], 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 1.0
+*
+* var im = imagf( v );
+* // returns -1.0
+*
+* v = iter.next().value;
+* // returns <Complex64>
+*
+* re = realf( v );
+* // returns 2.0
+*
+* im = imagf( v );
+* // returns -2.0
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( Complex64Array.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': getComplex64( buf, i ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof Complex64Array.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {ComplexLike} value - new value
+* @throws {TypeError} `this` must be a complex number array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a complex number
+* @returns {Complex64Array} new typed array
+*
+* @example
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var arr = new Complex64Array( 3 );
+*
+* arr.set( [ 1.0, 1.0 ], 0 );
+* arr.set( [ 2.0, 2.0 ], 1 );
+* arr.set( [ 3.0, 3.0 ], 2 );
+*
+* var out = arr.with( 0, new Complex64( 4.0, 4.0 ) );
+* // returns <Complex64Array>
+*
+* var z = out.get( 0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 4.0
+*
+* var im = imagf( z );
+* // returns 4.0
+*/
+setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+	if ( !isComplexArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a complex number array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isComplexLike( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a complex number. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	buf[ 2*index ] = realf( value );
+	buf[ (2*index)+1 ] = imagf( value );
+	return out;
+});
+
 
 // EXPORTS //
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":15,"./from_iterator.js":16,"./from_iterator_map.js":17,"@stdlib/array/base/arraylike2object":3,"@stdlib/array/float32":24,"@stdlib/assert/has-iterator-symbol-support":73,"@stdlib/assert/is-array":101,"@stdlib/assert/is-array-like-object":97,"@stdlib/assert/is-arraybuffer":103,"@stdlib/assert/is-collection":113,"@stdlib/assert/is-complex-like":115,"@stdlib/assert/is-function":128,"@stdlib/assert/is-nonnegative-integer":152,"@stdlib/assert/is-object":164,"@stdlib/complex/float32":196,"@stdlib/complex/imagf":206,"@stdlib/complex/realf":210,"@stdlib/math/base/assert/is-even":225,"@stdlib/math/base/assert/is-integer":227,"@stdlib/strided/base/reinterpret-complex128":390,"@stdlib/strided/base/reinterpret-complex64":392,"@stdlib/string/format":404,"@stdlib/symbol/iterator":409,"@stdlib/utils/define-nonenumerable-read-only-accessor":413,"@stdlib/utils/define-nonenumerable-read-only-property":415}],20:[function(require,module,exports){
+},{"./from_array.js":44,"./from_iterator.js":45,"./from_iterator_map.js":46,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":12,"@stdlib/array/base/assert/is-complex64array":14,"@stdlib/array/base/getter":20,"@stdlib/array/float32":57,"@stdlib/assert/has-iterator-symbol-support":107,"@stdlib/assert/is-array":135,"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-arraybuffer":137,"@stdlib/assert/is-collection":147,"@stdlib/assert/is-complex-like":149,"@stdlib/assert/is-function":162,"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/is-object":198,"@stdlib/assert/is-string":211,"@stdlib/assert/is-string-array":210,"@stdlib/complex/float32/ctor":237,"@stdlib/complex/float32/imag":241,"@stdlib/complex/float32/real":243,"@stdlib/math/base/assert/is-even":266,"@stdlib/math/base/assert/is-integer":268,"@stdlib/math/base/special/floor":276,"@stdlib/strided/base/reinterpret-complex128":461,"@stdlib/strided/base/reinterpret-complex64":463,"@stdlib/string/format":477,"@stdlib/symbol/iterator":484,"@stdlib/utils/define-nonenumerable-read-only-accessor":488,"@stdlib/utils/define-nonenumerable-read-only-property":490}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3243,7 +12174,7 @@ if ( hasDataViewSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":21,"./polyfill.js":22,"@stdlib/assert/has-dataview-support":56}],21:[function(require,module,exports){
+},{"./main.js":50,"./polyfill.js":51,"@stdlib/assert/has-dataview-support":90}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3273,7 +12204,7 @@ var ctor = ( typeof DataView === 'function' ) ? DataView : void 0; // eslint-dis
 
 module.exports = ctor;
 
-},{}],22:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3312,7 +12243,156 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],23:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Mapping from array constructors to data types...
+var ctor2dtypes = {
+	'Float32Array': 'float32',
+	'Float64Array': 'float64',
+	'Array': 'generic',
+	'Int16Array': 'int16',
+	'Int32Array': 'int32',
+	'Int8Array': 'int8',
+	'Uint16Array': 'uint16',
+	'Uint32Array': 'uint32',
+	'Uint8Array': 'uint8',
+	'Uint8ClampedArray': 'uint8c',
+	'Complex64Array': 'complex64',
+	'Complex128Array': 'complex128',
+	'BooleanArray': 'bool'
+};
+
+
+// EXPORTS //
+
+module.exports = ctor2dtypes;
+
+},{}],53:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Float64Array = require( '@stdlib/array/float64' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int8Array = require( '@stdlib/array/int8' );
+var Complex64Array = require( '@stdlib/array/complex64' );
+var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
+
+
+// MAIN //
+
+// Note: order should match `dtypes` order
+var CTORS = [
+	Float64Array,
+	Float32Array,
+	Int32Array,
+	Uint32Array,
+	Int16Array,
+	Uint16Array,
+	Int8Array,
+	Uint8Array,
+	Uint8ClampedArray,
+	Complex64Array,
+	Complex128Array,
+	BooleanArray
+];
+
+
+// EXPORTS //
+
+module.exports = CTORS;
+
+},{"@stdlib/array/bool":34,"@stdlib/array/complex128":42,"@stdlib/array/complex64":47,"@stdlib/array/float32":57,"@stdlib/array/float64":60,"@stdlib/array/int16":63,"@stdlib/array/int32":66,"@stdlib/array/int8":69,"@stdlib/array/uint16":72,"@stdlib/array/uint32":75,"@stdlib/array/uint8":78,"@stdlib/array/uint8c":81}],54:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+// Note: order should match `ctors` order
+var DTYPES = [
+	'float64',
+	'float32',
+	'int32',
+	'uint32',
+	'int16',
+	'uint16',
+	'int8',
+	'uint8',
+	'uint8c',
+	'complex64',
+	'complex128',
+	'bool'
+];
+
+
+// EXPORTS //
+
+module.exports = DTYPES;
+
+},{}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3333,16 +12413,110 @@ module.exports = polyfill;
 
 'use strict';
 
-// MAIN //
+/**
+* Return the data type of an array.
+*
+* @module @stdlib/array/dtype
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var dtype = require( '@stdlib/array/dtype' );
+*
+* var arr = new Float64Array( 10 );
+*
+* var dt = dtype( arr );
+* // returns 'float64'
+*
+* dt = dtype( {} );
+* // returns null
+*
+* dt = dtype( 'beep' );
+* // returns null
+*/
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+// MODULES //
+
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = main;
 
-},{}],24:[function(require,module,exports){
+},{"./main.js":56}],56:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var isArray = require( '@stdlib/assert/is-array' );
+var constructorName = require( '@stdlib/utils/constructor-name' );
+var ctor2dtype = require( './ctor2dtype.js' );
+var CTORS = require( './ctors.js' );
+var DTYPES = require( './dtypes.js' );
+
+
+// VARIABLES //
+
+var NTYPES = DTYPES.length;
+
+
+// MAIN //
+
+/**
+* Returns the data type of an array.
+*
+* @param {*} value - input value
+* @returns {(string|null)} data type
+*
+* @example
+* var dt = dtype( [ 1, 2, 3 ] );
+* // returns 'generic'
+*
+* var dt = dtype( 'beep' );
+* // returns null
+*/
+function dtype( value ) {
+	var i;
+	if ( isArray( value ) ) {
+		return 'generic';
+	}
+	if ( isBuffer( value ) ) {
+		return null;
+	}
+	for ( i = 0; i < NTYPES; i++ ) {
+		if ( value instanceof CTORS[ i ] ) {
+			return DTYPES[ i ];
+		}
+	}
+	// If the above failed, fall back to a more robust (and significantly slower) means for resolving underlying data types:
+	return ctor2dtype[ constructorName( value ) ] || null;
+}
+
+
+// EXPORTS //
+
+module.exports = dtype;
+
+},{"./ctor2dtype.js":52,"./ctors.js":53,"./dtypes.js":54,"@stdlib/assert/is-array":135,"@stdlib/assert/is-buffer":145,"@stdlib/utils/constructor-name":486}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3378,7 +12552,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3396,7 +12570,37 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float32array.js":23,"./polyfill.js":25,"@stdlib/assert/has-float32array-support":59}],25:[function(require,module,exports){
+},{"./main.js":58,"./polyfill.js":59,"@stdlib/assert/has-float32array-support":93}],58:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3435,37 +12639,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],26:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],27:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3501,7 +12675,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3519,7 +12693,37 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float64array.js":26,"./polyfill.js":28,"@stdlib/assert/has-float64array-support":62}],28:[function(require,module,exports){
+},{"./main.js":61,"./polyfill.js":62,"@stdlib/assert/has-float64array-support":96}],61:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3558,7 +12762,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],29:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3594,7 +12798,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3612,7 +12816,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":30,"./polyfill.js":31,"@stdlib/assert/has-int16array-support":64}],30:[function(require,module,exports){
+},{"./main.js":64,"./polyfill.js":65,"@stdlib/assert/has-int16array-support":98}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3642,7 +12846,7 @@ var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],31:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3681,7 +12885,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],32:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3717,7 +12921,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3735,7 +12939,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":33,"./polyfill.js":34,"@stdlib/assert/has-int32array-support":67}],33:[function(require,module,exports){
+},{"./main.js":67,"./polyfill.js":68,"@stdlib/assert/has-int32array-support":101}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3765,7 +12969,7 @@ var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],34:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3804,7 +13008,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],35:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3840,7 +13044,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3858,7 +13062,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":36,"./polyfill.js":37,"@stdlib/assert/has-int8array-support":70}],36:[function(require,module,exports){
+},{"./main.js":70,"./polyfill.js":71,"@stdlib/assert/has-int8array-support":104}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3888,7 +13092,7 @@ var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : void 0; // eslint-d
 
 module.exports = ctor;
 
-},{}],37:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3927,7 +13131,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],38:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3963,7 +13167,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -3981,7 +13185,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":39,"./uint16array.js":40,"@stdlib/assert/has-uint16array-support":81}],39:[function(require,module,exports){
+},{"./main.js":73,"./polyfill.js":74,"@stdlib/assert/has-uint16array-support":115}],73:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4020,37 +13254,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],40:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],41:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4086,7 +13290,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4104,7 +13308,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":42,"./uint32array.js":43,"@stdlib/assert/has-uint32array-support":84}],42:[function(require,module,exports){
+},{"./main.js":76,"./polyfill.js":77,"@stdlib/assert/has-uint32array-support":118}],76:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4143,37 +13377,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],43:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],44:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4209,7 +13413,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4227,7 +13431,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":45,"./uint8array.js":46,"@stdlib/assert/has-uint8array-support":87}],45:[function(require,module,exports){
+},{"./main.js":79,"./polyfill.js":80,"@stdlib/assert/has-uint8array-support":121}],79:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4266,37 +13500,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],46:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],47:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4332,7 +13536,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -4350,7 +13554,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":48,"./uint8clampedarray.js":49,"@stdlib/assert/has-uint8clampedarray-support":90}],48:[function(require,module,exports){
+},{"./main.js":82,"./polyfill.js":83,"@stdlib/assert/has-uint8clampedarray-support":124}],82:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4389,37 +13623,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],49:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
-},{}],50:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4449,7 +13653,7 @@ var main = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : null; // eslint
 
 module.exports = main;
 
-},{}],51:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4484,14 +13688,14 @@ module.exports = main;
 
 // MODULES //
 
-var hasArrayBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasArrayBufferSupport;
+module.exports = main;
 
-},{"./main.js":52}],52:[function(require,module,exports){
+},{"./main.js":86}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4565,7 +13769,7 @@ function hasArrayBufferSupport() {
 
 module.exports = hasArrayBufferSupport;
 
-},{"./arraybuffer.js":50,"@stdlib/array/float64":27,"@stdlib/assert/is-arraybuffer":103}],53:[function(require,module,exports){
+},{"./arraybuffer.js":84,"@stdlib/array/float64":60,"@stdlib/assert/is-arraybuffer":137}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4600,14 +13804,14 @@ module.exports = hasArrayBufferSupport;
 
 // MODULES //
 
-var hasBigIntSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasBigIntSupport;
+module.exports = main;
 
-},{"./main.js":54}],54:[function(require,module,exports){
+},{"./main.js":88}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4663,7 +13867,7 @@ function hasBigIntSupport() {
 
 module.exports = hasBigIntSupport;
 
-},{"@stdlib/utils/global":434}],55:[function(require,module,exports){
+},{"@stdlib/utils/global":507}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4693,7 +13897,7 @@ var main = ( typeof DataView === 'function' ) ? DataView : null; // eslint-disab
 
 module.exports = main;
 
-},{}],56:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4728,14 +13932,14 @@ module.exports = main;
 
 // MODULES //
 
-var hasDataViewSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasDataViewSupport;
+module.exports = main;
 
-},{"./main.js":57}],57:[function(require,module,exports){
+},{"./main.js":91}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4810,7 +14014,7 @@ function hasDataViewSupport() {
 
 module.exports = hasDataViewSupport;
 
-},{"./dataview.js":55,"@stdlib/array/buffer":8,"@stdlib/assert/is-dataview":117}],58:[function(require,module,exports){
+},{"./dataview.js":89,"@stdlib/array/buffer":36,"@stdlib/assert/is-dataview":151}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4840,7 +14044,7 @@ var main = ( typeof Float32Array === 'function' ) ? Float32Array : null; // esli
 
 module.exports = main;
 
-},{}],59:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4882,7 +14086,7 @@ var hasFloat32ArraySupport = require( './main.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./main.js":60}],60:[function(require,module,exports){
+},{"./main.js":94}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4949,7 +14153,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":58,"@stdlib/assert/is-float32array":123,"@stdlib/constants/float64/pinf":215}],61:[function(require,module,exports){
+},{"./float32array.js":92,"@stdlib/assert/is-float32array":157,"@stdlib/constants/float64/pinf":256}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4979,7 +14183,7 @@ var main = ( typeof Float64Array === 'function' ) ? Float64Array : null; // esli
 
 module.exports = main;
 
-},{}],62:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5021,7 +14225,7 @@ var hasFloat64ArraySupport = require( './main.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./main.js":63}],63:[function(require,module,exports){
+},{"./main.js":97}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5087,7 +14291,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":61,"@stdlib/assert/is-float64array":125}],64:[function(require,module,exports){
+},{"./float64array.js":95,"@stdlib/assert/is-float64array":159}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5129,7 +14333,7 @@ var hasInt16ArraySupport = require( './main.js' );
 
 module.exports = hasInt16ArraySupport;
 
-},{"./main.js":66}],65:[function(require,module,exports){
+},{"./main.js":100}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5159,7 +14363,7 @@ var main = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],66:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5227,7 +14431,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":65,"@stdlib/assert/is-int16array":130,"@stdlib/constants/int16/max":216,"@stdlib/constants/int16/min":217}],67:[function(require,module,exports){
+},{"./int16array.js":99,"@stdlib/assert/is-int16array":164,"@stdlib/constants/int16/max":257,"@stdlib/constants/int16/min":258}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5269,7 +14473,7 @@ var hasInt32ArraySupport = require( './main.js' );
 
 module.exports = hasInt32ArraySupport;
 
-},{"./main.js":69}],68:[function(require,module,exports){
+},{"./main.js":103}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5299,7 +14503,7 @@ var main = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],69:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5367,7 +14571,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":68,"@stdlib/assert/is-int32array":132,"@stdlib/constants/int32/max":218,"@stdlib/constants/int32/min":219}],70:[function(require,module,exports){
+},{"./int32array.js":102,"@stdlib/assert/is-int32array":166,"@stdlib/constants/int32/max":259,"@stdlib/constants/int32/min":260}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5409,7 +14613,7 @@ var hasInt8ArraySupport = require( './main.js' );
 
 module.exports = hasInt8ArraySupport;
 
-},{"./main.js":72}],71:[function(require,module,exports){
+},{"./main.js":106}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5439,7 +14643,7 @@ var main = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-dis
 
 module.exports = main;
 
-},{}],72:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5507,7 +14711,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":71,"@stdlib/assert/is-int8array":134,"@stdlib/constants/int8/max":220,"@stdlib/constants/int8/min":221}],73:[function(require,module,exports){
+},{"./int8array.js":105,"@stdlib/assert/is-int8array":168,"@stdlib/constants/int8/max":261,"@stdlib/constants/int8/min":262}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5542,14 +14746,14 @@ module.exports = hasInt8ArraySupport;
 
 // MODULES //
 
-var hasIteratorSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasIteratorSymbolSupport;
+module.exports = main;
 
-},{"./main.js":74}],74:[function(require,module,exports){
+},{"./main.js":108}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5573,6 +14777,7 @@ module.exports = hasIteratorSymbolSupport;
 // MODULES //
 
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var Symbol = require( '@stdlib/symbol/ctor' );
 
 
 // MAIN //
@@ -5600,7 +14805,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":75}],75:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":109,"@stdlib/symbol/ctor":482}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5642,14 +14847,14 @@ module.exports = hasIteratorSymbolSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
-},{"./main.js":76}],76:[function(require,module,exports){
+},{"./main.js":110}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5715,7 +14920,7 @@ function hasOwnProp( value, property ) {
 
 module.exports = hasOwnProp;
 
-},{}],77:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5750,14 +14955,14 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
-},{"./main.js":78}],78:[function(require,module,exports){
+},{"./main.js":112}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5801,7 +15006,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],79:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5836,14 +15041,14 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
-},{"./main.js":80}],80:[function(require,module,exports){
+},{"./main.js":114}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5894,7 +15099,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/assert/has-symbol-support":77}],81:[function(require,module,exports){
+},{"@stdlib/assert/has-symbol-support":111}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5936,7 +15141,7 @@ var hasUint16ArraySupport = require( './main.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./main.js":82}],82:[function(require,module,exports){
+},{"./main.js":116}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6005,7 +15210,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":83,"@stdlib/assert/is-uint16array":182,"@stdlib/constants/uint16/max":222}],83:[function(require,module,exports){
+},{"./uint16array.js":117,"@stdlib/assert/is-uint16array":217,"@stdlib/constants/uint16/max":263}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6035,7 +15240,7 @@ var main = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint
 
 module.exports = main;
 
-},{}],84:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6077,7 +15282,7 @@ var hasUint32ArraySupport = require( './main.js' );
 
 module.exports = hasUint32ArraySupport;
 
-},{"./main.js":85}],85:[function(require,module,exports){
+},{"./main.js":119}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6146,7 +15351,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":86,"@stdlib/assert/is-uint32array":184,"@stdlib/constants/uint32/max":223}],86:[function(require,module,exports){
+},{"./uint32array.js":120,"@stdlib/assert/is-uint32array":219,"@stdlib/constants/uint32/max":264}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6176,7 +15381,7 @@ var main = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint
 
 module.exports = main;
 
-},{}],87:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6218,7 +15423,7 @@ var hasUint8ArraySupport = require( './main.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./main.js":88}],88:[function(require,module,exports){
+},{"./main.js":122}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6287,7 +15492,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":89,"@stdlib/assert/is-uint8array":186,"@stdlib/constants/uint8/max":224}],89:[function(require,module,exports){
+},{"./uint8array.js":123,"@stdlib/assert/is-uint8array":221,"@stdlib/constants/uint8/max":265}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6317,7 +15522,7 @@ var main = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],90:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6359,7 +15564,7 @@ var hasUint8ClampedArraySupport = require( './main.js' );
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./main.js":91}],91:[function(require,module,exports){
+},{"./main.js":125}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6428,7 +15633,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":92,"@stdlib/assert/is-uint8clampedarray":188}],92:[function(require,module,exports){
+},{"./uint8clampedarray.js":126,"@stdlib/assert/is-uint8clampedarray":223}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6458,7 +15663,7 @@ var main = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : nul
 
 module.exports = main;
 
-},{}],93:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6515,7 +15720,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./main.js":95}],94:[function(require,module,exports){
+},{"./main.js":129}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6576,7 +15781,7 @@ if ( hasArgumentsClass ) {
 
 module.exports = isArguments;
 
-},{"./detect.js":93,"./main.js":95,"./polyfill.js":96}],95:[function(require,module,exports){
+},{"./detect.js":127,"./main.js":129,"./polyfill.js":130}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6632,7 +15837,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":462}],96:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6702,7 +15907,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":75,"@stdlib/assert/is-array":101,"@stdlib/assert/is-enumerable-property":120,"@stdlib/constants/uint32/max":223,"@stdlib/math/base/assert/is-integer":227}],97:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-array":135,"@stdlib/assert/is-enumerable-property":154,"@stdlib/constants/uint32/max":264,"@stdlib/math/base/assert/is-integer":268}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6743,14 +15948,14 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLikeObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLikeObject;
+module.exports = main;
 
-},{"./main.js":98}],98:[function(require,module,exports){
+},{"./main.js":132}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6813,7 +16018,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":212,"@stdlib/math/base/assert/is-integer":227}],99:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":253,"@stdlib/math/base/assert/is-integer":268}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6854,14 +16059,14 @@ module.exports = isArrayLikeObject;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":134}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6921,7 +16126,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":212,"@stdlib/math/base/assert/is-integer":227}],101:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":253,"@stdlib/math/base/assert/is-integer":268}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6959,14 +16164,14 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
-},{"./main.js":102}],102:[function(require,module,exports){
+},{"./main.js":136}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7031,7 +16236,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":462}],103:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7070,14 +16275,14 @@ module.exports = f;
 
 // MODULES //
 
-var isArrayBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayBuffer;
+module.exports = main;
 
-},{"./main.js":104}],104:[function(require,module,exports){
+},{"./main.js":138}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7138,7 +16343,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":462}],105:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7165,6 +16370,7 @@ module.exports = isArrayBuffer;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -7174,7 +16380,7 @@ module.exports = isArrayBuffer;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -7184,7 +16390,7 @@ module.exports = isArrayBuffer;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -7197,22 +16403,22 @@ module.exports = isArrayBuffer;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":106,"./object.js":107,"./primitive.js":108,"@stdlib/utils/define-nonenumerable-read-only-property":415}],106:[function(require,module,exports){
+},{"./main.js":140,"./object.js":141,"./primitive.js":142,"@stdlib/utils/define-nonenumerable-read-only-property":490}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7256,10 +16462,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -7272,7 +16482,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":107,"./primitive.js":108}],107:[function(require,module,exports){
+},{"./object.js":141,"./primitive.js":142}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7297,6 +16507,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -7318,6 +16529,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -7339,7 +16552,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":110,"@stdlib/assert/has-tostringtag-support":79,"@stdlib/utils/native-class":462}],108:[function(require,module,exports){
+},{"./try2serialize.js":144,"@stdlib/assert/has-tostringtag-support":113,"@stdlib/boolean/ctor":235,"@stdlib/utils/native-class":536}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7375,6 +16588,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -7387,7 +16602,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],109:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7416,7 +16631,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],110:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7465,7 +16680,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":109}],111:[function(require,module,exports){
+},{"./tostring.js":143}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7503,14 +16718,14 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
-},{"./main.js":112}],112:[function(require,module,exports){
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7582,7 +16797,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":162}],113:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":196}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7620,14 +16835,14 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
-},{"./main.js":114}],114:[function(require,module,exports){
+},{"./main.js":148}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7686,7 +16901,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":213,"@stdlib/math/base/assert/is-integer":227}],115:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":254,"@stdlib/math/base/assert/is-integer":268}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7713,8 +16928,8 @@ module.exports = isCollection;
 * @module @stdlib/assert/is-complex-like
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 * var isComplexLike = require( '@stdlib/assert/is-complex-like' );
 *
 * var x = new Complex128( 4.0, 2.0 );
@@ -7728,14 +16943,14 @@ module.exports = isCollection;
 
 // MODULES //
 
-var isComplexLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isComplexLike;
+module.exports = main;
 
-},{"./main.js":116}],116:[function(require,module,exports){
+},{"./main.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7758,8 +16973,8 @@ module.exports = isComplexLike;
 
 // MODULES //
 
-var Complex128 = require( '@stdlib/complex/float64' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 
 
 // MAIN //
@@ -7771,8 +16986,8 @@ var Complex64 = require( '@stdlib/complex/float32' );
 * @returns {boolean} boolean indicating if a value is a complex number-like object.
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var x = new Complex128( 4.0, 2.0 );
 * var bool = isComplexLike( x );
@@ -7799,7 +17014,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32":196,"@stdlib/complex/float64":200}],117:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":237,"@stdlib/complex/float64/ctor":245}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7839,14 +17054,14 @@ module.exports = isComplexLike;
 
 // MODULES //
 
-var isDataView = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isDataView;
+module.exports = main;
 
-},{"./main.js":118}],118:[function(require,module,exports){
+},{"./main.js":152}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7908,7 +17123,7 @@ function isDataView( value ) {
 
 module.exports = isDataView;
 
-},{"@stdlib/utils/native-class":462}],119:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7961,7 +17176,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./native.js":122}],120:[function(require,module,exports){
+},{"./native.js":156}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8003,14 +17218,14 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
-},{"./main.js":121}],121:[function(require,module,exports){
+},{"./main.js":155}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8092,7 +17307,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":119,"./native.js":122,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nan":145,"@stdlib/assert/is-string":176}],122:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":153,"./native.js":156,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-nan":179,"@stdlib/assert/is-string":211}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8148,7 +17363,7 @@ var isEnumerableProperty = Object.prototype.propertyIsEnumerable;
 
 module.exports = isEnumerableProperty;
 
-},{}],123:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8193,7 +17408,7 @@ var isFloat32Array = require( './main.js' );
 
 module.exports = isFloat32Array;
 
-},{"./main.js":124}],124:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8252,7 +17467,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":462}],125:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8297,7 +17512,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":126}],126:[function(require,module,exports){
+},{"./main.js":160}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8356,7 +17571,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":462}],127:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8414,7 +17629,7 @@ var isFunctionArray = arrayfun( isFunction );
 
 module.exports = isFunctionArray;
 
-},{"@stdlib/assert/is-function":128,"@stdlib/assert/tools/array-like-function":193}],128:[function(require,module,exports){
+},{"@stdlib/assert/is-function":162,"@stdlib/assert/tools/array-like-function":227}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8453,14 +17668,14 @@ module.exports = isFunctionArray;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
-},{"./main.js":129}],129:[function(require,module,exports){
+},{"./main.js":163}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8512,7 +17727,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":473}],130:[function(require,module,exports){
+},{"@stdlib/utils/type-of":549}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8557,7 +17772,7 @@ var isInt16Array = require( './main.js' );
 
 module.exports = isInt16Array;
 
-},{"./main.js":131}],131:[function(require,module,exports){
+},{"./main.js":165}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8616,7 +17831,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":462}],132:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8661,7 +17876,7 @@ var isInt32Array = require( './main.js' );
 
 module.exports = isInt32Array;
 
-},{"./main.js":133}],133:[function(require,module,exports){
+},{"./main.js":167}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8720,7 +17935,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":462}],134:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8765,7 +17980,7 @@ var isInt8Array = require( './main.js' );
 
 module.exports = isInt8Array;
 
-},{"./main.js":135}],135:[function(require,module,exports){
+},{"./main.js":169}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8824,7 +18039,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":462}],136:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8891,18 +18106,24 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isInteger.isPrimitive );
+var isObjectArray = arrayfun( isInteger.isObject );
+
+
 // MAIN //
 
 var isIntegerArray = arrayfun( isInteger );
-setReadOnly( isIntegerArray, 'primitives', arrayfun( isInteger.isPrimitive ) );
-setReadOnly( isIntegerArray, 'objects', arrayfun( isInteger.isObject ) );
+setReadOnly( isIntegerArray, 'primitives', isPrimitiveArray );
+setReadOnly( isIntegerArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isIntegerArray;
 
-},{"@stdlib/assert/is-integer":137,"@stdlib/assert/tools/array-like-function":193,"@stdlib/utils/define-nonenumerable-read-only-property":415}],137:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171,"@stdlib/assert/tools/array-like-function":227,"@stdlib/utils/define-nonenumerable-read-only-property":490}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8967,22 +18188,22 @@ module.exports = isIntegerArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":139,"./object.js":140,"./primitive.js":141,"@stdlib/utils/define-nonenumerable-read-only-property":415}],138:[function(require,module,exports){
+},{"./main.js":173,"./object.js":174,"./primitive.js":175,"@stdlib/utils/define-nonenumerable-read-only-property":490}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9032,7 +18253,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":214,"@stdlib/constants/float64/pinf":215,"@stdlib/math/base/assert/is-integer":227}],139:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":255,"@stdlib/constants/float64/pinf":256,"@stdlib/math/base/assert/is-integer":268}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9092,7 +18313,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":140,"./primitive.js":141}],140:[function(require,module,exports){
+},{"./object.js":174,"./primitive.js":175}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9147,7 +18368,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":138,"@stdlib/assert/is-number":156}],141:[function(require,module,exports){
+},{"./integer.js":172,"@stdlib/assert/is-number":190}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9202,7 +18423,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":138,"@stdlib/assert/is-number":156}],142:[function(require,module,exports){
+},{"./integer.js":172,"@stdlib/assert/is-number":190}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9241,7 +18462,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/uint16":38,"@stdlib/array/uint8":44}],143:[function(require,module,exports){
+},{"@stdlib/array/uint16":72,"@stdlib/array/uint8":78}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9283,7 +18504,7 @@ var IS_LITTLE_ENDIAN = require( './main.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./main.js":144}],144:[function(require,module,exports){
+},{"./main.js":178}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9356,7 +18577,7 @@ bool = isLittleEndian();
 
 module.exports = bool;
 
-},{"./ctors.js":142}],145:[function(require,module,exports){
+},{"./ctors.js":176}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9422,22 +18643,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":146,"./object.js":147,"./primitive.js":148,"@stdlib/utils/define-nonenumerable-read-only-property":415}],146:[function(require,module,exports){
+},{"./main.js":180,"./object.js":181,"./primitive.js":182,"@stdlib/utils/define-nonenumerable-read-only-property":490}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9497,7 +18718,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":147,"./primitive.js":148}],147:[function(require,module,exports){
+},{"./object.js":181,"./primitive.js":182}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9552,7 +18773,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":156,"@stdlib/math/base/assert/is-nan":229}],148:[function(require,module,exports){
+},{"@stdlib/assert/is-number":190,"@stdlib/math/base/assert/is-nan":270}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9611,7 +18832,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":156,"@stdlib/math/base/assert/is-nan":229}],149:[function(require,module,exports){
+},{"@stdlib/assert/is-number":190,"@stdlib/math/base/assert/is-nan":270}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9651,14 +18872,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var isndarrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isndarrayLike;
+module.exports = main;
 
-},{"./main.js":150}],150:[function(require,module,exports){
+},{"./main.js":184}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9729,7 +18950,7 @@ function isndarrayLike( v ) {
 
 module.exports = isndarrayLike;
 
-},{"@stdlib/ndarray/base/ctor":260}],151:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ctor":301}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9790,18 +19011,24 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isNonNegativeInteger.isPrimitive );
+var isObjectArray = arrayfun( isNonNegativeInteger.isObject );
+
+
 // MAIN //
 
 var isNonNegativeIntegerArray = arrayfun( isNonNegativeInteger );
-setReadOnly( isNonNegativeIntegerArray, 'primitives', arrayfun( isNonNegativeInteger.isPrimitive ) );
-setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeInteger.isObject ) );
+setReadOnly( isNonNegativeIntegerArray, 'primitives', isPrimitiveArray );
+setReadOnly( isNonNegativeIntegerArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":152,"@stdlib/assert/tools/array-like-function":193,"@stdlib/utils/define-nonenumerable-read-only-property":415}],152:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/tools/array-like-function":227,"@stdlib/utils/define-nonenumerable-read-only-property":490}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9867,22 +19094,22 @@ module.exports = isNonNegativeIntegerArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":153,"./object.js":154,"./primitive.js":155,"@stdlib/utils/define-nonenumerable-read-only-property":415}],153:[function(require,module,exports){
+},{"./main.js":187,"./object.js":188,"./primitive.js":189,"@stdlib/utils/define-nonenumerable-read-only-property":490}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9946,7 +19173,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":154,"./primitive.js":155}],154:[function(require,module,exports){
+},{"./object.js":188,"./primitive.js":189}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10000,7 +19227,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":137}],155:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10054,7 +19281,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":137}],156:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10120,22 +19347,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":157,"./object.js":158,"./primitive.js":159,"@stdlib/utils/define-nonenumerable-read-only-property":415}],157:[function(require,module,exports){
+},{"./main.js":191,"./object.js":192,"./primitive.js":193,"@stdlib/utils/define-nonenumerable-read-only-property":490}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10195,7 +19422,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":158,"./primitive.js":159}],158:[function(require,module,exports){
+},{"./object.js":192,"./primitive.js":193}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10263,7 +19490,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":161,"@stdlib/assert/has-tostringtag-support":79,"@stdlib/number/ctor":379,"@stdlib/utils/native-class":462}],159:[function(require,module,exports){
+},{"./try2serialize.js":195,"@stdlib/assert/has-tostringtag-support":113,"@stdlib/number/ctor":448,"@stdlib/utils/native-class":536}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10311,7 +19538,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],160:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10347,9 +19574,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":379}],161:[function(require,module,exports){
-arguments[4][110][0].apply(exports,arguments)
-},{"./tostring.js":160,"dup":110}],162:[function(require,module,exports){
+},{"@stdlib/number/ctor":448}],195:[function(require,module,exports){
+arguments[4][144][0].apply(exports,arguments)
+},{"./tostring.js":194,"dup":144}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10401,19 +19628,24 @@ arguments[4][110][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":163,"@stdlib/assert/tools/array-function":191,"@stdlib/utils/define-nonenumerable-read-only-property":415}],163:[function(require,module,exports){
+},{"./main.js":197,"@stdlib/assert/tools/array-function":225,"@stdlib/utils/define-nonenumerable-read-only-property":490}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10464,7 +19696,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],164:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10502,14 +19734,14 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
-},{"./main.js":165}],165:[function(require,module,exports){
+},{"./main.js":199}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10564,7 +19796,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":101}],166:[function(require,module,exports){
+},{"@stdlib/assert/is-array":135}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10602,14 +19834,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
-},{"./main.js":167}],167:[function(require,module,exports){
+},{"./main.js":201}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10723,7 +19955,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":75,"@stdlib/assert/is-function":128,"@stdlib/assert/is-object":164,"@stdlib/utils/get-prototype-of":428,"@stdlib/utils/native-class":462}],168:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-function":162,"@stdlib/assert/is-object":198,"@stdlib/utils/get-prototype-of":502,"@stdlib/utils/native-class":536}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10789,22 +20021,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveInteger;
+module.exports = main;
 
-},{"./main.js":169,"./object.js":170,"./primitive.js":171,"@stdlib/utils/define-nonenumerable-read-only-property":415}],169:[function(require,module,exports){
+},{"./main.js":203,"./object.js":204,"./primitive.js":205,"@stdlib/utils/define-nonenumerable-read-only-property":490}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10872,7 +20104,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":170,"./primitive.js":171}],170:[function(require,module,exports){
+},{"./object.js":204,"./primitive.js":205}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10926,7 +20158,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":137}],171:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10980,7 +20212,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":137}],172:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11008,7 +20240,7 @@ var exec = RegExp.prototype.exec; // non-generic
 
 module.exports = exec;
 
-},{}],173:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11046,14 +20278,14 @@ module.exports = exec;
 
 // MODULES //
 
-var isRegExp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isRegExp;
+module.exports = main;
 
-},{"./main.js":174}],174:[function(require,module,exports){
+},{"./main.js":208}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11120,7 +20352,7 @@ function isRegExp( value ) {
 
 module.exports = isRegExp;
 
-},{"./try2exec.js":175,"@stdlib/assert/has-tostringtag-support":79,"@stdlib/utils/native-class":462}],175:[function(require,module,exports){
+},{"./try2exec.js":209,"@stdlib/assert/has-tostringtag-support":113,"@stdlib/utils/native-class":536}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11169,7 +20401,85 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./exec.js":172}],176:[function(require,module,exports){
+},{"./exec.js":206}],210:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is an array of strings.
+*
+* @module @stdlib/assert/is-string-array
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' );
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', 123 ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', new String( 'def' ) ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).objects;
+*
+* var bool = isStringArray( [ new String( 'abc' ), new String( 'def' ) ] );
+* // returns true
+*
+* bool = isStringArray( [ new String( 'abc' ), 'def' ] );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-function' );
+var isString = require( '@stdlib/assert/is-string' );
+
+
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
+// MAIN //
+
+var isStringArray = arrayfun( isString );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
+
+
+// EXPORTS //
+
+module.exports = isStringArray;
+
+},{"@stdlib/assert/is-string":211,"@stdlib/assert/tools/array-function":225,"@stdlib/utils/define-nonenumerable-read-only-property":490}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11229,22 +20539,22 @@ module.exports = test;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":177,"./object.js":178,"./primitive.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":415}],177:[function(require,module,exports){
+},{"./main.js":212,"./object.js":213,"./primitive.js":214,"@stdlib/utils/define-nonenumerable-read-only-property":490}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11296,7 +20606,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":178,"./primitive.js":179}],178:[function(require,module,exports){
+},{"./object.js":213,"./primitive.js":214}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11363,7 +20673,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":180,"@stdlib/assert/has-tostringtag-support":79,"@stdlib/utils/native-class":462}],179:[function(require,module,exports){
+},{"./try2valueof.js":215,"@stdlib/assert/has-tostringtag-support":113,"@stdlib/utils/native-class":536}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11407,7 +20717,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],180:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11456,7 +20766,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":181}],181:[function(require,module,exports){
+},{"./valueof.js":216}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11485,7 +20795,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],182:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11530,7 +20840,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":183}],183:[function(require,module,exports){
+},{"./main.js":218}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11589,7 +20899,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":462}],184:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11634,7 +20944,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":185}],185:[function(require,module,exports){
+},{"./main.js":220}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11693,7 +21003,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":462}],186:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11738,7 +21048,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":187}],187:[function(require,module,exports){
+},{"./main.js":222}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11797,7 +21107,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":462}],188:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11842,7 +21152,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":189}],189:[function(require,module,exports){
+},{"./main.js":224}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11901,7 +21211,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":462}],190:[function(require,module,exports){
+},{"@stdlib/utils/native-class":536}],225:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":226}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11988,7 +21349,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":101,"@stdlib/string/format":404}],191:[function(require,module,exports){
+},{"@stdlib/assert/is-array":135,"@stdlib/string/format":477}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12010,18 +21371,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -12032,14 +21393,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":190}],192:[function(require,module,exports){
+},{"./main.js":228}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12126,58 +21487,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":99,"@stdlib/string/format":404}],193:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a function which tests if every element in an array-like object passes a test condition.
-*
-* @module @stdlib/assert/tools/array-like-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arraylikefcn = require( './arraylikefcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arraylikefcn;
-
-},{"./arraylikefcn.js":192}],194:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":133,"@stdlib/string/format":477}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12212,14 +21522,14 @@ module.exports = arraylikefcn;
 
 // MODULES //
 
-var BigInt = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = BigInt;
+module.exports = main;
 
-},{"./main.js":195}],195:[function(require,module,exports){
+},{"./main.js":230}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12244,14 +21554,275 @@ module.exports = BigInt;
 
 // MAIN //
 
-var BigInteger = ( typeof BigInt === 'function' ) ? BigInt : void 0; // eslint-disable-line stdlib/require-globals
+var BigInteger = ( typeof BigInt === 'function' ) ? BigInt : void 0; // eslint-disable-line stdlib/require-globals, node/no-unsupported-features/es-builtins
 
 
 // EXPORTS //
 
 module.exports = BigInteger;
 
-},{}],196:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
+module.exports=[
+  "row-major",
+  "column-major"
+]
+
+},{}],232:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object mapping supported layouts to integer values for purposes of C inter-operation.
+*
+* ## Notes
+*
+* -   Downstream consumers of this mapping should **not** rely on specific integer values (e.g., `row-major == 101`). Instead, the object should be used in an opaque manner.
+* -   The main purpose of this function is JavaScript and C inter-operation of array objects.
+*
+* @returns {Object} object mapping supported layouts to integer values
+*
+* @example
+* var table = enumerated();
+* // returns <Object>
+*/
+function enumerated() {
+	// NOTE: the following should match the C `layouts.h` enumeration!!!!
+	return {
+		// Row-major (C-style):
+		'row-major': 101,
+
+		// Column-major (Fortran-style):
+		'column-major': 102
+	};
+}
+
+
+// EXPORTS //
+
+module.exports = enumerated;
+
+},{}],233:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a list of BLAS memory layouts.
+*
+* @module @stdlib/blas/base/layouts
+*
+* @example
+* var layouts = require( '@stdlib/blas/base/layouts' );
+*
+* var list = layouts();
+* // e.g., returns [ 'row-major', 'column-major' ]
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var enumeration = require( './enum.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'enum', enumeration );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./enum.js":232,"./main.js":234,"@stdlib/utils/define-nonenumerable-read-only-property":490}],234:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var DATA = require( './data.json' );
+
+
+// MAIN //
+
+/**
+* Returns a list of BLAS memory layouts.
+*
+* @returns {StringArray} list of memory layouts
+*
+* @example
+* var list = layouts();
+* // e.g., returns [ 'row-major', 'column-major' ]
+*/
+function layouts() {
+	return DATA.slice();
+}
+
+
+// EXPORTS //
+
+module.exports = layouts;
+
+},{"./data.json":231}],235:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":236}],236:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12275,10 +21846,10 @@ module.exports = BigInteger;
 /**
 * 64-bit complex number constructor.
 *
-* @module @stdlib/complex/float32
+* @module @stdlib/complex/float32/ctor
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var z = new Complex64( 5.0, 3.0 );
 * // returns <Complex64>
@@ -12293,7 +21864,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":197}],197:[function(require,module,exports){
+},{"./main.js":238}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12436,7 +22007,6 @@ setReadOnly( Complex64.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex64` instance.
 *
-*
 * @name toJSON
 * @memberof Complex64.prototype
 * @type {Function}
@@ -12455,7 +22025,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":198,"./tostring.js":199,"@stdlib/assert/is-number":156,"@stdlib/number/float64/base/to-float32":381,"@stdlib/string/format":404,"@stdlib/utils/define-nonenumerable-read-only-property":415,"@stdlib/utils/define-property":420}],198:[function(require,module,exports){
+},{"./tojson.js":239,"./tostring.js":240,"@stdlib/assert/is-number":190,"@stdlib/number/float64/base/to-float32":450,"@stdlib/string/format":477,"@stdlib/utils/define-nonenumerable-read-only-property":490,"@stdlib/utils/define-property":495}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12496,7 +22066,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],199:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12540,7 +22110,185 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],200:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the imaginary component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/imag
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var imag = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":242}],242:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the imaginary component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} imaginary component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+function imag( z ) {
+	return z.im;
+}
+
+
+// EXPORTS //
+
+module.exports = imag;
+
+},{}],243:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/real
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var real = require( '@stdlib/complex/float32/real' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":244}],244:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the real component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} real component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+function real( z ) {
+	return z.re;
+}
+
+
+// EXPORTS //
+
+module.exports = real;
+
+},{}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12564,10 +22312,10 @@ module.exports = toString;
 /**
 * 128-bit complex number constructor.
 *
-* @module @stdlib/complex/float64
+* @module @stdlib/complex/float64/ctor
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 * // returns <Complex128>
@@ -12582,7 +22330,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":201}],201:[function(require,module,exports){
+},{"./main.js":246}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12724,7 +22472,6 @@ setReadOnly( Complex128.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex128` instance.
 *
-*
 * @name toJSON
 * @memberof Complex128.prototype
 * @type {Function}
@@ -12743,7 +22490,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":202,"./tostring.js":203,"@stdlib/assert/is-number":156,"@stdlib/string/format":404,"@stdlib/utils/define-nonenumerable-read-only-property":415,"@stdlib/utils/define-property":420}],202:[function(require,module,exports){
+},{"./tojson.js":247,"./tostring.js":248,"@stdlib/assert/is-number":190,"@stdlib/string/format":477,"@stdlib/utils/define-nonenumerable-read-only-property":490,"@stdlib/utils/define-property":495}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12784,9 +22531,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],203:[function(require,module,exports){
-arguments[4][199][0].apply(exports,arguments)
-},{"dup":199}],204:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
+arguments[4][240][0].apply(exports,arguments)
+},{"dup":240}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12810,11 +22557,11 @@ arguments[4][199][0].apply(exports,arguments)
 /**
 * Return the imaginary component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/imag
+* @module @stdlib/complex/float64/imag
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -12831,7 +22578,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":205}],205:[function(require,module,exports){
+},{"./main.js":250}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12859,7 +22606,7 @@ module.exports = main;
 * @returns {number} imaginary component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -12875,96 +22622,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],206:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the imaginary component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/imagf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var imagf = require( '@stdlib/complex/imagf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":207}],207:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the imaginary component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} imaginary component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var im = imagf( z );
-* // returns 3.0
-*/
-function imagf( z ) {
-	return z.im;
-}
-
-
-// EXPORTS //
-
-module.exports = imagf;
-
-},{}],208:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12988,11 +22646,11 @@ module.exports = imagf;
 /**
 * Return the real component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/real
+* @module @stdlib/complex/float64/real
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -13009,7 +22667,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":209}],209:[function(require,module,exports){
+},{"./main.js":252}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13037,7 +22695,7 @@ module.exports = main;
 * @returns {number} real component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -13053,96 +22711,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],210:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/realf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":211}],211:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the real component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} real component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-function realf( z ) {
-	return z.re;
-}
-
-
-// EXPORTS //
-
-module.exports = realf;
-
-},{}],212:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13193,7 +22762,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],213:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13244,7 +22813,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],214:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13306,7 +22875,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":379}],215:[function(require,module,exports){
+},{"@stdlib/number/ctor":448}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13364,7 +22933,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],216:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13427,7 +22996,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],217:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13490,7 +23059,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],218:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13553,7 +23122,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],219:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13616,7 +23185,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],220:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13679,7 +23248,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],221:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13742,7 +23311,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],222:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13805,7 +23374,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],223:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13868,7 +23437,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],224:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13931,7 +23500,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],225:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13975,14 +23544,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":226}],226:[function(require,module,exports){
+},{"./main.js":267}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14041,7 +23610,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":227}],227:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":268}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14079,14 +23648,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":228}],228:[function(require,module,exports){
+},{"./main.js":269}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14137,7 +23706,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":235}],229:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":276}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14175,14 +23744,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":230}],230:[function(require,module,exports){
+},{"./main.js":271}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14228,7 +23797,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],231:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14275,14 +23844,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var abs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = abs;
+module.exports = main;
 
-},{"./main.js":232}],232:[function(require,module,exports){
+},{"./main.js":273}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14340,7 +23909,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],233:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14384,14 +23953,14 @@ module.exports = abs;
 
 // MODULES //
 
-var ceil = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ceil;
+module.exports = main;
 
-},{"./main.js":234}],234:[function(require,module,exports){
+},{"./main.js":275}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14443,7 +24012,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],235:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14487,14 +24056,14 @@ module.exports = ceil;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":236}],236:[function(require,module,exports){
+},{"./main.js":277}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14546,7 +24115,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],237:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14599,14 +24168,14 @@ module.exports = floor;
 
 // MODULES //
 
-var trunc = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = trunc;
+module.exports = main;
 
-},{"./main.js":238}],238:[function(require,module,exports){
+},{"./main.js":279}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14681,7 +24250,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":233,"@stdlib/math/base/special/floor":235}],239:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":274,"@stdlib/math/base/special/floor":276}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14705,7 +24274,7 @@ module.exports = trunc;
 /**
 * Return a boolean indicating if a buffer length is compatible with provided ndarray meta data.
 *
-* @module @stdlib/ndarray/base/assert/is-stride-offset-buffer-compatible
+* @module @stdlib/ndarray/base/assert/is-buffer-length-compatible
 *
 * @example
 * var isBufferLengthCompatible = require( '@stdlib/ndarray/base/assert/is-buffer-length-compatible' );
@@ -14730,14 +24299,14 @@ module.exports = trunc;
 
 // MODULES //
 
-var isBufferLengthCompatible = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBufferLengthCompatible;
+module.exports = main;
 
-},{"./main.js":240}],240:[function(require,module,exports){
+},{"./main.js":281}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14803,7 +24372,7 @@ function isBufferLengthCompatible( len, shape, strides, offset ) {
 
 module.exports = isBufferLengthCompatible;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":279}],241:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":331}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14871,14 +24440,14 @@ module.exports = isBufferLengthCompatible;
 
 // MODULES //
 
-var isDataType = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isDataType;
+module.exports = main;
 
-},{"./main.js":242}],242:[function(require,module,exports){
+},{"./main.js":283}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14901,13 +24470,8 @@ module.exports = isDataType;
 
 // MODULES //
 
+var contains = require( '@stdlib/array/base/assert/contains' ).factory;
 var dtypes = require( '@stdlib/ndarray/dtypes' );
-
-
-// VARIABLES //
-
-var DTYPES = dtypes();
-var len = DTYPES.length;
 
 
 // MAIN //
@@ -14915,6 +24479,8 @@ var len = DTYPES.length;
 /**
 * Tests whether an input value is a supported ndarray data type.
 *
+* @name isDataType
+* @type {Function}
 * @param {*} v - value to test
 * @returns {boolean} boolean indicating whether an input value is a supported ndarray data type
 *
@@ -14955,22 +24521,14 @@ var len = DTYPES.length;
 * bool = isDataType( 'foo' );
 * // returns false
 */
-function isDataType( v ) {
-	var i;
-	for ( i = 0; i < len; i++ ) {
-		if ( v === DTYPES[ i ] ) {
-			return true;
-		}
-	}
-	return false;
-}
+var isDataType = contains( dtypes() );
 
 
 // EXPORTS //
 
 module.exports = isDataType;
 
-},{"@stdlib/ndarray/dtypes":364}],243:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":433}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15014,14 +24572,14 @@ module.exports = isDataType;
 
 // MODULES //
 
-var isIndexMode = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isIndexMode;
+module.exports = main;
 
-},{"./main.js":244}],244:[function(require,module,exports){
+},{"./main.js":285}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15044,13 +24602,8 @@ module.exports = isIndexMode;
 
 // MODULES //
 
+var contains = require( '@stdlib/array/base/assert/contains' ).factory;
 var modes = require( '@stdlib/ndarray/index-modes' );
-
-
-// VARIABLES //
-
-var MODES = modes();
-var len = MODES.length;
 
 
 // MAIN //
@@ -15058,6 +24611,8 @@ var len = MODES.length;
 /**
 * Tests whether an input value is a supported ndarray index mode.
 *
+* @name isIndexMode
+* @type {Function}
 * @param {*} v - value to test
 * @returns {boolean} boolean indicating whether an input value is a supported ndarray index mode
 *
@@ -15074,22 +24629,14 @@ var len = MODES.length;
 * bool = isIndexMode( 'foo' );
 * // returns false
 */
-function isIndexMode( v ) {
-	var i;
-	for ( i = 0; i < len; i++ ) {
-		if ( v === MODES[ i ] ) {
-			return true;
-		}
-	}
-	return false;
-}
+var isIndexMode = contains( modes() );
 
 
 // EXPORTS //
 
 module.exports = isIndexMode;
 
-},{"@stdlib/ndarray/index-modes":372}],245:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/index-modes":441}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15130,14 +24677,14 @@ module.exports = isIndexMode;
 
 // MODULES //
 
-var isOrder = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isOrder;
+module.exports = main;
 
-},{"./main.js":246}],246:[function(require,module,exports){
+},{"./main.js":287}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15202,11 +24749,11 @@ function isOrder( v ) {
 
 module.exports = isOrder;
 
-},{"@stdlib/ndarray/orders":376}],247:[function(require,module,exports){
+},{"@stdlib/ndarray/orders":445}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15240,7 +24787,8 @@ var dtypes = {
 	'Uint8Array': 'uint8',
 	'Uint8ClampedArray': 'uint8c',
 	'Complex64Array': 'complex64',
-	'Complex128Array': 'complex128'
+	'Complex128Array': 'complex128',
+	'BooleanArray': 'bool'
 };
 
 
@@ -15248,108 +24796,11 @@ var dtypes = {
 
 module.exports = dtypes;
 
-},{}],248:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var Float64Array = require( '@stdlib/array/float64' );
-var Float32Array = require( '@stdlib/array/float32' );
-var Uint32Array = require( '@stdlib/array/uint32' );
-var Int32Array = require( '@stdlib/array/int32' );
-var Uint16Array = require( '@stdlib/array/uint16' );
-var Int16Array = require( '@stdlib/array/int16' );
-var Uint8Array = require( '@stdlib/array/uint8' );
-var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
-var Int8Array = require( '@stdlib/array/int8' );
-var Complex64Array = require( '@stdlib/array/complex64' );
-var Complex128Array = require( '@stdlib/array/complex128' );
-
-
-// MAIN //
-
-// Note: order should match `dtypes` order
-var CTORS = [
-	Float64Array,
-	Float32Array,
-	Int32Array,
-	Uint32Array,
-	Int16Array,
-	Uint16Array,
-	Int8Array,
-	Uint8Array,
-	Uint8ClampedArray,
-	Complex64Array,
-	Complex128Array
-];
-
-
-// EXPORTS //
-
-module.exports = CTORS;
-
-},{"@stdlib/array/complex128":13,"@stdlib/array/complex64":18,"@stdlib/array/float32":24,"@stdlib/array/float64":27,"@stdlib/array/int16":29,"@stdlib/array/int32":32,"@stdlib/array/int8":35,"@stdlib/array/uint16":38,"@stdlib/array/uint32":41,"@stdlib/array/uint8":44,"@stdlib/array/uint8c":47}],249:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-// Note: order should match `ctors` order
-var DTYPES = [
-	'float64',
-	'float32',
-	'int32',
-	'uint32',
-	'int16',
-	'uint16',
-	'int8',
-	'uint8',
-	'uint8c',
-	'complex64',
-	'complex128'
-];
-
-
-// EXPORTS //
-
-module.exports = DTYPES;
-
-},{}],250:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
+arguments[4][53][0].apply(exports,arguments)
+},{"@stdlib/array/bool":34,"@stdlib/array/complex128":42,"@stdlib/array/complex64":47,"@stdlib/array/float32":57,"@stdlib/array/float64":60,"@stdlib/array/int16":63,"@stdlib/array/int32":66,"@stdlib/array/int8":69,"@stdlib/array/uint16":72,"@stdlib/array/uint32":75,"@stdlib/array/uint8":78,"@stdlib/array/uint8c":81,"dup":53}],290:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15393,14 +24844,14 @@ module.exports = DTYPES;
 
 // MODULES //
 
-var dtype = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = dtype;
+module.exports = main;
 
-},{"./main.js":251}],251:[function(require,module,exports){
+},{"./main.js":292}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15473,7 +24924,7 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":247,"./ctors.js":248,"./dtypes.js":249,"@stdlib/assert/is-array":101,"@stdlib/assert/is-buffer":111,"@stdlib/utils/constructor-name":411}],252:[function(require,module,exports){
+},{"./ctor2dtype.js":288,"./ctors.js":289,"./dtypes.js":290,"@stdlib/assert/is-array":135,"@stdlib/assert/is-buffer":145,"@stdlib/utils/constructor-name":486}],293:[function(require,module,exports){
 module.exports={
 	"binary": 1,
 	"bool": 1,
@@ -15500,7 +24951,7 @@ module.exports={
 	"uint256": 32
 }
 
-},{}],253:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15538,14 +24989,14 @@ module.exports={
 
 // MODULES //
 
-var bytesPerElement = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = bytesPerElement;
+module.exports = main;
 
-},{"./main.js":254}],254:[function(require,module,exports){
+},{"./main.js":295}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15595,7 +25046,7 @@ function bytesPerElement( dtype ) {
 
 module.exports = bytesPerElement;
 
-},{"./bytes_per_element.json":252}],255:[function(require,module,exports){
+},{"./bytes_per_element.json":293}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15636,14 +25087,14 @@ module.exports = bytesPerElement;
 
 // MODULES //
 
-var clampIndex = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = clampIndex;
+module.exports = main;
 
-},{"./main.js":256}],256:[function(require,module,exports){
+},{"./main.js":297}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15698,7 +25149,7 @@ function clampIndex( idx, max ) {
 
 module.exports = clampIndex;
 
-},{}],257:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15741,7 +25192,7 @@ function copyFlags( flags ) {
 
 module.exports = copyFlags;
 
-},{}],258:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15795,7 +25246,7 @@ function get() {
 
 module.exports = get;
 
-},{}],259:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15895,7 +25346,7 @@ function iget( idx ) {
 
 module.exports = iget;
 
-},{}],260:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15941,7 +25392,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":265}],261:[function(require,module,exports){
+},{"./main.js":306}],302:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15981,7 +25432,7 @@ function isColumnMajorContiguous( order, contiguous ) {
 
 module.exports = isColumnMajorContiguous;
 
-},{}],262:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16037,7 +25488,7 @@ function isContiguous( len, shape, strides, offset, iterationOrder ) {
 
 module.exports = isContiguous;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":279}],263:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":331}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16077,7 +25528,7 @@ function isRowMajorContiguous( order, contiguous ) {
 
 module.exports = isRowMajorContiguous;
 
-},{}],264:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16188,7 +25639,7 @@ function iset( idx, v ) {
 
 module.exports = iset;
 
-},{}],265:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16219,6 +25670,7 @@ var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only
 var bytesPerElement = require( '@stdlib/ndarray/base/bytes-per-element' );
 var iterationOrder = require( '@stdlib/ndarray/base/iteration-order' );
 var strides2order = require( '@stdlib/ndarray/base/strides2order' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var isColumnMajorContiguous = require( './is_column_major_contiguous.js' );
 var isRowMajorContiguous = require( './is_row_major_contiguous.js' );
 var isContiguous = require( './is_contiguous.js' );
@@ -16522,7 +25974,6 @@ setReadOnlyAccessor( ndarray.prototype, 'offset', function get() {
 *
 * -   The array order is either row-major (C-style) or column-major (Fortran-style).
 *
-*
 * @name order
 * @memberof ndarray.prototype
 * @type {string}
@@ -16715,7 +26166,6 @@ setReadOnly( ndarray.prototype, 'iset', isetValue );
 *
 * -   The method does **not** serialize data outside of the buffer region defined by the array configuration.
 *
-*
 * @name toString
 * @memberof ndarray.prototype
 * @type {Function}
@@ -16741,7 +26191,6 @@ setReadOnly( ndarray.prototype, 'toString', toString );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying an `ndarray` instance.
 * -   The method does **not** serialize data outside of the buffer region defined by the array configuration.
-*
 *
 * @name toJSON
 * @memberof ndarray.prototype
@@ -16804,7 +26253,7 @@ setReadOnly( ndarray.prototype, '__array_meta_dataview__', ( hasBigIntSupport() 
 
 module.exports = ndarray;
 
-},{"./copy_flags.js":257,"./get.js":258,"./iget.js":259,"./is_column_major_contiguous.js":261,"./is_contiguous.js":262,"./is_row_major_contiguous.js":263,"./iset.js":264,"./meta2dataview.js":266,"./meta2dataview.polyfill.js":267,"./set.js":268,"./tojson.js":269,"./tostring.js":270,"@stdlib/assert/has-bigint-support":53,"@stdlib/ndarray/base/bytes-per-element":253,"@stdlib/ndarray/base/iteration-order":276,"@stdlib/ndarray/base/strides2order":286,"@stdlib/utils/define-nonenumerable-read-only-accessor":413,"@stdlib/utils/define-nonenumerable-read-only-property":415}],266:[function(require,module,exports){
+},{"./copy_flags.js":298,"./get.js":299,"./iget.js":300,"./is_column_major_contiguous.js":302,"./is_contiguous.js":303,"./is_row_major_contiguous.js":304,"./iset.js":305,"./meta2dataview.js":307,"./meta2dataview.polyfill.js":308,"./set.js":309,"./tojson.js":310,"./tostring.js":311,"@stdlib/assert/has-bigint-support":87,"@stdlib/boolean/ctor":235,"@stdlib/ndarray/base/bytes-per-element":294,"@stdlib/ndarray/base/iteration-order":328,"@stdlib/ndarray/base/strides2order":352,"@stdlib/utils/define-nonenumerable-read-only-accessor":488,"@stdlib/utils/define-nonenumerable-read-only-property":490}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17012,7 +26461,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":8,"@stdlib/array/dataview":20,"@stdlib/assert/is-little-endian":143,"@stdlib/bigint/ctor":194,"@stdlib/ndarray/dtypes":364,"@stdlib/ndarray/index-modes":372,"@stdlib/ndarray/orders":376}],267:[function(require,module,exports){
+},{"@stdlib/array/buffer":36,"@stdlib/array/dataview":49,"@stdlib/assert/is-little-endian":177,"@stdlib/bigint/ctor":229,"@stdlib/ndarray/dtypes":433,"@stdlib/ndarray/index-modes":441,"@stdlib/ndarray/orders":445}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17223,7 +26672,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":8,"@stdlib/array/dataview":20,"@stdlib/array/uint8":44,"@stdlib/assert/is-little-endian":143,"@stdlib/ndarray/dtypes":364,"@stdlib/ndarray/index-modes":372,"@stdlib/ndarray/orders":376,"@stdlib/number/float64/base/to-int64-bytes":385}],268:[function(require,module,exports){
+},{"@stdlib/array/buffer":36,"@stdlib/array/dataview":49,"@stdlib/array/uint8":78,"@stdlib/assert/is-little-endian":177,"@stdlib/ndarray/dtypes":433,"@stdlib/ndarray/index-modes":441,"@stdlib/ndarray/orders":445,"@stdlib/number/float64/base/to-int64-bytes":454}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17280,7 +26729,7 @@ function set() {
 
 module.exports = set;
 
-},{}],269:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17303,8 +26752,8 @@ module.exports = set;
 
 // MODULES //
 
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // MAIN //
@@ -17367,7 +26816,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{"@stdlib/complex/imag":204,"@stdlib/complex/real":208}],270:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17391,8 +26840,8 @@ module.exports = toJSON;
 // MODULES //
 
 var replace = require( '@stdlib/string/replace' );
-var real = require( '@stdlib/complex/real' );
-var imag = require( '@stdlib/complex/imag' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
 
 
 // VARIABLES //
@@ -17549,7 +26998,669 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{"@stdlib/complex/imag":204,"@stdlib/complex/real":208,"@stdlib/string/replace":407}],271:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":249,"@stdlib/complex/float64/real":251,"@stdlib/string/replace":480}],312:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the underlying data buffer of a provided ndarray.
+*
+* @module @stdlib/ndarray/base/data-buffer
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var data = require( '@stdlib/ndarray/base/data-buffer' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var out = data( x );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":313}],313:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the underlying data buffer of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @returns {Collection} underlying data buffer
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var out = data( x );
+* // returns <Float64Array>
+*/
+function data( x ) {
+	return x.data;
+}
+
+
+// EXPORTS //
+
+module.exports = data;
+
+},{}],314:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the data type string associated with an ndarray data type enumeration constant.
+*
+* @module @stdlib/ndarray/base/dtype-enum2str
+*
+* @example
+* var str2enum = require( '@stdlib/ndarray/base/dtype-str2enum' );
+* var enum2str = require( '@stdlib/ndarray/base/dtype-enum2str' );
+*
+* var v = str2enum( 'float64' );
+* // returns <number>
+*
+* var dt = enum2str( v );
+* // returns 'float64'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":315}],315:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var objectInverse = require( '@stdlib/utils/object-inverse' );
+var enumeration = require( '@stdlib/ndarray/dtypes' ).enum;
+
+
+// VARIABLES //
+
+var hash = objectInverse( enumeration(), {
+	'duplicates': false
+});
+
+
+// MAIN //
+
+/**
+* Returns the data type string associated with an ndarray data type enumeration constant.
+*
+* @param {integer} dtype - data type enumeration constant
+* @returns {(string|null)} data type string or null
+*
+* @example
+* var str2enum = require( '@stdlib/ndarray/base/dtype-str2enum' );
+*
+* var v = str2enum( 'float64' );
+* // returns <number>
+*
+* var dt = enum2str( v );
+* // returns 'float64'
+*/
+function enum2str( dtype ) {
+	var v = hash[ dtype ];
+	return ( typeof v === 'string' ) ? v : null; // note: we include this guard to prevent walking the prototype chain
+}
+
+
+// EXPORTS //
+
+module.exports = enum2str;
+
+},{"@stdlib/ndarray/dtypes":433,"@stdlib/utils/object-inverse":543}],316:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the enumeration constant associated with a supported ndarray data type value.
+*
+* @module @stdlib/ndarray/base/dtype-resolve-enum
+*
+* @example
+* var resolve = require( '@stdlib/ndarray/base/dtype-resolve-enum' );
+*
+* var v = resolve( 'float64' );
+* // returns <number>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":317}],317:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var enum2str = require( '@stdlib/ndarray/base/dtype-enum2str' );
+var str2enum = require( '@stdlib/ndarray/base/dtype-str2enum' );
+
+
+// MAIN //
+
+/**
+* Returns the enumeration constant associated with a supported ndarray data type value.
+*
+* ## Notes
+*
+* -   Downstream consumers of this function should **not** rely on specific integer values (e.g., `INT8 == 0`). Instead, the function should be used in an opaque manner.
+*
+* @param {*} dtype - data type value
+* @returns {(integer|null)} enumeration constant or null
+*
+* @example
+* var v = resolve( 'int8' );
+* // returns <number>
+*/
+function resolve( dtype ) {
+	var t = ( typeof dtype );
+	if ( t === 'number' ) {
+		return ( enum2str( dtype ) ) ? dtype : null;
+	}
+	if ( t === 'string' ) {
+		return str2enum( dtype );
+	}
+	return null;
+}
+
+
+// EXPORTS //
+
+module.exports = resolve;
+
+},{"@stdlib/ndarray/base/dtype-enum2str":314,"@stdlib/ndarray/base/dtype-str2enum":318}],318:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the enumeration constant associated with an ndarray data type string.
+*
+* @module @stdlib/ndarray/base/dtype-str2enum
+*
+* @example
+* var str2enum = require( '@stdlib/ndarray/base/dtype-str2enum' );
+*
+* var v = str2enum( 'float64' );
+* // returns <number>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":319}],319:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var enumeration = require( '@stdlib/ndarray/dtypes' ).enum;
+
+
+// VARIABLES //
+
+var ENUM = enumeration();
+
+
+// MAIN //
+
+/**
+* Returns the enumeration constant associated with an ndarray data type string.
+*
+* ## Notes
+*
+* -   Downstream consumers of this function should **not** rely on specific integer values (e.g., `INT8 == 0`). Instead, the function should be used in an opaque manner.
+*
+* @param {string} dtype - data type string
+* @returns {(integer|null)} integer value or null
+*
+* @example
+* var v = str2enum( 'int8' );
+* // returns <number>
+*/
+function str2enum( dtype ) {
+	var v = ENUM[ dtype ];
+	return ( typeof v === 'number' ) ? v : null; // note: we include this guard to prevent walking the prototype chain
+}
+
+
+// EXPORTS //
+
+module.exports = str2enum;
+
+},{"@stdlib/ndarray/dtypes":433}],320:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the data type of a provided ndarray.
+*
+* @module @stdlib/ndarray/base/dtype
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var dtype = require( '@stdlib/ndarray/base/dtype' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var dt = dtype( x );
+* // returns 'float64'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":321}],321:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the data type of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @returns {string} data type
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var dt = dtype( x );
+* // returns 'float64'
+*/
+function dtype( x ) {
+	return x.dtype;
+}
+
+
+// EXPORTS //
+
+module.exports = dtype;
+
+},{}],322:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var clampIndex = require( '@stdlib/ndarray/base/clamp-index' );
+var wrapIndex = require( '@stdlib/ndarray/base/wrap-index' );
+var normalize = require( '@stdlib/ndarray/base/normalize-index' );
+var isIndexMode = require( '@stdlib/ndarray/base/assert/is-index-mode' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var TABLE = {
+	'wrap': wrapIndex,
+	'clamp': clampIndex,
+	'normalize': normalizeIndex,
+	'throw': throwIfOutOfBounds
+};
+
+
+// FUNCTIONS //
+
+/**
+* Returns an index if within bounds and throw an error otherwise.
+*
+* @private
+* @param {integer} idx - index
+* @param {NonNegativeInteger} max - maximum index
+* @throws {RangeError} index out-of-bounds
+* @returns {integer} index
+*
+* @example
+* var idx = throwIfOutOfBounds( 2, 9 );
+* // returns 2
+*
+* idx = throwIfOutOfBounds( 10, 9 );
+* // throws <RangeError>
+*
+* idx = throwIfOutOfBounds( -1, 9 );
+* // throws <RangeError>
+*/
+function throwIfOutOfBounds( idx, max ) {
+	if ( idx < 0 || idx > max ) {
+		throw new RangeError( format( 'invalid argument. Index must resolve to a value on the interval: [0, %d]. Value: `%d`.', max, idx ) );
+	}
+	return idx;
+}
+
+/**
+* Normalizes an index before performing a strict bounds check.
+*
+* @private
+* @param {integer} idx - index
+* @param {NonNegativeInteger} max - maximum index
+* @throws {RangeError} index out-of-bounds
+* @returns {integer} index
+*
+* @example
+* var idx = normalizeIndex( 1, 10 );
+* // returns 1
+*
+* idx = normalizeIndex( -4, 10 );
+* // returns 7
+*
+* idx = normalizeIndex( -100, 10 );
+* // throws <RangeError>
+*/
+function normalizeIndex( idx, max ) {
+	var index = normalize( idx, max );
+	if ( index < 0 || index > max ) {
+		throw new RangeError( format( 'invalid argument. Index must resolve to a value on the interval: [0, %d]. Value: `%d`.', max, idx ) );
+	}
+	return index;
+}
+
+
+// MAIN //
+
+/**
+* Returns a function for returning an index according to a provided index mode.
+*
+* @param {string} mode - specifies how to handle an out-of-bounds index
+* @throws {TypeError} first argument must be a recognized index mode
+* @returns {Function} function for returning an index
+*
+* @example
+* var ind = factory( 'clamp' );
+*
+* var idx = ind( 2, 9 );
+* // returns 2
+*
+* idx = ind( 10, 9 );
+* // returns 9
+*
+* idx = ind( -1, 9 );
+* // returns 0
+*
+* @example
+* var ind = factory( 'wrap' );
+*
+* var idx = ind( 2, 9 );
+* // returns 2
+*
+* idx = ind( 10, 9 );
+* // returns 0
+*
+* idx = ind( -1, 9 );
+* // returns 9
+*
+* @example
+* var ind = factory( 'throw' );
+*
+* var idx = ind( 2, 9 );
+* // returns 2
+*
+* idx = ind( 10, 9 );
+* // throws <RangeError>
+*
+* idx = ind( -1, 9 );
+* // throws <RangeError>
+*
+* @example
+* var ind = factory( 'normalize' );
+*
+* var idx = ind( 1, 10 );
+* // returns 1
+*
+* idx = ind( -4, 10 );
+* // returns 7
+*
+* idx = ind( -100, 10 );
+* // throws <RangeError>
+*/
+function factory( mode ) {
+	if ( !isIndexMode( mode ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a recognized index mode. Value: `%s`.', mode ) );
+	}
+	return TABLE[ mode ];
+}
+
+
+// EXPORTS //
+
+module.exports = factory;
+
+},{"@stdlib/ndarray/base/assert/is-index-mode":284,"@stdlib/ndarray/base/clamp-index":296,"@stdlib/ndarray/base/normalize-index":335,"@stdlib/ndarray/base/wrap-index":406,"@stdlib/string/format":477}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17610,18 +27721,51 @@ module.exports = toString;
 *
 * idx = ind( -1, 10, 'throw' );
 * // throws <RangeError>
+*
+* @example
+* var ind = require( '@stdlib/ndarray/base/ind' );
+*
+* var idx = ind( 1, 10, 'normalize' );
+* // returns 1
+*
+* idx = ind( -4, 10, 'normalize' );
+* // returns 7
+*
+* idx = ind( -100, 10, 'normalize' );
+* // throws <RangeError>
+*
+* @example
+* var ind = require( '@stdlib/ndarray/base/ind' );
+*
+* var fcn = ind.factory( 'clamp' );
+*
+* var idx = fcn( -1, 10 );
+* // returns 0
+*
+* idx = fcn( 14, 10 );
+* // returns 10
+*
+* idx = fcn( 6, 10 );
+* // returns 6
 */
 
 // MODULES //
 
-var ind = require( './main.js' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var factory = require( './factory.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'factory', factory );
 
 
 // EXPORTS //
 
-module.exports = ind;
+module.exports = main;
 
-},{"./main.js":272}],272:[function(require,module,exports){
+},{"./factory.js":322,"./main.js":324,"@stdlib/utils/define-nonenumerable-read-only-property":490}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17646,6 +27790,7 @@ module.exports = ind;
 
 var clampIndex = require( '@stdlib/ndarray/base/clamp-index' );
 var wrapIndex = require( '@stdlib/ndarray/base/wrap-index' );
+var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
 var format = require( '@stdlib/string/format' );
 
 
@@ -17689,18 +27834,33 @@ var format = require( '@stdlib/string/format' );
 *
 * idx = ind( -1, 9, 'throw' );
 * // throws <RangeError>
+*
+* @example
+* var idx = ind( 1, 10, 'normalize' );
+* // returns 1
+*
+* idx = ind( -4, 10, 'normalize' );
+* // returns 7
+*
+* idx = ind( -100, 10, 'normalize' );
+* // throws <RangeError>
 */
 function ind( idx, max, mode ) {
+	var index;
 	if ( mode === 'clamp' ) {
 		return clampIndex( idx, max );
 	}
 	if ( mode === 'wrap' ) {
 		return wrapIndex( idx, max );
 	}
-	if ( idx < 0 || idx > max ) {
-		throw new RangeError( format( 'invalid argument. Index must be on the interval: [0, %f]. Value: `%f`.', max, idx ) );
+	index = idx;
+	if ( mode === 'normalize' ) {
+		index = normalizeIndex( index, max );
 	}
-	return idx;
+	if ( index < 0 || index > max ) {
+		throw new RangeError( format( 'invalid argument. Index must resolve to a value on the interval: [0, %d]. Value: `%d`.', max, idx ) );
+	}
+	return index;
 }
 
 
@@ -17708,7 +27868,7 @@ function ind( idx, max, mode ) {
 
 module.exports = ind;
 
-},{"@stdlib/ndarray/base/clamp-index":255,"@stdlib/ndarray/base/wrap-index":341,"@stdlib/string/format":404}],273:[function(require,module,exports){
+},{"@stdlib/ndarray/base/clamp-index":296,"@stdlib/ndarray/base/normalize-index":335,"@stdlib/ndarray/base/wrap-index":406,"@stdlib/string/format":477}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17796,8 +27956,13 @@ function ind2sub( shape, strides, offset, order, idx, mode, out ) {
 				idx %= len;
 			}
 		}
-	} else if ( idx < 0 || idx >= len ) {
-		throw new RangeError( format( 'invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.', len, idx ) );
+	} else {
+		if ( mode === 'normalize' && idx < 0 ) {
+			idx += len;
+		}
+		if ( idx < 0 || idx >= len ) {
+			throw new RangeError( format( 'invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.', len, idx ) );
+		}
 	}
 	if ( offset === 0 ) {
 		if ( order === 'column-major' ) {
@@ -17854,7 +28019,7 @@ function ind2sub( shape, strides, offset, order, idx, mode, out ) {
 
 module.exports = ind2sub;
 
-},{"@stdlib/math/base/special/trunc":237,"@stdlib/string/format":404}],274:[function(require,module,exports){
+},{"@stdlib/math/base/special/trunc":278,"@stdlib/string/format":477}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17921,7 +28086,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":273,"./main.js":275,"@stdlib/utils/define-nonenumerable-read-only-property":415}],275:[function(require,module,exports){
+},{"./assign.js":325,"./main.js":327,"@stdlib/utils/define-nonenumerable-read-only-property":490}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17944,6 +28109,7 @@ module.exports = main;
 
 // MODULES //
 
+var zeros = require( '@stdlib/array/base/zeros' );
 var getSubscripts = require( './assign.js' );
 
 
@@ -17956,9 +28122,10 @@ var getSubscripts = require( './assign.js' );
 *
 * -   The function accepts the following "modes":
 *
-*     -   `throw`: throws an error when a linear index exceeds array dimensions.
-*     -   `wrap`: wrap around a linear index exceeding array dimensions using modulo arithmetic.
-*     -   `clamp`: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
+*     -   **throw**: throw an error when a linear index exceeds array dimensions.
+*     -   **normalize**: normalize negative indices and throw an error when a linear index exceeds array dimensions.
+*     -   **wrap**: wrap around a linear index exceeding array dimensions using modulo arithmetic.
+*     -   **clamp**: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
 *
 * -   When provided a stride array containing negative strides, if an `offset` is greater than `0`, the function interprets the linear index as an index into the underlying data buffer for the array, thus returning subscripts from the perspective of that buffer. If an `offset` is equal to `0`, the function treats the linear index as an index into an array view, thus returning subscripts from the perspective of that view.
 *
@@ -18030,7 +28197,6 @@ var getSubscripts = require( './assign.js' );
 *
 *     In short, from the perspective of a view, view data is always ordered.
 *
-*
 * @param {NonNegativeIntegerArray} shape - array shape
 * @param {IntegerArray} strides - stride array
 * @param {NonNegativeInteger} offset - location of the first indexed value **based** on the stride array
@@ -18050,14 +28216,7 @@ var getSubscripts = require( './assign.js' );
 * // returns [ 1, 2, 2 ]
 */
 function ind2sub( shape, strides, offset, order, idx, mode ) {
-	var out;
-	var i;
-
-	out = [];
-	for ( i = 0; i < shape.length; i++ ) {
-		out.push( 0 );
-	}
-	return getSubscripts( shape, strides, offset, order, idx, mode, out );
+	return getSubscripts( shape, strides, offset, order, idx, mode, zeros( shape.length ) ); // eslint-disable-line max-len
 }
 
 
@@ -18065,7 +28224,7 @@ function ind2sub( shape, strides, offset, order, idx, mode ) {
 
 module.exports = ind2sub;
 
-},{"./assign.js":273}],276:[function(require,module,exports){
+},{"./assign.js":325,"@stdlib/array/base/zeros":29}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18106,14 +28265,14 @@ module.exports = ind2sub;
 
 // MODULES //
 
-var iterationOrder = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = iterationOrder;
+module.exports = main;
 
-},{"./main.js":277}],277:[function(require,module,exports){
+},{"./main.js":329}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18187,7 +28346,7 @@ function iterationOrder( strides ) {
 
 module.exports = iterationOrder;
 
-},{}],278:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18300,7 +28459,7 @@ function minmaxViewBufferIndex( shape, strides, offset, out ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],279:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18383,7 +28542,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":278,"./main.js":280,"@stdlib/utils/define-nonenumerable-read-only-property":415}],280:[function(require,module,exports){
+},{"./assign.js":330,"./main.js":332,"@stdlib/utils/define-nonenumerable-read-only-property":490}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18475,7 +28634,268 @@ function minmaxViewBufferIndex( shape, strides, offset ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],281:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Convert an ndarray-like object to an object likely to have the same "shape".
+*
+* @module @stdlib/ndarray/base/ndarraylike2object
+*
+* @example
+* var array = require( '@stdlib/ndarray/array' );
+* var ndarraylike2object = require( '@stdlib/ndarray/base/ndarraylike2object' );
+*
+* var x = array( [ [ 1, 2, 3 ], [ 4, 5, 6 ] ] );
+*
+* var obj = ndarraylike2object( x );
+* // returns {...}
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":334}],334:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
+var getter = require( '@stdlib/array/base/getter' );
+var setter = require( '@stdlib/array/base/setter' );
+var numel = require( '@stdlib/ndarray/base/numel' );
+var getDType = require( '@stdlib/ndarray/base/dtype' );
+var getShape = require( '@stdlib/ndarray/base/shape' );
+var getStrides = require( '@stdlib/ndarray/base/strides' );
+var getOffset = require( '@stdlib/ndarray/base/offset' );
+var getOrder = require( '@stdlib/ndarray/base/order' );
+var getData = require( '@stdlib/ndarray/base/data-buffer' );
+
+
+// MAIN //
+
+/**
+* Converts an ndarray-like object to an object likely to have the same "shape".
+*
+* ## Notes
+*
+* -   This function is intended as a potential performance optimization. In V8, for example, even if two objects share common properties, if those properties were added in different orders or if one object has additional properties not shared by the other object, then those objects will have different "hidden" classes. If a function is provided many objects having different "shapes", some JavaScript VMs (e.g., V8) will consider the function "megamorphic" and fail to perform various runtime optimizations. Accordingly, the intent of this function is to standardize the "shape" of the object holding ndarray meta data to ensure that internal functions operating on ndarrays are provided consistent argument "shapes".
+*
+* -   The returned object has the following properties:
+*
+*     -   **ref**: reference to the original ndarray-like object.
+*     -   **dtype**: underlying data type.
+*     -   **data**: data buffer.
+*     -   **length**: number of elements.
+*     -   **shape**: array dimensions.
+*     -   **strides**: array strides.
+*     -   **offset**: index offset.
+*     -   **order**: order.
+*     -   **accessorProtocol**: `boolean` indicating whether the data buffer supports the get/set protocol (i.e., uses accessors for getting and setting elements).
+*     -   **accessors**: a two-element array whose first element is an accessor for retrieving an ndarray element and whose second element is an accessor for setting an ndarray element.
+*
+* @param {ndarrayLike} x - ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @returns {Object} object containing ndarray meta data
+*
+* @example
+* var array = require( '@stdlib/ndarray/array' );
+*
+* var x = array( [ [ 1, 2, 3 ], [ 4, 5, 6 ] ] );
+*
+* var obj = ndarraylike2object( x );
+* // returns {...}
+*/
+function ndarraylike2object( x ) {
+	var xbuf;
+	var bool;
+	var sh;
+	var dt;
+
+	xbuf = getData( x );
+	sh = getShape( x, true );
+	dt = getDType( x );
+
+	bool = isAccessorArray( xbuf );
+
+	return {
+		'ref': x,
+		'dtype': dt,
+		'data': xbuf,
+		'length': numel( sh ),
+		'shape': sh,
+		'strides': getStrides( x, true ),
+		'offset': getOffset( x ),
+		'order': getOrder( x ),
+		'accessorProtocol': bool,
+		'accessors': ( bool ) ?
+			[ accessorGetter( dt ), accessorSetter( dt ) ] :
+			[ getter( dt ), setter( dt ) ]
+	};
+}
+
+
+// EXPORTS //
+
+module.exports = ndarraylike2object;
+
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/base/getter":20,"@stdlib/array/base/setter":22,"@stdlib/ndarray/base/data-buffer":312,"@stdlib/ndarray/base/dtype":320,"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/base/offset":339,"@stdlib/ndarray/base/order":341,"@stdlib/ndarray/base/shape":343,"@stdlib/ndarray/base/strides":348}],335:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normalize an index to the interval `[0,max]`.
+*
+* @module @stdlib/ndarray/base/normalize-index
+*
+* @example
+* var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
+*
+* var idx = normalizeIndex( -2, 10 );
+* // returns 9
+*
+* idx = normalizeIndex( 15, 10 );
+* // returns -1
+*
+* idx = normalizeIndex( 5, 10 );
+* // returns 5
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":336}],336:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Normalizes an index to the interval `[0,max]`.
+*
+* @param {integer} idx - index
+* @param {NonNegativeInteger} max - maximum index
+* @returns {integer} index
+*
+* @example
+* var idx = normalizeIndex( -2, 10 );
+* // returns 9
+*
+* idx = normalizeIndex( 15, 10 );
+* // returns -1
+*
+* idx = normalizeIndex( 5, 10 );
+* // returns 5
+*/
+function normalizeIndex( idx, max ) {
+	if ( idx < 0 ) {
+		idx += max + 1;
+		if ( idx < 0 ) {
+			return -1;
+		}
+		return idx;
+	}
+	if ( idx > max ) {
+		return -1;
+	}
+	return idx;
+}
+
+
+// EXPORTS //
+
+module.exports = normalizeIndex;
+
+},{}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18510,14 +28930,14 @@ module.exports = minmaxViewBufferIndex;
 
 // MODULES //
 
-var numel = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = numel;
+module.exports = main;
 
-},{"./main.js":282}],282:[function(require,module,exports){
+},{"./main.js":338}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18571,7 +28991,342 @@ function numel( shape ) {
 
 module.exports = numel;
 
-},{}],283:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the index offset specifying the underlying buffer index of the first iterated ndarray element.
+*
+* @module @stdlib/ndarray/base/offset
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var offset = require( '@stdlib/ndarray/base/offset' );
+*
+* var n = offset( zeros( [ 3, 3, 3 ] ) );
+* // returns 0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":340}],340:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var strides2offset = require( '@stdlib/ndarray/base/strides2offset' );
+
+
+// MAIN //
+
+/**
+* Returns the index offset specifying the underlying buffer index of the first iterated ndarray element.
+*
+* @param {ndarrayLike} x - input ndarray
+* @returns {NonNegativeInteger} index offset
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var n = offset( zeros( [ 3, 3, 3 ] ) );
+* // returns 0
+*/
+function offset( x ) {
+	var st;
+	var sh;
+	var o;
+
+	o = x.offset;
+	if ( typeof o === 'number' ) {
+		return o;
+	}
+	sh = x.shape;
+	if ( sh.length === 0 ) {
+		return 0;
+	}
+	st = x.strides;
+	if ( typeof st !== 'object' || st === null ) {
+		return 0;
+	}
+	return strides2offset( sh, st );
+}
+
+
+// EXPORTS //
+
+module.exports = offset;
+
+},{"@stdlib/ndarray/base/strides2offset":350}],341:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the layout order of a provided ndarray.
+*
+* @module @stdlib/ndarray/base/order
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var order = require( '@stdlib/ndarray/base/order' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'order': 'row-major'
+* });
+*
+* var out = order( x );
+* // returns 'row-major'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":342}],342:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var strides2order = require( '@stdlib/ndarray/base/strides2order' );
+
+
+// VARIABLES //
+
+var ROW_MAJOR = 'row-major';
+var COLUMN_MAJOR = 'column-major';
+
+
+// MAIN //
+
+/**
+* Returns the layout order of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @returns {(string|null)} layout order
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'order': 'row-major'
+* });
+*
+* var out = order( x );
+* // returns 'row-major'
+*/
+function order( x ) {
+	var st;
+	var o;
+
+	o = x.order;
+	if ( typeof o === 'string' ) {
+		return o;
+	}
+	// Try to infer the layout order from the strides array...
+	st = x.strides;
+	if ( typeof st !== 'object' || st === null ) {
+		return ROW_MAJOR; // WARNING: default to row-major for ndarray-like objects lacking strides. This may or may not be accurate, and we're defaulting to row-major here based on the belief that row-major is more likely given that, e.g., JavaScript arrays are similar to C arrays (i.e., stored in row-major order).
+	}
+	o = strides2order( st );
+	if ( o === 1 || o === 3 ) {
+		return ROW_MAJOR; // for o == 3 (both row- and column-major; e.g., one-dimensional ndarrays), default to row-major
+	}
+	if ( o === 2 ) {
+		return COLUMN_MAJOR;
+	}
+	// o === 0
+	if ( x.shape.length === 0 ) {
+		return ROW_MAJOR; // default to row-major for zero-dimensional ndarrays
+	}
+	// Case: mixed strides (e.g., [ 2, 3, 1 ] )
+	return null;
+}
+
+
+// EXPORTS //
+
+module.exports = order;
+
+},{"@stdlib/ndarray/base/strides2order":352}],343:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the shape of a provided ndarray.
+*
+* @module @stdlib/ndarray/base/shape
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var shape = require( '@stdlib/ndarray/base/shape' );
+*
+* var sh = shape( zeros( [ 3, 3, 3 ] ), false );
+* // returns [ 3, 3, 3 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":344}],344:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var copyIndexed = require( '@stdlib/array/base/copy-indexed' );
+
+
+// MAIN //
+
+/**
+* Returns the shape of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @param {boolean} copy - boolean indicating whether to explicitly copy the value assigned to the input ndarray's `shape` property
+* @returns {NonNegativeIntegerArray} shape
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var out = shape( zeros( [ 3, 3, 3 ] ), false );
+* // returns [ 3, 3, 3 ]
+*/
+function shape( x, copy ) {
+	var sh = x.shape;
+	if ( copy ) {
+		return copyIndexed( sh );
+	}
+	return sh;
+}
+
+
+// EXPORTS //
+
+module.exports = shape;
+
+},{"@stdlib/array/base/copy-indexed":16}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18671,7 +29426,7 @@ function shape2strides( shape, order, out ) {
 
 module.exports = shape2strides;
 
-},{}],284:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18723,7 +29478,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":283,"./main.js":285,"@stdlib/utils/define-nonenumerable-read-only-property":415}],285:[function(require,module,exports){
+},{"./assign.js":345,"./main.js":347,"@stdlib/utils/define-nonenumerable-read-only-property":490}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18822,7 +29577,228 @@ function shape2strides( shape, order ) {
 
 module.exports = shape2strides;
 
-},{}],286:[function(require,module,exports){
+},{}],348:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the strides of a provided ndarray.
+*
+* @module @stdlib/ndarray/base/strides
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var strides = require( '@stdlib/ndarray/base/strides' );
+*
+* var st = strides( zeros( [ 3, 3, 3 ] ), false );
+* // returns [ 9, 3, 1 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":349}],349:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var shape2strides = require( '@stdlib/ndarray/base/shape2strides' );
+var copyIndexed = require( '@stdlib/array/base/copy-indexed' );
+
+
+// VARIABLES //
+
+var ROW_MAJOR = 'row-major';
+
+
+// MAIN //
+
+/**
+* Returns the strides of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @param {boolean} copy - boolean indicating whether to explicitly copy the value assigned to the input ndarray's `strides` property
+* @returns {IntegerArray} strides
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var out = strides( zeros( [ 3, 3, 3 ] ), false );
+* // returns [ 9, 3, 1 ]
+*/
+function strides( x, copy ) {
+	var ord;
+	var sh;
+	var st;
+
+	st = x.strides;
+	if ( typeof st !== 'object' || st === null ) {
+		sh = x.shape;
+		if ( sh.length === 0 ) {
+			return [ 0 ];
+		}
+		ord = x.order;
+		if ( typeof ord !== 'string' ) {
+			ord = ROW_MAJOR;
+		}
+		return shape2strides( sh, ord );
+	}
+	if ( copy ) {
+		return copyIndexed( st );
+	}
+	return st;
+}
+
+
+// EXPORTS //
+
+module.exports = strides;
+
+},{"@stdlib/array/base/copy-indexed":16,"@stdlib/ndarray/base/shape2strides":346}],350:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the index offset which specifies the location of the first indexed value in a multidimensional array based on a stride array.
+*
+* @module @stdlib/ndarray/base/strides2offset
+*
+* @example
+* var strides2offset = require( '@stdlib/ndarray/base/strides2offset' );
+*
+* var shape = [ 2, 3, 10 ];
+* var strides = [ 30, -10, 1 ];
+*
+* var offset = strides2offset( shape, strides );
+* // returns 20
+*/
+
+// MODULES //
+
+var strides2offset = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = strides2offset;
+
+},{"./main.js":351}],351:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the index offset which specifies the location of the first indexed value in a multidimensional array based on a stride array.
+*
+* @param {NonNegativeIntegerArray} shape - array shape
+* @param {IntegerArray} strides - stride array
+* @returns {NonNegativeInteger} offset - offset
+*
+* @example
+* var shape = [ 2, 3, 10 ];
+* var strides = [ 30, -10, 1 ];
+*
+* var offset = strides2offset( shape, strides );
+* // returns 20
+*/
+function strides2offset( shape, strides ) {
+	var offset;
+	var ndims;
+	var i;
+
+	ndims = shape.length;
+	offset = 0;
+	for ( i = 0; i < ndims; i++ ) {
+		if ( strides[ i ] < 0 ) {
+			// Note that, since the stride is negative, this operation increments, not decrements, the offset...
+			offset -= strides[ i ] * ( shape[ i ]-1 );
+		}
+	}
+	return offset;
+}
+
+
+// EXPORTS //
+
+module.exports = strides2offset;
+
+},{}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18873,7 +29849,7 @@ var strides2order = require( './main.js' );
 
 module.exports = strides2order;
 
-},{"./main.js":287}],287:[function(require,module,exports){
+},{"./main.js":353}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18965,7 +29941,400 @@ function strides2order( strides ) {
 
 module.exports = strides2order;
 
-},{"@stdlib/math/base/special/abs":231}],288:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":272}],354:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Reorder ndarray dimensions and associated strides for loop interchange.
+*
+* @module @stdlib/ndarray/base/unary-loop-interchange-order
+*
+* @example
+* var unaryLoopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+*
+* var sh = [ 2, 3, 4 ];
+*
+* var sx = [ 12, 4, 1 ]; // row-major
+* var sy = [ 1, -2, 6 ]; // column-major
+*
+* var o = unaryLoopOrder( sh, sx, sy );
+* // returns {...}
+*
+* var ssh = o.sh;
+* // returns [ 4, 3, 2 ]
+*
+* var ssx = o.sx;
+* // returns [ 1, 4, 12 ]
+*
+* var ssy = o.sy;
+* // returns [ 6, -2, 1 ]
+*
+* var idx = o.idx;
+* // returns [ 2, 1, 0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":355}],355:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var copy = require( '@stdlib/array/base/copy-indexed' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var sort2ins = require( './sort2ins.js' );
+
+
+// MAIN //
+
+/**
+* Reorders ndarray dimensions and associated strides for loop interchange.
+*
+* ## Notes
+*
+* -   The returned object has the following properties:
+*
+*     -   **sh**: dimensions sorted in loop order.
+*     -   **sx**: input ndarray strides sorted in loop order.
+*     -   **sy**: output ndarray strides sorted in loop order.
+*     -   **idx**: dimension indices sorted in loop order.
+*
+* @param {NonNegativeIntegerArray} sh - array dimensions
+* @param {IntegerArray} sx - input array stride lengths
+* @param {IntegerArray} sy - output array stride lengths
+* @returns {Object} loop interchange data
+*
+* @example
+* var sh = [ 2, 3, 4 ];
+*
+* var sx = [ 12, 4, 1 ]; // row-major
+* var sy = [ 1, -2, 6 ]; // column-major
+*
+* var o = loopOrder( sh, sx, sy );
+* // returns {...}
+*
+* var ssh = o.sh;
+* // returns [ 4, 3, 2 ]
+*
+* var ssx = o.sx;
+* // returns [ 1, 4, 12 ]
+*
+* var ssy = o.sy;
+* // returns [ 6, -2, 1 ]
+*
+* var idx = o.idx;
+* // returns [ 2, 1, 0 ]
+*/
+function loopOrder( sh, sx, sy ) {
+	var idx;
+
+	// Initialize a loop interchange index array for generating a loop order permutation:
+	idx = zeroTo( sh.length );
+
+	// Sort the input array strides in increasing order (of magnitude):
+	sx = copy( sx );
+	sort2ins( sx, idx );
+
+	// Permute the shape and output array strides based on the sorted input array strides:
+	sh = take( sh, idx );
+	sy = take( sy, idx );
+
+	return {
+		'sh': sh,
+		'sx': sx,
+		'sy': sy,
+		'idx': idx
+	};
+}
+
+
+// EXPORTS //
+
+module.exports = loopOrder;
+
+},{"./sort2ins.js":356,"@stdlib/array/base/copy-indexed":16,"@stdlib/array/base/take-indexed":24,"@stdlib/array/base/zero-to":27}],356:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Simultaneously sorts two arrays based on the sort order of the first array using insertion sort.
+*
+* ## Notes
+*
+* -   The first array is sorted in increasing order according to absolute value.
+* -   The algorithm has space complexity `O(1)` and worst case time complexity `O(N^2)`.
+* -   The algorithm is efficient for small arrays (typically `N <= 20``) and is particularly efficient for sorting arrays which are already substantially sorted.
+* -   The algorithm is **stable**, meaning that the algorithm does **not** change the order of array elements which are equal or equivalent.
+* -   The input arrays are sorted in-place (i.e., the input arrays are mutated).
+*
+* @private
+* @param {Array} x - first array
+* @param {Array} y - second array
+* @returns {void}
+*
+* @example
+* var x = [ -4, -2, 3, 1 ];
+* var y = [ 0, 1, 2, 3 ];
+*
+* sort2ins( x, y );
+*
+* console.log( x );
+* // => [ 1, -2, 3, -4 ]
+*
+* console.log( y );
+* // => [ 3, 1, 2, 0 ]
+*/
+function sort2ins( x, y ) {
+	var avx;
+	var aux;
+	var ix;
+	var iy;
+	var jx;
+	var jy;
+	var vx;
+	var vy;
+	var ux;
+	var i;
+
+	ix = 1;
+	iy = 1;
+
+	// Sort in increasing order...
+	for ( i = 1; i < x.length; i++ ) {
+		vx = x[ ix ];
+		avx = ( vx < 0 ) ? -vx : vx;
+
+		vy = y[ iy ];
+
+		jx = ix - 1;
+		jy = iy - 1;
+
+		// Shift all larger values to the left of the current element to the right...
+		while ( jx >= 0 ) {
+			ux = x[ jx ];
+			aux = ( ux < 0 ) ? -ux : ux;
+			if ( aux <= avx ) {
+				break;
+			}
+			x[ jx+1 ] = ux;
+			y[ jy+1 ] = y[ jy ];
+			jx -= 1;
+			jy -= 1;
+		}
+		x[ jx+1 ] = vx;
+		y[ jy+1 ] = vy;
+		ix += 1;
+		iy += 1;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = sort2ins;
+
+},{}],357:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var defaults = {
+	// Define a default block size (in bytes):
+	'BLOCK_SIZE_IN_BYTES': 64|0, // 64b is a common cache line size. How applicable the common cache line size is here is debatable, given that, depending on the associated stride(s), the innermost loop may not iterate over adjacent elements. The primary goal is to have a block size in which all data within a block can always fit in (L1) cache, regardless of cache size (i.e., cache-oblivious). For reference, a common L1 cache size is 32kB per core. For best performance, block sizes should be tuned based on system hardware; however, such tuning is not readily available to us here. Without obvious better alternatives, 64b has some theoretical (and practical) underpinning, and it should be good enough for most inputs, especially for ndarrays with near contiguity.
+
+	// Define a default block size (in elements):
+	'BLOCK_SIZE_IN_ELEMENTS': 8|0 // 64 bytes / 8 bytes per element (i.e., default element size is same as a double)
+};
+
+
+// EXPORTS //
+
+module.exports = defaults;
+
+},{}],358:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Resolve a loop block size for multi-dimensional array tiled loops.
+*
+* @module @stdlib/ndarray/base/unary-tiling-block-size
+*
+* @example
+* var unaryBlockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+*
+* var bsize = unaryBlockSize( 'float64', 'float64' );
+* // returns <number>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":359}],359:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var bytesPerElement = require( '@stdlib/ndarray/base/bytes-per-element' );
+var defaults = require( './defaults.js' );
+
+
+// MAIN //
+
+/**
+* Returns a loop block size for multi-dimensional array tiled loops.
+*
+* @param {string} dtypeX - input array data type
+* @param {string} dtypeY - output array data type
+* @returns {integer} block size (in units of elements)
+*
+* @example
+* var bsize = unaryBlockSize( 'float64', 'float64' );
+* // returns <number>
+*/
+function unaryBlockSize( dtypeX, dtypeY ) {
+	var nbx;
+	var nby;
+
+	nbx = bytesPerElement( dtypeX );
+	nby = bytesPerElement( dtypeY );
+	if ( nbx === null || nby === null ) { // e.g., "generic" arrays
+		return defaults.BLOCK_SIZE_IN_ELEMENTS;
+	}
+	if ( nbx > nby ) {
+		return ( defaults.BLOCK_SIZE_IN_BYTES/nbx )|0; // asm type annotation
+	}
+	return ( defaults.BLOCK_SIZE_IN_BYTES/nby )|0; // asm type annotation
+}
+
+
+// EXPORTS //
+
+module.exports = unaryBlockSize;
+
+},{"./defaults.js":357,"@stdlib/ndarray/base/bytes-per-element":294}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19064,7 +30433,7 @@ function unary0d( x, y, fcn ) {
 
 module.exports = unary0d;
 
-},{}],289:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19098,7 +30467,7 @@ module.exports = unary0d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -19106,15 +30475,15 @@ module.exports = unary0d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -19152,7 +30521,7 @@ module.exports = unary0d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -19161,7 +30530,7 @@ module.exports = unary0d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -19176,7 +30545,7 @@ module.exports = unary0d;
 * // returns 40.0
 */
 function unary0d( x, y, fcn ) {
-	y.setter( y.data, y.offset, fcn( x.getter( x.data, x.offset ) ) );
+	y.accessors[ 1 ]( y.data, y.offset, fcn( x.accessors[ 0 ]( x.data, x.offset ) ) ); // eslint-disable-line max-len
 }
 
 
@@ -19184,7 +30553,7 @@ function unary0d( x, y, fcn ) {
 
 module.exports = unary0d;
 
-},{}],290:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19453,7 +30822,7 @@ function unary10d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary10d;
 
-},{}],291:[function(require,module,exports){
+},{}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19489,7 +30858,7 @@ module.exports = unary10d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -19497,15 +30866,15 @@ module.exports = unary10d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -19519,8 +30888,8 @@ module.exports = unary10d;
 * var shape = [ 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -19543,7 +30912,7 @@ module.exports = unary10d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -19552,7 +30921,7 @@ module.exports = unary10d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -19697,8 +31066,8 @@ function unary10d( x, y, fcn ) { // eslint-disable-line max-statements
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i9 = 0; i9 < S9; i9++ ) {
@@ -19749,7 +31118,7 @@ function unary10d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary10d;
 
-},{}],292:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19774,7 +31143,8 @@ module.exports = unary10d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -19928,12 +31298,14 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -20129,7 +31501,7 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 module.exports = blockedunary10d;
 
-},{"./init.js":332}],293:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],365:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20154,7 +31526,8 @@ module.exports = blockedunary10d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -20170,7 +31543,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -20178,14 +31551,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -20199,8 +31572,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -20223,7 +31596,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -20232,7 +31605,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -20331,12 +31704,14 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -20351,8 +31726,8 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j9 = sh[9]; j9 > 0; ) {
@@ -20536,7 +31911,7 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 module.exports = blockedunary10d;
 
-},{"./init.js":332}],294:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],366:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20664,7 +32039,7 @@ function unary1d( x, y, fcn ) {
 
 module.exports = unary1d;
 
-},{}],295:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20698,7 +32073,7 @@ module.exports = unary1d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -20706,15 +32081,15 @@ module.exports = unary1d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -20752,7 +32127,7 @@ module.exports = unary1d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -20761,7 +32136,7 @@ module.exports = unary1d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -20803,8 +32178,8 @@ function unary1d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i0 = 0; i0 < S0; i0++ ) {
@@ -20819,7 +32194,7 @@ function unary1d( x, y, fcn ) {
 
 module.exports = unary1d;
 
-},{}],296:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20974,7 +32349,7 @@ function unary2d( x, y, fcn ) {
 
 module.exports = unary2d;
 
-},{}],297:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21008,7 +32383,7 @@ module.exports = unary2d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -21016,15 +32391,15 @@ module.exports = unary2d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -21062,7 +32437,7 @@ module.exports = unary2d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -21071,7 +32446,7 @@ module.exports = unary2d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -21136,8 +32511,8 @@ function unary2d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i1 = 0; i1 < S1; i1++ ) {
@@ -21156,7 +32531,7 @@ function unary2d( x, y, fcn ) {
 
 module.exports = unary2d;
 
-},{}],298:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21179,7 +32554,8 @@ module.exports = unary2d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -21277,12 +32653,14 @@ function blockedunary2d( x, y, fcn ) {
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -21342,7 +32720,7 @@ function blockedunary2d( x, y, fcn ) {
 
 module.exports = blockedunary2d;
 
-},{"./init.js":332}],299:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21365,7 +32743,8 @@ module.exports = blockedunary2d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -21381,7 +32760,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -21389,14 +32768,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -21434,7 +32813,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -21443,7 +32822,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -21486,12 +32865,14 @@ function blockedunary2d( x, y, fcn ) {
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -21506,8 +32887,8 @@ function blockedunary2d( x, y, fcn ) {
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j1 = sh[1]; j1 > 0; ) {
@@ -21555,7 +32936,7 @@ function blockedunary2d( x, y, fcn ) {
 
 module.exports = blockedunary2d;
 
-},{"./init.js":332}],300:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21724,7 +33105,7 @@ function unary3d( x, y, fcn ) {
 
 module.exports = unary3d;
 
-},{}],301:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21758,7 +33139,7 @@ module.exports = unary3d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -21766,15 +33147,15 @@ module.exports = unary3d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -21788,8 +33169,8 @@ module.exports = unary3d;
 * var shape = [ 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 1 ];
-* var sy = [ 2, 2, 1 ];
+* var sx = [ 4, 2, 1 ];
+* var sy = [ 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -21812,7 +33193,7 @@ module.exports = unary3d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -21821,7 +33202,7 @@ module.exports = unary3d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -21896,8 +33277,8 @@ function unary3d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i2 = 0; i2 < S2; i2++ ) {
@@ -21920,7 +33301,7 @@ function unary3d( x, y, fcn ) {
 
 module.exports = unary3d;
 
-},{}],302:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21945,7 +33326,8 @@ module.exports = unary3d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -22050,12 +33432,14 @@ function blockedunary3d( x, y, fcn ) {
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -22132,7 +33516,7 @@ function blockedunary3d( x, y, fcn ) {
 
 module.exports = blockedunary3d;
 
-},{"./init.js":332}],303:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22157,7 +33541,8 @@ module.exports = blockedunary3d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -22173,7 +33558,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -22181,14 +33566,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -22202,8 +33587,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 1 ];
-* var sy = [ 2, 2, 1 ];
+* var sx = [ 4, 2, 1 ];
+* var sy = [ 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -22226,7 +33611,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -22235,7 +33620,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -22285,12 +33670,14 @@ function blockedunary3d( x, y, fcn ) {
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -22305,8 +33692,8 @@ function blockedunary3d( x, y, fcn ) {
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j2 = sh[2]; j2 > 0; ) {
@@ -22371,7 +33758,7 @@ function blockedunary3d( x, y, fcn ) {
 
 module.exports = blockedunary3d;
 
-},{"./init.js":332}],304:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22554,7 +33941,7 @@ function unary4d( x, y, fcn ) {
 
 module.exports = unary4d;
 
-},{}],305:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22588,7 +33975,7 @@ module.exports = unary4d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -22596,15 +33983,15 @@ module.exports = unary4d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -22618,8 +34005,8 @@ module.exports = unary4d;
 * var shape = [ 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -22642,7 +34029,7 @@ module.exports = unary4d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -22651,7 +34038,7 @@ module.exports = unary4d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -22736,8 +34123,8 @@ function unary4d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i3 = 0; i3 < S3; i3++ ) {
@@ -22764,7 +34151,7 @@ function unary4d( x, y, fcn ) {
 
 module.exports = unary4d;
 
-},{}],306:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22789,7 +34176,8 @@ module.exports = unary4d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -22901,12 +34289,14 @@ function blockedunary4d( x, y, fcn ) {
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -23000,7 +34390,7 @@ function blockedunary4d( x, y, fcn ) {
 
 module.exports = blockedunary4d;
 
-},{"./init.js":332}],307:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],379:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23025,7 +34415,8 @@ module.exports = blockedunary4d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -23041,7 +34432,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -23049,14 +34440,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -23070,8 +34461,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -23094,7 +34485,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -23103,7 +34494,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -23160,12 +34551,14 @@ function blockedunary4d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -23180,8 +34573,8 @@ function blockedunary4d( x, y, fcn ) { // eslint-disable-line max-statements
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j3 = sh[3]; j3 > 0; ) {
@@ -23263,7 +34656,7 @@ function blockedunary4d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary4d;
 
-},{"./init.js":332}],308:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23460,7 +34853,7 @@ function unary5d( x, y, fcn ) {
 
 module.exports = unary5d;
 
-},{}],309:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23494,7 +34887,7 @@ module.exports = unary5d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -23502,15 +34895,15 @@ module.exports = unary5d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -23524,8 +34917,8 @@ module.exports = unary5d;
 * var shape = [ 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -23548,7 +34941,7 @@ module.exports = unary5d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -23557,7 +34950,7 @@ module.exports = unary5d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -23652,8 +35045,8 @@ function unary5d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i4 = 0; i4 < S4; i4++ ) {
@@ -23684,7 +35077,7 @@ function unary5d( x, y, fcn ) {
 
 module.exports = unary5d;
 
-},{}],310:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23709,7 +35102,8 @@ module.exports = unary5d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -23828,12 +35222,14 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -23944,7 +35340,7 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary5d;
 
-},{"./init.js":332}],311:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23969,7 +35365,8 @@ module.exports = blockedunary5d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -23985,7 +35382,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -23993,14 +35390,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -24014,8 +35411,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -24038,7 +35435,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -24047,7 +35444,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -24111,12 +35508,14 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -24131,8 +35530,8 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j4 = sh[4]; j4 > 0; ) {
@@ -24231,7 +35630,7 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary5d;
 
-},{"./init.js":332}],312:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24444,7 +35843,7 @@ function unary6d( x, y, fcn ) {
 
 module.exports = unary6d;
 
-},{}],313:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24480,7 +35879,7 @@ module.exports = unary6d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -24488,15 +35887,15 @@ module.exports = unary6d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -24510,8 +35909,8 @@ module.exports = unary6d;
 * var shape = [ 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -24534,7 +35933,7 @@ module.exports = unary6d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -24543,7 +35942,7 @@ module.exports = unary6d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -24648,8 +36047,8 @@ function unary6d( x, y, fcn ) {
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i5 = 0; i5 < S5; i5++ ) {
@@ -24684,7 +36083,7 @@ function unary6d( x, y, fcn ) {
 
 module.exports = unary6d;
 
-},{}],314:[function(require,module,exports){
+},{}],386:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24709,7 +36108,8 @@ module.exports = unary6d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -24835,12 +36235,14 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -24968,7 +36370,7 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary6d;
 
-},{"./init.js":332}],315:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24993,7 +36395,8 @@ module.exports = blockedunary6d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -25009,7 +36412,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -25017,14 +36420,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -25038,8 +36441,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -25062,7 +36465,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -25071,7 +36474,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -25142,12 +36545,14 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -25162,8 +36567,8 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j5 = sh[5]; j5 > 0; ) {
@@ -25279,7 +36684,7 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary6d;
 
-},{"./init.js":332}],316:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25506,7 +36911,7 @@ function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary7d;
 
-},{}],317:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25542,7 +36947,7 @@ module.exports = unary7d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -25550,18 +36955,18 @@ module.exports = unary7d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
-*     return new Complex64( real(z)*10.0, imag(z)*10.0 );
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
 * }
 *
 * // Create data buffers:
@@ -25572,8 +36977,8 @@ module.exports = unary7d;
 * var shape = [ 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -25596,7 +37001,7 @@ module.exports = unary7d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -25605,7 +37010,7 @@ module.exports = unary7d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -25613,10 +37018,10 @@ module.exports = unary7d;
 *
 * var v = y.data.get( 0 );
 *
-* var re = real( v );
+* var re = realf( v );
 * // returns 10.0
 *
-* var im = imag( v );
+* var im = imagf( v );
 * // returns 20.0
 */
 function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
@@ -25720,8 +37125,8 @@ function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i6 = 0; i6 < S6; i6++ ) {
@@ -25760,7 +37165,7 @@ function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary7d;
 
-},{}],318:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25785,7 +37190,8 @@ module.exports = unary7d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -25918,12 +37324,14 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -26068,7 +37476,7 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary7d;
 
-},{"./init.js":332}],319:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],391:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26093,7 +37501,8 @@ module.exports = blockedunary7d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -26109,7 +37518,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -26117,17 +37526,17 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
-*     return new Complex64( real(z)*10.0, imag(z)*10.0 );
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
 * }
 *
 * // Create data buffers:
@@ -26138,8 +37547,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -26162,7 +37571,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -26171,7 +37580,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -26179,10 +37588,10 @@ var init = require( './init.js' );
 *
 * var v = y.data.get( 0 );
 *
-* var re = real( v );
+* var re = realf( v );
 * // returns 10.0
 *
-* var im = imag( v );
+* var im = imagf( v );
 * // returns 20.0
 */
 function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
@@ -26249,12 +37658,14 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -26269,8 +37680,8 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j6 = sh[6]; j6 > 0; ) {
@@ -26403,7 +37814,7 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary7d;
 
-},{"./init.js":332}],320:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],392:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26644,7 +38055,7 @@ function unary8d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary8d;
 
-},{}],321:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26680,7 +38091,7 @@ module.exports = unary8d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -26688,15 +38099,15 @@ module.exports = unary8d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -26710,8 +38121,8 @@ module.exports = unary8d;
 * var shape = [ 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -26734,7 +38145,7 @@ module.exports = unary8d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -26743,7 +38154,7 @@ module.exports = unary8d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -26868,8 +38279,8 @@ function unary8d( x, y, fcn ) { // eslint-disable-line max-statements
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i7 = 0; i7 < S7; i7++ ) {
@@ -26912,7 +38323,7 @@ function unary8d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary8d;
 
-},{}],322:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26937,7 +38348,8 @@ module.exports = unary8d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -27077,12 +38489,14 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -27244,7 +38658,7 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary8d;
 
-},{"./init.js":332}],323:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27269,7 +38683,8 @@ module.exports = blockedunary8d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -27285,7 +38700,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -27293,14 +38708,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -27314,8 +38729,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -27338,7 +38753,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -27347,7 +38762,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -27432,12 +38847,14 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -27452,8 +38869,8 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j7 = sh[7]; j7 > 0; ) {
@@ -27603,7 +39020,7 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary8d;
 
-},{"./init.js":332}],324:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],396:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27858,7 +39275,7 @@ function unary9d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary9d;
 
-},{}],325:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27894,7 +39311,7 @@ module.exports = unary9d;
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -27902,15 +39319,15 @@ module.exports = unary9d;
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -27924,8 +39341,8 @@ module.exports = unary9d;
 * var shape = [ 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -27948,7 +39365,7 @@ module.exports = unary9d;
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -27957,7 +39374,7 @@ module.exports = unary9d;
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -28092,8 +39509,8 @@ function unary9d( x, y, fcn ) { // eslint-disable-line max-statements
 	ybuf = y.data;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over the ndarray dimensions...
 	for ( i8 = 0; i8 < S8; i8++ ) {
@@ -28140,7 +39557,7 @@ function unary9d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary9d;
 
-},{}],326:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28165,7 +39582,8 @@ module.exports = unary9d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -28312,12 +39730,14 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -28496,7 +39916,7 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary9d;
 
-},{"./init.js":332}],327:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],399:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28521,7 +39941,8 @@ module.exports = blockedunary9d;
 
 // MODULES //
 
-var init = require( './init.js' );
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 
 
 // MAIN //
@@ -28537,7 +39958,7 @@ var init = require( './init.js' );
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -28545,14 +39966,14 @@ var init = require( './init.js' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -28566,8 +39987,8 @@ var init = require( './init.js' );
 * var shape = [ 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
 *
 * // Define the array strides:
-* var sx = [ 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
-* var sy = [ 2, 2, 2, 2, 2, 2, 2, 2, 1 ];
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
 *
 * // Define the index offsets:
 * var ox = 0;
@@ -28590,7 +40011,7 @@ var init = require( './init.js' );
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -28599,7 +40020,7 @@ var init = require( './init.js' );
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -28691,12 +40112,14 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
 
-	// Initialize and unpack block data:
-	o = init( x, y );
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
 	sh = o.sh;
 	sx = o.sx;
 	sy = o.sy;
-	bsize = o.bsize;
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
 
 	// Cache the indices of the first indexed elements in the respective ndarrays...
 	ox = x.offset;
@@ -28711,8 +40134,8 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 	dy0 = sy[0];
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[0];
+	set = y.accessors[1];
 
 	// Iterate over blocks...
 	for ( j8 = sh[8]; j8 > 0; ) {
@@ -28879,204 +40302,7 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary9d;
 
-},{"./init.js":332}],328:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-/**
-* Copies the elements of an array-like object to a new array.
-*
-* @private
-* @param {Collection} x - source array
-* @returns {Array} output array
-*/
-function copy( x ) {
-	var out;
-	var i;
-
-	out = [];
-	for ( i = 0; i < x.length; i++ ) {
-		out.push( x[ i ] );
-	}
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{}],329:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// FUNCTIONS //
-
-/**
-* Returns an ndarray buffer element.
-*
-* @private
-* @param {Collection} buf - data buffer
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
-*/
-function getIndexed( buf, idx ) {
-	return buf[ idx ];
-}
-
-/**
-* Returns an ndarray buffer element using an accessor method.
-*
-* @private
-* @param {Collection} buf - data buffer
-* @param {NonNegativeInteger} idx - element index
-* @returns {*} element
-*/
-function getAccessor( buf, idx ) {
-	return buf.get( idx );
-}
-
-/**
-* Sets an ndarray buffer element.
-*
-* @private
-* @param {Collection} buf - data buffer
-* @param {NonNegativeInteger} idx - element index
-* @param {*} value - value to set
-*/
-function setIndexed( buf, idx, value ) {
-	buf[ idx ] = value;
-}
-
-/**
-* Sets an ndarray buffer element using an accessor method.
-*
-* @private
-* @param {Collection} buf - data buffer
-* @param {NonNegativeInteger} idx - element index
-* @param {*} value - value to set
-*/
-function setAccessor( buf, idx, value ) {
-	buf.set( value, idx );
-}
-
-
-// MAIN //
-
-/**
-* Copies ndarray meta-data to an object likely to have the same "hidden" shape.
-*
-* ## Notes
-*
-* -   This function is intended as a potential performance optimization. In V8, for example, even if two objects share common properties, if those properties were added in different orders or if one object has additional properties not shared by the other object, then those objects will have different "hidden" classes. If a function is provided many objects having different "shapes", some JavaScript VMs (e.g., V8) will consider the function "megamorphic" and fail to perform various runtime optimizations. Accordingly, the intent of this function is to standardize the "shape" of the object holding ndarray meta data to ensure that loop iteration functions are provided consistent argument "shapes".
-*
-* @private
-* @param {Object} x - object containing ndarray meta data
-* @param {string} x.dtype - data type
-* @param {Collection} x.data - data buffer
-* @param {NonNegativeIntegerArray} x.shape - dimensions
-* @param {IntegerArray} x.strides - stride lengths
-* @param {NonNegativeInteger} x.offset - index offset
-* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @returns {Object} object containing ndarray meta data
-*/
-function copy( x ) {
-	var xbuf;
-	var bool;
-
-	xbuf = x.data;
-	bool = Boolean( xbuf.get && xbuf.set ); // Note: intentional weak check, as we don't explicitly check for functions for (perhaps marginally) better performance.
-	return {
-		'dtype': x.dtype,
-		'data': xbuf,
-		'shape': x.shape,
-		'strides': x.strides,
-		'offset': x.offset,
-		'order': x.order,
-		'accessors': bool,
-		'getter': ( bool ) ? getAccessor : getIndexed,
-		'setter': ( bool ) ? setAccessor : setIndexed
-	};
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{}],330:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var defaults = {
-	// Define a default block size (in bytes):
-	'BLOCK_SIZE_IN_BYTES': 64|0, // 64b is a common cache line size. How applicable the common cache line size is here is debatable, given that, depending on the associated stride(s), the innermost loop may not iterate over adjacent elements. The primary goal is to have a block size in which all data within a block can always fit in (L1) cache, regardless of cache size (i.e., cache-oblivious). For reference, a common L1 cache size is 32kB per core. For best performance, block sizes should be tuned based on system hardware; however, such tuning is not readily available to us here. Without obvious better alternatives, 64b has some theoretical (and practical) underpinning, and it should be good enough for most inputs, especially for ndarrays with near contiguity.
-
-	// Define a default block size (in elements):
-	'BLOCK_SIZE_IN_ELEMENTS': 8|0 // 64 bytes / 8 bytes per element (i.e., default element size is same as a double)
-};
-
-
-// EXPORTS //
-
-module.exports = defaults;
-
-},{}],331:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":354,"@stdlib/ndarray/base/unary-tiling-block-size":358}],400:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29152,120 +40378,14 @@ module.exports = defaults;
 
 // MODULES //
 
-var unary = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = unary;
+module.exports = main;
 
-},{"./main.js":333}],332:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var bytesPerElement = require( '@stdlib/ndarray/base/bytes-per-element' );
-var range = require( './range.js' );
-var sort2ins = require( './sort2ins.js' );
-var copy = require( './copy_array.js' );
-var permute = require( './permute.js' );
-var defaults = require( './defaults.js' );
-
-
-// MAIN //
-
-/**
-* Initialize block data (shape, strides, block size).
-*
-* ## Notes
-*
-* -   The returned object has the following properties:
-*
-*     -   **sh**: dimensions sorted in loop order.
-*     -   **sx**: input ndarray strides sorted in loop order.
-*     -   **sy**: output ndarray strides sorted in loop order.
-*     -   **bsize**: block size (in units of elements).
-*
-* @private
-* @param {Object} x - object containing input ndarray meta data
-* @param {string} x.dtype - data type
-* @param {Collection} x.data - data buffer
-* @param {NonNegativeIntegerArray} x.shape - dimensions
-* @param {IntegerArray} x.strides - stride lengths
-* @param {NonNegativeInteger} x.offset - index offset
-* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Object} y - object containing output ndarray meta data
-* @param {string} y.dtype - data type
-* @param {Collection} y.data - data buffer
-* @param {NonNegativeIntegerArray} y.shape - dimensions
-* @param {IntegerArray} y.strides - stride lengths
-* @param {NonNegativeInteger} y.offset - index offset
-* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @returns {Object} block data
-*/
-function init( x, y ) {
-	var bsize;
-	var idx;
-	var nbx;
-	var nby;
-	var sh;
-	var sx;
-	var sy;
-
-	// Initialize a loop interchange index array for generating a loop order permutation:
-	sh = x.shape;
-	idx = range( sh.length );
-
-	// Sort the input array strides in increasing order (of magnitude):
-	sx = copy( x.strides );
-	sort2ins( sx, idx );
-
-	// Permute the shape and output array strides based on the sorted input array strides:
-	sh = permute( sh, idx );
-	sy = permute( y.strides, idx );
-
-	// Determine the block size...
-	nbx = bytesPerElement( x.dtype );
-	nby = bytesPerElement( y.dtype );
-	if ( nbx === null || nby === null ) {
-		bsize = defaults.BLOCK_SIZE_IN_ELEMENTS;
-	} else if ( nbx > nby ) {
-		bsize = ( defaults.BLOCK_SIZE_IN_BYTES/nbx )|0;
-	} else {
-		bsize = ( defaults.BLOCK_SIZE_IN_BYTES/nby )|0;
-	}
-	return {
-		'sh': sh,
-		'sx': sx,
-		'sy': sy,
-		'bsize': bsize
-	};
-}
-
-
-// EXPORTS //
-
-module.exports = init;
-
-},{"./copy_array.js":328,"./defaults.js":330,"./permute.js":336,"./range.js":337,"./sort2ins.js":338,"@stdlib/ndarray/base/bytes-per-element":253}],333:[function(require,module,exports){
+},{"./main.js":401}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29290,7 +40410,7 @@ module.exports = init;
 
 var iterationOrder = require( '@stdlib/ndarray/base/iteration-order' );
 var minmaxViewBufferIndex = require( '@stdlib/ndarray/base/minmax-view-buffer-index' );
-var copy = require( './copy_ndarray.js' );
+var ndarray2object = require( '@stdlib/ndarray/base/ndarraylike2object' );
 var blockedaccessorunary2d = require( './2d_blocked_accessors.js' );
 var blockedaccessorunary3d = require( './3d_blocked_accessors.js' );
 var blockedaccessorunary4d = require( './4d_blocked_accessors.js' );
@@ -29476,8 +40596,8 @@ function unary( arrays, fcn ) {
 	var i;
 
 	// Unpack the ndarrays and standardize ndarray meta data:
-	x = copy( arrays[ 0 ] );
-	y = copy( arrays[ 1 ] );
+	x = ndarray2object( arrays[ 0 ] );
+	y = ndarray2object( arrays[ 1 ] );
 
 	// Verify that the input and output arrays have the same number of dimensions...
 	shx = x.shape;
@@ -29488,7 +40608,7 @@ function unary( arrays, fcn ) {
 	}
 	// Determine whether we can avoid iteration altogether...
 	if ( ndims === 0 ) {
-		if ( x.accessors || y.accessors ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
 			return ACCESSOR_UNARY[ ndims ]( x, y, fcn );
 		}
 		return UNARY[ ndims ]( x, y, fcn );
@@ -29515,7 +40635,7 @@ function unary( arrays, fcn ) {
 	}
 	// Determine whether the ndarrays are one-dimensional and thus readily translate to one-dimensional strided arrays...
 	if ( ndims === 1 ) {
-		if ( x.accessors || y.accessors ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
 			return ACCESSOR_UNARY[ ndims ]( x, y, fcn );
 		}
 		return UNARY[ ndims ]( x, y, fcn );
@@ -29535,7 +40655,7 @@ function unary( arrays, fcn ) {
 		y.shape = x.shape;
 		x.strides = [ sx[i] ];
 		y.strides = [ sy[i] ];
-		if ( x.accessors || y.accessors ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
 			return ACCESSOR_UNARY[ 1 ]( x, y, fcn );
 		}
 		return UNARY[ 1 ]( x, y, fcn );
@@ -29544,7 +40664,7 @@ function unary( arrays, fcn ) {
 	ioy = iterationOrder( sy ); // +/-1
 
 	// Determine whether we can avoid blocked iteration...
-	if ( iox !== 0 && ioy !== 0 && x.order === y.order ) {
+	if ( iox !== 0 && ioy !== 0 && iox === ioy ) {
 		// Determine the minimum and maximum linear indices which are accessible by the array views:
 		xmmv = minmaxViewBufferIndex( shx, sx, x.offset );
 		ymmv = minmaxViewBufferIndex( shy, sy, y.offset );
@@ -29568,7 +40688,7 @@ function unary( arrays, fcn ) {
 			y.strides = [ ioy ];
 			x.offset = ox;
 			y.offset = oy;
-			if ( x.accessors || y.accessors ) {
+			if ( x.accessorProtocol || y.accessorProtocol ) {
 				return ACCESSOR_UNARY[ 1 ]( x, y, fcn );
 			}
 			return UNARY[ 1 ]( x, y, fcn );
@@ -29578,7 +40698,7 @@ function unary( arrays, fcn ) {
 		// Determine whether we can use simple nested loops...
 		if ( ndims <= MAX_DIMS ) {
 			// So long as iteration for each respective array always moves in the same direction (i.e., no mixed sign strides), we can leverage cache-optimal (i.e., normal) nested loops without resorting to blocked iteration...
-			if ( x.accessors || y.accessors ) {
+			if ( x.accessorProtocol || y.accessorProtocol ) {
 				return ACCESSOR_UNARY[ ndims ]( x, y, fcn );
 			}
 			return UNARY[ ndims ]( x, y, fcn );
@@ -29589,13 +40709,13 @@ function unary( arrays, fcn ) {
 
 	// Determine whether we can perform blocked iteration...
 	if ( ndims <= MAX_DIMS ) {
-		if ( x.accessors || y.accessors ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
 			return BLOCKED_ACCESSOR_UNARY[ ndims-2 ]( x, y, fcn );
 		}
 		return BLOCKED_UNARY[ ndims-2 ]( x, y, fcn );
 	}
 	// Fall-through to linear view iteration without regard for how data is stored in memory (i.e., take the slow path)...
-	if ( x.accessors || y.accessors ) {
+	if ( x.accessorProtocol || y.accessorProtocol ) {
 		return accessorunarynd( x, y, fcn );
 	}
 	unarynd( x, y, fcn );
@@ -29606,7 +40726,7 @@ function unary( arrays, fcn ) {
 
 module.exports = unary;
 
-},{"./0d.js":288,"./0d_accessors.js":289,"./10d.js":290,"./10d_accessors.js":291,"./10d_blocked.js":292,"./10d_blocked_accessors.js":293,"./1d.js":294,"./1d_accessors.js":295,"./2d.js":296,"./2d_accessors.js":297,"./2d_blocked.js":298,"./2d_blocked_accessors.js":299,"./3d.js":300,"./3d_accessors.js":301,"./3d_blocked.js":302,"./3d_blocked_accessors.js":303,"./4d.js":304,"./4d_accessors.js":305,"./4d_blocked.js":306,"./4d_blocked_accessors.js":307,"./5d.js":308,"./5d_accessors.js":309,"./5d_blocked.js":310,"./5d_blocked_accessors.js":311,"./6d.js":312,"./6d_accessors.js":313,"./6d_blocked.js":314,"./6d_blocked_accessors.js":315,"./7d.js":316,"./7d_accessors.js":317,"./7d_blocked.js":318,"./7d_blocked_accessors.js":319,"./8d.js":320,"./8d_accessors.js":321,"./8d_blocked.js":322,"./8d_blocked_accessors.js":323,"./9d.js":324,"./9d_accessors.js":325,"./9d_blocked.js":326,"./9d_blocked_accessors.js":327,"./copy_ndarray.js":329,"./nd.js":334,"./nd_accessors.js":335,"@stdlib/ndarray/base/iteration-order":276,"@stdlib/ndarray/base/minmax-view-buffer-index":279}],334:[function(require,module,exports){
+},{"./0d.js":360,"./0d_accessors.js":361,"./10d.js":362,"./10d_accessors.js":363,"./10d_blocked.js":364,"./10d_blocked_accessors.js":365,"./1d.js":366,"./1d_accessors.js":367,"./2d.js":368,"./2d_accessors.js":369,"./2d_blocked.js":370,"./2d_blocked_accessors.js":371,"./3d.js":372,"./3d_accessors.js":373,"./3d_blocked.js":374,"./3d_blocked_accessors.js":375,"./4d.js":376,"./4d_accessors.js":377,"./4d_blocked.js":378,"./4d_blocked_accessors.js":379,"./5d.js":380,"./5d_accessors.js":381,"./5d_blocked.js":382,"./5d_blocked_accessors.js":383,"./6d.js":384,"./6d_accessors.js":385,"./6d_blocked.js":386,"./6d_blocked_accessors.js":387,"./7d.js":388,"./7d_accessors.js":389,"./7d_blocked.js":390,"./7d_blocked_accessors.js":391,"./8d.js":392,"./8d_accessors.js":393,"./8d_blocked.js":394,"./8d_blocked_accessors.js":395,"./9d.js":396,"./9d_accessors.js":397,"./9d_blocked.js":398,"./9d_blocked_accessors.js":399,"./nd.js":402,"./nd_accessors.js":403,"@stdlib/ndarray/base/iteration-order":328,"@stdlib/ndarray/base/minmax-view-buffer-index":331,"@stdlib/ndarray/base/ndarraylike2object":333}],402:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29756,7 +40876,7 @@ function unarynd( x, y, fcn ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/base/vind2bind":339}],335:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/base/vind2bind":404}],403:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29801,7 +40921,7 @@ var MODE = 'throw';
 * @param {IntegerArray} x.strides - stride lengths
 * @param {NonNegativeInteger} x.offset - index offset
 * @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} x.getter - callback for accessing `x` data buffer elements
+* @param {Array<Function>} x.accessors - data buffer accessors
 * @param {Object} y - object containing output ndarray meta data
 * @param {string} y.dtype - data type
 * @param {Collection} y.data - data buffer
@@ -29809,15 +40929,15 @@ var MODE = 'throw';
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Function} y.setter - callback for setting `y` data buffer elements
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 * @returns {void}
 *
 * @example
 * var Complex64Array = require( '@stdlib/array/complex64' );
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
 *
 * function scale( z ) {
 *     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
@@ -29855,7 +40975,7 @@ var MODE = 'throw';
 *     'strides': sx,
 *     'offset': ox,
 *     'order': 'row-major',
-*     'getter': getter
+*     'accessors': [ getter, setter ]
 * };
 * var y = {
 *     'dtype': 'complex64',
@@ -29864,7 +40984,7 @@ var MODE = 'throw';
 *     'strides': sy,
 *     'offset': oy,
 *     'order': 'row-major',
-*     'setter': setter
+*     'accessors': [ getter, setter ]
 * };
 *
 * // Apply the unary function:
@@ -29917,8 +41037,8 @@ function unarynd( x, y, fcn ) {
 	ordy = y.order;
 
 	// Cache accessors:
-	get = x.getter;
-	set = y.setter;
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
 
 	// Iterate over each element based on the linear **view** index, regardless as to how the data is stored in memory...
 	for ( i = 0; i < len; i++ ) {
@@ -29933,211 +41053,7 @@ function unarynd( x, y, fcn ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/base/vind2bind":339}],336:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-/**
-* Returns a permutation of an input array according to a provided index array.
-*
-* @private
-* @param {Collection} x - input array
-* @param {NonNegativeIntegerArray} idx - permutation indices
-* @returns {Array} output array
-*
-* @example
-* var x = [ 1, 2, 3, 4 ];
-* var idx = [ 3, 1, 2, 0 ];
-*
-* var y = permute( x, idx );
-* // returns [ 4, 2, 3, 1 ]
-*/
-function permute( x, idx ) {
-	var out;
-	var i;
-
-	out = [];
-	for ( i = 0; i < x.length; i++ ) {
-		out.push( x[ idx[ i ] ] );
-	}
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = permute;
-
-},{}],337:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-/**
-* Returns an evenly spaced array of `n` values from `0` until `n-1`.
-*
-* @private
-* @param {NonNegativeInteger} n - number of values
-* @returns {NonNegativeIntegerArray} output array
-*
-* @example
-* var arr = range( 5 );
-* // returns [ 0, 1, 2, 3, 4 ]
-*/
-function range( n ) {
-	var out;
-	var i;
-
-	out = [];
-	for ( i = 0; i < n; i++ ) {
-		out.push( i );
-	}
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = range;
-
-},{}],338:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-/**
-* Simultaneously sorts two arrays based on the sort order of the first array using insertion sort.
-*
-* ## Notes
-*
-* -   The first array is sorted in increasing order according to absolute value.
-* -   The algorithm has space complexity `O(1)` and worst case time complexity `O(N^2)`.
-* -   The algorithm is efficient for small arrays (typically `N <= 20``) and is particularly efficient for sorting arrays which are already substantially sorted.
-* -   The algorithm is **stable**, meaning that the algorithm does **not** change the order of array elements which are equal or equivalent.
-* -   The input arrays are sorted in-place (i.e., the input arrays are mutated).
-*
-* @private
-* @param {Array} x - first array
-* @param {Array} y - second array
-* @returns {void}
-*
-* @example
-* var x = [ -4, -2, 3, 1 ];
-* var y = [ 0, 1, 2, 3 ];
-*
-* sort2ins( x, y );
-*
-* console.log( x );
-* // => [ 1, -2, 3, -4 ]
-*
-* console.log( y );
-* // => [ 3, 1, 2, 0 ]
-*/
-function sort2ins( x, y ) {
-	var avx;
-	var aux;
-	var ix;
-	var iy;
-	var jx;
-	var jy;
-	var vx;
-	var vy;
-	var ux;
-	var i;
-
-	ix = 1;
-	iy = 1;
-
-	// Sort in increasing order...
-	for ( i = 1; i < x.length; i++ ) {
-		vx = x[ ix ];
-		avx = ( vx < 0 ) ? -vx : vx;
-
-		vy = y[ iy ];
-
-		jx = ix - 1;
-		jy = iy - 1;
-
-		// Shift all larger values to the left of the current element to the right...
-		while ( jx >= 0 ) {
-			ux = x[ jx ];
-			aux = ( ux < 0 ) ? -ux : ux;
-			if ( aux <= avx ) {
-				break;
-			}
-			x[ jx+1 ] = ux;
-			y[ jy+1 ] = y[ jy ];
-			jx -= 1;
-			jy -= 1;
-		}
-		x[ jx+1 ] = vx;
-		y[ jy+1 ] = vy;
-		ix += 1;
-		iy += 1;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = sort2ins;
-
-},{}],339:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/base/vind2bind":404}],404:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30185,7 +41101,7 @@ var vind2bind = require( './main.js' );
 
 module.exports = vind2bind;
 
-},{"./main.js":340}],340:[function(require,module,exports){
+},{"./main.js":405}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30268,8 +41184,13 @@ function vind2bind( shape, strides, offset, order, idx, mode ) {
 				idx %= len;
 			}
 		}
-	} else if ( idx < 0 || idx >= len ) {
-		throw new RangeError( format( 'invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.', len, idx ) );
+	} else {
+		if ( mode === 'normalize' && idx < 0 ) {
+			idx += len;
+		}
+		if ( idx < 0 || idx >= len ) {
+			throw new RangeError( format( 'invalid argument. Linear index must not exceed array dimensions. Number of array elements: `%u`. Value: `%d`.', len, idx ) );
+		}
 	}
 	// The approach which follows is to resolve a view index to its subscripts and then plug the subscripts into the standard formula for computing the linear index in the underlying data buffer...
 	ind = offset;
@@ -30297,7 +41218,7 @@ function vind2bind( shape, strides, offset, order, idx, mode ) {
 
 module.exports = vind2bind;
 
-},{"@stdlib/string/format":404}],341:[function(require,module,exports){
+},{"@stdlib/string/format":477}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30338,14 +41259,14 @@ module.exports = vind2bind;
 
 // MODULES //
 
-var wrapIndex = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = wrapIndex;
+module.exports = main;
 
-},{"./main.js":342}],342:[function(require,module,exports){
+},{"./main.js":407}],407:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30412,7 +41333,7 @@ function wrapIndex( idx, max ) {
 
 module.exports = wrapIndex;
 
-},{}],343:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30468,13 +41389,7 @@ function copy( arr, len ) {
 
 module.exports = copy;
 
-},{}],344:[function(require,module,exports){
-module.exports={
-	"mode": "throw",
-  "readonly": false
-}
-
-},{}],345:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30549,7 +41464,7 @@ function get() {
 
 module.exports = get;
 
-},{"@stdlib/assert/is-integer":137,"@stdlib/ndarray/base/ind":271,"@stdlib/string/format":404}],346:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171,"@stdlib/ndarray/base/ind":323,"@stdlib/string/format":477}],410:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30616,7 +41531,7 @@ function iget( idx ) {
 
 module.exports = iget;
 
-},{"@stdlib/assert/is-integer":137,"@stdlib/ndarray/base/ctor":260,"@stdlib/ndarray/base/ind":271,"@stdlib/string/format":404}],347:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171,"@stdlib/ndarray/base/ctor":301,"@stdlib/ndarray/base/ind":323,"@stdlib/string/format":477}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30662,7 +41577,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":349}],348:[function(require,module,exports){
+},{"./main.js":413}],412:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30736,7 +41651,7 @@ function iset( idx, v ) {
 
 module.exports = iset;
 
-},{"@stdlib/assert/is-integer":137,"@stdlib/ndarray/base/ctor":260,"@stdlib/ndarray/base/ind":271,"@stdlib/string/format":404}],349:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171,"@stdlib/ndarray/base/ctor":301,"@stdlib/ndarray/base/ind":323,"@stdlib/string/format":477}],413:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30772,9 +41687,9 @@ var isDataType = require( '@stdlib/ndarray/base/assert/is-data-type' );
 var isBufferLengthCompatible = require( '@stdlib/ndarray/base/assert/is-buffer-length-compatible' );
 var numel = require( '@stdlib/ndarray/base/numel' );
 var parent = require( '@stdlib/ndarray/base/ctor' ); // eslint-disable-line stdlib/no-redeclare
+var defaults = require( '@stdlib/ndarray/defaults' );
 var inherit = require( '@stdlib/utils/inherit' );
 var format = require( '@stdlib/string/format' );
-var defaults = require( './defaults.json' );
 var iget = require( './iget.js' );
 var iset = require( './iset.js' );
 var get = require( './get.js' );
@@ -30795,6 +41710,9 @@ var validate = require( './validate.js' );
 * Note that the maximum number of function arguments can vary from engine to engine. Here, we choose something of a lowest common denominator which may **not** be valid everywhere.
 */
 var MAX_DIMS = 32767|0;
+
+var INDEX_MODE = defaults.get( 'index_mode' );
+var READONLY = false;
 
 
 // MAIN //
@@ -30889,8 +41807,8 @@ function ndarray( dtype, buffer, shape, strides, offset, order, options ) {
 		throw new Error( 'invalid arguments. Input buffer is incompatible with the specified meta data. Ensure that the offset is valid with regard to the strides array and that the buffer has enough elements to satisfy the desired array shape.' );
 	}
 	opts = {};
-	opts.mode = defaults.mode;
-	opts.readonly = defaults.readonly;
+	opts.mode = INDEX_MODE;
+	opts.readonly = READONLY;
 	if ( arguments.length > 6 ) {
 		err = validate( opts, options );
 		if ( err ) {
@@ -31060,7 +41978,7 @@ setReadOnly( ndarray.prototype, 'iset', iset );
 
 module.exports = ndarray;
 
-},{"./copy_array.js":343,"./defaults.json":344,"./get.js":345,"./iget.js":346,"./iset.js":348,"./set.js":350,"./validate.js":351,"@stdlib/assert/is-collection":113,"@stdlib/assert/is-function":128,"@stdlib/assert/is-integer-array":136,"@stdlib/assert/is-nonnegative-integer":152,"@stdlib/assert/is-nonnegative-integer-array":151,"@stdlib/ndarray/base/assert/is-buffer-length-compatible":239,"@stdlib/ndarray/base/assert/is-data-type":241,"@stdlib/ndarray/base/assert/is-order":245,"@stdlib/ndarray/base/ctor":260,"@stdlib/ndarray/base/numel":281,"@stdlib/string/format":404,"@stdlib/utils/define-nonenumerable-read-only-property":415,"@stdlib/utils/inherit":441}],350:[function(require,module,exports){
+},{"./copy_array.js":408,"./get.js":409,"./iget.js":410,"./iset.js":412,"./set.js":414,"./validate.js":415,"@stdlib/assert/is-collection":147,"@stdlib/assert/is-function":162,"@stdlib/assert/is-integer-array":170,"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/is-nonnegative-integer-array":185,"@stdlib/ndarray/base/assert/is-buffer-length-compatible":280,"@stdlib/ndarray/base/assert/is-data-type":282,"@stdlib/ndarray/base/assert/is-order":286,"@stdlib/ndarray/base/ctor":301,"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/defaults":417,"@stdlib/string/format":477,"@stdlib/utils/define-nonenumerable-read-only-property":490,"@stdlib/utils/inherit":515}],414:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31124,7 +42042,7 @@ function set() {
 	M = this._submode.length;
 	for ( i = 0; i < arguments.length-1; i++ ) {
 		if ( !isInteger( arguments[ i ] ) ) {
-			throw new TypeError( format( 'invalid argument. Indices must be integer valued. Argument: `%i`. Value: `%u`.', i, arguments[ i ] ) );
+			throw new TypeError( format( 'invalid argument. Indices must be integer valued. Argument: `%i`. Value: `%s`.', i, arguments[ i ] ) );
 		}
 		ind = getIndex( arguments[ i ], this._shape[ i ]-1, this._submode[ i%M ] ); // eslint-disable-line max-len
 		idx += this._strides[ i ] * ind;
@@ -31142,7 +42060,7 @@ function set() {
 
 module.exports = set;
 
-},{"@stdlib/assert/is-integer":137,"@stdlib/ndarray/base/ind":271,"@stdlib/string/format":404}],351:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":171,"@stdlib/ndarray/base/ind":323,"@stdlib/string/format":477}],415:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31167,7 +42085,7 @@ module.exports = set;
 
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
-var isArray = require( '@stdlib/assert/is-array' );
+var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
 var isIndexMode = require( '@stdlib/ndarray/base/assert/is-index-mode' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 var format = require( '@stdlib/string/format' );
@@ -31182,7 +42100,7 @@ var format = require( '@stdlib/string/format' );
 * @param {Object} opts - destination object
 * @param {Options} options - function options
 * @param {string} [options.mode] - specifies how to handle indices which exceed array dimensions
-* @param {string} [options.submode] - specifies how to handle subscripts which exceed array dimensions
+* @param {StringArray} [options.submode] - specifies how to handle subscripts which exceed array dimensions
 * @param {boolean} [options.readonly] - boolean indicating whether an array should be read-only
 * @returns {(Error|null)} null or an error object
 *
@@ -31210,7 +42128,7 @@ function validate( opts, options ) {
 	}
 	if ( hasOwnProp( options, 'submode' ) ) {
 		opts.submode = options.submode;
-		if ( !isArray( opts.submode ) ) {
+		if ( !isArrayLikeObject( opts.submode ) ) {
 			return new TypeError( format( 'invalid option. `%s` option must be an array containing recognized modes. Option: `%s`.', 'submode', opts.submode ) );
 		}
 		if ( opts.submode.length === 0 ) {
@@ -31237,7 +42155,188 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":75,"@stdlib/assert/is-array":101,"@stdlib/assert/is-boolean":105,"@stdlib/assert/is-plain-object":166,"@stdlib/ndarray/base/assert/is-index-mode":243,"@stdlib/string/format":404}],352:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-array-like-object":131,"@stdlib/assert/is-boolean":139,"@stdlib/assert/is-plain-object":200,"@stdlib/ndarray/base/assert/is-index-mode":284,"@stdlib/string/format":477}],416:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var defaults = require( './main.js' );
+
+
+// VARIABLES //
+
+var DEFAULTS = defaults();
+var HASH = {
+	'dtypes.default': DEFAULTS.dtypes.default,
+	'dtypes.numeric': DEFAULTS.dtypes.numeric,
+	'dtypes.real': DEFAULTS.dtypes.real,
+	'dtypes.floating_point': DEFAULTS.dtypes.floating_point,
+	'dtypes.real_floating_point': DEFAULTS.dtypes.real_floating_point,
+	'dtypes.complex_floating_point': DEFAULTS.dtypes.complex_floating_point,
+	'dtypes.integer': DEFAULTS.dtypes.integer,
+	'dtypes.signed_integer': DEFAULTS.dtypes.signed_integer,
+	'dtypes.unsigned_integer': DEFAULTS.dtypes.unsigned_integer,
+	'dtypes.boolean': DEFAULTS.dtypes.boolean,
+	'order': DEFAULTS.order,
+	'casting': DEFAULTS.casting,
+	'index_mode': DEFAULTS.index_mode
+};
+
+
+// MAIN //
+
+/**
+* Returns a default ndarray setting.
+*
+* @param {string} name - setting name
+* @returns {*} default setting or null
+*
+* @example
+* var v = get( 'dtypes.default' );
+* // returns <string>
+*/
+function get( name ) {
+	var v = HASH[ name ];
+	return ( v === void 0 ) ? null : v;
+}
+
+
+// EXPORTS //
+
+module.exports = get;
+
+},{"./main.js":418}],417:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return default ndarray settings.
+*
+* @module @stdlib/ndarray/defaults
+*
+* @example
+* var defaults = require( '@stdlib/ndarray/defaults' );
+*
+* var o = defaults();
+* // returns {...}
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var get = require( './get.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'get', get );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./get.js":416,"./main.js":418,"@stdlib/utils/define-nonenumerable-read-only-property":490}],418:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns default ndarray settings.
+*
+* @returns {Object} defaults
+*
+* @example
+* var o = defaults();
+* // returns {...}
+*/
+function defaults() {
+	return {
+		// Data types:
+		'dtypes': {
+			'default': 'float64',
+			'numeric': 'float64',
+			'real': 'float64',
+			'floating_point': 'float64',
+			'real_floating_point': 'float64',
+			'complex_floating_point': 'complex128',
+			'integer': 'int32',
+			'signed_integer': 'int32',
+			'unsigned_integer': 'uint32',
+			'boolean': 'bool'
+		},
+
+		// Memory layout:
+		'order': 'row-major',
+
+		// Casting mode:
+		'casting': 'safe',
+
+		// Index mode:
+		'index_mode': 'throw'
+	};
+}
+
+
+// EXPORTS //
+
+module.exports = defaults;
+
+},{}],419:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31264,11 +42363,11 @@ module.exports = validate;
 * @module @stdlib/ndarray/dispatch
 *
 * @example
-* var dispatch = require( '@stdlib/ndarray/dispatch' );
 * var ndarray = require( '@stdlib/ndarray/ctor' );
 * var unary = require( '@stdlib/ndarray/base/unary' );
 * var abs = require( '@stdlib/math/base/special/abs' );
 * var Float64Array = require( '@stdlib/array/float64' );
+* var dispatch = require( '@stdlib/ndarray/dispatch' );
 *
 * var types = [
 *     'float64', 'float64'
@@ -31294,14 +42393,14 @@ module.exports = validate;
 
 // MODULES //
 
-var dispatch = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = dispatch;
+module.exports = main;
 
-},{"./main.js":354}],353:[function(require,module,exports){
+},{"./main.js":421}],420:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31409,7 +42508,7 @@ function indexOfTypes( N, M, x, strideX1, strideX2, offsetX, y, strideY, offsetY
 
 module.exports = indexOfTypes;
 
-},{}],354:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31440,7 +42539,30 @@ var isFunction = require( '@stdlib/assert/is-function' );
 var isCollection = require( '@stdlib/assert/is-collection' );
 var isndarrayLike = require( '@stdlib/assert/is-ndarray-like' );
 var format = require( '@stdlib/string/format' );
+var getDType = require( '@stdlib/ndarray/dtype' );
+var resolveEnum = require( '@stdlib/ndarray/base/dtype-resolve-enum' );
 var indexOfTypes = require( './index_of_types.js' );
+
+
+// FUNCTIONS //
+
+/**
+* Returns a list of data type enumeration constants.
+*
+* @private
+* @param {Collection} types - list of types
+* @returns {IntegerArray} list of data type enumeration constants
+*/
+function types2enums( types ) {
+	var out;
+	var i;
+
+	out = [];
+	for ( i = 0; i < types.length; i++ ) {
+		out.push( resolveEnum( types[ i ] ) );
+	}
+	return out;
+}
 
 
 // MAIN //
@@ -31539,6 +42661,7 @@ function dispatch( fcns, types, data, nargs, nin, nout ) {
 	if ( data && data.length !== nfcns ) {
 		throw new Error( 'invalid argument. The third argument must have the same number of elements as the first argument.' );
 	}
+	types = types2enums( types );
 	return dispatcher;
 
 	/**
@@ -31582,7 +42705,7 @@ function dispatch( fcns, types, data, nargs, nin, nout ) {
 				}
 			}
 			arrays.push( v );
-			dtypes.push( v.dtype );
+			dtypes.push( resolveEnum( getDType( v ) ) );
 		}
 		// Resolve the ndarray function satisfying the input array types:
 		idx = indexOfTypes( nfcns, narrays, types, narrays, 1, 0, dtypes, 1, 0 ); // eslint-disable-line max-len
@@ -31618,7 +42741,7 @@ function dispatch( fcns, types, data, nargs, nin, nout ) {
 
 module.exports = dispatch;
 
-},{"./index_of_types.js":353,"@stdlib/assert/is-collection":113,"@stdlib/assert/is-function":128,"@stdlib/assert/is-function-array":127,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-ndarray-like":149,"@stdlib/assert/is-nonnegative-integer":152,"@stdlib/assert/is-positive-integer":168,"@stdlib/string/format":404}],355:[function(require,module,exports){
+},{"./index_of_types.js":420,"@stdlib/assert/is-collection":147,"@stdlib/assert/is-function":162,"@stdlib/assert/is-function-array":161,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-ndarray-like":183,"@stdlib/assert/is-nonnegative-integer":186,"@stdlib/assert/is-positive-integer":202,"@stdlib/ndarray/base/dtype-resolve-enum":316,"@stdlib/ndarray/dtype":428,"@stdlib/string/format":477}],422:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31696,7 +42819,7 @@ function fill( value ) {
 
 module.exports = fill;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/ind2sub":368}],356:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/ind2sub":437}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31770,7 +42893,7 @@ function forEach( arrays, fcn ) {
 
 module.exports = forEach;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/ind2sub":368}],357:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/ind2sub":437}],424:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31846,7 +42969,7 @@ function map1N( arrays, fcn ) {
 
 module.exports = map1N;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/ind2sub":368}],358:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/ind2sub":437}],425:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31946,7 +43069,7 @@ function wrapper( ctx ) {
 
 module.exports = wrapper;
 
-},{"@stdlib/ndarray/base/numel":281,"@stdlib/ndarray/ind2sub":368}],359:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":337,"@stdlib/ndarray/ind2sub":437}],426:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -32313,7 +43436,8 @@ tape( 'the function returns an ndarray function interface', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/ndarray/dispatch/test/test.js")
-},{"./../lib":352,"./fixtures/fill.js":355,"@stdlib/assert/is-function":128,"@stdlib/math/base/special/abs":231,"@stdlib/ndarray/base/unary":331,"tape":581}],360:[function(require,module,exports){
+},{"./../lib":419,"./fixtures/fill.js":422,"@stdlib/assert/is-function":162,"@stdlib/math/base/special/abs":272,"@stdlib/ndarray/base/unary":400,"tape":675}],427:[function(require,module,exports){
+(function (__filename){(function (){
 /**
 * @license Apache-2.0
 *
@@ -32359,6 +43483,12 @@ var sum = require( './fixtures/sum.js' );
 
 
 // TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof dispatch, 'function', 'main export is a function' );
+	t.end();
+});
 
 tape( 'the function returns a function which throws an error if not provided an ndarray for the first argument', function test( t ) {
 	var values;
@@ -33123,7 +44253,121 @@ tape( 'the function returns a function which returns one or more output arrays, 
 	t.end();
 });
 
-},{"./../lib":352,"./fixtures/fill.js":355,"./fixtures/foreach.js":356,"./fixtures/map1n.js":357,"./fixtures/sum.js":358,"@stdlib/array/float32":24,"@stdlib/array/float64":27,"@stdlib/array/int32":32,"@stdlib/array/uint8":44,"@stdlib/math/base/special/abs":231,"@stdlib/ndarray/base/buffer-dtype":250,"@stdlib/ndarray/base/unary":331,"@stdlib/ndarray/ctor":347,"tape":581}],361:[function(require,module,exports){
+}).call(this)}).call(this,"/lib/node_modules/@stdlib/ndarray/dispatch/test/test.two_arrays.js")
+},{"./../lib":419,"./fixtures/fill.js":422,"./fixtures/foreach.js":423,"./fixtures/map1n.js":424,"./fixtures/sum.js":425,"@stdlib/array/float32":57,"@stdlib/array/float64":60,"@stdlib/array/int32":66,"@stdlib/array/uint8":78,"@stdlib/math/base/special/abs":272,"@stdlib/ndarray/base/buffer-dtype":291,"@stdlib/ndarray/base/unary":400,"@stdlib/ndarray/ctor":411,"tape":675}],428:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the data type of a provided ndarray.
+*
+* @module @stdlib/ndarray/dtype
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+* var dtype = require( '@stdlib/ndarray/dtype' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var dt = dtype( x );
+* // returns 'float64'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":429}],429:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isDataType = require( '@stdlib/ndarray/base/assert/is-data-type' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Returns the data type of a provided ndarray.
+*
+* @param {ndarrayLike} x - input ndarray
+* @throws {TypeError} must provide an ndarray having a supported data type
+* @returns {string} data type
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/zeros' );
+*
+* var x = zeros( [ 3, 3, 3 ], {
+*     'dtype': 'float64'
+* });
+*
+* var dt = dtype( x );
+* // returns 'float64'
+*/
+function dtype( x ) {
+	var dt;
+
+	// Note: we intentionally avoid rigorous ndarray checks to minimize performance impacts. This obviously means that non-ndarray-like objects can sneak through, but this is likely all right for the purposes of this function...
+	if ( typeof x !== 'object' || x === null ) {
+		throw new TypeError( format( 'invalid argument. Must provide an ndarray. Value: `%s`.', x ) );
+	}
+	dt = x.dtype;
+	if ( isDataType( dt ) ) {
+		return dt;
+	}
+	// A data type is essential for interpreting the memory associated with an ndarray object, so no fallbacks or workarounds for data type resolution...
+	throw new TypeError( format( 'invalid argument. Must provide an ndarray having a supported data type. Value: `%s`.', dt ) );
+}
+
+
+// EXPORTS //
+
+module.exports = dtype;
+
+},{"@stdlib/ndarray/base/assert/is-data-type":282,"@stdlib/string/format":477}],430:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33193,24 +44437,103 @@ function assign( target, source ) {
 
 module.exports = assign;
 
-},{"@stdlib/utils/define-read-only-property":422,"@stdlib/utils/keys":455}],362:[function(require,module,exports){
-module.exports=[
-	"binary",
-	"complex64",
-	"complex128",
-	"float32",
-	"float64",
-	"generic",
-	"int16",
-	"int32",
-	"int8",
-	"uint16",
-	"uint32",
-	"uint8",
-	"uint8c"
-]
+},{"@stdlib/utils/define-read-only-property":497,"@stdlib/utils/keys":529}],431:[function(require,module,exports){
+module.exports={
+  "all": [
+    "binary",
+    "bool",
+    "complex64",
+    "complex128",
+    "float32",
+    "float64",
+    "generic",
+    "int16",
+    "int32",
+    "int8",
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ],
+  "typed": [
+    "binary",
+    "bool",
+    "complex64",
+    "complex128",
+    "float32",
+    "float64",
+    "int16",
+    "int32",
+    "int8",
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ],
+  "floating_point": [
+    "complex64",
+    "complex128",
+    "float32",
+    "float64"
+  ],
+  "real_floating_point": [
+    "float32",
+    "float64"
+  ],
+  "complex_floating_point": [
+    "complex64",
+    "complex128"
+  ],
+  "boolean": [
+    "bool"
+  ],
+  "integer": [
+    "int16",
+    "int32",
+    "int8",
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ],
+  "signed_integer": [
+    "int16",
+    "int32",
+    "int8"
+  ],
+  "unsigned_integer": [
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ],
+  "real": [
+    "float32",
+    "float64",
+    "int16",
+    "int32",
+    "int8",
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ],
+  "numeric": [
+    "complex64",
+    "complex128",
+    "float32",
+    "float64",
+    "int16",
+    "int32",
+    "int8",
+    "uint16",
+    "uint32",
+    "uint8",
+    "uint8c"
+  ]
+}
 
-},{}],363:[function(require,module,exports){
+},{}],432:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33301,7 +44624,7 @@ function enumeration() {
 
 module.exports = enumeration;
 
-},{}],364:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33337,22 +44660,22 @@ module.exports = enumeration;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var dtypes = require( './main.js' );
+var main = require( './main.js' );
 var enumeration = require( './enum.js' );
 var assign = require( './assign.js' );
 
 
 // MAIN //
 
-setReadOnly( dtypes, 'enum', enumeration );
-assign( dtypes, enumeration() );
+setReadOnly( main, 'enum', enumeration );
+assign( main, enumeration() );
 
 
 // EXPORTS //
 
-module.exports = dtypes;
+module.exports = main;
 
-},{"./assign.js":361,"./enum.js":363,"./main.js":365,"@stdlib/utils/define-nonenumerable-read-only-property":415}],365:[function(require,module,exports){
+},{"./assign.js":430,"./enum.js":432,"./main.js":434,"@stdlib/utils/define-nonenumerable-read-only-property":490}],434:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33375,7 +44698,13 @@ module.exports = dtypes;
 
 // MODULES //
 
+var replace = require( '@stdlib/string/base/replace' );
 var DTYPES = require( './dtypes.json' );
+
+
+// VARIABLES //
+
+var RE_SUFFIX = /_and_generic$/;
 
 
 // MAIN //
@@ -33383,14 +44712,38 @@ var DTYPES = require( './dtypes.json' );
 /**
 * Returns a list of ndarray data types.
 *
+* @param {string} [kind] - data type kind
 * @returns {StringArray} list of ndarray data types
 *
 * @example
 * var list = dtypes();
 * // returns [...]
+*
+* @example
+* var list = dtypes( 'floating_point' );
+* // returns [...]
 */
 function dtypes() {
-	return DTYPES.slice();
+	var kind;
+	var out;
+	var FLG;
+	if ( arguments.length === 0 ) {
+		return DTYPES.all.slice();
+	}
+	FLG = false;
+	kind = arguments[ 0 ];
+	if ( RE_SUFFIX.test( kind ) ) {
+		kind = replace( kind, RE_SUFFIX, '' );
+		if ( kind !== 'all' ) {
+			FLG = true;
+		}
+	}
+	out = DTYPES[ kind ];
+	out = ( out ) ? out.slice() : [];
+	if ( FLG && out.length > 0 ) {
+		out.push( 'generic' );
+	}
+	return out;
 }
 
 
@@ -33398,7 +44751,7 @@ function dtypes() {
 
 module.exports = dtypes;
 
-},{"./dtypes.json":362}],366:[function(require,module,exports){
+},{"./dtypes.json":431,"@stdlib/string/base/replace":475}],435:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33439,10 +44792,10 @@ var validate = require( './validate.js' );
 *
 * -   The function accepts the following "modes":
 *
-*     -   `throw`: throws an error when a linear index exceeds array dimensions.
-*     -   `wrap`: wrap around a linear index exceeding array dimensions using modulo arithmetic.
-*     -   `clamp`: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
-*
+*     -   **throw**: throw an error when a linear index exceeds array dimensions.
+*     -   **normalize**: normalize negative linear indices and throw an error when a linear index exceeds array dimensions.
+*     -   **wrap**: wrap around a linear index exceeding array dimensions using modulo arithmetic.
+*     -   **clamp**: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
 *
 * @param {NonNegativeIntegerArray} shape - array shape
 * @param {integer} idx - linear index
@@ -33506,13 +44859,13 @@ function ind2sub( shape, idx, options, out ) {
 
 module.exports = ind2sub;
 
-},{"./defaults.json":367,"./validate.js":370,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nonnegative-integer-array":151,"@stdlib/ndarray/base/ind2sub":274,"@stdlib/ndarray/base/shape2strides":284,"@stdlib/string/format":404}],367:[function(require,module,exports){
+},{"./defaults.json":436,"./validate.js":439,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-nonnegative-integer-array":185,"@stdlib/ndarray/base/ind2sub":326,"@stdlib/ndarray/base/shape2strides":346,"@stdlib/string/format":477}],436:[function(require,module,exports){
 module.exports={
 	"mode": "throw",
 	"order": "row-major"
 }
 
-},{}],368:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33573,7 +44926,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":366,"./main.js":369,"@stdlib/utils/define-nonenumerable-read-only-property":415}],369:[function(require,module,exports){
+},{"./assign.js":435,"./main.js":438,"@stdlib/utils/define-nonenumerable-read-only-property":490}],438:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33614,10 +44967,10 @@ var validate = require( './validate.js' );
 *
 * -   The function accepts the following "modes":
 *
-*     -   `throw`: throws an error when a linear index exceeds array dimensions.
-*     -   `wrap`: wrap around a linear index exceeding array dimensions using modulo arithmetic.
-*     -   `clamp`: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
-*
+*     -   **throw**: throw an error when a linear index exceeds array dimensions.
+*     -   **normalize**: normalize negative linear indices and throw an error when a linear index exceeds array dimensions.
+*     -   **wrap**: wrap around a linear index exceeding array dimensions using modulo arithmetic.
+*     -   **clamp**: set a linear index exceeding array dimensions to either `0` (minimum linear index) or the maximum linear index.
 *
 * @param {NonNegativeIntegerArray} shape - array shape
 * @param {integer} idx - linear index
@@ -33663,7 +45016,7 @@ function ind2sub( shape, idx, options ) {
 
 module.exports = ind2sub;
 
-},{"./defaults.json":367,"./validate.js":370,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nonnegative-integer-array":151,"@stdlib/ndarray/base/ind2sub":274,"@stdlib/ndarray/base/shape2strides":284,"@stdlib/string/format":404}],370:[function(require,module,exports){
+},{"./defaults.json":436,"./validate.js":439,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-nonnegative-integer-array":185,"@stdlib/ndarray/base/ind2sub":326,"@stdlib/ndarray/base/shape2strides":346,"@stdlib/string/format":477}],439:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33740,7 +45093,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":75,"@stdlib/assert/is-plain-object":166,"@stdlib/ndarray/base/assert/is-index-mode":243,"@stdlib/ndarray/base/assert/is-order":245,"@stdlib/string/format":404}],371:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-plain-object":200,"@stdlib/ndarray/base/assert/is-index-mode":284,"@stdlib/ndarray/base/assert/is-order":286,"@stdlib/string/format":477}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33782,7 +45135,8 @@ function enumerated() {
 	return {
 		'throw': 1,
 		'clamp': 2,
-		'wrap': 3
+		'wrap': 3,
+		'normalize': 4
 	};
 }
 
@@ -33791,7 +45145,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],372:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33821,7 +45175,7 @@ module.exports = enumerated;
 * var modes = require( '@stdlib/ndarray/index-modes' );
 *
 * var list = modes();
-* // returns [ 'throw', 'clamp', 'wrap' ]
+* // returns [ 'throw', 'normalize', 'clamp', 'wrap' ]
 */
 
 // MODULES //
@@ -33840,7 +45194,7 @@ setReadOnly( modes, 'enum', enumeration );
 
 module.exports = modes;
 
-},{"./enum.js":371,"./main.js":373,"@stdlib/utils/define-nonenumerable-read-only-property":415}],373:[function(require,module,exports){
+},{"./enum.js":440,"./main.js":442,"@stdlib/utils/define-nonenumerable-read-only-property":490}],442:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33875,7 +45229,7 @@ var MODES = require( './modes.json' );
 *
 * @example
 * var list = modes();
-* // returns [ 'throw', 'clamp', 'wrap' ]
+* // returns [ 'throw', 'normalize', 'clamp', 'wrap' ]
 */
 function modes() {
 	return MODES.slice();
@@ -33886,14 +45240,15 @@ function modes() {
 
 module.exports = modes;
 
-},{"./modes.json":374}],374:[function(require,module,exports){
+},{"./modes.json":443}],443:[function(require,module,exports){
 module.exports=[
 	"throw",
+  "normalize",
 	"clamp",
 	"wrap"
 ]
 
-},{}],375:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33913,6 +45268,16 @@ module.exports=[
 */
 
 'use strict';
+
+// MODULES //
+
+var layouts = require( '@stdlib/blas/base/layouts' ).enum;
+
+
+// VARIABLES //
+
+var LAYOUTS = layouts();
+
 
 // MAIN //
 
@@ -33934,10 +45299,10 @@ function enumerated() {
 	// NOTE: the following should match the C `orders.h` enumeration!!!!
 	return {
 		// Row-major (C-style):
-		'row-major': 1,
+		'row-major': LAYOUTS[ 'row-major' ],
 
 		// Column-major (Fortran-style):
-		'column-major': 2
+		'column-major': LAYOUTS[ 'column-major' ]
 	};
 }
 
@@ -33946,7 +45311,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],376:[function(require,module,exports){
+},{"@stdlib/blas/base/layouts":233}],445:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33976,26 +45341,26 @@ module.exports = enumerated;
 * var orders = require( '@stdlib/ndarray/orders' );
 *
 * var list = orders();
-* // returns [ 'row-major', 'column-major' ]
+* // e.g., returns [ 'row-major', 'column-major' ]
 */
 
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var orders = require( './main.js' );
+var main = require( './main.js' );
 var enumeration = require( './enum.js' );
 
 
 // MAIN //
 
-setReadOnly( orders, 'enum', enumeration );
+setReadOnly( main, 'enum', enumeration );
 
 
 // EXPORTS //
 
-module.exports = orders;
+module.exports = main;
 
-},{"./enum.js":375,"./main.js":377,"@stdlib/utils/define-nonenumerable-read-only-property":415}],377:[function(require,module,exports){
+},{"./enum.js":444,"./main.js":446,"@stdlib/utils/define-nonenumerable-read-only-property":490}],446:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34030,7 +45395,7 @@ var ORDERS = require( './orders.json' );
 *
 * @example
 * var list = orders();
-* // returns [ 'row-major', 'column-major' ]
+* // e.g., returns [ 'row-major', 'column-major' ]
 */
 function orders() {
 	return ORDERS.slice();
@@ -34041,13 +45406,13 @@ function orders() {
 
 module.exports = orders;
 
-},{"./orders.json":378}],378:[function(require,module,exports){
+},{"./orders.json":447}],447:[function(require,module,exports){
 module.exports=[
 	"row-major",
 	"column-major"
 ]
 
-},{}],379:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34082,14 +45447,14 @@ module.exports=[
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":380}],380:[function(require,module,exports){
+},{"./main.js":449}],449:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34114,7 +45479,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],381:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34149,13 +45514,16 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var float64ToFloat32 = require( './main.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-if ( typeof float64ToFloat32 !== 'function' ) {
+var float64ToFloat32;
+if ( typeof builtin === 'function' ) {
+	float64ToFloat32 = builtin;
+} else {
 	float64ToFloat32 = polyfill;
 }
 
@@ -34164,7 +45532,7 @@ if ( typeof float64ToFloat32 !== 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":382,"./polyfill.js":383}],382:[function(require,module,exports){
+},{"./main.js":451,"./polyfill.js":452}],451:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34194,7 +45562,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],383:[function(require,module,exports){
+},{}],452:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34247,7 +45615,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":24}],384:[function(require,module,exports){
+},{"@stdlib/array/float32":57}],453:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34349,7 +45717,7 @@ function float64ToInt64Bytes( x, out, stride, offset ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":20,"@stdlib/array/uint8":44,"@stdlib/assert/is-little-endian":143,"@stdlib/math/base/special/floor":235}],385:[function(require,module,exports){
+},{"@stdlib/array/dataview":49,"@stdlib/array/uint8":78,"@stdlib/assert/is-little-endian":177,"@stdlib/math/base/special/floor":276}],454:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34406,7 +45774,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":384,"./main.js":386,"@stdlib/utils/define-nonenumerable-read-only-property":415}],386:[function(require,module,exports){
+},{"./assign.js":453,"./main.js":455,"@stdlib/utils/define-nonenumerable-read-only-property":490}],455:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34493,7 +45861,123 @@ function float64ToInt64Bytes( x ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":20,"@stdlib/array/uint8":44,"@stdlib/assert/is-little-endian":143,"@stdlib/math/base/special/floor":235}],387:[function(require,module,exports){
+},{"@stdlib/array/dataview":49,"@stdlib/array/uint8":78,"@stdlib/assert/is-little-endian":177,"@stdlib/math/base/special/floor":276}],456:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":457}],457:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],458:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34543,20 +46027,20 @@ module.exports = float64ToInt64Bytes;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":388,"./regexp.js":389,"@stdlib/utils/define-nonenumerable-read-only-property":415}],388:[function(require,module,exports){
+},{"./main.js":459,"./regexp.js":460,"@stdlib/utils/define-nonenumerable-read-only-property":490}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34612,7 +46096,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],389:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34674,7 +46158,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":388}],390:[function(require,module,exports){
+},{"./main.js":459}],461:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34722,7 +46206,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":391}],391:[function(require,module,exports){
+},{"./main.js":462}],462:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34777,7 +46261,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":27}],392:[function(require,module,exports){
+},{"@stdlib/array/float64":60}],463:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34825,7 +46309,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":393}],393:[function(require,module,exports){
+},{"./main.js":464}],464:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34880,7 +46364,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":24}],394:[function(require,module,exports){
+},{"@stdlib/array/float32":57}],465:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34966,7 +46450,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -34993,7 +46477,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":397}],395:[function(require,module,exports){
+},{"./is_number.js":468}],466:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35110,7 +46594,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":397,"./zero_pad.js":401}],396:[function(require,module,exports){
+},{"./is_number.js":468,"./zero_pad.js":472}],467:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35146,14 +46630,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":399}],397:[function(require,module,exports){
+},{"./main.js":470}],468:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35201,7 +46685,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],398:[function(require,module,exports){
+},{}],469:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35245,7 +46729,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],399:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35278,11 +46762,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -35413,6 +46915,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -35421,9 +46924,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -35462,7 +46963,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":394,"./format_integer.js":395,"./is_string.js":398,"./space_pad.js":400,"./zero_pad.js":401}],400:[function(require,module,exports){
+},{"./format_double.js":465,"./format_integer.js":466,"./is_string.js":469,"./space_pad.js":471,"./zero_pad.js":472}],471:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35529,7 +47030,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],401:[function(require,module,exports){
+},{}],472:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35615,7 +47116,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],402:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35651,14 +47152,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":403}],403:[function(require,module,exports){
+},{"./main.js":474}],474:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35750,7 +47251,107 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],404:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/base/replace
+*
+* @example
+* var replace = require( '@stdlib/string/base/replace' );
+*
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":476}],476:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Replaces search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {RegExp} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/base/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer );
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+function replace( str, search, newval ) {
+	return str.replace( search, newval );
+}
+
+
+// EXPORTS //
+
+module.exports = replace;
+
+},{}],477:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35788,16 +47389,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":406}],405:[function(require,module,exports){
-arguments[4][398][0].apply(exports,arguments)
-},{"dup":398}],406:[function(require,module,exports){
+},{"./main.js":479}],478:[function(require,module,exports){
+arguments[4][469][0].apply(exports,arguments)
+},{"dup":469}],479:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35845,18 +47446,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -35866,7 +47464,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":405,"@stdlib/string/base/format-interpolate":396,"@stdlib/string/base/format-tokenize":402}],407:[function(require,module,exports){
+},{"./is_string.js":478,"@stdlib/string/base/format-interpolate":467,"@stdlib/string/base/format-tokenize":473}],480:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35906,14 +47504,14 @@ module.exports = format;
 
 // MODULES //
 
-var replace = require( './replace.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = replace;
+module.exports = main;
 
-},{"./replace.js":408}],408:[function(require,module,exports){
+},{"./main.js":481}],481:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35941,12 +47539,13 @@ var isFunction = require( '@stdlib/assert/is-function' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isRegExp = require( '@stdlib/assert/is-regexp' );
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/replace' );
 
 
 // MAIN //
 
 /**
-* Replace search occurrences with a replacement string.
+* Replaces search occurrences with a replacement string.
 *
 * @param {string} str - input string
 * @param {(string|RegExp)} search - search expression
@@ -35975,7 +47574,7 @@ var format = require( '@stdlib/string/format' );
 *     return capitalize( p1 );
 * }
 *
-* var out = replace( str, /([^\s]*)/gi, replacer);
+* var out = replace( str, /([^\s]*)/gi, replacer );
 * // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
 */
 function replace( str, search, newval ) {
@@ -35983,16 +47582,14 @@ function replace( str, search, newval ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
 	if ( isString( search ) ) {
-		search = rescape( search );
-		search = new RegExp( search, 'g' );
-	}
-	else if ( !isRegExp( search ) ) {
+		search = new RegExp( rescape( search ), 'g' );
+	} else if ( !isRegExp( search ) ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a string or regular expression. Value: `%s`.', search ) );
 	}
 	if ( !isString( newval ) && !isFunction( newval ) ) {
 		throw new TypeError( format( 'invalid argument. Third argument must be a string or replacement function. Value: `%s`.', newval ) );
 	}
-	return str.replace( search, newval );
+	return base( str, search, newval );
 }
 
 
@@ -36000,7 +47597,79 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{"@stdlib/assert/is-function":128,"@stdlib/assert/is-regexp":173,"@stdlib/assert/is-string":176,"@stdlib/string/format":404,"@stdlib/utils/escape-regexp-string":424}],409:[function(require,module,exports){
+},{"@stdlib/assert/is-function":162,"@stdlib/assert/is-regexp":207,"@stdlib/assert/is-string":211,"@stdlib/string/base/replace":475,"@stdlib/string/format":477,"@stdlib/utils/escape-regexp-string":499}],482:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":483}],483:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],484:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36070,14 +47739,14 @@ module.exports = replace;
 
 // MAIN //
 
-var IteratorSymbol = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = IteratorSymbol;
+module.exports = main;
 
-},{"./main.js":410}],410:[function(require,module,exports){
+},{"./main.js":485}],485:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36158,7 +47827,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":73}],411:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":107}],486:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36199,14 +47868,14 @@ module.exports = IteratorSymbol;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":412}],412:[function(require,module,exports){
+},{"./main.js":487}],487:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36288,7 +47957,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":111,"@stdlib/regexp/function-name":387,"@stdlib/utils/native-class":462}],413:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":145,"@stdlib/regexp/function-name":458,"@stdlib/utils/native-class":536}],488:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36334,14 +48003,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnlyAccessor = require( './main.js' ); // eslint-disable-line id-length
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnlyAccessor;
+module.exports = main;
 
-},{"./main.js":414}],414:[function(require,module,exports){
+},{"./main.js":489}],489:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36404,7 +48073,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":420}],415:[function(require,module,exports){
+},{"@stdlib/utils/define-property":495}],490:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36446,14 +48115,14 @@ module.exports = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":416}],416:[function(require,module,exports){
+},{"./main.js":491}],491:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36513,7 +48182,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":420}],417:[function(require,module,exports){
+},{"@stdlib/utils/define-property":495}],492:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36576,7 +48245,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],418:[function(require,module,exports){
+},{}],493:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36606,7 +48275,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],419:[function(require,module,exports){
+},{}],494:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36659,7 +48328,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":418}],420:[function(require,module,exports){
+},{"./define_property.js":493}],495:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36719,7 +48388,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":417,"./has_define_property_support.js":419,"./polyfill.js":421}],421:[function(require,module,exports){
+},{"./builtin.js":492,"./has_define_property_support.js":494,"./polyfill.js":496}],496:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36843,7 +48512,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":404}],422:[function(require,module,exports){
+},{"@stdlib/string/format":477}],497:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36885,14 +48554,14 @@ module.exports = defineProperty;
 
 // MODULES //
 
-var setReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setReadOnly;
+module.exports = main;
 
-},{"./main.js":423}],423:[function(require,module,exports){
+},{"./main.js":498}],498:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36952,7 +48621,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":420}],424:[function(require,module,exports){
+},{"@stdlib/utils/define-property":495}],499:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36987,14 +48656,14 @@ module.exports = setReadOnly;
 
 // MODULES //
 
-var rescape = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rescape;
+module.exports = main;
 
-},{"./main.js":425}],425:[function(require,module,exports){
+},{"./main.js":500}],500:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37078,7 +48747,7 @@ function rescape( str ) {
 
 module.exports = rescape;
 
-},{"@stdlib/assert/is-string":176,"@stdlib/string/format":404}],426:[function(require,module,exports){
+},{"@stdlib/assert/is-string":211,"@stdlib/string/format":477}],501:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37120,63 +48789,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":429,"./polyfill.js":430,"@stdlib/assert/is-function":128}],427:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":426}],428:[function(require,module,exports){
+},{"./native.js":504,"./polyfill.js":505,"@stdlib/assert/is-function":162}],502:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37211,14 +48824,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":427}],429:[function(require,module,exports){
+},{"./main.js":503}],503:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":501,"@stdlib/object/ctor":456}],504:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37248,7 +48918,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],430:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37305,7 +48975,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":431,"@stdlib/utils/native-class":462}],431:[function(require,module,exports){
+},{"./proto.js":506,"@stdlib/utils/native-class":536}],506:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37343,7 +49013,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],432:[function(require,module,exports){
+},{}],507:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":508,"./global_this.js":509,"./self.js":510,"./window.js":511,"@stdlib/assert/is-boolean":139,"@stdlib/string/format":477}],508:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37373,7 +49124,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -37381,12 +49132,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],433:[function(require,module,exports){
-(function (global){(function (){
+},{}],509:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37405,137 +49155,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],434:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":435}],435:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":432,"./global.js":433,"./self.js":436,"./window.js":437,"@stdlib/assert/is-boolean":105,"@stdlib/string/format":404}],436:[function(require,module,exports){
+},{}],510:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37565,7 +49192,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],437:[function(require,module,exports){
+},{}],511:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37595,7 +49222,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],438:[function(require,module,exports){
+},{}],512:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37663,14 +49290,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":439}],439:[function(require,module,exports){
+},{"./main.js":513}],513:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37805,7 +49432,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":113,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nan":145,"@stdlib/assert/is-string":176,"@stdlib/string/format":404}],440:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":147,"@stdlib/assert/is-integer":171,"@stdlib/assert/is-nan":179,"@stdlib/assert/is-string":211,"@stdlib/string/format":477}],514:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37846,7 +49473,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = createObject;
 
-},{"./native.js":443,"./polyfill.js":444}],441:[function(require,module,exports){
+},{"./native.js":517,"./polyfill.js":518}],515:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37895,14 +49522,14 @@ module.exports = createObject;
 
 // MODULES //
 
-var inherit = require( './inherit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = inherit;
+module.exports = main;
 
-},{"./inherit.js":442}],442:[function(require,module,exports){
+},{"./main.js":516}],516:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37940,7 +49567,6 @@ var createObject = require( './detect.js' );
 *
 * -   This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
 * -   For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
-*
 *
 * @param {(Object|Function)} ctor - constructor which will inherit
 * @param {(Object|Function)} superCtor - super (parent) constructor
@@ -37998,7 +49624,7 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":440,"./validate.js":445,"@stdlib/string/format":404,"@stdlib/utils/define-property":420}],443:[function(require,module,exports){
+},{"./detect.js":514,"./validate.js":519,"@stdlib/string/format":477,"@stdlib/utils/define-property":495}],517:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38023,7 +49649,7 @@ module.exports = inherit;
 
 module.exports = Object.create;
 
-},{}],444:[function(require,module,exports){
+},{}],518:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38079,7 +49705,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],445:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38139,7 +49765,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":404}],446:[function(require,module,exports){
+},{"@stdlib/string/format":477}],520:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38191,7 +49817,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],447:[function(require,module,exports){
+},{}],521:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38253,7 +49879,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":446,"@stdlib/assert/is-arguments":94}],448:[function(require,module,exports){
+},{"./builtin.js":520,"@stdlib/assert/is-arguments":128}],522:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -38277,7 +49903,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],449:[function(require,module,exports){
+},{}],523:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38337,7 +49963,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":446}],450:[function(require,module,exports){
+},{"./builtin.js":520}],524:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38415,7 +50041,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":448,"./is_constructor_prototype.js":456,"./window.js":461,"@stdlib/assert/has-own-property":75,"@stdlib/utils/index-of":438,"@stdlib/utils/type-of":473}],451:[function(require,module,exports){
+},{"./excluded_keys.json":522,"./is_constructor_prototype.js":530,"./window.js":535,"@stdlib/assert/has-own-property":109,"@stdlib/utils/index-of":512,"@stdlib/utils/type-of":549}],525:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38445,7 +50071,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],452:[function(require,module,exports){
+},{}],526:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38482,7 +50108,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":120,"@stdlib/utils/noop":467}],453:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":154,"@stdlib/utils/noop":541}],527:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38525,7 +50151,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":120}],454:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":154}],528:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38555,7 +50181,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],455:[function(require,module,exports){
+},{}],529:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38595,14 +50221,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":458}],456:[function(require,module,exports){
+},{"./main.js":532}],530:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38641,7 +50267,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],457:[function(require,module,exports){
+},{}],531:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38694,7 +50320,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":450,"./has_window.js":454,"./is_constructor_prototype.js":456}],458:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":524,"./has_window.js":528,"./is_constructor_prototype.js":530}],532:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38759,7 +50385,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":446,"./builtin_wrapper.js":447,"./has_arguments_bug.js":449,"./has_builtin.js":451,"./polyfill.js":460}],459:[function(require,module,exports){
+},{"./builtin.js":520,"./builtin_wrapper.js":521,"./has_arguments_bug.js":523,"./has_builtin.js":525,"./polyfill.js":534}],533:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -38770,7 +50396,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],460:[function(require,module,exports){
+},{}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38874,7 +50500,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":452,"./has_non_enumerable_properties_bug.js":453,"./is_constructor_prototype_wrapper.js":457,"./non_enumerable.json":459,"@stdlib/assert/has-own-property":75,"@stdlib/assert/is-arguments":94,"@stdlib/assert/is-object-like":162}],461:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":526,"./has_non_enumerable_properties_bug.js":527,"./is_constructor_prototype_wrapper.js":531,"./non_enumerable.json":533,"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-arguments":128,"@stdlib/assert/is-object-like":196}],535:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38904,7 +50530,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],462:[function(require,module,exports){
+},{}],536:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38949,25 +50575,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":463,"./polyfill.js":464,"@stdlib/assert/has-tostringtag-support":79}],463:[function(require,module,exports){
+},{"./main.js":537,"./polyfill.js":538,"@stdlib/assert/has-tostringtag-support":113}],537:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39025,7 +50651,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":465}],464:[function(require,module,exports){
+},{"./tostring.js":539}],538:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39108,7 +50734,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":465,"./tostringtag.js":466,"@stdlib/assert/has-own-property":75}],465:[function(require,module,exports){
+},{"./tostring.js":539,"./tostringtag.js":540,"@stdlib/assert/has-own-property":109}],539:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39138,7 +50764,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],466:[function(require,module,exports){
+},{}],540:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39159,6 +50785,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -39168,7 +50799,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],467:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":482}],541:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39203,14 +50834,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":468}],468:[function(require,module,exports){
+},{"./main.js":542}],542:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39247,7 +50878,193 @@ function noop() {
 
 module.exports = noop;
 
-},{}],469:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Invert an object, such that keys become values and values become keys.
+*
+* @module @stdlib/utils/object-inverse
+*
+* @example
+* var invert = require( '@stdlib/utils/object-inverse' );
+*
+* var out = invert({
+*     'a': 'beep',
+*     'b': 'boop'
+* });
+* // returns { 'beep': 'a', 'boop': 'b' }
+*
+* out = invert({
+*     'a': 'beep',
+*     'b': 'beep'
+* });
+* // returns { 'beep': [ 'a', 'b' ] }
+*
+* var obj = {};
+* obj.a = 'beep';
+* obj.b = 'boop';
+* obj.c = 'beep'; // inserted after `a`
+*
+* out = invert( obj, {
+*     'duplicates': false
+* });
+* // returns { 'beep': 'c', 'boop': 'b' }
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":544}],544:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var objectKeys = require( '@stdlib/utils/keys' );
+var isArray = require( '@stdlib/assert/is-array' );
+var isObject = require( '@stdlib/assert/is-plain-object' );
+var isObjectLike = require( '@stdlib/assert/is-object-like' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Inverts an object, such that keys become values and values become keys.
+*
+* @param {ObjectLike} obj - input object
+* @param {Options} [opts] - function options
+* @param {boolean} [opts.duplicates=true] - boolean indicating whether to store duplicate keys
+* @throws {TypeError} first argument must be object-like
+* @throws {TypeError} second argument must an an object
+* @throws {TypeError} must provide valid options
+* @returns {Object} inverted object
+*
+* @example
+* var out = invert({
+*     'a': 'beep',
+*     'b': 'boop'
+* });
+* // returns { 'beep': 'a', 'boop': 'b' }
+*
+* @example
+* var out = invert({
+*     'a': 'beep',
+*     'b': 'beep'
+* });
+* // returns { 'beep': [ 'a', 'b' ] }
+*
+* @example
+* var obj = {};
+* obj.a = 'beep';
+* obj.b = 'boop';
+* obj.c = 'beep'; // inserted after `a`
+*
+* var out = invert( obj, {
+*     'duplicates': false
+* });
+* // returns { 'beep': 'c', 'boop': 'b' }
+*/
+function invert( obj, opts ) {
+	var allowDupes = true;
+	var keys;
+	var len;
+	var key;
+	var val;
+	var out;
+	var v;
+	var i;
+	if ( !isObjectLike( obj ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an object (except null). Value: `%s`.', obj ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isObject( opts ) ) {
+			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', opts ) );
+		}
+		if ( hasOwnProp( opts, 'duplicates' ) ) {
+			allowDupes = opts.duplicates;
+			if ( !isBoolean( allowDupes ) ) {
+				throw new TypeError( format( 'invalid option. `%s` option must be a boolean. Option: `%s`.', 'duplicates', allowDupes ) );
+			}
+		}
+	}
+	keys = objectKeys( obj );
+	len = keys.length;
+	out = {};
+	if ( allowDupes ) {
+		for ( i = 0; i < len; i++ ) {
+			key = keys[ i ];
+			val = obj[ key ];
+			if ( !hasOwnProp( out, val ) ) {
+				out[ val ] = key;
+				continue;
+			}
+			v = out[ val ];
+			if ( isArray( v ) ) {
+				out[ val ].push( key );
+			} else {
+				out[ val ] = [ v, key ];
+			}
+		}
+	} else {
+		for ( i = 0; i < len; i++ ) {
+			key = keys[ i ];
+			out[ obj[ key ] ] = key;
+		}
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = invert;
+
+},{"@stdlib/assert/has-own-property":109,"@stdlib/assert/is-array":135,"@stdlib/assert/is-boolean":139,"@stdlib/assert/is-object-like":196,"@stdlib/assert/is-plain-object":200,"@stdlib/string/format":477,"@stdlib/utils/keys":529}],545:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39304,7 +51121,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":470,"./fixtures/re.js":471,"./fixtures/typedarray.js":472}],470:[function(require,module,exports){
+},{"./fixtures/nodelist.js":546,"./fixtures/re.js":547,"./fixtures/typedarray.js":548}],546:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39340,7 +51157,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":434}],471:[function(require,module,exports){
+},{"@stdlib/utils/global":507}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39368,7 +51185,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],472:[function(require,module,exports){
+},{}],548:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39396,7 +51213,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],473:[function(require,module,exports){
+},{}],549:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39435,63 +51252,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":469,"./polyfill.js":474,"./typeof.js":475}],474:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":411}],475:[function(require,module,exports){
+},{"./check.js":545,"./main.js":550,"./polyfill.js":551}],550:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39569,7 +51343,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":411}],476:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":486}],551:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":486}],552:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -39721,11 +51538,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],477:[function(require,module,exports){
+},{}],553:[function(require,module,exports){
 
-},{}],478:[function(require,module,exports){
-arguments[4][477][0].apply(exports,arguments)
-},{"dup":477}],479:[function(require,module,exports){
+},{}],554:[function(require,module,exports){
+arguments[4][553][0].apply(exports,arguments)
+},{"dup":553}],555:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -41506,7 +53323,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":476,"buffer":479,"ieee754":567}],480:[function(require,module,exports){
+},{"base64-js":552,"buffer":555,"ieee754":658}],556:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -42005,7 +53822,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],481:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -42538,7 +54355,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":573}],482:[function(require,module,exports){
+},{"_process":665}],558:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -42669,7 +54486,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":480,"inherits":568,"readable-stream/lib/_stream_duplex.js":484,"readable-stream/lib/_stream_passthrough.js":485,"readable-stream/lib/_stream_readable.js":486,"readable-stream/lib/_stream_transform.js":487,"readable-stream/lib/_stream_writable.js":488,"readable-stream/lib/internal/streams/end-of-stream.js":492,"readable-stream/lib/internal/streams/pipeline.js":494}],483:[function(require,module,exports){
+},{"events":556,"inherits":659,"readable-stream/lib/_stream_duplex.js":560,"readable-stream/lib/_stream_passthrough.js":561,"readable-stream/lib/_stream_readable.js":562,"readable-stream/lib/_stream_transform.js":563,"readable-stream/lib/_stream_writable.js":564,"readable-stream/lib/internal/streams/end-of-stream.js":568,"readable-stream/lib/internal/streams/pipeline.js":570}],559:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -42798,7 +54615,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],484:[function(require,module,exports){
+},{}],560:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -42940,7 +54757,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":486,"./_stream_writable":488,"_process":573,"inherits":568}],485:[function(require,module,exports){
+},{"./_stream_readable":562,"./_stream_writable":564,"_process":665,"inherits":659}],561:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -42980,7 +54797,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":487,"inherits":568}],486:[function(require,module,exports){
+},{"./_stream_transform":563,"inherits":659}],562:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -44107,7 +55924,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":483,"./_stream_duplex":484,"./internal/streams/async_iterator":489,"./internal/streams/buffer_list":490,"./internal/streams/destroy":491,"./internal/streams/from":493,"./internal/streams/state":495,"./internal/streams/stream":496,"_process":573,"buffer":479,"events":480,"inherits":568,"string_decoder/":580,"util":477}],487:[function(require,module,exports){
+},{"../errors":559,"./_stream_duplex":560,"./internal/streams/async_iterator":565,"./internal/streams/buffer_list":566,"./internal/streams/destroy":567,"./internal/streams/from":569,"./internal/streams/state":571,"./internal/streams/stream":572,"_process":665,"buffer":555,"events":556,"inherits":659,"string_decoder/":674,"util":553}],563:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -44309,7 +56126,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":483,"./_stream_duplex":484,"inherits":568}],488:[function(require,module,exports){
+},{"../errors":559,"./_stream_duplex":560,"inherits":659}],564:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -45009,7 +56826,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":483,"./_stream_duplex":484,"./internal/streams/destroy":491,"./internal/streams/state":495,"./internal/streams/stream":496,"_process":573,"buffer":479,"inherits":568,"util-deprecate":589}],489:[function(require,module,exports){
+},{"../errors":559,"./_stream_duplex":560,"./internal/streams/destroy":567,"./internal/streams/state":571,"./internal/streams/stream":572,"_process":665,"buffer":555,"inherits":659,"util-deprecate":683}],565:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -45219,7 +57036,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":492,"_process":573}],490:[function(require,module,exports){
+},{"./end-of-stream":568,"_process":665}],566:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -45430,7 +57247,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":479,"util":477}],491:[function(require,module,exports){
+},{"buffer":555,"util":553}],567:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -45538,7 +57355,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":573}],492:[function(require,module,exports){
+},{"_process":665}],568:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -45643,12 +57460,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":483}],493:[function(require,module,exports){
+},{"../../../errors":559}],569:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],494:[function(require,module,exports){
+},{}],570:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -45746,7 +57563,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":483,"./end-of-stream":492}],495:[function(require,module,exports){
+},{"../../../errors":559,"./end-of-stream":568}],571:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -45774,10 +57591,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":483}],496:[function(require,module,exports){
+},{"../../../errors":559}],572:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":480}],497:[function(require,module,exports){
+},{"events":556}],573:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -45794,43 +57611,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":498,"get-intrinsic":562}],498:[function(require,module,exports){
+},{"./":574,"get-intrinsic":649}],574:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -45843,7 +57648,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":561,"get-intrinsic":562}],499:[function(require,module,exports){
+},{"es-define-property":634,"es-errors/type":640,"function-bind":648,"get-intrinsic":649,"set-function-length":669}],575:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -45939,7 +57744,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":500,"./lib/keys.js":501}],500:[function(require,module,exports){
+},{"./lib/is_arguments.js":576,"./lib/keys.js":577}],576:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -45961,7 +57766,7 @@ function unsupported(object){
     false;
 };
 
-},{}],501:[function(require,module,exports){
+},{}],577:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -45972,7 +57777,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],502:[function(require,module,exports){
+},{}],578:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":634,"es-errors/syntax":639,"es-errors/type":640,"gopd":650}],579:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -45980,29 +57843,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -46021,14 +57884,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":563,"object-keys":571}],503:[function(require,module,exports){
+},{"define-data-property":578,"has-property-descriptors":651,"object-keys":663}],580:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],504:[function(require,module,exports){
+},{}],581:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -46067,13 +57930,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":534,"./ToPrimitive":536,"./Type":541}],505:[function(require,module,exports){
+},{"./ToNumber":612,"./ToPrimitive":614,"./Type":619}],582:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -46081,13 +57944,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -46099,7 +57961,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -46132,28 +57994,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":550,"../helpers/isNaN":552,"../helpers/isPrefixOf":553,"./ToNumber":534,"./ToPrimitive":536,"./Type":541,"get-intrinsic":562}],506:[function(require,module,exports){
+},{"../helpers/isFinite":627,"../helpers/isNaN":628,"../helpers/isPrefixOf":629,"./ToNumber":612,"./ToPrimitive":614,"es-errors/type":640,"get-intrinsic":649}],583:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":573,"es-errors/type":640}],584:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":562}],507:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":642}],585:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -46204,7 +58099,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":510,"./InLeapYear":514,"./MonthFromTime":524,"get-intrinsic":562}],508:[function(require,module,exports){
+},{"./DayWithinYear":588,"./InLeapYear":592,"./MonthFromTime":602,"es-errors/eval":635}],586:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -46217,7 +58112,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":557,"./floor":545}],509:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./floor":623}],587:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -46229,7 +58124,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":545}],510:[function(require,module,exports){
+},{"./floor":623}],588:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -46242,7 +58137,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":508,"./DayFromYear":509,"./YearFromTime":543}],511:[function(require,module,exports){
+},{"./Day":586,"./DayFromYear":587,"./YearFromTime":621}],589:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -46262,18 +58157,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":546}],512:[function(require,module,exports){
+},{"./modulo":624}],590:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -46282,7 +58174,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -46303,7 +58197,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":549,"./IsAccessorDescriptor":515,"./IsDataDescriptor":517,"./Type":541,"get-intrinsic":562}],513:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":631,"./IsAccessorDescriptor":593,"./IsDataDescriptor":595,"es-errors/type":640}],591:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -46319,12 +58213,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":557,"./floor":545,"./modulo":546}],514:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./floor":623,"./modulo":624}],592:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -46342,14 +58234,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":511,"./YearFromTime":543,"get-intrinsic":562}],515:[function(require,module,exports){
+},{"./DaysInYear":589,"./YearFromTime":621,"es-errors/eval":635}],593:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -46358,30 +58250,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":549,"./Type":541,"has":566}],516:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":631,"es-errors/type":640,"hasown":657}],594:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":569}],517:[function(require,module,exports){
+},{"is-callable":660}],595:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -46390,23 +58284,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":549,"./Type":541,"has":566}],518:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":631,"es-errors/type":640,"hasown":657}],596:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -46415,7 +58312,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -46424,28 +58323,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":549,"./IsAccessorDescriptor":515,"./IsDataDescriptor":517,"./Type":541}],519:[function(require,module,exports){
+},{"./IsAccessorDescriptor":593,"./IsDataDescriptor":595,"./IsPropertyDescriptor":597,"es-errors/type":640}],597:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":554,"./IsAccessorDescriptor":515,"./IsDataDescriptor":517,"./Type":541}],520:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":631}],598:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -46460,7 +58351,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":550,"../helpers/timeConstants":557}],521:[function(require,module,exports){
+},{"../helpers/isFinite":627,"../helpers/timeConstants":633}],599:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -46495,7 +58386,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":550,"./DateFromTime":507,"./Day":508,"./MonthFromTime":524,"./ToInteger":533,"./YearFromTime":543,"./floor":545,"./modulo":546,"get-intrinsic":562}],522:[function(require,module,exports){
+},{"../helpers/isFinite":627,"./DateFromTime":585,"./Day":586,"./MonthFromTime":602,"./ToInteger":611,"./YearFromTime":621,"./floor":623,"./modulo":624,"get-intrinsic":649}],600:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -46520,7 +58411,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":550,"../helpers/timeConstants":557,"./ToInteger":533}],523:[function(require,module,exports){
+},{"../helpers/isFinite":627,"../helpers/timeConstants":633,"./ToInteger":611}],601:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -46536,7 +58427,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":557,"./floor":545,"./modulo":546}],524:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./floor":623,"./modulo":624}],602:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -46585,7 +58476,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":510,"./InLeapYear":514}],525:[function(require,module,exports){
+},{"./DayWithinYear":588,"./InLeapYear":592}],603:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -46600,7 +58491,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":552}],526:[function(require,module,exports){
+},{"../helpers/isNaN":628}],604:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -46616,7 +58507,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":557,"./floor":545,"./modulo":546}],527:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./floor":623,"./modulo":624}],605:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -46635,7 +58526,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":541}],528:[function(require,module,exports){
+},{"./Type":619}],606:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -46658,7 +58549,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":550,"./ToNumber":534,"./abs":544,"get-intrinsic":562}],529:[function(require,module,exports){
+},{"../helpers/isFinite":627,"./ToNumber":612,"./abs":622,"get-intrinsic":649}],607:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -46671,7 +58562,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":557,"./DayFromYear":509}],530:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./DayFromYear":587}],608:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -46685,14 +58576,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":557,"./modulo":546}],531:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./modulo":624}],609:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],532:[function(require,module,exports){
+},{}],610:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -46703,7 +58594,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":534}],533:[function(require,module,exports){
+},{"./ToNumber":612}],611:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -46723,10 +58614,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":550,"../helpers/isNaN":552,"../helpers/sign":556,"./ToNumber":534,"./abs":544,"./floor":545}],534:[function(require,module,exports){
+},{"../helpers/isFinite":627,"../helpers/isNaN":628,"../helpers/sign":632,"./ToNumber":612,"./abs":622,"./floor":623}],612:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -46736,46 +58635,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":536}],535:[function(require,module,exports){
+},{"./ToPrimitive":614,"call-bind/callBound":573,"safe-regex-test":668}],613:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":506,"get-intrinsic":562}],536:[function(require,module,exports){
+},{"es-object-atoms/ToObject":643}],614:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":558}],537:[function(require,module,exports){
+},{"es-to-primitive/es5":645}],615:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -46789,26 +58681,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -46816,13 +58708,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":516,"./ToBoolean":531,"./Type":541,"get-intrinsic":562,"has":566}],538:[function(require,module,exports){
+},{"./IsCallable":594,"./ToBoolean":609,"./Type":619,"es-errors/type":640,"hasown":657}],616:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -46836,7 +58728,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":562}],539:[function(require,module,exports){
+},{"get-intrinsic":649}],617:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -46857,7 +58749,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":550,"../helpers/isNaN":552,"../helpers/sign":556,"./ToNumber":534,"./abs":544,"./floor":545,"./modulo":546}],540:[function(require,module,exports){
+},{"../helpers/isFinite":627,"../helpers/isNaN":628,"../helpers/sign":632,"./ToNumber":612,"./abs":622,"./floor":623,"./modulo":624}],618:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -46868,7 +58760,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":534}],541:[function(require,module,exports){
+},{"./ToNumber":612}],619:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -46894,7 +58786,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],542:[function(require,module,exports){
+},{}],620:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -46906,7 +58798,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":508,"./modulo":546}],543:[function(require,module,exports){
+},{"./Day":586,"./modulo":624}],621:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -46924,7 +58816,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":497,"get-intrinsic":562}],544:[function(require,module,exports){
+},{"call-bind/callBound":573,"get-intrinsic":649}],622:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -46937,7 +58829,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":562}],545:[function(require,module,exports){
+},{"get-intrinsic":649}],623:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -46950,7 +58842,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],546:[function(require,module,exports){
+},{}],624:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -46961,7 +58853,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":555}],547:[function(require,module,exports){
+},{"../helpers/mod":630}],625:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -46974,7 +58866,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":557,"./modulo":546}],548:[function(require,module,exports){
+},{"../helpers/timeConstants":633,"./modulo":624}],626:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -46985,6 +58877,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -47027,90 +58920,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":504,"./5/AbstractRelationalComparison":505,"./5/CheckObjectCoercible":506,"./5/DateFromTime":507,"./5/Day":508,"./5/DayFromYear":509,"./5/DayWithinYear":510,"./5/DaysInYear":511,"./5/FromPropertyDescriptor":512,"./5/HourFromTime":513,"./5/InLeapYear":514,"./5/IsAccessorDescriptor":515,"./5/IsCallable":516,"./5/IsDataDescriptor":517,"./5/IsGenericDescriptor":518,"./5/IsPropertyDescriptor":519,"./5/MakeDate":520,"./5/MakeDay":521,"./5/MakeTime":522,"./5/MinFromTime":523,"./5/MonthFromTime":524,"./5/SameValue":525,"./5/SecFromTime":526,"./5/StrictEqualityComparison":527,"./5/TimeClip":528,"./5/TimeFromYear":529,"./5/TimeWithinDay":530,"./5/ToBoolean":531,"./5/ToInt32":532,"./5/ToInteger":533,"./5/ToNumber":534,"./5/ToObject":535,"./5/ToPrimitive":536,"./5/ToPropertyDescriptor":537,"./5/ToString":538,"./5/ToUint16":539,"./5/ToUint32":540,"./5/Type":541,"./5/WeekDay":542,"./5/YearFromTime":543,"./5/abs":544,"./5/floor":545,"./5/modulo":546,"./5/msFromTime":547}],549:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":581,"./5/AbstractRelationalComparison":582,"./5/Canonicalize":583,"./5/CheckObjectCoercible":584,"./5/DateFromTime":585,"./5/Day":586,"./5/DayFromYear":587,"./5/DayWithinYear":588,"./5/DaysInYear":589,"./5/FromPropertyDescriptor":590,"./5/HourFromTime":591,"./5/InLeapYear":592,"./5/IsAccessorDescriptor":593,"./5/IsCallable":594,"./5/IsDataDescriptor":595,"./5/IsGenericDescriptor":596,"./5/IsPropertyDescriptor":597,"./5/MakeDate":598,"./5/MakeDay":599,"./5/MakeTime":600,"./5/MinFromTime":601,"./5/MonthFromTime":602,"./5/SameValue":603,"./5/SecFromTime":604,"./5/StrictEqualityComparison":605,"./5/TimeClip":606,"./5/TimeFromYear":607,"./5/TimeWithinDay":608,"./5/ToBoolean":609,"./5/ToInt32":610,"./5/ToInteger":611,"./5/ToNumber":612,"./5/ToObject":613,"./5/ToPrimitive":614,"./5/ToPropertyDescriptor":615,"./5/ToString":616,"./5/ToUint16":617,"./5/ToUint32":618,"./5/Type":619,"./5/WeekDay":620,"./5/YearFromTime":621,"./5/abs":622,"./5/floor":623,"./5/modulo":624,"./5/msFromTime":625}],627:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":551,"get-intrinsic":562,"has":566}],550:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],551:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":566}],552:[function(require,module,exports){
+},{"./isNaN":628}],628:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],553:[function(require,module,exports){
+},{}],629:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -47125,40 +58949,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":497}],554:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":562,"has":566}],555:[function(require,module,exports){
+},{"call-bind/callBound":573}],630:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -47168,14 +58959,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],556:[function(require,module,exports){
+},{}],631:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":640,"hasown":657}],632:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],557:[function(require,module,exports){
+},{}],633:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -47196,7 +59025,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],558:[function(require,module,exports){
+},{}],634:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":649}],635:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],636:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],637:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],638:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],639:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],640:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],641:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],642:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":640}],643:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":644,"./RequireObjectCoercible":642}],644:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],645:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -47243,56 +59163,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":559,"is-callable":569}],559:[function(require,module,exports){
+},{"./helpers/isPrimitive":646,"is-callable":660}],646:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],560:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -47304,21 +59256,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],561:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":560}],562:[function(require,module,exports){
+},{"./implementation":647}],649:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -47357,18 +59315,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -47376,6 +59340,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -47383,9 +59349,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -47396,10 +59362,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -47407,15 +59373,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -47425,11 +59391,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -47446,7 +59422,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -47457,6 +59433,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -47511,11 +59488,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -47571,6 +59549,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -47643,29 +59624,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":561,"has":566,"has-symbols":564}],563:[function(require,module,exports){
+},{"es-errors":636,"es-errors/eval":635,"es-errors/range":637,"es-errors/ref":638,"es-errors/syntax":639,"es-errors/type":640,"es-errors/uri":641,"function-bind":648,"has-proto":652,"has-symbols":653,"hasown":657}],650:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":649}],651:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -47678,7 +59666,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":562}],564:[function(require,module,exports){
+},{"es-define-property":634}],652:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],653:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -47693,7 +59698,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":565}],565:[function(require,module,exports){
+},{"./shams":654}],654:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -47737,14 +59742,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],566:[function(require,module,exports){
+},{}],655:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":654}],656:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":561}],567:[function(require,module,exports){
+},{"function-bind":648}],657:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":648}],658:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -47831,7 +59856,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],568:[function(require,module,exports){
+},{}],659:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -47860,7 +59885,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],569:[function(require,module,exports){
+},{}],660:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -47906,37 +59931,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],570:[function(require,module,exports){
+},{}],661:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":573,"has-tostringtag/shams":655}],662:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -48060,7 +60172,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":572}],571:[function(require,module,exports){
+},{"./isArguments":664}],663:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -48094,7 +60206,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":570,"./isArguments":572}],572:[function(require,module,exports){
+},{"./implementation":662,"./isArguments":664}],664:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -48113,7 +60225,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],573:[function(require,module,exports){
+},{}],665:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -48299,7 +60411,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],574:[function(require,module,exports){
+},{}],666:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -48332,7 +60444,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":573,"through":587,"timers":588}],575:[function(require,module,exports){
+},{"_process":665,"through":681,"timers":682}],667:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -48399,7 +60511,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":479}],576:[function(require,module,exports){
+},{"buffer":555}],668:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":573,"es-errors/type":640,"is-regex":661}],669:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":578,"es-errors/type":640,"get-intrinsic":649,"gopd":650,"has-property-descriptors":651}],670:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -48414,7 +60588,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":548,"function-bind":561}],577:[function(require,module,exports){
+},{"es-abstract/es5":626,"function-bind":648}],671:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -48434,7 +60608,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":576,"./polyfill":578,"./shim":579,"define-properties":502,"function-bind":561}],578:[function(require,module,exports){
+},{"./implementation":670,"./polyfill":672,"./shim":673,"define-properties":579,"function-bind":648}],672:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -48448,7 +60622,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":576}],579:[function(require,module,exports){
+},{"./implementation":670}],673:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -48460,7 +60634,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":578,"define-properties":502}],580:[function(require,module,exports){
+},{"./polyfill":672,"define-properties":579}],674:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -48757,7 +60931,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":575}],581:[function(require,module,exports){
+},{"safe-buffer":667}],675:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -48911,7 +61085,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":582,"./lib/results":584,"./lib/test":585,"_process":573,"defined":503,"through":587,"timers":588}],582:[function(require,module,exports){
+},{"./lib/default_stream":676,"./lib/results":678,"./lib/test":679,"_process":665,"defined":580,"through":681,"timers":682}],676:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -48946,7 +61120,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":573,"fs":478,"through":587}],583:[function(require,module,exports){
+},{"_process":665,"fs":554,"through":681}],677:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -48954,7 +61128,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":573,"timers":588}],584:[function(require,module,exports){
+},{"_process":665,"timers":682}],678:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -49145,7 +61319,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":573,"events":480,"function-bind":561,"has":566,"inherits":568,"object-inspect":586,"resumer":574,"through":587,"timers":588}],585:[function(require,module,exports){
+},{"_process":665,"events":556,"function-bind":648,"has":656,"inherits":659,"object-inspect":680,"resumer":666,"through":681,"timers":682}],679:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -49646,7 +61820,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":583,"deep-equal":499,"defined":503,"events":480,"has":566,"inherits":568,"path":481,"string.prototype.trim":577}],586:[function(require,module,exports){
+},{"./next_tick":677,"deep-equal":575,"defined":580,"events":556,"has":656,"inherits":659,"path":557,"string.prototype.trim":671}],680:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -49840,7 +62014,7 @@ function inspectString (str) {
     }
 }
 
-},{}],587:[function(require,module,exports){
+},{}],681:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -49952,7 +62126,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":573,"stream":482}],588:[function(require,module,exports){
+},{"_process":665,"stream":558}],682:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -50031,7 +62205,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":573,"timers":588}],589:[function(require,module,exports){
+},{"process/browser.js":665,"timers":682}],683:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -50102,4 +62276,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[359,360]);
+},{}]},{},[426,427]);

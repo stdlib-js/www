@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":29}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":32}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
-var builtin = require( './int16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-int16array-support":34}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -486,7 +486,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
-var builtin = require( './int32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-int32array-support":37}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -609,7 +609,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
-var builtin = require( './int8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-int8array-support":40}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -732,7 +732,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -750,7 +750,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+},{"./main.js":17,"./polyfill.js":18,"@stdlib/assert/has-uint16array-support":52}],17:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -789,36 +819,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],18:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -855,7 +855,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -873,7 +873,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+},{"./main.js":20,"./polyfill.js":21,"@stdlib/assert/has-uint32array-support":55}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -912,36 +942,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],21:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -978,7 +978,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -996,7 +996,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-uint8array-support":58}],23:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1035,36 +1065,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],24:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -1101,7 +1101,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' ); // eslint-disable-line id-length
-var builtin = require( './uint8clampedarray.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -1119,7 +1119,37 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-uint8clampedarray-support":61}],26:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1157,36 +1187,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],27:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],28:[function(require,module,exports){
 /**
@@ -1327,7 +1327,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":28,"@stdlib/assert/is-float32array":89,"@stdlib/constants/float64/pinf":225}],31:[function(require,module,exports){
+},{"./float32array.js":28,"@stdlib/assert/is-float32array":89,"@stdlib/constants/float64/pinf":223}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1605,7 +1605,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":35,"@stdlib/assert/is-int16array":95,"@stdlib/constants/int16/max":226,"@stdlib/constants/int16/min":227}],37:[function(require,module,exports){
+},{"./int16array.js":35,"@stdlib/assert/is-int16array":95,"@stdlib/constants/int16/max":224,"@stdlib/constants/int16/min":225}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1745,7 +1745,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":38,"@stdlib/assert/is-int32array":97,"@stdlib/constants/int32/max":228,"@stdlib/constants/int32/min":229}],40:[function(require,module,exports){
+},{"./int32array.js":38,"@stdlib/assert/is-int32array":97,"@stdlib/constants/int32/max":226,"@stdlib/constants/int32/min":227}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1885,7 +1885,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":41,"@stdlib/assert/is-int8array":99,"@stdlib/constants/int8/max":230,"@stdlib/constants/int8/min":231}],43:[function(require,module,exports){
+},{"./int8array.js":41,"@stdlib/assert/is-int8array":99,"@stdlib/constants/int8/max":228,"@stdlib/constants/int8/min":229}],43:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -1917,7 +1917,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":392}],44:[function(require,module,exports){
+},{"buffer":405}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,12 +1952,12 @@ module.exports = main;
 
 // MODULES //
 
-var hasNodeBufferSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasNodeBufferSupport;
+module.exports = main;
 
 },{"./main.js":45}],45:[function(require,module,exports){
 /**
@@ -2071,12 +2071,12 @@ module.exports = hasNodeBufferSupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":47}],47:[function(require,module,exports){
 /**
@@ -2179,12 +2179,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":49}],49:[function(require,module,exports){
 /**
@@ -2265,12 +2265,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":51}],51:[function(require,module,exports){
 /**
@@ -2434,7 +2434,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":155,"@stdlib/constants/uint16/max":232}],54:[function(require,module,exports){
+},{"./uint16array.js":54,"@stdlib/assert/is-uint16array":151,"@stdlib/constants/uint16/max":230}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2575,7 +2575,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":157,"@stdlib/constants/uint32/max":233}],57:[function(require,module,exports){
+},{"./uint32array.js":57,"@stdlib/assert/is-uint32array":153,"@stdlib/constants/uint32/max":231}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2716,7 +2716,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":159,"@stdlib/constants/uint8/max":234}],60:[function(require,module,exports){
+},{"./uint8array.js":60,"@stdlib/assert/is-uint8array":155,"@stdlib/constants/uint8/max":232}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2857,7 +2857,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":63,"@stdlib/assert/is-uint8clampedarray":161}],63:[function(require,module,exports){
+},{"./uint8clampedarray.js":63,"@stdlib/assert/is-uint8clampedarray":157}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3061,7 +3061,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":360}],67:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3131,7 +3131,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-enumerable-property":84,"@stdlib/constants/uint32/max":233,"@stdlib/math/base/assert/is-integer":242}],68:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-enumerable-property":84,"@stdlib/constants/uint32/max":231,"@stdlib/math/base/assert/is-integer":240}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3172,12 +3172,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArrayLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArrayLike;
+module.exports = main;
 
 },{"./main.js":69}],69:[function(require,module,exports){
 /**
@@ -3239,7 +3239,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":219,"@stdlib/math/base/assert/is-integer":242}],70:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":217,"@stdlib/math/base/assert/is-integer":240}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3277,12 +3277,12 @@ module.exports = isArrayLike;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":71}],71:[function(require,module,exports){
 /**
@@ -3349,7 +3349,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":360}],72:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3376,6 +3376,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -3385,7 +3386,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -3395,7 +3396,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -3408,22 +3409,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":73,"./object.js":74,"./primitive.js":75,"@stdlib/utils/define-nonenumerable-read-only-property":315}],73:[function(require,module,exports){
+},{"./main.js":73,"./object.js":74,"./primitive.js":75,"@stdlib/utils/define-nonenumerable-read-only-property":325}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3467,10 +3468,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -3508,6 +3513,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -3529,6 +3535,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -3550,7 +3558,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":77,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":360}],75:[function(require,module,exports){
+},{"./try2serialize.js":77,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/boolean/ctor":208,"@stdlib/utils/native-class":369}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3586,6 +3594,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -3739,12 +3749,12 @@ module.exports = true;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":80}],80:[function(require,module,exports){
 /**
@@ -3856,12 +3866,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":82}],82:[function(require,module,exports){
 /**
@@ -3922,7 +3932,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":220,"@stdlib/math/base/assert/is-integer":242}],83:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":218,"@stdlib/math/base/assert/is-integer":240}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4017,12 +4027,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":85}],85:[function(require,module,exports){
 /**
@@ -4106,7 +4116,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":83,"./native.js":86,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":149}],86:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":83,"./native.js":86,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":145}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4200,12 +4210,12 @@ module.exports = isEnumerableProperty;
 
 // MODULES //
 
-var isError = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isError;
+module.exports = main;
 
 },{"./main.js":88}],88:[function(require,module,exports){
 /**
@@ -4273,7 +4283,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":326,"@stdlib/utils/native-class":360}],89:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":335,"@stdlib/utils/native-class":369}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4377,7 +4387,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":360}],91:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4481,7 +4491,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":360}],93:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4520,12 +4530,12 @@ module.exports = isFloat64Array;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":94}],94:[function(require,module,exports){
 /**
@@ -4579,7 +4589,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":387}],95:[function(require,module,exports){
+},{"@stdlib/utils/type-of":400}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4683,7 +4693,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":360}],97:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4787,7 +4797,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":360}],99:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4891,7 +4901,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":360}],101:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4956,22 +4966,22 @@ module.exports = isInt8Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":103,"./object.js":104,"./primitive.js":105,"@stdlib/utils/define-nonenumerable-read-only-property":315}],102:[function(require,module,exports){
+},{"./main.js":103,"./object.js":104,"./primitive.js":105,"@stdlib/utils/define-nonenumerable-read-only-property":325}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5021,7 +5031,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":224,"@stdlib/constants/float64/pinf":225,"@stdlib/math/base/assert/is-integer":242}],103:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":222,"@stdlib/constants/float64/pinf":223,"@stdlib/math/base/assert/is-integer":240}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5411,22 +5421,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":315}],110:[function(require,module,exports){
+},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":325}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5541,7 +5551,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":244}],112:[function(require,module,exports){
+},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":242}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5600,7 +5610,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":244}],113:[function(require,module,exports){
+},{"@stdlib/assert/is-number":128,"@stdlib/math/base/assert/is-nan":242}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5641,12 +5651,12 @@ module.exports = isnan;
 
 // MODULES //
 
-var isNodeStreamLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNodeStreamLike;
+module.exports = main;
 
 },{"./main.js":114}],114:[function(require,module,exports){
 /**
@@ -5753,12 +5763,12 @@ module.exports = isNodeStreamLike;
 
 // MODULES //
 
-var isNodeWritableStreamLike = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNodeWritableStreamLike;
+module.exports = main;
 
 },{"./main.js":116}],116:[function(require,module,exports){
 /**
@@ -5886,18 +5896,24 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isNonNegativeInteger.isPrimitive );
+var isObjectArray = arrayfun( isNonNegativeInteger.isObject );
+
+
 // MAIN //
 
 var isNonNegativeIntegerArray = arrayfun( isNonNegativeInteger );
-setReadOnly( isNonNegativeIntegerArray, 'primitives', arrayfun( isNonNegativeInteger.isPrimitive ) );
-setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeInteger.isObject ) );
+setReadOnly( isNonNegativeIntegerArray, 'primitives', isPrimitiveArray );
+setReadOnly( isNonNegativeIntegerArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/assert/tools/array-like-function":166,"@stdlib/utils/define-nonenumerable-read-only-property":315}],118:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/assert/tools/array-like-function":161,"@stdlib/utils/define-nonenumerable-read-only-property":325}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5963,22 +5979,22 @@ module.exports = isNonNegativeIntegerArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":119,"./object.js":120,"./primitive.js":121,"@stdlib/utils/define-nonenumerable-read-only-property":315}],119:[function(require,module,exports){
+},{"./main.js":119,"./object.js":120,"./primitive.js":121,"@stdlib/utils/define-nonenumerable-read-only-property":325}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6216,22 +6232,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeNumber;
+module.exports = main;
 
-},{"./main.js":123,"./object.js":124,"./primitive.js":125,"@stdlib/utils/define-nonenumerable-read-only-property":315}],123:[function(require,module,exports){
+},{"./main.js":123,"./object.js":124,"./primitive.js":125,"@stdlib/utils/define-nonenumerable-read-only-property":325}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6440,12 +6456,12 @@ module.exports = isNonNegativeNumber;
 
 // MODULES //
 
-var isNull = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNull;
+module.exports = main;
 
 },{"./main.js":127}],127:[function(require,module,exports){
 /**
@@ -6556,22 +6572,22 @@ module.exports = isNull;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":129,"./object.js":130,"./primitive.js":131,"@stdlib/utils/define-nonenumerable-read-only-property":315}],129:[function(require,module,exports){
+},{"./main.js":129,"./object.js":130,"./primitive.js":131,"@stdlib/utils/define-nonenumerable-read-only-property":325}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6699,7 +6715,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":133,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":253,"@stdlib/utils/native-class":360}],131:[function(require,module,exports){
+},{"./try2serialize.js":133,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/number/ctor":251,"@stdlib/utils/native-class":369}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6783,7 +6799,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":253}],133:[function(require,module,exports){
+},{"@stdlib/number/ctor":251}],133:[function(require,module,exports){
 arguments[4][77][0].apply(exports,arguments)
 },{"./tostring.js":132,"dup":77}],134:[function(require,module,exports){
 /**
@@ -6837,19 +6853,24 @@ arguments[4][77][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":135,"@stdlib/assert/tools/array-function":164,"@stdlib/utils/define-nonenumerable-read-only-property":315}],135:[function(require,module,exports){
+},{"./main.js":135,"@stdlib/assert/tools/array-function":159,"@stdlib/utils/define-nonenumerable-read-only-property":325}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6938,12 +6959,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":137}],137:[function(require,module,exports){
 /**
@@ -7038,12 +7059,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":139}],139:[function(require,module,exports){
 /**
@@ -7159,7 +7180,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":93,"@stdlib/assert/is-object":136,"@stdlib/utils/get-prototype-of":326,"@stdlib/utils/native-class":360}],140:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-function":93,"@stdlib/assert/is-object":136,"@stdlib/utils/get-prototype-of":335,"@stdlib/utils/native-class":369}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7225,22 +7246,22 @@ module.exports = isPlainObject;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isPositiveInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isPositiveInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isPositiveInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isPositiveInteger;
+module.exports = main;
 
-},{"./main.js":141,"./object.js":142,"./primitive.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":315}],141:[function(require,module,exports){
+},{"./main.js":141,"./object.js":142,"./primitive.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":325}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7437,195 +7458,6 @@ module.exports = isPositiveInteger;
 
 'use strict';
 
-var exec = RegExp.prototype.exec; // non-generic
-
-
-// EXPORTS //
-
-module.exports = exec;
-
-},{}],145:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Test if a value is a regular expression.
-*
-* @module @stdlib/assert/is-regexp
-*
-* @example
-* var isRegExp = require( '@stdlib/assert/is-regexp' );
-*
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* bool = isRegExp( {} );
-* // returns false
-*/
-
-// MODULES //
-
-var isRegExp = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./main.js":146}],146:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2exec.js' );
-
-
-// VARIABLES //
-
-var FLG = hasToStringTag();
-
-
-// MAIN //
-
-/**
-* Tests if a value is a regular expression.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a regular expression
-*
-* @example
-* var bool = isRegExp( /\.+/ );
-* // returns true
-*
-* @example
-* var bool = isRegExp( {} );
-* // returns false
-*/
-function isRegExp( value ) {
-	if ( typeof value === 'object' ) {
-		if ( value instanceof RegExp ) {
-			return true;
-		}
-		if ( FLG ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object RegExp]' );
-	}
-	return false;
-}
-
-
-// EXPORTS //
-
-module.exports = isRegExp;
-
-},{"./try2exec.js":147,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":360}],147:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var exec = require( './exec.js' );
-
-
-// MAIN //
-
-/**
-* Attempts to call a `RegExp` method.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if able to call a `RegExp` method
-*/
-function test( value ) {
-	try {
-		exec.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./exec.js":144}],148:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
 /**
 * Test if a value is an array of strings.
 *
@@ -7666,18 +7498,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isString = require( '@stdlib/assert/is-string' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
 // MAIN //
 
 var isStringArray = arrayfun( isString );
-setReadOnly( isStringArray, 'primitives', arrayfun( isString.isPrimitive ) );
-setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/assert/tools/array-function":164,"@stdlib/utils/define-nonenumerable-read-only-property":315}],149:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/assert/tools/array-function":159,"@stdlib/utils/define-nonenumerable-read-only-property":325}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7737,22 +7575,22 @@ module.exports = isStringArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":150,"./object.js":151,"./primitive.js":152,"@stdlib/utils/define-nonenumerable-read-only-property":315}],150:[function(require,module,exports){
+},{"./main.js":146,"./object.js":147,"./primitive.js":148,"@stdlib/utils/define-nonenumerable-read-only-property":325}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7804,7 +7642,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":151,"./primitive.js":152}],151:[function(require,module,exports){
+},{"./object.js":147,"./primitive.js":148}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7871,7 +7709,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":153,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":360}],152:[function(require,module,exports){
+},{"./try2valueof.js":149,"@stdlib/assert/has-tostringtag-support":50,"@stdlib/utils/native-class":369}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7915,7 +7753,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],153:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7964,7 +7802,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":154}],154:[function(require,module,exports){
+},{"./valueof.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7993,7 +7831,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],155:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8038,7 +7876,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":156}],156:[function(require,module,exports){
+},{"./main.js":152}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8097,7 +7935,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":360}],157:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8142,7 +7980,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":158}],158:[function(require,module,exports){
+},{"./main.js":154}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8201,7 +8039,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":360}],159:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8246,7 +8084,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":160}],160:[function(require,module,exports){
+},{"./main.js":156}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8305,7 +8143,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":360}],161:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8350,7 +8188,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":162}],162:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8409,7 +8247,58 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":360}],163:[function(require,module,exports){
+},{"@stdlib/utils/native-class":369}],159:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":160}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8496,7 +8385,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":70,"@stdlib/string/format":292}],164:[function(require,module,exports){
+},{"@stdlib/assert/is-array":70,"@stdlib/string/format":304}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8518,18 +8407,18 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Return a function which tests if every element in an array-like object passes a test condition.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/assert/tools/array-like-function
 *
 * @example
 * var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
 *
 * var arr1 = [ 1, 3, 5, 7 ];
 * var arr2 = [ 3, 5, 8 ];
 *
-* var validate = arrayfcn( isOdd );
+* var validate = arraylikefcn( isOdd );
 *
 * var bool = validate( arr1 );
 * // returns true
@@ -8540,14 +8429,14 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":163}],165:[function(require,module,exports){
+},{"./main.js":162}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8634,7 +8523,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":68,"@stdlib/string/format":292}],166:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":68,"@stdlib/string/format":304}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8653,261 +8542,7 @@ module.exports = arraylikefcn;
 * limitations under the License.
 */
 
-'use strict';
-
-/**
-* Return a function which tests if every element in an array-like object passes a test condition.
-*
-* @module @stdlib/assert/tools/array-like-function
-*
-* @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
-*
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
-*
-* var validate = arraylikefcn( isOdd );
-*
-* var bool = validate( arr1 );
-* // returns true
-*
-* bool = validate( arr2 );
-* // returns false
-*/
-
-// MODULES //
-
-var arraylikefcn = require( './arraylikefcn.js' );
-
-
-// EXPORTS //
-
-module.exports = arraylikefcn;
-
-},{"./arraylikefcn.js":165}],167:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var TransformStream = require( '@stdlib/streams/node/transform' );
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var format = require( '@stdlib/string/format' );
-var createHarness = require( './harness' );
-var harness = require( './get_harness.js' );
-
-
-// VARIABLES //
-
-var listeners = [];
-
-
-// FUNCTIONS //
-
-/**
-* Callback invoked when a harness finishes running all benchmarks.
-*
-* @private
-*/
-function done() {
-	var len;
-	var f;
-	var i;
-
-	len = listeners.length;
-
-	// Inform all the listeners that the harness has finished...
-	for ( i = 0; i < len; i++ ) {
-		f = listeners.shift();
-		f();
-	}
-}
-
-/**
-* Creates a results stream.
-*
-* @private
-* @param {Options} [options] - stream options
-* @throws {Error} must provide valid stream options
-* @returns {TransformStream} results stream
-*/
-function createStream( options ) {
-	var stream;
-	var bench;
-	var opts;
-	if ( arguments.length ) {
-		opts = options;
-	} else {
-		opts = {};
-	}
-	// If we have already created a harness, calling this function simply creates another results stream...
-	if ( harness.cached ) {
-		bench = harness();
-		return bench.createStream( opts );
-	}
-	stream = new TransformStream( opts );
-	opts.stream = stream;
-
-	// Create a harness which uses the created output stream:
-	harness( opts, done );
-
-	return stream;
-}
-
-/**
-* Adds a listener for when a harness finishes running all benchmarks.
-*
-* @private
-* @param {Callback} clbk - listener
-* @throws {TypeError} must provide a function
-* @throws {Error} must provide a listener only once
-* @returns {void}
-*/
-function onFinish( clbk ) {
-	var i;
-	if ( !isFunction( clbk ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', clbk ) );
-	}
-	// Allow adding a listener only once...
-	for ( i = 0; i < listeners.length; i++ ) {
-		if ( clbk === listeners[ i ] ) {
-			throw new Error( 'invalid argument. Attempted to add duplicate listener.' );
-		}
-	}
-	listeners.push( clbk );
-}
-
-
-// MAIN //
-
-/**
-* Runs a benchmark.
-*
-* @param {string} name - benchmark name
-* @param {Options} [options] - benchmark options
-* @param {boolean} [options.skip=false] - boolean indicating whether to skip a benchmark
-* @param {(PositiveInteger|null)} [options.iterations=null] - number of iterations
-* @param {PositiveInteger} [options.repeats=3] - number of repeats
-* @param {PositiveInteger} [options.timeout=300000] - number of milliseconds before a benchmark automatically fails
-* @param {Function} [benchmark] - function containing benchmark code
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} must provide valid options
-* @throws {TypeError} benchmark argument must a function
-* @returns {Benchmark} benchmark harness
-*
-* @example
-* bench( 'beep', function benchmark( b ) {
-*     var x;
-*     var i;
-*     b.tic();
-*     for ( i = 0; i < b.iterations; i++ ) {
-*         x = Math.sin( Math.random() );
-*         if ( x !== x ) {
-*             b.ok( false, 'should not return NaN' );
-*         }
-*     }
-*     b.toc();
-*     if ( x !== x ) {
-*         b.ok( false, 'should not return NaN' );
-*     }
-*     b.end();
-* });
-*/
-function bench( name, options, benchmark ) {
-	var h = harness( done );
-	if ( arguments.length < 2 ) {
-		h( name );
-	} else if ( arguments.length === 2 ) {
-		h( name, options );
-	} else {
-		h( name, options, benchmark );
-	}
-	return bench;
-}
-
-/**
-* Creates a benchmark harness.
-*
-* @name createHarness
-* @memberof bench
-* @type {Function}
-* @param {Options} [options] - harness options
-* @param {Callback} [clbk] - callback to invoke when a harness finishes running all benchmarks
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} must provide valid options
-* @throws {TypeError} callback argument must be a function
-* @returns {Function} benchmark harness
-*/
-setReadOnly( bench, 'createHarness', createHarness );
-
-/**
-* Creates a results stream.
-*
-* @name createStream
-* @memberof bench
-* @type {Function}
-* @param {Options} [options] - stream options
-* @throws {Error} must provide valid stream options
-* @returns {TransformStream} results stream
-*/
-setReadOnly( bench, 'createStream', createStream );
-
-/**
-* Adds a listener for when a harness finishes running all benchmarks.
-*
-* @name onFinish
-* @memberof bench
-* @type {Function}
-* @param {Callback} clbk - listener
-* @throws {TypeError} must provide a function
-* @throws {Error} must provide a listener only once
-* @returns {void}
-*/
-setReadOnly( bench, 'onFinish', onFinish );
-
-
-// EXPORTS //
-
-module.exports = bench;
-
-},{"./get_harness.js":189,"./harness":190,"@stdlib/assert/is-function":93,"@stdlib/streams/node/transform":278,"@stdlib/string/format":292,"@stdlib/utils/define-nonenumerable-read-only-property":315}],168:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+/* eslint-disable no-invalid-this */
 
 'use strict';
 
@@ -8926,7 +8561,6 @@ var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 * @param {Options} opts - options
 */
 function assert( ok, opts ) {
-	/* eslint-disable no-invalid-this, no-unused-vars */ // TODO: remove no-unused-vars once `err` is used
 	var result;
 	var err;
 
@@ -8946,7 +8580,7 @@ function assert( ok, opts ) {
 	}
 	if ( !ok ) {
 		result.error = opts.error || new Error( this.name );
-		err = new Error( 'exception' );
+		err = new Error( 'not implemented' ); // eslint-disable-line no-unused-vars
 
 		// TODO: generate an exception in order to locate the calling function (https://github.com/substack/tape/blob/master/lib/test.js#L215)
 	}
@@ -8959,7 +8593,7 @@ function assert( ok, opts ) {
 
 module.exports = assert;
 
-},{"@stdlib/assert/has-own-property":46}],169:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8984,7 +8618,7 @@ module.exports = assert;
 
 module.exports = clearTimeout;
 
-},{}],170:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9007,8 +8641,8 @@ module.exports = clearTimeout;
 
 // MODULES //
 
-var trim = require( '@stdlib/string/trim' );
-var replace = require( '@stdlib/string/replace' );
+var trim = require( '@stdlib/string/base/trim' );
+var replace = require( '@stdlib/string/base/replace' );
 var EOL = require( '@stdlib/regexp/eol' ).REGEXP;
 
 
@@ -9043,7 +8677,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":262,"@stdlib/string/replace":297,"@stdlib/string/trim":299}],171:[function(require,module,exports){
+},{"@stdlib/regexp/eol":266,"@stdlib/string/base/replace":296,"@stdlib/string/base/trim":301}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9086,7 +8720,7 @@ function deepEqual( actual, expected, msg ) {
 
 module.exports = deepEqual;
 
-},{}],172:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9146,7 +8780,7 @@ function end() {
 
 module.exports = end;
 
-},{"./../utils/next_tick.js":209}],173:[function(require,module,exports){
+},{"./../utils/next_tick.js":205}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9185,7 +8819,7 @@ function ended() {
 
 module.exports = ended;
 
-},{}],174:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9231,7 +8865,7 @@ function equal( actual, expected, msg ) {
 
 module.exports = equal;
 
-},{}],175:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9283,7 +8917,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],176:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9325,7 +8959,7 @@ function fail( msg ) {
 
 module.exports = fail;
 
-},{}],177:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9702,7 +9336,7 @@ setReadOnly( Benchmark.prototype, 'end', end );
 
 module.exports = Benchmark;
 
-},{"./assert.js":168,"./comment.js":170,"./deep_equal.js":171,"./end.js":172,"./ended.js":173,"./equal.js":174,"./exit.js":175,"./fail.js":176,"./not_deep_equal.js":178,"./not_equal.js":179,"./not_ok.js":180,"./ok.js":181,"./pass.js":182,"./run.js":183,"./skip.js":185,"./todo.js":186,"@stdlib/time/tic":301,"@stdlib/time/toc":305,"@stdlib/utils/define-nonenumerable-read-only-property":315,"@stdlib/utils/define-property":320,"@stdlib/utils/inherit":339,"events":393}],178:[function(require,module,exports){
+},{"./assert.js":163,"./comment.js":165,"./deep_equal.js":166,"./end.js":167,"./ended.js":168,"./equal.js":169,"./exit.js":170,"./fail.js":171,"./not_deep_equal.js":173,"./not_equal.js":174,"./not_ok.js":175,"./ok.js":176,"./pass.js":177,"./run.js":178,"./skip.js":180,"./todo.js":181,"@stdlib/time/tic":311,"@stdlib/time/toc":315,"@stdlib/utils/define-nonenumerable-read-only-property":325,"@stdlib/utils/define-property":330,"@stdlib/utils/inherit":348,"events":406}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9745,7 +9379,7 @@ function notDeepEqual( actual, expected, msg ) {
 
 module.exports = notDeepEqual;
 
-},{}],179:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9791,7 +9425,7 @@ function notEqual( actual, expected, msg ) {
 
 module.exports = notEqual;
 
-},{}],180:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9836,7 +9470,7 @@ function notOk( value, msg ) {
 
 module.exports = notOk;
 
-},{}],181:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9881,7 +9515,7 @@ function ok( value, msg ) {
 
 module.exports = ok;
 
-},{}],182:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9923,7 +9557,7 @@ function pass( msg ) {
 
 module.exports = pass;
 
-},{}],183:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10004,7 +9638,7 @@ function run() {
 
 module.exports = run;
 
-},{"./clear_timeout.js":169,"./set_timeout.js":184}],184:[function(require,module,exports){
+},{"./clear_timeout.js":164,"./set_timeout.js":179}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10029,7 +9663,7 @@ module.exports = run;
 
 module.exports = setTimeout;
 
-},{}],185:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10073,7 +9707,7 @@ function skip( value, msg ) {
 
 module.exports = skip;
 
-},{}],186:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10117,7 +9751,7 @@ function todo( value, msg ) {
 
 module.exports = todo;
 
-},{}],187:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
 	"skip": false,
 	"iterations": null,
@@ -10125,7 +9759,7 @@ module.exports={
 	"timeout": 300000
 }
 
-},{}],188:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10316,7 +9950,7 @@ function createExitHarness() {
 
 module.exports = createExitHarness;
 
-},{"./harness":190,"./log":196,"./utils/can_emit_exit.js":207,"./utils/process.js":210,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-node-writable-stream-like":115,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":292,"@stdlib/utils/noop":367,"@stdlib/utils/omit":369,"@stdlib/utils/pick":371}],189:[function(require,module,exports){
+},{"./harness":185,"./log":191,"./utils/can_emit_exit.js":203,"./utils/process.js":206,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-node-writable-stream-like":115,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":304,"@stdlib/utils/noop":376,"@stdlib/utils/omit":378,"@stdlib/utils/pick":380}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10385,7 +10019,7 @@ function getHarness( options, clbk ) {
 
 module.exports = getHarness;
 
-},{"./exit_harness.js":188,"./utils/can_emit_exit.js":207}],190:[function(require,module,exports){
+},{"./exit_harness.js":183,"./utils/can_emit_exit.js":203}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10690,7 +10324,7 @@ function createHarness( options, clbk ) {
 
 module.exports = createHarness;
 
-},{"./../benchmark-class":177,"./../defaults.json":187,"./../runner":204,"./../utils/next_tick.js":209,"./init.js":191,"./validate.js":194,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":292,"@stdlib/utils/copy":311,"@stdlib/utils/define-nonenumerable-read-only-accessor":313,"@stdlib/utils/define-nonenumerable-read-only-property":315}],191:[function(require,module,exports){
+},{"./../benchmark-class":172,"./../defaults.json":182,"./../runner":200,"./../utils/next_tick.js":205,"./init.js":186,"./validate.js":189,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":304,"@stdlib/utils/copy":320,"@stdlib/utils/define-nonenumerable-read-only-accessor":323,"@stdlib/utils/define-nonenumerable-read-only-property":325}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10790,7 +10424,7 @@ function init( name, opts, benchmark, clbk ) {
 
 module.exports = init;
 
-},{"./iterations.js":192,"./pretest.js":193}],192:[function(require,module,exports){
+},{"./iterations.js":187,"./pretest.js":188}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10898,7 +10532,7 @@ function iterations( name, options, benchmark, clbk ) {
 
 module.exports = iterations;
 
-},{"./../benchmark-class":177,"@stdlib/assert/is-string":149,"@stdlib/utils/copy":311}],193:[function(require,module,exports){
+},{"./../benchmark-class":172,"@stdlib/assert/is-string":145,"@stdlib/utils/copy":320}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11021,7 +10655,7 @@ function pretest( name, options, benchmark, clbk ) {
 
 module.exports = pretest;
 
-},{"./../benchmark-class":177,"@stdlib/assert/is-string":149,"@stdlib/utils/copy":311}],194:[function(require,module,exports){
+},{"./../benchmark-class":172,"@stdlib/assert/is-string":145,"@stdlib/utils/copy":320}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11119,7 +10753,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-null":126,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-positive-integer":140,"@stdlib/string/format":292}],195:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-null":126,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-positive-integer":140,"@stdlib/string/format":304}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11168,14 +10802,14 @@ module.exports = validate;
 
 // MODULES //
 
-var bench = require( './bench.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = bench;
+module.exports = main;
 
-},{"./bench.js":167}],196:[function(require,module,exports){
+},{"./main.js":193}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11271,7 +10905,7 @@ function createStream() {
 
 module.exports = createStream;
 
-},{"./log.js":197,"@stdlib/streams/node/transform":278,"@stdlib/string/from-code-point":295}],197:[function(require,module,exports){
+},{"./log.js":192,"@stdlib/streams/node/transform":282,"@stdlib/string/from-code-point":307}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11309,7 +10943,212 @@ function log( str ) {
 
 module.exports = log;
 
-},{}],198:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var TransformStream = require( '@stdlib/streams/node/transform' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var format = require( '@stdlib/string/format' );
+var createHarness = require( './harness' );
+var harness = require( './get_harness.js' );
+
+
+// VARIABLES //
+
+var listeners = [];
+
+
+// FUNCTIONS //
+
+/**
+* Callback invoked when a harness finishes running all benchmarks.
+*
+* @private
+*/
+function done() {
+	var len;
+	var f;
+	var i;
+
+	len = listeners.length;
+
+	// Inform all the listeners that the harness has finished...
+	for ( i = 0; i < len; i++ ) {
+		f = listeners.shift();
+		f();
+	}
+}
+
+/**
+* Creates a results stream.
+*
+* @private
+* @param {Options} [options] - stream options
+* @throws {Error} must provide valid stream options
+* @returns {TransformStream} results stream
+*/
+function createStream( options ) {
+	var stream;
+	var bench;
+	var opts;
+	if ( arguments.length ) {
+		opts = options;
+	} else {
+		opts = {};
+	}
+	// If we have already created a harness, calling this function simply creates another results stream...
+	if ( harness.cached ) {
+		bench = harness();
+		return bench.createStream( opts );
+	}
+	stream = new TransformStream( opts );
+	opts.stream = stream;
+
+	// Create a harness which uses the created output stream:
+	harness( opts, done );
+
+	return stream;
+}
+
+/**
+* Adds a listener for when a harness finishes running all benchmarks.
+*
+* @private
+* @param {Callback} clbk - listener
+* @throws {TypeError} must provide a function
+* @throws {Error} must provide a listener only once
+* @returns {void}
+*/
+function onFinish( clbk ) {
+	var i;
+	if ( !isFunction( clbk ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', clbk ) );
+	}
+	// Allow adding a listener only once...
+	for ( i = 0; i < listeners.length; i++ ) {
+		if ( clbk === listeners[ i ] ) {
+			throw new Error( 'invalid argument. Attempted to add duplicate listener.' );
+		}
+	}
+	listeners.push( clbk );
+}
+
+
+// MAIN //
+
+/**
+* Runs a benchmark.
+*
+* @param {string} name - benchmark name
+* @param {Options} [options] - benchmark options
+* @param {boolean} [options.skip=false] - boolean indicating whether to skip a benchmark
+* @param {(PositiveInteger|null)} [options.iterations=null] - number of iterations
+* @param {PositiveInteger} [options.repeats=3] - number of repeats
+* @param {PositiveInteger} [options.timeout=300000] - number of milliseconds before a benchmark automatically fails
+* @param {Function} [benchmark] - function containing benchmark code
+* @throws {TypeError} first argument must be a string
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {TypeError} benchmark argument must a function
+* @returns {Benchmark} benchmark harness
+*
+* @example
+* bench( 'beep', function benchmark( b ) {
+*     var x;
+*     var i;
+*     b.tic();
+*     for ( i = 0; i < b.iterations; i++ ) {
+*         x = Math.sin( Math.random() );
+*         if ( x !== x ) {
+*             b.ok( false, 'should not return NaN' );
+*         }
+*     }
+*     b.toc();
+*     if ( x !== x ) {
+*         b.ok( false, 'should not return NaN' );
+*     }
+*     b.end();
+* });
+*/
+function bench( name, options, benchmark ) {
+	var h = harness( done );
+	if ( arguments.length < 2 ) {
+		h( name );
+	} else if ( arguments.length === 2 ) {
+		h( name, options );
+	} else {
+		h( name, options, benchmark );
+	}
+	return bench;
+}
+
+/**
+* Creates a benchmark harness.
+*
+* @name createHarness
+* @memberof bench
+* @type {Function}
+* @param {Options} [options] - harness options
+* @param {Callback} [clbk] - callback to invoke when a harness finishes running all benchmarks
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {TypeError} callback argument must be a function
+* @returns {Function} benchmark harness
+*/
+setReadOnly( bench, 'createHarness', createHarness );
+
+/**
+* Creates a results stream.
+*
+* @name createStream
+* @memberof bench
+* @type {Function}
+* @param {Options} [options] - stream options
+* @throws {Error} must provide valid stream options
+* @returns {TransformStream} results stream
+*/
+setReadOnly( bench, 'createStream', createStream );
+
+/**
+* Adds a listener for when a harness finishes running all benchmarks.
+*
+* @name onFinish
+* @memberof bench
+* @type {Function}
+* @param {Callback} clbk - listener
+* @throws {TypeError} must provide a function
+* @throws {Error} must provide a listener only once
+* @returns {void}
+*/
+setReadOnly( bench, 'onFinish', onFinish );
+
+
+// EXPORTS //
+
+module.exports = bench;
+
+},{"./get_harness.js":184,"./harness":185,"@stdlib/assert/is-function":93,"@stdlib/streams/node/transform":282,"@stdlib/string/format":304,"@stdlib/utils/define-nonenumerable-read-only-property":325}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11347,7 +11186,7 @@ function clear() {
 
 module.exports = clear;
 
-},{}],199:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11422,7 +11261,7 @@ function closeRunner() {
 
 module.exports = closeRunner;
 
-},{}],200:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11613,7 +11452,7 @@ function createStream( options ) {
 
 module.exports = createStream;
 
-},{"./../utils/next_tick.js":209,"@stdlib/assert/is-string":149,"@stdlib/streams/node/transform":278}],201:[function(require,module,exports){
+},{"./../utils/next_tick.js":205,"@stdlib/assert/is-string":145,"@stdlib/streams/node/transform":282}],197:[function(require,module,exports){
 /* eslint-disable stdlib/jsdoc-require-throws-tags */
 
 /**
@@ -11638,7 +11477,7 @@ module.exports = createStream;
 
 // MODULES //
 
-var replace = require( '@stdlib/string/replace' );
+var replace = require( '@stdlib/string/base/replace' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 var RE_EOL = require( '@stdlib/regexp/eol' ).REGEXP;
 
@@ -11736,7 +11575,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/regexp/eol":262,"@stdlib/string/replace":297}],202:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/regexp/eol":266,"@stdlib/string/base/replace":296}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11787,7 +11626,7 @@ function encodeResult( result ) {
 
 module.exports = encodeResult;
 
-},{}],203:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11842,7 +11681,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],204:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12060,7 +11899,7 @@ defineProperty( Runner.prototype, 'exit', {
 
 module.exports = Runner;
 
-},{"./clear.js":198,"./close.js":199,"./create_stream.js":200,"./exit.js":203,"./push.js":205,"./run.js":206,"@stdlib/streams/node/transform":278,"@stdlib/utils/define-property":320,"@stdlib/utils/inherit":339,"events":393}],205:[function(require,module,exports){
+},{"./clear.js":194,"./close.js":195,"./create_stream.js":196,"./exit.js":199,"./push.js":201,"./run.js":202,"@stdlib/streams/node/transform":282,"@stdlib/utils/define-property":330,"@stdlib/utils/inherit":348,"events":406}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12162,7 +12001,7 @@ function push( b ) {
 
 module.exports = push;
 
-},{"./encode_assertion.js":201,"./encode_result.js":202,"@stdlib/assert/is-string":149}],206:[function(require,module,exports){
+},{"./encode_assertion.js":197,"./encode_result.js":198,"@stdlib/assert/is-string":145}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12200,7 +12039,7 @@ function run() {
 
 module.exports = run;
 
-},{}],207:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12236,7 +12075,7 @@ var bool = ( !IS_BROWSER && canExit );
 
 module.exports = bool;
 
-},{"./can_exit.js":208,"@stdlib/assert/is-browser":78}],208:[function(require,module,exports){
+},{"./can_exit.js":204,"@stdlib/assert/is-browser":78}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12271,7 +12110,7 @@ var bool = ( proc && typeof proc.exit === 'function' );
 
 module.exports = bool;
 
-},{"./process.js":210}],209:[function(require,module,exports){
+},{"./process.js":206}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12305,7 +12144,6 @@ module.exports = bool;
 * -   Only API which is universal is `setTimeout`.
 * -   Note that `0` is not actually `0ms`. Browser environments commonly have a minimum delay of `4ms`. This is acceptable. Here, the main intent of this function is to give the runtime a chance to run garbage collection, clear state, and tend to any other pending tasks before returning control to benchmark tasks. The larger aim (attainable or not) is to provide each benchmark run with as much of a fresh state as possible.
 *
-*
 * @private
 * @param {Function} fcn - function to run upon a subsequent turn of the event loop
 */
@@ -12318,7 +12156,7 @@ function nextTick( fcn ) {
 
 module.exports = nextTick;
 
-},{}],210:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12348,7 +12186,7 @@ var proc = require( 'process' );
 
 module.exports = proc;
 
-},{"process":402}],211:[function(require,module,exports){
+},{"process":415}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12404,11 +12242,65 @@ var bench = require( '@stdlib/bench/harness' );
 
 module.exports = bench;
 
-},{"@stdlib/bench/harness":195}],212:[function(require,module,exports){
+},{"@stdlib/bench/harness":190}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":209}],209:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -12427,14 +12319,37 @@ module.exports = bench;
 
 // MAIN //
 
-var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = ctor;
+module.exports = Bool;
 
-},{"buffer":392}],213:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12470,7 +12385,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
-var main = require( './buffer.js' );
+var main = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -12488,7 +12403,37 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./buffer.js":212,"./polyfill.js":214,"@stdlib/assert/has-node-buffer-support":44}],214:[function(require,module,exports){
+},{"./main.js":211,"./polyfill.js":212,"@stdlib/assert/has-node-buffer-support":44}],211:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":405}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12527,7 +12472,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],215:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12563,7 +12508,7 @@ var bool = isFunction( Buffer.from );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":93,"@stdlib/buffer/ctor":213}],216:[function(require,module,exports){
+},{"@stdlib/assert/is-function":93,"@stdlib/buffer/ctor":210}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12621,7 +12566,7 @@ if ( hasFrom ) {
 
 module.exports = copyBuffer;
 
-},{"./has_from.js":215,"./main.js":217,"./polyfill.js":218}],217:[function(require,module,exports){
+},{"./has_from.js":213,"./main.js":215,"./polyfill.js":216}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12679,7 +12624,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":213,"@stdlib/string/format":292}],218:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":210,"@stdlib/string/format":304}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12737,7 +12682,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":213,"@stdlib/string/format":292}],219:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/buffer/ctor":210,"@stdlib/string/format":304}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12788,7 +12733,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],220:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12839,7 +12784,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],221:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12899,7 +12844,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],222:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12957,7 +12902,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],223:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13015,7 +12960,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],224:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13077,7 +13022,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":253}],225:[function(require,module,exports){
+},{"@stdlib/number/ctor":251}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13135,7 +13080,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],226:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13198,7 +13143,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],227:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13261,7 +13206,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],228:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13324,7 +13269,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],229:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13387,7 +13332,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],230:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13450,7 +13395,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],231:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13513,7 +13458,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],232:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13576,7 +13521,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],233:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13639,7 +13584,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],234:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13702,7 +13647,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],235:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13752,7 +13697,7 @@ var UNICODE_MAX_BMP = 0xFFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX_BMP;
 
-},{}],236:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13802,7 +13747,7 @@ var UNICODE_MAX = 0x10FFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX;
 
-},{}],237:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13859,9 +13804,10 @@ bench( pkg, function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":239,"./../package.json":241,"@stdlib/assert/is-string":149,"@stdlib/bench":211}],238:[function(require,module,exports){
-module.exports={"000":"@stdlib/array/base/arraylike2object","001":"@stdlib/array/base/copy","002":"@stdlib/array/base/filled-by","003":"@stdlib/array/base/filled","004":"@stdlib/array/base/incrspace","005":"@stdlib/array/base/linspace","006":"@stdlib/array/base/logspace","007":"@stdlib/array/base/ones","008":"@stdlib/array/base","009":"@stdlib/array/base/unitspace","00A":"@stdlib/array/base/zeros","00B":"@stdlib/array/buffer","00C":"@stdlib/array/complex128","00D":"@stdlib/array/complex64","00E":"@stdlib/array/convert-same","00F":"@stdlib/array/convert","00G":"@stdlib/array/ctors","00H":"@stdlib/array/dataview","00I":"@stdlib/array/datespace","00J":"@stdlib/array/dtype","00K":"@stdlib/array/dtypes","00L":"@stdlib/array/filled-by","00M":"@stdlib/array/filled","00N":"@stdlib/array/float32","00O":"@stdlib/array/float64","00P":"@stdlib/array/from-iterator","00Q":"@stdlib/array/full-like","00R":"@stdlib/array/full","00S":"@stdlib/array/incrspace","00T":"@stdlib/array/int16","00U":"@stdlib/array/int32","00V":"@stdlib/array/int8","00W":"@stdlib/array/linspace","00X":"@stdlib/array/logspace","00Y":"@stdlib/array/min-dtype","00Z":"@stdlib/array/next-dtype","00a":"@stdlib/array/ones-like","00b":"@stdlib/array/ones","00c":"@stdlib/array","00d":"@stdlib/array/pool","00e":"@stdlib/array/promotion-rules","00f":"@stdlib/array/reviver","00g":"@stdlib/array/safe-casts","00h":"@stdlib/array/same-kind-casts","00i":"@stdlib/array/shape","00j":"@stdlib/array/shared-buffer","00k":"@stdlib/array/to-circular-iterator","00l":"@stdlib/array/to-iterator-right","00m":"@stdlib/array/to-iterator","00n":"@stdlib/array/to-json","00o":"@stdlib/array/to-sparse-iterator-right","00p":"@stdlib/array/to-sparse-iterator","00q":"@stdlib/array/to-strided-iterator","00r":"@stdlib/array/to-view-iterator-right","00s":"@stdlib/array/to-view-iterator","00t":"@stdlib/array/typed-complex-ctors","00u":"@stdlib/array/typed-complex-dtypes","00v":"@stdlib/array/typed-complex","00w":"@stdlib/array/typed-ctors","00x":"@stdlib/array/typed-dtypes","00y":"@stdlib/array/typed-float-ctors","00z":"@stdlib/array/typed-float-dtypes","010":"@stdlib/array/typed-integer-ctors","011":"@stdlib/array/typed-integer-dtypes","012":"@stdlib/array/typed-real-ctors","013":"@stdlib/array/typed-real-dtypes","014":"@stdlib/array/typed-real-float-ctors","015":"@stdlib/array/typed-real-float-dtypes","016":"@stdlib/array/typed-real","017":"@stdlib/array/typed-signed-integer-ctors","018":"@stdlib/array/typed-signed-integer-dtypes","019":"@stdlib/array/typed-unsigned-integer-ctors","01A":"@stdlib/array/typed-unsigned-integer-dtypes","01B":"@stdlib/array/typed","01C":"@stdlib/array/uint16","01D":"@stdlib/array/uint32","01E":"@stdlib/array/uint8","01F":"@stdlib/array/uint8c","01G":"@stdlib/array/zeros-like","01H":"@stdlib/array/zeros","01I":"@stdlib/assert/contains","01J":"@stdlib/assert/deep-equal","01K":"@stdlib/assert/deep-has-own-property","01L":"@stdlib/assert/deep-has-property","01M":"@stdlib/assert/has-arraybuffer-support","01N":"@stdlib/assert/has-arrow-function-support","01O":"@stdlib/assert/has-async-await-support","01P":"@stdlib/assert/has-async-iterator-symbol-support","01Q":"@stdlib/assert/has-bigint-support","01R":"@stdlib/assert/has-bigint64array-support","01S":"@stdlib/assert/has-biguint64array-support","01T":"@stdlib/assert/has-class-support","01U":"@stdlib/assert/has-dataview-support","01V":"@stdlib/assert/has-define-properties-support","01W":"@stdlib/assert/has-define-property-support","01X":"@stdlib/assert/has-float32array-support","01Y":"@stdlib/assert/has-float64array-support","01Z":"@stdlib/assert/has-function-name-support","01a":"@stdlib/assert/has-generator-support","01b":"@stdlib/assert/has-globalthis-support","01c":"@stdlib/assert/has-int16array-support","01d":"@stdlib/assert/has-int32array-support","01e":"@stdlib/assert/has-int8array-support","01f":"@stdlib/assert/has-iterator-symbol-support","01g":"@stdlib/assert/has-map-support","01h":"@stdlib/assert/has-node-buffer-support","01i":"@stdlib/assert/has-own-property","01j":"@stdlib/assert/has-property","01k":"@stdlib/assert/has-proxy-support","01l":"@stdlib/assert/has-set-support","01m":"@stdlib/assert/has-sharedarraybuffer-support","01n":"@stdlib/assert/has-symbol-support","01o":"@stdlib/assert/has-tostringtag-support","01p":"@stdlib/assert/has-uint16array-support","01q":"@stdlib/assert/has-uint32array-support","01r":"@stdlib/assert/has-uint8array-support","01s":"@stdlib/assert/has-uint8clampedarray-support","01t":"@stdlib/assert/has-utf16-surrogate-pair-at","01u":"@stdlib/assert/has-wasm-support","01v":"@stdlib/assert/has-weakmap-support","01w":"@stdlib/assert/has-weakset-support","01x":"@stdlib/assert/instance-of","01y":"@stdlib/assert/is-absolute-http-uri","01z":"@stdlib/assert/is-absolute-path","020":"@stdlib/assert/is-absolute-uri","021":"@stdlib/assert/is-accessor-property-in","022":"@stdlib/assert/is-accessor-property","023":"@stdlib/assert/is-alphagram","024":"@stdlib/assert/is-alphanumeric","025":"@stdlib/assert/is-anagram","026":"@stdlib/assert/is-arguments","027":"@stdlib/assert/is-array-array","028":"@stdlib/assert/is-array-length","029":"@stdlib/assert/is-array-like-object","02A":"@stdlib/assert/is-array-like","02B":"@stdlib/assert/is-array","02C":"@stdlib/assert/is-arraybuffer-view","02D":"@stdlib/assert/is-arraybuffer","02E":"@stdlib/assert/is-arrow-function","02F":"@stdlib/assert/is-ascii","02G":"@stdlib/assert/is-between-array","02H":"@stdlib/assert/is-between","02I":"@stdlib/assert/is-big-endian","02J":"@stdlib/assert/is-bigint","02K":"@stdlib/assert/is-bigint64array","02L":"@stdlib/assert/is-biguint64array","02M":"@stdlib/assert/is-binary-string","02N":"@stdlib/assert/is-boolean-array","02O":"@stdlib/assert/is-boolean","02P":"@stdlib/assert/is-boxed-primitive","02Q":"@stdlib/assert/is-browser","02R":"@stdlib/assert/is-buffer","02S":"@stdlib/assert/is-capitalized","02T":"@stdlib/assert/is-centrosymmetric-matrix","02U":"@stdlib/assert/is-circular-array","02V":"@stdlib/assert/is-circular-plain-object","02W":"@stdlib/assert/is-circular","02X":"@stdlib/assert/is-class","02Y":"@stdlib/assert/is-collection","02Z":"@stdlib/assert/is-complex-like","02a":"@stdlib/assert/is-complex-typed-array-like","02b":"@stdlib/assert/is-complex-typed-array","02c":"@stdlib/assert/is-complex","02d":"@stdlib/assert/is-complex128","02e":"@stdlib/assert/is-complex128array","02f":"@stdlib/assert/is-complex64","02g":"@stdlib/assert/is-complex64array","02h":"@stdlib/assert/is-composite","02i":"@stdlib/assert/is-configurable-property-in","02j":"@stdlib/assert/is-configurable-property","02k":"@stdlib/assert/is-cube-number","02l":"@stdlib/assert/is-darwin","02m":"@stdlib/assert/is-data-property-in","02n":"@stdlib/assert/is-data-property","02o":"@stdlib/assert/is-dataview","02p":"@stdlib/assert/is-date-object-array","02q":"@stdlib/assert/is-date-object","02r":"@stdlib/assert/is-digit-string","02s":"@stdlib/assert/is-docker","02t":"@stdlib/assert/is-electron-main","02u":"@stdlib/assert/is-electron-renderer","02v":"@stdlib/assert/is-electron","02w":"@stdlib/assert/is-email-address","02x":"@stdlib/assert/is-empty-array-like-object","02y":"@stdlib/assert/is-empty-array","02z":"@stdlib/assert/is-empty-collection","030":"@stdlib/assert/is-empty-object","031":"@stdlib/assert/is-empty-string","032":"@stdlib/assert/is-enumerable-property-in","033":"@stdlib/assert/is-enumerable-property","034":"@stdlib/assert/is-error","035":"@stdlib/assert/is-eval-error","036":"@stdlib/assert/is-even","037":"@stdlib/assert/is-falsy-array","038":"@stdlib/assert/is-falsy","039":"@stdlib/assert/is-finite-array","03A":"@stdlib/assert/is-finite","03B":"@stdlib/assert/is-float32array","03C":"@stdlib/assert/is-float32matrix-like","03D":"@stdlib/assert/is-float32ndarray-like","03E":"@stdlib/assert/is-float32vector-like","03F":"@stdlib/assert/is-float64array","03G":"@stdlib/assert/is-float64matrix-like","03H":"@stdlib/assert/is-float64ndarray-like","03I":"@stdlib/assert/is-float64vector-like","03J":"@stdlib/assert/is-function-array","03K":"@stdlib/assert/is-function","03L":"@stdlib/assert/is-generator-object-like","03M":"@stdlib/assert/is-generator-object","03N":"@stdlib/assert/is-gzip-buffer","03O":"@stdlib/assert/is-hex-string","03P":"@stdlib/assert/is-infinite","03Q":"@stdlib/assert/is-inherited-property","03R":"@stdlib/assert/is-int16array","03S":"@stdlib/assert/is-int32array","03T":"@stdlib/assert/is-int8array","03U":"@stdlib/assert/is-integer-array","03V":"@stdlib/assert/is-integer","03W":"@stdlib/assert/is-iterable-like","03X":"@stdlib/assert/is-iterator-like","03Y":"@stdlib/assert/is-json","03Z":"@stdlib/assert/is-leap-year","03a":"@stdlib/assert/is-little-endian","03b":"@stdlib/assert/is-localhost","03c":"@stdlib/assert/is-lowercase","03d":"@stdlib/assert/is-matrix-like","03e":"@stdlib/assert/is-method-in","03f":"@stdlib/assert/is-method","03g":"@stdlib/assert/is-mobile","03h":"@stdlib/assert/is-named-typed-tuple-like","03i":"@stdlib/assert/is-nan-array","03j":"@stdlib/assert/is-nan","03k":"@stdlib/assert/is-native-function","03l":"@stdlib/assert/is-ndarray-like","03m":"@stdlib/assert/is-negative-integer-array","03n":"@stdlib/assert/is-negative-integer","03o":"@stdlib/assert/is-negative-number-array","03p":"@stdlib/assert/is-negative-number","03q":"@stdlib/assert/is-negative-zero","03r":"@stdlib/assert/is-node-builtin","03s":"@stdlib/assert/is-node-duplex-stream-like","03t":"@stdlib/assert/is-node-readable-stream-like","03u":"@stdlib/assert/is-node-repl","03v":"@stdlib/assert/is-node-stream-like","03w":"@stdlib/assert/is-node-transform-stream-like","03x":"@stdlib/assert/is-node-writable-stream-like","03y":"@stdlib/assert/is-node","03z":"@stdlib/assert/is-nonconfigurable-property-in","040":"@stdlib/assert/is-nonconfigurable-property","041":"@stdlib/assert/is-nonenumerable-property-in","042":"@stdlib/assert/is-nonenumerable-property","043":"@stdlib/assert/is-nonnegative-integer-array","044":"@stdlib/assert/is-nonnegative-integer","045":"@stdlib/assert/is-nonnegative-number-array","046":"@stdlib/assert/is-nonnegative-number","047":"@stdlib/assert/is-nonpositive-integer-array","048":"@stdlib/assert/is-nonpositive-integer","049":"@stdlib/assert/is-nonpositive-number-array","04A":"@stdlib/assert/is-nonpositive-number","04B":"@stdlib/assert/is-nonsymmetric-matrix","04C":"@stdlib/assert/is-null-array","04D":"@stdlib/assert/is-null","04E":"@stdlib/assert/is-number-array","04F":"@stdlib/assert/is-number","04G":"@stdlib/assert/is-numeric-array","04H":"@stdlib/assert/is-object-array","04I":"@stdlib/assert/is-object-like","04J":"@stdlib/assert/is-object","04K":"@stdlib/assert/is-odd","04L":"@stdlib/assert/is-persymmetric-matrix","04M":"@stdlib/assert/is-plain-object-array","04N":"@stdlib/assert/is-plain-object","04O":"@stdlib/assert/is-positive-integer-array","04P":"@stdlib/assert/is-positive-integer","04Q":"@stdlib/assert/is-positive-number-array","04R":"@stdlib/assert/is-positive-number","04S":"@stdlib/assert/is-positive-zero","04T":"@stdlib/assert/is-prime","04U":"@stdlib/assert/is-primitive-array","04V":"@stdlib/assert/is-primitive","04W":"@stdlib/assert/is-prng-like","04X":"@stdlib/assert/is-probability-array","04Y":"@stdlib/assert/is-probability","04Z":"@stdlib/assert/is-property-key","04a":"@stdlib/assert/is-prototype-of","04b":"@stdlib/assert/is-range-error","04c":"@stdlib/assert/is-read-only-property-in","04d":"@stdlib/assert/is-read-only-property","04e":"@stdlib/assert/is-read-write-property-in","04f":"@stdlib/assert/is-read-write-property","04g":"@stdlib/assert/is-readable-property-in","04h":"@stdlib/assert/is-readable-property","04i":"@stdlib/assert/is-reference-error","04j":"@stdlib/assert/is-regexp-string","04k":"@stdlib/assert/is-regexp","04l":"@stdlib/assert/is-relative-path","04m":"@stdlib/assert/is-relative-uri","04n":"@stdlib/assert/is-safe-integer-array","04o":"@stdlib/assert/is-safe-integer","04p":"@stdlib/assert/is-same-native-class","04q":"@stdlib/assert/is-same-type","04r":"@stdlib/assert/is-same-value-zero","04s":"@stdlib/assert/is-same-value","04t":"@stdlib/assert/is-sharedarraybuffer","04u":"@stdlib/assert/is-skew-centrosymmetric-matrix","04v":"@stdlib/assert/is-skew-persymmetric-matrix","04w":"@stdlib/assert/is-skew-symmetric-matrix","04x":"@stdlib/assert/is-square-matrix","04y":"@stdlib/assert/is-square-number","04z":"@stdlib/assert/is-square-triangular-number","050":"@stdlib/assert/is-strict-equal","051":"@stdlib/assert/is-string-array","052":"@stdlib/assert/is-string","053":"@stdlib/assert/is-symbol-array","054":"@stdlib/assert/is-symbol","055":"@stdlib/assert/is-symmetric-matrix","056":"@stdlib/assert/is-syntax-error","057":"@stdlib/assert/is-touch-device","058":"@stdlib/assert/is-triangular-number","059":"@stdlib/assert/is-truthy-array","05A":"@stdlib/assert/is-truthy","05B":"@stdlib/assert/is-type-error","05C":"@stdlib/assert/is-typed-array-length","05D":"@stdlib/assert/is-typed-array-like","05E":"@stdlib/assert/is-typed-array","05F":"@stdlib/assert/is-uint16array","05G":"@stdlib/assert/is-uint32array","05H":"@stdlib/assert/is-uint8array","05I":"@stdlib/assert/is-uint8clampedarray","05J":"@stdlib/assert/is-unc-path","05K":"@stdlib/assert/is-undefined-or-null","05L":"@stdlib/assert/is-undefined","05M":"@stdlib/assert/is-unity-probability-array","05N":"@stdlib/assert/is-uppercase","05O":"@stdlib/assert/is-uri-error","05P":"@stdlib/assert/is-uri","05Q":"@stdlib/assert/is-vector-like","05R":"@stdlib/assert/is-web-worker","05S":"@stdlib/assert/is-whitespace","05T":"@stdlib/assert/is-windows","05U":"@stdlib/assert/is-writable-property-in","05V":"@stdlib/assert/is-writable-property","05W":"@stdlib/assert/is-write-only-property-in","05X":"@stdlib/assert/is-write-only-property","05Y":"@stdlib/assert","05Z":"@stdlib/assert/tools/array-function","05a":"@stdlib/assert/tools/array-like-function","05b":"@stdlib/assert/tools","05c":"@stdlib/assert/tools/typed-array-function","05d":"@stdlib/bench/harness","05e":"@stdlib/bench","05f":"@stdlib/bigint/ctor","05g":"@stdlib/bigint","05h":"@stdlib/blas/base/ccopy","05i":"@stdlib/blas/base/cswap","05j":"@stdlib/blas/base/dasum","05k":"@stdlib/blas/base/daxpy","05l":"@stdlib/blas/base/dcopy","05m":"@stdlib/blas/base/ddot","05n":"@stdlib/blas/base/dnrm2","05o":"@stdlib/blas/base/dscal","05p":"@stdlib/blas/base/dsdot","05q":"@stdlib/blas/base/dswap","05r":"@stdlib/blas/base/gasum","05s":"@stdlib/blas/base/gaxpy","05t":"@stdlib/blas/base/gcopy","05u":"@stdlib/blas/base/gdot","05v":"@stdlib/blas/base/gnrm2","05w":"@stdlib/blas/base/gscal","05x":"@stdlib/blas/base/gswap","05y":"@stdlib/blas/base","05z":"@stdlib/blas/base/sasum","060":"@stdlib/blas/base/saxpy","061":"@stdlib/blas/base/scopy","062":"@stdlib/blas/base/sdot","063":"@stdlib/blas/base/sdsdot","064":"@stdlib/blas/base/snrm2","065":"@stdlib/blas/base/sscal","066":"@stdlib/blas/base/sswap","067":"@stdlib/blas/ddot","068":"@stdlib/blas/dswap","069":"@stdlib/blas/ext/base/dapx","06A":"@stdlib/blas/ext/base/dapxsum","06B":"@stdlib/blas/ext/base/dapxsumkbn","06C":"@stdlib/blas/ext/base/dapxsumkbn2","06D":"@stdlib/blas/ext/base/dapxsumors","06E":"@stdlib/blas/ext/base/dapxsumpw","06F":"@stdlib/blas/ext/base/dasumpw","06G":"@stdlib/blas/ext/base/dcusum","06H":"@stdlib/blas/ext/base/dcusumkbn","06I":"@stdlib/blas/ext/base/dcusumkbn2","06J":"@stdlib/blas/ext/base/dcusumors","06K":"@stdlib/blas/ext/base/dcusumpw","06L":"@stdlib/blas/ext/base/dfill","06M":"@stdlib/blas/ext/base/dnanasum","06N":"@stdlib/blas/ext/base/dnanasumors","06O":"@stdlib/blas/ext/base/dnannsum","06P":"@stdlib/blas/ext/base/dnannsumkbn","06Q":"@stdlib/blas/ext/base/dnannsumkbn2","06R":"@stdlib/blas/ext/base/dnannsumors","06S":"@stdlib/blas/ext/base/dnannsumpw","06T":"@stdlib/blas/ext/base/dnansum","06U":"@stdlib/blas/ext/base/dnansumkbn","06V":"@stdlib/blas/ext/base/dnansumkbn2","06W":"@stdlib/blas/ext/base/dnansumors","06X":"@stdlib/blas/ext/base/dnansumpw","06Y":"@stdlib/blas/ext/base/drev","06Z":"@stdlib/blas/ext/base/dsapxsum","06a":"@stdlib/blas/ext/base/dsapxsumpw","06b":"@stdlib/blas/ext/base/dsnannsumors","06c":"@stdlib/blas/ext/base/dsnansum","06d":"@stdlib/blas/ext/base/dsnansumors","06e":"@stdlib/blas/ext/base/dsnansumpw","06f":"@stdlib/blas/ext/base/dsort2hp","06g":"@stdlib/blas/ext/base/dsort2ins","06h":"@stdlib/blas/ext/base/dsort2sh","06i":"@stdlib/blas/ext/base/dsorthp","06j":"@stdlib/blas/ext/base/dsortins","06k":"@stdlib/blas/ext/base/dsortsh","06l":"@stdlib/blas/ext/base/dssum","06m":"@stdlib/blas/ext/base/dssumors","06n":"@stdlib/blas/ext/base/dssumpw","06o":"@stdlib/blas/ext/base/dsum","06p":"@stdlib/blas/ext/base/dsumkbn","06q":"@stdlib/blas/ext/base/dsumkbn2","06r":"@stdlib/blas/ext/base/dsumors","06s":"@stdlib/blas/ext/base/dsumpw","06t":"@stdlib/blas/ext/base/gapx","06u":"@stdlib/blas/ext/base/gapxsum","06v":"@stdlib/blas/ext/base/gapxsumkbn","06w":"@stdlib/blas/ext/base/gapxsumkbn2","06x":"@stdlib/blas/ext/base/gapxsumors","06y":"@stdlib/blas/ext/base/gapxsumpw","06z":"@stdlib/blas/ext/base/gasumpw","070":"@stdlib/blas/ext/base/gcusum","071":"@stdlib/blas/ext/base/gcusumkbn","072":"@stdlib/blas/ext/base/gcusumkbn2","073":"@stdlib/blas/ext/base/gcusumors","074":"@stdlib/blas/ext/base/gcusumpw","075":"@stdlib/blas/ext/base/gfill-by","076":"@stdlib/blas/ext/base/gfill","077":"@stdlib/blas/ext/base/gnannsumkbn","078":"@stdlib/blas/ext/base/gnansum","079":"@stdlib/blas/ext/base/gnansumkbn","07A":"@stdlib/blas/ext/base/gnansumkbn2","07B":"@stdlib/blas/ext/base/gnansumors","07C":"@stdlib/blas/ext/base/gnansumpw","07D":"@stdlib/blas/ext/base/grev","07E":"@stdlib/blas/ext/base/gsort2hp","07F":"@stdlib/blas/ext/base/gsort2ins","07G":"@stdlib/blas/ext/base/gsort2sh","07H":"@stdlib/blas/ext/base/gsorthp","07I":"@stdlib/blas/ext/base/gsortins","07J":"@stdlib/blas/ext/base/gsortsh","07K":"@stdlib/blas/ext/base/gsum","07L":"@stdlib/blas/ext/base/gsumkbn","07M":"@stdlib/blas/ext/base/gsumkbn2","07N":"@stdlib/blas/ext/base/gsumors","07O":"@stdlib/blas/ext/base/gsumpw","07P":"@stdlib/blas/ext/base","07Q":"@stdlib/blas/ext/base/sapx","07R":"@stdlib/blas/ext/base/sapxsum","07S":"@stdlib/blas/ext/base/sapxsumkbn","07T":"@stdlib/blas/ext/base/sapxsumkbn2","07U":"@stdlib/blas/ext/base/sapxsumors","07V":"@stdlib/blas/ext/base/sapxsumpw","07W":"@stdlib/blas/ext/base/sasumpw","07X":"@stdlib/blas/ext/base/scusum","07Y":"@stdlib/blas/ext/base/scusumkbn","07Z":"@stdlib/blas/ext/base/scusumkbn2","07a":"@stdlib/blas/ext/base/scusumors","07b":"@stdlib/blas/ext/base/scusumpw","07c":"@stdlib/blas/ext/base/sdsapxsum","07d":"@stdlib/blas/ext/base/sdsapxsumpw","07e":"@stdlib/blas/ext/base/sdsnansum","07f":"@stdlib/blas/ext/base/sdsnansumpw","07g":"@stdlib/blas/ext/base/sdssum","07h":"@stdlib/blas/ext/base/sdssumpw","07i":"@stdlib/blas/ext/base/sfill","07j":"@stdlib/blas/ext/base/snansum","07k":"@stdlib/blas/ext/base/snansumkbn","07l":"@stdlib/blas/ext/base/snansumkbn2","07m":"@stdlib/blas/ext/base/snansumors","07n":"@stdlib/blas/ext/base/snansumpw","07o":"@stdlib/blas/ext/base/srev","07p":"@stdlib/blas/ext/base/ssort2hp","07q":"@stdlib/blas/ext/base/ssort2ins","07r":"@stdlib/blas/ext/base/ssort2sh","07s":"@stdlib/blas/ext/base/ssorthp","07t":"@stdlib/blas/ext/base/ssortins","07u":"@stdlib/blas/ext/base/ssortsh","07v":"@stdlib/blas/ext/base/ssum","07w":"@stdlib/blas/ext/base/ssumkbn","07x":"@stdlib/blas/ext/base/ssumkbn2","07y":"@stdlib/blas/ext/base/ssumors","07z":"@stdlib/blas/ext/base/ssumpw","080":"@stdlib/blas/ext","081":"@stdlib/blas/gdot","082":"@stdlib/blas/gswap","083":"@stdlib/blas","084":"@stdlib/blas/sdot","085":"@stdlib/blas/sswap","086":"@stdlib/buffer/alloc-unsafe","087":"@stdlib/buffer/ctor","088":"@stdlib/buffer/from-array","089":"@stdlib/buffer/from-arraybuffer","08A":"@stdlib/buffer/from-buffer","08B":"@stdlib/buffer/from-string","08C":"@stdlib/buffer","08D":"@stdlib/buffer/reviver","08E":"@stdlib/buffer/to-json","08F":"@stdlib/cli/ctor","08G":"@stdlib/cli","08H":"@stdlib/complex/base/wrap-function","08I":"@stdlib/complex/cmplx","08J":"@stdlib/complex/conj","08K":"@stdlib/complex/conjf","08L":"@stdlib/complex/ctors","08M":"@stdlib/complex/dtype","08N":"@stdlib/complex/dtypes","08O":"@stdlib/complex/float32","08P":"@stdlib/complex/float64","08Q":"@stdlib/complex/imag","08R":"@stdlib/complex/imagf","08S":"@stdlib/complex","08T":"@stdlib/complex/promotion-rules","08U":"@stdlib/complex/real","08V":"@stdlib/complex/realf","08W":"@stdlib/complex/reim","08X":"@stdlib/complex/reimf","08Y":"@stdlib/complex/reviver-float32","08Z":"@stdlib/complex/reviver-float64","08a":"@stdlib/complex/reviver","08b":"@stdlib/constants/array/max-array-length","08c":"@stdlib/constants/array/max-typed-array-length","08d":"@stdlib/constants/array","08e":"@stdlib/constants/complex128/num-bytes","08f":"@stdlib/constants/complex128","08g":"@stdlib/constants/complex64/num-bytes","08h":"@stdlib/constants/complex64","08i":"@stdlib/constants/float16/cbrt-eps","08j":"@stdlib/constants/float16/eps","08k":"@stdlib/constants/float16/exponent-bias","08l":"@stdlib/constants/float16/max-safe-integer","08m":"@stdlib/constants/float16/max","08n":"@stdlib/constants/float16/min-safe-integer","08o":"@stdlib/constants/float16/ninf","08p":"@stdlib/constants/float16/num-bytes","08q":"@stdlib/constants/float16","08r":"@stdlib/constants/float16/pinf","08s":"@stdlib/constants/float16/precision","08t":"@stdlib/constants/float16/smallest-normal","08u":"@stdlib/constants/float16/smallest-subnormal","08v":"@stdlib/constants/float16/sqrt-eps","08w":"@stdlib/constants/float32/cbrt-eps","08x":"@stdlib/constants/float32/eps","08y":"@stdlib/constants/float32/exponent-bias","08z":"@stdlib/constants/float32/max-safe-integer","090":"@stdlib/constants/float32/max","091":"@stdlib/constants/float32/min-safe-integer","092":"@stdlib/constants/float32/ninf","093":"@stdlib/constants/float32/num-bytes","094":"@stdlib/constants/float32","095":"@stdlib/constants/float32/pinf","096":"@stdlib/constants/float32/precision","097":"@stdlib/constants/float32/smallest-normal","098":"@stdlib/constants/float32/smallest-subnormal","099":"@stdlib/constants/float32/sqrt-eps","09A":"@stdlib/constants/float64/apery","09B":"@stdlib/constants/float64/catalan","09C":"@stdlib/constants/float64/cbrt-eps","09D":"@stdlib/constants/float64/e","09E":"@stdlib/constants/float64/eps","09F":"@stdlib/constants/float64/eulergamma","09G":"@stdlib/constants/float64/exponent-bias","09H":"@stdlib/constants/float64/fourth-pi","09I":"@stdlib/constants/float64/fourth-root-eps","09J":"@stdlib/constants/float64/gamma-lanczos-g","09K":"@stdlib/constants/float64/glaisher-kinkelin","09L":"@stdlib/constants/float64/half-ln-two","09M":"@stdlib/constants/float64/half-pi","09N":"@stdlib/constants/float64/high-word-exponent-mask","09O":"@stdlib/constants/float64/high-word-significand-mask","09P":"@stdlib/constants/float64/ln-half","09Q":"@stdlib/constants/float64/ln-pi","09R":"@stdlib/constants/float64/ln-sqrt-two-pi","09S":"@stdlib/constants/float64/ln-ten","09T":"@stdlib/constants/float64/ln-two-pi","09U":"@stdlib/constants/float64/ln-two","09V":"@stdlib/constants/float64/log10-e","09W":"@stdlib/constants/float64/log2-e","09X":"@stdlib/constants/float64/max-base10-exponent-subnormal","09Y":"@stdlib/constants/float64/max-base10-exponent","09Z":"@stdlib/constants/float64/max-base2-exponent-subnormal","09a":"@stdlib/constants/float64/max-base2-exponent","09b":"@stdlib/constants/float64/max-ln","09c":"@stdlib/constants/float64/max-safe-fibonacci","09d":"@stdlib/constants/float64/max-safe-integer","09e":"@stdlib/constants/float64/max-safe-lucas","09f":"@stdlib/constants/float64/max-safe-nth-fibonacci","09g":"@stdlib/constants/float64/max-safe-nth-lucas","09h":"@stdlib/constants/float64/max","09i":"@stdlib/constants/float64/min-base10-exponent-subnormal","09j":"@stdlib/constants/float64/min-base10-exponent","09k":"@stdlib/constants/float64/min-base2-exponent-subnormal","09l":"@stdlib/constants/float64/min-base2-exponent","09m":"@stdlib/constants/float64/min-ln","09n":"@stdlib/constants/float64/min-safe-integer","09o":"@stdlib/constants/float64/ninf","09p":"@stdlib/constants/float64/num-bytes","09q":"@stdlib/constants/float64","09r":"@stdlib/constants/float64/phi","09s":"@stdlib/constants/float64/pi-squared","09t":"@stdlib/constants/float64/pi","09u":"@stdlib/constants/float64/pinf","09v":"@stdlib/constants/float64/precision","09w":"@stdlib/constants/float64/smallest-normal","09x":"@stdlib/constants/float64/smallest-subnormal","09y":"@stdlib/constants/float64/sqrt-eps","09z":"@stdlib/constants/float64/sqrt-half-pi","0A0":"@stdlib/constants/float64/sqrt-half","0A1":"@stdlib/constants/float64/sqrt-phi","0A2":"@stdlib/constants/float64/sqrt-pi","0A3":"@stdlib/constants/float64/sqrt-three","0A4":"@stdlib/constants/float64/sqrt-two-pi","0A5":"@stdlib/constants/float64/sqrt-two","0A6":"@stdlib/constants/float64/two-pi","0A7":"@stdlib/constants/int16/max","0A8":"@stdlib/constants/int16/min","0A9":"@stdlib/constants/int16/num-bytes","0AA":"@stdlib/constants/int16","0AB":"@stdlib/constants/int32/max","0AC":"@stdlib/constants/int32/min","0AD":"@stdlib/constants/int32/num-bytes","0AE":"@stdlib/constants/int32","0AF":"@stdlib/constants/int8/max","0AG":"@stdlib/constants/int8/min","0AH":"@stdlib/constants/int8/num-bytes","0AI":"@stdlib/constants/int8","0AJ":"@stdlib/constants","0AK":"@stdlib/constants/path/delimiter-posix","0AL":"@stdlib/constants/path/delimiter-win32","0AM":"@stdlib/constants/path/delimiter","0AN":"@stdlib/constants/path","0AO":"@stdlib/constants/path/sep-posix","0AP":"@stdlib/constants/path/sep-win32","0AQ":"@stdlib/constants/path/sep","0AR":"@stdlib/constants/time/hours-in-day","0AS":"@stdlib/constants/time/hours-in-week","0AT":"@stdlib/constants/time/milliseconds-in-day","0AU":"@stdlib/constants/time/milliseconds-in-hour","0AV":"@stdlib/constants/time/milliseconds-in-minute","0AW":"@stdlib/constants/time/milliseconds-in-second","0AX":"@stdlib/constants/time/milliseconds-in-week","0AY":"@stdlib/constants/time/minutes-in-day","0AZ":"@stdlib/constants/time/minutes-in-hour","0Aa":"@stdlib/constants/time/minutes-in-week","0Ab":"@stdlib/constants/time/months-in-year","0Ac":"@stdlib/constants/time","0Ad":"@stdlib/constants/time/seconds-in-day","0Ae":"@stdlib/constants/time/seconds-in-hour","0Af":"@stdlib/constants/time/seconds-in-minute","0Ag":"@stdlib/constants/time/seconds-in-week","0Ah":"@stdlib/constants/uint16/max","0Ai":"@stdlib/constants/uint16/num-bytes","0Aj":"@stdlib/constants/uint16","0Ak":"@stdlib/constants/uint32/max","0Al":"@stdlib/constants/uint32/num-bytes","0Am":"@stdlib/constants/uint32","0An":"@stdlib/constants/uint8/max","0Ao":"@stdlib/constants/uint8/num-bytes","0Ap":"@stdlib/constants/uint8","0Aq":"@stdlib/constants/unicode/max-bmp","0Ar":"@stdlib/constants/unicode/max","0As":"@stdlib/constants/unicode","0At":"@stdlib/datasets/afinn-111","0Au":"@stdlib/datasets/afinn-96","0Av":"@stdlib/datasets/anscombes-quartet","0Aw":"@stdlib/datasets/berndt-cps-wages-1985","0Ax":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","0Ay":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","0Az":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","0B0":"@stdlib/datasets/cmudict","0B1":"@stdlib/datasets/dale-chall-new","0B2":"@stdlib/datasets/emoji-code-picto","0B3":"@stdlib/datasets/emoji-picto-code","0B4":"@stdlib/datasets/emoji","0B5":"@stdlib/datasets/female-first-names-en","0B6":"@stdlib/datasets/fivethirtyeight-ffq","0B7":"@stdlib/datasets/frb-sf-wage-rigidity","0B8":"@stdlib/datasets/harrison-boston-house-prices-corrected","0B9":"@stdlib/datasets/harrison-boston-house-prices","0BA":"@stdlib/datasets/herndon-venus-semidiameters","0BB":"@stdlib/datasets/img-acanthus-mollis","0BC":"@stdlib/datasets/img-airplane-from-above","0BD":"@stdlib/datasets/img-allium-oreophilum","0BE":"@stdlib/datasets/img-black-canyon","0BF":"@stdlib/datasets/img-dust-bowl-home","0BG":"@stdlib/datasets/img-french-alpine-landscape","0BH":"@stdlib/datasets/img-locomotion-house-cat","0BI":"@stdlib/datasets/img-locomotion-nude-male","0BJ":"@stdlib/datasets/img-march-pastoral","0BK":"@stdlib/datasets/img-nagasaki-boats","0BL":"@stdlib/datasets/liu-negative-opinion-words-en","0BM":"@stdlib/datasets/liu-positive-opinion-words-en","0BN":"@stdlib/datasets/male-first-names-en","0BO":"@stdlib/datasets/minard-napoleons-march","0BP":"@stdlib/datasets/moby-dick","0BQ":"@stdlib/datasets/month-names-en","0BR":"@stdlib/datasets/nightingales-rose","0BS":"@stdlib/datasets/pace-boston-house-prices","0BT":"@stdlib/datasets","0BU":"@stdlib/datasets/primes-100k","0BV":"@stdlib/datasets/savoy-stopwords-fin","0BW":"@stdlib/datasets/savoy-stopwords-fr","0BX":"@stdlib/datasets/savoy-stopwords-ger","0BY":"@stdlib/datasets/savoy-stopwords-it","0BZ":"@stdlib/datasets/savoy-stopwords-por","0Ba":"@stdlib/datasets/savoy-stopwords-sp","0Bb":"@stdlib/datasets/savoy-stopwords-swe","0Bc":"@stdlib/datasets/sotu","0Bd":"@stdlib/datasets/spache-revised","0Be":"@stdlib/datasets/spam-assassin","0Bf":"@stdlib/datasets/ssa-us-births-2000-2014","0Bg":"@stdlib/datasets/standard-card-deck","0Bh":"@stdlib/datasets/stopwords-en","0Bi":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","0Bj":"@stdlib/datasets/suthaharan-single-hop-sensor-network","0Bk":"@stdlib/datasets/us-states-abbr","0Bl":"@stdlib/datasets/us-states-capitals-names","0Bm":"@stdlib/datasets/us-states-capitals","0Bn":"@stdlib/datasets/us-states-names-capitals","0Bo":"@stdlib/datasets/us-states-names","0Bp":"@stdlib/error","0Bq":"@stdlib/error/reviver","0Br":"@stdlib/error/to-json","0Bs":"@stdlib/error/tools/fmtprodmsg","0Bt":"@stdlib/error/tools/id2pkg","0Bu":"@stdlib/error/tools","0Bv":"@stdlib/error/tools/pkg2id","0Bw":"@stdlib/fs/close","0Bx":"@stdlib/fs/exists","0By":"@stdlib/fs/open","0Bz":"@stdlib/fs","0C0":"@stdlib/fs/read-dir","0C1":"@stdlib/fs/read-file-list","0C2":"@stdlib/fs/read-file","0C3":"@stdlib/fs/read-json","0C4":"@stdlib/fs/read-wasm","0C5":"@stdlib/fs/rename","0C6":"@stdlib/fs/resolve-parent-path-by","0C7":"@stdlib/fs/resolve-parent-path","0C8":"@stdlib/fs/unlink","0C9":"@stdlib/fs/write-file","0CA":"@stdlib/iter/advance","0CB":"@stdlib/iter/any-by","0CC":"@stdlib/iter/any","0CD":"@stdlib/iter/concat","0CE":"@stdlib/iter/constant","0CF":"@stdlib/iter/counter","0CG":"@stdlib/iter/datespace","0CH":"@stdlib/iter/dedupe-by","0CI":"@stdlib/iter/dedupe","0CJ":"@stdlib/iter/empty","0CK":"@stdlib/iter/every-by","0CL":"@stdlib/iter/every","0CM":"@stdlib/iter/fill","0CN":"@stdlib/iter/filter-map","0CO":"@stdlib/iter/filter","0CP":"@stdlib/iter/first","0CQ":"@stdlib/iter/flow","0CR":"@stdlib/iter/for-each","0CS":"@stdlib/iter/head","0CT":"@stdlib/iter/incrspace","0CU":"@stdlib/iter/intersection-by-hash","0CV":"@stdlib/iter/intersection","0CW":"@stdlib/iter/last","0CX":"@stdlib/iter/length","0CY":"@stdlib/iter/linspace","0CZ":"@stdlib/iter/logspace","0Ca":"@stdlib/iter/map","0Cb":"@stdlib/iter/mapn","0Cc":"@stdlib/iter/none-by","0Cd":"@stdlib/iter/none","0Ce":"@stdlib/iter/nth","0Cf":"@stdlib/iter","0Cg":"@stdlib/iter/pipeline-thunk","0Ch":"@stdlib/iter/pipeline","0Ci":"@stdlib/iter/pop","0Cj":"@stdlib/iter/push","0Ck":"@stdlib/iter/reject","0Cl":"@stdlib/iter/replicate-by","0Cm":"@stdlib/iter/replicate","0Cn":"@stdlib/iter/shift","0Co":"@stdlib/iter/slice","0Cp":"@stdlib/iter/some-by","0Cq":"@stdlib/iter/some","0Cr":"@stdlib/iter/step","0Cs":"@stdlib/iter/strided-by","0Ct":"@stdlib/iter/strided","0Cu":"@stdlib/iter/to-array-view-right","0Cv":"@stdlib/iter/to-array-view","0Cw":"@stdlib/iter/union","0Cx":"@stdlib/iter/unique-by-hash","0Cy":"@stdlib/iter/unique-by","0Cz":"@stdlib/iter/unique","0D0":"@stdlib/iter/unitspace","0D1":"@stdlib/iter/unshift","0D2":"@stdlib/math/base/assert/int32-is-even","0D3":"@stdlib/math/base/assert/int32-is-odd","0D4":"@stdlib/math/base/assert/is-composite","0D5":"@stdlib/math/base/assert/is-coprime","0D6":"@stdlib/math/base/assert/is-even","0D7":"@stdlib/math/base/assert/is-finite","0D8":"@stdlib/math/base/assert/is-finitef","0D9":"@stdlib/math/base/assert/is-infinite","0DA":"@stdlib/math/base/assert/is-infinitef","0DB":"@stdlib/math/base/assert/is-integer","0DC":"@stdlib/math/base/assert/is-nan","0DD":"@stdlib/math/base/assert/is-nanf","0DE":"@stdlib/math/base/assert/is-negative-integer","0DF":"@stdlib/math/base/assert/is-negative-zero","0DG":"@stdlib/math/base/assert/is-negative-zerof","0DH":"@stdlib/math/base/assert/is-nonnegative-integer","0DI":"@stdlib/math/base/assert/is-nonpositive-integer","0DJ":"@stdlib/math/base/assert/is-odd","0DK":"@stdlib/math/base/assert/is-positive-integer","0DL":"@stdlib/math/base/assert/is-positive-zero","0DM":"@stdlib/math/base/assert/is-positive-zerof","0DN":"@stdlib/math/base/assert/is-prime","0DO":"@stdlib/math/base/assert/is-probability","0DP":"@stdlib/math/base/assert/is-safe-integer","0DQ":"@stdlib/math/base/assert","0DR":"@stdlib/math/base/assert/uint32-is-pow2","0DS":"@stdlib/math/base/napi/binary","0DT":"@stdlib/math/base/napi","0DU":"@stdlib/math/base/napi/ternary","0DV":"@stdlib/math/base/napi/unary","0DW":"@stdlib/math/base/ops/add","0DX":"@stdlib/math/base/ops/addf","0DY":"@stdlib/math/base/ops/cadd","0DZ":"@stdlib/math/base/ops/caddf","0Da":"@stdlib/math/base/ops/cdiv","0Db":"@stdlib/math/base/ops/cmul","0Dc":"@stdlib/math/base/ops/cmulf","0Dd":"@stdlib/math/base/ops/cneg","0De":"@stdlib/math/base/ops/csub","0Df":"@stdlib/math/base/ops/csubf","0Dg":"@stdlib/math/base/ops/imul","0Dh":"@stdlib/math/base/ops/imuldw","0Di":"@stdlib/math/base/ops/mul","0Dj":"@stdlib/math/base/ops/mulf","0Dk":"@stdlib/math/base/ops","0Dl":"@stdlib/math/base/ops/sub","0Dm":"@stdlib/math/base/ops/subf","0Dn":"@stdlib/math/base/ops/umul","0Do":"@stdlib/math/base/ops/umuldw","0Dp":"@stdlib/math/base","0Dq":"@stdlib/math/base/special/abs","0Dr":"@stdlib/math/base/special/abs2","0Ds":"@stdlib/math/base/special/abs2f","0Dt":"@stdlib/math/base/special/absf","0Du":"@stdlib/math/base/special/acos","0Dv":"@stdlib/math/base/special/acosh","0Dw":"@stdlib/math/base/special/acot","0Dx":"@stdlib/math/base/special/acoth","0Dy":"@stdlib/math/base/special/acovercos","0Dz":"@stdlib/math/base/special/acoversin","0E0":"@stdlib/math/base/special/acsc","0E1":"@stdlib/math/base/special/acsch","0E2":"@stdlib/math/base/special/ahavercos","0E3":"@stdlib/math/base/special/ahaversin","0E4":"@stdlib/math/base/special/asech","0E5":"@stdlib/math/base/special/asin","0E6":"@stdlib/math/base/special/asinh","0E7":"@stdlib/math/base/special/atan","0E8":"@stdlib/math/base/special/atan2","0E9":"@stdlib/math/base/special/atanh","0EA":"@stdlib/math/base/special/avercos","0EB":"@stdlib/math/base/special/aversin","0EC":"@stdlib/math/base/special/bernoulli","0ED":"@stdlib/math/base/special/besselj0","0EE":"@stdlib/math/base/special/besselj1","0EF":"@stdlib/math/base/special/bessely0","0EG":"@stdlib/math/base/special/bessely1","0EH":"@stdlib/math/base/special/beta","0EI":"@stdlib/math/base/special/betainc","0EJ":"@stdlib/math/base/special/betaincinv","0EK":"@stdlib/math/base/special/betaln","0EL":"@stdlib/math/base/special/binet","0EM":"@stdlib/math/base/special/binomcoef","0EN":"@stdlib/math/base/special/binomcoefln","0EO":"@stdlib/math/base/special/boxcox","0EP":"@stdlib/math/base/special/boxcox1p","0EQ":"@stdlib/math/base/special/boxcox1pinv","0ER":"@stdlib/math/base/special/boxcoxinv","0ES":"@stdlib/math/base/special/cabs","0ET":"@stdlib/math/base/special/cabs2","0EU":"@stdlib/math/base/special/cabs2f","0EV":"@stdlib/math/base/special/cabsf","0EW":"@stdlib/math/base/special/cbrt","0EX":"@stdlib/math/base/special/cbrtf","0EY":"@stdlib/math/base/special/cceil","0EZ":"@stdlib/math/base/special/cceilf","0Ea":"@stdlib/math/base/special/cceiln","0Eb":"@stdlib/math/base/special/ccis","0Ec":"@stdlib/math/base/special/ceil","0Ed":"@stdlib/math/base/special/ceil10","0Ee":"@stdlib/math/base/special/ceil2","0Ef":"@stdlib/math/base/special/ceilb","0Eg":"@stdlib/math/base/special/ceilf","0Eh":"@stdlib/math/base/special/ceiln","0Ei":"@stdlib/math/base/special/ceilsd","0Ej":"@stdlib/math/base/special/cexp","0Ek":"@stdlib/math/base/special/cflipsign","0El":"@stdlib/math/base/special/cflipsignf","0Em":"@stdlib/math/base/special/cfloor","0En":"@stdlib/math/base/special/cfloorn","0Eo":"@stdlib/math/base/special/cidentity","0Ep":"@stdlib/math/base/special/cidentityf","0Eq":"@stdlib/math/base/special/cinv","0Er":"@stdlib/math/base/special/clamp","0Es":"@stdlib/math/base/special/clampf","0Et":"@stdlib/math/base/special/copysign","0Eu":"@stdlib/math/base/special/copysignf","0Ev":"@stdlib/math/base/special/cos","0Ew":"@stdlib/math/base/special/cosh","0Ex":"@stdlib/math/base/special/cosm1","0Ey":"@stdlib/math/base/special/cospi","0Ez":"@stdlib/math/base/special/cot","0F0":"@stdlib/math/base/special/coth","0F1":"@stdlib/math/base/special/covercos","0F2":"@stdlib/math/base/special/coversin","0F3":"@stdlib/math/base/special/cphase","0F4":"@stdlib/math/base/special/cpolar","0F5":"@stdlib/math/base/special/cround","0F6":"@stdlib/math/base/special/croundn","0F7":"@stdlib/math/base/special/csch","0F8":"@stdlib/math/base/special/csignum","0F9":"@stdlib/math/base/special/deg2rad","0FA":"@stdlib/math/base/special/deg2radf","0FB":"@stdlib/math/base/special/digamma","0FC":"@stdlib/math/base/special/dirac-delta","0FD":"@stdlib/math/base/special/dirichlet-eta","0FE":"@stdlib/math/base/special/ellipe","0FF":"@stdlib/math/base/special/ellipk","0FG":"@stdlib/math/base/special/erf","0FH":"@stdlib/math/base/special/erfc","0FI":"@stdlib/math/base/special/erfcinv","0FJ":"@stdlib/math/base/special/erfinv","0FK":"@stdlib/math/base/special/exp","0FL":"@stdlib/math/base/special/exp10","0FM":"@stdlib/math/base/special/exp2","0FN":"@stdlib/math/base/special/expit","0FO":"@stdlib/math/base/special/expm1","0FP":"@stdlib/math/base/special/expm1rel","0FQ":"@stdlib/math/base/special/factorial","0FR":"@stdlib/math/base/special/factorialln","0FS":"@stdlib/math/base/special/falling-factorial","0FT":"@stdlib/math/base/special/fast/abs","0FU":"@stdlib/math/base/special/fast/acosh","0FV":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","0FW":"@stdlib/math/base/special/fast/asinh","0FX":"@stdlib/math/base/special/fast/atanh","0FY":"@stdlib/math/base/special/fast/hypot","0FZ":"@stdlib/math/base/special/fast/max","0Fa":"@stdlib/math/base/special/fast/min","0Fb":"@stdlib/math/base/special/fast","0Fc":"@stdlib/math/base/special/fast/pow-int","0Fd":"@stdlib/math/base/special/fast/uint32-log2","0Fe":"@stdlib/math/base/special/fast/uint32-sqrt","0Ff":"@stdlib/math/base/special/fibonacci-index","0Fg":"@stdlib/math/base/special/fibonacci","0Fh":"@stdlib/math/base/special/flipsign","0Fi":"@stdlib/math/base/special/flipsignf","0Fj":"@stdlib/math/base/special/floor","0Fk":"@stdlib/math/base/special/floor10","0Fl":"@stdlib/math/base/special/floor2","0Fm":"@stdlib/math/base/special/floorb","0Fn":"@stdlib/math/base/special/floorf","0Fo":"@stdlib/math/base/special/floorn","0Fp":"@stdlib/math/base/special/floorsd","0Fq":"@stdlib/math/base/special/fresnel","0Fr":"@stdlib/math/base/special/fresnelc","0Fs":"@stdlib/math/base/special/fresnels","0Ft":"@stdlib/math/base/special/frexp","0Fu":"@stdlib/math/base/special/gamma-delta-ratio","0Fv":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","0Fw":"@stdlib/math/base/special/gamma-lanczos-sum","0Fx":"@stdlib/math/base/special/gamma","0Fy":"@stdlib/math/base/special/gamma1pm1","0Fz":"@stdlib/math/base/special/gammainc","0G0":"@stdlib/math/base/special/gammaincinv","0G1":"@stdlib/math/base/special/gammaln","0G2":"@stdlib/math/base/special/gcd","0G3":"@stdlib/math/base/special/hacovercos","0G4":"@stdlib/math/base/special/hacoversin","0G5":"@stdlib/math/base/special/havercos","0G6":"@stdlib/math/base/special/haversin","0G7":"@stdlib/math/base/special/heaviside","0G8":"@stdlib/math/base/special/hypot","0G9":"@stdlib/math/base/special/hypotf","0GA":"@stdlib/math/base/special/identity","0GB":"@stdlib/math/base/special/identityf","0GC":"@stdlib/math/base/special/inv","0GD":"@stdlib/math/base/special/invf","0GE":"@stdlib/math/base/special/kernel-betainc","0GF":"@stdlib/math/base/special/kernel-betaincinv","0GG":"@stdlib/math/base/special/kernel-cos","0GH":"@stdlib/math/base/special/kernel-sin","0GI":"@stdlib/math/base/special/kernel-tan","0GJ":"@stdlib/math/base/special/kronecker-delta","0GK":"@stdlib/math/base/special/kronecker-deltaf","0GL":"@stdlib/math/base/special/labs","0GM":"@stdlib/math/base/special/lcm","0GN":"@stdlib/math/base/special/ldexp","0GO":"@stdlib/math/base/special/ln","0GP":"@stdlib/math/base/special/log","0GQ":"@stdlib/math/base/special/log10","0GR":"@stdlib/math/base/special/log1mexp","0GS":"@stdlib/math/base/special/log1p","0GT":"@stdlib/math/base/special/log1pexp","0GU":"@stdlib/math/base/special/log2","0GV":"@stdlib/math/base/special/logaddexp","0GW":"@stdlib/math/base/special/logit","0GX":"@stdlib/math/base/special/lucas","0GY":"@stdlib/math/base/special/max","0GZ":"@stdlib/math/base/special/maxabs","0Ga":"@stdlib/math/base/special/min","0Gb":"@stdlib/math/base/special/minabs","0Gc":"@stdlib/math/base/special/minmax","0Gd":"@stdlib/math/base/special/minmaxabs","0Ge":"@stdlib/math/base/special/modf","0Gf":"@stdlib/math/base/special/negafibonacci","0Gg":"@stdlib/math/base/special/negalucas","0Gh":"@stdlib/math/base/special/nonfibonacci","0Gi":"@stdlib/math/base/special","0Gj":"@stdlib/math/base/special/pdiff","0Gk":"@stdlib/math/base/special/pdifff","0Gl":"@stdlib/math/base/special/polygamma","0Gm":"@stdlib/math/base/special/pow","0Gn":"@stdlib/math/base/special/powm1","0Go":"@stdlib/math/base/special/rad2deg","0Gp":"@stdlib/math/base/special/ramp","0Gq":"@stdlib/math/base/special/rampf","0Gr":"@stdlib/math/base/special/rempio2","0Gs":"@stdlib/math/base/special/riemann-zeta","0Gt":"@stdlib/math/base/special/rising-factorial","0Gu":"@stdlib/math/base/special/round","0Gv":"@stdlib/math/base/special/round10","0Gw":"@stdlib/math/base/special/round2","0Gx":"@stdlib/math/base/special/roundb","0Gy":"@stdlib/math/base/special/roundn","0Gz":"@stdlib/math/base/special/roundsd","0H0":"@stdlib/math/base/special/rsqrt","0H1":"@stdlib/math/base/special/rsqrtf","0H2":"@stdlib/math/base/special/sici","0H3":"@stdlib/math/base/special/signum","0H4":"@stdlib/math/base/special/signumf","0H5":"@stdlib/math/base/special/sin","0H6":"@stdlib/math/base/special/sinc","0H7":"@stdlib/math/base/special/sincos","0H8":"@stdlib/math/base/special/sincospi","0H9":"@stdlib/math/base/special/sinh","0HA":"@stdlib/math/base/special/sinpi","0HB":"@stdlib/math/base/special/spence","0HC":"@stdlib/math/base/special/sqrt","0HD":"@stdlib/math/base/special/sqrt1pm1","0HE":"@stdlib/math/base/special/sqrtf","0HF":"@stdlib/math/base/special/tan","0HG":"@stdlib/math/base/special/tanh","0HH":"@stdlib/math/base/special/tribonacci","0HI":"@stdlib/math/base/special/trigamma","0HJ":"@stdlib/math/base/special/trunc","0HK":"@stdlib/math/base/special/trunc10","0HL":"@stdlib/math/base/special/trunc2","0HM":"@stdlib/math/base/special/truncb","0HN":"@stdlib/math/base/special/truncf","0HO":"@stdlib/math/base/special/truncn","0HP":"@stdlib/math/base/special/truncsd","0HQ":"@stdlib/math/base/special/vercos","0HR":"@stdlib/math/base/special/versin","0HS":"@stdlib/math/base/special/wrap","0HT":"@stdlib/math/base/special/xlog1py","0HU":"@stdlib/math/base/special/xlogy","0HV":"@stdlib/math/base/tools/continued-fraction","0HW":"@stdlib/math/base/tools/evalpoly-compile","0HX":"@stdlib/math/base/tools/evalpoly","0HY":"@stdlib/math/base/tools/evalrational-compile","0HZ":"@stdlib/math/base/tools/evalrational","0Ha":"@stdlib/math/base/tools/fibpoly","0Hb":"@stdlib/math/base/tools/hermitepoly","0Hc":"@stdlib/math/base/tools/lucaspoly","0Hd":"@stdlib/math/base/tools/normhermitepoly","0He":"@stdlib/math/base/tools","0Hf":"@stdlib/math/base/tools/sum-series","0Hg":"@stdlib/math/base/utils/absolute-difference","0Hh":"@stdlib/math/base/utils/float64-epsilon-difference","0Hi":"@stdlib/math/base/utils","0Hj":"@stdlib/math/base/utils/relative-difference","0Hk":"@stdlib/math/iter/ops/add","0Hl":"@stdlib/math/iter/ops/divide","0Hm":"@stdlib/math/iter/ops/mod","0Hn":"@stdlib/math/iter/ops/multiply","0Ho":"@stdlib/math/iter/ops","0Hp":"@stdlib/math/iter/ops/subtract","0Hq":"@stdlib/math/iter","0Hr":"@stdlib/math/iter/sequences/composites","0Hs":"@stdlib/math/iter/sequences/continued-fraction","0Ht":"@stdlib/math/iter/sequences/cubes","0Hu":"@stdlib/math/iter/sequences/even-integers","0Hv":"@stdlib/math/iter/sequences/factorials","0Hw":"@stdlib/math/iter/sequences/fibonacci","0Hx":"@stdlib/math/iter/sequences/fifth-powers","0Hy":"@stdlib/math/iter/sequences/fourth-powers","0Hz":"@stdlib/math/iter/sequences/integers","0I0":"@stdlib/math/iter/sequences/lucas","0I1":"@stdlib/math/iter/sequences/negafibonacci","0I2":"@stdlib/math/iter/sequences/negalucas","0I3":"@stdlib/math/iter/sequences/negative-even-integers","0I4":"@stdlib/math/iter/sequences/negative-integers","0I5":"@stdlib/math/iter/sequences/negative-odd-integers","0I6":"@stdlib/math/iter/sequences/nonfibonacci","0I7":"@stdlib/math/iter/sequences/nonnegative-even-integers","0I8":"@stdlib/math/iter/sequences/nonnegative-integers","0I9":"@stdlib/math/iter/sequences/nonpositive-even-integers","0IA":"@stdlib/math/iter/sequences/nonpositive-integers","0IB":"@stdlib/math/iter/sequences/nonsquares","0IC":"@stdlib/math/iter/sequences/odd-integers","0ID":"@stdlib/math/iter/sequences","0IE":"@stdlib/math/iter/sequences/positive-even-integers","0IF":"@stdlib/math/iter/sequences/positive-integers","0IG":"@stdlib/math/iter/sequences/positive-odd-integers","0IH":"@stdlib/math/iter/sequences/primes","0II":"@stdlib/math/iter/sequences/squared-triangular","0IJ":"@stdlib/math/iter/sequences/squares","0IK":"@stdlib/math/iter/sequences/triangular","0IL":"@stdlib/math/iter/special/abs","0IM":"@stdlib/math/iter/special/abs2","0IN":"@stdlib/math/iter/special/acos","0IO":"@stdlib/math/iter/special/acosh","0IP":"@stdlib/math/iter/special/acot","0IQ":"@stdlib/math/iter/special/acoth","0IR":"@stdlib/math/iter/special/acovercos","0IS":"@stdlib/math/iter/special/acoversin","0IT":"@stdlib/math/iter/special/ahavercos","0IU":"@stdlib/math/iter/special/ahaversin","0IV":"@stdlib/math/iter/special/asin","0IW":"@stdlib/math/iter/special/asinh","0IX":"@stdlib/math/iter/special/atan","0IY":"@stdlib/math/iter/special/atan2","0IZ":"@stdlib/math/iter/special/atanh","0Ia":"@stdlib/math/iter/special/avercos","0Ib":"@stdlib/math/iter/special/aversin","0Ic":"@stdlib/math/iter/special/besselj0","0Id":"@stdlib/math/iter/special/besselj1","0Ie":"@stdlib/math/iter/special/bessely0","0If":"@stdlib/math/iter/special/bessely1","0Ig":"@stdlib/math/iter/special/beta","0Ih":"@stdlib/math/iter/special/betaln","0Ii":"@stdlib/math/iter/special/binet","0Ij":"@stdlib/math/iter/special/cbrt","0Ik":"@stdlib/math/iter/special/ceil","0Il":"@stdlib/math/iter/special/ceil10","0Im":"@stdlib/math/iter/special/ceil2","0In":"@stdlib/math/iter/special/cos","0Io":"@stdlib/math/iter/special/cosh","0Ip":"@stdlib/math/iter/special/cosm1","0Iq":"@stdlib/math/iter/special/cospi","0Ir":"@stdlib/math/iter/special/covercos","0Is":"@stdlib/math/iter/special/coversin","0It":"@stdlib/math/iter/special/deg2rad","0Iu":"@stdlib/math/iter/special/digamma","0Iv":"@stdlib/math/iter/special/dirac-delta","0Iw":"@stdlib/math/iter/special/dirichlet-eta","0Ix":"@stdlib/math/iter/special/ellipe","0Iy":"@stdlib/math/iter/special/ellipk","0Iz":"@stdlib/math/iter/special/erf","0J0":"@stdlib/math/iter/special/erfc","0J1":"@stdlib/math/iter/special/erfcinv","0J2":"@stdlib/math/iter/special/erfinv","0J3":"@stdlib/math/iter/special/exp","0J4":"@stdlib/math/iter/special/exp10","0J5":"@stdlib/math/iter/special/exp2","0J6":"@stdlib/math/iter/special/expit","0J7":"@stdlib/math/iter/special/expm1","0J8":"@stdlib/math/iter/special/expm1rel","0J9":"@stdlib/math/iter/special/factorial","0JA":"@stdlib/math/iter/special/factorialln","0JB":"@stdlib/math/iter/special/floor","0JC":"@stdlib/math/iter/special/floor10","0JD":"@stdlib/math/iter/special/floor2","0JE":"@stdlib/math/iter/special/fresnelc","0JF":"@stdlib/math/iter/special/fresnels","0JG":"@stdlib/math/iter/special/gamma","0JH":"@stdlib/math/iter/special/gamma1pm1","0JI":"@stdlib/math/iter/special/gammaln","0JJ":"@stdlib/math/iter/special/hacovercos","0JK":"@stdlib/math/iter/special/hacoversin","0JL":"@stdlib/math/iter/special/havercos","0JM":"@stdlib/math/iter/special/haversin","0JN":"@stdlib/math/iter/special/inv","0JO":"@stdlib/math/iter/special/ln","0JP":"@stdlib/math/iter/special/log","0JQ":"@stdlib/math/iter/special/log10","0JR":"@stdlib/math/iter/special/log1mexp","0JS":"@stdlib/math/iter/special/log1p","0JT":"@stdlib/math/iter/special/log1pexp","0JU":"@stdlib/math/iter/special/log2","0JV":"@stdlib/math/iter/special/logit","0JW":"@stdlib/math/iter/special","0JX":"@stdlib/math/iter/special/pow","0JY":"@stdlib/math/iter/special/rad2deg","0JZ":"@stdlib/math/iter/special/ramp","0Ja":"@stdlib/math/iter/special/riemann-zeta","0Jb":"@stdlib/math/iter/special/round","0Jc":"@stdlib/math/iter/special/round10","0Jd":"@stdlib/math/iter/special/round2","0Je":"@stdlib/math/iter/special/rsqrt","0Jf":"@stdlib/math/iter/special/signum","0Jg":"@stdlib/math/iter/special/sin","0Jh":"@stdlib/math/iter/special/sinc","0Ji":"@stdlib/math/iter/special/sinh","0Jj":"@stdlib/math/iter/special/sinpi","0Jk":"@stdlib/math/iter/special/spence","0Jl":"@stdlib/math/iter/special/sqrt","0Jm":"@stdlib/math/iter/special/sqrt1pm1","0Jn":"@stdlib/math/iter/special/tan","0Jo":"@stdlib/math/iter/special/tanh","0Jp":"@stdlib/math/iter/special/trigamma","0Jq":"@stdlib/math/iter/special/trunc","0Jr":"@stdlib/math/iter/special/trunc10","0Js":"@stdlib/math/iter/special/trunc2","0Jt":"@stdlib/math/iter/special/vercos","0Ju":"@stdlib/math/iter/special/versin","0Jv":"@stdlib/math/iter/tools/map","0Jw":"@stdlib/math/iter/tools/map2","0Jx":"@stdlib/math/iter/tools/map3","0Jy":"@stdlib/math/iter/tools","0Jz":"@stdlib/math/iter/utils/continued-fraction","0K0":"@stdlib/math/iter/utils","0K1":"@stdlib/math","0K2":"@stdlib/math/special/abs","0K3":"@stdlib/math/special","0K4":"@stdlib/math/strided/ops/add","0K5":"@stdlib/math/strided/ops/mul","0K6":"@stdlib/math/strided/ops","0K7":"@stdlib/math/strided/ops/sub","0K8":"@stdlib/math/strided","0K9":"@stdlib/math/strided/special/abs-by","0KA":"@stdlib/math/strided/special/abs","0KB":"@stdlib/math/strided/special/abs2-by","0KC":"@stdlib/math/strided/special/abs2","0KD":"@stdlib/math/strided/special/acos-by","0KE":"@stdlib/math/strided/special/acosh-by","0KF":"@stdlib/math/strided/special/acot-by","0KG":"@stdlib/math/strided/special/acoth-by","0KH":"@stdlib/math/strided/special/acovercos-by","0KI":"@stdlib/math/strided/special/acoversin-by","0KJ":"@stdlib/math/strided/special/ahavercos-by","0KK":"@stdlib/math/strided/special/ahaversin-by","0KL":"@stdlib/math/strided/special/asin-by","0KM":"@stdlib/math/strided/special/asinh-by","0KN":"@stdlib/math/strided/special/atan-by","0KO":"@stdlib/math/strided/special/atanh-by","0KP":"@stdlib/math/strided/special/avercos-by","0KQ":"@stdlib/math/strided/special/aversin-by","0KR":"@stdlib/math/strided/special/besselj0-by","0KS":"@stdlib/math/strided/special/besselj1-by","0KT":"@stdlib/math/strided/special/bessely0-by","0KU":"@stdlib/math/strided/special/bessely1-by","0KV":"@stdlib/math/strided/special/binet-by","0KW":"@stdlib/math/strided/special/cbrt","0KX":"@stdlib/math/strided/special/ceil","0KY":"@stdlib/math/strided/special/dabs","0KZ":"@stdlib/math/strided/special/dabs2","0Ka":"@stdlib/math/strided/special/dcbrt","0Kb":"@stdlib/math/strided/special/dceil","0Kc":"@stdlib/math/strided/special/ddeg2rad","0Kd":"@stdlib/math/strided/special/deg2rad","0Ke":"@stdlib/math/strided/special/dfloor","0Kf":"@stdlib/math/strided/special/dinv","0Kg":"@stdlib/math/strided/special/dmskabs","0Kh":"@stdlib/math/strided/special/dmskabs2","0Ki":"@stdlib/math/strided/special/dmskcbrt","0Kj":"@stdlib/math/strided/special/dmskceil","0Kk":"@stdlib/math/strided/special/dmskdeg2rad","0Kl":"@stdlib/math/strided/special/dmskfloor","0Km":"@stdlib/math/strided/special/dmskinv","0Kn":"@stdlib/math/strided/special/dmskramp","0Ko":"@stdlib/math/strided/special/dmskrsqrt","0Kp":"@stdlib/math/strided/special/dmsksqrt","0Kq":"@stdlib/math/strided/special/dmsktrunc","0Kr":"@stdlib/math/strided/special/dramp","0Ks":"@stdlib/math/strided/special/drsqrt","0Kt":"@stdlib/math/strided/special/dsqrt","0Ku":"@stdlib/math/strided/special/dtrunc","0Kv":"@stdlib/math/strided/special/floor","0Kw":"@stdlib/math/strided/special/inv","0Kx":"@stdlib/math/strided/special","0Ky":"@stdlib/math/strided/special/ramp","0Kz":"@stdlib/math/strided/special/rsqrt","0L0":"@stdlib/math/strided/special/sabs","0L1":"@stdlib/math/strided/special/sabs2","0L2":"@stdlib/math/strided/special/scbrt","0L3":"@stdlib/math/strided/special/sceil","0L4":"@stdlib/math/strided/special/sdeg2rad","0L5":"@stdlib/math/strided/special/sfloor","0L6":"@stdlib/math/strided/special/sinv","0L7":"@stdlib/math/strided/special/smskabs","0L8":"@stdlib/math/strided/special/smskabs2","0L9":"@stdlib/math/strided/special/smskcbrt","0LA":"@stdlib/math/strided/special/smskceil","0LB":"@stdlib/math/strided/special/smskdeg2rad","0LC":"@stdlib/math/strided/special/smskfloor","0LD":"@stdlib/math/strided/special/smskinv","0LE":"@stdlib/math/strided/special/smskramp","0LF":"@stdlib/math/strided/special/smskrsqrt","0LG":"@stdlib/math/strided/special/smsksqrt","0LH":"@stdlib/math/strided/special/smsktrunc","0LI":"@stdlib/math/strided/special/sqrt","0LJ":"@stdlib/math/strided/special/sramp","0LK":"@stdlib/math/strided/special/srsqrt","0LL":"@stdlib/math/strided/special/ssqrt","0LM":"@stdlib/math/strided/special/strunc","0LN":"@stdlib/math/strided/special/trunc","0LO":"@stdlib/math/tools","0LP":"@stdlib/math/tools/unary","0LQ":"@stdlib/ml/incr/binary-classification","0LR":"@stdlib/ml/incr/kmeans","0LS":"@stdlib/ml/incr","0LT":"@stdlib/ml/incr/sgd-regression","0LU":"@stdlib/ml","0LV":"@stdlib/namespace/alias2pkg","0LW":"@stdlib/namespace/alias2related","0LX":"@stdlib/namespace/alias2standalone","0LY":"@stdlib/namespace/aliases","0LZ":"@stdlib/namespace","0La":"@stdlib/namespace/pkg2alias","0Lb":"@stdlib/namespace/pkg2related","0Lc":"@stdlib/namespace/pkg2standalone","0Ld":"@stdlib/namespace/standalone2pkg","0Le":"@stdlib/ndarray/array","0Lf":"@stdlib/ndarray/base/assert/is-allowed-data-type-cast","0Lg":"@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape","0Lh":"@stdlib/ndarray/base/assert/is-buffer-length-compatible","0Li":"@stdlib/ndarray/base/assert/is-casting-mode","0Lj":"@stdlib/ndarray/base/assert/is-column-major-contiguous","0Lk":"@stdlib/ndarray/base/assert/is-column-major","0Ll":"@stdlib/ndarray/base/assert/is-contiguous","0Lm":"@stdlib/ndarray/base/assert/is-data-type","0Ln":"@stdlib/ndarray/base/assert/is-index-mode","0Lo":"@stdlib/ndarray/base/assert/is-order","0Lp":"@stdlib/ndarray/base/assert/is-read-only","0Lq":"@stdlib/ndarray/base/assert/is-row-major-contiguous","0Lr":"@stdlib/ndarray/base/assert/is-row-major","0Ls":"@stdlib/ndarray/base/assert/is-safe-data-type-cast","0Lt":"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast","0Lu":"@stdlib/ndarray/base/assert/is-single-segment-compatible","0Lv":"@stdlib/ndarray/base/assert","0Lw":"@stdlib/ndarray/base/bind2vind","0Lx":"@stdlib/ndarray/base/broadcast-array","0Ly":"@stdlib/ndarray/base/broadcast-shapes","0Lz":"@stdlib/ndarray/base/buffer-ctors","0M0":"@stdlib/ndarray/base/buffer-dtype-enum","0M1":"@stdlib/ndarray/base/buffer-dtype","0M2":"@stdlib/ndarray/base/buffer","0M3":"@stdlib/ndarray/base/bytes-per-element","0M4":"@stdlib/ndarray/base/char2dtype","0M5":"@stdlib/ndarray/base/clamp-index","0M6":"@stdlib/ndarray/base/ctor","0M7":"@stdlib/ndarray/base/dtype-char","0M8":"@stdlib/ndarray/base/dtype-desc","0M9":"@stdlib/ndarray/base/dtype-enum2str","0MA":"@stdlib/ndarray/base/dtype-resolve-enum","0MB":"@stdlib/ndarray/base/dtype-resolve-str","0MC":"@stdlib/ndarray/base/dtype-str2enum","0MD":"@stdlib/ndarray/base/dtype2c","0ME":"@stdlib/ndarray/base/dtypes2signatures","0MF":"@stdlib/ndarray/base/expand-dimensions","0MG":"@stdlib/ndarray/base/from-scalar","0MH":"@stdlib/ndarray/base/function-object","0MI":"@stdlib/ndarray/base/ind","0MJ":"@stdlib/ndarray/base/ind2sub","0MK":"@stdlib/ndarray/base/iteration-order","0ML":"@stdlib/ndarray/base/max-view-buffer-index","0MM":"@stdlib/ndarray/base/maybe-broadcast-array","0MN":"@stdlib/ndarray/base/meta-data-props","0MO":"@stdlib/ndarray/base/min-view-buffer-index","0MP":"@stdlib/ndarray/base/minmax-view-buffer-index","0MQ":"@stdlib/ndarray/base/napi/addon-arguments","0MR":"@stdlib/ndarray/base/napi/dtype-string-to-dtype","0MS":"@stdlib/ndarray/base/napi","0MT":"@stdlib/ndarray/base/napi/typedarray-type-to-dtype","0MU":"@stdlib/ndarray/base/napi/unary","0MV":"@stdlib/ndarray/base/ndarraylike2object","0MW":"@stdlib/ndarray/base/nonsingleton-dimensions","0MX":"@stdlib/ndarray/base/numel","0MY":"@stdlib/ndarray/base","0MZ":"@stdlib/ndarray/base/prepend-singleton-dimensions","0Ma":"@stdlib/ndarray/base/remove-singleton-dimensions","0Mb":"@stdlib/ndarray/base/serialize-meta-data","0Mc":"@stdlib/ndarray/base/shape2strides","0Md":"@stdlib/ndarray/base/singleton-dimensions","0Me":"@stdlib/ndarray/base/strides2offset","0Mf":"@stdlib/ndarray/base/strides2order","0Mg":"@stdlib/ndarray/base/sub2ind","0Mh":"@stdlib/ndarray/base/to-array","0Mi":"@stdlib/ndarray/base/transpose","0Mj":"@stdlib/ndarray/base/unary","0Mk":"@stdlib/ndarray/base/vind2bind","0Ml":"@stdlib/ndarray/base/wrap-index","0Mm":"@stdlib/ndarray/base/zeros-like","0Mn":"@stdlib/ndarray/base/zeros","0Mo":"@stdlib/ndarray/casting-modes","0Mp":"@stdlib/ndarray/ctor","0Mq":"@stdlib/ndarray/dispatch","0Mr":"@stdlib/ndarray/dtypes","0Ms":"@stdlib/ndarray/from-scalar","0Mt":"@stdlib/ndarray/ind2sub","0Mu":"@stdlib/ndarray/index-modes","0Mv":"@stdlib/ndarray/min-dtype","0Mw":"@stdlib/ndarray/next-dtype","0Mx":"@stdlib/ndarray/orders","0My":"@stdlib/ndarray","0Mz":"@stdlib/ndarray/promotion-rules","0N0":"@stdlib/ndarray/safe-casts","0N1":"@stdlib/ndarray/same-kind-casts","0N2":"@stdlib/ndarray/sub2ind","0N3":"@stdlib/ndarray/zeros-like","0N4":"@stdlib/ndarray/zeros","0N5":"@stdlib/net/disposable-http-server","0N6":"@stdlib/net/http-server","0N7":"@stdlib/net","0N8":"@stdlib/net/simple-http-server","0N9":"@stdlib/nlp/expand-contractions","0NA":"@stdlib/nlp/lda","0NB":"@stdlib/nlp","0NC":"@stdlib/nlp/porter-stemmer","0ND":"@stdlib/nlp/tokenize","0NE":"@stdlib/number/ctor","0NF":"@stdlib/number/float32/base/exponent","0NG":"@stdlib/number/float32/base/from-binary-string","0NH":"@stdlib/number/float32/base/from-word","0NI":"@stdlib/number/float32/base/normalize","0NJ":"@stdlib/number/float32/base","0NK":"@stdlib/number/float32/base/signbit","0NL":"@stdlib/number/float32/base/significand","0NM":"@stdlib/number/float32/base/to-binary-string","0NN":"@stdlib/number/float32/base/to-int32","0NO":"@stdlib/number/float32/base/to-uint32","0NP":"@stdlib/number/float32/base/to-word","0NQ":"@stdlib/number/float32","0NR":"@stdlib/number/float64/base/exponent","0NS":"@stdlib/number/float64/base/from-binary-string","0NT":"@stdlib/number/float64/base/from-int64-bytes","0NU":"@stdlib/number/float64/base/from-words","0NV":"@stdlib/number/float64/base/get-high-word","0NW":"@stdlib/number/float64/base/get-low-word","0NX":"@stdlib/number/float64/base/normalize","0NY":"@stdlib/number/float64/base","0NZ":"@stdlib/number/float64/base/set-high-word","0Na":"@stdlib/number/float64/base/set-low-word","0Nb":"@stdlib/number/float64/base/signbit","0Nc":"@stdlib/number/float64/base/to-binary-string","0Nd":"@stdlib/number/float64/base/to-float32","0Ne":"@stdlib/number/float64/base/to-int32","0Nf":"@stdlib/number/float64/base/to-int64-bytes","0Ng":"@stdlib/number/float64/base/to-uint32","0Nh":"@stdlib/number/float64/base/to-words","0Ni":"@stdlib/number/float64","0Nj":"@stdlib/number/int32/base","0Nk":"@stdlib/number/int32/base/to-uint32","0Nl":"@stdlib/number/int32","0Nm":"@stdlib/number","0Nn":"@stdlib/number/uint16/base/from-binary-string","0No":"@stdlib/number/uint16/base","0Np":"@stdlib/number/uint16/base/to-binary-string","0Nq":"@stdlib/number/uint16","0Nr":"@stdlib/number/uint32/base/from-binary-string","0Ns":"@stdlib/number/uint32/base","0Nt":"@stdlib/number/uint32/base/rotl","0Nu":"@stdlib/number/uint32/base/rotr","0Nv":"@stdlib/number/uint32/base/to-binary-string","0Nw":"@stdlib/number/uint32/base/to-int32","0Nx":"@stdlib/number/uint32","0Ny":"@stdlib/number/uint8/base/from-binary-string","0Nz":"@stdlib/number/uint8/base","0O0":"@stdlib/number/uint8/base/to-binary-string","0O1":"@stdlib/number/uint8","0O2":"@stdlib/os/arch","0O3":"@stdlib/os/byte-order","0O4":"@stdlib/os/configdir","0O5":"@stdlib/os/float-word-order","0O6":"@stdlib/os/homedir","0O7":"@stdlib/os/num-cpus","0O8":"@stdlib/os","0O9":"@stdlib/os/platform","0OA":"@stdlib/os/tmpdir","0OB":"@stdlib/plot/base/ctor","0OC":"@stdlib/plot/components/svg/annotations","0OD":"@stdlib/plot/components/svg/axis","0OE":"@stdlib/plot/components/svg/background","0OF":"@stdlib/plot/components/svg/canvas","0OG":"@stdlib/plot/components/svg/clip-path","0OH":"@stdlib/plot/components/svg/defs","0OI":"@stdlib/plot/components/svg/graph","0OJ":"@stdlib/plot/components/svg/marks","0OK":"@stdlib/plot/components/svg/path","0OL":"@stdlib/plot/components/svg/rug","0OM":"@stdlib/plot/components/svg/symbols","0ON":"@stdlib/plot/components/svg/title","0OO":"@stdlib/plot/ctor","0OP":"@stdlib/plot","0OQ":"@stdlib/plot/sparklines/base/ctor","0OR":"@stdlib/plot/sparklines/base","0OS":"@stdlib/plot/sparklines","0OT":"@stdlib/plot/sparklines/unicode/column","0OU":"@stdlib/plot/sparklines/unicode/line","0OV":"@stdlib/plot/sparklines/unicode","0OW":"@stdlib/plot/sparklines/unicode/tristate","0OX":"@stdlib/plot/sparklines/unicode/up-down","0OY":"@stdlib/plot/sparklines/unicode/win-loss","0OZ":"@stdlib/plot/unicode/stemleaf","0Oa":"@stdlib/process/argv","0Ob":"@stdlib/process/chdir","0Oc":"@stdlib/process/cwd","0Od":"@stdlib/process/env","0Oe":"@stdlib/process/exec-path","0Of":"@stdlib/process/getegid","0Og":"@stdlib/process/geteuid","0Oh":"@stdlib/process/getgid","0Oi":"@stdlib/process/getuid","0Oj":"@stdlib/process/node-version","0Ok":"@stdlib/process","0Ol":"@stdlib/process/read-stdin","0Om":"@stdlib/process/umask","0On":"@stdlib/proxy/ctor","0Oo":"@stdlib/proxy","0Op":"@stdlib/random/base/arcsine","0Oq":"@stdlib/random/base/bernoulli","0Or":"@stdlib/random/base/beta","0Os":"@stdlib/random/base/betaprime","0Ot":"@stdlib/random/base/binomial","0Ou":"@stdlib/random/base/box-muller","0Ov":"@stdlib/random/base/cauchy","0Ow":"@stdlib/random/base/chi","0Ox":"@stdlib/random/base/chisquare","0Oy":"@stdlib/random/base/cosine","0Oz":"@stdlib/random/base/discrete-uniform","0P0":"@stdlib/random/base/erlang","0P1":"@stdlib/random/base/exponential","0P2":"@stdlib/random/base/f","0P3":"@stdlib/random/base/frechet","0P4":"@stdlib/random/base/gamma","0P5":"@stdlib/random/base/geometric","0P6":"@stdlib/random/base/gumbel","0P7":"@stdlib/random/base/hypergeometric","0P8":"@stdlib/random/base/improved-ziggurat","0P9":"@stdlib/random/base/invgamma","0PA":"@stdlib/random/base/kumaraswamy","0PB":"@stdlib/random/base/laplace","0PC":"@stdlib/random/base/levy","0PD":"@stdlib/random/base/logistic","0PE":"@stdlib/random/base/lognormal","0PF":"@stdlib/random/base/minstd-shuffle","0PG":"@stdlib/random/base/minstd","0PH":"@stdlib/random/base/mt19937","0PI":"@stdlib/random/base/negative-binomial","0PJ":"@stdlib/random/base/normal","0PK":"@stdlib/random/base","0PL":"@stdlib/random/base/pareto-type1","0PM":"@stdlib/random/base/poisson","0PN":"@stdlib/random/base/randi","0PO":"@stdlib/random/base/randn","0PP":"@stdlib/random/base/randu","0PQ":"@stdlib/random/base/rayleigh","0PR":"@stdlib/random/base/reviver","0PS":"@stdlib/random/base/t","0PT":"@stdlib/random/base/triangular","0PU":"@stdlib/random/base/uniform","0PV":"@stdlib/random/base/weibull","0PW":"@stdlib/random/iter/arcsine","0PX":"@stdlib/random/iter/bernoulli","0PY":"@stdlib/random/iter/beta","0PZ":"@stdlib/random/iter/betaprime","0Pa":"@stdlib/random/iter/binomial","0Pb":"@stdlib/random/iter/box-muller","0Pc":"@stdlib/random/iter/cauchy","0Pd":"@stdlib/random/iter/chi","0Pe":"@stdlib/random/iter/chisquare","0Pf":"@stdlib/random/iter/cosine","0Pg":"@stdlib/random/iter/discrete-uniform","0Ph":"@stdlib/random/iter/erlang","0Pi":"@stdlib/random/iter/exponential","0Pj":"@stdlib/random/iter/f","0Pk":"@stdlib/random/iter/frechet","0Pl":"@stdlib/random/iter/gamma","0Pm":"@stdlib/random/iter/geometric","0Pn":"@stdlib/random/iter/gumbel","0Po":"@stdlib/random/iter/hypergeometric","0Pp":"@stdlib/random/iter/improved-ziggurat","0Pq":"@stdlib/random/iter/invgamma","0Pr":"@stdlib/random/iter/kumaraswamy","0Ps":"@stdlib/random/iter/laplace","0Pt":"@stdlib/random/iter/levy","0Pu":"@stdlib/random/iter/logistic","0Pv":"@stdlib/random/iter/lognormal","0Pw":"@stdlib/random/iter/minstd-shuffle","0Px":"@stdlib/random/iter/minstd","0Py":"@stdlib/random/iter/mt19937","0Pz":"@stdlib/random/iter/negative-binomial","0Q0":"@stdlib/random/iter/normal","0Q1":"@stdlib/random/iter","0Q2":"@stdlib/random/iter/pareto-type1","0Q3":"@stdlib/random/iter/poisson","0Q4":"@stdlib/random/iter/randi","0Q5":"@stdlib/random/iter/randn","0Q6":"@stdlib/random/iter/randu","0Q7":"@stdlib/random/iter/rayleigh","0Q8":"@stdlib/random/iter/t","0Q9":"@stdlib/random/iter/triangular","0QA":"@stdlib/random/iter/uniform","0QB":"@stdlib/random/iter/weibull","0QC":"@stdlib/random","0QD":"@stdlib/random/sample","0QE":"@stdlib/random/shuffle","0QF":"@stdlib/random/streams/arcsine","0QG":"@stdlib/random/streams/bernoulli","0QH":"@stdlib/random/streams/beta","0QI":"@stdlib/random/streams/betaprime","0QJ":"@stdlib/random/streams/binomial","0QK":"@stdlib/random/streams/box-muller","0QL":"@stdlib/random/streams/cauchy","0QM":"@stdlib/random/streams/chi","0QN":"@stdlib/random/streams/chisquare","0QO":"@stdlib/random/streams/cosine","0QP":"@stdlib/random/streams/discrete-uniform","0QQ":"@stdlib/random/streams/erlang","0QR":"@stdlib/random/streams/exponential","0QS":"@stdlib/random/streams/f","0QT":"@stdlib/random/streams/frechet","0QU":"@stdlib/random/streams/gamma","0QV":"@stdlib/random/streams/geometric","0QW":"@stdlib/random/streams/gumbel","0QX":"@stdlib/random/streams/hypergeometric","0QY":"@stdlib/random/streams/improved-ziggurat","0QZ":"@stdlib/random/streams/invgamma","0Qa":"@stdlib/random/streams/kumaraswamy","0Qb":"@stdlib/random/streams/laplace","0Qc":"@stdlib/random/streams/levy","0Qd":"@stdlib/random/streams/logistic","0Qe":"@stdlib/random/streams/lognormal","0Qf":"@stdlib/random/streams/minstd-shuffle","0Qg":"@stdlib/random/streams/minstd","0Qh":"@stdlib/random/streams/mt19937","0Qi":"@stdlib/random/streams/negative-binomial","0Qj":"@stdlib/random/streams/normal","0Qk":"@stdlib/random/streams","0Ql":"@stdlib/random/streams/pareto-type1","0Qm":"@stdlib/random/streams/poisson","0Qn":"@stdlib/random/streams/randi","0Qo":"@stdlib/random/streams/randn","0Qp":"@stdlib/random/streams/randu","0Qq":"@stdlib/random/streams/rayleigh","0Qr":"@stdlib/random/streams/t","0Qs":"@stdlib/random/streams/triangular","0Qt":"@stdlib/random/streams/uniform","0Qu":"@stdlib/random/streams/weibull","0Qv":"@stdlib/regexp/basename-posix","0Qw":"@stdlib/regexp/basename-windows","0Qx":"@stdlib/regexp/basename","0Qy":"@stdlib/regexp/color-hexadecimal","0Qz":"@stdlib/regexp/decimal-number","0R0":"@stdlib/regexp/dirname-posix","0R1":"@stdlib/regexp/dirname-windows","0R2":"@stdlib/regexp/dirname","0R3":"@stdlib/regexp/eol","0R4":"@stdlib/regexp/extended-length-path","0R5":"@stdlib/regexp/extname-posix","0R6":"@stdlib/regexp/extname-windows","0R7":"@stdlib/regexp/extname","0R8":"@stdlib/regexp/filename-posix","0R9":"@stdlib/regexp/filename-windows","0RA":"@stdlib/regexp/filename","0RB":"@stdlib/regexp/function-name","0RC":"@stdlib/regexp/native-function","0RD":"@stdlib/regexp","0RE":"@stdlib/regexp/regexp","0RF":"@stdlib/regexp/unc-path","0RG":"@stdlib/regexp/utf16-surrogate-pair","0RH":"@stdlib/regexp/utf16-unpaired-surrogate","0RI":"@stdlib/regexp/whitespace","0RJ":"@stdlib/repl/code-blocks","0RK":"@stdlib/repl/help","0RL":"@stdlib/repl/info","0RM":"@stdlib/repl","0RN":"@stdlib/repl/presentation","0RO":"@stdlib/repl/server","0RP":"@stdlib/repl/signature","0RQ":"@stdlib/repl/typed-signature","0RR":"@stdlib/simulate/iter/awgn","0RS":"@stdlib/simulate/iter/awln","0RT":"@stdlib/simulate/iter/awun","0RU":"@stdlib/simulate/iter/bartlett-hann-pulse","0RV":"@stdlib/simulate/iter/bartlett-pulse","0RW":"@stdlib/simulate/iter/cosine-wave","0RX":"@stdlib/simulate/iter/dirac-comb","0RY":"@stdlib/simulate/iter/flat-top-pulse","0RZ":"@stdlib/simulate/iter/hann-pulse","0Ra":"@stdlib/simulate/iter/lanczos-pulse","0Rb":"@stdlib/simulate/iter","0Rc":"@stdlib/simulate/iter/periodic-sinc","0Rd":"@stdlib/simulate/iter/pulse","0Re":"@stdlib/simulate/iter/sawtooth-wave","0Rf":"@stdlib/simulate/iter/sine-wave","0Rg":"@stdlib/simulate/iter/square-wave","0Rh":"@stdlib/simulate/iter/triangle-wave","0Ri":"@stdlib/simulate","0Rj":"@stdlib/stats/anova1","0Rk":"@stdlib/stats/bartlett-test","0Rl":"@stdlib/stats/base/cumax","0Rm":"@stdlib/stats/base/cumaxabs","0Rn":"@stdlib/stats/base/cumin","0Ro":"@stdlib/stats/base/cuminabs","0Rp":"@stdlib/stats/base/dcumax","0Rq":"@stdlib/stats/base/dcumaxabs","0Rr":"@stdlib/stats/base/dcumin","0Rs":"@stdlib/stats/base/dcuminabs","0Rt":"@stdlib/stats/base/dists/arcsine/cdf","0Ru":"@stdlib/stats/base/dists/arcsine/ctor","0Rv":"@stdlib/stats/base/dists/arcsine/entropy","0Rw":"@stdlib/stats/base/dists/arcsine/kurtosis","0Rx":"@stdlib/stats/base/dists/arcsine/logcdf","0Ry":"@stdlib/stats/base/dists/arcsine/logpdf","0Rz":"@stdlib/stats/base/dists/arcsine/mean","0S0":"@stdlib/stats/base/dists/arcsine/median","0S1":"@stdlib/stats/base/dists/arcsine/mode","0S2":"@stdlib/stats/base/dists/arcsine","0S3":"@stdlib/stats/base/dists/arcsine/pdf","0S4":"@stdlib/stats/base/dists/arcsine/quantile","0S5":"@stdlib/stats/base/dists/arcsine/skewness","0S6":"@stdlib/stats/base/dists/arcsine/stdev","0S7":"@stdlib/stats/base/dists/arcsine/variance","0S8":"@stdlib/stats/base/dists/bernoulli/cdf","0S9":"@stdlib/stats/base/dists/bernoulli/ctor","0SA":"@stdlib/stats/base/dists/bernoulli/entropy","0SB":"@stdlib/stats/base/dists/bernoulli/kurtosis","0SC":"@stdlib/stats/base/dists/bernoulli/mean","0SD":"@stdlib/stats/base/dists/bernoulli/median","0SE":"@stdlib/stats/base/dists/bernoulli/mgf","0SF":"@stdlib/stats/base/dists/bernoulli/mode","0SG":"@stdlib/stats/base/dists/bernoulli","0SH":"@stdlib/stats/base/dists/bernoulli/pmf","0SI":"@stdlib/stats/base/dists/bernoulli/quantile","0SJ":"@stdlib/stats/base/dists/bernoulli/skewness","0SK":"@stdlib/stats/base/dists/bernoulli/stdev","0SL":"@stdlib/stats/base/dists/bernoulli/variance","0SM":"@stdlib/stats/base/dists/beta/cdf","0SN":"@stdlib/stats/base/dists/beta/ctor","0SO":"@stdlib/stats/base/dists/beta/entropy","0SP":"@stdlib/stats/base/dists/beta/kurtosis","0SQ":"@stdlib/stats/base/dists/beta/logcdf","0SR":"@stdlib/stats/base/dists/beta/logpdf","0SS":"@stdlib/stats/base/dists/beta/mean","0ST":"@stdlib/stats/base/dists/beta/median","0SU":"@stdlib/stats/base/dists/beta/mgf","0SV":"@stdlib/stats/base/dists/beta/mode","0SW":"@stdlib/stats/base/dists/beta","0SX":"@stdlib/stats/base/dists/beta/pdf","0SY":"@stdlib/stats/base/dists/beta/quantile","0SZ":"@stdlib/stats/base/dists/beta/skewness","0Sa":"@stdlib/stats/base/dists/beta/stdev","0Sb":"@stdlib/stats/base/dists/beta/variance","0Sc":"@stdlib/stats/base/dists/betaprime/cdf","0Sd":"@stdlib/stats/base/dists/betaprime/ctor","0Se":"@stdlib/stats/base/dists/betaprime/kurtosis","0Sf":"@stdlib/stats/base/dists/betaprime/logcdf","0Sg":"@stdlib/stats/base/dists/betaprime/logpdf","0Sh":"@stdlib/stats/base/dists/betaprime/mean","0Si":"@stdlib/stats/base/dists/betaprime/mode","0Sj":"@stdlib/stats/base/dists/betaprime","0Sk":"@stdlib/stats/base/dists/betaprime/pdf","0Sl":"@stdlib/stats/base/dists/betaprime/quantile","0Sm":"@stdlib/stats/base/dists/betaprime/skewness","0Sn":"@stdlib/stats/base/dists/betaprime/stdev","0So":"@stdlib/stats/base/dists/betaprime/variance","0Sp":"@stdlib/stats/base/dists/binomial/cdf","0Sq":"@stdlib/stats/base/dists/binomial/ctor","0Sr":"@stdlib/stats/base/dists/binomial/entropy","0Ss":"@stdlib/stats/base/dists/binomial/kurtosis","0St":"@stdlib/stats/base/dists/binomial/logpmf","0Su":"@stdlib/stats/base/dists/binomial/mean","0Sv":"@stdlib/stats/base/dists/binomial/median","0Sw":"@stdlib/stats/base/dists/binomial/mgf","0Sx":"@stdlib/stats/base/dists/binomial/mode","0Sy":"@stdlib/stats/base/dists/binomial","0Sz":"@stdlib/stats/base/dists/binomial/pmf","0T0":"@stdlib/stats/base/dists/binomial/quantile","0T1":"@stdlib/stats/base/dists/binomial/skewness","0T2":"@stdlib/stats/base/dists/binomial/stdev","0T3":"@stdlib/stats/base/dists/binomial/variance","0T4":"@stdlib/stats/base/dists/cauchy/cdf","0T5":"@stdlib/stats/base/dists/cauchy/ctor","0T6":"@stdlib/stats/base/dists/cauchy/entropy","0T7":"@stdlib/stats/base/dists/cauchy/logcdf","0T8":"@stdlib/stats/base/dists/cauchy/logpdf","0T9":"@stdlib/stats/base/dists/cauchy/median","0TA":"@stdlib/stats/base/dists/cauchy/mode","0TB":"@stdlib/stats/base/dists/cauchy","0TC":"@stdlib/stats/base/dists/cauchy/pdf","0TD":"@stdlib/stats/base/dists/cauchy/quantile","0TE":"@stdlib/stats/base/dists/chi/cdf","0TF":"@stdlib/stats/base/dists/chi/ctor","0TG":"@stdlib/stats/base/dists/chi/entropy","0TH":"@stdlib/stats/base/dists/chi/kurtosis","0TI":"@stdlib/stats/base/dists/chi/logpdf","0TJ":"@stdlib/stats/base/dists/chi/mean","0TK":"@stdlib/stats/base/dists/chi/mode","0TL":"@stdlib/stats/base/dists/chi","0TM":"@stdlib/stats/base/dists/chi/pdf","0TN":"@stdlib/stats/base/dists/chi/quantile","0TO":"@stdlib/stats/base/dists/chi/skewness","0TP":"@stdlib/stats/base/dists/chi/stdev","0TQ":"@stdlib/stats/base/dists/chi/variance","0TR":"@stdlib/stats/base/dists/chisquare/cdf","0TS":"@stdlib/stats/base/dists/chisquare/ctor","0TT":"@stdlib/stats/base/dists/chisquare/entropy","0TU":"@stdlib/stats/base/dists/chisquare/kurtosis","0TV":"@stdlib/stats/base/dists/chisquare/logpdf","0TW":"@stdlib/stats/base/dists/chisquare/mean","0TX":"@stdlib/stats/base/dists/chisquare/median","0TY":"@stdlib/stats/base/dists/chisquare/mgf","0TZ":"@stdlib/stats/base/dists/chisquare/mode","0Ta":"@stdlib/stats/base/dists/chisquare","0Tb":"@stdlib/stats/base/dists/chisquare/pdf","0Tc":"@stdlib/stats/base/dists/chisquare/quantile","0Td":"@stdlib/stats/base/dists/chisquare/skewness","0Te":"@stdlib/stats/base/dists/chisquare/stdev","0Tf":"@stdlib/stats/base/dists/chisquare/variance","0Tg":"@stdlib/stats/base/dists/cosine/cdf","0Th":"@stdlib/stats/base/dists/cosine/ctor","0Ti":"@stdlib/stats/base/dists/cosine/kurtosis","0Tj":"@stdlib/stats/base/dists/cosine/logcdf","0Tk":"@stdlib/stats/base/dists/cosine/logpdf","0Tl":"@stdlib/stats/base/dists/cosine/mean","0Tm":"@stdlib/stats/base/dists/cosine/median","0Tn":"@stdlib/stats/base/dists/cosine/mgf","0To":"@stdlib/stats/base/dists/cosine/mode","0Tp":"@stdlib/stats/base/dists/cosine","0Tq":"@stdlib/stats/base/dists/cosine/pdf","0Tr":"@stdlib/stats/base/dists/cosine/quantile","0Ts":"@stdlib/stats/base/dists/cosine/skewness","0Tt":"@stdlib/stats/base/dists/cosine/stdev","0Tu":"@stdlib/stats/base/dists/cosine/variance","0Tv":"@stdlib/stats/base/dists/degenerate/cdf","0Tw":"@stdlib/stats/base/dists/degenerate/ctor","0Tx":"@stdlib/stats/base/dists/degenerate/entropy","0Ty":"@stdlib/stats/base/dists/degenerate/logcdf","0Tz":"@stdlib/stats/base/dists/degenerate/logpdf","0U0":"@stdlib/stats/base/dists/degenerate/logpmf","0U1":"@stdlib/stats/base/dists/degenerate/mean","0U2":"@stdlib/stats/base/dists/degenerate/median","0U3":"@stdlib/stats/base/dists/degenerate/mgf","0U4":"@stdlib/stats/base/dists/degenerate/mode","0U5":"@stdlib/stats/base/dists/degenerate","0U6":"@stdlib/stats/base/dists/degenerate/pdf","0U7":"@stdlib/stats/base/dists/degenerate/pmf","0U8":"@stdlib/stats/base/dists/degenerate/quantile","0U9":"@stdlib/stats/base/dists/degenerate/stdev","0UA":"@stdlib/stats/base/dists/degenerate/variance","0UB":"@stdlib/stats/base/dists/discrete-uniform/cdf","0UC":"@stdlib/stats/base/dists/discrete-uniform/ctor","0UD":"@stdlib/stats/base/dists/discrete-uniform/entropy","0UE":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","0UF":"@stdlib/stats/base/dists/discrete-uniform/logcdf","0UG":"@stdlib/stats/base/dists/discrete-uniform/logpmf","0UH":"@stdlib/stats/base/dists/discrete-uniform/mean","0UI":"@stdlib/stats/base/dists/discrete-uniform/median","0UJ":"@stdlib/stats/base/dists/discrete-uniform/mgf","0UK":"@stdlib/stats/base/dists/discrete-uniform","0UL":"@stdlib/stats/base/dists/discrete-uniform/pmf","0UM":"@stdlib/stats/base/dists/discrete-uniform/quantile","0UN":"@stdlib/stats/base/dists/discrete-uniform/skewness","0UO":"@stdlib/stats/base/dists/discrete-uniform/stdev","0UP":"@stdlib/stats/base/dists/discrete-uniform/variance","0UQ":"@stdlib/stats/base/dists/erlang/cdf","0UR":"@stdlib/stats/base/dists/erlang/ctor","0US":"@stdlib/stats/base/dists/erlang/entropy","0UT":"@stdlib/stats/base/dists/erlang/kurtosis","0UU":"@stdlib/stats/base/dists/erlang/logpdf","0UV":"@stdlib/stats/base/dists/erlang/mean","0UW":"@stdlib/stats/base/dists/erlang/mgf","0UX":"@stdlib/stats/base/dists/erlang/mode","0UY":"@stdlib/stats/base/dists/erlang","0UZ":"@stdlib/stats/base/dists/erlang/pdf","0Ua":"@stdlib/stats/base/dists/erlang/quantile","0Ub":"@stdlib/stats/base/dists/erlang/skewness","0Uc":"@stdlib/stats/base/dists/erlang/stdev","0Ud":"@stdlib/stats/base/dists/erlang/variance","0Ue":"@stdlib/stats/base/dists/exponential/cdf","0Uf":"@stdlib/stats/base/dists/exponential/ctor","0Ug":"@stdlib/stats/base/dists/exponential/entropy","0Uh":"@stdlib/stats/base/dists/exponential/kurtosis","0Ui":"@stdlib/stats/base/dists/exponential/logcdf","0Uj":"@stdlib/stats/base/dists/exponential/logpdf","0Uk":"@stdlib/stats/base/dists/exponential/mean","0Ul":"@stdlib/stats/base/dists/exponential/median","0Um":"@stdlib/stats/base/dists/exponential/mgf","0Un":"@stdlib/stats/base/dists/exponential/mode","0Uo":"@stdlib/stats/base/dists/exponential","0Up":"@stdlib/stats/base/dists/exponential/pdf","0Uq":"@stdlib/stats/base/dists/exponential/quantile","0Ur":"@stdlib/stats/base/dists/exponential/skewness","0Us":"@stdlib/stats/base/dists/exponential/stdev","0Ut":"@stdlib/stats/base/dists/exponential/variance","0Uu":"@stdlib/stats/base/dists/f/cdf","0Uv":"@stdlib/stats/base/dists/f/ctor","0Uw":"@stdlib/stats/base/dists/f/entropy","0Ux":"@stdlib/stats/base/dists/f/kurtosis","0Uy":"@stdlib/stats/base/dists/f/mean","0Uz":"@stdlib/stats/base/dists/f/mode","0V0":"@stdlib/stats/base/dists/f","0V1":"@stdlib/stats/base/dists/f/pdf","0V2":"@stdlib/stats/base/dists/f/quantile","0V3":"@stdlib/stats/base/dists/f/skewness","0V4":"@stdlib/stats/base/dists/f/stdev","0V5":"@stdlib/stats/base/dists/f/variance","0V6":"@stdlib/stats/base/dists/frechet/cdf","0V7":"@stdlib/stats/base/dists/frechet/ctor","0V8":"@stdlib/stats/base/dists/frechet/entropy","0V9":"@stdlib/stats/base/dists/frechet/kurtosis","0VA":"@stdlib/stats/base/dists/frechet/logcdf","0VB":"@stdlib/stats/base/dists/frechet/logpdf","0VC":"@stdlib/stats/base/dists/frechet/mean","0VD":"@stdlib/stats/base/dists/frechet/median","0VE":"@stdlib/stats/base/dists/frechet/mode","0VF":"@stdlib/stats/base/dists/frechet","0VG":"@stdlib/stats/base/dists/frechet/pdf","0VH":"@stdlib/stats/base/dists/frechet/quantile","0VI":"@stdlib/stats/base/dists/frechet/skewness","0VJ":"@stdlib/stats/base/dists/frechet/stdev","0VK":"@stdlib/stats/base/dists/frechet/variance","0VL":"@stdlib/stats/base/dists/gamma/cdf","0VM":"@stdlib/stats/base/dists/gamma/ctor","0VN":"@stdlib/stats/base/dists/gamma/entropy","0VO":"@stdlib/stats/base/dists/gamma/kurtosis","0VP":"@stdlib/stats/base/dists/gamma/logcdf","0VQ":"@stdlib/stats/base/dists/gamma/logpdf","0VR":"@stdlib/stats/base/dists/gamma/mean","0VS":"@stdlib/stats/base/dists/gamma/mgf","0VT":"@stdlib/stats/base/dists/gamma/mode","0VU":"@stdlib/stats/base/dists/gamma","0VV":"@stdlib/stats/base/dists/gamma/pdf","0VW":"@stdlib/stats/base/dists/gamma/quantile","0VX":"@stdlib/stats/base/dists/gamma/skewness","0VY":"@stdlib/stats/base/dists/gamma/stdev","0VZ":"@stdlib/stats/base/dists/gamma/variance","0Va":"@stdlib/stats/base/dists/geometric/cdf","0Vb":"@stdlib/stats/base/dists/geometric/ctor","0Vc":"@stdlib/stats/base/dists/geometric/entropy","0Vd":"@stdlib/stats/base/dists/geometric/kurtosis","0Ve":"@stdlib/stats/base/dists/geometric/logcdf","0Vf":"@stdlib/stats/base/dists/geometric/logpmf","0Vg":"@stdlib/stats/base/dists/geometric/mean","0Vh":"@stdlib/stats/base/dists/geometric/median","0Vi":"@stdlib/stats/base/dists/geometric/mgf","0Vj":"@stdlib/stats/base/dists/geometric/mode","0Vk":"@stdlib/stats/base/dists/geometric","0Vl":"@stdlib/stats/base/dists/geometric/pmf","0Vm":"@stdlib/stats/base/dists/geometric/quantile","0Vn":"@stdlib/stats/base/dists/geometric/skewness","0Vo":"@stdlib/stats/base/dists/geometric/stdev","0Vp":"@stdlib/stats/base/dists/geometric/variance","0Vq":"@stdlib/stats/base/dists/gumbel/cdf","0Vr":"@stdlib/stats/base/dists/gumbel/ctor","0Vs":"@stdlib/stats/base/dists/gumbel/entropy","0Vt":"@stdlib/stats/base/dists/gumbel/kurtosis","0Vu":"@stdlib/stats/base/dists/gumbel/logcdf","0Vv":"@stdlib/stats/base/dists/gumbel/logpdf","0Vw":"@stdlib/stats/base/dists/gumbel/mean","0Vx":"@stdlib/stats/base/dists/gumbel/median","0Vy":"@stdlib/stats/base/dists/gumbel/mgf","0Vz":"@stdlib/stats/base/dists/gumbel/mode","0W0":"@stdlib/stats/base/dists/gumbel","0W1":"@stdlib/stats/base/dists/gumbel/pdf","0W2":"@stdlib/stats/base/dists/gumbel/quantile","0W3":"@stdlib/stats/base/dists/gumbel/skewness","0W4":"@stdlib/stats/base/dists/gumbel/stdev","0W5":"@stdlib/stats/base/dists/gumbel/variance","0W6":"@stdlib/stats/base/dists/hypergeometric/cdf","0W7":"@stdlib/stats/base/dists/hypergeometric/ctor","0W8":"@stdlib/stats/base/dists/hypergeometric/kurtosis","0W9":"@stdlib/stats/base/dists/hypergeometric/logpmf","0WA":"@stdlib/stats/base/dists/hypergeometric/mean","0WB":"@stdlib/stats/base/dists/hypergeometric/mode","0WC":"@stdlib/stats/base/dists/hypergeometric","0WD":"@stdlib/stats/base/dists/hypergeometric/pmf","0WE":"@stdlib/stats/base/dists/hypergeometric/quantile","0WF":"@stdlib/stats/base/dists/hypergeometric/skewness","0WG":"@stdlib/stats/base/dists/hypergeometric/stdev","0WH":"@stdlib/stats/base/dists/hypergeometric/variance","0WI":"@stdlib/stats/base/dists/invgamma/cdf","0WJ":"@stdlib/stats/base/dists/invgamma/ctor","0WK":"@stdlib/stats/base/dists/invgamma/entropy","0WL":"@stdlib/stats/base/dists/invgamma/kurtosis","0WM":"@stdlib/stats/base/dists/invgamma/logpdf","0WN":"@stdlib/stats/base/dists/invgamma/mean","0WO":"@stdlib/stats/base/dists/invgamma/mode","0WP":"@stdlib/stats/base/dists/invgamma","0WQ":"@stdlib/stats/base/dists/invgamma/pdf","0WR":"@stdlib/stats/base/dists/invgamma/quantile","0WS":"@stdlib/stats/base/dists/invgamma/skewness","0WT":"@stdlib/stats/base/dists/invgamma/stdev","0WU":"@stdlib/stats/base/dists/invgamma/variance","0WV":"@stdlib/stats/base/dists/kumaraswamy/cdf","0WW":"@stdlib/stats/base/dists/kumaraswamy/ctor","0WX":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","0WY":"@stdlib/stats/base/dists/kumaraswamy/logcdf","0WZ":"@stdlib/stats/base/dists/kumaraswamy/logpdf","0Wa":"@stdlib/stats/base/dists/kumaraswamy/mean","0Wb":"@stdlib/stats/base/dists/kumaraswamy/median","0Wc":"@stdlib/stats/base/dists/kumaraswamy/mode","0Wd":"@stdlib/stats/base/dists/kumaraswamy","0We":"@stdlib/stats/base/dists/kumaraswamy/pdf","0Wf":"@stdlib/stats/base/dists/kumaraswamy/quantile","0Wg":"@stdlib/stats/base/dists/kumaraswamy/skewness","0Wh":"@stdlib/stats/base/dists/kumaraswamy/stdev","0Wi":"@stdlib/stats/base/dists/kumaraswamy/variance","0Wj":"@stdlib/stats/base/dists/laplace/cdf","0Wk":"@stdlib/stats/base/dists/laplace/ctor","0Wl":"@stdlib/stats/base/dists/laplace/entropy","0Wm":"@stdlib/stats/base/dists/laplace/kurtosis","0Wn":"@stdlib/stats/base/dists/laplace/logcdf","0Wo":"@stdlib/stats/base/dists/laplace/logpdf","0Wp":"@stdlib/stats/base/dists/laplace/mean","0Wq":"@stdlib/stats/base/dists/laplace/median","0Wr":"@stdlib/stats/base/dists/laplace/mgf","0Ws":"@stdlib/stats/base/dists/laplace/mode","0Wt":"@stdlib/stats/base/dists/laplace","0Wu":"@stdlib/stats/base/dists/laplace/pdf","0Wv":"@stdlib/stats/base/dists/laplace/quantile","0Ww":"@stdlib/stats/base/dists/laplace/skewness","0Wx":"@stdlib/stats/base/dists/laplace/stdev","0Wy":"@stdlib/stats/base/dists/laplace/variance","0Wz":"@stdlib/stats/base/dists/levy/cdf","0X0":"@stdlib/stats/base/dists/levy/ctor","0X1":"@stdlib/stats/base/dists/levy/entropy","0X2":"@stdlib/stats/base/dists/levy/logcdf","0X3":"@stdlib/stats/base/dists/levy/logpdf","0X4":"@stdlib/stats/base/dists/levy/mean","0X5":"@stdlib/stats/base/dists/levy/median","0X6":"@stdlib/stats/base/dists/levy/mode","0X7":"@stdlib/stats/base/dists/levy","0X8":"@stdlib/stats/base/dists/levy/pdf","0X9":"@stdlib/stats/base/dists/levy/quantile","0XA":"@stdlib/stats/base/dists/levy/stdev","0XB":"@stdlib/stats/base/dists/levy/variance","0XC":"@stdlib/stats/base/dists/logistic/cdf","0XD":"@stdlib/stats/base/dists/logistic/ctor","0XE":"@stdlib/stats/base/dists/logistic/entropy","0XF":"@stdlib/stats/base/dists/logistic/kurtosis","0XG":"@stdlib/stats/base/dists/logistic/logcdf","0XH":"@stdlib/stats/base/dists/logistic/logpdf","0XI":"@stdlib/stats/base/dists/logistic/mean","0XJ":"@stdlib/stats/base/dists/logistic/median","0XK":"@stdlib/stats/base/dists/logistic/mgf","0XL":"@stdlib/stats/base/dists/logistic/mode","0XM":"@stdlib/stats/base/dists/logistic","0XN":"@stdlib/stats/base/dists/logistic/pdf","0XO":"@stdlib/stats/base/dists/logistic/quantile","0XP":"@stdlib/stats/base/dists/logistic/skewness","0XQ":"@stdlib/stats/base/dists/logistic/stdev","0XR":"@stdlib/stats/base/dists/logistic/variance","0XS":"@stdlib/stats/base/dists/lognormal/cdf","0XT":"@stdlib/stats/base/dists/lognormal/ctor","0XU":"@stdlib/stats/base/dists/lognormal/entropy","0XV":"@stdlib/stats/base/dists/lognormal/kurtosis","0XW":"@stdlib/stats/base/dists/lognormal/logpdf","0XX":"@stdlib/stats/base/dists/lognormal/mean","0XY":"@stdlib/stats/base/dists/lognormal/median","0XZ":"@stdlib/stats/base/dists/lognormal/mode","0Xa":"@stdlib/stats/base/dists/lognormal","0Xb":"@stdlib/stats/base/dists/lognormal/pdf","0Xc":"@stdlib/stats/base/dists/lognormal/quantile","0Xd":"@stdlib/stats/base/dists/lognormal/skewness","0Xe":"@stdlib/stats/base/dists/lognormal/stdev","0Xf":"@stdlib/stats/base/dists/lognormal/variance","0Xg":"@stdlib/stats/base/dists/negative-binomial/cdf","0Xh":"@stdlib/stats/base/dists/negative-binomial/ctor","0Xi":"@stdlib/stats/base/dists/negative-binomial/kurtosis","0Xj":"@stdlib/stats/base/dists/negative-binomial/logpmf","0Xk":"@stdlib/stats/base/dists/negative-binomial/mean","0Xl":"@stdlib/stats/base/dists/negative-binomial/mgf","0Xm":"@stdlib/stats/base/dists/negative-binomial/mode","0Xn":"@stdlib/stats/base/dists/negative-binomial","0Xo":"@stdlib/stats/base/dists/negative-binomial/pmf","0Xp":"@stdlib/stats/base/dists/negative-binomial/quantile","0Xq":"@stdlib/stats/base/dists/negative-binomial/skewness","0Xr":"@stdlib/stats/base/dists/negative-binomial/stdev","0Xs":"@stdlib/stats/base/dists/negative-binomial/variance","0Xt":"@stdlib/stats/base/dists/normal/cdf","0Xu":"@stdlib/stats/base/dists/normal/ctor","0Xv":"@stdlib/stats/base/dists/normal/entropy","0Xw":"@stdlib/stats/base/dists/normal/kurtosis","0Xx":"@stdlib/stats/base/dists/normal/logpdf","0Xy":"@stdlib/stats/base/dists/normal/mean","0Xz":"@stdlib/stats/base/dists/normal/median","0Y0":"@stdlib/stats/base/dists/normal/mgf","0Y1":"@stdlib/stats/base/dists/normal/mode","0Y2":"@stdlib/stats/base/dists/normal","0Y3":"@stdlib/stats/base/dists/normal/pdf","0Y4":"@stdlib/stats/base/dists/normal/quantile","0Y5":"@stdlib/stats/base/dists/normal/skewness","0Y6":"@stdlib/stats/base/dists/normal/stdev","0Y7":"@stdlib/stats/base/dists/normal/variance","0Y8":"@stdlib/stats/base/dists","0Y9":"@stdlib/stats/base/dists/pareto-type1/cdf","0YA":"@stdlib/stats/base/dists/pareto-type1/ctor","0YB":"@stdlib/stats/base/dists/pareto-type1/entropy","0YC":"@stdlib/stats/base/dists/pareto-type1/kurtosis","0YD":"@stdlib/stats/base/dists/pareto-type1/logcdf","0YE":"@stdlib/stats/base/dists/pareto-type1/logpdf","0YF":"@stdlib/stats/base/dists/pareto-type1/mean","0YG":"@stdlib/stats/base/dists/pareto-type1/median","0YH":"@stdlib/stats/base/dists/pareto-type1/mode","0YI":"@stdlib/stats/base/dists/pareto-type1","0YJ":"@stdlib/stats/base/dists/pareto-type1/pdf","0YK":"@stdlib/stats/base/dists/pareto-type1/quantile","0YL":"@stdlib/stats/base/dists/pareto-type1/skewness","0YM":"@stdlib/stats/base/dists/pareto-type1/stdev","0YN":"@stdlib/stats/base/dists/pareto-type1/variance","0YO":"@stdlib/stats/base/dists/poisson/cdf","0YP":"@stdlib/stats/base/dists/poisson/ctor","0YQ":"@stdlib/stats/base/dists/poisson/entropy","0YR":"@stdlib/stats/base/dists/poisson/kurtosis","0YS":"@stdlib/stats/base/dists/poisson/logpmf","0YT":"@stdlib/stats/base/dists/poisson/mean","0YU":"@stdlib/stats/base/dists/poisson/median","0YV":"@stdlib/stats/base/dists/poisson/mgf","0YW":"@stdlib/stats/base/dists/poisson/mode","0YX":"@stdlib/stats/base/dists/poisson","0YY":"@stdlib/stats/base/dists/poisson/pmf","0YZ":"@stdlib/stats/base/dists/poisson/quantile","0Ya":"@stdlib/stats/base/dists/poisson/skewness","0Yb":"@stdlib/stats/base/dists/poisson/stdev","0Yc":"@stdlib/stats/base/dists/poisson/variance","0Yd":"@stdlib/stats/base/dists/rayleigh/cdf","0Ye":"@stdlib/stats/base/dists/rayleigh/ctor","0Yf":"@stdlib/stats/base/dists/rayleigh/entropy","0Yg":"@stdlib/stats/base/dists/rayleigh/kurtosis","0Yh":"@stdlib/stats/base/dists/rayleigh/logcdf","0Yi":"@stdlib/stats/base/dists/rayleigh/logpdf","0Yj":"@stdlib/stats/base/dists/rayleigh/mean","0Yk":"@stdlib/stats/base/dists/rayleigh/median","0Yl":"@stdlib/stats/base/dists/rayleigh/mgf","0Ym":"@stdlib/stats/base/dists/rayleigh/mode","0Yn":"@stdlib/stats/base/dists/rayleigh","0Yo":"@stdlib/stats/base/dists/rayleigh/pdf","0Yp":"@stdlib/stats/base/dists/rayleigh/quantile","0Yq":"@stdlib/stats/base/dists/rayleigh/skewness","0Yr":"@stdlib/stats/base/dists/rayleigh/stdev","0Ys":"@stdlib/stats/base/dists/rayleigh/variance","0Yt":"@stdlib/stats/base/dists/signrank/cdf","0Yu":"@stdlib/stats/base/dists/signrank","0Yv":"@stdlib/stats/base/dists/signrank/pdf","0Yw":"@stdlib/stats/base/dists/signrank/quantile","0Yx":"@stdlib/stats/base/dists/t/cdf","0Yy":"@stdlib/stats/base/dists/t/ctor","0Yz":"@stdlib/stats/base/dists/t/entropy","0Z0":"@stdlib/stats/base/dists/t/kurtosis","0Z1":"@stdlib/stats/base/dists/t/logcdf","0Z2":"@stdlib/stats/base/dists/t/logpdf","0Z3":"@stdlib/stats/base/dists/t/mean","0Z4":"@stdlib/stats/base/dists/t/median","0Z5":"@stdlib/stats/base/dists/t/mode","0Z6":"@stdlib/stats/base/dists/t","0Z7":"@stdlib/stats/base/dists/t/pdf","0Z8":"@stdlib/stats/base/dists/t/quantile","0Z9":"@stdlib/stats/base/dists/t/skewness","0ZA":"@stdlib/stats/base/dists/t/stdev","0ZB":"@stdlib/stats/base/dists/t/variance","0ZC":"@stdlib/stats/base/dists/triangular/cdf","0ZD":"@stdlib/stats/base/dists/triangular/ctor","0ZE":"@stdlib/stats/base/dists/triangular/entropy","0ZF":"@stdlib/stats/base/dists/triangular/kurtosis","0ZG":"@stdlib/stats/base/dists/triangular/logcdf","0ZH":"@stdlib/stats/base/dists/triangular/logpdf","0ZI":"@stdlib/stats/base/dists/triangular/mean","0ZJ":"@stdlib/stats/base/dists/triangular/median","0ZK":"@stdlib/stats/base/dists/triangular/mgf","0ZL":"@stdlib/stats/base/dists/triangular/mode","0ZM":"@stdlib/stats/base/dists/triangular","0ZN":"@stdlib/stats/base/dists/triangular/pdf","0ZO":"@stdlib/stats/base/dists/triangular/quantile","0ZP":"@stdlib/stats/base/dists/triangular/skewness","0ZQ":"@stdlib/stats/base/dists/triangular/stdev","0ZR":"@stdlib/stats/base/dists/triangular/variance","0ZS":"@stdlib/stats/base/dists/truncated-normal","0ZT":"@stdlib/stats/base/dists/truncated-normal/pdf","0ZU":"@stdlib/stats/base/dists/uniform/cdf","0ZV":"@stdlib/stats/base/dists/uniform/ctor","0ZW":"@stdlib/stats/base/dists/uniform/entropy","0ZX":"@stdlib/stats/base/dists/uniform/kurtosis","0ZY":"@stdlib/stats/base/dists/uniform/logcdf","0ZZ":"@stdlib/stats/base/dists/uniform/logpdf","0Za":"@stdlib/stats/base/dists/uniform/mean","0Zb":"@stdlib/stats/base/dists/uniform/median","0Zc":"@stdlib/stats/base/dists/uniform/mgf","0Zd":"@stdlib/stats/base/dists/uniform","0Ze":"@stdlib/stats/base/dists/uniform/pdf","0Zf":"@stdlib/stats/base/dists/uniform/quantile","0Zg":"@stdlib/stats/base/dists/uniform/skewness","0Zh":"@stdlib/stats/base/dists/uniform/stdev","0Zi":"@stdlib/stats/base/dists/uniform/variance","0Zj":"@stdlib/stats/base/dists/weibull/cdf","0Zk":"@stdlib/stats/base/dists/weibull/ctor","0Zl":"@stdlib/stats/base/dists/weibull/entropy","0Zm":"@stdlib/stats/base/dists/weibull/kurtosis","0Zn":"@stdlib/stats/base/dists/weibull/logcdf","0Zo":"@stdlib/stats/base/dists/weibull/logpdf","0Zp":"@stdlib/stats/base/dists/weibull/mean","0Zq":"@stdlib/stats/base/dists/weibull/median","0Zr":"@stdlib/stats/base/dists/weibull/mgf","0Zs":"@stdlib/stats/base/dists/weibull/mode","0Zt":"@stdlib/stats/base/dists/weibull","0Zu":"@stdlib/stats/base/dists/weibull/pdf","0Zv":"@stdlib/stats/base/dists/weibull/quantile","0Zw":"@stdlib/stats/base/dists/weibull/skewness","0Zx":"@stdlib/stats/base/dists/weibull/stdev","0Zy":"@stdlib/stats/base/dists/weibull/variance","0Zz":"@stdlib/stats/base/dmax","0a0":"@stdlib/stats/base/dmaxabs","0a1":"@stdlib/stats/base/dmaxabssorted","0a2":"@stdlib/stats/base/dmaxsorted","0a3":"@stdlib/stats/base/dmean","0a4":"@stdlib/stats/base/dmeankbn","0a5":"@stdlib/stats/base/dmeankbn2","0a6":"@stdlib/stats/base/dmeanli","0a7":"@stdlib/stats/base/dmeanlipw","0a8":"@stdlib/stats/base/dmeanors","0a9":"@stdlib/stats/base/dmeanpn","0aA":"@stdlib/stats/base/dmeanpw","0aB":"@stdlib/stats/base/dmeanstdev","0aC":"@stdlib/stats/base/dmeanstdevpn","0aD":"@stdlib/stats/base/dmeanvar","0aE":"@stdlib/stats/base/dmeanvarpn","0aF":"@stdlib/stats/base/dmeanwd","0aG":"@stdlib/stats/base/dmediansorted","0aH":"@stdlib/stats/base/dmidrange","0aI":"@stdlib/stats/base/dmin","0aJ":"@stdlib/stats/base/dminabs","0aK":"@stdlib/stats/base/dminsorted","0aL":"@stdlib/stats/base/dmskmax","0aM":"@stdlib/stats/base/dmskmin","0aN":"@stdlib/stats/base/dmskrange","0aO":"@stdlib/stats/base/dnanmax","0aP":"@stdlib/stats/base/dnanmaxabs","0aQ":"@stdlib/stats/base/dnanmean","0aR":"@stdlib/stats/base/dnanmeanors","0aS":"@stdlib/stats/base/dnanmeanpn","0aT":"@stdlib/stats/base/dnanmeanpw","0aU":"@stdlib/stats/base/dnanmeanwd","0aV":"@stdlib/stats/base/dnanmin","0aW":"@stdlib/stats/base/dnanminabs","0aX":"@stdlib/stats/base/dnanmskmax","0aY":"@stdlib/stats/base/dnanmskmin","0aZ":"@stdlib/stats/base/dnanmskrange","0aa":"@stdlib/stats/base/dnanrange","0ab":"@stdlib/stats/base/dnanstdev","0ac":"@stdlib/stats/base/dnanstdevch","0ad":"@stdlib/stats/base/dnanstdevpn","0ae":"@stdlib/stats/base/dnanstdevtk","0af":"@stdlib/stats/base/dnanstdevwd","0ag":"@stdlib/stats/base/dnanstdevyc","0ah":"@stdlib/stats/base/dnanvariance","0ai":"@stdlib/stats/base/dnanvariancech","0aj":"@stdlib/stats/base/dnanvariancepn","0ak":"@stdlib/stats/base/dnanvariancetk","0al":"@stdlib/stats/base/dnanvariancewd","0am":"@stdlib/stats/base/dnanvarianceyc","0an":"@stdlib/stats/base/drange","0ao":"@stdlib/stats/base/dsem","0ap":"@stdlib/stats/base/dsemch","0aq":"@stdlib/stats/base/dsempn","0ar":"@stdlib/stats/base/dsemtk","0as":"@stdlib/stats/base/dsemwd","0at":"@stdlib/stats/base/dsemyc","0au":"@stdlib/stats/base/dsmean","0av":"@stdlib/stats/base/dsmeanors","0aw":"@stdlib/stats/base/dsmeanpn","0ax":"@stdlib/stats/base/dsmeanpw","0ay":"@stdlib/stats/base/dsmeanwd","0az":"@stdlib/stats/base/dsnanmean","0b0":"@stdlib/stats/base/dsnanmeanors","0b1":"@stdlib/stats/base/dsnanmeanpn","0b2":"@stdlib/stats/base/dsnanmeanwd","0b3":"@stdlib/stats/base/dstdev","0b4":"@stdlib/stats/base/dstdevch","0b5":"@stdlib/stats/base/dstdevpn","0b6":"@stdlib/stats/base/dstdevtk","0b7":"@stdlib/stats/base/dstdevwd","0b8":"@stdlib/stats/base/dstdevyc","0b9":"@stdlib/stats/base/dsvariance","0bA":"@stdlib/stats/base/dsvariancepn","0bB":"@stdlib/stats/base/dvariance","0bC":"@stdlib/stats/base/dvariancech","0bD":"@stdlib/stats/base/dvariancepn","0bE":"@stdlib/stats/base/dvariancetk","0bF":"@stdlib/stats/base/dvariancewd","0bG":"@stdlib/stats/base/dvarianceyc","0bH":"@stdlib/stats/base/dvarm","0bI":"@stdlib/stats/base/dvarmpn","0bJ":"@stdlib/stats/base/dvarmtk","0bK":"@stdlib/stats/base/max-by","0bL":"@stdlib/stats/base/max","0bM":"@stdlib/stats/base/maxabs","0bN":"@stdlib/stats/base/maxsorted","0bO":"@stdlib/stats/base/mean","0bP":"@stdlib/stats/base/meankbn","0bQ":"@stdlib/stats/base/meankbn2","0bR":"@stdlib/stats/base/meanors","0bS":"@stdlib/stats/base/meanpn","0bT":"@stdlib/stats/base/meanpw","0bU":"@stdlib/stats/base/meanwd","0bV":"@stdlib/stats/base/mediansorted","0bW":"@stdlib/stats/base/min-by","0bX":"@stdlib/stats/base/min","0bY":"@stdlib/stats/base/minabs","0bZ":"@stdlib/stats/base/minsorted","0ba":"@stdlib/stats/base/mskmax","0bb":"@stdlib/stats/base/mskmin","0bc":"@stdlib/stats/base/mskrange","0bd":"@stdlib/stats/base/nanmax-by","0be":"@stdlib/stats/base/nanmax","0bf":"@stdlib/stats/base/nanmaxabs","0bg":"@stdlib/stats/base/nanmean","0bh":"@stdlib/stats/base/nanmeanors","0bi":"@stdlib/stats/base/nanmeanpn","0bj":"@stdlib/stats/base/nanmeanwd","0bk":"@stdlib/stats/base/nanmin-by","0bl":"@stdlib/stats/base/nanmin","0bm":"@stdlib/stats/base/nanminabs","0bn":"@stdlib/stats/base/nanmskmax","0bo":"@stdlib/stats/base/nanmskmin","0bp":"@stdlib/stats/base/nanmskrange","0bq":"@stdlib/stats/base/nanrange-by","0br":"@stdlib/stats/base/nanrange","0bs":"@stdlib/stats/base/nanstdev","0bt":"@stdlib/stats/base/nanstdevch","0bu":"@stdlib/stats/base/nanstdevpn","0bv":"@stdlib/stats/base/nanstdevtk","0bw":"@stdlib/stats/base/nanstdevwd","0bx":"@stdlib/stats/base/nanstdevyc","0by":"@stdlib/stats/base/nanvariance","0bz":"@stdlib/stats/base/nanvariancech","0c0":"@stdlib/stats/base/nanvariancepn","0c1":"@stdlib/stats/base/nanvariancetk","0c2":"@stdlib/stats/base/nanvariancewd","0c3":"@stdlib/stats/base/nanvarianceyc","0c4":"@stdlib/stats/base","0c5":"@stdlib/stats/base/range-by","0c6":"@stdlib/stats/base/range","0c7":"@stdlib/stats/base/scumax","0c8":"@stdlib/stats/base/scumaxabs","0c9":"@stdlib/stats/base/scumin","0cA":"@stdlib/stats/base/scuminabs","0cB":"@stdlib/stats/base/sdsmean","0cC":"@stdlib/stats/base/sdsmeanors","0cD":"@stdlib/stats/base/sdsnanmean","0cE":"@stdlib/stats/base/sdsnanmeanors","0cF":"@stdlib/stats/base/smax","0cG":"@stdlib/stats/base/smaxabs","0cH":"@stdlib/stats/base/smaxabssorted","0cI":"@stdlib/stats/base/smaxsorted","0cJ":"@stdlib/stats/base/smean","0cK":"@stdlib/stats/base/smeankbn","0cL":"@stdlib/stats/base/smeankbn2","0cM":"@stdlib/stats/base/smeanli","0cN":"@stdlib/stats/base/smeanlipw","0cO":"@stdlib/stats/base/smeanors","0cP":"@stdlib/stats/base/smeanpn","0cQ":"@stdlib/stats/base/smeanpw","0cR":"@stdlib/stats/base/smeanwd","0cS":"@stdlib/stats/base/smediansorted","0cT":"@stdlib/stats/base/smidrange","0cU":"@stdlib/stats/base/smin","0cV":"@stdlib/stats/base/sminabs","0cW":"@stdlib/stats/base/sminsorted","0cX":"@stdlib/stats/base/smskmax","0cY":"@stdlib/stats/base/smskmin","0cZ":"@stdlib/stats/base/smskrange","0ca":"@stdlib/stats/base/snanmax","0cb":"@stdlib/stats/base/snanmaxabs","0cc":"@stdlib/stats/base/snanmean","0cd":"@stdlib/stats/base/snanmeanors","0ce":"@stdlib/stats/base/snanmeanpn","0cf":"@stdlib/stats/base/snanmeanwd","0cg":"@stdlib/stats/base/snanmin","0ch":"@stdlib/stats/base/snanminabs","0ci":"@stdlib/stats/base/snanmskmax","0cj":"@stdlib/stats/base/snanmskmin","0ck":"@stdlib/stats/base/snanmskrange","0cl":"@stdlib/stats/base/snanrange","0cm":"@stdlib/stats/base/snanstdev","0cn":"@stdlib/stats/base/snanstdevch","0co":"@stdlib/stats/base/snanstdevpn","0cp":"@stdlib/stats/base/snanstdevtk","0cq":"@stdlib/stats/base/snanstdevwd","0cr":"@stdlib/stats/base/snanstdevyc","0cs":"@stdlib/stats/base/snanvariance","0ct":"@stdlib/stats/base/snanvariancech","0cu":"@stdlib/stats/base/snanvariancepn","0cv":"@stdlib/stats/base/snanvariancetk","0cw":"@stdlib/stats/base/snanvariancewd","0cx":"@stdlib/stats/base/snanvarianceyc","0cy":"@stdlib/stats/base/srange","0cz":"@stdlib/stats/base/sstdev","0d0":"@stdlib/stats/base/sstdevch","0d1":"@stdlib/stats/base/sstdevpn","0d2":"@stdlib/stats/base/sstdevtk","0d3":"@stdlib/stats/base/sstdevwd","0d4":"@stdlib/stats/base/sstdevyc","0d5":"@stdlib/stats/base/stdev","0d6":"@stdlib/stats/base/stdevch","0d7":"@stdlib/stats/base/stdevpn","0d8":"@stdlib/stats/base/stdevtk","0d9":"@stdlib/stats/base/stdevwd","0dA":"@stdlib/stats/base/stdevyc","0dB":"@stdlib/stats/base/svariance","0dC":"@stdlib/stats/base/svariancech","0dD":"@stdlib/stats/base/svariancepn","0dE":"@stdlib/stats/base/svariancetk","0dF":"@stdlib/stats/base/svariancewd","0dG":"@stdlib/stats/base/svarianceyc","0dH":"@stdlib/stats/base/variance","0dI":"@stdlib/stats/base/variancech","0dJ":"@stdlib/stats/base/variancepn","0dK":"@stdlib/stats/base/variancetk","0dL":"@stdlib/stats/base/variancewd","0dM":"@stdlib/stats/base/varianceyc","0dN":"@stdlib/stats/binomial-test","0dO":"@stdlib/stats/chi2gof","0dP":"@stdlib/stats/chi2test","0dQ":"@stdlib/stats/fligner-test","0dR":"@stdlib/stats/incr/apcorr","0dS":"@stdlib/stats/incr/count","0dT":"@stdlib/stats/incr/covariance","0dU":"@stdlib/stats/incr/covmat","0dV":"@stdlib/stats/incr/cv","0dW":"@stdlib/stats/incr/ewmean","0dX":"@stdlib/stats/incr/ewstdev","0dY":"@stdlib/stats/incr/ewvariance","0dZ":"@stdlib/stats/incr/gmean","0da":"@stdlib/stats/incr/grubbs","0db":"@stdlib/stats/incr/hmean","0dc":"@stdlib/stats/incr/kurtosis","0dd":"@stdlib/stats/incr/maape","0de":"@stdlib/stats/incr/mae","0df":"@stdlib/stats/incr/mapcorr","0dg":"@stdlib/stats/incr/mape","0dh":"@stdlib/stats/incr/max","0di":"@stdlib/stats/incr/maxabs","0dj":"@stdlib/stats/incr/mcovariance","0dk":"@stdlib/stats/incr/mcv","0dl":"@stdlib/stats/incr/mda","0dm":"@stdlib/stats/incr/me","0dn":"@stdlib/stats/incr/mean","0do":"@stdlib/stats/incr/meanabs","0dp":"@stdlib/stats/incr/meanabs2","0dq":"@stdlib/stats/incr/meanstdev","0dr":"@stdlib/stats/incr/meanvar","0ds":"@stdlib/stats/incr/mgmean","0dt":"@stdlib/stats/incr/mgrubbs","0du":"@stdlib/stats/incr/mhmean","0dv":"@stdlib/stats/incr/midrange","0dw":"@stdlib/stats/incr/min","0dx":"@stdlib/stats/incr/minabs","0dy":"@stdlib/stats/incr/minmax","0dz":"@stdlib/stats/incr/minmaxabs","0e0":"@stdlib/stats/incr/mmaape","0e1":"@stdlib/stats/incr/mmae","0e2":"@stdlib/stats/incr/mmape","0e3":"@stdlib/stats/incr/mmax","0e4":"@stdlib/stats/incr/mmaxabs","0e5":"@stdlib/stats/incr/mmda","0e6":"@stdlib/stats/incr/mme","0e7":"@stdlib/stats/incr/mmean","0e8":"@stdlib/stats/incr/mmeanabs","0e9":"@stdlib/stats/incr/mmeanabs2","0eA":"@stdlib/stats/incr/mmeanstdev","0eB":"@stdlib/stats/incr/mmeanvar","0eC":"@stdlib/stats/incr/mmidrange","0eD":"@stdlib/stats/incr/mmin","0eE":"@stdlib/stats/incr/mminabs","0eF":"@stdlib/stats/incr/mminmax","0eG":"@stdlib/stats/incr/mminmaxabs","0eH":"@stdlib/stats/incr/mmpe","0eI":"@stdlib/stats/incr/mmse","0eJ":"@stdlib/stats/incr/mpcorr","0eK":"@stdlib/stats/incr/mpcorr2","0eL":"@stdlib/stats/incr/mpcorrdist","0eM":"@stdlib/stats/incr/mpe","0eN":"@stdlib/stats/incr/mprod","0eO":"@stdlib/stats/incr/mrange","0eP":"@stdlib/stats/incr/mrmse","0eQ":"@stdlib/stats/incr/mrss","0eR":"@stdlib/stats/incr/mse","0eS":"@stdlib/stats/incr/mstdev","0eT":"@stdlib/stats/incr/msum","0eU":"@stdlib/stats/incr/msumabs","0eV":"@stdlib/stats/incr/msumabs2","0eW":"@stdlib/stats/incr/msummary","0eX":"@stdlib/stats/incr/msumprod","0eY":"@stdlib/stats/incr/mvariance","0eZ":"@stdlib/stats/incr/mvmr","0ea":"@stdlib/stats/incr/nancount","0eb":"@stdlib/stats/incr/nansum","0ec":"@stdlib/stats/incr/nansumabs","0ed":"@stdlib/stats/incr/nansumabs2","0ee":"@stdlib/stats/incr","0ef":"@stdlib/stats/incr/pcorr","0eg":"@stdlib/stats/incr/pcorr2","0eh":"@stdlib/stats/incr/pcorrdist","0ei":"@stdlib/stats/incr/pcorrdistmat","0ej":"@stdlib/stats/incr/pcorrmat","0ek":"@stdlib/stats/incr/prod","0el":"@stdlib/stats/incr/range","0em":"@stdlib/stats/incr/rmse","0en":"@stdlib/stats/incr/rss","0eo":"@stdlib/stats/incr/skewness","0ep":"@stdlib/stats/incr/stdev","0eq":"@stdlib/stats/incr/sum","0er":"@stdlib/stats/incr/sumabs","0es":"@stdlib/stats/incr/sumabs2","0et":"@stdlib/stats/incr/summary","0eu":"@stdlib/stats/incr/sumprod","0ev":"@stdlib/stats/incr/variance","0ew":"@stdlib/stats/incr/vmr","0ex":"@stdlib/stats/incr/wmean","0ey":"@stdlib/stats/iter/cugmean","0ez":"@stdlib/stats/iter/cuhmean","0f0":"@stdlib/stats/iter/cumax","0f1":"@stdlib/stats/iter/cumaxabs","0f2":"@stdlib/stats/iter/cumean","0f3":"@stdlib/stats/iter/cumeanabs","0f4":"@stdlib/stats/iter/cumeanabs2","0f5":"@stdlib/stats/iter/cumidrange","0f6":"@stdlib/stats/iter/cumin","0f7":"@stdlib/stats/iter/cuminabs","0f8":"@stdlib/stats/iter/cuprod","0f9":"@stdlib/stats/iter/curange","0fA":"@stdlib/stats/iter/cusum","0fB":"@stdlib/stats/iter/cusumabs","0fC":"@stdlib/stats/iter/cusumabs2","0fD":"@stdlib/stats/iter/max","0fE":"@stdlib/stats/iter/maxabs","0fF":"@stdlib/stats/iter/mean","0fG":"@stdlib/stats/iter/meanabs","0fH":"@stdlib/stats/iter/meanabs2","0fI":"@stdlib/stats/iter/midrange","0fJ":"@stdlib/stats/iter/min","0fK":"@stdlib/stats/iter/minabs","0fL":"@stdlib/stats/iter/mmax","0fM":"@stdlib/stats/iter/mmaxabs","0fN":"@stdlib/stats/iter/mmean","0fO":"@stdlib/stats/iter/mmeanabs","0fP":"@stdlib/stats/iter/mmeanabs2","0fQ":"@stdlib/stats/iter/mmidrange","0fR":"@stdlib/stats/iter/mmin","0fS":"@stdlib/stats/iter/mminabs","0fT":"@stdlib/stats/iter/mprod","0fU":"@stdlib/stats/iter/mrange","0fV":"@stdlib/stats/iter/msum","0fW":"@stdlib/stats/iter/msumabs","0fX":"@stdlib/stats/iter/msumabs2","0fY":"@stdlib/stats/iter","0fZ":"@stdlib/stats/iter/prod","0fa":"@stdlib/stats/iter/range","0fb":"@stdlib/stats/iter/stdev","0fc":"@stdlib/stats/iter/sum","0fd":"@stdlib/stats/iter/sumabs","0fe":"@stdlib/stats/iter/sumabs2","0ff":"@stdlib/stats/iter/variance","0fg":"@stdlib/stats/kde2d","0fh":"@stdlib/stats/kruskal-test","0fi":"@stdlib/stats/kstest","0fj":"@stdlib/stats/levene-test","0fk":"@stdlib/stats/lowess","0fl":"@stdlib/stats","0fm":"@stdlib/stats/padjust","0fn":"@stdlib/stats/pcorrtest","0fo":"@stdlib/stats/ranks","0fp":"@stdlib/stats/ttest","0fq":"@stdlib/stats/ttest2","0fr":"@stdlib/stats/vartest","0fs":"@stdlib/stats/wilcoxon","0ft":"@stdlib/stats/ztest","0fu":"@stdlib/stats/ztest2","0fv":"@stdlib/streams/node/debug-sink","0fw":"@stdlib/streams/node/debug","0fx":"@stdlib/streams/node/empty","0fy":"@stdlib/streams/node/from-array","0fz":"@stdlib/streams/node/from-circular-array","0g0":"@stdlib/streams/node/from-constant","0g1":"@stdlib/streams/node/from-iterator","0g2":"@stdlib/streams/node/from-strided-array","0g3":"@stdlib/streams/node/inspect-sink","0g4":"@stdlib/streams/node/inspect","0g5":"@stdlib/streams/node/join","0g6":"@stdlib/streams/node","0g7":"@stdlib/streams/node/split","0g8":"@stdlib/streams/node/stderr","0g9":"@stdlib/streams/node/stdin","0gA":"@stdlib/streams/node/stdout","0gB":"@stdlib/streams/node/transform","0gC":"@stdlib/streams","0gD":"@stdlib/strided/base/binary-addon-dispatch","0gE":"@stdlib/strided/base/binary-dtype-signatures","0gF":"@stdlib/strided/base/binary-signature-callbacks","0gG":"@stdlib/strided/base/binary","0gH":"@stdlib/strided/base/cmap","0gI":"@stdlib/strided/base/dmap","0gJ":"@stdlib/strided/base/dmap2","0gK":"@stdlib/strided/base/dmskmap","0gL":"@stdlib/strided/base/dmskmap2","0gM":"@stdlib/strided/base/dtype-enum2str","0gN":"@stdlib/strided/base/dtype-resolve-enum","0gO":"@stdlib/strided/base/dtype-resolve-str","0gP":"@stdlib/strided/base/dtype-str2enum","0gQ":"@stdlib/strided/base/function-object","0gR":"@stdlib/strided/base/map-by","0gS":"@stdlib/strided/base/map-by2","0gT":"@stdlib/strided/base/max-view-buffer-index","0gU":"@stdlib/strided/base/meta-data-props","0gV":"@stdlib/strided/base/min-view-buffer-index","0gW":"@stdlib/strided/base/mskunary","0gX":"@stdlib/strided/base/nullary","0gY":"@stdlib/strided/base/offset-view","0gZ":"@stdlib/strided/base","0ga":"@stdlib/strided/base/quaternary","0gb":"@stdlib/strided/base/quinary","0gc":"@stdlib/strided/base/reinterpret-complex128","0gd":"@stdlib/strided/base/reinterpret-complex64","0ge":"@stdlib/strided/base/smap","0gf":"@stdlib/strided/base/smap2","0gg":"@stdlib/strided/base/smskmap","0gh":"@stdlib/strided/base/smskmap2","0gi":"@stdlib/strided/base/ternary","0gj":"@stdlib/strided/base/unary-addon-dispatch","0gk":"@stdlib/strided/base/unary","0gl":"@stdlib/strided/base/zmap","0gm":"@stdlib/strided/common","0gn":"@stdlib/strided/dispatch","0go":"@stdlib/strided/dtypes","0gp":"@stdlib/strided/napi/addon-arguments","0gq":"@stdlib/strided/napi/binary","0gr":"@stdlib/strided/napi/cmap","0gs":"@stdlib/strided/napi/dmap","0gt":"@stdlib/strided/napi/dmap2","0gu":"@stdlib/strided/napi/dmskmap","0gv":"@stdlib/strided/napi/dmskmap2","0gw":"@stdlib/strided/napi/mskunary","0gx":"@stdlib/strided/napi","0gy":"@stdlib/strided/napi/smap","0gz":"@stdlib/strided/napi/smap2","0h0":"@stdlib/strided/napi/smskmap","0h1":"@stdlib/strided/napi/smskmap2","0h2":"@stdlib/strided/napi/unary","0h3":"@stdlib/strided/napi/zmap","0h4":"@stdlib/strided","0h5":"@stdlib/string/acronym","0h6":"@stdlib/string/camelcase","0h7":"@stdlib/string/capitalize","0h8":"@stdlib/string/code-point-at","0h9":"@stdlib/string/constantcase","0hA":"@stdlib/string/ends-with","0hB":"@stdlib/string/format","0hC":"@stdlib/string/from-code-point","0hD":"@stdlib/string/kebabcase","0hE":"@stdlib/string/left-pad","0hF":"@stdlib/string/left-trim-n","0hG":"@stdlib/string/left-trim","0hH":"@stdlib/string/lowercase","0hI":"@stdlib/string/next-grapheme-cluster-break","0hJ":"@stdlib/string/num-grapheme-clusters","0hK":"@stdlib/string","0hL":"@stdlib/string/pad","0hM":"@stdlib/string/pascalcase","0hN":"@stdlib/string/percent-encode","0hO":"@stdlib/string/prev-grapheme-cluster-break","0hP":"@stdlib/string/remove-first","0hQ":"@stdlib/string/remove-last","0hR":"@stdlib/string/remove-punctuation","0hS":"@stdlib/string/remove-utf8-bom","0hT":"@stdlib/string/remove-words","0hU":"@stdlib/string/repeat","0hV":"@stdlib/string/replace","0hW":"@stdlib/string/reverse","0hX":"@stdlib/string/right-pad","0hY":"@stdlib/string/right-trim-n","0hZ":"@stdlib/string/right-trim","0ha":"@stdlib/string/snakecase","0hb":"@stdlib/string/split-grapheme-clusters","0hc":"@stdlib/string/startcase","0hd":"@stdlib/string/starts-with","0he":"@stdlib/string/substring-after-last","0hf":"@stdlib/string/substring-after","0hg":"@stdlib/string/substring-before-last","0hh":"@stdlib/string/substring-before","0hi":"@stdlib/string/tools/grapheme-cluster-break","0hj":"@stdlib/string/tools","0hk":"@stdlib/string/trim","0hl":"@stdlib/string/truncate-middle","0hm":"@stdlib/string/truncate","0hn":"@stdlib/string/uncapitalize","0ho":"@stdlib/string/uppercase","0hp":"@stdlib/string/utf16-to-utf8-array","0hq":"@stdlib/symbol/async-iterator","0hr":"@stdlib/symbol/ctor","0hs":"@stdlib/symbol/iterator","0ht":"@stdlib/symbol","0hu":"@stdlib/time/day-of-quarter","0hv":"@stdlib/time/day-of-year","0hw":"@stdlib/time/days-in-month","0hx":"@stdlib/time/days-in-year","0hy":"@stdlib/time/hours-in-month","0hz":"@stdlib/time/hours-in-year","0i0":"@stdlib/time/iso-weeks-in-year","0i1":"@stdlib/time/minutes-in-month","0i2":"@stdlib/time/minutes-in-year","0i3":"@stdlib/time/now","0i4":"@stdlib/time","0i5":"@stdlib/time/quarter-of-year","0i6":"@stdlib/time/seconds-in-month","0i7":"@stdlib/time/seconds-in-year","0i8":"@stdlib/time/tic","0i9":"@stdlib/time/toc","0iA":"@stdlib/types","0iB":"@stdlib/utils/any-by-right","0iC":"@stdlib/utils/any-by","0iD":"@stdlib/utils/any","0iE":"@stdlib/utils/append","0iF":"@stdlib/utils/argument-function","0iG":"@stdlib/utils/async/any-by-right","0iH":"@stdlib/utils/async/any-by","0iI":"@stdlib/utils/async/bifurcate-by","0iJ":"@stdlib/utils/async/compose","0iK":"@stdlib/utils/async/count-by","0iL":"@stdlib/utils/async/do-until","0iM":"@stdlib/utils/async/do-while","0iN":"@stdlib/utils/async/every-by-right","0iO":"@stdlib/utils/async/every-by","0iP":"@stdlib/utils/async/for-each-right","0iQ":"@stdlib/utils/async/for-each","0iR":"@stdlib/utils/async/function-sequence","0iS":"@stdlib/utils/async/group-by","0iT":"@stdlib/utils/async/if-else","0iU":"@stdlib/utils/async/if-then","0iV":"@stdlib/utils/async/inmap-right","0iW":"@stdlib/utils/async/inmap","0iX":"@stdlib/utils/async/map-function","0iY":"@stdlib/utils/async/map-keys","0iZ":"@stdlib/utils/async/map-values","0ia":"@stdlib/utils/async/none-by-right","0ib":"@stdlib/utils/async/none-by","0ic":"@stdlib/utils/async","0id":"@stdlib/utils/async/reduce-right","0ie":"@stdlib/utils/async/reduce","0if":"@stdlib/utils/async/series-waterfall","0ig":"@stdlib/utils/async/some-by-right","0ih":"@stdlib/utils/async/some-by","0ii":"@stdlib/utils/async/tabulate-by","0ij":"@stdlib/utils/async/try-catch","0ik":"@stdlib/utils/async/try-then","0il":"@stdlib/utils/async/until","0im":"@stdlib/utils/async/while","0in":"@stdlib/utils/bifurcate-by","0io":"@stdlib/utils/bifurcate-in","0ip":"@stdlib/utils/bifurcate-own","0iq":"@stdlib/utils/bifurcate","0ir":"@stdlib/utils/capitalize-keys","0is":"@stdlib/utils/circular-buffer","0it":"@stdlib/utils/common-keys-in","0iu":"@stdlib/utils/common-keys","0iv":"@stdlib/utils/compact-adjacency-matrix","0iw":"@stdlib/utils/compose","0ix":"@stdlib/utils/constant-function","0iy":"@stdlib/utils/constructor-name","0iz":"@stdlib/utils/convert-path","0j0":"@stdlib/utils/copy","0j1":"@stdlib/utils/count-by","0j2":"@stdlib/utils/curry-right","0j3":"@stdlib/utils/curry","0j4":"@stdlib/utils/deep-get","0j5":"@stdlib/utils/deep-pluck","0j6":"@stdlib/utils/deep-set","0j7":"@stdlib/utils/define-configurable-read-only-accessor","0j8":"@stdlib/utils/define-configurable-read-only-property","0j9":"@stdlib/utils/define-configurable-read-write-accessor","0jA":"@stdlib/utils/define-configurable-write-only-accessor","0jB":"@stdlib/utils/define-memoized-configurable-read-only-property","0jC":"@stdlib/utils/define-memoized-property","0jD":"@stdlib/utils/define-memoized-read-only-property","0jE":"@stdlib/utils/define-nonenumerable-property","0jF":"@stdlib/utils/define-nonenumerable-read-only-accessor","0jG":"@stdlib/utils/define-nonenumerable-read-only-property","0jH":"@stdlib/utils/define-nonenumerable-read-write-accessor","0jI":"@stdlib/utils/define-nonenumerable-write-only-accessor","0jJ":"@stdlib/utils/define-properties","0jK":"@stdlib/utils/define-property","0jL":"@stdlib/utils/define-read-only-accessor","0jM":"@stdlib/utils/define-read-only-property","0jN":"@stdlib/utils/define-read-write-accessor","0jO":"@stdlib/utils/define-write-only-accessor","0jP":"@stdlib/utils/dirname","0jQ":"@stdlib/utils/do-until-each-right","0jR":"@stdlib/utils/do-until-each","0jS":"@stdlib/utils/do-until","0jT":"@stdlib/utils/do-while-each-right","0jU":"@stdlib/utils/do-while-each","0jV":"@stdlib/utils/do-while","0jW":"@stdlib/utils/doubly-linked-list","0jX":"@stdlib/utils/entries-in","0jY":"@stdlib/utils/entries","0jZ":"@stdlib/utils/enumerable-properties-in","0ja":"@stdlib/utils/enumerable-properties","0jb":"@stdlib/utils/enumerable-property-symbols-in","0jc":"@stdlib/utils/enumerable-property-symbols","0jd":"@stdlib/utils/escape-regexp-string","0je":"@stdlib/utils/eval","0jf":"@stdlib/utils/every-by-right","0jg":"@stdlib/utils/every-by","0jh":"@stdlib/utils/every","0ji":"@stdlib/utils/extname","0jj":"@stdlib/utils/fifo","0jk":"@stdlib/utils/filter-arguments","0jl":"@stdlib/utils/find","0jm":"@stdlib/utils/flatten-array","0jn":"@stdlib/utils/flatten-object","0jo":"@stdlib/utils/for-each-right","0jp":"@stdlib/utils/for-each","0jq":"@stdlib/utils/for-in","0jr":"@stdlib/utils/for-own","0js":"@stdlib/utils/from-entries","0jt":"@stdlib/utils/function-name","0ju":"@stdlib/utils/function-sequence","0jv":"@stdlib/utils/get-prototype-of","0jw":"@stdlib/utils/global","0jx":"@stdlib/utils/group-by","0jy":"@stdlib/utils/group-in","0jz":"@stdlib/utils/group-own","0k0":"@stdlib/utils/group","0k1":"@stdlib/utils/identity-function","0k2":"@stdlib/utils/if-else","0k3":"@stdlib/utils/if-then","0k4":"@stdlib/utils/index-of","0k5":"@stdlib/utils/inherit","0k6":"@stdlib/utils/inherited-enumerable-properties","0k7":"@stdlib/utils/inherited-enumerable-property-symbols","0k8":"@stdlib/utils/inherited-keys","0k9":"@stdlib/utils/inherited-nonenumerable-properties","0kA":"@stdlib/utils/inherited-nonenumerable-property-names","0kB":"@stdlib/utils/inherited-nonenumerable-property-symbols","0kC":"@stdlib/utils/inherited-properties","0kD":"@stdlib/utils/inherited-property-descriptor","0kE":"@stdlib/utils/inherited-property-descriptors","0kF":"@stdlib/utils/inherited-property-names","0kG":"@stdlib/utils/inherited-property-symbols","0kH":"@stdlib/utils/inherited-writable-properties","0kI":"@stdlib/utils/inherited-writable-property-names","0kJ":"@stdlib/utils/inherited-writable-property-symbols","0kK":"@stdlib/utils/inmap-right","0kL":"@stdlib/utils/inmap","0kM":"@stdlib/utils/key-by-right","0kN":"@stdlib/utils/key-by","0kO":"@stdlib/utils/keys-in","0kP":"@stdlib/utils/keys","0kQ":"@stdlib/utils/library-manifest","0kR":"@stdlib/utils/linked-list","0kS":"@stdlib/utils/lowercase-keys","0kT":"@stdlib/utils/map-arguments","0kU":"@stdlib/utils/map-function","0kV":"@stdlib/utils/map-keys","0kW":"@stdlib/utils/map-reduce-right","0kX":"@stdlib/utils/map-reduce","0kY":"@stdlib/utils/map-right","0kZ":"@stdlib/utils/map-values","0ka":"@stdlib/utils/map","0kb":"@stdlib/utils/map2-right","0kc":"@stdlib/utils/map2","0kd":"@stdlib/utils/map2d","0ke":"@stdlib/utils/map3d","0kf":"@stdlib/utils/map4d","0kg":"@stdlib/utils/map5d","0kh":"@stdlib/utils/mask-arguments","0ki":"@stdlib/utils/memoize","0kj":"@stdlib/utils/merge","0kk":"@stdlib/utils/move-property","0kl":"@stdlib/utils/named-typed-tuple","0km":"@stdlib/utils/nary-function","0kn":"@stdlib/utils/native-class","0ko":"@stdlib/utils/next-tick","0kp":"@stdlib/utils/none-by-right","0kq":"@stdlib/utils/none-by","0kr":"@stdlib/utils/none","0ks":"@stdlib/utils/nonenumerable-properties-in","0kt":"@stdlib/utils/nonenumerable-properties","0ku":"@stdlib/utils/nonenumerable-property-names-in","0kv":"@stdlib/utils/nonenumerable-property-names","0kw":"@stdlib/utils/nonenumerable-property-symbols-in","0kx":"@stdlib/utils/nonenumerable-property-symbols","0ky":"@stdlib/utils/nonindex-keys","0kz":"@stdlib/utils/noop","0l0":"@stdlib/utils/object-inverse-by","0l1":"@stdlib/utils/object-inverse","0l2":"@stdlib/utils/omit-by","0l3":"@stdlib/utils/omit","0l4":"@stdlib/utils/open-url","0l5":"@stdlib/utils","0l6":"@stdlib/utils/papply-right","0l7":"@stdlib/utils/papply","0l8":"@stdlib/utils/parallel","0l9":"@stdlib/utils/parse-json","0lA":"@stdlib/utils/pick-arguments","0lB":"@stdlib/utils/pick-by","0lC":"@stdlib/utils/pick","0lD":"@stdlib/utils/pluck","0lE":"@stdlib/utils/pop","0lF":"@stdlib/utils/prepend","0lG":"@stdlib/utils/properties-in","0lH":"@stdlib/utils/properties","0lI":"@stdlib/utils/property-descriptor-in","0lJ":"@stdlib/utils/property-descriptor","0lK":"@stdlib/utils/property-descriptors-in","0lL":"@stdlib/utils/property-descriptors","0lM":"@stdlib/utils/property-names-in","0lN":"@stdlib/utils/property-names","0lO":"@stdlib/utils/property-symbols-in","0lP":"@stdlib/utils/property-symbols","0lQ":"@stdlib/utils/push","0lR":"@stdlib/utils/real-max","0lS":"@stdlib/utils/real-min","0lT":"@stdlib/utils/reduce-right","0lU":"@stdlib/utils/reduce","0lV":"@stdlib/utils/reduce2d","0lW":"@stdlib/utils/regexp-from-string","0lX":"@stdlib/utils/reject-arguments","0lY":"@stdlib/utils/reorder-arguments","0lZ":"@stdlib/utils/reverse-arguments","0la":"@stdlib/utils/safe-int-max","0lb":"@stdlib/utils/safe-int-min","0lc":"@stdlib/utils/shift","0ld":"@stdlib/utils/size-of","0le":"@stdlib/utils/some-by-right","0lf":"@stdlib/utils/some-by","0lg":"@stdlib/utils/some","0lh":"@stdlib/utils/stack","0li":"@stdlib/utils/tabulate-by","0lj":"@stdlib/utils/tabulate","0lk":"@stdlib/utils/timeit","0ll":"@stdlib/utils/try-catch","0lm":"@stdlib/utils/try-function","0ln":"@stdlib/utils/try-require","0lo":"@stdlib/utils/try-then","0lp":"@stdlib/utils/type-max","0lq":"@stdlib/utils/type-min","0lr":"@stdlib/utils/type-of","0ls":"@stdlib/utils/uncapitalize-keys","0lt":"@stdlib/utils/uncurry-right","0lu":"@stdlib/utils/uncurry","0lv":"@stdlib/utils/unshift","0lw":"@stdlib/utils/until-each-right","0lx":"@stdlib/utils/until-each","0ly":"@stdlib/utils/until","0lz":"@stdlib/utils/unzip","0m0":"@stdlib/utils/uppercase-keys","0m1":"@stdlib/utils/values-in","0m2":"@stdlib/utils/values","0m3":"@stdlib/utils/while-each-right","0m4":"@stdlib/utils/while-each","0m5":"@stdlib/utils/while","0m6":"@stdlib/utils/writable-properties-in","0m7":"@stdlib/utils/writable-properties","0m8":"@stdlib/utils/writable-property-names-in","0m9":"@stdlib/utils/writable-property-names","0mA":"@stdlib/utils/writable-property-symbols-in","0mB":"@stdlib/utils/writable-property-symbols","0mC":"@stdlib/utils/zip"}
-},{}],239:[function(require,module,exports){
+},{"./../lib":237,"./../package.json":239,"@stdlib/assert/is-string":145,"@stdlib/bench":207}],236:[function(require,module,exports){
+module.exports={"100":"@stdlib/stats/base/dists/f/cdf","101":"@stdlib/stats-base-dists-f-cdf","102":"@stdlib/stats/base/dists/f/ctor","103":"@stdlib/stats-base-dists-f-ctor","104":"@stdlib/stats/base/dists/f/entropy","105":"@stdlib/stats-base-dists-f-entropy","106":"@stdlib/stats/base/dists/f/kurtosis","107":"@stdlib/stats-base-dists-f-kurtosis","108":"@stdlib/stats/base/dists/f/mean","109":"@stdlib/stats-base-dists-f-mean","110":"@stdlib/stats/base/dists/gamma/logcdf","111":"@stdlib/stats-base-dists-gamma-logcdf","112":"@stdlib/stats/base/dists/gamma/logpdf","113":"@stdlib/stats-base-dists-gamma-logpdf","114":"@stdlib/stats/base/dists/gamma/mean","115":"@stdlib/stats-base-dists-gamma-mean","116":"@stdlib/stats/base/dists/gamma/mgf","117":"@stdlib/stats-base-dists-gamma-mgf","118":"@stdlib/stats/base/dists/gamma/mode","119":"@stdlib/stats-base-dists-gamma-mode","120":"@stdlib/stats/base/dists/gumbel/logcdf","121":"@stdlib/stats-base-dists-gumbel-logcdf","122":"@stdlib/stats/base/dists/gumbel/logpdf","123":"@stdlib/stats-base-dists-gumbel-logpdf","124":"@stdlib/stats/base/dists/gumbel/mean","125":"@stdlib/stats-base-dists-gumbel-mean","126":"@stdlib/stats/base/dists/gumbel/median","127":"@stdlib/stats-base-dists-gumbel-median","128":"@stdlib/stats/base/dists/gumbel/mgf","129":"@stdlib/stats-base-dists-gumbel-mgf","130":"@stdlib/stats/base/dists/invgamma","131":"@stdlib/stats-base-dists-invgamma","132":"@stdlib/stats/base/dists/invgamma/pdf","133":"@stdlib/stats-base-dists-invgamma-pdf","134":"@stdlib/stats/base/dists/invgamma/quantile","135":"@stdlib/stats-base-dists-invgamma-quantile","136":"@stdlib/stats/base/dists/invgamma/skewness","137":"@stdlib/stats-base-dists-invgamma-skewness","138":"@stdlib/stats/base/dists/invgamma/stdev","139":"@stdlib/stats-base-dists-invgamma-stdev","140":"@stdlib/stats/base/dists/laplace/pdf","141":"@stdlib/stats-base-dists-laplace-pdf","142":"@stdlib/stats/base/dists/laplace/quantile","143":"@stdlib/stats-base-dists-laplace-quantile","144":"@stdlib/stats/base/dists/laplace/skewness","145":"@stdlib/stats-base-dists-laplace-skewness","146":"@stdlib/stats/base/dists/laplace/stdev","147":"@stdlib/stats-base-dists-laplace-stdev","148":"@stdlib/stats/base/dists/laplace/variance","149":"@stdlib/stats-base-dists-laplace-variance","150":"@stdlib/stats/base/dists/logistic/skewness","151":"@stdlib/stats-base-dists-logistic-skewness","152":"@stdlib/stats/base/dists/logistic/stdev","153":"@stdlib/stats-base-dists-logistic-stdev","154":"@stdlib/stats/base/dists/logistic/variance","155":"@stdlib/stats-base-dists-logistic-variance","156":"@stdlib/stats/base/dists/lognormal/cdf","157":"@stdlib/stats-base-dists-lognormal-cdf","158":"@stdlib/stats/base/dists/lognormal/ctor","159":"@stdlib/stats-base-dists-lognormal-ctor","160":"@stdlib/stats/base/dists/normal/ctor","161":"@stdlib/stats-base-dists-normal-ctor","162":"@stdlib/stats/base/dists/normal/entropy","163":"@stdlib/stats-base-dists-normal-entropy","164":"@stdlib/stats/base/dists/normal/kurtosis","165":"@stdlib/stats-base-dists-normal-kurtosis","166":"@stdlib/stats/base/dists/normal/logpdf","167":"@stdlib/stats-base-dists-normal-logpdf","168":"@stdlib/stats/base/dists/normal/mean","169":"@stdlib/stats-base-dists-normal-mean","170":"@stdlib/stats/base/dists/poisson/ctor","171":"@stdlib/stats-base-dists-poisson-ctor","172":"@stdlib/stats/base/dists/poisson/entropy","173":"@stdlib/stats-base-dists-poisson-entropy","174":"@stdlib/stats/base/dists/poisson/kurtosis","175":"@stdlib/stats-base-dists-poisson-kurtosis","176":"@stdlib/stats/base/dists/poisson/logpmf","177":"@stdlib/stats-base-dists-poisson-logpmf","178":"@stdlib/stats/base/dists/poisson/mean","179":"@stdlib/stats-base-dists-poisson-mean","180":"@stdlib/stats/base/dists/signrank","181":"@stdlib/stats-base-dists-signrank","182":"@stdlib/stats/base/dists/signrank/pdf","183":"@stdlib/stats-base-dists-signrank-pdf","184":"@stdlib/stats/base/dists/signrank/quantile","185":"@stdlib/stats-base-dists-signrank-quantile","186":"@stdlib/stats/base/dists/t/cdf","187":"@stdlib/stats-base-dists-t-cdf","188":"@stdlib/stats/base/dists/t/ctor","189":"@stdlib/stats-base-dists-t-ctor","190":"@stdlib/stats/base/dists/triangular/skewness","191":"@stdlib/stats-base-dists-triangular-skewness","192":"@stdlib/stats/base/dists/triangular/stdev","193":"@stdlib/stats-base-dists-triangular-stdev","194":"@stdlib/stats/base/dists/triangular/variance","195":"@stdlib/stats-base-dists-triangular-variance","196":"@stdlib/stats/base/dists/truncated-normal","197":"@stdlib/stats-base-dists-truncated-normal","198":"@stdlib/stats/base/dists/truncated-normal/pdf","199":"@stdlib/stats-base-dists-truncated-normal-pdf","200":"@stdlib/blas/base/daxpy-wasm","201":"@stdlib/blas-base-daxpy-wasm","202":"@stdlib/blas/base/dspr","203":"@stdlib/blas-base-dspr","204":"@stdlib/blas/ext/base/cfill","205":"@stdlib/blas-ext-base-cfill","206":"@stdlib/constants/float32/max-safe-nth-factorial","207":"@stdlib/constants-float32-max-safe-nth-factorial","208":"@stdlib/constants/float32/max-safe-nth-fibonacci","209":"@stdlib/constants-float32-max-safe-nth-fibonacci","210":"@stdlib/ndarray/base/assert/has-equal-shape","211":"@stdlib/ndarray-base-assert-has-equal-shape","212":"@stdlib/ndarray/base/fill","213":"@stdlib/ndarray-base-fill","214":"@stdlib/ndarray/base/to-reversed","215":"@stdlib/ndarray-base-to-reversed","216":"@stdlib/strided/base/read-dataview","217":"@stdlib/strided-base-read-dataview","218":"@stdlib/strided/base/strided2object","219":"@stdlib/strided-base-strided2object","220":"@stdlib/array/base/nulls","221":"@stdlib/array-base-nulls","222":"@stdlib/array/byte-orders","223":"@stdlib/array-byte-orders","224":"@stdlib/array/fixed-endian-factory","225":"@stdlib/array-fixed-endian-factory","226":"@stdlib/array/fixed-endian-float32","227":"@stdlib/array-fixed-endian-float32","228":"@stdlib/array/little-endian-factory","229":"@stdlib/array-little-endian-factory","1Yi":"@stdlib/array/base/accessor-getter","1Yj":"@stdlib/array-base-accessor-getter","1Yk":"@stdlib/array/base/accessor-setter","1Yl":"@stdlib/array-base-accessor-setter","1Ym":"@stdlib/array/base/accessor","1Yn":"@stdlib/array-base-accessor","1Yo":"@stdlib/array/base/accessors","1Yp":"@stdlib/array-base-accessors","1oK":"@stdlib/array/base/any-by-right","1oL":"@stdlib/array-base-any-by-right","1oM":"@stdlib/array/base/any-by","1oN":"@stdlib/array-base-any-by","1oO":"@stdlib/array/base/any","1oP":"@stdlib/array-base-any","000":"@stdlib/array/base/arraylike2object","001":"@stdlib/array-base-arraylike2object","1Yq":"@stdlib/array/base/assert/contains","1Yr":"@stdlib/array-base-assert-contains","1zi":"@stdlib/array/base/assert/has-equal-values-indexed","1zj":"@stdlib/array-base-assert-has-equal-values-indexed","1zk":"@stdlib/array/base/assert/has-equal-values","1zl":"@stdlib/array-base-assert-has-equal-values","1oQ":"@stdlib/array/base/assert/has-same-values","1oR":"@stdlib/array-base-assert-has-same-values","1Ys":"@stdlib/array/base/assert/is-accessor-array","1Yt":"@stdlib/array-base-assert-is-accessor-array","1w6":"@stdlib/array/base/assert/is-boolean-data-type","1w7":"@stdlib/array-base-assert-is-boolean-data-type","1w8":"@stdlib/array/base/assert/is-booleanarray","1w9":"@stdlib/array-base-assert-is-booleanarray","21o":"@stdlib/array/base/assert/is-byte-order","21p":"@stdlib/array-base-assert-is-byte-order","1qs":"@stdlib/array/base/assert/is-complex-floating-point-data-type","1qt":"@stdlib/array-base-assert-is-complex-floating-point-data-type","1s4":"@stdlib/array/base/assert/is-complex-typed-array","1s5":"@stdlib/array-base-assert-is-complex-typed-array","1oS":"@stdlib/array/base/assert/is-complex128array","1oT":"@stdlib/array-base-assert-is-complex128array","1oU":"@stdlib/array/base/assert/is-complex64array","1oV":"@stdlib/array-base-assert-is-complex64array","1qu":"@stdlib/array/base/assert/is-data-type","1qv":"@stdlib/array-base-assert-is-data-type","1qw":"@stdlib/array/base/assert/is-floating-point-data-type","1qx":"@stdlib/array-base-assert-is-floating-point-data-type","1qy":"@stdlib/array/base/assert/is-integer-data-type","1qz":"@stdlib/array-base-assert-is-integer-data-type","1r0":"@stdlib/array/base/assert/is-mostly-safe-data-type-cast","1r1":"@stdlib/array-base-assert-is-mostly-safe-data-type-cast","1r2":"@stdlib/array/base/assert/is-numeric-data-type","1r3":"@stdlib/array-base-assert-is-numeric-data-type","1r4":"@stdlib/array/base/assert/is-real-data-type","1r5":"@stdlib/array-base-assert-is-real-data-type","1r6":"@stdlib/array/base/assert/is-real-floating-point-data-type","1r7":"@stdlib/array-base-assert-is-real-floating-point-data-type","1r8":"@stdlib/array/base/assert/is-safe-data-type-cast","1r9":"@stdlib/array-base-assert-is-safe-data-type-cast","1rA":"@stdlib/array/base/assert/is-same-kind-data-type-cast","1rB":"@stdlib/array-base-assert-is-same-kind-data-type-cast","1rC":"@stdlib/array/base/assert/is-signed-integer-data-type","1rD":"@stdlib/array-base-assert-is-signed-integer-data-type","1rE":"@stdlib/array/base/assert/is-unsigned-integer-data-type","1rF":"@stdlib/array-base-assert-is-unsigned-integer-data-type","1Yu":"@stdlib/array/base/assert","1Yv":"@stdlib/array-base-assert","1oW":"@stdlib/array/base/at","1oX":"@stdlib/array-base-at","1oY":"@stdlib/array/base/at2d","1oZ":"@stdlib/array-base-at2d","1oa":"@stdlib/array/base/at3d","1ob":"@stdlib/array-base-at3d","1oc":"@stdlib/array/base/at4d","1od":"@stdlib/array-base-at4d","1oe":"@stdlib/array/base/at5d","1of":"@stdlib/array-base-at5d","1og":"@stdlib/array/base/atnd","1oh":"@stdlib/array-base-atnd","1ne":"@stdlib/array/base/bifurcate-entries-by","1nf":"@stdlib/array-base-bifurcate-entries-by","1n2":"@stdlib/array/base/bifurcate-entries","1n3":"@stdlib/array-base-bifurcate-entries","1ng":"@stdlib/array/base/bifurcate-indices-by","1nh":"@stdlib/array-base-bifurcate-indices-by","1n4":"@stdlib/array/base/bifurcate-indices","1n5":"@stdlib/array-base-bifurcate-indices","1ni":"@stdlib/array/base/bifurcate-values-by","1nj":"@stdlib/array-base-bifurcate-values-by","1n6":"@stdlib/array/base/bifurcate-values","1n7":"@stdlib/array-base-bifurcate-values","1i0":"@stdlib/array/base/binary2d","1i1":"@stdlib/array-base-binary2d","1i2":"@stdlib/array/base/binary3d","1i3":"@stdlib/array-base-binary3d","1i4":"@stdlib/array/base/binary4d","1i5":"@stdlib/array-base-binary4d","1i6":"@stdlib/array/base/binary5d","1i7":"@stdlib/array-base-binary5d","1i8":"@stdlib/array/base/binarynd","1i9":"@stdlib/array-base-binarynd","1hM":"@stdlib/array/base/broadcast-array","1hN":"@stdlib/array-base-broadcast-array","1iA":"@stdlib/array/base/broadcasted-binary2d","1iB":"@stdlib/array-base-broadcasted-binary2d","1iC":"@stdlib/array/base/broadcasted-binary3d","1iD":"@stdlib/array-base-broadcasted-binary3d","1iE":"@stdlib/array/base/broadcasted-binary4d","1iF":"@stdlib/array-base-broadcasted-binary4d","1iG":"@stdlib/array/base/broadcasted-binary5d","1iH":"@stdlib/array-base-broadcasted-binary5d","1ke":"@stdlib/array/base/broadcasted-quaternary2d","1kf":"@stdlib/array-base-broadcasted-quaternary2d","1kg":"@stdlib/array/base/broadcasted-quinary2d","1kh":"@stdlib/array-base-broadcasted-quinary2d","1ki":"@stdlib/array/base/broadcasted-ternary2d","1kj":"@stdlib/array-base-broadcasted-ternary2d","1iI":"@stdlib/array/base/broadcasted-unary2d","1iJ":"@stdlib/array-base-broadcasted-unary2d","1iK":"@stdlib/array/base/broadcasted-unary3d","1iL":"@stdlib/array-base-broadcasted-unary3d","1iM":"@stdlib/array/base/broadcasted-unary4d","1iN":"@stdlib/array-base-broadcasted-unary4d","1iO":"@stdlib/array/base/broadcasted-unary5d","1iP":"@stdlib/array-base-broadcasted-unary5d","1Yw":"@stdlib/array/base/cartesian-power","1Yx":"@stdlib/array-base-cartesian-power","1Yy":"@stdlib/array/base/cartesian-product","1Yz":"@stdlib/array-base-cartesian-product","1Z0":"@stdlib/array/base/cartesian-square","1Z1":"@stdlib/array-base-cartesian-square","1Z2":"@stdlib/array/base/copy-indexed","1Z3":"@stdlib/array-base-copy-indexed","002":"@stdlib/array/base/copy","003":"@stdlib/array-base-copy","1s6":"@stdlib/array/base/count-falsy","1s7":"@stdlib/array-base-count-falsy","1sO":"@stdlib/array/base/count-if","1sP":"@stdlib/array-base-count-if","1sQ":"@stdlib/array/base/count-same-value-zero","1sR":"@stdlib/array-base-count-same-value-zero","1s8":"@stdlib/array/base/count-same-value","1s9":"@stdlib/array-base-count-same-value","1sA":"@stdlib/array/base/count-truthy","1sB":"@stdlib/array-base-count-truthy","21q":"@stdlib/array/base/cuany-by-right","21r":"@stdlib/array-base-cuany-by-right","21s":"@stdlib/array/base/cuany-by","21t":"@stdlib/array-base-cuany-by","1wA":"@stdlib/array/base/cuany","1wB":"@stdlib/array-base-cuany","21u":"@stdlib/array/base/cuevery-by","21v":"@stdlib/array-base-cuevery-by","1wC":"@stdlib/array/base/cuevery","1wD":"@stdlib/array-base-cuevery","21U":"@stdlib/array/base/cunone-by-right","21V":"@stdlib/array-base-cunone-by-right","21W":"@stdlib/array/base/cunone-by","21X":"@stdlib/array-base-cunone-by","1ww":"@stdlib/array/base/cunone","1wx":"@stdlib/array-base-cunone","21Y":"@stdlib/array/base/cusome-by-right","21Z":"@stdlib/array-base-cusome-by-right","21w":"@stdlib/array/base/cusome-by","21x":"@stdlib/array-base-cusome-by","21y":"@stdlib/array/base/cusome","21z":"@stdlib/array-base-cusome","1n8":"@stdlib/array/base/dedupe","1n9":"@stdlib/array-base-dedupe","1oi":"@stdlib/array/base/every-by-right","1oj":"@stdlib/array-base-every-by-right","1ok":"@stdlib/array/base/every-by","1ol":"@stdlib/array-base-every-by","1om":"@stdlib/array/base/every","1on":"@stdlib/array-base-every","1rG":"@stdlib/array/base/fancy-slice-assign","1rH":"@stdlib/array-base-fancy-slice-assign","1rI":"@stdlib/array/base/fancy-slice","1rJ":"@stdlib/array-base-fancy-slice","004":"@stdlib/array/base/filled-by","005":"@stdlib/array-base-filled-by","006":"@stdlib/array/base/filled","007":"@stdlib/array-base-filled","1hO":"@stdlib/array/base/filled2d-by","1hP":"@stdlib/array-base-filled2d-by","1Z4":"@stdlib/array/base/filled2d","1Z5":"@stdlib/array-base-filled2d","1hQ":"@stdlib/array/base/filled3d-by","1hR":"@stdlib/array-base-filled3d-by","1hS":"@stdlib/array/base/filled3d","1hT":"@stdlib/array-base-filled3d","1hU":"@stdlib/array/base/filled4d-by","1hV":"@stdlib/array-base-filled4d-by","1hW":"@stdlib/array/base/filled4d","1hX":"@stdlib/array-base-filled4d","1hY":"@stdlib/array/base/filled5d-by","1hZ":"@stdlib/array-base-filled5d-by","1ha":"@stdlib/array/base/filled5d","1hb":"@stdlib/array-base-filled5d","1iQ":"@stdlib/array/base/fillednd-by","1iR":"@stdlib/array-base-fillednd-by","1hc":"@stdlib/array/base/fillednd","1hd":"@stdlib/array-base-fillednd","1oo":"@stdlib/array/base/filter","1op":"@stdlib/array-base-filter","1mm":"@stdlib/array/base/first","1mn":"@stdlib/array-base-first","1he":"@stdlib/array/base/flatten-by","1hf":"@stdlib/array-base-flatten-by","1Z6":"@stdlib/array/base/flatten","1Z7":"@stdlib/array-base-flatten","1Z8":"@stdlib/array/base/flatten2d-by","1Z9":"@stdlib/array-base-flatten2d-by","1ZA":"@stdlib/array/base/flatten2d","1ZB":"@stdlib/array-base-flatten2d","1ZC":"@stdlib/array/base/flatten3d-by","1ZD":"@stdlib/array-base-flatten3d-by","1ZE":"@stdlib/array/base/flatten3d","1ZF":"@stdlib/array-base-flatten3d","1ZG":"@stdlib/array/base/flatten4d-by","1ZH":"@stdlib/array-base-flatten4d-by","1ZI":"@stdlib/array/base/flatten4d","1ZJ":"@stdlib/array-base-flatten4d","1ZK":"@stdlib/array/base/flatten5d-by","1ZL":"@stdlib/array-base-flatten5d-by","1ZM":"@stdlib/array/base/flatten5d","1ZN":"@stdlib/array-base-flatten5d","1lg":"@stdlib/array/base/fliplr2d","1lh":"@stdlib/array-base-fliplr2d","1mI":"@stdlib/array/base/fliplr3d","1mJ":"@stdlib/array-base-fliplr3d","1mK":"@stdlib/array/base/fliplr4d","1mL":"@stdlib/array-base-fliplr4d","1mM":"@stdlib/array/base/fliplr5d","1mN":"@stdlib/array-base-fliplr5d","1li":"@stdlib/array/base/flipud2d","1lj":"@stdlib/array-base-flipud2d","1nA":"@stdlib/array/base/flipud3d","1nB":"@stdlib/array-base-flipud3d","1nC":"@stdlib/array/base/flipud4d","1nD":"@stdlib/array-base-flipud4d","1nE":"@stdlib/array/base/flipud5d","1nF":"@stdlib/array-base-flipud5d","1lk":"@stdlib/array/base/from-strided","1ll":"@stdlib/array-base-from-strided","1ZO":"@stdlib/array/base/getter","1ZP":"@stdlib/array-base-getter","1nk":"@stdlib/array/base/group-entries-by","1nl":"@stdlib/array-base-group-entries-by","1nG":"@stdlib/array/base/group-entries","1nH":"@stdlib/array-base-group-entries","1nm":"@stdlib/array/base/group-indices-by","1nn":"@stdlib/array-base-group-indices-by","1nI":"@stdlib/array/base/group-indices","1nJ":"@stdlib/array-base-group-indices","1no":"@stdlib/array/base/group-values-by","1np":"@stdlib/array-base-group-values-by","1nK":"@stdlib/array/base/group-values","1nL":"@stdlib/array-base-group-values","008":"@stdlib/array/base/incrspace","009":"@stdlib/array-base-incrspace","1mo":"@stdlib/array/base/index-of","1mp":"@stdlib/array-base-index-of","1t0":"@stdlib/array/base/join","1t1":"@stdlib/array-base-join","1mq":"@stdlib/array/base/last-index-of","1mr":"@stdlib/array-base-last-index-of","1ZQ":"@stdlib/array/base/last","1ZR":"@stdlib/array-base-last","00A":"@stdlib/array/base/linspace","00B":"@stdlib/array-base-linspace","00C":"@stdlib/array/base/logspace","00D":"@stdlib/array-base-logspace","1lm":"@stdlib/array/base/map2d","1ln":"@stdlib/array-base-map2d","1lo":"@stdlib/array/base/map3d","1lp":"@stdlib/array-base-map3d","1mO":"@stdlib/array/base/map4d","1mP":"@stdlib/array-base-map4d","1mQ":"@stdlib/array/base/map5d","1mR":"@stdlib/array-base-map5d","1rK":"@stdlib/array/base/min-signed-integer-dtype","1rL":"@stdlib/array-base-min-signed-integer-dtype","1rM":"@stdlib/array/base/min-unsigned-integer-dtype","1rN":"@stdlib/array-base-min-unsigned-integer-dtype","1ia":"@stdlib/array/base/mskbinary2d","1ib":"@stdlib/array-base-mskbinary2d","1uM":"@stdlib/array/base/mskfilter-map","1uN":"@stdlib/array-base-mskfilter-map","1oq":"@stdlib/array/base/mskfilter","1or":"@stdlib/array-base-mskfilter","1wE":"@stdlib/array/base/mskput","1wF":"@stdlib/array-base-mskput","1uO":"@stdlib/array/base/mskreject-map","1uP":"@stdlib/array-base-mskreject-map","1rO":"@stdlib/array/base/mskreject","1rP":"@stdlib/array-base-mskreject","1ic":"@stdlib/array/base/mskunary2d","1id":"@stdlib/array-base-mskunary2d","1ie":"@stdlib/array/base/mskunary3d","1if":"@stdlib/array-base-mskunary3d","1ZS":"@stdlib/array/base/n-cartesian-product","1ZT":"@stdlib/array-base-n-cartesian-product","1os":"@stdlib/array/base/none-by-right","1ot":"@stdlib/array-base-none-by-right","1ou":"@stdlib/array/base/none-by","1ov":"@stdlib/array-base-none-by","1ow":"@stdlib/array/base/none","1ox":"@stdlib/array-base-none","1hg":"@stdlib/array/base/one-to","1hh":"@stdlib/array-base-one-to","00E":"@stdlib/array/base/ones","00F":"@stdlib/array-base-ones","1ZU":"@stdlib/array/base/ones2d","1ZV":"@stdlib/array-base-ones2d","1hi":"@stdlib/array/base/ones3d","1hj":"@stdlib/array-base-ones3d","1hk":"@stdlib/array/base/ones4d","1hl":"@stdlib/array-base-ones4d","1hm":"@stdlib/array/base/ones5d","1hn":"@stdlib/array-base-ones5d","1ho":"@stdlib/array/base/onesnd","1hp":"@stdlib/array-base-onesnd","00G":"@stdlib/array/base","00H":"@stdlib/array-base","1wG":"@stdlib/array/base/place","1wH":"@stdlib/array-base-place","1wI":"@stdlib/array/base/put","1wJ":"@stdlib/array-base-put","1kk":"@stdlib/array/base/quaternary2d","1kl":"@stdlib/array-base-quaternary2d","1lq":"@stdlib/array/base/quaternary3d","1lr":"@stdlib/array-base-quaternary3d","1ls":"@stdlib/array/base/quaternary4d","1lt":"@stdlib/array-base-quaternary4d","1lu":"@stdlib/array/base/quaternary5d","1lv":"@stdlib/array-base-quaternary5d","1km":"@stdlib/array/base/quinary2d","1kn":"@stdlib/array-base-quinary2d","1nM":"@stdlib/array/base/quinary3d","1nN":"@stdlib/array-base-quinary3d","1nO":"@stdlib/array/base/quinary4d","1nP":"@stdlib/array-base-quinary4d","1nQ":"@stdlib/array/base/quinary5d","1nR":"@stdlib/array-base-quinary5d","1rQ":"@stdlib/array/base/reject","1rR":"@stdlib/array-base-reject","1yy":"@stdlib/array/base/remove-at","1yz":"@stdlib/array-base-remove-at","1lw":"@stdlib/array/base/resolve-getter","1lx":"@stdlib/array-base-resolve-getter","1oy":"@stdlib/array/base/resolve-setter","1oz":"@stdlib/array-base-resolve-setter","1p0":"@stdlib/array/base/reverse","1p1":"@stdlib/array-base-reverse","1ZW":"@stdlib/array/base/setter","1ZX":"@stdlib/array-base-setter","1ms":"@stdlib/array/base/slice","1mt":"@stdlib/array-base-slice","1ko":"@stdlib/array/base/strided2array2d","1kp":"@stdlib/array-base-strided2array2d","1kq":"@stdlib/array/base/strided2array3d","1kr":"@stdlib/array-base-strided2array3d","1ks":"@stdlib/array/base/strided2array4d","1kt":"@stdlib/array-base-strided2array4d","1ku":"@stdlib/array/base/strided2array5d","1kv":"@stdlib/array-base-strided2array5d","1ly":"@stdlib/array/base/take-indexed","1lz":"@stdlib/array-base-take-indexed","1t2":"@stdlib/array/base/take-map","1t3":"@stdlib/array-base-take-map","1ZY":"@stdlib/array/base/take","1ZZ":"@stdlib/array-base-take","1m0":"@stdlib/array/base/take2d","1m1":"@stdlib/array-base-take2d","1mS":"@stdlib/array/base/take3d","1mT":"@stdlib/array-base-take3d","1kw":"@stdlib/array/base/ternary2d","1kx":"@stdlib/array-base-ternary2d","1ky":"@stdlib/array/base/ternary3d","1kz":"@stdlib/array-base-ternary3d","1l0":"@stdlib/array/base/ternary4d","1l1":"@stdlib/array-base-ternary4d","1l2":"@stdlib/array/base/ternary5d","1l3":"@stdlib/array-base-ternary5d","1Za":"@stdlib/array/base/to-accessor-array","1Zb":"@stdlib/array-base-to-accessor-array","1nS":"@stdlib/array/base/to-deduped","1nT":"@stdlib/array-base-to-deduped","1p2":"@stdlib/array/base/to-reversed","1p3":"@stdlib/array-base-to-reversed","1ig":"@stdlib/array/base/unary2d-by","1ih":"@stdlib/array-base-unary2d-by","1hq":"@stdlib/array/base/unary2d","1hr":"@stdlib/array-base-unary2d","1iS":"@stdlib/array/base/unary3d","1iT":"@stdlib/array-base-unary3d","1iU":"@stdlib/array/base/unary4d","1iV":"@stdlib/array-base-unary4d","1iW":"@stdlib/array/base/unary5d","1iX":"@stdlib/array-base-unary5d","1iY":"@stdlib/array/base/unarynd","1iZ":"@stdlib/array-base-unarynd","00I":"@stdlib/array/base/unitspace","00J":"@stdlib/array-base-unitspace","1wK":"@stdlib/array/base/where","1wL":"@stdlib/array-base-where","1sS":"@stdlib/array/base/with","1sT":"@stdlib/array-base-with","1z0":"@stdlib/array/base/without","1z1":"@stdlib/array-base-without","1Zc":"@stdlib/array/base/zero-to","1Zd":"@stdlib/array-base-zero-to","00K":"@stdlib/array/base/zeros","00L":"@stdlib/array-base-zeros","1Ze":"@stdlib/array/base/zeros2d","1Zf":"@stdlib/array-base-zeros2d","1hs":"@stdlib/array/base/zeros3d","1ht":"@stdlib/array-base-zeros3d","1hu":"@stdlib/array/base/zeros4d","1hv":"@stdlib/array-base-zeros4d","1hw":"@stdlib/array/base/zeros5d","1hx":"@stdlib/array-base-zeros5d","1hy":"@stdlib/array/base/zerosnd","1hz":"@stdlib/array-base-zerosnd","1uQ":"@stdlib/array/bool","1uR":"@stdlib/array-bool","00M":"@stdlib/array/buffer","00N":"@stdlib/array-buffer","1p4":"@stdlib/array/cartesian-power","1p5":"@stdlib/array-cartesian-power","1p6":"@stdlib/array/cartesian-product","1p7":"@stdlib/array-cartesian-product","1p8":"@stdlib/array/cartesian-square","1p9":"@stdlib/array-cartesian-square","00O":"@stdlib/array/complex128","00P":"@stdlib/array-complex128","00Q":"@stdlib/array/complex64","00R":"@stdlib/array-complex64","00S":"@stdlib/array/convert-same","00T":"@stdlib/array-convert-same","00U":"@stdlib/array/convert","00V":"@stdlib/array-convert","00W":"@stdlib/array/ctors","00X":"@stdlib/array-ctors","00Y":"@stdlib/array/dataview","00Z":"@stdlib/array-dataview","00a":"@stdlib/array/datespace","00b":"@stdlib/array-datespace","1nq":"@stdlib/array/defaults","1nr":"@stdlib/array-defaults","00c":"@stdlib/array/dtype","00d":"@stdlib/array-dtype","00e":"@stdlib/array/dtypes","00f":"@stdlib/array-dtypes","1Zg":"@stdlib/array/empty-like","1Zh":"@stdlib/array-empty-like","1Zi":"@stdlib/array/empty","1Zj":"@stdlib/array-empty","00g":"@stdlib/array/filled-by","00h":"@stdlib/array-filled-by","00i":"@stdlib/array/filled","00j":"@stdlib/array-filled","21a":"@stdlib/array/fixed-endian-float64","21b":"@stdlib/array-fixed-endian-float64","00k":"@stdlib/array/float32","00l":"@stdlib/array-float32","00m":"@stdlib/array/float64","00n":"@stdlib/array-float64","00o":"@stdlib/array/from-iterator","00p":"@stdlib/array-from-iterator","1rS":"@stdlib/array/from-scalar","1rT":"@stdlib/array-from-scalar","00q":"@stdlib/array/full-like","00r":"@stdlib/array-full-like","00s":"@stdlib/array/full","00t":"@stdlib/array-full","00u":"@stdlib/array/incrspace","00v":"@stdlib/array-incrspace","1ry":"@stdlib/array/index","1rz":"@stdlib/array-index","00w":"@stdlib/array/int16","00x":"@stdlib/array-int16","00y":"@stdlib/array/int32","00z":"@stdlib/array-int32","010":"@stdlib/array/int8","011":"@stdlib/array-int8","012":"@stdlib/array/linspace","013":"@stdlib/array-linspace","22A":"@stdlib/array/little-endian-float32","22B":"@stdlib/array-little-endian-float32","22C":"@stdlib/array/little-endian-float64","22D":"@stdlib/array-little-endian-float64","014":"@stdlib/array/logspace","015":"@stdlib/array-logspace","016":"@stdlib/array/min-dtype","017":"@stdlib/array-min-dtype","1rU":"@stdlib/array/mostly-safe-casts","1rV":"@stdlib/array-mostly-safe-casts","1sC":"@stdlib/array/mskfilter","1sD":"@stdlib/array-mskfilter","1wM":"@stdlib/array/mskput","1wN":"@stdlib/array-mskput","1sE":"@stdlib/array/mskreject","1sF":"@stdlib/array-mskreject","1Zk":"@stdlib/array/nans-like","1Zl":"@stdlib/array-nans-like","1Zm":"@stdlib/array/nans","1Zn":"@stdlib/array-nans","018":"@stdlib/array/next-dtype","019":"@stdlib/array-next-dtype","1pA":"@stdlib/array/one-to-like","1pB":"@stdlib/array-one-to-like","1pC":"@stdlib/array/one-to","1pD":"@stdlib/array-one-to","01A":"@stdlib/array/ones-like","01B":"@stdlib/array-ones-like","01C":"@stdlib/array/ones","01D":"@stdlib/array-ones","01F":"@stdlib/array","1wO":"@stdlib/array/place","1wP":"@stdlib/array-place","01G":"@stdlib/array/pool","01H":"@stdlib/array-pool","01I":"@stdlib/array/promotion-rules","01J":"@stdlib/array-promotion-rules","1wQ":"@stdlib/array/put","1wR":"@stdlib/array-put","01K":"@stdlib/array/reviver","01L":"@stdlib/array-reviver","01M":"@stdlib/array/safe-casts","01N":"@stdlib/array-safe-casts","01O":"@stdlib/array/same-kind-casts","01P":"@stdlib/array-same-kind-casts","01Q":"@stdlib/array/shape","01R":"@stdlib/array-shape","01S":"@stdlib/array/shared-buffer","01T":"@stdlib/array-shared-buffer","1pE":"@stdlib/array/slice","1pF":"@stdlib/array-slice","1s0":"@stdlib/array/take","1s1":"@stdlib/array-take","01U":"@stdlib/array/to-circular-iterator","01V":"@stdlib/array-to-circular-iterator","1rW":"@stdlib/array/to-fancy","1rX":"@stdlib/array-to-fancy","01W":"@stdlib/array/to-iterator-right","01X":"@stdlib/array-to-iterator-right","01Y":"@stdlib/array/to-iterator","01Z":"@stdlib/array-to-iterator","01a":"@stdlib/array/to-json","01b":"@stdlib/array-to-json","01c":"@stdlib/array/to-sparse-iterator-right","01d":"@stdlib/array-to-sparse-iterator-right","01e":"@stdlib/array/to-sparse-iterator","01f":"@stdlib/array-to-sparse-iterator","01g":"@stdlib/array/to-strided-iterator","01h":"@stdlib/array-to-strided-iterator","01i":"@stdlib/array/to-view-iterator-right","01j":"@stdlib/array-to-view-iterator-right","01k":"@stdlib/array/to-view-iterator","01l":"@stdlib/array-to-view-iterator","01m":"@stdlib/array/typed-complex-ctors","01n":"@stdlib/array-typed-complex-ctors","01o":"@stdlib/array/typed-complex-dtypes","01p":"@stdlib/array-typed-complex-dtypes","01q":"@stdlib/array/typed-complex","01r":"@stdlib/array-typed-complex","01s":"@stdlib/array/typed-ctors","01t":"@stdlib/array-typed-ctors","01u":"@stdlib/array/typed-dtypes","01v":"@stdlib/array-typed-dtypes","01w":"@stdlib/array/typed-float-ctors","01x":"@stdlib/array-typed-float-ctors","01y":"@stdlib/array/typed-float-dtypes","01z":"@stdlib/array-typed-float-dtypes","020":"@stdlib/array/typed-integer-ctors","021":"@stdlib/array-typed-integer-ctors","022":"@stdlib/array/typed-integer-dtypes","023":"@stdlib/array-typed-integer-dtypes","024":"@stdlib/array/typed-real-ctors","025":"@stdlib/array-typed-real-ctors","026":"@stdlib/array/typed-real-dtypes","027":"@stdlib/array-typed-real-dtypes","028":"@stdlib/array/typed-real-float-ctors","029":"@stdlib/array-typed-real-float-ctors","02A":"@stdlib/array/typed-real-float-dtypes","02B":"@stdlib/array-typed-real-float-dtypes","02C":"@stdlib/array/typed-real","02D":"@stdlib/array-typed-real","02E":"@stdlib/array/typed-signed-integer-ctors","02F":"@stdlib/array-typed-signed-integer-ctors","02G":"@stdlib/array/typed-signed-integer-dtypes","02H":"@stdlib/array-typed-signed-integer-dtypes","02I":"@stdlib/array/typed-unsigned-integer-ctors","02J":"@stdlib/array-typed-unsigned-integer-ctors","02K":"@stdlib/array/typed-unsigned-integer-dtypes","02L":"@stdlib/array-typed-unsigned-integer-dtypes","02M":"@stdlib/array/typed","02N":"@stdlib/array-typed","02O":"@stdlib/array/uint16","02P":"@stdlib/array-uint16","02Q":"@stdlib/array/uint32","02R":"@stdlib/array-uint32","02S":"@stdlib/array/uint8","02T":"@stdlib/array-uint8","02U":"@stdlib/array/uint8c","02V":"@stdlib/array-uint8c","1pG":"@stdlib/array/zero-to-like","1pH":"@stdlib/array-zero-to-like","1pI":"@stdlib/array/zero-to","1pJ":"@stdlib/array-zero-to","02W":"@stdlib/array/zeros-like","02X":"@stdlib/array-zeros-like","02Y":"@stdlib/array/zeros","02Z":"@stdlib/array-zeros","02a":"@stdlib/assert/contains","02b":"@stdlib/assert-contains","02c":"@stdlib/assert/deep-equal","02d":"@stdlib/assert-deep-equal","02e":"@stdlib/assert/deep-has-own-property","02f":"@stdlib/assert-deep-has-own-property","02g":"@stdlib/assert/deep-has-property","02h":"@stdlib/assert-deep-has-property","02i":"@stdlib/assert/has-arraybuffer-support","02j":"@stdlib/assert-has-arraybuffer-support","02k":"@stdlib/assert/has-arrow-function-support","02l":"@stdlib/assert-has-arrow-function-support","02m":"@stdlib/assert/has-async-await-support","02n":"@stdlib/assert-has-async-await-support","02o":"@stdlib/assert/has-async-iterator-symbol-support","02p":"@stdlib/assert-has-async-iterator-symbol-support","1zm":"@stdlib/assert/has-atob-support","1zn":"@stdlib/assert-has-atob-support","02q":"@stdlib/assert/has-bigint-support","02r":"@stdlib/assert-has-bigint-support","02s":"@stdlib/assert/has-bigint64array-support","02t":"@stdlib/assert-has-bigint64array-support","02u":"@stdlib/assert/has-biguint64array-support","02v":"@stdlib/assert-has-biguint64array-support","1zo":"@stdlib/assert/has-btoa-support","1zp":"@stdlib/assert-has-btoa-support","02w":"@stdlib/assert/has-class-support","02x":"@stdlib/assert-has-class-support","02y":"@stdlib/assert/has-dataview-support","02z":"@stdlib/assert-has-dataview-support","030":"@stdlib/assert/has-define-properties-support","031":"@stdlib/assert-has-define-properties-support","032":"@stdlib/assert/has-define-property-support","033":"@stdlib/assert-has-define-property-support","034":"@stdlib/assert/has-float32array-support","035":"@stdlib/assert-has-float32array-support","036":"@stdlib/assert/has-float64array-support","037":"@stdlib/assert-has-float64array-support","038":"@stdlib/assert/has-function-name-support","039":"@stdlib/assert-has-function-name-support","03A":"@stdlib/assert/has-generator-support","03B":"@stdlib/assert-has-generator-support","03C":"@stdlib/assert/has-globalthis-support","03D":"@stdlib/assert-has-globalthis-support","03E":"@stdlib/assert/has-int16array-support","03F":"@stdlib/assert-has-int16array-support","03G":"@stdlib/assert/has-int32array-support","03H":"@stdlib/assert-has-int32array-support","03I":"@stdlib/assert/has-int8array-support","03J":"@stdlib/assert-has-int8array-support","03K":"@stdlib/assert/has-iterator-symbol-support","03L":"@stdlib/assert-has-iterator-symbol-support","03M":"@stdlib/assert/has-map-support","03N":"@stdlib/assert-has-map-support","03O":"@stdlib/assert/has-node-buffer-support","03P":"@stdlib/assert-has-node-buffer-support","03Q":"@stdlib/assert/has-own-property","03R":"@stdlib/assert-has-own-property","03S":"@stdlib/assert/has-property","03T":"@stdlib/assert-has-property","03U":"@stdlib/assert/has-proxy-support","03V":"@stdlib/assert-has-proxy-support","03W":"@stdlib/assert/has-set-support","03X":"@stdlib/assert-has-set-support","03Y":"@stdlib/assert/has-sharedarraybuffer-support","03Z":"@stdlib/assert-has-sharedarraybuffer-support","03a":"@stdlib/assert/has-symbol-support","03b":"@stdlib/assert-has-symbol-support","03c":"@stdlib/assert/has-tostringtag-support","03d":"@stdlib/assert-has-tostringtag-support","03e":"@stdlib/assert/has-uint16array-support","03f":"@stdlib/assert-has-uint16array-support","03g":"@stdlib/assert/has-uint32array-support","03h":"@stdlib/assert-has-uint32array-support","03i":"@stdlib/assert/has-uint8array-support","03j":"@stdlib/assert-has-uint8array-support","03k":"@stdlib/assert/has-uint8clampedarray-support","03l":"@stdlib/assert-has-uint8clampedarray-support","03m":"@stdlib/assert/has-utf16-surrogate-pair-at","03n":"@stdlib/assert-has-utf16-surrogate-pair-at","03o":"@stdlib/assert/has-wasm-support","03p":"@stdlib/assert-has-wasm-support","03q":"@stdlib/assert/has-weakmap-support","03r":"@stdlib/assert-has-weakmap-support","03s":"@stdlib/assert/has-weakset-support","03t":"@stdlib/assert-has-weakset-support","03u":"@stdlib/assert/instance-of","03v":"@stdlib/assert-instance-of","03w":"@stdlib/assert/is-absolute-http-uri","03x":"@stdlib/assert-is-absolute-http-uri","03y":"@stdlib/assert/is-absolute-path","03z":"@stdlib/assert-is-absolute-path","040":"@stdlib/assert/is-absolute-uri","041":"@stdlib/assert-is-absolute-uri","1Zo":"@stdlib/assert/is-accessor-array","1Zp":"@stdlib/assert-is-accessor-array","042":"@stdlib/assert/is-accessor-property-in","043":"@stdlib/assert-is-accessor-property-in","044":"@stdlib/assert/is-accessor-property","045":"@stdlib/assert-is-accessor-property","046":"@stdlib/assert/is-alphagram","047":"@stdlib/assert-is-alphagram","048":"@stdlib/assert/is-alphanumeric","049":"@stdlib/assert-is-alphanumeric","04A":"@stdlib/assert/is-anagram","04B":"@stdlib/assert-is-anagram","04C":"@stdlib/assert/is-arguments","04D":"@stdlib/assert-is-arguments","04E":"@stdlib/assert/is-array-array","04F":"@stdlib/assert-is-array-array","04G":"@stdlib/assert/is-array-length","04H":"@stdlib/assert-is-array-length","04I":"@stdlib/assert/is-array-like-object","04J":"@stdlib/assert-is-array-like-object","04K":"@stdlib/assert/is-array-like","04L":"@stdlib/assert-is-array-like","04M":"@stdlib/assert/is-array","04N":"@stdlib/assert-is-array","04O":"@stdlib/assert/is-arraybuffer-view","04P":"@stdlib/assert-is-arraybuffer-view","04Q":"@stdlib/assert/is-arraybuffer","04R":"@stdlib/assert-is-arraybuffer","04S":"@stdlib/assert/is-arrow-function","04T":"@stdlib/assert-is-arrow-function","04U":"@stdlib/assert/is-ascii","04V":"@stdlib/assert-is-ascii","04W":"@stdlib/assert/is-between-array","04X":"@stdlib/assert-is-between-array","04Y":"@stdlib/assert/is-between","04Z":"@stdlib/assert-is-between","04a":"@stdlib/assert/is-big-endian","04b":"@stdlib/assert-is-big-endian","04c":"@stdlib/assert/is-bigint","04d":"@stdlib/assert-is-bigint","04e":"@stdlib/assert/is-bigint64array","04f":"@stdlib/assert-is-bigint64array","04g":"@stdlib/assert/is-biguint64array","04h":"@stdlib/assert-is-biguint64array","04i":"@stdlib/assert/is-binary-string","04j":"@stdlib/assert-is-binary-string","04k":"@stdlib/assert/is-blank-string","04l":"@stdlib/assert-is-blank-string","04m":"@stdlib/assert/is-boolean-array","04n":"@stdlib/assert-is-boolean-array","04o":"@stdlib/assert/is-boolean","04p":"@stdlib/assert-is-boolean","1vW":"@stdlib/assert/is-booleanarray","1vX":"@stdlib/assert-is-booleanarray","04q":"@stdlib/assert/is-boxed-primitive","04r":"@stdlib/assert-is-boxed-primitive","04s":"@stdlib/assert/is-browser","04t":"@stdlib/assert-is-browser","04u":"@stdlib/assert/is-buffer","04v":"@stdlib/assert-is-buffer","1Zq":"@stdlib/assert/is-camelcase","1Zr":"@stdlib/assert-is-camelcase","04w":"@stdlib/assert/is-capitalized","04x":"@stdlib/assert-is-capitalized","04y":"@stdlib/assert/is-centrosymmetric-matrix","04z":"@stdlib/assert-is-centrosymmetric-matrix","050":"@stdlib/assert/is-circular-array","051":"@stdlib/assert-is-circular-array","052":"@stdlib/assert/is-circular-plain-object","053":"@stdlib/assert-is-circular-plain-object","054":"@stdlib/assert/is-circular","055":"@stdlib/assert-is-circular","056":"@stdlib/assert/is-class","057":"@stdlib/assert-is-class","058":"@stdlib/assert/is-collection","059":"@stdlib/assert-is-collection","05A":"@stdlib/assert/is-complex-like","05B":"@stdlib/assert-is-complex-like","05C":"@stdlib/assert/is-complex-typed-array-like","05D":"@stdlib/assert-is-complex-typed-array-like","05E":"@stdlib/assert/is-complex-typed-array","05F":"@stdlib/assert-is-complex-typed-array","05G":"@stdlib/assert/is-complex","05H":"@stdlib/assert-is-complex","05I":"@stdlib/assert/is-complex128","05J":"@stdlib/assert-is-complex128","05K":"@stdlib/assert/is-complex128array","05L":"@stdlib/assert-is-complex128array","1mU":"@stdlib/assert/is-complex128matrix-like","1mV":"@stdlib/assert-is-complex128matrix-like","1mW":"@stdlib/assert/is-complex128ndarray-like","1mX":"@stdlib/assert-is-complex128ndarray-like","1mY":"@stdlib/assert/is-complex128vector-like","1mZ":"@stdlib/assert-is-complex128vector-like","05M":"@stdlib/assert/is-complex64","05N":"@stdlib/assert-is-complex64","05O":"@stdlib/assert/is-complex64array","05P":"@stdlib/assert-is-complex64array","1ma":"@stdlib/assert/is-complex64matrix-like","1mb":"@stdlib/assert-is-complex64matrix-like","1mc":"@stdlib/assert/is-complex64ndarray-like","1md":"@stdlib/assert-is-complex64ndarray-like","1me":"@stdlib/assert/is-complex64vector-like","1mf":"@stdlib/assert-is-complex64vector-like","05Q":"@stdlib/assert/is-composite","05R":"@stdlib/assert-is-composite","05S":"@stdlib/assert/is-configurable-property-in","05T":"@stdlib/assert-is-configurable-property-in","05U":"@stdlib/assert/is-configurable-property","05V":"@stdlib/assert-is-configurable-property","1Zs":"@stdlib/assert/is-constantcase","1Zt":"@stdlib/assert-is-constantcase","05W":"@stdlib/assert/is-cube-number","05X":"@stdlib/assert-is-cube-number","1Zu":"@stdlib/assert/is-current-year","1Zv":"@stdlib/assert-is-current-year","05Y":"@stdlib/assert/is-darwin","05Z":"@stdlib/assert-is-darwin","05a":"@stdlib/assert/is-data-property-in","05b":"@stdlib/assert-is-data-property-in","05c":"@stdlib/assert/is-data-property","05d":"@stdlib/assert-is-data-property","05e":"@stdlib/assert/is-dataview","05f":"@stdlib/assert-is-dataview","05g":"@stdlib/assert/is-date-object-array","05h":"@stdlib/assert-is-date-object-array","05i":"@stdlib/assert/is-date-object","05j":"@stdlib/assert-is-date-object","05k":"@stdlib/assert/is-digit-string","05l":"@stdlib/assert-is-digit-string","05m":"@stdlib/assert/is-docker","05n":"@stdlib/assert-is-docker","1Zw":"@stdlib/assert/is-domain-name","1Zx":"@stdlib/assert-is-domain-name","1Zy":"@stdlib/assert/is-duration-string","1Zz":"@stdlib/assert-is-duration-string","05o":"@stdlib/assert/is-electron-main","05p":"@stdlib/assert-is-electron-main","05q":"@stdlib/assert/is-electron-renderer","05r":"@stdlib/assert-is-electron-renderer","05s":"@stdlib/assert/is-electron","05t":"@stdlib/assert-is-electron","05u":"@stdlib/assert/is-email-address","05v":"@stdlib/assert-is-email-address","05w":"@stdlib/assert/is-empty-array-like-object","05x":"@stdlib/assert-is-empty-array-like-object","05y":"@stdlib/assert/is-empty-array","05z":"@stdlib/assert-is-empty-array","060":"@stdlib/assert/is-empty-collection","061":"@stdlib/assert-is-empty-collection","062":"@stdlib/assert/is-empty-object","063":"@stdlib/assert-is-empty-object","064":"@stdlib/assert/is-empty-string","065":"@stdlib/assert-is-empty-string","066":"@stdlib/assert/is-enumerable-property-in","067":"@stdlib/assert-is-enumerable-property-in","068":"@stdlib/assert/is-enumerable-property","069":"@stdlib/assert-is-enumerable-property","1zq":"@stdlib/assert/is-equal-array","1zr":"@stdlib/assert-is-equal-array","06A":"@stdlib/assert/is-error","06B":"@stdlib/assert-is-error","06C":"@stdlib/assert/is-eval-error","06D":"@stdlib/assert-is-eval-error","06E":"@stdlib/assert/is-even","06F":"@stdlib/assert-is-even","06G":"@stdlib/assert/is-falsy-array","06H":"@stdlib/assert-is-falsy-array","06I":"@stdlib/assert/is-falsy","06J":"@stdlib/assert-is-falsy","06K":"@stdlib/assert/is-finite-array","06L":"@stdlib/assert-is-finite-array","06M":"@stdlib/assert/is-finite","06N":"@stdlib/assert-is-finite","06O":"@stdlib/assert/is-float32array","06P":"@stdlib/assert-is-float32array","06Q":"@stdlib/assert/is-float32matrix-like","06R":"@stdlib/assert-is-float32matrix-like","06S":"@stdlib/assert/is-float32ndarray-like","06T":"@stdlib/assert-is-float32ndarray-like","06U":"@stdlib/assert/is-float32vector-like","06V":"@stdlib/assert-is-float32vector-like","06W":"@stdlib/assert/is-float64array","06X":"@stdlib/assert-is-float64array","06Y":"@stdlib/assert/is-float64matrix-like","06Z":"@stdlib/assert-is-float64matrix-like","06a":"@stdlib/assert/is-float64ndarray-like","06b":"@stdlib/assert-is-float64ndarray-like","06c":"@stdlib/assert/is-float64vector-like","06d":"@stdlib/assert-is-float64vector-like","06e":"@stdlib/assert/is-function-array","06f":"@stdlib/assert-is-function-array","06g":"@stdlib/assert/is-function","06h":"@stdlib/assert-is-function","06i":"@stdlib/assert/is-generator-object-like","06j":"@stdlib/assert-is-generator-object-like","06k":"@stdlib/assert/is-generator-object","06l":"@stdlib/assert-is-generator-object","06m":"@stdlib/assert/is-gzip-buffer","06n":"@stdlib/assert-is-gzip-buffer","06o":"@stdlib/assert/is-hex-string","06p":"@stdlib/assert-is-hex-string","06q":"@stdlib/assert/is-infinite","06r":"@stdlib/assert-is-infinite","06s":"@stdlib/assert/is-inherited-property","06t":"@stdlib/assert-is-inherited-property","06u":"@stdlib/assert/is-int16array","06v":"@stdlib/assert-is-int16array","06w":"@stdlib/assert/is-int32array","06x":"@stdlib/assert-is-int32array","06y":"@stdlib/assert/is-int8array","06z":"@stdlib/assert-is-int8array","070":"@stdlib/assert/is-integer-array","071":"@stdlib/assert-is-integer-array","072":"@stdlib/assert/is-integer","073":"@stdlib/assert-is-integer","074":"@stdlib/assert/is-iterable-like","075":"@stdlib/assert-is-iterable-like","076":"@stdlib/assert/is-iterator-like","077":"@stdlib/assert-is-iterator-like","078":"@stdlib/assert/is-json","079":"@stdlib/assert-is-json","1a0":"@stdlib/assert/is-kebabcase","1a1":"@stdlib/assert-is-kebabcase","07A":"@stdlib/assert/is-leap-year","07B":"@stdlib/assert-is-leap-year","07C":"@stdlib/assert/is-little-endian","07D":"@stdlib/assert-is-little-endian","07E":"@stdlib/assert/is-localhost","07F":"@stdlib/assert-is-localhost","07G":"@stdlib/assert/is-lowercase","07H":"@stdlib/assert-is-lowercase","07I":"@stdlib/assert/is-matrix-like","07J":"@stdlib/assert-is-matrix-like","07K":"@stdlib/assert/is-method-in","07L":"@stdlib/assert-is-method-in","07M":"@stdlib/assert/is-method","07N":"@stdlib/assert-is-method","07O":"@stdlib/assert/is-mobile","07P":"@stdlib/assert-is-mobile","1ii":"@stdlib/assert/is-multi-slice","1ij":"@stdlib/assert-is-multi-slice","07Q":"@stdlib/assert/is-named-typed-tuple-like","07R":"@stdlib/assert-is-named-typed-tuple-like","07S":"@stdlib/assert/is-nan-array","07T":"@stdlib/assert-is-nan-array","07U":"@stdlib/assert/is-nan","07V":"@stdlib/assert-is-nan","07W":"@stdlib/assert/is-native-function","07X":"@stdlib/assert-is-native-function","21c":"@stdlib/assert/is-ndarray-like-with-data-type","21d":"@stdlib/assert-is-ndarray-like-with-data-type","07Y":"@stdlib/assert/is-ndarray-like","07Z":"@stdlib/assert-is-ndarray-like","1sG":"@stdlib/assert/is-negative-finite","1sH":"@stdlib/assert-is-negative-finite","07a":"@stdlib/assert/is-negative-integer-array","07b":"@stdlib/assert-is-negative-integer-array","07c":"@stdlib/assert/is-negative-integer","07d":"@stdlib/assert-is-negative-integer","07e":"@stdlib/assert/is-negative-number-array","07f":"@stdlib/assert-is-negative-number-array","07g":"@stdlib/assert/is-negative-number","07h":"@stdlib/assert-is-negative-number","07i":"@stdlib/assert/is-negative-zero","07j":"@stdlib/assert-is-negative-zero","07k":"@stdlib/assert/is-node-builtin","07l":"@stdlib/assert-is-node-builtin","07m":"@stdlib/assert/is-node-duplex-stream-like","07n":"@stdlib/assert-is-node-duplex-stream-like","07o":"@stdlib/assert/is-node-readable-stream-like","07p":"@stdlib/assert-is-node-readable-stream-like","07q":"@stdlib/assert/is-node-repl","07r":"@stdlib/assert-is-node-repl","07s":"@stdlib/assert/is-node-stream-like","07t":"@stdlib/assert-is-node-stream-like","07u":"@stdlib/assert/is-node-transform-stream-like","07v":"@stdlib/assert-is-node-transform-stream-like","07w":"@stdlib/assert/is-node-writable-stream-like","07x":"@stdlib/assert-is-node-writable-stream-like","07y":"@stdlib/assert/is-node","07z":"@stdlib/assert-is-node","080":"@stdlib/assert/is-nonconfigurable-property-in","081":"@stdlib/assert-is-nonconfigurable-property-in","082":"@stdlib/assert/is-nonconfigurable-property","083":"@stdlib/assert-is-nonconfigurable-property","084":"@stdlib/assert/is-nonenumerable-property-in","085":"@stdlib/assert-is-nonenumerable-property-in","086":"@stdlib/assert/is-nonenumerable-property","087":"@stdlib/assert-is-nonenumerable-property","1sI":"@stdlib/assert/is-nonnegative-finite","1sJ":"@stdlib/assert-is-nonnegative-finite","088":"@stdlib/assert/is-nonnegative-integer-array","089":"@stdlib/assert-is-nonnegative-integer-array","08A":"@stdlib/assert/is-nonnegative-integer","08B":"@stdlib/assert-is-nonnegative-integer","08C":"@stdlib/assert/is-nonnegative-number-array","08D":"@stdlib/assert-is-nonnegative-number-array","08E":"@stdlib/assert/is-nonnegative-number","08F":"@stdlib/assert-is-nonnegative-number","1sU":"@stdlib/assert/is-nonpositive-finite","1sV":"@stdlib/assert-is-nonpositive-finite","08G":"@stdlib/assert/is-nonpositive-integer-array","08H":"@stdlib/assert-is-nonpositive-integer-array","08I":"@stdlib/assert/is-nonpositive-integer","08J":"@stdlib/assert-is-nonpositive-integer","08K":"@stdlib/assert/is-nonpositive-number-array","08L":"@stdlib/assert-is-nonpositive-number-array","08M":"@stdlib/assert/is-nonpositive-number","08N":"@stdlib/assert-is-nonpositive-number","08O":"@stdlib/assert/is-nonsymmetric-matrix","08P":"@stdlib/assert-is-nonsymmetric-matrix","08Q":"@stdlib/assert/is-null-array","08R":"@stdlib/assert-is-null-array","08S":"@stdlib/assert/is-null","08T":"@stdlib/assert-is-null","08U":"@stdlib/assert/is-number-array","08V":"@stdlib/assert-is-number-array","08W":"@stdlib/assert/is-number","08X":"@stdlib/assert-is-number","08Y":"@stdlib/assert/is-numeric-array","08Z":"@stdlib/assert-is-numeric-array","08a":"@stdlib/assert/is-object-array","08b":"@stdlib/assert-is-object-array","08c":"@stdlib/assert/is-object-like","08d":"@stdlib/assert-is-object-like","08e":"@stdlib/assert/is-object","08f":"@stdlib/assert-is-object","08g":"@stdlib/assert/is-odd","08h":"@stdlib/assert-is-odd","1a2":"@stdlib/assert/is-pascalcase","1a3":"@stdlib/assert-is-pascalcase","08i":"@stdlib/assert/is-persymmetric-matrix","08j":"@stdlib/assert-is-persymmetric-matrix","08k":"@stdlib/assert/is-plain-object-array","08l":"@stdlib/assert-is-plain-object-array","08m":"@stdlib/assert/is-plain-object","08n":"@stdlib/assert-is-plain-object","1sK":"@stdlib/assert/is-positive-finite","1sL":"@stdlib/assert-is-positive-finite","08o":"@stdlib/assert/is-positive-integer-array","08p":"@stdlib/assert-is-positive-integer-array","08q":"@stdlib/assert/is-positive-integer","08r":"@stdlib/assert-is-positive-integer","08s":"@stdlib/assert/is-positive-number-array","08t":"@stdlib/assert-is-positive-number-array","08u":"@stdlib/assert/is-positive-number","08v":"@stdlib/assert-is-positive-number","08w":"@stdlib/assert/is-positive-zero","08x":"@stdlib/assert-is-positive-zero","08y":"@stdlib/assert/is-prime","08z":"@stdlib/assert-is-prime","090":"@stdlib/assert/is-primitive-array","091":"@stdlib/assert-is-primitive-array","092":"@stdlib/assert/is-primitive","093":"@stdlib/assert-is-primitive","094":"@stdlib/assert/is-prng-like","095":"@stdlib/assert-is-prng-like","096":"@stdlib/assert/is-probability-array","097":"@stdlib/assert-is-probability-array","098":"@stdlib/assert/is-probability","099":"@stdlib/assert-is-probability","09A":"@stdlib/assert/is-property-key","09B":"@stdlib/assert-is-property-key","09C":"@stdlib/assert/is-prototype-of","09D":"@stdlib/assert-is-prototype-of","1sW":"@stdlib/assert/is-ragged-nested-array","1sX":"@stdlib/assert-is-ragged-nested-array","09E":"@stdlib/assert/is-range-error","09F":"@stdlib/assert-is-range-error","09G":"@stdlib/assert/is-read-only-property-in","09H":"@stdlib/assert-is-read-only-property-in","09I":"@stdlib/assert/is-read-only-property","09J":"@stdlib/assert-is-read-only-property","09K":"@stdlib/assert/is-read-write-property-in","09L":"@stdlib/assert-is-read-write-property-in","09M":"@stdlib/assert/is-read-write-property","09N":"@stdlib/assert-is-read-write-property","09O":"@stdlib/assert/is-readable-property-in","09P":"@stdlib/assert-is-readable-property-in","09Q":"@stdlib/assert/is-readable-property","09R":"@stdlib/assert-is-readable-property","09S":"@stdlib/assert/is-reference-error","09T":"@stdlib/assert-is-reference-error","09U":"@stdlib/assert/is-regexp-string","09V":"@stdlib/assert-is-regexp-string","09W":"@stdlib/assert/is-regexp","09X":"@stdlib/assert-is-regexp","09Y":"@stdlib/assert/is-relative-path","09Z":"@stdlib/assert-is-relative-path","09a":"@stdlib/assert/is-relative-uri","09b":"@stdlib/assert-is-relative-uri","09c":"@stdlib/assert/is-safe-integer-array","09d":"@stdlib/assert-is-safe-integer-array","09e":"@stdlib/assert/is-safe-integer","09f":"@stdlib/assert-is-safe-integer","1zs":"@stdlib/assert/is-same-accessor-array","1zt":"@stdlib/assert-is-same-accessor-array","1zu":"@stdlib/assert/is-same-array-like-object","1zv":"@stdlib/assert-is-same-array-like-object","1zw":"@stdlib/assert/is-same-array-like","1zx":"@stdlib/assert-is-same-array-like","1pK":"@stdlib/assert/is-same-array","1pL":"@stdlib/assert-is-same-array","1wS":"@stdlib/assert/is-same-booleanarray","1wT":"@stdlib/assert-is-same-booleanarray","1pM":"@stdlib/assert/is-same-complex128","1pN":"@stdlib/assert-is-same-complex128","1pO":"@stdlib/assert/is-same-complex128array","1pP":"@stdlib/assert-is-same-complex128array","1pQ":"@stdlib/assert/is-same-complex64","1pR":"@stdlib/assert-is-same-complex64","1pS":"@stdlib/assert/is-same-complex64array","1pT":"@stdlib/assert-is-same-complex64array","1t4":"@stdlib/assert/is-same-date-object","1t5":"@stdlib/assert-is-same-date-object","1pU":"@stdlib/assert/is-same-float32array","1pV":"@stdlib/assert-is-same-float32array","1pW":"@stdlib/assert/is-same-float64array","1pX":"@stdlib/assert-is-same-float64array","09g":"@stdlib/assert/is-same-native-class","09h":"@stdlib/assert-is-same-native-class","09i":"@stdlib/assert/is-same-type","09j":"@stdlib/assert-is-same-type","09k":"@stdlib/assert/is-same-value-zero","09l":"@stdlib/assert-is-same-value-zero","09m":"@stdlib/assert/is-same-value","09n":"@stdlib/assert-is-same-value","1a4":"@stdlib/assert/is-semver","1a5":"@stdlib/assert-is-semver","09o":"@stdlib/assert/is-sharedarraybuffer","09p":"@stdlib/assert-is-sharedarraybuffer","09q":"@stdlib/assert/is-skew-centrosymmetric-matrix","09r":"@stdlib/assert-is-skew-centrosymmetric-matrix","09s":"@stdlib/assert/is-skew-persymmetric-matrix","09t":"@stdlib/assert-is-skew-persymmetric-matrix","09u":"@stdlib/assert/is-skew-symmetric-matrix","09v":"@stdlib/assert-is-skew-symmetric-matrix","1ik":"@stdlib/assert/is-slice","1il":"@stdlib/assert-is-slice","1a6":"@stdlib/assert/is-snakecase","1a7":"@stdlib/assert-is-snakecase","09w":"@stdlib/assert/is-square-matrix","09x":"@stdlib/assert-is-square-matrix","09y":"@stdlib/assert/is-square-number","09z":"@stdlib/assert-is-square-number","0A0":"@stdlib/assert/is-square-triangular-number","0A1":"@stdlib/assert-is-square-triangular-number","1a8":"@stdlib/assert/is-startcase","1a9":"@stdlib/assert-is-startcase","0A2":"@stdlib/assert/is-strict-equal","0A3":"@stdlib/assert-is-strict-equal","0A4":"@stdlib/assert/is-string-array","0A5":"@stdlib/assert-is-string-array","0A6":"@stdlib/assert/is-string","0A7":"@stdlib/assert-is-string","0A8":"@stdlib/assert/is-symbol-array","0A9":"@stdlib/assert-is-symbol-array","0AA":"@stdlib/assert/is-symbol","0AB":"@stdlib/assert-is-symbol","0AC":"@stdlib/assert/is-symmetric-matrix","0AD":"@stdlib/assert-is-symmetric-matrix","0AE":"@stdlib/assert/is-syntax-error","0AF":"@stdlib/assert-is-syntax-error","0AG":"@stdlib/assert/is-touch-device","0AH":"@stdlib/assert-is-touch-device","0AI":"@stdlib/assert/is-triangular-number","0AJ":"@stdlib/assert-is-triangular-number","0AK":"@stdlib/assert/is-truthy-array","0AL":"@stdlib/assert-is-truthy-array","0AM":"@stdlib/assert/is-truthy","0AN":"@stdlib/assert-is-truthy","0AO":"@stdlib/assert/is-type-error","0AP":"@stdlib/assert-is-type-error","0AQ":"@stdlib/assert/is-typed-array-length","0AR":"@stdlib/assert-is-typed-array-length","0AS":"@stdlib/assert/is-typed-array-like","0AT":"@stdlib/assert-is-typed-array-like","0AU":"@stdlib/assert/is-typed-array","0AV":"@stdlib/assert-is-typed-array","0AW":"@stdlib/assert/is-uint16array","0AX":"@stdlib/assert-is-uint16array","0AY":"@stdlib/assert/is-uint32array","0AZ":"@stdlib/assert-is-uint32array","0Aa":"@stdlib/assert/is-uint8array","0Ab":"@stdlib/assert-is-uint8array","0Ac":"@stdlib/assert/is-uint8clampedarray","0Ad":"@stdlib/assert-is-uint8clampedarray","0Ae":"@stdlib/assert/is-unc-path","0Af":"@stdlib/assert-is-unc-path","0Ag":"@stdlib/assert/is-undefined-or-null","0Ah":"@stdlib/assert-is-undefined-or-null","0Ai":"@stdlib/assert/is-undefined","0Aj":"@stdlib/assert-is-undefined","0Ak":"@stdlib/assert/is-unity-probability-array","0Al":"@stdlib/assert-is-unity-probability-array","0Am":"@stdlib/assert/is-uppercase","0An":"@stdlib/assert-is-uppercase","0Ao":"@stdlib/assert/is-uri-error","0Ap":"@stdlib/assert-is-uri-error","0Aq":"@stdlib/assert/is-uri","0Ar":"@stdlib/assert-is-uri","0As":"@stdlib/assert/is-vector-like","0At":"@stdlib/assert-is-vector-like","1zy":"@stdlib/assert/is-wasm-memory","1zz":"@stdlib/assert-is-wasm-memory","0Au":"@stdlib/assert/is-web-worker","0Av":"@stdlib/assert-is-web-worker","1sY":"@stdlib/assert/is-well-formed-string","1sZ":"@stdlib/assert-is-well-formed-string","0Aw":"@stdlib/assert/is-whitespace","0Ax":"@stdlib/assert-is-whitespace","0Ay":"@stdlib/assert/is-windows","0Az":"@stdlib/assert-is-windows","0B0":"@stdlib/assert/is-writable-property-in","0B1":"@stdlib/assert-is-writable-property-in","0B2":"@stdlib/assert/is-writable-property","0B3":"@stdlib/assert-is-writable-property","0B4":"@stdlib/assert/is-write-only-property-in","0B5":"@stdlib/assert-is-write-only-property-in","0B6":"@stdlib/assert/is-write-only-property","0B7":"@stdlib/assert-is-write-only-property","1aA":"@stdlib/assert/napi/equal-typedarray-types","1aB":"@stdlib/assert-napi-equal-typedarray-types","1aC":"@stdlib/assert/napi/equal-types","1aD":"@stdlib/assert-napi-equal-types","1uS":"@stdlib/assert/napi/has-property","1uT":"@stdlib/assert-napi-has-property","1aE":"@stdlib/assert/napi/is-type","1aF":"@stdlib/assert-napi-is-type","1aG":"@stdlib/assert/napi/is-typedarray","1aH":"@stdlib/assert-napi-is-typedarray","1aI":"@stdlib/assert/napi","1aJ":"@stdlib/assert-napi","1aK":"@stdlib/assert/napi/status-ok","1aL":"@stdlib/assert-napi-status-ok","0B9":"@stdlib/assert","0BA":"@stdlib/assert/tools/array-function","0BB":"@stdlib/assert-tools-array-function","0BC":"@stdlib/assert/tools/array-like-function","0BD":"@stdlib/assert-tools-array-like-function","0BE":"@stdlib/assert/tools","0BF":"@stdlib/assert-tools","0BG":"@stdlib/assert/tools/typed-array-function","0BH":"@stdlib/assert-tools-typed-array-function","0BI":"@stdlib/bench/harness","0BJ":"@stdlib/bench-harness","0BL":"@stdlib/bench","0BM":"@stdlib/bigint/ctor","0BN":"@stdlib/bigint-ctor","0BP":"@stdlib/bigint","1wU":"@stdlib/blas/base/assert/is-diagonal-type","1wV":"@stdlib/blas-base-assert-is-diagonal-type","1vY":"@stdlib/blas/base/assert/is-layout","1vZ":"@stdlib/blas-base-assert-is-layout","1va":"@stdlib/blas/base/assert/is-matrix-triangle","1vb":"@stdlib/blas-base-assert-is-matrix-triangle","1wW":"@stdlib/blas/base/assert/is-operation-side","1wX":"@stdlib/blas-base-assert-is-operation-side","1vc":"@stdlib/blas/base/assert/is-transpose-operation","1vd":"@stdlib/blas-base-assert-is-transpose-operation","1ve":"@stdlib/blas/base/assert","1vf":"@stdlib/blas-base-assert","1xo":"@stdlib/blas/base/caxpy","1xp":"@stdlib/blas-base-caxpy","0BQ":"@stdlib/blas/base/ccopy","0BR":"@stdlib/blas-base-ccopy","1vg":"@stdlib/blas/base/cscal","1vh":"@stdlib/blas-base-cscal","1xY":"@stdlib/blas/base/csrot","1xZ":"@stdlib/blas-base-csrot","0BS":"@stdlib/blas/base/cswap","0BT":"@stdlib/blas-base-cswap","0BU":"@stdlib/blas/base/dasum","0BV":"@stdlib/blas-base-dasum","0BW":"@stdlib/blas/base/daxpy","0BX":"@stdlib/blas-base-daxpy","1vi":"@stdlib/blas/base/dcabs1","1vj":"@stdlib/blas-base-dcabs1","0BY":"@stdlib/blas/base/dcopy","0BZ":"@stdlib/blas-base-dcopy","0Ba":"@stdlib/blas/base/ddot","0Bb":"@stdlib/blas-base-ddot","1z2":"@stdlib/blas/base/dgemm","1z3":"@stdlib/blas-base-dgemm","1yY":"@stdlib/blas/base/dgemv","1yZ":"@stdlib/blas-base-dgemv","1uU":"@stdlib/blas/base/dger","1uV":"@stdlib/blas-base-dger","1wy":"@stdlib/blas/base/diagonal-type-enum2str","1wz":"@stdlib/blas-base-diagonal-type-enum2str","1x0":"@stdlib/blas/base/diagonal-type-resolve-enum","1x1":"@stdlib/blas-base-diagonal-type-resolve-enum","1x2":"@stdlib/blas/base/diagonal-type-resolve-str","1x3":"@stdlib/blas-base-diagonal-type-resolve-str","1x4":"@stdlib/blas/base/diagonal-type-str2enum","1x5":"@stdlib/blas-base-diagonal-type-str2enum","1vk":"@stdlib/blas/base/diagonal-types","1vl":"@stdlib/blas-base-diagonal-types","0Bc":"@stdlib/blas/base/dnrm2","0Bd":"@stdlib/blas-base-dnrm2","1uW":"@stdlib/blas/base/drot","1uX":"@stdlib/blas-base-drot","1aM":"@stdlib/blas/base/drotg","1aN":"@stdlib/blas-base-drotg","1x6":"@stdlib/blas/base/drotm","1x7":"@stdlib/blas-base-drotm","0Be":"@stdlib/blas/base/dscal","0Bf":"@stdlib/blas-base-dscal","0Bg":"@stdlib/blas/base/dsdot","0Bh":"@stdlib/blas-base-dsdot","1x8":"@stdlib/blas/base/dspmv","1x9":"@stdlib/blas-base-dspmv","0Bi":"@stdlib/blas/base/dswap","0Bj":"@stdlib/blas-base-dswap","1xA":"@stdlib/blas/base/dsymv","1xB":"@stdlib/blas-base-dsymv","1ya":"@stdlib/blas/base/dsyr","1yb":"@stdlib/blas-base-dsyr","1yc":"@stdlib/blas/base/dsyr2","1yd":"@stdlib/blas-base-dsyr2","1ye":"@stdlib/blas/base/dtrmv","1yf":"@stdlib/blas-base-dtrmv","1z4":"@stdlib/blas/base/dtrsv","1z5":"@stdlib/blas-base-dtrsv","1xa":"@stdlib/blas/base/dznrm2","1xb":"@stdlib/blas-base-dznrm2","0Bk":"@stdlib/blas/base/gasum","0Bl":"@stdlib/blas-base-gasum","0Bm":"@stdlib/blas/base/gaxpy","0Bn":"@stdlib/blas-base-gaxpy","0Bo":"@stdlib/blas/base/gcopy","0Bp":"@stdlib/blas-base-gcopy","0Bq":"@stdlib/blas/base/gdot","0Br":"@stdlib/blas-base-gdot","0Bs":"@stdlib/blas/base/gnrm2","0Bt":"@stdlib/blas-base-gnrm2","0Bu":"@stdlib/blas/base/gscal","0Bv":"@stdlib/blas-base-gscal","0Bw":"@stdlib/blas/base/gswap","0Bx":"@stdlib/blas-base-gswap","1uY":"@stdlib/blas/base/idamax","1uZ":"@stdlib/blas-base-idamax","1ua":"@stdlib/blas/base/isamax","1ub":"@stdlib/blas-base-isamax","1vm":"@stdlib/blas/base/layout-enum2str","1vn":"@stdlib/blas-base-layout-enum2str","1vo":"@stdlib/blas/base/layout-resolve-enum","1vp":"@stdlib/blas-base-layout-resolve-enum","1vq":"@stdlib/blas/base/layout-resolve-str","1vr":"@stdlib/blas-base-layout-resolve-str","1vs":"@stdlib/blas/base/layout-str2enum","1vt":"@stdlib/blas-base-layout-str2enum","1vu":"@stdlib/blas/base/layouts","1vv":"@stdlib/blas-base-layouts","1xC":"@stdlib/blas/base/matrix-triangle-enum2str","1xD":"@stdlib/blas-base-matrix-triangle-enum2str","1xE":"@stdlib/blas/base/matrix-triangle-resolve-enum","1xF":"@stdlib/blas-base-matrix-triangle-resolve-enum","1xG":"@stdlib/blas/base/matrix-triangle-resolve-str","1xH":"@stdlib/blas-base-matrix-triangle-resolve-str","1xI":"@stdlib/blas/base/matrix-triangle-str2enum","1xJ":"@stdlib/blas-base-matrix-triangle-str2enum","1vw":"@stdlib/blas/base/matrix-triangles","1vx":"@stdlib/blas-base-matrix-triangles","1xK":"@stdlib/blas/base/operation-side-enum2str","1xL":"@stdlib/blas-base-operation-side-enum2str","1xM":"@stdlib/blas/base/operation-side-resolve-enum","1xN":"@stdlib/blas-base-operation-side-resolve-enum","1xO":"@stdlib/blas/base/operation-side-resolve-str","1xP":"@stdlib/blas-base-operation-side-resolve-str","1xQ":"@stdlib/blas/base/operation-side-str2enum","1xR":"@stdlib/blas-base-operation-side-str2enum","1vy":"@stdlib/blas/base/operation-sides","1vz":"@stdlib/blas-base-operation-sides","0By":"@stdlib/blas/base","0Bz":"@stdlib/blas-base","0C0":"@stdlib/blas/base/sasum","0C1":"@stdlib/blas-base-sasum","0C2":"@stdlib/blas/base/saxpy","0C3":"@stdlib/blas-base-saxpy","1w0":"@stdlib/blas/base/scabs1","1w1":"@stdlib/blas-base-scabs1","1xq":"@stdlib/blas/base/scasum","1xr":"@stdlib/blas-base-scasum","1wY":"@stdlib/blas/base/scnrm2","1wZ":"@stdlib/blas-base-scnrm2","0C4":"@stdlib/blas/base/scopy","0C5":"@stdlib/blas-base-scopy","0C6":"@stdlib/blas/base/sdot","0C7":"@stdlib/blas-base-sdot","0C8":"@stdlib/blas/base/sdsdot","0C9":"@stdlib/blas-base-sdsdot","1z6":"@stdlib/blas/base/sgemm","1z7":"@stdlib/blas-base-sgemm","1yg":"@stdlib/blas/base/sgemv","1yh":"@stdlib/blas-base-sgemv","1uc":"@stdlib/blas/base/shared","1ud":"@stdlib/blas-base-shared","0CA":"@stdlib/blas/base/snrm2","0CB":"@stdlib/blas-base-snrm2","1ue":"@stdlib/blas/base/srot","1uf":"@stdlib/blas-base-srot","1aO":"@stdlib/blas/base/srotg","1aP":"@stdlib/blas-base-srotg","1wa":"@stdlib/blas/base/srotm","1wb":"@stdlib/blas-base-srotm","0CC":"@stdlib/blas/base/sscal","0CD":"@stdlib/blas-base-sscal","1wc":"@stdlib/blas/base/sspmv","1wd":"@stdlib/blas-base-sspmv","1z8":"@stdlib/blas/base/sspr","1z9":"@stdlib/blas-base-sspr","0CE":"@stdlib/blas/base/sswap","0CF":"@stdlib/blas-base-sswap","1we":"@stdlib/blas/base/ssymv","1wf":"@stdlib/blas-base-ssymv","1yi":"@stdlib/blas/base/ssyr","1yj":"@stdlib/blas-base-ssyr","1yk":"@stdlib/blas/base/ssyr2","1yl":"@stdlib/blas-base-ssyr2","1ym":"@stdlib/blas/base/strmv","1yn":"@stdlib/blas-base-strmv","1zA":"@stdlib/blas/base/strsv","1zB":"@stdlib/blas-base-strsv","1wg":"@stdlib/blas/base/transpose-operation-enum2str","1wh":"@stdlib/blas-base-transpose-operation-enum2str","1wi":"@stdlib/blas/base/transpose-operation-resolve-enum","1wj":"@stdlib/blas-base-transpose-operation-resolve-enum","1wk":"@stdlib/blas/base/transpose-operation-resolve-str","1wl":"@stdlib/blas-base-transpose-operation-resolve-str","1wm":"@stdlib/blas/base/transpose-operation-str2enum","1wn":"@stdlib/blas-base-transpose-operation-str2enum","1w2":"@stdlib/blas/base/transpose-operations","1w3":"@stdlib/blas-base-transpose-operations","1ug":"@stdlib/blas/base/xerbla","1uh":"@stdlib/blas-base-xerbla","1xc":"@stdlib/blas/base/zaxpy","1xd":"@stdlib/blas-base-zaxpy","1t6":"@stdlib/blas/base/zcopy","1t7":"@stdlib/blas-base-zcopy","1xe":"@stdlib/blas/base/zdrot","1xf":"@stdlib/blas-base-zdrot","1wo":"@stdlib/blas/base/zscal","1wp":"@stdlib/blas-base-zscal","1t8":"@stdlib/blas/base/zswap","1t9":"@stdlib/blas-base-zswap","0CG":"@stdlib/blas/ddot","0CH":"@stdlib/blas-ddot","0CI":"@stdlib/blas/dswap","0CJ":"@stdlib/blas-dswap","0CK":"@stdlib/blas/ext/base/dapx","0CL":"@stdlib/blas-ext-base-dapx","0CM":"@stdlib/blas/ext/base/dapxsum","0CN":"@stdlib/blas-ext-base-dapxsum","0CO":"@stdlib/blas/ext/base/dapxsumkbn","0CP":"@stdlib/blas-ext-base-dapxsumkbn","0CQ":"@stdlib/blas/ext/base/dapxsumkbn2","0CR":"@stdlib/blas-ext-base-dapxsumkbn2","0CS":"@stdlib/blas/ext/base/dapxsumors","0CT":"@stdlib/blas-ext-base-dapxsumors","0CU":"@stdlib/blas/ext/base/dapxsumpw","0CV":"@stdlib/blas-ext-base-dapxsumpw","0CW":"@stdlib/blas/ext/base/dasumpw","0CX":"@stdlib/blas-ext-base-dasumpw","0CY":"@stdlib/blas/ext/base/dcusum","0CZ":"@stdlib/blas-ext-base-dcusum","0Ca":"@stdlib/blas/ext/base/dcusumkbn","0Cb":"@stdlib/blas-ext-base-dcusumkbn","0Cc":"@stdlib/blas/ext/base/dcusumkbn2","0Cd":"@stdlib/blas-ext-base-dcusumkbn2","0Ce":"@stdlib/blas/ext/base/dcusumors","0Cf":"@stdlib/blas-ext-base-dcusumors","0Cg":"@stdlib/blas/ext/base/dcusumpw","0Ch":"@stdlib/blas-ext-base-dcusumpw","0Ci":"@stdlib/blas/ext/base/dfill","0Cj":"@stdlib/blas-ext-base-dfill","0Ck":"@stdlib/blas/ext/base/dnanasum","0Cl":"@stdlib/blas-ext-base-dnanasum","0Cm":"@stdlib/blas/ext/base/dnanasumors","0Cn":"@stdlib/blas-ext-base-dnanasumors","0Co":"@stdlib/blas/ext/base/dnannsum","0Cp":"@stdlib/blas-ext-base-dnannsum","0Cq":"@stdlib/blas/ext/base/dnannsumkbn","0Cr":"@stdlib/blas-ext-base-dnannsumkbn","0Cs":"@stdlib/blas/ext/base/dnannsumkbn2","0Ct":"@stdlib/blas-ext-base-dnannsumkbn2","0Cu":"@stdlib/blas/ext/base/dnannsumors","0Cv":"@stdlib/blas-ext-base-dnannsumors","0Cw":"@stdlib/blas/ext/base/dnannsumpw","0Cx":"@stdlib/blas-ext-base-dnannsumpw","0Cy":"@stdlib/blas/ext/base/dnansum","0Cz":"@stdlib/blas-ext-base-dnansum","0D0":"@stdlib/blas/ext/base/dnansumkbn","0D1":"@stdlib/blas-ext-base-dnansumkbn","0D2":"@stdlib/blas/ext/base/dnansumkbn2","0D3":"@stdlib/blas-ext-base-dnansumkbn2","0D4":"@stdlib/blas/ext/base/dnansumors","0D5":"@stdlib/blas-ext-base-dnansumors","0D6":"@stdlib/blas/ext/base/dnansumpw","0D7":"@stdlib/blas-ext-base-dnansumpw","0D8":"@stdlib/blas/ext/base/drev","0D9":"@stdlib/blas-ext-base-drev","0DA":"@stdlib/blas/ext/base/dsapxsum","0DB":"@stdlib/blas-ext-base-dsapxsum","0DC":"@stdlib/blas/ext/base/dsapxsumpw","0DD":"@stdlib/blas-ext-base-dsapxsumpw","0DE":"@stdlib/blas/ext/base/dsnannsumors","0DF":"@stdlib/blas-ext-base-dsnannsumors","0DG":"@stdlib/blas/ext/base/dsnansum","0DH":"@stdlib/blas-ext-base-dsnansum","0DI":"@stdlib/blas/ext/base/dsnansumors","0DJ":"@stdlib/blas-ext-base-dsnansumors","0DK":"@stdlib/blas/ext/base/dsnansumpw","0DL":"@stdlib/blas-ext-base-dsnansumpw","0DM":"@stdlib/blas/ext/base/dsort2hp","0DN":"@stdlib/blas-ext-base-dsort2hp","0DO":"@stdlib/blas/ext/base/dsort2ins","0DP":"@stdlib/blas-ext-base-dsort2ins","0DQ":"@stdlib/blas/ext/base/dsort2sh","0DR":"@stdlib/blas-ext-base-dsort2sh","0DS":"@stdlib/blas/ext/base/dsorthp","0DT":"@stdlib/blas-ext-base-dsorthp","0DU":"@stdlib/blas/ext/base/dsortins","0DV":"@stdlib/blas-ext-base-dsortins","0DW":"@stdlib/blas/ext/base/dsortsh","0DX":"@stdlib/blas-ext-base-dsortsh","0DY":"@stdlib/blas/ext/base/dssum","0DZ":"@stdlib/blas-ext-base-dssum","0Da":"@stdlib/blas/ext/base/dssumors","0Db":"@stdlib/blas-ext-base-dssumors","0Dc":"@stdlib/blas/ext/base/dssumpw","0Dd":"@stdlib/blas-ext-base-dssumpw","0De":"@stdlib/blas/ext/base/dsum","0Df":"@stdlib/blas-ext-base-dsum","0Dg":"@stdlib/blas/ext/base/dsumkbn","0Dh":"@stdlib/blas-ext-base-dsumkbn","0Di":"@stdlib/blas/ext/base/dsumkbn2","0Dj":"@stdlib/blas-ext-base-dsumkbn2","0Dk":"@stdlib/blas/ext/base/dsumors","0Dl":"@stdlib/blas-ext-base-dsumors","0Dm":"@stdlib/blas/ext/base/dsumpw","0Dn":"@stdlib/blas-ext-base-dsumpw","0Do":"@stdlib/blas/ext/base/gapx","0Dp":"@stdlib/blas-ext-base-gapx","0Dq":"@stdlib/blas/ext/base/gapxsum","0Dr":"@stdlib/blas-ext-base-gapxsum","0Ds":"@stdlib/blas/ext/base/gapxsumkbn","0Dt":"@stdlib/blas-ext-base-gapxsumkbn","0Du":"@stdlib/blas/ext/base/gapxsumkbn2","0Dv":"@stdlib/blas-ext-base-gapxsumkbn2","0Dw":"@stdlib/blas/ext/base/gapxsumors","0Dx":"@stdlib/blas-ext-base-gapxsumors","0Dy":"@stdlib/blas/ext/base/gapxsumpw","0Dz":"@stdlib/blas-ext-base-gapxsumpw","0E0":"@stdlib/blas/ext/base/gasumpw","0E1":"@stdlib/blas-ext-base-gasumpw","0E2":"@stdlib/blas/ext/base/gcusum","0E3":"@stdlib/blas-ext-base-gcusum","0E4":"@stdlib/blas/ext/base/gcusumkbn","0E5":"@stdlib/blas-ext-base-gcusumkbn","0E6":"@stdlib/blas/ext/base/gcusumkbn2","0E7":"@stdlib/blas-ext-base-gcusumkbn2","0E8":"@stdlib/blas/ext/base/gcusumors","0E9":"@stdlib/blas-ext-base-gcusumors","0EA":"@stdlib/blas/ext/base/gcusumpw","0EB":"@stdlib/blas-ext-base-gcusumpw","0EC":"@stdlib/blas/ext/base/gfill-by","0ED":"@stdlib/blas-ext-base-gfill-by","0EE":"@stdlib/blas/ext/base/gfill","0EF":"@stdlib/blas-ext-base-gfill","0EG":"@stdlib/blas/ext/base/gnannsumkbn","0EH":"@stdlib/blas-ext-base-gnannsumkbn","0EI":"@stdlib/blas/ext/base/gnansum","0EJ":"@stdlib/blas-ext-base-gnansum","0EK":"@stdlib/blas/ext/base/gnansumkbn","0EL":"@stdlib/blas-ext-base-gnansumkbn","0EM":"@stdlib/blas/ext/base/gnansumkbn2","0EN":"@stdlib/blas-ext-base-gnansumkbn2","0EO":"@stdlib/blas/ext/base/gnansumors","0EP":"@stdlib/blas-ext-base-gnansumors","0EQ":"@stdlib/blas/ext/base/gnansumpw","0ER":"@stdlib/blas-ext-base-gnansumpw","0ES":"@stdlib/blas/ext/base/grev","0ET":"@stdlib/blas-ext-base-grev","0EU":"@stdlib/blas/ext/base/gsort2hp","0EV":"@stdlib/blas-ext-base-gsort2hp","0EW":"@stdlib/blas/ext/base/gsort2ins","0EX":"@stdlib/blas-ext-base-gsort2ins","0EY":"@stdlib/blas/ext/base/gsort2sh","0EZ":"@stdlib/blas-ext-base-gsort2sh","0Ea":"@stdlib/blas/ext/base/gsorthp","0Eb":"@stdlib/blas-ext-base-gsorthp","0Ec":"@stdlib/blas/ext/base/gsortins","0Ed":"@stdlib/blas-ext-base-gsortins","0Ee":"@stdlib/blas/ext/base/gsortsh","0Ef":"@stdlib/blas-ext-base-gsortsh","0Eg":"@stdlib/blas/ext/base/gsum","0Eh":"@stdlib/blas-ext-base-gsum","0Ei":"@stdlib/blas/ext/base/gsumkbn","0Ej":"@stdlib/blas-ext-base-gsumkbn","0Ek":"@stdlib/blas/ext/base/gsumkbn2","0El":"@stdlib/blas-ext-base-gsumkbn2","0Em":"@stdlib/blas/ext/base/gsumors","0En":"@stdlib/blas-ext-base-gsumors","0Eo":"@stdlib/blas/ext/base/gsumpw","0Ep":"@stdlib/blas-ext-base-gsumpw","0Eq":"@stdlib/blas/ext/base","0Er":"@stdlib/blas-ext-base","0Es":"@stdlib/blas/ext/base/sapx","0Et":"@stdlib/blas-ext-base-sapx","0Eu":"@stdlib/blas/ext/base/sapxsum","0Ev":"@stdlib/blas-ext-base-sapxsum","0Ew":"@stdlib/blas/ext/base/sapxsumkbn","0Ex":"@stdlib/blas-ext-base-sapxsumkbn","0Ey":"@stdlib/blas/ext/base/sapxsumkbn2","0Ez":"@stdlib/blas-ext-base-sapxsumkbn2","0F0":"@stdlib/blas/ext/base/sapxsumors","0F1":"@stdlib/blas-ext-base-sapxsumors","0F2":"@stdlib/blas/ext/base/sapxsumpw","0F3":"@stdlib/blas-ext-base-sapxsumpw","0F4":"@stdlib/blas/ext/base/sasumpw","0F5":"@stdlib/blas-ext-base-sasumpw","0F6":"@stdlib/blas/ext/base/scusum","0F7":"@stdlib/blas-ext-base-scusum","0F8":"@stdlib/blas/ext/base/scusumkbn","0F9":"@stdlib/blas-ext-base-scusumkbn","0FA":"@stdlib/blas/ext/base/scusumkbn2","0FB":"@stdlib/blas-ext-base-scusumkbn2","0FC":"@stdlib/blas/ext/base/scusumors","0FD":"@stdlib/blas-ext-base-scusumors","0FE":"@stdlib/blas/ext/base/scusumpw","0FF":"@stdlib/blas-ext-base-scusumpw","0FG":"@stdlib/blas/ext/base/sdsapxsum","0FH":"@stdlib/blas-ext-base-sdsapxsum","0FI":"@stdlib/blas/ext/base/sdsapxsumpw","0FJ":"@stdlib/blas-ext-base-sdsapxsumpw","0FK":"@stdlib/blas/ext/base/sdsnansum","0FL":"@stdlib/blas-ext-base-sdsnansum","0FM":"@stdlib/blas/ext/base/sdsnansumpw","0FN":"@stdlib/blas-ext-base-sdsnansumpw","0FO":"@stdlib/blas/ext/base/sdssum","0FP":"@stdlib/blas-ext-base-sdssum","0FQ":"@stdlib/blas/ext/base/sdssumpw","0FR":"@stdlib/blas-ext-base-sdssumpw","0FS":"@stdlib/blas/ext/base/sfill","0FT":"@stdlib/blas-ext-base-sfill","0FU":"@stdlib/blas/ext/base/snansum","0FV":"@stdlib/blas-ext-base-snansum","0FW":"@stdlib/blas/ext/base/snansumkbn","0FX":"@stdlib/blas-ext-base-snansumkbn","0FY":"@stdlib/blas/ext/base/snansumkbn2","0FZ":"@stdlib/blas-ext-base-snansumkbn2","0Fa":"@stdlib/blas/ext/base/snansumors","0Fb":"@stdlib/blas-ext-base-snansumors","0Fc":"@stdlib/blas/ext/base/snansumpw","0Fd":"@stdlib/blas-ext-base-snansumpw","0Fe":"@stdlib/blas/ext/base/srev","0Ff":"@stdlib/blas-ext-base-srev","0Fg":"@stdlib/blas/ext/base/ssort2hp","0Fh":"@stdlib/blas-ext-base-ssort2hp","0Fi":"@stdlib/blas/ext/base/ssort2ins","0Fj":"@stdlib/blas-ext-base-ssort2ins","0Fk":"@stdlib/blas/ext/base/ssort2sh","0Fl":"@stdlib/blas-ext-base-ssort2sh","0Fm":"@stdlib/blas/ext/base/ssorthp","0Fn":"@stdlib/blas-ext-base-ssorthp","0Fo":"@stdlib/blas/ext/base/ssortins","0Fp":"@stdlib/blas-ext-base-ssortins","0Fq":"@stdlib/blas/ext/base/ssortsh","0Fr":"@stdlib/blas-ext-base-ssortsh","0Fs":"@stdlib/blas/ext/base/ssum","0Ft":"@stdlib/blas-ext-base-ssum","0Fu":"@stdlib/blas/ext/base/ssumkbn","0Fv":"@stdlib/blas-ext-base-ssumkbn","0Fw":"@stdlib/blas/ext/base/ssumkbn2","0Fx":"@stdlib/blas-ext-base-ssumkbn2","0Fy":"@stdlib/blas/ext/base/ssumors","0Fz":"@stdlib/blas-ext-base-ssumors","0G0":"@stdlib/blas/ext/base/ssumpw","0G1":"@stdlib/blas-ext-base-ssumpw","21e":"@stdlib/blas/ext/base/zfill","21f":"@stdlib/blas-ext-base-zfill","0G2":"@stdlib/blas/ext","0G3":"@stdlib/blas-ext","0G4":"@stdlib/blas/gdot","0G5":"@stdlib/blas-gdot","0G6":"@stdlib/blas/gswap","0G7":"@stdlib/blas-gswap","0G9":"@stdlib/blas","0GA":"@stdlib/blas/sdot","0GB":"@stdlib/blas-sdot","0GC":"@stdlib/blas/sswap","0GD":"@stdlib/blas-sswap","21g":"@stdlib/blas/tools","21h":"@stdlib/blas-tools","21i":"@stdlib/blas/tools/swap-factory","21j":"@stdlib/blas-tools-swap-factory","1aQ":"@stdlib/boolean/ctor","1aR":"@stdlib/boolean-ctor","1aT":"@stdlib/boolean","0GE":"@stdlib/buffer/alloc-unsafe","0GF":"@stdlib/buffer-alloc-unsafe","0GG":"@stdlib/buffer/ctor","0GH":"@stdlib/buffer-ctor","0GI":"@stdlib/buffer/from-array","0GJ":"@stdlib/buffer-from-array","0GK":"@stdlib/buffer/from-arraybuffer","0GL":"@stdlib/buffer-from-arraybuffer","0GM":"@stdlib/buffer/from-buffer","0GN":"@stdlib/buffer-from-buffer","0GO":"@stdlib/buffer/from-string","0GP":"@stdlib/buffer-from-string","0GR":"@stdlib/buffer","0GS":"@stdlib/buffer/reviver","0GT":"@stdlib/buffer-reviver","0GU":"@stdlib/buffer/to-json","0GV":"@stdlib/buffer-to-json","0GW":"@stdlib/cli/ctor","0GX":"@stdlib/cli-ctor","0GZ":"@stdlib/cli","1aU":"@stdlib/complex/base/cast-return","1aV":"@stdlib/complex-base-cast-return","1aW":"@stdlib/complex/base","1aX":"@stdlib/complex-base","1sa":"@stdlib/complex/base/parse","1sb":"@stdlib/complex-base-parse","0Ga":"@stdlib/complex/base/wrap-function","0Gb":"@stdlib/complex-base-wrap-function","0Gc":"@stdlib/complex/cmplx","0Gd":"@stdlib/complex-cmplx","0Gi":"@stdlib/complex/ctors","0Gj":"@stdlib/complex-ctors","0Gk":"@stdlib/complex/dtype","0Gl":"@stdlib/complex-dtype","0Gm":"@stdlib/complex/dtypes","0Gn":"@stdlib/complex-dtypes","1xs":"@stdlib/complex/float32/base/add","1xt":"@stdlib/complex-float32-base-add","1ui":"@stdlib/complex/float32/base/assert/is-equal","1uj":"@stdlib/complex-float32-base-assert-is-equal","1uk":"@stdlib/complex/float32/base/assert/is-not-equal","1ul":"@stdlib/complex-float32-base-assert-is-not-equal","1um":"@stdlib/complex/float32/base/assert/is-same-value-zero","1un":"@stdlib/complex-float32-base-assert-is-same-value-zero","1uo":"@stdlib/complex/float32/base/assert/is-same-value","1up":"@stdlib/complex-float32-base-assert-is-same-value","1xu":"@stdlib/complex/float32/base/assert","1xv":"@stdlib/complex-float32-base-assert","1xw":"@stdlib/complex/float32/base/mul","1xx":"@stdlib/complex-float32-base-mul","1xy":"@stdlib/complex/float32/base","1xz":"@stdlib/complex-float32-base","1y0":"@stdlib/complex/float32/conj","1y1":"@stdlib/complex-float32-conj","0Go":"@stdlib/complex/float32/ctor","1y2":"@stdlib/complex/float32/imag","1y3":"@stdlib/complex-float32-imag","1uq":"@stdlib/complex/float32","1ur":"@stdlib/complex-float32","1sc":"@stdlib/complex/float32/parse","1y4":"@stdlib/complex/float32/real","1y5":"@stdlib/complex-float32-real","1y6":"@stdlib/complex/float32/reim","1y7":"@stdlib/complex-float32-reim","0H8":"@stdlib/complex/float32/reviver","1y8":"@stdlib/complex/float64/base/add","1y9":"@stdlib/complex-float64-base-add","1pY":"@stdlib/complex/float64/base/assert/is-equal","1us":"@stdlib/complex/float64/base/assert/is-not-equal","1ut":"@stdlib/complex-float64-base-assert-is-not-equal","1uu":"@stdlib/complex/float64/base/assert/is-same-value-zero","1uv":"@stdlib/complex-float64-base-assert-is-same-value-zero","1uw":"@stdlib/complex/float64/base/assert/is-same-value","1ux":"@stdlib/complex-float64-base-assert-is-same-value","1yA":"@stdlib/complex/float64/base/assert","1yB":"@stdlib/complex-float64-base-assert","1yC":"@stdlib/complex/float64/base/mul","1yD":"@stdlib/complex-float64-base-mul","1yE":"@stdlib/complex/float64/base","1yF":"@stdlib/complex-float64-base","1yG":"@stdlib/complex/float64/conj","1yH":"@stdlib/complex-float64-conj","0Gq":"@stdlib/complex/float64/ctor","1yI":"@stdlib/complex/float64/imag","1yJ":"@stdlib/complex-float64-imag","1uy":"@stdlib/complex/float64","1uz":"@stdlib/complex-float64","1se":"@stdlib/complex/float64/parse","1yK":"@stdlib/complex/float64/real","1yL":"@stdlib/complex-float64-real","1yM":"@stdlib/complex/float64/reim","1yN":"@stdlib/complex-float64-reim","0HA":"@stdlib/complex/float64/reviver","0Gx":"@stdlib/complex","0Gy":"@stdlib/complex/promotion-rules","0Gz":"@stdlib/complex-promotion-rules","0HC":"@stdlib/complex/reviver","0HD":"@stdlib/complex-reviver","1aY":"@stdlib/console/log-each","1aZ":"@stdlib/console-log-each","1aa":"@stdlib/console/log","1ab":"@stdlib/console-log","1ad":"@stdlib/console","0HE":"@stdlib/constants/array/max-array-length","0HF":"@stdlib/constants-array-max-array-length","0HG":"@stdlib/constants/array/max-typed-array-length","0HH":"@stdlib/constants-array-max-typed-array-length","0HI":"@stdlib/constants/array","0HJ":"@stdlib/constants-array","1pq":"@stdlib/constants/complex128/nan","1pr":"@stdlib/constants-complex128-nan","0HK":"@stdlib/constants/complex128/num-bytes","0HL":"@stdlib/constants-complex128-num-bytes","0HM":"@stdlib/constants/complex128","0HN":"@stdlib/constants-complex128","1ps":"@stdlib/constants/complex128/zero","1pt":"@stdlib/constants-complex128-zero","1pu":"@stdlib/constants/complex64/nan","1pv":"@stdlib/constants-complex64-nan","0HO":"@stdlib/constants/complex64/num-bytes","0HP":"@stdlib/constants-complex64-num-bytes","0HQ":"@stdlib/constants/complex64","0HR":"@stdlib/constants-complex64","1pw":"@stdlib/constants/complex64/zero","1px":"@stdlib/constants-complex64-zero","0HS":"@stdlib/constants/float16/cbrt-eps","0HT":"@stdlib/constants-float16-cbrt-eps","0HU":"@stdlib/constants/float16/eps","0HV":"@stdlib/constants-float16-eps","0HW":"@stdlib/constants/float16/exponent-bias","0HX":"@stdlib/constants-float16-exponent-bias","0HY":"@stdlib/constants/float16/max-safe-integer","0HZ":"@stdlib/constants-float16-max-safe-integer","0Ha":"@stdlib/constants/float16/max","0Hb":"@stdlib/constants-float16-max","0Hc":"@stdlib/constants/float16/min-safe-integer","0Hd":"@stdlib/constants-float16-min-safe-integer","0He":"@stdlib/constants/float16/ninf","0Hf":"@stdlib/constants-float16-ninf","0Hg":"@stdlib/constants/float16/num-bytes","0Hh":"@stdlib/constants-float16-num-bytes","0Hi":"@stdlib/constants/float16","0Hj":"@stdlib/constants-float16","0Hk":"@stdlib/constants/float16/pinf","0Hl":"@stdlib/constants-float16-pinf","0Hm":"@stdlib/constants/float16/precision","0Hn":"@stdlib/constants-float16-precision","0Ho":"@stdlib/constants/float16/smallest-normal","0Hp":"@stdlib/constants-float16-smallest-normal","0Hq":"@stdlib/constants/float16/smallest-subnormal","0Hr":"@stdlib/constants-float16-smallest-subnormal","0Hs":"@stdlib/constants/float16/sqrt-eps","0Ht":"@stdlib/constants-float16-sqrt-eps","1ae":"@stdlib/constants/float32/abs-mask","1af":"@stdlib/constants-float32-abs-mask","0Hu":"@stdlib/constants/float32/cbrt-eps","0Hv":"@stdlib/constants-float32-cbrt-eps","0Hw":"@stdlib/constants/float32/eps","0Hx":"@stdlib/constants-float32-eps","0Hy":"@stdlib/constants/float32/exponent-bias","0Hz":"@stdlib/constants-float32-exponent-bias","1ag":"@stdlib/constants/float32/exponent-mask","1ah":"@stdlib/constants-float32-exponent-mask","1tA":"@stdlib/constants/float32/fourth-pi","1tB":"@stdlib/constants-float32-fourth-pi","1tC":"@stdlib/constants/float32/half-pi","1tD":"@stdlib/constants-float32-half-pi","1zC":"@stdlib/constants/float32/max-base2-exponent-subnormal","1zD":"@stdlib/constants-float32-max-base2-exponent-subnormal","1zE":"@stdlib/constants/float32/max-base2-exponent","1zF":"@stdlib/constants-float32-max-base2-exponent","21k":"@stdlib/constants/float32/max-safe-fibonacci","21l":"@stdlib/constants-float32-max-safe-fibonacci","0I0":"@stdlib/constants/float32/max-safe-integer","0I1":"@stdlib/constants-float32-max-safe-integer","0I2":"@stdlib/constants/float32/max","0I3":"@stdlib/constants-float32-max","1zG":"@stdlib/constants/float32/min-base2-exponent-subnormal","1zH":"@stdlib/constants-float32-min-base2-exponent-subnormal","0I4":"@stdlib/constants/float32/min-safe-integer","0I5":"@stdlib/constants-float32-min-safe-integer","1py":"@stdlib/constants/float32/nan","1pz":"@stdlib/constants-float32-nan","0I6":"@stdlib/constants/float32/ninf","0I7":"@stdlib/constants-float32-ninf","0I8":"@stdlib/constants/float32/num-bytes","0I9":"@stdlib/constants-float32-num-bytes","0IA":"@stdlib/constants/float32","0IB":"@stdlib/constants-float32","1v0":"@stdlib/constants/float32/phi","1v1":"@stdlib/constants-float32-phi","1tE":"@stdlib/constants/float32/pi","1tF":"@stdlib/constants-float32-pi","0IC":"@stdlib/constants/float32/pinf","0ID":"@stdlib/constants-float32-pinf","0IE":"@stdlib/constants/float32/precision","0IF":"@stdlib/constants-float32-precision","1ai":"@stdlib/constants/float32/sign-mask","1aj":"@stdlib/constants-float32-sign-mask","1ak":"@stdlib/constants/float32/significand-mask","1al":"@stdlib/constants-float32-significand-mask","0IG":"@stdlib/constants/float32/smallest-normal","0IH":"@stdlib/constants-float32-smallest-normal","0II":"@stdlib/constants/float32/smallest-subnormal","0IJ":"@stdlib/constants-float32-smallest-subnormal","0IK":"@stdlib/constants/float32/sqrt-eps","0IL":"@stdlib/constants-float32-sqrt-eps","1tG":"@stdlib/constants/float32/two-pi","1tH":"@stdlib/constants-float32-two-pi","0IM":"@stdlib/constants/float64/apery","0IN":"@stdlib/constants-float64-apery","0IO":"@stdlib/constants/float64/catalan","0IP":"@stdlib/constants-float64-catalan","0IQ":"@stdlib/constants/float64/cbrt-eps","0IR":"@stdlib/constants-float64-cbrt-eps","0IS":"@stdlib/constants/float64/e","0IT":"@stdlib/constants-float64-e","0IU":"@stdlib/constants/float64/eps","0IV":"@stdlib/constants-float64-eps","0IW":"@stdlib/constants/float64/eulergamma","0IX":"@stdlib/constants-float64-eulergamma","0IY":"@stdlib/constants/float64/exponent-bias","0IZ":"@stdlib/constants-float64-exponent-bias","0Ia":"@stdlib/constants/float64/fourth-pi","0Ib":"@stdlib/constants-float64-fourth-pi","0Ic":"@stdlib/constants/float64/fourth-root-eps","0Id":"@stdlib/constants-float64-fourth-root-eps","0Ie":"@stdlib/constants/float64/gamma-lanczos-g","0If":"@stdlib/constants-float64-gamma-lanczos-g","0Ig":"@stdlib/constants/float64/glaisher-kinkelin","0Ih":"@stdlib/constants-float64-glaisher-kinkelin","0Ii":"@stdlib/constants/float64/half-ln-two","0Ij":"@stdlib/constants-float64-half-ln-two","0Ik":"@stdlib/constants/float64/half-pi","0Il":"@stdlib/constants-float64-half-pi","1am":"@stdlib/constants/float64/high-word-abs-mask","1an":"@stdlib/constants-float64-high-word-abs-mask","0Im":"@stdlib/constants/float64/high-word-exponent-mask","0In":"@stdlib/constants-float64-high-word-exponent-mask","1ao":"@stdlib/constants/float64/high-word-sign-mask","1ap":"@stdlib/constants-float64-high-word-sign-mask","0Io":"@stdlib/constants/float64/high-word-significand-mask","0Ip":"@stdlib/constants-float64-high-word-significand-mask","0Iq":"@stdlib/constants/float64/ln-half","0Ir":"@stdlib/constants-float64-ln-half","0Is":"@stdlib/constants/float64/ln-pi","0It":"@stdlib/constants-float64-ln-pi","0Iu":"@stdlib/constants/float64/ln-sqrt-two-pi","0Iv":"@stdlib/constants-float64-ln-sqrt-two-pi","0Iw":"@stdlib/constants/float64/ln-ten","0Ix":"@stdlib/constants-float64-ln-ten","0Iy":"@stdlib/constants/float64/ln-two-pi","0Iz":"@stdlib/constants-float64-ln-two-pi","0J0":"@stdlib/constants/float64/ln-two","0J1":"@stdlib/constants-float64-ln-two","0J2":"@stdlib/constants/float64/log10-e","0J3":"@stdlib/constants-float64-log10-e","0J4":"@stdlib/constants/float64/log2-e","0J5":"@stdlib/constants-float64-log2-e","0J6":"@stdlib/constants/float64/max-base10-exponent-subnormal","0J7":"@stdlib/constants-float64-max-base10-exponent-subnormal","0J8":"@stdlib/constants/float64/max-base10-exponent","0J9":"@stdlib/constants-float64-max-base10-exponent","0JA":"@stdlib/constants/float64/max-base2-exponent-subnormal","0JB":"@stdlib/constants-float64-max-base2-exponent-subnormal","0JC":"@stdlib/constants/float64/max-base2-exponent","0JD":"@stdlib/constants-float64-max-base2-exponent","0JE":"@stdlib/constants/float64/max-ln","0JF":"@stdlib/constants-float64-max-ln","0JG":"@stdlib/constants/float64/max-safe-fibonacci","0JH":"@stdlib/constants-float64-max-safe-fibonacci","0JI":"@stdlib/constants/float64/max-safe-integer","0JJ":"@stdlib/constants-float64-max-safe-integer","0JK":"@stdlib/constants/float64/max-safe-lucas","0JL":"@stdlib/constants-float64-max-safe-lucas","1yO":"@stdlib/constants/float64/max-safe-nth-factorial","1yP":"@stdlib/constants-float64-max-safe-nth-factorial","0JM":"@stdlib/constants/float64/max-safe-nth-fibonacci","0JN":"@stdlib/constants-float64-max-safe-nth-fibonacci","0JO":"@stdlib/constants/float64/max-safe-nth-lucas","0JP":"@stdlib/constants-float64-max-safe-nth-lucas","0JQ":"@stdlib/constants/float64/max","0JR":"@stdlib/constants-float64-max","0JS":"@stdlib/constants/float64/min-base10-exponent-subnormal","0JT":"@stdlib/constants-float64-min-base10-exponent-subnormal","0JU":"@stdlib/constants/float64/min-base10-exponent","0JV":"@stdlib/constants-float64-min-base10-exponent","0JW":"@stdlib/constants/float64/min-base2-exponent-subnormal","0JX":"@stdlib/constants-float64-min-base2-exponent-subnormal","0JY":"@stdlib/constants/float64/min-base2-exponent","0JZ":"@stdlib/constants-float64-min-base2-exponent","0Ja":"@stdlib/constants/float64/min-ln","0Jb":"@stdlib/constants-float64-min-ln","0Jc":"@stdlib/constants/float64/min-safe-integer","0Jd":"@stdlib/constants-float64-min-safe-integer","1q0":"@stdlib/constants/float64/nan","1q1":"@stdlib/constants-float64-nan","0Je":"@stdlib/constants/float64/ninf","0Jf":"@stdlib/constants-float64-ninf","0Jg":"@stdlib/constants/float64/num-bytes","0Jh":"@stdlib/constants-float64-num-bytes","20A":"@stdlib/constants/float64/num-high-word-significand-bits","20B":"@stdlib/constants-float64-num-high-word-significand-bits","0Ji":"@stdlib/constants/float64","0Jj":"@stdlib/constants-float64","0Jk":"@stdlib/constants/float64/phi","0Jl":"@stdlib/constants-float64-phi","0Jm":"@stdlib/constants/float64/pi-squared","0Jn":"@stdlib/constants-float64-pi-squared","0Jo":"@stdlib/constants/float64/pi","0Jp":"@stdlib/constants-float64-pi","0Jq":"@stdlib/constants/float64/pinf","0Jr":"@stdlib/constants-float64-pinf","0Js":"@stdlib/constants/float64/precision","0Jt":"@stdlib/constants-float64-precision","0Ju":"@stdlib/constants/float64/smallest-normal","0Jv":"@stdlib/constants-float64-smallest-normal","0Jw":"@stdlib/constants/float64/smallest-subnormal","0Jx":"@stdlib/constants-float64-smallest-subnormal","0Jy":"@stdlib/constants/float64/sqrt-eps","0Jz":"@stdlib/constants-float64-sqrt-eps","0K0":"@stdlib/constants/float64/sqrt-half-pi","0K1":"@stdlib/constants-float64-sqrt-half-pi","0K2":"@stdlib/constants/float64/sqrt-half","0K3":"@stdlib/constants-float64-sqrt-half","0K4":"@stdlib/constants/float64/sqrt-phi","0K5":"@stdlib/constants-float64-sqrt-phi","0K6":"@stdlib/constants/float64/sqrt-pi","0K7":"@stdlib/constants-float64-sqrt-pi","0K8":"@stdlib/constants/float64/sqrt-three","0K9":"@stdlib/constants-float64-sqrt-three","0KA":"@stdlib/constants/float64/sqrt-two-pi","0KB":"@stdlib/constants-float64-sqrt-two-pi","0KC":"@stdlib/constants/float64/sqrt-two","0KD":"@stdlib/constants-float64-sqrt-two","0KE":"@stdlib/constants/float64/two-pi","0KF":"@stdlib/constants-float64-two-pi","0KG":"@stdlib/constants/int16/max","0KH":"@stdlib/constants-int16-max","0KI":"@stdlib/constants/int16/min","0KJ":"@stdlib/constants-int16-min","0KK":"@stdlib/constants/int16/num-bytes","0KL":"@stdlib/constants-int16-num-bytes","0KM":"@stdlib/constants/int16","0KN":"@stdlib/constants-int16","0KO":"@stdlib/constants/int32/max","0KP":"@stdlib/constants-int32-max","0KQ":"@stdlib/constants/int32/min","0KR":"@stdlib/constants-int32-min","0KS":"@stdlib/constants/int32/num-bytes","0KT":"@stdlib/constants-int32-num-bytes","0KU":"@stdlib/constants/int32","0KV":"@stdlib/constants-int32","0KW":"@stdlib/constants/int8/max","0KX":"@stdlib/constants-int8-max","0KY":"@stdlib/constants/int8/min","0KZ":"@stdlib/constants-int8-min","0Ka":"@stdlib/constants/int8/num-bytes","0Kb":"@stdlib/constants-int8-num-bytes","0Kc":"@stdlib/constants/int8","0Kd":"@stdlib/constants-int8","0Kf":"@stdlib/constants","0Kg":"@stdlib/constants/path/delimiter-posix","0Kh":"@stdlib/constants-path-delimiter-posix","0Ki":"@stdlib/constants/path/delimiter-win32","0Kj":"@stdlib/constants-path-delimiter-win32","0Kk":"@stdlib/constants/path/delimiter","0Kl":"@stdlib/constants-path-delimiter","0Km":"@stdlib/constants/path","0Kn":"@stdlib/constants-path","0Ko":"@stdlib/constants/path/sep-posix","0Kp":"@stdlib/constants-path-sep-posix","0Kq":"@stdlib/constants/path/sep-win32","0Kr":"@stdlib/constants-path-sep-win32","0Ks":"@stdlib/constants/path/sep","0Kt":"@stdlib/constants-path-sep","0Ku":"@stdlib/constants/time/hours-in-day","0Kv":"@stdlib/constants-time-hours-in-day","0Kw":"@stdlib/constants/time/hours-in-week","0Kx":"@stdlib/constants-time-hours-in-week","0Ky":"@stdlib/constants/time/milliseconds-in-day","0Kz":"@stdlib/constants-time-milliseconds-in-day","0L0":"@stdlib/constants/time/milliseconds-in-hour","0L1":"@stdlib/constants-time-milliseconds-in-hour","0L2":"@stdlib/constants/time/milliseconds-in-minute","0L3":"@stdlib/constants-time-milliseconds-in-minute","0L4":"@stdlib/constants/time/milliseconds-in-second","0L5":"@stdlib/constants-time-milliseconds-in-second","0L6":"@stdlib/constants/time/milliseconds-in-week","0L7":"@stdlib/constants-time-milliseconds-in-week","0L8":"@stdlib/constants/time/minutes-in-day","0L9":"@stdlib/constants-time-minutes-in-day","0LA":"@stdlib/constants/time/minutes-in-hour","0LB":"@stdlib/constants-time-minutes-in-hour","0LC":"@stdlib/constants/time/minutes-in-week","0LD":"@stdlib/constants-time-minutes-in-week","0LE":"@stdlib/constants/time/months-in-year","0LF":"@stdlib/constants-time-months-in-year","0LG":"@stdlib/constants/time","0LH":"@stdlib/constants-time","0LI":"@stdlib/constants/time/seconds-in-day","0LJ":"@stdlib/constants-time-seconds-in-day","0LK":"@stdlib/constants/time/seconds-in-hour","0LL":"@stdlib/constants-time-seconds-in-hour","0LM":"@stdlib/constants/time/seconds-in-minute","0LN":"@stdlib/constants-time-seconds-in-minute","0LO":"@stdlib/constants/time/seconds-in-week","0LP":"@stdlib/constants-time-seconds-in-week","0LQ":"@stdlib/constants/uint16/max","0LR":"@stdlib/constants-uint16-max","0LS":"@stdlib/constants/uint16/num-bytes","0LT":"@stdlib/constants-uint16-num-bytes","0LU":"@stdlib/constants/uint16","0LV":"@stdlib/constants-uint16","0LW":"@stdlib/constants/uint32/max","0LX":"@stdlib/constants-uint32-max","0LY":"@stdlib/constants/uint32/num-bytes","0LZ":"@stdlib/constants-uint32-num-bytes","0La":"@stdlib/constants/uint32","0Lb":"@stdlib/constants-uint32","0Lc":"@stdlib/constants/uint8/max","0Ld":"@stdlib/constants-uint8-max","0Le":"@stdlib/constants/uint8/num-bytes","0Lf":"@stdlib/constants-uint8-num-bytes","0Lg":"@stdlib/constants/uint8","0Lh":"@stdlib/constants-uint8","0Li":"@stdlib/constants/unicode/max-bmp","0Lj":"@stdlib/constants-unicode-max-bmp","0Lk":"@stdlib/constants/unicode/max","0Ll":"@stdlib/constants-unicode-max","0Lm":"@stdlib/constants/unicode","0Ln":"@stdlib/constants-unicode","0Lo":"@stdlib/datasets/afinn-111","0Lp":"@stdlib/datasets-afinn-111","0Lq":"@stdlib/datasets/afinn-96","0Lr":"@stdlib/datasets-afinn-96","0Ls":"@stdlib/datasets/anscombes-quartet","0Lt":"@stdlib/datasets-anscombes-quartet","0Lu":"@stdlib/datasets/berndt-cps-wages-1985","0Lv":"@stdlib/datasets-berndt-cps-wages-1985","0Lw":"@stdlib/datasets/cdc-nchs-us-births-1969-1988","0Lx":"@stdlib/datasets-cdc-nchs-us-births-1969-1988","0Ly":"@stdlib/datasets/cdc-nchs-us-births-1994-2003","0Lz":"@stdlib/datasets-cdc-nchs-us-births-1994-2003","0M0":"@stdlib/datasets/cdc-nchs-us-infant-mortality-bw-1915-2013","0M1":"@stdlib/datasets-cdc-nchs-us-infant-mortality-bw-1915-2013","0M2":"@stdlib/datasets/cmudict","0M3":"@stdlib/datasets-cmudict","0M4":"@stdlib/datasets/dale-chall-new","0M5":"@stdlib/datasets-dale-chall-new","0M6":"@stdlib/datasets/emoji-code-picto","0M7":"@stdlib/datasets-emoji-code-picto","0M8":"@stdlib/datasets/emoji-picto-code","0M9":"@stdlib/datasets-emoji-picto-code","0MA":"@stdlib/datasets/emoji","0MB":"@stdlib/datasets-emoji","0MC":"@stdlib/datasets/female-first-names-en","0MD":"@stdlib/datasets-female-first-names-en","0ME":"@stdlib/datasets/fivethirtyeight-ffq","0MF":"@stdlib/datasets-fivethirtyeight-ffq","0MG":"@stdlib/datasets/frb-sf-wage-rigidity","0MH":"@stdlib/datasets-frb-sf-wage-rigidity","0MI":"@stdlib/datasets/harrison-boston-house-prices-corrected","0MJ":"@stdlib/datasets-harrison-boston-house-prices-corrected","0MK":"@stdlib/datasets/harrison-boston-house-prices","0ML":"@stdlib/datasets-harrison-boston-house-prices","0MM":"@stdlib/datasets/herndon-venus-semidiameters","0MN":"@stdlib/datasets-herndon-venus-semidiameters","0MO":"@stdlib/datasets/img-acanthus-mollis","0MP":"@stdlib/datasets-img-acanthus-mollis","0MQ":"@stdlib/datasets/img-airplane-from-above","0MR":"@stdlib/datasets-img-airplane-from-above","0MS":"@stdlib/datasets/img-allium-oreophilum","0MT":"@stdlib/datasets-img-allium-oreophilum","0MU":"@stdlib/datasets/img-black-canyon","0MV":"@stdlib/datasets-img-black-canyon","0MW":"@stdlib/datasets/img-dust-bowl-home","0MX":"@stdlib/datasets-img-dust-bowl-home","0MY":"@stdlib/datasets/img-french-alpine-landscape","0MZ":"@stdlib/datasets-img-french-alpine-landscape","0Ma":"@stdlib/datasets/img-locomotion-house-cat","0Mb":"@stdlib/datasets-img-locomotion-house-cat","0Mc":"@stdlib/datasets/img-locomotion-nude-male","0Md":"@stdlib/datasets-img-locomotion-nude-male","0Me":"@stdlib/datasets/img-march-pastoral","0Mf":"@stdlib/datasets-img-march-pastoral","0Mg":"@stdlib/datasets/img-nagasaki-boats","0Mh":"@stdlib/datasets-img-nagasaki-boats","0Mi":"@stdlib/datasets/liu-negative-opinion-words-en","0Mj":"@stdlib/datasets-liu-negative-opinion-words-en","0Mk":"@stdlib/datasets/liu-positive-opinion-words-en","0Ml":"@stdlib/datasets-liu-positive-opinion-words-en","0Mm":"@stdlib/datasets/male-first-names-en","0Mn":"@stdlib/datasets-male-first-names-en","0Mo":"@stdlib/datasets/minard-napoleons-march","0Mp":"@stdlib/datasets-minard-napoleons-march","0Mq":"@stdlib/datasets/moby-dick","0Mr":"@stdlib/datasets-moby-dick","0Ms":"@stdlib/datasets/month-names-en","0Mt":"@stdlib/datasets-month-names-en","0Mu":"@stdlib/datasets/nightingales-rose","0Mv":"@stdlib/datasets-nightingales-rose","0Mw":"@stdlib/datasets/pace-boston-house-prices","0Mx":"@stdlib/datasets-pace-boston-house-prices","0Mz":"@stdlib/datasets","0N0":"@stdlib/datasets/primes-100k","0N1":"@stdlib/datasets-primes-100k","0N2":"@stdlib/datasets/savoy-stopwords-fin","0N3":"@stdlib/datasets-savoy-stopwords-fin","0N4":"@stdlib/datasets/savoy-stopwords-fr","0N5":"@stdlib/datasets-savoy-stopwords-fr","0N6":"@stdlib/datasets/savoy-stopwords-ger","0N7":"@stdlib/datasets-savoy-stopwords-ger","0N8":"@stdlib/datasets/savoy-stopwords-it","0N9":"@stdlib/datasets-savoy-stopwords-it","0NA":"@stdlib/datasets/savoy-stopwords-por","0NB":"@stdlib/datasets-savoy-stopwords-por","0NC":"@stdlib/datasets/savoy-stopwords-sp","0ND":"@stdlib/datasets-savoy-stopwords-sp","0NE":"@stdlib/datasets/savoy-stopwords-swe","0NF":"@stdlib/datasets-savoy-stopwords-swe","0NG":"@stdlib/datasets/sotu","0NH":"@stdlib/datasets-sotu","0NI":"@stdlib/datasets/spache-revised","0NJ":"@stdlib/datasets-spache-revised","0NK":"@stdlib/datasets/spam-assassin","0NL":"@stdlib/datasets-spam-assassin","0NM":"@stdlib/datasets/ssa-us-births-2000-2014","0NN":"@stdlib/datasets-ssa-us-births-2000-2014","0NO":"@stdlib/datasets/standard-card-deck","0NP":"@stdlib/datasets-standard-card-deck","0NQ":"@stdlib/datasets/stopwords-en","0NR":"@stdlib/datasets-stopwords-en","0NS":"@stdlib/datasets/suthaharan-multi-hop-sensor-network","0NT":"@stdlib/datasets-suthaharan-multi-hop-sensor-network","0NU":"@stdlib/datasets/suthaharan-single-hop-sensor-network","0NV":"@stdlib/datasets-suthaharan-single-hop-sensor-network","0NW":"@stdlib/datasets/us-states-abbr","0NX":"@stdlib/datasets-us-states-abbr","0NY":"@stdlib/datasets/us-states-capitals-names","0NZ":"@stdlib/datasets-us-states-capitals-names","0Na":"@stdlib/datasets/us-states-capitals","0Nb":"@stdlib/datasets-us-states-capitals","0Nc":"@stdlib/datasets/us-states-names-capitals","0Nd":"@stdlib/datasets-us-states-names-capitals","0Ne":"@stdlib/datasets/us-states-names","0Nf":"@stdlib/datasets-us-states-names","0Nh":"@stdlib/error","0Ni":"@stdlib/error/reviver","0Nj":"@stdlib/error-reviver","0Nk":"@stdlib/error/to-json","0Nl":"@stdlib/error-to-json","0Nm":"@stdlib/error/tools/database","0Nn":"@stdlib/error-tools-database","0No":"@stdlib/error/tools/fmtprodmsg-factory","0Np":"@stdlib/error-tools-fmtprodmsg-factory","0Nq":"@stdlib/error/tools/fmtprodmsg","0Nr":"@stdlib/error-tools-fmtprodmsg","0Ns":"@stdlib/error/tools/id2msg","0Nt":"@stdlib/error-tools-id2msg","0Nu":"@stdlib/error/tools/id2pkg","0Nv":"@stdlib/error-tools-id2pkg","0Nw":"@stdlib/error/tools/msg2id","0Nx":"@stdlib/error-tools-msg2id","0Ny":"@stdlib/error/tools","0Nz":"@stdlib/error-tools","0O0":"@stdlib/error/tools/pkg2id","0O1":"@stdlib/error-tools-pkg2id","1v2":"@stdlib/fs/append-file","1v3":"@stdlib/fs-append-file","0O2":"@stdlib/fs/close","0O3":"@stdlib/fs-close","0O4":"@stdlib/fs/exists","0O5":"@stdlib/fs-exists","0O6":"@stdlib/fs/open","0O7":"@stdlib/fs-open","0O9":"@stdlib/fs","0OA":"@stdlib/fs/read-dir","0OB":"@stdlib/fs-read-dir","0OC":"@stdlib/fs/read-file-list","0OD":"@stdlib/fs-read-file-list","0OE":"@stdlib/fs/read-file","0OF":"@stdlib/fs-read-file","0OG":"@stdlib/fs/read-json","0OH":"@stdlib/fs-read-json","0OI":"@stdlib/fs/read-wasm","0OJ":"@stdlib/fs-read-wasm","0OK":"@stdlib/fs/rename","0OL":"@stdlib/fs-rename","0OM":"@stdlib/fs/resolve-parent-path-by","0ON":"@stdlib/fs-resolve-parent-path-by","0OO":"@stdlib/fs/resolve-parent-path","0OP":"@stdlib/fs-resolve-parent-path","1yS":"@stdlib/fs/resolve-parent-paths","1yT":"@stdlib/fs-resolve-parent-paths","0OQ":"@stdlib/fs/unlink","0OR":"@stdlib/fs-unlink","0OS":"@stdlib/fs/write-file","0OT":"@stdlib/fs-write-file","1aq":"@stdlib/function/ctor","1ar":"@stdlib/function-ctor","1at":"@stdlib/function","1au":"@stdlib/function/to-string","1av":"@stdlib/function-to-string","0OU":"@stdlib/iter/advance","0OV":"@stdlib/iter-advance","0OW":"@stdlib/iter/any-by","0OX":"@stdlib/iter-any-by","0OY":"@stdlib/iter/any","0OZ":"@stdlib/iter-any","0Oa":"@stdlib/iter/concat","0Ob":"@stdlib/iter-concat","0Oc":"@stdlib/iter/constant","0Od":"@stdlib/iter-constant","0Oe":"@stdlib/iter/counter","0Of":"@stdlib/iter-counter","1xS":"@stdlib/iter/cuany","1xT":"@stdlib/iter-cuany","1zI":"@stdlib/iter/cunone-by","1zJ":"@stdlib/iter-cunone-by","1yU":"@stdlib/iter/cusome","1yV":"@stdlib/iter-cusome","0Og":"@stdlib/iter/datespace","0Oh":"@stdlib/iter-datespace","0Oi":"@stdlib/iter/dedupe-by","0Oj":"@stdlib/iter-dedupe-by","0Ok":"@stdlib/iter/dedupe","0Ol":"@stdlib/iter-dedupe","1tI":"@stdlib/iter/do-until-each","1tJ":"@stdlib/iter-do-until-each","1tK":"@stdlib/iter/do-while-each","1tL":"@stdlib/iter-do-while-each","0Om":"@stdlib/iter/empty","0On":"@stdlib/iter-empty","0Oo":"@stdlib/iter/every-by","0Op":"@stdlib/iter-every-by","0Oq":"@stdlib/iter/every","0Or":"@stdlib/iter-every","0Os":"@stdlib/iter/fill","0Ot":"@stdlib/iter-fill","0Ou":"@stdlib/iter/filter-map","0Ov":"@stdlib/iter-filter-map","0Ow":"@stdlib/iter/filter","0Ox":"@stdlib/iter-filter","0Oy":"@stdlib/iter/first","0Oz":"@stdlib/iter-first","0P0":"@stdlib/iter/flow","0P1":"@stdlib/iter-flow","0P2":"@stdlib/iter/for-each","0P3":"@stdlib/iter-for-each","0P4":"@stdlib/iter/head","0P5":"@stdlib/iter-head","0P6":"@stdlib/iter/incrspace","0P7":"@stdlib/iter-incrspace","0P8":"@stdlib/iter/intersection-by-hash","0P9":"@stdlib/iter-intersection-by-hash","0PA":"@stdlib/iter/intersection","0PB":"@stdlib/iter-intersection","0PC":"@stdlib/iter/last","0PD":"@stdlib/iter-last","0PE":"@stdlib/iter/length","0PF":"@stdlib/iter-length","0PG":"@stdlib/iter/linspace","0PH":"@stdlib/iter-linspace","0PI":"@stdlib/iter/logspace","0PJ":"@stdlib/iter-logspace","0PK":"@stdlib/iter/map","0PL":"@stdlib/iter-map","0PM":"@stdlib/iter/mapn","0PN":"@stdlib/iter-mapn","0PO":"@stdlib/iter/none-by","0PP":"@stdlib/iter-none-by","0PQ":"@stdlib/iter/none","0PR":"@stdlib/iter-none","0PS":"@stdlib/iter/nth","0PT":"@stdlib/iter-nth","0PV":"@stdlib/iter","0PW":"@stdlib/iter/pipeline-thunk","0PX":"@stdlib/iter-pipeline-thunk","0PY":"@stdlib/iter/pipeline","0PZ":"@stdlib/iter-pipeline","0Pa":"@stdlib/iter/pop","0Pb":"@stdlib/iter-pop","0Pc":"@stdlib/iter/push","0Pd":"@stdlib/iter-push","0Pe":"@stdlib/iter/reject","0Pf":"@stdlib/iter-reject","0Pg":"@stdlib/iter/replicate-by","0Ph":"@stdlib/iter-replicate-by","0Pi":"@stdlib/iter/replicate","0Pj":"@stdlib/iter-replicate","0Pk":"@stdlib/iter/shift","0Pl":"@stdlib/iter-shift","0Pm":"@stdlib/iter/slice","0Pn":"@stdlib/iter-slice","0Po":"@stdlib/iter/some-by","0Pp":"@stdlib/iter-some-by","0Pq":"@stdlib/iter/some","0Pr":"@stdlib/iter-some","0Ps":"@stdlib/iter/step","0Pt":"@stdlib/iter-step","0Pu":"@stdlib/iter/strided-by","0Pv":"@stdlib/iter-strided-by","0Pw":"@stdlib/iter/strided","0Px":"@stdlib/iter-strided","0Py":"@stdlib/iter/to-array-view-right","0Pz":"@stdlib/iter-to-array-view-right","0Q0":"@stdlib/iter/to-array-view","0Q1":"@stdlib/iter-to-array-view","0Q2":"@stdlib/iter/union","0Q3":"@stdlib/iter-union","0Q4":"@stdlib/iter/unique-by-hash","0Q5":"@stdlib/iter-unique-by-hash","0Q6":"@stdlib/iter/unique-by","0Q7":"@stdlib/iter-unique-by","0Q8":"@stdlib/iter/unique","0Q9":"@stdlib/iter-unique","0QA":"@stdlib/iter/unitspace","0QB":"@stdlib/iter-unitspace","0QC":"@stdlib/iter/unshift","0QD":"@stdlib/iter-unshift","1sg":"@stdlib/iter/until-each","1sh":"@stdlib/iter-until-each","1mu":"@stdlib/iter/while-each","1mv":"@stdlib/iter-while-each","1zK":"@stdlib/lapack/base/dge-trans","1zL":"@stdlib/lapack-base-dge-trans","1yo":"@stdlib/lapack/base/dlacpy","1yp":"@stdlib/lapack-base-dlacpy","20C":"@stdlib/lapack/base/dlamch","20D":"@stdlib/lapack-base-dlamch","1yq":"@stdlib/lapack/base/dlassq","1yr":"@stdlib/lapack-base-dlassq","1xg":"@stdlib/lapack/base/dlaswp","1xh":"@stdlib/lapack-base-dlaswp","1ys":"@stdlib/lapack/base/dpttrf","1yt":"@stdlib/lapack-base-dpttrf","1xi":"@stdlib/lapack/base","1xj":"@stdlib/lapack-base","1zM":"@stdlib/lapack/base/sge-trans","1zN":"@stdlib/lapack-base-sge-trans","1yu":"@stdlib/lapack/base/slacpy","1yv":"@stdlib/lapack-base-slacpy","1zO":"@stdlib/lapack/base/slaswp","1zP":"@stdlib/lapack-base-slaswp","1yw":"@stdlib/lapack/base/spttrf","1yx":"@stdlib/lapack-base-spttrf","1xl":"@stdlib/lapack","0QE":"@stdlib/math/base/assert/int32-is-even","0QF":"@stdlib/math-base-assert-int32-is-even","0QG":"@stdlib/math/base/assert/int32-is-odd","0QH":"@stdlib/math-base-assert-int32-is-odd","0QI":"@stdlib/math/base/assert/is-composite","0QJ":"@stdlib/math-base-assert-is-composite","0QK":"@stdlib/math/base/assert/is-coprime","0QL":"@stdlib/math-base-assert-is-coprime","0QM":"@stdlib/math/base/assert/is-even","0QN":"@stdlib/math-base-assert-is-even","0QO":"@stdlib/math/base/assert/is-finite","0QP":"@stdlib/math-base-assert-is-finite","0QQ":"@stdlib/math/base/assert/is-finitef","0QR":"@stdlib/math-base-assert-is-finitef","0QS":"@stdlib/math/base/assert/is-infinite","0QT":"@stdlib/math-base-assert-is-infinite","0QU":"@stdlib/math/base/assert/is-infinitef","0QV":"@stdlib/math-base-assert-is-infinitef","0QW":"@stdlib/math/base/assert/is-integer","0QX":"@stdlib/math-base-assert-is-integer","1zQ":"@stdlib/math/base/assert/is-integerf","1zR":"@stdlib/math-base-assert-is-integerf","0QY":"@stdlib/math/base/assert/is-nan","0QZ":"@stdlib/math-base-assert-is-nan","0Qa":"@stdlib/math/base/assert/is-nanf","0Qb":"@stdlib/math-base-assert-is-nanf","1aw":"@stdlib/math/base/assert/is-negative-finite","1ax":"@stdlib/math-base-assert-is-negative-finite","0Qc":"@stdlib/math/base/assert/is-negative-integer","0Qd":"@stdlib/math-base-assert-is-negative-integer","0Qe":"@stdlib/math/base/assert/is-negative-zero","0Qf":"@stdlib/math-base-assert-is-negative-zero","0Qg":"@stdlib/math/base/assert/is-negative-zerof","0Qh":"@stdlib/math-base-assert-is-negative-zerof","1ay":"@stdlib/math/base/assert/is-nonnegative-finite","1az":"@stdlib/math-base-assert-is-nonnegative-finite","0Qi":"@stdlib/math/base/assert/is-nonnegative-integer","0Qj":"@stdlib/math-base-assert-is-nonnegative-integer","20E":"@stdlib/math/base/assert/is-nonnegative-integerf","20F":"@stdlib/math-base-assert-is-nonnegative-integerf","1b0":"@stdlib/math/base/assert/is-nonpositive-finite","1b1":"@stdlib/math-base-assert-is-nonpositive-finite","0Qk":"@stdlib/math/base/assert/is-nonpositive-integer","0Ql":"@stdlib/math-base-assert-is-nonpositive-integer","0Qm":"@stdlib/math/base/assert/is-odd","0Qn":"@stdlib/math-base-assert-is-odd","1b2":"@stdlib/math/base/assert/is-positive-finite","1b3":"@stdlib/math-base-assert-is-positive-finite","0Qo":"@stdlib/math/base/assert/is-positive-integer","0Qp":"@stdlib/math-base-assert-is-positive-integer","0Qq":"@stdlib/math/base/assert/is-positive-zero","0Qr":"@stdlib/math-base-assert-is-positive-zero","0Qs":"@stdlib/math/base/assert/is-positive-zerof","0Qt":"@stdlib/math-base-assert-is-positive-zerof","0Qu":"@stdlib/math/base/assert/is-prime","0Qv":"@stdlib/math-base-assert-is-prime","0Qw":"@stdlib/math/base/assert/is-probability","0Qx":"@stdlib/math-base-assert-is-probability","0Qy":"@stdlib/math/base/assert/is-safe-integer","0Qz":"@stdlib/math-base-assert-is-safe-integer","0R0":"@stdlib/math/base/assert","0R1":"@stdlib/math-base-assert","0R2":"@stdlib/math/base/assert/uint32-is-pow2","0R3":"@stdlib/math-base-assert-uint32-is-pow2","0R4":"@stdlib/math/base/napi/binary","0R5":"@stdlib/math-base-napi-binary","0R6":"@stdlib/math/base/napi","0R7":"@stdlib/math-base-napi","1m2":"@stdlib/math/base/napi/quaternary","1m3":"@stdlib/math-base-napi-quaternary","1m4":"@stdlib/math/base/napi/quinary","1m5":"@stdlib/math-base-napi-quinary","0R8":"@stdlib/math/base/napi/ternary","0R9":"@stdlib/math-base-napi-ternary","0RA":"@stdlib/math/base/napi/unary","0RB":"@stdlib/math-base-napi-unary","0RC":"@stdlib/math/base/ops/add","0RD":"@stdlib/math-base-ops-add","1m6":"@stdlib/math/base/ops/add3","1m7":"@stdlib/math-base-ops-add3","1m8":"@stdlib/math/base/ops/add4","1m9":"@stdlib/math-base-ops-add4","1mA":"@stdlib/math/base/ops/add5","1mB":"@stdlib/math-base-ops-add5","0RE":"@stdlib/math/base/ops/addf","0RF":"@stdlib/math-base-ops-addf","0RK":"@stdlib/math/base/ops/cdiv","0RL":"@stdlib/math-base-ops-cdiv","0RQ":"@stdlib/math/base/ops/cneg","0RR":"@stdlib/math-base-ops-cneg","1b4":"@stdlib/math/base/ops/cnegf","1b5":"@stdlib/math-base-ops-cnegf","0RS":"@stdlib/math/base/ops/csub","0RT":"@stdlib/math-base-ops-csub","0RU":"@stdlib/math/base/ops/csubf","0RV":"@stdlib/math-base-ops-csubf","1mC":"@stdlib/math/base/ops/div","1mD":"@stdlib/math-base-ops-div","1mE":"@stdlib/math/base/ops/divf","1mF":"@stdlib/math-base-ops-divf","0RW":"@stdlib/math/base/ops/imul","0RX":"@stdlib/math-base-ops-imul","0RY":"@stdlib/math/base/ops/imuldw","0RZ":"@stdlib/math-base-ops-imuldw","0Ra":"@stdlib/math/base/ops/mul","0Rb":"@stdlib/math-base-ops-mul","0Rc":"@stdlib/math/base/ops/mulf","0Rd":"@stdlib/math-base-ops-mulf","0Re":"@stdlib/math/base/ops","0Rf":"@stdlib/math-base-ops","0Rg":"@stdlib/math/base/ops/sub","0Rh":"@stdlib/math-base-ops-sub","0Ri":"@stdlib/math/base/ops/subf","0Rj":"@stdlib/math-base-ops-subf","0Rk":"@stdlib/math/base/ops/umul","0Rl":"@stdlib/math-base-ops-umul","0Rm":"@stdlib/math/base/ops/umuldw","0Rn":"@stdlib/math-base-ops-umuldw","0Ro":"@stdlib/math/base","0Rp":"@stdlib/math-base","0Rq":"@stdlib/math/base/special/abs","0Rr":"@stdlib/math-base-special-abs","0Rs":"@stdlib/math/base/special/abs2","0Rt":"@stdlib/math-base-special-abs2","0Ru":"@stdlib/math/base/special/abs2f","0Rv":"@stdlib/math-base-special-abs2f","0Rw":"@stdlib/math/base/special/absf","0Rx":"@stdlib/math-base-special-absf","0Ry":"@stdlib/math/base/special/acos","0Rz":"@stdlib/math-base-special-acos","1tM":"@stdlib/math/base/special/acosd","1tN":"@stdlib/math-base-special-acosd","1tO":"@stdlib/math/base/special/acosf","1tP":"@stdlib/math-base-special-acosf","0S0":"@stdlib/math/base/special/acosh","0S1":"@stdlib/math-base-special-acosh","0S2":"@stdlib/math/base/special/acot","0S3":"@stdlib/math-base-special-acot","1tQ":"@stdlib/math/base/special/acotd","1tR":"@stdlib/math-base-special-acotd","20G":"@stdlib/math/base/special/acotdf","20H":"@stdlib/math-base-special-acotdf","1tS":"@stdlib/math/base/special/acotf","1tT":"@stdlib/math-base-special-acotf","0S4":"@stdlib/math/base/special/acoth","0S5":"@stdlib/math-base-special-acoth","0S6":"@stdlib/math/base/special/acovercos","0S7":"@stdlib/math-base-special-acovercos","20I":"@stdlib/math/base/special/acovercosf","20J":"@stdlib/math-base-special-acovercosf","0S8":"@stdlib/math/base/special/acoversin","0S9":"@stdlib/math-base-special-acoversin","20K":"@stdlib/math/base/special/acoversinf","20L":"@stdlib/math-base-special-acoversinf","0SA":"@stdlib/math/base/special/acsc","0SB":"@stdlib/math-base-special-acsc","1tU":"@stdlib/math/base/special/acscd","1tV":"@stdlib/math-base-special-acscd","1v4":"@stdlib/math/base/special/acscdf","1v5":"@stdlib/math-base-special-acscdf","1tW":"@stdlib/math/base/special/acscf","1tX":"@stdlib/math-base-special-acscf","0SC":"@stdlib/math/base/special/acsch","0SD":"@stdlib/math-base-special-acsch","0SE":"@stdlib/math/base/special/ahavercos","0SF":"@stdlib/math-base-special-ahavercos","0SG":"@stdlib/math/base/special/ahaversin","0SH":"@stdlib/math-base-special-ahaversin","1b6":"@stdlib/math/base/special/asec","1b7":"@stdlib/math-base-special-asec","1tY":"@stdlib/math/base/special/asecd","1tZ":"@stdlib/math-base-special-asecd","1v6":"@stdlib/math/base/special/asecdf","1v7":"@stdlib/math-base-special-asecdf","1ta":"@stdlib/math/base/special/asecf","1tb":"@stdlib/math-base-special-asecf","0SI":"@stdlib/math/base/special/asech","0SJ":"@stdlib/math-base-special-asech","0SK":"@stdlib/math/base/special/asin","0SL":"@stdlib/math-base-special-asin","1tc":"@stdlib/math/base/special/asind","1td":"@stdlib/math-base-special-asind","1v8":"@stdlib/math/base/special/asindf","1v9":"@stdlib/math-base-special-asindf","1te":"@stdlib/math/base/special/asinf","1tf":"@stdlib/math-base-special-asinf","0SM":"@stdlib/math/base/special/asinh","0SN":"@stdlib/math-base-special-asinh","0SO":"@stdlib/math/base/special/atan","0SP":"@stdlib/math-base-special-atan","0SQ":"@stdlib/math/base/special/atan2","0SR":"@stdlib/math-base-special-atan2","1tg":"@stdlib/math/base/special/atand","1th":"@stdlib/math-base-special-atand","20M":"@stdlib/math/base/special/atandf","20N":"@stdlib/math-base-special-atandf","1ti":"@stdlib/math/base/special/atanf","1tj":"@stdlib/math-base-special-atanf","0SS":"@stdlib/math/base/special/atanh","0ST":"@stdlib/math-base-special-atanh","0SU":"@stdlib/math/base/special/avercos","0SV":"@stdlib/math-base-special-avercos","20O":"@stdlib/math/base/special/avercosf","20P":"@stdlib/math-base-special-avercosf","0SW":"@stdlib/math/base/special/aversin","0SX":"@stdlib/math-base-special-aversin","20Q":"@stdlib/math/base/special/aversinf","20R":"@stdlib/math-base-special-aversinf","0SY":"@stdlib/math/base/special/bernoulli","0SZ":"@stdlib/math-base-special-bernoulli","0Sa":"@stdlib/math/base/special/besselj0","0Sb":"@stdlib/math-base-special-besselj0","0Sc":"@stdlib/math/base/special/besselj1","0Sd":"@stdlib/math-base-special-besselj1","0Se":"@stdlib/math/base/special/bessely0","0Sf":"@stdlib/math-base-special-bessely0","0Sg":"@stdlib/math/base/special/bessely1","0Sh":"@stdlib/math-base-special-bessely1","0Si":"@stdlib/math/base/special/beta","0Sj":"@stdlib/math-base-special-beta","0Sk":"@stdlib/math/base/special/betainc","0Sl":"@stdlib/math-base-special-betainc","0Sm":"@stdlib/math/base/special/betaincinv","0Sn":"@stdlib/math-base-special-betaincinv","0So":"@stdlib/math/base/special/betaln","0Sp":"@stdlib/math-base-special-betaln","0Sq":"@stdlib/math/base/special/binet","0Sr":"@stdlib/math-base-special-binet","0Ss":"@stdlib/math/base/special/binomcoef","0St":"@stdlib/math-base-special-binomcoef","0Su":"@stdlib/math/base/special/binomcoefln","0Sv":"@stdlib/math-base-special-binomcoefln","0Sw":"@stdlib/math/base/special/boxcox","0Sx":"@stdlib/math-base-special-boxcox","0Sy":"@stdlib/math/base/special/boxcox1p","0Sz":"@stdlib/math-base-special-boxcox1p","0T0":"@stdlib/math/base/special/boxcox1pinv","0T1":"@stdlib/math-base-special-boxcox1pinv","0T2":"@stdlib/math/base/special/boxcoxinv","0T3":"@stdlib/math-base-special-boxcoxinv","0T4":"@stdlib/math/base/special/cabs","0T5":"@stdlib/math-base-special-cabs","0T6":"@stdlib/math/base/special/cabs2","0T7":"@stdlib/math-base-special-cabs2","0T8":"@stdlib/math/base/special/cabs2f","0T9":"@stdlib/math-base-special-cabs2f","0TA":"@stdlib/math/base/special/cabsf","0TB":"@stdlib/math-base-special-cabsf","0TC":"@stdlib/math/base/special/cbrt","0TD":"@stdlib/math-base-special-cbrt","0TE":"@stdlib/math/base/special/cbrtf","0TF":"@stdlib/math-base-special-cbrtf","0TG":"@stdlib/math/base/special/cceil","0TH":"@stdlib/math-base-special-cceil","0TI":"@stdlib/math/base/special/cceilf","0TJ":"@stdlib/math-base-special-cceilf","0TK":"@stdlib/math/base/special/cceiln","0TL":"@stdlib/math-base-special-cceiln","0TM":"@stdlib/math/base/special/ccis","0TN":"@stdlib/math-base-special-ccis","0TO":"@stdlib/math/base/special/ceil","0TP":"@stdlib/math-base-special-ceil","0TQ":"@stdlib/math/base/special/ceil10","0TR":"@stdlib/math-base-special-ceil10","0TS":"@stdlib/math/base/special/ceil2","0TT":"@stdlib/math-base-special-ceil2","0TU":"@stdlib/math/base/special/ceilb","0TV":"@stdlib/math-base-special-ceilb","0TW":"@stdlib/math/base/special/ceilf","0TX":"@stdlib/math-base-special-ceilf","0TY":"@stdlib/math/base/special/ceiln","0TZ":"@stdlib/math-base-special-ceiln","0Ta":"@stdlib/math/base/special/ceilsd","0Tb":"@stdlib/math-base-special-ceilsd","0Tc":"@stdlib/math/base/special/cexp","0Td":"@stdlib/math-base-special-cexp","0Te":"@stdlib/math/base/special/cflipsign","0Tf":"@stdlib/math-base-special-cflipsign","0Tg":"@stdlib/math/base/special/cflipsignf","0Th":"@stdlib/math-base-special-cflipsignf","0Ti":"@stdlib/math/base/special/cfloor","0Tj":"@stdlib/math-base-special-cfloor","0Tk":"@stdlib/math/base/special/cfloorn","0Tl":"@stdlib/math-base-special-cfloorn","0Tm":"@stdlib/math/base/special/cidentity","0Tn":"@stdlib/math-base-special-cidentity","0To":"@stdlib/math/base/special/cidentityf","0Tp":"@stdlib/math-base-special-cidentityf","0Tq":"@stdlib/math/base/special/cinv","0Tr":"@stdlib/math-base-special-cinv","0Ts":"@stdlib/math/base/special/clamp","0Tt":"@stdlib/math-base-special-clamp","0Tu":"@stdlib/math/base/special/clampf","0Tv":"@stdlib/math-base-special-clampf","0Tw":"@stdlib/math/base/special/copysign","0Tx":"@stdlib/math-base-special-copysign","0Ty":"@stdlib/math/base/special/copysignf","0Tz":"@stdlib/math-base-special-copysignf","0U0":"@stdlib/math/base/special/cos","0U1":"@stdlib/math-base-special-cos","1tk":"@stdlib/math/base/special/cosd","1tl":"@stdlib/math-base-special-cosd","0U2":"@stdlib/math/base/special/cosh","0U3":"@stdlib/math-base-special-cosh","0U4":"@stdlib/math/base/special/cosm1","0U5":"@stdlib/math-base-special-cosm1","0U6":"@stdlib/math/base/special/cospi","0U7":"@stdlib/math-base-special-cospi","0U8":"@stdlib/math/base/special/cot","0U9":"@stdlib/math-base-special-cot","1tm":"@stdlib/math/base/special/cotd","1tn":"@stdlib/math-base-special-cotd","0UA":"@stdlib/math/base/special/coth","0UB":"@stdlib/math-base-special-coth","0UC":"@stdlib/math/base/special/covercos","0UD":"@stdlib/math-base-special-covercos","0UE":"@stdlib/math/base/special/coversin","0UF":"@stdlib/math-base-special-coversin","0UG":"@stdlib/math/base/special/cphase","0UH":"@stdlib/math-base-special-cphase","0UI":"@stdlib/math/base/special/cpolar","0UJ":"@stdlib/math-base-special-cpolar","0UK":"@stdlib/math/base/special/cround","0UL":"@stdlib/math-base-special-cround","0UM":"@stdlib/math/base/special/croundn","0UN":"@stdlib/math-base-special-croundn","1si":"@stdlib/math/base/special/csc","1sj":"@stdlib/math-base-special-csc","1to":"@stdlib/math/base/special/cscd","1tp":"@stdlib/math-base-special-cscd","0UO":"@stdlib/math/base/special/csch","0UP":"@stdlib/math-base-special-csch","0UQ":"@stdlib/math/base/special/csignum","0UR":"@stdlib/math-base-special-csignum","0US":"@stdlib/math/base/special/deg2rad","0UT":"@stdlib/math-base-special-deg2rad","0UU":"@stdlib/math/base/special/deg2radf","0UV":"@stdlib/math-base-special-deg2radf","0UW":"@stdlib/math/base/special/digamma","0UX":"@stdlib/math-base-special-digamma","0UY":"@stdlib/math/base/special/dirac-delta","0UZ":"@stdlib/math-base-special-dirac-delta","0Ua":"@stdlib/math/base/special/dirichlet-eta","0Ub":"@stdlib/math-base-special-dirichlet-eta","0Uc":"@stdlib/math/base/special/ellipe","0Ud":"@stdlib/math-base-special-ellipe","1b8":"@stdlib/math/base/special/ellipj","1b9":"@stdlib/math-base-special-ellipj","0Ue":"@stdlib/math/base/special/ellipk","0Uf":"@stdlib/math-base-special-ellipk","0Ug":"@stdlib/math/base/special/erf","0Uh":"@stdlib/math-base-special-erf","0Ui":"@stdlib/math/base/special/erfc","0Uj":"@stdlib/math-base-special-erfc","0Uk":"@stdlib/math/base/special/erfcinv","0Ul":"@stdlib/math-base-special-erfcinv","1bA":"@stdlib/math/base/special/erfcx","1bB":"@stdlib/math-base-special-erfcx","0Um":"@stdlib/math/base/special/erfinv","0Un":"@stdlib/math-base-special-erfinv","0Uo":"@stdlib/math/base/special/exp","0Up":"@stdlib/math-base-special-exp","0Uq":"@stdlib/math/base/special/exp10","0Ur":"@stdlib/math-base-special-exp10","0Us":"@stdlib/math/base/special/exp2","0Ut":"@stdlib/math-base-special-exp2","0Uu":"@stdlib/math/base/special/expit","0Uv":"@stdlib/math-base-special-expit","0Uw":"@stdlib/math/base/special/expm1","0Ux":"@stdlib/math-base-special-expm1","0Uy":"@stdlib/math/base/special/expm1rel","0Uz":"@stdlib/math-base-special-expm1rel","0V0":"@stdlib/math/base/special/factorial","0V1":"@stdlib/math-base-special-factorial","1mG":"@stdlib/math/base/special/factorial2","1mH":"@stdlib/math-base-special-factorial2","0V2":"@stdlib/math/base/special/factorialln","0V3":"@stdlib/math-base-special-factorialln","0V4":"@stdlib/math/base/special/falling-factorial","0V5":"@stdlib/math-base-special-falling-factorial","0V6":"@stdlib/math/base/special/fast/abs","0V7":"@stdlib/math-base-special-fast-abs","0V8":"@stdlib/math/base/special/fast/acosh","0V9":"@stdlib/math-base-special-fast-acosh","0VA":"@stdlib/math/base/special/fast/alpha-max-plus-beta-min","0VB":"@stdlib/math-base-special-fast-alpha-max-plus-beta-min","0VC":"@stdlib/math/base/special/fast/asinh","0VD":"@stdlib/math-base-special-fast-asinh","0VE":"@stdlib/math/base/special/fast/atanh","0VF":"@stdlib/math-base-special-fast-atanh","0VG":"@stdlib/math/base/special/fast/hypot","0VH":"@stdlib/math-base-special-fast-hypot","0VI":"@stdlib/math/base/special/fast/max","0VJ":"@stdlib/math-base-special-fast-max","0VK":"@stdlib/math/base/special/fast/min","0VL":"@stdlib/math-base-special-fast-min","0VM":"@stdlib/math/base/special/fast","0VN":"@stdlib/math-base-special-fast","0VO":"@stdlib/math/base/special/fast/pow-int","0VP":"@stdlib/math-base-special-fast-pow-int","0VQ":"@stdlib/math/base/special/fast/uint32-log2","0VR":"@stdlib/math-base-special-fast-uint32-log2","0VS":"@stdlib/math/base/special/fast/uint32-sqrt","0VT":"@stdlib/math-base-special-fast-uint32-sqrt","0VU":"@stdlib/math/base/special/fibonacci-index","0VV":"@stdlib/math-base-special-fibonacci-index","0VW":"@stdlib/math/base/special/fibonacci","0VX":"@stdlib/math-base-special-fibonacci","0VY":"@stdlib/math/base/special/flipsign","0VZ":"@stdlib/math-base-special-flipsign","0Va":"@stdlib/math/base/special/flipsignf","0Vb":"@stdlib/math-base-special-flipsignf","0Vc":"@stdlib/math/base/special/floor","0Vd":"@stdlib/math-base-special-floor","0Ve":"@stdlib/math/base/special/floor10","0Vf":"@stdlib/math-base-special-floor10","0Vg":"@stdlib/math/base/special/floor2","0Vh":"@stdlib/math-base-special-floor2","0Vi":"@stdlib/math/base/special/floorb","0Vj":"@stdlib/math-base-special-floorb","0Vk":"@stdlib/math/base/special/floorf","0Vl":"@stdlib/math-base-special-floorf","0Vm":"@stdlib/math/base/special/floorn","0Vn":"@stdlib/math-base-special-floorn","0Vo":"@stdlib/math/base/special/floorsd","0Vp":"@stdlib/math-base-special-floorsd","1yQ":"@stdlib/math/base/special/fmod","1yR":"@stdlib/math-base-special-fmod","0Vq":"@stdlib/math/base/special/fresnel","0Vr":"@stdlib/math-base-special-fresnel","0Vs":"@stdlib/math/base/special/fresnelc","0Vt":"@stdlib/math-base-special-fresnelc","0Vu":"@stdlib/math/base/special/fresnels","0Vv":"@stdlib/math-base-special-fresnels","0Vw":"@stdlib/math/base/special/frexp","0Vx":"@stdlib/math-base-special-frexp","0Vy":"@stdlib/math/base/special/gamma-delta-ratio","0Vz":"@stdlib/math-base-special-gamma-delta-ratio","0W0":"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled","0W1":"@stdlib/math-base-special-gamma-lanczos-sum-expg-scaled","0W2":"@stdlib/math/base/special/gamma-lanczos-sum","0W3":"@stdlib/math-base-special-gamma-lanczos-sum","0W4":"@stdlib/math/base/special/gamma","0W5":"@stdlib/math-base-special-gamma","0W6":"@stdlib/math/base/special/gamma1pm1","0W7":"@stdlib/math-base-special-gamma1pm1","0W8":"@stdlib/math/base/special/gammainc","0W9":"@stdlib/math-base-special-gammainc","0WA":"@stdlib/math/base/special/gammaincinv","0WB":"@stdlib/math-base-special-gammaincinv","0WC":"@stdlib/math/base/special/gammaln","0WD":"@stdlib/math-base-special-gammaln","1bC":"@stdlib/math/base/special/gammasgn","1bD":"@stdlib/math-base-special-gammasgn","0WE":"@stdlib/math/base/special/gcd","0WF":"@stdlib/math-base-special-gcd","0WG":"@stdlib/math/base/special/hacovercos","0WH":"@stdlib/math-base-special-hacovercos","0WI":"@stdlib/math/base/special/hacoversin","0WJ":"@stdlib/math-base-special-hacoversin","0WK":"@stdlib/math/base/special/havercos","0WL":"@stdlib/math-base-special-havercos","0WM":"@stdlib/math/base/special/haversin","0WN":"@stdlib/math-base-special-haversin","0WO":"@stdlib/math/base/special/heaviside","0WP":"@stdlib/math-base-special-heaviside","0WQ":"@stdlib/math/base/special/hypot","0WR":"@stdlib/math-base-special-hypot","0WS":"@stdlib/math/base/special/hypotf","0WT":"@stdlib/math-base-special-hypotf","0WU":"@stdlib/math/base/special/identity","0WV":"@stdlib/math-base-special-identity","0WW":"@stdlib/math/base/special/identityf","0WX":"@stdlib/math-base-special-identityf","0WY":"@stdlib/math/base/special/inv","0WZ":"@stdlib/math-base-special-inv","0Wa":"@stdlib/math/base/special/invf","0Wb":"@stdlib/math-base-special-invf","0Wc":"@stdlib/math/base/special/kernel-betainc","0Wd":"@stdlib/math-base-special-kernel-betainc","0We":"@stdlib/math/base/special/kernel-betaincinv","0Wf":"@stdlib/math-base-special-kernel-betaincinv","0Wg":"@stdlib/math/base/special/kernel-cos","0Wh":"@stdlib/math-base-special-kernel-cos","1vA":"@stdlib/math/base/special/kernel-log1p","1vB":"@stdlib/math-base-special-kernel-log1p","0Wi":"@stdlib/math/base/special/kernel-sin","0Wj":"@stdlib/math-base-special-kernel-sin","0Wk":"@stdlib/math/base/special/kernel-tan","0Wl":"@stdlib/math-base-special-kernel-tan","0Wm":"@stdlib/math/base/special/kronecker-delta","0Wn":"@stdlib/math-base-special-kronecker-delta","0Wo":"@stdlib/math/base/special/kronecker-deltaf","0Wp":"@stdlib/math-base-special-kronecker-deltaf","0Wq":"@stdlib/math/base/special/labs","0Wr":"@stdlib/math-base-special-labs","0Ws":"@stdlib/math/base/special/lcm","0Wt":"@stdlib/math-base-special-lcm","0Wu":"@stdlib/math/base/special/ldexp","0Wv":"@stdlib/math-base-special-ldexp","20S":"@stdlib/math/base/special/ldexpf","20T":"@stdlib/math-base-special-ldexpf","0Ww":"@stdlib/math/base/special/ln","0Wx":"@stdlib/math-base-special-ln","1wq":"@stdlib/math/base/special/lnf","1wr":"@stdlib/math-base-special-lnf","0Wy":"@stdlib/math/base/special/log","0Wz":"@stdlib/math-base-special-log","0X0":"@stdlib/math/base/special/log10","0X1":"@stdlib/math-base-special-log10","0X2":"@stdlib/math/base/special/log1mexp","0X3":"@stdlib/math-base-special-log1mexp","0X4":"@stdlib/math/base/special/log1p","0X5":"@stdlib/math-base-special-log1p","0X6":"@stdlib/math/base/special/log1pexp","0X7":"@stdlib/math-base-special-log1pexp","1im":"@stdlib/math/base/special/log1pmx","1in":"@stdlib/math-base-special-log1pmx","0X8":"@stdlib/math/base/special/log2","0X9":"@stdlib/math-base-special-log2","0XA":"@stdlib/math/base/special/logaddexp","0XB":"@stdlib/math-base-special-logaddexp","20U":"@stdlib/math/base/special/logf","20V":"@stdlib/math-base-special-logf","0XC":"@stdlib/math/base/special/logit","0XD":"@stdlib/math-base-special-logit","0XE":"@stdlib/math/base/special/lucas","0XF":"@stdlib/math-base-special-lucas","0XG":"@stdlib/math/base/special/max","0XH":"@stdlib/math-base-special-max","0XI":"@stdlib/math/base/special/maxabs","0XJ":"@stdlib/math-base-special-maxabs","20W":"@stdlib/math/base/special/maxabsf","20X":"@stdlib/math-base-special-maxabsf","1bE":"@stdlib/math/base/special/maxabsn","1bF":"@stdlib/math-base-special-maxabsn","20Y":"@stdlib/math/base/special/maxf","20Z":"@stdlib/math-base-special-maxf","1bG":"@stdlib/math/base/special/maxn","1bH":"@stdlib/math-base-special-maxn","0XK":"@stdlib/math/base/special/min","0XL":"@stdlib/math-base-special-min","0XM":"@stdlib/math/base/special/minabs","0XN":"@stdlib/math-base-special-minabs","20a":"@stdlib/math/base/special/minabsf","20b":"@stdlib/math-base-special-minabsf","1bI":"@stdlib/math/base/special/minabsn","1bJ":"@stdlib/math-base-special-minabsn","20c":"@stdlib/math/base/special/minf","20d":"@stdlib/math-base-special-minf","0XO":"@stdlib/math/base/special/minmax","0XP":"@stdlib/math-base-special-minmax","0XQ":"@stdlib/math/base/special/minmaxabs","0XR":"@stdlib/math-base-special-minmaxabs","1bK":"@stdlib/math/base/special/minmaxabsn","1bL":"@stdlib/math-base-special-minmaxabsn","1bM":"@stdlib/math/base/special/minmaxn","1bN":"@stdlib/math-base-special-minmaxn","1bO":"@stdlib/math/base/special/minn","1bP":"@stdlib/math-base-special-minn","0XS":"@stdlib/math/base/special/modf","0XT":"@stdlib/math-base-special-modf","1ws":"@stdlib/math/base/special/nanmax","1wt":"@stdlib/math-base-special-nanmax","1wu":"@stdlib/math/base/special/nanmin","1wv":"@stdlib/math-base-special-nanmin","0XU":"@stdlib/math/base/special/negafibonacci","0XV":"@stdlib/math-base-special-negafibonacci","0XW":"@stdlib/math/base/special/negalucas","0XX":"@stdlib/math-base-special-negalucas","0XY":"@stdlib/math/base/special/nonfibonacci","0XZ":"@stdlib/math-base-special-nonfibonacci","0Xa":"@stdlib/math/base/special","0Xb":"@stdlib/math-base-special","0Xc":"@stdlib/math/base/special/pdiff","0Xd":"@stdlib/math-base-special-pdiff","0Xe":"@stdlib/math/base/special/pdifff","0Xf":"@stdlib/math-base-special-pdifff","0Xg":"@stdlib/math/base/special/polygamma","0Xh":"@stdlib/math-base-special-polygamma","0Xi":"@stdlib/math/base/special/pow","0Xj":"@stdlib/math-base-special-pow","0Xk":"@stdlib/math/base/special/powm1","0Xl":"@stdlib/math-base-special-powm1","0Xm":"@stdlib/math/base/special/rad2deg","0Xn":"@stdlib/math-base-special-rad2deg","1tq":"@stdlib/math/base/special/rad2degf","1tr":"@stdlib/math-base-special-rad2degf","0Xo":"@stdlib/math/base/special/ramp","0Xp":"@stdlib/math-base-special-ramp","0Xq":"@stdlib/math/base/special/rampf","0Xr":"@stdlib/math-base-special-rampf","1bQ":"@stdlib/math/base/special/rcbrt","1bR":"@stdlib/math-base-special-rcbrt","1vC":"@stdlib/math/base/special/rcbrtf","1vD":"@stdlib/math-base-special-rcbrtf","0Xs":"@stdlib/math/base/special/rempio2","0Xt":"@stdlib/math-base-special-rempio2","0Xu":"@stdlib/math/base/special/riemann-zeta","0Xv":"@stdlib/math-base-special-riemann-zeta","0Xw":"@stdlib/math/base/special/rising-factorial","0Xx":"@stdlib/math-base-special-rising-factorial","0Xy":"@stdlib/math/base/special/round","0Xz":"@stdlib/math-base-special-round","0Y0":"@stdlib/math/base/special/round10","0Y1":"@stdlib/math-base-special-round10","0Y2":"@stdlib/math/base/special/round2","0Y3":"@stdlib/math-base-special-round2","0Y4":"@stdlib/math/base/special/roundb","0Y5":"@stdlib/math-base-special-roundb","1zS":"@stdlib/math/base/special/roundf","1zT":"@stdlib/math-base-special-roundf","0Y6":"@stdlib/math/base/special/roundn","0Y7":"@stdlib/math-base-special-roundn","0Y8":"@stdlib/math/base/special/roundsd","0Y9":"@stdlib/math-base-special-roundsd","0YA":"@stdlib/math/base/special/rsqrt","0YB":"@stdlib/math-base-special-rsqrt","0YC":"@stdlib/math/base/special/rsqrtf","0YD":"@stdlib/math-base-special-rsqrtf","1ts":"@stdlib/math/base/special/secd","1tt":"@stdlib/math-base-special-secd","0YE":"@stdlib/math/base/special/sici","0YF":"@stdlib/math-base-special-sici","0YG":"@stdlib/math/base/special/signum","0YH":"@stdlib/math-base-special-signum","0YI":"@stdlib/math/base/special/signumf","0YJ":"@stdlib/math-base-special-signumf","0YK":"@stdlib/math/base/special/sin","0YL":"@stdlib/math-base-special-sin","0YM":"@stdlib/math/base/special/sinc","0YN":"@stdlib/math-base-special-sinc","0YO":"@stdlib/math/base/special/sincos","0YP":"@stdlib/math-base-special-sincos","0YQ":"@stdlib/math/base/special/sincospi","0YR":"@stdlib/math-base-special-sincospi","0YS":"@stdlib/math/base/special/sinh","0YT":"@stdlib/math-base-special-sinh","0YU":"@stdlib/math/base/special/sinpi","0YV":"@stdlib/math-base-special-sinpi","0YW":"@stdlib/math/base/special/spence","0YX":"@stdlib/math-base-special-spence","0YY":"@stdlib/math/base/special/sqrt","0YZ":"@stdlib/math-base-special-sqrt","0Ya":"@stdlib/math/base/special/sqrt1pm1","0Yb":"@stdlib/math-base-special-sqrt1pm1","0Yc":"@stdlib/math/base/special/sqrtf","0Yd":"@stdlib/math-base-special-sqrtf","1bS":"@stdlib/math/base/special/sqrtpi","1bT":"@stdlib/math-base-special-sqrtpi","0Ye":"@stdlib/math/base/special/tan","0Yf":"@stdlib/math-base-special-tan","1tu":"@stdlib/math/base/special/tand","1tv":"@stdlib/math-base-special-tand","0Yg":"@stdlib/math/base/special/tanh","0Yh":"@stdlib/math-base-special-tanh","0Yi":"@stdlib/math/base/special/tribonacci","0Yj":"@stdlib/math-base-special-tribonacci","0Yk":"@stdlib/math/base/special/trigamma","0Yl":"@stdlib/math-base-special-trigamma","0Ym":"@stdlib/math/base/special/trunc","0Yn":"@stdlib/math-base-special-trunc","0Yo":"@stdlib/math/base/special/trunc10","0Yp":"@stdlib/math-base-special-trunc10","0Yq":"@stdlib/math/base/special/trunc2","0Yr":"@stdlib/math-base-special-trunc2","0Ys":"@stdlib/math/base/special/truncb","0Yt":"@stdlib/math-base-special-truncb","0Yu":"@stdlib/math/base/special/truncf","0Yv":"@stdlib/math-base-special-truncf","0Yw":"@stdlib/math/base/special/truncn","0Yx":"@stdlib/math-base-special-truncn","0Yy":"@stdlib/math/base/special/truncsd","0Yz":"@stdlib/math-base-special-truncsd","0Z0":"@stdlib/math/base/special/vercos","0Z1":"@stdlib/math-base-special-vercos","0Z2":"@stdlib/math/base/special/versin","0Z3":"@stdlib/math-base-special-versin","0Z4":"@stdlib/math/base/special/wrap","0Z5":"@stdlib/math-base-special-wrap","0Z6":"@stdlib/math/base/special/xlog1py","0Z7":"@stdlib/math-base-special-xlog1py","0Z8":"@stdlib/math/base/special/xlogy","0Z9":"@stdlib/math-base-special-xlogy","20e":"@stdlib/math/base/special/xlogyf","20f":"@stdlib/math-base-special-xlogyf","0ZA":"@stdlib/math/base/tools/continued-fraction","0ZB":"@stdlib/math-base-tools-continued-fraction","1bU":"@stdlib/math/base/tools/evalpoly-compile-c","1bV":"@stdlib/math-base-tools-evalpoly-compile-c","0ZC":"@stdlib/math/base/tools/evalpoly-compile","0ZD":"@stdlib/math-base-tools-evalpoly-compile","0ZE":"@stdlib/math/base/tools/evalpoly","0ZF":"@stdlib/math-base-tools-evalpoly","1tw":"@stdlib/math/base/tools/evalpolyf","1tx":"@stdlib/math-base-tools-evalpolyf","1bW":"@stdlib/math/base/tools/evalrational-compile-c","1bX":"@stdlib/math-base-tools-evalrational-compile-c","0ZG":"@stdlib/math/base/tools/evalrational-compile","0ZH":"@stdlib/math-base-tools-evalrational-compile","0ZI":"@stdlib/math/base/tools/evalrational","0ZJ":"@stdlib/math-base-tools-evalrational","1ty":"@stdlib/math/base/tools/evalrationalf","1tz":"@stdlib/math-base-tools-evalrationalf","0ZK":"@stdlib/math/base/tools/fibpoly","0ZL":"@stdlib/math-base-tools-fibpoly","0ZM":"@stdlib/math/base/tools/hermitepoly","0ZN":"@stdlib/math-base-tools-hermitepoly","0ZO":"@stdlib/math/base/tools/lucaspoly","0ZP":"@stdlib/math-base-tools-lucaspoly","0ZQ":"@stdlib/math/base/tools/normhermitepoly","0ZR":"@stdlib/math-base-tools-normhermitepoly","1vE":"@stdlib/math/base/tools/normhermitepolyf","1vF":"@stdlib/math-base-tools-normhermitepolyf","0ZS":"@stdlib/math/base/tools","0ZT":"@stdlib/math-base-tools","0ZU":"@stdlib/math/base/tools/sum-series","0ZV":"@stdlib/math-base-tools-sum-series","0ZW":"@stdlib/math/base/utils/absolute-difference","0ZX":"@stdlib/math-base-utils-absolute-difference","0ZY":"@stdlib/math/base/utils/float64-epsilon-difference","0ZZ":"@stdlib/math-base-utils-float64-epsilon-difference","0Za":"@stdlib/math/base/utils","0Zb":"@stdlib/math-base-utils","0Zc":"@stdlib/math/base/utils/relative-difference","0Zd":"@stdlib/math-base-utils-relative-difference","0Ze":"@stdlib/math/iter/ops/add","0Zf":"@stdlib/math-iter-ops-add","0Zg":"@stdlib/math/iter/ops/divide","0Zh":"@stdlib/math-iter-ops-divide","0Zi":"@stdlib/math/iter/ops/mod","0Zj":"@stdlib/math-iter-ops-mod","0Zk":"@stdlib/math/iter/ops/multiply","0Zl":"@stdlib/math-iter-ops-multiply","0Zm":"@stdlib/math/iter/ops","0Zn":"@stdlib/math-iter-ops","0Zo":"@stdlib/math/iter/ops/subtract","0Zp":"@stdlib/math-iter-ops-subtract","0Zq":"@stdlib/math/iter","0Zr":"@stdlib/math-iter","0Zs":"@stdlib/math/iter/sequences/composites","0Zt":"@stdlib/math-iter-sequences-composites","0Zu":"@stdlib/math/iter/sequences/continued-fraction","0Zv":"@stdlib/math-iter-sequences-continued-fraction","0Zw":"@stdlib/math/iter/sequences/cubes","0Zx":"@stdlib/math-iter-sequences-cubes","0Zy":"@stdlib/math/iter/sequences/even-integers","0Zz":"@stdlib/math-iter-sequences-even-integers","0a0":"@stdlib/math/iter/sequences/factorials","0a1":"@stdlib/math-iter-sequences-factorials","0a2":"@stdlib/math/iter/sequences/fibonacci","0a3":"@stdlib/math-iter-sequences-fibonacci","0a4":"@stdlib/math/iter/sequences/fifth-powers","0a5":"@stdlib/math-iter-sequences-fifth-powers","0a6":"@stdlib/math/iter/sequences/fourth-powers","0a7":"@stdlib/math-iter-sequences-fourth-powers","0a8":"@stdlib/math/iter/sequences/integers","0a9":"@stdlib/math-iter-sequences-integers","0aA":"@stdlib/math/iter/sequences/lucas","0aB":"@stdlib/math-iter-sequences-lucas","0aC":"@stdlib/math/iter/sequences/negafibonacci","0aD":"@stdlib/math-iter-sequences-negafibonacci","0aE":"@stdlib/math/iter/sequences/negalucas","0aF":"@stdlib/math-iter-sequences-negalucas","0aG":"@stdlib/math/iter/sequences/negative-even-integers","0aH":"@stdlib/math-iter-sequences-negative-even-integers","0aI":"@stdlib/math/iter/sequences/negative-integers","0aJ":"@stdlib/math-iter-sequences-negative-integers","0aK":"@stdlib/math/iter/sequences/negative-odd-integers","0aL":"@stdlib/math-iter-sequences-negative-odd-integers","0aM":"@stdlib/math/iter/sequences/nonfibonacci","0aN":"@stdlib/math-iter-sequences-nonfibonacci","0aO":"@stdlib/math/iter/sequences/nonnegative-even-integers","0aP":"@stdlib/math-iter-sequences-nonnegative-even-integers","0aQ":"@stdlib/math/iter/sequences/nonnegative-integers","0aR":"@stdlib/math-iter-sequences-nonnegative-integers","0aS":"@stdlib/math/iter/sequences/nonpositive-even-integers","0aT":"@stdlib/math-iter-sequences-nonpositive-even-integers","0aU":"@stdlib/math/iter/sequences/nonpositive-integers","0aV":"@stdlib/math-iter-sequences-nonpositive-integers","0aW":"@stdlib/math/iter/sequences/nonsquares","0aX":"@stdlib/math-iter-sequences-nonsquares","0aY":"@stdlib/math/iter/sequences/odd-integers","0aZ":"@stdlib/math-iter-sequences-odd-integers","0aa":"@stdlib/math/iter/sequences","0ab":"@stdlib/math-iter-sequences","0ac":"@stdlib/math/iter/sequences/positive-even-integers","0ad":"@stdlib/math-iter-sequences-positive-even-integers","0ae":"@stdlib/math/iter/sequences/positive-integers","0af":"@stdlib/math-iter-sequences-positive-integers","0ag":"@stdlib/math/iter/sequences/positive-odd-integers","0ah":"@stdlib/math-iter-sequences-positive-odd-integers","0ai":"@stdlib/math/iter/sequences/primes","0aj":"@stdlib/math-iter-sequences-primes","0ak":"@stdlib/math/iter/sequences/squared-triangular","0al":"@stdlib/math-iter-sequences-squared-triangular","0am":"@stdlib/math/iter/sequences/squares","0an":"@stdlib/math-iter-sequences-squares","0ao":"@stdlib/math/iter/sequences/triangular","0ap":"@stdlib/math-iter-sequences-triangular","1sk":"@stdlib/math/iter/sequences/tribonacci","1sl":"@stdlib/math-iter-sequences-tribonacci","0aq":"@stdlib/math/iter/special/abs","0ar":"@stdlib/math-iter-special-abs","0as":"@stdlib/math/iter/special/abs2","0at":"@stdlib/math-iter-special-abs2","0au":"@stdlib/math/iter/special/acos","0av":"@stdlib/math-iter-special-acos","0aw":"@stdlib/math/iter/special/acosh","0ax":"@stdlib/math-iter-special-acosh","0ay":"@stdlib/math/iter/special/acot","0az":"@stdlib/math-iter-special-acot","0b0":"@stdlib/math/iter/special/acoth","0b1":"@stdlib/math-iter-special-acoth","0b2":"@stdlib/math/iter/special/acovercos","0b3":"@stdlib/math-iter-special-acovercos","0b4":"@stdlib/math/iter/special/acoversin","0b5":"@stdlib/math-iter-special-acoversin","0b6":"@stdlib/math/iter/special/ahavercos","0b7":"@stdlib/math-iter-special-ahavercos","0b8":"@stdlib/math/iter/special/ahaversin","0b9":"@stdlib/math-iter-special-ahaversin","0bA":"@stdlib/math/iter/special/asin","0bB":"@stdlib/math-iter-special-asin","0bC":"@stdlib/math/iter/special/asinh","0bD":"@stdlib/math-iter-special-asinh","0bE":"@stdlib/math/iter/special/atan","0bF":"@stdlib/math-iter-special-atan","0bG":"@stdlib/math/iter/special/atan2","0bH":"@stdlib/math-iter-special-atan2","0bI":"@stdlib/math/iter/special/atanh","0bJ":"@stdlib/math-iter-special-atanh","0bK":"@stdlib/math/iter/special/avercos","0bL":"@stdlib/math-iter-special-avercos","0bM":"@stdlib/math/iter/special/aversin","0bN":"@stdlib/math-iter-special-aversin","0bO":"@stdlib/math/iter/special/besselj0","0bP":"@stdlib/math-iter-special-besselj0","0bQ":"@stdlib/math/iter/special/besselj1","0bR":"@stdlib/math-iter-special-besselj1","0bS":"@stdlib/math/iter/special/bessely0","0bT":"@stdlib/math-iter-special-bessely0","0bU":"@stdlib/math/iter/special/bessely1","0bV":"@stdlib/math-iter-special-bessely1","0bW":"@stdlib/math/iter/special/beta","0bX":"@stdlib/math-iter-special-beta","0bY":"@stdlib/math/iter/special/betaln","0bZ":"@stdlib/math-iter-special-betaln","0ba":"@stdlib/math/iter/special/binet","0bb":"@stdlib/math-iter-special-binet","0bc":"@stdlib/math/iter/special/cbrt","0bd":"@stdlib/math-iter-special-cbrt","0be":"@stdlib/math/iter/special/ceil","0bf":"@stdlib/math-iter-special-ceil","0bg":"@stdlib/math/iter/special/ceil10","0bh":"@stdlib/math-iter-special-ceil10","0bi":"@stdlib/math/iter/special/ceil2","0bj":"@stdlib/math-iter-special-ceil2","0bk":"@stdlib/math/iter/special/cos","0bl":"@stdlib/math-iter-special-cos","0bm":"@stdlib/math/iter/special/cosh","0bn":"@stdlib/math-iter-special-cosh","0bo":"@stdlib/math/iter/special/cosm1","0bp":"@stdlib/math-iter-special-cosm1","0bq":"@stdlib/math/iter/special/cospi","0br":"@stdlib/math-iter-special-cospi","0bs":"@stdlib/math/iter/special/covercos","0bt":"@stdlib/math-iter-special-covercos","0bu":"@stdlib/math/iter/special/coversin","0bv":"@stdlib/math-iter-special-coversin","0bw":"@stdlib/math/iter/special/deg2rad","0bx":"@stdlib/math-iter-special-deg2rad","0by":"@stdlib/math/iter/special/digamma","0bz":"@stdlib/math-iter-special-digamma","0c0":"@stdlib/math/iter/special/dirac-delta","0c1":"@stdlib/math-iter-special-dirac-delta","0c2":"@stdlib/math/iter/special/dirichlet-eta","0c3":"@stdlib/math-iter-special-dirichlet-eta","0c4":"@stdlib/math/iter/special/ellipe","0c5":"@stdlib/math-iter-special-ellipe","0c6":"@stdlib/math/iter/special/ellipk","0c7":"@stdlib/math-iter-special-ellipk","0c8":"@stdlib/math/iter/special/erf","0c9":"@stdlib/math-iter-special-erf","0cA":"@stdlib/math/iter/special/erfc","0cB":"@stdlib/math-iter-special-erfc","0cC":"@stdlib/math/iter/special/erfcinv","0cD":"@stdlib/math-iter-special-erfcinv","0cE":"@stdlib/math/iter/special/erfinv","0cF":"@stdlib/math-iter-special-erfinv","0cG":"@stdlib/math/iter/special/exp","0cH":"@stdlib/math-iter-special-exp","0cI":"@stdlib/math/iter/special/exp10","0cJ":"@stdlib/math-iter-special-exp10","0cK":"@stdlib/math/iter/special/exp2","0cL":"@stdlib/math-iter-special-exp2","0cM":"@stdlib/math/iter/special/expit","0cN":"@stdlib/math-iter-special-expit","0cO":"@stdlib/math/iter/special/expm1","0cP":"@stdlib/math-iter-special-expm1","0cQ":"@stdlib/math/iter/special/expm1rel","0cR":"@stdlib/math-iter-special-expm1rel","0cS":"@stdlib/math/iter/special/factorial","0cT":"@stdlib/math-iter-special-factorial","0cU":"@stdlib/math/iter/special/factorialln","0cV":"@stdlib/math-iter-special-factorialln","0cW":"@stdlib/math/iter/special/floor","0cX":"@stdlib/math-iter-special-floor","0cY":"@stdlib/math/iter/special/floor10","0cZ":"@stdlib/math-iter-special-floor10","0ca":"@stdlib/math/iter/special/floor2","0cb":"@stdlib/math-iter-special-floor2","0cc":"@stdlib/math/iter/special/fresnelc","0cd":"@stdlib/math-iter-special-fresnelc","0ce":"@stdlib/math/iter/special/fresnels","0cf":"@stdlib/math-iter-special-fresnels","0cg":"@stdlib/math/iter/special/gamma","0ch":"@stdlib/math-iter-special-gamma","0ci":"@stdlib/math/iter/special/gamma1pm1","0cj":"@stdlib/math-iter-special-gamma1pm1","0ck":"@stdlib/math/iter/special/gammaln","0cl":"@stdlib/math-iter-special-gammaln","0cm":"@stdlib/math/iter/special/hacovercos","0cn":"@stdlib/math-iter-special-hacovercos","0co":"@stdlib/math/iter/special/hacoversin","0cp":"@stdlib/math-iter-special-hacoversin","0cq":"@stdlib/math/iter/special/havercos","0cr":"@stdlib/math-iter-special-havercos","0cs":"@stdlib/math/iter/special/haversin","0ct":"@stdlib/math-iter-special-haversin","0cu":"@stdlib/math/iter/special/inv","0cv":"@stdlib/math-iter-special-inv","0cw":"@stdlib/math/iter/special/ln","0cx":"@stdlib/math-iter-special-ln","0cy":"@stdlib/math/iter/special/log","0cz":"@stdlib/math-iter-special-log","0d0":"@stdlib/math/iter/special/log10","0d1":"@stdlib/math-iter-special-log10","0d2":"@stdlib/math/iter/special/log1mexp","0d3":"@stdlib/math-iter-special-log1mexp","0d4":"@stdlib/math/iter/special/log1p","0d5":"@stdlib/math-iter-special-log1p","0d6":"@stdlib/math/iter/special/log1pexp","0d7":"@stdlib/math-iter-special-log1pexp","0d8":"@stdlib/math/iter/special/log2","0d9":"@stdlib/math-iter-special-log2","0dA":"@stdlib/math/iter/special/logit","0dB":"@stdlib/math-iter-special-logit","0dC":"@stdlib/math/iter/special","0dD":"@stdlib/math-iter-special","0dE":"@stdlib/math/iter/special/pow","0dF":"@stdlib/math-iter-special-pow","0dG":"@stdlib/math/iter/special/rad2deg","0dH":"@stdlib/math-iter-special-rad2deg","0dI":"@stdlib/math/iter/special/ramp","0dJ":"@stdlib/math-iter-special-ramp","0dK":"@stdlib/math/iter/special/riemann-zeta","0dL":"@stdlib/math-iter-special-riemann-zeta","0dM":"@stdlib/math/iter/special/round","0dN":"@stdlib/math-iter-special-round","0dO":"@stdlib/math/iter/special/round10","0dP":"@stdlib/math-iter-special-round10","0dQ":"@stdlib/math/iter/special/round2","0dR":"@stdlib/math-iter-special-round2","0dS":"@stdlib/math/iter/special/rsqrt","0dT":"@stdlib/math-iter-special-rsqrt","0dU":"@stdlib/math/iter/special/signum","0dV":"@stdlib/math-iter-special-signum","0dW":"@stdlib/math/iter/special/sin","0dX":"@stdlib/math-iter-special-sin","0dY":"@stdlib/math/iter/special/sinc","0dZ":"@stdlib/math-iter-special-sinc","0da":"@stdlib/math/iter/special/sinh","0db":"@stdlib/math-iter-special-sinh","0dc":"@stdlib/math/iter/special/sinpi","0dd":"@stdlib/math-iter-special-sinpi","0de":"@stdlib/math/iter/special/spence","0df":"@stdlib/math-iter-special-spence","0dg":"@stdlib/math/iter/special/sqrt","0dh":"@stdlib/math-iter-special-sqrt","0di":"@stdlib/math/iter/special/sqrt1pm1","0dj":"@stdlib/math-iter-special-sqrt1pm1","0dk":"@stdlib/math/iter/special/tan","0dl":"@stdlib/math-iter-special-tan","0dm":"@stdlib/math/iter/special/tanh","0dn":"@stdlib/math-iter-special-tanh","0do":"@stdlib/math/iter/special/trigamma","0dp":"@stdlib/math-iter-special-trigamma","0dq":"@stdlib/math/iter/special/trunc","0dr":"@stdlib/math-iter-special-trunc","0ds":"@stdlib/math/iter/special/trunc10","0dt":"@stdlib/math-iter-special-trunc10","0du":"@stdlib/math/iter/special/trunc2","0dv":"@stdlib/math-iter-special-trunc2","0dw":"@stdlib/math/iter/special/vercos","0dx":"@stdlib/math-iter-special-vercos","0dy":"@stdlib/math/iter/special/versin","0dz":"@stdlib/math-iter-special-versin","0e0":"@stdlib/math/iter/tools/map","0e1":"@stdlib/math-iter-tools-map","0e2":"@stdlib/math/iter/tools/map2","0e3":"@stdlib/math-iter-tools-map2","0e4":"@stdlib/math/iter/tools/map3","0e5":"@stdlib/math-iter-tools-map3","0e6":"@stdlib/math/iter/tools","0e7":"@stdlib/math-iter-tools","0e8":"@stdlib/math/iter/utils/continued-fraction","0e9":"@stdlib/math-iter-utils-continued-fraction","0eA":"@stdlib/math/iter/utils","0eB":"@stdlib/math-iter-utils","0eD":"@stdlib/math","0eE":"@stdlib/math/special/abs","0eF":"@stdlib/math-special-abs","0eG":"@stdlib/math/special","0eH":"@stdlib/math-special","1bY":"@stdlib/math/strided/ops/add-by","1bZ":"@stdlib/math-strided-ops-add-by","0eI":"@stdlib/math/strided/ops/add","0eJ":"@stdlib/math-strided-ops-add","1ba":"@stdlib/math/strided/ops/mul-by","1bb":"@stdlib/math-strided-ops-mul-by","0eK":"@stdlib/math/strided/ops/mul","0eL":"@stdlib/math-strided-ops-mul","0eM":"@stdlib/math/strided/ops","0eN":"@stdlib/math-strided-ops","1bc":"@stdlib/math/strided/ops/sub-by","1bd":"@stdlib/math-strided-ops-sub-by","0eO":"@stdlib/math/strided/ops/sub","0eP":"@stdlib/math-strided-ops-sub","0eQ":"@stdlib/math/strided","0eR":"@stdlib/math-strided","0eS":"@stdlib/math/strided/special/abs-by","0eT":"@stdlib/math-strided-special-abs-by","0eU":"@stdlib/math/strided/special/abs","0eV":"@stdlib/math-strided-special-abs","0eW":"@stdlib/math/strided/special/abs2-by","0eX":"@stdlib/math-strided-special-abs2-by","0eY":"@stdlib/math/strided/special/abs2","0eZ":"@stdlib/math-strided-special-abs2","0ea":"@stdlib/math/strided/special/acos-by","0eb":"@stdlib/math-strided-special-acos-by","0ec":"@stdlib/math/strided/special/acosh-by","0ed":"@stdlib/math-strided-special-acosh-by","0ee":"@stdlib/math/strided/special/acot-by","0ef":"@stdlib/math-strided-special-acot-by","0eg":"@stdlib/math/strided/special/acoth-by","0eh":"@stdlib/math-strided-special-acoth-by","0ei":"@stdlib/math/strided/special/acovercos-by","0ej":"@stdlib/math-strided-special-acovercos-by","0ek":"@stdlib/math/strided/special/acoversin-by","0el":"@stdlib/math-strided-special-acoversin-by","0em":"@stdlib/math/strided/special/ahavercos-by","0en":"@stdlib/math-strided-special-ahavercos-by","0eo":"@stdlib/math/strided/special/ahaversin-by","0ep":"@stdlib/math-strided-special-ahaversin-by","0eq":"@stdlib/math/strided/special/asin-by","0er":"@stdlib/math-strided-special-asin-by","0es":"@stdlib/math/strided/special/asinh-by","0et":"@stdlib/math-strided-special-asinh-by","0eu":"@stdlib/math/strided/special/atan-by","0ev":"@stdlib/math-strided-special-atan-by","0ew":"@stdlib/math/strided/special/atanh-by","0ex":"@stdlib/math-strided-special-atanh-by","0ey":"@stdlib/math/strided/special/avercos-by","0ez":"@stdlib/math-strided-special-avercos-by","0f0":"@stdlib/math/strided/special/aversin-by","0f1":"@stdlib/math-strided-special-aversin-by","0f2":"@stdlib/math/strided/special/besselj0-by","0f3":"@stdlib/math-strided-special-besselj0-by","0f4":"@stdlib/math/strided/special/besselj1-by","0f5":"@stdlib/math-strided-special-besselj1-by","0f6":"@stdlib/math/strided/special/bessely0-by","0f7":"@stdlib/math-strided-special-bessely0-by","0f8":"@stdlib/math/strided/special/bessely1-by","0f9":"@stdlib/math-strided-special-bessely1-by","0fA":"@stdlib/math/strided/special/binet-by","0fB":"@stdlib/math-strided-special-binet-by","1be":"@stdlib/math/strided/special/cbrt-by","1bf":"@stdlib/math-strided-special-cbrt-by","0fC":"@stdlib/math/strided/special/cbrt","0fD":"@stdlib/math-strided-special-cbrt","0fE":"@stdlib/math/strided/special/ceil","0fF":"@stdlib/math-strided-special-ceil","1bg":"@stdlib/math/strided/special/cos-by","1bh":"@stdlib/math-strided-special-cos-by","0fG":"@stdlib/math/strided/special/dabs","0fH":"@stdlib/math-strided-special-dabs","0fI":"@stdlib/math/strided/special/dabs2","0fJ":"@stdlib/math-strided-special-dabs2","1bi":"@stdlib/math/strided/special/dcbrt-by","1bj":"@stdlib/math-strided-special-dcbrt-by","0fK":"@stdlib/math/strided/special/dcbrt","0fL":"@stdlib/math-strided-special-dcbrt","0fM":"@stdlib/math/strided/special/dceil","0fN":"@stdlib/math-strided-special-dceil","0fO":"@stdlib/math/strided/special/ddeg2rad","0fP":"@stdlib/math-strided-special-ddeg2rad","0fQ":"@stdlib/math/strided/special/deg2rad","0fR":"@stdlib/math-strided-special-deg2rad","0fS":"@stdlib/math/strided/special/dfloor","0fT":"@stdlib/math-strided-special-dfloor","0fU":"@stdlib/math/strided/special/dinv","0fV":"@stdlib/math-strided-special-dinv","0fW":"@stdlib/math/strided/special/dmskabs","0fX":"@stdlib/math-strided-special-dmskabs","0fY":"@stdlib/math/strided/special/dmskabs2","0fZ":"@stdlib/math-strided-special-dmskabs2","0fa":"@stdlib/math/strided/special/dmskcbrt","0fb":"@stdlib/math-strided-special-dmskcbrt","0fc":"@stdlib/math/strided/special/dmskceil","0fd":"@stdlib/math-strided-special-dmskceil","0fe":"@stdlib/math/strided/special/dmskdeg2rad","0ff":"@stdlib/math-strided-special-dmskdeg2rad","0fg":"@stdlib/math/strided/special/dmskfloor","0fh":"@stdlib/math-strided-special-dmskfloor","0fi":"@stdlib/math/strided/special/dmskinv","0fj":"@stdlib/math-strided-special-dmskinv","0fk":"@stdlib/math/strided/special/dmskramp","0fl":"@stdlib/math-strided-special-dmskramp","0fm":"@stdlib/math/strided/special/dmskrsqrt","0fn":"@stdlib/math-strided-special-dmskrsqrt","0fo":"@stdlib/math/strided/special/dmsksqrt","0fp":"@stdlib/math-strided-special-dmsksqrt","0fq":"@stdlib/math/strided/special/dmsktrunc","0fr":"@stdlib/math-strided-special-dmsktrunc","0fs":"@stdlib/math/strided/special/dramp","0ft":"@stdlib/math-strided-special-dramp","0fu":"@stdlib/math/strided/special/drsqrt","0fv":"@stdlib/math-strided-special-drsqrt","0fw":"@stdlib/math/strided/special/dsqrt","0fx":"@stdlib/math-strided-special-dsqrt","0fy":"@stdlib/math/strided/special/dtrunc","0fz":"@stdlib/math-strided-special-dtrunc","0g0":"@stdlib/math/strided/special/floor","0g1":"@stdlib/math-strided-special-floor","0g2":"@stdlib/math/strided/special/inv","0g3":"@stdlib/math-strided-special-inv","0g4":"@stdlib/math/strided/special","0g5":"@stdlib/math-strided-special","0g6":"@stdlib/math/strided/special/ramp","0g7":"@stdlib/math-strided-special-ramp","0g8":"@stdlib/math/strided/special/rsqrt","0g9":"@stdlib/math-strided-special-rsqrt","0gA":"@stdlib/math/strided/special/sabs","0gB":"@stdlib/math-strided-special-sabs","0gC":"@stdlib/math/strided/special/sabs2","0gD":"@stdlib/math-strided-special-sabs2","0gE":"@stdlib/math/strided/special/scbrt","0gF":"@stdlib/math-strided-special-scbrt","0gG":"@stdlib/math/strided/special/sceil","0gH":"@stdlib/math-strided-special-sceil","0gI":"@stdlib/math/strided/special/sdeg2rad","0gJ":"@stdlib/math-strided-special-sdeg2rad","0gK":"@stdlib/math/strided/special/sfloor","0gL":"@stdlib/math-strided-special-sfloor","1bk":"@stdlib/math/strided/special/sin-by","1bl":"@stdlib/math-strided-special-sin-by","0gM":"@stdlib/math/strided/special/sinv","0gN":"@stdlib/math-strided-special-sinv","0gO":"@stdlib/math/strided/special/smskabs","0gP":"@stdlib/math-strided-special-smskabs","0gQ":"@stdlib/math/strided/special/smskabs2","0gR":"@stdlib/math-strided-special-smskabs2","0gS":"@stdlib/math/strided/special/smskcbrt","0gT":"@stdlib/math-strided-special-smskcbrt","0gU":"@stdlib/math/strided/special/smskceil","0gV":"@stdlib/math-strided-special-smskceil","0gW":"@stdlib/math/strided/special/smskdeg2rad","0gX":"@stdlib/math-strided-special-smskdeg2rad","0gY":"@stdlib/math/strided/special/smskfloor","0gZ":"@stdlib/math-strided-special-smskfloor","0ga":"@stdlib/math/strided/special/smskinv","0gb":"@stdlib/math-strided-special-smskinv","0gc":"@stdlib/math/strided/special/smskramp","0gd":"@stdlib/math-strided-special-smskramp","0ge":"@stdlib/math/strided/special/smskrsqrt","0gf":"@stdlib/math-strided-special-smskrsqrt","0gg":"@stdlib/math/strided/special/smsksqrt","0gh":"@stdlib/math-strided-special-smsksqrt","0gi":"@stdlib/math/strided/special/smsktrunc","0gj":"@stdlib/math-strided-special-smsktrunc","1bm":"@stdlib/math/strided/special/sqrt-by","1bn":"@stdlib/math-strided-special-sqrt-by","0gk":"@stdlib/math/strided/special/sqrt","0gl":"@stdlib/math-strided-special-sqrt","0gm":"@stdlib/math/strided/special/sramp","0gn":"@stdlib/math-strided-special-sramp","0go":"@stdlib/math/strided/special/srsqrt","0gp":"@stdlib/math-strided-special-srsqrt","0gq":"@stdlib/math/strided/special/ssqrt","0gr":"@stdlib/math-strided-special-ssqrt","0gs":"@stdlib/math/strided/special/strunc","0gt":"@stdlib/math-strided-special-strunc","0gu":"@stdlib/math/strided/special/trunc","0gv":"@stdlib/math-strided-special-trunc","0gw":"@stdlib/math/tools","0gx":"@stdlib/math-tools","0gy":"@stdlib/math/tools/unary","0gz":"@stdlib/math-tools-unary","0h0":"@stdlib/ml/incr/binary-classification","0h1":"@stdlib/ml-incr-binary-classification","0h2":"@stdlib/ml/incr/kmeans","0h3":"@stdlib/ml-incr-kmeans","0h4":"@stdlib/ml/incr","0h5":"@stdlib/ml-incr","0h6":"@stdlib/ml/incr/sgd-regression","0h7":"@stdlib/ml-incr-sgd-regression","0h9":"@stdlib/ml","0hA":"@stdlib/namespace/alias2pkg","0hB":"@stdlib/namespace-alias2pkg","0hC":"@stdlib/namespace/alias2related","0hD":"@stdlib/namespace-alias2related","0hE":"@stdlib/namespace/alias2standalone","0hF":"@stdlib/namespace-alias2standalone","0hG":"@stdlib/namespace/aliases","0hH":"@stdlib/namespace-aliases","0hJ":"@stdlib/namespace","0hK":"@stdlib/namespace/pkg2alias","0hL":"@stdlib/namespace-pkg2alias","0hM":"@stdlib/namespace/pkg2related","0hN":"@stdlib/namespace-pkg2related","0hO":"@stdlib/namespace/pkg2standalone","0hP":"@stdlib/namespace-pkg2standalone","0hQ":"@stdlib/namespace/standalone2pkg","0hR":"@stdlib/namespace-standalone2pkg","1vG":"@stdlib/napi/argv-complex128","1vH":"@stdlib/napi-argv-complex128","1bo":"@stdlib/napi/argv-complex128array","1bp":"@stdlib/napi-argv-complex128array","1vI":"@stdlib/napi/argv-complex64","1vJ":"@stdlib/napi-argv-complex64","1bq":"@stdlib/napi/argv-complex64array","1br":"@stdlib/napi-argv-complex64array","1bs":"@stdlib/napi/argv-double","1bt":"@stdlib/napi-argv-double","1bu":"@stdlib/napi/argv-float","1bv":"@stdlib/napi-argv-float","1bw":"@stdlib/napi/argv-float32array","1bx":"@stdlib/napi-argv-float32array","1by":"@stdlib/napi/argv-float64array","1bz":"@stdlib/napi-argv-float64array","1c0":"@stdlib/napi/argv-int16array","1c1":"@stdlib/napi-argv-int16array","1c2":"@stdlib/napi/argv-int32","1c3":"@stdlib/napi-argv-int32","1c4":"@stdlib/napi/argv-int32array","1c5":"@stdlib/napi-argv-int32array","1c6":"@stdlib/napi/argv-int64","1c7":"@stdlib/napi-argv-int64","1c8":"@stdlib/napi/argv-int8array","1c9":"@stdlib/napi-argv-int8array","1cA":"@stdlib/napi/argv-strided-complex128array","1cB":"@stdlib/napi-argv-strided-complex128array","20g":"@stdlib/napi/argv-strided-complex128array2d","20h":"@stdlib/napi-argv-strided-complex128array2d","1cC":"@stdlib/napi/argv-strided-complex64array","1cD":"@stdlib/napi-argv-strided-complex64array","20i":"@stdlib/napi/argv-strided-complex64array2d","20j":"@stdlib/napi-argv-strided-complex64array2d","1cE":"@stdlib/napi/argv-strided-float32array","1cF":"@stdlib/napi-argv-strided-float32array","20k":"@stdlib/napi/argv-strided-float32array2d","20l":"@stdlib/napi-argv-strided-float32array2d","1cG":"@stdlib/napi/argv-strided-float64array","1cH":"@stdlib/napi-argv-strided-float64array","20m":"@stdlib/napi/argv-strided-float64array2d","20n":"@stdlib/napi-argv-strided-float64array2d","1cI":"@stdlib/napi/argv-strided-int16array","1cJ":"@stdlib/napi-argv-strided-int16array","20o":"@stdlib/napi/argv-strided-int16array2d","20p":"@stdlib/napi-argv-strided-int16array2d","1cK":"@stdlib/napi/argv-strided-int32array","1cL":"@stdlib/napi-argv-strided-int32array","20q":"@stdlib/napi/argv-strided-int32array2d","20r":"@stdlib/napi-argv-strided-int32array2d","1cM":"@stdlib/napi/argv-strided-int8array","1cN":"@stdlib/napi-argv-strided-int8array","20s":"@stdlib/napi/argv-strided-int8array2d","20t":"@stdlib/napi-argv-strided-int8array2d","1cO":"@stdlib/napi/argv-strided-uint16array","1cP":"@stdlib/napi-argv-strided-uint16array","20u":"@stdlib/napi/argv-strided-uint16array2d","20v":"@stdlib/napi-argv-strided-uint16array2d","1cQ":"@stdlib/napi/argv-strided-uint32array","1cR":"@stdlib/napi-argv-strided-uint32array","20w":"@stdlib/napi/argv-strided-uint32array2d","20x":"@stdlib/napi-argv-strided-uint32array2d","1cS":"@stdlib/napi/argv-strided-uint8array","1cT":"@stdlib/napi-argv-strided-uint8array","20y":"@stdlib/napi/argv-strided-uint8array2d","20z":"@stdlib/napi-argv-strided-uint8array2d","1cU":"@stdlib/napi/argv-uint16array","1cV":"@stdlib/napi-argv-uint16array","1cW":"@stdlib/napi/argv-uint32","1cX":"@stdlib/napi-argv-uint32","1cY":"@stdlib/napi/argv-uint32array","1cZ":"@stdlib/napi-argv-uint32array","1ca":"@stdlib/napi/argv-uint8array","1cb":"@stdlib/napi-argv-uint8array","1cc":"@stdlib/napi/argv","1cd":"@stdlib/napi-argv","1vK":"@stdlib/napi/create-complex-like","1vL":"@stdlib/napi-create-complex-like","1vM":"@stdlib/napi/create-double","1vN":"@stdlib/napi-create-double","1vO":"@stdlib/napi/create-int32","1vP":"@stdlib/napi-create-int32","1vQ":"@stdlib/napi/create-uint32","1vR":"@stdlib/napi-create-uint32","1ce":"@stdlib/napi/export","1cf":"@stdlib/napi-export","1ch":"@stdlib/napi","0hS":"@stdlib/ndarray/array","0hT":"@stdlib/ndarray-array","1q2":"@stdlib/ndarray/at","1q3":"@stdlib/ndarray-at","0hU":"@stdlib/ndarray/base/assert/is-allowed-data-type-cast","0hV":"@stdlib/ndarray-base-assert-is-allowed-data-type-cast","1xm":"@stdlib/ndarray/base/assert/is-boolean-data-type","1xn":"@stdlib/ndarray-base-assert-is-boolean-data-type","0hW":"@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape","0hX":"@stdlib/ndarray-base-assert-is-buffer-length-compatible-shape","0hY":"@stdlib/ndarray/base/assert/is-buffer-length-compatible","0hZ":"@stdlib/ndarray-base-assert-is-buffer-length-compatible","0ha":"@stdlib/ndarray/base/assert/is-casting-mode","0hb":"@stdlib/ndarray-base-assert-is-casting-mode","0hc":"@stdlib/ndarray/base/assert/is-column-major-contiguous","0hd":"@stdlib/ndarray-base-assert-is-column-major-contiguous","0he":"@stdlib/ndarray/base/assert/is-column-major","0hf":"@stdlib/ndarray-base-assert-is-column-major","1ci":"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type","1cj":"@stdlib/ndarray-base-assert-is-complex-floating-point-data-type","0hg":"@stdlib/ndarray/base/assert/is-contiguous","0hh":"@stdlib/ndarray-base-assert-is-contiguous","0hi":"@stdlib/ndarray/base/assert/is-data-type","0hj":"@stdlib/ndarray-base-assert-is-data-type","1ck":"@stdlib/ndarray/base/assert/is-floating-point-data-type","1cl":"@stdlib/ndarray-base-assert-is-floating-point-data-type","0hk":"@stdlib/ndarray/base/assert/is-index-mode","0hl":"@stdlib/ndarray-base-assert-is-index-mode","1cm":"@stdlib/ndarray/base/assert/is-integer-data-type","1cn":"@stdlib/ndarray-base-assert-is-integer-data-type","1kE":"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast","1kF":"@stdlib/ndarray-base-assert-is-mostly-safe-data-type-cast","1co":"@stdlib/ndarray/base/assert/is-numeric-data-type","1cp":"@stdlib/ndarray-base-assert-is-numeric-data-type","0hm":"@stdlib/ndarray/base/assert/is-order","0hn":"@stdlib/ndarray-base-assert-is-order","0ho":"@stdlib/ndarray/base/assert/is-read-only","0hp":"@stdlib/ndarray-base-assert-is-read-only","1cq":"@stdlib/ndarray/base/assert/is-real-data-type","1cr":"@stdlib/ndarray-base-assert-is-real-data-type","1cs":"@stdlib/ndarray/base/assert/is-real-floating-point-data-type","1ct":"@stdlib/ndarray-base-assert-is-real-floating-point-data-type","0hq":"@stdlib/ndarray/base/assert/is-row-major-contiguous","0hr":"@stdlib/ndarray-base-assert-is-row-major-contiguous","0hs":"@stdlib/ndarray/base/assert/is-row-major","0ht":"@stdlib/ndarray-base-assert-is-row-major","0hu":"@stdlib/ndarray/base/assert/is-safe-data-type-cast","0hv":"@stdlib/ndarray-base-assert-is-safe-data-type-cast","0hw":"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast","0hx":"@stdlib/ndarray-base-assert-is-same-kind-data-type-cast","1cu":"@stdlib/ndarray/base/assert/is-signed-integer-data-type","1cv":"@stdlib/ndarray-base-assert-is-signed-integer-data-type","0hy":"@stdlib/ndarray/base/assert/is-single-segment-compatible","0hz":"@stdlib/ndarray-base-assert-is-single-segment-compatible","1cw":"@stdlib/ndarray/base/assert/is-unsigned-integer-data-type","1cx":"@stdlib/ndarray-base-assert-is-unsigned-integer-data-type","0i0":"@stdlib/ndarray/base/assert","0i1":"@stdlib/ndarray-base-assert","1kG":"@stdlib/ndarray/base/assign","1kH":"@stdlib/ndarray-base-assign","1cy":"@stdlib/ndarray/base/binary-loop-interchange-order","1cz":"@stdlib/ndarray-base-binary-loop-interchange-order","1d0":"@stdlib/ndarray/base/binary-tiling-block-size","1d1":"@stdlib/ndarray-base-binary-tiling-block-size","0i2":"@stdlib/ndarray/base/bind2vind","0i3":"@stdlib/ndarray-base-bind2vind","0i4":"@stdlib/ndarray/base/broadcast-array","0i5":"@stdlib/ndarray-base-broadcast-array","1nU":"@stdlib/ndarray/base/broadcast-arrays","1nV":"@stdlib/ndarray-base-broadcast-arrays","1d2":"@stdlib/ndarray/base/broadcast-scalar","1d3":"@stdlib/ndarray-base-broadcast-scalar","0i6":"@stdlib/ndarray/base/broadcast-shapes","0i7":"@stdlib/ndarray-base-broadcast-shapes","0i8":"@stdlib/ndarray/base/buffer-ctors","0i9":"@stdlib/ndarray-base-buffer-ctors","0iA":"@stdlib/ndarray/base/buffer-dtype-enum","0iB":"@stdlib/ndarray-base-buffer-dtype-enum","0iC":"@stdlib/ndarray/base/buffer-dtype","0iD":"@stdlib/ndarray-base-buffer-dtype","0iE":"@stdlib/ndarray/base/buffer","0iF":"@stdlib/ndarray-base-buffer","0iG":"@stdlib/ndarray/base/bytes-per-element","0iH":"@stdlib/ndarray-base-bytes-per-element","0iI":"@stdlib/ndarray/base/char2dtype","0iJ":"@stdlib/ndarray-base-char2dtype","0iK":"@stdlib/ndarray/base/clamp-index","0iL":"@stdlib/ndarray-base-clamp-index","0iM":"@stdlib/ndarray/base/ctor","0iN":"@stdlib/ndarray-base-ctor","1kI":"@stdlib/ndarray/base/data-buffer","1kJ":"@stdlib/ndarray-base-data-buffer","0iO":"@stdlib/ndarray/base/dtype-char","0iP":"@stdlib/ndarray-base-dtype-char","0iQ":"@stdlib/ndarray/base/dtype-desc","0iR":"@stdlib/ndarray-base-dtype-desc","0iS":"@stdlib/ndarray/base/dtype-enum2str","0iT":"@stdlib/ndarray-base-dtype-enum2str","0iU":"@stdlib/ndarray/base/dtype-resolve-enum","0iV":"@stdlib/ndarray-base-dtype-resolve-enum","0iW":"@stdlib/ndarray/base/dtype-resolve-str","0iX":"@stdlib/ndarray-base-dtype-resolve-str","0iY":"@stdlib/ndarray/base/dtype-str2enum","0iZ":"@stdlib/ndarray-base-dtype-str2enum","1kK":"@stdlib/ndarray/base/dtype","1kL":"@stdlib/ndarray-base-dtype","0ia":"@stdlib/ndarray/base/dtype2c","0ib":"@stdlib/ndarray-base-dtype2c","0ic":"@stdlib/ndarray/base/dtypes2signatures","0id":"@stdlib/ndarray-base-dtypes2signatures","1d4":"@stdlib/ndarray/base/empty-like","1d5":"@stdlib/ndarray-base-empty-like","1d6":"@stdlib/ndarray/base/empty","1d7":"@stdlib/ndarray-base-empty","0ie":"@stdlib/ndarray/base/expand-dimensions","0if":"@stdlib/ndarray-base-expand-dimensions","1ns":"@stdlib/ndarray/base/flag","1nt":"@stdlib/ndarray-base-flag","1nW":"@stdlib/ndarray/base/flags","1nX":"@stdlib/ndarray-base-flags","1l4":"@stdlib/ndarray/base/fliplr","1l5":"@stdlib/ndarray-base-fliplr","1l6":"@stdlib/ndarray/base/flipud","1l7":"@stdlib/ndarray-base-flipud","1yW":"@stdlib/ndarray/base/for-each","1yX":"@stdlib/ndarray-base-for-each","0ig":"@stdlib/ndarray/base/from-scalar","0ih":"@stdlib/ndarray-base-from-scalar","0ii":"@stdlib/ndarray/base/function-object","0ij":"@stdlib/ndarray-base-function-object","0ik":"@stdlib/ndarray/base/ind","0il":"@stdlib/ndarray-base-ind","0im":"@stdlib/ndarray/base/ind2sub","0in":"@stdlib/ndarray-base-ind2sub","0io":"@stdlib/ndarray/base/iteration-order","0ip":"@stdlib/ndarray-base-iteration-order","1zU":"@stdlib/ndarray/base/map","1zV":"@stdlib/ndarray-base-map","0iq":"@stdlib/ndarray/base/max-view-buffer-index","0ir":"@stdlib/ndarray-base-max-view-buffer-index","0is":"@stdlib/ndarray/base/maybe-broadcast-array","0it":"@stdlib/ndarray-base-maybe-broadcast-array","1nY":"@stdlib/ndarray/base/maybe-broadcast-arrays","1nZ":"@stdlib/ndarray-base-maybe-broadcast-arrays","0iu":"@stdlib/ndarray/base/meta-data-props","0iv":"@stdlib/ndarray-base-meta-data-props","0iw":"@stdlib/ndarray/base/min-view-buffer-index","0ix":"@stdlib/ndarray-base-min-view-buffer-index","0iy":"@stdlib/ndarray/base/minmax-view-buffer-index","0iz":"@stdlib/ndarray-base-minmax-view-buffer-index","0j0":"@stdlib/ndarray/base/napi/addon-arguments","0j1":"@stdlib/ndarray-base-napi-addon-arguments","0j2":"@stdlib/ndarray/base/napi/dtype-string-to-dtype","0j3":"@stdlib/ndarray-base-napi-dtype-string-to-dtype","0j4":"@stdlib/ndarray/base/napi","0j5":"@stdlib/ndarray-base-napi","0j6":"@stdlib/ndarray/base/napi/typedarray-type-to-dtype","0j7":"@stdlib/ndarray-base-napi-typedarray-type-to-dtype","0j8":"@stdlib/ndarray/base/napi/unary","0j9":"@stdlib/ndarray-base-napi-unary","1zW":"@stdlib/ndarray/base/ndarraylike2ndarray","1zX":"@stdlib/ndarray-base-ndarraylike2ndarray","0jA":"@stdlib/ndarray/base/ndarraylike2object","0jB":"@stdlib/ndarray-base-ndarraylike2object","1jc":"@stdlib/ndarray/base/ndims","1jd":"@stdlib/ndarray-base-ndims","1je":"@stdlib/ndarray/base/next-cartesian-index","1jf":"@stdlib/ndarray-base-next-cartesian-index","0jC":"@stdlib/ndarray/base/nonsingleton-dimensions","0jD":"@stdlib/ndarray-base-nonsingleton-dimensions","1l8":"@stdlib/ndarray/base/normalize-index","1l9":"@stdlib/ndarray-base-normalize-index","1d8":"@stdlib/ndarray/base/nullary-loop-interchange-order","1d9":"@stdlib/ndarray-base-nullary-loop-interchange-order","1dA":"@stdlib/ndarray/base/nullary-tiling-block-size","1dB":"@stdlib/ndarray-base-nullary-tiling-block-size","1dC":"@stdlib/ndarray/base/nullary","1dD":"@stdlib/ndarray-base-nullary","1nu":"@stdlib/ndarray/base/numel-dimension","1nv":"@stdlib/ndarray-base-numel-dimension","0jE":"@stdlib/ndarray/base/numel","0jF":"@stdlib/ndarray-base-numel","1jg":"@stdlib/ndarray/base/offset","1jh":"@stdlib/ndarray-base-offset","1kM":"@stdlib/ndarray/base/order","1kN":"@stdlib/ndarray-base-order","1dE":"@stdlib/ndarray/base/output-policy-enum2str","1dF":"@stdlib/ndarray-base-output-policy-enum2str","1dG":"@stdlib/ndarray/base/output-policy-resolve-enum","1dH":"@stdlib/ndarray-base-output-policy-resolve-enum","1dI":"@stdlib/ndarray/base/output-policy-resolve-str","1dJ":"@stdlib/ndarray-base-output-policy-resolve-str","1dK":"@stdlib/ndarray/base/output-policy-str2enum","1dL":"@stdlib/ndarray-base-output-policy-str2enum","0jG":"@stdlib/ndarray/base","0jH":"@stdlib/ndarray-base","0jI":"@stdlib/ndarray/base/prepend-singleton-dimensions","0jJ":"@stdlib/ndarray-base-prepend-singleton-dimensions","0jK":"@stdlib/ndarray/base/remove-singleton-dimensions","0jL":"@stdlib/ndarray-base-remove-singleton-dimensions","1lA":"@stdlib/ndarray/base/reverse-dimension","1lB":"@stdlib/ndarray-base-reverse-dimension","1kO":"@stdlib/ndarray/base/reverse","1kP":"@stdlib/ndarray-base-reverse","0jM":"@stdlib/ndarray/base/serialize-meta-data","0jN":"@stdlib/ndarray-base-serialize-meta-data","1ji":"@stdlib/ndarray/base/shape","1jj":"@stdlib/ndarray-base-shape","0jO":"@stdlib/ndarray/base/shape2strides","0jP":"@stdlib/ndarray-base-shape2strides","0jQ":"@stdlib/ndarray/base/singleton-dimensions","0jR":"@stdlib/ndarray-base-singleton-dimensions","1jO":"@stdlib/ndarray/base/slice-assign","1jP":"@stdlib/ndarray-base-slice-assign","1lC":"@stdlib/ndarray/base/slice-dimension-from","1lD":"@stdlib/ndarray-base-slice-dimension-from","1lE":"@stdlib/ndarray/base/slice-dimension-to","1lF":"@stdlib/ndarray-base-slice-dimension-to","1kQ":"@stdlib/ndarray/base/slice-dimension","1kR":"@stdlib/ndarray-base-slice-dimension","1lG":"@stdlib/ndarray/base/slice-from","1lH":"@stdlib/ndarray-base-slice-from","1lI":"@stdlib/ndarray/base/slice-to","1lJ":"@stdlib/ndarray-base-slice-to","1jQ":"@stdlib/ndarray/base/slice","1jR":"@stdlib/ndarray-base-slice","1mg":"@stdlib/ndarray/base/stride","1mh":"@stdlib/ndarray-base-stride","1jk":"@stdlib/ndarray/base/strides","1jl":"@stdlib/ndarray-base-strides","0jS":"@stdlib/ndarray/base/strides2offset","0jT":"@stdlib/ndarray-base-strides2offset","0jU":"@stdlib/ndarray/base/strides2order","0jV":"@stdlib/ndarray-base-strides2order","0jW":"@stdlib/ndarray/base/sub2ind","0jX":"@stdlib/ndarray-base-sub2ind","0jY":"@stdlib/ndarray/base/to-array","0jZ":"@stdlib/ndarray-base-to-array","0ja":"@stdlib/ndarray/base/transpose","0jb":"@stdlib/ndarray-base-transpose","1dM":"@stdlib/ndarray/base/unary-by","1dN":"@stdlib/ndarray-base-unary-by","1dO":"@stdlib/ndarray/base/unary-loop-interchange-order","1dP":"@stdlib/ndarray-base-unary-loop-interchange-order","1dQ":"@stdlib/ndarray/base/unary-output-dtype","1dR":"@stdlib/ndarray-base-unary-output-dtype","1dS":"@stdlib/ndarray/base/unary-tiling-block-size","1dT":"@stdlib/ndarray-base-unary-tiling-block-size","0jc":"@stdlib/ndarray/base/unary","0jd":"@stdlib/ndarray-base-unary","0je":"@stdlib/ndarray/base/vind2bind","0jf":"@stdlib/ndarray-base-vind2bind","0jg":"@stdlib/ndarray/base/wrap-index","0jh":"@stdlib/ndarray-base-wrap-index","0ji":"@stdlib/ndarray/base/zeros-like","0jj":"@stdlib/ndarray-base-zeros-like","0jk":"@stdlib/ndarray/base/zeros","0jl":"@stdlib/ndarray-base-zeros","1jm":"@stdlib/ndarray/broadcast-array","1jn":"@stdlib/ndarray-broadcast-array","1na":"@stdlib/ndarray/broadcast-arrays","1nb":"@stdlib/ndarray-broadcast-arrays","0jm":"@stdlib/ndarray/casting-modes","0jn":"@stdlib/ndarray-casting-modes","0jo":"@stdlib/ndarray/ctor","0jp":"@stdlib/ndarray-ctor","1kS":"@stdlib/ndarray/data-buffer","1kT":"@stdlib/ndarray-data-buffer","1dU":"@stdlib/ndarray/defaults","1dV":"@stdlib/ndarray-defaults","1dW":"@stdlib/ndarray/dispatch-by","1dX":"@stdlib/ndarray-dispatch-by","0jq":"@stdlib/ndarray/dispatch","0jr":"@stdlib/ndarray-dispatch","1kU":"@stdlib/ndarray/dtype","1kV":"@stdlib/ndarray-dtype","0js":"@stdlib/ndarray/dtypes","0jt":"@stdlib/ndarray-dtypes","1dY":"@stdlib/ndarray/empty-like","1dZ":"@stdlib/ndarray-empty-like","1da":"@stdlib/ndarray/empty","1db":"@stdlib/ndarray-empty","1j6":"@stdlib/ndarray/fancy","1j7":"@stdlib/ndarray-fancy","1nw":"@stdlib/ndarray/flag","1nx":"@stdlib/ndarray-flag","1ny":"@stdlib/ndarray/flags","1nz":"@stdlib/ndarray-flags","0ju":"@stdlib/ndarray/from-scalar","0jv":"@stdlib/ndarray-from-scalar","0jw":"@stdlib/ndarray/ind2sub","0jx":"@stdlib/ndarray-ind2sub","0jy":"@stdlib/ndarray/index-modes","0jz":"@stdlib/ndarray-index-modes","1lK":"@stdlib/ndarray/iter/column-entries","1lL":"@stdlib/ndarray-iter-column-entries","1jo":"@stdlib/ndarray/iter/columns","1jp":"@stdlib/ndarray-iter-columns","1jq":"@stdlib/ndarray/iter/entries","1jr":"@stdlib/ndarray-iter-entries","1js":"@stdlib/ndarray/iter/indices","1jt":"@stdlib/ndarray-iter-indices","1zY":"@stdlib/ndarray/iter/interleave-subarrays","1zZ":"@stdlib/ndarray-iter-interleave-subarrays","1lM":"@stdlib/ndarray/iter/matrices","1lN":"@stdlib/ndarray-iter-matrices","1lO":"@stdlib/ndarray/iter/matrix-entries","1lP":"@stdlib/ndarray-iter-matrix-entries","1ju":"@stdlib/ndarray/iter","1jv":"@stdlib/ndarray-iter","1lQ":"@stdlib/ndarray/iter/row-entries","1lR":"@stdlib/ndarray-iter-row-entries","1jw":"@stdlib/ndarray/iter/rows","1jx":"@stdlib/ndarray-iter-rows","1za":"@stdlib/ndarray/iter/select-dimension","1zb":"@stdlib/ndarray-iter-select-dimension","1zc":"@stdlib/ndarray/iter/stacks","1zd":"@stdlib/ndarray-iter-stacks","1ze":"@stdlib/ndarray/iter/subarrays","1zf":"@stdlib/ndarray-iter-subarrays","1jy":"@stdlib/ndarray/iter/to-array-each","1jz":"@stdlib/ndarray-iter-to-array-each","1k0":"@stdlib/ndarray/iter/values","1k1":"@stdlib/ndarray-iter-values","1k2":"@stdlib/ndarray/maybe-broadcast-array","1k3":"@stdlib/ndarray-maybe-broadcast-array","1nc":"@stdlib/ndarray/maybe-broadcast-arrays","1nd":"@stdlib/ndarray-maybe-broadcast-arrays","0k0":"@stdlib/ndarray/min-dtype","0k1":"@stdlib/ndarray-min-dtype","1kW":"@stdlib/ndarray/mostly-safe-casts","1kX":"@stdlib/ndarray-mostly-safe-casts","1zg":"@stdlib/ndarray/ndarraylike2ndarray","1zh":"@stdlib/ndarray-ndarraylike2ndarray","1k4":"@stdlib/ndarray/ndims","1k5":"@stdlib/ndarray-ndims","0k2":"@stdlib/ndarray/next-dtype","0k3":"@stdlib/ndarray-next-dtype","1o0":"@stdlib/ndarray/numel-dimension","1o1":"@stdlib/ndarray-numel-dimension","1k6":"@stdlib/ndarray/numel","1k7":"@stdlib/ndarray-numel","1k8":"@stdlib/ndarray/offset","1k9":"@stdlib/ndarray-offset","1kY":"@stdlib/ndarray/order","1kZ":"@stdlib/ndarray-order","0k4":"@stdlib/ndarray/orders","0k5":"@stdlib/ndarray-orders","1dc":"@stdlib/ndarray/output-dtype-policies","1dd":"@stdlib/ndarray-output-dtype-policies","0k7":"@stdlib/ndarray","0k8":"@stdlib/ndarray/promotion-rules","0k9":"@stdlib/ndarray-promotion-rules","0kA":"@stdlib/ndarray/safe-casts","0kB":"@stdlib/ndarray-safe-casts","0kC":"@stdlib/ndarray/same-kind-casts","0kD":"@stdlib/ndarray-same-kind-casts","1kA":"@stdlib/ndarray/shape","1kB":"@stdlib/ndarray-shape","1jS":"@stdlib/ndarray/slice-assign","1jT":"@stdlib/ndarray-slice-assign","1lS":"@stdlib/ndarray/slice-dimension-from","1lT":"@stdlib/ndarray-slice-dimension-from","1lU":"@stdlib/ndarray/slice-dimension-to","1lV":"@stdlib/ndarray-slice-dimension-to","1ka":"@stdlib/ndarray/slice-dimension","1kb":"@stdlib/ndarray-slice-dimension","1mw":"@stdlib/ndarray/slice-from","1mx":"@stdlib/ndarray-slice-from","1mi":"@stdlib/ndarray/slice-to","1mj":"@stdlib/ndarray-slice-to","1jU":"@stdlib/ndarray/slice","1jV":"@stdlib/ndarray-slice","1mk":"@stdlib/ndarray/stride","1ml":"@stdlib/ndarray-stride","1kC":"@stdlib/ndarray/strides","1kD":"@stdlib/ndarray-strides","0kE":"@stdlib/ndarray/sub2ind","0kF":"@stdlib/ndarray-sub2ind","1de":"@stdlib/ndarray/to-array","1df":"@stdlib/ndarray-to-array","0kG":"@stdlib/ndarray/zeros-like","0kH":"@stdlib/ndarray-zeros-like","0kI":"@stdlib/ndarray/zeros","0kJ":"@stdlib/ndarray-zeros","0kK":"@stdlib/net/disposable-http-server","0kL":"@stdlib/net-disposable-http-server","0kM":"@stdlib/net/http-server","0kN":"@stdlib/net-http-server","0kP":"@stdlib/net","0kQ":"@stdlib/net/simple-http-server","0kR":"@stdlib/net-simple-http-server","1dg":"@stdlib/nlp/expand-acronyms","1dh":"@stdlib/nlp-expand-acronyms","0kS":"@stdlib/nlp/expand-contractions","0kT":"@stdlib/nlp-expand-contractions","0kU":"@stdlib/nlp/lda","0kV":"@stdlib/nlp-lda","0kW":"@stdlib/nlp/ordinalize","0kX":"@stdlib/nlp-ordinalize","0kZ":"@stdlib/nlp","0ka":"@stdlib/nlp/porter-stemmer","0kb":"@stdlib/nlp-porter-stemmer","1di":"@stdlib/nlp/sentencize","1dj":"@stdlib/nlp-sentencize","0kc":"@stdlib/nlp/tokenize","0kd":"@stdlib/nlp-tokenize","0ke":"@stdlib/number/ctor","0kf":"@stdlib/number-ctor","1q4":"@stdlib/number/float32/base/assert/is-same-value-zero","1q5":"@stdlib/number-float32-base-assert-is-same-value-zero","1q6":"@stdlib/number/float32/base/assert/is-same-value","1q7":"@stdlib/number-float32-base-assert-is-same-value","1q8":"@stdlib/number/float32/base/assert","1q9":"@stdlib/number-float32-base-assert","0kg":"@stdlib/number/float32/base/exponent","0kh":"@stdlib/number-float32-base-exponent","0ki":"@stdlib/number/float32/base/from-binary-string","0kj":"@stdlib/number-float32-base-from-binary-string","0kk":"@stdlib/number/float32/base/from-word","0kl":"@stdlib/number-float32-base-from-word","0km":"@stdlib/number/float32/base/normalize","0kn":"@stdlib/number-float32-base-normalize","0ko":"@stdlib/number/float32/base","0kp":"@stdlib/number-float32-base","0kq":"@stdlib/number/float32/base/signbit","0kr":"@stdlib/number-float32-base-signbit","0ks":"@stdlib/number/float32/base/significand","0kt":"@stdlib/number-float32-base-significand","0ku":"@stdlib/number/float32/base/to-binary-string","0kv":"@stdlib/number-float32-base-to-binary-string","0kw":"@stdlib/number/float32/base/to-int32","0kx":"@stdlib/number-float32-base-to-int32","0ky":"@stdlib/number/float32/base/to-uint32","0kz":"@stdlib/number-float32-base-to-uint32","0l0":"@stdlib/number/float32/base/to-word","0l1":"@stdlib/number-float32-base-to-word","0l2":"@stdlib/number/float32","0l3":"@stdlib/number-float32","1qA":"@stdlib/number/float64/base/assert/is-same-value-zero","1qB":"@stdlib/number-float64-base-assert-is-same-value-zero","1qC":"@stdlib/number/float64/base/assert/is-same-value","1qD":"@stdlib/number-float64-base-assert-is-same-value","1qE":"@stdlib/number/float64/base/assert","1qF":"@stdlib/number-float64-base-assert","0l4":"@stdlib/number/float64/base/exponent","0l5":"@stdlib/number-float64-base-exponent","0l6":"@stdlib/number/float64/base/from-binary-string","0l7":"@stdlib/number-float64-base-from-binary-string","0l8":"@stdlib/number/float64/base/from-int64-bytes","0l9":"@stdlib/number-float64-base-from-int64-bytes","0lA":"@stdlib/number/float64/base/from-words","0lB":"@stdlib/number-float64-base-from-words","0lC":"@stdlib/number/float64/base/get-high-word","0lD":"@stdlib/number-float64-base-get-high-word","0lE":"@stdlib/number/float64/base/get-low-word","0lF":"@stdlib/number-float64-base-get-low-word","0lG":"@stdlib/number/float64/base/normalize","0lH":"@stdlib/number-float64-base-normalize","0lI":"@stdlib/number/float64/base","0lJ":"@stdlib/number-float64-base","0lK":"@stdlib/number/float64/base/set-high-word","0lL":"@stdlib/number-float64-base-set-high-word","0lM":"@stdlib/number/float64/base/set-low-word","0lN":"@stdlib/number-float64-base-set-low-word","0lO":"@stdlib/number/float64/base/signbit","0lP":"@stdlib/number-float64-base-signbit","0lQ":"@stdlib/number/float64/base/to-binary-string","0lR":"@stdlib/number-float64-base-to-binary-string","0lS":"@stdlib/number/float64/base/to-float32","0lT":"@stdlib/number-float64-base-to-float32","0lU":"@stdlib/number/float64/base/to-int32","0lV":"@stdlib/number-float64-base-to-int32","0lW":"@stdlib/number/float64/base/to-int64-bytes","0lX":"@stdlib/number-float64-base-to-int64-bytes","0lY":"@stdlib/number/float64/base/to-uint32","0lZ":"@stdlib/number-float64-base-to-uint32","0la":"@stdlib/number/float64/base/to-words","0lb":"@stdlib/number-float64-base-to-words","0lc":"@stdlib/number/float64","0ld":"@stdlib/number-float64","1dk":"@stdlib/number/float64/reviver","1dl":"@stdlib/number-float64-reviver","1dm":"@stdlib/number/float64/to-json","1dn":"@stdlib/number-float64-to-json","0le":"@stdlib/number/int32/base","0lf":"@stdlib/number-int32-base","0lg":"@stdlib/number/int32/base/to-uint32","0lh":"@stdlib/number-int32-base-to-uint32","0li":"@stdlib/number/int32","0lj":"@stdlib/number-int32","0ll":"@stdlib/number","0lm":"@stdlib/number/uint16/base/from-binary-string","0ln":"@stdlib/number-uint16-base-from-binary-string","0lo":"@stdlib/number/uint16/base","0lp":"@stdlib/number-uint16-base","0lq":"@stdlib/number/uint16/base/to-binary-string","0lr":"@stdlib/number-uint16-base-to-binary-string","0ls":"@stdlib/number/uint16","0lt":"@stdlib/number-uint16","0lu":"@stdlib/number/uint32/base/from-binary-string","0lv":"@stdlib/number-uint32-base-from-binary-string","0lw":"@stdlib/number/uint32/base","0lx":"@stdlib/number-uint32-base","0ly":"@stdlib/number/uint32/base/rotl","0lz":"@stdlib/number-uint32-base-rotl","0m0":"@stdlib/number/uint32/base/rotr","0m1":"@stdlib/number-uint32-base-rotr","0m2":"@stdlib/number/uint32/base/to-binary-string","0m3":"@stdlib/number-uint32-base-to-binary-string","0m4":"@stdlib/number/uint32/base/to-int32","0m5":"@stdlib/number-uint32-base-to-int32","0m6":"@stdlib/number/uint32","0m7":"@stdlib/number-uint32","0m8":"@stdlib/number/uint8/base/from-binary-string","0m9":"@stdlib/number-uint8-base-from-binary-string","0mA":"@stdlib/number/uint8/base","0mB":"@stdlib/number-uint8-base","0mC":"@stdlib/number/uint8/base/to-binary-string","0mD":"@stdlib/number-uint8-base-to-binary-string","0mE":"@stdlib/number/uint8","0mF":"@stdlib/number-uint8","1do":"@stdlib/object/assign","1dp":"@stdlib/object-assign","1dq":"@stdlib/object/ctor","1dr":"@stdlib/object-ctor","1dt":"@stdlib/object","0mG":"@stdlib/os/arch","0mH":"@stdlib/os-arch","0mI":"@stdlib/os/byte-order","0mJ":"@stdlib/os-byte-order","0mK":"@stdlib/os/configdir","0mL":"@stdlib/os-configdir","0mM":"@stdlib/os/float-word-order","0mN":"@stdlib/os-float-word-order","0mO":"@stdlib/os/homedir","0mP":"@stdlib/os-homedir","0mQ":"@stdlib/os/num-cpus","0mR":"@stdlib/os-num-cpus","0mT":"@stdlib/os","0mU":"@stdlib/os/platform","0mV":"@stdlib/os-platform","0mW":"@stdlib/os/tmpdir","0mX":"@stdlib/os-tmpdir","0mY":"@stdlib/plot/base/ctor","0mZ":"@stdlib/plot-base-ctor","0ma":"@stdlib/plot/components/svg/annotations","0mb":"@stdlib/plot-components-svg-annotations","0mc":"@stdlib/plot/components/svg/axis","0md":"@stdlib/plot-components-svg-axis","0me":"@stdlib/plot/components/svg/background","0mf":"@stdlib/plot-components-svg-background","0mg":"@stdlib/plot/components/svg/canvas","0mh":"@stdlib/plot-components-svg-canvas","0mi":"@stdlib/plot/components/svg/clip-path","0mj":"@stdlib/plot-components-svg-clip-path","0mk":"@stdlib/plot/components/svg/defs","0ml":"@stdlib/plot-components-svg-defs","0mm":"@stdlib/plot/components/svg/graph","0mn":"@stdlib/plot-components-svg-graph","0mo":"@stdlib/plot/components/svg/marks","0mp":"@stdlib/plot-components-svg-marks","0mq":"@stdlib/plot/components/svg/path","0mr":"@stdlib/plot-components-svg-path","0ms":"@stdlib/plot/components/svg/rug","0mt":"@stdlib/plot-components-svg-rug","0mu":"@stdlib/plot/components/svg/symbols","0mv":"@stdlib/plot-components-svg-symbols","0mw":"@stdlib/plot/components/svg/title","0mx":"@stdlib/plot-components-svg-title","0my":"@stdlib/plot/ctor","0mz":"@stdlib/plot-ctor","0n1":"@stdlib/plot","0n2":"@stdlib/plot/sparklines/base/ctor","0n3":"@stdlib/plot-sparklines-base-ctor","0n4":"@stdlib/plot/sparklines/base","0n5":"@stdlib/plot-sparklines-base","0n6":"@stdlib/plot/sparklines","0n7":"@stdlib/plot-sparklines","0n8":"@stdlib/plot/sparklines/unicode/column","0n9":"@stdlib/plot-sparklines-unicode-column","0nA":"@stdlib/plot/sparklines/unicode/line","0nB":"@stdlib/plot-sparklines-unicode-line","0nC":"@stdlib/plot/sparklines/unicode","0nD":"@stdlib/plot-sparklines-unicode","0nE":"@stdlib/plot/sparklines/unicode/tristate","0nF":"@stdlib/plot-sparklines-unicode-tristate","0nG":"@stdlib/plot/sparklines/unicode/up-down","0nH":"@stdlib/plot-sparklines-unicode-up-down","0nI":"@stdlib/plot/sparklines/unicode/win-loss","0nJ":"@stdlib/plot-sparklines-unicode-win-loss","0nK":"@stdlib/plot/unicode/stemleaf","0nL":"@stdlib/plot-unicode-stemleaf","0nM":"@stdlib/process/argv","0nN":"@stdlib/process-argv","0nO":"@stdlib/process/chdir","0nP":"@stdlib/process-chdir","0nQ":"@stdlib/process/cwd","0nR":"@stdlib/process-cwd","0nS":"@stdlib/process/env","0nT":"@stdlib/process-env","0nU":"@stdlib/process/exec-path","0nV":"@stdlib/process-exec-path","0nW":"@stdlib/process/getegid","0nX":"@stdlib/process-getegid","0nY":"@stdlib/process/geteuid","0nZ":"@stdlib/process-geteuid","0na":"@stdlib/process/getgid","0nb":"@stdlib/process-getgid","0nc":"@stdlib/process/getuid","0nd":"@stdlib/process-getuid","0ne":"@stdlib/process/node-version","0nf":"@stdlib/process-node-version","0nh":"@stdlib/process","0ni":"@stdlib/process/read-stdin","0nj":"@stdlib/process-read-stdin","0nk":"@stdlib/process/umask","0nl":"@stdlib/process-umask","0nm":"@stdlib/proxy/ctor","0nn":"@stdlib/proxy-ctor","0np":"@stdlib/proxy","1du":"@stdlib/random/array/arcsine","1dv":"@stdlib/random-array-arcsine","1o2":"@stdlib/random/array/bernoulli","1o3":"@stdlib/random-array-bernoulli","1dw":"@stdlib/random/array/beta","1dx":"@stdlib/random-array-beta","1dy":"@stdlib/random/array/betaprime","1dz":"@stdlib/random-array-betaprime","1qG":"@stdlib/random/array/binomial","1qH":"@stdlib/random-array-binomial","1qI":"@stdlib/random/array/cauchy","1qJ":"@stdlib/random-array-cauchy","1o4":"@stdlib/random/array/chi","1o5":"@stdlib/random-array-chi","1o6":"@stdlib/random/array/chisquare","1o7":"@stdlib/random-array-chisquare","1e0":"@stdlib/random/array/cosine","1e1":"@stdlib/random-array-cosine","1e2":"@stdlib/random/array/discrete-uniform","1e3":"@stdlib/random-array-discrete-uniform","1qK":"@stdlib/random/array/erlang","1qL":"@stdlib/random-array-erlang","1e4":"@stdlib/random/array/exponential","1e5":"@stdlib/random-array-exponential","1qM":"@stdlib/random/array/f","1qN":"@stdlib/random-array-f","1qO":"@stdlib/random/array/frechet","1qP":"@stdlib/random-array-frechet","1e6":"@stdlib/random/array/gamma","1e7":"@stdlib/random-array-gamma","1e8":"@stdlib/random/array/geometric","1e9":"@stdlib/random-array-geometric","1qQ":"@stdlib/random/array/gumbel","1qR":"@stdlib/random-array-gumbel","1qS":"@stdlib/random/array/hypergeometric","1qT":"@stdlib/random-array-hypergeometric","1eA":"@stdlib/random/array/invgamma","1eB":"@stdlib/random-array-invgamma","1qU":"@stdlib/random/array/kumaraswamy","1qV":"@stdlib/random-array-kumaraswamy","1qW":"@stdlib/random/array/laplace","1qX":"@stdlib/random-array-laplace","1qY":"@stdlib/random/array/levy","1qZ":"@stdlib/random-array-levy","1qa":"@stdlib/random/array/logistic","1qb":"@stdlib/random-array-logistic","1eC":"@stdlib/random/array/lognormal","1eD":"@stdlib/random-array-lognormal","1eE":"@stdlib/random/array/minstd-shuffle","1eF":"@stdlib/random-array-minstd-shuffle","1eG":"@stdlib/random/array/minstd","1eH":"@stdlib/random-array-minstd","1eI":"@stdlib/random/array/mt19937","1eJ":"@stdlib/random-array-mt19937","1qc":"@stdlib/random/array/negative-binomial","1qd":"@stdlib/random-array-negative-binomial","1eK":"@stdlib/random/array/normal","1eL":"@stdlib/random-array-normal","1eM":"@stdlib/random/array","1eN":"@stdlib/random-array","1qe":"@stdlib/random/array/pareto-type1","1qf":"@stdlib/random-array-pareto-type1","1o8":"@stdlib/random/array/poisson","1o9":"@stdlib/random-array-poisson","1eO":"@stdlib/random/array/randu","1eP":"@stdlib/random-array-randu","1oA":"@stdlib/random/array/rayleigh","1oB":"@stdlib/random-array-rayleigh","1oC":"@stdlib/random/array/t","1oD":"@stdlib/random-array-t","1qg":"@stdlib/random/array/tools/binary-factory","1qh":"@stdlib/random-array-tools-binary-factory","1qi":"@stdlib/random/array/tools/binary","1qj":"@stdlib/random-array-tools-binary","1oE":"@stdlib/random/array/tools/nullary","1oF":"@stdlib/random-array-tools-nullary","1rY":"@stdlib/random/array/tools","1rZ":"@stdlib/random-array-tools","1qk":"@stdlib/random/array/tools/ternary-factory","1ql":"@stdlib/random-array-tools-ternary-factory","1qm":"@stdlib/random/array/tools/ternary","1qn":"@stdlib/random-array-tools-ternary","1oG":"@stdlib/random/array/tools/unary-factory","1oH":"@stdlib/random-array-tools-unary-factory","1oI":"@stdlib/random/array/tools/unary","1oJ":"@stdlib/random-array-tools-unary","1qo":"@stdlib/random/array/triangular","1qp":"@stdlib/random-array-triangular","1eQ":"@stdlib/random/array/uniform","1eR":"@stdlib/random-array-uniform","1qq":"@stdlib/random/array/weibull","1qr":"@stdlib/random-array-weibull","0nq":"@stdlib/random/base/arcsine","0nr":"@stdlib/random-base-arcsine","0ns":"@stdlib/random/base/bernoulli","0nt":"@stdlib/random-base-bernoulli","0nu":"@stdlib/random/base/beta","0nv":"@stdlib/random-base-beta","0nw":"@stdlib/random/base/betaprime","0nx":"@stdlib/random-base-betaprime","0ny":"@stdlib/random/base/binomial","0nz":"@stdlib/random-base-binomial","0o0":"@stdlib/random/base/box-muller","0o1":"@stdlib/random-base-box-muller","0o2":"@stdlib/random/base/cauchy","0o3":"@stdlib/random-base-cauchy","0o4":"@stdlib/random/base/chi","0o5":"@stdlib/random-base-chi","0o6":"@stdlib/random/base/chisquare","0o7":"@stdlib/random-base-chisquare","0o8":"@stdlib/random/base/cosine","0o9":"@stdlib/random-base-cosine","0oA":"@stdlib/random/base/discrete-uniform","0oB":"@stdlib/random-base-discrete-uniform","0oC":"@stdlib/random/base/erlang","0oD":"@stdlib/random-base-erlang","0oE":"@stdlib/random/base/exponential","0oF":"@stdlib/random-base-exponential","0oG":"@stdlib/random/base/f","0oH":"@stdlib/random-base-f","0oI":"@stdlib/random/base/frechet","0oJ":"@stdlib/random-base-frechet","0oK":"@stdlib/random/base/gamma","0oL":"@stdlib/random-base-gamma","0oM":"@stdlib/random/base/geometric","0oN":"@stdlib/random-base-geometric","0oO":"@stdlib/random/base/gumbel","0oP":"@stdlib/random-base-gumbel","0oQ":"@stdlib/random/base/hypergeometric","0oR":"@stdlib/random-base-hypergeometric","0oS":"@stdlib/random/base/improved-ziggurat","0oT":"@stdlib/random-base-improved-ziggurat","0oU":"@stdlib/random/base/invgamma","0oV":"@stdlib/random-base-invgamma","0oW":"@stdlib/random/base/kumaraswamy","0oX":"@stdlib/random-base-kumaraswamy","0oY":"@stdlib/random/base/laplace","0oZ":"@stdlib/random-base-laplace","0oa":"@stdlib/random/base/levy","0ob":"@stdlib/random-base-levy","0oc":"@stdlib/random/base/logistic","0od":"@stdlib/random-base-logistic","0oe":"@stdlib/random/base/lognormal","0of":"@stdlib/random-base-lognormal","0og":"@stdlib/random/base/minstd-shuffle","0oh":"@stdlib/random-base-minstd-shuffle","0oi":"@stdlib/random/base/minstd","0oj":"@stdlib/random-base-minstd","0ok":"@stdlib/random/base/mt19937","0ol":"@stdlib/random-base-mt19937","0om":"@stdlib/random/base/negative-binomial","0on":"@stdlib/random-base-negative-binomial","0oo":"@stdlib/random/base/normal","0op":"@stdlib/random-base-normal","0oq":"@stdlib/random/base","0or":"@stdlib/random-base","0os":"@stdlib/random/base/pareto-type1","0ot":"@stdlib/random-base-pareto-type1","0ou":"@stdlib/random/base/poisson","0ov":"@stdlib/random-base-poisson","0ow":"@stdlib/random/base/randi","0ox":"@stdlib/random-base-randi","0oy":"@stdlib/random/base/randn","0oz":"@stdlib/random-base-randn","0p0":"@stdlib/random/base/randu","0p1":"@stdlib/random-base-randu","0p2":"@stdlib/random/base/rayleigh","0p3":"@stdlib/random-base-rayleigh","0p4":"@stdlib/random/base/reviver","0p5":"@stdlib/random-base-reviver","1sM":"@stdlib/random/base/shared","1sN":"@stdlib/random-base-shared","0p6":"@stdlib/random/base/t","0p7":"@stdlib/random-base-t","0p8":"@stdlib/random/base/triangular","0p9":"@stdlib/random-base-triangular","0pA":"@stdlib/random/base/uniform","0pB":"@stdlib/random-base-uniform","0pC":"@stdlib/random/base/weibull","0pD":"@stdlib/random-base-weibull","1eS":"@stdlib/random/exponential","1eT":"@stdlib/random-exponential","0pE":"@stdlib/random/iter/arcsine","0pF":"@stdlib/random-iter-arcsine","0pG":"@stdlib/random/iter/bernoulli","0pH":"@stdlib/random-iter-bernoulli","0pI":"@stdlib/random/iter/beta","0pJ":"@stdlib/random-iter-beta","0pK":"@stdlib/random/iter/betaprime","0pL":"@stdlib/random-iter-betaprime","0pM":"@stdlib/random/iter/binomial","0pN":"@stdlib/random-iter-binomial","0pO":"@stdlib/random/iter/box-muller","0pP":"@stdlib/random-iter-box-muller","0pQ":"@stdlib/random/iter/cauchy","0pR":"@stdlib/random-iter-cauchy","0pS":"@stdlib/random/iter/chi","0pT":"@stdlib/random-iter-chi","0pU":"@stdlib/random/iter/chisquare","0pV":"@stdlib/random-iter-chisquare","0pW":"@stdlib/random/iter/cosine","0pX":"@stdlib/random-iter-cosine","0pY":"@stdlib/random/iter/discrete-uniform","0pZ":"@stdlib/random-iter-discrete-uniform","0pa":"@stdlib/random/iter/erlang","0pb":"@stdlib/random-iter-erlang","0pc":"@stdlib/random/iter/exponential","0pd":"@stdlib/random-iter-exponential","0pe":"@stdlib/random/iter/f","0pf":"@stdlib/random-iter-f","0pg":"@stdlib/random/iter/frechet","0ph":"@stdlib/random-iter-frechet","0pi":"@stdlib/random/iter/gamma","0pj":"@stdlib/random-iter-gamma","0pk":"@stdlib/random/iter/geometric","0pl":"@stdlib/random-iter-geometric","0pm":"@stdlib/random/iter/gumbel","0pn":"@stdlib/random-iter-gumbel","0po":"@stdlib/random/iter/hypergeometric","0pp":"@stdlib/random-iter-hypergeometric","0pq":"@stdlib/random/iter/improved-ziggurat","0pr":"@stdlib/random-iter-improved-ziggurat","0ps":"@stdlib/random/iter/invgamma","0pt":"@stdlib/random-iter-invgamma","0pu":"@stdlib/random/iter/kumaraswamy","0pv":"@stdlib/random-iter-kumaraswamy","0pw":"@stdlib/random/iter/laplace","0px":"@stdlib/random-iter-laplace","0py":"@stdlib/random/iter/levy","0pz":"@stdlib/random-iter-levy","0q0":"@stdlib/random/iter/logistic","0q1":"@stdlib/random-iter-logistic","0q2":"@stdlib/random/iter/lognormal","0q3":"@stdlib/random-iter-lognormal","0q4":"@stdlib/random/iter/minstd-shuffle","0q5":"@stdlib/random-iter-minstd-shuffle","0q6":"@stdlib/random/iter/minstd","0q7":"@stdlib/random-iter-minstd","0q8":"@stdlib/random/iter/mt19937","0q9":"@stdlib/random-iter-mt19937","0qA":"@stdlib/random/iter/negative-binomial","0qB":"@stdlib/random-iter-negative-binomial","0qC":"@stdlib/random/iter/normal","0qD":"@stdlib/random-iter-normal","0qE":"@stdlib/random/iter","0qF":"@stdlib/random-iter","0qG":"@stdlib/random/iter/pareto-type1","0qH":"@stdlib/random-iter-pareto-type1","0qI":"@stdlib/random/iter/poisson","0qJ":"@stdlib/random-iter-poisson","0qK":"@stdlib/random/iter/randi","0qL":"@stdlib/random-iter-randi","0qM":"@stdlib/random/iter/randn","0qN":"@stdlib/random-iter-randn","0qO":"@stdlib/random/iter/randu","0qP":"@stdlib/random-iter-randu","0qQ":"@stdlib/random/iter/rayleigh","0qR":"@stdlib/random-iter-rayleigh","0qS":"@stdlib/random/iter/t","0qT":"@stdlib/random-iter-t","0qU":"@stdlib/random/iter/triangular","0qV":"@stdlib/random-iter-triangular","0qW":"@stdlib/random/iter/uniform","0qX":"@stdlib/random-iter-uniform","0qY":"@stdlib/random/iter/weibull","0qZ":"@stdlib/random-iter-weibull","0qb":"@stdlib/random","0qc":"@stdlib/random/sample","0qd":"@stdlib/random-sample","0qe":"@stdlib/random/shuffle","0qf":"@stdlib/random-shuffle","0qg":"@stdlib/random/streams/arcsine","0qh":"@stdlib/random-streams-arcsine","0qi":"@stdlib/random/streams/bernoulli","0qj":"@stdlib/random-streams-bernoulli","0qk":"@stdlib/random/streams/beta","0ql":"@stdlib/random-streams-beta","0qm":"@stdlib/random/streams/betaprime","0qn":"@stdlib/random-streams-betaprime","0qo":"@stdlib/random/streams/binomial","0qp":"@stdlib/random-streams-binomial","0qq":"@stdlib/random/streams/box-muller","0qr":"@stdlib/random-streams-box-muller","0qs":"@stdlib/random/streams/cauchy","0qt":"@stdlib/random-streams-cauchy","0qu":"@stdlib/random/streams/chi","0qv":"@stdlib/random-streams-chi","0qw":"@stdlib/random/streams/chisquare","0qx":"@stdlib/random-streams-chisquare","0qy":"@stdlib/random/streams/cosine","0qz":"@stdlib/random-streams-cosine","0r0":"@stdlib/random/streams/discrete-uniform","0r1":"@stdlib/random-streams-discrete-uniform","0r2":"@stdlib/random/streams/erlang","0r3":"@stdlib/random-streams-erlang","0r4":"@stdlib/random/streams/exponential","0r5":"@stdlib/random-streams-exponential","0r6":"@stdlib/random/streams/f","0r7":"@stdlib/random-streams-f","0r8":"@stdlib/random/streams/frechet","0r9":"@stdlib/random-streams-frechet","0rA":"@stdlib/random/streams/gamma","0rB":"@stdlib/random-streams-gamma","0rC":"@stdlib/random/streams/geometric","0rD":"@stdlib/random-streams-geometric","0rE":"@stdlib/random/streams/gumbel","0rF":"@stdlib/random-streams-gumbel","0rG":"@stdlib/random/streams/hypergeometric","0rH":"@stdlib/random-streams-hypergeometric","0rI":"@stdlib/random/streams/improved-ziggurat","0rJ":"@stdlib/random-streams-improved-ziggurat","0rK":"@stdlib/random/streams/invgamma","0rL":"@stdlib/random-streams-invgamma","0rM":"@stdlib/random/streams/kumaraswamy","0rN":"@stdlib/random-streams-kumaraswamy","0rO":"@stdlib/random/streams/laplace","0rP":"@stdlib/random-streams-laplace","0rQ":"@stdlib/random/streams/levy","0rR":"@stdlib/random-streams-levy","0rS":"@stdlib/random/streams/logistic","0rT":"@stdlib/random-streams-logistic","0rU":"@stdlib/random/streams/lognormal","0rV":"@stdlib/random-streams-lognormal","0rW":"@stdlib/random/streams/minstd-shuffle","0rX":"@stdlib/random-streams-minstd-shuffle","0rY":"@stdlib/random/streams/minstd","0rZ":"@stdlib/random-streams-minstd","0ra":"@stdlib/random/streams/mt19937","0rb":"@stdlib/random-streams-mt19937","0rc":"@stdlib/random/streams/negative-binomial","0rd":"@stdlib/random-streams-negative-binomial","0re":"@stdlib/random/streams/normal","0rf":"@stdlib/random-streams-normal","0rg":"@stdlib/random/streams","0rh":"@stdlib/random-streams","0ri":"@stdlib/random/streams/pareto-type1","0rj":"@stdlib/random-streams-pareto-type1","0rk":"@stdlib/random/streams/poisson","0rl":"@stdlib/random-streams-poisson","0rm":"@stdlib/random/streams/randi","0rn":"@stdlib/random-streams-randi","0ro":"@stdlib/random/streams/randn","0rp":"@stdlib/random-streams-randn","0rq":"@stdlib/random/streams/randu","0rr":"@stdlib/random-streams-randu","0rs":"@stdlib/random/streams/rayleigh","0rt":"@stdlib/random-streams-rayleigh","0ru":"@stdlib/random/streams/t","0rv":"@stdlib/random-streams-t","0rw":"@stdlib/random/streams/triangular","0rx":"@stdlib/random-streams-triangular","0ry":"@stdlib/random/streams/uniform","0rz":"@stdlib/random-streams-uniform","0s0":"@stdlib/random/streams/weibull","0s1":"@stdlib/random-streams-weibull","1eU":"@stdlib/random/strided/arcsine","1eV":"@stdlib/random-strided-arcsine","1ra":"@stdlib/random/strided/bernoulli","1rb":"@stdlib/random-strided-bernoulli","1eW":"@stdlib/random/strided/beta","1eX":"@stdlib/random-strided-beta","1eY":"@stdlib/random/strided/betaprime","1eZ":"@stdlib/random-strided-betaprime","1rc":"@stdlib/random/strided/chi","1rd":"@stdlib/random-strided-chi","1re":"@stdlib/random/strided/chisquare","1rf":"@stdlib/random-strided-chisquare","1ea":"@stdlib/random/strided/cosine","1eb":"@stdlib/random-strided-cosine","1ec":"@stdlib/random/strided/discrete-uniform","1ed":"@stdlib/random-strided-discrete-uniform","1ee":"@stdlib/random/strided/exponential","1ef":"@stdlib/random-strided-exponential","1eg":"@stdlib/random/strided/gamma","1eh":"@stdlib/random-strided-gamma","1rg":"@stdlib/random/strided/geometric","1rh":"@stdlib/random-strided-geometric","1ei":"@stdlib/random/strided/invgamma","1ej":"@stdlib/random-strided-invgamma","1ek":"@stdlib/random/strided/lognormal","1el":"@stdlib/random-strided-lognormal","1em":"@stdlib/random/strided/minstd-shuffle","1en":"@stdlib/random-strided-minstd-shuffle","1eo":"@stdlib/random/strided/minstd","1ep":"@stdlib/random-strided-minstd","1eq":"@stdlib/random/strided/mt19937","1er":"@stdlib/random-strided-mt19937","1es":"@stdlib/random/strided/normal","1et":"@stdlib/random-strided-normal","1eu":"@stdlib/random/strided","1ev":"@stdlib/random-strided","1ri":"@stdlib/random/strided/poisson","1rj":"@stdlib/random-strided-poisson","1ew":"@stdlib/random/strided/randu","1ex":"@stdlib/random-strided-randu","1rk":"@stdlib/random/strided/rayleigh","1rl":"@stdlib/random-strided-rayleigh","1rm":"@stdlib/random/strided/t","1rn":"@stdlib/random-strided-t","1ro":"@stdlib/random/strided/tools/binary-factory","1rp":"@stdlib/random-strided-tools-binary-factory","1rq":"@stdlib/random/strided/tools","1rr":"@stdlib/random-strided-tools","1rs":"@stdlib/random/strided/tools/ternary-factory","1rt":"@stdlib/random-strided-tools-ternary-factory","1ru":"@stdlib/random/strided/tools/unary-factory","1rv":"@stdlib/random-strided-tools-unary-factory","1ey":"@stdlib/random/strided/uniform","1ez":"@stdlib/random-strided-uniform","1f0":"@stdlib/random/strided/weibull","1f1":"@stdlib/random-strided-weibull","0s2":"@stdlib/regexp/basename-posix","0s3":"@stdlib/regexp-basename-posix","0s4":"@stdlib/regexp/basename-windows","0s5":"@stdlib/regexp-basename-windows","0s6":"@stdlib/regexp/basename","0s7":"@stdlib/regexp-basename","0s8":"@stdlib/regexp/color-hexadecimal","0s9":"@stdlib/regexp-color-hexadecimal","0sA":"@stdlib/regexp/decimal-number","0sB":"@stdlib/regexp-decimal-number","0sC":"@stdlib/regexp/dirname-posix","0sD":"@stdlib/regexp-dirname-posix","0sE":"@stdlib/regexp/dirname-windows","0sF":"@stdlib/regexp-dirname-windows","0sG":"@stdlib/regexp/dirname","0sH":"@stdlib/regexp-dirname","1f2":"@stdlib/regexp/duration-string","1f3":"@stdlib/regexp-duration-string","0sI":"@stdlib/regexp/eol","0sJ":"@stdlib/regexp-eol","0sK":"@stdlib/regexp/extended-length-path","0sL":"@stdlib/regexp-extended-length-path","0sM":"@stdlib/regexp/extname-posix","0sN":"@stdlib/regexp-extname-posix","0sO":"@stdlib/regexp/extname-windows","0sP":"@stdlib/regexp-extname-windows","0sQ":"@stdlib/regexp/extname","0sR":"@stdlib/regexp-extname","0sS":"@stdlib/regexp/filename-posix","0sT":"@stdlib/regexp-filename-posix","0sU":"@stdlib/regexp/filename-windows","0sV":"@stdlib/regexp-filename-windows","0sW":"@stdlib/regexp/filename","0sX":"@stdlib/regexp-filename","0sY":"@stdlib/regexp/function-name","0sZ":"@stdlib/regexp-function-name","0sa":"@stdlib/regexp/native-function","0sb":"@stdlib/regexp-native-function","0sd":"@stdlib/regexp","0se":"@stdlib/regexp/regexp","0sf":"@stdlib/regexp-regexp","1f4":"@stdlib/regexp/reviver","1f5":"@stdlib/regexp-reviver","1f6":"@stdlib/regexp/semver","1f7":"@stdlib/regexp-semver","1f8":"@stdlib/regexp/to-json","1f9":"@stdlib/regexp-to-json","0sg":"@stdlib/regexp/unc-path","0sh":"@stdlib/regexp-unc-path","0si":"@stdlib/regexp/utf16-surrogate-pair","0sj":"@stdlib/regexp-utf16-surrogate-pair","0sk":"@stdlib/regexp/utf16-unpaired-surrogate","0sl":"@stdlib/regexp-utf16-unpaired-surrogate","0sm":"@stdlib/regexp/whitespace","0sn":"@stdlib/regexp-whitespace","0so":"@stdlib/repl/code-blocks","0sp":"@stdlib/repl-code-blocks","0sq":"@stdlib/repl/help","0sr":"@stdlib/repl-help","0ss":"@stdlib/repl/info","0st":"@stdlib/repl-info","0sv":"@stdlib/repl","0sw":"@stdlib/repl/presentation","0sx":"@stdlib/repl-presentation","0sy":"@stdlib/repl/server","0sz":"@stdlib/repl-server","0t0":"@stdlib/repl/signature","0t1":"@stdlib/repl-signature","0t2":"@stdlib/repl/typed-signature","0t3":"@stdlib/repl-typed-signature","0t4":"@stdlib/simulate/iter/awgn","0t5":"@stdlib/simulate-iter-awgn","0t6":"@stdlib/simulate/iter/awln","0t7":"@stdlib/simulate-iter-awln","0t8":"@stdlib/simulate/iter/awun","0t9":"@stdlib/simulate-iter-awun","0tA":"@stdlib/simulate/iter/bartlett-hann-pulse","0tB":"@stdlib/simulate-iter-bartlett-hann-pulse","0tC":"@stdlib/simulate/iter/bartlett-pulse","0tD":"@stdlib/simulate-iter-bartlett-pulse","0tE":"@stdlib/simulate/iter/cosine-wave","0tF":"@stdlib/simulate-iter-cosine-wave","0tG":"@stdlib/simulate/iter/dirac-comb","0tH":"@stdlib/simulate-iter-dirac-comb","0tI":"@stdlib/simulate/iter/flat-top-pulse","0tJ":"@stdlib/simulate-iter-flat-top-pulse","0tK":"@stdlib/simulate/iter/hann-pulse","0tL":"@stdlib/simulate-iter-hann-pulse","0tM":"@stdlib/simulate/iter/lanczos-pulse","0tN":"@stdlib/simulate-iter-lanczos-pulse","0tO":"@stdlib/simulate/iter","0tP":"@stdlib/simulate-iter","0tQ":"@stdlib/simulate/iter/periodic-sinc","0tR":"@stdlib/simulate-iter-periodic-sinc","0tS":"@stdlib/simulate/iter/pulse","0tT":"@stdlib/simulate-iter-pulse","0tU":"@stdlib/simulate/iter/sawtooth-wave","0tV":"@stdlib/simulate-iter-sawtooth-wave","0tW":"@stdlib/simulate/iter/sine-wave","0tX":"@stdlib/simulate-iter-sine-wave","0tY":"@stdlib/simulate/iter/square-wave","0tZ":"@stdlib/simulate-iter-square-wave","0ta":"@stdlib/simulate/iter/triangle-wave","0tb":"@stdlib/simulate-iter-triangle-wave","0td":"@stdlib/simulate","1kc":"@stdlib/slice/base/args2multislice","1kd":"@stdlib/slice-base-args2multislice","1rw":"@stdlib/slice/base/int2slice","1rx":"@stdlib/slice-base-int2slice","1j8":"@stdlib/slice/base/length","1j9":"@stdlib/slice-base-length","1jW":"@stdlib/slice/base/nonreduced-dimensions","1jX":"@stdlib/slice-base-nonreduced-dimensions","1jA":"@stdlib/slice/base/normalize-multi-slice","1jB":"@stdlib/slice-base-normalize-multi-slice","1jC":"@stdlib/slice/base/normalize-slice","1jD":"@stdlib/slice-base-normalize-slice","1io":"@stdlib/slice/base","1ip":"@stdlib/slice-base","1jY":"@stdlib/slice/base/reduced-dimensions","1jZ":"@stdlib/slice-base-reduced-dimensions","1ja":"@stdlib/slice/base/sargs2multislice","1jb":"@stdlib/slice-base-sargs2multislice","1jE":"@stdlib/slice/base/seq2multislice","1jF":"@stdlib/slice-base-seq2multislice","1iq":"@stdlib/slice/base/seq2slice","1ir":"@stdlib/slice-base-seq2slice","1jG":"@stdlib/slice/base/shape","1jH":"@stdlib/slice-base-shape","1is":"@stdlib/slice/base/slice2seq","1it":"@stdlib/slice-base-slice2seq","1iu":"@stdlib/slice/base/str2multislice","1iv":"@stdlib/slice-base-str2multislice","1iw":"@stdlib/slice/base/str2slice","1ix":"@stdlib/slice-base-str2slice","1iy":"@stdlib/slice/ctor","1iz":"@stdlib/slice-ctor","1j0":"@stdlib/slice/multi","1j1":"@stdlib/slice-multi","1j3":"@stdlib/slice","1j4":"@stdlib/slice/seq2slice","1j5":"@stdlib/slice-seq2slice","0te":"@stdlib/stats/anova1","0tf":"@stdlib/stats-anova1","0tg":"@stdlib/stats/bartlett-test","0th":"@stdlib/stats-bartlett-test","0ti":"@stdlib/stats/base/cumax","0tj":"@stdlib/stats-base-cumax","0tk":"@stdlib/stats/base/cumaxabs","0tl":"@stdlib/stats-base-cumaxabs","0tm":"@stdlib/stats/base/cumin","0tn":"@stdlib/stats-base-cumin","0to":"@stdlib/stats/base/cuminabs","0tp":"@stdlib/stats-base-cuminabs","0tq":"@stdlib/stats/base/dcumax","0tr":"@stdlib/stats-base-dcumax","0ts":"@stdlib/stats/base/dcumaxabs","0tt":"@stdlib/stats-base-dcumaxabs","0tu":"@stdlib/stats/base/dcumin","0tv":"@stdlib/stats-base-dcumin","0tw":"@stdlib/stats/base/dcuminabs","0tx":"@stdlib/stats-base-dcuminabs","0ty":"@stdlib/stats/base/dists/arcsine/cdf","0tz":"@stdlib/stats-base-dists-arcsine-cdf","0u0":"@stdlib/stats/base/dists/arcsine/ctor","0u1":"@stdlib/stats-base-dists-arcsine-ctor","0u2":"@stdlib/stats/base/dists/arcsine/entropy","0u3":"@stdlib/stats-base-dists-arcsine-entropy","0u4":"@stdlib/stats/base/dists/arcsine/kurtosis","0u5":"@stdlib/stats-base-dists-arcsine-kurtosis","0u6":"@stdlib/stats/base/dists/arcsine/logcdf","0u7":"@stdlib/stats-base-dists-arcsine-logcdf","0u8":"@stdlib/stats/base/dists/arcsine/logpdf","0u9":"@stdlib/stats-base-dists-arcsine-logpdf","0uA":"@stdlib/stats/base/dists/arcsine/mean","0uB":"@stdlib/stats-base-dists-arcsine-mean","0uC":"@stdlib/stats/base/dists/arcsine/median","0uD":"@stdlib/stats-base-dists-arcsine-median","0uE":"@stdlib/stats/base/dists/arcsine/mode","0uF":"@stdlib/stats-base-dists-arcsine-mode","0uG":"@stdlib/stats/base/dists/arcsine","0uH":"@stdlib/stats-base-dists-arcsine","0uI":"@stdlib/stats/base/dists/arcsine/pdf","0uJ":"@stdlib/stats-base-dists-arcsine-pdf","0uK":"@stdlib/stats/base/dists/arcsine/quantile","0uL":"@stdlib/stats-base-dists-arcsine-quantile","0uM":"@stdlib/stats/base/dists/arcsine/skewness","0uN":"@stdlib/stats-base-dists-arcsine-skewness","0uO":"@stdlib/stats/base/dists/arcsine/stdev","0uP":"@stdlib/stats-base-dists-arcsine-stdev","0uQ":"@stdlib/stats/base/dists/arcsine/variance","0uR":"@stdlib/stats-base-dists-arcsine-variance","0uS":"@stdlib/stats/base/dists/bernoulli/cdf","0uT":"@stdlib/stats-base-dists-bernoulli-cdf","0uU":"@stdlib/stats/base/dists/bernoulli/ctor","0uV":"@stdlib/stats-base-dists-bernoulli-ctor","0uW":"@stdlib/stats/base/dists/bernoulli/entropy","0uX":"@stdlib/stats-base-dists-bernoulli-entropy","0uY":"@stdlib/stats/base/dists/bernoulli/kurtosis","0uZ":"@stdlib/stats-base-dists-bernoulli-kurtosis","0ua":"@stdlib/stats/base/dists/bernoulli/mean","0ub":"@stdlib/stats-base-dists-bernoulli-mean","0uc":"@stdlib/stats/base/dists/bernoulli/median","0ud":"@stdlib/stats-base-dists-bernoulli-median","0ue":"@stdlib/stats/base/dists/bernoulli/mgf","0uf":"@stdlib/stats-base-dists-bernoulli-mgf","0ug":"@stdlib/stats/base/dists/bernoulli/mode","0uh":"@stdlib/stats-base-dists-bernoulli-mode","0ui":"@stdlib/stats/base/dists/bernoulli","0uj":"@stdlib/stats-base-dists-bernoulli","0uk":"@stdlib/stats/base/dists/bernoulli/pmf","0ul":"@stdlib/stats-base-dists-bernoulli-pmf","0um":"@stdlib/stats/base/dists/bernoulli/quantile","0un":"@stdlib/stats-base-dists-bernoulli-quantile","0uo":"@stdlib/stats/base/dists/bernoulli/skewness","0up":"@stdlib/stats-base-dists-bernoulli-skewness","0uq":"@stdlib/stats/base/dists/bernoulli/stdev","0ur":"@stdlib/stats-base-dists-bernoulli-stdev","0us":"@stdlib/stats/base/dists/bernoulli/variance","0ut":"@stdlib/stats-base-dists-bernoulli-variance","0uu":"@stdlib/stats/base/dists/beta/cdf","0uv":"@stdlib/stats-base-dists-beta-cdf","0uw":"@stdlib/stats/base/dists/beta/ctor","0ux":"@stdlib/stats-base-dists-beta-ctor","0uy":"@stdlib/stats/base/dists/beta/entropy","0uz":"@stdlib/stats-base-dists-beta-entropy","0v0":"@stdlib/stats/base/dists/beta/kurtosis","0v1":"@stdlib/stats-base-dists-beta-kurtosis","0v2":"@stdlib/stats/base/dists/beta/logcdf","0v3":"@stdlib/stats-base-dists-beta-logcdf","0v4":"@stdlib/stats/base/dists/beta/logpdf","0v5":"@stdlib/stats-base-dists-beta-logpdf","0v6":"@stdlib/stats/base/dists/beta/mean","0v7":"@stdlib/stats-base-dists-beta-mean","0v8":"@stdlib/stats/base/dists/beta/median","0v9":"@stdlib/stats-base-dists-beta-median","0vA":"@stdlib/stats/base/dists/beta/mgf","0vB":"@stdlib/stats-base-dists-beta-mgf","0vC":"@stdlib/stats/base/dists/beta/mode","0vD":"@stdlib/stats-base-dists-beta-mode","0vE":"@stdlib/stats/base/dists/beta","0vF":"@stdlib/stats-base-dists-beta","0vG":"@stdlib/stats/base/dists/beta/pdf","0vH":"@stdlib/stats-base-dists-beta-pdf","0vI":"@stdlib/stats/base/dists/beta/quantile","0vJ":"@stdlib/stats-base-dists-beta-quantile","0vK":"@stdlib/stats/base/dists/beta/skewness","0vL":"@stdlib/stats-base-dists-beta-skewness","0vM":"@stdlib/stats/base/dists/beta/stdev","0vN":"@stdlib/stats-base-dists-beta-stdev","0vO":"@stdlib/stats/base/dists/beta/variance","0vP":"@stdlib/stats-base-dists-beta-variance","0vQ":"@stdlib/stats/base/dists/betaprime/cdf","0vR":"@stdlib/stats-base-dists-betaprime-cdf","0vS":"@stdlib/stats/base/dists/betaprime/ctor","0vT":"@stdlib/stats-base-dists-betaprime-ctor","0vU":"@stdlib/stats/base/dists/betaprime/kurtosis","0vV":"@stdlib/stats-base-dists-betaprime-kurtosis","0vW":"@stdlib/stats/base/dists/betaprime/logcdf","0vX":"@stdlib/stats-base-dists-betaprime-logcdf","0vY":"@stdlib/stats/base/dists/betaprime/logpdf","0vZ":"@stdlib/stats-base-dists-betaprime-logpdf","0va":"@stdlib/stats/base/dists/betaprime/mean","0vb":"@stdlib/stats-base-dists-betaprime-mean","0vc":"@stdlib/stats/base/dists/betaprime/mode","0vd":"@stdlib/stats-base-dists-betaprime-mode","0ve":"@stdlib/stats/base/dists/betaprime","0vf":"@stdlib/stats-base-dists-betaprime","0vg":"@stdlib/stats/base/dists/betaprime/pdf","0vh":"@stdlib/stats-base-dists-betaprime-pdf","0vi":"@stdlib/stats/base/dists/betaprime/quantile","0vj":"@stdlib/stats-base-dists-betaprime-quantile","0vk":"@stdlib/stats/base/dists/betaprime/skewness","0vl":"@stdlib/stats-base-dists-betaprime-skewness","0vm":"@stdlib/stats/base/dists/betaprime/stdev","0vn":"@stdlib/stats-base-dists-betaprime-stdev","0vo":"@stdlib/stats/base/dists/betaprime/variance","0vp":"@stdlib/stats-base-dists-betaprime-variance","0vq":"@stdlib/stats/base/dists/binomial/cdf","0vr":"@stdlib/stats-base-dists-binomial-cdf","0vs":"@stdlib/stats/base/dists/binomial/ctor","0vt":"@stdlib/stats-base-dists-binomial-ctor","0vu":"@stdlib/stats/base/dists/binomial/entropy","0vv":"@stdlib/stats-base-dists-binomial-entropy","0vw":"@stdlib/stats/base/dists/binomial/kurtosis","0vx":"@stdlib/stats-base-dists-binomial-kurtosis","0vy":"@stdlib/stats/base/dists/binomial/logpmf","0vz":"@stdlib/stats-base-dists-binomial-logpmf","0w0":"@stdlib/stats/base/dists/binomial/mean","0w1":"@stdlib/stats-base-dists-binomial-mean","0w2":"@stdlib/stats/base/dists/binomial/median","0w3":"@stdlib/stats-base-dists-binomial-median","0w4":"@stdlib/stats/base/dists/binomial/mgf","0w5":"@stdlib/stats-base-dists-binomial-mgf","0w6":"@stdlib/stats/base/dists/binomial/mode","0w7":"@stdlib/stats-base-dists-binomial-mode","0w8":"@stdlib/stats/base/dists/binomial","0w9":"@stdlib/stats-base-dists-binomial","0wA":"@stdlib/stats/base/dists/binomial/pmf","0wB":"@stdlib/stats-base-dists-binomial-pmf","0wC":"@stdlib/stats/base/dists/binomial/quantile","0wD":"@stdlib/stats-base-dists-binomial-quantile","0wE":"@stdlib/stats/base/dists/binomial/skewness","0wF":"@stdlib/stats-base-dists-binomial-skewness","0wG":"@stdlib/stats/base/dists/binomial/stdev","0wH":"@stdlib/stats-base-dists-binomial-stdev","0wI":"@stdlib/stats/base/dists/binomial/variance","0wJ":"@stdlib/stats-base-dists-binomial-variance","0wK":"@stdlib/stats/base/dists/cauchy/cdf","0wL":"@stdlib/stats-base-dists-cauchy-cdf","0wM":"@stdlib/stats/base/dists/cauchy/ctor","0wN":"@stdlib/stats-base-dists-cauchy-ctor","0wO":"@stdlib/stats/base/dists/cauchy/entropy","0wP":"@stdlib/stats-base-dists-cauchy-entropy","0wQ":"@stdlib/stats/base/dists/cauchy/logcdf","0wR":"@stdlib/stats-base-dists-cauchy-logcdf","0wS":"@stdlib/stats/base/dists/cauchy/logpdf","0wT":"@stdlib/stats-base-dists-cauchy-logpdf","0wU":"@stdlib/stats/base/dists/cauchy/median","0wV":"@stdlib/stats-base-dists-cauchy-median","0wW":"@stdlib/stats/base/dists/cauchy/mode","0wX":"@stdlib/stats-base-dists-cauchy-mode","0wY":"@stdlib/stats/base/dists/cauchy","0wZ":"@stdlib/stats-base-dists-cauchy","0wa":"@stdlib/stats/base/dists/cauchy/pdf","0wb":"@stdlib/stats-base-dists-cauchy-pdf","0wc":"@stdlib/stats/base/dists/cauchy/quantile","0wd":"@stdlib/stats-base-dists-cauchy-quantile","0we":"@stdlib/stats/base/dists/chi/cdf","0wf":"@stdlib/stats-base-dists-chi-cdf","0wg":"@stdlib/stats/base/dists/chi/ctor","0wh":"@stdlib/stats-base-dists-chi-ctor","0wi":"@stdlib/stats/base/dists/chi/entropy","0wj":"@stdlib/stats-base-dists-chi-entropy","0wk":"@stdlib/stats/base/dists/chi/kurtosis","0wl":"@stdlib/stats-base-dists-chi-kurtosis","0wm":"@stdlib/stats/base/dists/chi/logpdf","0wn":"@stdlib/stats-base-dists-chi-logpdf","0wo":"@stdlib/stats/base/dists/chi/mean","0wp":"@stdlib/stats-base-dists-chi-mean","0wq":"@stdlib/stats/base/dists/chi/mode","0wr":"@stdlib/stats-base-dists-chi-mode","0ws":"@stdlib/stats/base/dists/chi","0wt":"@stdlib/stats-base-dists-chi","0wu":"@stdlib/stats/base/dists/chi/pdf","0wv":"@stdlib/stats-base-dists-chi-pdf","0ww":"@stdlib/stats/base/dists/chi/quantile","0wx":"@stdlib/stats-base-dists-chi-quantile","0wy":"@stdlib/stats/base/dists/chi/skewness","0wz":"@stdlib/stats-base-dists-chi-skewness","0x0":"@stdlib/stats/base/dists/chi/stdev","0x1":"@stdlib/stats-base-dists-chi-stdev","0x2":"@stdlib/stats/base/dists/chi/variance","0x3":"@stdlib/stats-base-dists-chi-variance","0x4":"@stdlib/stats/base/dists/chisquare/cdf","0x5":"@stdlib/stats-base-dists-chisquare-cdf","0x6":"@stdlib/stats/base/dists/chisquare/ctor","0x7":"@stdlib/stats-base-dists-chisquare-ctor","0x8":"@stdlib/stats/base/dists/chisquare/entropy","0x9":"@stdlib/stats-base-dists-chisquare-entropy","0xA":"@stdlib/stats/base/dists/chisquare/kurtosis","0xB":"@stdlib/stats-base-dists-chisquare-kurtosis","0xC":"@stdlib/stats/base/dists/chisquare/logpdf","0xD":"@stdlib/stats-base-dists-chisquare-logpdf","0xE":"@stdlib/stats/base/dists/chisquare/mean","0xF":"@stdlib/stats-base-dists-chisquare-mean","0xG":"@stdlib/stats/base/dists/chisquare/median","0xH":"@stdlib/stats-base-dists-chisquare-median","0xI":"@stdlib/stats/base/dists/chisquare/mgf","0xJ":"@stdlib/stats-base-dists-chisquare-mgf","0xK":"@stdlib/stats/base/dists/chisquare/mode","0xL":"@stdlib/stats-base-dists-chisquare-mode","0xM":"@stdlib/stats/base/dists/chisquare","0xN":"@stdlib/stats-base-dists-chisquare","0xO":"@stdlib/stats/base/dists/chisquare/pdf","0xP":"@stdlib/stats-base-dists-chisquare-pdf","0xQ":"@stdlib/stats/base/dists/chisquare/quantile","0xR":"@stdlib/stats-base-dists-chisquare-quantile","0xS":"@stdlib/stats/base/dists/chisquare/skewness","0xT":"@stdlib/stats-base-dists-chisquare-skewness","0xU":"@stdlib/stats/base/dists/chisquare/stdev","0xV":"@stdlib/stats-base-dists-chisquare-stdev","0xW":"@stdlib/stats/base/dists/chisquare/variance","0xX":"@stdlib/stats-base-dists-chisquare-variance","0xY":"@stdlib/stats/base/dists/cosine/cdf","0xZ":"@stdlib/stats-base-dists-cosine-cdf","0xa":"@stdlib/stats/base/dists/cosine/ctor","0xb":"@stdlib/stats-base-dists-cosine-ctor","0xc":"@stdlib/stats/base/dists/cosine/kurtosis","0xd":"@stdlib/stats-base-dists-cosine-kurtosis","0xe":"@stdlib/stats/base/dists/cosine/logcdf","0xf":"@stdlib/stats-base-dists-cosine-logcdf","0xg":"@stdlib/stats/base/dists/cosine/logpdf","0xh":"@stdlib/stats-base-dists-cosine-logpdf","0xi":"@stdlib/stats/base/dists/cosine/mean","0xj":"@stdlib/stats-base-dists-cosine-mean","0xk":"@stdlib/stats/base/dists/cosine/median","0xl":"@stdlib/stats-base-dists-cosine-median","0xm":"@stdlib/stats/base/dists/cosine/mgf","0xn":"@stdlib/stats-base-dists-cosine-mgf","0xo":"@stdlib/stats/base/dists/cosine/mode","0xp":"@stdlib/stats-base-dists-cosine-mode","0xq":"@stdlib/stats/base/dists/cosine","0xr":"@stdlib/stats-base-dists-cosine","0xs":"@stdlib/stats/base/dists/cosine/pdf","0xt":"@stdlib/stats-base-dists-cosine-pdf","0xu":"@stdlib/stats/base/dists/cosine/quantile","0xv":"@stdlib/stats-base-dists-cosine-quantile","0xw":"@stdlib/stats/base/dists/cosine/skewness","0xx":"@stdlib/stats-base-dists-cosine-skewness","0xy":"@stdlib/stats/base/dists/cosine/stdev","0xz":"@stdlib/stats-base-dists-cosine-stdev","0y0":"@stdlib/stats/base/dists/cosine/variance","0y1":"@stdlib/stats-base-dists-cosine-variance","0y2":"@stdlib/stats/base/dists/degenerate/cdf","0y3":"@stdlib/stats-base-dists-degenerate-cdf","0y4":"@stdlib/stats/base/dists/degenerate/ctor","0y5":"@stdlib/stats-base-dists-degenerate-ctor","0y6":"@stdlib/stats/base/dists/degenerate/entropy","0y7":"@stdlib/stats-base-dists-degenerate-entropy","0y8":"@stdlib/stats/base/dists/degenerate/logcdf","0y9":"@stdlib/stats-base-dists-degenerate-logcdf","0yA":"@stdlib/stats/base/dists/degenerate/logpdf","0yB":"@stdlib/stats-base-dists-degenerate-logpdf","0yC":"@stdlib/stats/base/dists/degenerate/logpmf","0yD":"@stdlib/stats-base-dists-degenerate-logpmf","0yE":"@stdlib/stats/base/dists/degenerate/mean","0yF":"@stdlib/stats-base-dists-degenerate-mean","0yG":"@stdlib/stats/base/dists/degenerate/median","0yH":"@stdlib/stats-base-dists-degenerate-median","0yI":"@stdlib/stats/base/dists/degenerate/mgf","0yJ":"@stdlib/stats-base-dists-degenerate-mgf","0yK":"@stdlib/stats/base/dists/degenerate/mode","0yL":"@stdlib/stats-base-dists-degenerate-mode","0yM":"@stdlib/stats/base/dists/degenerate","0yN":"@stdlib/stats-base-dists-degenerate","0yO":"@stdlib/stats/base/dists/degenerate/pdf","0yP":"@stdlib/stats-base-dists-degenerate-pdf","0yQ":"@stdlib/stats/base/dists/degenerate/pmf","0yR":"@stdlib/stats-base-dists-degenerate-pmf","0yS":"@stdlib/stats/base/dists/degenerate/quantile","0yT":"@stdlib/stats-base-dists-degenerate-quantile","0yU":"@stdlib/stats/base/dists/degenerate/stdev","0yV":"@stdlib/stats-base-dists-degenerate-stdev","0yW":"@stdlib/stats/base/dists/degenerate/variance","0yX":"@stdlib/stats-base-dists-degenerate-variance","0yY":"@stdlib/stats/base/dists/discrete-uniform/cdf","0yZ":"@stdlib/stats-base-dists-discrete-uniform-cdf","0ya":"@stdlib/stats/base/dists/discrete-uniform/ctor","0yb":"@stdlib/stats-base-dists-discrete-uniform-ctor","0yc":"@stdlib/stats/base/dists/discrete-uniform/entropy","0yd":"@stdlib/stats-base-dists-discrete-uniform-entropy","0ye":"@stdlib/stats/base/dists/discrete-uniform/kurtosis","0yf":"@stdlib/stats-base-dists-discrete-uniform-kurtosis","0yg":"@stdlib/stats/base/dists/discrete-uniform/logcdf","0yh":"@stdlib/stats-base-dists-discrete-uniform-logcdf","0yi":"@stdlib/stats/base/dists/discrete-uniform/logpmf","0yj":"@stdlib/stats-base-dists-discrete-uniform-logpmf","0yk":"@stdlib/stats/base/dists/discrete-uniform/mean","0yl":"@stdlib/stats-base-dists-discrete-uniform-mean","0ym":"@stdlib/stats/base/dists/discrete-uniform/median","0yn":"@stdlib/stats-base-dists-discrete-uniform-median","0yo":"@stdlib/stats/base/dists/discrete-uniform/mgf","0yp":"@stdlib/stats-base-dists-discrete-uniform-mgf","0yq":"@stdlib/stats/base/dists/discrete-uniform","0yr":"@stdlib/stats-base-dists-discrete-uniform","0ys":"@stdlib/stats/base/dists/discrete-uniform/pmf","0yt":"@stdlib/stats-base-dists-discrete-uniform-pmf","0yu":"@stdlib/stats/base/dists/discrete-uniform/quantile","0yv":"@stdlib/stats-base-dists-discrete-uniform-quantile","0yw":"@stdlib/stats/base/dists/discrete-uniform/skewness","0yx":"@stdlib/stats-base-dists-discrete-uniform-skewness","0yy":"@stdlib/stats/base/dists/discrete-uniform/stdev","0yz":"@stdlib/stats-base-dists-discrete-uniform-stdev","0z0":"@stdlib/stats/base/dists/discrete-uniform/variance","0z1":"@stdlib/stats-base-dists-discrete-uniform-variance","0z2":"@stdlib/stats/base/dists/erlang/cdf","0z3":"@stdlib/stats-base-dists-erlang-cdf","0z4":"@stdlib/stats/base/dists/erlang/ctor","0z5":"@stdlib/stats-base-dists-erlang-ctor","0z6":"@stdlib/stats/base/dists/erlang/entropy","0z7":"@stdlib/stats-base-dists-erlang-entropy","0z8":"@stdlib/stats/base/dists/erlang/kurtosis","0z9":"@stdlib/stats-base-dists-erlang-kurtosis","0zA":"@stdlib/stats/base/dists/erlang/logpdf","0zB":"@stdlib/stats-base-dists-erlang-logpdf","0zC":"@stdlib/stats/base/dists/erlang/mean","0zD":"@stdlib/stats-base-dists-erlang-mean","0zE":"@stdlib/stats/base/dists/erlang/mgf","0zF":"@stdlib/stats-base-dists-erlang-mgf","0zG":"@stdlib/stats/base/dists/erlang/mode","0zH":"@stdlib/stats-base-dists-erlang-mode","0zI":"@stdlib/stats/base/dists/erlang","0zJ":"@stdlib/stats-base-dists-erlang","0zK":"@stdlib/stats/base/dists/erlang/pdf","0zL":"@stdlib/stats-base-dists-erlang-pdf","0zM":"@stdlib/stats/base/dists/erlang/quantile","0zN":"@stdlib/stats-base-dists-erlang-quantile","0zO":"@stdlib/stats/base/dists/erlang/skewness","0zP":"@stdlib/stats-base-dists-erlang-skewness","0zQ":"@stdlib/stats/base/dists/erlang/stdev","0zR":"@stdlib/stats-base-dists-erlang-stdev","0zS":"@stdlib/stats/base/dists/erlang/variance","0zT":"@stdlib/stats-base-dists-erlang-variance","0zU":"@stdlib/stats/base/dists/exponential/cdf","0zV":"@stdlib/stats-base-dists-exponential-cdf","0zW":"@stdlib/stats/base/dists/exponential/ctor","0zX":"@stdlib/stats-base-dists-exponential-ctor","0zY":"@stdlib/stats/base/dists/exponential/entropy","0zZ":"@stdlib/stats-base-dists-exponential-entropy","0za":"@stdlib/stats/base/dists/exponential/kurtosis","0zb":"@stdlib/stats-base-dists-exponential-kurtosis","0zc":"@stdlib/stats/base/dists/exponential/logcdf","0zd":"@stdlib/stats-base-dists-exponential-logcdf","0ze":"@stdlib/stats/base/dists/exponential/logpdf","0zf":"@stdlib/stats-base-dists-exponential-logpdf","0zg":"@stdlib/stats/base/dists/exponential/mean","0zh":"@stdlib/stats-base-dists-exponential-mean","0zi":"@stdlib/stats/base/dists/exponential/median","0zj":"@stdlib/stats-base-dists-exponential-median","0zk":"@stdlib/stats/base/dists/exponential/mgf","0zl":"@stdlib/stats-base-dists-exponential-mgf","0zm":"@stdlib/stats/base/dists/exponential/mode","0zn":"@stdlib/stats-base-dists-exponential-mode","0zo":"@stdlib/stats/base/dists/exponential","0zp":"@stdlib/stats-base-dists-exponential","0zq":"@stdlib/stats/base/dists/exponential/pdf","0zr":"@stdlib/stats-base-dists-exponential-pdf","0zs":"@stdlib/stats/base/dists/exponential/quantile","0zt":"@stdlib/stats-base-dists-exponential-quantile","0zu":"@stdlib/stats/base/dists/exponential/skewness","0zv":"@stdlib/stats-base-dists-exponential-skewness","0zw":"@stdlib/stats/base/dists/exponential/stdev","0zx":"@stdlib/stats-base-dists-exponential-stdev","0zy":"@stdlib/stats/base/dists/exponential/variance","0zz":"@stdlib/stats-base-dists-exponential-variance","10A":"@stdlib/stats/base/dists/f/mode","10B":"@stdlib/stats-base-dists-f-mode","10C":"@stdlib/stats/base/dists/f","10D":"@stdlib/stats-base-dists-f","10E":"@stdlib/stats/base/dists/f/pdf","10F":"@stdlib/stats-base-dists-f-pdf","10G":"@stdlib/stats/base/dists/f/quantile","10H":"@stdlib/stats-base-dists-f-quantile","10I":"@stdlib/stats/base/dists/f/skewness","10J":"@stdlib/stats-base-dists-f-skewness","10K":"@stdlib/stats/base/dists/f/stdev","10L":"@stdlib/stats-base-dists-f-stdev","10M":"@stdlib/stats/base/dists/f/variance","10N":"@stdlib/stats-base-dists-f-variance","10O":"@stdlib/stats/base/dists/frechet/cdf","10P":"@stdlib/stats-base-dists-frechet-cdf","10Q":"@stdlib/stats/base/dists/frechet/ctor","10R":"@stdlib/stats-base-dists-frechet-ctor","10S":"@stdlib/stats/base/dists/frechet/entropy","10T":"@stdlib/stats-base-dists-frechet-entropy","10U":"@stdlib/stats/base/dists/frechet/kurtosis","10V":"@stdlib/stats-base-dists-frechet-kurtosis","10W":"@stdlib/stats/base/dists/frechet/logcdf","10X":"@stdlib/stats-base-dists-frechet-logcdf","10Y":"@stdlib/stats/base/dists/frechet/logpdf","10Z":"@stdlib/stats-base-dists-frechet-logpdf","10a":"@stdlib/stats/base/dists/frechet/mean","10b":"@stdlib/stats-base-dists-frechet-mean","10c":"@stdlib/stats/base/dists/frechet/median","10d":"@stdlib/stats-base-dists-frechet-median","10e":"@stdlib/stats/base/dists/frechet/mode","10f":"@stdlib/stats-base-dists-frechet-mode","10g":"@stdlib/stats/base/dists/frechet","10h":"@stdlib/stats-base-dists-frechet","10i":"@stdlib/stats/base/dists/frechet/pdf","10j":"@stdlib/stats-base-dists-frechet-pdf","10k":"@stdlib/stats/base/dists/frechet/quantile","10l":"@stdlib/stats-base-dists-frechet-quantile","10m":"@stdlib/stats/base/dists/frechet/skewness","10n":"@stdlib/stats-base-dists-frechet-skewness","10o":"@stdlib/stats/base/dists/frechet/stdev","10p":"@stdlib/stats-base-dists-frechet-stdev","10q":"@stdlib/stats/base/dists/frechet/variance","10r":"@stdlib/stats-base-dists-frechet-variance","10s":"@stdlib/stats/base/dists/gamma/cdf","10t":"@stdlib/stats-base-dists-gamma-cdf","10u":"@stdlib/stats/base/dists/gamma/ctor","10v":"@stdlib/stats-base-dists-gamma-ctor","10w":"@stdlib/stats/base/dists/gamma/entropy","10x":"@stdlib/stats-base-dists-gamma-entropy","10y":"@stdlib/stats/base/dists/gamma/kurtosis","10z":"@stdlib/stats-base-dists-gamma-kurtosis","11A":"@stdlib/stats/base/dists/gamma","11B":"@stdlib/stats-base-dists-gamma","11C":"@stdlib/stats/base/dists/gamma/pdf","11D":"@stdlib/stats-base-dists-gamma-pdf","11E":"@stdlib/stats/base/dists/gamma/quantile","11F":"@stdlib/stats-base-dists-gamma-quantile","11G":"@stdlib/stats/base/dists/gamma/skewness","11H":"@stdlib/stats-base-dists-gamma-skewness","11I":"@stdlib/stats/base/dists/gamma/stdev","11J":"@stdlib/stats-base-dists-gamma-stdev","11K":"@stdlib/stats/base/dists/gamma/variance","11L":"@stdlib/stats-base-dists-gamma-variance","11M":"@stdlib/stats/base/dists/geometric/cdf","11N":"@stdlib/stats-base-dists-geometric-cdf","11O":"@stdlib/stats/base/dists/geometric/ctor","11P":"@stdlib/stats-base-dists-geometric-ctor","11Q":"@stdlib/stats/base/dists/geometric/entropy","11R":"@stdlib/stats-base-dists-geometric-entropy","11S":"@stdlib/stats/base/dists/geometric/kurtosis","11T":"@stdlib/stats-base-dists-geometric-kurtosis","11U":"@stdlib/stats/base/dists/geometric/logcdf","11V":"@stdlib/stats-base-dists-geometric-logcdf","11W":"@stdlib/stats/base/dists/geometric/logpmf","11X":"@stdlib/stats-base-dists-geometric-logpmf","11Y":"@stdlib/stats/base/dists/geometric/mean","11Z":"@stdlib/stats-base-dists-geometric-mean","11a":"@stdlib/stats/base/dists/geometric/median","11b":"@stdlib/stats-base-dists-geometric-median","11c":"@stdlib/stats/base/dists/geometric/mgf","11d":"@stdlib/stats-base-dists-geometric-mgf","11e":"@stdlib/stats/base/dists/geometric/mode","11f":"@stdlib/stats-base-dists-geometric-mode","11g":"@stdlib/stats/base/dists/geometric","11h":"@stdlib/stats-base-dists-geometric","11i":"@stdlib/stats/base/dists/geometric/pmf","11j":"@stdlib/stats-base-dists-geometric-pmf","11k":"@stdlib/stats/base/dists/geometric/quantile","11l":"@stdlib/stats-base-dists-geometric-quantile","11m":"@stdlib/stats/base/dists/geometric/skewness","11n":"@stdlib/stats-base-dists-geometric-skewness","11o":"@stdlib/stats/base/dists/geometric/stdev","11p":"@stdlib/stats-base-dists-geometric-stdev","11q":"@stdlib/stats/base/dists/geometric/variance","11r":"@stdlib/stats-base-dists-geometric-variance","11s":"@stdlib/stats/base/dists/gumbel/cdf","11t":"@stdlib/stats-base-dists-gumbel-cdf","11u":"@stdlib/stats/base/dists/gumbel/ctor","11v":"@stdlib/stats-base-dists-gumbel-ctor","11w":"@stdlib/stats/base/dists/gumbel/entropy","11x":"@stdlib/stats-base-dists-gumbel-entropy","11y":"@stdlib/stats/base/dists/gumbel/kurtosis","11z":"@stdlib/stats-base-dists-gumbel-kurtosis","12A":"@stdlib/stats/base/dists/gumbel/mode","12B":"@stdlib/stats-base-dists-gumbel-mode","12C":"@stdlib/stats/base/dists/gumbel","12D":"@stdlib/stats-base-dists-gumbel","12E":"@stdlib/stats/base/dists/gumbel/pdf","12F":"@stdlib/stats-base-dists-gumbel-pdf","12G":"@stdlib/stats/base/dists/gumbel/quantile","12H":"@stdlib/stats-base-dists-gumbel-quantile","12I":"@stdlib/stats/base/dists/gumbel/skewness","12J":"@stdlib/stats-base-dists-gumbel-skewness","12K":"@stdlib/stats/base/dists/gumbel/stdev","12L":"@stdlib/stats-base-dists-gumbel-stdev","12M":"@stdlib/stats/base/dists/gumbel/variance","12N":"@stdlib/stats-base-dists-gumbel-variance","12O":"@stdlib/stats/base/dists/hypergeometric/cdf","12P":"@stdlib/stats-base-dists-hypergeometric-cdf","12Q":"@stdlib/stats/base/dists/hypergeometric/ctor","12R":"@stdlib/stats-base-dists-hypergeometric-ctor","12S":"@stdlib/stats/base/dists/hypergeometric/kurtosis","12T":"@stdlib/stats-base-dists-hypergeometric-kurtosis","12U":"@stdlib/stats/base/dists/hypergeometric/logpmf","12V":"@stdlib/stats-base-dists-hypergeometric-logpmf","12W":"@stdlib/stats/base/dists/hypergeometric/mean","12X":"@stdlib/stats-base-dists-hypergeometric-mean","12Y":"@stdlib/stats/base/dists/hypergeometric/mode","12Z":"@stdlib/stats-base-dists-hypergeometric-mode","12a":"@stdlib/stats/base/dists/hypergeometric","12b":"@stdlib/stats-base-dists-hypergeometric","12c":"@stdlib/stats/base/dists/hypergeometric/pmf","12d":"@stdlib/stats-base-dists-hypergeometric-pmf","12e":"@stdlib/stats/base/dists/hypergeometric/quantile","12f":"@stdlib/stats-base-dists-hypergeometric-quantile","12g":"@stdlib/stats/base/dists/hypergeometric/skewness","12h":"@stdlib/stats-base-dists-hypergeometric-skewness","12i":"@stdlib/stats/base/dists/hypergeometric/stdev","12j":"@stdlib/stats-base-dists-hypergeometric-stdev","12k":"@stdlib/stats/base/dists/hypergeometric/variance","12l":"@stdlib/stats-base-dists-hypergeometric-variance","12m":"@stdlib/stats/base/dists/invgamma/cdf","12n":"@stdlib/stats-base-dists-invgamma-cdf","12o":"@stdlib/stats/base/dists/invgamma/ctor","12p":"@stdlib/stats-base-dists-invgamma-ctor","12q":"@stdlib/stats/base/dists/invgamma/entropy","12r":"@stdlib/stats-base-dists-invgamma-entropy","12s":"@stdlib/stats/base/dists/invgamma/kurtosis","12t":"@stdlib/stats-base-dists-invgamma-kurtosis","12u":"@stdlib/stats/base/dists/invgamma/logpdf","12v":"@stdlib/stats-base-dists-invgamma-logpdf","12w":"@stdlib/stats/base/dists/invgamma/mean","12x":"@stdlib/stats-base-dists-invgamma-mean","12y":"@stdlib/stats/base/dists/invgamma/mode","12z":"@stdlib/stats-base-dists-invgamma-mode","13A":"@stdlib/stats/base/dists/invgamma/variance","13B":"@stdlib/stats-base-dists-invgamma-variance","13C":"@stdlib/stats/base/dists/kumaraswamy/cdf","13D":"@stdlib/stats-base-dists-kumaraswamy-cdf","13E":"@stdlib/stats/base/dists/kumaraswamy/ctor","13F":"@stdlib/stats-base-dists-kumaraswamy-ctor","13G":"@stdlib/stats/base/dists/kumaraswamy/kurtosis","13H":"@stdlib/stats-base-dists-kumaraswamy-kurtosis","13I":"@stdlib/stats/base/dists/kumaraswamy/logcdf","13J":"@stdlib/stats-base-dists-kumaraswamy-logcdf","13K":"@stdlib/stats/base/dists/kumaraswamy/logpdf","13L":"@stdlib/stats-base-dists-kumaraswamy-logpdf","13M":"@stdlib/stats/base/dists/kumaraswamy/mean","13N":"@stdlib/stats-base-dists-kumaraswamy-mean","13O":"@stdlib/stats/base/dists/kumaraswamy/median","13P":"@stdlib/stats-base-dists-kumaraswamy-median","13Q":"@stdlib/stats/base/dists/kumaraswamy/mode","13R":"@stdlib/stats-base-dists-kumaraswamy-mode","13S":"@stdlib/stats/base/dists/kumaraswamy","13T":"@stdlib/stats-base-dists-kumaraswamy","13U":"@stdlib/stats/base/dists/kumaraswamy/pdf","13V":"@stdlib/stats-base-dists-kumaraswamy-pdf","13W":"@stdlib/stats/base/dists/kumaraswamy/quantile","13X":"@stdlib/stats-base-dists-kumaraswamy-quantile","13Y":"@stdlib/stats/base/dists/kumaraswamy/skewness","13Z":"@stdlib/stats-base-dists-kumaraswamy-skewness","13a":"@stdlib/stats/base/dists/kumaraswamy/stdev","13b":"@stdlib/stats-base-dists-kumaraswamy-stdev","13c":"@stdlib/stats/base/dists/kumaraswamy/variance","13d":"@stdlib/stats-base-dists-kumaraswamy-variance","13e":"@stdlib/stats/base/dists/laplace/cdf","13f":"@stdlib/stats-base-dists-laplace-cdf","13g":"@stdlib/stats/base/dists/laplace/ctor","13h":"@stdlib/stats-base-dists-laplace-ctor","13i":"@stdlib/stats/base/dists/laplace/entropy","13j":"@stdlib/stats-base-dists-laplace-entropy","13k":"@stdlib/stats/base/dists/laplace/kurtosis","13l":"@stdlib/stats-base-dists-laplace-kurtosis","13m":"@stdlib/stats/base/dists/laplace/logcdf","13n":"@stdlib/stats-base-dists-laplace-logcdf","13o":"@stdlib/stats/base/dists/laplace/logpdf","13p":"@stdlib/stats-base-dists-laplace-logpdf","13q":"@stdlib/stats/base/dists/laplace/mean","13r":"@stdlib/stats-base-dists-laplace-mean","13s":"@stdlib/stats/base/dists/laplace/median","13t":"@stdlib/stats-base-dists-laplace-median","13u":"@stdlib/stats/base/dists/laplace/mgf","13v":"@stdlib/stats-base-dists-laplace-mgf","13w":"@stdlib/stats/base/dists/laplace/mode","13x":"@stdlib/stats-base-dists-laplace-mode","13y":"@stdlib/stats/base/dists/laplace","13z":"@stdlib/stats-base-dists-laplace","14A":"@stdlib/stats/base/dists/levy/cdf","14B":"@stdlib/stats-base-dists-levy-cdf","14C":"@stdlib/stats/base/dists/levy/ctor","14D":"@stdlib/stats-base-dists-levy-ctor","14E":"@stdlib/stats/base/dists/levy/entropy","14F":"@stdlib/stats-base-dists-levy-entropy","14G":"@stdlib/stats/base/dists/levy/logcdf","14H":"@stdlib/stats-base-dists-levy-logcdf","14I":"@stdlib/stats/base/dists/levy/logpdf","14J":"@stdlib/stats-base-dists-levy-logpdf","14K":"@stdlib/stats/base/dists/levy/mean","14L":"@stdlib/stats-base-dists-levy-mean","14M":"@stdlib/stats/base/dists/levy/median","14N":"@stdlib/stats-base-dists-levy-median","14O":"@stdlib/stats/base/dists/levy/mode","14P":"@stdlib/stats-base-dists-levy-mode","14Q":"@stdlib/stats/base/dists/levy","14R":"@stdlib/stats-base-dists-levy","14S":"@stdlib/stats/base/dists/levy/pdf","14T":"@stdlib/stats-base-dists-levy-pdf","14U":"@stdlib/stats/base/dists/levy/quantile","14V":"@stdlib/stats-base-dists-levy-quantile","14W":"@stdlib/stats/base/dists/levy/stdev","14X":"@stdlib/stats-base-dists-levy-stdev","14Y":"@stdlib/stats/base/dists/levy/variance","14Z":"@stdlib/stats-base-dists-levy-variance","14a":"@stdlib/stats/base/dists/logistic/cdf","14b":"@stdlib/stats-base-dists-logistic-cdf","14c":"@stdlib/stats/base/dists/logistic/ctor","14d":"@stdlib/stats-base-dists-logistic-ctor","14e":"@stdlib/stats/base/dists/logistic/entropy","14f":"@stdlib/stats-base-dists-logistic-entropy","14g":"@stdlib/stats/base/dists/logistic/kurtosis","14h":"@stdlib/stats-base-dists-logistic-kurtosis","14i":"@stdlib/stats/base/dists/logistic/logcdf","14j":"@stdlib/stats-base-dists-logistic-logcdf","14k":"@stdlib/stats/base/dists/logistic/logpdf","14l":"@stdlib/stats-base-dists-logistic-logpdf","14m":"@stdlib/stats/base/dists/logistic/mean","14n":"@stdlib/stats-base-dists-logistic-mean","14o":"@stdlib/stats/base/dists/logistic/median","14p":"@stdlib/stats-base-dists-logistic-median","14q":"@stdlib/stats/base/dists/logistic/mgf","14r":"@stdlib/stats-base-dists-logistic-mgf","14s":"@stdlib/stats/base/dists/logistic/mode","14t":"@stdlib/stats-base-dists-logistic-mode","14u":"@stdlib/stats/base/dists/logistic","14v":"@stdlib/stats-base-dists-logistic","14w":"@stdlib/stats/base/dists/logistic/pdf","14x":"@stdlib/stats-base-dists-logistic-pdf","14y":"@stdlib/stats/base/dists/logistic/quantile","14z":"@stdlib/stats-base-dists-logistic-quantile","15A":"@stdlib/stats/base/dists/lognormal/entropy","15B":"@stdlib/stats-base-dists-lognormal-entropy","15C":"@stdlib/stats/base/dists/lognormal/kurtosis","15D":"@stdlib/stats-base-dists-lognormal-kurtosis","1fA":"@stdlib/stats/base/dists/lognormal/logcdf","1fB":"@stdlib/stats-base-dists-lognormal-logcdf","15E":"@stdlib/stats/base/dists/lognormal/logpdf","15F":"@stdlib/stats-base-dists-lognormal-logpdf","15G":"@stdlib/stats/base/dists/lognormal/mean","15H":"@stdlib/stats-base-dists-lognormal-mean","15I":"@stdlib/stats/base/dists/lognormal/median","15J":"@stdlib/stats-base-dists-lognormal-median","15K":"@stdlib/stats/base/dists/lognormal/mode","15L":"@stdlib/stats-base-dists-lognormal-mode","15M":"@stdlib/stats/base/dists/lognormal","15N":"@stdlib/stats-base-dists-lognormal","15O":"@stdlib/stats/base/dists/lognormal/pdf","15P":"@stdlib/stats-base-dists-lognormal-pdf","15Q":"@stdlib/stats/base/dists/lognormal/quantile","15R":"@stdlib/stats-base-dists-lognormal-quantile","15S":"@stdlib/stats/base/dists/lognormal/skewness","15T":"@stdlib/stats-base-dists-lognormal-skewness","15U":"@stdlib/stats/base/dists/lognormal/stdev","15V":"@stdlib/stats-base-dists-lognormal-stdev","15W":"@stdlib/stats/base/dists/lognormal/variance","15X":"@stdlib/stats-base-dists-lognormal-variance","15Y":"@stdlib/stats/base/dists/negative-binomial/cdf","15Z":"@stdlib/stats-base-dists-negative-binomial-cdf","15a":"@stdlib/stats/base/dists/negative-binomial/ctor","15b":"@stdlib/stats-base-dists-negative-binomial-ctor","15c":"@stdlib/stats/base/dists/negative-binomial/kurtosis","15d":"@stdlib/stats-base-dists-negative-binomial-kurtosis","15e":"@stdlib/stats/base/dists/negative-binomial/logpmf","15f":"@stdlib/stats-base-dists-negative-binomial-logpmf","15g":"@stdlib/stats/base/dists/negative-binomial/mean","15h":"@stdlib/stats-base-dists-negative-binomial-mean","15i":"@stdlib/stats/base/dists/negative-binomial/mgf","15j":"@stdlib/stats-base-dists-negative-binomial-mgf","15k":"@stdlib/stats/base/dists/negative-binomial/mode","15l":"@stdlib/stats-base-dists-negative-binomial-mode","15m":"@stdlib/stats/base/dists/negative-binomial","15n":"@stdlib/stats-base-dists-negative-binomial","15o":"@stdlib/stats/base/dists/negative-binomial/pmf","15p":"@stdlib/stats-base-dists-negative-binomial-pmf","15q":"@stdlib/stats/base/dists/negative-binomial/quantile","15r":"@stdlib/stats-base-dists-negative-binomial-quantile","15s":"@stdlib/stats/base/dists/negative-binomial/skewness","15t":"@stdlib/stats-base-dists-negative-binomial-skewness","15u":"@stdlib/stats/base/dists/negative-binomial/stdev","15v":"@stdlib/stats-base-dists-negative-binomial-stdev","15w":"@stdlib/stats/base/dists/negative-binomial/variance","15x":"@stdlib/stats-base-dists-negative-binomial-variance","15y":"@stdlib/stats/base/dists/normal/cdf","15z":"@stdlib/stats-base-dists-normal-cdf","1fC":"@stdlib/stats/base/dists/normal/logcdf","1fD":"@stdlib/stats-base-dists-normal-logcdf","16A":"@stdlib/stats/base/dists/normal/median","16B":"@stdlib/stats-base-dists-normal-median","16C":"@stdlib/stats/base/dists/normal/mgf","16D":"@stdlib/stats-base-dists-normal-mgf","16E":"@stdlib/stats/base/dists/normal/mode","16F":"@stdlib/stats-base-dists-normal-mode","16G":"@stdlib/stats/base/dists/normal","16H":"@stdlib/stats-base-dists-normal","16I":"@stdlib/stats/base/dists/normal/pdf","16J":"@stdlib/stats-base-dists-normal-pdf","16K":"@stdlib/stats/base/dists/normal/quantile","16L":"@stdlib/stats-base-dists-normal-quantile","16M":"@stdlib/stats/base/dists/normal/skewness","16N":"@stdlib/stats-base-dists-normal-skewness","16O":"@stdlib/stats/base/dists/normal/stdev","16P":"@stdlib/stats-base-dists-normal-stdev","16Q":"@stdlib/stats/base/dists/normal/variance","16R":"@stdlib/stats-base-dists-normal-variance","16S":"@stdlib/stats/base/dists","16T":"@stdlib/stats-base-dists","16U":"@stdlib/stats/base/dists/pareto-type1/cdf","16V":"@stdlib/stats-base-dists-pareto-type1-cdf","16W":"@stdlib/stats/base/dists/pareto-type1/ctor","16X":"@stdlib/stats-base-dists-pareto-type1-ctor","16Y":"@stdlib/stats/base/dists/pareto-type1/entropy","16Z":"@stdlib/stats-base-dists-pareto-type1-entropy","16a":"@stdlib/stats/base/dists/pareto-type1/kurtosis","16b":"@stdlib/stats-base-dists-pareto-type1-kurtosis","16c":"@stdlib/stats/base/dists/pareto-type1/logcdf","16d":"@stdlib/stats-base-dists-pareto-type1-logcdf","16e":"@stdlib/stats/base/dists/pareto-type1/logpdf","16f":"@stdlib/stats-base-dists-pareto-type1-logpdf","16g":"@stdlib/stats/base/dists/pareto-type1/mean","16h":"@stdlib/stats-base-dists-pareto-type1-mean","16i":"@stdlib/stats/base/dists/pareto-type1/median","16j":"@stdlib/stats-base-dists-pareto-type1-median","16k":"@stdlib/stats/base/dists/pareto-type1/mode","16l":"@stdlib/stats-base-dists-pareto-type1-mode","16m":"@stdlib/stats/base/dists/pareto-type1","16n":"@stdlib/stats-base-dists-pareto-type1","16o":"@stdlib/stats/base/dists/pareto-type1/pdf","16p":"@stdlib/stats-base-dists-pareto-type1-pdf","16q":"@stdlib/stats/base/dists/pareto-type1/quantile","16r":"@stdlib/stats-base-dists-pareto-type1-quantile","16s":"@stdlib/stats/base/dists/pareto-type1/skewness","16t":"@stdlib/stats-base-dists-pareto-type1-skewness","16u":"@stdlib/stats/base/dists/pareto-type1/stdev","16v":"@stdlib/stats-base-dists-pareto-type1-stdev","16w":"@stdlib/stats/base/dists/pareto-type1/variance","16x":"@stdlib/stats-base-dists-pareto-type1-variance","16y":"@stdlib/stats/base/dists/poisson/cdf","16z":"@stdlib/stats-base-dists-poisson-cdf","17A":"@stdlib/stats/base/dists/poisson/median","17B":"@stdlib/stats-base-dists-poisson-median","17C":"@stdlib/stats/base/dists/poisson/mgf","17D":"@stdlib/stats-base-dists-poisson-mgf","17E":"@stdlib/stats/base/dists/poisson/mode","17F":"@stdlib/stats-base-dists-poisson-mode","17G":"@stdlib/stats/base/dists/poisson","17H":"@stdlib/stats-base-dists-poisson","17I":"@stdlib/stats/base/dists/poisson/pmf","17J":"@stdlib/stats-base-dists-poisson-pmf","17K":"@stdlib/stats/base/dists/poisson/quantile","17L":"@stdlib/stats-base-dists-poisson-quantile","17M":"@stdlib/stats/base/dists/poisson/skewness","17N":"@stdlib/stats-base-dists-poisson-skewness","17O":"@stdlib/stats/base/dists/poisson/stdev","17P":"@stdlib/stats-base-dists-poisson-stdev","17Q":"@stdlib/stats/base/dists/poisson/variance","17R":"@stdlib/stats-base-dists-poisson-variance","17S":"@stdlib/stats/base/dists/rayleigh/cdf","17T":"@stdlib/stats-base-dists-rayleigh-cdf","17U":"@stdlib/stats/base/dists/rayleigh/ctor","17V":"@stdlib/stats-base-dists-rayleigh-ctor","17W":"@stdlib/stats/base/dists/rayleigh/entropy","17X":"@stdlib/stats-base-dists-rayleigh-entropy","17Y":"@stdlib/stats/base/dists/rayleigh/kurtosis","17Z":"@stdlib/stats-base-dists-rayleigh-kurtosis","17a":"@stdlib/stats/base/dists/rayleigh/logcdf","17b":"@stdlib/stats-base-dists-rayleigh-logcdf","17c":"@stdlib/stats/base/dists/rayleigh/logpdf","17d":"@stdlib/stats-base-dists-rayleigh-logpdf","17e":"@stdlib/stats/base/dists/rayleigh/mean","17f":"@stdlib/stats-base-dists-rayleigh-mean","17g":"@stdlib/stats/base/dists/rayleigh/median","17h":"@stdlib/stats-base-dists-rayleigh-median","17i":"@stdlib/stats/base/dists/rayleigh/mgf","17j":"@stdlib/stats-base-dists-rayleigh-mgf","17k":"@stdlib/stats/base/dists/rayleigh/mode","17l":"@stdlib/stats-base-dists-rayleigh-mode","17m":"@stdlib/stats/base/dists/rayleigh","17n":"@stdlib/stats-base-dists-rayleigh","17o":"@stdlib/stats/base/dists/rayleigh/pdf","17p":"@stdlib/stats-base-dists-rayleigh-pdf","17q":"@stdlib/stats/base/dists/rayleigh/quantile","17r":"@stdlib/stats-base-dists-rayleigh-quantile","17s":"@stdlib/stats/base/dists/rayleigh/skewness","17t":"@stdlib/stats-base-dists-rayleigh-skewness","17u":"@stdlib/stats/base/dists/rayleigh/stdev","17v":"@stdlib/stats-base-dists-rayleigh-stdev","17w":"@stdlib/stats/base/dists/rayleigh/variance","17x":"@stdlib/stats-base-dists-rayleigh-variance","17y":"@stdlib/stats/base/dists/signrank/cdf","17z":"@stdlib/stats-base-dists-signrank-cdf","1fE":"@stdlib/stats/base/dists/studentized-range/cdf","1fF":"@stdlib/stats-base-dists-studentized-range-cdf","1fG":"@stdlib/stats/base/dists/studentized-range","1fH":"@stdlib/stats-base-dists-studentized-range","1fI":"@stdlib/stats/base/dists/studentized-range/quantile","1fJ":"@stdlib/stats-base-dists-studentized-range-quantile","18A":"@stdlib/stats/base/dists/t/entropy","18B":"@stdlib/stats-base-dists-t-entropy","18C":"@stdlib/stats/base/dists/t/kurtosis","18D":"@stdlib/stats-base-dists-t-kurtosis","18E":"@stdlib/stats/base/dists/t/logcdf","18F":"@stdlib/stats-base-dists-t-logcdf","18G":"@stdlib/stats/base/dists/t/logpdf","18H":"@stdlib/stats-base-dists-t-logpdf","18I":"@stdlib/stats/base/dists/t/mean","18J":"@stdlib/stats-base-dists-t-mean","18K":"@stdlib/stats/base/dists/t/median","18L":"@stdlib/stats-base-dists-t-median","18M":"@stdlib/stats/base/dists/t/mode","18N":"@stdlib/stats-base-dists-t-mode","18O":"@stdlib/stats/base/dists/t","18P":"@stdlib/stats-base-dists-t","18Q":"@stdlib/stats/base/dists/t/pdf","18R":"@stdlib/stats-base-dists-t-pdf","18S":"@stdlib/stats/base/dists/t/quantile","18T":"@stdlib/stats-base-dists-t-quantile","18U":"@stdlib/stats/base/dists/t/skewness","18V":"@stdlib/stats-base-dists-t-skewness","18W":"@stdlib/stats/base/dists/t/stdev","18X":"@stdlib/stats-base-dists-t-stdev","18Y":"@stdlib/stats/base/dists/t/variance","18Z":"@stdlib/stats-base-dists-t-variance","18a":"@stdlib/stats/base/dists/triangular/cdf","18b":"@stdlib/stats-base-dists-triangular-cdf","18c":"@stdlib/stats/base/dists/triangular/ctor","18d":"@stdlib/stats-base-dists-triangular-ctor","18e":"@stdlib/stats/base/dists/triangular/entropy","18f":"@stdlib/stats-base-dists-triangular-entropy","18g":"@stdlib/stats/base/dists/triangular/kurtosis","18h":"@stdlib/stats-base-dists-triangular-kurtosis","18i":"@stdlib/stats/base/dists/triangular/logcdf","18j":"@stdlib/stats-base-dists-triangular-logcdf","18k":"@stdlib/stats/base/dists/triangular/logpdf","18l":"@stdlib/stats-base-dists-triangular-logpdf","18m":"@stdlib/stats/base/dists/triangular/mean","18n":"@stdlib/stats-base-dists-triangular-mean","18o":"@stdlib/stats/base/dists/triangular/median","18p":"@stdlib/stats-base-dists-triangular-median","18q":"@stdlib/stats/base/dists/triangular/mgf","18r":"@stdlib/stats-base-dists-triangular-mgf","18s":"@stdlib/stats/base/dists/triangular/mode","18t":"@stdlib/stats-base-dists-triangular-mode","18u":"@stdlib/stats/base/dists/triangular","18v":"@stdlib/stats-base-dists-triangular","18w":"@stdlib/stats/base/dists/triangular/pdf","18x":"@stdlib/stats-base-dists-triangular-pdf","18y":"@stdlib/stats/base/dists/triangular/quantile","18z":"@stdlib/stats-base-dists-triangular-quantile","19A":"@stdlib/stats/base/dists/uniform/cdf","19B":"@stdlib/stats-base-dists-uniform-cdf","19C":"@stdlib/stats/base/dists/uniform/ctor","19D":"@stdlib/stats-base-dists-uniform-ctor","19E":"@stdlib/stats/base/dists/uniform/entropy","19F":"@stdlib/stats-base-dists-uniform-entropy","19G":"@stdlib/stats/base/dists/uniform/kurtosis","19H":"@stdlib/stats-base-dists-uniform-kurtosis","19I":"@stdlib/stats/base/dists/uniform/logcdf","19J":"@stdlib/stats-base-dists-uniform-logcdf","19K":"@stdlib/stats/base/dists/uniform/logpdf","19L":"@stdlib/stats-base-dists-uniform-logpdf","19M":"@stdlib/stats/base/dists/uniform/mean","19N":"@stdlib/stats-base-dists-uniform-mean","19O":"@stdlib/stats/base/dists/uniform/median","19P":"@stdlib/stats-base-dists-uniform-median","19Q":"@stdlib/stats/base/dists/uniform/mgf","19R":"@stdlib/stats-base-dists-uniform-mgf","19S":"@stdlib/stats/base/dists/uniform","19T":"@stdlib/stats-base-dists-uniform","19U":"@stdlib/stats/base/dists/uniform/pdf","19V":"@stdlib/stats-base-dists-uniform-pdf","19W":"@stdlib/stats/base/dists/uniform/quantile","19X":"@stdlib/stats-base-dists-uniform-quantile","19Y":"@stdlib/stats/base/dists/uniform/skewness","19Z":"@stdlib/stats-base-dists-uniform-skewness","19a":"@stdlib/stats/base/dists/uniform/stdev","19b":"@stdlib/stats-base-dists-uniform-stdev","19c":"@stdlib/stats/base/dists/uniform/variance","19d":"@stdlib/stats-base-dists-uniform-variance","19e":"@stdlib/stats/base/dists/weibull/cdf","19f":"@stdlib/stats-base-dists-weibull-cdf","19g":"@stdlib/stats/base/dists/weibull/ctor","19h":"@stdlib/stats-base-dists-weibull-ctor","19i":"@stdlib/stats/base/dists/weibull/entropy","19j":"@stdlib/stats-base-dists-weibull-entropy","19k":"@stdlib/stats/base/dists/weibull/kurtosis","19l":"@stdlib/stats-base-dists-weibull-kurtosis","19m":"@stdlib/stats/base/dists/weibull/logcdf","19n":"@stdlib/stats-base-dists-weibull-logcdf","19o":"@stdlib/stats/base/dists/weibull/logpdf","19p":"@stdlib/stats-base-dists-weibull-logpdf","19q":"@stdlib/stats/base/dists/weibull/mean","19r":"@stdlib/stats-base-dists-weibull-mean","19s":"@stdlib/stats/base/dists/weibull/median","19t":"@stdlib/stats-base-dists-weibull-median","19u":"@stdlib/stats/base/dists/weibull/mgf","19v":"@stdlib/stats-base-dists-weibull-mgf","19w":"@stdlib/stats/base/dists/weibull/mode","19x":"@stdlib/stats-base-dists-weibull-mode","19y":"@stdlib/stats/base/dists/weibull","19z":"@stdlib/stats-base-dists-weibull","1A0":"@stdlib/stats/base/dists/weibull/pdf","1A1":"@stdlib/stats-base-dists-weibull-pdf","1A2":"@stdlib/stats/base/dists/weibull/quantile","1A3":"@stdlib/stats-base-dists-weibull-quantile","1A4":"@stdlib/stats/base/dists/weibull/skewness","1A5":"@stdlib/stats-base-dists-weibull-skewness","1A6":"@stdlib/stats/base/dists/weibull/stdev","1A7":"@stdlib/stats-base-dists-weibull-stdev","1A8":"@stdlib/stats/base/dists/weibull/variance","1A9":"@stdlib/stats-base-dists-weibull-variance","1AA":"@stdlib/stats/base/dmax","1AB":"@stdlib/stats-base-dmax","1AC":"@stdlib/stats/base/dmaxabs","1AD":"@stdlib/stats-base-dmaxabs","1AE":"@stdlib/stats/base/dmaxabssorted","1AF":"@stdlib/stats-base-dmaxabssorted","1AG":"@stdlib/stats/base/dmaxsorted","1AH":"@stdlib/stats-base-dmaxsorted","1AI":"@stdlib/stats/base/dmean","1AJ":"@stdlib/stats-base-dmean","1AK":"@stdlib/stats/base/dmeankbn","1AL":"@stdlib/stats-base-dmeankbn","1AM":"@stdlib/stats/base/dmeankbn2","1AN":"@stdlib/stats-base-dmeankbn2","1AO":"@stdlib/stats/base/dmeanli","1AP":"@stdlib/stats-base-dmeanli","1AQ":"@stdlib/stats/base/dmeanlipw","1AR":"@stdlib/stats-base-dmeanlipw","1AS":"@stdlib/stats/base/dmeanors","1AT":"@stdlib/stats-base-dmeanors","1AU":"@stdlib/stats/base/dmeanpn","1AV":"@stdlib/stats-base-dmeanpn","1AW":"@stdlib/stats/base/dmeanpw","1AX":"@stdlib/stats-base-dmeanpw","1AY":"@stdlib/stats/base/dmeanstdev","1AZ":"@stdlib/stats-base-dmeanstdev","1Aa":"@stdlib/stats/base/dmeanstdevpn","1Ab":"@stdlib/stats-base-dmeanstdevpn","1Ac":"@stdlib/stats/base/dmeanvar","1Ad":"@stdlib/stats-base-dmeanvar","1Ae":"@stdlib/stats/base/dmeanvarpn","1Af":"@stdlib/stats-base-dmeanvarpn","1Ag":"@stdlib/stats/base/dmeanwd","1Ah":"@stdlib/stats-base-dmeanwd","1Ai":"@stdlib/stats/base/dmediansorted","1Aj":"@stdlib/stats-base-dmediansorted","1Ak":"@stdlib/stats/base/dmidrange","1Al":"@stdlib/stats-base-dmidrange","1Am":"@stdlib/stats/base/dmin","1An":"@stdlib/stats-base-dmin","1Ao":"@stdlib/stats/base/dminabs","1Ap":"@stdlib/stats-base-dminabs","1Aq":"@stdlib/stats/base/dminsorted","1Ar":"@stdlib/stats-base-dminsorted","1As":"@stdlib/stats/base/dmskmax","1At":"@stdlib/stats-base-dmskmax","1Au":"@stdlib/stats/base/dmskmin","1Av":"@stdlib/stats-base-dmskmin","1Aw":"@stdlib/stats/base/dmskrange","1Ax":"@stdlib/stats-base-dmskrange","1Ay":"@stdlib/stats/base/dnanmax","1Az":"@stdlib/stats-base-dnanmax","1B0":"@stdlib/stats/base/dnanmaxabs","1B1":"@stdlib/stats-base-dnanmaxabs","1B2":"@stdlib/stats/base/dnanmean","1B3":"@stdlib/stats-base-dnanmean","1B4":"@stdlib/stats/base/dnanmeanors","1B5":"@stdlib/stats-base-dnanmeanors","1B6":"@stdlib/stats/base/dnanmeanpn","1B7":"@stdlib/stats-base-dnanmeanpn","1B8":"@stdlib/stats/base/dnanmeanpw","1B9":"@stdlib/stats-base-dnanmeanpw","1BA":"@stdlib/stats/base/dnanmeanwd","1BB":"@stdlib/stats-base-dnanmeanwd","1BC":"@stdlib/stats/base/dnanmin","1BD":"@stdlib/stats-base-dnanmin","1BE":"@stdlib/stats/base/dnanminabs","1BF":"@stdlib/stats-base-dnanminabs","1BG":"@stdlib/stats/base/dnanmskmax","1BH":"@stdlib/stats-base-dnanmskmax","1BI":"@stdlib/stats/base/dnanmskmin","1BJ":"@stdlib/stats-base-dnanmskmin","1BK":"@stdlib/stats/base/dnanmskrange","1BL":"@stdlib/stats-base-dnanmskrange","1BM":"@stdlib/stats/base/dnanrange","1BN":"@stdlib/stats-base-dnanrange","1BO":"@stdlib/stats/base/dnanstdev","1BP":"@stdlib/stats-base-dnanstdev","1BQ":"@stdlib/stats/base/dnanstdevch","1BR":"@stdlib/stats-base-dnanstdevch","1BS":"@stdlib/stats/base/dnanstdevpn","1BT":"@stdlib/stats-base-dnanstdevpn","1BU":"@stdlib/stats/base/dnanstdevtk","1BV":"@stdlib/stats-base-dnanstdevtk","1BW":"@stdlib/stats/base/dnanstdevwd","1BX":"@stdlib/stats-base-dnanstdevwd","1BY":"@stdlib/stats/base/dnanstdevyc","1BZ":"@stdlib/stats-base-dnanstdevyc","1Ba":"@stdlib/stats/base/dnanvariance","1Bb":"@stdlib/stats-base-dnanvariance","1Bc":"@stdlib/stats/base/dnanvariancech","1Bd":"@stdlib/stats-base-dnanvariancech","1Be":"@stdlib/stats/base/dnanvariancepn","1Bf":"@stdlib/stats-base-dnanvariancepn","1Bg":"@stdlib/stats/base/dnanvariancetk","1Bh":"@stdlib/stats-base-dnanvariancetk","1Bi":"@stdlib/stats/base/dnanvariancewd","1Bj":"@stdlib/stats-base-dnanvariancewd","1Bk":"@stdlib/stats/base/dnanvarianceyc","1Bl":"@stdlib/stats-base-dnanvarianceyc","1Bm":"@stdlib/stats/base/drange","1Bn":"@stdlib/stats-base-drange","1Bo":"@stdlib/stats/base/dsem","1Bp":"@stdlib/stats-base-dsem","1Bq":"@stdlib/stats/base/dsemch","1Br":"@stdlib/stats-base-dsemch","1Bs":"@stdlib/stats/base/dsempn","1Bt":"@stdlib/stats-base-dsempn","1Bu":"@stdlib/stats/base/dsemtk","1Bv":"@stdlib/stats-base-dsemtk","1Bw":"@stdlib/stats/base/dsemwd","1Bx":"@stdlib/stats-base-dsemwd","1By":"@stdlib/stats/base/dsemyc","1Bz":"@stdlib/stats-base-dsemyc","1C0":"@stdlib/stats/base/dsmean","1C1":"@stdlib/stats-base-dsmean","1C2":"@stdlib/stats/base/dsmeanors","1C3":"@stdlib/stats-base-dsmeanors","1C4":"@stdlib/stats/base/dsmeanpn","1C5":"@stdlib/stats-base-dsmeanpn","1C6":"@stdlib/stats/base/dsmeanpw","1C7":"@stdlib/stats-base-dsmeanpw","1C8":"@stdlib/stats/base/dsmeanwd","1C9":"@stdlib/stats-base-dsmeanwd","1CA":"@stdlib/stats/base/dsnanmean","1CB":"@stdlib/stats-base-dsnanmean","1CC":"@stdlib/stats/base/dsnanmeanors","1CD":"@stdlib/stats-base-dsnanmeanors","1CE":"@stdlib/stats/base/dsnanmeanpn","1CF":"@stdlib/stats-base-dsnanmeanpn","1CG":"@stdlib/stats/base/dsnanmeanwd","1CH":"@stdlib/stats-base-dsnanmeanwd","1CI":"@stdlib/stats/base/dstdev","1CJ":"@stdlib/stats-base-dstdev","1CK":"@stdlib/stats/base/dstdevch","1CL":"@stdlib/stats-base-dstdevch","1CM":"@stdlib/stats/base/dstdevpn","1CN":"@stdlib/stats-base-dstdevpn","1CO":"@stdlib/stats/base/dstdevtk","1CP":"@stdlib/stats-base-dstdevtk","1CQ":"@stdlib/stats/base/dstdevwd","1CR":"@stdlib/stats-base-dstdevwd","1CS":"@stdlib/stats/base/dstdevyc","1CT":"@stdlib/stats-base-dstdevyc","1CU":"@stdlib/stats/base/dsvariance","1CV":"@stdlib/stats-base-dsvariance","1CW":"@stdlib/stats/base/dsvariancepn","1CX":"@stdlib/stats-base-dsvariancepn","1CY":"@stdlib/stats/base/dvariance","1CZ":"@stdlib/stats-base-dvariance","1Ca":"@stdlib/stats/base/dvariancech","1Cb":"@stdlib/stats-base-dvariancech","1Cc":"@stdlib/stats/base/dvariancepn","1Cd":"@stdlib/stats-base-dvariancepn","1Ce":"@stdlib/stats/base/dvariancetk","1Cf":"@stdlib/stats-base-dvariancetk","1Cg":"@stdlib/stats/base/dvariancewd","1Ch":"@stdlib/stats-base-dvariancewd","1Ci":"@stdlib/stats/base/dvarianceyc","1Cj":"@stdlib/stats-base-dvarianceyc","1Ck":"@stdlib/stats/base/dvarm","1Cl":"@stdlib/stats-base-dvarm","1Cm":"@stdlib/stats/base/dvarmpn","1Cn":"@stdlib/stats-base-dvarmpn","1Co":"@stdlib/stats/base/dvarmtk","1Cp":"@stdlib/stats-base-dvarmtk","1Cq":"@stdlib/stats/base/max-by","1Cr":"@stdlib/stats-base-max-by","1Cs":"@stdlib/stats/base/max","1Ct":"@stdlib/stats-base-max","1Cu":"@stdlib/stats/base/maxabs","1Cv":"@stdlib/stats-base-maxabs","1Cw":"@stdlib/stats/base/maxsorted","1Cx":"@stdlib/stats-base-maxsorted","1Cy":"@stdlib/stats/base/mean","1Cz":"@stdlib/stats-base-mean","1D0":"@stdlib/stats/base/meankbn","1D1":"@stdlib/stats-base-meankbn","1D2":"@stdlib/stats/base/meankbn2","1D3":"@stdlib/stats-base-meankbn2","1D4":"@stdlib/stats/base/meanors","1D5":"@stdlib/stats-base-meanors","1D6":"@stdlib/stats/base/meanpn","1D7":"@stdlib/stats-base-meanpn","1D8":"@stdlib/stats/base/meanpw","1D9":"@stdlib/stats-base-meanpw","1DA":"@stdlib/stats/base/meanwd","1DB":"@stdlib/stats-base-meanwd","1DC":"@stdlib/stats/base/mediansorted","1DD":"@stdlib/stats-base-mediansorted","1DE":"@stdlib/stats/base/min-by","1DF":"@stdlib/stats-base-min-by","1DG":"@stdlib/stats/base/min","1DH":"@stdlib/stats-base-min","1DI":"@stdlib/stats/base/minabs","1DJ":"@stdlib/stats-base-minabs","1DK":"@stdlib/stats/base/minsorted","1DL":"@stdlib/stats-base-minsorted","1DM":"@stdlib/stats/base/mskmax","1DN":"@stdlib/stats-base-mskmax","1DO":"@stdlib/stats/base/mskmin","1DP":"@stdlib/stats-base-mskmin","1DQ":"@stdlib/stats/base/mskrange","1DR":"@stdlib/stats-base-mskrange","1DS":"@stdlib/stats/base/nanmax-by","1DT":"@stdlib/stats-base-nanmax-by","1DU":"@stdlib/stats/base/nanmax","1DV":"@stdlib/stats-base-nanmax","1DW":"@stdlib/stats/base/nanmaxabs","1DX":"@stdlib/stats-base-nanmaxabs","1DY":"@stdlib/stats/base/nanmean","1DZ":"@stdlib/stats-base-nanmean","1Da":"@stdlib/stats/base/nanmeanors","1Db":"@stdlib/stats-base-nanmeanors","1Dc":"@stdlib/stats/base/nanmeanpn","1Dd":"@stdlib/stats-base-nanmeanpn","1De":"@stdlib/stats/base/nanmeanwd","1Df":"@stdlib/stats-base-nanmeanwd","1Dg":"@stdlib/stats/base/nanmin-by","1Dh":"@stdlib/stats-base-nanmin-by","1Di":"@stdlib/stats/base/nanmin","1Dj":"@stdlib/stats-base-nanmin","1Dk":"@stdlib/stats/base/nanminabs","1Dl":"@stdlib/stats-base-nanminabs","1Dm":"@stdlib/stats/base/nanmskmax","1Dn":"@stdlib/stats-base-nanmskmax","1Do":"@stdlib/stats/base/nanmskmin","1Dp":"@stdlib/stats-base-nanmskmin","1Dq":"@stdlib/stats/base/nanmskrange","1Dr":"@stdlib/stats-base-nanmskrange","1Ds":"@stdlib/stats/base/nanrange-by","1Dt":"@stdlib/stats-base-nanrange-by","1Du":"@stdlib/stats/base/nanrange","1Dv":"@stdlib/stats-base-nanrange","1Dw":"@stdlib/stats/base/nanstdev","1Dx":"@stdlib/stats-base-nanstdev","1Dy":"@stdlib/stats/base/nanstdevch","1Dz":"@stdlib/stats-base-nanstdevch","1E0":"@stdlib/stats/base/nanstdevpn","1E1":"@stdlib/stats-base-nanstdevpn","1E2":"@stdlib/stats/base/nanstdevtk","1E3":"@stdlib/stats-base-nanstdevtk","1E4":"@stdlib/stats/base/nanstdevwd","1E5":"@stdlib/stats-base-nanstdevwd","1E6":"@stdlib/stats/base/nanstdevyc","1E7":"@stdlib/stats-base-nanstdevyc","1E8":"@stdlib/stats/base/nanvariance","1E9":"@stdlib/stats-base-nanvariance","1EA":"@stdlib/stats/base/nanvariancech","1EB":"@stdlib/stats-base-nanvariancech","1EC":"@stdlib/stats/base/nanvariancepn","1ED":"@stdlib/stats-base-nanvariancepn","1EE":"@stdlib/stats/base/nanvariancetk","1EF":"@stdlib/stats-base-nanvariancetk","1EG":"@stdlib/stats/base/nanvariancewd","1EH":"@stdlib/stats-base-nanvariancewd","1EI":"@stdlib/stats/base/nanvarianceyc","1EJ":"@stdlib/stats-base-nanvarianceyc","1EK":"@stdlib/stats/base","1EL":"@stdlib/stats-base","1EM":"@stdlib/stats/base/range-by","1EN":"@stdlib/stats-base-range-by","1EO":"@stdlib/stats/base/range","1EP":"@stdlib/stats-base-range","1EQ":"@stdlib/stats/base/scumax","1ER":"@stdlib/stats-base-scumax","1ES":"@stdlib/stats/base/scumaxabs","1ET":"@stdlib/stats-base-scumaxabs","1EU":"@stdlib/stats/base/scumin","1EV":"@stdlib/stats-base-scumin","1EW":"@stdlib/stats/base/scuminabs","1EX":"@stdlib/stats-base-scuminabs","1EY":"@stdlib/stats/base/sdsmean","1EZ":"@stdlib/stats-base-sdsmean","1Ea":"@stdlib/stats/base/sdsmeanors","1Eb":"@stdlib/stats-base-sdsmeanors","1Ec":"@stdlib/stats/base/sdsnanmean","1Ed":"@stdlib/stats-base-sdsnanmean","1Ee":"@stdlib/stats/base/sdsnanmeanors","1Ef":"@stdlib/stats-base-sdsnanmeanors","1Eg":"@stdlib/stats/base/smax","1Eh":"@stdlib/stats-base-smax","1Ei":"@stdlib/stats/base/smaxabs","1Ej":"@stdlib/stats-base-smaxabs","1Ek":"@stdlib/stats/base/smaxabssorted","1El":"@stdlib/stats-base-smaxabssorted","1Em":"@stdlib/stats/base/smaxsorted","1En":"@stdlib/stats-base-smaxsorted","1Eo":"@stdlib/stats/base/smean","1Ep":"@stdlib/stats-base-smean","1Eq":"@stdlib/stats/base/smeankbn","1Er":"@stdlib/stats-base-smeankbn","1Es":"@stdlib/stats/base/smeankbn2","1Et":"@stdlib/stats-base-smeankbn2","1Eu":"@stdlib/stats/base/smeanli","1Ev":"@stdlib/stats-base-smeanli","1Ew":"@stdlib/stats/base/smeanlipw","1Ex":"@stdlib/stats-base-smeanlipw","1Ey":"@stdlib/stats/base/smeanors","1Ez":"@stdlib/stats-base-smeanors","1F0":"@stdlib/stats/base/smeanpn","1F1":"@stdlib/stats-base-smeanpn","1F2":"@stdlib/stats/base/smeanpw","1F3":"@stdlib/stats-base-smeanpw","1F4":"@stdlib/stats/base/smeanwd","1F5":"@stdlib/stats-base-smeanwd","1F6":"@stdlib/stats/base/smediansorted","1F7":"@stdlib/stats-base-smediansorted","1F8":"@stdlib/stats/base/smidrange","1F9":"@stdlib/stats-base-smidrange","1FA":"@stdlib/stats/base/smin","1FB":"@stdlib/stats-base-smin","1FC":"@stdlib/stats/base/sminabs","1FD":"@stdlib/stats-base-sminabs","1FE":"@stdlib/stats/base/sminsorted","1FF":"@stdlib/stats-base-sminsorted","1FG":"@stdlib/stats/base/smskmax","1FH":"@stdlib/stats-base-smskmax","1FI":"@stdlib/stats/base/smskmin","1FJ":"@stdlib/stats-base-smskmin","1FK":"@stdlib/stats/base/smskrange","1FL":"@stdlib/stats-base-smskrange","1FM":"@stdlib/stats/base/snanmax","1FN":"@stdlib/stats-base-snanmax","1FO":"@stdlib/stats/base/snanmaxabs","1FP":"@stdlib/stats-base-snanmaxabs","1FQ":"@stdlib/stats/base/snanmean","1FR":"@stdlib/stats-base-snanmean","1FS":"@stdlib/stats/base/snanmeanors","1FT":"@stdlib/stats-base-snanmeanors","1FU":"@stdlib/stats/base/snanmeanpn","1FV":"@stdlib/stats-base-snanmeanpn","1FW":"@stdlib/stats/base/snanmeanwd","1FX":"@stdlib/stats-base-snanmeanwd","1FY":"@stdlib/stats/base/snanmin","1FZ":"@stdlib/stats-base-snanmin","1Fa":"@stdlib/stats/base/snanminabs","1Fb":"@stdlib/stats-base-snanminabs","1Fc":"@stdlib/stats/base/snanmskmax","1Fd":"@stdlib/stats-base-snanmskmax","1Fe":"@stdlib/stats/base/snanmskmin","1Ff":"@stdlib/stats-base-snanmskmin","1Fg":"@stdlib/stats/base/snanmskrange","1Fh":"@stdlib/stats-base-snanmskrange","1Fi":"@stdlib/stats/base/snanrange","1Fj":"@stdlib/stats-base-snanrange","1Fk":"@stdlib/stats/base/snanstdev","1Fl":"@stdlib/stats-base-snanstdev","1Fm":"@stdlib/stats/base/snanstdevch","1Fn":"@stdlib/stats-base-snanstdevch","1Fo":"@stdlib/stats/base/snanstdevpn","1Fp":"@stdlib/stats-base-snanstdevpn","1Fq":"@stdlib/stats/base/snanstdevtk","1Fr":"@stdlib/stats-base-snanstdevtk","1Fs":"@stdlib/stats/base/snanstdevwd","1Ft":"@stdlib/stats-base-snanstdevwd","1Fu":"@stdlib/stats/base/snanstdevyc","1Fv":"@stdlib/stats-base-snanstdevyc","1Fw":"@stdlib/stats/base/snanvariance","1Fx":"@stdlib/stats-base-snanvariance","1Fy":"@stdlib/stats/base/snanvariancech","1Fz":"@stdlib/stats-base-snanvariancech","1G0":"@stdlib/stats/base/snanvariancepn","1G1":"@stdlib/stats-base-snanvariancepn","1G2":"@stdlib/stats/base/snanvariancetk","1G3":"@stdlib/stats-base-snanvariancetk","1G4":"@stdlib/stats/base/snanvariancewd","1G5":"@stdlib/stats-base-snanvariancewd","1G6":"@stdlib/stats/base/snanvarianceyc","1G7":"@stdlib/stats-base-snanvarianceyc","1G8":"@stdlib/stats/base/srange","1G9":"@stdlib/stats-base-srange","1GA":"@stdlib/stats/base/sstdev","1GB":"@stdlib/stats-base-sstdev","1GC":"@stdlib/stats/base/sstdevch","1GD":"@stdlib/stats-base-sstdevch","1GE":"@stdlib/stats/base/sstdevpn","1GF":"@stdlib/stats-base-sstdevpn","1GG":"@stdlib/stats/base/sstdevtk","1GH":"@stdlib/stats-base-sstdevtk","1GI":"@stdlib/stats/base/sstdevwd","1GJ":"@stdlib/stats-base-sstdevwd","1GK":"@stdlib/stats/base/sstdevyc","1GL":"@stdlib/stats-base-sstdevyc","1GM":"@stdlib/stats/base/stdev","1GN":"@stdlib/stats-base-stdev","1GO":"@stdlib/stats/base/stdevch","1GP":"@stdlib/stats-base-stdevch","1GQ":"@stdlib/stats/base/stdevpn","1GR":"@stdlib/stats-base-stdevpn","1GS":"@stdlib/stats/base/stdevtk","1GT":"@stdlib/stats-base-stdevtk","1GU":"@stdlib/stats/base/stdevwd","1GV":"@stdlib/stats-base-stdevwd","1GW":"@stdlib/stats/base/stdevyc","1GX":"@stdlib/stats-base-stdevyc","1GY":"@stdlib/stats/base/svariance","1GZ":"@stdlib/stats-base-svariance","1Ga":"@stdlib/stats/base/svariancech","1Gb":"@stdlib/stats-base-svariancech","1Gc":"@stdlib/stats/base/svariancepn","1Gd":"@stdlib/stats-base-svariancepn","1Ge":"@stdlib/stats/base/svariancetk","1Gf":"@stdlib/stats-base-svariancetk","1Gg":"@stdlib/stats/base/svariancewd","1Gh":"@stdlib/stats-base-svariancewd","1Gi":"@stdlib/stats/base/svarianceyc","1Gj":"@stdlib/stats-base-svarianceyc","1Gk":"@stdlib/stats/base/variance","1Gl":"@stdlib/stats-base-variance","1Gm":"@stdlib/stats/base/variancech","1Gn":"@stdlib/stats-base-variancech","1Go":"@stdlib/stats/base/variancepn","1Gp":"@stdlib/stats-base-variancepn","1Gq":"@stdlib/stats/base/variancetk","1Gr":"@stdlib/stats-base-variancetk","1Gs":"@stdlib/stats/base/variancewd","1Gt":"@stdlib/stats-base-variancewd","1Gu":"@stdlib/stats/base/varianceyc","1Gv":"@stdlib/stats-base-varianceyc","1Gw":"@stdlib/stats/binomial-test","1Gx":"@stdlib/stats-binomial-test","1Gy":"@stdlib/stats/chi2gof","1Gz":"@stdlib/stats-chi2gof","1H0":"@stdlib/stats/chi2test","1H1":"@stdlib/stats-chi2test","1H2":"@stdlib/stats/fligner-test","1H3":"@stdlib/stats-fligner-test","1H4":"@stdlib/stats/incr/apcorr","1H5":"@stdlib/stats-incr-apcorr","1H6":"@stdlib/stats/incr/count","1H7":"@stdlib/stats-incr-count","1H8":"@stdlib/stats/incr/covariance","1H9":"@stdlib/stats-incr-covariance","1HA":"@stdlib/stats/incr/covmat","1HB":"@stdlib/stats-incr-covmat","1HC":"@stdlib/stats/incr/cv","1HD":"@stdlib/stats-incr-cv","1HE":"@stdlib/stats/incr/ewmean","1HF":"@stdlib/stats-incr-ewmean","1HG":"@stdlib/stats/incr/ewstdev","1HH":"@stdlib/stats-incr-ewstdev","1HI":"@stdlib/stats/incr/ewvariance","1HJ":"@stdlib/stats-incr-ewvariance","1HK":"@stdlib/stats/incr/gmean","1HL":"@stdlib/stats-incr-gmean","1HM":"@stdlib/stats/incr/grubbs","1HN":"@stdlib/stats-incr-grubbs","1HO":"@stdlib/stats/incr/hmean","1HP":"@stdlib/stats-incr-hmean","1HQ":"@stdlib/stats/incr/kurtosis","1HR":"@stdlib/stats-incr-kurtosis","1HS":"@stdlib/stats/incr/maape","1HT":"@stdlib/stats-incr-maape","1HU":"@stdlib/stats/incr/mae","1HV":"@stdlib/stats-incr-mae","1HW":"@stdlib/stats/incr/mapcorr","1HX":"@stdlib/stats-incr-mapcorr","1HY":"@stdlib/stats/incr/mape","1HZ":"@stdlib/stats-incr-mape","1Ha":"@stdlib/stats/incr/max","1Hb":"@stdlib/stats-incr-max","1Hc":"@stdlib/stats/incr/maxabs","1Hd":"@stdlib/stats-incr-maxabs","1He":"@stdlib/stats/incr/mcovariance","1Hf":"@stdlib/stats-incr-mcovariance","1Hg":"@stdlib/stats/incr/mcv","1Hh":"@stdlib/stats-incr-mcv","1Hi":"@stdlib/stats/incr/mda","1Hj":"@stdlib/stats-incr-mda","1Hk":"@stdlib/stats/incr/me","1Hl":"@stdlib/stats-incr-me","1Hm":"@stdlib/stats/incr/mean","1Hn":"@stdlib/stats-incr-mean","1Ho":"@stdlib/stats/incr/meanabs","1Hp":"@stdlib/stats-incr-meanabs","1Hq":"@stdlib/stats/incr/meanabs2","1Hr":"@stdlib/stats-incr-meanabs2","1Hs":"@stdlib/stats/incr/meanstdev","1Ht":"@stdlib/stats-incr-meanstdev","1Hu":"@stdlib/stats/incr/meanvar","1Hv":"@stdlib/stats-incr-meanvar","1Hw":"@stdlib/stats/incr/mgmean","1Hx":"@stdlib/stats-incr-mgmean","1Hy":"@stdlib/stats/incr/mgrubbs","1Hz":"@stdlib/stats-incr-mgrubbs","1I0":"@stdlib/stats/incr/mhmean","1I1":"@stdlib/stats-incr-mhmean","1I2":"@stdlib/stats/incr/midrange","1I3":"@stdlib/stats-incr-midrange","1I4":"@stdlib/stats/incr/min","1I5":"@stdlib/stats-incr-min","1I6":"@stdlib/stats/incr/minabs","1I7":"@stdlib/stats-incr-minabs","1I8":"@stdlib/stats/incr/minmax","1I9":"@stdlib/stats-incr-minmax","1IA":"@stdlib/stats/incr/minmaxabs","1IB":"@stdlib/stats-incr-minmaxabs","1IC":"@stdlib/stats/incr/mmaape","1ID":"@stdlib/stats-incr-mmaape","1IE":"@stdlib/stats/incr/mmae","1IF":"@stdlib/stats-incr-mmae","1IG":"@stdlib/stats/incr/mmape","1IH":"@stdlib/stats-incr-mmape","1II":"@stdlib/stats/incr/mmax","1IJ":"@stdlib/stats-incr-mmax","1IK":"@stdlib/stats/incr/mmaxabs","1IL":"@stdlib/stats-incr-mmaxabs","1IM":"@stdlib/stats/incr/mmda","1IN":"@stdlib/stats-incr-mmda","1IO":"@stdlib/stats/incr/mme","1IP":"@stdlib/stats-incr-mme","1IQ":"@stdlib/stats/incr/mmean","1IR":"@stdlib/stats-incr-mmean","1IS":"@stdlib/stats/incr/mmeanabs","1IT":"@stdlib/stats-incr-mmeanabs","1IU":"@stdlib/stats/incr/mmeanabs2","1IV":"@stdlib/stats-incr-mmeanabs2","1IW":"@stdlib/stats/incr/mmeanstdev","1IX":"@stdlib/stats-incr-mmeanstdev","1IY":"@stdlib/stats/incr/mmeanvar","1IZ":"@stdlib/stats-incr-mmeanvar","1Ia":"@stdlib/stats/incr/mmidrange","1Ib":"@stdlib/stats-incr-mmidrange","1Ic":"@stdlib/stats/incr/mmin","1Id":"@stdlib/stats-incr-mmin","1Ie":"@stdlib/stats/incr/mminabs","1If":"@stdlib/stats-incr-mminabs","1Ig":"@stdlib/stats/incr/mminmax","1Ih":"@stdlib/stats-incr-mminmax","1Ii":"@stdlib/stats/incr/mminmaxabs","1Ij":"@stdlib/stats-incr-mminmaxabs","1Ik":"@stdlib/stats/incr/mmpe","1Il":"@stdlib/stats-incr-mmpe","1Im":"@stdlib/stats/incr/mmse","1In":"@stdlib/stats-incr-mmse","1Io":"@stdlib/stats/incr/mpcorr","1Ip":"@stdlib/stats-incr-mpcorr","1Iq":"@stdlib/stats/incr/mpcorr2","1Ir":"@stdlib/stats-incr-mpcorr2","1Is":"@stdlib/stats/incr/mpcorrdist","1It":"@stdlib/stats-incr-mpcorrdist","1Iu":"@stdlib/stats/incr/mpe","1Iv":"@stdlib/stats-incr-mpe","1Iw":"@stdlib/stats/incr/mprod","1Ix":"@stdlib/stats-incr-mprod","1Iy":"@stdlib/stats/incr/mrange","1Iz":"@stdlib/stats-incr-mrange","1J0":"@stdlib/stats/incr/mrmse","1J1":"@stdlib/stats-incr-mrmse","1J2":"@stdlib/stats/incr/mrss","1J3":"@stdlib/stats-incr-mrss","1J4":"@stdlib/stats/incr/mse","1J5":"@stdlib/stats-incr-mse","1J6":"@stdlib/stats/incr/mstdev","1J7":"@stdlib/stats-incr-mstdev","1J8":"@stdlib/stats/incr/msum","1J9":"@stdlib/stats-incr-msum","1JA":"@stdlib/stats/incr/msumabs","1JB":"@stdlib/stats-incr-msumabs","1JC":"@stdlib/stats/incr/msumabs2","1JD":"@stdlib/stats-incr-msumabs2","1JE":"@stdlib/stats/incr/msummary","1JF":"@stdlib/stats-incr-msummary","1JG":"@stdlib/stats/incr/msumprod","1JH":"@stdlib/stats-incr-msumprod","1JI":"@stdlib/stats/incr/mvariance","1JJ":"@stdlib/stats-incr-mvariance","1JK":"@stdlib/stats/incr/mvmr","1JL":"@stdlib/stats-incr-mvmr","1JM":"@stdlib/stats/incr/nancount","1JN":"@stdlib/stats-incr-nancount","1JO":"@stdlib/stats/incr/nansum","1JP":"@stdlib/stats-incr-nansum","1JQ":"@stdlib/stats/incr/nansumabs","1JR":"@stdlib/stats-incr-nansumabs","1JS":"@stdlib/stats/incr/nansumabs2","1JT":"@stdlib/stats-incr-nansumabs2","1JU":"@stdlib/stats/incr","1JV":"@stdlib/stats-incr","1JW":"@stdlib/stats/incr/pcorr","1JX":"@stdlib/stats-incr-pcorr","1JY":"@stdlib/stats/incr/pcorr2","1JZ":"@stdlib/stats-incr-pcorr2","1Ja":"@stdlib/stats/incr/pcorrdist","1Jb":"@stdlib/stats-incr-pcorrdist","1Jc":"@stdlib/stats/incr/pcorrdistmat","1Jd":"@stdlib/stats-incr-pcorrdistmat","1Je":"@stdlib/stats/incr/pcorrmat","1Jf":"@stdlib/stats-incr-pcorrmat","1Jg":"@stdlib/stats/incr/prod","1Jh":"@stdlib/stats-incr-prod","1Ji":"@stdlib/stats/incr/range","1Jj":"@stdlib/stats-incr-range","1Jk":"@stdlib/stats/incr/rmse","1Jl":"@stdlib/stats-incr-rmse","1Jm":"@stdlib/stats/incr/rss","1Jn":"@stdlib/stats-incr-rss","1Jo":"@stdlib/stats/incr/skewness","1Jp":"@stdlib/stats-incr-skewness","1Jq":"@stdlib/stats/incr/stdev","1Jr":"@stdlib/stats-incr-stdev","1Js":"@stdlib/stats/incr/sum","1Jt":"@stdlib/stats-incr-sum","1Ju":"@stdlib/stats/incr/sumabs","1Jv":"@stdlib/stats-incr-sumabs","1Jw":"@stdlib/stats/incr/sumabs2","1Jx":"@stdlib/stats-incr-sumabs2","1Jy":"@stdlib/stats/incr/summary","1Jz":"@stdlib/stats-incr-summary","1K0":"@stdlib/stats/incr/sumprod","1K1":"@stdlib/stats-incr-sumprod","1K2":"@stdlib/stats/incr/variance","1K3":"@stdlib/stats-incr-variance","1K4":"@stdlib/stats/incr/vmr","1K5":"@stdlib/stats-incr-vmr","1K6":"@stdlib/stats/incr/wmean","1K7":"@stdlib/stats-incr-wmean","1K8":"@stdlib/stats/iter/cugmean","1K9":"@stdlib/stats-iter-cugmean","1KA":"@stdlib/stats/iter/cuhmean","1KB":"@stdlib/stats-iter-cuhmean","1KC":"@stdlib/stats/iter/cumax","1KD":"@stdlib/stats-iter-cumax","1KE":"@stdlib/stats/iter/cumaxabs","1KF":"@stdlib/stats-iter-cumaxabs","1KG":"@stdlib/stats/iter/cumean","1KH":"@stdlib/stats-iter-cumean","1KI":"@stdlib/stats/iter/cumeanabs","1KJ":"@stdlib/stats-iter-cumeanabs","1KK":"@stdlib/stats/iter/cumeanabs2","1KL":"@stdlib/stats-iter-cumeanabs2","1KM":"@stdlib/stats/iter/cumidrange","1KN":"@stdlib/stats-iter-cumidrange","1KO":"@stdlib/stats/iter/cumin","1KP":"@stdlib/stats-iter-cumin","1KQ":"@stdlib/stats/iter/cuminabs","1KR":"@stdlib/stats-iter-cuminabs","1KS":"@stdlib/stats/iter/cuprod","1KT":"@stdlib/stats-iter-cuprod","1KU":"@stdlib/stats/iter/curange","1KV":"@stdlib/stats-iter-curange","1KW":"@stdlib/stats/iter/cusum","1KX":"@stdlib/stats-iter-cusum","1KY":"@stdlib/stats/iter/cusumabs","1KZ":"@stdlib/stats-iter-cusumabs","1Ka":"@stdlib/stats/iter/cusumabs2","1Kb":"@stdlib/stats-iter-cusumabs2","1Kc":"@stdlib/stats/iter/max","1Kd":"@stdlib/stats-iter-max","1Ke":"@stdlib/stats/iter/maxabs","1Kf":"@stdlib/stats-iter-maxabs","1Kg":"@stdlib/stats/iter/mean","1Kh":"@stdlib/stats-iter-mean","1Ki":"@stdlib/stats/iter/meanabs","1Kj":"@stdlib/stats-iter-meanabs","1Kk":"@stdlib/stats/iter/meanabs2","1Kl":"@stdlib/stats-iter-meanabs2","1Km":"@stdlib/stats/iter/midrange","1Kn":"@stdlib/stats-iter-midrange","1Ko":"@stdlib/stats/iter/min","1Kp":"@stdlib/stats-iter-min","1Kq":"@stdlib/stats/iter/minabs","1Kr":"@stdlib/stats-iter-minabs","1Ks":"@stdlib/stats/iter/mmax","1Kt":"@stdlib/stats-iter-mmax","1Ku":"@stdlib/stats/iter/mmaxabs","1Kv":"@stdlib/stats-iter-mmaxabs","1Kw":"@stdlib/stats/iter/mmean","1Kx":"@stdlib/stats-iter-mmean","1Ky":"@stdlib/stats/iter/mmeanabs","1Kz":"@stdlib/stats-iter-mmeanabs","1L0":"@stdlib/stats/iter/mmeanabs2","1L1":"@stdlib/stats-iter-mmeanabs2","1L2":"@stdlib/stats/iter/mmidrange","1L3":"@stdlib/stats-iter-mmidrange","1L4":"@stdlib/stats/iter/mmin","1L5":"@stdlib/stats-iter-mmin","1L6":"@stdlib/stats/iter/mminabs","1L7":"@stdlib/stats-iter-mminabs","1L8":"@stdlib/stats/iter/mprod","1L9":"@stdlib/stats-iter-mprod","1LA":"@stdlib/stats/iter/mrange","1LB":"@stdlib/stats-iter-mrange","1LC":"@stdlib/stats/iter/msum","1LD":"@stdlib/stats-iter-msum","1LE":"@stdlib/stats/iter/msumabs","1LF":"@stdlib/stats-iter-msumabs","1LG":"@stdlib/stats/iter/msumabs2","1LH":"@stdlib/stats-iter-msumabs2","1LI":"@stdlib/stats/iter","1LJ":"@stdlib/stats-iter","1LK":"@stdlib/stats/iter/prod","1LL":"@stdlib/stats-iter-prod","1LM":"@stdlib/stats/iter/range","1LN":"@stdlib/stats-iter-range","1LO":"@stdlib/stats/iter/stdev","1LP":"@stdlib/stats-iter-stdev","1LQ":"@stdlib/stats/iter/sum","1LR":"@stdlib/stats-iter-sum","1LS":"@stdlib/stats/iter/sumabs","1LT":"@stdlib/stats-iter-sumabs","1LU":"@stdlib/stats/iter/sumabs2","1LV":"@stdlib/stats-iter-sumabs2","1LW":"@stdlib/stats/iter/variance","1LX":"@stdlib/stats-iter-variance","1LY":"@stdlib/stats/kde2d","1LZ":"@stdlib/stats-kde2d","1La":"@stdlib/stats/kruskal-test","1Lb":"@stdlib/stats-kruskal-test","1Lc":"@stdlib/stats/kstest","1Ld":"@stdlib/stats-kstest","1Le":"@stdlib/stats/levene-test","1Lf":"@stdlib/stats-levene-test","1Lg":"@stdlib/stats/lowess","1Lh":"@stdlib/stats-lowess","1Lj":"@stdlib/stats","1Lk":"@stdlib/stats/padjust","1Ll":"@stdlib/stats-padjust","1Lm":"@stdlib/stats/pcorrtest","1Ln":"@stdlib/stats-pcorrtest","1Lo":"@stdlib/stats/ranks","1Lp":"@stdlib/stats-ranks","1Lq":"@stdlib/stats/ttest","1Lr":"@stdlib/stats-ttest","1Ls":"@stdlib/stats/ttest2","1Lt":"@stdlib/stats-ttest2","1Lu":"@stdlib/stats/vartest","1Lv":"@stdlib/stats-vartest","1Lw":"@stdlib/stats/wilcoxon","1Lx":"@stdlib/stats-wilcoxon","1Ly":"@stdlib/stats/ztest","1Lz":"@stdlib/stats-ztest","1M0":"@stdlib/stats/ztest2","1M1":"@stdlib/stats-ztest2","1M2":"@stdlib/streams/node/debug-sink","1M3":"@stdlib/streams-node-debug-sink","1M4":"@stdlib/streams/node/debug","1M5":"@stdlib/streams-node-debug","1M6":"@stdlib/streams/node/empty","1M7":"@stdlib/streams-node-empty","1M8":"@stdlib/streams/node/from-array","1M9":"@stdlib/streams-node-from-array","1MA":"@stdlib/streams/node/from-circular-array","1MB":"@stdlib/streams-node-from-circular-array","1MC":"@stdlib/streams/node/from-constant","1MD":"@stdlib/streams-node-from-constant","1ME":"@stdlib/streams/node/from-iterator","1MF":"@stdlib/streams-node-from-iterator","1MG":"@stdlib/streams/node/from-strided-array","1MH":"@stdlib/streams-node-from-strided-array","1MI":"@stdlib/streams/node/inspect-sink","1MJ":"@stdlib/streams-node-inspect-sink","1MK":"@stdlib/streams/node/inspect","1ML":"@stdlib/streams-node-inspect","1MM":"@stdlib/streams/node/join","1MN":"@stdlib/streams-node-join","1MO":"@stdlib/streams/node","1MP":"@stdlib/streams-node","1MQ":"@stdlib/streams/node/split","1MR":"@stdlib/streams-node-split","1MS":"@stdlib/streams/node/stderr","1MT":"@stdlib/streams-node-stderr","1MU":"@stdlib/streams/node/stdin","1MV":"@stdlib/streams-node-stdin","1MW":"@stdlib/streams/node/stdout","1MX":"@stdlib/streams-node-stdout","1MY":"@stdlib/streams/node/transform","1MZ":"@stdlib/streams-node-transform","1Mb":"@stdlib/streams","1Mc":"@stdlib/strided/base/binary-addon-dispatch","1Md":"@stdlib/strided-base-binary-addon-dispatch","1Me":"@stdlib/strided/base/binary-dtype-signatures","1Mf":"@stdlib/strided-base-binary-dtype-signatures","1Mg":"@stdlib/strided/base/binary-signature-callbacks","1Mh":"@stdlib/strided-base-binary-signature-callbacks","1Mi":"@stdlib/strided/base/binary","1Mj":"@stdlib/strided-base-binary","1Mk":"@stdlib/strided/base/cmap","1Ml":"@stdlib/strided-base-cmap","1Mm":"@stdlib/strided/base/dmap","1Mn":"@stdlib/strided-base-dmap","1Mo":"@stdlib/strided/base/dmap2","1Mp":"@stdlib/strided-base-dmap2","1Mq":"@stdlib/strided/base/dmskmap","1Mr":"@stdlib/strided-base-dmskmap","1Ms":"@stdlib/strided/base/dmskmap2","1Mt":"@stdlib/strided-base-dmskmap2","1Mu":"@stdlib/strided/base/dtype-enum2str","1Mv":"@stdlib/strided-base-dtype-enum2str","1Mw":"@stdlib/strided/base/dtype-resolve-enum","1Mx":"@stdlib/strided-base-dtype-resolve-enum","1My":"@stdlib/strided/base/dtype-resolve-str","1Mz":"@stdlib/strided-base-dtype-resolve-str","1N0":"@stdlib/strided/base/dtype-str2enum","1N1":"@stdlib/strided-base-dtype-str2enum","1N2":"@stdlib/strided/base/function-object","1N3":"@stdlib/strided-base-function-object","1N4":"@stdlib/strided/base/map-by","1N5":"@stdlib/strided-base-map-by","1N6":"@stdlib/strided/base/map-by2","1N7":"@stdlib/strided-base-map-by2","1N8":"@stdlib/strided/base/max-view-buffer-index","1N9":"@stdlib/strided-base-max-view-buffer-index","1NA":"@stdlib/strided/base/meta-data-props","1NB":"@stdlib/strided-base-meta-data-props","1NC":"@stdlib/strided/base/min-view-buffer-index","1ND":"@stdlib/strided-base-min-view-buffer-index","1fK":"@stdlib/strided/base/mskunary-addon-dispatch","1fL":"@stdlib/strided-base-mskunary-addon-dispatch","1fM":"@stdlib/strided/base/mskunary-dtype-signatures","1fN":"@stdlib/strided-base-mskunary-dtype-signatures","1fO":"@stdlib/strided/base/mskunary-signature-callbacks","1fP":"@stdlib/strided-base-mskunary-signature-callbacks","1NE":"@stdlib/strided/base/mskunary","1NF":"@stdlib/strided-base-mskunary","1fQ":"@stdlib/strided/base/nullary-addon-dispatch","1fR":"@stdlib/strided-base-nullary-addon-dispatch","1NG":"@stdlib/strided/base/nullary","1NH":"@stdlib/strided-base-nullary","1NI":"@stdlib/strided/base/offset-view","1NJ":"@stdlib/strided-base-offset-view","1NK":"@stdlib/strided/base","1NL":"@stdlib/strided-base","1NM":"@stdlib/strided/base/quaternary","1NN":"@stdlib/strided-base-quaternary","1NO":"@stdlib/strided/base/quinary","1NP":"@stdlib/strided-base-quinary","1w4":"@stdlib/strided/base/reinterpret-boolean","1w5":"@stdlib/strided-base-reinterpret-boolean","1s2":"@stdlib/strided/base/reinterpret-complex","1s3":"@stdlib/strided-base-reinterpret-complex","1NQ":"@stdlib/strided/base/reinterpret-complex128","1NR":"@stdlib/strided-base-reinterpret-complex128","1NS":"@stdlib/strided/base/reinterpret-complex64","1NT":"@stdlib/strided-base-reinterpret-complex64","1NU":"@stdlib/strided/base/smap","1NV":"@stdlib/strided-base-smap","1NW":"@stdlib/strided/base/smap2","1NX":"@stdlib/strided-base-smap2","1NY":"@stdlib/strided/base/smskmap","1NZ":"@stdlib/strided-base-smskmap","1Na":"@stdlib/strided/base/smskmap2","1Nb":"@stdlib/strided-base-smskmap2","1xU":"@stdlib/strided/base/stride2offset","1xV":"@stdlib/strided-base-stride2offset","1Nc":"@stdlib/strided/base/ternary","1Nd":"@stdlib/strided-base-ternary","1Ne":"@stdlib/strided/base/unary-addon-dispatch","1Nf":"@stdlib/strided-base-unary-addon-dispatch","1fS":"@stdlib/strided/base/unary-by","1fT":"@stdlib/strided-base-unary-by","1fU":"@stdlib/strided/base/unary-dtype-signatures","1fV":"@stdlib/strided-base-unary-dtype-signatures","1fW":"@stdlib/strided/base/unary-signature-callbacks","1fX":"@stdlib/strided-base-unary-signature-callbacks","1Ng":"@stdlib/strided/base/unary","1Nh":"@stdlib/strided-base-unary","21A":"@stdlib/strided/base/write-dataview","21B":"@stdlib/strided-base-write-dataview","1Ni":"@stdlib/strided/base/zmap","1Nj":"@stdlib/strided-base-zmap","1Nk":"@stdlib/strided/common","1Nl":"@stdlib/strided-common","1fY":"@stdlib/strided/dispatch-by","1fZ":"@stdlib/strided-dispatch-by","1Nm":"@stdlib/strided/dispatch","1Nn":"@stdlib/strided-dispatch","1No":"@stdlib/strided/dtypes","1Np":"@stdlib/strided-dtypes","1Nq":"@stdlib/strided/napi/addon-arguments","1Nr":"@stdlib/strided-napi-addon-arguments","1Ns":"@stdlib/strided/napi/binary","1Nt":"@stdlib/strided-napi-binary","1Nu":"@stdlib/strided/napi/cmap","1Nv":"@stdlib/strided-napi-cmap","1Nw":"@stdlib/strided/napi/dmap","1Nx":"@stdlib/strided-napi-dmap","1Ny":"@stdlib/strided/napi/dmap2","1Nz":"@stdlib/strided-napi-dmap2","1O0":"@stdlib/strided/napi/dmskmap","1O1":"@stdlib/strided-napi-dmskmap","1O2":"@stdlib/strided/napi/dmskmap2","1O3":"@stdlib/strided-napi-dmskmap2","1O4":"@stdlib/strided/napi/mskunary","1O5":"@stdlib/strided-napi-mskunary","1fa":"@stdlib/strided/napi/nullary","1fb":"@stdlib/strided-napi-nullary","1O6":"@stdlib/strided/napi","1O7":"@stdlib/strided-napi","1O8":"@stdlib/strided/napi/smap","1O9":"@stdlib/strided-napi-smap","1OA":"@stdlib/strided/napi/smap2","1OB":"@stdlib/strided-napi-smap2","1OC":"@stdlib/strided/napi/smskmap","1OD":"@stdlib/strided-napi-smskmap","1OE":"@stdlib/strided/napi/smskmap2","1OF":"@stdlib/strided-napi-smskmap2","1OG":"@stdlib/strided/napi/unary","1OH":"@stdlib/strided-napi-unary","1OI":"@stdlib/strided/napi/zmap","1OJ":"@stdlib/strided-napi-zmap","1OL":"@stdlib/strided","1OM":"@stdlib/string/acronym","1ON":"@stdlib/string-acronym","1my":"@stdlib/string/base/altcase","1mz":"@stdlib/string-base-altcase","21C":"@stdlib/string/base/atob","21D":"@stdlib/string-base-atob","21m":"@stdlib/string/base/base64-to-uint8array","21n":"@stdlib/string-base-base64-to-uint8array","1fc":"@stdlib/string/base/camelcase","1fd":"@stdlib/string-base-camelcase","1fe":"@stdlib/string/base/capitalize","1ff":"@stdlib/string-base-capitalize","1fg":"@stdlib/string/base/code-point-at","1fh":"@stdlib/string-base-code-point-at","1fi":"@stdlib/string/base/constantcase","1fj":"@stdlib/string-base-constantcase","1n0":"@stdlib/string/base/distances/hamming","1n1":"@stdlib/string-base-distances-hamming","1fk":"@stdlib/string/base/distances/levenshtein","1fl":"@stdlib/string-base-distances-levenshtein","1fm":"@stdlib/string/base/distances","1fn":"@stdlib/string-base-distances","1fo":"@stdlib/string/base/dotcase","1fp":"@stdlib/string-base-dotcase","1fq":"@stdlib/string/base/ends-with","1fr":"@stdlib/string-base-ends-with","1fs":"@stdlib/string/base/first-code-point","1ft":"@stdlib/string-base-first-code-point","1fu":"@stdlib/string/base/first-grapheme-cluster","1fv":"@stdlib/string-base-first-grapheme-cluster","1fw":"@stdlib/string/base/first","1fx":"@stdlib/string-base-first","1vS":"@stdlib/string/base/for-each-code-point-right","1vT":"@stdlib/string-base-for-each-code-point-right","1fy":"@stdlib/string/base/for-each-code-point","1fz":"@stdlib/string-base-for-each-code-point","1g0":"@stdlib/string/base/for-each-grapheme-cluster","1g1":"@stdlib/string-base-for-each-grapheme-cluster","1sm":"@stdlib/string/base/for-each-right","1sn":"@stdlib/string-base-for-each-right","1g2":"@stdlib/string/base/for-each","1g3":"@stdlib/string-base-for-each","1OO":"@stdlib/string/base/format-interpolate","1OP":"@stdlib/string-base-format-interpolate","1OQ":"@stdlib/string/base/format-tokenize","1OR":"@stdlib/string-base-format-tokenize","1g4":"@stdlib/string/base/headercase","1g5":"@stdlib/string-base-headercase","1g6":"@stdlib/string/base/invcase","1g7":"@stdlib/string-base-invcase","1g8":"@stdlib/string/base/kebabcase","1g9":"@stdlib/string-base-kebabcase","1u0":"@stdlib/string/base/last-code-point","1u1":"@stdlib/string-base-last-code-point","1u2":"@stdlib/string/base/last-grapheme-cluster","1u3":"@stdlib/string-base-last-grapheme-cluster","1u4":"@stdlib/string/base/last","1u5":"@stdlib/string-base-last","1gA":"@stdlib/string/base/left-pad","1gB":"@stdlib/string-base-left-pad","1gC":"@stdlib/string/base/left-trim","1gD":"@stdlib/string-base-left-trim","1gE":"@stdlib/string/base/lowercase","1gF":"@stdlib/string-base-lowercase","1OS":"@stdlib/string/base","1OT":"@stdlib/string-base","1gG":"@stdlib/string/base/pascalcase","1gH":"@stdlib/string-base-pascalcase","1gI":"@stdlib/string/base/percent-encode","1gJ":"@stdlib/string-base-percent-encode","1gK":"@stdlib/string/base/remove-first-code-point","1gL":"@stdlib/string-base-remove-first-code-point","1gM":"@stdlib/string/base/remove-first-grapheme-cluster","1gN":"@stdlib/string-base-remove-first-grapheme-cluster","1gO":"@stdlib/string/base/remove-first","1gP":"@stdlib/string-base-remove-first","1jI":"@stdlib/string/base/remove-last-code-point","1jJ":"@stdlib/string-base-remove-last-code-point","1jK":"@stdlib/string/base/remove-last-grapheme-cluster","1jL":"@stdlib/string-base-remove-last-grapheme-cluster","1jM":"@stdlib/string/base/remove-last","1jN":"@stdlib/string-base-remove-last","1gQ":"@stdlib/string/base/repeat","1gR":"@stdlib/string-base-repeat","1so":"@stdlib/string/base/replace-after-last","1sp":"@stdlib/string-base-replace-after-last","1sq":"@stdlib/string/base/replace-after","1sr":"@stdlib/string-base-replace-after","1ss":"@stdlib/string/base/replace-before-last","1st":"@stdlib/string-base-replace-before-last","1gS":"@stdlib/string/base/replace-before","1gT":"@stdlib/string-base-replace-before","1gU":"@stdlib/string/base/replace","1gV":"@stdlib/string-base-replace","1lW":"@stdlib/string/base/reverse-code-points","1lX":"@stdlib/string-base-reverse-code-points","1lY":"@stdlib/string/base/reverse-grapheme-clusters","1lZ":"@stdlib/string-base-reverse-grapheme-clusters","1la":"@stdlib/string/base/reverse","1lb":"@stdlib/string-base-reverse","1gW":"@stdlib/string/base/right-pad","1gX":"@stdlib/string-base-right-pad","1gY":"@stdlib/string/base/right-trim","1gZ":"@stdlib/string-base-right-trim","1ga":"@stdlib/string/base/snakecase","1gb":"@stdlib/string-base-snakecase","1gc":"@stdlib/string/base/startcase","1gd":"@stdlib/string-base-startcase","1ge":"@stdlib/string/base/starts-with","1gf":"@stdlib/string-base-starts-with","1u6":"@stdlib/string/base/stickycase","1u7":"@stdlib/string-base-stickycase","1gg":"@stdlib/string/base/trim","1gh":"@stdlib/string-base-trim","1lc":"@stdlib/string/base/truncate-middle","1ld":"@stdlib/string-base-truncate-middle","1gi":"@stdlib/string/base/uncapitalize","1gj":"@stdlib/string-base-uncapitalize","1gk":"@stdlib/string/base/uppercase","1gl":"@stdlib/string-base-uppercase","1OU":"@stdlib/string/camelcase","1OV":"@stdlib/string-camelcase","1OW":"@stdlib/string/capitalize","1OX":"@stdlib/string-capitalize","1OY":"@stdlib/string/code-point-at","1OZ":"@stdlib/string-code-point-at","1Oa":"@stdlib/string/constantcase","1Ob":"@stdlib/string-constantcase","1gm":"@stdlib/string/dotcase","1gn":"@stdlib/string-dotcase","1Oc":"@stdlib/string/ends-with","1Od":"@stdlib/string-ends-with","1go":"@stdlib/string/first","1gp":"@stdlib/string-first","1gq":"@stdlib/string/for-each","1gr":"@stdlib/string-for-each","1Oe":"@stdlib/string/format","1Of":"@stdlib/string-format","1Og":"@stdlib/string/from-code-point","1Oh":"@stdlib/string-from-code-point","1gs":"@stdlib/string/headercase","1gt":"@stdlib/string-headercase","1Oi":"@stdlib/string/kebabcase","1Oj":"@stdlib/string-kebabcase","1vU":"@stdlib/string/last","1vV":"@stdlib/string-last","1Ok":"@stdlib/string/left-pad","1Ol":"@stdlib/string-left-pad","1Om":"@stdlib/string/left-trim-n","1On":"@stdlib/string-left-trim-n","1Oo":"@stdlib/string/left-trim","1Op":"@stdlib/string-left-trim","1Oq":"@stdlib/string/lowercase","1Or":"@stdlib/string-lowercase","1le":"@stdlib/string/next-code-point-index","1lf":"@stdlib/string-next-code-point-index","1Os":"@stdlib/string/next-grapheme-cluster-break","1Ot":"@stdlib/string-next-grapheme-cluster-break","1Ou":"@stdlib/string/num-grapheme-clusters","1Ov":"@stdlib/string-num-grapheme-clusters","1gu":"@stdlib/string/num2words","1gv":"@stdlib/string-num2words","1Ox":"@stdlib/string","1Oy":"@stdlib/string/pad","1Oz":"@stdlib/string-pad","1P0":"@stdlib/string/pascalcase","1P1":"@stdlib/string-pascalcase","1P2":"@stdlib/string/percent-encode","1P3":"@stdlib/string-percent-encode","1P4":"@stdlib/string/prev-grapheme-cluster-break","1P5":"@stdlib/string-prev-grapheme-cluster-break","1P6":"@stdlib/string/remove-first","1P7":"@stdlib/string-remove-first","1P8":"@stdlib/string/remove-last","1P9":"@stdlib/string-remove-last","1PA":"@stdlib/string/remove-punctuation","1PB":"@stdlib/string-remove-punctuation","1PC":"@stdlib/string/remove-utf8-bom","1PD":"@stdlib/string-remove-utf8-bom","1PE":"@stdlib/string/remove-words","1PF":"@stdlib/string-remove-words","1PG":"@stdlib/string/repeat","1PH":"@stdlib/string-repeat","1gw":"@stdlib/string/replace-before","1gx":"@stdlib/string-replace-before","1PI":"@stdlib/string/replace","1PJ":"@stdlib/string-replace","1PK":"@stdlib/string/reverse","1PL":"@stdlib/string-reverse","1PM":"@stdlib/string/right-pad","1PN":"@stdlib/string-right-pad","1PO":"@stdlib/string/right-trim-n","1PP":"@stdlib/string-right-trim-n","1PQ":"@stdlib/string/right-trim","1PR":"@stdlib/string-right-trim","1PS":"@stdlib/string/snakecase","1PT":"@stdlib/string-snakecase","1PU":"@stdlib/string/split-grapheme-clusters","1PV":"@stdlib/string-split-grapheme-clusters","1PW":"@stdlib/string/startcase","1PX":"@stdlib/string-startcase","1PY":"@stdlib/string/starts-with","1PZ":"@stdlib/string-starts-with","1Pa":"@stdlib/string/substring-after-last","1Pb":"@stdlib/string-substring-after-last","1Pc":"@stdlib/string/substring-after","1Pd":"@stdlib/string-substring-after","1Pe":"@stdlib/string/substring-before-last","1Pf":"@stdlib/string-substring-before-last","1Pg":"@stdlib/string/substring-before","1Ph":"@stdlib/string-substring-before","1gy":"@stdlib/string/to-grapheme-cluster-iterator-right","1gz":"@stdlib/string-to-grapheme-cluster-iterator-right","1h0":"@stdlib/string/to-grapheme-cluster-iterator","1h1":"@stdlib/string-to-grapheme-cluster-iterator","1u8":"@stdlib/string/to-well-formed","1u9":"@stdlib/string-to-well-formed","1Pi":"@stdlib/string/tools/grapheme-cluster-break","1Pj":"@stdlib/string-tools-grapheme-cluster-break","1Pk":"@stdlib/string/tools","1Pl":"@stdlib/string-tools","1Pm":"@stdlib/string/trim","1Pn":"@stdlib/string-trim","1Po":"@stdlib/string/truncate-middle","1Pp":"@stdlib/string-truncate-middle","1Pq":"@stdlib/string/truncate","1Pr":"@stdlib/string-truncate","1Ps":"@stdlib/string/uncapitalize","1Pt":"@stdlib/string-uncapitalize","1Pu":"@stdlib/string/uppercase","1Pv":"@stdlib/string-uppercase","1Pw":"@stdlib/string/utf16-to-utf8-array","1Px":"@stdlib/string-utf16-to-utf8-array","1Py":"@stdlib/symbol/async-iterator","1Pz":"@stdlib/symbol-async-iterator","1Q0":"@stdlib/symbol/ctor","1Q1":"@stdlib/symbol-ctor","1Q2":"@stdlib/symbol/iterator","1Q3":"@stdlib/symbol-iterator","1Q5":"@stdlib/symbol","1h2":"@stdlib/time/base","1h3":"@stdlib/time-base","1h4":"@stdlib/time/base/parse-duration","1h5":"@stdlib/time-base-parse-duration","1h6":"@stdlib/time/current-year","1h7":"@stdlib/time-current-year","1Q6":"@stdlib/time/day-of-quarter","1Q7":"@stdlib/time-day-of-quarter","1Q8":"@stdlib/time/day-of-year","1Q9":"@stdlib/time-day-of-year","1QA":"@stdlib/time/days-in-month","1QB":"@stdlib/time-days-in-month","1QC":"@stdlib/time/days-in-year","1QD":"@stdlib/time-days-in-year","1h8":"@stdlib/time/duration2ms","1h9":"@stdlib/time-duration2ms","1QE":"@stdlib/time/hours-in-month","1QF":"@stdlib/time-hours-in-month","1QG":"@stdlib/time/hours-in-year","1QH":"@stdlib/time-hours-in-year","1QI":"@stdlib/time/iso-weeks-in-year","1QJ":"@stdlib/time-iso-weeks-in-year","1QK":"@stdlib/time/minutes-in-month","1QL":"@stdlib/time-minutes-in-month","1QM":"@stdlib/time/minutes-in-year","1QN":"@stdlib/time-minutes-in-year","1hA":"@stdlib/time/ms2duration","1hB":"@stdlib/time-ms2duration","1QO":"@stdlib/time/now","1QP":"@stdlib/time-now","1QR":"@stdlib/time","1QS":"@stdlib/time/quarter-of-year","1QT":"@stdlib/time-quarter-of-year","1QU":"@stdlib/time/seconds-in-month","1QV":"@stdlib/time-seconds-in-month","1QW":"@stdlib/time/seconds-in-year","1QX":"@stdlib/time-seconds-in-year","1QY":"@stdlib/time/tic","1QZ":"@stdlib/time-tic","1Qa":"@stdlib/time/toc","1Qb":"@stdlib/time-toc","1Qd":"@stdlib/types","1Qe":"@stdlib/utils/any-by-right","1Qf":"@stdlib/utils-any-by-right","1Qg":"@stdlib/utils/any-by","1Qh":"@stdlib/utils-any-by","1uA":"@stdlib/utils/any-in-by","1uB":"@stdlib/utils-any-in-by","1uC":"@stdlib/utils/any-own-by","1uD":"@stdlib/utils-any-own-by","1Qi":"@stdlib/utils/any","1Qj":"@stdlib/utils-any","1Qk":"@stdlib/utils/append","1Ql":"@stdlib/utils-append","1Qm":"@stdlib/utils/argument-function","1Qn":"@stdlib/utils-argument-function","1Qo":"@stdlib/utils/async/any-by-right","1Qp":"@stdlib/utils-async-any-by-right","1Qq":"@stdlib/utils/async/any-by","1Qr":"@stdlib/utils-async-any-by","1Qs":"@stdlib/utils/async/bifurcate-by","1Qt":"@stdlib/utils-async-bifurcate-by","1Qu":"@stdlib/utils/async/compose","1Qv":"@stdlib/utils-async-compose","1Qw":"@stdlib/utils/async/count-by","1Qx":"@stdlib/utils-async-count-by","1Qy":"@stdlib/utils/async/do-until","1Qz":"@stdlib/utils-async-do-until","1R0":"@stdlib/utils/async/do-while","1R1":"@stdlib/utils-async-do-while","1R2":"@stdlib/utils/async/every-by-right","1R3":"@stdlib/utils-async-every-by-right","1R4":"@stdlib/utils/async/every-by","1R5":"@stdlib/utils-async-every-by","1R6":"@stdlib/utils/async/for-each-right","1R7":"@stdlib/utils-async-for-each-right","1R8":"@stdlib/utils/async/for-each","1R9":"@stdlib/utils-async-for-each","1RA":"@stdlib/utils/async/function-sequence","1RB":"@stdlib/utils-async-function-sequence","1RC":"@stdlib/utils/async/group-by","1RD":"@stdlib/utils-async-group-by","1RE":"@stdlib/utils/async/if-else","1RF":"@stdlib/utils-async-if-else","1RG":"@stdlib/utils/async/if-then","1RH":"@stdlib/utils-async-if-then","1RI":"@stdlib/utils/async/inmap-right","1RJ":"@stdlib/utils-async-inmap-right","1RK":"@stdlib/utils/async/inmap","1RL":"@stdlib/utils-async-inmap","1RM":"@stdlib/utils/async/map-function","1RN":"@stdlib/utils-async-map-function","1RO":"@stdlib/utils/async/map-keys","1RP":"@stdlib/utils-async-map-keys","1RQ":"@stdlib/utils/async/map-values","1RR":"@stdlib/utils-async-map-values","1RS":"@stdlib/utils/async/none-by-right","1RT":"@stdlib/utils-async-none-by-right","1RU":"@stdlib/utils/async/none-by","1RV":"@stdlib/utils-async-none-by","1RW":"@stdlib/utils/async","1RX":"@stdlib/utils-async","1xW":"@stdlib/utils/async/parallel","1xX":"@stdlib/utils-async-parallel","1RY":"@stdlib/utils/async/reduce-right","1RZ":"@stdlib/utils-async-reduce-right","1Ra":"@stdlib/utils/async/reduce","1Rb":"@stdlib/utils-async-reduce","1Rc":"@stdlib/utils/async/series-waterfall","1Rd":"@stdlib/utils-async-series-waterfall","1Re":"@stdlib/utils/async/some-by-right","1Rf":"@stdlib/utils-async-some-by-right","1Rg":"@stdlib/utils/async/some-by","1Rh":"@stdlib/utils-async-some-by","1Ri":"@stdlib/utils/async/tabulate-by","1Rj":"@stdlib/utils-async-tabulate-by","1Rk":"@stdlib/utils/async/try-catch","1Rl":"@stdlib/utils-async-try-catch","1Rm":"@stdlib/utils/async/try-then","1Rn":"@stdlib/utils-async-try-then","1Ro":"@stdlib/utils/async/until","1Rp":"@stdlib/utils-async-until","1Rq":"@stdlib/utils/async/while","1Rr":"@stdlib/utils-async-while","1Rs":"@stdlib/utils/bifurcate-by","1Rt":"@stdlib/utils-bifurcate-by","1Ru":"@stdlib/utils/bifurcate-in","1Rv":"@stdlib/utils-bifurcate-in","1Rw":"@stdlib/utils/bifurcate-own","1Rx":"@stdlib/utils-bifurcate-own","1Ry":"@stdlib/utils/bifurcate","1Rz":"@stdlib/utils-bifurcate","1S0":"@stdlib/utils/capitalize-keys","1S1":"@stdlib/utils-capitalize-keys","1S2":"@stdlib/utils/circular-buffer","1S3":"@stdlib/utils-circular-buffer","1S4":"@stdlib/utils/common-keys-in","1S5":"@stdlib/utils-common-keys-in","1S6":"@stdlib/utils/common-keys","1S7":"@stdlib/utils-common-keys","1S8":"@stdlib/utils/compact-adjacency-matrix","1S9":"@stdlib/utils-compact-adjacency-matrix","1SA":"@stdlib/utils/compose","1SB":"@stdlib/utils-compose","1SC":"@stdlib/utils/constant-function","1SD":"@stdlib/utils-constant-function","1SE":"@stdlib/utils/constructor-name","1SF":"@stdlib/utils-constructor-name","1SG":"@stdlib/utils/convert-path","1SH":"@stdlib/utils-convert-path","1SI":"@stdlib/utils/copy","1SJ":"@stdlib/utils-copy","1SK":"@stdlib/utils/count-by","1SL":"@stdlib/utils-count-by","1SM":"@stdlib/utils/curry-right","1SN":"@stdlib/utils-curry-right","1SO":"@stdlib/utils/curry","1SP":"@stdlib/utils-curry","1hC":"@stdlib/utils/decorate-after","1hD":"@stdlib/utils-decorate-after","1SQ":"@stdlib/utils/deep-get","1SR":"@stdlib/utils-deep-get","1SS":"@stdlib/utils/deep-pluck","1ST":"@stdlib/utils-deep-pluck","1SU":"@stdlib/utils/deep-set","1SV":"@stdlib/utils-deep-set","1SW":"@stdlib/utils/define-configurable-read-only-accessor","1SX":"@stdlib/utils-define-configurable-read-only-accessor","1SY":"@stdlib/utils/define-configurable-read-only-property","1SZ":"@stdlib/utils-define-configurable-read-only-property","1Sa":"@stdlib/utils/define-configurable-read-write-accessor","1Sb":"@stdlib/utils-define-configurable-read-write-accessor","1Sc":"@stdlib/utils/define-configurable-write-only-accessor","1Sd":"@stdlib/utils-define-configurable-write-only-accessor","1Se":"@stdlib/utils/define-memoized-configurable-read-only-property","1Sf":"@stdlib/utils-define-memoized-configurable-read-only-property","1Sg":"@stdlib/utils/define-memoized-property","1Sh":"@stdlib/utils-define-memoized-property","1Si":"@stdlib/utils/define-memoized-read-only-property","1Sj":"@stdlib/utils-define-memoized-read-only-property","1Sk":"@stdlib/utils/define-nonenumerable-property","1Sl":"@stdlib/utils-define-nonenumerable-property","1Sm":"@stdlib/utils/define-nonenumerable-read-only-accessor","1Sn":"@stdlib/utils-define-nonenumerable-read-only-accessor","1So":"@stdlib/utils/define-nonenumerable-read-only-property","1Sp":"@stdlib/utils-define-nonenumerable-read-only-property","1Sq":"@stdlib/utils/define-nonenumerable-read-write-accessor","1Sr":"@stdlib/utils-define-nonenumerable-read-write-accessor","1Ss":"@stdlib/utils/define-nonenumerable-write-only-accessor","1St":"@stdlib/utils-define-nonenumerable-write-only-accessor","1Su":"@stdlib/utils/define-properties","1Sv":"@stdlib/utils-define-properties","1Sw":"@stdlib/utils/define-property","1Sx":"@stdlib/utils-define-property","1Sy":"@stdlib/utils/define-read-only-accessor","1Sz":"@stdlib/utils-define-read-only-accessor","1T0":"@stdlib/utils/define-read-only-property","1T1":"@stdlib/utils-define-read-only-property","1T2":"@stdlib/utils/define-read-write-accessor","1T3":"@stdlib/utils-define-read-write-accessor","1T4":"@stdlib/utils/define-write-only-accessor","1T5":"@stdlib/utils-define-write-only-accessor","1T6":"@stdlib/utils/dirname","1T7":"@stdlib/utils-dirname","1T8":"@stdlib/utils/do-until-each-right","1T9":"@stdlib/utils-do-until-each-right","1TA":"@stdlib/utils/do-until-each","1TB":"@stdlib/utils-do-until-each","1TC":"@stdlib/utils/do-until","1TD":"@stdlib/utils-do-until","1TE":"@stdlib/utils/do-while-each-right","1TF":"@stdlib/utils-do-while-each-right","1TG":"@stdlib/utils/do-while-each","1TH":"@stdlib/utils-do-while-each","1TI":"@stdlib/utils/do-while","1TJ":"@stdlib/utils-do-while","1TK":"@stdlib/utils/doubly-linked-list","1TL":"@stdlib/utils-doubly-linked-list","1hE":"@stdlib/utils/dsv/base","1hF":"@stdlib/utils-dsv-base","1hG":"@stdlib/utils/dsv/base/parse","1hH":"@stdlib/utils-dsv-base-parse","1hI":"@stdlib/utils/dsv","1hJ":"@stdlib/utils-dsv","1TM":"@stdlib/utils/entries-in","1TN":"@stdlib/utils-entries-in","1TO":"@stdlib/utils/entries","1TP":"@stdlib/utils-entries","1TQ":"@stdlib/utils/enumerable-properties-in","1TR":"@stdlib/utils-enumerable-properties-in","1TS":"@stdlib/utils/enumerable-properties","1TT":"@stdlib/utils-enumerable-properties","1TU":"@stdlib/utils/enumerable-property-symbols-in","1TV":"@stdlib/utils-enumerable-property-symbols-in","1TW":"@stdlib/utils/enumerable-property-symbols","1TX":"@stdlib/utils-enumerable-property-symbols","1TY":"@stdlib/utils/escape-regexp-string","1TZ":"@stdlib/utils-escape-regexp-string","1Ta":"@stdlib/utils/eval","1Tb":"@stdlib/utils-eval","1Tc":"@stdlib/utils/every-by-right","1Td":"@stdlib/utils-every-by-right","1Te":"@stdlib/utils/every-by","1Tf":"@stdlib/utils-every-by","1su":"@stdlib/utils/every-in-by","1sv":"@stdlib/utils-every-in-by","1uE":"@stdlib/utils/every-own-by","1uF":"@stdlib/utils-every-own-by","1Tg":"@stdlib/utils/every","1Th":"@stdlib/utils-every","1Ti":"@stdlib/utils/extname","1Tj":"@stdlib/utils-extname","1Tk":"@stdlib/utils/fifo","1Tl":"@stdlib/utils-fifo","1Tm":"@stdlib/utils/filter-arguments","1Tn":"@stdlib/utils-filter-arguments","1To":"@stdlib/utils/find","1Tp":"@stdlib/utils-find","1Tq":"@stdlib/utils/flatten-array","1Tr":"@stdlib/utils-flatten-array","1Ts":"@stdlib/utils/flatten-object","1Tt":"@stdlib/utils-flatten-object","1Tu":"@stdlib/utils/for-each-right","1Tv":"@stdlib/utils-for-each-right","1Tw":"@stdlib/utils/for-each","1Tx":"@stdlib/utils-for-each","1Ty":"@stdlib/utils/for-in","1Tz":"@stdlib/utils-for-in","1U0":"@stdlib/utils/for-own","1U1":"@stdlib/utils-for-own","1U2":"@stdlib/utils/from-entries","1U3":"@stdlib/utils-from-entries","1U4":"@stdlib/utils/function-name","1U5":"@stdlib/utils-function-name","1U6":"@stdlib/utils/function-sequence","1U7":"@stdlib/utils-function-sequence","1U8":"@stdlib/utils/get-prototype-of","1U9":"@stdlib/utils-get-prototype-of","1UA":"@stdlib/utils/global","1UB":"@stdlib/utils-global","1UC":"@stdlib/utils/group-by","1UD":"@stdlib/utils-group-by","1UE":"@stdlib/utils/group-in","1UF":"@stdlib/utils-group-in","1UG":"@stdlib/utils/group-own","1UH":"@stdlib/utils-group-own","1UI":"@stdlib/utils/group","1UJ":"@stdlib/utils-group","1UK":"@stdlib/utils/identity-function","1UL":"@stdlib/utils-identity-function","1UM":"@stdlib/utils/if-else","1UN":"@stdlib/utils-if-else","1UO":"@stdlib/utils/if-then","1UP":"@stdlib/utils-if-then","1UQ":"@stdlib/utils/index-of","1UR":"@stdlib/utils-index-of","1US":"@stdlib/utils/inherit","1UT":"@stdlib/utils-inherit","1UU":"@stdlib/utils/inherited-enumerable-properties","1UV":"@stdlib/utils-inherited-enumerable-properties","1UW":"@stdlib/utils/inherited-enumerable-property-symbols","1UX":"@stdlib/utils-inherited-enumerable-property-symbols","1UY":"@stdlib/utils/inherited-keys","1UZ":"@stdlib/utils-inherited-keys","1Ua":"@stdlib/utils/inherited-nonenumerable-properties","1Ub":"@stdlib/utils-inherited-nonenumerable-properties","1Uc":"@stdlib/utils/inherited-nonenumerable-property-names","1Ud":"@stdlib/utils-inherited-nonenumerable-property-names","1Ue":"@stdlib/utils/inherited-nonenumerable-property-symbols","1Uf":"@stdlib/utils-inherited-nonenumerable-property-symbols","1Ug":"@stdlib/utils/inherited-properties","1Uh":"@stdlib/utils-inherited-properties","1Ui":"@stdlib/utils/inherited-property-descriptor","1Uj":"@stdlib/utils-inherited-property-descriptor","1Uk":"@stdlib/utils/inherited-property-descriptors","1Ul":"@stdlib/utils-inherited-property-descriptors","1Um":"@stdlib/utils/inherited-property-names","1Un":"@stdlib/utils-inherited-property-names","1Uo":"@stdlib/utils/inherited-property-symbols","1Up":"@stdlib/utils-inherited-property-symbols","1Uq":"@stdlib/utils/inherited-writable-properties","1Ur":"@stdlib/utils-inherited-writable-properties","1Us":"@stdlib/utils/inherited-writable-property-names","1Ut":"@stdlib/utils-inherited-writable-property-names","1Uu":"@stdlib/utils/inherited-writable-property-symbols","1Uv":"@stdlib/utils-inherited-writable-property-symbols","1Uw":"@stdlib/utils/inmap-right","1Ux":"@stdlib/utils-inmap-right","1Uy":"@stdlib/utils/inmap","1Uz":"@stdlib/utils-inmap","1V0":"@stdlib/utils/key-by-right","1V1":"@stdlib/utils-key-by-right","1V2":"@stdlib/utils/key-by","1V3":"@stdlib/utils-key-by","1V4":"@stdlib/utils/keys-in","1V5":"@stdlib/utils-keys-in","1V6":"@stdlib/utils/keys","1V7":"@stdlib/utils-keys","1V8":"@stdlib/utils/library-manifest","1V9":"@stdlib/utils-library-manifest","1VA":"@stdlib/utils/linked-list","1VB":"@stdlib/utils-linked-list","1VC":"@stdlib/utils/lowercase-keys","1VD":"@stdlib/utils-lowercase-keys","1VE":"@stdlib/utils/map-arguments","1VF":"@stdlib/utils-map-arguments","1VG":"@stdlib/utils/map-function","1VH":"@stdlib/utils-map-function","1VI":"@stdlib/utils/map-keys","1VJ":"@stdlib/utils-map-keys","1VK":"@stdlib/utils/map-reduce-right","1VL":"@stdlib/utils-map-reduce-right","1VM":"@stdlib/utils/map-reduce","1VN":"@stdlib/utils-map-reduce","1VO":"@stdlib/utils/map-right","1VP":"@stdlib/utils-map-right","1VQ":"@stdlib/utils/map-values","1VR":"@stdlib/utils-map-values","1VS":"@stdlib/utils/map","1VT":"@stdlib/utils-map","1VU":"@stdlib/utils/map2-right","1VV":"@stdlib/utils-map2-right","1VW":"@stdlib/utils/map2","1VX":"@stdlib/utils-map2","1VY":"@stdlib/utils/map2d","1VZ":"@stdlib/utils-map2d","1Va":"@stdlib/utils/map3d","1Vb":"@stdlib/utils-map3d","1Vc":"@stdlib/utils/map4d","1Vd":"@stdlib/utils-map4d","1Ve":"@stdlib/utils/map5d","1Vf":"@stdlib/utils-map5d","1Vg":"@stdlib/utils/mask-arguments","1Vh":"@stdlib/utils-mask-arguments","1Vi":"@stdlib/utils/memoize","1Vj":"@stdlib/utils-memoize","1Vk":"@stdlib/utils/merge","1Vl":"@stdlib/utils-merge","1Vm":"@stdlib/utils/move-property","1Vn":"@stdlib/utils-move-property","1Vo":"@stdlib/utils/named-typed-tuple","1Vp":"@stdlib/utils-named-typed-tuple","1Vq":"@stdlib/utils/nary-function","1Vr":"@stdlib/utils-nary-function","1Vs":"@stdlib/utils/native-class","1Vt":"@stdlib/utils-native-class","1Vu":"@stdlib/utils/next-tick","1Vv":"@stdlib/utils-next-tick","1Vw":"@stdlib/utils/none-by-right","1Vx":"@stdlib/utils-none-by-right","1Vy":"@stdlib/utils/none-by","1Vz":"@stdlib/utils-none-by","1uG":"@stdlib/utils/none-in-by","1uH":"@stdlib/utils-none-in-by","1sw":"@stdlib/utils/none-own-by","1sx":"@stdlib/utils-none-own-by","1W0":"@stdlib/utils/none","1W1":"@stdlib/utils-none","1W2":"@stdlib/utils/nonenumerable-properties-in","1W3":"@stdlib/utils-nonenumerable-properties-in","1W4":"@stdlib/utils/nonenumerable-properties","1W5":"@stdlib/utils-nonenumerable-properties","1W6":"@stdlib/utils/nonenumerable-property-names-in","1W7":"@stdlib/utils-nonenumerable-property-names-in","1W8":"@stdlib/utils/nonenumerable-property-names","1W9":"@stdlib/utils-nonenumerable-property-names","1WA":"@stdlib/utils/nonenumerable-property-symbols-in","1WB":"@stdlib/utils-nonenumerable-property-symbols-in","1WC":"@stdlib/utils/nonenumerable-property-symbols","1WD":"@stdlib/utils-nonenumerable-property-symbols","1WE":"@stdlib/utils/nonindex-keys","1WF":"@stdlib/utils-nonindex-keys","1WG":"@stdlib/utils/noop","1WH":"@stdlib/utils-noop","1WI":"@stdlib/utils/object-inverse-by","1WJ":"@stdlib/utils-object-inverse-by","1WK":"@stdlib/utils/object-inverse","1WL":"@stdlib/utils-object-inverse","1WM":"@stdlib/utils/omit-by","1WN":"@stdlib/utils-omit-by","1WO":"@stdlib/utils/omit","1WP":"@stdlib/utils-omit","1WQ":"@stdlib/utils/open-url","1WR":"@stdlib/utils-open-url","1WT":"@stdlib/utils","1WU":"@stdlib/utils/papply-right","1WV":"@stdlib/utils-papply-right","1WW":"@stdlib/utils/papply","1WX":"@stdlib/utils-papply","1WY":"@stdlib/utils/parallel","1WZ":"@stdlib/utils-parallel","1Wa":"@stdlib/utils/parse-json","1Wb":"@stdlib/utils-parse-json","1uI":"@stdlib/utils/parse-ndjson","1uJ":"@stdlib/utils-parse-ndjson","1Wc":"@stdlib/utils/pick-arguments","1Wd":"@stdlib/utils-pick-arguments","1We":"@stdlib/utils/pick-by","1Wf":"@stdlib/utils-pick-by","1Wg":"@stdlib/utils/pick","1Wh":"@stdlib/utils-pick","1Wi":"@stdlib/utils/pluck","1Wj":"@stdlib/utils-pluck","1Wk":"@stdlib/utils/pop","1Wl":"@stdlib/utils-pop","1Wm":"@stdlib/utils/prepend","1Wn":"@stdlib/utils-prepend","1Wo":"@stdlib/utils/properties-in","1Wp":"@stdlib/utils-properties-in","1Wq":"@stdlib/utils/properties","1Wr":"@stdlib/utils-properties","1Ws":"@stdlib/utils/property-descriptor-in","1Wt":"@stdlib/utils-property-descriptor-in","1Wu":"@stdlib/utils/property-descriptor","1Wv":"@stdlib/utils-property-descriptor","1Ww":"@stdlib/utils/property-descriptors-in","1Wx":"@stdlib/utils-property-descriptors-in","1Wy":"@stdlib/utils/property-descriptors","1Wz":"@stdlib/utils-property-descriptors","1X0":"@stdlib/utils/property-names-in","1X1":"@stdlib/utils-property-names-in","1X2":"@stdlib/utils/property-names","1X3":"@stdlib/utils-property-names","1X4":"@stdlib/utils/property-symbols-in","1X5":"@stdlib/utils-property-symbols-in","1X6":"@stdlib/utils/property-symbols","1X7":"@stdlib/utils-property-symbols","1X8":"@stdlib/utils/push","1X9":"@stdlib/utils-push","1XA":"@stdlib/utils/real-max","1XB":"@stdlib/utils-real-max","1XC":"@stdlib/utils/real-min","1XD":"@stdlib/utils-real-min","1XE":"@stdlib/utils/reduce-right","1XF":"@stdlib/utils-reduce-right","1XG":"@stdlib/utils/reduce","1XH":"@stdlib/utils-reduce","1XI":"@stdlib/utils/reduce2d","1XJ":"@stdlib/utils-reduce2d","1XK":"@stdlib/utils/regexp-from-string","1XL":"@stdlib/utils-regexp-from-string","1XM":"@stdlib/utils/reject-arguments","1XN":"@stdlib/utils-reject-arguments","1XO":"@stdlib/utils/reorder-arguments","1XP":"@stdlib/utils-reorder-arguments","1XQ":"@stdlib/utils/reverse-arguments","1XR":"@stdlib/utils-reverse-arguments","1XS":"@stdlib/utils/safe-int-max","1XT":"@stdlib/utils-safe-int-max","1XU":"@stdlib/utils/safe-int-min","1XV":"@stdlib/utils-safe-int-min","1XW":"@stdlib/utils/shift","1XX":"@stdlib/utils-shift","1XY":"@stdlib/utils/size-of","1XZ":"@stdlib/utils-size-of","1Xa":"@stdlib/utils/some-by-right","1Xb":"@stdlib/utils-some-by-right","1Xc":"@stdlib/utils/some-by","1Xd":"@stdlib/utils-some-by","1sy":"@stdlib/utils/some-in-by","1sz":"@stdlib/utils-some-in-by","1uK":"@stdlib/utils/some-own-by","1uL":"@stdlib/utils-some-own-by","1Xe":"@stdlib/utils/some","1Xf":"@stdlib/utils-some","1Xg":"@stdlib/utils/stack","1Xh":"@stdlib/utils-stack","1Xi":"@stdlib/utils/tabulate-by","1Xj":"@stdlib/utils-tabulate-by","1Xk":"@stdlib/utils/tabulate","1Xl":"@stdlib/utils-tabulate","1hK":"@stdlib/utils/thunk","1hL":"@stdlib/utils-thunk","1Xm":"@stdlib/utils/timeit","1Xn":"@stdlib/utils-timeit","1Xo":"@stdlib/utils/try-catch","1Xp":"@stdlib/utils-try-catch","1Xq":"@stdlib/utils/try-function","1Xr":"@stdlib/utils-try-function","1Xs":"@stdlib/utils/try-require","1Xt":"@stdlib/utils-try-require","1Xu":"@stdlib/utils/try-then","1Xv":"@stdlib/utils-try-then","1Xw":"@stdlib/utils/type-max","1Xx":"@stdlib/utils-type-max","1Xy":"@stdlib/utils/type-min","1Xz":"@stdlib/utils-type-min","1Y0":"@stdlib/utils/type-of","1Y1":"@stdlib/utils-type-of","1Y2":"@stdlib/utils/uncapitalize-keys","1Y3":"@stdlib/utils-uncapitalize-keys","1Y4":"@stdlib/utils/uncurry-right","1Y5":"@stdlib/utils-uncurry-right","1Y6":"@stdlib/utils/uncurry","1Y7":"@stdlib/utils-uncurry","1Y8":"@stdlib/utils/unshift","1Y9":"@stdlib/utils-unshift","1YA":"@stdlib/utils/until-each-right","1YB":"@stdlib/utils-until-each-right","1YC":"@stdlib/utils/until-each","1YD":"@stdlib/utils-until-each","1YE":"@stdlib/utils/until","1YF":"@stdlib/utils-until","1YG":"@stdlib/utils/unzip","1YH":"@stdlib/utils-unzip","1YI":"@stdlib/utils/uppercase-keys","1YJ":"@stdlib/utils-uppercase-keys","1YK":"@stdlib/utils/values-in","1YL":"@stdlib/utils-values-in","1YM":"@stdlib/utils/values","1YN":"@stdlib/utils-values","1YO":"@stdlib/utils/while-each-right","1YP":"@stdlib/utils-while-each-right","1YQ":"@stdlib/utils/while-each","1YR":"@stdlib/utils-while-each","1YS":"@stdlib/utils/while","1YT":"@stdlib/utils-while","1YU":"@stdlib/utils/writable-properties-in","1YV":"@stdlib/utils-writable-properties-in","1YW":"@stdlib/utils/writable-properties","1YX":"@stdlib/utils-writable-properties","1YY":"@stdlib/utils/writable-property-names-in","1YZ":"@stdlib/utils-writable-property-names-in","1Ya":"@stdlib/utils/writable-property-names","1Yb":"@stdlib/utils-writable-property-names","1Yc":"@stdlib/utils/writable-property-symbols-in","1Yd":"@stdlib/utils-writable-property-symbols-in","1Ye":"@stdlib/utils/writable-property-symbols","1Yf":"@stdlib/utils-writable-property-symbols","1Yg":"@stdlib/utils/zip","1Yh":"@stdlib/utils-zip","21E":"@stdlib/wasm/base/array2dtype","21F":"@stdlib/wasm-base-array2dtype","21G":"@stdlib/wasm/base/arrays2ptrs","21H":"@stdlib/wasm-base-arrays2ptrs","21I":"@stdlib/wasm/base/dtype2wasm","21J":"@stdlib/wasm-base-dtype2wasm","21K":"@stdlib/wasm/base","21L":"@stdlib/wasm-base","21M":"@stdlib/wasm/base/strided2object","21N":"@stdlib/wasm-base-strided2object","21O":"@stdlib/wasm/memory","21P":"@stdlib/wasm-memory","21Q":"@stdlib/wasm/module-wrapper","21R":"@stdlib/wasm-module-wrapper","21T":"@stdlib/wasm"}
+
+},{}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13890,7 +13836,7 @@ module.exports={"000":"@stdlib/array/base/arraylike2object","001":"@stdlib/array
 * @example
 * var id2pkg = require( '@stdlib/error/tools/id2pkg' );
 *
-* var v = id2pkg( '0H5' );
+* var v = id2pkg( '0YK' );
 * // returns '@stdlib/math/base/special/sin'
 */
 
@@ -13903,7 +13849,7 @@ var id2pkg = require( './main.js' );
 
 module.exports = id2pkg;
 
-},{"./main.js":240}],240:[function(require,module,exports){
+},{"./main.js":238}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13942,7 +13888,7 @@ var ID_TO_PKG = require( './../data/data.json' );
 * @returns {(string|null)} package name
 *
 * @example
-* var v = id2pkg( '0H5' );
+* var v = id2pkg( '0YK' );
 * // returns '@stdlib/math/base/special/sin'
 */
 function id2pkg( id ) {
@@ -13960,7 +13906,7 @@ function id2pkg( id ) {
 
 module.exports = id2pkg;
 
-},{"./../data/data.json":238,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":149,"@stdlib/string/format":292}],241:[function(require,module,exports){
+},{"./../data/data.json":236,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":145,"@stdlib/string/format":304}],239:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/error/tools/id2pkg",
   "version": "0.0.0",
@@ -14030,7 +13976,7 @@ module.exports={
   ]
 }
 
-},{}],242:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14068,14 +14014,14 @@ module.exports={
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":243}],243:[function(require,module,exports){
+},{"./main.js":241}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14126,7 +14072,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":246}],244:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":244}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14164,14 +14110,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":245}],245:[function(require,module,exports){
+},{"./main.js":243}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14217,7 +14163,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],246:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14261,14 +14207,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":247}],247:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14320,123 +14266,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],248:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Decompose a double-precision floating-point number into integral and fractional parts.
-*
-* @module @stdlib/math/base/special/modf
-*
-* @example
-* var modf = require( '@stdlib/math/base/special/modf' );
-*
-* var parts = modf( 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var modf = require( '@stdlib/math/base/special/modf' );
-*
-* var out = new Float64Array( 2 );
-*
-* var parts = modf( out, 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* var bool = ( parts === out );
-* // returns true
-*/
-
-// MODULES //
-
-var modf = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = modf;
-
-},{"./main.js":249}],249:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './modf.js' );
-
-
-// MAIN //
-
-/**
-* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var parts = modf( 3.14 );
-* // returns [ 3.0, 0.14000000000000012 ]
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-*
-* var out = new Float64Array( 2 );
-*
-* var parts = modf( out, 3.14 );
-* // returns <Float64Array>[ 3.0, 0.14000000000000012 ]
-*
-* var bool = ( parts === out );
-* // returns true
-*/
-function modf( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0.0, 0.0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = modf;
-
-},{"./modf.js":250}],250:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14474,24 +14304,26 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/hig
 var ALL_ONES = 4294967295>>>0; // asm type annotation
 
 // High/low words workspace:
-var WORDS = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var WORDS = [ 0|0, 0|0 ];
 
 
 // MAIN //
 
 /**
-* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
+* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value, and assigns results to a provided output array.
 *
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
-* var parts = modf( [ 0.0, 0.0 ], 3.14 );
+* var parts = modf( 3.14, [ 0.0, 0.0 ], 1, 0 );
 * // returns [ 3.0, 0.14000000000000012 ]
 */
-function modf( out, x ) {
+function modf( x, out, stride, offset ) {
 	var high;
 	var low;
 	var exp;
@@ -14500,34 +14332,34 @@ function modf( out, x ) {
 	// Special cases...
 	if ( x < 1.0 ) {
 		if ( x < 0.0 ) {
-			modf( out, -x );
-			out[ 0 ] *= -1.0;
-			out[ 1 ] *= -1.0;
+			modf( -x, out, stride, offset );
+			out[ offset ] *= -1.0;
+			out[ offset + stride ] *= -1.0;
 			return out;
 		}
 		if ( x === 0.0 ) { // [ +-0, +-0 ]
-			out[ 0 ] = x;
-			out[ 1 ] = x;
+			out[ offset ] = x;
+			out[ offset + stride ] = x;
 			return out;
 		}
-		out[ 0 ] = 0.0;
-		out[ 1 ] = x;
+		out[ offset ] = 0.0;
+		out[ offset + stride ] = x;
 		return out;
 	}
 	if ( isnan( x ) ) {
-		out[ 0 ] = NaN;
-		out[ 1 ] = NaN;
+		out[ offset ] = NaN;
+		out[ offset + stride ] = NaN;
 		return out;
 	}
 	if ( x === PINF ) {
-		out[ 0 ] = PINF;
-		out[ 1 ] = 0.0;
+		out[ offset ] = PINF;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	// Decompose |x|...
 
 	// Extract the high and low words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	high = WORDS[ 0 ];
 	low = WORDS[ 1 ];
 
@@ -14541,8 +14373,8 @@ function modf( out, x ) {
 
 		// Determine if `x` is integral by checking for significand bits which cannot be exponentiated away...
 		if ( ((high&i)|low) === 0 ) {
-			out[ 0 ] = x;
-			out[ 1 ] = 0.0;
+			out[ offset ] = x;
+			out[ offset + stride ] = 0.0;
 			return out;
 		}
 		// Turn off all the bits which cannot be exponentiated away:
@@ -14552,23 +14384,23 @@ function modf( out, x ) {
 		i = fromWords( high, 0 );
 
 		// The fractional part is whatever is leftover:
-		out[ 0 ] = i;
-		out[ 1 ] = x - i;
+		out[ offset ] = i;
+		out[ offset + stride ] = x - i;
 		return out;
 	}
 	// Check if `x` can even have a fractional part...
 	if ( exp > 51 ) {
 		// `x` is integral:
-		out[ 0 ] = x;
-		out[ 1 ] = 0.0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	i = ALL_ONES >>> (exp-20);
 
 	// Determine if `x` is integral by checking for less significant significand bits which cannot be exponentiated away...
 	if ( (low&i) === 0 ) {
-		out[ 0 ] = x;
-		out[ 1 ] = 0.0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0.0;
 		return out;
 	}
 	// Turn off all the bits which cannot be exponentiated away:
@@ -14578,8 +14410,8 @@ function modf( out, x ) {
 	i = fromWords( high, low );
 
 	// The fractional part is whatever is leftover:
-	out[ 0 ] = i;
-	out[ 1 ] = x - i;
+	out[ offset ] = i;
+	out[ offset + stride ] = x - i;
 	return out;
 }
 
@@ -14588,7 +14420,116 @@ function modf( out, x ) {
 
 module.exports = modf;
 
-},{"@stdlib/constants/float64/exponent-bias":221,"@stdlib/constants/float64/high-word-exponent-mask":222,"@stdlib/constants/float64/high-word-significand-mask":223,"@stdlib/constants/float64/pinf":225,"@stdlib/math/base/assert/is-nan":244,"@stdlib/number/float64/base/from-words":255,"@stdlib/number/float64/base/to-words":258}],251:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":219,"@stdlib/constants/float64/high-word-exponent-mask":220,"@stdlib/constants/float64/high-word-significand-mask":221,"@stdlib/constants/float64/pinf":223,"@stdlib/math/base/assert/is-nan":242,"@stdlib/number/float64/base/from-words":253,"@stdlib/number/float64/base/to-words":257}],247:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Decompose a double-precision floating-point number into integral and fractional parts.
+*
+* @module @stdlib/math/base/special/modf
+*
+* @example
+* var modf = require( '@stdlib/math/base/special/modf' );
+*
+* var parts = modf( 3.14 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var modf = require( '@stdlib/math/base/special/modf' );
+*
+* var out = new Float64Array( 2 );
+*
+* var parts = modf.assign( 3.14, out, 1, 0 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+* var bool = ( parts === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":246,"./main.js":248,"@stdlib/utils/define-nonenumerable-read-only-property":325}],248:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Decomposes a double-precision floating-point number into integral and fractional parts, each having the same type and sign as the input value.
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var parts = modf( 3.14 );
+* // returns [ 3.0, 0.14000000000000012 ]
+*
+*/
+function modf( x ) {
+	return fcn( x, [ 0.0, 0.0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = modf;
+
+},{"./assign.js":246}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14655,14 +14596,14 @@ module.exports = modf;
 
 // MODULES //
 
-var round = require( './round.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = round;
+module.exports = main;
 
-},{"./round.js":252}],252:[function(require,module,exports){
+},{"./main.js":250}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14683,7 +14624,7 @@ module.exports = round;
 
 'use strict';
 
-// TODO: implementation
+// MAIN //
 
 /**
 * Rounds a numeric value to the nearest integer.
@@ -14742,7 +14683,7 @@ var round = Math.round; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = round;
 
-},{}],253:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14777,14 +14718,14 @@ module.exports = round;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":254}],254:[function(require,module,exports){
+},{"./main.js":252}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14809,7 +14750,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],255:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14862,14 +14803,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var fromWords = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWords;
+module.exports = main;
 
-},{"./main.js":257}],256:[function(require,module,exports){
+},{"./main.js":255}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14918,7 +14859,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":107}],257:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":107}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14989,9 +14930,7 @@ var LOW = indices.LOW;
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
 *
-*
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
 *
 * ## References
 *
@@ -15042,125 +14981,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":256,"@stdlib/array/float64":5,"@stdlib/array/uint32":19}],258:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/number/float64/base/to-words
-*
-* @example
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-
-// MODULES //
-
-var toWords = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./main.js":260}],259:[function(require,module,exports){
-arguments[4][256][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":107,"dup":256}],260:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './to_words.js' );
-
-
-// MAIN //
-
-/**
-* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-function toWords( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":261}],261:[function(require,module,exports){
+},{"./indices.js":254,"@stdlib/array/float64":4,"@stdlib/array/uint32":19}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15233,34 +15054,34 @@ var LOW = indices.LOW;
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
 *
 * [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
-*
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var Uint32Array = require( '@stdlib/array/uint32' );
 *
 * var out = new Uint32Array( 2 );
 *
-* var w = toWords( out, 3.14e201 );
+* var w = toWords( 3.14e201, out, 1, 0 );
 * // returns <Uint32Array>[ 1774486211, 2479577218 ]
 *
 * var bool = ( w === out );
 * // returns true
 */
-function toWords( out, x ) {
+function toWords( x, out, stride, offset ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	out[ 0 ] = UINT32_VIEW[ HIGH ];
-	out[ 1 ] = UINT32_VIEW[ LOW ];
+	out[ offset ] = UINT32_VIEW[ HIGH ];
+	out[ offset + stride ] = UINT32_VIEW[ LOW ];
 	return out;
 }
 
@@ -15269,7 +15090,465 @@ function toWords( out, x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":259,"@stdlib/array/float64":5,"@stdlib/array/uint32":19}],262:[function(require,module,exports){
+},{"./indices.js":258,"@stdlib/array/float64":4,"@stdlib/array/uint32":19}],257:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/to-words
+*
+* @example
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords.assign( 3.14e201, out, 1, 0 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":256,"./main.js":259,"@stdlib/utils/define-nonenumerable-read-only-property":325}],258:[function(require,module,exports){
+arguments[4][254][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":107,"dup":254}],259:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*/
+function toWords( x ) {
+	return fcn( x, [ 0>>>0, 0>>>0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./assign.js":256}],260:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Copies own enumerable properties from source objects to a target object.
+*
+* ## Notes
+*
+* -   If a property key is present in multiple sources, the property from the last source that defines the key prevails.
+* -   The target object is mutated.
+*
+* @name assign
+* @type {Function}
+* @param {Object} target - target object
+* @param {...Object} source - source object(s)
+* @throws {TypeError} first argument must not be null or undefined
+* @returns {Object} target object
+*
+* @example
+* var obj1 = {
+*     'a': 'beep'
+* };
+* var obj2 = {
+*     'b': 'boop'
+* };
+*
+* var out = assign( obj1, obj2 );
+* // returns { 'a': 'beep', 'b': 'boop' }
+*/
+var assign = Object.assign; // eslint-disable-line node/no-unsupported-features/es-builtins
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{}],261:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// MAIN //
+
+var bool = isFunction( Object.assign ); // eslint-disable-line node/no-unsupported-features/es-builtins
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{"@stdlib/assert/is-function":93}],262:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Copy enumerable own properties from one or more source objects to a target object.
+*
+* @module @stdlib/object/assign
+*
+* @example
+* var assign = require( '@stdlib/object/assign' );
+*
+* var out = assign( {}, { 'foo': 'bar' }, { 'baz': 'beep' } );
+* // returns { 'foo': 'bar', 'baz': 'beep' }
+*/
+
+// MODULES //
+
+var hasObjectAssign = require( './has_object_assign.js' );
+var main = require( './builtin.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var assign;
+if ( hasObjectAssign ) {
+	assign = main;
+} else {
+	assign = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{"./builtin.js":260,"./has_object_assign.js":261,"./polyfill.js":263}],263:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var enumerableProperties = require( '@stdlib/utils/enumerable-properties' );
+var Object = require( '@stdlib/object/ctor' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Copies own enumerable properties from source objects to a target object.
+*
+* ## Notes
+*
+* -   If a property key is present in multiple sources, the property from the last source that defines the key prevails.
+* -   The target object is mutated.
+*
+* @param {Object} target - target object
+* @param {...Object} source - source object(s)
+* @throws {TypeError} first argument must not be null or undefined
+* @returns {Object} target object
+*
+* @example
+* var obj1 = {
+*     'a': 'beep'
+* };
+* var obj2 = {
+*     'b': 'boop'
+* };
+*
+* var out = assign( obj1, obj2 );
+* // returns { 'a': 'beep', 'b': 'boop' }
+*/
+function assign( target ) {
+	var source;
+	var keys;
+	var key;
+	var len;
+	var to;
+	var i;
+	var j;
+	if ( target === void 0 || target === null ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a non-null object. Value: `%s`.', target ) );
+	}
+	to = Object( target );
+	for ( i = 1; i < arguments.length; i++ ) {
+		source = arguments[ i ];
+		if ( source === void 0 || source === null ) {
+			continue;
+		}
+
+		keys = enumerableProperties( Object( source ) );
+		len = keys.length;
+		for ( j = 0; j < len; j++ ) {
+			key = keys[ j ];
+			to[ key ] = source[ key ];
+		}
+	}
+	return to;
+}
+
+
+// EXPORTS //
+
+module.exports = assign;
+
+},{"@stdlib/object/ctor":264,"@stdlib/string/format":304,"@stdlib/utils/enumerable-properties":332}],264:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":265}],265:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15306,8 +15585,8 @@ module.exports = toWords;
 * // returns false
 *
 * @example
-* var reEOL = require( '@stdlib/regexp/eol' );
 * var replace = require( '@stdlib/string/replace' );
+* var reEOL = require( '@stdlib/regexp/eol' );
 *
 * var RE_EOL = reEOL({
 *     'flags': 'g'
@@ -15324,22 +15603,22 @@ module.exports = toWords;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reEOL = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP_CAPTURE = require( './regexp_capture.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reEOL, 'REGEXP', REGEXP );
-setReadOnly( reEOL, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
+setReadOnly( main, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
 
 
 // EXPORTS //
 
-module.exports = reEOL;
+module.exports = main;
 
-},{"./main.js":263,"./regexp.js":264,"./regexp_capture.js":265,"@stdlib/utils/define-nonenumerable-read-only-property":315}],263:[function(require,module,exports){
+},{"./main.js":267,"./regexp.js":268,"./regexp_capture.js":269,"@stdlib/utils/define-nonenumerable-read-only-property":325}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15418,7 +15697,7 @@ function reEOL( options ) {
 
 module.exports = reEOL;
 
-},{"./validate.js":266}],264:[function(require,module,exports){
+},{"./validate.js":270}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15468,7 +15747,7 @@ var REGEXP = reEOL();
 
 module.exports = REGEXP;
 
-},{"./main.js":263}],265:[function(require,module,exports){
+},{"./main.js":267}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15523,7 +15802,7 @@ var REGEXP_CAPTURE = reEOL({
 
 module.exports = REGEXP_CAPTURE;
 
-},{"./main.js":263}],266:[function(require,module,exports){
+},{"./main.js":267}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15599,7 +15878,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":292}],267:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":304}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15649,20 +15928,20 @@ module.exports = validate;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":268,"./regexp.js":269,"@stdlib/utils/define-nonenumerable-read-only-property":315}],268:[function(require,module,exports){
+},{"./main.js":272,"./regexp.js":273,"@stdlib/utils/define-nonenumerable-read-only-property":325}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15718,7 +15997,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],269:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15780,7 +16059,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":268}],270:[function(require,module,exports){
+},{"./main.js":272}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15829,25 +16108,20 @@ module.exports = RE_FUNCTION_NAME;
 // MAIN //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reRegExp = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reRegExp, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reRegExp;
+module.exports = main;
 
-
-// EXPORTS //
-
-module.exports = reRegExp;
-
-},{"./main.js":271,"./regexp.js":272,"@stdlib/utils/define-nonenumerable-read-only-property":315}],271:[function(require,module,exports){
+},{"./main.js":275,"./regexp.js":276,"@stdlib/utils/define-nonenumerable-read-only-property":325}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15893,7 +16167,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],272:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15953,7 +16227,6 @@ var reRegExp = require( './main.js' );
 * -   `$/`
 *     -   string end
 *
-*
 * @constant
 * @type {RegExp}
 * @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
@@ -15965,7 +16238,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":271}],273:[function(require,module,exports){
+},{"./main.js":275}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16016,7 +16289,7 @@ function transform( chunk, encoding, clbk ) {
 
 module.exports = transform;
 
-},{"debug":396}],274:[function(require,module,exports){
+},{"debug":409}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16042,7 +16315,7 @@ module.exports = transform;
 var logger = require( 'debug' );
 var Transform = require( 'readable-stream' ).Transform;
 var inherit = require( '@stdlib/utils/inherit' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var DEFAULTS = require( './defaults.json' );
 var validate = require( './validate.js' );
 var destroy = require( './destroy.js' );
@@ -16101,7 +16374,7 @@ function ctor( options ) {
 	var copts;
 	var err;
 
-	copts = copy( DEFAULTS );
+	copts = assign( {}, DEFAULTS );
 	if ( arguments.length ) {
 		err = validate( copts, options );
 		if ( err ) {
@@ -16152,7 +16425,7 @@ function ctor( options ) {
 			}
 			return new TransformStream();
 		}
-		opts = copy( copts );
+		opts = assign( {}, copts );
 		if ( arguments.length ) {
 			err = validate( opts, options );
 			if ( err ) {
@@ -16216,7 +16489,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":273,"./defaults.json":275,"./destroy.js":276,"./validate.js":281,"@stdlib/utils/copy":311,"@stdlib/utils/inherit":339,"debug":396,"readable-stream":413}],275:[function(require,module,exports){
+},{"./_transform.js":277,"./defaults.json":279,"./destroy.js":280,"./validate.js":285,"@stdlib/object/assign":262,"@stdlib/utils/inherit":348,"debug":409,"readable-stream":426}],279:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -16224,7 +16497,7 @@ module.exports={
 	"decodeStrings": true
 }
 
-},{}],276:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16299,7 +16572,7 @@ function destroy( error ) {
 
 module.exports = destroy;
 
-},{"@stdlib/utils/next-tick":365,"debug":396}],277:[function(require,module,exports){
+},{"@stdlib/utils/next-tick":374,"debug":409}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16324,7 +16597,7 @@ module.exports = destroy;
 
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var format = require( '@stdlib/string/format' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var Stream = require( './main.js' );
 
 
@@ -16369,7 +16642,7 @@ function streamFactory( options ) {
 		if ( !isObject( options ) ) {
 			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
 		}
-		opts = copy( options );
+		opts = assign( {}, options );
 	} else {
 		opts = {};
 	}
@@ -16402,7 +16675,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./main.js":279,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":292,"@stdlib/utils/copy":311}],278:[function(require,module,exports){
+},{"./main.js":283,"@stdlib/assert/is-plain-object":138,"@stdlib/object/assign":262,"@stdlib/string/format":304}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16450,7 +16723,6 @@ module.exports = streamFactory;
 * stream.end();
 * // => '1\n2\n3\n'
 *
-*
 * @example
 * var transformStream = require( '@stdlib/streams/node/transform' );
 *
@@ -16473,7 +16745,6 @@ module.exports = streamFactory;
 * for ( i = 0; i < 10; i++ ) {
 *     streams.push( factory( transform ) );
 * }
-*
 *
 * @example
 * var stdout = require( '@stdlib/streams/node/stdout' );
@@ -16504,7 +16775,6 @@ module.exports = streamFactory;
 * s1.end();
 * // => '{"value":"a"}\n{"value":"b"}\n{"value":"c"}\n'
 *
-*
 * @example
 * var stdout = require( '@stdlib/streams/node/stdout' );
 * var transformStream = require( '@stdlib/streams/node/transform' );
@@ -16534,7 +16804,7 @@ module.exports = streamFactory;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var transform = require( './main.js' );
+var main = require( './main.js' );
 var objectMode = require( './object_mode.js' );
 var factory = require( './factory.js' );
 var ctor = require( './ctor.js' );
@@ -16542,16 +16812,16 @@ var ctor = require( './ctor.js' );
 
 // MAIN //
 
-setReadOnly( transform, 'objectMode', objectMode );
-setReadOnly( transform, 'factory', factory );
-setReadOnly( transform, 'ctor', ctor );
+setReadOnly( main, 'objectMode', objectMode );
+setReadOnly( main, 'factory', factory );
+setReadOnly( main, 'ctor', ctor );
 
 
 // EXPORTS //
 
-module.exports = transform;
+module.exports = main;
 
-},{"./ctor.js":274,"./factory.js":277,"./main.js":279,"./object_mode.js":280,"@stdlib/utils/define-nonenumerable-read-only-property":315}],279:[function(require,module,exports){
+},{"./ctor.js":278,"./factory.js":281,"./main.js":283,"./object_mode.js":284,"@stdlib/utils/define-nonenumerable-read-only-property":325}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16577,7 +16847,7 @@ module.exports = transform;
 var logger = require( 'debug' );
 var Transform = require( 'readable-stream' ).Transform;
 var inherit = require( '@stdlib/utils/inherit' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var DEFAULTS = require( './defaults.json' );
 var validate = require( './validate.js' );
 var destroy = require( './destroy.js' );
@@ -16628,7 +16898,7 @@ var debug = logger( 'transform-stream:main' );
 *
 * // prints: '1\n2\n3\n'
 */
-function TransformStream( options ) {
+function TransformStream( options ) { // eslint-disable-line stdlib/no-redeclare
 	var opts;
 	var err;
 	if ( !( this instanceof TransformStream ) ) {
@@ -16637,7 +16907,7 @@ function TransformStream( options ) {
 		}
 		return new TransformStream();
 	}
-	opts = copy( DEFAULTS );
+	opts = assign( {}, DEFAULTS );
 	if ( arguments.length ) {
 		err = validate( opts, options );
 		if ( err ) {
@@ -16679,7 +16949,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":273,"./defaults.json":275,"./destroy.js":276,"./validate.js":281,"@stdlib/utils/copy":311,"@stdlib/utils/inherit":339,"debug":396,"readable-stream":413}],280:[function(require,module,exports){
+},{"./_transform.js":277,"./defaults.json":279,"./destroy.js":280,"./validate.js":285,"@stdlib/object/assign":262,"@stdlib/utils/inherit":348,"debug":409,"readable-stream":426}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16704,7 +16974,7 @@ module.exports = TransformStream;
 
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var format = require( '@stdlib/string/format' );
-var copy = require( '@stdlib/utils/copy' );
+var assign = require( '@stdlib/object/assign' );
 var Stream = require( './main.js' );
 
 
@@ -16759,7 +17029,7 @@ function objectMode( options ) {
 		if ( !isObject( options ) ) {
 			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
 		}
-		opts = copy( options );
+		opts = assign( {}, options );
 	} else {
 		opts = {};
 	}
@@ -16772,7 +17042,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./main.js":279,"@stdlib/assert/is-plain-object":138,"@stdlib/string/format":292,"@stdlib/utils/copy":311}],281:[function(require,module,exports){
+},{"./main.js":283,"@stdlib/assert/is-plain-object":138,"@stdlib/object/assign":262,"@stdlib/string/format":304}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16875,7 +17145,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-nonnegative-number":122,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":149,"@stdlib/string/format":292}],282:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-boolean":72,"@stdlib/assert/is-function":93,"@stdlib/assert/is-nonnegative-number":122,"@stdlib/assert/is-plain-object":138,"@stdlib/assert/is-string":145,"@stdlib/string/format":304}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16961,7 +17231,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -16988,7 +17258,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":285}],283:[function(require,module,exports){
+},{"./is_number.js":289}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17105,7 +17375,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":285,"./zero_pad.js":289}],284:[function(require,module,exports){
+},{"./is_number.js":289,"./zero_pad.js":293}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17141,14 +17411,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":287}],285:[function(require,module,exports){
+},{"./main.js":291}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17196,7 +17466,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],286:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17240,7 +17510,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],287:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17273,11 +17543,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -17408,6 +17696,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -17416,9 +17705,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -17457,7 +17744,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":282,"./format_integer.js":283,"./is_string.js":286,"./space_pad.js":288,"./zero_pad.js":289}],288:[function(require,module,exports){
+},{"./format_double.js":286,"./format_integer.js":287,"./is_string.js":290,"./space_pad.js":292,"./zero_pad.js":293}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17524,7 +17811,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],289:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17610,7 +17897,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],290:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17646,14 +17933,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":291}],291:[function(require,module,exports){
+},{"./main.js":295}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17745,7 +18032,402 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],292:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/base/replace
+*
+* @example
+* var replace = require( '@stdlib/string/base/replace' );
+*
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":297}],297:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Replaces search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {RegExp} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/base/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer );
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+function replace( str, search, newval ) {
+	return str.replace( search, newval );
+}
+
+
+// EXPORTS //
+
+module.exports = replace;
+
+},{}],298:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var trim = String.prototype.trim;
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{}],299:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var trim = require( './builtin.js' );
+
+
+// VARIABLES //
+
+var str1 = ' \n\t\r\n\f\v\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff';
+var str2 = '\u180e';
+
+
+// MAIN //
+
+/**
+* Tests the built-in `String.prototype.trim()` implementation when provided whitespace.
+*
+* ## Notes
+*
+* -   For context, see <https://github.com/stdlib-js/stdlib/commit/c3d6458aa08bbd4bd6bf13e3643422f3b2a65dd9>. In short, we can only rely on the built-in `trim` method when it does not consider the Mongolian space separator as whitespace.
+*
+* @private
+* @returns {boolean} boolean indicating whether the built-in implementation returns the expected value
+*
+* @example
+* var b = test();
+* // returns <boolean>
+*/
+function test() {
+	return ( trim.call( str1 ) === '' ) && ( trim.call( str2 ) === str2 );
+}
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./builtin.js":298}],300:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.trim !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],301:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Trim whitespace characters from the beginning and end of a string.
+*
+* @module @stdlib/string/base/trim
+*
+* @example
+* var trim = require( '@stdlib/string/base/trim' );
+*
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var check = require( './check.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var trim;
+if ( HAS_BUILTIN && check() ) {
+	trim = main;
+} else {
+	trim = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"./check.js":299,"./has_builtin.js":300,"./main.js":302,"./polyfill.js":303}],302:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Trims whitespace characters from the beginning and end of a string.
+*
+* @param {string} str - input string
+* @returns {string} trimmed string
+*
+* @example
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* @example
+* var out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* @example
+* var out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+function trim( str ) {
+	return builtin.call( str );
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"./builtin.js":298}],303:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var replace = require( '@stdlib/string/base/replace' );
+
+
+// VARIABLES //
+
+// The following regular expression should suffice to polyfill (most?) all environments.
+var RE = /^[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*([\S\s]*?)[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*$/;
+
+
+// MAIN //
+
+/**
+* Trims whitespace characters from the beginning and end of a string.
+*
+* @private
+* @param {string} str - input string
+* @returns {string} trimmed string
+*
+* @example
+* var out = trim( '   Whitespace   ' );
+* // returns 'Whitespace'
+*
+* @example
+* var out = trim( '\t\t\tTabs\t\t\t' );
+* // returns 'Tabs'
+*
+* @example
+* var out = trim( '\n\n\nNew Lines\n\n\n' );
+* // returns 'New Lines'
+*/
+function trim( str ) {
+	return replace( str, RE, '$1' );
+}
+
+
+// EXPORTS //
+
+module.exports = trim;
+
+},{"@stdlib/string/base/replace":296}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17783,16 +18465,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":294}],293:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],294:[function(require,module,exports){
+},{"./main.js":306}],305:[function(require,module,exports){
+arguments[4][290][0].apply(exports,arguments)
+},{"dup":290}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17840,18 +18522,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -17861,7 +18540,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":293,"@stdlib/string/base/format-interpolate":284,"@stdlib/string/base/format-tokenize":290}],295:[function(require,module,exports){
+},{"./is_string.js":305,"@stdlib/string/base/format-interpolate":288,"@stdlib/string/base/format-tokenize":294}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17896,14 +18575,14 @@ module.exports = format;
 
 // MODULES //
 
-var fromCodePoint = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromCodePoint;
+module.exports = main;
 
-},{"./main.js":296}],296:[function(require,module,exports){
+},{"./main.js":308}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17960,7 +18639,6 @@ var Ox3FF = 1023|0;
 * -   UTF-16 encoding uses one 16-bit unit for non-surrogates (U+0000 to U+D7FF and U+E000 to U+FFFF).
 * -   UTF-16 encoding uses two 16-bit units (surrogate pairs) for U+10000 to U+10FFFF and encodes U+10000-U+10FFFF by subtracting 0x10000 from the code point, expressing the result as a 20-bit binary, and splitting the 20 bits of 0x0-0xFFFFF as upper and lower 10-bits. The respective 10-bits are stored in two 16-bit words: a high and a low surrogate.
 *
-*
 * @param {...NonNegativeInteger} args - sequence of code points
 * @throws {Error} must provide either an array-like object of code points or one or more code points as separate arguments
 * @throws {TypeError} a code point must be a nonnegative integer
@@ -18000,7 +18678,7 @@ function fromCodePoint( args ) {
 			throw new TypeError( format( 'invalid argument. Must provide valid code points (i.e., nonnegative integers). Value: `%s`.', pt ) );
 		}
 		if ( pt > UNICODE_MAX ) {
-			throw new RangeError( format( 'invalid argument. Must provide a valid code point (cannot exceed max). Value: `%s`.', pt ) );
+			throw new RangeError( format( 'invalid argument. Must provide a valid code point (i.e., cannot exceed %u). Value: `%s`.', UNICODE_MAX, pt ) );
 		}
 		if ( pt <= UNICODE_MAX_BMP ) {
 			str += fromCharCode( pt );
@@ -18020,7 +18698,7 @@ function fromCodePoint( args ) {
 
 module.exports = fromCodePoint;
 
-},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/unicode/max":236,"@stdlib/constants/unicode/max-bmp":235,"@stdlib/string/format":292}],297:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/unicode/max":234,"@stdlib/constants/unicode/max-bmp":233,"@stdlib/string/format":304}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18042,32 +18720,27 @@ module.exports = fromCodePoint;
 'use strict';
 
 /**
-* Replace search occurrences with a replacement string.
+* Symbol factory.
 *
-* @module @stdlib/string/replace
+* @module @stdlib/symbol/ctor
 *
 * @example
-* var replace = require( '@stdlib/string/replace' );
+* var Symbol = require( '@stdlib/symbol/ctor' );
 *
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* str = 'Hello World';
-* out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
+* var s = Symbol( 'beep' );
+* // returns <symbol>
 */
 
 // MODULES //
 
-var replace = require( './replace.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = replace;
+module.exports = main;
 
-},{"./replace.js":298}],298:[function(require,module,exports){
+},{"./main.js":310}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18087,189 +18760,17 @@ module.exports = replace;
 */
 
 'use strict';
-
-// MODULES //
-
-var rescape = require( '@stdlib/utils/escape-regexp-string' );
-var isFunction = require( '@stdlib/assert/is-function' );
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var isRegExp = require( '@stdlib/assert/is-regexp' );
-var format = require( '@stdlib/string/format' );
-
 
 // MAIN //
 
-/**
-* Replace search occurrences with a replacement string.
-*
-* @param {string} str - input string
-* @param {(string|RegExp)} search - search expression
-* @param {(string|Function)} newval - replacement value or function
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument argument must be a string or regular expression
-* @throws {TypeError} third argument must be a string or function
-* @returns {string} new string containing replacement(s)
-*
-* @example
-* var str = 'beep';
-* var out = replace( str, 'e', 'o' );
-* // returns 'boop'
-*
-* @example
-* var str = 'Hello World';
-* var out = replace( str, /world/i, 'Mr. President' );
-* // returns 'Hello Mr. President'
-*
-* @example
-* var capitalize = require( '@stdlib/string/capitalize' );
-*
-* var str = 'Oranges and lemons say the bells of St. Clement\'s';
-*
-* function replacer( match, p1 ) {
-*     return capitalize( p1 );
-* }
-*
-* var out = replace( str, /([^\s]*)/gi, replacer);
-* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
-*/
-function replace( str, search, newval ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
-	}
-	if ( isString( search ) ) {
-		search = rescape( search );
-		search = new RegExp( search, 'g' );
-	}
-	else if ( !isRegExp( search ) ) {
-		throw new TypeError( format( 'invalid argument. Second argument must be a string or regular expression. Value: `%s`.', search ) );
-	}
-	if ( !isString( newval ) && !isFunction( newval ) ) {
-		throw new TypeError( format( 'invalid argument. Third argument must be a string or replacement function. Value: `%s`.', newval ) );
-	}
-	return str.replace( search, newval );
-}
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
-module.exports = replace;
+module.exports = Sym;
 
-},{"@stdlib/assert/is-function":93,"@stdlib/assert/is-regexp":145,"@stdlib/assert/is-string":149,"@stdlib/string/format":292,"@stdlib/utils/escape-regexp-string":322}],299:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Trim whitespace characters from the beginning and end of a string.
-*
-* @module @stdlib/string/trim
-*
-* @example
-* var trim = require( '@stdlib/string/trim' );
-*
-* var out = trim( '   Whitespace   ' );
-* // returns 'Whitespace'
-*
-* out = trim( '\t\t\tTabs\t\t\t' );
-* // returns 'Tabs'
-*
-* out = trim( '\n\n\nNew Lines\n\n\n' );
-* // returns 'New Lines'
-*/
-
-// MODULES //
-
-var trim = require( './trim.js' );
-
-
-// EXPORTS //
-
-module.exports = trim;
-
-},{"./trim.js":300}],300:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var replace = require( '@stdlib/string/replace' );
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-// The following regular expression should suffice to polyfill (most?) all environments.
-var RE = /^[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*([\S\s]*?)[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*$/;
-
-
-// MAIN //
-
-/**
-* Trim whitespace characters from beginning and end of a string.
-*
-* @param {string} str - input string
-* @throws {TypeError} must provide a string primitive
-* @returns {string} trimmed string
-*
-* @example
-* var out = trim( '   Whitespace   ' );
-* // returns 'Whitespace'
-*
-* @example
-* var out = trim( '\t\t\tTabs\t\t\t' );
-* // returns 'Tabs'
-*
-* @example
-* var out = trim( '\n\n\nNew Lines\n\n\n' );
-* // returns 'New Lines'
-*/
-function trim( str ) {
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a string. Value: `%s`.', str ) );
-	}
-	return replace( str, RE, '$1' );
-}
-
-
-// EXPORTS //
-
-module.exports = trim;
-
-},{"@stdlib/assert/is-string":149,"@stdlib/string/format":292,"@stdlib/string/replace":297}],301:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18334,7 +18835,6 @@ if ( ns.now ) {
 *
 * -   Output format: `[seconds, nanoseconds]`.
 *
-*
 * @private
 * @returns {NumberArray} high-resolution time
 *
@@ -18364,7 +18864,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":303,"@stdlib/assert/is-object":136,"@stdlib/math/base/special/modf":248,"@stdlib/math/base/special/round":251,"@stdlib/utils/global":332}],302:[function(require,module,exports){
+},{"./now.js":313,"@stdlib/assert/is-object":136,"@stdlib/math/base/special/modf":247,"@stdlib/math/base/special/round":249,"@stdlib/utils/global":340}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18399,7 +18899,7 @@ var bool = isFunction( Date.now );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":93}],303:[function(require,module,exports){
+},{"@stdlib/assert/is-function":93}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18440,7 +18940,7 @@ if ( bool ) {
 
 module.exports = now;
 
-},{"./detect.js":302,"./polyfill.js":304}],304:[function(require,module,exports){
+},{"./detect.js":312,"./polyfill.js":314}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18483,7 +18983,7 @@ function now() {
 
 module.exports = now;
 
-},{}],305:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18520,14 +19020,14 @@ module.exports = now;
 
 // MODULES //
 
-var toc = require( './toc.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = toc;
+module.exports = main;
 
-},{"./toc.js":306}],306:[function(require,module,exports){
+},{"./main.js":316}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18563,7 +19063,6 @@ var tic = require( '@stdlib/time/tic' );
 * ## Notes
 *
 * -   Output format: `[seconds, nanoseconds]`.
-*
 *
 * @param {NonNegativeIntegerArray} time - high-resolution time
 * @throws {TypeError} must provide a nonnegative integer array
@@ -18605,7 +19104,7 @@ function toc( time ) {
 
 module.exports = toc;
 
-},{"@stdlib/assert/is-nonnegative-integer-array":117,"@stdlib/string/format":292,"@stdlib/time/tic":301}],307:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer-array":117,"@stdlib/string/format":304,"@stdlib/time/tic":311}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18646,14 +19145,14 @@ module.exports = toc;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":308}],308:[function(require,module,exports){
+},{"./main.js":318}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18735,86 +19234,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":79,"@stdlib/regexp/function-name":267,"@stdlib/utils/native-class":360}],309:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isArray = require( '@stdlib/assert/is-array' );
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var PINF = require( '@stdlib/constants/float64/pinf' );
-var deepCopy = require( './deep_copy.js' );
-
-
-// MAIN //
-
-/**
-* Copies or deep clones a value to an arbitrary depth.
-*
-* @param {*} value - value to copy
-* @param {NonNegativeInteger} [level=+infinity] - copy depth
-* @throws {TypeError} second argument must be a nonnegative integer
-* @returns {*} value copy
-*
-* @example
-* var out = copy( 'beep' );
-* // returns 'beep'
-*
-* @example
-* var value = [
-*     {
-*         'a': 1,
-*         'b': true,
-*         'c': [ 1, 2, 3 ]
-*     }
-* ];
-* var out = copy( value );
-* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
-*
-* var bool = ( value[0].c === out[0].c );
-* // returns false
-*/
-function copy( value, level ) {
-	var out;
-	if ( arguments.length > 1 ) {
-		if ( !isNonNegativeInteger( level ) ) {
-			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
-		}
-		if ( level === 0 ) {
-			return value;
-		}
-	} else {
-		level = PINF;
-	}
-	out = ( isArray( value ) ) ? new Array( value.length ) : {};
-	return deepCopy( value, out, [value], [out], level );
-}
-
-
-// EXPORTS //
-
-module.exports = copy;
-
-},{"./deep_copy.js":310,"@stdlib/assert/is-array":70,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/float64/pinf":225,"@stdlib/string/format":292}],310:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":79,"@stdlib/regexp/function-name":271,"@stdlib/utils/native-class":369}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18862,7 +19282,6 @@ var typedArrays = require( './typed_arrays.js' );
 *
 * -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
 * -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
-*
 *
 * @private
 * @param {Object} val - class instance
@@ -19122,7 +19541,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":312,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-buffer":79,"@stdlib/assert/is-error":87,"@stdlib/buffer/from-buffer":216,"@stdlib/utils/define-property":320,"@stdlib/utils/get-prototype-of":326,"@stdlib/utils/index-of":336,"@stdlib/utils/keys":353,"@stdlib/utils/property-descriptor":375,"@stdlib/utils/property-names":379,"@stdlib/utils/regexp-from-string":382,"@stdlib/utils/type-of":387}],311:[function(require,module,exports){
+},{"./typed_arrays.js":322,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-array":70,"@stdlib/assert/is-buffer":79,"@stdlib/assert/is-error":87,"@stdlib/buffer/from-buffer":214,"@stdlib/utils/define-property":330,"@stdlib/utils/get-prototype-of":335,"@stdlib/utils/index-of":345,"@stdlib/utils/keys":362,"@stdlib/utils/property-descriptor":384,"@stdlib/utils/property-names":388,"@stdlib/utils/regexp-from-string":394,"@stdlib/utils/type-of":400}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19173,14 +19592,93 @@ module.exports = deepCopy;
 
 // MODULES //
 
-var copy = require( './copy.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":321}],321:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var deepCopy = require( './deep_copy.js' );
+
+
+// MAIN //
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} second argument must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+function copy( value, level ) {
+	var out;
+	if ( arguments.length > 1 ) {
+		if ( !isNonNegativeInteger( level ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', level ) );
+		}
+		if ( level === 0 ) {
+			return value;
+		}
+	} else {
+		level = PINF;
+	}
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
+	return deepCopy( value, out, [value], [out], level );
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./copy.js":309}],312:[function(require,module,exports){
+},{"./deep_copy.js":319,"@stdlib/assert/is-array":70,"@stdlib/assert/is-nonnegative-integer":118,"@stdlib/constants/float64/pinf":223,"@stdlib/string/format":304}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19351,7 +19849,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],313:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/float64":4,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19397,14 +19895,14 @@ module.exports = hash;
 
 // MODULES //
 
-var setNonEnumerableReadOnlyAccessor = require( './main.js' ); // eslint-disable-line id-length
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnlyAccessor;
+module.exports = main;
 
-},{"./main.js":314}],314:[function(require,module,exports){
+},{"./main.js":324}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19467,7 +19965,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":320}],315:[function(require,module,exports){
+},{"@stdlib/utils/define-property":330}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19509,14 +20007,14 @@ module.exports = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":316}],316:[function(require,module,exports){
+},{"./main.js":326}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19576,7 +20074,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":320}],317:[function(require,module,exports){
+},{"@stdlib/utils/define-property":330}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19639,7 +20137,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],318:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19669,7 +20167,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],319:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19722,7 +20220,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":318}],320:[function(require,module,exports){
+},{"./define_property.js":328}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19782,7 +20280,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":317,"./has_define_property_support.js":319,"./polyfill.js":321}],321:[function(require,module,exports){
+},{"./builtin.js":327,"./has_define_property_support.js":329,"./polyfill.js":331}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19906,7 +20404,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":292}],322:[function(require,module,exports){
+},{"@stdlib/string/format":304}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19928,27 +20426,30 @@ module.exports = defineProperty;
 'use strict';
 
 /**
-* Escape a regular expression string or pattern.
+* Return an array of an object's own enumerable property names and symbols.
 *
-* @module @stdlib/utils/escape-regexp-string
+* @module @stdlib/utils/enumerable-properties
 *
 * @example
-* var rescape = require( '@stdlib/utils/escape-regexp-string' );
+* var enumerableProperties = require( '@stdlib/utils/enumerable-properties' );
 *
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
+* var props = enumerableProperties({
+*   'foo': 'bar',
+*   'beep': 'boop'
+* });
+* // e.g., returns [ 'foo', 'beep' ]
 */
 
 // MODULES //
 
-var rescape = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rescape;
+module.exports = main;
 
-},{"./main.js":323}],323:[function(require,module,exports){
+},{"./main.js":333}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19971,68 +20472,49 @@ module.exports = rescape;
 
 // MODULES //
 
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-
-
-// VARIABLES //
-
-var RE_CHARS = /[-\/\\^$*+?.()|[\]{}]/g; // eslint-disable-line no-useless-escape
+var keys = require( '@stdlib/utils/keys' );
+var propertySymbols = require( '@stdlib/utils/property-symbols' );
+var isEnumerable = require( '@stdlib/assert/is-enumerable-property' );
 
 
 // MAIN //
 
 /**
-* Escapes a regular expression string.
+* Returns an array of an object's own enumerable property names and symbols.
 *
-* @param {string} str - regular expression string
-* @throws {TypeError} first argument must be a string
-* @returns {string} escaped string
+* @param {*} value - input object
+* @returns {Array} a list of own property enumerable names and symbols
 *
 * @example
-* var str = rescape( '[A-Z]*' );
-* // returns '\\[A\\-Z\\]\\*'
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var props = enumerableProperties( obj );
+* // e.g., returns [ 'beep', 'foo' ]
 */
-function rescape( str ) {
-	var len;
-	var s;
+function enumerableProperties( value ) {
+	var out;
+	var tmp;
 	var i;
 
-	if ( !isString( str ) ) {
-		throw new TypeError( format( 'invalid argument. Must provide a regular expression string. Value: `%s`.', str ) );
-	}
-	// Check if the string starts with a forward slash...
-	if ( str[ 0 ] === '/' ) {
-		// Find the last forward slash...
-		len = str.length;
-		for ( i = len-1; i >= 0; i-- ) {
-			if ( str[ i ] === '/' ) {
-				break;
-			}
+	out = keys( value );
+	tmp = propertySymbols( value );
+	for ( i = 0; i < tmp.length; i++ ) {
+		if ( isEnumerable( value, tmp[ i ] ) ) {
+			out.push( tmp[ i ] );
 		}
 	}
-	// If we searched the string to no avail or if the first letter is not `/`, assume that the string is not of the form `/[...]/[guimy]`:
-	if ( i === void 0 || i <= 0 ) {
-		return str.replace( RE_CHARS, '\\$&' );
-	}
-	// We need to de-construct the string...
-	s = str.substring( 1, i );
-
-	// Only escape the characters between the `/`:
-	s = s.replace( RE_CHARS, '\\$&' );
-
-	// Reassemble:
-	str = str[ 0 ] + s + str.substring( i );
-
-	return str;
+	return out;
 }
 
 
 // EXPORTS //
 
-module.exports = rescape;
+module.exports = enumerableProperties;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/string/format":292}],324:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/keys":362,"@stdlib/utils/property-symbols":392}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20074,63 +20556,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":327,"./polyfill.js":328,"@stdlib/assert/is-function":93}],325:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":324}],326:[function(require,module,exports){
+},{"./native.js":337,"./polyfill.js":338,"@stdlib/assert/is-function":93}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20165,14 +20591,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":325}],327:[function(require,module,exports){
+},{"./main.js":336}],336:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":334,"@stdlib/object/ctor":264}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20202,7 +20685,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],328:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20259,7 +20742,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":329,"@stdlib/utils/native-class":360}],329:[function(require,module,exports){
+},{"./proto.js":339,"@stdlib/utils/native-class":369}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20297,7 +20780,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],330:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":341,"./global_this.js":342,"./self.js":343,"./window.js":344,"@stdlib/assert/is-boolean":72,"@stdlib/string/format":304}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20327,7 +20891,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -20335,12 +20899,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],331:[function(require,module,exports){
-(function (global){(function (){
+},{}],342:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20359,137 +20922,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],332:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":333}],333:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":330,"./global.js":331,"./self.js":334,"./window.js":335,"@stdlib/assert/is-boolean":72,"@stdlib/string/format":292}],334:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20519,7 +20959,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],335:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20549,7 +20989,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],336:[function(require,module,exports){
+},{}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20617,14 +21057,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":337}],337:[function(require,module,exports){
+},{"./main.js":346}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20759,7 +21199,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":149,"@stdlib/string/format":292}],338:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":81,"@stdlib/assert/is-integer":101,"@stdlib/assert/is-nan":109,"@stdlib/assert/is-string":145,"@stdlib/string/format":304}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20800,7 +21240,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = createObject;
 
-},{"./native.js":341,"./polyfill.js":342}],339:[function(require,module,exports){
+},{"./native.js":350,"./polyfill.js":351}],348:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20849,14 +21289,14 @@ module.exports = createObject;
 
 // MODULES //
 
-var inherit = require( './inherit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = inherit;
+module.exports = main;
 
-},{"./inherit.js":340}],340:[function(require,module,exports){
+},{"./main.js":349}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20894,7 +21334,6 @@ var createObject = require( './detect.js' );
 *
 * -   This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
 * -   For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
-*
 *
 * @param {(Object|Function)} ctor - constructor which will inherit
 * @param {(Object|Function)} superCtor - super (parent) constructor
@@ -20952,7 +21391,7 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":338,"./validate.js":343,"@stdlib/string/format":292,"@stdlib/utils/define-property":320}],341:[function(require,module,exports){
+},{"./detect.js":347,"./validate.js":352,"@stdlib/string/format":304,"@stdlib/utils/define-property":330}],350:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20977,7 +21416,7 @@ module.exports = inherit;
 
 module.exports = Object.create;
 
-},{}],342:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21033,7 +21472,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],343:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21093,7 +21532,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":292}],344:[function(require,module,exports){
+},{"@stdlib/string/format":304}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21145,7 +21584,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],345:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21207,7 +21646,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":344,"@stdlib/assert/is-arguments":65}],346:[function(require,module,exports){
+},{"./builtin.js":353,"@stdlib/assert/is-arguments":65}],355:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -21231,7 +21670,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],347:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21291,7 +21730,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":344}],348:[function(require,module,exports){
+},{"./builtin.js":353}],357:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21369,7 +21808,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":346,"./is_constructor_prototype.js":354,"./window.js":359,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":336,"@stdlib/utils/type-of":387}],349:[function(require,module,exports){
+},{"./excluded_keys.json":355,"./is_constructor_prototype.js":363,"./window.js":368,"@stdlib/assert/has-own-property":46,"@stdlib/utils/index-of":345,"@stdlib/utils/type-of":400}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21399,7 +21838,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],350:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21436,7 +21875,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/noop":367}],351:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84,"@stdlib/utils/noop":376}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21479,7 +21918,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":84}],352:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":84}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21509,7 +21948,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],353:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21549,14 +21988,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":356}],354:[function(require,module,exports){
+},{"./main.js":365}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21595,7 +22034,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],355:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21648,7 +22087,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":348,"./has_window.js":352,"./is_constructor_prototype.js":354}],356:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":357,"./has_window.js":361,"./is_constructor_prototype.js":363}],365:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21713,7 +22152,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":344,"./builtin_wrapper.js":345,"./has_arguments_bug.js":347,"./has_builtin.js":349,"./polyfill.js":358}],357:[function(require,module,exports){
+},{"./builtin.js":353,"./builtin_wrapper.js":354,"./has_arguments_bug.js":356,"./has_builtin.js":358,"./polyfill.js":367}],366:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -21724,7 +22163,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],358:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21828,7 +22267,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":350,"./has_non_enumerable_properties_bug.js":351,"./is_constructor_prototype_wrapper.js":355,"./non_enumerable.json":357,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":134}],359:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":359,"./has_non_enumerable_properties_bug.js":360,"./is_constructor_prototype_wrapper.js":364,"./non_enumerable.json":366,"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-arguments":65,"@stdlib/assert/is-object-like":134}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21858,7 +22297,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],360:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21903,25 +22342,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":361,"./polyfill.js":362,"@stdlib/assert/has-tostringtag-support":50}],361:[function(require,module,exports){
+},{"./main.js":370,"./polyfill.js":371,"@stdlib/assert/has-tostringtag-support":50}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21979,7 +22418,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":363}],362:[function(require,module,exports){
+},{"./tostring.js":372}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22062,7 +22501,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":363,"./tostringtag.js":364,"@stdlib/assert/has-own-property":46}],363:[function(require,module,exports){
+},{"./tostring.js":372,"./tostringtag.js":373,"@stdlib/assert/has-own-property":46}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22092,7 +22531,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],364:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22113,6 +22552,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -22122,7 +22566,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],365:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":309}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22160,14 +22604,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var nextTick = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = nextTick;
+module.exports = main;
 
-},{"./main.js":366}],366:[function(require,module,exports){
+},{"./main.js":375}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22241,7 +22685,7 @@ function nextTick( clbk ) {
 
 module.exports = nextTick;
 
-},{"process":402}],367:[function(require,module,exports){
+},{"process":415}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22276,14 +22720,14 @@ module.exports = nextTick;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":368}],368:[function(require,module,exports){
+},{"./main.js":377}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22320,7 +22764,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],369:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22360,14 +22804,14 @@ module.exports = noop;
 
 // MODULES //
 
-var omit = require( './omit.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = omit;
+module.exports = main;
 
-},{"./omit.js":370}],370:[function(require,module,exports){
+},{"./main.js":379}],379:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22453,7 +22897,7 @@ function omit( obj, keys ) {
 
 module.exports = omit;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/assert/is-string-array":148,"@stdlib/string/format":292,"@stdlib/utils/index-of":336,"@stdlib/utils/keys":353}],371:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/string/format":304,"@stdlib/utils/index-of":345,"@stdlib/utils/keys":362}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22493,14 +22937,14 @@ module.exports = omit;
 
 // MODULES //
 
-var pick = require( './pick.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = pick;
+module.exports = main;
 
-},{"./pick.js":372}],372:[function(require,module,exports){
+},{"./main.js":381}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22580,7 +23024,7 @@ function pick( obj, keys ) {
 
 module.exports = pick;
 
-},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":149,"@stdlib/assert/is-string-array":148,"@stdlib/string/format":292}],373:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46,"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/string/format":304}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22644,7 +23088,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],374:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22674,7 +23118,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],375:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22733,7 +23177,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":373,"./has_builtin.js":374,"./polyfill.js":376}],376:[function(require,module,exports){
+},{"./builtin.js":382,"./has_builtin.js":383,"./polyfill.js":385}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22801,7 +23245,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":46}],377:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":46}],386:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22821,6 +23265,11 @@ module.exports = getOwnPropertyDescriptor;
 */
 
 'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
 
 // VARIABLES //
 
@@ -22858,7 +23307,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{}],378:[function(require,module,exports){
+},{"@stdlib/object/ctor":264}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22888,7 +23337,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],379:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22945,7 +23394,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":377,"./has_builtin.js":378,"./polyfill.js":380}],380:[function(require,module,exports){
+},{"./builtin.js":386,"./has_builtin.js":387,"./polyfill.js":389}],389:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22968,6 +23417,7 @@ module.exports = main;
 
 // MODULES //
 
+var Object = require( '@stdlib/object/ctor' );
 var keys = require( '@stdlib/utils/keys' );
 
 
@@ -23003,7 +23453,235 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/utils/keys":353}],381:[function(require,module,exports){
+},{"@stdlib/object/ctor":264,"@stdlib/utils/keys":362}],390:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+
+
+// VARIABLES //
+
+var propertySymbols = Object.getOwnPropertySymbols;
+
+
+// MAIN //
+
+/**
+* Returns an array of an object's own symbol properties.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertySymbols()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own symbol properties
+*
+* @example
+* var symbols = getOwnPropertySymbols( {} );
+*/
+function getOwnPropertySymbols( value ) {
+	return propertySymbols( Object( value ) );
+}
+
+
+// EXPORTS //
+
+module.exports = getOwnPropertySymbols;
+
+},{"@stdlib/object/ctor":264}],391:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof Object.getOwnPropertySymbols !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],392:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return an array of an object's own symbol properties.
+*
+* @module @stdlib/utils/property-symbols
+*
+* @example
+* var getOwnPropertySymbols = require( '@stdlib/utils/property-symbols' );
+*
+* var symbols = getOwnPropertySymbols( {} );
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var builtin = require( './builtin.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var main;
+if ( HAS_BUILTIN ) {
+	main = builtin;
+} else {
+	main = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./builtin.js":390,"./has_builtin.js":391,"./polyfill.js":393}],393:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an array of an object's own symbol properties.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertySymbols()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {EmptyArray} a list of own symbol properties
+*
+* @example
+* var symbols = getOwnPropertySymbols( {} );
+* // returns []
+*/
+function getOwnPropertySymbols() {
+	return [];
+}
+
+
+// EXPORTS //
+
+module.exports = getOwnPropertySymbols;
+
+},{}],394:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":395}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23060,49 +23738,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":149,"@stdlib/regexp/regexp":270,"@stdlib/string/format":292}],382:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Create a regular expression from a regular expression string.
-*
-* @module @stdlib/utils/regexp-from-string
-*
-* @example
-* var reFromString = require( '@stdlib/utils/regexp-from-string' );
-*
-* var re = reFromString( '/beep/' );
-* // returns /beep/
-*/
-
-// MODULES //
-
-var reFromString = require( './from_string.js' );
-
-
-// EXPORTS //
-
-module.exports = reFromString;
-
-},{"./from_string.js":381}],383:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/regexp/regexp":274,"@stdlib/string/format":304}],396:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23159,7 +23795,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":384,"./fixtures/re.js":385,"./fixtures/typedarray.js":386}],384:[function(require,module,exports){
+},{"./fixtures/nodelist.js":397,"./fixtures/re.js":398,"./fixtures/typedarray.js":399}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23195,7 +23831,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":332}],385:[function(require,module,exports){
+},{"@stdlib/utils/global":340}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23223,7 +23859,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],386:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23251,7 +23887,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],387:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23290,63 +23926,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":383,"./polyfill.js":388,"./typeof.js":389}],388:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":307}],389:[function(require,module,exports){
+},{"./check.js":396,"./main.js":401,"./polyfill.js":402}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23424,7 +24017,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":307}],390:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":317}],402:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":317}],403:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -23576,9 +24212,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],391:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 
-},{}],392:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -25359,7 +25995,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":390,"buffer":392,"ieee754":398}],393:[function(require,module,exports){
+},{"base64-js":403,"buffer":405,"ieee754":411}],406:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25858,7 +26494,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],394:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25967,7 +26603,7 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-},{"buffer":392}],395:[function(require,module,exports){
+},{"buffer":405}],408:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -26121,7 +26757,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],396:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 (function (process){(function (){
 /**
  * This is the web browser implementation of `debug()`.
@@ -26310,7 +26946,7 @@ function localstorage() {
 }
 
 }).call(this)}).call(this,require('_process'))
-},{"./debug":397,"_process":402}],397:[function(require,module,exports){
+},{"./debug":410,"_process":415}],410:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -26514,7 +27150,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":395}],398:[function(require,module,exports){
+},{"ms":408}],411:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -26601,7 +27237,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],399:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -26630,14 +27266,14 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],400:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],401:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -26686,7 +27322,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":402}],402:[function(require,module,exports){
+},{"_process":415}],415:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -26872,7 +27508,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],403:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -27004,7 +27640,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":405,"./_stream_writable":407,"core-util-is":394,"inherits":399,"process-nextick-args":401}],404:[function(require,module,exports){
+},{"./_stream_readable":418,"./_stream_writable":420,"core-util-is":407,"inherits":412,"process-nextick-args":414}],417:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -27052,7 +27688,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":406,"core-util-is":394,"inherits":399}],405:[function(require,module,exports){
+},{"./_stream_transform":419,"core-util-is":407,"inherits":412}],418:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -27109,7 +27745,7 @@ var Stream = require('./internal/streams/stream');
 /*<replacement>*/
 
 var Buffer = require('safe-buffer').Buffer;
-var OurUint8Array = global.Uint8Array || function () {};
+var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
@@ -27679,8 +28315,8 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
       // also returned false.
       // => Check whether `dest` is still a piping destination.
       if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-        debug('false write response, pause', src._readableState.awaitDrain);
-        src._readableState.awaitDrain++;
+        debug('false write response, pause', state.awaitDrain);
+        state.awaitDrain++;
         increasedAwaitDrain = true;
       }
       src.pause();
@@ -27774,7 +28410,7 @@ Readable.prototype.unpipe = function (dest) {
     state.flowing = false;
 
     for (var i = 0; i < len; i++) {
-      dests[i].emit('unpipe', this, unpipeInfo);
+      dests[i].emit('unpipe', this, { hasUnpiped: false });
     }return this;
   }
 
@@ -28074,7 +28710,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":403,"./internal/streams/BufferList":408,"./internal/streams/destroy":409,"./internal/streams/stream":410,"_process":402,"core-util-is":394,"events":393,"inherits":399,"isarray":400,"process-nextick-args":401,"safe-buffer":411,"string_decoder/":412,"util":391}],406:[function(require,module,exports){
+},{"./_stream_duplex":416,"./internal/streams/BufferList":421,"./internal/streams/destroy":422,"./internal/streams/stream":423,"_process":415,"core-util-is":407,"events":406,"inherits":412,"isarray":413,"process-nextick-args":414,"safe-buffer":424,"string_decoder/":425,"util":404}],419:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28289,7 +28925,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":403,"core-util-is":394,"inherits":399}],407:[function(require,module,exports){
+},{"./_stream_duplex":416,"core-util-is":407,"inherits":412}],420:[function(require,module,exports){
 (function (process,global,setImmediate){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -28374,7 +29010,7 @@ var Stream = require('./internal/streams/stream');
 /*<replacement>*/
 
 var Buffer = require('safe-buffer').Buffer;
-var OurUint8Array = global.Uint8Array || function () {};
+var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
@@ -28642,7 +29278,7 @@ Writable.prototype.uncork = function () {
   if (state.corked) {
     state.corked--;
 
-    if (!state.writing && !state.corked && !state.finished && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
+    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
   }
 };
 
@@ -28884,7 +29520,7 @@ Writable.prototype.end = function (chunk, encoding, cb) {
   }
 
   // ignore unnecessary end() calls.
-  if (!state.ending && !state.finished) endWritable(this, state, cb);
+  if (!state.ending) endWritable(this, state, cb);
 };
 
 function needFinish(state) {
@@ -28945,11 +29581,9 @@ function onCorkedFinish(corkReq, state, err) {
     cb(err);
     entry = entry.next;
   }
-  if (state.corkedRequestsFree) {
-    state.corkedRequestsFree.next = corkReq;
-  } else {
-    state.corkedRequestsFree = corkReq;
-  }
+
+  // reuse the free corkReq.
+  state.corkedRequestsFree.next = corkReq;
 }
 
 Object.defineProperty(Writable.prototype, 'destroyed', {
@@ -28979,7 +29613,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":403,"./internal/streams/destroy":409,"./internal/streams/stream":410,"_process":402,"core-util-is":394,"inherits":399,"process-nextick-args":401,"safe-buffer":411,"timers":414,"util-deprecate":415}],408:[function(require,module,exports){
+},{"./_stream_duplex":416,"./internal/streams/destroy":422,"./internal/streams/stream":423,"_process":415,"core-util-is":407,"inherits":412,"process-nextick-args":414,"safe-buffer":424,"timers":427,"util-deprecate":428}],421:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29038,7 +29672,6 @@ module.exports = function () {
 
   BufferList.prototype.concat = function concat(n) {
     if (this.length === 0) return Buffer.alloc(0);
-    if (this.length === 1) return this.head.data;
     var ret = Buffer.allocUnsafe(n >>> 0);
     var p = this.head;
     var i = 0;
@@ -29059,7 +29692,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":411,"util":391}],409:[function(require,module,exports){
+},{"safe-buffer":424,"util":404}],422:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -29077,9 +29710,15 @@ function destroy(err, cb) {
   if (readableDestroyed || writableDestroyed) {
     if (cb) {
       cb(err);
-    } else if (err && (!this._writableState || !this._writableState.errorEmitted)) {
-      pna.nextTick(emitErrorNT, this, err);
+    } else if (err) {
+      if (!this._writableState) {
+        pna.nextTick(emitErrorNT, this, err);
+      } else if (!this._writableState.errorEmitted) {
+        this._writableState.errorEmitted = true;
+        pna.nextTick(emitErrorNT, this, err);
+      }
     }
+
     return this;
   }
 
@@ -29097,9 +29736,11 @@ function destroy(err, cb) {
 
   this._destroy(err || null, function (err) {
     if (!cb && err) {
-      pna.nextTick(emitErrorNT, _this, err);
-      if (_this._writableState) {
+      if (!_this._writableState) {
+        pna.nextTick(emitErrorNT, _this, err);
+      } else if (!_this._writableState.errorEmitted) {
         _this._writableState.errorEmitted = true;
+        pna.nextTick(emitErrorNT, _this, err);
       }
     } else if (cb) {
       cb(err);
@@ -29121,6 +29762,8 @@ function undestroy() {
     this._writableState.destroyed = false;
     this._writableState.ended = false;
     this._writableState.ending = false;
+    this._writableState.finalCalled = false;
+    this._writableState.prefinished = false;
     this._writableState.finished = false;
     this._writableState.errorEmitted = false;
   }
@@ -29134,10 +29777,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":401}],410:[function(require,module,exports){
+},{"process-nextick-args":414}],423:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":393}],411:[function(require,module,exports){
+},{"events":406}],424:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -29201,7 +29844,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":392}],412:[function(require,module,exports){
+},{"buffer":405}],425:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -29498,7 +30141,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":411}],413:[function(require,module,exports){
+},{"safe-buffer":424}],426:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -29507,7 +30150,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":403,"./lib/_stream_passthrough.js":404,"./lib/_stream_readable.js":405,"./lib/_stream_transform.js":406,"./lib/_stream_writable.js":407}],414:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":416,"./lib/_stream_passthrough.js":417,"./lib/_stream_readable.js":418,"./lib/_stream_transform.js":419,"./lib/_stream_writable.js":420}],427:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -29586,7 +30229,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":402,"timers":414}],415:[function(require,module,exports){
+},{"process/browser.js":415,"timers":427}],428:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -29657,4 +30300,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[237]);
+},{}]},{},[235]);

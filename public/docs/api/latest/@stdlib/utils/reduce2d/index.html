@@ -9,7 +9,7 @@
 
 <span class="hljs-keyword">var</span> out = reduce2d( arr, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], naryFunction( add, <span class="hljs-number">2</span> ) );
 <span class="hljs-comment">// returns [ 6, 15 ]</span>
-</code></pre><p>The applied function is provided the following arguments:</p><ul><li><strong>accumulator</strong>: accumulated value.</li><li><strong>value</strong>: array element.</li><li><strong>i</strong>: index of the first dimension.</li><li><strong>j</strong>: index of the second dimension.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>this</code> context when invoking the input function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+</code></pre><p>The applied function is provided the following arguments:</p><ul><li><strong>accumulator</strong>: accumulated value.</li><li><strong>value</strong>: array element.</li><li><strong>indices</strong>: current array element indices.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>this</code> context when invoking the input function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
@@ -56,4 +56,4 @@
 
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y:'</span> );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/map2d"><code>@stdlib/utils/map2d</code></a></span><span class="delimiter">: </span><span class="description">apply a function to each nested element in an array of arrays and assign the result to a nested element in a new array of arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reduce"><code>@stdlib/utils/reduce</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in an array and return the accumulated result.</span></li></ul></section><section class="links"></section>

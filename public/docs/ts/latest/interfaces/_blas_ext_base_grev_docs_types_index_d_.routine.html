@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -110,14 +110,14 @@
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">__call&lt;T&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts:28</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -125,6 +125,12 @@
 								<p>Reverses a strided array in-place.</p>
 							</div>
 						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -134,7 +140,7 @@
 								</div>
 							</li>
 							<li>
-								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+								<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>input array</p>
 								</div>
@@ -147,9 +153,12 @@
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns
-							<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+							<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 								Collection
 							</a>
+							<span class="tsd-signature-symbol">&lt;</span>
+							<span class="tsd-signature-type">T</span>
+							<span class="tsd-signature-symbol">&gt;</span>
 						</h4>
 						<p><code>x</code></p>
 						<h4 class="tsd-example-title">Example</h4>
@@ -168,7 +177,7 @@ grev( x.length, x, <span class="hljs-number">1</span> );
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="_blas_ext_base_grev_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="_blas_ext_base_grev_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a></li>
 							</ul>
 						</section>
 					</div>
@@ -176,17 +185,17 @@ grev( x.length, x, <span class="hljs-number">1</span> );
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 					<a name="ndarray" class="tsd-anchor"></a>
 					<h3>ndarray</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">ndarray<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">ndarray&lt;T&gt;<span class="tsd-signature-symbol">(</span>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x<span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, stride<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts#L60">lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts#L60">lib/node_modules/@stdlib/blas/ext/base/grev/docs/types/index.d.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -194,6 +203,12 @@ grev( x.length, x, <span class="hljs-number">1</span> );
 									<p>Reverses a strided array in-place. using alternative indexing semantics.</p>
 								</div>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -203,7 +218,7 @@ grev( x.length, x, <span class="hljs-number">1</span> );
 									</div>
 								</li>
 								<li>
-									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>x: <a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>input array</p>
 									</div>
@@ -222,9 +237,12 @@ grev( x.length, x, <span class="hljs-number">1</span> );
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">
+								<a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">
 									Collection
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p><code>x</code></p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -253,10 +271,10 @@ grev.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_blas_ext_base_grev_docs_types_index_d_.routine.html" class="tsd-kind-icon">Routine</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 								<a href="_blas_ext_base_grev_docs_types_index_d_.routine.html#ndarray" class="tsd-kind-icon">ndarray</a>
 							</li>
 						</ul>
@@ -331,13 +349,13 @@ grev.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

@@ -1,0 +1,46 @@
+<h1 id="ahavercosf">ahavercosf</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Versine">inverse half-value versed cosine</a> of a single-precision floating point number.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Versine">inverse half-value versed cosine</a> is defined as</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ahavercosf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ahavercosf'</span> );
+</code></pre><h4 id="ahavercosf-x-">ahavercosf( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Versine">inverse half-value versed cosine</a> of a single-precision floating point number (in radians).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ahavercosf( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns ~3.1416</span>
+
+v = ahavercosf( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = ahavercosf( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns ~1.5708</span>
+</code></pre><p>If <code>x &#x3C; 0</code>, <code>x > 1</code>, or <code>x</code> is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ahavercosf( <span class="hljs-number">1.5</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = ahavercosf( -<span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = ahavercosf( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> ahavercosf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ahavercosf'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( ahavercosf( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/ahavercosf.h"</span></span>
+</code></pre><h4 id="stdlib_base_ahavercosf-x-">stdlib_base_ahavercosf( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Versine">inverse half-value versed cosine</a> of a single-precision floating-point number (in radians).</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> out = stdlib_base_ahavercosf( <span class="hljs-number">0.0f</span> );
+<span class="hljs-comment">// returns ~3.1416f</span>
+</code></pre><p>If <code>x &#x3C; 0</code>, <code>x > 1</code>, or <code>x</code> is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> out = stdlib_base_ahavercosf( <span class="hljs-number">-3.14f</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_ahavercosf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/ahavercosf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">-2.0f</span>, <span class="hljs-number">-1.6f</span>, <span class="hljs-number">-1.2f</span>, <span class="hljs-number">-0.8f</span>, <span class="hljs-number">-0.4f</span>, <span class="hljs-number">0.4f</span>, <span class="hljs-number">0.8f</span>, <span class="hljs-number">1.2f</span>, <span class="hljs-number">1.6f</span>, <span class="hljs-number">2.0f</span> };
+    
+    <span class="hljs-keyword">float</span> v;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        v = stdlib_base_ahavercosf( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"ahavercosf(%f) = %f\n"</span>, x[ i ], v );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

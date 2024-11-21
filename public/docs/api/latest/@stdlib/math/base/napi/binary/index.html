@@ -53,8 +53,8 @@
 <span class="hljs-comment">// ...</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] float (*fcn)( float, float )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ff_f</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span>, <span class="hljs-keyword">float</span> ) )</span></span>;
 ```de <span class="hljs-string">"stdlib/math/base/napi/binary.h"</span>
-</code></pre><h4 id="stdlib_math_base_napi_zz_z-env-info-fcn-">stdlib_math_base_napi_zz_z( env, info, fcn )</h4><p>Invokes a binary function accepting and returning double-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/reim.h"</span></span>
+</code></pre><h4 id="stdlib_math_base_napi_zz_z-env-info-fcn-">stdlib_math_base_napi_zz_z( env, info, fcn )</h4><p>Invokes a binary function accepting and returning double-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
 
 <span class="hljs-comment">// ...</span>
@@ -67,8 +67,8 @@
     <span class="hljs-keyword">double</span> re;
     <span class="hljs-keyword">double</span> im;
 
-    stdlib_reim( x, &#x26;xre, &#x26;xim );
-    stdlib_reim( y, &#x26;yre, &#x26;yim );
+    stdlib_complex128_reim( x, &#x26;xre, &#x26;xim );
+    stdlib_complex128_reim( y, &#x26;yre, &#x26;yim );
 
     re = xre + yre;
     im = xim + yim;
@@ -91,8 +91,8 @@
 
 <span class="hljs-comment">// ...</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] stdlib_complex128_t (*fcn)( stdlib_complex128_t, stdlib_complex128_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_zz_z</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">stdlib_complex128_t</span> (*fcn)( <span class="hljs-keyword">stdlib_complex128_t</span>, <span class="hljs-keyword">stdlib_complex128_t</span> ) )</span></span>;
-</code></pre><h4 id="stdlib_math_base_napi_cc_c-env-info-fcn-">stdlib_math_base_napi_cc_c( env, info, fcn )</h4><p>Invokes a binary function accepting and returning single-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/reim.h"</span></span>
+</code></pre><h4 id="stdlib_math_base_napi_cc_c-env-info-fcn-">stdlib_math_base_napi_cc_c( env, info, fcn )</h4><p>Invokes a binary function accepting and returning single-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
 
 <span class="hljs-comment">// ...</span>
@@ -105,8 +105,8 @@
     <span class="hljs-keyword">float</span> re;
     <span class="hljs-keyword">float</span> im;
 
-    stdlib_reimf( x, &#x26;xre, &#x26;xim );
-    stdlib_reimf( y, &#x26;yre, &#x26;yim );
+    stdlib_complex64_reim( x, &#x26;xre, &#x26;xim );
+    stdlib_complex64_reim( y, &#x26;yre, &#x26;yim );
 
     re = xre + yre;
     im = xim + yim;
@@ -129,6 +129,198 @@
 
 <span class="hljs-comment">// ...</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] stdlib_complex64_t (*fcn)( stdlib_complex64_t, stdlib_complex64_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_cc_c</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">stdlib_complex64_t</span> (*fcn)( <span class="hljs-keyword">stdlib_complex64_t</span>, <span class="hljs-keyword">stdlib_complex64_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_di_d-env-info-fcn-">stdlib_math_base_napi_di_d( env, info, fcn )</h4><p>Invokes a binary function accepting a double-precision floating-point number and a signed 32-bit integer and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_di_d( env, info, mul );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] double (*fcn)( double, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_di_d</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">double</span> (*fcn)( <span class="hljs-keyword">double</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_ii_i-env-info-fcn-">stdlib_math_base_napi_ii_i( env, info, fcn )</h4><p>Invokes a binary function accepting and returning signed 32-bit integers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_ii_i( env, info, mul );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] int32_t (*fcn)( int32_t, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ii_i</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">int32_t</span> (*fcn)( <span class="hljs-keyword">int32_t</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_ii_d-env-info-fcn-">stdlib_math_base_napi_ii_d( env, info, fcn )</h4><p>Invokes a binary function accepting signed 32-bit integers and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_ii_d( env, info, mul );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] double (*fcn)( int32_t, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ii_d</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">double</span> (*fcn)( <span class="hljs-keyword">int32_t</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_fi_f-env-info-fcn-">stdlib_math_base_napi_fi_f( env, info, fcn )</h4><p>Invokes a binary function accepting a single-precision floating-point number and a signed 32-bit integer and returning a single-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">mulf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_fi_f( env, info, mulf );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] float (*fcn)( float, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_fi_f</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_zi_z-env-info-fcn-">stdlib_math_base_napi_zi_z( env, info, fcn )</h4><p>Invokes a binary function accepting a double-precision complex floating-point number and a signed 32-bit integer and returning a double-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">double</span> xre;
+    <span class="hljs-keyword">double</span> xim;
+    <span class="hljs-keyword">double</span> re;
+    <span class="hljs-keyword">double</span> im;
+
+    stdlib_complex128_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex128( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_zi_z( env, info, mul );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] stdlib_complex128_t (*fcn)( stdlib_complex128_t, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_zi_z</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">stdlib_complex128_t</span> (*fcn)( <span class="hljs-keyword">stdlib_complex128_t</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_ci_c-env-info-fcn-">stdlib_math_base_napi_ci_c( env, info, fcn )</h4><p>Invokes a binary function accepting a single-precision complex floating-point number and a signed 32-bit integer and returning a single-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">float</span> xre;
+    <span class="hljs-keyword">float</span> xim;
+    <span class="hljs-keyword">float</span> re;
+    <span class="hljs-keyword">float</span> im;
+
+    stdlib_complex64_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex64( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_ci_c( env, info, mul );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] stdlib_complex64_t (*fcn)( stdlib_complex64_t, int32_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ci_c</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">stdlib_complex64_t</span> (*fcn)( <span class="hljs-keyword">stdlib_complex64_t</span>, <span class="hljs-keyword">int32_t</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_ll_d-env-info-fcn-">stdlib_math_base_napi_ll_d( env, info, fcn )</h4><p>Invokes a binary function accepting signed 64-bit integers and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> y )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_ll_d( env, info, fcn );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] double (*fcn)( int64_t, int64_t )</code> binary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ll_d</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">double</span> (*fcn)( <span class="hljs-keyword">int64_t</span>, <span class="hljs-keyword">int64_t</span> ) )</span></span>;
 </code></pre><h4 id="stdlib_math_base_napi_module_dd_d-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_DD_D( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning double-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span> </span>{
     <span class="hljs-keyword">return</span> x + y;
 }
@@ -137,7 +329,27 @@
 
 <span class="hljs-comment">// Register a Node-API module:</span>
 STDLIB_MATH_BASE_NAPI_MODULE_DD_D( add );
-</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( double, double )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ff_f-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_FF_F( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">addf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span> </span>{
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( double, double )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ii_i-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_II_I( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning signed 32-bit integers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_II_I( add );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>int32_t (*fcn)( int32_t, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ii_d-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_II_D( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting signed 32-bit integers and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_II_D( add );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( int32_t, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ff_f-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_FF_F( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">addf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span> </span>{
     <span class="hljs-keyword">return</span> x + y;
 }
 
@@ -145,8 +357,8 @@ STDLIB_MATH_BASE_NAPI_MODULE_DD_D( add );
 
 <span class="hljs-comment">// Register a Node-API module:</span>
 STDLIB_MATH_BASE_NAPI_MODULE_FF_F( addf );
-</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>float (*fcn)( float, float )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_zz_z-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_ZZ_Z( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning double-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/reim.h"</span></span>
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>float (*fcn)( float, float )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_zz_z-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_ZZ_Z( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning double-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> y )</span> </span>{
     <span class="hljs-keyword">double</span> xre;
@@ -156,8 +368,8 @@ STDLIB_MATH_BASE_NAPI_MODULE_FF_F( addf );
     <span class="hljs-keyword">double</span> re;
     <span class="hljs-keyword">double</span> im;
 
-    stdlib_reim( x, &#x26;xre, &#x26;xim );
-    stdlib_reim( y, &#x26;yre, &#x26;yim );
+    stdlib_complex128_reim( x, &#x26;xre, &#x26;xim );
+    stdlib_complex128_reim( y, &#x26;yre, &#x26;yim );
 
     re = xre + yre;
     im = xim + yim;
@@ -169,8 +381,8 @@ STDLIB_MATH_BASE_NAPI_MODULE_FF_F( addf );
 
 <span class="hljs-comment">// Register a Node-API module:</span>
 STDLIB_MATH_BASE_NAPI_MODULE_ZZ_Z( add );
-</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex128_t (*fcn)( stdlib_complex128_t, stdlib_complex128_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_cc_c-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_CC_C( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning single-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/reimf.h"</span></span>
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex128_t (*fcn)( stdlib_complex128_t, stdlib_complex128_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_cc_c-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_CC_C( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting and returning single-precision complex floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/reim.h"</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> y )</span> </span>{
     <span class="hljs-keyword">float</span> xre;
@@ -180,8 +392,8 @@ STDLIB_MATH_BASE_NAPI_MODULE_ZZ_Z( add );
     <span class="hljs-keyword">float</span> re;
     <span class="hljs-keyword">float</span> im;
 
-    stdlib_reimf( x, &#x26;xre, &#x26;xim );
-    stdlib_reimf( y, &#x26;yre, &#x26;yim );
+    stdlib_complex64_reim( x, &#x26;xre, &#x26;xim );
+    stdlib_complex64_reim( y, &#x26;yre, &#x26;yim );
 
     re = xre + yre;
     im = xim + yim;
@@ -193,4 +405,120 @@ STDLIB_MATH_BASE_NAPI_MODULE_ZZ_Z( add );
 
 <span class="hljs-comment">// Register a Node-API module:</span>
 STDLIB_MATH_BASE_NAPI_MODULE_CC_C( add );
-</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex64_t (*fcn)( stdlib_complex64_t, stdlib_complex64_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The C-API functions expect that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p><ul><li><code>x</code>: input value.</li><li><code>y</code>: input value.</li></ul></li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex64_t (*fcn)( stdlib_complex64_t, stdlib_complex64_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_di_d-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_DI_D( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a double-precision floating-point number and a signed 32-bit integer and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_DI_D( mul );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( double, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_fi_f-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_FI_F( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a single-precision floating-point number and a signed 32-bit integer and returning a single-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">mulf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_FI_F( mulf );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>float (*fcn)( float, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_zi_z-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_ZI_Z( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a double-precision complex floating-point number and a signed 32-bit and returning a double-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">double</span> xre;
+    <span class="hljs-keyword">double</span> xim;
+    <span class="hljs-keyword">double</span> re;
+    <span class="hljs-keyword">double</span> im;
+
+    stdlib_complex128_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex128( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_ZI_Z( mul );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex128_t (*fcn)( stdlib_complex128_t, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ci_c-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_CI_C( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a single-precision complex floating-point number and a signed 32-bit integer and returning a single-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/reim.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> y )</span> </span>{
+    <span class="hljs-keyword">float</span> xre;
+    <span class="hljs-keyword">float</span> xim;
+    <span class="hljs-keyword">float</span> re;
+    <span class="hljs-keyword">float</span> im;
+
+    stdlib_complex64_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex64( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_CI_C( add );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex64_t (*fcn)( stdlib_complex64_t, int32_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_zd_z-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_ZD_Z( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a double-precision complex floating-point number and a double-precision floating-point number and returning a double-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/reim.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">mul</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex128_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span> </span>{
+    <span class="hljs-keyword">double</span> xre;
+    <span class="hljs-keyword">double</span> xim;
+    <span class="hljs-keyword">double</span> re;
+    <span class="hljs-keyword">double</span> im;
+
+    stdlib_complex128_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex128( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_ZD_Z( mul );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex128_t (*fcn)( stdlib_complex128_t, double )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_cf_c-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_CF_C( fcn )</h4><p>Macro for registering a Node-API module exporting an interface invoking a binary function accepting a single-precision complex floating-point number and a single-precision floating-point number and returning a single-precision complex floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/reim.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span> </span>{
+    <span class="hljs-keyword">float</span> xre;
+    <span class="hljs-keyword">float</span> xim;
+    <span class="hljs-keyword">float</span> re;
+    <span class="hljs-keyword">float</span> im;
+
+    stdlib_complex64_reim( x, &#x26;xre, &#x26;xim );
+
+    re = xre * y;
+    im = xim * y;
+
+    <span class="hljs-keyword">return</span> stdlib_complex64( re, im );
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_CF_C( add );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>stdlib_complex64_t (*fcn)( stdlib_complex64_t, float )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_ll_d-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_LL_D( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a binary function accepting signed 64-bit integers and returning a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> y )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_LL_D( fcn );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( int64_t, int64_t )</code> binary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The C-API functions expect that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p><ul><li><code>x</code>: input value.</li><li><code>y</code>: input value.</li></ul></li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -22,11 +22,10 @@ close( fd, done );
 <span class="hljs-keyword">var</span> close = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/close'</span> );
 
 <span class="hljs-keyword">var</span> err;
-<span class="hljs-keyword">var</span> fd;
 
 <span class="hljs-comment">/* Sync */</span>
 
-fd = openSync( join( __dirname, <span class="hljs-string">'package.json'</span> ), <span class="hljs-string">'r+'</span> );
+<span class="hljs-keyword">var</span> fd = openSync( join( __dirname, <span class="hljs-string">'package.json'</span> ), <span class="hljs-string">'r+'</span> );
 <span class="hljs-keyword">if</span> ( fd <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
     <span class="hljs-built_in">console</span>.error( fd.message );
 } <span class="hljs-keyword">else</span> {

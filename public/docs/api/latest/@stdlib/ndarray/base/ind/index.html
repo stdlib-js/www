@@ -7,7 +7,9 @@ idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</spa
 
 idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'throw'</span> );
 <span class="hljs-comment">// throws &#x3C;RangeError></span>
-</code></pre><p>The function supports the following <code>modes</code>:</p><ul><li><code>throw</code>: specifies that the function should throw an error when an index is outside the interval <code>[0,max]</code>.</li><li><code>wrap</code>: specifies that the function should wrap around an index using modulo arithmetic.</li><li><code>clamp</code>: specifies that the function should set an index less than <code>0</code> to <code>0</code> (minimum index) and set an index greater than <code>max</code> to <code>max</code>.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
+
+<span class="hljs-comment">// Wrapping indices around using modulo arithmetic:</span>
+idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
 <span class="hljs-comment">// returns 2</span>
 
 idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
@@ -16,6 +18,7 @@ idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</spa
 idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
 <span class="hljs-comment">// returns 9</span>
 
+<span class="hljs-comment">// Clamping indices to first and last indices:</span>
 idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'clamp'</span> );
 <span class="hljs-comment">// returns 2</span>
 
@@ -24,7 +27,24 @@ idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</spa
 
 idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'clamp'</span> );
 <span class="hljs-comment">// returns 0</span>
-</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+
+<span class="hljs-comment">// Normalizing negative indices:</span>
+idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'normalize'</span> );
+<span class="hljs-comment">// returns 2</span>
+
+idx = ind( -<span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'normalize'</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><h4 id="indfactory-mode-">ind.factory( mode )</h4><p>Returns a function for returning an index according to a provided index <code>mode</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = ind.factory( <span class="hljs-string">'clamp'</span> );
+
+<span class="hljs-keyword">var</span> idx = fcn( <span class="hljs-number">2</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 2</span>
+
+idx = fcn( <span class="hljs-number">10</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 9</span>
+
+idx = fcn( -<span class="hljs-number">1</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 0</span>
+</code></pre><p>The function returns a function accepts the following arguments:</p><ul><li><strong>index</strong>: input index.</li><li><strong>max</strong>: maximum index value.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Both functions support the following modes:</p><ul><li><strong>throw</strong>: specifies that the function should throw an error when an index is outside the interval <code>[0, max]</code>.</li><li><strong>normalize</strong>: specifies that the function should normalize negative indices and throw an error when an index is outside the interval <code>[-max-1, max]</code>.</li><li><strong>wrap</strong>: specifies that the function should wrap around an index using modulo arithmetic.</li><li><strong>clamp</strong>: specifies that the function should set an index less than <code>0</code> to <code>0</code> (minimum index) and set an index greater than <code>max</code> to <code>max</code>.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind'</span> );
 
 <span class="hljs-keyword">var</span> modes;

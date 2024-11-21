@@ -1,0 +1,20 @@
+<h1 id="uppercase">uppercase</h1><blockquote><p>Convert a string to uppercase.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uppercase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/uppercase'</span> );
+</code></pre><h4 id="uppercase-str-">uppercase( str )</h4><p>Converts a string to uppercase.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = uppercase( <span class="hljs-string">'bEEp'</span> );
+<span class="hljs-comment">// returns 'BEEP'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uppercase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/uppercase'</span> );
+
+<span class="hljs-keyword">var</span> str = uppercase( <span class="hljs-string">'Beep'</span> );
+<span class="hljs-comment">// returns 'BEEP'</span>
+
+str = uppercase( <span class="hljs-string">'BeEp'</span> );
+<span class="hljs-comment">// returns 'BEEP'</span>
+
+str = uppercase( <span class="hljs-string">'Beep BOOP'</span> );
+<span class="hljs-comment">// returns 'BEEP BOOP'</span>
+
+str = uppercase( <span class="hljs-string">'$**_beep_BoOp_**$'</span> );
+<span class="hljs-comment">// returns '$**_BEEP_BOOP_**$'</span>
+
+str = uppercase( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

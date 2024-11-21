@@ -1,0 +1,113 @@
+<h1 id="dcbrtby">dcbrtBy</h1><blockquote><p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/cbrt">cube root</a> of each element retrieved from a double-precision floating-point strided array via a callback function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dcbrtBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dcbrt-by'</span> );
+</code></pre><h4 id="dcbrtby-n-x-stridex-y-stridey-clbk-thisarg-">dcbrtBy( N, x, strideX, y, strideY, clbk[, thisArg] )</h4><p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/cbrt">cube root</a> of each element retrieved from an input double-precision floating-point strided array via a callback function and assigns each result to an element in an output double-precision floating-point strided array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy( x.length, x, <span class="hljs-number">1</span>, out, <span class="hljs-number">1</span>, accessor );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ 1.0, ~2.08, -3.0, ~4.327, -5.0 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>clbk</strong>: callback function.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback function is provided four arguments:</p><ul><li><strong>value</strong>: input array element.</li><li><strong>idx</strong>: iteration index (zero-based).</li><li><strong>indices</strong>: input and output array strided indices <code>[ix, iy]</code> (computed according to <code>offset + idx*stride</code>).</li><li><strong>arrays</strong>: input and output arrays <code>[x, y]</code>.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy( x.length, x, <span class="hljs-number">1</span>, out, <span class="hljs-number">1</span>, accessor, context );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ 1.0, ~2.08, -3.0, ~4.327, -5.0 ]</span>
+
+<span class="hljs-keyword">var</span> cnt = context.count;
+<span class="hljs-comment">// returns 5</span>
+</code></pre><p>The <code>N</code> and stride parameters determine which strided array elements are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span>, -<span class="hljs-number">9.14</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, out, -<span class="hljs-number">1</span>, accessor );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ -5.0, -3.0, 1.0, 0.0, 0.0, 0.0 ]</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span>, -<span class="hljs-number">9.14</span> ] );
+<span class="hljs-keyword">var</span> out0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> out1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( out0.buffer, out0.BYTES_PER_ELEMENT*<span class="hljs-number">3</span> ); <span class="hljs-comment">// start at 4th element</span>
+
+dcbrtBy( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, out1, <span class="hljs-number">1</span>, accessor );
+<span class="hljs-comment">// out0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~-2.091, ~4.327, ~2.08 ]</span>
+</code></pre><h4 id="dcbrtbyndarray-n-x-stridex-offsetx-y-stridey-offsety-clbk-thisarg-">dcbrtBy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, clbk[, thisArg] )</h4><p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/cbrt">cube root</a> of each element retrieved from an input double-precision floating-point strided array via a callback function and assigns each result to an element in an output double-precision floating-point strided array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, accessor );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ 1.0, ~2.08, -3.0, ~4.327, -5.0 ]</span>
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span>, -<span class="hljs-number">9.14</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, out, -<span class="hljs-number">1</span>, out.length-<span class="hljs-number">1</span>, accessor );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~-2.091, ~4.327, ~2.08 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// No-op...</span>
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">9.0</span>, -<span class="hljs-number">27.0</span>, <span class="hljs-number">81.0</span>, -<span class="hljs-number">125.0</span> ] );
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dcbrtBy( x.length, x, <span class="hljs-number">1</span>, out, <span class="hljs-number">1</span>, accessor );
+<span class="hljs-comment">// out => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 0.0, 0.0 ]</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> dcbrtBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dcbrt-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-keyword">if</span> ( (i%<span class="hljs-number">3</span>) === <span class="hljs-number">0</span> ) {
+        <span class="hljs-comment">// Simulate a "missing" value...</span>
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, uniform( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> out = filledarray( <span class="hljs-literal">null</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-built_in">console</span>.log( out );
+
+dcbrtBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, out, -<span class="hljs-number">1</span>, out.length-<span class="hljs-number">1</span>, accessor );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

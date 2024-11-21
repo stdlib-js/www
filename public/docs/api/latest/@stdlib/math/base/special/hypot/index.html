@@ -1,5 +1,5 @@
-<h1 id="hypot">hypot</h1><blockquote><p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypot'</span> );
-</code></pre><h4 id="hypot-x-y-">hypot( x, y )</h4><p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
+<h1 id="hypot">hypot</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypot'</span> );
+</code></pre><h4 id="hypot-x-y-">hypot( x, y )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
 
 h = hypot( -<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
@@ -50,8 +50,8 @@ h = hypot( <span class="hljs-number">1.0e-200</span>, <span class="hljs-number">
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypot.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> };
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> };
 
     <span class="hljs-keyword">double</span> y;
     <span class="hljs-keyword">int</span> i;

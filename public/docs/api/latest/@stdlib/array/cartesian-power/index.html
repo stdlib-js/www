@@ -1,0 +1,17 @@
+<h1 id="cartesianpower">cartesianPower</h1><blockquote><p>Return the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian power</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cartesianPower = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/cartesian-power'</span> );
+</code></pre><h4 id="cartesianpower-x-n-">cartesianPower( x, n )</h4><p>Returns the <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian power</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> out = cartesianPower( x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ [ 1, 1 ], [ 1, 2 ], [ 2, 1 ], [ 2, 2 ] ]</span>
+</code></pre><p>If provided an empty array, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = cartesianPower( [], <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre><p>If <code>n</code> is less than or equal to zero, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = cartesianPower( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+<span class="hljs-keyword">var</span> cartesianPower = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/cartesian-power'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> );
+
+<span class="hljs-keyword">var</span> out = cartesianPower( x, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns [ [ 0, 0, 0 ], [ 0, 0, 1 ], ..., [ 5, 5, 4 ], [ 5, 5, 5 ] ]</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/cartesian-product"><code>@stdlib/array/cartesian-product</code></a></span><span class="delimiter">: </span><span class="description">return the Cartesian product.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/cartesian-square"><code>@stdlib/array/cartesian-square</code></a></span><span class="delimiter">: </span><span class="description">return the Cartesian square.</span></li></ul></section><section class="links"></section>

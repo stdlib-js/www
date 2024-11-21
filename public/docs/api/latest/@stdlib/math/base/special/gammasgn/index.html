@@ -1,0 +1,44 @@
+<h1 id="gammasgn">gammasgn</h1><blockquote><p>Sign of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a>.</p></blockquote><section class="intro"><p>The sign of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma-function</a> is defined as</p><p>The <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a> can be computed as the product of <code>gammasgn(x)</code> and <code>exp(gammaln(x))</code>.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gammasgn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gammasgn'</span> );
+</code></pre><h4 id="gammasgn-x-">gammasgn( x )</h4><p>Returns the sign of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gammasgn( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = gammasgn( -<span class="hljs-number">2.5</span> );
+<span class="hljs-comment">// returns -1.0</span>
+
+v = gammasgn( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = gammasgn( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a> is not defined for negative integer values (i.e., <code>gamma(x) === NaN</code> when <code>x</code> is a negative integer). The <a href="/docs/api/latest/@stdlib/math/base/special/gammaln">natural logarithm of the gamma function</a> is defined for negative integer values (i.e., <code>gammaln(x) === Infinity</code> when <code>x</code> is a negative integer). Accordingly, in order for the equality <code>gamma(x) === gammasgn(x) * exp(gammaln(x))</code> to hold (i.e., return <code>NaN</code>), <code>gammasgn</code> needs to either return <code>NaN</code> or <code>0</code>. By convention, this function returns <code>0</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> gammasgn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gammasgn'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, f(x): %d'</span>, x[ i ], gammasgn( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gammasgn.h"</span></span>
+</code></pre><h4 id="stdlib_base_gammasgn-x-">stdlib_base_gammasgn( x )</h4><p>Returns the sign of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma-function</a>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_gammasgn( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+out = stdlib_base_gammasgn( <span class="hljs-number">-2.5</span> );
+<span class="hljs-comment">// returns -1.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_gammasgn</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/gammasgn.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">100.0</span>;
+        v = stdlib_base_gammasgn( x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"gammasgn%lf = %lf\n"</span>, x, v );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

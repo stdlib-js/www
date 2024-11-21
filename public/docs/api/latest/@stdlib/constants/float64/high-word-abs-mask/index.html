@@ -1,0 +1,22 @@
+<h1 id="float64_high_word_abs_mask">FLOAT64_HIGH_WORD_ABS_MASK</h1><blockquote><p>High word mask for excluding the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_HIGH_WORD_ABS_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/high-word-abs-mask'</span> );
+</code></pre><h4 id="float64_high_word_abs_mask-1">FLOAT64_HIGH_WORD_ABS_MASK</h4><p>High word mask for excluding the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111</span>
+<span class="hljs-keyword">var</span> bool = ( FLOAT64_HIGH_WORD_ABS_MASK === <span class="hljs-number">0x7fffffff</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The higher order word of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> is a 32-bit integer containing the more significant bits which include the exponent and sign.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
+<span class="hljs-keyword">var</span> getLowWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-low-word'</span> );
+<span class="hljs-keyword">var</span> fromWords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-words'</span> );
+<span class="hljs-keyword">var</span> FLOAT64_HIGH_WORD_ABS_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/high-word-abs-mask'</span> );
+
+<span class="hljs-keyword">var</span> x = -<span class="hljs-number">11.5</span>;
+<span class="hljs-keyword">var</span> hi = getHighWord( x ); <span class="hljs-comment">// 1 10000000010 01110000000000000000</span>
+<span class="hljs-comment">// returns 3223781376</span>
+
+<span class="hljs-comment">// Turn off the sign bit and leave other bits unchanged:</span>
+<span class="hljs-keyword">var</span> out = hi &#x26; FLOAT64_HIGH_WORD_ABS_MASK; <span class="hljs-comment">// 0 10000000010 01110000000000000000</span>
+<span class="hljs-comment">// returns 1076297728</span>
+
+<span class="hljs-comment">// Generate a new value:</span>
+out = fromWords( out, getLowWord( x ) );
+<span class="hljs-comment">// returns 11.5</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/constants/float64/high_word_abs_mask.h"</span></span>
+</code></pre><h4 id="stdlib_constant_float64_high_word_abs_mask">STDLIB_CONSTANT_FLOAT64_HIGH_WORD_ABS_MASK</h4><p>Macro for the high word mask for excluding the sign bit of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></section><section class="notes"></section><section class="examples"></section></section><section class="related"></section><section class="links"></section>

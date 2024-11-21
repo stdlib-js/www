@@ -1,10 +1,10 @@
 <h1 id="pkg2id">pkg2id</h1><blockquote><p>Return the error identifier prefix associated with a specified package name.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pkg2id = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/pkg2id'</span> );
 </code></pre><h4 id="pkg2id-pkg-">pkg2id( pkg )</h4><p>Returns the error identifier prefix associated with a specified package name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = pkg2id( <span class="hljs-string">'@stdlib/math/base/special/sin'</span> );
-<span class="hljs-comment">// returns '0H5'</span>
+<span class="hljs-comment">// returns '0YK'</span>
 </code></pre><p>If provided an unrecognized <code>pkg</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = pkg2id( <span class="hljs-string">'unrecognized_pkg_beep_boop_bop_bip'</span> );
 <span class="hljs-comment">// returns null</span>
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function supports providing both internal and standalone package names.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = pkg2id( <span class="hljs-string">'@stdlib/math-base-special-sin'</span> );
-<span class="hljs-comment">// returns '0H5'</span>
+<span class="hljs-comment">// returns '0YK'</span>
 </code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> formatProdErrorMessage = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/fmtprodmsg'</span> );
 <span class="hljs-keyword">var</span> pkg2id = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/pkg2id'</span> );
 
@@ -22,5 +22,5 @@ Options:
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-pkg2id <span class="hljs-string">'@stdlib/math/base/special/sin'</span>
-0H5
+0YK
 </code></pre></section></section><section class="references"></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><section class="links"></section></section>

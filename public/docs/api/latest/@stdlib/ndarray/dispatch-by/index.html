@@ -1,0 +1,50 @@
+<h1 id="dispatchby">dispatchBy</h1><blockquote><p>Create an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface which performs multiple dispatch.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dispatchBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dispatch-by'</span> );
+</code></pre><h4 id="dispatchby-fcns-types-data-nargs-nin-nout-">dispatchBy( fcns, types, data, nargs, nin, nout )</h4><p>Returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface which performs multiple dispatch.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>fcns</strong>: list of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> functions.</li><li><strong>types</strong>: one-dimensional list of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> argument <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a>. The length of <code>types</code> must be the number of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> functions multiplied by <code>nin+nout</code>. If <code>fcns</code> is a function, rather than a list, the number of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> functions is computed as <code>types.length / (nin+nout)</code>.</li><li><strong>data</strong>: <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function data (e.g., callbacks). If a list, the length of <code>data</code> must equal the number of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> functions. If <code>null</code>, a returned <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface does <strong>not</strong> provide a <code>data</code> argument to an invoked <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function.</li><li><strong>nargs</strong>: total number of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface arguments.</li><li><strong>nin</strong>: number of input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a>.</li><li><strong>nout</strong>: number of output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A returned <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface has the following signature:</p><pre><code class="no-highlight language-text">f( x, y, ... )
+</code></pre><p>where</p><ul><li><strong>x</strong>: <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>y</strong>: <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>...</strong>: additional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a>.</li></ul></li><li><p>The number of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function interface parameters is derived from <code>nargs</code>, the number of input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> is derived from <code>nin</code>, and the number of output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> is derived from <code>nout</code>.</p></li><li><p>An <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function (i.e., a value provided for the <code>fcns</code> argument) should have the following signature:</p><pre><code class="no-highlight language-text">f( arrays[, data] )
+</code></pre><p>where</p><ul><li><strong>arrays</strong>: array containing input and output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a>.</li><li><strong>data</strong>: <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function data (e.g., a callback).</li></ul></li><li><p>For convenience, a single <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function may be provided which will be invoked whenever the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> argument data types match a sequence of types in <code>types</code>. Providing a single <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function is particularly convenient for the case where, regardless of array data types, traversing arrays remains the same, but the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> function <code>data</code> differs (e.g., callbacks which differ based on the array data types). For example, the following</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">5.0</span>;
+}
+
+<span class="hljs-keyword">var</span> fcns = [
+    unary,
+    unary
+];
+<span class="hljs-keyword">var</span> types = [
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float32'</span>
+];
+<span class="hljs-keyword">var</span> data = [
+    foo,
+    bar
+];
+
+<span class="hljs-keyword">var</span> fcn = dispatchBy( fcns, types, data, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+</code></pre><p>is equivalent to</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">5.0</span>;
+}
+
+<span class="hljs-keyword">var</span> types = [
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float32'</span>
+];
+<span class="hljs-keyword">var</span> data = [
+    foo,
+    bar
+];
+
+<span class="hljs-keyword">var</span> fcn = dispatchBy( unary, types, data, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section><section class="links"></section>

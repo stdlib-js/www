@@ -10,27 +10,24 @@
 <span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 <span class="hljs-keyword">var</span> reviveBasePRNG = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/reviver'</span> );
 
-<span class="hljs-keyword">var</span> rand;
-<span class="hljs-keyword">var</span> str;
-<span class="hljs-keyword">var</span> r1;
-<span class="hljs-keyword">var</span> r2;
-<span class="hljs-keyword">var</span> i;
-
 <span class="hljs-comment">// Progress the PRNG state...</span>
+<span class="hljs-keyword">var</span> r1;
+<span class="hljs-keyword">var</span> i;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     r1 = randu();
 }
 
 <span class="hljs-comment">// Serialize the PRNG as a JSON string:</span>
-str = <span class="hljs-built_in">JSON</span>.stringify( randu );
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( randu );
 
 <span class="hljs-comment">// Revive the JSON-serialized PRNG:</span>
-rand = parseJSON( str, reviveBasePRNG );
+<span class="hljs-keyword">var</span> rand = parseJSON( str, reviveBasePRNG );
 <span class="hljs-keyword">if</span> ( rand <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
     <span class="hljs-built_in">console</span>.error( rand.message );
 }
 
 <span class="hljs-comment">// Generate duplicate sequences...</span>
+<span class="hljs-keyword">var</span> r2;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     r1 = randu();
     r2 = rand();

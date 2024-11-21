@@ -1,0 +1,71 @@
+<h1 id="isaccessorarray">isAccessorArray</h1><blockquote><p>Test if an array-like object supports the accessor (get/set) protocol.</p></blockquote><section class="intro"><p>An accessor array is defined as either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>) having <code>get</code> and <code>set</code> methods for accessing array elements.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isAccessorArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/is-accessor-array'</span> );
+</code></pre><h4 id="isaccessorarray-value-">isAccessorArray( value )</h4><p>Tests if an array-like object supports the accessor (get/set) protocol.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64/ctor'</span> );
+
+<span class="hljs-comment">// Create a new complex number array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Retrieve a complex number element:</span>
+<span class="hljs-keyword">var</span> z = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-comment">// Set a complex number element:</span>
+arr.set( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ), <span class="hljs-number">0</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Check whether an array is an accessor array:</span>
+<span class="hljs-keyword">var</span> bool = isAccessorArray( arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> Complex128Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex128'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> isAccessorArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/is-accessor-array'</span> );
+
+<span class="hljs-keyword">var</span> bool = isAccessorArray( <span class="hljs-keyword">new</span> Complex128Array( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> Complex64Array( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAccessorArray( [] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAccessorArray( { <span class="hljs-string">'length'</span>: <span class="hljs-number">0</span> } );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

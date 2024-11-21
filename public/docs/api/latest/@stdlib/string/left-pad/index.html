@@ -1,29 +1,38 @@
-<h1 id="left-pad">Left Pad</h1><blockquote><p>Left pad a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
-</code></pre><h4 id="lpad-str-len-pad-">lpad( str, len[, pad] )</h4><p>Left pads a <code>string</code> such that the padded <code>string</code> has a <code>length</code> of <strong>at least</strong> <code>len</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
+<h1 id="lpad">lpad</h1><blockquote><p>Left pad a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
+</code></pre><h4 id="lpad-str-len-pad-">lpad( str, len[, pad] )</h4><p>Left pads a string such that the padded string has a length of <strong>at least</strong> <code>len</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns '    a'</span>
-</code></pre><p>By default, an input <code>string</code> is padded with <code>spaces</code>. To pad with a different character or sequence of characters, provide a <code>pad</code> string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'beep'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span> );
+</code></pre><p>By default, an input string is padded with a Unicode "space" character (U+0020). To pad with a different character or sequence of characters, provide a <code>pad</code> string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'beep'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span> );
 <span class="hljs-comment">// returns 'bbbbbbbeep'</span>
 
 str = lpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">12</span>, <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns 'beepbeepboop'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>An output <code>string</code> is <strong>not</strong> guaranteed to have a length of <strong>exactly</strong> <code>len</code>, but to have a <code>length</code> of <strong>at least</strong> <code>len</code>. To generate a padded <code>string</code> having a <code>length</code> equal to <code>len</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> ); <span class="hljs-comment">// => length 12</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>An output string is <strong>not</strong> guaranteed to have a length of <strong>exactly</strong> <code>len</code>, but to have a length of <strong>at least</strong> <code>len</code>. To generate a padded string having a length equal to <code>len</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = lpad( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> ); <span class="hljs-comment">// => length 12</span>
 <span class="hljs-comment">// returns 'beepbeepboop'</span>
 
 str = str.substring( str.length-<span class="hljs-number">10</span> ); <span class="hljs-comment">// => length 10</span>
 <span class="hljs-comment">// returns 'epbeepboop'</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
-<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><code>String.prototype.padStart</code></a> in the following ways:</p><ul><li>The function is <strong>not</strong> guaranteed to return a string having a length exactly equal to <code>len</code> (as explained above).</li><li>The function does <strong>not</strong> truncate <code>pad</code> (from the end) in order to ensure the returned string has length <code>len</code>.</li></ul><p>To replicate <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><code>String.prototype.padStart</code></a> truncation behavior</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floorb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floorb'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padStart</span>(<span class="hljs-params"> str, len, pad </span>) </span>{
+    <span class="hljs-keyword">var</span> n;
+    <span class="hljs-keyword">if</span> ( len &#x3C;= str.length ) {
+        <span class="hljs-keyword">return</span> str;
+    }
+    n = floorb( len-str.length, <span class="hljs-number">1</span>, pad.length ) + str.length;
+    <span class="hljs-keyword">return</span> pad.substring( <span class="hljs-number">0</span>, len-n ) + lpad( str, n, pad );
+}
+
+<span class="hljs-keyword">var</span> str = padStart( <span class="hljs-string">'boop'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns 'bebeepboop'</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep'</span>;
-<span class="hljs-keyword">var</span> n;
 <span class="hljs-keyword">var</span> i;
-
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
-    n = round( randu()*<span class="hljs-number">10</span> ) + str.length;
-    <span class="hljs-built_in">console</span>.log( lpad( str, n, <span class="hljs-string">'b'</span> ) );
+    <span class="hljs-built_in">console</span>.log( lpad( str, discreteUniform( str.length, str.length+<span class="hljs-number">10</span> ), <span class="hljs-string">'b'</span> ) );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: lpad [options] [&#x3C;string>] --len=&#x3C;length>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: lpad [options] --len=&#x3C;length> [&#x3C;string>]
 
 Options:
 

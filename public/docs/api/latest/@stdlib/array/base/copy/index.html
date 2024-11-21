@@ -2,13 +2,13 @@
 </code></pre><h4 id="copy-x-">copy( x )</h4><p>Copies the elements of an array-like object to a new "generic" array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
 
 <span class="hljs-keyword">var</span> out = copy( x );
-<span class="hljs-comment">// returns [ 1, 2, 3  ]</span>
+<span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( out === x );
 <span class="hljs-comment">// returns false</span>
 </code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
-<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/realf'</span> );
-<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imagf'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
 <span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/copy'</span> );
 
 <span class="hljs-comment">// Create a complex number array:</span>

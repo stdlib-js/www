@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -115,7 +115,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/ndarray/index-modes/docs/types/index.d.ts#L42">lib/node_modules/@stdlib/ndarray/index-modes/docs/types/index.d.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/ndarray/index-modes/docs/types/index.d.ts#L43">lib/node_modules/@stdlib/ndarray/index-modes/docs/types/index.d.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -128,11 +128,12 @@
 								<ul>
 									<li><p>The output array contains the following modes:</p>
 										<ul>
-											<li>throw: specifies that a function should throw an error when an index is
+											<li><strong>throw</strong>: specifies that a function should throw an error when an index is
 											outside a restricted interval.</li>
-											<li>wrap: specifies that a function should wrap around an index using modulo
+											<li><strong>normalize</strong>: specifies that a function should normalize negative indices and throw an error when an index is outside a restricted interval.</li>
+											<li><strong>wrap</strong>: specifies that a function should wrap around an index using modulo
 											arithmetic.</li>
-											<li>clamp: specifies that a function should set an index less than zero to
+											<li><strong>clamp</strong>: specifies that a function should set an index less than zero to
 												zero (minimum index) and set an index greater than a maximum index value to
 											the maximum possible index.</li>
 										</ul>
@@ -148,7 +149,7 @@
 							<p>list of ndarray index modes</p>
 							<h4 class="tsd-example-title">Example</h4>
 							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> list = modes();
-<span class="hljs-comment">// returns [ 'throw', 'clamp', 'wrap' ]</span></code></pre>
+<span class="hljs-comment">// returns [ 'throw', 'normalize', 'clamp', 'wrap' ]</span></code></pre>
 							</div>
 						</li>
 					</ul>
@@ -236,13 +237,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

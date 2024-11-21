@@ -1,0 +1,41 @@
+<h1 id="sargs2multislice">sargs2multislice</h1><blockquote><p>Create a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object from a comma-separated list of string-serialized <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> constructor arguments.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sargs2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/sargs2multislice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="sargs2multislice-str-">sargs2multislice( str )</h4><p>Creates a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object from a comma-separated list of string-serialized <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> constructor arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = sargs2multislice( <span class="hljs-string">'0,Slice(2,10,1),1'</span> );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ 0, &#x3C;Slice>, 1 ]</span>
+</code></pre><p>The function returns <code>null</code> if provided an invalid string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = sargs2multislice( <span class="hljs-string">'foo,bar'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>This function is useful from wanting to create a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object from an array of constructor arguments which has been serialized to a string (e.g., when working with <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects supporting slicing].</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> args = [ <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ), <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> sargs = args.toString();
+<span class="hljs-comment">// returns '0,Slice(2,10,1),1'</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> s = sargs2multislice( sargs );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ 0, &#x3C;Slice>, 1 ]</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sargs2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/sargs2multislice'</span> );
+
+<span class="hljs-keyword">var</span> s = sargs2multislice( <span class="hljs-string">'null,null,null'</span> );
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ null, null, null ]</span>
+
+s = sargs2multislice( <span class="hljs-string">'10,Slice(2,10,1),null'</span> );
+d = s.data;
+<span class="hljs-comment">// returns [ 10, &#x3C;Slice>, null ]</span>
+
+s = sargs2multislice( <span class="hljs-string">'2,Slice(2,10,1),-5'</span> );
+d = s.data;
+<span class="hljs-comment">// returns [ 2, &#x3C;Slice>, -5 ]</span>
+
+s = sargs2multislice( <span class="hljs-string">'foo,bar'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/slice/base/args2multislice"><code>@stdlib/slice/base/args2multislice</code></a></span><span class="delimiter">: </span><span class="description">create a MultiSlice object from a list of MultiSlice constructor arguments.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/slice/base/seq2multislice"><code>@stdlib/slice/base/seq2multislice</code></a></span><span class="delimiter">: </span><span class="description">convert a multidimensional subsequence string to a MultiSlice object.</span></li></ul></section><section class="links"></section>

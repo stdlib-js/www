@@ -43,10 +43,11 @@
 }
 </code></pre><p>To change the maximum number of terms to be summed, set the <code>maxTerms</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
+<span class="hljs-comment">// Note: infinite sum is 2</span>
 <span class="hljs-keyword">var</span> out = sumSeries( geometricSeriesClosure( <span class="hljs-number">0.5</span> ), {
     <span class="hljs-string">'maxTerms'</span>: <span class="hljs-number">10</span>
 });
-<span class="hljs-comment">// returns ~1.998 (infinite sum is 2)</span>
+<span class="hljs-comment">// returns ~1.998</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">geometricSeriesClosure</span>(<span class="hljs-params"> x </span>) </span>{
     <span class="hljs-keyword">var</span> exponent = -<span class="hljs-number">1</span>;

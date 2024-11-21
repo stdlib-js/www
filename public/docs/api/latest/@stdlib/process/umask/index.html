@@ -28,18 +28,15 @@ mask = umask( <span class="hljs-number">0</span>, opts );
 </code></pre></li><li><p>See <a href="http://man7.org/linux/man-pages/man2/umask.2.html">umask(2)</a>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 <span class="hljs-keyword">var</span> umask = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/umask'</span> );
 
-<span class="hljs-keyword">var</span> mask;
-<span class="hljs-keyword">var</span> opts;
-
 <span class="hljs-comment">// Print the process mask as an integer:</span>
-mask = umask();
+<span class="hljs-keyword">var</span> mask = umask();
 <span class="hljs-built_in">console</span>.log( mask.toString() );
 
 <span class="hljs-comment">// Print the process mask as an octal string:</span>
 <span class="hljs-built_in">console</span>.log( lpad( mask.toString(), <span class="hljs-number">4</span>, <span class="hljs-string">'0'</span> ) );
 
 <span class="hljs-comment">// Print the process mask using symbolic notation:</span>
-opts = {
+<span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'symbolic'</span>: <span class="hljs-literal">true</span>
 };
 <span class="hljs-built_in">console</span>.log( umask( opts ) );

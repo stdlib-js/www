@@ -1,0 +1,40 @@
+<h1 id="quinary2d">quinary2d</h1><blockquote><p>Apply a quinary callback to elements in five two-dimensional nested input arrays and assign results to elements in a two-dimensional nested output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quinary2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/quinary2d'</span> );
+</code></pre><h4 id="quinary2d-arrays-shape-fcn-">quinary2d( arrays, shape, fcn )</h4><p>Applies a quinary callback to elements in five two-dimensional nested input arrays and assigns results to elements in a two-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add5'</span> );
+<span class="hljs-keyword">var</span> zeros2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros2d'</span> );
+
+<span class="hljs-keyword">var</span> x = [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ];
+<span class="hljs-keyword">var</span> out = zeros2d( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+quinary2d( [ x, x, x, x, x, out ], shape, add );
+<span class="hljs-comment">// out => [ [ 5.0, 10.0 ], [ 15.0, 20.0 ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing five input nested arrays and one output nested array.</li><li><strong>shape</strong>: array shape.</li><li><strong>fcn</strong>: quinary function to apply.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes that the input and output arrays have the same shape.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filled2dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled2d-by'</span> );
+<span class="hljs-keyword">var</span> zeros2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros2d'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add5'</span> );
+<span class="hljs-keyword">var</span> quinary2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/quinary2d'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> x = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( y );
+
+<span class="hljs-keyword">var</span> z = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( z );
+
+<span class="hljs-keyword">var</span> w = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( w );
+
+<span class="hljs-keyword">var</span> v = filled2dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( v );
+
+<span class="hljs-keyword">var</span> out = zeros2d( shape );
+<span class="hljs-built_in">console</span>.log( out );
+
+quinary2d( [ x, y, z, w, v, out ], shape, add );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

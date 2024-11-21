@@ -1,0 +1,37 @@
+<h1 id="take">take</h1><blockquote><p>Take elements from an array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take'</span> );
+</code></pre><h4 id="take-x-indices-mode-">take( x, indices, mode )</h4><p>Takes elements from an array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ], <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns [ 2, 4 ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>indices</strong>: list of indices.</li><li><strong>mode</strong>: index <a href="/docs/api/latest/@stdlib/ndarray/base/ind">mode</a>.</li></ul><p>If <code>indices</code> is an empty array, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> y = take( x, [], <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre><h4 id="takeassign-x-indices-mode-out-stride-offset-">take.assign( x, indices, mode, out, stride, offset )</h4><p>Takes elements from an array and assigns the values to elements in a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> indices = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> arr = take.assign( x, indices, <span class="hljs-string">'throw'</span>, out, -<span class="hljs-number">1</span>, out.length-<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns [ 4, 4, 2, 2, 1, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>indices</strong>: list of indices.</li><li><strong>mode</strong>: index <a href="/docs/api/latest/@stdlib/ndarray/base/ind">mode</a>.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> take = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take'</span> );
+
+<span class="hljs-comment">// Generate a linearly spaced array:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate an array of random indices:</span>
+<span class="hljs-keyword">var</span> N = discreteUniform( <span class="hljs-number">5</span>, <span class="hljs-number">15</span> );
+<span class="hljs-keyword">var</span> indices = filledBy( N, discreteUniform.factory( <span class="hljs-number">0</span>, x.length-<span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( indices );
+
+<span class="hljs-comment">// Take a random sample of elements from `x`:</span>
+<span class="hljs-keyword">var</span> y = take( x, indices, <span class="hljs-string">'throw'</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

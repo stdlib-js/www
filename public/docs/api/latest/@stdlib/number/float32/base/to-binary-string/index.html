@@ -11,7 +11,7 @@ str = toBinaryStringf( toFloat32( -<span class="hljs-number">1.0e38</span> ) );
 <span class="hljs-comment">// returns '11111110100101100111011010011001'</span>
 </code></pre><p>The function handles <a href="https://en.wikipedia.org/wiki/Denormal_number">subnormals</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 
-str = toBinaryStringf( toFloat32( -<span class="hljs-number">3.14e-39</span> ) );
+<span class="hljs-keyword">var</span> str = toBinaryStringf( toFloat32( -<span class="hljs-number">3.14e-39</span> ) );
 <span class="hljs-comment">// returns '10000000001000100011000100001011'</span>
 
 str = toBinaryStringf( toFloat32( <span class="hljs-number">1.4e-45</span> ) );
@@ -19,7 +19,7 @@ str = toBinaryStringf( toFloat32( <span class="hljs-number">1.4e-45</span> ) );
 </code></pre><p>The function handles special values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/pinf'</span> );
 <span class="hljs-keyword">var</span> NINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/ninf'</span> );
 
-str = toBinaryStringf( <span class="hljs-number">0.0</span> );
+<span class="hljs-keyword">var</span> str = toBinaryStringf( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns '00000000000000000000000000000000'</span>
 
 str = toBinaryStringf( -<span class="hljs-number">0.0</span> );
@@ -63,4 +63,4 @@ str = toBinaryStringf( NINF );
     b = toBinaryStringf( x );
     <span class="hljs-built_in">console</span>.log( b );
 }
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/number/float32/base/from-binary-string"><code>@stdlib/number/float32/base/from-binary-string</code></a></span><span class="delimiter">: </span><span class="description">create a single-precision floating-point number from a literal bit representation.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/number/float64/base/to-binary-string"><code>@stdlib/number/float64/base/to-binary-string</code></a></span><span class="delimiter">: </span><span class="description">return a string giving the literal bit representation of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

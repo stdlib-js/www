@@ -1,0 +1,23 @@
+<h1 id="array2dtype">array2dtype</h1><blockquote><p>Return the WebAssembly data type for a provided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/array2dtype'</span> );
+</code></pre><h4 id="array2dtype-array-">array2dtype( array )</h4><p>Returns the WebAssembly data type for a provided <code>array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> dt = array2dtype( arr );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>If provided an argument having "generic" or an unknown/unsupported <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a>, the function assumes that array values can be stored as double-precision floating-point numbers and returns <code>'float64'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = array2dtype( [] );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/empty'</span> );
+<span class="hljs-keyword">var</span> array2dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/base/array2dtype'</span> );
+
+<span class="hljs-comment">// Get a list of supported array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// For each supported data type, create an array and return its WebAssembly data type...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    v = array2dtype( empty( <span class="hljs-number">10</span>, dt[ i ] ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, dt[ i ], v );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -66,4 +66,1146 @@ nullary.ndarray( [ x ], [ <span class="hljs-number">3</span> ], [ -<span class="
 
 nullary.ndarray( [ x ], shape, strides, offsets, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
 <span class="hljs-built_in">console</span>.log( x );
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"><p>Character codes for data types:</p><ul><li><strong>x</strong>: <code>bool</code> (boolean).</li><li><strong>z</strong>: <code>complex128</code> (double-precision floating-point complex number).</li><li><strong>c</strong>: <code>complex64</code> (single-precision floating-point complex number).</li><li><strong>f</strong>: <code>float32</code> (single-precision floating-point number).</li><li><strong>d</strong>: <code>float64</code> (double-precision floating-point number).</li><li><strong>k</strong>: <code>int16</code> (signed 16-bit integer).</li><li><strong>i</strong>: <code>int32</code> (signed 32-bit integer).</li><li><strong>s</strong>: <code>int8</code> (signed 8-bit integer).</li><li><strong>t</strong>: <code>uint16</code> (unsigned 16-bit integer).</li><li><strong>u</strong>: <code>uint32</code> (unsigned 32-bit integer).</li><li><strong>b</strong>: <code>uint8</code> (unsigned 8-bit integer).</li></ul><p>Function name suffix naming convention:</p><pre><code class="no-highlight language-text">stdlib_strided_&#x3C;output_data_type>[_as_&#x3C;callback_return_data_type>]
+</code></pre><p>For example,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d</span><span class="hljs-params">(...)</span> </span>{...}
+</code></pre><p>is a function which accepts one double-precision floating-point strided output array. In other words, the suffix encodes the function type signature.</p><p>To support callbacks whose return values are of a different data type than the strided output array data type, the naming convention supports appending an <code>as</code> suffix. For example,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_d</span><span class="hljs-params">(...)</span> </span>{...}
+</code></pre><p>is a function which accepts one single-precision floating-point strided output array. However, the callback returns double-precision floating-point numbers. Accordingly, the output value needs to be cast using the following conversion sequence</p><pre><code class="hljs language-c"><span class="hljs-comment">// Evaluate the callback:</span>
+<span class="hljs-keyword">double</span> out = f();
+
+<span class="hljs-comment">// Convert the callback return value to single-precision:</span>
+y[ i ] = (<span class="hljs-keyword">float</span>)out;
+</code></pre></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/nullary.h"</span></span>
+</code></pre><h4 id="stdlib_strided_b-arrays-shape-strides-fcn-">stdlib_strided_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">1</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c-arrays-shape-strides-fcn-">stdlib_strided_c( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>stdlib_complex64_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_b-arrays-shape-strides-fcn-">stdlib_strided_c_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_f-arrays-shape-strides-fcn-">stdlib_strided_c_as_f( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0f</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c_as_f( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>float (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_f</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_k-arrays-shape-strides-fcn-">stdlib_strided_c_as_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c_as_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_s-arrays-shape-strides-fcn-">stdlib_strided_c_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_t-arrays-shape-strides-fcn-">stdlib_strided_c_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_c_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_c_as_z-arrays-shape-strides-fcn-">stdlib_strided_c_as_z( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_c_as_z( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>stdlib_complex128_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_c_as_z</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d-arrays-shape-strides-fcn-">stdlib_strided_d( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>double (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_b-arrays-shape-strides-fcn-">stdlib_strided_d_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_f-arrays-shape-strides-fcn-">stdlib_strided_d_as_f( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0f</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_f( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>float (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_f</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_i-arrays-shape-strides-fcn-">stdlib_strided_d_as_i( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_i( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_i</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_k-arrays-shape-strides-fcn-">stdlib_strided_d_as_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_s-arrays-shape-strides-fcn-">stdlib_strided_d_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_t-arrays-shape-strides-fcn-">stdlib_strided_d_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_d_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_d_as_u-arrays-shape-strides-fcn-">stdlib_strided_d_as_u( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_d_as_u( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_d_as_u</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f-arrays-shape-strides-fcn-">stdlib_strided_f( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0f</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_f( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>float (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f_as_b-arrays-shape-strides-fcn-">stdlib_strided_f_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_f_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f_as_d-arrays-shape-strides-fcn-">stdlib_strided_f_as_d( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_f_as_d( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>double (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_d</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f_as_k-arrays-shape-strides-fcn-">stdlib_strided_f_as_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_f_as_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f_as_s-arrays-shape-strides-fcn-">stdlib_strided_f_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_f_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_f_as_t-arrays-shape-strides-fcn-">stdlib_strided_f_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_f_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_f_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_i-arrays-shape-strides-fcn-">stdlib_strided_i( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_i( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_i</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_i_as_b-arrays-shape-strides-fcn-">stdlib_strided_i_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_i_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_i_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_i_as_k-arrays-shape-strides-fcn-">stdlib_strided_i_as_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_i_as_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_i_as_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_i_as_s-arrays-shape-strides-fcn-">stdlib_strided_i_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_i_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_i_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_i_as_t-arrays-shape-strides-fcn-">stdlib_strided_i_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_i_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_i_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_k-arrays-shape-strides-fcn-">stdlib_strided_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">2</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_k_as_b-arrays-shape-strides-fcn-">stdlib_strided_k_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">2</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_k_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_k_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_k_as_s-arrays-shape-strides-fcn-">stdlib_strided_k_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">2</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_k_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_k_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_s-arrays-shape-strides-fcn-">stdlib_strided_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">1</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_t-arrays-shape-strides-fcn-">stdlib_strided_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">2</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_t_as_b-arrays-shape-strides-fcn-">stdlib_strided_t_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">2</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_t_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_t_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_u-arrays-shape-strides-fcn-">stdlib_strided_u( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_u( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_u</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_u_as_b-arrays-shape-strides-fcn-">stdlib_strided_u_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_u_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_u_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_u_as_t-arrays-shape-strides-fcn-">stdlib_strided_u_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">4</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_u_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_u_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_x-arrays-shape-strides-fcn-">stdlib_strided_x( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">1</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_x( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>bool (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_x</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z-arrays-shape-strides-fcn-">stdlib_strided_z( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex128_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>stdlib_complex128_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_b-arrays-shape-strides-fcn-">stdlib_strided_z_as_b( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_b( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_b</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_c-arrays-shape-strides-fcn-">stdlib_strided_z_as_c( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_c( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>stdlib_complex64_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_c</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_d-arrays-shape-strides-fcn-">stdlib_strided_z_as_d( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_d( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>double (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_d</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_f-arrays-shape-strides-fcn-">stdlib_strided_z_as_f( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0f</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_f( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>float (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_f</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_i-arrays-shape-strides-fcn-">stdlib_strided_z_as_i( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_i( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_i</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_k-arrays-shape-strides-fcn-">stdlib_strided_z_as_k( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_k( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_k</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_s-arrays-shape-strides-fcn-">stdlib_strided_z_as_s( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_s( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>int8_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_s</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_t-arrays-shape-strides-fcn-">stdlib_strided_z_as_t( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint16_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+<span class="hljs-keyword">stdlib_strided_z_as_t</span>( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint16_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_t</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><h4 id="stdlib_strided_z_as_u-arrays-shape-strides-fcn-">stdlib_strided_z_as_u( *arrays[], *shape, *strides, *fcn )</h4><p>Applies a nullary callback and assigns results to elements in a strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-comment">// Create underlying byte arrays:</span>
+<span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+<span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+<span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+<span class="hljs-comment">// Define the strides:</span>
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">16</span> };
+
+<span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">uint32_t</span> <span class="hljs-title">fcn</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// Apply the callback:</span>
+stdlib_strided_z_as_u( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fcn );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: <code>[inout] uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array containing strides (in bytes) for each strided array.</li><li><strong>fcn</strong>: <code>[in] void*</code> a <code>uint32_t (*f)()</code> function to apply provided as a <code>void</code> pointer.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_z_as_u</span><span class="hljs-params">( <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">void</span> *fcn )</span></span>;
+</code></pre><hr><h4 id="stdlib_strided_nullary_loop_preamble">STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE</h4><p>Macro containing the preamble for a loop which updates a strided output array.</p><pre><code class="hljs language-c">STDLIB_STRIDED_NULLARY_LOOP_PREMABLE {
+    <span class="hljs-comment">// Loop body...</span>
+}
+</code></pre><p>The macro expects the following variables to be defined:</p><ul><li><strong>arrays</strong>: <code>uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>int64_t*</code> array containing strides (in bytes) for each strided array.</li></ul><p>The macro defines the following variables:</p><ul><li><strong>op1</strong>: <code>uint8_t*</code> pointer to the first indexed element of the output strided array.</li><li><strong>os1</strong>: <code>int64_t</code> index increment for the output strided array.</li><li><strong>n</strong>: <code>int64_t</code> number of indexed elements.</li><li><strong>i</strong>: <code>int64_t</code> loop counter.</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE               \
+    uint8_t *op1 = arrays[ 0 ];                            \
+    int64_t os1 = strides[ 0 ];                            \
+    int64_t n = shape[ 0 ];                                \
+    int64_t i;                                             \
+    <span class="hljs-meta-keyword">if</span> ( n &#x3C;= 0 ) {                                        \
+        return;                                            \
+    }                                                      \
+    <span class="hljs-meta-keyword">if</span> ( os1 &#x3C; 0 ) {                                       \
+        op1 += (1-n) * os1;                                \
+    }                                                      \
+    for ( i = 0; i &#x3C; n; i++, op1 += os1 )</span>
+</code></pre><h4 id="stdlib_strided_nullary_loop_two_out_preamble">STDLIB_STRIDED_NULLARY_LOOP_TWO_OUT_PREAMBLE</h4><p>Macro containing the preamble for a loop which updates two strided output arrays.</p><pre><code class="hljs language-c">STDLIB_STRIDED_NULLARY_LOOP_TWO_OUT_PREMABLE {
+    <span class="hljs-comment">// Loop body...</span>
+}
+</code></pre><p>The macro expects the following variables to be defined:</p><ul><li><strong>arrays</strong>: <code>uint8_t**</code> array whose only element is a pointer to a strided output array.</li><li><strong>shape</strong>: <code>int64_t*</code> array whose only element is the number of elements over which to iterate.</li><li><strong>strides</strong>: <code>int64_t*</code> array containing strides (in bytes) for each strided array.</li></ul><p>The macro defines the following variables:</p><ul><li><strong>op1</strong>: <code>uint8_t*</code> pointer to the first indexed element of the first output strided array.</li><li><strong>op2</strong>: <code>uint8_t*</code> pointer to the first indexed element of the second output strided array.</li><li><strong>os1</strong>: <code>int64_t</code> index increment for the first output strided array.</li><li><strong>os2</strong>: <code>int64_t</code> index increment for the second output strided array.</li><li><strong>n</strong>: <code>int64_t</code> number of indexed elements.</li><li><strong>i</strong>: <code>int64_t</code> loop counter.</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_TWO_OUT_PREAMBLE       \
+    uint8_t *op1 = arrays[ 0 ];                            \
+    uint8_t *op2 = arrays[ 1 ];                            \
+    int64_t os1 = strides[ 0 ];                            \
+    int64_t os2 = strides[ 1 ];                            \
+    int64_t n = shape[ 0 ];                                \
+    int64_t i;                                             \
+    <span class="hljs-meta-keyword">if</span> ( n &#x3C;= 0 ) {                                        \
+        return;                                            \
+    }                                                      \
+    <span class="hljs-meta-keyword">if</span> ( os1 &#x3C; 0 ) {                                       \
+        op1 += (1-n) * os1;                                \
+    }                                                      \
+    <span class="hljs-meta-keyword">if</span> ( os2 &#x3C; 0 ) {                                       \
+        op2 += (1-n) * os2;                                \
+    }                                                      \
+    for ( i = 0; i &#x3C; n; i++, op1 += os1, op2 += os2 )</span>
+</code></pre><h4 id="stdlib_strided_nullary_loop_inline-tout-expr-">STDLIB_STRIDED_NULLARY_LOOP_INLINE( tout, expr )</h4><p>Macro for a nullary loop which inlines an expression.</p><pre><code class="hljs language-c">STDLIB_STRIDED_NULLARY_LOOP_INLINE( <span class="hljs-keyword">double</span>, *out = (<span class="hljs-keyword">double</span>)<span class="hljs-number">1.0</span> )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>tout</strong>: output strided array element type.</li><li><strong>expr</strong>: expression to inline.</li></ul><p>In addition to the variables defined by the <code>STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE</code> macro, the macro defines the following variables:</p><ul><li><strong>out</strong>: <code>&#x3C;tout>*</code> pointer to an output strided array element.</li></ul><p>The macro expects a provided expression to store the result via <code>*out</code>.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_INLINE( tout, expr )   \
+    STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE {                 \
+        tout *out = (tout *)op1;                           \
+        expr;                                              \
+    }</span>
+</code></pre><h4 id="stdlib_strided_nullary_loop_clbk-tout-">STDLIB_STRIDED_NULLARY_LOOP_CLBK( tout )</h4><p>Macro for a nullary loop which invokes a callback.</p><pre><code class="hljs language-c">STDLIB_STRIDED_NULLARY_LOOP_CLBK( <span class="hljs-keyword">double</span> )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>tout</strong>: output strided array element data type.</li></ul><p>In addition to the variables expected by <code>STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE</code>, the macro expects the following variables to be defined:</p><ul><li><strong>f</strong>: nullary callback.</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_CLBK( tout )           \
+    STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE {                 \
+        *(tout *)op1 = (tout)f();                          \
+    }</span>
+</code></pre><h4 id="stdlib_strided_nullary_loop_clbk_ret_nocast-tout-">STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_NOCAST( tout )</h4><p>Macro for a nullary loop which invokes a callback and does not cast the return callback's return value (e.g., a <code>struct</code>).</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+
+STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_NOCAST( <span class="hljs-keyword">stdlib_complex128_t</span> )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>tout</strong>: output strided array element data type.</li></ul><p>In addition to the variables expected by <code>STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE</code>, the macro expects the following variables to be defined:</p><ul><li><strong>f</strong>: nullary callback.</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_NOCAST( tout )                    \
+    STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE {                                     \
+        *(tout *)op1 = f();                                                    \
+    }</span>
+</code></pre><h4 id="stdlib_strided_nullary_loop_clbk_ret_cast_fcn-tout-cout-">STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_CAST_FCN( tout, cout )</h4><p>Macro for a nullary loop which invokes a callback whose return values should be cast to a different type via casting functions.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float64/ctor.h"</span></span>
+
+STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_CAST_FCN( <span class="hljs-keyword">stdlib_complex64_t</span>, stdlib_complex128_to_complex64 )
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>tout</strong>: output strided array element data type.</li><li><strong>cout</strong>: function for casting an callback's return value to the output array data type.</li></ul><p>In addition to the variables expected by <code>STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE</code>, the macro expects the following variables to be defined:</p><ul><li><strong>f</strong>: nullary callback.</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> STDLIB_STRIDED_NULLARY_LOOP_CLBK_RET_CAST_FCN( tout, cout )            \
+    STDLIB_STRIDED_NULLARY_LOOP_PREAMBLE {                                     \
+        *(tout *)op1 = cout( f() );                                            \
+    }</span>
+</code></pre></section><section class="notes"></section><hr><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/nullary.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">fill</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create underlying byte arrays:</span>
+    <span class="hljs-keyword">uint8_t</span> out[] = { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> };
+
+    <span class="hljs-comment">// Define a pointer to an array containing pointers to strided arrays:</span>
+    <span class="hljs-keyword">uint8_t</span> *arrays[] = { out };
+
+    <span class="hljs-comment">// Define the strides:</span>
+    <span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">8</span> }; <span class="hljs-comment">// 8 bytes per double</span>
+
+    <span class="hljs-comment">// Define the number of elements over which to iterate:</span>
+    <span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span> };
+
+    <span class="hljs-comment">// Apply the callback:</span>
+    stdlib_strided_d( arrays, shape, strides, (<span class="hljs-keyword">void</span> *)fill );
+
+    <span class="hljs-comment">// Print the contents of the output array:</span>
+    <span class="hljs-keyword">uint8_t</span> *op1 = out;
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int64_t</span> i = <span class="hljs-number">0</span>; i &#x3C; shape[<span class="hljs-number">0</span>]; i++, op1 += strides[<span class="hljs-number">0</span>] ) {
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> v = *(<span class="hljs-keyword">double</span> *)op1;
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"out[ %"</span>PRId64<span class="hljs-string">" ] = %lf\n"</span>, i, v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/binary"><code>@stdlib/strided/base/binary</code></a></span><span class="delimiter">: </span><span class="description">apply a binary callback to elements in strided input arrays and assign results to elements in a strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/quaternary"><code>@stdlib/strided/base/quaternary</code></a></span><span class="delimiter">: </span><span class="description">apply a quaternary callback to strided input array elements and assign results to elements in a strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/quinary"><code>@stdlib/strided/base/quinary</code></a></span><span class="delimiter">: </span><span class="description">apply a quinary callback to strided input array elements and assign results to elements in a strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/ternary"><code>@stdlib/strided/base/ternary</code></a></span><span class="delimiter">: </span><span class="description">apply a ternary callback to strided input array elements and assign results to elements in a strided output array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/unary"><code>@stdlib/strided/base/unary</code></a></span><span class="delimiter">: </span><span class="description">apply a unary callback to elements in a strided input array and assign results to elements in a strided output array.</span></li></ul></section><section class="links"></section>

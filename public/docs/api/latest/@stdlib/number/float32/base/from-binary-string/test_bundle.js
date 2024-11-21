@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":17}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":17}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":20}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":20}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -363,7 +363,7 @@ module.exports = polyfill;
 // MODULES //
 
 var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
-var builtin = require( './uint16array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -381,7 +381,37 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":8,"./uint16array.js":9,"@stdlib/assert/has-uint16array-support":28}],8:[function(require,module,exports){
+},{"./main.js":8,"./polyfill.js":9,"@stdlib/assert/has-uint16array-support":28}],8:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -420,36 +450,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],9:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -486,7 +486,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
-var builtin = require( './uint32array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -504,7 +504,37 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":11,"./uint32array.js":12,"@stdlib/assert/has-uint32array-support":31}],11:[function(require,module,exports){
+},{"./main.js":11,"./polyfill.js":12,"@stdlib/assert/has-uint32array-support":31}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],12:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -543,36 +573,6 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],12:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
-
 },{}],13:[function(require,module,exports){
 /**
 * @license Apache-2.0
@@ -609,7 +609,7 @@ module.exports = ctor;
 // MODULES //
 
 var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
-var builtin = require( './uint8array.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
@@ -627,7 +627,37 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":14,"./uint8array.js":15,"@stdlib/assert/has-uint8array-support":34}],14:[function(require,module,exports){
+},{"./main.js":14,"./polyfill.js":15,"@stdlib/assert/has-uint8array-support":34}],14:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],15:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -665,36 +695,6 @@ function polyfill() {
 // EXPORTS //
 
 module.exports = polyfill;
-
-},{}],15:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MAIN //
-
-var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint-disable-line stdlib/require-globals
-
-
-// EXPORTS //
-
-module.exports = ctor;
 
 },{}],16:[function(require,module,exports){
 /**
@@ -835,7 +835,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":16,"@stdlib/assert/is-float32array":37,"@stdlib/constants/float64/pinf":82}],19:[function(require,module,exports){
+},{"./float32array.js":16,"@stdlib/assert/is-float32array":37,"@stdlib/constants/float64/pinf":86}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1015,12 +1015,12 @@ module.exports = hasFloat64ArraySupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":23}],23:[function(require,module,exports){
 /**
@@ -1123,12 +1123,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":25}],25:[function(require,module,exports){
 /**
@@ -1209,12 +1209,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":27}],27:[function(require,module,exports){
 /**
@@ -1378,7 +1378,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":30,"@stdlib/assert/is-uint16array":65,"@stdlib/constants/uint16/max":84}],30:[function(require,module,exports){
+},{"./uint16array.js":30,"@stdlib/assert/is-uint16array":65,"@stdlib/constants/uint16/max":88}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1519,7 +1519,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":33,"@stdlib/assert/is-uint32array":67,"@stdlib/constants/uint32/max":85}],33:[function(require,module,exports){
+},{"./uint32array.js":33,"@stdlib/assert/is-uint32array":67,"@stdlib/constants/uint32/max":89}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1660,7 +1660,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":36,"@stdlib/assert/is-uint8array":69,"@stdlib/constants/uint8/max":86}],36:[function(require,module,exports){
+},{"./uint8array.js":36,"@stdlib/assert/is-uint8array":69,"@stdlib/constants/uint8/max":90}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1794,7 +1794,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":190}],39:[function(require,module,exports){
+},{"@stdlib/utils/native-class":205}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1898,7 +1898,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":190}],41:[function(require,module,exports){
+},{"@stdlib/utils/native-class":205}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1963,22 +1963,22 @@ module.exports = isFloat64Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":43,"./object.js":44,"./primitive.js":45,"@stdlib/utils/define-nonenumerable-read-only-property":183}],42:[function(require,module,exports){
+},{"./main.js":43,"./object.js":44,"./primitive.js":45,"@stdlib/utils/define-nonenumerable-read-only-property":198}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2028,7 +2028,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":81,"@stdlib/constants/float64/pinf":82,"@stdlib/math/base/assert/is-integer":91}],43:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":84,"@stdlib/constants/float64/pinf":86,"@stdlib/math/base/assert/is-integer":95}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2418,22 +2418,22 @@ module.exports = bool;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNonNegativeInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNonNegativeInteger;
+module.exports = main;
 
-},{"./main.js":50,"./object.js":51,"./primitive.js":52,"@stdlib/utils/define-nonenumerable-read-only-property":183}],50:[function(require,module,exports){
+},{"./main.js":50,"./object.js":51,"./primitive.js":52,"@stdlib/utils/define-nonenumerable-read-only-property":198}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2671,22 +2671,22 @@ module.exports = isNonNegativeInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":54,"./object.js":55,"./primitive.js":56,"@stdlib/utils/define-nonenumerable-read-only-property":183}],54:[function(require,module,exports){
+},{"./main.js":54,"./object.js":55,"./primitive.js":56,"@stdlib/utils/define-nonenumerable-read-only-property":198}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2814,7 +2814,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":58,"@stdlib/assert/has-tostringtag-support":26,"@stdlib/number/ctor":124,"@stdlib/utils/native-class":190}],56:[function(require,module,exports){
+},{"./try2serialize.js":58,"@stdlib/assert/has-tostringtag-support":26,"@stdlib/number/ctor":128,"@stdlib/utils/native-class":205}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2898,7 +2898,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":124}],58:[function(require,module,exports){
+},{"@stdlib/number/ctor":128}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3007,22 +3007,22 @@ module.exports = test;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":60,"./object.js":61,"./primitive.js":62,"@stdlib/utils/define-nonenumerable-read-only-property":183}],60:[function(require,module,exports){
+},{"./main.js":60,"./object.js":61,"./primitive.js":62,"@stdlib/utils/define-nonenumerable-read-only-property":198}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3141,7 +3141,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":63,"@stdlib/assert/has-tostringtag-support":26,"@stdlib/utils/native-class":190}],62:[function(require,module,exports){
+},{"./try2valueof.js":63,"@stdlib/assert/has-tostringtag-support":26,"@stdlib/utils/native-class":205}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3367,7 +3367,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":190}],67:[function(require,module,exports){
+},{"@stdlib/utils/native-class":205}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3471,7 +3471,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":190}],69:[function(require,module,exports){
+},{"@stdlib/utils/native-class":205}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3575,7 +3575,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":190}],71:[function(require,module,exports){
+},{"@stdlib/utils/native-class":205}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3712,7 +3712,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/uint32":10}],73:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/uint32":10}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3789,7 +3789,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":2,"@stdlib/array/uint32":10}],74:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/array/uint32":10}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3853,6 +3853,64 @@ module.exports = FLOAT64_EXPONENT_BIAS;
 /**
 * @license Apache-2.0
 *
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-abs-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for excluding the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for excluding the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483647 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 11111111111 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x7fffffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_ABS_MASK = 0x7fffffff>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_ABS_MASK;
+
+},{}],76:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
 * Copyright (c) 2018 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3907,7 +3965,123 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-sign-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+* // returns 2147483648
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the sign bit of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the sign bit of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2147483648 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 1 00000000000 00000000000000000000
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x80000000
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGN_MASK = 0x80000000>>>0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGN_MASK;
+
+},{}],78:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/high-word-significand-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+* // returns 1048575
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the significand of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the significand of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 1048575 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 00000000000 11111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x000fffff
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
+
+},{}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3960,7 +4134,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],77:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4016,7 +4190,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],78:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4072,7 +4246,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],79:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4131,7 +4305,7 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],80:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4187,7 +4361,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],81:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4249,7 +4423,56 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":124}],82:[function(require,module,exports){
+},{"@stdlib/number/ctor":128}],85:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @module @stdlib/constants/float64/num-high-word-significand-bits
+* @type {integer32}
+*
+* @example
+* var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
+* // returns 20
+*/
+
+
+// MAIN //
+
+/**
+* Number of significand bits in the high word of a double-precision floating-point number.
+*
+* @constant
+* @type {integer32}
+* @default 20
+*/
+var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = 20|0; // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS;
+
+},{}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4307,7 +4530,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],83:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4371,7 +4594,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],84:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4434,7 +4657,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],85:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4497,7 +4720,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],86:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4560,7 +4783,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],87:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4604,14 +4827,14 @@ module.exports = UINT8_MAX;
 
 // MODULES //
 
-var isEven = require( './is_even.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = main;
 
-},{"./is_even.js":88}],88:[function(require,module,exports){
+},{"./main.js":92}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4670,7 +4893,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":91}],89:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":95}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4714,14 +4937,14 @@ module.exports = isEven;
 
 // MODULES //
 
-var isInfinite = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInfinite;
+module.exports = main;
 
-},{"./main.js":90}],90:[function(require,module,exports){
+},{"./main.js":94}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4781,7 +5004,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/constants/float64/ninf":81,"@stdlib/constants/float64/pinf":82}],91:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":84,"@stdlib/constants/float64/pinf":86}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4819,14 +5042,14 @@ module.exports = isInfinite;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":92}],92:[function(require,module,exports){
+},{"./main.js":96}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4877,7 +5100,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":107}],93:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":111}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4915,14 +5138,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":94}],94:[function(require,module,exports){
+},{"./main.js":98}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4968,7 +5191,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],95:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5006,14 +5229,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var isNegativeZero = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isNegativeZero;
+module.exports = main;
 
-},{"./main.js":96}],96:[function(require,module,exports){
+},{"./main.js":100}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5064,7 +5287,7 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/constants/float64/ninf":81}],97:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":84}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5086,7 +5309,7 @@ module.exports = isNegativeZero;
 'use strict';
 
 /**
-* Test if a finite numeric value is an odd number.
+* Test if a finite double-precision floating-point number is an odd number.
 *
 * @module @stdlib/math/base/assert/is-odd
 *
@@ -5108,14 +5331,14 @@ module.exports = isNegativeZero;
 
 // MODULES //
 
-var isOdd = require( './is_odd.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isOdd;
+module.exports = main;
 
-},{"./is_odd.js":98}],98:[function(require,module,exports){
+},{"./main.js":102}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5144,7 +5367,7 @@ var isEven = require( '@stdlib/math/base/assert/is-even' );
 // MAIN //
 
 /**
-* Tests if a finite numeric value is an odd number.
+* Tests if a finite double-precision floating-point number is an odd number.
 *
 * @param {number} x - value to test
 * @returns {boolean} boolean indicating whether the value is an odd number
@@ -5178,7 +5401,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":87}],99:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":91}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5216,14 +5439,14 @@ module.exports = isOdd;
 
 // MODULES //
 
-var isPositiveZero = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPositiveZero;
+module.exports = main;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":104}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5274,7 +5497,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/constants/float64/pinf":82}],101:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":86}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5321,14 +5544,14 @@ module.exports = isPositiveZero;
 
 // MODULES //
 
-var abs = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = abs;
+module.exports = main;
 
-},{"./main.js":102}],102:[function(require,module,exports){
+},{"./main.js":106}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5386,7 +5609,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],103:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5430,14 +5653,14 @@ module.exports = abs;
 
 // MODULES //
 
-var ceil = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ceil;
+module.exports = main;
 
-},{"./main.js":104}],104:[function(require,module,exports){
+},{"./main.js":108}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5489,7 +5712,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],105:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5543,7 +5766,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":106}],106:[function(require,module,exports){
+},{"./main.js":110}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5566,18 +5789,14 @@ module.exports = main;
 
 // MODULES //
 
+var SIGN_MASK = require( '@stdlib/constants/float64/high-word-sign-mask' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
-
-// 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000>>>0; // asm type annotation
-
-// 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff|0; // asm type annotation
 
 // High/low words workspace:
 var WORDS = [ 0, 0 ];
@@ -5617,11 +5836,11 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
-	hx &= MAGNITUDE_MASK;
+	hx &= ABS_MASK;
 
 	// Extract the higher order word from `y`:
 	hy = getHighWord( y );
@@ -5641,7 +5860,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/number/float64/base/from-words":140,"@stdlib/number/float64/base/get-high-word":144,"@stdlib/number/float64/base/to-words":158}],107:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":75,"@stdlib/constants/float64/high-word-sign-mask":77,"@stdlib/number/float64/base/from-words":144,"@stdlib/number/float64/base/get-high-word":148,"@stdlib/number/float64/base/to-words":163}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5685,14 +5904,14 @@ module.exports = copysign;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":108}],108:[function(require,module,exports){
+},{"./main.js":112}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5744,7 +5963,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],109:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5804,7 +6023,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":110}],110:[function(require,module,exports){
+},{"./main.js":114}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5843,7 +6062,7 @@ var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/constants/float64/min-base2-expon
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/number/float64/base/normalize' );
+var normalize = require( '@stdlib/number/float64/base/normalize' ).assign;
 var floatExp = require( '@stdlib/number/float64/base/exponent' );
 var toWords = require( '@stdlib/number/float64/base/to-words' );
 var fromWords = require( '@stdlib/number/float64/base/from-words' );
@@ -5858,10 +6077,10 @@ var TWO52_INV = 2.220446049250313e-16;
 var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
 
 // Normalization workspace:
-var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var FRAC = [ 0.0, 0.0 ];
 
 // High/low words workspace:
-var WORDS = [ 0, 0 ]; // WARNING: not thread safe
+var WORDS = [ 0, 0 ];
 
 
 // MAIN //
@@ -5913,7 +6132,7 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	normalize( FRAC, frac );
+	normalize( frac, FRAC, 1, 0 );
 	frac = FRAC[ 0 ];
 	exp += FRAC[ 1 ];
 
@@ -5938,7 +6157,7 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	toWords( WORDS, frac );
+	toWords.assign( frac, WORDS, 1, 0 );
 	high = WORDS[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
@@ -5956,7 +6175,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/max-base2-exponent":78,"@stdlib/constants/float64/max-base2-exponent-subnormal":77,"@stdlib/constants/float64/min-base2-exponent-subnormal":80,"@stdlib/constants/float64/ninf":81,"@stdlib/constants/float64/pinf":82,"@stdlib/math/base/assert/is-infinite":89,"@stdlib/math/base/assert/is-nan":93,"@stdlib/math/base/special/copysign":105,"@stdlib/number/float64/base/exponent":138,"@stdlib/number/float64/base/from-words":140,"@stdlib/number/float64/base/normalize":146,"@stdlib/number/float64/base/to-words":158}],111:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/max-base2-exponent":81,"@stdlib/constants/float64/max-base2-exponent-subnormal":80,"@stdlib/constants/float64/min-base2-exponent-subnormal":83,"@stdlib/constants/float64/ninf":84,"@stdlib/constants/float64/pinf":86,"@stdlib/math/base/assert/is-infinite":93,"@stdlib/math/base/assert/is-nan":97,"@stdlib/math/base/special/copysign":109,"@stdlib/number/float64/base/exponent":142,"@stdlib/number/float64/base/from-words":144,"@stdlib/number/float64/base/normalize":151,"@stdlib/number/float64/base/to-words":163}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6012,14 +6231,14 @@ module.exports = ldexp;
 
 // MODULES //
 
-var pow = require( './pow.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = pow;
+module.exports = main;
 
-},{"./pow.js":117}],112:[function(require,module,exports){
+},{"./main.js":118}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6060,6 +6279,7 @@ var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalL = require( './polyval_l.js' );
 
 
@@ -6079,9 +6299,6 @@ var HIGH_BIASED_EXP_NEG_512 = 0x20000000|0; // asm type annotation
 
 // 0x00080000 = 524288 => 0 00000000000 10000000000000000000
 var HIGH_SIGNIFICAND_HALF = 0x00080000|0; // asm type annotation
-
-// TODO: consider making an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 var TWO53 = 9007199254740992.0;	// 0x43400000, 0x00000000
 
@@ -6235,7 +6452,7 @@ function log2ax( out, ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"./polyval_l.js":114,"@stdlib/constants/float64/exponent-bias":74,"@stdlib/number/float64/base/get-high-word":144,"@stdlib/number/float64/base/set-high-word":150,"@stdlib/number/float64/base/set-low-word":152}],113:[function(require,module,exports){
+},{"./polyval_l.js":119,"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/num-high-word-significand-bits":85,"@stdlib/number/float64/base/get-high-word":148,"@stdlib/number/float64/base/set-high-word":154,"@stdlib/number/float64/base/set-low-word":156}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6328,157 +6545,7 @@ function logx( out, ax ) {
 
 module.exports = logx;
 
-},{"./polyval_w.js":116,"@stdlib/number/float64/base/set-low-word":152}],114:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5999999999999946;
-	}
-	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],115:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.16666666666666602;
-	}
-	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],116:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function evalpoly( x ) {
-	if ( x === 0.0 ) {
-		return 0.5;
-	}
-	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
-}
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],117:[function(require,module,exports){
+},{"./polyval_w.js":121,"@stdlib/number/float64/base/set-low-word":156}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6526,6 +6593,7 @@ var setLowWord = require( '@stdlib/number/float64/base/set-low-word' );
 var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var NINF = require( '@stdlib/constants/float64/ninf' );
 var PINF = require( '@stdlib/constants/float64/pinf' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var xIsZero = require( './x_is_zero.js' );
 var yIsHuge = require( './y_is_huge.js' );
 var yIsInfinite = require( './y_is_infinite.js' );
@@ -6535,9 +6603,6 @@ var pow2 = require( './pow2.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -6569,10 +6634,10 @@ var TINY = 1.0e-300;
 var OVT = 8.0085662595372944372e-17;
 
 // High/low words workspace:
-var WORDS = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var WORDS = [ 0|0, 0|0 ];
 
 // Log workspace:
-var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var LOG_WORKSPACE = [ 0.0, 0.0 ];
 
 
 // MAIN //
@@ -6640,7 +6705,6 @@ var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
 * -   \\(\operatorname{pow}(x,y)\\) returns \\(x^y\\) nearly rounded. In particular, \\(\operatorname{pow}(<\mathrm{integer}>,<\mathrm{integer}>)\\) **always** returns the correct integer, provided the value is representable.
 * -   The hexadecimal values shown in the source code are the intended values for used constants. Decimal values may be used, provided the compiler will accurately convert decimal to binary in order to produce the hexadecimal values.
 *
-*
 * @param {number} x - base
 * @param {number} y - exponent
 * @returns {number} function value
@@ -6698,7 +6762,7 @@ function pow( x, y ) {
 		return NaN;
 	}
 	// Split `y` into high and low words:
-	toWords( WORDS, y );
+	toWords.assign( y, WORDS, 1, 0 );
 	hy = WORDS[ 0 ];
 	ly = WORDS[ 1 ];
 
@@ -6734,7 +6798,7 @@ function pow( x, y ) {
 		}
 	}
 	// Split `x` into high and low words:
-	toWords( WORDS, x );
+	toWords.assign( x, WORDS, 1, 0 );
 	hx = WORDS[ 0 ];
 	lx = WORDS[ 1 ];
 
@@ -6828,7 +6892,7 @@ function pow( x, y ) {
 	z = lp + hp;
 
 	// Note: *can* be more performant to use `getHighWord` and `getLowWord` directly, but using `toWords` looks cleaner.
-	toWords( WORDS, z );
+	toWords.assign( z, WORDS, 1, 0 );
 	j = uint32ToInt32( WORDS[0] );
 	i = uint32ToInt32( WORDS[1] );
 
@@ -6848,11 +6912,11 @@ function pow( x, y ) {
 	else if ( (j&ABS_MASK) >= HIGH_1075 ) {
 		// z < -1075
 		if ( ((j-HIGH_NEG_1075)|i) !== 0 ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 		if ( lp <= (z-hp) ) {
-			// signal underflow...
+			// Signal underflow...
 			return sx * TINY * TINY;
 		}
 	}
@@ -6867,7 +6931,154 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":112,"./logx.js":113,"./pow2.js":118,"./x_is_zero.js":119,"./y_is_huge.js":120,"./y_is_infinite.js":121,"@stdlib/constants/float64/ninf":81,"@stdlib/constants/float64/pinf":82,"@stdlib/math/base/assert/is-infinite":89,"@stdlib/math/base/assert/is-integer":91,"@stdlib/math/base/assert/is-nan":93,"@stdlib/math/base/assert/is-odd":97,"@stdlib/math/base/special/abs":101,"@stdlib/math/base/special/sqrt":122,"@stdlib/number/float64/base/set-low-word":152,"@stdlib/number/float64/base/to-words":158,"@stdlib/number/uint32/base/to-int32":162}],118:[function(require,module,exports){
+},{"./log2ax.js":116,"./logx.js":117,"./pow2.js":122,"./x_is_zero.js":123,"./y_is_huge.js":124,"./y_is_infinite.js":125,"@stdlib/constants/float64/high-word-abs-mask":75,"@stdlib/constants/float64/ninf":84,"@stdlib/constants/float64/pinf":86,"@stdlib/math/base/assert/is-infinite":93,"@stdlib/math/base/assert/is-integer":95,"@stdlib/math/base/assert/is-nan":97,"@stdlib/math/base/assert/is-odd":101,"@stdlib/math/base/special/abs":105,"@stdlib/math/base/special/sqrt":126,"@stdlib/number/float64/base/set-low-word":156,"@stdlib/number/float64/base/to-words":163,"@stdlib/number/uint32/base/to-int32":166}],119:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5999999999999946;
+	}
+	return 0.5999999999999946 + (x * (0.4285714285785502 + (x * (0.33333332981837743 + (x * (0.272728123808534 + (x * (0.23066074577556175 + (x * 0.20697501780033842))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],120:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.16666666666666602;
+	}
+	return 0.16666666666666602 + (x * (-0.0027777777777015593 + (x * (0.00006613756321437934 + (x * (-0.0000016533902205465252 + (x * 4.1381367970572385e-8))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],121:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 0.5;
+	}
+	return 0.5 + (x * (-0.3333333333333333 + (x * 0.25)));
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6911,25 +7122,19 @@ var uint32ToInt32 = require( '@stdlib/number/uint32/base/to-int32' );
 var ldexp = require( '@stdlib/math/base/special/ldexp' );
 var LN2 = require( '@stdlib/constants/float64/ln-two' );
 var BIAS = require( '@stdlib/constants/float64/exponent-bias' );
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
+var HIGH_SIGNIFICAND_MASK = require( '@stdlib/constants/float64/high-word-significand-mask' );
+var HIGH_NUM_SIGNIFICAND_BITS = require( '@stdlib/constants/float64/num-high-word-significand-bits' );
 var polyvalP = require( './polyval_p.js' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
-
-// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var HIGH_SIGNIFICAND_MASK = 0x000fffff|0; // asm type annotation
 
 // 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
 var HIGH_MIN_NORMAL_EXP = 0x00100000|0; // asm type annotation
 
 // 0x3fe00000 = 1071644672 => 0 01111111110 00000000000000000000 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_BIASED_EXP_NEG_1 = 0x3fe00000|0; // asm type annotation
-
-// TODO: consider making into an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20|0; // asm type annotation
 
 // High: LN2
 var LN2_HI = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
@@ -7010,7 +7215,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"./polyval_p.js":115,"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/ln-two":76,"@stdlib/math/base/special/ldexp":109,"@stdlib/number/float64/base/get-high-word":144,"@stdlib/number/float64/base/set-high-word":150,"@stdlib/number/float64/base/set-low-word":152,"@stdlib/number/uint32/base/to-int32":162}],119:[function(require,module,exports){
+},{"./polyval_p.js":120,"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/high-word-abs-mask":75,"@stdlib/constants/float64/high-word-significand-mask":78,"@stdlib/constants/float64/ln-two":79,"@stdlib/constants/float64/num-high-word-significand-bits":85,"@stdlib/math/base/special/ldexp":113,"@stdlib/number/float64/base/get-high-word":148,"@stdlib/number/float64/base/set-high-word":154,"@stdlib/number/float64/base/set-low-word":156,"@stdlib/number/uint32/base/to-int32":166}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7112,7 +7317,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/ninf":81,"@stdlib/constants/float64/pinf":82,"@stdlib/math/base/assert/is-odd":97,"@stdlib/math/base/special/copysign":105}],120:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":84,"@stdlib/constants/float64/pinf":86,"@stdlib/math/base/assert/is-odd":101,"@stdlib/math/base/special/copysign":109}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7149,13 +7354,11 @@ module.exports = pow;
 
 // MODULES //
 
+var ABS_MASK = require( '@stdlib/constants/float64/high-word-abs-mask' );
 var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 
 
 // VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
@@ -7191,19 +7394,19 @@ function pow( x, y ) {
 
 	if ( ahx <= HIGH_MAX_NEAR_UNITY ) {
 		if ( y < 0 ) {
-			// signal overflow...
+			// Signal overflow...
 			return HUGE * HUGE;
 		}
-		// signal underflow...
+		// Signal underflow...
 		return TINY * TINY;
 	}
 	// `x` has a biased exponent greater than or equal to `0`...
 
 	if ( y > 0 ) {
-		// signal overflow...
+		// Signal overflow...
 		return HUGE * HUGE;
 	}
-	// signal underflow...
+	// Signal underflow...
 	return TINY * TINY;
 }
 
@@ -7212,7 +7415,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/number/float64/base/get-high-word":144}],121:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":75,"@stdlib/number/float64/base/get-high-word":148}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7302,7 +7505,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/pinf":82,"@stdlib/math/base/special/abs":101}],122:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":86,"@stdlib/math/base/special/abs":105}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7349,14 +7552,14 @@ module.exports = pow;
 
 // MODULES //
 
-var sqrt = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = sqrt;
+module.exports = main;
 
-},{"./main.js":123}],123:[function(require,module,exports){
+},{"./main.js":127}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7409,7 +7612,7 @@ var sqrt = Math.sqrt; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = sqrt;
 
-},{}],124:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7444,14 +7647,14 @@ module.exports = sqrt;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":125}],125:[function(require,module,exports){
+},{"./main.js":129}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7476,7 +7679,7 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],126:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7520,14 +7723,14 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var fromBinaryStringf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromBinaryStringf;
+module.exports = main;
 
-},{"./main.js":127}],127:[function(require,module,exports){
+},{"./main.js":131}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7637,7 +7840,7 @@ function fromBinaryStringf( bstr ) {
 
 module.exports = fromBinaryStringf;
 
-},{"./tofrac.js":128,"@stdlib/constants/float32/exponent-bias":71,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/special/pow":111,"@stdlib/number/float64/base/to-float32":155,"@stdlib/string/format":174}],128:[function(require,module,exports){
+},{"./tofrac.js":132,"@stdlib/constants/float32/exponent-bias":71,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/special/pow":115,"@stdlib/number/float64/base/to-float32":159,"@stdlib/string/format":187}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7696,15 +7899,19 @@ function toFrac( frac ) {
 
 module.exports = toFrac;
 
-},{"@stdlib/math/base/special/pow":111}],129:[function(require,module,exports){
+},{"@stdlib/math/base/special/pow":115}],133:[function(require,module,exports){
 module.exports={"expected":[-1000.0,-998.0119018554688,-996.0238647460938,-994.0357666015625,-992.0477294921875,-990.0596313476562,-988.0715942382812,-986.08349609375,-984.0953979492188,-982.1073608398438,-980.1192626953125,-978.1312255859375,-976.1431274414062,-974.1550903320312,-972.1669921875,-970.178955078125,-968.1908569335938,-966.2027587890625,-964.2147216796875,-962.2266235351562,-960.2385864257812,-958.25048828125,-956.262451171875,-954.2743530273438,-952.2862548828125,-950.2982177734375,-948.3101196289062,-946.3220825195312,-944.333984375,-942.345947265625,-940.3578491210938,-938.3697509765625,-936.3817138671875,-934.3936157226562,-932.4055786132812,-930.41748046875,-928.429443359375,-926.4413452148438,-924.4533081054688,-922.4652099609375,-920.4771118164062,-918.4890747070312,-916.5009765625,-914.512939453125,-912.5248413085938,-910.5368041992188,-908.5487060546875,-906.5606079101562,-904.5725708007812,-902.58447265625,-900.596435546875,-898.6083374023438,-896.6203002929688,-894.6322021484375,-892.6441650390625,-890.6560668945312,-888.66796875,-886.679931640625,-884.6918334960938,-882.7037963867188,-880.7156982421875,-878.7276611328125,-876.7395629882812,-874.75146484375,-872.763427734375,-870.7753295898438,-868.7872924804688,-866.7991943359375,-864.8111572265625,-862.8230590820312,-860.8349609375,-858.846923828125,-856.8588256835938,-854.8707885742188,-852.8826904296875,-850.8946533203125,-848.9065551757812,-846.9185180664062,-844.930419921875,-842.9423217773438,-840.9542846679688,-838.9661865234375,-836.9781494140625,-834.9900512695312,-833.0020141601562,-831.013916015625,-829.0258178710938,-827.0377807617188,-825.0496826171875,-823.0616455078125,-821.0735473632812,-819.0855102539062,-817.097412109375,-815.1093139648438,-813.1212768554688,-811.1331787109375,-809.1451416015625,-807.1570434570312,-805.1690063476562,-803.180908203125,-801.19287109375,-799.2047729492188,-797.2166748046875,-795.2286376953125,-793.2405395507812,-791.2525024414062,-789.264404296875,-787.2763671875,-785.2882690429688,-783.3001708984375,-781.3121337890625,-779.3240356445312,-777.3359985351562,-775.347900390625,-773.35986328125,-771.3717651367188,-769.3837280273438,-767.3956298828125,-765.4075317382812,-763.4194946289062,-761.431396484375,-759.443359375,-757.4552612304688,-755.4672241210938,-753.4791259765625,-751.4910278320312,-749.5029907226562,-747.514892578125,-745.52685546875,-743.5387573242188,-741.5507202148438,-739.5626220703125,-737.5745239257812,-735.5864868164062,-733.598388671875,-731.6103515625,-729.6222534179688,-727.6342163085938,-725.6461181640625,-723.6580810546875,-721.6699829101562,-719.681884765625,-717.69384765625,-715.7057495117188,-713.7177124023438,-711.7296142578125,-709.7415771484375,-707.7534790039062,-705.765380859375,-703.77734375,-701.7892456054688,-699.8012084960938,-697.8131103515625,-695.8250732421875,-693.8369750976562,-691.848876953125,-689.86083984375,-687.8727416992188,-685.8847045898438,-683.8966064453125,-681.9085693359375,-679.9204711914062,-677.9324340820312,-675.9443359375,-673.9562377929688,-671.9682006835938,-669.9801025390625,-667.9920654296875,-666.0039672851562,-664.0159301757812,-662.02783203125,-660.0397338867188,-658.0516967773438,-656.0635986328125,-654.0755615234375,-652.0874633789062,-650.0994262695312,-648.111328125,-646.1232299804688,-644.1351928710938,-642.1470947265625,-640.1590576171875,-638.1709594726562,-636.1829223632812,-634.19482421875,-632.206787109375,-630.2186889648438,-628.2305908203125,-626.2425537109375,-624.2544555664062,-622.2664184570312,-620.2783203125,-618.290283203125,-616.3021850585938,-614.3140869140625,-612.3260498046875,-610.3379516601562,-608.3499145507812,-606.36181640625,-604.373779296875,-602.3856811523438,-600.3976440429688,-598.4095458984375,-596.4214477539062,-594.4334106445312,-592.4453125,-590.457275390625,-588.4691772460938,-586.4811401367188,-584.4930419921875,-582.5049438476562,-580.5169067382812,-578.52880859375,-576.540771484375,-574.5526733398438,-572.5646362304688,-570.5765380859375,-568.5884399414062,-566.6004028320312,-564.6123046875,-562.624267578125,-560.6361694335938,-558.6481323242188,-556.6600341796875,-554.6719970703125,-552.6838989257812,-550.69580078125,-548.707763671875,-546.7196655273438,-544.7316284179688,-542.7435302734375,-540.7554931640625,-538.7673950195312,-536.779296875,-534.791259765625,-532.8031616210938,-530.8151245117188,-528.8270263671875,-526.8389892578125,-524.8508911132812,-522.86279296875,-520.874755859375,-518.8866577148438,-516.8986206054688,-514.9105224609375,-512.9224853515625,-510.93438720703125,-508.9463195800781,-506.958251953125,-504.9701843261719,-502.98211669921875,-500.9940490722656,-499.0059509277344,-497.01788330078125,-495.0298156738281,-493.041748046875,-491.0536804199219,-489.06561279296875,-487.0775451660156,-485.0894775390625,-483.10137939453125,-481.1133117675781,-479.125244140625,-477.1371765136719,-475.14910888671875,-473.1610412597656,-471.1729736328125,-469.18487548828125,-467.1968078613281,-465.208740234375,-463.2206726074219,-461.23260498046875,-459.2445373535156,-457.2564697265625,-455.2684020996094,-453.2803039550781,-451.292236328125,-449.3041687011719,-447.31610107421875,-445.3280334472656,-443.3399658203125,-441.3518981933594,-439.36383056640625,-437.375732421875,-435.3876647949219,-433.39959716796875,-431.4115295410156,-429.4234619140625,-427.4353942871094,-425.44732666015625,-423.4592590332031,-421.4711608886719,-419.48309326171875,-417.4950256347656,-415.5069580078125,-413.5188903808594,-411.53082275390625,-409.5427551269531,-407.5546569824219,-405.56658935546875,-403.5785217285156,-401.5904541015625,-399.6023864746094,-397.61431884765625,-395.6262512207031,-393.63818359375,-391.65008544921875,-389.6620178222656,-387.6739501953125,-385.6858825683594,-383.69781494140625,-381.7097473144531,-379.7216796875,-377.7336120605469,-375.7455139160156,-373.7574462890625,-371.7693786621094,-369.78131103515625,-367.7932434082031,-365.80517578125,-363.8171081542969,-361.82904052734375,-359.8409423828125,-357.8528747558594,-355.86480712890625,-353.8767395019531,-351.888671875,-349.9006042480469,-347.91253662109375,-345.9244384765625,-343.9363708496094,-341.94830322265625,-339.9602355957031,-337.97216796875,-335.9841003417969,-333.99603271484375,-332.0079650878906,-330.0198669433594,-328.03179931640625,-326.0437316894531,-324.0556640625,-322.0675964355469,-320.07952880859375,-318.0914611816406,-316.1033935546875,-314.11529541015625,-312.1272277832031,-310.13916015625,-308.1510925292969,-306.16302490234375,-304.1749572753906,-302.1868896484375,-300.1988220214844,-298.2107238769531,-296.22265625,-294.2345886230469,-292.24652099609375,-290.2584533691406,-288.2703857421875,-286.2823181152344,-284.2942199707031,-282.30615234375,-280.3180847167969,-278.33001708984375,-276.3419494628906,-274.3538818359375,-272.3658142089844,-270.37774658203125,-268.3896484375,-266.4015808105469,-264.41351318359375,-262.4254455566406,-260.4373779296875,-258.4493103027344,-256.46124267578125,-254.47315979003906,-252.48509216308594,-250.4970245361328,-248.50894165039062,-246.5208740234375,-244.53280639648438,-242.54473876953125,-240.55665588378906,-238.56858825683594,-236.5805206298828,-234.59243774414062,-232.6043701171875,-230.61630249023438,-228.62823486328125,-226.64015197753906,-224.65208435058594,-222.6640167236328,-220.6759490966797,-218.6878662109375,-216.69979858398438,-214.71173095703125,-212.72366333007812,-210.73558044433594,-208.7475128173828,-206.7594451904297,-204.77137756347656,-202.78329467773438,-200.79522705078125,-198.80715942382812,-196.819091796875,-194.8310089111328,-192.8429412841797,-190.85487365722656,-188.86680603027344,-186.87872314453125,-184.89065551757812,-182.902587890625,-180.91452026367188,-178.9264373779297,-176.93836975097656,-174.95030212402344,-172.96221923828125,-170.97415161132812,-168.986083984375,-166.99801635742188,-165.0099334716797,-163.02186584472656,-161.03379821777344,-159.0457305908203,-157.05764770507812,-155.069580078125,-153.08151245117188,-151.09344482421875,-149.10536193847656,-147.11729431152344,-145.1292266845703,-143.1411590576172,-141.153076171875,-139.16500854492188,-137.17694091796875,-135.18887329101562,-133.20079040527344,-131.2127227783203,-129.2246551513672,-127.23657989501953,-125.2485122680664,-123.26043701171875,-121.27236938476562,-119.28429412841797,-117.29621887207031,-115.30815124511719,-113.32007598876953,-111.3320083618164,-109.34393310546875,-107.35586547851562,-105.36779022216797,-103.37972259521484,-101.39164733886719,-99.40357971191406,-97.4155044555664,-95.42743682861328,-93.43936157226562,-91.4512939453125,-89.46321868896484,-87.47515106201172,-85.48707580566406,-83.49900817871094,-81.51093292236328,-79.52286529541016,-77.5347900390625,-75.54672241210938,-73.55864715576172,-71.5705795288086,-69.58250427246094,-67.59443664550781,-65.60636138916016,-63.618289947509766,-61.630218505859375,-59.642147064208984,-57.654075622558594,-55.6660041809082,-53.67793273925781,-51.68986129760742,-49.70178985595703,-47.71371841430664,-45.72564697265625,-43.73757553100586,-41.74950408935547,-39.76143264770508,-37.77336120605469,-35.7852897644043,-33.797218322753906,-31.809144973754883,-29.821073532104492,-27.8330020904541,-25.84493064880371,-23.85685920715332,-21.86878776550293,-19.88071632385254,-17.89264488220215,-15.904572486877441,-13.91650104522705,-11.92842960357666,-9.94035816192627,-7.952286243438721,-5.96421480178833,-3.9761431217193604,-1.9880715608596802,0.0,1.9880715608596802,3.9761431217193604,5.96421480178833,7.952286243438721,9.94035816192627,11.92842960357666,13.91650104522705,15.904572486877441,17.89264488220215,19.88071632385254,21.86878776550293,23.85685920715332,25.84493064880371,27.8330020904541,29.821073532104492,31.809144973754883,33.797218322753906,35.7852897644043,37.77336120605469,39.76143264770508,41.74950408935547,43.73757553100586,45.72564697265625,47.71371841430664,49.70178985595703,51.68986129760742,53.67793273925781,55.6660041809082,57.654075622558594,59.642147064208984,61.630218505859375,63.618289947509766,65.60636138916016,67.59443664550781,69.58250427246094,71.5705795288086,73.55864715576172,75.54672241210938,77.5347900390625,79.52286529541016,81.51093292236328,83.49900817871094,85.48707580566406,87.47515106201172,89.46321868896484,91.4512939453125,93.43936157226562,95.42743682861328,97.4155044555664,99.40357971191406,101.39164733886719,103.37972259521484,105.36779022216797,107.35586547851562,109.34393310546875,111.3320083618164,113.32007598876953,115.30815124511719,117.29621887207031,119.28429412841797,121.27236938476562,123.26043701171875,125.2485122680664,127.23657989501953,129.2246551513672,131.2127227783203,133.20079040527344,135.18887329101562,137.17694091796875,139.16500854492188,141.153076171875,143.1411590576172,145.1292266845703,147.11729431152344,149.10536193847656,151.09344482421875,153.08151245117188,155.069580078125,157.05764770507812,159.0457305908203,161.03379821777344,163.02186584472656,165.0099334716797,166.99801635742188,168.986083984375,170.97415161132812,172.96221923828125,174.95030212402344,176.93836975097656,178.9264373779297,180.91452026367188,182.902587890625,184.89065551757812,186.87872314453125,188.86680603027344,190.85487365722656,192.8429412841797,194.8310089111328,196.819091796875,198.80715942382812,200.79522705078125,202.78329467773438,204.77137756347656,206.7594451904297,208.7475128173828,210.73558044433594,212.72366333007812,214.71173095703125,216.69979858398438,218.6878662109375,220.6759490966797,222.6640167236328,224.65208435058594,226.64015197753906,228.62823486328125,230.61630249023438,232.6043701171875,234.59243774414062,236.5805206298828,238.56858825683594,240.55665588378906,242.54473876953125,244.53280639648438,246.5208740234375,248.50894165039062,250.4970245361328,252.48509216308594,254.47315979003906,256.46124267578125,258.4493103027344,260.4373779296875,262.4254455566406,264.41351318359375,266.4015808105469,268.3896484375,270.37774658203125,272.3658142089844,274.3538818359375,276.3419494628906,278.33001708984375,280.3180847167969,282.30615234375,284.2942199707031,286.2823181152344,288.2703857421875,290.2584533691406,292.24652099609375,294.2345886230469,296.22265625,298.2107238769531,300.1988220214844,302.1868896484375,304.1749572753906,306.16302490234375,308.1510925292969,310.13916015625,312.1272277832031,314.11529541015625,316.1033935546875,318.0914611816406,320.07952880859375,322.0675964355469,324.0556640625,326.0437316894531,328.03179931640625,330.0198669433594,332.0079650878906,333.99603271484375,335.9841003417969,337.97216796875,339.9602355957031,341.94830322265625,343.9363708496094,345.9244384765625,347.91253662109375,349.9006042480469,351.888671875,353.8767395019531,355.86480712890625,357.8528747558594,359.8409423828125,361.82904052734375,363.8171081542969,365.80517578125,367.7932434082031,369.78131103515625,371.7693786621094,373.7574462890625,375.7455139160156,377.7336120605469,379.7216796875,381.7097473144531,383.69781494140625,385.6858825683594,387.6739501953125,389.6620178222656,391.65008544921875,393.63818359375,395.6262512207031,397.61431884765625,399.6023864746094,401.5904541015625,403.5785217285156,405.56658935546875,407.5546569824219,409.5427551269531,411.53082275390625,413.5188903808594,415.5069580078125,417.4950256347656,419.48309326171875,421.4711608886719,423.4592590332031,425.44732666015625,427.4353942871094,429.4234619140625,431.4115295410156,433.39959716796875,435.3876647949219,437.375732421875,439.36383056640625,441.3518981933594,443.3399658203125,445.3280334472656,447.31610107421875,449.3041687011719,451.292236328125,453.2803039550781,455.2684020996094,457.2564697265625,459.2445373535156,461.23260498046875,463.2206726074219,465.208740234375,467.1968078613281,469.18487548828125,471.1729736328125,473.1610412597656,475.14910888671875,477.1371765136719,479.125244140625,481.1133117675781,483.10137939453125,485.0894775390625,487.0775451660156,489.06561279296875,491.0536804199219,493.041748046875,495.0298156738281,497.01788330078125,499.0059509277344,500.9940490722656,502.98211669921875,504.9701843261719,506.958251953125,508.9463195800781,510.93438720703125,512.9224853515625,514.9105224609375,516.8986206054688,518.8866577148438,520.874755859375,522.86279296875,524.8508911132812,526.8389892578125,528.8270263671875,530.8151245117188,532.8031616210938,534.791259765625,536.779296875,538.7673950195312,540.7554931640625,542.7435302734375,544.7316284179688,546.7196655273438,548.707763671875,550.69580078125,552.6838989257812,554.6719970703125,556.6600341796875,558.6481323242188,560.6361694335938,562.624267578125,564.6123046875,566.6004028320312,568.5884399414062,570.5765380859375,572.5646362304688,574.5526733398438,576.540771484375,578.52880859375,580.5169067382812,582.5049438476562,584.4930419921875,586.4811401367188,588.4691772460938,590.457275390625,592.4453125,594.4334106445312,596.4214477539062,598.4095458984375,600.3976440429688,602.3856811523438,604.373779296875,606.36181640625,608.3499145507812,610.3379516601562,612.3260498046875,614.3140869140625,616.3021850585938,618.290283203125,620.2783203125,622.2664184570312,624.2544555664062,626.2425537109375,628.2305908203125,630.2186889648438,632.206787109375,634.19482421875,636.1829223632812,638.1709594726562,640.1590576171875,642.1470947265625,644.1351928710938,646.1232299804688,648.111328125,650.0994262695312,652.0874633789062,654.0755615234375,656.0635986328125,658.0516967773438,660.0397338867188,662.02783203125,664.0159301757812,666.0039672851562,667.9920654296875,669.9801025390625,671.9682006835938,673.9562377929688,675.9443359375,677.9324340820312,679.9204711914062,681.9085693359375,683.8966064453125,685.8847045898438,687.8727416992188,689.86083984375,691.848876953125,693.8369750976562,695.8250732421875,697.8131103515625,699.8012084960938,701.7892456054688,703.77734375,705.765380859375,707.7534790039062,709.7415771484375,711.7296142578125,713.7177124023438,715.7057495117188,717.69384765625,719.681884765625,721.6699829101562,723.6580810546875,725.6461181640625,727.6342163085938,729.6222534179688,731.6103515625,733.598388671875,735.5864868164062,737.5745239257812,739.5626220703125,741.5507202148438,743.5387573242188,745.52685546875,747.514892578125,749.5029907226562,751.4910278320312,753.4791259765625,755.4672241210938,757.4552612304688,759.443359375,761.431396484375,763.4194946289062,765.4075317382812,767.3956298828125,769.3837280273438,771.3717651367188,773.35986328125,775.347900390625,777.3359985351562,779.3240356445312,781.3121337890625,783.3001708984375,785.2882690429688,787.2763671875,789.264404296875,791.2525024414062,793.2405395507812,795.2286376953125,797.2166748046875,799.2047729492188,801.19287109375,803.180908203125,805.1690063476562,807.1570434570312,809.1451416015625,811.1331787109375,813.1212768554688,815.1093139648438,817.097412109375,819.0855102539062,821.0735473632812,823.0616455078125,825.0496826171875,827.0377807617188,829.0258178710938,831.013916015625,833.0020141601562,834.9900512695312,836.9781494140625,838.9661865234375,840.9542846679688,842.9423217773438,844.930419921875,846.9185180664062,848.9065551757812,850.8946533203125,852.8826904296875,854.8707885742188,856.8588256835938,858.846923828125,860.8349609375,862.8230590820312,864.8111572265625,866.7991943359375,868.7872924804688,870.7753295898438,872.763427734375,874.75146484375,876.7395629882812,878.7276611328125,880.7156982421875,882.7037963867188,884.6918334960938,886.679931640625,888.66796875,890.6560668945312,892.6441650390625,894.6322021484375,896.6203002929688,898.6083374023438,900.596435546875,902.58447265625,904.5725708007812,906.5606079101562,908.5487060546875,910.5368041992188,912.5248413085938,914.512939453125,916.5009765625,918.4890747070312,920.4771118164062,922.4652099609375,924.4533081054688,926.4413452148438,928.429443359375,930.41748046875,932.4055786132812,934.3936157226562,936.3817138671875,938.3697509765625,940.3578491210938,942.345947265625,944.333984375,946.3220825195312,948.3101196289062,950.2982177734375,952.2862548828125,954.2743530273438,956.262451171875,958.25048828125,960.2385864257812,962.2266235351562,964.2147216796875,966.2027587890625,968.1908569335938,970.178955078125,972.1669921875,974.1550903320312,976.1431274414062,978.1312255859375,980.1192626953125,982.1073608398438,984.0953979492188,986.08349609375,988.0715942382812,990.0596313476562,992.0477294921875,994.0357666015625,996.0238647460938,998.0119018554688,1000.0],"x":["11000100011110100000000000000000","11000100011110011000000011000011","11000100011110010000000110000111","11000100011110001000001001001010","11000100011110000000001100001110","11000100011101111000001111010001","11000100011101110000010010010101","11000100011101101000010101011000","11000100011101100000011000011011","11000100011101011000011011011111","11000100011101010000011110100010","11000100011101001000100001100110","11000100011101000000100100101001","11000100011100111000100111101101","11000100011100110000101010110000","11000100011100101000101101110100","11000100011100100000110000110111","11000100011100011000110011111010","11000100011100010000110110111110","11000100011100001000111010000001","11000100011100000000111101000101","11000100011011111001000000001000","11000100011011110001000011001100","11000100011011101001000110001111","11000100011011100001001001010010","11000100011011011001001100010110","11000100011011010001001111011001","11000100011011001001010010011101","11000100011011000001010101100000","11000100011010111001011000100100","11000100011010110001011011100111","11000100011010101001011110101010","11000100011010100001100001101110","11000100011010011001100100110001","11000100011010010001100111110101","11000100011010001001101010111000","11000100011010000001101101111100","11000100011001111001110000111111","11000100011001110001110100000011","11000100011001101001110111000110","11000100011001100001111010001001","11000100011001011001111101001101","11000100011001010010000000010000","11000100011001001010000011010100","11000100011001000010000110010111","11000100011000111010001001011011","11000100011000110010001100011110","11000100011000101010001111100001","11000100011000100010010010100101","11000100011000011010010101101000","11000100011000010010011000101100","11000100011000001010011011101111","11000100011000000010011110110011","11000100010111111010100001110110","11000100010111110010100100111010","11000100010111101010100111111101","11000100010111100010101011000000","11000100010111011010101110000100","11000100010111010010110001000111","11000100010111001010110100001011","11000100010111000010110111001110","11000100010110111010111010010010","11000100010110110010111101010101","11000100010110101011000000011000","11000100010110100011000011011100","11000100010110011011000110011111","11000100010110010011001001100011","11000100010110001011001100100110","11000100010110000011001111101010","11000100010101111011010010101101","11000100010101110011010101110000","11000100010101101011011000110100","11000100010101100011011011110111","11000100010101011011011110111011","11000100010101010011100001111110","11000100010101001011100101000010","11000100010101000011101000000101","11000100010100111011101011001001","11000100010100110011101110001100","11000100010100101011110001001111","11000100010100100011110100010011","11000100010100011011110111010110","11000100010100010011111010011010","11000100010100001011111101011101","11000100010100000100000000100001","11000100010011111100000011100100","11000100010011110100000110100111","11000100010011101100001001101011","11000100010011100100001100101110","11000100010011011100001111110010","11000100010011010100010010110101","11000100010011001100010101111001","11000100010011000100011000111100","11000100010010111100011011111111","11000100010010110100011111000011","11000100010010101100100010000110","11000100010010100100100101001010","11000100010010011100101000001101","11000100010010010100101011010001","11000100010010001100101110010100","11000100010010000100110001011000","11000100010001111100110100011011","11000100010001110100110111011110","11000100010001101100111010100010","11000100010001100100111101100101","11000100010001011101000000101001","11000100010001010101000011101100","11000100010001001101000110110000","11000100010001000101001001110011","11000100010000111101001100110110","11000100010000110101001111111010","11000100010000101101010010111101","11000100010000100101010110000001","11000100010000011101011001000100","11000100010000010101011100001000","11000100010000001101011111001011","11000100010000000101100010001111","11000100001111111101100101010010","11000100001111110101101000010101","11000100001111101101101011011001","11000100001111100101101110011100","11000100001111011101110001100000","11000100001111010101110100100011","11000100001111001101110111100111","11000100001111000101111010101010","11000100001110111101111101101101","11000100001110110110000000110001","11000100001110101110000011110100","11000100001110100110000110111000","11000100001110011110001001111011","11000100001110010110001100111111","11000100001110001110010000000010","11000100001110000110010011000101","11000100001101111110010110001001","11000100001101110110011001001100","11000100001101101110011100010000","11000100001101100110011111010011","11000100001101011110100010010111","11000100001101010110100101011010","11000100001101001110101000011110","11000100001101000110101011100001","11000100001100111110101110100100","11000100001100110110110001101000","11000100001100101110110100101011","11000100001100100110110111101111","11000100001100011110111010110010","11000100001100010110111101110110","11000100001100001111000000111001","11000100001100000111000011111100","11000100001011111111000111000000","11000100001011110111001010000011","11000100001011101111001101000111","11000100001011100111010000001010","11000100001011011111010011001110","11000100001011010111010110010001","11000100001011001111011001010100","11000100001011000111011100011000","11000100001010111111011111011011","11000100001010110111100010011111","11000100001010101111100101100010","11000100001010100111101000100110","11000100001010011111101011101001","11000100001010010111101110101101","11000100001010001111110001110000","11000100001010000111110100110011","11000100001001111111110111110111","11000100001001110111111010111010","11000100001001101111111101111110","11000100001001101000000001000001","11000100001001100000000100000101","11000100001001011000000111001000","11000100001001010000001010001011","11000100001001001000001101001111","11000100001001000000010000010010","11000100001000111000010011010110","11000100001000110000010110011001","11000100001000101000011001011101","11000100001000100000011100100000","11000100001000011000011111100011","11000100001000010000100010100111","11000100001000001000100101101010","11000100001000000000101000101110","11000100000111111000101011110001","11000100000111110000101110110101","11000100000111101000110001111000","11000100000111100000110100111100","11000100000111011000110111111111","11000100000111010000111011000010","11000100000111001000111110000110","11000100000111000001000001001001","11000100000110111001000100001101","11000100000110110001000111010000","11000100000110101001001010010100","11000100000110100001001101010111","11000100000110011001010000011010","11000100000110010001010011011110","11000100000110001001010110100001","11000100000110000001011001100101","11000100000101111001011100101000","11000100000101110001011111101100","11000100000101101001100010101111","11000100000101100001100101110011","11000100000101011001101000110110","11000100000101010001101011111001","11000100000101001001101110111101","11000100000101000001110010000000","11000100000100111001110101000100","11000100000100110001111000000111","11000100000100101001111011001011","11000100000100100001111110001110","11000100000100011010000001010001","11000100000100010010000100010101","11000100000100001010000111011000","11000100000100000010001010011100","11000100000011111010001101011111","11000100000011110010010000100011","11000100000011101010010011100110","11000100000011100010010110101001","11000100000011011010011001101101","11000100000011010010011100110000","11000100000011001010011111110100","11000100000011000010100010110111","11000100000010111010100101111011","11000100000010110010101000111110","11000100000010101010101100000010","11000100000010100010101111000101","11000100000010011010110010001000","11000100000010010010110101001100","11000100000010001010111000001111","11000100000010000010111011010011","11000100000001111010111110010110","11000100000001110011000001011010","11000100000001101011000100011101","11000100000001100011000111100000","11000100000001011011001010100100","11000100000001010011001101100111","11000100000001001011010000101011","11000100000001000011010011101110","11000100000000111011010110110010","11000100000000110011011001110101","11000100000000101011011100111000","11000100000000100011011111111100","11000100000000011011100010111111","11000100000000010011100110000011","11000100000000001011101001000110","11000100000000000011101100001010","11000011111111110111011110011010","11000011111111100111100100100001","11000011111111010111101010101000","11000011111111000111110000101111","11000011111110110111110110110110","11000011111110100111111100111101","11000011111110011000000011000011","11000011111110001000001001001010","11000011111101111000001111010001","11000011111101101000010101011000","11000011111101011000011011011111","11000011111101001000100001100110","11000011111100111000100111101101","11000011111100101000101101110100","11000011111100011000110011111010","11000011111100001000111010000001","11000011111011111001000000001000","11000011111011101001000110001111","11000011111011011001001100010110","11000011111011001001010010011101","11000011111010111001011000100100","11000011111010101001011110101010","11000011111010011001100100110001","11000011111010001001101010111000","11000011111001111001110000111111","11000011111001101001110111000110","11000011111001011001111101001101","11000011111001001010000011010100","11000011111000111010001001011011","11000011111000101010001111100001","11000011111000011010010101101000","11000011111000001010011011101111","11000011110111111010100001110110","11000011110111101010100111111101","11000011110111011010101110000100","11000011110111001010110100001011","11000011110110111010111010010010","11000011110110101011000000011000","11000011110110011011000110011111","11000011110110001011001100100110","11000011110101111011010010101101","11000011110101101011011000110100","11000011110101011011011110111011","11000011110101001011100101000010","11000011110100111011101011001001","11000011110100101011110001001111","11000011110100011011110111010110","11000011110100001011111101011101","11000011110011111100000011100100","11000011110011101100001001101011","11000011110011011100001111110010","11000011110011001100010101111001","11000011110010111100011011111111","11000011110010101100100010000110","11000011110010011100101000001101","11000011110010001100101110010100","11000011110001111100110100011011","11000011110001101100111010100010","11000011110001011101000000101001","11000011110001001101000110110000","11000011110000111101001100110110","11000011110000101101010010111101","11000011110000011101011001000100","11000011110000001101011111001011","11000011101111111101100101010010","11000011101111101101101011011001","11000011101111011101110001100000","11000011101111001101110111100111","11000011101110111101111101101101","11000011101110101110000011110100","11000011101110011110001001111011","11000011101110001110010000000010","11000011101101111110010110001001","11000011101101101110011100010000","11000011101101011110100010010111","11000011101101001110101000011110","11000011101100111110101110100100","11000011101100101110110100101011","11000011101100011110111010110010","11000011101100001111000000111001","11000011101011111111000111000000","11000011101011101111001101000111","11000011101011011111010011001110","11000011101011001111011001010100","11000011101010111111011111011011","11000011101010101111100101100010","11000011101010011111101011101001","11000011101010001111110001110000","11000011101001111111110111110111","11000011101001101111111101111110","11000011101001100000000100000101","11000011101001010000001010001011","11000011101001000000010000010010","11000011101000110000010110011001","11000011101000100000011100100000","11000011101000010000100010100111","11000011101000000000101000101110","11000011100111110000101110110101","11000011100111100000110100111100","11000011100111010000111011000010","11000011100111000001000001001001","11000011100110110001000111010000","11000011100110100001001101010111","11000011100110010001010011011110","11000011100110000001011001100101","11000011100101110001011111101100","11000011100101100001100101110011","11000011100101010001101011111001","11000011100101000001110010000000","11000011100100110001111000000111","11000011100100100001111110001110","11000011100100010010000100010101","11000011100100000010001010011100","11000011100011110010010000100011","11000011100011100010010110101001","11000011100011010010011100110000","11000011100011000010100010110111","11000011100010110010101000111110","11000011100010100010101111000101","11000011100010010010110101001100","11000011100010000010111011010011","11000011100001110011000001011010","11000011100001100011000111100000","11000011100001010011001101100111","11000011100001000011010011101110","11000011100000110011011001110101","11000011100000100011011111111100","11000011100000010011100110000011","11000011100000000011101100001010","11000011011111100111100100100001","11000011011111000111110000101111","11000011011110100111111100111101","11000011011110001000001001001010","11000011011101101000010101011000","11000011011101001000100001100110","11000011011100101000101101110100","11000011011100001000111010000001","11000011011011101001000110001111","11000011011011001001010010011101","11000011011010101001011110101010","11000011011010001001101010111000","11000011011001101001110111000110","11000011011001001010000011010100","11000011011000101010001111100001","11000011011000001010011011101111","11000011010111101010100111111101","11000011010111001010110100001011","11000011010110101011000000011000","11000011010110001011001100100110","11000011010101101011011000110100","11000011010101001011100101000010","11000011010100101011110001001111","11000011010100001011111101011101","11000011010011101100001001101011","11000011010011001100010101111001","11000011010010101100100010000110","11000011010010001100101110010100","11000011010001101100111010100010","11000011010001001101000110110000","11000011010000101101010010111101","11000011010000001101011111001011","11000011001111101101101011011001","11000011001111001101110111100111","11000011001110101110000011110100","11000011001110001110010000000010","11000011001101101110011100010000","11000011001101001110101000011110","11000011001100101110110100101011","11000011001100001111000000111001","11000011001011101111001101000111","11000011001011001111011001010100","11000011001010101111100101100010","11000011001010001111110001110000","11000011001001101111111101111110","11000011001001010000001010001011","11000011001000110000010110011001","11000011001000010000100010100111","11000011000111110000101110110101","11000011000111010000111011000010","11000011000110110001000111010000","11000011000110010001010011011110","11000011000101110001011111101100","11000011000101010001101011111001","11000011000100110001111000000111","11000011000100010010000100010101","11000011000011110010010000100011","11000011000011010010011100110000","11000011000010110010101000111110","11000011000010010010110101001100","11000011000001110011000001011010","11000011000001010011001101100111","11000011000000110011011001110101","11000011000000010011100110000011","11000010111111100111100100100001","11000010111110100111111100111101","11000010111101101000010101011000","11000010111100101000101101110100","11000010111011101001000110001111","11000010111010101001011110101010","11000010111001101001110111000110","11000010111000101010001111100001","11000010110111101010100111111101","11000010110110101011000000011000","11000010110101101011011000110100","11000010110100101011110001001111","11000010110011101100001001101011","11000010110010101100100010000110","11000010110001101100111010100010","11000010110000101101010010111101","11000010101111101101101011011001","11000010101110101110000011110100","11000010101101101110011100010000","11000010101100101110110100101011","11000010101011101111001101000111","11000010101010101111100101100010","11000010101001101111111101111110","11000010101000110000010110011001","11000010100111110000101110110101","11000010100110110001000111010000","11000010100101110001011111101100","11000010100100110001111000000111","11000010100011110010010000100011","11000010100010110010101000111110","11000010100001110011000001011010","11000010100000110011011001110101","11000010011111100111100100100001","11000010011101101000010101011000","11000010011011101001000110001111","11000010011001101001110111000110","11000010010111101010100111111101","11000010010101101011011000110100","11000010010011101100001001101011","11000010010001101100111010100010","11000010001111101101101011011001","11000010001101101110011100010000","11000010001011101111001101000111","11000010001001101111111101111110","11000010000111110000101110110101","11000010000101110001011111101100","11000010000011110010010000100011","11000010000001110011000001011010","11000001111111100111100100100001","11000001111011101001000110001111","11000001110111101010100111111101","11000001110011101100001001101011","11000001101111101101101011011001","11000001101011101111001101000111","11000001100111110000101110110101","11000001100011110010010000100011","11000001011111100111100100100001","11000001010111101010100111111101","11000001001111101101101011011001","11000001000111110000101110110101","11000000111111100111100100100001","11000000101111101101101011011001","11000000011111100111100100100001","10111111111111100111100100100001","00000000000000000000000000000000","00111111111111100111100100100001","01000000011111100111100100100001","01000000101111101101101011011001","01000000111111100111100100100001","01000001000111110000101110110101","01000001001111101101101011011001","01000001010111101010100111111101","01000001011111100111100100100001","01000001100011110010010000100011","01000001100111110000101110110101","01000001101011101111001101000111","01000001101111101101101011011001","01000001110011101100001001101011","01000001110111101010100111111101","01000001111011101001000110001111","01000001111111100111100100100001","01000010000001110011000001011010","01000010000011110010010000100011","01000010000101110001011111101100","01000010000111110000101110110101","01000010001001101111111101111110","01000010001011101111001101000111","01000010001101101110011100010000","01000010001111101101101011011001","01000010010001101100111010100010","01000010010011101100001001101011","01000010010101101011011000110100","01000010010111101010100111111101","01000010011001101001110111000110","01000010011011101001000110001111","01000010011101101000010101011000","01000010011111100111100100100001","01000010100000110011011001110101","01000010100001110011000001011010","01000010100010110010101000111110","01000010100011110010010000100011","01000010100100110001111000000111","01000010100101110001011111101100","01000010100110110001000111010000","01000010100111110000101110110101","01000010101000110000010110011001","01000010101001101111111101111110","01000010101010101111100101100010","01000010101011101111001101000111","01000010101100101110110100101011","01000010101101101110011100010000","01000010101110101110000011110100","01000010101111101101101011011001","01000010110000101101010010111101","01000010110001101100111010100010","01000010110010101100100010000110","01000010110011101100001001101011","01000010110100101011110001001111","01000010110101101011011000110100","01000010110110101011000000011000","01000010110111101010100111111101","01000010111000101010001111100001","01000010111001101001110111000110","01000010111010101001011110101010","01000010111011101001000110001111","01000010111100101000101101110100","01000010111101101000010101011000","01000010111110100111111100111101","01000010111111100111100100100001","01000011000000010011100110000011","01000011000000110011011001110101","01000011000001010011001101100111","01000011000001110011000001011010","01000011000010010010110101001100","01000011000010110010101000111110","01000011000011010010011100110000","01000011000011110010010000100011","01000011000100010010000100010101","01000011000100110001111000000111","01000011000101010001101011111001","01000011000101110001011111101100","01000011000110010001010011011110","01000011000110110001000111010000","01000011000111010000111011000010","01000011000111110000101110110101","01000011001000010000100010100111","01000011001000110000010110011001","01000011001001010000001010001011","01000011001001101111111101111110","01000011001010001111110001110000","01000011001010101111100101100010","01000011001011001111011001010100","01000011001011101111001101000111","01000011001100001111000000111001","01000011001100101110110100101011","01000011001101001110101000011110","01000011001101101110011100010000","01000011001110001110010000000010","01000011001110101110000011110100","01000011001111001101110111100111","01000011001111101101101011011001","01000011010000001101011111001011","01000011010000101101010010111101","01000011010001001101000110110000","01000011010001101100111010100010","01000011010010001100101110010100","01000011010010101100100010000110","01000011010011001100010101111001","01000011010011101100001001101011","01000011010100001011111101011101","01000011010100101011110001001111","01000011010101001011100101000010","01000011010101101011011000110100","01000011010110001011001100100110","01000011010110101011000000011000","01000011010111001010110100001011","01000011010111101010100111111101","01000011011000001010011011101111","01000011011000101010001111100001","01000011011001001010000011010100","01000011011001101001110111000110","01000011011010001001101010111000","01000011011010101001011110101010","01000011011011001001010010011101","01000011011011101001000110001111","01000011011100001000111010000001","01000011011100101000101101110100","01000011011101001000100001100110","01000011011101101000010101011000","01000011011110001000001001001010","01000011011110100111111100111101","01000011011111000111110000101111","01000011011111100111100100100001","01000011100000000011101100001010","01000011100000010011100110000011","01000011100000100011011111111100","01000011100000110011011001110101","01000011100001000011010011101110","01000011100001010011001101100111","01000011100001100011000111100000","01000011100001110011000001011010","01000011100010000010111011010011","01000011100010010010110101001100","01000011100010100010101111000101","01000011100010110010101000111110","01000011100011000010100010110111","01000011100011010010011100110000","01000011100011100010010110101001","01000011100011110010010000100011","01000011100100000010001010011100","01000011100100010010000100010101","01000011100100100001111110001110","01000011100100110001111000000111","01000011100101000001110010000000","01000011100101010001101011111001","01000011100101100001100101110011","01000011100101110001011111101100","01000011100110000001011001100101","01000011100110010001010011011110","01000011100110100001001101010111","01000011100110110001000111010000","01000011100111000001000001001001","01000011100111010000111011000010","01000011100111100000110100111100","01000011100111110000101110110101","01000011101000000000101000101110","01000011101000010000100010100111","01000011101000100000011100100000","01000011101000110000010110011001","01000011101001000000010000010010","01000011101001010000001010001011","01000011101001100000000100000101","01000011101001101111111101111110","01000011101001111111110111110111","01000011101010001111110001110000","01000011101010011111101011101001","01000011101010101111100101100010","01000011101010111111011111011011","01000011101011001111011001010100","01000011101011011111010011001110","01000011101011101111001101000111","01000011101011111111000111000000","01000011101100001111000000111001","01000011101100011110111010110010","01000011101100101110110100101011","01000011101100111110101110100100","01000011101101001110101000011110","01000011101101011110100010010111","01000011101101101110011100010000","01000011101101111110010110001001","01000011101110001110010000000010","01000011101110011110001001111011","01000011101110101110000011110100","01000011101110111101111101101101","01000011101111001101110111100111","01000011101111011101110001100000","01000011101111101101101011011001","01000011101111111101100101010010","01000011110000001101011111001011","01000011110000011101011001000100","01000011110000101101010010111101","01000011110000111101001100110110","01000011110001001101000110110000","01000011110001011101000000101001","01000011110001101100111010100010","01000011110001111100110100011011","01000011110010001100101110010100","01000011110010011100101000001101","01000011110010101100100010000110","01000011110010111100011011111111","01000011110011001100010101111001","01000011110011011100001111110010","01000011110011101100001001101011","01000011110011111100000011100100","01000011110100001011111101011101","01000011110100011011110111010110","01000011110100101011110001001111","01000011110100111011101011001001","01000011110101001011100101000010","01000011110101011011011110111011","01000011110101101011011000110100","01000011110101111011010010101101","01000011110110001011001100100110","01000011110110011011000110011111","01000011110110101011000000011000","01000011110110111010111010010010","01000011110111001010110100001011","01000011110111011010101110000100","01000011110111101010100111111101","01000011110111111010100001110110","01000011111000001010011011101111","01000011111000011010010101101000","01000011111000101010001111100001","01000011111000111010001001011011","01000011111001001010000011010100","01000011111001011001111101001101","01000011111001101001110111000110","01000011111001111001110000111111","01000011111010001001101010111000","01000011111010011001100100110001","01000011111010101001011110101010","01000011111010111001011000100100","01000011111011001001010010011101","01000011111011011001001100010110","01000011111011101001000110001111","01000011111011111001000000001000","01000011111100001000111010000001","01000011111100011000110011111010","01000011111100101000101101110100","01000011111100111000100111101101","01000011111101001000100001100110","01000011111101011000011011011111","01000011111101101000010101011000","01000011111101111000001111010001","01000011111110001000001001001010","01000011111110011000000011000011","01000011111110100111111100111101","01000011111110110111110110110110","01000011111111000111110000101111","01000011111111010111101010101000","01000011111111100111100100100001","01000011111111110111011110011010","01000100000000000011101100001010","01000100000000001011101001000110","01000100000000010011100110000011","01000100000000011011100010111111","01000100000000100011011111111100","01000100000000101011011100111000","01000100000000110011011001110101","01000100000000111011010110110010","01000100000001000011010011101110","01000100000001001011010000101011","01000100000001010011001101100111","01000100000001011011001010100100","01000100000001100011000111100000","01000100000001101011000100011101","01000100000001110011000001011010","01000100000001111010111110010110","01000100000010000010111011010011","01000100000010001010111000001111","01000100000010010010110101001100","01000100000010011010110010001000","01000100000010100010101111000101","01000100000010101010101100000010","01000100000010110010101000111110","01000100000010111010100101111011","01000100000011000010100010110111","01000100000011001010011111110100","01000100000011010010011100110000","01000100000011011010011001101101","01000100000011100010010110101001","01000100000011101010010011100110","01000100000011110010010000100011","01000100000011111010001101011111","01000100000100000010001010011100","01000100000100001010000111011000","01000100000100010010000100010101","01000100000100011010000001010001","01000100000100100001111110001110","01000100000100101001111011001011","01000100000100110001111000000111","01000100000100111001110101000100","01000100000101000001110010000000","01000100000101001001101110111101","01000100000101010001101011111001","01000100000101011001101000110110","01000100000101100001100101110011","01000100000101101001100010101111","01000100000101110001011111101100","01000100000101111001011100101000","01000100000110000001011001100101","01000100000110001001010110100001","01000100000110010001010011011110","01000100000110011001010000011010","01000100000110100001001101010111","01000100000110101001001010010100","01000100000110110001000111010000","01000100000110111001000100001101","01000100000111000001000001001001","01000100000111001000111110000110","01000100000111010000111011000010","01000100000111011000110111111111","01000100000111100000110100111100","01000100000111101000110001111000","01000100000111110000101110110101","01000100000111111000101011110001","01000100001000000000101000101110","01000100001000001000100101101010","01000100001000010000100010100111","01000100001000011000011111100011","01000100001000100000011100100000","01000100001000101000011001011101","01000100001000110000010110011001","01000100001000111000010011010110","01000100001001000000010000010010","01000100001001001000001101001111","01000100001001010000001010001011","01000100001001011000000111001000","01000100001001100000000100000101","01000100001001101000000001000001","01000100001001101111111101111110","01000100001001110111111010111010","01000100001001111111110111110111","01000100001010000111110100110011","01000100001010001111110001110000","01000100001010010111101110101101","01000100001010011111101011101001","01000100001010100111101000100110","01000100001010101111100101100010","01000100001010110111100010011111","01000100001010111111011111011011","01000100001011000111011100011000","01000100001011001111011001010100","01000100001011010111010110010001","01000100001011011111010011001110","01000100001011100111010000001010","01000100001011101111001101000111","01000100001011110111001010000011","01000100001011111111000111000000","01000100001100000111000011111100","01000100001100001111000000111001","01000100001100010110111101110110","01000100001100011110111010110010","01000100001100100110110111101111","01000100001100101110110100101011","01000100001100110110110001101000","01000100001100111110101110100100","01000100001101000110101011100001","01000100001101001110101000011110","01000100001101010110100101011010","01000100001101011110100010010111","01000100001101100110011111010011","01000100001101101110011100010000","01000100001101110110011001001100","01000100001101111110010110001001","01000100001110000110010011000101","01000100001110001110010000000010","01000100001110010110001100111111","01000100001110011110001001111011","01000100001110100110000110111000","01000100001110101110000011110100","01000100001110110110000000110001","01000100001110111101111101101101","01000100001111000101111010101010","01000100001111001101110111100111","01000100001111010101110100100011","01000100001111011101110001100000","01000100001111100101101110011100","01000100001111101101101011011001","01000100001111110101101000010101","01000100001111111101100101010010","01000100010000000101100010001111","01000100010000001101011111001011","01000100010000010101011100001000","01000100010000011101011001000100","01000100010000100101010110000001","01000100010000101101010010111101","01000100010000110101001111111010","01000100010000111101001100110110","01000100010001000101001001110011","01000100010001001101000110110000","01000100010001010101000011101100","01000100010001011101000000101001","01000100010001100100111101100101","01000100010001101100111010100010","01000100010001110100110111011110","01000100010001111100110100011011","01000100010010000100110001011000","01000100010010001100101110010100","01000100010010010100101011010001","01000100010010011100101000001101","01000100010010100100100101001010","01000100010010101100100010000110","01000100010010110100011111000011","01000100010010111100011011111111","01000100010011000100011000111100","01000100010011001100010101111001","01000100010011010100010010110101","01000100010011011100001111110010","01000100010011100100001100101110","01000100010011101100001001101011","01000100010011110100000110100111","01000100010011111100000011100100","01000100010100000100000000100001","01000100010100001011111101011101","01000100010100010011111010011010","01000100010100011011110111010110","01000100010100100011110100010011","01000100010100101011110001001111","01000100010100110011101110001100","01000100010100111011101011001001","01000100010101000011101000000101","01000100010101001011100101000010","01000100010101010011100001111110","01000100010101011011011110111011","01000100010101100011011011110111","01000100010101101011011000110100","01000100010101110011010101110000","01000100010101111011010010101101","01000100010110000011001111101010","01000100010110001011001100100110","01000100010110010011001001100011","01000100010110011011000110011111","01000100010110100011000011011100","01000100010110101011000000011000","01000100010110110010111101010101","01000100010110111010111010010010","01000100010111000010110111001110","01000100010111001010110100001011","01000100010111010010110001000111","01000100010111011010101110000100","01000100010111100010101011000000","01000100010111101010100111111101","01000100010111110010100100111010","01000100010111111010100001110110","01000100011000000010011110110011","01000100011000001010011011101111","01000100011000010010011000101100","01000100011000011010010101101000","01000100011000100010010010100101","01000100011000101010001111100001","01000100011000110010001100011110","01000100011000111010001001011011","01000100011001000010000110010111","01000100011001001010000011010100","01000100011001010010000000010000","01000100011001011001111101001101","01000100011001100001111010001001","01000100011001101001110111000110","01000100011001110001110100000011","01000100011001111001110000111111","01000100011010000001101101111100","01000100011010001001101010111000","01000100011010010001100111110101","01000100011010011001100100110001","01000100011010100001100001101110","01000100011010101001011110101010","01000100011010110001011011100111","01000100011010111001011000100100","01000100011011000001010101100000","01000100011011001001010010011101","01000100011011010001001111011001","01000100011011011001001100010110","01000100011011100001001001010010","01000100011011101001000110001111","01000100011011110001000011001100","01000100011011111001000000001000","01000100011100000000111101000101","01000100011100001000111010000001","01000100011100010000110110111110","01000100011100011000110011111010","01000100011100100000110000110111","01000100011100101000101101110100","01000100011100110000101010110000","01000100011100111000100111101101","01000100011101000000100100101001","01000100011101001000100001100110","01000100011101010000011110100010","01000100011101011000011011011111","01000100011101100000011000011011","01000100011101101000010101011000","01000100011101110000010010010101","01000100011101111000001111010001","01000100011110000000001100001110","01000100011110001000001001001010","01000100011110010000000110000111","01000100011110011000000011000011","01000100011110100000000000000000"]}
-},{}],130:[function(require,module,exports){
+
+},{}],134:[function(require,module,exports){
 module.exports={"expected":[1.0000000359391298e-36,9.990159432639915e-37,9.980318505888532e-37,9.970477579137149e-37,9.960635755554748e-37,9.950794828803365e-37,9.940953902051982e-37,9.931112975300599e-37,9.921272048549216e-37,9.911431121797832e-37,9.90159019504645e-37,9.891749268295066e-37,9.881908341543683e-37,9.8720674147923e-37,9.862226488040917e-37,9.852385561289533e-37,9.84254463453815e-37,9.832703707786767e-37,9.822862781035384e-37,9.813021854284e-37,9.803180927532617e-37,9.793340000781234e-37,9.783499074029851e-37,9.773658147278468e-37,9.763817220527085e-37,9.753976293775702e-37,9.744135367024318e-37,9.734294440272935e-37,9.724453513521552e-37,9.714612586770169e-37,9.704771660018786e-37,9.694930733267403e-37,9.68508980651602e-37,9.675248879764636e-37,9.665407953013253e-37,9.65556702626187e-37,9.64572520267947e-37,9.635884275928086e-37,9.626043349176703e-37,9.61620242242532e-37,9.606361495673937e-37,9.596520568922554e-37,9.58667964217117e-37,9.576838715419787e-37,9.566997788668404e-37,9.55715686191702e-37,9.547315935165638e-37,9.537475008414254e-37,9.527634081662871e-37,9.517793154911488e-37,9.507952228160105e-37,9.498111301408722e-37,9.488270374657339e-37,9.478429447905955e-37,9.468588521154572e-37,9.458747594403189e-37,9.448906667651806e-37,9.439065740900423e-37,9.42922481414904e-37,9.419383887397656e-37,9.409542960646273e-37,9.39970203389489e-37,9.389861107143507e-37,9.380020180392124e-37,9.37017925364074e-37,9.360338326889357e-37,9.350497400137974e-37,9.340656473386591e-37,9.330815546635208e-37,9.320973723052807e-37,9.311132796301424e-37,9.301291869550041e-37,9.291450942798658e-37,9.281610016047275e-37,9.271769089295891e-37,9.261928162544508e-37,9.252087235793125e-37,9.242246309041742e-37,9.232405382290359e-37,9.222564455538976e-37,9.212723528787592e-37,9.20288260203621e-37,9.193041675284826e-37,9.183200748533443e-37,9.17335982178206e-37,9.163518895030676e-37,9.153677968279293e-37,9.14383704152791e-37,9.133996114776527e-37,9.124155188025144e-37,9.11431426127376e-37,9.104473334522377e-37,9.094632407770994e-37,9.084791481019611e-37,9.074950554268228e-37,9.065109627516845e-37,9.055268700765462e-37,9.045427774014078e-37,9.035586847262695e-37,9.025745920511312e-37,9.015904993759929e-37,9.006063170177528e-37,8.996222243426145e-37,8.986381316674762e-37,8.976540389923379e-37,8.966699463171996e-37,8.956858536420613e-37,8.94701760966923e-37,8.937176682917846e-37,8.927335756166463e-37,8.91749482941508e-37,8.907653902663697e-37,8.897812975912313e-37,8.88797204916093e-37,8.878131122409547e-37,8.868290195658164e-37,8.85844926890678e-37,8.848608342155398e-37,8.838767415404014e-37,8.828926488652631e-37,8.819085561901248e-37,8.809244635149865e-37,8.799403708398482e-37,8.789562781647099e-37,8.779721854895715e-37,8.769880928144332e-37,8.760040001392949e-37,8.750199074641566e-37,8.740358147890183e-37,8.7305172211388e-37,8.720676294387416e-37,8.710835367636033e-37,8.70099444088465e-37,8.691153514133267e-37,8.681311690550866e-37,8.671470763799483e-37,8.6616298370481e-37,8.651788910296717e-37,8.641947983545334e-37,8.63210705679395e-37,8.622266130042567e-37,8.612425203291184e-37,8.602584276539801e-37,8.592743349788418e-37,8.582902423037035e-37,8.573061496285651e-37,8.563220569534268e-37,8.553379642782885e-37,8.543538716031502e-37,8.533697789280119e-37,8.523856862528735e-37,8.514015935777352e-37,8.504175009025969e-37,8.494334082274586e-37,8.484493155523203e-37,8.47465222877182e-37,8.464811302020436e-37,8.454970375269053e-37,8.44512944851767e-37,8.435288521766287e-37,8.425447595014904e-37,8.41560666826352e-37,8.405765741512137e-37,8.395924814760754e-37,8.386083888009371e-37,8.376242961257988e-37,8.366402034506605e-37,8.356560210924204e-37,8.346719284172821e-37,8.336878357421438e-37,8.327037430670055e-37,8.317196503918672e-37,8.307355577167288e-37,8.297514650415905e-37,8.287673723664522e-37,8.277832796913139e-37,8.267991870161756e-37,8.258150943410372e-37,8.24831001665899e-37,8.238469089907606e-37,8.228628163156223e-37,8.21878723640484e-37,8.208946309653457e-37,8.199105382902073e-37,8.18926445615069e-37,8.179423529399307e-37,8.169582602647924e-37,8.15974167589654e-37,8.149900749145158e-37,8.140059822393774e-37,8.130218895642391e-37,8.120377968891008e-37,8.110537042139625e-37,8.100696115388242e-37,8.090855188636858e-37,8.081014261885475e-37,8.071173335134092e-37,8.061332408382709e-37,8.051491481631326e-37,8.041649658048925e-37,8.031808731297542e-37,8.021967804546159e-37,8.012126877794776e-37,8.002285951043393e-37,7.99244502429201e-37,7.982604097540626e-37,7.972763170789243e-37,7.96292224403786e-37,7.953081317286477e-37,7.943240390535094e-37,7.93339946378371e-37,7.923558537032327e-37,7.913717610280944e-37,7.903876683529561e-37,7.894035756778178e-37,7.884194830026795e-37,7.874353903275411e-37,7.864512976524028e-37,7.854672049772645e-37,7.844831123021262e-37,7.834990196269879e-37,7.825149269518495e-37,7.815308342767112e-37,7.805467416015729e-37,7.795626489264346e-37,7.785785562512963e-37,7.77594463576158e-37,7.766103709010196e-37,7.756262782258813e-37,7.74642185550743e-37,7.736580928756047e-37,7.726740002004664e-37,7.716898178422263e-37,7.70705725167088e-37,7.697216324919497e-37,7.687375398168114e-37,7.67753447141673e-37,7.667693544665347e-37,7.657852617913964e-37,7.648011691162581e-37,7.638170764411198e-37,7.628329837659815e-37,7.618488910908431e-37,7.608647984157048e-37,7.598807057405665e-37,7.588966130654282e-37,7.579125203902899e-37,7.569284277151516e-37,7.559443350400132e-37,7.54960242364875e-37,7.539761496897366e-37,7.529920570145983e-37,7.5200796433946e-37,7.5102387166432165e-37,7.500397789891833e-37,7.49055686314045e-37,7.480715487973558e-37,7.470874561222175e-37,7.461033634470792e-37,7.451192707719409e-37,7.441351780968026e-37,7.4315108542166425e-37,7.421669927465259e-37,7.411829000713876e-37,7.401988073962493e-37,7.39214714721111e-37,7.382306220459727e-37,7.3724652937083434e-37,7.36262436695696e-37,7.352783440205577e-37,7.342942513454194e-37,7.333101586702811e-37,7.3232606599514275e-37,7.313419284784536e-37,7.303578358033153e-37,7.293737431281769e-37,7.283896504530386e-37,7.274055577779003e-37,7.26421465102762e-37,7.254373724276237e-37,7.2445327975248535e-37,7.23469187077347e-37,7.224850944022087e-37,7.215010017270704e-37,7.205169090519321e-37,7.195328163767938e-37,7.1854872370165544e-37,7.175646310265171e-37,7.165805383513788e-37,7.155964008346896e-37,7.146123081595513e-37,7.13628215484413e-37,7.126441228092747e-37,7.116600301341364e-37,7.10675937458998e-37,7.096918447838597e-37,7.087077521087214e-37,7.077236594335831e-37,7.067395667584448e-37,7.0575547408330645e-37,7.047713814081681e-37,7.037872887330298e-37,7.028031960578915e-37,7.018191033827532e-37,7.008350107076149e-37,6.998508731909257e-37,6.988667805157874e-37,6.9788268784064905e-37,6.968985951655107e-37,6.959145024903724e-37,6.949304098152341e-37,6.939463171400958e-37,6.929622244649575e-37,6.9197813178981914e-37,6.909940391146808e-37,6.900099464395425e-37,6.890258537644042e-37,6.880417610892659e-37,6.8705766841412755e-37,6.860735757389892e-37,6.850894830638509e-37,6.841053455471617e-37,6.831212528720234e-37,6.821371601968851e-37,6.811530675217468e-37,6.801689748466085e-37,6.7918488217147015e-37,6.782007894963318e-37,6.772166968211935e-37,6.762326041460552e-37,6.752485114709169e-37,6.742644187957786e-37,6.7328032612064024e-37,6.722962334455019e-37,6.713121407703636e-37,6.703280480952253e-37,6.69343955420087e-37,6.6835986274494865e-37,6.673757252282595e-37,6.663916325531212e-37,6.654075398779828e-37,6.644234472028445e-37,6.634393545277062e-37,6.624552618525679e-37,6.614711691774296e-37,6.6048707650229125e-37,6.595029838271529e-37,6.585188911520146e-37,6.575347984768763e-37,6.56550705801738e-37,6.555666131265997e-37,6.5458252045146134e-37,6.53598427776323e-37,6.526143351011847e-37,6.516301975844955e-37,6.506461049093572e-37,6.496620122342189e-37,6.486779195590806e-37,6.476938268839423e-37,6.4670973420880394e-37,6.457256415336656e-37,6.447415488585273e-37,6.43757456183389e-37,6.427733635082507e-37,6.4178927083311235e-37,6.40805178157974e-37,6.398210854828357e-37,6.388369928076974e-37,6.378529001325591e-37,6.368688074574208e-37,6.358846699407316e-37,6.349005772655933e-37,6.3391648459045495e-37,6.329323919153166e-37,6.319482992401783e-37,6.3096420656504e-37,6.299801138899017e-37,6.289960212147634e-37,6.2801192853962504e-37,6.270278358644867e-37,6.260437431893484e-37,6.250596505142101e-37,6.240755578390718e-37,6.2309146516393345e-37,6.221073724887951e-37,6.211232798136568e-37,6.201391871385185e-37,6.191550496218293e-37,6.18170956946691e-37,6.171868642715527e-37,6.162027715964144e-37,6.1521867892127605e-37,6.142345862461377e-37,6.132504935709994e-37,6.122664008958611e-37,6.112823082207228e-37,6.102982155455845e-37,6.0931412287044614e-37,6.083300301953078e-37,6.073459375201695e-37,6.063618448450312e-37,6.053777521698929e-37,6.0439365949475455e-37,6.034095219780654e-37,6.024254293029271e-37,6.0144133662778874e-37,6.004572439526504e-37,5.994731512775121e-37,5.984890586023738e-37,5.975049659272355e-37,5.9652087325209715e-37,5.955367805769588e-37,5.945526879018205e-37,5.935685952266822e-37,5.925845025515439e-37,5.916004098764056e-37,5.9061631720126725e-37,5.896322245261289e-37,5.886481318509906e-37,5.876639943343014e-37,5.866799016591631e-37,5.856958089840248e-37,5.847117163088865e-37,5.837276236337482e-37,5.8274353095860984e-37,5.817594382834715e-37,5.807753456083332e-37,5.797912529331949e-37,5.788071602580566e-37,5.7782306758291825e-37,5.768389749077799e-37,5.758548822326416e-37,5.748707895575033e-37,5.73886696882365e-37,5.729026042072267e-37,5.719184666905375e-37,5.709343740153992e-37,5.6995028134026085e-37,5.689661886651225e-37,5.679820959899842e-37,5.669980033148459e-37,5.660139106397076e-37,5.650298179645693e-37,5.6404572528943094e-37,5.630616326142926e-37,5.620775399391543e-37,5.61093447264016e-37,5.601093545888777e-37,5.5912526191373935e-37,5.58141169238601e-37,5.571570765634627e-37,5.561729838883244e-37,5.551888463716352e-37,5.542047536964969e-37,5.532206610213586e-37,5.522365683462203e-37,5.5125247567108195e-37,5.502683829959436e-37,5.492842903208053e-37,5.48300197645667e-37,5.473161049705287e-37,5.463320122953904e-37,5.4534791962025204e-37,5.443638269451137e-37,5.433797342699754e-37,5.423956415948371e-37,5.414115489196988e-37,5.4042745624456046e-37,5.394433187278713e-37,5.38459226052733e-37,5.3747513337759464e-37,5.364910407024563e-37,5.35506948027318e-37,5.345228553521797e-37,5.335387626770414e-37,5.3255467000190305e-37,5.315705773267647e-37,5.305864846516264e-37,5.296023919764881e-37,5.286182993013498e-37,5.276342066262115e-37,5.2665011395107315e-37,5.256660212759348e-37,5.246819286007965e-37,5.236977910841073e-37,5.22713698408969e-37,5.217296057338307e-37,5.207455130586924e-37,5.197614203835541e-37,5.1877732770841574e-37,5.177932350332774e-37,5.168091423581391e-37,5.158250496830008e-37,5.148409570078625e-37,5.1385686433272415e-37,5.128727716575858e-37,5.118886789824475e-37,5.109045863073092e-37,5.099204936321709e-37,5.089364009570326e-37,5.0795230828189425e-37,5.069681707652051e-37,5.0598407809006675e-37,5.049999854149284e-37,5.040158927397901e-37,5.030318000646518e-37,5.020477073895135e-37,5.010636147143752e-37,5.0007952203923684e-37,4.990954293640985e-37,4.981113366889602e-37,4.971272440138219e-37,4.961431513386836e-37,4.9515905866354526e-37,4.941749659884069e-37,4.931908733132686e-37,4.922067806381303e-37,4.912226431214411e-37,4.902385504463028e-37,4.892544577711645e-37,4.882703650960262e-37,4.8728627242088785e-37,4.863021797457495e-37,4.853180870706112e-37,4.843339943954729e-37,4.833499017203346e-37,4.823658090451963e-37,4.8138171637005795e-37,4.803976236949196e-37,4.794135310197813e-37,4.78429438344643e-37,4.774453456695047e-37,4.7646125299436636e-37,4.754771154776772e-37,4.744930228025389e-37,4.7350893012740054e-37,4.725248374522622e-37,4.715407447771239e-37,4.705566521019856e-37,4.695725594268473e-37,4.6858846675170895e-37,4.676043740765706e-37,4.666202814014323e-37,4.65636188726294e-37,4.646520960511557e-37,4.636680033760174e-37,4.6268391070087905e-37,4.616998180257407e-37,4.607157253506024e-37,4.597316326754641e-37,4.587474951587749e-37,4.577634024836366e-37,4.567793098084983e-37,4.5579521713336e-37,4.5481112445822164e-37,4.538270317830833e-37,4.52842939107945e-37,4.518588464328067e-37,4.508747537576684e-37,4.4989066108253005e-37,4.489065684073917e-37,4.479224757322534e-37,4.469383830571151e-37,4.459542903819768e-37,4.449701977068385e-37,4.4398610503170015e-37,4.43001967515011e-37,4.4201787483987265e-37,4.410337821647343e-37,4.40049689489596e-37,4.390655968144577e-37,4.380815041393194e-37,4.370974114641811e-37,4.3611331878904275e-37,4.351292261139044e-37,4.341451334387661e-37,4.331610407636278e-37,4.321769480884895e-37,4.3119285541335116e-37,4.302087627382128e-37,4.292246700630745e-37,4.282405773879362e-37,4.27256439871247e-37,4.262723471961087e-37,4.252882545209704e-37,4.243041618458321e-37,4.2332006917069375e-37,4.223359764955554e-37,4.213518838204171e-37,4.203677911452788e-37,4.193836984701405e-37,4.183996057950022e-37,4.1741551311986385e-37,4.164314204447255e-37,4.154473277695872e-37,4.144632350944489e-37,4.134791424193106e-37,4.1249504974417226e-37,4.115109122274831e-37,4.105268195523448e-37,4.0954272687720644e-37,4.085586342020681e-37,4.075745415269298e-37,4.065904488517915e-37,4.056063561766532e-37,4.0462226350151485e-37,4.036381708263765e-37,4.026540781512382e-37,4.016699854760999e-37,4.006858928009616e-37,3.997018001258233e-37,3.9871770745068495e-37,3.977336147755466e-37,3.967495221004083e-37,3.9576542942527e-37,3.947812919085808e-37,3.937971992334425e-37,3.928131065583042e-37,3.918290138831659e-37,3.9084492120802755e-37,3.898608285328892e-37,3.888767358577509e-37,3.878926431826126e-37,3.869085505074743e-37,3.8592445783233596e-37,3.849403651571976e-37,3.839562724820593e-37,3.82972179806921e-37,3.819880871317827e-37,3.810039944566444e-37,3.8001990178150605e-37,3.790357642648169e-37,3.7805167158967855e-37,3.770675789145402e-37,3.7608350866017735e-37,3.750993935642636e-37,3.741153008891253e-37,3.7313120821398696e-37,3.7214711553884865e-37,3.7116302286371033e-37,3.70178930188572e-37,3.691948375134337e-37,3.6821074483829537e-37,3.6722662974238163e-37,3.662425370672433e-37,3.65258444392105e-37,3.6427435171696667e-37,3.6329025904182836e-37,3.6230616636669004e-37,3.613220736915517e-37,3.603379810164134e-37,3.5935386592049965e-37,3.5836977324536134e-37,3.57385680570223e-37,3.564015878950847e-37,3.554174952199464e-37,3.5443340254480806e-37,3.5344930986966975e-37,3.5246521719453143e-37,3.514811245193931e-37,3.5049700942347936e-37,3.4951291674834105e-37,3.4852882407320273e-37,3.475447313980644e-37,3.465606387229261e-37,3.4557654604778777e-37,3.4459245337264946e-37,3.4360836069751114e-37,3.426242456015974e-37,3.4164015292645907e-37,3.4065606025132076e-37,3.3967196757618244e-37,3.386878749010441e-37,3.377037822259058e-37,3.367196895507675e-37,3.3573559687562917e-37,3.347514817797154e-37,3.337673891045771e-37,3.327832964294388e-37,3.3179920375430046e-37,3.3081511107916215e-37,3.2983101840402383e-37,3.288469257288855e-37,3.278628330537472e-37,3.2687871795783345e-37,3.2589462528269513e-37,3.249105326075568e-37,3.239264399324185e-37,3.2294234725728017e-37,3.2195825458214186e-37,3.2097416190700354e-37,3.199900692318652e-37,3.1900595413595147e-37,3.1802186146081316e-37,3.1703776878567484e-37,3.160536761105365e-37,3.150695834353982e-37,3.140854907602599e-37,3.1310139808512157e-37,3.1211730540998325e-37,3.111331903140695e-37,3.101490976389312e-37,3.0916500496379286e-37,3.0818091228865455e-37,3.0719681961351623e-37,3.062127269383779e-37,3.052286342632396e-37,3.0424454158810128e-37,3.0326042649218753e-37,3.022763338170492e-37,3.012922411419109e-37,3.0030814846677257e-37,2.9932405579163426e-37,2.9833996311649594e-37,2.973558704413576e-37,2.963717777662193e-37,2.95387685091081e-37,2.9440356999516724e-37,2.934194773200289e-37,2.924353846448906e-37,2.914512919697523e-37,2.9046719929461397e-37,2.8948310661947565e-37,2.8849901394433733e-37,2.87514921269199e-37,2.8653080617328526e-37,2.8554671349814695e-37,2.8456262082300863e-37,2.835785281478703e-37,2.82594435472732e-37,2.8161034279759368e-37,2.8062625012245536e-37,2.7964215744731704e-37,2.786580423514033e-37,2.7767394967626497e-37,2.7668985700112666e-37,2.7570576432598834e-37,2.7472167165085e-37,2.737375789757117e-37,2.727534863005734e-37,2.7176939362543507e-37,2.707852785295213e-37,2.69801185854383e-37,2.688170931792447e-37,2.6783300050410637e-37,2.6684890782896805e-37,2.6586481515382973e-37,2.648807224786914e-37,2.638966298035531e-37,2.6291251470763935e-37,2.6192842203250103e-37,2.609443293573627e-37,2.599602366822244e-37,2.5897614400708607e-37,2.5799205133194776e-37,2.5700795865680944e-37,2.5602386598167112e-37,2.5503975088575737e-37,2.5405565821061906e-37,2.5307156553548074e-37,2.520874728603424e-37,2.511033801852041e-37,2.501192875100658e-37,2.4913519483492747e-37,2.4815110215978915e-37,2.471669870638754e-37,2.461828943887371e-37,2.4519880171359877e-37,2.4421470903846045e-37,2.4323061636332213e-37,2.422465236881838e-37,2.412624310130455e-37,2.4027833833790718e-37,2.3929424566276886e-37,2.383101305668551e-37,2.373260378917168e-37,2.3634194521657847e-37,2.3535785254144016e-37,2.3437375986630184e-37,2.3338966719116352e-37,2.324055745160252e-37,2.314214818408869e-37,2.3043736674497314e-37,2.294532740698348e-37,2.284691813946965e-37,2.274850887195582e-37,2.2650099604441987e-37,2.2551690336928155e-37,2.2453281069414323e-37,2.235487180190049e-37,2.2256460292309117e-37,2.2158051024795285e-37,2.2059641757281453e-37,2.196123248976762e-37,2.186282322225379e-37,2.1764413954739958e-37,2.1666004687226126e-37,2.1567595419712294e-37,2.146918391012092e-37,2.1370774642607087e-37,2.1272365375093256e-37,2.1173956107579424e-37,2.1075546840065592e-37,2.097713757255176e-37,2.087872830503793e-37,2.0780319037524097e-37,2.068190752793272e-37,2.058349826041889e-37,2.048508899290506e-37,2.0386679725391227e-37,2.0288270457877395e-37,2.0189861190363563e-37,2.009145192284973e-37,1.99930426553359e-37,1.9894631145744525e-37,1.9796221878230693e-37,1.969781261071686e-37,1.959940334320303e-37,1.9500994075689198e-37,1.9402584808175366e-37,1.9304175540661534e-37,1.9205766273147702e-37,1.9107354763556327e-37,1.9008945496042496e-37,1.8910536228528664e-37,1.8812126961014832e-37,1.8713717693501e-37,1.8615308425987169e-37,1.8516899158473337e-37,1.8418488769920733e-37,1.8320079502406902e-37,1.822167023489307e-37,1.8123260967379238e-37,1.8024850578826635e-37,1.7926441311312803e-37,1.7828032043798971e-37,1.772962277628514e-37,1.7631212387732536e-37,1.7532803120218704e-37,1.7434393852704873e-37,1.733598458519104e-37,1.7237574196638438e-37,1.7139164929124606e-37,1.7040755661610774e-37,1.6942346394096942e-37,1.6843936005544339e-37,1.6745526738030507e-37,1.6647117470516675e-37,1.6548708203002844e-37,1.645029781445024e-37,1.6351888546936409e-37,1.6253479279422577e-37,1.6155070011908745e-37,1.6056659623356142e-37,1.595825035584231e-37,1.5859841088328478e-37,1.5761431820814646e-37,1.5663021432262043e-37,1.5564612164748211e-37,1.546620289723438e-37,1.5367793629720548e-37,1.5269383241167944e-37,1.5170973973654113e-37,1.507256470614028e-37,1.497415543862645e-37,1.4875745050073846e-37,1.4777335782560014e-37,1.4678926515046182e-37,1.458051724753235e-37,1.4482106858979747e-37,1.4383697591465915e-37,1.4285288323952084e-37,1.4186879056438252e-37,1.4088468667885648e-37,1.3990059400371817e-37,1.3891650132857985e-37,1.3793240865344153e-37,1.369483047679155e-37,1.3596421209277718e-37,1.3498011941763886e-37,1.3399602674250054e-37,1.3301192285697451e-37,1.320278301818362e-37,1.3104373750669788e-37,1.3005964483155956e-37,1.2907555215642124e-37,1.280914482708952e-37,1.271073555957569e-37,1.2612326292061857e-37,1.2513917024548025e-37,1.2415506635995422e-37,1.231709736848159e-37,1.2218688100967759e-37,1.2120278833453927e-37,1.2021868444901324e-37,1.1923459177387492e-37,1.182504990987366e-37,1.1726640642359828e-37,1.1628230253807225e-37,1.1529820986293393e-37,1.1431411718779561e-37,1.133300245126573e-37,1.1234592062713126e-37,1.1136182795199294e-37,1.1037773527685463e-37,1.093936426017163e-37,1.0840953871619028e-37,1.0742544604105196e-37,1.0644135336591364e-37,1.0545726069077532e-37,1.044731568052493e-37,1.0348906413011097e-37,1.0250497145497265e-37,1.0152087877983434e-37,1.005367748943083e-37,9.955268221916999e-38,9.856858954403167e-38,9.758449686889335e-38,9.660039298336732e-38,9.5616300308229e-38,9.463220763309068e-38,9.364810935275851e-38,9.266401667762019e-38,9.167991839728801e-38,9.06958257221497e-38,8.971172744181752e-38,8.87276347666792e-38,8.774353648634703e-38,8.675944381120871e-38,8.577534553087653e-38,8.479125285573822e-38,8.380715457540604e-38,8.282306190026772e-38,8.183896361993555e-38,8.085487094479723e-38,7.987077266446505e-38,7.888667998932674e-38,7.790258170899456e-38,7.691848903385624e-38,7.593439635871793e-38,7.495029807838575e-38,7.396620540324743e-38,7.298210712291526e-38,7.199801444777694e-38,7.101391616744476e-38,7.002982349230645e-38,6.904572521197427e-38,6.806163253683595e-38,6.707753425650378e-38,6.609344158136546e-38,6.510934330103328e-38,6.412525062589497e-38,6.314115234556279e-38,6.215705967042447e-38,6.11729613900923e-38,6.018886871495398e-38,5.92047704346218e-38,5.822067775948349e-38,5.723657947915131e-38,5.625248680401299e-38,5.526838852368082e-38,5.42842958485425e-38,5.330019756821032e-38,5.231610489307201e-38,5.133200661273983e-38,5.034791393760151e-38,4.936381565726934e-38,4.837972298213102e-38,4.739562470179885e-38,4.641153202666053e-38,4.542743654892528e-38,4.4443341071190034e-38,4.345924559345479e-38,4.247515011571954e-38,4.1491054637984295e-38,4.050695916024905e-38,3.95228636825138e-38,3.8538768204778555e-38,3.755467272704331e-38,3.657057724930806e-38,3.5586481771572815e-38,3.460238629383757e-38,3.361829081610232e-38,3.2634195338367075e-38,3.165009986063183e-38,3.066600438289658e-38,2.9681908905161336e-38,2.869781342742609e-38,2.771371794969084e-38,2.6729622471955596e-38,2.574552699422035e-38,2.4761431516485103e-38,2.3777336038749856e-38,2.279324056101461e-38,2.1809145083279363e-38,2.0825049605544116e-38,1.984095412780887e-38,1.8856858650073623e-38,1.7872763172338377e-38,1.688866769460313e-38,1.5904572216867883e-38,1.4920476739132637e-38,1.393638126139739e-38,1.2952285783662144e-38,1.1968190305926897e-38,1.098409482819165e-38,9.999999350456404e-39],"x":["00000011101010100010010000100101","00000011101010011111100101001000","00000011101010011100111001101011","00000011101010011010001110001110","00000011101010010111100010110000","00000011101010010100110111010011","00000011101010010010001011110110","00000011101010001111100000011001","00000011101010001100110100111100","00000011101010001010001001011111","00000011101010000111011110000010","00000011101010000100110010100101","00000011101010000010000111001000","00000011101001111111011011101011","00000011101001111100110000001110","00000011101001111010000100110001","00000011101001110111011001010100","00000011101001110100101101110111","00000011101001110010000010011010","00000011101001101111010110111101","00000011101001101100101011100000","00000011101001101010000000000011","00000011101001100111010100100110","00000011101001100100101001001001","00000011101001100001111101101100","00000011101001011111010010001111","00000011101001011100100110110010","00000011101001011001111011010101","00000011101001010111001111111000","00000011101001010100100100011011","00000011101001010001111000111110","00000011101001001111001101100001","00000011101001001100100010000100","00000011101001001001110110100111","00000011101001000111001011001010","00000011101001000100011111101101","00000011101001000001110100001111","00000011101000111111001000110010","00000011101000111100011101010101","00000011101000111001110001111000","00000011101000110111000110011011","00000011101000110100011010111110","00000011101000110001101111100001","00000011101000101111000100000100","00000011101000101100011000100111","00000011101000101001101101001010","00000011101000100111000001101101","00000011101000100100010110010000","00000011101000100001101010110011","00000011101000011110111111010110","00000011101000011100010011111001","00000011101000011001101000011100","00000011101000010110111100111111","00000011101000010100010001100010","00000011101000010001100110000101","00000011101000001110111010101000","00000011101000001100001111001011","00000011101000001001100011101110","00000011101000000110111000010001","00000011101000000100001100110100","00000011101000000001100001010111","00000011100111111110110101111010","00000011100111111100001010011101","00000011100111111001011111000000","00000011100111110110110011100011","00000011100111110100001000000110","00000011100111110001011100101001","00000011100111101110110001001100","00000011100111101100000101101111","00000011100111101001011010010001","00000011100111100110101110110100","00000011100111100100000011010111","00000011100111100001010111111010","00000011100111011110101100011101","00000011100111011100000001000000","00000011100111011001010101100011","00000011100111010110101010000110","00000011100111010011111110101001","00000011100111010001010011001100","00000011100111001110100111101111","00000011100111001011111100010010","00000011100111001001010000110101","00000011100111000110100101011000","00000011100111000011111001111011","00000011100111000001001110011110","00000011100110111110100011000001","00000011100110111011110111100100","00000011100110111001001100000111","00000011100110110110100000101010","00000011100110110011110101001101","00000011100110110001001001110000","00000011100110101110011110010011","00000011100110101011110010110110","00000011100110101001000111011001","00000011100110100110011011111100","00000011100110100011110000011111","00000011100110100001000101000010","00000011100110011110011001100101","00000011100110011011101110001000","00000011100110011001000010101011","00000011100110010110010111001110","00000011100110010011101011110000","00000011100110010001000000010011","00000011100110001110010100110110","00000011100110001011101001011001","00000011100110001000111101111100","00000011100110000110010010011111","00000011100110000011100111000010","00000011100110000000111011100101","00000011100101111110010000001000","00000011100101111011100100101011","00000011100101111000111001001110","00000011100101110110001101110001","00000011100101110011100010010100","00000011100101110000110110110111","00000011100101101110001011011010","00000011100101101011011111111101","00000011100101101000110100100000","00000011100101100110001001000011","00000011100101100011011101100110","00000011100101100000110010001001","00000011100101011110000110101100","00000011100101011011011011001111","00000011100101011000101111110010","00000011100101010110000100010101","00000011100101010011011000111000","00000011100101010000101101011011","00000011100101001110000001111110","00000011100101001011010110100001","00000011100101001000101011000100","00000011100101000101111111100111","00000011100101000011010100001010","00000011100101000000101000101101","00000011100100111101111101010000","00000011100100111011010001110010","00000011100100111000100110010101","00000011100100110101111010111000","00000011100100110011001111011011","00000011100100110000100011111110","00000011100100101101111000100001","00000011100100101011001101000100","00000011100100101000100001100111","00000011100100100101110110001010","00000011100100100011001010101101","00000011100100100000011111010000","00000011100100011101110011110011","00000011100100011011001000010110","00000011100100011000011100111001","00000011100100010101110001011100","00000011100100010011000101111111","00000011100100010000011010100010","00000011100100001101101111000101","00000011100100001011000011101000","00000011100100001000011000001011","00000011100100000101101100101110","00000011100100000011000001010001","00000011100100000000010101110100","00000011100011111101101010010111","00000011100011111010111110111010","00000011100011111000010011011101","00000011100011110101101000000000","00000011100011110010111100100011","00000011100011110000010001000110","00000011100011101101100101101001","00000011100011101010111010001100","00000011100011101000001110101111","00000011100011100101100011010010","00000011100011100010110111110100","00000011100011100000001100010111","00000011100011011101100000111010","00000011100011011010110101011101","00000011100011011000001010000000","00000011100011010101011110100011","00000011100011010010110011000110","00000011100011010000000111101001","00000011100011001101011100001100","00000011100011001010110000101111","00000011100011001000000101010010","00000011100011000101011001110101","00000011100011000010101110011000","00000011100011000000000010111011","00000011100010111101010111011110","00000011100010111010101100000001","00000011100010111000000000100100","00000011100010110101010101000111","00000011100010110010101001101010","00000011100010101111111110001101","00000011100010101101010010110000","00000011100010101010100111010011","00000011100010100111111011110110","00000011100010100101010000011001","00000011100010100010100100111100","00000011100010011111111001011111","00000011100010011101001110000010","00000011100010011010100010100101","00000011100010010111110111001000","00000011100010010101001011101011","00000011100010010010100000001110","00000011100010001111110100110001","00000011100010001101001001010011","00000011100010001010011101110110","00000011100010000111110010011001","00000011100010000101000110111100","00000011100010000010011011011111","00000011100001111111110000000010","00000011100001111101000100100101","00000011100001111010011001001000","00000011100001110111101101101011","00000011100001110101000010001110","00000011100001110010010110110001","00000011100001101111101011010100","00000011100001101100111111110111","00000011100001101010010100011010","00000011100001100111101000111101","00000011100001100100111101100000","00000011100001100010010010000011","00000011100001011111100110100110","00000011100001011100111011001001","00000011100001011010001111101100","00000011100001010111100100001111","00000011100001010100111000110010","00000011100001010010001101010101","00000011100001001111100001111000","00000011100001001100110110011011","00000011100001001010001010111110","00000011100001000111011111100001","00000011100001000100110100000100","00000011100001000010001000100111","00000011100000111111011101001010","00000011100000111100110001101101","00000011100000111010000110010000","00000011100000110111011010110011","00000011100000110100101111010101","00000011100000110010000011111000","00000011100000101111011000011011","00000011100000101100101100111110","00000011100000101010000001100001","00000011100000100111010110000100","00000011100000100100101010100111","00000011100000100001111111001010","00000011100000011111010011101101","00000011100000011100101000010000","00000011100000011001111100110011","00000011100000010111010001010110","00000011100000010100100101111001","00000011100000010001111010011100","00000011100000001111001110111111","00000011100000001100100011100010","00000011100000001001111000000101","00000011100000000111001100101000","00000011100000000100100001001011","00000011100000000001110101101110","00000011011111111110010100100010","00000011011111111000111101101000","00000011011111110011100110101110","00000011011111101110001111110100","00000011011111101000111000111001","00000011011111100011100001111111","00000011011111011110001011000101","00000011011111011000110100001011","00000011011111010011011101010001","00000011011111001110000110010111","00000011011111001000101111011101","00000011011111000011011000100011","00000011011110111110000001101001","00000011011110111000101010101111","00000011011110110011010011110101","00000011011110101101111100111011","00000011011110101000100110000001","00000011011110100011001111000111","00000011011110011101111000001101","00000011011110011000100001010011","00000011011110010011001010011001","00000011011110001101110011011110","00000011011110001000011100100100","00000011011110000011000101101010","00000011011101111101101110110000","00000011011101111000010111110110","00000011011101110011000000111100","00000011011101101101101010000010","00000011011101101000010011001000","00000011011101100010111100001110","00000011011101011101100101010100","00000011011101011000001110011010","00000011011101010010110111100000","00000011011101001101100000100110","00000011011101001000001001101100","00000011011101000010110010110010","00000011011100111101011011111000","00000011011100111000000100111101","00000011011100110010101110000011","00000011011100101101010111001001","00000011011100101000000000001111","00000011011100100010101001010101","00000011011100011101010010011011","00000011011100010111111011100001","00000011011100010010100100100111","00000011011100001101001101101101","00000011011100000111110110110011","00000011011100000010011111111001","00000011011011111101001000111111","00000011011011110111110010000101","00000011011011110010011011001011","00000011011011101101000100010001","00000011011011100111101101010111","00000011011011100010010110011100","00000011011011011100111111100010","00000011011011010111101000101000","00000011011011010010010001101110","00000011011011001100111010110100","00000011011011000111100011111010","00000011011011000010001101000000","00000011011010111100110110000110","00000011011010110111011111001100","00000011011010110010001000010010","00000011011010101100110001011000","00000011011010100111011010011110","00000011011010100010000011100100","00000011011010011100101100101010","00000011011010010111010101110000","00000011011010010001111110110110","00000011011010001100100111111011","00000011011010000111010001000001","00000011011010000001111010000111","00000011011001111100100011001101","00000011011001110111001100010011","00000011011001110001110101011001","00000011011001101100011110011111","00000011011001100111000111100101","00000011011001100001110000101011","00000011011001011100011001110001","00000011011001010111000010110111","00000011011001010001101011111101","00000011011001001100010101000011","00000011011001000110111110001001","00000011011001000001100111001111","00000011011000111100010000010101","00000011011000110110111001011011","00000011011000110001100010100000","00000011011000101100001011100110","00000011011000100110110100101100","00000011011000100001011101110010","00000011011000011100000110111000","00000011011000010110101111111110","00000011011000010001011001000100","00000011011000001100000010001010","00000011011000000110101011010000","00000011011000000001010100010110","00000011010111111011111101011100","00000011010111110110100110100010","00000011010111110001001111101000","00000011010111101011111000101110","00000011010111100110100001110100","00000011010111100001001010111010","00000011010111011011110011111111","00000011010111010110011101000101","00000011010111010001000110001011","00000011010111001011101111010001","00000011010111000110011000010111","00000011010111000001000001011101","00000011010110111011101010100011","00000011010110110110010011101001","00000011010110110000111100101111","00000011010110101011100101110101","00000011010110100110001110111011","00000011010110100000111000000001","00000011010110011011100001000111","00000011010110010110001010001101","00000011010110010000110011010011","00000011010110001011011100011001","00000011010110000110000101011110","00000011010110000000101110100100","00000011010101111011010111101010","00000011010101110110000000110000","00000011010101110000101001110110","00000011010101101011010010111100","00000011010101100101111100000010","00000011010101100000100101001000","00000011010101011011001110001110","00000011010101010101110111010100","00000011010101010000100000011010","00000011010101001011001001100000","00000011010101000101110010100110","00000011010101000000011011101100","00000011010100111011000100110010","00000011010100110101101101111000","00000011010100110000010110111110","00000011010100101011000000000011","00000011010100100101101001001001","00000011010100100000010010001111","00000011010100011010111011010101","00000011010100010101100100011011","00000011010100010000001101100001","00000011010100001010110110100111","00000011010100000101011111101101","00000011010100000000001000110011","00000011010011111010110001111001","00000011010011110101011010111111","00000011010011110000000100000101","00000011010011101010101101001011","00000011010011100101010110010001","00000011010011011111111111010111","00000011010011011010101000011101","00000011010011010101010001100010","00000011010011001111111010101000","00000011010011001010100011101110","00000011010011000101001100110100","00000011010010111111110101111010","00000011010010111010011111000000","00000011010010110101001000000110","00000011010010101111110001001100","00000011010010101010011010010010","00000011010010100101000011011000","00000011010010011111101100011110","00000011010010011010010101100100","00000011010010010100111110101010","00000011010010001111100111110000","00000011010010001010010000110110","00000011010010000100111001111100","00000011010001111111100011000001","00000011010001111010001100000111","00000011010001110100110101001101","00000011010001101111011110010011","00000011010001101010000111011001","00000011010001100100110000011111","00000011010001011111011001100101","00000011010001011010000010101011","00000011010001010100101011110001","00000011010001001111010100110111","00000011010001001001111101111101","00000011010001000100100111000011","00000011010000111111010000001001","00000011010000111001111001001111","00000011010000110100100010010101","00000011010000101111001011011011","00000011010000101001110100100000","00000011010000100100011101100110","00000011010000011111000110101100","00000011010000011001101111110010","00000011010000010100011000111000","00000011010000001111000001111110","00000011010000001001101011000100","00000011010000000100010100001010","00000011001111111110111101010000","00000011001111111001100110010110","00000011001111110100001111011100","00000011001111101110111000100010","00000011001111101001100001101000","00000011001111100100001010101110","00000011001111011110110011110100","00000011001111011001011100111010","00000011001111010100000110000000","00000011001111001110101111000101","00000011001111001001011000001011","00000011001111000100000001010001","00000011001110111110101010010111","00000011001110111001010011011101","00000011001110110011111100100011","00000011001110101110100101101001","00000011001110101001001110101111","00000011001110100011110111110101","00000011001110011110100000111011","00000011001110011001001010000001","00000011001110010011110011000111","00000011001110001110011100001101","00000011001110001001000101010011","00000011001110000011101110011001","00000011001101111110010111011111","00000011001101111001000000100100","00000011001101110011101001101010","00000011001101101110010010110000","00000011001101101000111011110110","00000011001101100011100100111100","00000011001101011110001110000010","00000011001101011000110111001000","00000011001101010011100000001110","00000011001101001110001001010100","00000011001101001000110010011010","00000011001101000011011011100000","00000011001100111110000100100110","00000011001100111000101101101100","00000011001100110011010110110010","00000011001100101101111111111000","00000011001100101000101000111110","00000011001100100011010010000011","00000011001100011101111011001001","00000011001100011000100100001111","00000011001100010011001101010101","00000011001100001101110110011011","00000011001100001000011111100001","00000011001100000011001000100111","00000011001011111101110001101101","00000011001011111000011010110011","00000011001011110011000011111001","00000011001011101101101100111111","00000011001011101000010110000101","00000011001011100010111111001011","00000011001011011101101000010001","00000011001011011000010001010111","00000011001011010010111010011101","00000011001011001101100011100011","00000011001011001000001100101000","00000011001011000010110101101110","00000011001010111101011110110100","00000011001010111000000111111010","00000011001010110010110001000000","00000011001010101101011010000110","00000011001010101000000011001100","00000011001010100010101100010010","00000011001010011101010101011000","00000011001010010111111110011110","00000011001010010010100111100100","00000011001010001101010000101010","00000011001010000111111001110000","00000011001010000010100010110110","00000011001001111101001011111100","00000011001001110111110101000010","00000011001001110010011110000111","00000011001001101101000111001101","00000011001001100111110000010011","00000011001001100010011001011001","00000011001001011101000010011111","00000011001001010111101011100101","00000011001001010010010100101011","00000011001001001100111101110001","00000011001001000111100110110111","00000011001001000010001111111101","00000011001000111100111001000011","00000011001000110111100010001001","00000011001000110010001011001111","00000011001000101100110100010101","00000011001000100111011101011011","00000011001000100010000110100001","00000011001000011100101111100110","00000011001000010111011000101100","00000011001000010010000001110010","00000011001000001100101010111000","00000011001000000111010011111110","00000011001000000001111101000100","00000011000111111100100110001010","00000011000111110111001111010000","00000011000111110001111000010110","00000011000111101100100001011100","00000011000111100111001010100010","00000011000111100001110011101000","00000011000111011100011100101110","00000011000111010111000101110100","00000011000111010001101110111010","00000011000111001100011000000000","00000011000111000111000001000110","00000011000111000001101010001011","00000011000110111100010011010001","00000011000110110110111100010111","00000011000110110001100101011101","00000011000110101100001110100011","00000011000110100110110111101001","00000011000110100001100000101111","00000011000110011100001001110101","00000011000110010110110010111011","00000011000110010001011100000001","00000011000110001100000101000111","00000011000110000110101110001101","00000011000110000001010111010011","00000011000101111100000000011001","00000011000101110110101001011111","00000011000101110001010010100101","00000011000101101011111011101010","00000011000101100110100100110000","00000011000101100001001101110110","00000011000101011011110110111100","00000011000101010110100000000010","00000011000101010001001001001000","00000011000101001011110010001110","00000011000101000110011011010100","00000011000101000001000100011010","00000011000100111011101101100000","00000011000100110110010110100110","00000011000100110000111111101100","00000011000100101011101000110010","00000011000100100110010001111000","00000011000100100000111010111110","00000011000100011011100100000100","00000011000100010110001101001001","00000011000100010000110110001111","00000011000100001011011111010101","00000011000100000110001000011011","00000011000100000000110001100001","00000011000011111011011010100111","00000011000011110110000011101101","00000011000011110000101100110011","00000011000011101011010101111001","00000011000011100101111110111111","00000011000011100000101000000101","00000011000011011011010001001011","00000011000011010101111010010001","00000011000011010000100011010111","00000011000011001011001100011101","00000011000011000101110101100011","00000011000011000000011110101000","00000011000010111011000111101110","00000011000010110101110000110100","00000011000010110000011001111010","00000011000010101011000011000000","00000011000010100101101100000110","00000011000010100000010101001100","00000011000010011010111110010010","00000011000010010101100111011000","00000011000010010000010000011110","00000011000010001010111001100100","00000011000010000101100010101010","00000011000010000000001011110000","00000011000001111010110100110110","00000011000001110101011101111100","00000011000001110000000111000010","00000011000001101010110000001000","00000011000001100101011001001101","00000011000001100000000010010011","00000011000001011010101011011001","00000011000001010101010100011111","00000011000001001111111101100101","00000011000001001010100110101011","00000011000001000101001111110001","00000011000000111111111000110111","00000011000000111010100001111101","00000011000000110101001011000011","00000011000000101111110100001001","00000011000000101010011101001111","00000011000000100101000110010101","00000011000000011111101111011011","00000011000000011010011000100001","00000011000000010101000001100111","00000011000000001111101010101100","00000011000000001010010011110010","00000011000000000100111100111000","00000010111111111111001011111101","00000010111111110100011110001000","00000010111111101001110000010100","00000010111111011111000010100000","00000010111111010100010100101100","00000010111111001001100110111000","00000010111110111110111001000100","00000010111110110100001011010000","00000010111110101001011101011100","00000010111110011110101111100111","00000010111110010100000001110011","00000010111110001001010011111111","00000010111101111110100110001011","00000010111101110011111000010111","00000010111101101001001010100011","00000010111101011110011100101111","00000010111101010011101110111011","00000010111101001001000001000110","00000010111100111110010011010010","00000010111100110011100101011110","00000010111100101000110111101010","00000010111100011110001001110110","00000010111100010011011100000010","00000010111100001000101110001110","00000010111011111110000000011010","00000010111011110011010010100110","00000010111011101000100100110001","00000010111011011101110110111101","00000010111011010011001001001001","00000010111011001000011011010101","00000010111010111101101101100001","00000010111010110010111111101101","00000010111010101000010001111001","00000010111010011101100100000101","00000010111010010010110110010000","00000010111010001000001000011100","00000010111001111101011010101000","00000010111001110010101100110100","00000010111001100111111111000000","00000010111001011101010001001100","00000010111001010010100011011000","00000010111001000111110101100100","00000010111000111101000111101111","00000010111000110010011001111011","00000010111000100111101100000111","00000010111000011100111110010011","00000010111000010010010000011111","00000010111000000111100010101011","00000010110111111100110100110111","00000010110111110010000111000011","00000010110111100111011001001110","00000010110111011100101011011010","00000010110111010001111101100110","00000010110111000111001111110010","00000010110110111100100001111110","00000010110110110001110100001010","00000010110110100111000110010110","00000010110110011100011000100010","00000010110110010001101010101101","00000010110110000110111100111001","00000010110101111100001111000101","00000010110101110001100001010001","00000010110101100110110011011101","00000010110101011100000101101001","00000010110101010001010111110101","00000010110101000110101010000001","00000010110100111011111100001100","00000010110100110001001110011000","00000010110100100110100000100100","00000010110100011011110010110000","00000010110100010001000100111100","00000010110100000110010111001000","00000010110011111011101001010100","00000010110011110000111011100000","00000010110011100110001101101011","00000010110011011011011111110111","00000010110011010000110010000011","00000010110011000110000100001111","00000010110010111011010110011011","00000010110010110000101000100111","00000010110010100101111010110011","00000010110010011011001100111111","00000010110010010000011111001011","00000010110010000101110001010110","00000010110001111011000011100010","00000010110001110000010101101110","00000010110001100101100111111010","00000010110001011010111010000110","00000010110001010000001100010010","00000010110001000101011110011110","00000010110000111010110000101010","00000010110000110000000010110101","00000010110000100101010101000001","00000010110000011010100111001101","00000010110000001111111001011001","00000010110000000101001011100101","00000010101111111010011101110001","00000010101111101111101111111101","00000010101111100101000010001001","00000010101111011010010100010100","00000010101111001111100110100000","00000010101111000100111000101100","00000010101110111010001010111000","00000010101110101111011101000100","00000010101110100100101111010000","00000010101110011010000001011100","00000010101110001111010011101000","00000010101110000100100101110011","00000010101101111001110111111111","00000010101101101111001010001011","00000010101101100100011100010111","00000010101101011001101110100011","00000010101101001111000000101111","00000010101101000100010010111011","00000010101100111001100101000111","00000010101100101110110111010010","00000010101100100100001001011110","00000010101100011001011011101010","00000010101100001110101101110110","00000010101100000100000000000010","00000010101011111001010010001110","00000010101011101110100100011010","00000010101011100011110110100110","00000010101011011001001000110001","00000010101011001110011010111101","00000010101011000011101101001001","00000010101010111000111111010101","00000010101010101110010001100001","00000010101010100011100011101101","00000010101010011000110101111001","00000010101010001110001000000101","00000010101010000011011010010000","00000010101001111000101100011100","00000010101001101101111110101000","00000010101001100011010000110100","00000010101001011000100011000000","00000010101001001101110101001100","00000010101001000011000111011000","00000010101000111000011001100100","00000010101000101101101011110000","00000010101000100010111101111011","00000010101000011000010000000111","00000010101000001101100010010011","00000010101000000010110100011111","00000010100111111000000110101011","00000010100111101101011000110111","00000010100111100010101011000011","00000010100111010111111101001111","00000010100111001101001111011010","00000010100111000010100001100110","00000010100110110111110011110010","00000010100110101101000101111110","00000010100110100010011000001010","00000010100110010111101010010110","00000010100110001100111100100010","00000010100110000010001110101110","00000010100101110111100000111001","00000010100101101100110011000101","00000010100101100010000101010001","00000010100101010111010111011101","00000010100101001100101001101001","00000010100101000001111011110101","00000010100100110111001110000001","00000010100100101100100000001101","00000010100100100001110010011000","00000010100100010111000100100100","00000010100100001100010110110000","00000010100100000001101000111100","00000010100011110110111011001000","00000010100011101100001101010100","00000010100011100001011111100000","00000010100011010110110001101100","00000010100011001100000011110111","00000010100011000001010110000011","00000010100010110110101000001111","00000010100010101011111010011011","00000010100010100001001100100111","00000010100010010110011110110011","00000010100010001011110000111111","00000010100010000001000011001011","00000010100001110110010101010110","00000010100001101011100111100010","00000010100001100000111001101110","00000010100001010110001011111010","00000010100001001011011110000110","00000010100001000000110000010010","00000010100000110110000010011110","00000010100000101011010100101010","00000010100000100000100110110101","00000010100000010101111001000001","00000010100000001011001011001101","00000010100000000000011101011001","00000010011111101011011111001010","00000010011111010110000011100010","00000010011111000000100111111010","00000010011110101011001100010001","00000010011110010101110000101001","00000010011110000000010101000001","00000010011101101010111001011001","00000010011101010101011101110000","00000010011101000000000010001000","00000010011100101010100110100000","00000010011100010101001010111000","00000010011011111111101111001111","00000010011011101010010011100111","00000010011011010100110111111111","00000010011010111111011100010111","00000010011010101010000000101110","00000010011010010100100101000110","00000010011001111111001001011110","00000010011001101001101101110110","00000010011001010100010010001101","00000010011000111110110110100101","00000010011000101001011010111101","00000010011000010011111111010101","00000010010111111110100011101100","00000010010111101001001000000100","00000010010111010011101100011100","00000010010110111110010000110100","00000010010110101000110101001011","00000010010110010011011001100011","00000010010101111101111101111011","00000010010101101000100010010011","00000010010101010011000110101010","00000010010100111101101011000010","00000010010100101000001111011010","00000010010100010010110011110010","00000010010011111101011000001001","00000010010011100111111100100001","00000010010011010010100000111001","00000010010010111101000101010001","00000010010010100111101001101000","00000010010010010010001110000000","00000010010001111100110010011000","00000010010001100111010110110000","00000010010001010001111011000111","00000010010000111100011111011111","00000010010000100111000011110111","00000010010000010001101000001111","00000010001111111100001100100110","00000010001111100110110000111110","00000010001111010001010101010110","00000010001110111011111001101110","00000010001110100110011110000101","00000010001110010001000010011101","00000010001101111011100110110101","00000010001101100110001011001101","00000010001101010000101111100100","00000010001100111011010011111100","00000010001100100101111000010100","00000010001100010000011100101100","00000010001011111011000001000100","00000010001011100101100101011011","00000010001011010000001001110011","00000010001010111010101110001011","00000010001010100101010010100011","00000010001010001111110110111010","00000010001001111010011011010010","00000010001001100100111111101010","00000010001001001111100100000010","00000010001000111010001000011001","00000010001000100100101100110001","00000010001000001111010001001001","00000010000111111001110101100001","00000010000111100100011001111000","00000010000111001110111110010000","00000010000110111001100010101000","00000010000110100100000111000000","00000010000110001110101011010111","00000010000101111001001111101111","00000010000101100011110100000111","00000010000101001110011000011111","00000010000100111000111100110110","00000010000100100011100001001110","00000010000100001110000101100110","00000010000011111000101001111110","00000010000011100011001110010101","00000010000011001101110010101101","00000010000010111000010111000101","00000010000010100010111011011101","00000010000010001101011111110100","00000010000001111000000100001100","00000010000001100010101000100100","00000010000001001101001100111100","00000010000000110111110001010011","00000010000000100010010101101011","00000010000000001100111010000011","00000001111111101110111100110101","00000001111111000100000101100101","00000001111110011001001110010100","00000001111101101110010111000100","00000001111101000011011111110011","00000001111100011000101000100011","00000001111011101101110001010010","00000001111011000010111010000010","00000001111010011000000010110001","00000001111001101101001011100001","00000001111001000010010100010000","00000001111000010111011101000000","00000001110111101100100101101111","00000001110111000001101110011111","00000001110110010110110111001110","00000001110101101011111111111110","00000001110101000001001000101101","00000001110100010110010001011101","00000001110011101011011010001101","00000001110011000000100010111100","00000001110010010101101011101100","00000001110001101010110100011011","00000001110000111111111101001011","00000001110000010101000101111010","00000001101111101010001110101010","00000001101110111111010111011001","00000001101110010100100000001001","00000001101101101001101000111000","00000001101100111110110001101000","00000001101100010011111010010111","00000001101011101001000011000111","00000001101010111110001011110110","00000001101010010011010100100110","00000001101001101000011101010101","00000001101000111101100110000101","00000001101000010010101110110100","00000001100111100111110111100100","00000001100110111101000000010011","00000001100110010010001001000011","00000001100101100111010001110010","00000001100100111100011010100010","00000001100100010001100011010001","00000001100011100110101100000001","00000001100010111011110100110000","00000001100010010000111101100000","00000001100001100110000110001111","00000001100000111011001110111111","00000001100000010000010111101110","00000001011111001011000000111100","00000001011101110101010010011011","00000001011100011111100011111010","00000001011011001001110101011001","00000001011001110100000110111000","00000001011000011110011000010111","00000001010111001000101001110110","00000001010101110010111011010101","00000001010100011101001100110100","00000001010011000111011110010011","00000001010001110001101111110010","00000001010000011100000001010001","00000001001111000110010010110000","00000001001101110000100100001111","00000001001100011010110101101110","00000001001011000101000111001101","00000001001001101111011000101100","00000001001000011001101010001011","00000001000111000011111011101010","00000001000101101110001101001001","00000001000100011000011110101000","00000001000011000010110000000111","00000001000001101101000001100110","00000001000000010111010011000101","00000000111110000011001001001000","00000000111011010111101100000110","00000000111000101100001111000100","00000000110110000000110010000010","00000000110011010101010101000000","00000000110000101001110111111110","00000000101101111110011010111100","00000000101011010010111101111010","00000000101000100111100000111000","00000000100101111100000011110110","00000000100011010000100110110100","00000000100000100101001001110010","00000000011101111001101100110000","00000000011011001110001111101110"]}
-},{}],131:[function(require,module,exports){
+
+},{}],135:[function(require,module,exports){
 module.exports={"expected":[1.0000002153053333e-39,9.990052933956626e-40,9.980117727844563e-40,9.9701825217325e-40,9.960233302635794e-40,9.950298096523731e-40,9.940362890411668e-40,9.930413671314962e-40,9.9204784652029e-40,9.910543259090836e-40,9.90059403999413e-40,9.890658833882067e-40,9.880709614785361e-40,9.870774408673298e-40,9.860839202561235e-40,9.850889983464529e-40,9.840954777352466e-40,9.831019571240403e-40,9.821070352143697e-40,9.811135146031634e-40,9.80119993991957e-40,9.791250720822865e-40,9.781315514710802e-40,9.771366295614095e-40,9.761431089502032e-40,9.75149588338997e-40,9.741546664293263e-40,9.7316114581812e-40,9.721676252069137e-40,9.711727032972431e-40,9.701791826860368e-40,9.691842607763662e-40,9.681907401651599e-40,9.671972195539536e-40,9.66202297644283e-40,9.652087770330767e-40,9.642152564218704e-40,9.632203345121998e-40,9.622268139009935e-40,9.612332932897872e-40,9.602383713801166e-40,9.592448507689103e-40,9.582499288592397e-40,9.572564082480334e-40,9.56262887636827e-40,9.552679657271564e-40,9.542744451159502e-40,9.532809245047439e-40,9.522860025950732e-40,9.51292481983867e-40,9.502975600741963e-40,9.4930403946299e-40,9.483105188517837e-40,9.473155969421131e-40,9.463220763309068e-40,9.453285557197005e-40,9.443336338100299e-40,9.433401131988236e-40,9.423465925876173e-40,9.413516706779467e-40,9.403581500667404e-40,9.393632281570698e-40,9.383697075458635e-40,9.373761869346572e-40,9.363812650249866e-40,9.353877444137803e-40,9.34394223802574e-40,9.333993018929034e-40,9.32405781281697e-40,9.314122606704908e-40,9.304173387608201e-40,9.294238181496138e-40,9.284288962399432e-40,9.27435375628737e-40,9.264418550175306e-40,9.2544693310786e-40,9.244534124966537e-40,9.234598918854474e-40,9.224649699757768e-40,9.214714493645705e-40,9.204765274548999e-40,9.194830068436936e-40,9.184894862324873e-40,9.174945643228167e-40,9.165010437116104e-40,9.155075231004041e-40,9.145126011907335e-40,9.135190805795272e-40,9.125255599683209e-40,9.115306380586503e-40,9.10537117447444e-40,9.095421955377733e-40,9.08548674926567e-40,9.075551543153608e-40,9.065602324056901e-40,9.055667117944838e-40,9.045731911832775e-40,9.03578269273607e-40,9.025847486624006e-40,9.015912280511943e-40,9.005963061415237e-40,8.996027855303174e-40,8.986078636206468e-40,8.976143430094405e-40,8.966208223982342e-40,8.956259004885636e-40,8.946323798773573e-40,8.93638859266151e-40,8.926439373564804e-40,8.91650416745274e-40,8.906554948356035e-40,8.896619742243972e-40,8.886684536131909e-40,8.876735317035202e-40,8.86680011092314e-40,8.856864904811077e-40,8.84691568571437e-40,8.836980479602307e-40,8.827045273490244e-40,8.817096054393538e-40,8.807160848281475e-40,8.797211629184769e-40,8.787276423072706e-40,8.777341216960643e-40,8.767391997863937e-40,8.757456791751874e-40,8.747521585639811e-40,8.737572366543105e-40,8.727637160431042e-40,8.717701954318979e-40,8.707752735222273e-40,8.69781752911021e-40,8.687868310013504e-40,8.67793310390144e-40,8.667997897789378e-40,8.658048678692672e-40,8.648113472580609e-40,8.638178266468546e-40,8.62822904737184e-40,8.618293841259776e-40,8.60834462216307e-40,8.598409416051007e-40,8.588474209938944e-40,8.578524990842238e-40,8.568589784730175e-40,8.558654578618112e-40,8.548705359521406e-40,8.538770153409343e-40,8.52883494729728e-40,8.518885728200574e-40,8.508950522088511e-40,8.499001302991805e-40,8.489066096879742e-40,8.479130890767679e-40,8.469181671670973e-40,8.45924646555891e-40,8.449311259446847e-40,8.43936204035014e-40,8.429426834238078e-40,8.419491628126015e-40,8.409542409029308e-40,8.399607202917245e-40,8.38965798382054e-40,8.379722777708476e-40,8.369787571596413e-40,8.359838352499707e-40,8.349903146387644e-40,8.339967940275581e-40,8.330018721178875e-40,8.320083515066812e-40,8.310134295970106e-40,8.300199089858043e-40,8.29026388374598e-40,8.280314664649274e-40,8.270379458537211e-40,8.260444252425148e-40,8.250495033328442e-40,8.240559827216379e-40,8.230624621104316e-40,8.22067540200761e-40,8.210740195895547e-40,8.20079097679884e-40,8.190855770686777e-40,8.180920564574715e-40,8.170971345478008e-40,8.161036139365945e-40,8.151100933253882e-40,8.141151714157176e-40,8.131216508045113e-40,8.121267288948407e-40,8.111332082836344e-40,8.101396876724281e-40,8.091447657627575e-40,8.081512451515512e-40,8.071577245403449e-40,8.061628026306743e-40,8.05169282019468e-40,8.041757614082617e-40,8.03180839498591e-40,8.021873188873848e-40,8.011923969777142e-40,8.001988763665079e-40,7.992053557553016e-40,7.98210433845631e-40,7.972169132344247e-40,7.962233926232184e-40,7.952284707135477e-40,7.942349501023414e-40,7.932414294911351e-40,7.922465075814645e-40,7.912529869702582e-40,7.902580650605876e-40,7.892645444493813e-40,7.88271023838175e-40,7.872761019285044e-40,7.862825813172981e-40,7.852890607060918e-40,7.842941387964212e-40,7.833006181852149e-40,7.823056962755443e-40,7.81312175664338e-40,7.803186550531317e-40,7.79323733143461e-40,7.783302125322548e-40,7.773366919210485e-40,7.763417700113779e-40,7.753482494001716e-40,7.743547287889653e-40,7.733598068792946e-40,7.723662862680883e-40,7.713713643584177e-40,7.703778437472114e-40,7.693843231360051e-40,7.683894012263345e-40,7.673958806151282e-40,7.66402360003922e-40,7.654074380942513e-40,7.64413917483045e-40,7.634203968718387e-40,7.624254749621681e-40,7.614319543509618e-40,7.604370324412912e-40,7.594435118300849e-40,7.584499912188786e-40,7.57455069309208e-40,7.564615486980017e-40,7.554680280867954e-40,7.544731061771248e-40,7.534795855659185e-40,7.524846636562478e-40,7.514911430450415e-40,7.504976224338353e-40,7.495027005241646e-40,7.485091799129583e-40,7.47515659301752e-40,7.465207373920814e-40,7.455272167808751e-40,7.445336961696688e-40,7.435387742599982e-40,7.425452536487919e-40,7.415503317391213e-40,7.40556811127915e-40,7.395632905167087e-40,7.385683686070381e-40,7.375748479958318e-40,7.365813273846255e-40,7.355864054749549e-40,7.345928848637486e-40,7.335993642525423e-40,7.326044423428717e-40,7.316109217316654e-40,7.3061599982199475e-40,7.2962247921078845e-40,7.2862895859958216e-40,7.276340366899115e-40,7.2664051607870524e-40,7.2564699546749895e-40,7.246520735578283e-40,7.23658552946622e-40,7.226636310369514e-40,7.216701104257451e-40,7.206765898145388e-40,7.196816679048682e-40,7.186881472936619e-40,7.176946266824556e-40,7.16699704772785e-40,7.157061841615787e-40,7.147126635503724e-40,7.137177416407018e-40,7.127242210294955e-40,7.117292991198249e-40,7.107357785086186e-40,7.097422578974123e-40,7.0874733598774165e-40,7.0775381537653536e-40,7.067602947653291e-40,7.0576537285565844e-40,7.0477185224445215e-40,7.0377833163324585e-40,7.027834097235752e-40,7.017898891123689e-40,7.007949672026983e-40,6.99801446591492e-40,6.988079259802857e-40,6.978130040706151e-40,6.968194834594088e-40,6.958259628482025e-40,6.948310409385319e-40,6.938375203273256e-40,6.92842598417655e-40,6.918490778064487e-40,6.908555571952424e-40,6.898606352855718e-40,6.888671146743655e-40,6.878735940631592e-40,6.8687867215348856e-40,6.858851515422823e-40,6.84891630931076e-40,6.8389670902140535e-40,6.8290318841019905e-40,6.819082665005284e-40,6.809147458893221e-40,6.7992122527811584e-40,6.789263033684452e-40,6.779327827572389e-40,6.769392621460326e-40,6.75944340236362e-40,6.749508196251557e-40,6.739558977154851e-40,6.729623771042788e-40,6.719688564930725e-40,6.709739345834019e-40,6.699804139721956e-40,6.689868933609893e-40,6.679919714513187e-40,6.669984508401124e-40,6.660049302289061e-40,6.650100083192355e-40,6.640164877080292e-40,6.6302156579835855e-40,6.6202804518715225e-40,6.6103452457594596e-40,6.600396026662753e-40,6.5904608205506904e-40,6.5805256144386275e-40,6.570576395341921e-40,6.560641189229858e-40,6.550705983117795e-40,6.540756764021089e-40,6.530821557909026e-40,6.52087233881232e-40,6.510937132700257e-40,6.501001926588194e-40,6.491052707491488e-40,6.481117501379425e-40,6.471182295267362e-40,6.461233076170656e-40,6.451297870058593e-40,6.441348650961887e-40,6.431413444849824e-40,6.421478238737761e-40,6.4115290196410545e-40,6.4015938135289916e-40,6.391658607416929e-40,6.3817093883202224e-40,6.3717741822081595e-40,6.3618389760960965e-40,6.35188975699939e-40,6.341954550887327e-40,6.332005331790621e-40,6.322070125678558e-40,6.312134919566495e-40,6.302185700469789e-40,6.292250494357726e-40,6.282315288245663e-40,6.272366069148957e-40,6.262430863036894e-40,6.252495656924831e-40,6.242546437828125e-40,6.232611231716062e-40,6.222662012619356e-40,6.212726806507293e-40,6.20279160039523e-40,6.1928423812985236e-40,6.182907175186461e-40,6.172971969074398e-40,6.1630227499776915e-40,6.1530875438656285e-40,6.143138324768922e-40,6.133203118656859e-40,6.123267912544796e-40,6.11331869344809e-40,6.103383487336027e-40,6.093448281223964e-40,6.083499062127258e-40,6.073563856015195e-40,6.063628649903132e-40,6.053679430806426e-40,6.043744224694363e-40,6.033795005597657e-40,6.023859799485594e-40,6.013924593373531e-40,6.003975374276825e-40,5.994040168164762e-40,5.984104962052699e-40,5.974155742955993e-40,5.96422053684393e-40,5.954285330731867e-40,5.9443361116351605e-40,5.9344009055230976e-40,5.924451686426391e-40,5.914516480314328e-40,5.9045812742022655e-40,5.894632055105559e-40,5.884696848993496e-40,5.874761642881433e-40,5.864812423784727e-40,5.854877217672664e-40,5.844927998575958e-40,5.834992792463895e-40,5.825057586351832e-40,5.815108367255126e-40,5.805173161143063e-40,5.795237955031e-40,5.785288735934294e-40,5.775353529822231e-40,5.765418323710168e-40,5.755469104613462e-40,5.745533898501399e-40,5.7355846794046925e-40,5.7256494732926296e-40,5.715714267180567e-40,5.70576504808386e-40,5.6958298419717975e-40,5.6858946358597345e-40,5.675945416763028e-40,5.666010210650965e-40,5.656060991554259e-40,5.646125785442196e-40,5.636190579330133e-40,5.626241360233427e-40,5.616306154121364e-40,5.606370948009301e-40,5.596421728912595e-40,5.586486522800532e-40,5.576551316688469e-40,5.566602097591763e-40,5.5566668914797e-40,5.546717672382994e-40,5.536782466270931e-40,5.526847260158868e-40,5.5168980410621616e-40,5.506962834950099e-40,5.497027628838036e-40,5.4870784097413295e-40,5.4771432036292665e-40,5.4672079975172035e-40,5.457258778420497e-40,5.447323572308434e-40,5.437374353211728e-40,5.427439147099665e-40,5.417503940987602e-40,5.407554721890896e-40,5.397619515778833e-40,5.38768430966677e-40,5.377735090570064e-40,5.367799884458001e-40,5.357850665361295e-40,5.347915459249232e-40,5.337980253137169e-40,5.328031034040463e-40,5.3180958279284e-40,5.308160621816337e-40,5.298211402719631e-40,5.288276196607568e-40,5.278340990495505e-40,5.2683917713987985e-40,5.2584565652867355e-40,5.248507346190029e-40,5.238572140077966e-40,5.2286369339659034e-40,5.218687714869197e-40,5.208752508757134e-40,5.198817302645071e-40,5.188868083548365e-40,5.178932877436302e-40,5.168997671324239e-40,5.159048452227533e-40,5.14911324611547e-40,5.139164027018764e-40,5.129228820906701e-40,5.119293614794638e-40,5.109344395697932e-40,5.099409189585869e-40,5.089473983473806e-40,5.0795247643771e-40,5.069589558265037e-40,5.0596403391683305e-40,5.0497051330562675e-40,5.039769926944205e-40,5.029820707847498e-40,5.0198855017354354e-40,5.0099502956233725e-40,5.000001076526666e-40,4.990065870414603e-40,4.98013066430254e-40,4.970181445205834e-40,4.960246239093771e-40,4.950297019997065e-40,4.940361813885002e-40,4.930426607772939e-40,4.920477388676233e-40,4.91054218256417e-40,4.900606976452107e-40,4.890657757355401e-40,4.880722551243338e-40,4.870787345131275e-40,4.860838126034569e-40,4.850902919922506e-40,4.8409537008257995e-40,4.831018494713737e-40,4.821083288601674e-40,4.8111340695049674e-40,4.8011988633929045e-40,4.7912636572808415e-40,4.781314438184135e-40,4.771379232072072e-40,4.761430012975366e-40,4.751494806863303e-40,4.74155960075124e-40,4.731610381654534e-40,4.721675175542471e-40,4.711739969430408e-40,4.701790750333702e-40,4.691855544221639e-40,4.681920338109576e-40,4.67197111901287e-40,4.662035912900807e-40,4.652086693804101e-40,4.642151487692038e-40,4.632216281579975e-40,4.622267062483269e-40,4.612331856371206e-40,4.602396650259143e-40,4.5924474311624365e-40,4.5825122250503735e-40,4.5725770189383106e-40,4.562627799841604e-40,4.5526925937295414e-40,4.542743374632835e-40,4.532808168520772e-40,4.522872962408709e-40,4.512923743312003e-40,4.50298853719994e-40,4.493053331087877e-40,4.483104111991171e-40,4.473168905879108e-40,4.463219686782402e-40,4.453284480670339e-40,4.443349274558276e-40,4.43340005546157e-40,4.423464849349507e-40,4.413529643237444e-40,4.403580424140738e-40,4.393645218028675e-40,4.383710011916612e-40,4.3737607928199055e-40,4.3638255867078426e-40,4.353876367611136e-40,4.3439411614990734e-40,4.3340059553870105e-40,4.324056736290304e-40,4.314121530178241e-40,4.304186324066178e-40,4.294237104969472e-40,4.284301898857409e-40,4.274352679760703e-40,4.26441747364864e-40,4.254482267536577e-40,4.244533048439871e-40,4.234597842327808e-40,4.224662636215745e-40,4.214713417119039e-40,4.204778211006976e-40,4.194843004894913e-40,4.184893785798207e-40,4.174958579686144e-40,4.1650093605894375e-40,4.1550741544773746e-40,4.145138948365312e-40,4.1351897292686054e-40,4.1252545231565425e-40,4.1153193170444795e-40,4.105370097947773e-40,4.09543489183571e-40,4.0854996857236474e-40,4.075550466626941e-40,4.065615260514878e-40,4.055666041418172e-40,4.045730835306109e-40,4.035795629194046e-40,4.02584641009734e-40,4.015911203985277e-40,4.005975997873214e-40,3.996026778776508e-40,3.986091572664445e-40,3.976142353567739e-40,3.966207147455676e-40,3.956271941343613e-40,3.9463227222469066e-40,3.936387516134844e-40,3.926452310022781e-40,3.9165030909260745e-40,3.9065678848140115e-40,3.8966326787019486e-40,3.886683459605242e-40,3.8767482534931794e-40,3.866799034396473e-40,3.85686382828441e-40,3.846928622172347e-40,3.836979403075641e-40,3.827044196963578e-40,3.817108990851515e-40,3.807159771754809e-40,3.797224565642746e-40,3.787289359530683e-40,3.777340140433977e-40,3.767404934321914e-40,3.757455715225208e-40,3.747520509113145e-40,3.737585303001082e-40,3.727636083904376e-40,3.717700877792313e-40,3.70776567168025e-40,3.6978164525835435e-40,3.6878812464714806e-40,3.677932027374774e-40,3.6679968212627114e-40,3.6580616151506485e-40,3.6481123960539423e-40,3.6381771899418793e-40,3.6282419838298164e-40,3.61829276473311e-40,3.6083575586210472e-40,3.5984223525089843e-40,3.588473133412278e-40,3.578537927300215e-40,3.568588708203509e-40,3.558653502091446e-40,3.548718295979383e-40,3.5387690768826768e-40,3.528833870770614e-40,3.518898664658551e-40,3.5089494455618447e-40,3.4990142394497817e-40,3.4890790333377188e-40,3.4791298142410126e-40,3.4691946081289496e-40,3.4592453890322434e-40,3.4493101829201805e-40,3.4393749768081175e-40,3.4294257577114113e-40,3.4194905515993484e-40,3.4095553454872854e-40,3.3996061263905792e-40,3.3896709202785163e-40,3.37972170118181e-40,3.369786495069747e-40,3.359851288957684e-40,3.349902069860978e-40,3.339966863748915e-40,3.330031657636852e-40,3.320082438540146e-40,3.310147232428083e-40,3.30021202631602e-40,3.2902628072193137e-40,3.2803276011072508e-40,3.2703783820105446e-40,3.2604431758984816e-40,3.2505079697864187e-40,3.2405587506897125e-40,3.2306235445776495e-40,3.2206883384655866e-40,3.2107391193688804e-40,3.2008039132568174e-40,3.1908546941601112e-40,3.1809194880480483e-40,3.1709842819359853e-40,3.161035062839279e-40,3.151099856727216e-40,3.141164650615153e-40,3.131215431518447e-40,3.121280225406384e-40,3.111345019294321e-40,3.101395800197615e-40,3.091460594085552e-40,3.0815113749888457e-40,3.0715761688767828e-40,3.06164096276472e-40,3.0516917436680136e-40,3.0417565375559507e-40,3.0318213314438877e-40,3.0218721123471815e-40,3.0119369062351186e-40,3.0020017001230556e-40,2.9920524810263494e-40,2.9821172749142865e-40,2.9721680558175803e-40,2.9622328497055173e-40,2.9522976435934543e-40,2.942348424496748e-40,2.932413218384685e-40,2.9224780122726222e-40,2.912528793175916e-40,2.902593587063853e-40,2.892644367967147e-40,2.882709161855084e-40,2.872773955743021e-40,2.8628247366463148e-40,2.852889530534252e-40,2.842954324422189e-40,2.8330051053254827e-40,2.8230698992134197e-40,2.8131346931013568e-40,2.8031854740046506e-40,2.7932502678925876e-40,2.7833010487958814e-40,2.7733658426838185e-40,2.7634306365717555e-40,2.7534814174750493e-40,2.7435462113629864e-40,2.7336110052509234e-40,2.723661786154217e-40,2.7137265800421542e-40,2.7037913739300913e-40,2.693842154833385e-40,2.683906948721322e-40,2.673957729624616e-40,2.664022523512553e-40,2.65408731740049e-40,2.644138098303784e-40,2.634202892191721e-40,2.624267686079658e-40,2.6143184669829517e-40,2.6043832608708888e-40,2.5944340417741826e-40,2.5844988356621196e-40,2.5745636295500567e-40,2.5646144104533505e-40,2.5546792043412875e-40,2.5447439982292246e-40,2.5347947791325184e-40,2.5248595730204554e-40,2.5149243669083924e-40,2.5049751478116862e-40,2.4950399416996233e-40,2.485090722602917e-40,2.475155516490854e-40,2.465220310378791e-40,2.455271091282085e-40,2.445335885170022e-40,2.435400679057959e-40,2.425451459961253e-40,2.41551625384919e-40,2.405581047737127e-40,2.3956318286404208e-40,2.385696622528358e-40,2.3757474034316516e-40,2.3658121973195887e-40,2.3558769912075257e-40,2.3459277721108195e-40,2.3359925659987566e-40,2.3260573598866936e-40,2.3161081407899874e-40,2.3061729346779244e-40,2.2962237155812182e-40,2.2862885094691553e-40,2.2763533033570923e-40,2.266404084260386e-40,2.256468878148323e-40,2.2465336720362602e-40,2.236584452939554e-40,2.226649246827491e-40,2.216714040715428e-40,2.206764821618722e-40,2.196829615506659e-40,2.1868803964099528e-40,2.17694519029789e-40,2.167009984185827e-40,2.1570607650891207e-40,2.1471255589770577e-40,2.1371903528649948e-40,2.1272411337682886e-40,2.1173059276562256e-40,2.1073707215441626e-40,2.0974215024474564e-40,2.0874862963353935e-40,2.0775370772386873e-40,2.0676018711266243e-40,2.0576666650145614e-40,2.047717445917855e-40,2.0377822398057922e-40,2.0278470336937293e-40,2.017897814597023e-40,2.00796260848496e-40,1.998013389388254e-40,1.988078183276191e-40,1.978142977164128e-40,1.968193758067422e-40,1.958258551955359e-40,1.948323345843296e-40,1.9383741267465897e-40,1.9284389206345268e-40,1.918503714522464e-40,1.9085544954257576e-40,1.8986192893136946e-40,1.8886700702169884e-40,1.8787348641049255e-40,1.8687996579928625e-40,1.8588504388961563e-40,1.8489152327840934e-40,1.8389800266720304e-40,1.8290308075753242e-40,1.8190956014632613e-40,1.809146382366555e-40,1.7992111762544921e-40,1.7892759701424292e-40,1.779326751045723e-40,1.76939154493366e-40,1.759456338821597e-40,1.7495071197248909e-40,1.739571913612828e-40,1.729636707500765e-40,1.7196874884040588e-40,1.7097522822919958e-40,1.6998030631952896e-40,1.6898678570832267e-40,1.6799326509711637e-40,1.6699834318744575e-40,1.6600482257623945e-40,1.6501130196503316e-40,1.6401638005536254e-40,1.6302285944415624e-40,1.6202933883294995e-40,1.6103441692327933e-40,1.6004089631207303e-40,1.5904597440240241e-40,1.5805245379119612e-40,1.5705893317998982e-40,1.560640112703192e-40,1.550704906591129e-40,1.5407697004790661e-40,1.53082048138236e-40,1.520885275270297e-40,1.5109360561735908e-40,1.5010008500615278e-40,1.4910656439494649e-40,1.4811164248527587e-40,1.4711812187406957e-40,1.4612460126286327e-40,1.4512967935319265e-40,1.4413615874198636e-40,1.4314263813078006e-40,1.4214771622110944e-40,1.4115419560990315e-40,1.4015927370023253e-40,1.3916575308902623e-40,1.3817223247781994e-40,1.3717731056814932e-40,1.3618378995694302e-40,1.3519026934573673e-40,1.341953474360661e-40,1.3320182682485981e-40,1.3220830621365352e-40,1.312133843039829e-40,1.302198636927766e-40,1.2922494178310598e-40,1.2823142117189969e-40,1.272379005606934e-40,1.2624297865102277e-40,1.2524945803981647e-40,1.2425593742861018e-40,1.2326101551893956e-40,1.2226749490773326e-40,1.2127257299806264e-40,1.2027905238685635e-40,1.1928553177565005e-40,1.1829060986597943e-40,1.1729708925477314e-40,1.1630356864356684e-40,1.1530864673389622e-40,1.1431512612268993e-40,1.1332160551148363e-40,1.1232668360181301e-40,1.1133316299060672e-40,1.103382410809361e-40,1.093447204697298e-40,1.083511998585235e-40,1.0735627794885289e-40,1.063627573376466e-40,1.053692367264403e-40,1.0437431481676967e-40,1.0338079420556338e-40,1.0238727359435708e-40,1.0139235168468646e-40,1.0039883107348017e-40,9.940390916380955e-41,9.841038855260325e-41,9.741686794139696e-41,9.642194603172634e-41,9.542842542052004e-41,9.443490480931375e-41,9.343998289964313e-41,9.244646228843683e-41,9.145154037876621e-41,9.045801976755992e-41,8.946449915635362e-41,8.8469577246683e-41,8.747605663547671e-41,8.648253602427041e-41,8.548761411459979e-41,8.44940935033935e-41,8.35005728921872e-41,8.250565098251658e-41,8.151213037131028e-41,8.051720846163966e-41,7.952368785043337e-41,7.853016723922707e-41,7.753524532955645e-41,7.654172471835016e-41,7.554820410714386e-41,7.455328219747324e-41,7.355976158626695e-41,7.256483967659633e-41,7.157131906539003e-41,7.057779845418374e-41,6.958287654451312e-41,6.858935593330682e-41,6.759583532210053e-41,6.660091341242991e-41,6.560739280122361e-41,6.461387219001732e-41,6.36189502803467e-41,6.26254296691404e-41,6.163050775946978e-41,6.063698714826348e-41,5.964346653705719e-41,5.864854462738657e-41,5.765502401618027e-41,5.666150340497398e-41,5.566658149530336e-41,5.467306088409706e-41,5.367954027289077e-41,5.268461836322015e-41,5.169109775201385e-41,5.069617584234323e-41,4.970265523113694e-41,4.870913461993064e-41,4.771421271026002e-41,4.672069209905373e-41,4.572717148784743e-41,4.473224957817681e-41,4.3738728966970515e-41,4.2743807057299895e-41,4.17502864460936e-41,4.0756765834887305e-41,3.9761843925216684e-41,3.876832331401039e-41,3.7774802702804094e-41,3.6779880793133474e-41,3.578636018192718e-41,3.4792839570720883e-41,3.3797917661050263e-41,3.280439704984397e-41,3.180947514017335e-41,3.081595452896705e-41,2.9822433917760757e-41,2.8827512008090137e-41,2.783399139688384e-41,2.6840470785677546e-41,2.5845548876006926e-41,2.485202826480063e-41,2.3858507653594335e-41,2.2863585743923715e-41,2.187006513271742e-41,2.08751432230468e-41,1.9881622611840505e-41,1.888810200063421e-41,1.789318009096359e-41,1.6899659479757294e-41,1.5906138868550999e-41,1.4911216958880378e-41,1.3917696347674083e-41,1.2922774438003463e-41,1.1929253826797168e-41,1.0935733215590872e-41,9.940811305920252e-42,8.947290694713957e-42,7.953770083507662e-42,6.958848173837042e-42,5.965327562630746e-42,4.971806951424451e-42,3.976885041753831e-42,2.9833644305475355e-42,1.9884425208769154e-42,9.949219096706201e-43,1.401298464324817e-45],"x":["00000000000010101110001110011000","00000000000010101110000011010010","00000000000010101101111000001101","00000000000010101101101101001000","00000000000010101101100010000010","00000000000010101101010110111101","00000000000010101101001011111000","00000000000010101101000000110010","00000000000010101100110101101101","00000000000010101100101010101000","00000000000010101100011111100010","00000000000010101100010100011101","00000000000010101100001001010111","00000000000010101011111110010010","00000000000010101011110011001101","00000000000010101011101000000111","00000000000010101011011101000010","00000000000010101011010001111101","00000000000010101011000110110111","00000000000010101010111011110010","00000000000010101010110000101101","00000000000010101010100101100111","00000000000010101010011010100010","00000000000010101010001111011100","00000000000010101010000100010111","00000000000010101001111001010010","00000000000010101001101110001100","00000000000010101001100011000111","00000000000010101001011000000010","00000000000010101001001100111100","00000000000010101001000001110111","00000000000010101000110110110001","00000000000010101000101011101100","00000000000010101000100000100111","00000000000010101000010101100001","00000000000010101000001010011100","00000000000010100111111111010111","00000000000010100111110100010001","00000000000010100111101001001100","00000000000010100111011110000111","00000000000010100111010011000001","00000000000010100111000111111100","00000000000010100110111100110110","00000000000010100110110001110001","00000000000010100110100110101100","00000000000010100110011011100110","00000000000010100110010000100001","00000000000010100110000101011100","00000000000010100101111010010110","00000000000010100101101111010001","00000000000010100101100100001011","00000000000010100101011001000110","00000000000010100101001110000001","00000000000010100101000010111011","00000000000010100100110111110110","00000000000010100100101100110001","00000000000010100100100001101011","00000000000010100100010110100110","00000000000010100100001011100001","00000000000010100100000000011011","00000000000010100011110101010110","00000000000010100011101010010000","00000000000010100011011111001011","00000000000010100011010100000110","00000000000010100011001001000000","00000000000010100010111101111011","00000000000010100010110010110110","00000000000010100010100111110000","00000000000010100010011100101011","00000000000010100010010001100110","00000000000010100010000110100000","00000000000010100001111011011011","00000000000010100001110000010101","00000000000010100001100101010000","00000000000010100001011010001011","00000000000010100001001111000101","00000000000010100001000100000000","00000000000010100000111000111011","00000000000010100000101101110101","00000000000010100000100010110000","00000000000010100000010111101010","00000000000010100000001100100101","00000000000010100000000001100000","00000000000010011111110110011010","00000000000010011111101011010101","00000000000010011111100000010000","00000000000010011111010101001010","00000000000010011111001010000101","00000000000010011110111111000000","00000000000010011110110011111010","00000000000010011110101000110101","00000000000010011110011101101111","00000000000010011110010010101010","00000000000010011110000111100101","00000000000010011101111100011111","00000000000010011101110001011010","00000000000010011101100110010101","00000000000010011101011011001111","00000000000010011101010000001010","00000000000010011101000101000101","00000000000010011100111001111111","00000000000010011100101110111010","00000000000010011100100011110100","00000000000010011100011000101111","00000000000010011100001101101010","00000000000010011100000010100100","00000000000010011011110111011111","00000000000010011011101100011010","00000000000010011011100001010100","00000000000010011011010110001111","00000000000010011011001011001001","00000000000010011011000000000100","00000000000010011010110100111111","00000000000010011010101001111001","00000000000010011010011110110100","00000000000010011010010011101111","00000000000010011010001000101001","00000000000010011001111101100100","00000000000010011001110010011111","00000000000010011001100111011001","00000000000010011001011100010100","00000000000010011001010001001110","00000000000010011001000110001001","00000000000010011000111011000100","00000000000010011000101111111110","00000000000010011000100100111001","00000000000010011000011001110100","00000000000010011000001110101110","00000000000010011000000011101001","00000000000010010111111000100100","00000000000010010111101101011110","00000000000010010111100010011001","00000000000010010111010111010011","00000000000010010111001100001110","00000000000010010111000001001001","00000000000010010110110110000011","00000000000010010110101010111110","00000000000010010110011111111001","00000000000010010110010100110011","00000000000010010110001001101110","00000000000010010101111110101000","00000000000010010101110011100011","00000000000010010101101000011110","00000000000010010101011101011000","00000000000010010101010010010011","00000000000010010101000111001110","00000000000010010100111100001000","00000000000010010100110001000011","00000000000010010100100101111110","00000000000010010100011010111000","00000000000010010100001111110011","00000000000010010100000100101101","00000000000010010011111001101000","00000000000010010011101110100011","00000000000010010011100011011101","00000000000010010011011000011000","00000000000010010011001101010011","00000000000010010011000010001101","00000000000010010010110111001000","00000000000010010010101100000011","00000000000010010010100000111101","00000000000010010010010101111000","00000000000010010010001010110010","00000000000010010001111111101101","00000000000010010001110100101000","00000000000010010001101001100010","00000000000010010001011110011101","00000000000010010001010011011000","00000000000010010001001000010010","00000000000010010000111101001101","00000000000010010000110010000111","00000000000010010000100111000010","00000000000010010000011011111101","00000000000010010000010000110111","00000000000010010000000101110010","00000000000010001111111010101101","00000000000010001111101111100111","00000000000010001111100100100010","00000000000010001111011001011101","00000000000010001111001110010111","00000000000010001111000011010010","00000000000010001110111000001100","00000000000010001110101101000111","00000000000010001110100010000010","00000000000010001110010110111100","00000000000010001110001011110111","00000000000010001110000000110010","00000000000010001101110101101100","00000000000010001101101010100111","00000000000010001101011111100001","00000000000010001101010100011100","00000000000010001101001001010111","00000000000010001100111110010001","00000000000010001100110011001100","00000000000010001100101000000111","00000000000010001100011101000001","00000000000010001100010001111100","00000000000010001100000110110111","00000000000010001011111011110001","00000000000010001011110000101100","00000000000010001011100101100110","00000000000010001011011010100001","00000000000010001011001111011100","00000000000010001011000100010110","00000000000010001010111001010001","00000000000010001010101110001100","00000000000010001010100011000110","00000000000010001010011000000001","00000000000010001010001100111100","00000000000010001010000001110110","00000000000010001001110110110001","00000000000010001001101011101011","00000000000010001001100000100110","00000000000010001001010101100001","00000000000010001001001010011011","00000000000010001000111111010110","00000000000010001000110100010001","00000000000010001000101001001011","00000000000010001000011110000110","00000000000010001000010011000000","00000000000010001000000111111011","00000000000010000111111100110110","00000000000010000111110001110000","00000000000010000111100110101011","00000000000010000111011011100110","00000000000010000111010000100000","00000000000010000111000101011011","00000000000010000110111010010110","00000000000010000110101111010000","00000000000010000110100100001011","00000000000010000110011001000101","00000000000010000110001110000000","00000000000010000110000010111011","00000000000010000101110111110101","00000000000010000101101100110000","00000000000010000101100001101011","00000000000010000101010110100101","00000000000010000101001011100000","00000000000010000101000000011011","00000000000010000100110101010101","00000000000010000100101010010000","00000000000010000100011111001010","00000000000010000100010100000101","00000000000010000100001001000000","00000000000010000011111101111010","00000000000010000011110010110101","00000000000010000011100111110000","00000000000010000011011100101010","00000000000010000011010001100101","00000000000010000011000110011111","00000000000010000010111011011010","00000000000010000010110000010101","00000000000010000010100101001111","00000000000010000010011010001010","00000000000010000010001111000101","00000000000010000010000011111111","00000000000010000001111000111010","00000000000010000001101101110101","00000000000010000001100010101111","00000000000010000001010111101010","00000000000010000001001100100100","00000000000010000001000001011111","00000000000010000000110110011010","00000000000010000000101011010100","00000000000010000000100000001111","00000000000010000000010101001010","00000000000010000000001010000100","00000000000001111111111110111111","00000000000001111111110011111010","00000000000001111111101000110100","00000000000001111111011101101111","00000000000001111111010010101001","00000000000001111111000111100100","00000000000001111110111100011111","00000000000001111110110001011001","00000000000001111110100110010100","00000000000001111110011011001111","00000000000001111110010000001001","00000000000001111110000101000100","00000000000001111101111001111110","00000000000001111101101110111001","00000000000001111101100011110100","00000000000001111101011000101110","00000000000001111101001101101001","00000000000001111101000010100100","00000000000001111100110111011110","00000000000001111100101100011001","00000000000001111100100001010100","00000000000001111100010110001110","00000000000001111100001011001001","00000000000001111100000000000011","00000000000001111011110100111110","00000000000001111011101001111001","00000000000001111011011110110011","00000000000001111011010011101110","00000000000001111011001000101001","00000000000001111010111101100011","00000000000001111010110010011110","00000000000001111010100111011001","00000000000001111010011100010011","00000000000001111010010001001110","00000000000001111010000110001000","00000000000001111001111011000011","00000000000001111001101111111110","00000000000001111001100100111000","00000000000001111001011001110011","00000000000001111001001110101110","00000000000001111001000011101000","00000000000001111000111000100011","00000000000001111000101101011101","00000000000001111000100010011000","00000000000001111000010111010011","00000000000001111000001100001101","00000000000001111000000001001000","00000000000001110111110110000011","00000000000001110111101010111101","00000000000001110111011111111000","00000000000001110111010100110011","00000000000001110111001001101101","00000000000001110110111110101000","00000000000001110110110011100010","00000000000001110110101000011101","00000000000001110110011101011000","00000000000001110110010010010010","00000000000001110110000111001101","00000000000001110101111100001000","00000000000001110101110001000010","00000000000001110101100101111101","00000000000001110101011010110111","00000000000001110101001111110010","00000000000001110101000100101101","00000000000001110100111001100111","00000000000001110100101110100010","00000000000001110100100011011101","00000000000001110100011000010111","00000000000001110100001101010010","00000000000001110100000010001101","00000000000001110011110111000111","00000000000001110011101100000010","00000000000001110011100000111100","00000000000001110011010101110111","00000000000001110011001010110010","00000000000001110010111111101100","00000000000001110010110100100111","00000000000001110010101001100010","00000000000001110010011110011100","00000000000001110010010011010111","00000000000001110010001000010010","00000000000001110001111101001100","00000000000001110001110010000111","00000000000001110001100111000001","00000000000001110001011011111100","00000000000001110001010000110111","00000000000001110001000101110001","00000000000001110000111010101100","00000000000001110000101111100111","00000000000001110000100100100001","00000000000001110000011001011100","00000000000001110000001110010110","00000000000001110000000011010001","00000000000001101111111000001100","00000000000001101111101101000110","00000000000001101111100010000001","00000000000001101111010110111100","00000000000001101111001011110110","00000000000001101111000000110001","00000000000001101110110101101100","00000000000001101110101010100110","00000000000001101110011111100001","00000000000001101110010100011011","00000000000001101110001001010110","00000000000001101101111110010001","00000000000001101101110011001011","00000000000001101101101000000110","00000000000001101101011101000001","00000000000001101101010001111011","00000000000001101101000110110110","00000000000001101100111011110001","00000000000001101100110000101011","00000000000001101100100101100110","00000000000001101100011010100000","00000000000001101100001111011011","00000000000001101100000100010110","00000000000001101011111001010000","00000000000001101011101110001011","00000000000001101011100011000110","00000000000001101011011000000000","00000000000001101011001100111011","00000000000001101011000001110101","00000000000001101010110110110000","00000000000001101010101011101011","00000000000001101010100000100101","00000000000001101010010101100000","00000000000001101010001010011011","00000000000001101001111111010101","00000000000001101001110100010000","00000000000001101001101001001011","00000000000001101001011110000101","00000000000001101001010011000000","00000000000001101001000111111010","00000000000001101000111100110101","00000000000001101000110001110000","00000000000001101000100110101010","00000000000001101000011011100101","00000000000001101000010000100000","00000000000001101000000101011010","00000000000001100111111010010101","00000000000001100111101111010000","00000000000001100111100100001010","00000000000001100111011001000101","00000000000001100111001101111111","00000000000001100111000010111010","00000000000001100110110111110101","00000000000001100110101100101111","00000000000001100110100001101010","00000000000001100110010110100101","00000000000001100110001011011111","00000000000001100110000000011010","00000000000001100101110101010100","00000000000001100101101010001111","00000000000001100101011111001010","00000000000001100101010100000100","00000000000001100101001000111111","00000000000001100100111101111010","00000000000001100100110010110100","00000000000001100100100111101111","00000000000001100100011100101010","00000000000001100100010001100100","00000000000001100100000110011111","00000000000001100011111011011001","00000000000001100011110000010100","00000000000001100011100101001111","00000000000001100011011010001001","00000000000001100011001111000100","00000000000001100011000011111111","00000000000001100010111000111001","00000000000001100010101101110100","00000000000001100010100010101110","00000000000001100010010111101001","00000000000001100010001100100100","00000000000001100010000001011110","00000000000001100001110110011001","00000000000001100001101011010100","00000000000001100001100000001110","00000000000001100001010101001001","00000000000001100001001010000100","00000000000001100000111110111110","00000000000001100000110011111001","00000000000001100000101000110011","00000000000001100000011101101110","00000000000001100000010010101001","00000000000001100000000111100011","00000000000001011111111100011110","00000000000001011111110001011001","00000000000001011111100110010011","00000000000001011111011011001110","00000000000001011111010000001001","00000000000001011111000101000011","00000000000001011110111001111110","00000000000001011110101110111000","00000000000001011110100011110011","00000000000001011110011000101110","00000000000001011110001101101000","00000000000001011110000010100011","00000000000001011101110111011110","00000000000001011101101100011000","00000000000001011101100001010011","00000000000001011101010110001101","00000000000001011101001011001000","00000000000001011101000000000011","00000000000001011100110100111101","00000000000001011100101001111000","00000000000001011100011110110011","00000000000001011100010011101101","00000000000001011100001000101000","00000000000001011011111101100011","00000000000001011011110010011101","00000000000001011011100111011000","00000000000001011011011100010010","00000000000001011011010001001101","00000000000001011011000110001000","00000000000001011010111011000010","00000000000001011010101111111101","00000000000001011010100100111000","00000000000001011010011001110010","00000000000001011010001110101101","00000000000001011010000011101000","00000000000001011001111000100010","00000000000001011001101101011101","00000000000001011001100010010111","00000000000001011001010111010010","00000000000001011001001100001101","00000000000001011001000001000111","00000000000001011000110110000010","00000000000001011000101010111101","00000000000001011000011111110111","00000000000001011000010100110010","00000000000001011000001001101100","00000000000001010111111110100111","00000000000001010111110011100010","00000000000001010111101000011100","00000000000001010111011101010111","00000000000001010111010010010010","00000000000001010111000111001100","00000000000001010110111100000111","00000000000001010110110001000010","00000000000001010110100101111100","00000000000001010110011010110111","00000000000001010110001111110001","00000000000001010110000100101100","00000000000001010101111001100111","00000000000001010101101110100001","00000000000001010101100011011100","00000000000001010101011000010111","00000000000001010101001101010001","00000000000001010101000010001100","00000000000001010100110111000111","00000000000001010100101100000001","00000000000001010100100000111100","00000000000001010100010101110110","00000000000001010100001010110001","00000000000001010011111111101100","00000000000001010011110100100110","00000000000001010011101001100001","00000000000001010011011110011100","00000000000001010011010011010110","00000000000001010011001000010001","00000000000001010010111101001011","00000000000001010010110010000110","00000000000001010010100111000001","00000000000001010010011011111011","00000000000001010010010000110110","00000000000001010010000101110001","00000000000001010001111010101011","00000000000001010001101111100110","00000000000001010001100100100001","00000000000001010001011001011011","00000000000001010001001110010110","00000000000001010001000011010000","00000000000001010000111000001011","00000000000001010000101101000110","00000000000001010000100010000000","00000000000001010000010110111011","00000000000001010000001011110110","00000000000001010000000000110000","00000000000001001111110101101011","00000000000001001111101010100110","00000000000001001111011111100000","00000000000001001111010100011011","00000000000001001111001001010101","00000000000001001110111110010000","00000000000001001110110011001011","00000000000001001110101000000101","00000000000001001110011101000000","00000000000001001110010001111011","00000000000001001110000110110101","00000000000001001101111011110000","00000000000001001101110000101010","00000000000001001101100101100101","00000000000001001101011010100000","00000000000001001101001111011010","00000000000001001101000100010101","00000000000001001100111001010000","00000000000001001100101110001010","00000000000001001100100011000101","00000000000001001100011000000000","00000000000001001100001100111010","00000000000001001100000001110101","00000000000001001011110110101111","00000000000001001011101011101010","00000000000001001011100000100101","00000000000001001011010101011111","00000000000001001011001010011010","00000000000001001010111111010101","00000000000001001010110100001111","00000000000001001010101001001010","00000000000001001010011110000100","00000000000001001010010010111111","00000000000001001010000111111010","00000000000001001001111100110100","00000000000001001001110001101111","00000000000001001001100110101010","00000000000001001001011011100100","00000000000001001001010000011111","00000000000001001001000101011010","00000000000001001000111010010100","00000000000001001000101111001111","00000000000001001000100100001001","00000000000001001000011001000100","00000000000001001000001101111111","00000000000001001000000010111001","00000000000001000111110111110100","00000000000001000111101100101111","00000000000001000111100001101001","00000000000001000111010110100100","00000000000001000111001011011111","00000000000001000111000000011001","00000000000001000110110101010100","00000000000001000110101010001110","00000000000001000110011111001001","00000000000001000110010100000100","00000000000001000110001000111110","00000000000001000101111101111001","00000000000001000101110010110100","00000000000001000101100111101110","00000000000001000101011100101001","00000000000001000101010001100011","00000000000001000101000110011110","00000000000001000100111011011001","00000000000001000100110000010011","00000000000001000100100101001110","00000000000001000100011010001001","00000000000001000100001111000011","00000000000001000100000011111110","00000000000001000011111000111001","00000000000001000011101101110011","00000000000001000011100010101110","00000000000001000011010111101000","00000000000001000011001100100011","00000000000001000011000001011110","00000000000001000010110110011000","00000000000001000010101011010011","00000000000001000010100000001110","00000000000001000010010101001000","00000000000001000010001010000011","00000000000001000001111110111110","00000000000001000001110011111000","00000000000001000001101000110011","00000000000001000001011101101101","00000000000001000001010010101000","00000000000001000001000111100011","00000000000001000000111100011101","00000000000001000000110001011000","00000000000001000000100110010011","00000000000001000000011011001101","00000000000001000000010000001000","00000000000001000000000101000010","00000000000000111111111001111101","00000000000000111111101110111000","00000000000000111111100011110010","00000000000000111111011000101101","00000000000000111111001101101000","00000000000000111111000010100010","00000000000000111110110111011101","00000000000000111110101100011000","00000000000000111110100001010010","00000000000000111110010110001101","00000000000000111110001011000111","00000000000000111110000000000010","00000000000000111101110100111101","00000000000000111101101001110111","00000000000000111101011110110010","00000000000000111101010011101101","00000000000000111101001000100111","00000000000000111100111101100010","00000000000000111100110010011101","00000000000000111100100111010111","00000000000000111100011100010010","00000000000000111100010001001100","00000000000000111100000110000111","00000000000000111011111011000010","00000000000000111011101111111100","00000000000000111011100100110111","00000000000000111011011001110010","00000000000000111011001110101100","00000000000000111011000011100111","00000000000000111010111000100001","00000000000000111010101101011100","00000000000000111010100010010111","00000000000000111010010111010001","00000000000000111010001100001100","00000000000000111010000001000111","00000000000000111001110110000001","00000000000000111001101010111100","00000000000000111001011111110111","00000000000000111001010100110001","00000000000000111001001001101100","00000000000000111000111110100110","00000000000000111000110011100001","00000000000000111000101000011100","00000000000000111000011101010110","00000000000000111000010010010001","00000000000000111000000111001100","00000000000000110111111100000110","00000000000000110111110001000001","00000000000000110111100101111011","00000000000000110111011010110110","00000000000000110111001111110001","00000000000000110111000100101011","00000000000000110110111001100110","00000000000000110110101110100001","00000000000000110110100011011011","00000000000000110110011000010110","00000000000000110110001101010001","00000000000000110110000010001011","00000000000000110101110111000110","00000000000000110101101100000000","00000000000000110101100000111011","00000000000000110101010101110110","00000000000000110101001010110000","00000000000000110100111111101011","00000000000000110100110100100110","00000000000000110100101001100000","00000000000000110100011110011011","00000000000000110100010011010110","00000000000000110100001000010000","00000000000000110011111101001011","00000000000000110011110010000101","00000000000000110011100111000000","00000000000000110011011011111011","00000000000000110011010000110101","00000000000000110011000101110000","00000000000000110010111010101011","00000000000000110010101111100101","00000000000000110010100100100000","00000000000000110010011001011010","00000000000000110010001110010101","00000000000000110010000011010000","00000000000000110001111000001010","00000000000000110001101101000101","00000000000000110001100010000000","00000000000000110001010110111010","00000000000000110001001011110101","00000000000000110001000000110000","00000000000000110000110101101010","00000000000000110000101010100101","00000000000000110000011111011111","00000000000000110000010100011010","00000000000000110000001001010101","00000000000000101111111110001111","00000000000000101111110011001010","00000000000000101111101000000101","00000000000000101111011100111111","00000000000000101111010001111010","00000000000000101111000110110101","00000000000000101110111011101111","00000000000000101110110000101010","00000000000000101110100101100100","00000000000000101110011010011111","00000000000000101110001111011010","00000000000000101110000100010100","00000000000000101101111001001111","00000000000000101101101110001010","00000000000000101101100011000100","00000000000000101101010111111111","00000000000000101101001100111001","00000000000000101101000001110100","00000000000000101100110110101111","00000000000000101100101011101001","00000000000000101100100000100100","00000000000000101100010101011111","00000000000000101100001010011001","00000000000000101011111111010100","00000000000000101011110100001111","00000000000000101011101001001001","00000000000000101011011110000100","00000000000000101011010010111110","00000000000000101011000111111001","00000000000000101010111100110100","00000000000000101010110001101110","00000000000000101010100110101001","00000000000000101010011011100100","00000000000000101010010000011110","00000000000000101010000101011001","00000000000000101001111010010100","00000000000000101001101111001110","00000000000000101001100100001001","00000000000000101001011001000011","00000000000000101001001101111110","00000000000000101001000010111001","00000000000000101000110111110011","00000000000000101000101100101110","00000000000000101000100001101001","00000000000000101000010110100011","00000000000000101000001011011110","00000000000000101000000000011000","00000000000000100111110101010011","00000000000000100111101010001110","00000000000000100111011111001000","00000000000000100111010100000011","00000000000000100111001000111110","00000000000000100110111101111000","00000000000000100110110010110011","00000000000000100110100111101110","00000000000000100110011100101000","00000000000000100110010001100011","00000000000000100110000110011101","00000000000000100101111011011000","00000000000000100101110000010011","00000000000000100101100101001101","00000000000000100101011010001000","00000000000000100101001111000011","00000000000000100101000011111101","00000000000000100100111000111000","00000000000000100100101101110011","00000000000000100100100010101101","00000000000000100100010111101000","00000000000000100100001100100010","00000000000000100100000001011101","00000000000000100011110110011000","00000000000000100011101011010010","00000000000000100011100000001101","00000000000000100011010101001000","00000000000000100011001010000010","00000000000000100010111110111101","00000000000000100010110011110111","00000000000000100010101000110010","00000000000000100010011101101101","00000000000000100010010010100111","00000000000000100010000111100010","00000000000000100001111100011101","00000000000000100001110001010111","00000000000000100001100110010010","00000000000000100001011011001101","00000000000000100001010000000111","00000000000000100001000101000010","00000000000000100000111001111100","00000000000000100000101110110111","00000000000000100000100011110010","00000000000000100000011000101100","00000000000000100000001101100111","00000000000000100000000010100010","00000000000000011111110111011100","00000000000000011111101100010111","00000000000000011111100001010001","00000000000000011111010110001100","00000000000000011111001011000111","00000000000000011111000000000001","00000000000000011110110100111100","00000000000000011110101001110111","00000000000000011110011110110001","00000000000000011110010011101100","00000000000000011110001000100111","00000000000000011101111101100001","00000000000000011101110010011100","00000000000000011101100111010110","00000000000000011101011100010001","00000000000000011101010001001100","00000000000000011101000110000110","00000000000000011100111011000001","00000000000000011100101111111100","00000000000000011100100100110110","00000000000000011100011001110001","00000000000000011100001110101100","00000000000000011100000011100110","00000000000000011011111000100001","00000000000000011011101101011011","00000000000000011011100010010110","00000000000000011011010111010001","00000000000000011011001100001011","00000000000000011011000001000110","00000000000000011010110110000001","00000000000000011010101010111011","00000000000000011010011111110110","00000000000000011010010100110000","00000000000000011010001001101011","00000000000000011001111110100110","00000000000000011001110011100000","00000000000000011001101000011011","00000000000000011001011101010110","00000000000000011001010010010000","00000000000000011001000111001011","00000000000000011000111100000110","00000000000000011000110001000000","00000000000000011000100101111011","00000000000000011000011010110101","00000000000000011000001111110000","00000000000000011000000100101011","00000000000000010111111001100101","00000000000000010111101110100000","00000000000000010111100011011011","00000000000000010111011000010101","00000000000000010111001101010000","00000000000000010111000010001011","00000000000000010110110111000101","00000000000000010110101100000000","00000000000000010110100000111010","00000000000000010110010101110101","00000000000000010110001010110000","00000000000000010101111111101010","00000000000000010101110100100101","00000000000000010101101001100000","00000000000000010101011110011010","00000000000000010101010011010101","00000000000000010101001000001111","00000000000000010100111101001010","00000000000000010100110010000101","00000000000000010100100110111111","00000000000000010100011011111010","00000000000000010100010000110101","00000000000000010100000101101111","00000000000000010011111010101010","00000000000000010011101111100101","00000000000000010011100100011111","00000000000000010011011001011010","00000000000000010011001110010100","00000000000000010011000011001111","00000000000000010010111000001010","00000000000000010010101101000100","00000000000000010010100001111111","00000000000000010010010110111010","00000000000000010010001011110100","00000000000000010010000000101111","00000000000000010001110101101010","00000000000000010001101010100100","00000000000000010001011111011111","00000000000000010001010100011001","00000000000000010001001001010100","00000000000000010000111110001111","00000000000000010000110011001001","00000000000000010000101000000100","00000000000000010000011100111111","00000000000000010000010001111001","00000000000000010000000110110100","00000000000000001111111011101110","00000000000000001111110000101001","00000000000000001111100101100100","00000000000000001111011010011110","00000000000000001111001111011001","00000000000000001111000100010100","00000000000000001110111001001110","00000000000000001110101110001001","00000000000000001110100011000100","00000000000000001110010111111110","00000000000000001110001100111001","00000000000000001110000001110011","00000000000000001101110110101110","00000000000000001101101011101001","00000000000000001101100000100011","00000000000000001101010101011110","00000000000000001101001010011001","00000000000000001100111111010011","00000000000000001100110100001110","00000000000000001100101001001000","00000000000000001100011110000011","00000000000000001100010010111110","00000000000000001100000111111000","00000000000000001011111100110011","00000000000000001011110001101110","00000000000000001011100110101000","00000000000000001011011011100011","00000000000000001011010000011110","00000000000000001011000101011000","00000000000000001010111010010011","00000000000000001010101111001101","00000000000000001010100100001000","00000000000000001010011001000011","00000000000000001010001101111101","00000000000000001010000010111000","00000000000000001001110111110011","00000000000000001001101100101101","00000000000000001001100001101000","00000000000000001001010110100011","00000000000000001001001011011101","00000000000000001001000000011000","00000000000000001000110101010010","00000000000000001000101010001101","00000000000000001000011111001000","00000000000000001000010100000010","00000000000000001000001000111101","00000000000000000111111101111000","00000000000000000111110010110010","00000000000000000111100111101101","00000000000000000111011100100111","00000000000000000111010001100010","00000000000000000111000110011101","00000000000000000110111011010111","00000000000000000110110000010010","00000000000000000110100101001101","00000000000000000110011010000111","00000000000000000110001111000010","00000000000000000110000011111101","00000000000000000101111000110111","00000000000000000101101101110010","00000000000000000101100010101100","00000000000000000101010111100111","00000000000000000101001100100010","00000000000000000101000001011100","00000000000000000100110110010111","00000000000000000100101011010010","00000000000000000100100000001100","00000000000000000100010101000111","00000000000000000100001010000010","00000000000000000011111110111100","00000000000000000011110011110111","00000000000000000011101000110001","00000000000000000011011101101100","00000000000000000011010010100111","00000000000000000011000111100001","00000000000000000010111100011100","00000000000000000010110001010111","00000000000000000010100110010001","00000000000000000010011011001100","00000000000000000010010000000110","00000000000000000010000101000001","00000000000000000001111001111100","00000000000000000001101110110110","00000000000000000001100011110001","00000000000000000001011000101100","00000000000000000001001101100110","00000000000000000001000010100001","00000000000000000000110111011100","00000000000000000000101100010110","00000000000000000000100001010001","00000000000000000000010110001011","00000000000000000000001011000110","00000000000000000000000000000001"]}
-},{}],132:[function(require,module,exports){
+
+},{}],136:[function(require,module,exports){
 module.exports={"expected":[9.999999616903162e35,1.098409579261934e36,1.1968191176053893e36,1.2952286559488446e36,1.3936381150641374e36,1.492047732635755e36,1.590457191751048e36,1.6888668093226657e36,1.7872762684379585e36,1.8856858860095762e36,1.984095503581194e36,2.0825049626964868e36,2.1809145802681046e36,2.2793240393833974e36,2.377733656955015e36,2.476143116070308e36,2.5745527336419257e36,2.6729623512135435e36,2.771371651872511e36,2.869781269444129e36,2.968190887015747e36,3.0666005045873646e36,3.1650098052463323e36,3.26341942281795e36,3.361829040389568e36,3.4602386579611857e36,3.5586479586201534e36,3.657057576191771e36,3.755467193763389e36,3.853876811335007e36,3.9522864289066246e36,4.0506957295655923e36,4.14910534713721e36,4.247514964708828e36,4.3459245822804457e36,4.4443338829394134e36,4.542743500511031e36,4.641153118082649e36,4.739562735654267e36,4.8379720363132345e36,4.9363816538848523e36,5.03479127145647e36,5.133200889028088e36,5.2316101896870556e36,5.330020124171323e36,5.428429107917641e36,5.526838725489259e36,5.625248343060877e36,5.723657960632495e36,5.822067578204112e36,5.92047719577573e36,6.018886813347348e36,6.117296430918966e36,6.215706048490584e36,6.314115032236901e36,6.412524649808519e36,6.510934267380137e36,6.609343884951755e36,6.707753502523372e36,6.80616312009499e36,6.904572737666608e36,7.002982355238226e36,7.101391338984543e36,7.199800956556161e36,7.298210574127779e36,7.396620191699397e36,7.495029809271015e36,7.593439426842632e36,7.69184904441425e36,7.790258661985868e36,7.888668279557486e36,7.987077263303803e36,8.085486880875421e36,8.183896498447039e36,8.282306116018657e36,8.380715733590275e36,8.479125351161892e36,8.57753496873351e36,8.675944586305128e36,8.774353570051446e36,8.872763187623063e36,8.971172805194681e36,9.069582422766299e36,9.167992040337917e36,9.266401657909535e36,9.364811275481152e36,9.46322089305277e36,9.561630510624388e36,9.660039494370706e36,9.758449111942323e36,9.856858729513941e36,9.955268347085559e36,1.0053677964657177e37,1.0152087582228795e37,1.0250497199800412e37,1.034890681737203e37,1.0447315801118348e37,1.0545725418689966e37,1.0644135036261583e37,1.0742545287658501e37,1.084095427140482e37,1.0939363255151137e37,1.1037773506548055e37,1.1136182490294372e37,1.123459274169129e37,1.1333001725437608e37,1.1431411976834526e37,1.1529820960580843e37,1.1628231211977761e37,1.172664019572408e37,1.1825049179470397e37,1.1923459430867315e37,1.2021868414613632e37,1.212027866601055e37,1.2218687649756868e37,1.2317097901153786e37,1.2415506884900103e37,1.251391586864642e37,1.261232612004334e37,1.2710735103789657e37,1.2809145355186575e37,1.2907554338932892e37,1.300596459032981e37,1.3104373574076128e37,1.3202783825473046e37,1.3301192809219363e37,1.339960179296568e37,1.34980120443626e37,1.3596421028108917e37,1.3694831279505835e37,1.3793240263252152e37,1.389165051464907e37,1.3990059498395388e37,1.4088469749792306e37,1.4186878733538623e37,1.428528771728494e37,1.438369796868186e37,1.4482106952428177e37,1.4580517203825095e37,1.4678926187571412e37,1.477733643896833e37,1.4875745422714648e37,1.4974155674111566e37,1.5072564657857883e37,1.51709736416042e37,1.526938389300112e37,1.5367792876747437e37,1.5466203128144355e37,1.5564612111890672e37,1.566302236328759e37,1.5761431347033908e37,1.5859840330780226e37,1.5958250582177143e37,1.605665956592346e37,1.615506981732038e37,1.6253478801066697e37,1.6351889052463615e37,1.6450298036209932e37,1.654870828760685e37,1.6647117271353168e37,1.6745526255099486e37,1.6843936506496403e37,1.694234549024272e37,1.704075574163964e37,1.7139164725385957e37,1.7237574976782875e37,1.7335983960529192e37,1.743439421192611e37,1.7532803195672428e37,1.7631212179418746e37,1.7729622430815663e37,1.782803141456198e37,1.79264416659589e37,1.8024850649705217e37,1.8123260901102135e37,1.8221669884848452e37,1.832008013624537e37,1.8418489119991688e37,1.8516898103738006e37,1.8615308355134923e37,1.871371733888124e37,1.881212759027816e37,1.8910536574024477e37,1.9008946825421395e37,1.9107355809167712e37,1.920576479291403e37,1.9304175044310948e37,1.9402584028057266e37,1.9500994279454183e37,1.95994032632005e37,1.969781351459742e37,1.9796222498343737e37,1.9894632749740655e37,1.9993041733486972e37,2.009145071723329e37,2.0189860968630208e37,2.0288269952376526e37,2.0386680203773443e37,2.048508918751976e37,2.058349943891668e37,2.0681908422662997e37,2.0780318674059915e37,2.0878727657806232e37,2.097713664155255e37,2.1075546892949468e37,2.1173955876695786e37,2.1272366128092703e37,2.137077637948962e37,2.146918409558534e37,2.1567594346982257e37,2.1666004598379175e37,2.176441231447489e37,2.186282256587181e37,2.196123281726873e37,2.2059643068665646e37,2.2158050784761363e37,2.225646103615828e37,2.23548712875552e37,2.2453281538952117e37,2.2551689255047834e37,2.265009950644475e37,2.274850975784167e37,2.2846917473937388e37,2.2945327725334306e37,2.3043737976731223e37,2.314214822812814e37,2.324055594422386e37,2.3338966195620777e37,2.3437376447017695e37,2.353578416311341e37,2.363419441451033e37,2.373260466590725e37,2.3831014917304166e37,2.3929422633399883e37,2.40278328847968e37,2.412624313619372e37,2.4224650852289436e37,2.4323061103686354e37,2.442147135508327e37,2.451988160648019e37,2.4618289322575908e37,2.4716699573972826e37,2.4815109825369743e37,2.491352007676666e37,2.501192779286238e37,2.5110338044259297e37,2.5208748295656215e37,2.530715601175193e37,2.540556626314885e37,2.550397651454577e37,2.5602386765942686e37,2.5700794482038403e37,2.579920473343532e37,2.589761498483224e37,2.5996022700927956e37,2.6094432952324874e37,2.619284320372179e37,2.629125345511871e37,2.638966117121443e37,2.6488071422611346e37,2.6586481674008263e37,2.668488939010398e37,2.67832996415009e37,2.6881709892897817e37,2.6980120144294735e37,2.707852786039045e37,2.717693811178737e37,2.727534836318429e37,2.7373758614581206e37,2.7472166330676923e37,2.757057658207384e37,2.766898683347076e37,2.7767394549566476e37,2.7865804800963394e37,2.796421505236031e37,2.806262530375723e37,2.816103301985295e37,2.8259443271249866e37,2.8357853522646783e37,2.84562612387425e37,2.855467149013942e37,2.8653081741536337e37,2.8751491992933255e37,2.884989970902897e37,2.894830996042589e37,2.904672021182281e37,2.9145130463219726e37,2.9243538179315443e37,2.934194843071236e37,2.944035868210928e37,2.9538766398204996e37,2.9637176649601914e37,2.973558690099883e37,2.983399715239575e37,2.993240486849147e37,3.0030815119888386e37,3.0129225371285303e37,3.022763308738102e37,3.032604333877794e37,3.0424453590174857e37,3.0522863841571775e37,3.062127155766749e37,3.071968180906441e37,3.081809206046133e37,3.0916499776557045e37,3.1014910027953963e37,3.111332027935088e37,3.12117305307478e37,3.1310138246843516e37,3.1408548498240434e37,3.150695874963735e37,3.160536900103427e37,3.170377671712999e37,3.1802186968526906e37,3.1900597219923823e37,3.199900493601954e37,3.209741518741646e37,3.2195825438813377e37,3.2294235690210295e37,3.239264340630601e37,3.249105365770293e37,3.258946390909985e37,3.2687871625195565e37,3.2786281876592483e37,3.28846921279894e37,3.298310237938632e37,3.3081510095482037e37,3.3179920346878954e37,3.327833059827587e37,3.337673831437159e37,3.347514856576851e37,3.3573558817165426e37,3.3671969068562343e37,3.377037678465806e37,3.386878703605498e37,3.3967197287451897e37,3.4065607538848815e37,3.416401525494453e37,3.426242550634145e37,3.436083575773837e37,3.4459243473834085e37,3.4557653725231003e37,3.465606397662792e37,3.475447422802484e37,3.4852881944120557e37,3.4951292195517474e37,3.504970244691439e37,3.514811016301011e37,3.524652041440703e37,3.5344930665803946e37,3.5443340917200863e37,3.554174863329658e37,3.56401588846935e37,3.5738569136090417e37,3.5836979387487335e37,3.593538710358305e37,3.603379735497997e37,3.613220760637689e37,3.6230615322472605e37,3.6329025573869523e37,3.642743582526644e37,3.652584607666336e37,3.6624253792759077e37,3.6722664044155994e37,3.682107429555291e37,3.691948201164863e37,3.701789226304555e37,3.7116302514442466e37,3.7214712765839383e37,3.73131204819351e37,3.741153073333202e37,3.7509940984728937e37,3.7608348700824654e37,3.770675895222157e37,3.780516920361849e37,3.790357945501541e37,3.8001987171111125e37,3.8100397422508043e37,3.819880767390496e37,3.829721792530188e37,3.8395625641397597e37,3.8494035892794514e37,3.859244614419143e37,3.869085386028715e37,3.878926411168407e37,3.8887674363080986e37,3.8986084614477903e37,3.908449233057362e37,3.918290258197054e37,3.9281312833367457e37,3.9379720549463174e37,3.947813080086009e37,3.957654105225701e37,3.967495130365393e37,3.9773359019749645e37,3.9871769271146563e37,3.997017952254348e37,4.00685872386392e37,4.0166997490036117e37,4.0265407741433034e37,4.036381799282995e37,4.046222570892567e37,4.056063596032259e37,4.0659046211719506e37,4.0757456463116424e37,4.085586417921214e37,4.095427443060906e37,4.1052684682005977e37,4.1151092398101694e37,4.124950264949861e37,4.134791290089553e37,4.144632315229245e37,4.1544730868388165e37,4.1643141119785083e37,4.1741551371182e37,4.183995908727772e37,4.1938369338674637e37,4.2036779590071554e37,4.213518984146847e37,4.223359755756419e37,4.233200780896111e37,4.2430418060358026e37,4.2528825776453743e37,4.262723602785066e37,4.272564627924758e37,4.28240565306445e37,4.292246678204141e37,4.302087703343833e37,4.311928221423285e37,4.321769246562977e37,4.331610271702669e37,4.34145129684236e37,4.351292321982052e37,4.361133347121744e37,4.370974372261436e37,4.380814890340887e37,4.390655915480579e37,4.400496940620271e37,4.410337965759963e37,4.420178990899655e37,4.430020016039346e37,4.439861041179038e37,4.44970155925849e37,4.459542584398182e37,4.469383609537873e37,4.479224634677565e37,4.489065659817257e37,4.498906684956949e37,4.508747710096641e37,4.518588228176092e37,4.528429253315784e37,4.538270278455476e37,4.548111303595168e37,4.557952328734859e37,4.567793353874551e37,4.577634379014243e37,4.587474897093695e37,4.5973159222333865e37,4.607156947373078e37,4.61699797251277e37,4.626838997652462e37,4.636680022792154e37,4.646521047931845e37,4.656362073071537e37,4.666202591150989e37,4.676043616290681e37,4.685884641430373e37,4.695725666570064e37,4.705566691709756e37,4.715407716849448e37,4.72524874198914e37,4.735089260068591e37,4.744930285208283e37,4.754771310347975e37,4.764612335487667e37,4.774453360627359e37,4.78429438576705e37,4.794135410906742e37,4.803975928986194e37,4.813816954125886e37,4.823657979265577e37,4.833499004405269e37,4.843340029544961e37,4.853181054684653e37,4.863022079824345e37,4.872862597903796e37,4.882703623043488e37,4.89254464818318e37,4.902385673322872e37,4.912226698462563e37,4.922067723602255e37,4.931908748741947e37,4.941749266821399e37,4.9515902919610905e37,4.961431317100782e37,4.971272342240474e37,4.981113367380166e37,4.990954392519858e37,5.000795417659549e37,5.010635935739001e37,5.020476960878693e37,5.030317986018385e37,5.040159011158077e37,5.050000036297768e37,5.05984106143746e37,5.069682086577152e37,5.079523111716844e37,5.089363629796295e37,5.099204654935987e37,5.109045680075679e37,5.118886705215371e37,5.128727730355063e37,5.138568755494754e37,5.148409780634446e37,5.158250298713898e37,5.16809132385359e37,5.177932348993281e37,5.187773374132973e37,5.197614399272665e37,5.207455424412357e37,5.217296449552049e37,5.2271369676315e37,5.236977992771192e37,5.246819017910884e37,5.256660043050576e37,5.266501068190267e37,5.276342093329959e37,5.286183118469651e37,5.296023636549103e37,5.3058646616887945e37,5.315705686828486e37,5.325546711968178e37,5.33538773710787e37,5.345228762247562e37,5.355069787387253e37,5.364910305466705e37,5.374751330606397e37,5.384592355746089e37,5.394433380885781e37,5.404274406025472e37,5.414115431165164e37,5.423956456304856e37,5.433796974384308e37,5.443637999523999e37,5.453479024663691e37,5.463320049803383e37,5.473161074943075e37,5.483002100082767e37,5.492843125222458e37,5.50268364330191e37,5.512524668441602e37,5.522365693581294e37,5.532206718720985e37,5.542047743860677e37,5.551888769000369e37,5.561729794140061e37,5.571570819279753e37,5.581411337359204e37,5.591252362498896e37,5.601093387638588e37,5.61093441277828e37,5.620775437917971e37,5.630616463057663e37,5.640457488197355e37,5.650298006276807e37,5.6601390314164985e37,5.66998005655619e37,5.679821081695882e37,5.689662106835574e37,5.699503131975266e37,5.709344157114957e37,5.719184675194409e37,5.729025700334101e37,5.738866725473793e37,5.748707750613485e37,5.758548775753176e37,5.768389800892868e37,5.77823082603256e37,5.788071344112012e37,5.797912369251703e37,5.807753394391395e37,5.817594419531087e37,5.827435444670779e37,5.837276469810471e37,5.847117494950162e37,5.856958013029614e37,5.866799038169306e37,5.876640063308998e37,5.886481088448689e37,5.896322113588381e37,5.906163138728073e37,5.916004163867765e37,5.9258446819472165e37,5.935685707086908e37,5.9455267322266e37,5.955367757366292e37,5.965208782505984e37,5.975049807645675e37,5.984890832785367e37,5.994731857925059e37,6.004572376004511e37,6.0144134011442025e37,6.024254426283894e37,6.034095451423586e37,6.043936476563278e37,6.05377750170297e37,6.0636185268426615e37,6.073459044922113e37,6.083300070061805e37,6.093141095201497e37,6.102982120341189e37,6.11282314548088e37,6.122664170620572e37,6.132505195760264e37,6.142345713839716e37,6.152186738979407e37,6.162027764119099e37,6.171868789258791e37,6.181709814398483e37,6.191550839538175e37,6.201391864677866e37,6.211232382757318e37,6.22107340789701e37,6.230914433036702e37,6.240755458176393e37,6.250596483316085e37,6.260437508455777e37,6.270278533595469e37,6.2801190516749205e37,6.289960076814612e37,6.299801101954304e37,6.309642127093996e37,6.319483152233688e37,6.329324177373379e37,6.339165202513071e37,6.349005720592523e37,6.358846745732215e37,6.3686877708719065e37,6.378528796011598e37,6.38836982115129e37,6.398210846290982e37,6.408051871430674e37,6.4178928965703655e37,6.427733414649817e37,6.437574439789509e37,6.447415464929201e37,6.457256490068893e37,6.467097515208584e37,6.476938540348276e37,6.486779565487968e37,6.49662008356742e37,6.506461108707111e37,6.516302133846803e37,6.526143158986495e37,6.535984184126187e37,6.545825209265879e37,6.55566623440557e37,6.565506752485022e37,6.575347777624714e37,6.585188802764406e37,6.595029827904097e37,6.604870853043789e37,6.614711878183481e37,6.624552903323173e37,6.6343934214026245e37,6.644234446542316e37,6.654075471682008e37,6.6639164968217e37,6.673757521961392e37,6.683598547101083e37,6.693439572240775e37,6.703280090320227e37,6.713121115459919e37,6.7229621405996105e37,6.732803165739302e37,6.742644190878994e37,6.752485216018686e37,6.762326241158378e37,6.772166759237829e37,6.782007784377521e37,6.791848809517213e37,6.801689834656905e37,6.811530859796597e37,6.821371884936288e37,6.83121291007598e37,6.841053428155432e37,6.850894453295124e37,6.860735478434815e37,6.870576503574507e37,6.880417528714199e37,6.890258553853891e37,6.900099578993583e37,6.909940604133274e37,6.919781122212726e37,6.929622147352418e37,6.93946317249211e37,6.949304197631801e37,6.959145222771493e37,6.968986247911185e37,6.978827273050877e37,6.9886677911303285e37,6.99850881627002e37,7.008349841409712e37,7.018190866549404e37,7.028031891689096e37,7.037872916828787e37,7.047713941968479e37,7.057554460047931e37,7.067395485187623e37,7.0772365103273145e37,7.087077535467006e37,7.096918560606698e37,7.10675958574639e37,7.116600610886082e37,7.126441128965533e37,7.136282154105225e37,7.146123179244917e37,7.155964204384609e37,7.165805229524301e37,7.175646254663992e37,7.185487279803684e37,7.195327797883136e37,7.205168823022828e37,7.215009848162519e37,7.224850873302211e37,7.234691898441903e37,7.244532923581595e37,7.254373948721287e37,7.264214466800738e37,7.27405549194043e37,7.283896517080122e37,7.293737542219814e37,7.303578567359505e37,7.313419592499197e37,7.323260617638889e37,7.333101642778581e37,7.3429421608580325e37,7.352783185997724e37,7.362624211137416e37,7.372465236277108e37,7.3823062614168e37,7.392147286556491e37,7.401988311696183e37,7.411828829775635e37,7.421669854915327e37,7.4315108800550185e37,7.44135190519471e37,7.451192930334402e37,7.461033955474094e37,7.470874980613786e37,7.480715498693237e37,7.490556523832929e37,7.500397548972621e37,7.510238574112313e37,7.520079599252005e37,7.529920624391696e37,7.539761649531388e37,7.54960216761084e37,7.559443192750532e37,7.569284217890223e37,7.579125243029915e37,7.588966268169607e37,7.598807293309299e37,7.608648318448991e37,7.618488836528442e37,7.628329861668134e37,7.638170886807826e37,7.648011911947518e37,7.657852937087209e37,7.667693962226901e37,7.677534987366593e37,7.687375505446045e37,7.6972165305857365e37,7.707057555725428e37,7.71689858086512e37,7.726739606004812e37,7.736580631144504e37,7.746421656284195e37,7.756262174363647e37,7.766103199503339e37,7.775944224643031e37,7.7857852497827225e37,7.795626274922414e37,7.805467300062106e37,7.815308325201798e37,7.82514935034149e37,7.834989868420941e37,7.844830893560633e37,7.854671918700325e37,7.864512943840017e37,7.874353968979709e37,7.8841949941194e37,7.894036019259092e37,7.903876537338544e37,7.913717562478236e37,7.923558587617927e37,7.933399612757619e37,7.943240637897311e37,7.953081663037003e37,7.962922688176695e37,7.972763206256146e37,7.982604231395838e37,7.99244525653553e37,8.002286281675222e37,8.012127306814913e37,8.021968331954605e37,8.031809357094297e37,8.041649875173749e37,8.0514909003134405e37,8.061331925453132e37,8.071172950592824e37,8.081013975732516e37,8.090855000872208e37,8.100696026011899e37,8.110536544091351e37,8.120377569231043e37,8.130218594370735e37,8.1400596195104265e37,8.149900644650118e37,8.15974166978981e37,8.169582694929502e37,8.179423213008954e37,8.189264238148645e37,8.199105263288337e37,8.208946288428029e37,8.218787313567721e37,8.228628338707413e37,8.238469363847104e37,8.248310388986796e37,8.258150907066248e37,8.26799193220594e37,8.277832957345631e37,8.287673982485323e37,8.297515007625015e37,8.307356032764707e37,8.317197057904399e37,8.32703757598385e37,8.336878601123542e37,8.346719626263234e37,8.356560651402926e37,8.366401676542617e37,8.376242701682309e37,8.386083726822001e37,8.395924244901453e37,8.4057652700411445e37,8.415606295180836e37,8.425447320320528e37,8.43528834546022e37,8.445129370599912e37,8.454970395739603e37,8.464810913819055e37,8.474651938958747e37,8.484492964098439e37,8.494333989238131e37,8.504175014377822e37,8.514016039517514e37,8.523857064657206e37,8.533698089796898e37,8.54353911493659e37,8.553380140076281e37,8.563221165215973e37,8.573061176235185e37,8.582902201374876e37,8.592743226514568e37,8.60258425165426e37,8.612425276793952e37,8.622266301933644e37,8.632107327073335e37,8.641948352213027e37,8.651789377352719e37,8.66163040249241e37,8.671471427632103e37,8.681312452771794e37,8.691153477911486e37,8.700994503051178e37,8.71083451407039e37,8.720675539210081e37,8.730516564349773e37,8.740357589489465e37,8.750198614629157e37,8.760039639768849e37,8.76988066490854e37,8.779721690048232e37,8.789562715187924e37,8.799403740327616e37,8.809244765467307e37,8.819085790607e37,8.828926815746691e37,8.838767840886383e37,8.848607851905594e37,8.858448877045286e37,8.868289902184978e37,8.87813092732467e37,8.887971952464362e37,8.897812977604053e37,8.907654002743745e37,8.917495027883437e37,8.927336053023129e37,8.93717707816282e37,8.947018103302512e37,8.956859128442204e37,8.966700153581896e37,8.976541178721588e37,8.98638220386128e37,8.996222214880491e37,9.006063240020183e37,9.015904265159875e37,9.025745290299566e37,9.035586315439258e37,9.04542734057895e37,9.055268365718642e37,9.065109390858334e37,9.074950415998025e37,9.084791441137717e37,9.094632466277409e37,9.1044734914171e37,9.114314516556793e37,9.124155541696484e37,9.133995552715696e37,9.143836577855388e37,9.15367760299508e37,9.163518628134771e37,9.173359653274463e37,9.183200678414155e37,9.193041703553847e37,9.202882728693539e37,9.21272375383323e37,9.222564778972922e37,9.232405804112614e37,9.242246829252306e37,9.252087854391997e37,9.26192887953169e37,9.2717688905509e37,9.281609915690593e37,9.291450940830284e37,9.301291965969976e37,9.311132991109668e37,9.32097401624936e37,9.330815041389052e37,9.340656066528743e37,9.350497091668435e37,9.360338116808127e37,9.370179141947819e37,9.38002016708751e37,9.389861192227202e37,9.399702217366894e37,9.409543242506586e37,9.419383253525798e37,9.42922427866549e37,9.439065303805181e37,9.448906328944873e37,9.458747354084565e37,9.468588379224257e37,9.478429404363948e37,9.48827042950364e37,9.498111454643332e37,9.507952479783024e37,9.517793504922715e37,9.527634530062407e37,9.537475555202099e37,9.54731658034179e37,9.557156591361002e37,9.566997616500694e37,9.576838641640386e37,9.586679666780078e37,9.59652069191977e37,9.606361717059461e37,9.616202742199153e37,9.626043767338845e37,9.635884792478537e37,9.645725817618229e37,9.65556684275792e37,9.665407867897612e37,9.675248893037304e37,9.685089918176996e37,9.694929929196207e37,9.7047709543359e37,9.71461197947559e37,9.724453004615283e37,9.734294029754974e37,9.744135054894666e37,9.753976080034358e37,9.76381710517405e37,9.773658130313742e37,9.783499155453433e37,9.793340180593125e37,9.803181205732817e37,9.813022230872509e37,9.8228632560122e37,9.832704281151892e37,9.842544292171104e37,9.852385317310796e37,9.862226342450488e37,9.87206736759018e37,9.881908392729871e37,9.891749417869563e37,9.901590443009255e37,9.911431468148947e37,9.921272493288638e37,9.93111351842833e37,9.940954543568022e37,9.950795568707714e37,9.960636593847405e37,9.970477618987097e37,9.980317630006309e37,9.990158655146e37,9.999999680285692e37],"x":["01111011010000001001011111001110","01111011010100111000101111000110","01111011011001100111111110111101","01111011011110010111001110110100","01111011100001100011001111010101","01111011100011111010110111010001","01111011100110010010011111001100","01111011101000101010000111001000","01111011101011000001101111000011","01111011101101011001010110111111","01111011101111110000111110111011","01111011110010001000100110110110","01111011110100100000001110110010","01111011110110110111110110101101","01111011111001001111011110101001","01111011111011100111000110100100","01111011111101111110101110100000","01111100000000001011001011001110","01111100000001010110111111001011","01111100000010100010110011001001","01111100000011101110100111000111","01111100000100111010011011000101","01111100000110000110001111000010","01111100000111010010000011000000","01111100001000011101110110111110","01111100001001101001101010111100","01111100001010110101011110111001","01111100001100000001010010110111","01111100001101001101000110110101","01111100001110011000111010110011","01111100001111100100101110110001","01111100010000110000100010101110","01111100010001111100010110101100","01111100010011001000001010101010","01111100010100010011111110101000","01111100010101011111110010100101","01111100010110101011100110100011","01111100010111110111011010100001","01111100011001000011001110011111","01111100011010001111000010011100","01111100011011011010110110011010","01111100011100100110101010011000","01111100011101110010011110010110","01111100011110111110010010010011","01111100100000000101000011001001","01111100100000101010111101000111","01111100100001010000110111000110","01111100100001110110110001000101","01111100100010011100101011000100","01111100100011000010100101000011","01111100100011101000011111000010","01111100100100001110011001000001","01111100100100110100010011000000","01111100100101011010001100111111","01111100100110000000000110111101","01111100100110100110000000111100","01111100100111001011111010111011","01111100100111110001110100111010","01111100101000010111101110111001","01111100101000111101101000111000","01111100101001100011100010110111","01111100101010001001011100110110","01111100101010101111010110110100","01111100101011010101010000110011","01111100101011111011001010110010","01111100101100100001000100110001","01111100101101000110111110110000","01111100101101101100111000101111","01111100101110010010110010101110","01111100101110111000101100101101","01111100101111011110100110101100","01111100110000000100100000101010","01111100110000101010011010101001","01111100110001010000010100101000","01111100110001110110001110100111","01111100110010011100001000100110","01111100110011000010000010100101","01111100110011100111111100100100","01111100110100001101110110100011","01111100110100110011110000100001","01111100110101011001101010100000","01111100110101111111100100011111","01111100110110100101011110011110","01111100110111001011011000011101","01111100110111110001010010011100","01111100111000010111001100011011","01111100111000111101000110011010","01111100111001100011000000011001","01111100111010001000111010010111","01111100111010101110110100010110","01111100111011010100101110010101","01111100111011111010101000010100","01111100111100100000100010010011","01111100111101000110011100010010","01111100111101101100010110010001","01111100111110010010010000010000","01111100111110111000001010001110","01111100111111011110000100001101","01111101000000000001111111000110","01111101000000010100111100000110","01111101000000100111111001000101","01111101000000111010110110000100","01111101000001001101110011000100","01111101000001100000110000000011","01111101000001110011101101000011","01111101000010000110101010000010","01111101000010011001100111000010","01111101000010101100100100000001","01111101000010111111100001000001","01111101000011010010011110000000","01111101000011100101011010111111","01111101000011111000010111111111","01111101000100001011010100111110","01111101000100011110010001111110","01111101000100110001001110111101","01111101000101000100001011111101","01111101000101010111001000111100","01111101000101101010000101111011","01111101000101111101000010111011","01111101000110001111111111111010","01111101000110100010111100111010","01111101000110110101111001111001","01111101000111001000110110111001","01111101000111011011110011111000","01111101000111101110110000111000","01111101001000000001101101110111","01111101001000010100101010110110","01111101001000100111100111110110","01111101001000111010100100110101","01111101001001001101100001110101","01111101001001100000011110110100","01111101001001110011011011110100","01111101001010000110011000110011","01111101001010011001010101110011","01111101001010101100010010110010","01111101001010111111001111110001","01111101001011010010001100110001","01111101001011100101001001110000","01111101001011111000000110110000","01111101001100001011000011101111","01111101001100011110000000101111","01111101001100110000111101101110","01111101001101000011111010101110","01111101001101010110110111101101","01111101001101101001110100101100","01111101001101111100110001101100","01111101001110001111101110101011","01111101001110100010101011101011","01111101001110110101101000101010","01111101001111001000100101101010","01111101001111011011100010101001","01111101001111101110011111101000","01111101010000000001011100101000","01111101010000010100011001100111","01111101010000100111010110100111","01111101010000111010010011100110","01111101010001001101010000100110","01111101010001100000001101100101","01111101010001110011001010100101","01111101010010000110000111100100","01111101010010011001000100100011","01111101010010101100000001100011","01111101010010111110111110100010","01111101010011010001111011100010","01111101010011100100111000100001","01111101010011110111110101100001","01111101010100001010110010100000","01111101010100011101101111100000","01111101010100110000101100011111","01111101010101000011101001011110","01111101010101010110100110011110","01111101010101101001100011011101","01111101010101111100100000011101","01111101010110001111011101011100","01111101010110100010011010011100","01111101010110110101010111011011","01111101010111001000010100011011","01111101010111011011010001011010","01111101010111101110001110011001","01111101011000000001001011011001","01111101011000010100001000011000","01111101011000100111000101011000","01111101011000111010000010010111","01111101011001001100111111010111","01111101011001011111111100010110","01111101011001110010111001010101","01111101011010000101110110010101","01111101011010011000110011010100","01111101011010101011110000010100","01111101011010111110101101010011","01111101011011010001101010010011","01111101011011100100100111010010","01111101011011110111100100010010","01111101011100001010100001010001","01111101011100011101011110010000","01111101011100110000011011010000","01111101011101000011011000001111","01111101011101010110010101001111","01111101011101101001010010001110","01111101011101111100001111001110","01111101011110001111001100001101","01111101011110100010001001001101","01111101011110110101000110001100","01111101011111001000000011001011","01111101011111011011000000001011","01111101011111101101111101001010","01111101100000000000011101000101","01111101100000001001111011100101","01111101100000010011011010000100","01111101100000011100111000100100","01111101100000100110010111000100","01111101100000101111110101100011","01111101100000111001010100000011","01111101100001000010110010100011","01111101100001001100010001000011","01111101100001010101101111100010","01111101100001011111001110000010","01111101100001101000101100100010","01111101100001110010001011000010","01111101100001111011101001100001","01111101100010000101001000000001","01111101100010001110100110100001","01111101100010011000000101000000","01111101100010100001100011100000","01111101100010101011000010000000","01111101100010110100100000100000","01111101100010111101111110111111","01111101100011000111011101011111","01111101100011010000111011111111","01111101100011011010011010011110","01111101100011100011111000111110","01111101100011101101010111011110","01111101100011110110110101111110","01111101100100000000010100011101","01111101100100001001110010111101","01111101100100010011010001011101","01111101100100011100101111111100","01111101100100100110001110011100","01111101100100101111101100111100","01111101100100111001001011011100","01111101100101000010101001111011","01111101100101001100001000011011","01111101100101010101100110111011","01111101100101011111000101011011","01111101100101101000100011111010","01111101100101110010000010011010","01111101100101111011100000111010","01111101100110000100111111011001","01111101100110001110011101111001","01111101100110010111111100011001","01111101100110100001011010111001","01111101100110101010111001011000","01111101100110110100010111111000","01111101100110111101110110011000","01111101100111000111010100110111","01111101100111010000110011010111","01111101100111011010010001110111","01111101100111100011110000010111","01111101100111101101001110110110","01111101100111110110101101010110","01111101101000000000001011110110","01111101101000001001101010010101","01111101101000010011001000110101","01111101101000011100100111010101","01111101101000100110000101110101","01111101101000101111100100010100","01111101101000111001000010110100","01111101101001000010100001010100","01111101101001001011111111110100","01111101101001010101011110010011","01111101101001011110111100110011","01111101101001101000011011010011","01111101101001110001111001110010","01111101101001111011011000010010","01111101101010000100110110110010","01111101101010001110010101010010","01111101101010010111110011110001","01111101101010100001010010010001","01111101101010101010110000110001","01111101101010110100001111010000","01111101101010111101101101110000","01111101101011000111001100010000","01111101101011010000101010110000","01111101101011011010001001001111","01111101101011100011100111101111","01111101101011101101000110001111","01111101101011110110100100101111","01111101101100000000000011001110","01111101101100001001100001101110","01111101101100010011000000001110","01111101101100011100011110101101","01111101101100100101111101001101","01111101101100101111011011101101","01111101101100111000111010001101","01111101101101000010011000101100","01111101101101001011110111001100","01111101101101010101010101101100","01111101101101011110110100001011","01111101101101101000010010101011","01111101101101110001110001001011","01111101101101111011001111101011","01111101101110000100101110001010","01111101101110001110001100101010","01111101101110010111101011001010","01111101101110100001001001101001","01111101101110101010101000001001","01111101101110110100000110101001","01111101101110111101100101001001","01111101101111000111000011101000","01111101101111010000100010001000","01111101101111011010000000101000","01111101101111100011011111001000","01111101101111101100111101100111","01111101101111110110011100000111","01111101101111111111111010100111","01111101110000001001011001000110","01111101110000010010110111100110","01111101110000011100010110000110","01111101110000100101110100100110","01111101110000101111010011000101","01111101110000111000110001100101","01111101110001000010010000000101","01111101110001001011101110100100","01111101110001010101001101000100","01111101110001011110101011100100","01111101110001101000001010000100","01111101110001110001101000100011","01111101110001111011000111000011","01111101110010000100100101100011","01111101110010001110000100000010","01111101110010010111100010100010","01111101110010100001000001000010","01111101110010101010011111100010","01111101110010110011111110000001","01111101110010111101011100100001","01111101110011000110111011000001","01111101110011010000011001100001","01111101110011011001111000000000","01111101110011100011010110100000","01111101110011101100110101000000","01111101110011110110010011011111","01111101110011111111110001111111","01111101110100001001010000011111","01111101110100010010101110111111","01111101110100011100001101011110","01111101110100100101101011111110","01111101110100101111001010011110","01111101110100111000101000111101","01111101110101000010000111011101","01111101110101001011100101111101","01111101110101010101000100011101","01111101110101011110100010111100","01111101110101101000000001011100","01111101110101110001011111111100","01111101110101111010111110011100","01111101110110000100011100111011","01111101110110001101111011011011","01111101110110010111011001111011","01111101110110100000111000011010","01111101110110101010010110111010","01111101110110110011110101011010","01111101110110111101010011111010","01111101110111000110110010011001","01111101110111010000010000111001","01111101110111011001101111011001","01111101110111100011001101111000","01111101110111101100101100011000","01111101110111110110001010111000","01111101110111111111101001011000","01111101111000001001000111110111","01111101111000010010100110010111","01111101111000011100000100110111","01111101111000100101100011010110","01111101111000101111000001110110","01111101111000111000100000010110","01111101111001000001111110110110","01111101111001001011011101010101","01111101111001010100111011110101","01111101111001011110011010010101","01111101111001100111111000110101","01111101111001110001010111010100","01111101111001111010110101110100","01111101111010000100010100010100","01111101111010001101110010110011","01111101111010010111010001010011","01111101111010100000101111110011","01111101111010101010001110010011","01111101111010110011101100110010","01111101111010111101001011010010","01111101111011000110101001110010","01111101111011010000001000010001","01111101111011011001100110110001","01111101111011100011000101010001","01111101111011101100100011110001","01111101111011110110000010010000","01111101111011111111100000110000","01111101111100001000111111010000","01111101111100010010011101101111","01111101111100011011111100001111","01111101111100100101011010101111","01111101111100101110111001001111","01111101111100111000010111101110","01111101111101000001110110001110","01111101111101001011010100101110","01111101111101010100110011001110","01111101111101011110010001101101","01111101111101100111110000001101","01111101111101110001001110101101","01111101111101111010101101001100","01111101111110000100001011101100","01111101111110001101101010001100","01111101111110010111001000101100","01111101111110100000100111001011","01111101111110101010000101101011","01111101111110110011100100001011","01111101111110111101000010101010","01111101111111000110100001001010","01111101111111001111111111101010","01111101111111011001011110001010","01111101111111100010111100101001","01111101111111101100011011001001","01111101111111110101111001101001","01111101111111111111011000001000","01111110000000000100011011010100","01111110000000001001001010100100","01111110000000001101111001110100","01111110000000010010101001000100","01111110000000010111011000010100","01111110000000011100000111100011","01111110000000100000110110110011","01111110000000100101100110000011","01111110000000101010010101010011","01111110000000101111000100100011","01111110000000110011110011110011","01111110000000111000100011000011","01111110000000111101010010010010","01111110000001000010000001100010","01111110000001000110110000110010","01111110000001001011100000000010","01111110000001010000001111010010","01111110000001010100111110100010","01111110000001011001101101110010","01111110000001011110011101000001","01111110000001100011001100010001","01111110000001100111111011100001","01111110000001101100101010110001","01111110000001110001011010000001","01111110000001110110001001010001","01111110000001111010111000100001","01111110000001111111100111110000","01111110000010000100010111000000","01111110000010001001000110010000","01111110000010001101110101100000","01111110000010010010100100110000","01111110000010010111010100000000","01111110000010011100000011010000","01111110000010100000110010011111","01111110000010100101100001101111","01111110000010101010010000111111","01111110000010101111000000001111","01111110000010110011101111011111","01111110000010111000011110101111","01111110000010111101001101111111","01111110000011000001111101001111","01111110000011000110101100011110","01111110000011001011011011101110","01111110000011010000001010111110","01111110000011010100111010001110","01111110000011011001101001011110","01111110000011011110011000101110","01111110000011100011000111111110","01111110000011100111110111001101","01111110000011101100100110011101","01111110000011110001010101101101","01111110000011110110000100111101","01111110000011111010110100001101","01111110000011111111100011011101","01111110000100000100010010101101","01111110000100001001000001111100","01111110000100001101110001001100","01111110000100010010100000011100","01111110000100010111001111101100","01111110000100011011111110111100","01111110000100100000101110001100","01111110000100100101011101011100","01111110000100101010001100101011","01111110000100101110111011111011","01111110000100110011101011001011","01111110000100111000011010011011","01111110000100111101001001101011","01111110000101000001111000111011","01111110000101000110101000001011","01111110000101001011010111011010","01111110000101010000000110101010","01111110000101010100110101111010","01111110000101011001100101001010","01111110000101011110010100011010","01111110000101100011000011101010","01111110000101100111110010111010","01111110000101101100100010001001","01111110000101110001010001011001","01111110000101110110000000101001","01111110000101111010101111111001","01111110000101111111011111001001","01111110000110000100001110011001","01111110000110001000111101101001","01111110000110001101101100111001","01111110000110010010011100001000","01111110000110010111001011011000","01111110000110011011111010101000","01111110000110100000101001111000","01111110000110100101011001001000","01111110000110101010001000011000","01111110000110101110110111101000","01111110000110110011100110110111","01111110000110111000010110000111","01111110000110111101000101010111","01111110000111000001110100100111","01111110000111000110100011110111","01111110000111001011010011000111","01111110000111010000000010010111","01111110000111010100110001100110","01111110000111011001100000110110","01111110000111011110010000000110","01111110000111100010111111010110","01111110000111100111101110100110","01111110000111101100011101110110","01111110000111110001001101000110","01111110000111110101111100010101","01111110000111111010101011100101","01111110000111111111011010110101","01111110001000000100001010000101","01111110001000001000111001010101","01111110001000001101101000100101","01111110001000010010010111110101","01111110001000010111000111000100","01111110001000011011110110010100","01111110001000100000100101100100","01111110001000100101010100110100","01111110001000101010000100000100","01111110001000101110110011010100","01111110001000110011100010100100","01111110001000111000010001110011","01111110001000111101000001000011","01111110001001000001110000010011","01111110001001000110011111100011","01111110001001001011001110110011","01111110001001001111111110000011","01111110001001010100101101010011","01111110001001011001011100100010","01111110001001011110001011110010","01111110001001100010111011000010","01111110001001100111101010010010","01111110001001101100011001100010","01111110001001110001001000110010","01111110001001110101111000000010","01111110001001111010100111010010","01111110001001111111010110100001","01111110001010000100000101110001","01111110001010001000110101000001","01111110001010001101100100010001","01111110001010010010010011100001","01111110001010010111000010110001","01111110001010011011110010000001","01111110001010100000100001010000","01111110001010100101010000100000","01111110001010101001111111110000","01111110001010101110101111000000","01111110001010110011011110010000","01111110001010111000001101100000","01111110001010111100111100110000","01111110001011000001101011111111","01111110001011000110011011001111","01111110001011001011001010011111","01111110001011001111111001101111","01111110001011010100101000111111","01111110001011011001011000001111","01111110001011011110000111011111","01111110001011100010110110101110","01111110001011100111100101111110","01111110001011101100010101001110","01111110001011110001000100011110","01111110001011110101110011101110","01111110001011111010100010111110","01111110001011111111010010001110","01111110001100000100000001011101","01111110001100001000110000101101","01111110001100001101011111111101","01111110001100010010001111001101","01111110001100010110111110011101","01111110001100011011101101101101","01111110001100100000011100111101","01111110001100100101001100001100","01111110001100101001111011011100","01111110001100101110101010101100","01111110001100110011011001111100","01111110001100111000001001001100","01111110001100111100111000011100","01111110001101000001100111101100","01111110001101000110010110111100","01111110001101001011000110001011","01111110001101001111110101011011","01111110001101010100100100101011","01111110001101011001010011111011","01111110001101011110000011001011","01111110001101100010110010011011","01111110001101100111100001101011","01111110001101101100010000111010","01111110001101110001000000001010","01111110001101110101101111011010","01111110001101111010011110101010","01111110001101111111001101111010","01111110001110000011111101001010","01111110001110001000101100011010","01111110001110001101011011101001","01111110001110010010001010111001","01111110001110010110111010001001","01111110001110011011101001011001","01111110001110100000011000101001","01111110001110100101000111111001","01111110001110101001110111001001","01111110001110101110100110011000","01111110001110110011010101101000","01111110001110111000000100111000","01111110001110111100110100001000","01111110001111000001100011011000","01111110001111000110010010101000","01111110001111001011000001111000","01111110001111001111110001000111","01111110001111010100100000010111","01111110001111011001001111100111","01111110001111011101111110110111","01111110001111100010101110000111","01111110001111100111011101010111","01111110001111101100001100100111","01111110001111110000111011110110","01111110001111110101101011000110","01111110001111111010011010010110","01111110001111111111001001100110","01111110010000000011111000110110","01111110010000001000101000000110","01111110010000001101010111010110","01111110010000010010000110100110","01111110010000010110110101110101","01111110010000011011100101000101","01111110010000100000010100010101","01111110010000100101000011100101","01111110010000101001110010110101","01111110010000101110100010000101","01111110010000110011010001010101","01111110010000111000000000100100","01111110010000111100101111110100","01111110010001000001011111000100","01111110010001000110001110010100","01111110010001001010111101100100","01111110010001001111101100110100","01111110010001010100011100000100","01111110010001011001001011010011","01111110010001011101111010100011","01111110010001100010101001110011","01111110010001100111011001000011","01111110010001101100001000010011","01111110010001110000110111100011","01111110010001110101100110110011","01111110010001111010010110000010","01111110010001111111000101010010","01111110010010000011110100100010","01111110010010001000100011110010","01111110010010001101010011000010","01111110010010010010000010010010","01111110010010010110110001100010","01111110010010011011100000110001","01111110010010100000010000000001","01111110010010100100111111010001","01111110010010101001101110100001","01111110010010101110011101110001","01111110010010110011001101000001","01111110010010110111111100010001","01111110010010111100101011100000","01111110010011000001011010110000","01111110010011000110001010000000","01111110010011001010111001010000","01111110010011001111101000100000","01111110010011010100010111110000","01111110010011011001000111000000","01111110010011011101110110001111","01111110010011100010100101011111","01111110010011100111010100101111","01111110010011101100000011111111","01111110010011110000110011001111","01111110010011110101100010011111","01111110010011111010010001101111","01111110010011111111000000111111","01111110010100000011110000001110","01111110010100001000011111011110","01111110010100001101001110101110","01111110010100010001111101111110","01111110010100010110101101001110","01111110010100011011011100011110","01111110010100100000001011101110","01111110010100100100111010111101","01111110010100101001101010001101","01111110010100101110011001011101","01111110010100110011001000101101","01111110010100110111110111111101","01111110010100111100100111001101","01111110010101000001010110011101","01111110010101000110000101101100","01111110010101001010110100111100","01111110010101001111100100001100","01111110010101010100010011011100","01111110010101011001000010101100","01111110010101011101110001111100","01111110010101100010100001001100","01111110010101100111010000011011","01111110010101101011111111101011","01111110010101110000101110111011","01111110010101110101011110001011","01111110010101111010001101011011","01111110010101111110111100101011","01111110010110000011101011111011","01111110010110001000011011001010","01111110010110001101001010011010","01111110010110010001111001101010","01111110010110010110101000111010","01111110010110011011011000001010","01111110010110100000000111011010","01111110010110100100110110101010","01111110010110101001100101111001","01111110010110101110010101001001","01111110010110110011000100011001","01111110010110110111110011101001","01111110010110111100100010111001","01111110010111000001010010001001","01111110010111000110000001011001","01111110010111001010110000101001","01111110010111001111011111111000","01111110010111010100001111001000","01111110010111011000111110011000","01111110010111011101101101101000","01111110010111100010011100111000","01111110010111100111001100001000","01111110010111101011111011011000","01111110010111110000101010100111","01111110010111110101011001110111","01111110010111111010001001000111","01111110010111111110111000010111","01111110011000000011100111100111","01111110011000001000010110110111","01111110011000001101000110000111","01111110011000010001110101010110","01111110011000010110100100100110","01111110011000011011010011110110","01111110011000100000000011000110","01111110011000100100110010010110","01111110011000101001100001100110","01111110011000101110010000110110","01111110011000110011000000000101","01111110011000110111101111010101","01111110011000111100011110100101","01111110011001000001001101110101","01111110011001000101111101000101","01111110011001001010101100010101","01111110011001001111011011100101","01111110011001010100001010110100","01111110011001011000111010000100","01111110011001011101101001010100","01111110011001100010011000100100","01111110011001100111000111110100","01111110011001101011110111000100","01111110011001110000100110010100","01111110011001110101010101100011","01111110011001111010000100110011","01111110011001111110110100000011","01111110011010000011100011010011","01111110011010001000010010100011","01111110011010001101000001110011","01111110011010010001110001000011","01111110011010010110100000010010","01111110011010011011001111100010","01111110011010011111111110110010","01111110011010100100101110000010","01111110011010101001011101010010","01111110011010101110001100100010","01111110011010110010111011110010","01111110011010110111101011000010","01111110011010111100011010010001","01111110011011000001001001100001","01111110011011000101111000110001","01111110011011001010101000000001","01111110011011001111010111010001","01111110011011010100000110100001","01111110011011011000110101110001","01111110011011011101100101000000","01111110011011100010010100010000","01111110011011100111000011100000","01111110011011101011110010110000","01111110011011110000100010000000","01111110011011110101010001010000","01111110011011111010000000100000","01111110011011111110101111101111","01111110011100000011011110111111","01111110011100001000001110001111","01111110011100001100111101011111","01111110011100010001101100101111","01111110011100010110011011111111","01111110011100011011001011001111","01111110011100011111111010011110","01111110011100100100101001101110","01111110011100101001011000111110","01111110011100101110001000001110","01111110011100110010110111011110","01111110011100110111100110101110","01111110011100111100010101111110","01111110011101000001000101001101","01111110011101000101110100011101","01111110011101001010100011101101","01111110011101001111010010111101","01111110011101010100000010001101","01111110011101011000110001011101","01111110011101011101100000101101","01111110011101100010001111111100","01111110011101100110111111001100","01111110011101101011101110011100","01111110011101110000011101101100","01111110011101110101001100111100","01111110011101111001111100001100","01111110011101111110101011011100","01111110011110000011011010101100","01111110011110001000001001111011","01111110011110001100111001001011","01111110011110010001101000011011","01111110011110010110010111101011","01111110011110011011000110111011","01111110011110011111110110001011","01111110011110100100100101011011","01111110011110101001010100101010","01111110011110101110000011111010","01111110011110110010110011001010","01111110011110110111100010011010","01111110011110111100010001101010","01111110011111000001000000111010","01111110011111000101110000001010","01111110011111001010011111011001","01111110011111001111001110101001","01111110011111010011111101111001","01111110011111011000101101001001","01111110011111011101011100011001","01111110011111100010001011101001","01111110011111100110111010111001","01111110011111101011101010001000","01111110011111110000011001011000","01111110011111110101001000101000","01111110011111111001110111111000","01111110011111111110100111001000","01111110100000000001101011001100","01111110100000000100000010110100","01111110100000000110011010011100","01111110100000001000110010000100","01111110100000001011001001101100","01111110100000001101100001010100","01111110100000001111111000111011","01111110100000010010010000100011","01111110100000010100101000001011","01111110100000010110111111110011","01111110100000011001010111011011","01111110100000011011101111000011","01111110100000011110000110101011","01111110100000100000011110010011","01111110100000100010110101111011","01111110100000100101001101100011","01111110100000100111100101001011","01111110100000101001111100110011","01111110100000101100010100011011","01111110100000101110101100000011","01111110100000110001000011101010","01111110100000110011011011010010","01111110100000110101110010111010","01111110100000111000001010100010","01111110100000111010100010001010","01111110100000111100111001110010","01111110100000111111010001011010","01111110100001000001101001000010","01111110100001000100000000101010","01111110100001000110011000010010","01111110100001001000101111111010","01111110100001001011000111100010","01111110100001001101011111001010","01111110100001001111110110110010","01111110100001010010001110011001","01111110100001010100100110000001","01111110100001010110111101101001","01111110100001011001010101010001","01111110100001011011101100111001","01111110100001011110000100100001","01111110100001100000011100001001","01111110100001100010110011110001","01111110100001100101001011011001","01111110100001100111100011000001","01111110100001101001111010101001","01111110100001101100010010010001","01111110100001101110101001111001","01111110100001110001000001100001","01111110100001110011011001001001","01111110100001110101110000110000","01111110100001111000001000011000","01111110100001111010100000000000","01111110100001111100110111101000","01111110100001111111001111010000","01111110100010000001100110111000","01111110100010000011111110100000","01111110100010000110010110001000","01111110100010001000101101110000","01111110100010001011000101011000","01111110100010001101011101000000","01111110100010001111110100101000","01111110100010010010001100010000","01111110100010010100100011111000","01111110100010010110111011011111","01111110100010011001010011000111","01111110100010011011101010101111","01111110100010011110000010010111","01111110100010100000011001111111","01111110100010100010110001100111","01111110100010100101001001001111","01111110100010100111100000110111","01111110100010101001111000011111","01111110100010101100010000000111","01111110100010101110100111101111","01111110100010110000111111010111","01111110100010110011010110111111","01111110100010110101101110100111","01111110100010111000000110001110","01111110100010111010011101110110","01111110100010111100110101011110","01111110100010111111001101000110","01111110100011000001100100101110","01111110100011000011111100010110","01111110100011000110010011111110","01111110100011001000101011100110","01111110100011001011000011001110","01111110100011001101011010110110","01111110100011001111110010011110","01111110100011010010001010000110","01111110100011010100100001101110","01111110100011010110111001010110","01111110100011011001010000111110","01111110100011011011101000100101","01111110100011011110000000001101","01111110100011100000010111110101","01111110100011100010101111011101","01111110100011100101000111000101","01111110100011100111011110101101","01111110100011101001110110010101","01111110100011101100001101111101","01111110100011101110100101100101","01111110100011110000111101001101","01111110100011110011010100110101","01111110100011110101101100011101","01111110100011111000000100000101","01111110100011111010011011101101","01111110100011111100110011010100","01111110100011111111001010111100","01111110100100000001100010100100","01111110100100000011111010001100","01111110100100000110010001110100","01111110100100001000101001011100","01111110100100001011000001000100","01111110100100001101011000101100","01111110100100001111110000010100","01111110100100010010000111111100","01111110100100010100011111100100","01111110100100010110110111001100","01111110100100011001001110110100","01111110100100011011100110011100","01111110100100011101111110000011","01111110100100100000010101101011","01111110100100100010101101010011","01111110100100100101000100111011","01111110100100100111011100100011","01111110100100101001110100001011","01111110100100101100001011110011","01111110100100101110100011011011","01111110100100110000111011000011","01111110100100110011010010101011","01111110100100110101101010010011","01111110100100111000000001111011","01111110100100111010011001100011","01111110100100111100110001001011","01111110100100111111001000110011","01111110100101000001100000011010","01111110100101000011111000000010","01111110100101000110001111101010","01111110100101001000100111010010","01111110100101001010111110111010","01111110100101001101010110100010","01111110100101001111101110001010","01111110100101010010000101110010","01111110100101010100011101011010","01111110100101010110110101000010","01111110100101011001001100101010","01111110100101011011100100010010","01111110100101011101111011111010","01111110100101100000010011100010","01111110100101100010101011001001","01111110100101100101000010110001","01111110100101100111011010011001"]}
-},{}],133:[function(require,module,exports){
+
+},{}],137:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -7869,7 +8076,7 @@ tape( 'the function creates single-precision floating-point numbers from literal
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/number/float32/base/from-binary-string/test/test.js")
-},{"./../lib":126,"./fixtures/julia/bits_-1e3_1e3.json":129,"./fixtures/julia/bits_1e-36_1e-38.json":130,"./fixtures/julia/bits_1e-39_1e-45.json":131,"./fixtures/julia/bits_1e36_1e38.json":132,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/assert/is-nan":93,"@stdlib/math/base/assert/is-negative-zero":95,"@stdlib/math/base/assert/is-positive-zero":99,"@stdlib/number/float32/base/to-binary-string":135,"tape":300}],134:[function(require,module,exports){
+},{"./../lib":130,"./fixtures/julia/bits_-1e3_1e3.json":133,"./fixtures/julia/bits_1e-36_1e-38.json":134,"./fixtures/julia/bits_1e-39_1e-45.json":135,"./fixtures/julia/bits_1e36_1e38.json":136,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/assert/is-nan":97,"@stdlib/math/base/assert/is-negative-zero":99,"@stdlib/math/base/assert/is-positive-zero":103,"@stdlib/number/float32/base/to-binary-string":139,"tape":333}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7942,7 +8149,7 @@ function div2( x ) {
 
 module.exports = div2;
 
-},{"@stdlib/math/base/special/floor":107}],135:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":111}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8007,14 +8214,14 @@ module.exports = div2;
 
 // MODULES //
 
-var totoBinaryStringf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = totoBinaryStringf;
+module.exports = main;
 
-},{"./main.js":136}],136:[function(require,module,exports){
+},{"./main.js":140}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8203,7 +8410,7 @@ function toBinaryStringf( x ) {
 
 module.exports = toBinaryStringf;
 
-},{"./div2.js":134,"./mult2.js":137,"@stdlib/constants/float32/exponent-bias":71,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/special/abs":101,"@stdlib/math/base/special/floor":107,"@stdlib/string/left-pad":177,"@stdlib/string/repeat":179,"@stdlib/string/right-pad":181}],137:[function(require,module,exports){
+},{"./div2.js":138,"./mult2.js":141,"@stdlib/constants/float32/exponent-bias":71,"@stdlib/constants/float32/ninf":72,"@stdlib/constants/float32/pinf":73,"@stdlib/math/base/special/abs":105,"@stdlib/math/base/special/floor":111,"@stdlib/string/left-pad":190,"@stdlib/string/repeat":192,"@stdlib/string/right-pad":194}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8286,7 +8493,7 @@ function mult2( x ) {
 
 module.exports = mult2;
 
-},{}],138:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8330,14 +8537,14 @@ module.exports = mult2;
 
 // MODULES //
 
-var exponent = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = exponent;
+module.exports = main;
 
-},{"./main.js":139}],139:[function(require,module,exports){
+},{"./main.js":143}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8405,7 +8612,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/high-word-exponent-mask":75,"@stdlib/number/float64/base/get-high-word":144}],140:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":74,"@stdlib/constants/float64/high-word-exponent-mask":76,"@stdlib/number/float64/base/get-high-word":148}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8458,14 +8665,14 @@ module.exports = exponent;
 
 // MODULES //
 
-var fromWords = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWords;
+module.exports = main;
 
-},{"./main.js":142}],141:[function(require,module,exports){
+},{"./main.js":146}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8514,7 +8721,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":47}],142:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":47}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8585,9 +8792,7 @@ var LOW = indices.LOW;
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
 *
-*
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
 *
 * ## References
 *
@@ -8638,7 +8843,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":141,"@stdlib/array/float64":5,"@stdlib/array/uint32":10}],143:[function(require,module,exports){
+},{"./indices.js":145,"@stdlib/array/float64":4,"@stdlib/array/uint32":10}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8678,7 +8883,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":47}],144:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":47}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8713,14 +8918,14 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getHighWord;
+module.exports = main;
 
-},{"./main.js":145}],145:[function(require,module,exports){
+},{"./main.js":149}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8790,7 +8995,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -8814,155 +9018,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":143,"@stdlib/array/float64":5,"@stdlib/array/uint32":10}],146:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @module @stdlib/number/float64/base/normalize
-*
-* @example
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var normalize = require( '@stdlib/number/float64/base/normalize' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*/
-
-// MODULES //
-
-var normalize = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./main.js":147}],147:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './normalize.js' );
-
-
-// MAIN //
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var Float64Array = require( '@stdlib/array/float64' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = new Float64Array( 2 );
-*
-* var v = normalize( out, 3.14e-319 );
-* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
-*
-* var bool = ( v === out );
-* // returns true
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
-* // returns [ 0.0, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
-* // returns [ Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
-* // returns [ -Infinity, 0 ]
-*
-* @example
-* var out = normalize( [ 0.0, 0 ], NaN );
-* // returns [ NaN, 0 ]
-*/
-function normalize( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0.0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./normalize.js":148}],148:[function(require,module,exports){
+},{"./high.js":147,"@stdlib/array/float64":4,"@stdlib/array/uint32":10}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9000,17 +9056,18 @@ var SCALAR = 4503599627370496;
 // MAIN //
 
 /**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\) and assigns results to a provided output array.
 *
-* @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
-* var out = normalize( [ 0.0, 0 ], 3.14e-319 );
+* var out = normalize( 3.14e-319, [ 0.0, 0 ], 1, 0 );
 * // returns [ 1.4141234400356668e-303, -52 ]
 *
 * var y = out[ 0 ];
@@ -9020,34 +9077,38 @@ var SCALAR = 4503599627370496;
 * // returns true
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], 0.0 );
+* var out = normalize( 0.0, [ 0.0, 0 ], 1, 0 );
 * // returns [ 0.0, 0 ];
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], Infinity );
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], -Infinity );
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF, [ 0.0, 0 ], 1, 0 );
 * // returns [ -Infinity, 0 ]
 *
 * @example
-* var out = normalize( [ 0.0, 0 ], NaN );
+* var out = normalize( NaN, [ 0.0, 0 ], 1, 0 );
 * // returns [ NaN, 0 ]
 */
-function normalize( out, x ) {
+function normalize( x, out, stride, offset ) {
 	if ( isnan( x ) || isInfinite( x ) ) {
-		out[ 0 ] = x;
-		out[ 1 ] = 0;
+		out[ offset ] = x;
+		out[ offset + stride ] = 0;
 		return out;
 	}
 	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		out[ 0 ] = x * SCALAR;
-		out[ 1 ] = -52;
+		out[ offset ] = x * SCALAR;
+		out[ offset + stride ] = -52;
 		return out;
 	}
-	out[ 0 ] = x;
-	out[ 1 ] = 0;
+	out[ offset ] = x;
+	out[ offset + stride ] = 0;
 	return out;
 }
 
@@ -9056,9 +9117,152 @@ function normalize( out, x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/constants/float64/smallest-normal":83,"@stdlib/math/base/assert/is-infinite":89,"@stdlib/math/base/assert/is-nan":93,"@stdlib/math/base/special/abs":101}],149:[function(require,module,exports){
-arguments[4][143][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":47,"dup":143}],150:[function(require,module,exports){
+},{"@stdlib/constants/float64/smallest-normal":87,"@stdlib/math/base/assert/is-infinite":93,"@stdlib/math/base/assert/is-nan":97,"@stdlib/math/base/special/abs":105}],151:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @module @stdlib/number/float64/base/normalize
+*
+* @example
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0, exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize.assign( 3.14e-319, out, 1, 0 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":150,"./main.js":152,"@stdlib/utils/define-nonenumerable-read-only-property":198}],152:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @param {number} x - input value
+* @returns {NumberArray} output array
+*
+* @example
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var out = normalize( 0.0 );
+* // returns [ 0.0, 0 ]
+*
+* @example
+* var PINF = require( '@stdlib/constants/float64/pinf' );
+*
+* var out = normalize( PINF );
+* // returns [ Infinity, 0 ]
+*
+* @example
+* var NINF = require( '@stdlib/constants/float64/ninf' );
+*
+* var out = normalize( NINF );
+* // returns [ -Infinity, 0 ]
+*
+* @example
+* var out = normalize( NaN );
+* // returns [ NaN, 0 ]
+*/
+function normalize( x ) {
+	return fcn( x, [ 0.0, 0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = normalize;
+
+},{"./assign.js":150}],153:[function(require,module,exports){
+arguments[4][147][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":47,"dup":147}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9093,26 +9297,26 @@ arguments[4][143][0].apply(exports,arguments)
 * // returns 1.18350528745e-313
 *
 * @example
+* var PINF = require( '@stdlib/constants/float64/pinf' ); // => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 * var setHighWord = require( '@stdlib/number/float64/base/set-high-word' );
-* var PINF = require( '@stdlib/constants/float64/pinf' ); //  => 0 11111111111 00000000000000000000 00000000000000000000000000000000
 *
 * var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
 *
 * // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
+* var y = setHighWord( PINF, high ); // => 0 01111111111 0000000000000000000000000000000000000000000000000000
 * // returns 1.0
 */
 
 // MODULES //
 
-var setHighWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setHighWord;
+module.exports = main;
 
-},{"./main.js":151}],151:[function(require,module,exports){
+},{"./main.js":155}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9182,7 +9386,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9196,7 +9399,7 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 * @example
 * var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
 *
-* var y = setHighWord( 3.14e201, high ); //  => 0 00000000000 0000000000000000010110010011110010110101100010000010
+* var y = setHighWord( 3.14e201, high ); // => 0 00000000000 0000000000000000010110010011110010110101100010000010
 * // returns 1.18350528745e-313
 *
 * @example
@@ -9219,7 +9422,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":149,"@stdlib/array/float64":5,"@stdlib/array/uint32":10}],152:[function(require,module,exports){
+},{"./high.js":153,"@stdlib/array/float64":4,"@stdlib/array/uint32":10}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9274,14 +9477,14 @@ module.exports = setHighWord;
 
 // MODULES //
 
-var setLowWord = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setLowWord;
+module.exports = main;
 
-},{"./main.js":154}],153:[function(require,module,exports){
+},{"./main.js":158}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9321,7 +9524,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":47}],154:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":47}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9391,7 +9594,6 @@ var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
 *
 * In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
@@ -9436,7 +9638,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":153,"@stdlib/array/float64":5,"@stdlib/array/uint32":10}],155:[function(require,module,exports){
+},{"./low.js":157,"@stdlib/array/float64":4,"@stdlib/array/uint32":10}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9471,13 +9673,16 @@ module.exports = setLowWord;
 
 // MODULES //
 
-var float64ToFloat32 = require( './main.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-if ( typeof float64ToFloat32 !== 'function' ) {
+var float64ToFloat32;
+if ( typeof builtin === 'function' ) {
+	float64ToFloat32 = builtin;
+} else {
 	float64ToFloat32 = polyfill;
 }
 
@@ -9486,7 +9691,7 @@ if ( typeof float64ToFloat32 !== 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":156,"./polyfill.js":157}],156:[function(require,module,exports){
+},{"./main.js":160,"./polyfill.js":161}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9516,7 +9721,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],157:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9569,125 +9774,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":2}],158:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/number/float64/base/to-words
-*
-* @example
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-* var toWords = require( '@stdlib/number/float64/base/to-words' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-
-// MODULES //
-
-var toWords = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./main.js":160}],159:[function(require,module,exports){
-arguments[4][141][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":47,"dup":141}],160:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var fcn = require( './to_words.js' );
-
-
-// MAIN //
-
-/**
-* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @param {(Array|TypedArray|Object)} [out] - output array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*
-* @example
-* var Uint32Array = require( '@stdlib/array/uint32' );
-*
-* var out = new Uint32Array( 2 );
-*
-* var w = toWords( out, 3.14e201 );
-* // returns <Uint32Array>[ 1774486211, 2479577218 ]
-*
-* var bool = ( w === out );
-* // returns true
-*/
-function toWords( out, x ) {
-	if ( arguments.length === 1 ) {
-		return fcn( [ 0, 0 ], out );
-	}
-	return fcn( out, x );
-}
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":161}],161:[function(require,module,exports){
+},{"@stdlib/array/float32":1}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9760,34 +9847,34 @@ var LOW = indices.LOW;
 *
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
-*
 * ## References
 *
 * -   [Open Group][1]
 *
 * [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
-*
 * @private
-* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} output array
+* @param {Collection} out - output array
+* @param {integer} stride - output array stride
+* @param {NonNegativeInteger} offset - output array index offset
+* @returns {Collection} output array
 *
 * @example
 * var Uint32Array = require( '@stdlib/array/uint32' );
 *
 * var out = new Uint32Array( 2 );
 *
-* var w = toWords( out, 3.14e201 );
+* var w = toWords( 3.14e201, out, 1, 0 );
 * // returns <Uint32Array>[ 1774486211, 2479577218 ]
 *
 * var bool = ( w === out );
 * // returns true
 */
-function toWords( out, x ) {
+function toWords( x, out, stride, offset ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	out[ 0 ] = UINT32_VIEW[ HIGH ];
-	out[ 1 ] = UINT32_VIEW[ LOW ];
+	out[ offset ] = UINT32_VIEW[ HIGH ];
+	out[ offset + stride ] = UINT32_VIEW[ LOW ];
 	return out;
 }
 
@@ -9796,7 +9883,117 @@ function toWords( out, x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":159,"@stdlib/array/float64":5,"@stdlib/array/uint32":10}],162:[function(require,module,exports){
+},{"./indices.js":164,"@stdlib/array/float64":4,"@stdlib/array/uint32":10}],163:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Split a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @module @stdlib/number/float64/base/to-words
+*
+* @example
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords.assign( 3.14e201, out, 1, 0 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var assign = require( './assign.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'assign', assign );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./assign.js":162,"./main.js":165,"@stdlib/utils/define-nonenumerable-read-only-property":198}],164:[function(require,module,exports){
+arguments[4][145][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":47,"dup":145}],165:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var fcn = require( './assign.js' );
+
+
+// MAIN //
+
+/**
+* Splits a double-precision floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {number} x - input value
+* @returns {Array<number>} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*/
+function toWords( x ) {
+	return fcn( x, [ 0>>>0, 0>>>0 ], 1, 0 );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./assign.js":162}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9842,7 +10039,7 @@ var uint32ToInt32 = require( './main.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./main.js":163}],163:[function(require,module,exports){
+},{"./main.js":167}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9891,7 +10088,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],164:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9977,7 +10174,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -10004,7 +10201,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":167}],165:[function(require,module,exports){
+},{"./is_number.js":171}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10121,7 +10318,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":167,"./zero_pad.js":171}],166:[function(require,module,exports){
+},{"./is_number.js":171,"./zero_pad.js":175}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10157,14 +10354,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":169}],167:[function(require,module,exports){
+},{"./main.js":173}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10212,7 +10409,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],168:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10256,7 +10453,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],169:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10289,11 +10486,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -10424,6 +10639,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -10432,9 +10648,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -10473,7 +10687,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":164,"./format_integer.js":165,"./is_string.js":168,"./space_pad.js":170,"./zero_pad.js":171}],170:[function(require,module,exports){
+},{"./format_double.js":168,"./format_integer.js":169,"./is_string.js":172,"./space_pad.js":174,"./zero_pad.js":175}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10540,7 +10754,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],171:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10626,7 +10840,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],172:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10662,14 +10876,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":173}],173:[function(require,module,exports){
+},{"./main.js":177}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10761,7 +10975,515 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],174:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Left pad a string such that the padded string has a length of at least `len`.
+*
+* @module @stdlib/string/base/left-pad
+*
+* @example
+* var lpad = require( '@stdlib/string/base/left-pad' );
+*
+* var str = lpad( 'a', 5, ' ' );
+* // returns '    a'
+*
+* str = lpad( 'beep', 10, 'b' );
+* // returns 'bbbbbbbeep'
+*
+* str = lpad( 'boop', 12, 'beep' );
+* // returns 'beepbeepboop'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":179}],179:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var repeat = require( '@stdlib/string/base/repeat' );
+var ceil = require( '@stdlib/math/base/special/ceil' );
+
+
+// MAIN //
+
+/**
+* Left pads a string such that the padded string has a length of at least `len`.
+*
+* @param {string} str - string to pad
+* @param {NonNegativeInteger} len - minimum string length
+* @param {string} pad - string used to pad
+* @returns {string} padded string
+*
+* @example
+* var str = lpad( 'a', 5, ' ' );
+* // returns '    a'
+*
+* @example
+* var str = lpad( 'beep', 10, 'b' );
+* // returns 'bbbbbbbeep'
+*
+* @example
+* var str = lpad( 'boop', 12, 'beep' );
+* // returns 'beepbeepboop'
+*/
+function lpad( str, len, pad ) {
+	var n = ( len - str.length ) / pad.length;
+	if ( n <= 0 ) {
+		return str;
+	}
+	n = ceil( n );
+	return repeat( pad, n ) + str;
+}
+
+
+// EXPORTS //
+
+module.exports = lpad;
+
+},{"@stdlib/math/base/special/ceil":107,"@stdlib/string/base/repeat":182}],180:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var repeat = String.prototype.repeat;
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],181:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var bool = ( typeof String.prototype.repeat !== 'undefined' );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{}],182:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Repeat a string a specified number of times and return the concatenated result.
+*
+* @module @stdlib/string/base/repeat
+*
+* @example
+* var replace = require( '@stdlib/string/base/repeat' );
+*
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* str = repeat( '', 100 );
+* // returns ''
+*
+* str = repeat( 'beep', 0 );
+* // returns ''
+*/
+
+// MODULES //
+
+var HAS_BUILTIN = require( './has_builtin.js' );
+var polyfill = require( './polyfill.js' );
+var main = require( './main.js' );
+
+
+// MAIN //
+
+var repeat;
+if ( HAS_BUILTIN ) {
+	repeat = main;
+} else {
+	repeat = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./has_builtin.js":181,"./main.js":183,"./polyfill.js":184}],183:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var builtin = require( './builtin.js' );
+
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	return builtin.call( str, n );
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{"./builtin.js":180}],184:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Repeats a string a specified number of times and returns the concatenated result.
+*
+* ## Method
+*
+* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
+*
+* For example,
+*
+* ```text
+* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
+* ```
+*
+* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
+*
+* The implementation is then as follows:
+*
+* 1.  Let `s` be the string to be repeated and `o` be an output string.
+*
+* 2.  Initialize an output string `o`.
+*
+* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
+*
+*     -   if the bit is a one, add
+*     -   otherwise, move on
+*
+* 4.  Double the string `s` by adding `s` to `s`.
+*
+* 5.  Right-shift the bits of `n`.
+*
+* 6.  Check if we have shifted off all bits.
+*
+*     -   if yes, done.
+*     -   otherwise, move on
+*
+* 7.  Repeat 3-6.
+*
+* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
+*
+* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
+*
+* @private
+* @param {string} str - string to repeat
+* @param {NonNegativeInteger} n - number of times to repeat the string
+* @returns {string} repeated string
+*
+* @example
+* var str = repeat( 'a', 5 );
+* // returns 'aaaaa'
+*
+* @example
+* var str = repeat( '', 100 );
+* // returns ''
+*
+* @example
+* var str = repeat( 'beep', 0 );
+* // returns ''
+*/
+function repeat( str, n ) {
+	var rpt;
+	var cnt;
+	if ( str.length === 0 || n === 0 ) {
+		return '';
+	}
+	rpt = '';
+	cnt = n;
+	for ( ; ; ) {
+		// If the count is odd, append the current concatenated string:
+		if ( (cnt&1) === 1 ) {
+			rpt += str;
+		}
+		// Right-shift the bits:
+		cnt >>>= 1;
+		if ( cnt === 0 ) {
+			break;
+		}
+		// Double the string:
+		str += str;
+	}
+	return rpt;
+}
+
+
+// EXPORTS //
+
+module.exports = repeat;
+
+},{}],185:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Right pad a string such that the padded string has a length of at least `len`.
+*
+* @module @stdlib/string/base/right-pad
+*
+* @example
+* var rpad = require( '@stdlib/string/base/right-pad' );
+*
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":186}],186:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var repeat = require( '@stdlib/string/base/repeat' );
+var ceil = require( '@stdlib/math/base/special/ceil' );
+
+
+// MAIN //
+
+/**
+* Right pads a string such that the padded string has a length of at least `len`.
+*
+* @param {string} str - string to pad
+* @param {NonNegativeInteger} len - minimum string length
+* @param {string} pad - string used to pad
+* @returns {string} padded string
+*
+* @example
+* var str = rpad( 'a', 5, ' ' );
+* // returns 'a    '
+*
+* @example
+* var str = rpad( 'beep', 10, 'b' );
+* // returns 'beepbbbbbb'
+*
+* @example
+* var str = rpad( 'boop', 12, 'beep' );
+* // returns 'boopbeepbeep'
+*/
+function rpad( str, len, pad ) {
+	var n = ( len - str.length ) / pad.length;
+	if ( n <= 0 ) {
+		return str;
+	}
+	n = ceil( n );
+	return str + repeat( pad, n );
+}
+
+
+// EXPORTS //
+
+module.exports = rpad;
+
+},{"@stdlib/math/base/special/ceil":107,"@stdlib/string/base/repeat":182}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10799,16 +11521,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":176}],175:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],176:[function(require,module,exports){
+},{"./main.js":189}],188:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10856,18 +11578,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -10877,7 +11596,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":175,"@stdlib/string/base/format-interpolate":166,"@stdlib/string/base/format-tokenize":172}],177:[function(require,module,exports){
+},{"./is_string.js":188,"@stdlib/string/base/format-interpolate":170,"@stdlib/string/base/format-tokenize":176}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10918,14 +11637,14 @@ module.exports = format;
 
 // MODULES //
 
-var lpad = require( './left_pad.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = lpad;
+module.exports = main;
 
-},{"./left_pad.js":178}],178:[function(require,module,exports){
+},{"./main.js":191}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10950,10 +11669,9 @@ module.exports = lpad;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
 var format = require( '@stdlib/string/format' );
 var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
+var base = require( '@stdlib/string/base/left-pad' );
 
 
 // MAIN //
@@ -10983,7 +11701,6 @@ var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-inte
 * // returns 'beepbeepboop'
 */
 function lpad( str, len, pad ) {
-	var n;
 	var p;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
@@ -11005,12 +11722,7 @@ function lpad( str, len, pad ) {
 	if ( len > FLOAT64_MAX_SAFE_INTEGER ) {
 		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', len ) );
 	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return repeat( p, n ) + str;
+	return base( str, len, p );
 }
 
 
@@ -11018,7 +11730,7 @@ function lpad( str, len, pad ) {
 
 module.exports = lpad;
 
-},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/constants/float64/max-safe-integer":79,"@stdlib/math/base/special/ceil":103,"@stdlib/string/format":174,"@stdlib/string/repeat":179}],179:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/constants/float64/max-safe-integer":82,"@stdlib/string/base/left-pad":178,"@stdlib/string/format":187}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11059,14 +11771,14 @@ module.exports = lpad;
 
 // MODULES //
 
-var repeat = require( './repeat.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = repeat;
+module.exports = main;
 
-},{"./repeat.js":180}],180:[function(require,module,exports){
+},{"./main.js":193}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11091,53 +11803,14 @@ module.exports = repeat;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
 var format = require( '@stdlib/string/format' );
+var base = require( '@stdlib/string/base/repeat' );
 
 
 // MAIN //
 
 /**
 * Repeats a string a specified number of times and returns the concatenated result.
-*
-* ## Method
-*
-* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
-*
-* For example,
-*
-* ```text
-* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
-* ```
-*
-* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
-*
-* The implementation is then as follows:
-*
-* 1.  Let `s` be the string to be repeated and `o` be an output string.
-*
-* 2.  Initialize an output string `o`.
-*
-* 3.  Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
-*
-*     -   if the bit is a one, add
-*     -   otherwise, move on
-*
-* 4.  Double the string `s` by adding `s` to `s`.
-*
-* 5.  Right-shift the bits of `n`.
-*
-* 6.  Check if we have shifted off all bits.
-*
-*     -   if yes, done.
-*     -   otherwise, move on
-*
-* 7.  Repeat 3-6.
-*
-* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
-*
-* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
-*
 *
 * @param {string} str - string to repeat
 * @param {NonNegativeInteger} n - number of times to repeat the string
@@ -11159,37 +11832,13 @@ var format = require( '@stdlib/string/format' );
 * // returns ''
 */
 function repeat( str, n ) {
-	var rpt;
-	var cnt;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
 	if ( !isNonNegativeInteger( n ) ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', n ) );
 	}
-	if ( str.length === 0 || n === 0 ) {
-		return '';
-	}
-	// Check that output string will not exceed the maximum string length:
-	if ( str.length * n > FLOAT64_MAX_SAFE_INTEGER ) {
-		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', str.length * n ) );
-	}
-	rpt = '';
-	cnt = n;
-	for ( ; ; ) {
-		// If the count is odd, append the current concatenated string:
-		if ( (cnt&1) === 1 ) {
-			rpt += str;
-		}
-		// Right-shift the bits:
-		cnt >>>= 1;
-		if ( cnt === 0 ) {
-			break;
-		}
-		// Double the string:
-		str += str;
-	}
-	return rpt;
+	return base( str, n );
 }
 
 
@@ -11197,7 +11846,7 @@ function repeat( str, n ) {
 
 module.exports = repeat;
 
-},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/constants/float64/max-safe-integer":79,"@stdlib/string/format":174}],181:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/string/base/repeat":182,"@stdlib/string/format":187}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11238,14 +11887,14 @@ module.exports = repeat;
 
 // MODULES //
 
-var rpad = require( './right_pad.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = rpad;
+module.exports = main;
 
-},{"./right_pad.js":182}],182:[function(require,module,exports){
+},{"./main.js":195}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11270,10 +11919,9 @@ module.exports = rpad;
 
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
 var format = require( '@stdlib/string/format' );
 var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-integer' );
+var base = require( '@stdlib/string/base/right-pad' );
 
 
 // MAIN //
@@ -11303,7 +11951,6 @@ var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/float64/max-safe-inte
 * // returns 'beepboopboop'
 */
 function rpad( str, len, pad ) {
-	var n;
 	var p;
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
@@ -11325,12 +11972,7 @@ function rpad( str, len, pad ) {
 	if ( len > FLOAT64_MAX_SAFE_INTEGER ) {
 		throw new RangeError( format( 'invalid argument. Output string length exceeds maximum allowed string length. Value: `%u`.', len ) );
 	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return str + repeat( p, n );
+	return base( str, len, p );
 }
 
 
@@ -11338,7 +11980,79 @@ function rpad( str, len, pad ) {
 
 module.exports = rpad;
 
-},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/constants/float64/max-safe-integer":79,"@stdlib/math/base/special/ceil":103,"@stdlib/string/format":174,"@stdlib/string/repeat":179}],183:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":49,"@stdlib/assert/is-string":59,"@stdlib/constants/float64/max-safe-integer":82,"@stdlib/string/base/right-pad":185,"@stdlib/string/format":187}],196:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":197}],197:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11380,14 +12094,14 @@ module.exports = rpad;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":184}],184:[function(require,module,exports){
+},{"./main.js":199}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11447,7 +12161,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":188}],185:[function(require,module,exports){
+},{"@stdlib/utils/define-property":203}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11510,7 +12224,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],186:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11540,7 +12254,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],187:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11593,7 +12307,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":186}],188:[function(require,module,exports){
+},{"./define_property.js":201}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11653,7 +12367,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":185,"./has_define_property_support.js":187,"./polyfill.js":189}],189:[function(require,module,exports){
+},{"./builtin.js":200,"./has_define_property_support.js":202,"./polyfill.js":204}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11777,7 +12491,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":174}],190:[function(require,module,exports){
+},{"@stdlib/string/format":187}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11822,25 +12536,25 @@ module.exports = defineProperty;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":191,"./polyfill.js":192,"@stdlib/assert/has-tostringtag-support":26}],191:[function(require,module,exports){
+},{"./main.js":206,"./polyfill.js":207,"@stdlib/assert/has-tostringtag-support":26}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11898,7 +12612,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":193}],192:[function(require,module,exports){
+},{"./tostring.js":208}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11981,7 +12695,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":193,"./tostringtag.js":194,"@stdlib/assert/has-own-property":22}],193:[function(require,module,exports){
+},{"./tostring.js":208,"./tostringtag.js":209,"@stdlib/assert/has-own-property":22}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12011,7 +12725,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],194:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12032,6 +12746,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -12041,7 +12760,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],195:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":196}],210:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -12193,11 +12912,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],196:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 
-},{}],197:[function(require,module,exports){
-arguments[4][196][0].apply(exports,arguments)
-},{"dup":196}],198:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"dup":211}],213:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -13978,7 +14697,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":195,"buffer":198,"ieee754":286}],199:[function(require,module,exports){
+},{"base64-js":210,"buffer":213,"ieee754":316}],214:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14477,7 +15196,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],200:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -15010,7 +15729,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":292}],201:[function(require,module,exports){
+},{"_process":323}],216:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15141,7 +15860,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":199,"inherits":287,"readable-stream/lib/_stream_duplex.js":203,"readable-stream/lib/_stream_passthrough.js":204,"readable-stream/lib/_stream_readable.js":205,"readable-stream/lib/_stream_transform.js":206,"readable-stream/lib/_stream_writable.js":207,"readable-stream/lib/internal/streams/end-of-stream.js":211,"readable-stream/lib/internal/streams/pipeline.js":213}],202:[function(require,module,exports){
+},{"events":214,"inherits":317,"readable-stream/lib/_stream_duplex.js":218,"readable-stream/lib/_stream_passthrough.js":219,"readable-stream/lib/_stream_readable.js":220,"readable-stream/lib/_stream_transform.js":221,"readable-stream/lib/_stream_writable.js":222,"readable-stream/lib/internal/streams/end-of-stream.js":226,"readable-stream/lib/internal/streams/pipeline.js":228}],217:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -15270,7 +15989,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],203:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15412,7 +16131,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":205,"./_stream_writable":207,"_process":292,"inherits":287}],204:[function(require,module,exports){
+},{"./_stream_readable":220,"./_stream_writable":222,"_process":323,"inherits":317}],219:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15452,7 +16171,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":206,"inherits":287}],205:[function(require,module,exports){
+},{"./_stream_transform":221,"inherits":317}],220:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -16579,7 +17298,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":202,"./_stream_duplex":203,"./internal/streams/async_iterator":208,"./internal/streams/buffer_list":209,"./internal/streams/destroy":210,"./internal/streams/from":212,"./internal/streams/state":214,"./internal/streams/stream":215,"_process":292,"buffer":198,"events":199,"inherits":287,"string_decoder/":299,"util":196}],206:[function(require,module,exports){
+},{"../errors":217,"./_stream_duplex":218,"./internal/streams/async_iterator":223,"./internal/streams/buffer_list":224,"./internal/streams/destroy":225,"./internal/streams/from":227,"./internal/streams/state":229,"./internal/streams/stream":230,"_process":323,"buffer":213,"events":214,"inherits":317,"string_decoder/":332,"util":211}],221:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16781,7 +17500,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":202,"./_stream_duplex":203,"inherits":287}],207:[function(require,module,exports){
+},{"../errors":217,"./_stream_duplex":218,"inherits":317}],222:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17481,7 +18200,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":202,"./_stream_duplex":203,"./internal/streams/destroy":210,"./internal/streams/state":214,"./internal/streams/stream":215,"_process":292,"buffer":198,"inherits":287,"util-deprecate":308}],208:[function(require,module,exports){
+},{"../errors":217,"./_stream_duplex":218,"./internal/streams/destroy":225,"./internal/streams/state":229,"./internal/streams/stream":230,"_process":323,"buffer":213,"inherits":317,"util-deprecate":341}],223:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -17691,7 +18410,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":211,"_process":292}],209:[function(require,module,exports){
+},{"./end-of-stream":226,"_process":323}],224:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -17902,7 +18621,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":198,"util":196}],210:[function(require,module,exports){
+},{"buffer":213,"util":211}],225:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -18010,7 +18729,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":292}],211:[function(require,module,exports){
+},{"_process":323}],226:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -18115,12 +18834,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":202}],212:[function(require,module,exports){
+},{"../../../errors":217}],227:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],213:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -18218,7 +18937,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":202,"./end-of-stream":211}],214:[function(require,module,exports){
+},{"../../../errors":217,"./end-of-stream":226}],229:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -18246,10 +18965,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":202}],215:[function(require,module,exports){
+},{"../../../errors":217}],230:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":199}],216:[function(require,module,exports){
+},{"events":214}],231:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18266,43 +18985,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":217,"get-intrinsic":281}],217:[function(require,module,exports){
+},{"./":232,"get-intrinsic":307}],232:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -18315,7 +19022,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":280,"get-intrinsic":281}],218:[function(require,module,exports){
+},{"es-define-property":292,"es-errors/type":298,"function-bind":306,"get-intrinsic":307,"set-function-length":327}],233:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -18411,7 +19118,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":219,"./lib/keys.js":220}],219:[function(require,module,exports){
+},{"./lib/is_arguments.js":234,"./lib/keys.js":235}],234:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -18433,7 +19140,7 @@ function unsupported(object){
     false;
 };
 
-},{}],220:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -18444,7 +19151,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],221:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":292,"es-errors/syntax":297,"es-errors/type":298,"gopd":308}],237:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -18452,29 +19217,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -18493,14 +19258,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":282,"object-keys":290}],222:[function(require,module,exports){
+},{"define-data-property":236,"has-property-descriptors":309,"object-keys":321}],238:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],223:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -18539,13 +19304,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":253,"./ToPrimitive":255,"./Type":260}],224:[function(require,module,exports){
+},{"./ToNumber":270,"./ToPrimitive":272,"./Type":277}],240:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -18553,13 +19318,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -18571,7 +19335,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -18604,28 +19368,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":269,"../helpers/isNaN":271,"../helpers/isPrefixOf":272,"./ToNumber":253,"./ToPrimitive":255,"./Type":260,"get-intrinsic":281}],225:[function(require,module,exports){
+},{"../helpers/isFinite":285,"../helpers/isNaN":286,"../helpers/isPrefixOf":287,"./ToNumber":270,"./ToPrimitive":272,"es-errors/type":298,"get-intrinsic":307}],241:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":231,"es-errors/type":298}],242:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":281}],226:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":300}],243:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -18676,7 +19473,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":229,"./InLeapYear":233,"./MonthFromTime":243,"get-intrinsic":281}],227:[function(require,module,exports){
+},{"./DayWithinYear":246,"./InLeapYear":250,"./MonthFromTime":260,"es-errors/eval":293}],244:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -18689,7 +19486,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":276,"./floor":264}],228:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./floor":281}],245:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -18701,7 +19498,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":264}],229:[function(require,module,exports){
+},{"./floor":281}],246:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -18714,7 +19511,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":227,"./DayFromYear":228,"./YearFromTime":262}],230:[function(require,module,exports){
+},{"./Day":244,"./DayFromYear":245,"./YearFromTime":279}],247:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -18734,18 +19531,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":265}],231:[function(require,module,exports){
+},{"./modulo":282}],248:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -18754,7 +19548,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -18775,7 +19571,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":268,"./IsAccessorDescriptor":234,"./IsDataDescriptor":236,"./Type":260,"get-intrinsic":281}],232:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":289,"./IsAccessorDescriptor":251,"./IsDataDescriptor":253,"es-errors/type":298}],249:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -18791,12 +19587,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":276,"./floor":264,"./modulo":265}],233:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./floor":281,"./modulo":282}],250:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -18814,14 +19608,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":230,"./YearFromTime":262,"get-intrinsic":281}],234:[function(require,module,exports){
+},{"./DaysInYear":247,"./YearFromTime":279,"es-errors/eval":293}],251:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -18830,30 +19624,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":268,"./Type":260,"has":285}],235:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":289,"es-errors/type":298,"hasown":315}],252:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":288}],236:[function(require,module,exports){
+},{"is-callable":318}],253:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -18862,23 +19658,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":268,"./Type":260,"has":285}],237:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":289,"es-errors/type":298,"hasown":315}],254:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -18887,7 +19686,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -18896,28 +19697,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":268,"./IsAccessorDescriptor":234,"./IsDataDescriptor":236,"./Type":260}],238:[function(require,module,exports){
+},{"./IsAccessorDescriptor":251,"./IsDataDescriptor":253,"./IsPropertyDescriptor":255,"es-errors/type":298}],255:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":273,"./IsAccessorDescriptor":234,"./IsDataDescriptor":236,"./Type":260}],239:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":289}],256:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -18932,7 +19725,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":269,"../helpers/timeConstants":276}],240:[function(require,module,exports){
+},{"../helpers/isFinite":285,"../helpers/timeConstants":291}],257:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18967,7 +19760,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":269,"./DateFromTime":226,"./Day":227,"./MonthFromTime":243,"./ToInteger":252,"./YearFromTime":262,"./floor":264,"./modulo":265,"get-intrinsic":281}],241:[function(require,module,exports){
+},{"../helpers/isFinite":285,"./DateFromTime":243,"./Day":244,"./MonthFromTime":260,"./ToInteger":269,"./YearFromTime":279,"./floor":281,"./modulo":282,"get-intrinsic":307}],258:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -18992,7 +19785,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":269,"../helpers/timeConstants":276,"./ToInteger":252}],242:[function(require,module,exports){
+},{"../helpers/isFinite":285,"../helpers/timeConstants":291,"./ToInteger":269}],259:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -19008,7 +19801,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":276,"./floor":264,"./modulo":265}],243:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./floor":281,"./modulo":282}],260:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -19057,7 +19850,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":229,"./InLeapYear":233}],244:[function(require,module,exports){
+},{"./DayWithinYear":246,"./InLeapYear":250}],261:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -19072,7 +19865,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":271}],245:[function(require,module,exports){
+},{"../helpers/isNaN":286}],262:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -19088,7 +19881,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":276,"./floor":264,"./modulo":265}],246:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./floor":281,"./modulo":282}],263:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -19107,7 +19900,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":260}],247:[function(require,module,exports){
+},{"./Type":277}],264:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -19130,7 +19923,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":269,"./ToNumber":253,"./abs":263,"get-intrinsic":281}],248:[function(require,module,exports){
+},{"../helpers/isFinite":285,"./ToNumber":270,"./abs":280,"get-intrinsic":307}],265:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -19143,7 +19936,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":276,"./DayFromYear":228}],249:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./DayFromYear":245}],266:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -19157,14 +19950,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":276,"./modulo":265}],250:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./modulo":282}],267:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],251:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -19175,7 +19968,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":253}],252:[function(require,module,exports){
+},{"./ToNumber":270}],269:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -19195,10 +19988,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":269,"../helpers/isNaN":271,"../helpers/sign":275,"./ToNumber":253,"./abs":263,"./floor":264}],253:[function(require,module,exports){
+},{"../helpers/isFinite":285,"../helpers/isNaN":286,"../helpers/sign":290,"./ToNumber":270,"./abs":280,"./floor":281}],270:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -19208,46 +20009,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":255}],254:[function(require,module,exports){
+},{"./ToPrimitive":272,"call-bind/callBound":231,"safe-regex-test":326}],271:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":225,"get-intrinsic":281}],255:[function(require,module,exports){
+},{"es-object-atoms/ToObject":301}],272:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":277}],256:[function(require,module,exports){
+},{"es-to-primitive/es5":303}],273:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -19261,26 +20055,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -19288,13 +20082,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":235,"./ToBoolean":250,"./Type":260,"get-intrinsic":281,"has":285}],257:[function(require,module,exports){
+},{"./IsCallable":252,"./ToBoolean":267,"./Type":277,"es-errors/type":298,"hasown":315}],274:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -19308,7 +20102,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":281}],258:[function(require,module,exports){
+},{"get-intrinsic":307}],275:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -19329,7 +20123,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":269,"../helpers/isNaN":271,"../helpers/sign":275,"./ToNumber":253,"./abs":263,"./floor":264,"./modulo":265}],259:[function(require,module,exports){
+},{"../helpers/isFinite":285,"../helpers/isNaN":286,"../helpers/sign":290,"./ToNumber":270,"./abs":280,"./floor":281,"./modulo":282}],276:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -19340,7 +20134,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":253}],260:[function(require,module,exports){
+},{"./ToNumber":270}],277:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -19366,7 +20160,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],261:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -19378,7 +20172,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":227,"./modulo":265}],262:[function(require,module,exports){
+},{"./Day":244,"./modulo":282}],279:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -19396,7 +20190,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":216,"get-intrinsic":281}],263:[function(require,module,exports){
+},{"call-bind/callBound":231,"get-intrinsic":307}],280:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -19409,7 +20203,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":281}],264:[function(require,module,exports){
+},{"get-intrinsic":307}],281:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -19422,7 +20216,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],265:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -19433,7 +20227,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":274}],266:[function(require,module,exports){
+},{"../helpers/mod":288}],283:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -19446,7 +20240,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":276,"./modulo":265}],267:[function(require,module,exports){
+},{"../helpers/timeConstants":291,"./modulo":282}],284:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -19457,6 +20251,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -19499,90 +20294,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":223,"./5/AbstractRelationalComparison":224,"./5/CheckObjectCoercible":225,"./5/DateFromTime":226,"./5/Day":227,"./5/DayFromYear":228,"./5/DayWithinYear":229,"./5/DaysInYear":230,"./5/FromPropertyDescriptor":231,"./5/HourFromTime":232,"./5/InLeapYear":233,"./5/IsAccessorDescriptor":234,"./5/IsCallable":235,"./5/IsDataDescriptor":236,"./5/IsGenericDescriptor":237,"./5/IsPropertyDescriptor":238,"./5/MakeDate":239,"./5/MakeDay":240,"./5/MakeTime":241,"./5/MinFromTime":242,"./5/MonthFromTime":243,"./5/SameValue":244,"./5/SecFromTime":245,"./5/StrictEqualityComparison":246,"./5/TimeClip":247,"./5/TimeFromYear":248,"./5/TimeWithinDay":249,"./5/ToBoolean":250,"./5/ToInt32":251,"./5/ToInteger":252,"./5/ToNumber":253,"./5/ToObject":254,"./5/ToPrimitive":255,"./5/ToPropertyDescriptor":256,"./5/ToString":257,"./5/ToUint16":258,"./5/ToUint32":259,"./5/Type":260,"./5/WeekDay":261,"./5/YearFromTime":262,"./5/abs":263,"./5/floor":264,"./5/modulo":265,"./5/msFromTime":266}],268:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":239,"./5/AbstractRelationalComparison":240,"./5/Canonicalize":241,"./5/CheckObjectCoercible":242,"./5/DateFromTime":243,"./5/Day":244,"./5/DayFromYear":245,"./5/DayWithinYear":246,"./5/DaysInYear":247,"./5/FromPropertyDescriptor":248,"./5/HourFromTime":249,"./5/InLeapYear":250,"./5/IsAccessorDescriptor":251,"./5/IsCallable":252,"./5/IsDataDescriptor":253,"./5/IsGenericDescriptor":254,"./5/IsPropertyDescriptor":255,"./5/MakeDate":256,"./5/MakeDay":257,"./5/MakeTime":258,"./5/MinFromTime":259,"./5/MonthFromTime":260,"./5/SameValue":261,"./5/SecFromTime":262,"./5/StrictEqualityComparison":263,"./5/TimeClip":264,"./5/TimeFromYear":265,"./5/TimeWithinDay":266,"./5/ToBoolean":267,"./5/ToInt32":268,"./5/ToInteger":269,"./5/ToNumber":270,"./5/ToObject":271,"./5/ToPrimitive":272,"./5/ToPropertyDescriptor":273,"./5/ToString":274,"./5/ToUint16":275,"./5/ToUint32":276,"./5/Type":277,"./5/WeekDay":278,"./5/YearFromTime":279,"./5/abs":280,"./5/floor":281,"./5/modulo":282,"./5/msFromTime":283}],285:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":270,"get-intrinsic":281,"has":285}],269:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],270:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":285}],271:[function(require,module,exports){
+},{"./isNaN":286}],286:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],272:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -19597,40 +20323,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":216}],273:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":281,"has":285}],274:[function(require,module,exports){
+},{"call-bind/callBound":231}],288:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -19640,14 +20333,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],275:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":298,"hasown":315}],290:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],276:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -19668,7 +20399,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],277:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":307}],293:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],294:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],295:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],296:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],297:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],298:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],299:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],300:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":298}],301:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":302,"./RequireObjectCoercible":300}],302:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],303:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -19715,56 +20537,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":278,"is-callable":288}],278:[function(require,module,exports){
+},{"./helpers/isPrimitive":304,"is-callable":318}],304:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],279:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -19776,21 +20630,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],280:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":279}],281:[function(require,module,exports){
+},{"./implementation":305}],307:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -19829,18 +20689,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -19848,6 +20714,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -19855,9 +20723,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -19868,10 +20736,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -19879,15 +20747,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -19897,11 +20765,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -19918,7 +20796,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -19929,6 +20807,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -19983,11 +20862,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -20043,6 +20923,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -20115,29 +20998,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":280,"has":285,"has-symbols":283}],282:[function(require,module,exports){
+},{"es-errors":294,"es-errors/eval":293,"es-errors/range":295,"es-errors/ref":296,"es-errors/syntax":297,"es-errors/type":298,"es-errors/uri":299,"function-bind":306,"has-proto":310,"has-symbols":311,"hasown":315}],308:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":307}],309:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -20150,7 +21040,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":281}],283:[function(require,module,exports){
+},{"es-define-property":292}],310:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],311:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -20165,7 +21072,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":284}],284:[function(require,module,exports){
+},{"./shams":312}],312:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -20209,14 +21116,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],285:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":312}],314:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":280}],286:[function(require,module,exports){
+},{"function-bind":306}],315:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":306}],316:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -20303,7 +21230,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],287:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -20332,7 +21259,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],288:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -20378,37 +21305,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],289:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":231,"has-tostringtag/shams":313}],320:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -20532,7 +21546,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":291}],290:[function(require,module,exports){
+},{"./isArguments":322}],321:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -20566,7 +21580,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":289,"./isArguments":291}],291:[function(require,module,exports){
+},{"./implementation":320,"./isArguments":322}],322:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -20585,7 +21599,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],292:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -20771,7 +21785,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],293:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -20804,7 +21818,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":292,"through":306,"timers":307}],294:[function(require,module,exports){
+},{"_process":323,"through":339,"timers":340}],325:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -20871,7 +21885,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":198}],295:[function(require,module,exports){
+},{"buffer":213}],326:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":231,"es-errors/type":298,"is-regex":319}],327:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":236,"es-errors/type":298,"get-intrinsic":307,"gopd":308,"has-property-descriptors":309}],328:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -20886,7 +21962,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":267,"function-bind":280}],296:[function(require,module,exports){
+},{"es-abstract/es5":284,"function-bind":306}],329:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -20906,7 +21982,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":295,"./polyfill":297,"./shim":298,"define-properties":221,"function-bind":280}],297:[function(require,module,exports){
+},{"./implementation":328,"./polyfill":330,"./shim":331,"define-properties":237,"function-bind":306}],330:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -20920,7 +21996,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":295}],298:[function(require,module,exports){
+},{"./implementation":328}],331:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -20932,7 +22008,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":297,"define-properties":221}],299:[function(require,module,exports){
+},{"./polyfill":330,"define-properties":237}],332:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -21229,7 +22305,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":294}],300:[function(require,module,exports){
+},{"safe-buffer":325}],333:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -21383,7 +22459,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":301,"./lib/results":303,"./lib/test":304,"_process":292,"defined":222,"through":306,"timers":307}],301:[function(require,module,exports){
+},{"./lib/default_stream":334,"./lib/results":336,"./lib/test":337,"_process":323,"defined":238,"through":339,"timers":340}],334:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -21418,7 +22494,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":292,"fs":197,"through":306}],302:[function(require,module,exports){
+},{"_process":323,"fs":212,"through":339}],335:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -21426,7 +22502,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":292,"timers":307}],303:[function(require,module,exports){
+},{"_process":323,"timers":340}],336:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -21617,7 +22693,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":292,"events":199,"function-bind":280,"has":285,"inherits":287,"object-inspect":305,"resumer":293,"through":306,"timers":307}],304:[function(require,module,exports){
+},{"_process":323,"events":214,"function-bind":306,"has":314,"inherits":317,"object-inspect":338,"resumer":324,"through":339,"timers":340}],337:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -22118,7 +23194,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":302,"deep-equal":218,"defined":222,"events":199,"has":285,"inherits":287,"path":200,"string.prototype.trim":296}],305:[function(require,module,exports){
+},{"./next_tick":335,"deep-equal":233,"defined":238,"events":214,"has":314,"inherits":317,"path":215,"string.prototype.trim":329}],338:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -22312,7 +23388,7 @@ function inspectString (str) {
     }
 }
 
-},{}],306:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -22424,7 +23500,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":292,"stream":201}],307:[function(require,module,exports){
+},{"_process":323,"stream":216}],340:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -22503,7 +23579,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":292,"timers":307}],308:[function(require,module,exports){
+},{"process/browser.js":323,"timers":340}],341:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -22574,4 +23650,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[133]);
+},{}]},{},[137]);

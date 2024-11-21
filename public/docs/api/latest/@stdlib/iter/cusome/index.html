@@ -1,0 +1,54 @@
+<h1 id="itercusome">iterCuSome</h1><blockquote><p>Create an iterator which cumulatively tests whether at least <code>n</code> iterated values are truthy.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterCuSome = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/cusome'</span> );
+</code></pre><h4 id="itercusome-iterator-n-">iterCuSome( iterator, n )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which cumulatively tests whether at least <code>n</code> iterated values are truthy.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterCuSome( arr, <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns false</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns false</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns false</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns true</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
+<span class="hljs-keyword">var</span> iterCuSome = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/cusome'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threshold</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> ( r > <span class="hljs-number">0.95</span> );
+}
+
+<span class="hljs-comment">// Create an iterator which generates uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+};
+<span class="hljs-keyword">var</span> riter = randu( opts );
+
+<span class="hljs-comment">// Create an iterator which applies a threshold to generated numbers:</span>
+<span class="hljs-keyword">var</span> miter = iterMap( riter, threshold );
+
+<span class="hljs-comment">// Create an iterator which cumulatively tests whether at least 5 iterated values are truthy:</span>
+<span class="hljs-keyword">var</span> it = iterCuSome( miter, <span class="hljs-number">5</span> );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    r = it.next();
+    <span class="hljs-keyword">if</span> ( r.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( r.value );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

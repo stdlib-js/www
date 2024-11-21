@@ -1,0 +1,43 @@
+<h1 id="ms2duration">ms2duration</h1><blockquote><p>Convert a number of milliseconds to a string duration.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ms2duration = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/ms2duration'</span> );
+</code></pre><h4 id="ms2duration-str-">ms2duration( str )</h4><p>Converts a number of milliseconds to a string duration.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> duration = ms2duration( <span class="hljs-number">1030</span> );
+<span class="hljs-comment">// returns '1s30ms'</span>
+
+duration = ms2duration( <span class="hljs-number">3600000</span> );
+<span class="hljs-comment">// returns '1h'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A duration string is a string containing a sequence of time units. A time unit is a non-negative integer followed by a unit identifier. The following unit identifiers are supported:</p><ul><li><code>d</code>: days</li><li><code>h</code>: hours</li><li><code>m</code>: minutes</li><li><code>s</code>: seconds</li><li><code>ms</code>: milliseconds</li></ul><p>For example, the string <code>1m3s10ms</code> is a duration string containing three time units: <code>1m</code> (1 minute), <code>3s</code> (3 seconds), and <code>10ms</code> (10 milliseconds). The string <code>60m</code> is a duration string containing a single time unit: <code>60m</code> (60 minutes).</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ms2duration = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/ms2duration'</span> );
+
+<span class="hljs-keyword">var</span> duration = ms2duration( <span class="hljs-number">1030</span> );
+<span class="hljs-comment">// returns '1s30ms'</span>
+
+duration = ms2duration( <span class="hljs-number">3600000</span> );
+<span class="hljs-comment">// returns '1h'</span>
+
+duration = ms2duration( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns '0ms'</span>
+
+duration = ms2duration( <span class="hljs-number">86400000</span> );
+<span class="hljs-comment">// returns '1d'</span>
+
+duration = ms2duration( <span class="hljs-number">86400000</span>+<span class="hljs-number">3600000</span>+<span class="hljs-number">60000</span>+<span class="hljs-number">1000</span>+<span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns '1d1h1m1s100ms'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: ms2duration [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'3000\n25300'</span> | ms2duration --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'3000\n25300'</span> | ms2duration --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ ms2duration 1000
+1s
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'1000\n2000'</span> | ms2duration
+1s
+2s
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'1350,2000'</span> | ms2duration --split <span class="hljs-string">','</span>
+1s350ms
+2s
+</code></pre></section></section><section class="related"><section class="links"></section></section>

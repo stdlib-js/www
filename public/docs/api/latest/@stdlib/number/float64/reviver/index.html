@@ -1,0 +1,22 @@
+<h1 id="revivenumber">reviveNumber</h1><blockquote><p>Revive a JSON-serialized number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviveNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/reviver'</span> );
+</code></pre><h4 id="revivenumber-key-value-">reviveNumber( key, value )</h4><p>Revives a JSON-serialized number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"float64","value":"NaN"}'</span>;
+
+<span class="hljs-keyword">var</span> buf = parseJSON( str, reviveNumber );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/number/float64/to-json"><code>@stdlib/number/float64/to-json</code></a>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<span class="hljs-keyword">var</span> number2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/to-json'</span> );
+<span class="hljs-keyword">var</span> reviveNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/reviver'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( number2json( <span class="hljs-literal">NaN</span> ) );
+<span class="hljs-built_in">console</span>.log( str );
+<span class="hljs-comment">// => '{"type":"float64","value":"NaN"}'</span>
+
+<span class="hljs-keyword">var</span> out = parseJSON( str, reviveNumber );
+<span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> out;
+}
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => NaN</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/number/float64/to-json"><code>@stdlib/number/float64/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a number.</span></li></ul></section><section class="links"></section>

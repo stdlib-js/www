@@ -1,5 +1,5 @@
 <h1 id="dswap">dswap</h1><blockquote><p>Interchange two double-precision floating-point vectors.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dswap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/dswap'</span> );
-</code></pre><h4 id="dswap-x-y-">dswap( x, y )</h4><p>Interchanges two double-precision floating-point vectors <code>x</code> and <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="dswap-x-y-dim-">dswap( x, y[, dim] )</h4><p>Interchanges two double-precision floating-point vectors <code>x</code> and <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">1.0</span> ] ) );
@@ -12,26 +12,48 @@ dswap( x, y );
 
 <span class="hljs-keyword">var</span> ybuf = y.data;
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 4.0, 2.0, -3.0, 5.0, -1.0 ]</span>
-</code></pre><p>The function has the following parameters:</p><ul><li><strong>x</strong>: a 1-dimensional <a href="/docs/api/latest/@stdlib/ndarray/array"><code>ndarray</code></a> whose underlying data type is <code>float64</code>.</li><li><strong>y</strong>: a 1-dimensional <a href="/docs/api/latest/@stdlib/ndarray/array"><code>ndarray</code></a> whose underlying data type is <code>float64</code>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><code>dswap()</code> provides a higher-level interface to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="/docs/api/latest/@stdlib/blas/base/dswap"><code>dswap</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>x</strong>: a non-zero-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> whose underlying data type is <code>float64</code>. Must have the same shape as <code>y</code>.</li><li><strong>y</strong>: a non-zero-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> whose underlying data type is <code>float64</code>. Must have the same shape as <code>x</code>.</li><li><strong>dim</strong>: dimension along which to interchange vectors. Must be a negative integer. Negative indices are resolved relative to the last array dimension, with the last dimension corresponding to <code>-1</code>. Default: <code>-1</code>.</li></ul><p>For multi-dimensional input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a>, the function performs batched computation, such that the function interchanges each pair of vectors in <code>x</code> and <code>y</code> according to the specified dimension index.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+};
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> ] ), opts );
+<span class="hljs-keyword">var</span> y = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">6.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">2.0</span> ] ), opts );
+
+<span class="hljs-keyword">var</span> v1 = x.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+<span class="hljs-keyword">var</span> v2 = y.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2.0</span>
+
+dswap( x, y );
+
+v1 = x.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2.0</span>
+
+v2 = y.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Both input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a> must have the same shape.</li><li>Negative indices are resolved relative to the last <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> dimension, with the last dimension corresponding to <code>-1</code>.</li><li>For multi-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a>, batched computation effectively means swapping all of <code>x</code> with all of <code>y</code>; however, the choice of <code>dim</code> will significantly affect performance. For best performance, specify a <code>dim</code> which best aligns with the <a href="/docs/api/latest/@stdlib/ndarray/orders">memory layout</a> of provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a>.</li><li><code>dswap()</code> provides a higher-level interface to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="/docs/api/latest/@stdlib/blas/base/dswap"><code>dswap</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
 <span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 <span class="hljs-keyword">var</span> dswap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/dswap'</span> );
 
-<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> ) );
-<span class="hljs-keyword">var</span> y = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+};
 
-<span class="hljs-keyword">var</span> rand1 = discreteUniform.factory( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
-<span class="hljs-keyword">var</span> rand2 = discreteUniform.factory( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+<span class="hljs-keyword">var</span> x = array( discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, opts ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ]
+});
+<span class="hljs-built_in">console</span>.log( ndarray2array( x ) );
 
-<span class="hljs-keyword">var</span> i;
-<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
-    x.set( i, rand1() );
-    y.set( i, rand2() );
-}
-<span class="hljs-built_in">console</span>.log( x.data );
-<span class="hljs-built_in">console</span>.log( y.data );
+<span class="hljs-keyword">var</span> y = array( discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, opts ), {
+    <span class="hljs-string">'shape'</span>: x.shape
+});
+<span class="hljs-built_in">console</span>.log( ndarray2array( y ) );
 
 dswap( x, y );
-<span class="hljs-built_in">console</span>.log( x.data );
-<span class="hljs-built_in">console</span>.log( y.data );
+<span class="hljs-built_in">console</span>.log( ndarray2array( x ) );
+<span class="hljs-built_in">console</span>.log( ndarray2array( y ) );
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dswap"><code>@stdlib/blas/base/dswap</code></a></span><span class="delimiter">: </span><span class="description">interchange two double-precision floating-point vectors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/gswap"><code>@stdlib/blas/gswap</code></a></span><span class="delimiter">: </span><span class="description">interchange two vectors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/sswap"><code>@stdlib/blas/sswap</code></a></span><span class="delimiter">: </span><span class="description">interchange two single-precision floating-point vectors.</span></li></ul></section><section class="links"></section>

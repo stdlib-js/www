@@ -1,5 +1,5 @@
 <h1 id="reversestring">reverseString</h1><blockquote><p>Reverse a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
-</code></pre><h4 id="reversestring-str-">reverseString( str )</h4><p>Reverses a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span> );
+</code></pre><h4 id="reversestring-str-options-">reverseString( str[, options] )</h4><p>Reverses a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'gnidnats nam tsal'</span>
 
 out = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
@@ -7,7 +7,7 @@ out = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
 
 out = reverseString( <span class="hljs-string">'Lorem ipsum 𝌆 dolor sit ameͨ͆t.'</span> );
 <span class="hljs-comment">// returns '.teͨ͆ma tis rolod 𝌆 muspi meroL'</span>
-</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>mode</strong>: type of characters to reverse. Must be one of the following:</p><ul><li><code>'grapheme'</code>: grapheme clusters. Appropriate for strings containing visual characters which can span multiple Unicode code points (e.g., emoji).</li><li><code>'code_point'</code>: Unicode code points. Appropriate for strings containing visual characters which are comprised of more than one Unicode code unit (e.g., ideographic symbols and punctuation and mathematical alphanumerics).</li><li><code>'code_unit'</code>: UTF-16 code units. Appropriate for strings containing visual characters drawn from the basic multilingual plane (BMP) (e.g., common characters, such as those from the Latin, Greek, and Cyrillic alphabets).</li></ul><p>Default: <code>'grapheme'</code>.</p></li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>By default, the function assumes the general case in which an input string may contain an arbitrary number of grapheme clusters. This assumption comes with a performance cost. Accordingly, if an input string is known to only contain visual characters of a particular type (e.g., only alphanumeric), one can achieve better performance by specifying the appropriate <code>mode</code> option.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
 
 <span class="hljs-keyword">var</span> str = reverseString( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'gnidnats nam tsal'</span>
@@ -27,7 +27,8 @@ Options:
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
-</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+         --mode mode           Type of character to return. Default: 'grapheme'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | reverse --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>

@@ -1,0 +1,50 @@
+<h1 id="maxf">maxf</h1><blockquote><p>Return the maximum single-precision floating-point number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maxf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/maxf'</span> );
+</code></pre><h4 id="maxf-x-y-">maxf( x, y )</h4><p>Returns the maximum single-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = maxf( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 4.2</span>
+
+v = maxf( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns +0.0</span>
+</code></pre><p>If any argument is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = maxf( <span class="hljs-number">4.2</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = maxf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> );
+<span class="hljs-keyword">var</span> maxf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/maxf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = minstd();
+    y = minstd();
+    v = maxf( x, y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'maxf(%d,%d) = %d'</span>, x, y, v );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/maxf.h"</span></span>
+</code></pre><h4 id="stdlib_base_maxf-x-y-">stdlib_base_maxf( x, y )</h4><p>Returns the maximum single-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> out = stdlib_base_maxf( <span class="hljs-number">4.2f</span>, <span class="hljs-number">3.14f</span> );
+<span class="hljs-comment">// returns 4.2f</span>
+
+out = stdlib_base_maxf( <span class="hljs-number">0.0f</span>, <span class="hljs-number">-0.0f</span> );
+<span class="hljs-comment">// returns 0.0f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li><li><strong>y</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_maxf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/maxf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">float</span> x;
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">float</span> v;
+    <span class="hljs-keyword">int</span> i;
+    
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( ( (<span class="hljs-keyword">float</span>)rand() / (<span class="hljs-keyword">float</span>)RAND_MAX ) * <span class="hljs-number">200.0f</span> ) - <span class="hljs-number">100.0f</span>;
+        y = ( ( (<span class="hljs-keyword">float</span>)rand() / (<span class="hljs-keyword">float</span>)RAND_MAX ) * <span class="hljs-number">200.0f</span> ) - <span class="hljs-number">100.0f</span>;
+        v = stdlib_base_maxf( x, y );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x: %f, y: %f, maxf(x, y): %f\n"</span>, x, y, v );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

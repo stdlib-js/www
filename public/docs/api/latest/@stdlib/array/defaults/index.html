@@ -1,0 +1,29 @@
+<h1 id="defaults">defaults</h1><blockquote><p>Default array settings.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defaults = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/defaults'</span> );
+</code></pre><h4 id="defaults-1">defaults()</h4><p>Returns default array settings.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = defaults();
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>The returned object has the following properties:</p><ul><li><p><strong>dtypes</strong>: default data types.</p><ul><li><strong>default</strong>: default data type.</li><li><strong>numeric</strong>: default numeric data type.</li><li><strong>real</strong>: default real-valued data type.</li><li><strong>floating_point</strong>: default floating-point data type.</li><li><strong>real_floating_point</strong>: default real-valued floating-point data type.</li><li><strong>complex_floating_point</strong>: default complex-valued floating-point data type.</li><li><strong>boolean</strong>: default boolean data type.</li><li><strong>integer</strong>: default integer data type.</li><li><strong>signed_integer</strong>: default signed integer data type.</li><li><strong>unsigned_integer</strong>: default unsigned integer data type.</li></ul></li></ul><h4 id="defaultsget-name-">defaults.get( name )</h4><p>Returns the setting value for a provided setting <code>name</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = defaults.get( <span class="hljs-string">'dtypes.floating_point'</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p>The setting <code>name</code> corresponds to a flattened object path. For example, the setting name <code>'dtypes.default'</code> maps to the nested path <code>o.dtypes.default</code> as found in the object returned by <code>defaults()</code>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/empty'</span> );
+<span class="hljs-keyword">var</span> dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtype'</span> );
+<span class="hljs-keyword">var</span> defaults = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/defaults'</span> );
+
+<span class="hljs-keyword">var</span> o = defaults();
+
+<span class="hljs-keyword">var</span> x = empty( <span class="hljs-number">10</span>, o.dtypes.default );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+
+x = empty( <span class="hljs-number">10</span>, o.dtypes.floating_point );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+
+x = empty( <span class="hljs-number">10</span>, o.dtypes.real_floating_point );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+
+x = empty( <span class="hljs-number">10</span>, o.dtypes.integer );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+
+x = empty( <span class="hljs-number">10</span>, o.dtypes.signed_integer );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+
+x = empty( <span class="hljs-number">10</span>, o.dtypes.unsigned_integer );
+<span class="hljs-built_in">console</span>.log( dtype( x ) );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,26 @@
+<h1 id="pascalcase">pascalcase</h1><blockquote><p>Convert a string to Pascal case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pascalcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/pascalcase'</span> );
+</code></pre><h4 id="pascalcase-str-">pascalcase( str )</h4><p>Converts a string to Pascal case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = pascalcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'FooBar'</span>
+
+out = pascalcase( <span class="hljs-string">'IS_MOBILE'</span> );
+<span class="hljs-comment">// returns 'IsMobile'</span>
+
+out = pascalcase( <span class="hljs-string">'Hello World!'</span> );
+<span class="hljs-comment">// returns 'HelloWorld'</span>
+
+out = pascalcase( <span class="hljs-string">'--foo-bar--'</span> );
+<span class="hljs-comment">// returns 'FooBar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pascalcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/pascalcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = pascalcase( str );
+<span class="hljs-comment">// returns 'HelloWorld'</span>
+
+str = <span class="hljs-string">'HELLO WORLD!'</span>;
+out = pascalcase( str );
+<span class="hljs-comment">// returns 'HelloWorld'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = pascalcase( str );
+<span class="hljs-comment">// returns 'ToBeOrNotToBeThatIsTheQuestion'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

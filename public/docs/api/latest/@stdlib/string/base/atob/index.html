@@ -1,0 +1,17 @@
+<h1 id="atob">atob</h1><blockquote><p>Decode a string of data which has been encoded using Base64 encoding.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atob = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/atob'</span> );
+</code></pre><h4 id="atob-str-">atob( str )</h4><p>Decodes a string of data which has been encoded using Base64 encoding.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = atob( <span class="hljs-string">'SGVsbG8sIHdvcmxk'</span> );
+<span class="hljs-comment">// returns 'Hello, world'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function differs from the global <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/atob"><code>atob</code></a> available in web browsers and more recent Node.js versions in that the function returns <code>null</code> when provided a string containing non-ASCII characters, rather than raising an exception.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atob = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/atob'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'SGVsbG8gV29ybGQh'</span>;
+<span class="hljs-keyword">var</span> out = atob( str );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+str = <span class="hljs-string">'SEVMTE8gV09STEQh'</span>;
+out = atob( str );
+<span class="hljs-comment">// returns 'HELLO WORLD!'</span>
+
+str = <span class="hljs-string">'VG8gYmUsIG9yIG5vdCB0byBiZTogdGhhdCBpcyB0aGUgcXVlc3Rpb24u'</span>;
+out = atob( str );
+<span class="hljs-comment">// returns 'To be, or not to be: that is the question.'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,22 @@
+<h1 id="reverse">reverse</h1><blockquote><p>Reverse an array in-place.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverse = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/reverse'</span> );
+</code></pre><h4 id="reverse-x-">reverse( x )</h4><p>Reverses an array in-place.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> out = reverse( x );
+<span class="hljs-comment">// returns [ 6, 5, 4, 3, 2, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === x );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having a <code>reverse</code> method, the function defers execution to that method and assumes that the method API has the following signature:</p><pre><code class="no-highlight language-text">x.reverse()
+</code></pre></li><li><p>If provided an array-like object without a <code>reverse</code> method, the function manually reverses elements and mutates the input array.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> reverse = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/reverse'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( zeroTo( <span class="hljs-number">6</span> ) );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
+
+<span class="hljs-keyword">var</span> y = reverse( x );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 5.0, 4.0, 3.0, 2.0, 1.0, 0.0 ]</span>
+
+<span class="hljs-keyword">var</span> z = reverse( y );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

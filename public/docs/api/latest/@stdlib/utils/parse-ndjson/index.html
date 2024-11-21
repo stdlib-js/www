@@ -1,0 +1,66 @@
+<h1 id="parsendjson">parseNDJSON</h1><blockquote><p>Parse a string containing serialized newline-delimited <a href="http://www.json.org/">JSON</a> (NDJSON).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseNDJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-ndjson'</span> );
+</code></pre><h4 id="parsendjson-str-reviver-">parseNDJSON( str[, reviver] )</h4><p>Parses a <code>string</code> as <code>newline-delimited JSON</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = parseNDJSON( <span class="hljs-string">'{"beep":"boop"}\n{"example":42}'</span> );
+<span class="hljs-comment">// returns [ { 'beep': 'boop' }, { 'example': 42 } ]</span>
+</code></pre><p>To transform the <code>string</code> being parsed, provide a <code>reviver</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reviver</span>(<span class="hljs-params"> key, value </span>) </span>{
+    <span class="hljs-keyword">if</span> ( key === <span class="hljs-string">''</span> || key === <span class="hljs-string">'beep'</span> ) {
+        <span class="hljs-keyword">return</span> ( <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'string'</span> ) ? value.toUpperCase() : value;
+    }
+    <span class="hljs-keyword">return</span> ( <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'number'</span> ) ? value * <span class="hljs-number">2</span> : value;
+}
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"beep":"boop"}\n{"value": 20}\n{"numbers": [1,2,3]}'</span>;
+<span class="hljs-keyword">var</span> out = parseNDJSON( str, reviver );
+<span class="hljs-comment">// returns [ { 'beep' : 'BOOP' }, { 'value': 40 }, { 'numbers': [ 2, 4, 6 ] } ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a>, this implementation parses <code>string</code> as <code>newline-delimited JSON</code> and returns an array of parsed JSONs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = <span class="hljs-built_in">JSON</span>.parse( <span class="hljs-string">'{"beep":"boop"}\n{"foo":"baz"}'</span> );
+<span class="hljs-comment">// throws &#x3C;SyntaxError></span>
+
+out = parseNDJSON( <span class="hljs-string">'{"beep":"boop"}\n{"foo":"baz"}'</span> );
+<span class="hljs-comment">// returns [ { 'beep': 'boop' }, { 'foo': 'baz' } ]</span>
+</code></pre></li></ul><ul><li><p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a>, this implementation throws a TypeError if provided any value which is not a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = <span class="hljs-built_in">JSON</span>.parse( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns null</span>
+
+out = parseNDJSON( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// throws &#x3C;TypeError></span>
+</code></pre></li></ul><ul><li><p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a>, this implementation does <strong>not</strong> throw a SyntaxError if unable to parse a string as newline-delimited JSON.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = parseNDJSON( <span class="hljs-string">'{"beep":boop}'</span> );
+<span class="hljs-comment">// returns &#x3C;SyntaxError></span>
+
+out = <span class="hljs-built_in">JSON</span>.parse( <span class="hljs-string">'{"beep":boop}'</span> );
+<span class="hljs-comment">// throws &#x3C;SyntaxError></span>
+</code></pre></li></ul><ul><li><p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a>, this implementation throws a TypeError if provided a reviver argument which is not a function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = <span class="hljs-built_in">JSON</span>.parse( <span class="hljs-string">'{"a":"b"}'</span>, [] );
+<span class="hljs-comment">// returns { 'a': 'b' }</span>
+
+out = parseNDJSON( <span class="hljs-string">'{"a":"b"}'</span>, [] );
+<span class="hljs-comment">// throws &#x3C;TypeError></span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseNDJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-ndjson'</span> );
+
+<span class="hljs-keyword">var</span> out = parseNDJSON( <span class="hljs-string">'{"name":"John"}\n{"name":"Doe"}'</span> );
+<span class="hljs-comment">// returns [ { 'name': 'John' }, { 'name': 'Doe' } ]</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reviver</span>(<span class="hljs-params"> key, value </span>) </span>{
+    <span class="hljs-keyword">if</span> ( key === <span class="hljs-string">'name'</span> ) {
+        <span class="hljs-keyword">return</span> value.toUpperCase();
+    }
+    <span class="hljs-keyword">return</span> value;
+}
+
+out = parseNDJSON( <span class="hljs-string">'{"name":"John"}\n{"name":"Doe"}'</span>, reviver );
+<span class="hljs-comment">// returns [ { 'name': 'JOHN' }, { 'name': 'DOE' } ]</span>
+
+out = parseNDJSON( <span class="hljs-string">'{"name":John}\n{"name":Doe}'</span> );
+<span class="hljs-comment">// returns &#x3C;SyntaxError></span>
+
+out = parseNDJSON( <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns []</span>
+
+out = parseNDJSON( <span class="hljs-string">'{}'</span> );
+<span class="hljs-comment">// returns [ {} ]</span>
+
+out = parseNDJSON( <span class="hljs-string">'{"name":"Eve"}\n42\ntrue\n[1,2,3]'</span> );
+<span class="hljs-comment">// returns [ { 'name': 'Eve' }, 42, true, [ 1, 2, 3 ] ]</span>
+
+out = parseNDJSON( <span class="hljs-string">'{"name":"John"}\r\n{"name":"Doe"}'</span> );
+<span class="hljs-comment">// returns [ { 'name': 'John' }, { 'name': 'Doe' } ]</span>
+
+out = parseNDJSON( <span class="hljs-string">'{"name":"John"}\n{"name":"Doe"}\n'</span> );
+<span class="hljs-comment">// returns [ { 'name': 'John' }, { 'name': 'Doe' } ]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

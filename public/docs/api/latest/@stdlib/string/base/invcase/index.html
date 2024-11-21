@@ -1,0 +1,31 @@
+<h1 id="invcase">invcase</h1><blockquote><p>Convert a string to inverse case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> invcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/invcase'</span> );
+</code></pre><h4 id="invcase-str-">invcase( str )</h4><p>Converts a string to inverse case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = invcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'FOO BAR'</span>
+
+str = invcase( <span class="hljs-string">'Foo Bar Baz'</span> );
+<span class="hljs-comment">// returns 'fOO bAR bAZ'</span>
+
+str = invcase( <span class="hljs-string">'foo BAR'</span> );
+<span class="hljs-comment">// returns 'FOO bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> invcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/invcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = invcase( str );
+<span class="hljs-comment">// returns 'hELLO wORLD!'</span>
+
+str = <span class="hljs-string">'I am a tiny little teapot'</span>;
+out = invcase( str );
+<span class="hljs-comment">// returns 'i AM A TINY LITTLE TEAPOT'</span>
+
+str = <span class="hljs-string">'with BIG problems'</span>;
+out = invcase( str );
+<span class="hljs-comment">// returns 'WITH big PROBLEMS'</span>
+
+str = <span class="hljs-string">'To Be, Or NoT To Be: ThAt Is ThE QuEsTiOn.'</span>;
+out = invcase( str );
+<span class="hljs-comment">// returns 'tO bE, oR nOt tO bE: tHaT iS tHe qUeStIoN.'</span>
+
+str = <span class="hljs-string">'isMobile'</span>;
+out = invcase( str );
+<span class="hljs-comment">// returns 'ISmOBILE'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

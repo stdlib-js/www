@@ -1,0 +1,24 @@
+<h1 id="cuevery">cuevery</h1><blockquote><p>Cumulatively test whether every element in a provided array is truthy.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cuevery = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cuevery'</span> );
+</code></pre><h4 id="cuevery-x-">cuevery( x )</h4><p>Cumulatively tests whether every element in a provided array is truthy.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+
+<span class="hljs-keyword">var</span> y = cuevery( x );
+<span class="hljs-comment">// returns [ true, true, true, false, false ];</span>
+</code></pre><h4 id="cueveryassign-x-out-stride-offset-">cuevery.assign( x, out, stride, offset )</h4><p>Cumulatively tests whether every element in a provided array is truthy and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span> ];
+
+<span class="hljs-keyword">var</span> out = cuevery.assign( x, y, <span class="hljs-number">2</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ true, null, true, null, true, null, false, null, false, null ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === y );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: input array.</li><li><strong>out</strong>: output array.</li><li><strong>stride</strong>: output array stride.</li><li><strong>offset</strong>: output array offset.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> cuevery = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cuevery'</span> );
+
+<span class="hljs-comment">// Create an array of random values:</span>
+<span class="hljs-keyword">var</span> x = bernoulli( <span class="hljs-number">10</span>, <span class="hljs-number">0.9</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Cumulatively determine whether values are truthy:</span>
+<span class="hljs-keyword">var</span> out = cuevery( x );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

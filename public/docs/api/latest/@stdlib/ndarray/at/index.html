@@ -1,0 +1,61 @@
+<h1 id="at">at</h1><blockquote><p>Return an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> element.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> at = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/at'</span> );
+</code></pre><h4 id="at-x-indices-">at( x[, ...indices] )</h4><p>Returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> v = at( x, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 1</span>
+
+v = at( x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2</span>
+
+v = at( x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 3</span>
+
+v = at( x, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>.</li><li><strong>indices</strong>: index arguments. The number of index arguments <strong>must</strong> equal the number of dimensions.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided out-of-bounds indices, the function always returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> v = at( x, <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre></li><li><p>Negative indices are resolved relative to the last element along the respective dimension, with the last element corresponding to <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> v = at( x, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4</span>
+
+v = at( x, -<span class="hljs-number">2</span>, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 1</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cartesianProduct = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/cartesian-product'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zero-to'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> at = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/at'</span> );
+
+<span class="hljs-comment">// Define a two-dimensional array:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">5</span>, <span class="hljs-number">5</span> ];
+<span class="hljs-keyword">var</span> x = array( discreteUniform( <span class="hljs-number">25</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ), {
+    <span class="hljs-string">'shape'</span>: shape
+});
+
+<span class="hljs-comment">// Define lists of dimension indices:</span>
+<span class="hljs-keyword">var</span> i0 = zeroTo( shape[ <span class="hljs-number">0</span> ], <span class="hljs-string">'generic'</span> );
+<span class="hljs-keyword">var</span> i1 = zeroTo( shape[ <span class="hljs-number">1</span> ], <span class="hljs-string">'generic'</span> );
+
+<span class="hljs-comment">// Create a list of index pairs:</span>
+<span class="hljs-keyword">var</span> indices = cartesianProduct( i0, i1 );
+
+<span class="hljs-comment">// Print array contents...</span>
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    idx = indices[ i ];
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x[%d,%d] = %d'</span>, idx[ <span class="hljs-number">0</span> ], idx[ <span class="hljs-number">1</span> ], at( x, idx[ <span class="hljs-number">0</span> ], idx[ <span class="hljs-number">1</span> ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice"><code>@stdlib/ndarray/slice</code></a></span><span class="delimiter">: </span><span class="description">return a read-only view of an input ndarray.</span></li></ul></section><section class="links"></section>

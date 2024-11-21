@@ -1,0 +1,44 @@
+<h1 id="indexof">indexOf</h1><blockquote><p>Return the index of the first element which equals a provided search element.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/index-of'</span> );
+</code></pre><h4 id="indexof-x-searchelement-fromindex-equalnans-">indexOf( x, searchElement, fromIndex, equalNaNs )</h4><p>Returns the index of the first element which equals a provided search element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p>If the function is unable to find an element which equals a provided search element, the function returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-number">7</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p>To begin searching from specific index, provide a non-zero <code>fromIndex</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p>If <code>fromIndex</code> is less than zero, the starting index is resolved relative to the last array element, with the last array element corresponding to <code>fromIndex = -1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-number">2</span>, -<span class="hljs-number">4</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p>When searching for a search element, the function checks for strict equality. As a consequence, <code>NaN</code> values are considered distinct. In order to resolve the first element which is <code>NaN</code>, set the <code>equalNaNs</code> argument to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-literal">NaN</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns -1</span>
+
+idx = indexOf( x, <span class="hljs-literal">NaN</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If provided an array-like object having an <code>indexOf</code> method and <code>equalNaNs</code> is <code>false</code>, the function defers execution to that method and assumes that the method API has the following signature:</p><pre><code class="no-highlight language-text">x.indexOf( searchElement, fromIndex )
+</code></pre></li><li><p>If provided an array-like object without an <code>indexOf</code> method or if <code>equalNaNs</code> is <code>true</code>, the function performs a linear scan and returns immediately upon finding a match.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/index-of'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> idx = indexOf( x, <span class="hljs-string">'beep'</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 2</span>
+
+idx = indexOf( x, <span class="hljs-string">'bop'</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns -1</span>
+
+idx = indexOf( x, <span class="hljs-string">'foo'</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 4</span>
+
+idx = indexOf( x, <span class="hljs-string">'foo'</span>, -<span class="hljs-number">4</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns 4</span>
+
+idx = indexOf( x, <span class="hljs-string">'foo'</span>, <span class="hljs-number">5</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

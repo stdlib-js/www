@@ -1,0 +1,27 @@
+<h1 id="nanslike">nansLike</h1><blockquote><p>Create an array filled with NaNs and having the same length and data type as a provided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nansLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/nans-like'</span> );
+</code></pre><h4 id="nanslike-x-dtype-">nansLike( x[, dtype] )</h4><p>Creates an array filled with NaNs and having the same length and data type as a provided array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> arr = nansLike( x );
+<span class="hljs-comment">// returns [ NaN, NaN, NaN, NaN, NaN ]</span>
+</code></pre><p>The function supports the following data types:</p><ul><li><code>float64</code>: double-precision floating-point numbers (IEEE 754)</li><li><code>float32</code>: single-precision floating-point numbers (IEEE 754)</li><li><code>complex128</code>: double-precision complex floating-point numbers</li><li><code>complex64</code>: single-precision complex floating-point numbers</li><li><code>generic</code>: generic JavaScript values</li></ul><p>By default, the output array data type is inferred from the provided array <code>x</code>. To return an array having a different data type, provide a <code>dtype</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> arr = nansLike( x, <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ NaN, NaN ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the output array has a complex number data type, each element of the returned array has a real component equal to <code>NaN</code> and an imaginary component equal to <code>NaN</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-float-dtypes'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> nansLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/nans-like'</span> );
+
+<span class="hljs-comment">// Create a zero-filled array:</span>
+<span class="hljs-keyword">var</span> x = zeros( <span class="hljs-number">4</span>, <span class="hljs-string">'complex128'</span> );
+
+<span class="hljs-comment">// Get a list of array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate filled arrays...</span>
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    y = nansLike( x, dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( y );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/full-like"><code>@stdlib/array/full-like</code></a></span><span class="delimiter">: </span><span class="description">create a filled array having the same length and data type as a provided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/nans"><code>@stdlib/array/nans</code></a></span><span class="delimiter">: </span><span class="description">create an array filled with NaNs and having a specified length.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/ones-like"><code>@stdlib/array/ones-like</code></a></span><span class="delimiter">: </span><span class="description">create an array filled with ones and having the same length and data type as a provided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/zeros-like"><code>@stdlib/array/zeros-like</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled array having the same length and data type as a provided array.</span></li></ul></section><section class="links"></section>

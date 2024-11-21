@@ -50,19 +50,16 @@ v = it.next().value;
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
 <span class="hljs-keyword">var</span> iterSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/slice'</span> );
 
-<span class="hljs-keyword">var</span> rand;
-<span class="hljs-keyword">var</span> it;
-<span class="hljs-keyword">var</span> r;
-
 <span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
-rand = randu({
+<span class="hljs-keyword">var</span> rand = randu({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>
 });
 
 <span class="hljs-comment">// Create an iterator which returns a subsequence of 10 generated numbers:</span>
-it = iterSlice( rand, <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
+<span class="hljs-keyword">var</span> it = iterSlice( rand, <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
 
 <span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
     r = it.next();
     <span class="hljs-keyword">if</span> ( r.done ) {

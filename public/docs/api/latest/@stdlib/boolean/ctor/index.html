@@ -1,0 +1,36 @@
+<h1 id="boolean">Boolean</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Boolean</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/boolean/ctor'</span> );
+</code></pre><h4 id="boolean-value-">Boolean( value )</h4><p>Returns a <code>Boolean</code> object, which is an object wrapper for a primitive boolean value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns &#x3C;Boolean></span>
+</code></pre><p>When invoked without <code>new</code>, the function converts an input value to a primitive boolean value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="method-to-string"></a></p><h5 id="booleanprototypetostring">Boolean.prototype.toString()</h5><p>Returns a string representation of the boolean value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">true</span> );
+<span class="hljs-keyword">var</span> str = b.toString();
+<span class="hljs-comment">// returns 'true'</span>
+</code></pre><h5 id="booleanprototypevalueof">Boolean.prototype.valueOf()</h5><p>Returns the primitive value of the boolean object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">true</span> );
+<span class="hljs-keyword">var</span> val = b.valueOf();
+<span class="hljs-comment">// returns true</span>
+
+b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>();
+val = b.valueOf();
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When invoked without <code>new</code>,</p><ul><li>if provided <code>false</code>, <code>null</code>, <code>undefined</code>, <code>-0</code>, <code>0</code>, <code>NaN</code>, or an empty string, the function returns <code>false</code>.</li><li>if provided any other value, including an empty object, an empty array, the string <code>'false'</code>, or a <code>Boolean</code> object (including a <code>Boolean</code> object whose value is <code>false</code>), the function returns <code>true</code>.</li></ul></li><li><p>When invoked with <code>new</code>, the value of the returned <code>Boolean</code> object adheres to the same conversion semantics as when the constructor is invoked without <code>new</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+<span class="hljs-keyword">var</span> Bool = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/boolean/ctor'</span> );
+
+<span class="hljs-keyword">var</span> values = [
+    <span class="hljs-string">'5'</span>,
+    <span class="hljs-number">5</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-literal">NaN</span>,
+    <span class="hljs-literal">true</span>,
+    <span class="hljs-literal">false</span>,
+    <span class="hljs-literal">null</span>,
+    <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
+    [],
+    {}
+];
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; values.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'%s => %s'</span>, <span class="hljs-built_in">JSON</span>.stringify( values[ i ] ), ( Bool( values[ i ] ) ) ? <span class="hljs-string">'true'</span> : <span class="hljs-string">'false'</span> ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

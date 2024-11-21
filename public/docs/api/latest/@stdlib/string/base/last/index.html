@@ -1,0 +1,23 @@
+<h1 id="last">last</h1><blockquote><p>Return the last <code>n</code> UTF-16 code units of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> last = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last'</span> );
+</code></pre><h4 id="last-str-n-">last( str, n )</h4><p>Returns the last <code>n</code> UTF-16 code units of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = last( <span class="hljs-string">'hello world'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'd'</span>
+
+s = last( <span class="hljs-string">'this is stdlib'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 'b'</span>
+
+s = last( <span class="hljs-string">'foo'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 'oo'</span>
+
+s = last( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> last = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/last'</span> );
+
+<span class="hljs-keyword">var</span> str = last( <span class="hljs-string">'elections'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 's'</span>
+
+str = last( <span class="hljs-string">'JavaScript'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 't'</span>
+
+str = last( <span class="hljs-string">'good night'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'night'</span>
+</code></pre></section><section class="related"><hr></section><section class="links"></section>

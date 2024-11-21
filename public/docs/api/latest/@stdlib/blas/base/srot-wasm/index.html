@@ -1,0 +1,169 @@
+<h1 id="srot">srot</h1><blockquote><p>Apply a plane rotation.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> srot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/srot-wasm'</span> );
+</code></pre><h4 id="srotmain-n-x-stridex-y-stridey-c-s-">srot.main( N, x, strideX, y, strideY, c, s )</h4><p>Applies a plane rotation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ] );
+
+srot.main( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// x => &#x3C;Float32Array>[ 1.0, 1.0, 1.0, 1.0, 1.0 ]</span>
+<span class="hljs-comment">// y => &#x3C;Float32Array>[ -1.0, -2.0, -3.0, -4.0, -5.0 ]</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>c</strong>: cosine of the angle of rotation.</li><li><strong>s</strong>: sine of the angle of rotation.</li></ul><p>The <code>N</code> and stride parameters determine which elements in the strided arrays are accessed at runtime. For example, to apply a plane rotation to every other element,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+
+srot.main( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, y, <span class="hljs-number">2</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+<span class="hljs-comment">// x => &#x3C;Float32Array>[ ~5.0, 2.0, ~7.8, 4.0, ~10.6, 6.0 ]</span>
+<span class="hljs-comment">// y => &#x3C;Float32Array>[ ~5.0, 8.0, ~5.4, 10.0, ~5.8, 12.0 ]</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> y1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( y0.buffer, y0.BYTES_PER_ELEMENT*<span class="hljs-number">3</span> ); <span class="hljs-comment">// start at 4th element</span>
+
+srot.main( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+<span class="hljs-comment">// x0 => &#x3C;Float32Array>[ 1.0, ~8.8, 3.0, ~9.8, 5.0, ~10.8 ]</span>
+<span class="hljs-comment">// y0 => &#x3C;Float32Array>[ 7.0, 8.0, 9.0, 4.4, 6.4, ~8.4 ]</span>
+</code></pre><h4 id="srotndarray-n-x-stridex-offsetx-y-stridey-offsety-c-s-">srot.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, c, s )</h4><p>Applies a plane rotation using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span> ] );
+
+srot.ndarray( <span class="hljs-number">4</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+<span class="hljs-comment">// x => &#x3C;Float32Array>[ 1.0, ~5.8, ~7.2, ~8.6, 10.0 ]</span>
+<span class="hljs-comment">// y => &#x3C;Float32Array>[ 6.0, 4.4, ~4.6, ~4.8, 5.0 ]</span>
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying buffer, the offset parameters support indexing semantics based on starting indices. For example, to apply a plane rotation to every other element starting from the second element,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+
+srot.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+<span class="hljs-comment">// x => &#x3C;Float32Array>[ 1.0, ~6.4, 3.0, ~9.2, 5.0, 12.0 ]</span>
+<span class="hljs-comment">// y => &#x3C;Float32Array>[ 7.0, 5.2, 9.0, 5.6, 11.0, ~6.0 ]</span>
+</code></pre><hr><h3 id="module">Module</h3><h4 id="srotmodule-memory-">srot.Module( memory )</h4><p>Returns a new WebAssembly <a href="/docs/api/latest/@stdlib/wasm/module-wrapper">module wrapper</a> instance which uses the provided WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">memory</a> instance as its underlying memory.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+
+<span class="hljs-comment">// Create a new memory instance with an initial size of 10 pages (640KiB) and a maximum size of 100 pages (6.4MiB):</span>
+<span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'maximum'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create a BLAS routine:</span>
+<span class="hljs-keyword">var</span> mod = <span class="hljs-keyword">new</span> srot.Module( mem );
+<span class="hljs-comment">// returns &#x3C;Module></span>
+
+<span class="hljs-comment">// Initialize the routine:</span>
+mod.initializeSync();
+</code></pre><h4 id="srotmoduleprototypemain-n-xp-sx-yp-sy-c-s-">srot.Module.prototype.main( N, xp, sx, yp, sy, c, s )</h4><p>Applies a plane rotation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+<span class="hljs-keyword">var</span> oneTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/one-to'</span> );
+<span class="hljs-keyword">var</span> ones = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/ones'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> bytesPerElement = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/bytes-per-element'</span> );
+
+<span class="hljs-comment">// Create a new memory instance with an initial size of 10 pages (640KiB) and a maximum size of 100 pages (6.4MiB):</span>
+<span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'maximum'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create a BLAS routine:</span>
+<span class="hljs-keyword">var</span> mod = <span class="hljs-keyword">new</span> srot.Module( mem );
+<span class="hljs-comment">// returns &#x3C;Module></span>
+
+<span class="hljs-comment">// Initialize the routine:</span>
+mod.initializeSync();
+
+<span class="hljs-comment">// Define a vector data type:</span>
+<span class="hljs-keyword">var</span> dtype = <span class="hljs-string">'float32'</span>;
+
+<span class="hljs-comment">// Specify a vector length:</span>
+<span class="hljs-keyword">var</span> N = <span class="hljs-number">5</span>;
+
+<span class="hljs-comment">// Define pointers (i.e., byte offsets) for storing two vectors:</span>
+<span class="hljs-keyword">var</span> xptr = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> yptr = N * bytesPerElement( dtype );
+
+<span class="hljs-comment">// Write vector values to module memory:</span>
+mod.write( xptr, oneTo( N, dtype ) );
+mod.write( yptr, ones( N, dtype ) );
+
+<span class="hljs-comment">// Perform computation:</span>
+mod.main( N, xptr, <span class="hljs-number">1</span>, yptr, <span class="hljs-number">1</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+
+<span class="hljs-comment">// Read out the results:</span>
+<span class="hljs-keyword">var</span> viewX = zeros( N, dtype );
+<span class="hljs-keyword">var</span> viewY = zeros( N, dtype );
+mod.read( xptr, viewX );
+mod.read( yptr, viewY );
+
+<span class="hljs-built_in">console</span>.log( viewX );
+<span class="hljs-comment">// => &#x3C;Float32Array>[ 1.0, 1.0, 1.0, 1.0, 1.0 ]</span>
+
+<span class="hljs-built_in">console</span>.log( viewY );
+<span class="hljs-comment">// => &#x3C;Float32Array>[ -1.0, -2.0, -3.0, -4.0, -5.0 ]</span>
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>xp</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a> pointer (i.e., byte offset).</li><li><strong>sx</strong>: index increment for <code>x</code>.</li><li><strong>yp</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a> pointer (i.e., byte offset).</li><li><strong>sy</strong>: index increment for <code>y</code>.</li><li><strong>c</strong>: cosine of the angle of rotation.</li><li><strong>s</strong>: sine of the angle of rotation.</li></ul><h4 id="srotmoduleprototypendarray-n-xp-sx-ox-yp-sy-oy-c-s-">srot.Module.prototype.ndarray( N, xp, sx, ox, yp, sy, oy, c, s )</h4><p>Applies a plane rotation using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+<span class="hljs-keyword">var</span> oneTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/one-to'</span> );
+<span class="hljs-keyword">var</span> ones = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/ones'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> bytesPerElement = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/bytes-per-element'</span> );
+
+<span class="hljs-comment">// Create a new memory instance with an initial size of 10 pages (640KiB) and a maximum size of 100 pages (6.4MiB):</span>
+<span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'maximum'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create a BLAS routine:</span>
+<span class="hljs-keyword">var</span> mod = <span class="hljs-keyword">new</span> srot.Module( mem );
+<span class="hljs-comment">// returns &#x3C;Module></span>
+
+<span class="hljs-comment">// Initialize the routine:</span>
+mod.initializeSync();
+
+<span class="hljs-comment">// Define a vector data type:</span>
+<span class="hljs-keyword">var</span> dtype = <span class="hljs-string">'float32'</span>;
+
+<span class="hljs-comment">// Specify a vector length:</span>
+<span class="hljs-keyword">var</span> N = <span class="hljs-number">5</span>;
+
+<span class="hljs-comment">// Define pointers (i.e., byte offsets) for storing two vectors:</span>
+<span class="hljs-keyword">var</span> xptr = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> yptr = N * bytesPerElement( dtype );
+
+<span class="hljs-comment">// Write vector values to module memory:</span>
+mod.write( xptr, oneTo( N, dtype ) );
+mod.write( yptr, ones( N, dtype ) );
+
+<span class="hljs-comment">// Perform computation:</span>
+mod.ndarray( N, xptr, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, yptr, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+
+<span class="hljs-comment">// Read out the results:</span>
+<span class="hljs-keyword">var</span> viewX = zeros( N, dtype );
+<span class="hljs-keyword">var</span> viewY = zeros( N, dtype );
+mod.read( xptr, viewX );
+mod.read( yptr, viewY );
+
+<span class="hljs-built_in">console</span>.log( viewX );
+<span class="hljs-comment">// => &#x3C;Float32Array>[ 1.0, 1.0, 1.0, 1.0, 1.0 ]</span>
+
+<span class="hljs-built_in">console</span>.log( viewY );
+<span class="hljs-comment">// => &#x3C;Float32Array>[ -1.0, -2.0, -3.0, -4.0, -5.0 ]</span>
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>ox</strong>: starting index for <code>x</code>.</li><li><strong>oy</strong>: starting index for <code>y</code>.</li></ul></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both vectors are unchanged.</li><li>This package implements routines using WebAssembly. When provided arrays which are not allocated on a <code>srot</code> module memory instance, data must be explicitly copied to module memory prior to computation. Data movement may entail a performance cost, and, thus, if you are using arrays external to module memory, you should prefer using <a href="/docs/api/latest/@stdlib/blas/base/srot"><code>@stdlib/blas/base/srot</code></a>. However, if working with arrays which are allocated and explicitly managed on module memory, you can achieve better performance when compared to the pure JavaScript implementations found in <a href="/docs/api/latest/@stdlib/blas/base/srot"><code>@stdlib/blas/base/srot</code></a>. Beware that such performance gains may come at the cost of additional complexity when having to perform manual memory management. Choosing between implementations depends heavily on the particular needs and constraints of your application, with no one choice universally better than the other.</li><li><code>srot()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="https://www.netlib.org/lapack/explore-html/d1/d45/group__rot_ga432ce08bbcda714c82c7a31552f96937.html#ga432ce08bbcda714c82c7a31552f96937"><code>srot</code></a>.</li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> srot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/srot-wasm'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+};
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, opts );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = discreteUniform( x.length, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, opts );
+<span class="hljs-built_in">console</span>.log( y );
+
+srot.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.6</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

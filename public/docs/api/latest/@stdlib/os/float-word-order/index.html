@@ -30,7 +30,7 @@
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
 <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_FLOAT_WORD_ORDER)</span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> STDLIB_OS_FLOAT_WORD_ORDER == STDLIB_OS_ORDER_LITTLE_ENDIAN</span>
     <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Least significant word comes first...\n"</span> );

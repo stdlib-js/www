@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -109,13 +109,13 @@
 					<a name="csubf" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagExport assignment">Export assignment</span> csubf</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">csubf<span class="tsd-signature-symbol">(</span>z1<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">Complex64</a>, z2<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">Complex64</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">Complex64</a></li>
+						<li class="tsd-signature tsd-kind-icon">csubf<span class="tsd-signature-symbol">(</span>z1<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">Complex64</a>, z2<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">Complex64</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">Complex64</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/math/base/ops/csubf/docs/types/index.d.ts#L52">lib/node_modules/@stdlib/math/base/ops/csubf/docs/types/index.d.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/math/base/ops/csubf/docs/types/index.d.ts#L52">lib/node_modules/@stdlib/math/base/ops/csubf/docs/types/index.d.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -126,28 +126,28 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>z1: <a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">Complex64</a></h5>
+									<h5>z1: <a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">Complex64</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>complex number</p>
 									</div>
 								</li>
 								<li>
-									<h5>z2: <a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">Complex64</a></h5>
+									<h5>z2: <a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">Complex64</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>complex number</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../interfaces/_types_index_d_.__stdlib_types_object_.complex64.html" class="tsd-signature-type">
+								<a href="../interfaces/_types_index_d_.__stdlib_types_complex_.complex64.html" class="tsd-signature-type">
 									Complex64
 								</a>
 							</h4>
 							<p>result</p>
 							<h4 class="tsd-example-title">Example</h4>
-							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/complex/float32`</span> );
-<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/complex/real`</span> );
-<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">`@stdlib/complex/imag`</span> );
+							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/ctor'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/real'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32/imag'</span> );
 
 <span class="hljs-keyword">var</span> z1 = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns &lt;Complex64&gt;</span>
@@ -158,10 +158,10 @@
 <span class="hljs-keyword">var</span> out = csubf( z1, z2 );
 <span class="hljs-comment">// returns &lt;Complex64&gt;</span>
 
-<span class="hljs-keyword">var</span> re = real( out );
+<span class="hljs-keyword">var</span> re = realf( out );
 <span class="hljs-comment">// returns 7.0</span>
 
-<span class="hljs-keyword">var</span> im = imag( out );
+<span class="hljs-keyword">var</span> im = imagf( out );
 <span class="hljs-comment">// returns 2.0</span></code></pre>
 							</div>
 						</li>
@@ -250,13 +250,13 @@
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

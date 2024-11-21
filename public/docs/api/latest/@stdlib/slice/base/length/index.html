@@ -1,0 +1,70 @@
+<h1 id="slicelength">sliceLength</h1><blockquote><p>Compute the number of elements in a <a href="/docs/api/latest/@stdlib/slice/base/normalize-slice">normalized slice</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceLength = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/length'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="slicelength-slice-">sliceLength( slice )</h4><p>Returns the number of elements in a <a href="/docs/api/latest/@stdlib/slice/base/normalize-slice">normalized slice</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> normalizeSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-slice'</span> );
+
+<span class="hljs-keyword">var</span> s = normalizeSlice( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">3</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ), <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;Slice></span>
+
+<span class="hljs-keyword">var</span> len = sliceLength( s );
+<span class="hljs-comment">// returns 8</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> normalizeSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/normalize-slice'</span> );
+<span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/incrspace'</span> );
+<span class="hljs-keyword">var</span> sliceLength = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/length'</span> );
+
+<span class="hljs-keyword">var</span> s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-keyword">var</span> v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 2, 1, 0 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">3</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 9, 6, 3, 0 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-number">8</span>, <span class="hljs-number">3</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 0, 3, 6 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-number">8</span>, <span class="hljs-literal">null</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 0, 1, 2, 3, 4, 5, 6, 7 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">2</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 6, 4, 2, 0 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-number">8</span>, <span class="hljs-number">3</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 0, 3, 6 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, -<span class="hljs-number">2</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 8, 6, 4 ]'</span>
+
+s1 = <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">3</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span> );
+s2 = normalizeSlice( s1, <span class="hljs-number">10</span>, <span class="hljs-literal">false</span> );
+v = sliceLength( s2 );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s => %d'</span>, s1.toString(), s2.toString(), v );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'[ %s ]'</span>, incrspace( s2.start, s2.stop || -<span class="hljs-number">1</span>, s2.step ).join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-comment">// => '[ 3, 5, 7 ]'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

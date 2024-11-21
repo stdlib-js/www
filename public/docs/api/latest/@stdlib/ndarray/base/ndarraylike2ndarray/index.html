@@ -1,0 +1,25 @@
+<h1 id="ndarraylike2ndarray">ndarraylike2ndarray</h1><blockquote><p>Convert an ndarray-like object to an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor"><code>ndarray</code></a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarraylike2ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ndarraylike2ndarray'</span> );
+</code></pre><h4 id="ndarraylike2ndarray-x-">ndarraylike2ndarray( x )</h4><p>Converts an ndarray-like object to an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor"><code>ndarray</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-keyword">var</span> out = ndarraylike2ndarray( arr );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> ndarraylike2ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ndarraylike2ndarray'</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+
+<span class="hljs-comment">// Convert to a "base" ndarray:</span>
+<span class="hljs-keyword">var</span> out = ndarraylike2ndarray( x );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Print various properties:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'dtype: %s'</span>, out.dtype );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'ndims: %d'</span>, out.shape.length );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'length: %d'</span>, out.length );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'shape: [ %s ]'</span>, out.shape.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'strides: [ %s ]'</span>, out.strides.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'offset: %d'</span>, out.offset );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'order: %s'</span>, out.order );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

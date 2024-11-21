@@ -1,0 +1,225 @@
+<h1 id="dsv-parser">DSV Parser</h1><blockquote><p>Incremental parser for delimiter-separated values (DSV).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Parser = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/dsv/base/parse'</span> );
+</code></pre><h4 id="parser-options-">Parser( [options] )</h4><p>Returns an incremental parser for delimiter-separated values (DSV).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+<span class="hljs-comment">// Parse a line of comma-separated values (CSV):</span>
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Parse multiple lines of CSV:</span>
+parse.next( <span class="hljs-string">'4,5,6\r\n7,8,9\r\n'</span> ); <span class="hljs-comment">// => [ '4', '5', '6' ], [ '7', '8', '9' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Parse partial lines:</span>
+parse.next( <span class="hljs-string">'a,b'</span> );
+parse.next( <span class="hljs-string">',c,d\r\n'</span> ); <span class="hljs-comment">// => [ 'a', 'b', 'c', 'd' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Chain together invocations:</span>
+parse.next( <span class="hljs-string">'e,f'</span> ).next( <span class="hljs-string">',g,h'</span> ).next( <span class="hljs-string">'\r\n'</span> ); <span class="hljs-comment">// => [ 'e', 'f', 'g', 'h' ]</span>
+</code></pre><p>The constructor accepts the following <code>options</code>:</p><ul><li><p><strong>comment</strong>: character sequence appearing at the beginning of a row which demarcates that the row content should be parsed as a commented line. A commented line ends upon encountering the first newline character sequence, regardless of whether that newline character sequence is preceded by an escape character sequence. Default: <code>''</code>.</p></li><li><p><strong>delimiter</strong>: character sequence separating record fields (e.g., <code>','</code> for comma-separated values (CSV) and <code>\t</code> for tab-separated values (TSV)). Default: <code>','</code>.</p></li><li><p><strong>doublequote</strong>: <code>boolean</code> flag indicating how quote sequences should be escaped within a quoted field. When <code>true</code>, a quote sequence must be escaped by another quote sequence. When <code>false</code>, a quote sequence must be escaped by the escape sequence. Default: <code>true</code>.</p></li><li><p><strong>escape</strong>: character sequence for escaping character sequences having special meaning (i.e., the delimiter, newline, and escape sequences outside of quoted fields; the comment sequence at the beginning of a record and outside of a quoted field; and the quote sequence inside a quoted field when <code>doublequote</code> is <code>false</code>). Default: <code>''</code>.</p></li><li><p><strong>ltrim</strong>: <code>boolean</code> indicating whether to trim leading whitespace from field values. If <code>false</code>, the parser does not trim leading whitespace (e.g., <code>a, b, c</code> parses as <code>[ 'a', ' b', ' c' ]</code>). If <code>true</code>, the parser trims leading whitespace (e.g., <code>a, b, c</code> parses as <code>[ 'a', 'b', 'c' ]</code>). Default: <code>false</code>.</p></li><li><p><strong>maxRows</strong>: maximum number of records to process (excluding skipped lines). By default, the maximum number of records is unlimited.</p></li><li><p><strong>newline</strong>: character sequence separating rows. Default: <code>'\r\n'</code> (see <a href="https://www.rfc-editor.org/rfc/rfc4180">RFC 4180</a>).</p></li><li><p><strong>onClose</strong>: callback to be invoked upon closing the parser. If a parser has partially processed a record upon close, the callback is invoked with the following arguments:</p><ul><li><strong>value</strong>: unparsed partially processed <strong>field</strong> text.</li></ul><p>Otherwise, the callback is invoked without any arguments.</p></li><li><p><strong>onColumn</strong>: callback to be invoked upon processing a field. The callback is invoked with the following arguments:</p><ul><li><strong>field</strong>: field value.</li><li><strong>row</strong>: row number (zero-based).</li><li><strong>col</strong>: field (column) number (zero-based).</li><li><strong>line</strong>: line number (zero-based).</li></ul></li><li><p><strong>onComment</strong>: callback to be invoked upon processing a commented line. The callback is invoked with the following arguments:</p><ul><li><strong>comment</strong>: comment text.</li><li><strong>line</strong>: line number (zero-based).</li></ul></li><li><p><strong>onError</strong>: callback to be invoked upon encountering an unrecoverable parse error. By default, upon encountering a parse error, the parser throws an <code>Error</code>. When provided an error callback, the parser does <strong>not</strong> throw and, instead, invokes the provided callback. The callback is invoked with the following arguments:</p><ul><li><strong>error</strong>: an <code>Error</code> object.</li></ul></li><li><p><strong>onRow</strong>: callback to be invoked upon processing a record. The callback is invoked with the following arguments:</p><ul><li><strong>record</strong>: an array-like object containing field values. If provided a <code>rowBuffer</code>, the <code>record</code> argument will be the <strong>same</strong> array-like object for each invocation.</li><li><strong>row</strong>: row number (zero-based).</li><li><strong>ncols</strong>: number of fields (columns).</li><li><strong>line</strong>: line number (zero-based).</li></ul><p>If a parser is closed <strong>before</strong> fully processing the last record, the callback is invoked with field data for all fields which have been parsed. Any remaining field data is provided to the <code>onClose</code> callback. For example, if a parser has processed two fields and closes while attempting to process a third field, the parser invokes the <code>onRow</code> callback with field data for the first two fields and invokes the <code>onClose</code> callback with the partially processed data for the third field.</p></li><li><p><strong>onSkip</strong>: callback to be invoked upon processing a skipped line. The callback is invoked with the following arguments:</p><ul><li><strong>record</strong>: unparsed record text.</li><li><strong>line</strong>: line number (zero-based).</li></ul></li><li><p><strong>onWarn</strong>: when <code>strict</code> is <code>false</code>, a callback to be invoked upon encountering invalid DSV. The callback is invoked with the following arguments:</p><ul><li><strong>error</strong>: an <code>Error</code> object.</li></ul></li><li><p><strong>quote</strong>: character sequence demarcating the beginning and ending of a quoted field. When <code>quoting</code> is <code>false</code>, a quote character sequence has no special meaning and is processed as normal text. Default: <code>'"'</code>.</p></li><li><p><strong>quoting</strong>: <code>boolean</code> flag indicating whether to enable special processing of quote character sequences (i.e., when a quote sequence should demarcate a quoted field). Default: <code>true</code>.</p></li><li><p><strong>rowBuffer</strong>: array-like object for the storing field values of the most recently processed record. When provided, the row buffer is <strong>reused</strong> and is provided to the <code>onRow</code> callback for each processed record. If a provided row buffer is a generic array, the parser grows the buffer as needed. If a provided row buffer is a typed array, the buffer size is fixed, and, thus, needs to be large enough to accommodate processed fields. Providing a fixed length array is appropriate when the number of fields is known prior to parsing. When the number of fields is unknown, providing a fixed length array may still be appropriate; however, one is advised to allocate a buffer having more elements than is reasonably expected in order to avoid buffer overflow.</p></li><li><p><strong>rtrim</strong>: <code>boolean</code> indicating whether to trim trailing whitespace from field values. If <code>false</code>, the parser does not trim trailing whitespace (e.g., <code>a ,b ,c</code> parses as <code>[ 'a ', 'b ', 'c' ]</code>). If <code>true</code>, the parser trims trailing whitespace (e.g., <code>a ,b ,c</code> parses as <code>[ 'a', 'b', 'c' ]</code>). Default: <code>false</code>.</p></li><li><p><strong>skip</strong>: character sequence appearing at the beginning of a row which demarcates that the row content should be parsed as a skipped record. Default: <code>''</code>.</p></li><li><p><strong>skipBlankRows</strong>: <code>boolean</code> flag indicating whether to skip over rows which are either empty or containing only whitespace. Default: <code>false</code>.</p></li><li><p><strong>skipRow</strong>: callback whose return value indicates whether to skip over a row. The callback is invoked with the following arguments:</p><ul><li><strong>nrows</strong>: number of processed rows (equivalent to the current row number).</li><li><strong>line</strong>: line number (zero-based).</li></ul><p>If the callback returns a truthy value, the parser skips the row; otherwise, the parser attempts to process the row.</p><p>Note, however, that, even if the callback returns a falsy value, a row may still be skipped depending on the presence of a <code>skip</code> character sequence.</p></li><li><p><strong>strict</strong>: <code>boolean</code> flag indicating whether to raise an exception upon encountering invalid DSV. When <code>false</code>, instead of throwing an <code>Error</code> or invoking the <code>onError</code> callback, the parser invokes an <code>onWarn</code> callback with an <code>Error</code> object specifying the encountered error. Default: <code>true</code>.</p></li><li><p><strong>trimComment</strong>: <code>boolean</code> flag indicating whether to trim leading whitespace in commented lines. Default: <code>true</code>.</p></li><li><p><strong>whitespace</strong>: list of characters to be interpreted as whitespace. Default: <code>[ ' ' ]</code>.</p></li></ul><p>The parser does <strong>not</strong> perform field conversion/transformation and, instead, is solely responsible for incrementally identifying fields and records. Further processing of fields/records is the responsibility of parser consumers who are generally expected to provide either an <code>onColumn</code> callback, an <code>onRow</code> callback, or both.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onColumn</span>(<span class="hljs-params"> field, row, col </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Row: %d. Column: %d. Value: %s'</span>, row, col, field ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRow</span>(<span class="hljs-params"> record, row, ncols </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Row: %d. nFields: %d. Value: | %s |'</span>, row, ncols, record.join( <span class="hljs-string">' | '</span> ) ) );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'onColumn'</span>: onColumn,
+    <span class="hljs-string">'onRow'</span>: onRow
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+parse.next( <span class="hljs-string">'5,6,7,8\r\n'</span> ); <span class="hljs-comment">// => [ '5', '6', '7', '8' ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>Upon closing the parser, the parser invokes an <code>onClose</code> callback with any partially processed (i.e., incomplete) <strong>field</strong> data. Note, however, that the field data may <strong>not</strong> equal the original character sequence, as escape sequences may have already been removed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onClose</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Incomplete: %s'</span>, v ) );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'onClose'</span>: onClose
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Provide an incomplete record:</span>
+parse.next( <span class="hljs-string">'5,6,"foo'</span> );
+
+<span class="hljs-comment">// Close the parser:</span>
+parse.close();
+</code></pre><p>By default, the parser assumes <a href="https://www.rfc-editor.org/rfc/rfc4180">RFC 4180</a>-compliant newline-delimited comma separated values (CSV). To specify alternative separators, specify the relevant options.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'delimiter'</span>: <span class="hljs-string">'--'</span>,
+    <span class="hljs-string">'newline'</span>: <span class="hljs-string">'%%'</span>
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1--2--3--4%%'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+parse.next( <span class="hljs-string">'5--6--7--8%%'</span> ); <span class="hljs-comment">// => [ '5', '6', '7', '8' ]</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>By default, the parser escapes double (i.e., two consecutive) quote character sequences within quoted fields. To parse DSV in which quote character sequences are escaped by an escape character sequence within quoted fields, set <code>doublequote</code> to <code>false</code> and specify the escape character sequence.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Default parser:</span>
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+<span class="hljs-comment">// Parse DSV using double quoting:</span>
+parse.next( <span class="hljs-string">'1,"""2""",3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '"2"', '3', '4' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Create a parser which uses a custom escape sequence within quoted fields:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'doublequote'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'escape'</span>: <span class="hljs-string">'\\'</span>
+};
+parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,"\\"2\\"",3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '"2"', '3', '4' ]</span>
+</code></pre><p>When <code>quoting</code> is <code>true</code>, the parser identifies a quote character sequence at the beginning of a field as the start of a quoted field. To process quote character sequences as normal field text, set <code>quoting</code> to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Default parser;</span>
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+parse.next( <span class="hljs-string">'1,"2",3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Create a parser which treats quote sequences as normal field text:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'quoting'</span>: <span class="hljs-literal">false</span>
+};
+parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,"2",3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '"2"', '3', '4' ]</span>
+</code></pre><p>To parse DSV containing commented lines, specify a comment character sequence which demarcates the beginning of a commented line.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'comment'</span>: <span class="hljs-string">'#'</span>
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+parse.next( <span class="hljs-string">'# This is a commented line.\r\n'</span> ); <span class="hljs-comment">// comment</span>
+parse.next( <span class="hljs-string">'9,10,11,12\r\n'</span> ); <span class="hljs-comment">// => [ '9', '10', '11', '12' ]</span>
+</code></pre><p>To parse DSV containing skipped lines, specify a skip character sequence which demarcates the beginning of a skipped line.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'skip'</span>: <span class="hljs-string">'//'</span>
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> ); <span class="hljs-comment">// => [ '1', '2', '3', '4' ]</span>
+parse.next( <span class="hljs-string">'//5,6,7,8\r\n'</span> ); <span class="hljs-comment">// skipped line</span>
+parse.next( <span class="hljs-string">'9,10,11,12\r\n'</span> ); <span class="hljs-comment">// => [ '9', '10', '11', '12' ]</span>
+</code></pre><hr><h3 id="properties">Properties</h3><h4 id="parserprototypedone">Parser.prototype.done</h4><p><strong>Read-only</strong> property indicating whether a parser is able to process new chunks.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> b = parse.done;
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-comment">// ...</span>
+
+parse.close();
+
+<span class="hljs-comment">// ...</span>
+
+b = parse.done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><hr><h3 id="methods">Methods</h3><h4 id="parserprototypenext-chunk-">Parser.prototype.next( chunk )</h4><p>Incrementally parses the next chunk.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+parse.next( <span class="hljs-string">'5,6,7,8\r\n'</span> );
+
+<span class="hljs-comment">// ...</span>
+</code></pre><h4 id="parserprototypeclose">Parser.prototype.close()</h4><p>Closes the parser.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser();
+
+parse.next( <span class="hljs-string">'1,2,3,4\r\n'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+parse.next( <span class="hljs-string">'5,6,7,8\r\n'</span> );
+
+<span class="hljs-comment">// ...</span>
+
+parse.close();
+</code></pre><p>After closing a parser, a parser raises an exception upon receiving any additional chunks.</p></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Special character sequences (i.e., delimiter, newline, quote, escape, skip, and comment sequences) <strong>must</strong> all be unique with respect to one another, and <strong>no</strong> special character sequence is allowed to be a subsequence of another special character sequence. Allowing common subsequences would lead to ambiguous parser states.</p><p>For example, given the chunk <code>1,,3,4,,</code>, if <code>delimiter</code> is <code>','</code> and <code>newline</code> is <code>',,'</code>, is the first <code>,,</code> a field with no content or a newline? The parser cannot be certain, hence the prohibition.</p></li><li><p>As specified in <a href="https://www.rfc-editor.org/rfc/rfc4180">RFC 4180</a>, special character sequences <strong>must</strong> be consistent across all provided chunks. Hence, providing chunks in which, e.g., line breaks vary between <code>\r</code>, <code>\n</code>, and <code>\r\n</code> is <strong>not</strong> supported.</p></li></ul></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+<span class="hljs-keyword">var</span> Parser = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/dsv/base/parse'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onColumn</span>(<span class="hljs-params"> v, row, col </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Row: %d. Column: %d. Value: %s'</span>, row, col, v ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRow</span>(<span class="hljs-params"> v, row, ncols </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Row: %d. nFields: %d. Value: | %s |'</span>, row, ncols, v.join( <span class="hljs-string">' | '</span> ) ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onComment</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Comment: %s'</span>, str ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onSkip</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Skipped line: %s'</span>, str ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onWarn</span>(<span class="hljs-params"> err </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Warning: %s'</span>, err.message ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onError</span>(<span class="hljs-params"> err </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Error: %s'</span>, err.message ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onClose</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'End: %s'</span>, v || <span class="hljs-string">'(none)'</span> ) );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'newline'</span>: <span class="hljs-string">'\r\n'</span>,
+    <span class="hljs-string">'delimiter'</span>: <span class="hljs-string">','</span>,
+    <span class="hljs-string">'escape'</span>: <span class="hljs-string">'\\'</span>,
+    <span class="hljs-string">'comment'</span>: <span class="hljs-string">'#'</span>,
+    <span class="hljs-string">'skip'</span>: <span class="hljs-string">'//'</span>,
+    <span class="hljs-string">'doublequote'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'quoting'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'onColumn'</span>: onColumn,
+    <span class="hljs-string">'onRow'</span>: onRow,
+    <span class="hljs-string">'onComment'</span>: onComment,
+    <span class="hljs-string">'onSkip'</span>: onSkip,
+    <span class="hljs-string">'onError'</span>: onError,
+    <span class="hljs-string">'onWarn'</span>: onWarn,
+    <span class="hljs-string">'onClose'</span>: onClose
+};
+<span class="hljs-keyword">var</span> parse = <span class="hljs-keyword">new</span> Parser( opts );
+
+<span class="hljs-keyword">var</span> str = [
+    [ <span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>, <span class="hljs-string">'4'</span> ],
+    [ <span class="hljs-string">'5'</span>, <span class="hljs-string">'6'</span>, <span class="hljs-string">'7'</span>, <span class="hljs-string">'8'</span> ],
+    [ <span class="hljs-string">'foo\\,'</span>, <span class="hljs-string">'bar\\ ,'</span>, <span class="hljs-string">'beep\\,'</span>, <span class="hljs-string">'boop\\,'</span> ],
+    [ <span class="hljs-string">'""",1,"""'</span>, <span class="hljs-string">'""",2,"""'</span>, <span class="hljs-string">'""",3,"""'</span>, <span class="hljs-string">'""",4,"""'</span> ],
+    [ <span class="hljs-string">'# This is a "comment", including with commas.'</span> ],
+    [ <span class="hljs-string">'\\# Escaped comment'</span>, <span class="hljs-string">'# 2'</span>, <span class="hljs-string">'# 3'</span>, <span class="hljs-string">'# 4'</span> ],
+    [ <span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>, <span class="hljs-string">'4'</span> ],
+    [ <span class="hljs-string">'//A,Skipped,Line,!!!'</span> ],
+    [ <span class="hljs-string">'"foo"'</span>, <span class="hljs-string">'"bar\\ "'</span>, <span class="hljs-string">'"beep"'</span>, <span class="hljs-string">'"boop"'</span> ],
+    [ <span class="hljs-string">' # 😃'</span>, <span class="hljs-string">' # 🥳'</span>, <span class="hljs-string">' # 😮'</span>, <span class="hljs-string">' # 🤠'</span> ]
+];
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; str.length; i++ ) {
+    str[ i ] = str[ i ].join( opts.delimiter );
+}
+str = str.join( opts.newline );
+
+<span class="hljs-built_in">console</span>.log( format( <span class="hljs-string">'Input:\n\n%s\n'</span>, str ) );
+parse.next( str ).close();
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -24,7 +24,7 @@
 	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image" content="">
-	<!-- Twitter -->
+	<!-- X -->
 	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
 	<meta name="twitter:site" content="@stdlibjs">
 	<meta name="twitter:url" content="https://stdlib.io/">
@@ -86,7 +86,7 @@
 					<a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html">CircularBuffer</a>
 				</li>
 			</ul>
-			<h1>Class CircularBuffer</h1>
+			<h1>Class CircularBuffer&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -99,6 +99,14 @@
 						<p>Circular buffer.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
@@ -145,13 +153,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Circular<wbr>Buffer<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-signature-type">CircularBuffer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Circular<wbr>Buffer<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-signature-type">CircularBuffer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L29">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L49">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -166,7 +174,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>buffer: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../modules/_types_index_d_.__stdlib_types_object_.html#collection" class="tsd-signature-type">Collection</a></h5>
+									<h5>buffer: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../modules/_types_index_d_.__stdlib_types_array_.html#collection" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>buffer size or an array-like object to use as the underlying buffer</p>
@@ -209,7 +217,7 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L101">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L121">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:121</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -224,7 +232,7 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 					<div class="tsd-signature tsd-kind-icon">full<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L123">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L143">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -239,7 +247,7 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 					<div class="tsd-signature tsd-kind-icon">length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L173">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:173</a></li>
+							<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L193">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:193</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -255,13 +263,13 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-signature-type">CircularBuffer</a></li>
+						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-signature-type">CircularBuffer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L81">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L101">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,6 +281,9 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 								<a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-signature-type">
 									CircularBuffer
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>circular buffer instance</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -302,13 +313,13 @@ n = b.count;
 					<a name="iterator" class="tsd-anchor"></a>
 					<h3>iterator</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">iterator<span class="tsd-signature-symbol">(</span>niters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_iter_.iterableiterator.html" class="tsd-signature-type">IterableIterator</a></li>
+						<li class="tsd-signature tsd-kind-icon">iterator<span class="tsd-signature-symbol">(</span>niters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_index_d_.__stdlib_types_iter_.typediterableiterator.html" class="tsd-signature-type">TypedIterableIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L161">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L181">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -336,9 +347,12 @@ n = b.count;
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<a href="../interfaces/_types_index_d_.__stdlib_types_iter_.iterableiterator.html" class="tsd-signature-type">
-									IterableIterator
+								<a href="../interfaces/_types_index_d_.__stdlib_types_iter_.typediterableiterator.html" class="tsd-signature-type">
+									TypedIterableIterator
 								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>iterator</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -373,13 +387,13 @@ v = it.next().value;
 					<a name="push" class="tsd-anchor"></a>
 					<h3>push</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L197">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L218">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -387,8 +401,17 @@ v = it.next().value;
 									<p>Adds a value to the circular buffer.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value to add</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns
-								<span class="tsd-signature-type">any</span>
+								<span class="tsd-signature-type">T</span>
 							</h4>
 							<p>removed element or undefined</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -415,13 +438,13 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 					<a name="toarray" class="tsd-anchor"></a>
 					<h3>to<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L217">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L238">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +455,7 @@ v = b.push( <span class="hljs-string">'boop'</span> );
 							<h4 class="tsd-returns-title">Returns
 								<span class="tsd-signature-type">Array</span>
 								<span class="tsd-signature-symbol">&lt;</span>
-								<span class="tsd-signature-type">any</span>
+								<span class="tsd-signature-type">T</span>
 								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>circular buffer values</p>
@@ -456,13 +479,13 @@ b.push( <span class="hljs-string">'boop'</span> );
 					<a name="tojson" class="tsd-anchor"></a>
 					<h3>toJSON</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_utils_circular_buffer_docs_types_index_d_.json.html" class="tsd-signature-type">JSON</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a69b979db/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L241">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts#L262">lib/node_modules/@stdlib/utils/circular-buffer/docs/types/index.d.ts:262</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -477,7 +500,12 @@ b.push( <span class="hljs-string">'boop'</span> );
 								</ul>
 							</div>
 							<h4 class="tsd-returns-title">Returns
-								<span class="tsd-signature-type">any</span>
+								<a href="../interfaces/_utils_circular_buffer_docs_types_index_d_.json.html" class="tsd-signature-type">
+									JSON
+								</a>
+								<span class="tsd-signature-symbol">&lt;</span>
+								<span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol">&gt;</span>
 							</h4>
 							<p>serialized circular buffer</p>
 							<h4 class="tsd-example-title">Example</h4>
@@ -513,7 +541,7 @@ b.push( <span class="hljs-string">'boop'</span> );
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_utils_circular_buffer_docs_types_index_d_.circularbuffer.html" class="tsd-kind-icon">Circular<wbr>Buffer</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -547,6 +575,9 @@ b.push( <span class="hljs-string">'boop'</span> );
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/_utils_circular_buffer_docs_types_index_d_.json.html" class="tsd-kind-icon">JSON</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -612,13 +643,13 @@ b.push( <span class="hljs-string">'boop'</span> );
 		</div>
 	</div>
 	<div class="bottom-nav center border-top">
-		<a href="https://www.patreon.com/athan">Donate</a>
+		<a href="https://opencollective.com/stdlib">Sponsor</a>
 		/
 		<a href="/docs/api/">Docs</a>
 		/
 		<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 		/
-		<a href="https://twitter.com/stdlibjs">Twitter</a>
+		<a href="https://x.com/stdlibjs">X</a>
 		/
 		<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
 	</div>

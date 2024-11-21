@@ -20,4 +20,28 @@ bool = isEven( <span class="hljs-number">0</span> );
     bool = isEven( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d is %s'</span>, x, ( bool ) ? <span class="hljs-string">'even'</span> : <span class="hljs-string">'not even'</span> );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-even"><code>@stdlib/math/base/assert/is-even</code></a></span><span class="delimiter">: </span><span class="description">test if a finite numeric value is an even number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/int32-is-odd"><code>@stdlib/math/base/assert/int32-is-odd</code></a></span><span class="delimiter">: </span><span class="description">test if a 32-bit integer is odd.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/int32_is_even.h"</span></span>
+</code></pre><h4 id="stdlib_base_int32_is_even-x-">stdlib_base_int32_is_even( x )</h4><p>Tests if 32-bit integer is even.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-keyword">bool</span> out = stdlib_base_int32_is_even( <span class="hljs-number">-2</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = stdlib_base_int32_is_even( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] int32_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stdlib_base_int32_is_even</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/int32_is_even.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> x[] = { <span class="hljs-number">5</span>, <span class="hljs-number">-5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> };
+
+    <span class="hljs-keyword">bool</span> b;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        b = stdlib_base_int32_is_even( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Value: %d. int32 Is even? %s.\n"</span>, x[ i ], ( b ) ? <span class="hljs-string">"True"</span> : <span class="hljs-string">"False"</span> );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-even"><code>@stdlib/math/base/assert/is-even</code></a></span><span class="delimiter">: </span><span class="description">test if a finite numeric value is an even number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/int32-is-odd"><code>@stdlib/math/base/assert/int32-is-odd</code></a></span><span class="delimiter">: </span><span class="description">test if a 32-bit integer is odd.</span></li></ul></section><section class="links"></section>

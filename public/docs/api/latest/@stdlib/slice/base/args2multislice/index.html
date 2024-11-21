@@ -1,0 +1,29 @@
+<h1 id="args2multislice">args2multislice</h1><blockquote><p>Create a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object from a list of <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> constructor arguments.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> args2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/args2multislice'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="args2multislice-args-">args2multislice( args )</h4><p>Creates a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> object from a list of <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> constructor arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> s = args2multislice( [ <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ), <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ 0, &#x3C;Slice>, 1 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is useful as a more performant drop-in replacement for the common pattern of using <code>MultiSlice.apply( null, args )</code> to create a <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> from a list of <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> arguments.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> args2multislice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/args2multislice'</span> );
+
+<span class="hljs-keyword">var</span> s = args2multislice( [ <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ] );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-keyword">var</span> d = s.data;
+<span class="hljs-comment">// returns [ null, null, null ]</span>
+
+s = args2multislice( [ <span class="hljs-number">10</span>, <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ), <span class="hljs-literal">null</span> ] );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+d = s.data;
+<span class="hljs-comment">// returns [ 10, &#x3C;Slice>, null ]</span>
+
+s = args2multislice( [ <span class="hljs-number">2</span>, <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> ), -<span class="hljs-number">5</span> ] );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+d = s.data;
+<span class="hljs-comment">// returns [ 2, &#x3C;Slice>, -5 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

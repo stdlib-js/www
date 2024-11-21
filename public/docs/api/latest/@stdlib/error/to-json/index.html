@@ -1,8 +1,8 @@
-<h1 id="tojson">toJSON</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/to-json'</span> );
-</code></pre><h4 id="tojson-error-">toJSON( error )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>error</code></a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'beep'</span> );
+<h1 id="error2json">error2json</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">error</a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> error2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/to-json'</span> );
+</code></pre><h4 id="error2json-error-">error2json( error )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>error</code></a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'beep'</span> );
 
-<span class="hljs-keyword">var</span> json = toJSON( err );
-<span class="hljs-comment">/* returns
+<span class="hljs-keyword">var</span> json = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'Error',
         'name': 'Error', // if present
@@ -14,8 +14,8 @@
 err.a = <span class="hljs-string">'b'</span>;
 err.c = { <span class="hljs-string">'d'</span>: <span class="hljs-string">'e'</span> };
 
-<span class="hljs-keyword">var</span> json = toJSON( err );
-<span class="hljs-comment">/* returns
+<span class="hljs-keyword">var</span> json = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'Error',
         'name': 'Error', // if present
@@ -38,8 +38,8 @@ CustomError.prototype.constructor = CustomError;
 
 <span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> CustomError( <span class="hljs-string">'boop'</span> );
 
-<span class="hljs-keyword">var</span> json = toJSON( err );
-<span class="hljs-comment">/*
+<span class="hljs-keyword">var</span> json = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'TypeError',
         'name': 'CustomError',
@@ -47,11 +47,11 @@ CustomError.prototype.constructor = CustomError;
         'stack': '...'
     }
 */</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/to-json'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> error2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/to-json'</span> );
 
 <span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'beep'</span> );
-<span class="hljs-keyword">var</span> out = toJSON( err );
-<span class="hljs-comment">/* returns
+<span class="hljs-keyword">var</span> out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'Error',
         'name': 'Error',
@@ -61,8 +61,8 @@ CustomError.prototype.constructor = CustomError;
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>( <span class="hljs-string">'invalid type'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'TypeError',
         'name': 'TypeError',
@@ -72,8 +72,8 @@ out = toJSON( err );
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SyntaxError</span>( <span class="hljs-string">'bad syntax'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'SyntaxError',
         'name': 'SyntaxError',
@@ -83,8 +83,8 @@ out = toJSON( err );
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ReferenceError</span>( <span class="hljs-string">'unknown variable'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'ReferenceError',
         'name': 'ReferenceError',
@@ -94,8 +94,8 @@ out = toJSON( err );
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">URIError</span>( <span class="hljs-string">'bad URI'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'URIError',
         'name': 'URIError',
@@ -105,8 +105,8 @@ out = toJSON( err );
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>( <span class="hljs-string">'value out-of-range'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'RangeError',
         'name': 'RangeError',
@@ -116,8 +116,8 @@ out = toJSON( err );
 */</span>
 
 err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">EvalError</span>( <span class="hljs-string">'eval error'</span> );
-out = toJSON( err );
-<span class="hljs-comment">/* returns
+out = error2json( err );
+<span class="hljs-comment">/* e.g., returns
     {
         'type': 'EvalError',
         'name': 'EvalError',

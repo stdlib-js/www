@@ -1,0 +1,32 @@
+<h1 id="take2d">take2d</h1><blockquote><p>Take elements from a two-dimensional nested array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> take2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take2d'</span> );
+</code></pre><h4 id="take2d-x-indices-dimension-mode-">take2d( x, indices, dimension, mode )</h4><p>Takes elements along a specified <code>dimension</code> from a two-dimensional nested array according to a specified <a href="/docs/api/latest/@stdlib/ndarray/index-modes">index <code>mode</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ];
+<span class="hljs-keyword">var</span> indices = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> y = take2d( x, indices, <span class="hljs-number">1</span>, <span class="hljs-string">'normalize'</span> );
+<span class="hljs-comment">// returns [ [ 2, 2, 1, 1, 2, 2 ], [ 4, 4, 3, 3, 4, 4 ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input nested array.</li><li><strong>indices</strong>: list of indices.</li><li><strong>dimension</strong>: dimension along which to take elements. If provided a negative integer, the dimension is resolved relative to the last dimension, with the last dimension being <code>-1</code>.</li><li><strong>mode</strong>: <a href="/docs/api/latest/@stdlib/ndarray/index-modes">index mode</a> specifying how to handle an index which is out-of-bounds.</li></ul><p>If <code>indices</code> is an empty array, the function returns empty arrays along the specified <code>dimension</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ];
+
+<span class="hljs-keyword">var</span> y = take2d( x, [], <span class="hljs-number">1</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns [ [], [] ]</span>
+
+<span class="hljs-keyword">var</span> z = take2d( x, [], <span class="hljs-number">0</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function does <strong>not</strong> deep copy nested array elements.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filled2dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled2d-by'</span> );
+<span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> take2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take2d'</span> );
+
+<span class="hljs-comment">// Generate a random array:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">5</span>, <span class="hljs-number">5</span> ];
+<span class="hljs-keyword">var</span> x = filled2dBy( shape, discreteUniform.factory( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-comment">// Generate an array of random indices:</span>
+<span class="hljs-keyword">var</span> N = discreteUniform( <span class="hljs-number">5</span>, <span class="hljs-number">15</span> );
+<span class="hljs-keyword">var</span> indices = filledBy( N, discreteUniform.factory( <span class="hljs-number">0</span>, shape[<span class="hljs-number">1</span>]-<span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( indices );
+
+<span class="hljs-comment">// Take a random sample of elements from `x`:</span>
+<span class="hljs-keyword">var</span> y = take2d( x, indices, <span class="hljs-number">1</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

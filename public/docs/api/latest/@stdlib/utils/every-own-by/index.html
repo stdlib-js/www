@@ -1,0 +1,75 @@
+<h1 id="everyownby">everyOwnBy</h1><blockquote><p>Test whether all own propertes of an object pass a test implemented by a predicate function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> everyOwnBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every-own-by'</span> );
+</code></pre><h4 id="everyownby-object-predicate-thisarg--">everyOwnBy( object, predicate[, thisArg ] )</h4><p>Tests whether all <code>own</code> properties of an object pass a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>
+};
+
+<span class="hljs-keyword">var</span> bool = everyOwnBy( obj, isPositive );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a <code>predicate</code> function returns a non-truthy value, the function <strong>immediately</strong> returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: -<span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>
+};
+
+<span class="hljs-keyword">var</span> bool = everyOwnBy( obj, isPositive );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><strong>value</strong>: property value.</li><li><strong>key</strong>: property key.</li><li><strong>obj</strong>: input object.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">if</span> ( value &#x3C; <span class="hljs-number">0</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-built_in">this</span>.sum += value;
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'sum'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = everyOwnBy( obj, sum, context );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> mean = context.sum / context.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If the 1st argument is not an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>object</code></a> or the second argument is not a fuction , the function throws a Type Error.</p></li><li><p>If provided an empty object, the function returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">untrue</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+<span class="hljs-keyword">var</span> bool = everyOwnBy( {}, untrue );
+<span class="hljs-comment">// returns true</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> everyOwnBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every-own-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> obj = {};
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Populate object with random values</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    obj[ <span class="hljs-string">'prop_'</span> + i ] = randu();
+}
+
+<span class="hljs-keyword">var</span> bool = everyOwnBy( obj, isPositive );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/any-own-by"><code>@stdlib/utils/any-own-by</code></a></span><span class="delimiter">: </span><span class="description">test whether whether any 'own' property of a provided object satisfies a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every-in-by"><code>@stdlib/utils/every-in-by</code></a></span><span class="delimiter">: </span><span class="description">test whether all properties (own and inherited) of an object pass a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none-own-by"><code>@stdlib/utils/none-own-by</code></a></span><span class="delimiter">: </span><span class="description">tests whether every own property of an object fails a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/some-own-by"><code>@stdlib/utils/some-own-by</code></a></span><span class="delimiter">: </span><span class="description">test whether some <code>own</code> properties of a provided object satisfy a predicate function for at least <code>n</code> properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every-by"><code>@stdlib/utils/every-by</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection pass a test implemented by a predicate function.</span></li></ul></section><section class="links"></section>

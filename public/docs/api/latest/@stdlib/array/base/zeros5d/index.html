@@ -1,0 +1,11 @@
+<h1 id="zeros5d">zeros5d</h1><blockquote><p>Create a zero-filled five-dimensional nested array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+</code></pre><h4 id="zeros5d-shape-">zeros5d( shape )</h4><p>Returns a zero-filled five-dimensional nested array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = zeros5d( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ [ [ 0.0, 0.0, 0.0 ], [ 0.0, 0.0, 0.0 ] ] ] ] ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+
+<span class="hljs-keyword">var</span> out = zeros5d( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ [ [ 0.0, 0.0, 0.0 ] ] ] ] ]</span>
+
+out = zeros5d( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ [ [ [ 0.0 ], [ 0.0 ], [ 0.0 ] ] ] ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,44 @@
+<h1 id="log1pmx">log1pmx</h1><blockquote><p>Evaluate <code>ln(1+x) - x</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1pmx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1pmx'</span> );
+</code></pre><h4 id="log1pmx-x-">log1pmx( x )</h4><p>Evaluates <code>ln(1+x) - x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log1pmx( <span class="hljs-number">1.1</span> );
+<span class="hljs-comment">// returns ~-0.358</span>
+
+v = log1pmx( <span class="hljs-number">0.99</span> );
+<span class="hljs-comment">// returns ~-0.302</span>
+
+v = log1pmx( -<span class="hljs-number">0.99</span> );
+<span class="hljs-comment">// returns ~-3.615</span>
+
+v = log1pmx( -<span class="hljs-number">1.1</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = log1pmx( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/incrspace'</span> );
+<span class="hljs-keyword">var</span> log1pmx = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1pmx'</span> );
+
+<span class="hljs-keyword">var</span> x = incrspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">0.01</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, f(x): %d'</span>, x[ i ], log1pmx( x[ i ] ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/log1pmx.h"</span></span>
+</code></pre><h4 id="stdlib_base_log1pmx-x-">stdlib_base_log1pmx( x )</h4><p>Evaluates <code>ln(1+x) - x</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_log1pmx( <span class="hljs-number">1.1</span> );
+<span class="hljs-comment">// returns ~-0.358</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_log1pmx</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/log1pmx.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">int</span> i;
+    
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+        x = ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">10.0</span>;
+        v = stdlib_base_log1pmx( x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x: %lf, f(x): %lf\n"</span>, x, v );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li></ul></section><section class="links"></section>

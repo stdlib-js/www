@@ -1,0 +1,25 @@
+<h1 id="iswebassemblymemory">isWebAssemblyMemory</h1><blockquote><p>Test if a value is a WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">memory</a> instance.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isWebAssemblyMemory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-wasm-memory'</span> );
+</code></pre><h4 id="iswebassemblymemory-value-">isWebAssemblyMemory( value )</h4><p>Tests if a value is a WebAssembly <a href="/docs/api/latest/@stdlib/wasm/memory">memory</a> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+
+<span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">0</span>
+});
+<span class="hljs-keyword">var</span> bool = isWebAssemblyMemory( mem );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> Memory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/wasm/memory'</span> );
+<span class="hljs-keyword">var</span> isWebAssemblyMemory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-wasm-memory'</span> );
+
+<span class="hljs-keyword">var</span> mem = <span class="hljs-keyword">new</span> Memory({
+    <span class="hljs-string">'initial'</span>: <span class="hljs-number">0</span>
+});
+<span class="hljs-keyword">var</span> bool = isWebAssemblyMemory( mem );
+<span class="hljs-comment">// returns true</span>
+
+bool = isWebAssemblyMemory( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWebAssemblyMemory( <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

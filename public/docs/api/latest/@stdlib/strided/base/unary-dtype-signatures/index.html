@@ -1,0 +1,36 @@
+<h1 id="unary-signatures">Unary Signatures</h1><blockquote><p>Generate a list of unary interface signatures from strided array <a href="/docs/api/latest/@stdlib/strided/dtypes">data types</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> signatures = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/unary-dtype-signatures'</span> );
+</code></pre><h4 id="signatures-dtypes1-dtypes2-options-">signatures( dtypes1, dtypes2[, options] )</h4><p>Generates a list of unary interface signatures from strided array <a href="/docs/api/latest/@stdlib/strided/dtypes">data types</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = [
+    <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint8'</span>
+];
+
+<span class="hljs-keyword">var</span> sigs = signatures( dtypes, dtypes );
+<span class="hljs-comment">// e.g., returns [ 'float32', 'float32', ... ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>dtypes1</strong>: list of supported <a href="/docs/api/latest/@stdlib/strided/dtypes">data types</a> for the input argument.</li><li><strong>dtypes2</strong>: list of supported <a href="/docs/api/latest/@stdlib/strided/dtypes">data types</a> for the output argument.</li><li><strong>options</strong>: options.</li></ul><p>The function accepts the following options:</p><ul><li><strong>enums</strong>: <code>boolean</code> flag indicating whether to return signatures as a list of <a href="/docs/api/latest/@stdlib/strided/dtypes">data type</a> enumeration constants. Default: <code>false</code>.</li></ul><p>When the <code>enums</code> options is <code>false</code>, the function returns an array of <a href="/docs/api/latest/@stdlib/strided/dtypes">data type</a> strings. To return <a href="/docs/api/latest/@stdlib/strided/dtypes">data type</a> enumeration constants, set the <code>enums</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = [
+    <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint8'</span>
+];
+<span class="hljs-keyword">var</span> options = {
+    <span class="hljs-string">'enums'</span>: <span class="hljs-literal">true</span>
+};
+
+<span class="hljs-keyword">var</span> sigs = signatures( dtypes, dtypes, options );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function returns a strided array having a stride length of <code>2</code> (i.e., every <code>2</code> elements define a unary interface signature).</li><li>For each signature (i.e., set of two consecutive non-overlapping strided array elements), the first element is the input data type and the second element is the return data type.</li><li>All signatures follow type <a href="/docs/api/latest/@stdlib/ndarray/promotion-rules">promotion rules</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/dtypes'</span> );
+<span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
+<span class="hljs-keyword">var</span> signatures = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/unary-dtype-signatures'</span> );
+
+<span class="hljs-comment">// Get the list of supported strided array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate unary interface signatures:</span>
+<span class="hljs-keyword">var</span> sigs = signatures( dt, dt );
+
+<span class="hljs-comment">// Format the output:</span>
+<span class="hljs-keyword">var</span> str = replace( <span class="hljs-built_in">JSON</span>.stringify( sigs ), <span class="hljs-regexp">/("[^"]+","[^"]+"),/g</span>, <span class="hljs-string">'$1,\n'</span> );
+<span class="hljs-built_in">console</span>.log( str );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/strided/base/unary-signature-callbacks"><code>@stdlib/strided/base/unary-signature-callbacks</code></a></span><span class="delimiter">: </span><span class="description">assign callbacks to unary interfaces according to type promotion rules.</span></li></ul></section><section class="links"></section>

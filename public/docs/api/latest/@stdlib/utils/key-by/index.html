@@ -10,7 +10,7 @@
 
 <span class="hljs-keyword">var</span> out = keyBy( arr, toKey );
 <span class="hljs-comment">// returns { '1': { 'a': 1 }, '2': { 'a': 2 } }</span>
-</code></pre><p>The invoked <code>function</code> is provided two arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value, index </span>) </span>{
+</code></pre><p>The invoked <code>function</code> is provided two arguments:</p><ul><li><strong>value</strong>: collection element.</li><li><strong>index</strong>: collection index.</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value, index </span>) </span>{
     <span class="hljs-built_in">this</span>.sum += value;
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> index;

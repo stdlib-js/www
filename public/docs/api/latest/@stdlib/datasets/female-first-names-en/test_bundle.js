@@ -123,12 +123,12 @@
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":2}],2:[function(require,module,exports){
 /**
@@ -231,12 +231,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":4}],4:[function(require,module,exports){
 /**
@@ -317,12 +317,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":6}],6:[function(require,module,exports){
 /**
@@ -422,12 +422,12 @@ module.exports = hasToStringTagSupport;
 
 // MODULES //
 
-var instanceOf = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = instanceOf;
+module.exports = main;
 
 },{"./main.js":8}],8:[function(require,module,exports){
 /**
@@ -498,7 +498,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":67}],9:[function(require,module,exports){
+},{"@stdlib/string/format":71}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -536,12 +536,12 @@ module.exports = instanceOf;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":10}],10:[function(require,module,exports){
 /**
@@ -608,7 +608,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":93}],11:[function(require,module,exports){
+},{"@stdlib/utils/native-class":98}],11:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -635,6 +635,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -644,7 +645,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -654,7 +655,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -667,22 +668,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":12,"./object.js":13,"./primitive.js":14,"@stdlib/utils/define-nonenumerable-read-only-property":74}],12:[function(require,module,exports){
+},{"./main.js":12,"./object.js":13,"./primitive.js":14,"@stdlib/utils/define-nonenumerable-read-only-property":80}],12:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -726,10 +727,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -767,6 +772,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -788,6 +794,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -809,7 +817,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":16,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":93}],14:[function(require,module,exports){
+},{"./try2serialize.js":16,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/boolean/ctor":38,"@stdlib/utils/native-class":98}],14:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -845,6 +853,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -998,12 +1008,12 @@ module.exports = true;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":19}],19:[function(require,module,exports){
 /**
@@ -1116,12 +1126,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isFunction = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isFunction;
+module.exports = main;
 
 },{"./main.js":21}],21:[function(require,module,exports){
 /**
@@ -1175,7 +1185,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":104}],22:[function(require,module,exports){
+},{"@stdlib/utils/type-of":109}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1227,19 +1237,24 @@ module.exports = isFunction;
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":23,"@stdlib/assert/tools/array-function":37,"@stdlib/utils/define-nonenumerable-read-only-property":74}],23:[function(require,module,exports){
+},{"./main.js":23,"@stdlib/assert/tools/array-function":36,"@stdlib/utils/define-nonenumerable-read-only-property":80}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1328,12 +1343,12 @@ module.exports = isObjectLike;
 
 // MODULES //
 
-var isObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isObject;
+module.exports = main;
 
 },{"./main.js":25}],25:[function(require,module,exports){
 /**
@@ -1428,12 +1443,12 @@ module.exports = isObject;
 
 // MODULES //
 
-var isPlainObject = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isPlainObject;
+module.exports = main;
 
 },{"./main.js":27}],27:[function(require,module,exports){
 /**
@@ -1549,7 +1564,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":1,"@stdlib/assert/is-function":20,"@stdlib/assert/is-object":24,"@stdlib/utils/get-prototype-of":83,"@stdlib/utils/native-class":93}],28:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":1,"@stdlib/assert/is-function":20,"@stdlib/assert/is-object":24,"@stdlib/utils/get-prototype-of":88,"@stdlib/utils/native-class":98}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1610,18 +1625,24 @@ var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isString = require( '@stdlib/assert/is-string' );
 
 
+// VARIABLES //
+
+var isPrimitiveArray = arrayfun( isString.isPrimitive );
+var isObjectArray = arrayfun( isString.isObject );
+
+
 // MAIN //
 
 var isStringArray = arrayfun( isString );
-setReadOnly( isStringArray, 'primitives', arrayfun( isString.isPrimitive ) );
-setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
+setReadOnly( isStringArray, 'primitives', isPrimitiveArray );
+setReadOnly( isStringArray, 'objects', isObjectArray );
 
 
 // EXPORTS //
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":29,"@stdlib/assert/tools/array-function":37,"@stdlib/utils/define-nonenumerable-read-only-property":74}],29:[function(require,module,exports){
+},{"@stdlib/assert/is-string":29,"@stdlib/assert/tools/array-function":36,"@stdlib/utils/define-nonenumerable-read-only-property":80}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1681,22 +1702,22 @@ module.exports = isStringArray;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":30,"./object.js":31,"./primitive.js":32,"@stdlib/utils/define-nonenumerable-read-only-property":74}],30:[function(require,module,exports){
+},{"./main.js":30,"./object.js":31,"./primitive.js":32,"@stdlib/utils/define-nonenumerable-read-only-property":80}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1815,7 +1836,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":33,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":93}],32:[function(require,module,exports){
+},{"./try2valueof.js":33,"@stdlib/assert/has-tostringtag-support":5,"@stdlib/utils/native-class":98}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1995,7 +2016,58 @@ var IS_WINDOWS = ( PLATFORM === 'win32' );
 
 module.exports = IS_WINDOWS;
 
-},{"@stdlib/os/platform":52}],36:[function(require,module,exports){
+},{"@stdlib/os/platform":56}],36:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":37}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2082,11 +2154,11 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":9,"@stdlib/string/format":67}],37:[function(require,module,exports){
+},{"@stdlib/assert/is-array":9,"@stdlib/string/format":71}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -2104,39 +2176,95 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":36}],38:[function(require,module,exports){
+},{"./main.js":39}],39:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],40:[function(require,module,exports){
 module.exports=["Aaren","Aarika","Abagael","Abagail","Abbe","Abbey","Abbi","Abbie","Abby","Abbye","Abigael","Abigail","Abigale","Abra","Ada","Adah","Adaline","Adan","Adara","Adda","Addi","Addia","Addie","Addy","Adel","Adela","Adelaida","Adelaide","Adele","Adelheid","Adelice","Adelina","Adelind","Adeline","Adella","Adelle","Adena","Adey","Adi","Adiana","Adina","Adora","Adore","Adoree","Adorne","Adrea","Adria","Adriaens","Adrian","Adriana","Adriane","Adrianna","Adrianne","Adriena","Adrienne","Aeriel","Aeriela","Aeriell","Afton","Ag","Agace","Agata","Agatha","Agathe","Aggi","Aggie","Aggy","Agna","Agnella","Agnes","Agnese","Agnesse","Agneta","Agnola","Agretha","Aida","Aidan","Aigneis","Aila","Aile","Ailee","Aileen","Ailene","Ailey","Aili","Ailina","Ailis","Ailsun","Ailyn","Aime","Aimee","Aimil","Aindrea","Ainslee","Ainsley","Ainslie","Ajay","Alaine","Alameda","Alana","Alanah","Alane","Alanna","Alayne","Alberta","Albertina","Albertine","Albina","Alecia","Aleda","Aleece","Aleen","Alejandra","Alejandrina","Alena","Alene","Alessandra","Aleta","Alethea","Alex","Alexa","Alexandra","Alexandrina","Alexi","Alexia","Alexina","Alexine","Alexis","Alfi","Alfie","Alfreda","Alfy","Ali","Alia","Alica","Alice","Alicea","Alicia","Alida","Alidia","Alie","Alika","Alikee","Alina","Aline","Alis","Alisa","Alisha","Alison","Alissa","Alisun","Alix","Aliza","Alla","Alleen","Allegra","Allene","Alli","Allianora","Allie","Allina","Allis","Allison","Allissa","Allix","Allsun","Allx","Ally","Allyce","Allyn","Allys","Allyson","Alma","Almeda","Almeria","Almeta","Almira","Almire","Aloise","Aloisia","Aloysia","Alta","Althea","Alvera","Alverta","Alvina","Alvinia","Alvira","Alyce","Alyda","Alys","Alysa","Alyse","Alysia","Alyson","Alyss","Alyssa","Amabel","Amabelle","Amalea","Amalee","Amaleta","Amalia","Amalie","Amalita","Amalle","Amanda","Amandi","Amandie","Amandy","Amara","Amargo","Amata","Amber","Amberly","Ambur","Ame","Amelia","Amelie","Amelina","Ameline","Amelita","Ami","Amie","Amii","Amil","Amitie","Amity","Ammamaria","Amy","Amye","Ana","Anabal","Anabel","Anabella","Anabelle","Analiese","Analise","Anallese","Anallise","Anastasia","Anastasie","Anastassia","Anatola","Andee","Andeee","Anderea","Andi","Andie","Andra","Andrea","Andreana","Andree","Andrei","Andria","Andriana","Andriette","Andromache","Andy","Anestassia","Anet","Anett","Anetta","Anette","Ange","Angel","Angela","Angele","Angelia","Angelica","Angelika","Angelina","Angeline","Angelique","Angelita","Angelle","Angie","Angil","Angy","Ania","Anica","Anissa","Anita","Anitra","Anjanette","Anjela","Ann","Ann-Marie","Anna","Anna-Diana","Anna-Diane","Anna-Maria","Annabal","Annabel","Annabela","Annabell","Annabella","Annabelle","Annadiana","Annadiane","Annalee","Annaliese","Annalise","Annamaria","Annamarie","Anne","Anne-Corinne","Anne-Marie","Annecorinne","Anneliese","Annelise","Annemarie","Annetta","Annette","Anni","Annice","Annie","Annis","Annissa","Annmaria","Annmarie","Annnora","Annora","Anny","Anselma","Ansley","Anstice","Anthe","Anthea","Anthia","Anthiathia","Antoinette","Antonella","Antonetta","Antonia","Antonie","Antonietta","Antonina","Anya","Appolonia","April","Aprilette","Ara","Arabel","Arabela","Arabele","Arabella","Arabelle","Arda","Ardath","Ardeen","Ardelia","Ardelis","Ardella","Ardelle","Arden","Ardene","Ardenia","Ardine","Ardis","Ardisj","Ardith","Ardra","Ardyce","Ardys","Ardyth","Aretha","Ariadne","Ariana","Aridatha","Ariel","Ariela","Ariella","Arielle","Arlana","Arlee","Arleen","Arlen","Arlena","Arlene","Arleta","Arlette","Arleyne","Arlie","Arliene","Arlina","Arlinda","Arline","Arluene","Arly","Arlyn","Arlyne","Aryn","Ashely","Ashia","Ashien","Ashil","Ashla","Ashlan","Ashlee","Ashleigh","Ashlen","Ashley","Ashli","Ashlie","Ashly","Asia","Astra","Astrid","Astrix","Atalanta","Athena","Athene","Atlanta","Atlante","Auberta","Aubine","Aubree","Aubrette","Aubrey","Aubrie","Aubry","Audi","Audie","Audra","Audre","Audrey","Audrie","Audry","Audrye","Audy","Augusta","Auguste","Augustina","Augustine","Aundrea","Aura","Aurea","Aurel","Aurelea","Aurelia","Aurelie","Auria","Aurie","Aurilia","Aurlie","Auroora","Aurora","Aurore","Austin","Austina","Austine","Ava","Aveline","Averil","Averyl","Avie","Avis","Aviva","Avivah","Avril","Avrit","Ayn","Bab","Babara","Babb","Babbette","Babbie","Babette","Babita","Babs","Bambi","Bambie","Bamby","Barb","Barbabra","Barbara","Barbara-Anne","Barbaraanne","Barbe","Barbee","Barbette","Barbey","Barbi","Barbie","Barbra","Barby","Bari","Barrie","Barry","Basia","Bathsheba","Batsheva","Bea","Beatrice","Beatrisa","Beatrix","Beatriz","Bebe","Becca","Becka","Becki","Beckie","Becky","Bee","Beilul","Beitris","Bekki","Bel","Belia","Belicia","Belinda","Belita","Bell","Bella","Bellanca","Belle","Bellina","Belva","Belvia","Bendite","Benedetta","Benedicta","Benedikta","Benetta","Benita","Benni","Bennie","Benny","Benoite","Berenice","Beret","Berget","Berna","Bernadene","Bernadette","Bernadina","Bernadine","Bernardina","Bernardine","Bernelle","Bernete","Bernetta","Bernette","Berni","Bernice","Bernie","Bernita","Berny","Berri","Berrie","Berry","Bert","Berta","Berte","Bertha","Berthe","Berti","Bertie","Bertina","Bertine","Berty","Beryl","Beryle","Bess","Bessie","Bessy","Beth","Bethanne","Bethany","Bethena","Bethina","Betsey","Betsy","Betta","Bette","Bette-Ann","Betteann","Betteanne","Betti","Bettina","Bettine","Betty","Bettye","Beulah","Bev","Beverie","Beverlee","Beverley","Beverlie","Beverly","Bevvy","Bianca","Bianka","Bibbie","Bibby","Bibbye","Bibi","Biddie","Biddy","Bidget","Bili","Bill","Billi","Billie","Billy","Billye","Binni","Binnie","Binny","Bird","Birdie","Birgit","Birgitta","Blair","Blaire","Blake","Blakelee","Blakeley","Blanca","Blanch","Blancha","Blanche","Blinni","Blinnie","Blinny","Bliss","Blisse","Blithe","Blondell","Blondelle","Blondie","Blondy","Blythe","Bobbe","Bobbee","Bobbette","Bobbi","Bobbie","Bobby","Bobbye","Bobette","Bobina","Bobine","Bobinette","Bonita","Bonnee","Bonni","Bonnibelle","Bonnie","Bonny","Brana","Brandais","Brande","Brandea","Brandi","Brandice","Brandie","Brandise","Brandy","Breanne","Brear","Bree","Breena","Bren","Brena","Brenda","Brenn","Brenna","Brett","Bria","Briana","Brianna","Brianne","Bride","Bridget","Bridgette","Bridie","Brier","Brietta","Brigid","Brigida","Brigit","Brigitta","Brigitte","Brina","Briney","Brinn","Brinna","Briny","Brit","Brita","Britney","Britni","Britt","Britta","Brittan","Brittaney","Brittani","Brittany","Britte","Britteny","Brittne","Brittney","Brittni","Brook","Brooke","Brooks","Brunhilda","Brunhilde","Bryana","Bryn","Bryna","Brynn","Brynna","Brynne","Buffy","Bunni","Bunnie","Bunny","Cacilia","Cacilie","Cahra","Cairistiona","Caitlin","Caitrin","Cal","Calida","Calla","Calley","Calli","Callida","Callie","Cally","Calypso","Cam","Camala","Camel","Camella","Camellia","Cami","Camila","Camile","Camilla","Camille","Cammi","Cammie","Cammy","Candace","Candi","Candice","Candida","Candide","Candie","Candis","Candra","Candy","Caprice","Cara","Caralie","Caren","Carena","Caresa","Caressa","Caresse","Carey","Cari","Caria","Carie","Caril","Carilyn","Carin","Carina","Carine","Cariotta","Carissa","Carita","Caritta","Carla","Carlee","Carleen","Carlen","Carlene","Carley","Carlie","Carlin","Carlina","Carline","Carlita","Carlota","Carlotta","Carly","Carlye","Carlyn","Carlynn","Carlynne","Carma","Carmel","Carmela","Carmelia","Carmelina","Carmelita","Carmella","Carmelle","Carmen","Carmencita","Carmina","Carmine","Carmita","Carmon","Caro","Carol","Carol-Jean","Carola","Carolan","Carolann","Carole","Carolee","Carolin","Carolina","Caroline","Caroljean","Carolyn","Carolyne","Carolynn","Caron","Carree","Carri","Carrie","Carrissa","Carroll","Carry","Cary","Caryl","Caryn","Casandra","Casey","Casi","Casie","Cass","Cassandra","Cassandre","Cassandry","Cassaundra","Cassey","Cassi","Cassie","Cassondra","Cassy","Catarina","Cate","Caterina","Catha","Catharina","Catharine","Cathe","Cathee","Catherin","Catherina","Catherine","Cathi","Cathie","Cathleen","Cathlene","Cathrin","Cathrine","Cathryn","Cathy","Cathyleen","Cati","Catie","Catina","Catlaina","Catlee","Catlin","Catrina","Catriona","Caty","Caye","Cayla","Cecelia","Cecil","Cecile","Ceciley","Cecilia","Cecilla","Cecily","Ceil","Cele","Celene","Celesta","Celeste","Celestia","Celestina","Celestine","Celestyn","Celestyna","Celia","Celie","Celina","Celinda","Celine","Celinka","Celisse","Celka","Celle","Cesya","Chad","Chanda","Chandal","Chandra","Channa","Chantal","Chantalle","Charil","Charin","Charis","Charissa","Charisse","Charita","Charity","Charla","Charlean","Charleen","Charlena","Charlene","Charline","Charlot","Charlotta","Charlotte","Charmain","Charmaine","Charmane","Charmian","Charmine","Charmion","Charo","Charyl","Chastity","Chelsae","Chelsea","Chelsey","Chelsie","Chelsy","Cher","Chere","Cherey","Cheri","Cherianne","Cherice","Cherida","Cherie","Cherilyn","Cherilynn","Cherin","Cherise","Cherish","Cherlyn","Cherri","Cherrita","Cherry","Chery","Cherye","Cheryl","Cheslie","Chiarra","Chickie","Chicky","Chiquia","Chiquita","Chlo","Chloe","Chloette","Chloris","Chris","Chrissie","Chrissy","Christa","Christabel","Christabella","Christal","Christalle","Christan","Christean","Christel","Christen","Christi","Christian","Christiana","Christiane","Christie","Christin","Christina","Christine","Christy","Christye","Christyna","Chrysa","Chrysler","Chrystal","Chryste","Chrystel","Cicely","Cicily","Ciel","Cilka","Cinda","Cindee","Cindelyn","Cinderella","Cindi","Cindie","Cindra","Cindy","Cinnamon","Cissiee","Cissy","Clair","Claire","Clara","Clarabelle","Clare","Claresta","Clareta","Claretta","Clarette","Clarey","Clari","Claribel","Clarice","Clarie","Clarinda","Clarine","Clarissa","Clarisse","Clarita","Clary","Claude","Claudelle","Claudetta","Claudette","Claudia","Claudie","Claudina","Claudine","Clea","Clem","Clemence","Clementia","Clementina","Clementine","Clemmie","Clemmy","Cleo","Cleopatra","Clerissa","Clio","Clo","Cloe","Cloris","Clotilda","Clovis","Codee","Codi","Codie","Cody","Coleen","Colene","Coletta","Colette","Colleen","Collen","Collete","Collette","Collie","Colline","Colly","Con","Concettina","Conchita","Concordia","Conni","Connie","Conny","Consolata","Constance","Constancia","Constancy","Constanta","Constantia","Constantina","Constantine","Consuela","Consuelo","Cookie","Cora","Corabel","Corabella","Corabelle","Coral","Coralie","Coraline","Coralyn","Cordelia","Cordelie","Cordey","Cordi","Cordie","Cordula","Cordy","Coreen","Corella","Corenda","Corene","Coretta","Corette","Corey","Cori","Corie","Corilla","Corina","Corine","Corinna","Corinne","Coriss","Corissa","Corliss","Corly","Cornela","Cornelia","Cornelle","Cornie","Corny","Correna","Correy","Corri","Corrianne","Corrie","Corrina","Corrine","Corrinne","Corry","Cortney","Cory","Cosetta","Cosette","Costanza","Courtenay","Courtnay","Courtney","Crin","Cris","Crissie","Crissy","Crista","Cristabel","Cristal","Cristen","Cristi","Cristie","Cristin","Cristina","Cristine","Cristionna","Cristy","Crysta","Crystal","Crystie","Cthrine","Cyb","Cybil","Cybill","Cymbre","Cynde","Cyndi","Cyndia","Cyndie","Cyndy","Cynthea","Cynthia","Cynthie","Cynthy","Dacey","Dacia","Dacie","Dacy","Dael","Daffi","Daffie","Daffy","Dagmar","Dahlia","Daile","Daisey","Daisi","Daisie","Daisy","Dale","Dalenna","Dalia","Dalila","Dallas","Daloris","Damara","Damaris","Damita","Dana","Danell","Danella","Danette","Dani","Dania","Danica","Danice","Daniela","Daniele","Daniella","Danielle","Danika","Danila","Danit","Danita","Danna","Danni","Dannie","Danny","Dannye","Danya","Danyelle","Danyette","Daphene","Daphna","Daphne","Dara","Darb","Darbie","Darby","Darcee","Darcey","Darci","Darcie","Darcy","Darda","Dareen","Darell","Darelle","Dari","Daria","Darice","Darla","Darleen","Darlene","Darline","Darlleen","Daron","Darrelle","Darryl","Darsey","Darsie","Darya","Daryl","Daryn","Dasha","Dasi","Dasie","Dasya","Datha","Daune","Daveen","Daveta","Davida","Davina","Davine","Davita","Dawn","Dawna","Dayle","Dayna","Ddene","De","Deana","Deane","Deanna","Deanne","Deb","Debbi","Debbie","Debby","Debee","Debera","Debi","Debor","Debora","Deborah","Debra","Dede","Dedie","Dedra","Dee","Dee","Dee","Deeann","Deeanne","Deedee","Deena","Deerdre","Deeyn","Dehlia","Deidre","Deina","Deirdre","Del","Dela","Delcina","Delcine","Delia","Delila","Delilah","Delinda","Dell","Della","Delly","Delora","Delores","Deloria","Deloris","Delphine","Delphinia","Demeter","Demetra","Demetria","Demetris","Dena","Deni","Denice","Denise","Denna","Denni","Dennie","Denny","Deny","Denys","Denyse","Deonne","Desdemona","Desirae","Desiree","Desiri","Deva","Devan","Devi","Devin","Devina","Devinne","Devon","Devondra","Devonna","Devonne","Devora","Di","Diahann","Dian","Diana","Diandra","Diane","Diane-Marie","Dianemarie","Diann","Dianna","Dianne","Diannne","Didi","Dido","Diena","Dierdre","Dina","Dinah","Dinnie","Dinny","Dion","Dione","Dionis","Dionne","Dita","Dix","Dixie","Dniren","Dode","Dodi","Dodie","Dody","Doe","Doll","Dolley","Dolli","Dollie","Dolly","Dolores","Dolorita","Doloritas","Domeniga","Dominga","Domini","Dominica","Dominique","Dona","Donella","Donelle","Donetta","Donia","Donica","Donielle","Donna","Donnamarie","Donni","Donnie","Donny","Dora","Doralia","Doralin","Doralyn","Doralynn","Doralynne","Dore","Doreen","Dorelia","Dorella","Dorelle","Dorena","Dorene","Doretta","Dorette","Dorey","Dori","Doria","Dorian","Dorice","Dorie","Dorine","Doris","Dorisa","Dorise","Dorita","Doro","Dorolice","Dorolisa","Dorotea","Doroteya","Dorothea","Dorothee","Dorothy","Dorree","Dorri","Dorrie","Dorris","Dorry","Dorthea","Dorthy","Dory","Dosi","Dot","Doti","Dotti","Dottie","Dotty","Dre","Dreddy","Dredi","Drona","Dru","Druci","Drucie","Drucill","Drucy","Drusi","Drusie","Drusilla","Drusy","Dulce","Dulcea","Dulci","Dulcia","Dulciana","Dulcie","Dulcine","Dulcinea","Dulcy","Dulsea","Dusty","Dyan","Dyana","Dyane","Dyann","Dyanna","Dyanne","Dyna","Dynah","Eachelle","Eada","Eadie","Eadith","Ealasaid","Eartha","Easter","Eba","Ebba","Ebonee","Ebony","Eda","Eddi","Eddie","Eddy","Ede","Edee","Edeline","Eden","Edi","Edie","Edin","Edita","Edith","Editha","Edithe","Ediva","Edna","Edwina","Edy","Edyth","Edythe","Effie","Eileen","Eilis","Eimile","Eirena","Ekaterina","Elaina","Elaine","Elana","Elane","Elayne","Elberta","Elbertina","Elbertine","Eleanor","Eleanora","Eleanore","Electra","Eleen","Elena","Elene","Eleni","Elenore","Eleonora","Eleonore","Elfie","Elfreda","Elfrida","Elfrieda","Elga","Elianora","Elianore","Elicia","Elie","Elinor","Elinore","Elisa","Elisabet","Elisabeth","Elisabetta","Elise","Elisha","Elissa","Elita","Eliza","Elizabet","Elizabeth","Elka","Elke","Ella","Elladine","Elle","Ellen","Ellene","Ellette","Elli","Ellie","Ellissa","Elly","Ellyn","Ellynn","Elmira","Elna","Elnora","Elnore","Eloisa","Eloise","Elonore","Elora","Elsa","Elsbeth","Else","Elset","Elsey","Elsi","Elsie","Elsinore","Elspeth","Elsy","Elva","Elvera","Elvina","Elvira","Elwira","Elyn","Elyse","Elysee","Elysha","Elysia","Elyssa","Em","Ema","Emalee","Emalia","Emelda","Emelia","Emelina","Emeline","Emelita","Emelyne","Emera","Emilee","Emili","Emilia","Emilie","Emiline","Emily","Emlyn","Emlynn","Emlynne","Emma","Emmalee","Emmaline","Emmalyn","Emmalynn","Emmalynne","Emmeline","Emmey","Emmi","Emmie","Emmy","Emmye","Emogene","Emyle","Emylee","Engracia","Enid","Enrica","Enrichetta","Enrika","Enriqueta","Eolanda","Eolande","Eran","Erda","Erena","Erica","Ericha","Ericka","Erika","Erin","Erina","Erinn","Erinna","Erma","Ermengarde","Ermentrude","Ermina","Erminia","Erminie","Erna","Ernaline","Ernesta","Ernestine","Ertha","Eryn","Esma","Esmaria","Esme","Esmeralda","Essa","Essie","Essy","Esta","Estel","Estele","Estell","Estella","Estelle","Ester","Esther","Estrella","Estrellita","Ethel","Ethelda","Ethelin","Ethelind","Etheline","Ethelyn","Ethyl","Etta","Etti","Ettie","Etty","Eudora","Eugenia","Eugenie","Eugine","Eula","Eulalie","Eunice","Euphemia","Eustacia","Eva","Evaleen","Evangelia","Evangelin","Evangelina","Evangeline","Evania","Evanne","Eve","Eveleen","Evelina","Eveline","Evelyn","Evey","Evie","Evita","Evonne","Evvie","Evvy","Evy","Eyde","Eydie","Ezmeralda","Fae","Faina","Faith","Fallon","Fan","Fanchette","Fanchon","Fancie","Fancy","Fanechka","Fania","Fanni","Fannie","Fanny","Fanya","Fara","Farah","Farand","Farica","Farra","Farrah","Farrand","Faun","Faunie","Faustina","Faustine","Fawn","Fawne","Fawnia","Fay","Faydra","Faye","Fayette","Fayina","Fayre","Fayth","Faythe","Federica","Fedora","Felecia","Felicdad","Felice","Felicia","Felicity","Felicle","Felipa","Felisha","Felita","Feliza","Fenelia","Feodora","Ferdinanda","Ferdinande","Fern","Fernanda","Fernande","Fernandina","Ferne","Fey","Fiann","Fianna","Fidela","Fidelia","Fidelity","Fifi","Fifine","Filia","Filide","Filippa","Fina","Fiona","Fionna","Fionnula","Fiorenze","Fleur","Fleurette","Flo","Flor","Flora","Florance","Flore","Florella","Florence","Florencia","Florentia","Florenza","Florette","Flori","Floria","Florida","Florie","Florina","Florinda","Floris","Florri","Florrie","Florry","Flory","Flossi","Flossie","Flossy","Flss","Fran","Francene","Frances","Francesca","Francine","Francisca","Franciska","Francoise","Francyne","Frank","Frankie","Franky","Franni","Frannie","Franny","Frayda","Fred","Freda","Freddi","Freddie","Freddy","Fredelia","Frederica","Fredericka","Frederique","Fredi","Fredia","Fredra","Fredrika","Freida","Frieda","Friederike","Fulvia","Gabbey","Gabbi","Gabbie","Gabey","Gabi","Gabie","Gabriel","Gabriela","Gabriell","Gabriella","Gabrielle","Gabriellia","Gabrila","Gaby","Gae","Gael","Gail","Gale","Gale","Galina","Garland","Garnet","Garnette","Gates","Gavra","Gavrielle","Gay","Gaye","Gayel","Gayla","Gayle","Gayleen","Gaylene","Gaynor","Gelya","Gena","Gene","Geneva","Genevieve","Genevra","Genia","Genna","Genni","Gennie","Gennifer","Genny","Genovera","Genvieve","George","Georgeanna","Georgeanne","Georgena","Georgeta","Georgetta","Georgette","Georgia","Georgiana","Georgianna","Georgianne","Georgie","Georgina","Georgine","Geralda","Geraldine","Gerda","Gerhardine","Geri","Gerianna","Gerianne","Gerladina","Germain","Germaine","Germana","Gerri","Gerrie","Gerrilee","Gerry","Gert","Gerta","Gerti","Gertie","Gertrud","Gertruda","Gertrude","Gertrudis","Gerty","Giacinta","Giana","Gianina","Gianna","Gigi","Gilberta","Gilberte","Gilbertina","Gilbertine","Gilda","Gilemette","Gill","Gillan","Gilli","Gillian","Gillie","Gilligan","Gilly","Gina","Ginelle","Ginevra","Ginger","Ginni","Ginnie","Ginnifer","Ginny","Giorgia","Giovanna","Gipsy","Giralda","Gisela","Gisele","Gisella","Giselle","Giuditta","Giulia","Giulietta","Giustina","Gizela","Glad","Gladi","Gladys","Gleda","Glen","Glenda","Glenine","Glenn","Glenna","Glennie","Glennis","Glori","Gloria","Gloriana","Gloriane","Glory","Glyn","Glynda","Glynis","Glynnis","Gnni","Godiva","Golda","Goldarina","Goldi","Goldia","Goldie","Goldina","Goldy","Grace","Gracia","Gracie","Grata","Gratia","Gratiana","Gray","Grayce","Grazia","Greer","Greta","Gretal","Gretchen","Grete","Gretel","Grethel","Gretna","Gretta","Grier","Griselda","Grissel","Guendolen","Guenevere","Guenna","Guglielma","Gui","Guillema","Guillemette","Guinevere","Guinna","Gunilla","Gus","Gusella","Gussi","Gussie","Gussy","Gusta","Gusti","Gustie","Gusty","Gwen","Gwendolen","Gwendolin","Gwendolyn","Gweneth","Gwenette","Gwenneth","Gwenni","Gwennie","Gwenny","Gwenora","Gwenore","Gwyn","Gwyneth","Gwynne","Gypsy","Hadria","Hailee","Haily","Haleigh","Halette","Haley","Hali","Halie","Halimeda","Halley","Halli","Hallie","Hally","Hana","Hanna","Hannah","Hanni","Hannie","Hannis","Hanny","Happy","Harlene","Harley","Harli","Harlie","Harmonia","Harmonie","Harmony","Harri","Harrie","Harriet","Harriett","Harrietta","Harriette","Harriot","Harriott","Hatti","Hattie","Hatty","Hayley","Hazel","Heath","Heather","Heda","Hedda","Heddi","Heddie","Hedi","Hedvig","Hedvige","Hedwig","Hedwiga","Hedy","Heida","Heidi","Heidie","Helaina","Helaine","Helen","Helen-Elizabeth","Helena","Helene","Helenka","Helga","Helge","Helli","Heloise","Helsa","Helyn","Hendrika","Henka","Henrie","Henrieta","Henrietta","Henriette","Henryetta","Hephzibah","Hermia","Hermina","Hermine","Herminia","Hermione","Herta","Hertha","Hester","Hesther","Hestia","Hetti","Hettie","Hetty","Hilary","Hilda","Hildagard","Hildagarde","Hilde","Hildegaard","Hildegarde","Hildy","Hillary","Hilliary","Hinda","Holli","Hollie","Holly","Holly-Anne","Hollyanne","Honey","Honor","Honoria","Hope","Horatia","Hortense","Hortensia","Hulda","Hyacinth","Hyacintha","Hyacinthe","Hyacinthia","Hyacinthie","Hynda","Ianthe","Ibbie","Ibby","Ida","Idalia","Idalina","Idaline","Idell","Idelle","Idette","Ileana","Ileane","Ilene","Ilise","Ilka","Illa","Ilsa","Ilse","Ilysa","Ilyse","Ilyssa","Imelda","Imogen","Imogene","Imojean","Ina","Indira","Ines","Inesita","Inessa","Inez","Inga","Ingaberg","Ingaborg","Inge","Ingeberg","Ingeborg","Inger","Ingrid","Ingunna","Inna","Iolande","Iolanthe","Iona","Iormina","Ira","Irena","Irene","Irina","Iris","Irita","Irma","Isa","Isabel","Isabelita","Isabella","Isabelle","Isadora","Isahella","Iseabal","Isidora","Isis","Isobel","Issi","Issie","Issy","Ivett","Ivette","Ivie","Ivonne","Ivory","Ivy","Izabel","Jacenta","Jacinda","Jacinta","Jacintha","Jacinthe","Jackelyn","Jacki","Jackie","Jacklin","Jacklyn","Jackquelin","Jackqueline","Jacky","Jaclin","Jaclyn","Jacquelin","Jacqueline","Jacquelyn","Jacquelynn","Jacquenetta","Jacquenette","Jacquetta","Jacquette","Jacqui","Jacquie","Jacynth","Jada","Jade","Jaime","Jaimie","Jaine","Jami","Jamie","Jamima","Jammie","Jan","Jana","Janaya","Janaye","Jandy","Jane","Janean","Janeczka","Janeen","Janel","Janela","Janella","Janelle","Janene","Janenna","Janessa","Janet","Janeta","Janetta","Janette","Janeva","Janey","Jania","Janice","Janie","Janifer","Janina","Janine","Janis","Janith","Janka","Janna","Jannel","Jannelle","Janot","Jany","Jaquelin","Jaquelyn","Jaquenetta","Jaquenette","Jaquith","Jasmin","Jasmina","Jasmine","Jayme","Jaymee","Jayne","Jaynell","Jazmin","Jean","Jeana","Jeane","Jeanelle","Jeanette","Jeanie","Jeanine","Jeanna","Jeanne","Jeannette","Jeannie","Jeannine","Jehanna","Jelene","Jemie","Jemima","Jemimah","Jemmie","Jemmy","Jen","Jena","Jenda","Jenelle","Jeni","Jenica","Jeniece","Jenifer","Jeniffer","Jenilee","Jenine","Jenn","Jenna","Jennee","Jennette","Jenni","Jennica","Jennie","Jennifer","Jennilee","Jennine","Jenny","Jeralee","Jere","Jeri","Jermaine","Jerrie","Jerrilee","Jerrilyn","Jerrine","Jerry","Jerrylee","Jess","Jessa","Jessalin","Jessalyn","Jessamine","Jessamyn","Jesse","Jesselyn","Jessi","Jessica","Jessie","Jessika","Jessy","Jewel","Jewell","Jewelle","Jill","Jillana","Jillane","Jillayne","Jilleen","Jillene","Jilli","Jillian","Jillie","Jilly","Jinny","Jo","Jo","Ann","Jo-Ann","Jo-Anne","Joan","Joana","Joane","Joanie","Joann","Joanna","Joanne","Joannes","Jobey","Jobi","Jobie","Jobina","Joby","Jobye","Jobyna","Jocelin","Joceline","Jocelyn","Jocelyne","Jodee","Jodi","Jodie","Jody","Joeann","Joela","Joelie","Joell","Joella","Joelle","Joellen","Joelly","Joellyn","Joelynn","Joete","Joey","Johanna","Johannah","Johna","Johnath","Johnette","Johnna","Joice","Jojo","Jolee","Joleen","Jolene","Joletta","Joli","Jolie","Joline","Joly","Jolyn","Jolynn","Jonell","Joni","Jonie","Jonis","Jordain","Jordan","Jordana","Jordanna","Jorey","Jori","Jorie","Jorrie","Jorry","Joscelin","Josee","Josefa","Josefina","Josepha","Josephina","Josephine","Josey","Josi","Josie","Josselyn","Josy","Jourdan","Joy","Joya","Joyan","Joyann","Joyce","Joycelin","Joye","Jsandye","Juana","Juanita","Judi","Judie","Judith","Juditha","Judy","Judye","Juieta","Julee","Juli","Julia","Juliana","Juliane","Juliann","Julianna","Julianne","Julie","Julienne","Juliet","Julieta","Julietta","Juliette","Julina","Juline","Julissa","Julita","June","Junette","Junia","Junie","Junina","Justina","Justine","Justinn","Jyoti","Kacey","Kacie","Kacy","Kaela","Kai","Kaia","Kaila","Kaile","Kailey","Kaitlin","Kaitlyn","Kaitlynn","Kaja","Kakalina","Kala","Kaleena","Kali","Kalie","Kalila","Kalina","Kalinda","Kalindi","Kalli","Kally","Kameko","Kamila","Kamilah","Kamillah","Kandace","Kandy","Kania","Kanya","Kara","Kara-Lynn","Karalee","Karalynn","Kare","Karee","Karel","Karen","Karena","Kari","Karia","Karie","Karil","Karilynn","Karin","Karina","Karine","Kariotta","Karisa","Karissa","Karita","Karla","Karlee","Karleen","Karlen","Karlene","Karlie","Karlotta","Karlotte","Karly","Karlyn","Karmen","Karna","Karol","Karola","Karole","Karolina","Karoline","Karoly","Karon","Karrah","Karrie","Karry","Kary","Karyl","Karylin","Karyn","Kasey","Kass","Kassandra","Kassey","Kassi","Kassia","Kassie","Kat","Kata","Katalin","Kate","Katee","Katerina","Katerine","Katey","Kath","Katha","Katharina","Katharine","Katharyn","Kathe","Katherina","Katherine","Katheryn","Kathi","Kathie","Kathleen","Kathlin","Kathrine","Kathryn","Kathryne","Kathy","Kathye","Kati","Katie","Katina","Katine","Katinka","Katleen","Katlin","Katrina","Katrine","Katrinka","Katti","Kattie","Katuscha","Katusha","Katy","Katya","Kay","Kaycee","Kaye","Kayla","Kayle","Kaylee","Kayley","Kaylil","Kaylyn","Keeley","Keelia","Keely","Kelcey","Kelci","Kelcie","Kelcy","Kelila","Kellen","Kelley","Kelli","Kellia","Kellie","Kellina","Kellsie","Kelly","Kellyann","Kelsey","Kelsi","Kelsy","Kendra","Kendre","Kenna","Keri","Keriann","Kerianne","Kerri","Kerrie","Kerrill","Kerrin","Kerry","Kerstin","Kesley","Keslie","Kessia","Kessiah","Ketti","Kettie","Ketty","Kevina","Kevyn","Ki","Kiah","Kial","Kiele","Kiersten","Kikelia","Kiley","Kim","Kimberlee","Kimberley","Kimberli","Kimberly","Kimberlyn","Kimbra","Kimmi","Kimmie","Kimmy","Kinna","Kip","Kipp","Kippie","Kippy","Kira","Kirbee","Kirbie","Kirby","Kiri","Kirsten","Kirsteni","Kirsti","Kirstin","Kirstyn","Kissee","Kissiah","Kissie","Kit","Kitti","Kittie","Kitty","Kizzee","Kizzie","Klara","Klarika","Klarrisa","Konstance","Konstanze","Koo","Kora","Koral","Koralle","Kordula","Kore","Korella","Koren","Koressa","Kori","Korie","Korney","Korrie","Korry","Kris","Krissie","Krissy","Krista","Kristal","Kristan","Kriste","Kristel","Kristen","Kristi","Kristien","Kristin","Kristina","Kristine","Kristy","Kristyn","Krysta","Krystal","Krystalle","Krystle","Krystyna","Kyla","Kyle","Kylen","Kylie","Kylila","Kylynn","Kym","Kynthia","Kyrstin","La","Verne","Lacee","Lacey","Lacie","Lacy","Ladonna","Laetitia","Laina","Lainey","Lana","Lanae","Lane","Lanette","Laney","Lani","Lanie","Lanita","Lanna","Lanni","Lanny","Lara","Laraine","Lari","Larina","Larine","Larisa","Larissa","Lark","Laryssa","Latashia","Latia","Latisha","Latrena","Latrina","Laura","Lauraine","Laural","Lauralee","Laure","Lauree","Laureen","Laurel","Laurella","Lauren","Laurena","Laurene","Lauretta","Laurette","Lauri","Laurianne","Laurice","Laurie","Lauryn","Lavena","Laverna","Laverne","Lavina","Lavinia","Lavinie","Layla","Layne","Layney","Lea","Leah","Leandra","Leann","Leanna","Leanor","Leanora","Lebbie","Leda","Lee","Leeann","Leeanne","Leela","Leelah","Leena","Leesa","Leese","Legra","Leia","Leigh","Leigha","Leila","Leilah","Leisha","Lela","Lelah","Leland","Lelia","Lena","Lenee","Lenette","Lenka","Lenna","Lenora","Lenore","Leodora","Leoine","Leola","Leoline","Leona","Leonanie","Leone","Leonelle","Leonie","Leonora","Leonore","Leontine","Leontyne","Leora","Leshia","Lesley","Lesli","Leslie","Lesly","Lesya","Leta","Lethia","Leticia","Letisha","Letitia","Letizia","Letta","Letti","Lettie","Letty","Lexi","Lexie","Lexine","Lexis","Lexy","Leyla","Lezlie","Lia","Lian","Liana","Liane","Lianna","Lianne","Lib","Libbey","Libbi","Libbie","Libby","Licha","Lida","Lidia","Liesa","Lil","Lila","Lilah","Lilas","Lilia","Lilian","Liliane","Lilias","Lilith","Lilla","Lilli","Lillian","Lillis","Lilllie","Lilly","Lily","Lilyan","Lin","Lina","Lind","Linda","Lindi","Lindie","Lindsay","Lindsey","Lindsy","Lindy","Linea","Linell","Linet","Linette","Linn","Linnea","Linnell","Linnet","Linnie","Linzy","Lira","Lisa","Lisabeth","Lisbeth","Lise","Lisetta","Lisette","Lisha","Lishe","Lissa","Lissi","Lissie","Lissy","Lita","Liuka","Liv","Liva","Livia","Livvie","Livvy","Livvyy","Livy","Liz","Liza","Lizabeth","Lizbeth","Lizette","Lizzie","Lizzy","Loella","Lois","Loise","Lola","Loleta","Lolita","Lolly","Lona","Lonee","Loni","Lonna","Lonni","Lonnie","Lora","Lorain","Loraine","Loralee","Loralie","Loralyn","Loree","Loreen","Lorelei","Lorelle","Loren","Lorena","Lorene","Lorenza","Loretta","Lorette","Lori","Loria","Lorianna","Lorianne","Lorie","Lorilee","Lorilyn","Lorinda","Lorine","Lorita","Lorna","Lorne","Lorraine","Lorrayne","Lorri","Lorrie","Lorrin","Lorry","Lory","Lotta","Lotte","Lotti","Lottie","Lotty","Lou","Louella","Louisa","Louise","Louisette","Loutitia","Lu","Luce","Luci","Lucia","Luciana","Lucie","Lucienne","Lucila","Lucilia","Lucille","Lucina","Lucinda","Lucine","Lucita","Lucky","Lucretia","Lucy","Ludovika","Luella","Luelle","Luisa","Luise","Lula","Lulita","Lulu","Lura","Lurette","Lurleen","Lurlene","Lurline","Lusa","Luz","Lyda","Lydia","Lydie","Lyn","Lynda","Lynde","Lyndel","Lyndell","Lyndsay","Lyndsey","Lyndsie","Lyndy","Lynea","Lynelle","Lynett","Lynette","Lynn","Lynna","Lynne","Lynnea","Lynnell","Lynnelle","Lynnet","Lynnett","Lynnette","Lynsey","Lyssa","Mab","Mabel","Mabelle","Mable","Mada","Madalena","Madalyn","Maddalena","Maddi","Maddie","Maddy","Madel","Madelaine","Madeleine","Madelena","Madelene","Madelin","Madelina","Madeline","Madella","Madelle","Madelon","Madelyn","Madge","Madlen","Madlin","Madonna","Mady","Mae","Maegan","Mag","Magda","Magdaia","Magdalen","Magdalena","Magdalene","Maggee","Maggi","Maggie","Maggy","Mahala","Mahalia","Maia","Maible","Maiga","Maighdiln","Mair","Maire","Maisey","Maisie","Maitilde","Mala","Malanie","Malena","Malia","Malina","Malinda","Malinde","Malissa","Malissia","Mallissa","Mallorie","Mallory","Malorie","Malory","Malva","Malvina","Malynda","Mame","Mamie","Manda","Mandi","Mandie","Mandy","Manon","Manya","Mara","Marabel","Marcela","Marcelia","Marcella","Marcelle","Marcellina","Marcelline","Marchelle","Marci","Marcia","Marcie","Marcile","Marcille","Marcy","Mareah","Maren","Marena","Maressa","Marga","Margalit","Margalo","Margaret","Margareta","Margarete","Margaretha","Margarethe","Margaretta","Margarette","Margarita","Margaux","Marge","Margeaux","Margery","Marget","Margette","Margi","Margie","Margit","Margo","Margot","Margret","Marguerite","Margy","Mari","Maria","Mariam","Marian","Mariana","Mariann","Marianna","Marianne","Maribel","Maribelle","Maribeth","Marice","Maridel","Marie","Marie-Ann","Marie-Jeanne","Marieann","Mariejeanne","Mariel","Mariele","Marielle","Mariellen","Marietta","Mariette","Marigold","Marijo","Marika","Marilee","Marilin","Marillin","Marilyn","Marin","Marina","Marinna","Marion","Mariquilla","Maris","Marisa","Mariska","Marissa","Marita","Maritsa","Mariya","Marj","Marja","Marje","Marji","Marjie","Marjorie","Marjory","Marjy","Marketa","Marla","Marlane","Marleah","Marlee","Marleen","Marlena","Marlene","Marley","Marlie","Marline","Marlo","Marlyn","Marna","Marne","Marney","Marni","Marnia","Marnie","Marquita","Marrilee","Marris","Marrissa","Marsha","Marsiella","Marta","Martelle","Martguerita","Martha","Marthe","Marthena","Marti","Martica","Martie","Martina","Martita","Marty","Martynne","Mary","Marya","Maryann","Maryanna","Maryanne","Marybelle","Marybeth","Maryellen","Maryjane","Maryjo","Maryl","Marylee","Marylin","Marylinda","Marylou","Marylynne","Maryrose","Marys","Marysa","Masha","Matelda","Mathilda","Mathilde","Matilda","Matilde","Matti","Mattie","Matty","Maud","Maude","Maudie","Maura","Maure","Maureen","Maureene","Maurene","Maurine","Maurise","Maurita","Maurizia","Mavis","Mavra","Max","Maxi","Maxie","Maxine","Maxy","May","Maybelle","Maye","Mead","Meade","Meagan","Meaghan","Meara","Mechelle","Meg","Megan","Megen","Meggi","Meggie","Meggy","Meghan","Meghann","Mehetabel","Mei","Mel","Mela","Melamie","Melania","Melanie","Melantha","Melany","Melba","Melesa","Melessa","Melicent","Melina","Melinda","Melinde","Melisa","Melisande","Melisandra","Melisenda","Melisent","Melissa","Melisse","Melita","Melitta","Mella","Melli","Mellicent","Mellie","Mellisa","Mellisent","Melloney","Melly","Melodee","Melodie","Melody","Melonie","Melony","Melosa","Melva","Mercedes","Merci","Mercie","Mercy","Meredith","Meredithe","Meridel","Meridith","Meriel","Merilee","Merilyn","Meris","Merissa","Merl","Merla","Merle","Merlina","Merline","Merna","Merola","Merralee","Merridie","Merrie","Merrielle","Merrile","Merrilee","Merrili","Merrill","Merrily","Merry","Mersey","Meryl","Meta","Mia","Micaela","Michaela","Michaelina","Michaeline","Michaella","Michal","Michel","Michele","Michelina","Micheline","Michell","Michelle","Micki","Mickie","Micky","Midge","Mignon","Mignonne","Miguela","Miguelita","Mikaela","Mil","Mildred","Mildrid","Milena","Milicent","Milissent","Milka","Milli","Millicent","Millie","Millisent","Milly","Milzie","Mimi","Min","Mina","Minda","Mindy","Minerva","Minetta","Minette","Minna","Minnaminnie","Minne","Minni","Minnie","Minnnie","Minny","Minta","Miof","Mela","Miquela","Mira","Mirabel","Mirabella","Mirabelle","Miran","Miranda","Mireielle","Mireille","Mirella","Mirelle","Miriam","Mirilla","Mirna","Misha","Missie","Missy","Misti","Misty","Mitzi","Modesta","Modestia","Modestine","Modesty","Moina","Moira","Moll","Mollee","Molli","Mollie","Molly","Mommy","Mona","Monah","Monica","Monika","Monique","Mora","Moreen","Morena","Morgan","Morgana","Morganica","Morganne","Morgen","Moria","Morissa","Morna","Moselle","Moyna","Moyra","Mozelle","Muffin","Mufi","Mufinella","Muire","Mureil","Murial","Muriel","Murielle","Myra","Myrah","Myranda","Myriam","Myrilla","Myrle","Myrlene","Myrna","Myrta","Myrtia","Myrtice","Myrtie","Myrtle","Nada","Nadean","Nadeen","Nadia","Nadine","Nadiya","Nady","Nadya","Nalani","Nan","Nana","Nananne","Nance","Nancee","Nancey","Nanci","Nancie","Nancy","Nanete","Nanette","Nani","Nanice","Nanine","Nannette","Nanni","Nannie","Nanny","Nanon","Naoma","Naomi","Nara","Nari","Nariko","Nat","Nata","Natala","Natalee","Natalie","Natalina","Nataline","Natalya","Natasha","Natassia","Nathalia","Nathalie","Natividad","Natka","Natty","Neala","Neda","Nedda","Nedi","Neely","Neila","Neile","Neilla","Neille","Nelia","Nelie","Nell","Nelle","Nelli","Nellie","Nelly","Nerissa","Nerita","Nert","Nerta","Nerte","Nerti","Nertie","Nerty","Nessa","Nessi","Nessie","Nessy","Nesta","Netta","Netti","Nettie","Nettle","Netty","Nevsa","Neysa","Nichol","Nichole","Nicholle","Nicki","Nickie","Nicky","Nicol","Nicola","Nicole","Nicolea","Nicolette","Nicoli","Nicolina","Nicoline","Nicolle","Nikaniki","Nike","Niki","Nikki","Nikkie","Nikoletta","Nikolia","Nina","Ninetta","Ninette","Ninnetta","Ninnette","Ninon","Nissa","Nisse","Nissie","Nissy","Nita","Nixie","Noami","Noel","Noelani","Noell","Noella","Noelle","Noellyn","Noelyn","Noemi","Nola","Nolana","Nolie","Nollie","Nomi","Nona","Nonah","Noni","Nonie","Nonna","Nonnah","Nora","Norah","Norean","Noreen","Norene","Norina","Norine","Norma","Norri","Norrie","Norry","Novelia","Nydia","Nyssa","Octavia","Odele","Odelia","Odelinda","Odella","Odelle","Odessa","Odetta","Odette","Odilia","Odille","Ofelia","Ofella","Ofilia","Ola","Olenka","Olga","Olia","Olimpia","Olive","Olivette","Olivia","Olivie","Oliy","Ollie","Olly","Olva","Olwen","Olympe","Olympia","Olympie","Ondrea","Oneida","Onida","Oona","Opal","Opalina","Opaline","Ophelia","Ophelie","Ora","Oralee","Oralia","Oralie","Oralla","Oralle","Orel","Orelee","Orelia","Orelie","Orella","Orelle","Oriana","Orly","Orsa","Orsola","Ortensia","Otha","Othelia","Othella","Othilia","Othilie","Ottilie","Page","Paige","Paloma","Pam","Pamela","Pamelina","Pamella","Pammi","Pammie","Pammy","Pandora","Pansie","Pansy","Paola","Paolina","Papagena","Pat","Patience","Patrica","Patrice","Patricia","Patrizia","Patsy","Patti","Pattie","Patty","Paula","Paule","Pauletta","Paulette","Pauli","Paulie","Paulina","Pauline","Paulita","Pauly","Pavia","Pavla","Pearl","Pearla","Pearle","Pearline","Peg","Pegeen","Peggi","Peggie","Peggy","Pen","Penelopa","Penelope","Penni","Pennie","Penny","Pepi","Pepita","Peri","Peria","Perl","Perla","Perle","Perri","Perrine","Perry","Persis","Pet","Peta","Petra","Petrina","Petronella","Petronia","Petronilla","Petronille","Petunia","Phaedra","Phaidra","Phebe","Phedra","Phelia","Phil","Philipa","Philippa","Philippe","Philippine","Philis","Phillida","Phillie","Phillis","Philly","Philomena","Phoebe","Phylis","Phyllida","Phyllis","Phyllys","Phylys","Pia","Pier","Pierette","Pierrette","Pietra","Piper","Pippa","Pippy","Polly","Pollyanna","Pooh","Poppy","Portia","Pris","Prisca","Priscella","Priscilla","Prissie","Pru","Prudence","Prudi","Prudy","Prue","Queenie","Quentin","Querida","Quinn","Quinta","Quintana","Quintilla","Quintina","Rachael","Rachel","Rachele","Rachelle","Rae","Raeann","Raf","Rafa","Rafaela","Rafaelia","Rafaelita","Rahal","Rahel","Raina","Raine","Rakel","Ralina","Ramona","Ramonda","Rana","Randa","Randee","Randene","Randi","Randie","Randy","Ranee","Rani","Rania","Ranice","Ranique","Ranna","Raphaela","Raquel","Raquela","Rasia","Rasla","Raven","Ray","Raychel","Raye","Rayna","Raynell","Rayshell","Rea","Reba","Rebbecca","Rebe","Rebeca","Rebecca","Rebecka","Rebeka","Rebekah","Rebekkah","Ree","Reeba","Reena","Reeta","Reeva","Regan","Reggi","Reggie","Regina","Regine","Reiko","Reina","Reine","Remy","Rena","Renae","Renata","Renate","Rene","Renee","Renell","Renelle","Renie","Rennie","Reta","Retha","Revkah","Rey","Reyna","Rhea","Rheba","Rheta","Rhetta","Rhiamon","Rhianna","Rhianon","Rhoda","Rhodia","Rhodie","Rhody","Rhona","Rhonda","Riane","Riannon","Rianon","Rica","Ricca","Rici","Ricki","Rickie","Ricky","Riki","Rikki","Rina","Risa","Rita","Riva","Rivalee","Rivi","Rivkah","Rivy","Roana","Roanna","Roanne","Robbi","Robbie","Robbin","Robby","Robbyn","Robena","Robenia","Roberta","Robin","Robina","Robinet","Robinett","Robinetta","Robinette","Robinia","Roby","Robyn","Roch","Rochell","Rochella","Rochelle","Rochette","Roda","Rodi","Rodie","Rodina","Rois","Romola","Romona","Romonda","Romy","Rona","Ronalda","Ronda","Ronica","Ronna","Ronni","Ronnica","Ronnie","Ronny","Roobbie","Rora","Rori","Rorie","Rory","Ros","Rosa","Rosabel","Rosabella","Rosabelle","Rosaleen","Rosalia","Rosalie","Rosalind","Rosalinda","Rosalinde","Rosaline","Rosalyn","Rosalynd","Rosamond","Rosamund","Rosana","Rosanna","Rosanne","Rose","Roseann","Roseanna","Roseanne","Roselia","Roselin","Roseline","Rosella","Roselle","Rosemaria","Rosemarie","Rosemary","Rosemonde","Rosene","Rosetta","Rosette","Roshelle","Rosie","Rosina","Rosita","Roslyn","Rosmunda","Rosy","Row","Rowe","Rowena","Roxana","Roxane","Roxanna","Roxanne","Roxi","Roxie","Roxine","Roxy","Roz","Rozalie","Rozalin","Rozamond","Rozanna","Rozanne","Roze","Rozele","Rozella","Rozelle","Rozina","Rubetta","Rubi","Rubia","Rubie","Rubina","Ruby","Ruperta","Ruth","Ruthann","Ruthanne","Ruthe","Ruthi","Ruthie","Ruthy","Ryann","Rycca","Saba","Sabina","Sabine","Sabra","Sabrina","Sacha","Sada","Sadella","Sadie","Sadye","Saidee","Sal","Salaidh","Sallee","Salli","Sallie","Sally","Sallyann","Sallyanne","Saloma","Salome","Salomi","Sam","Samantha","Samara","Samaria","Sammy","Sande","Sandi","Sandie","Sandra","Sandy","Sandye","Sapphira","Sapphire","Sara","Sara-Ann","Saraann","Sarah","Sarajane","Saree","Sarena","Sarene","Sarette","Sari","Sarina","Sarine","Sarita","Sascha","Sasha","Sashenka","Saudra","Saundra","Savina","Sayre","Scarlet","Scarlett","Sean","Seana","Seka","Sela","Selena","Selene","Selestina","Selia","Selie","Selina","Selinda","Seline","Sella","Selle","Selma","Sena","Sephira","Serena","Serene","Shae","Shaina","Shaine","Shalna","Shalne","Shana","Shanda","Shandee","Shandeigh","Shandie","Shandra","Shandy","Shane","Shani","Shanie","Shanna","Shannah","Shannen","Shannon","Shanon","Shanta","Shantee","Shara","Sharai","Shari","Sharia","Sharity","Sharl","Sharla","Sharleen","Sharlene","Sharline","Sharon","Sharona","Sharron","Sharyl","Shaun","Shauna","Shawn","Shawna","Shawnee","Shay","Shayla","Shaylah","Shaylyn","Shaylynn","Shayna","Shayne","Shea","Sheba","Sheela","Sheelagh","Sheelah","Sheena","Sheeree","Sheila","Sheila-Kathryn","Sheilah","Shel","Shela","Shelagh","Shelba","Shelbi","Shelby","Shelia","Shell","Shelley","Shelli","Shellie","Shelly","Shena","Sher","Sheree","Sheri","Sherie","Sherill","Sherilyn","Sherline","Sherri","Sherrie","Sherry","Sherye","Sheryl","Shina","Shir","Shirl","Shirlee","Shirleen","Shirlene","Shirley","Shirline","Shoshana","Shoshanna","Siana","Sianna","Sib","Sibbie","Sibby","Sibeal","Sibel","Sibella","Sibelle","Sibilla","Sibley","Sibyl","Sibylla","Sibylle","Sidoney","Sidonia","Sidonnie","Sigrid","Sile","Sileas","Silva","Silvana","Silvia","Silvie","Simona","Simone","Simonette","Simonne","Sindee","Siobhan","Sioux","Siouxie","Sisely","Sisile","Sissie","Sissy","Siusan","Sofia","Sofie","Sondra","Sonia","Sonja","Sonni","Sonnie","Sonnnie","Sonny","Sonya","Sophey","Sophi","Sophia","Sophie","Sophronia","Sorcha","Sosanna","Stace","Stacee","Stacey","Staci","Stacia","Stacie","Stacy","Stafani","Star","Starla","Starlene","Starlin","Starr","Stefa","Stefania","Stefanie","Steffane","Steffi","Steffie","Stella","Stepha","Stephana","Stephani","Stephanie","Stephannie","Stephenie","Stephi","Stephie","Stephine","Stesha","Stevana","Stevena","Stoddard","Storm","Stormi","Stormie","Stormy","Sue","Suellen","Sukey","Suki","Sula","Sunny","Sunshine","Susan","Susana","Susanetta","Susann","Susanna","Susannah","Susanne","Susette","Susi","Susie","Susy","Suzann","Suzanna","Suzanne","Suzette","Suzi","Suzie","Suzy","Sybil","Sybila","Sybilla","Sybille","Sybyl","Sydel","Sydelle","Sydney","Sylvia","Tabatha","Tabbatha","Tabbi","Tabbie","Tabbitha","Tabby","Tabina","Tabitha","Taffy","Talia","Tallia","Tallie","Tallou","Tallulah","Tally","Talya","Talyah","Tamar","Tamara","Tamarah","Tamarra","Tamera","Tami","Tamiko","Tamma","Tammara","Tammi","Tammie","Tammy","Tamqrah","Tamra","Tana","Tandi","Tandie","Tandy","Tanhya","Tani","Tania","Tanitansy","Tansy","Tanya","Tara","Tarah","Tarra","Tarrah","Taryn","Tasha","Tasia","Tate","Tatiana","Tatiania","Tatum","Tawnya","Tawsha","Ted","Tedda","Teddi","Teddie","Teddy","Tedi","Tedra","Teena","TEirtza","Teodora","Tera","Teresa","Terese","Teresina","Teresita","Teressa","Teri","Teriann","Terra","Terri","Terrie","Terrijo","Terry","Terrye","Tersina","Terza","Tess","Tessa","Tessi","Tessie","Tessy","Thalia","Thea","Theadora","Theda","Thekla","Thelma","Theo","Theodora","Theodosia","Theresa","Therese","Theresina","Theresita","Theressa","Therine","Thia","Thomasa","Thomasin","Thomasina","Thomasine","Tiena","Tierney","Tiertza","Tiff","Tiffani","Tiffanie","Tiffany","Tiffi","Tiffie","Tiffy","Tilda","Tildi","Tildie","Tildy","Tillie","Tilly","Tim","Timi","Timmi","Timmie","Timmy","Timothea","Tina","Tine","Tiphani","Tiphanie","Tiphany","Tish","Tisha","Tobe","Tobey","Tobi","Toby","Tobye","Toinette","Toma","Tomasina","Tomasine","Tomi","Tommi","Tommie","Tommy","Toni","Tonia","Tonie","Tony","Tonya","Tonye","Tootsie","Torey","Tori","Torie","Torrie","Tory","Tova","Tove","Tracee","Tracey","Traci","Tracie","Tracy","Trenna","Tresa","Trescha","Tressa","Tricia","Trina","Trish","Trisha","Trista","Trix","Trixi","Trixie","Trixy","Truda","Trude","Trudey","Trudi","Trudie","Trudy","Trula","Tuesday","Twila","Twyla","Tybi","Tybie","Tyne","Ula","Ulla","Ulrica","Ulrika","Ulrikaumeko","Ulrike","Umeko","Una","Ursa","Ursala","Ursola","Ursula","Ursulina","Ursuline","Uta","Val","Valaree","Valaria","Vale","Valeda","Valencia","Valene","Valenka","Valentia","Valentina","Valentine","Valera","Valeria","Valerie","Valery","Valerye","Valida","Valina","Valli","Vallie","Vally","Valma","Valry","Van","Vanda","Vanessa","Vania","Vanna","Vanni","Vannie","Vanny","Vanya","Veda","Velma","Velvet","Venita","Venus","Vera","Veradis","Vere","Verena","Verene","Veriee","Verile","Verina","Verine","Verla","Verna","Vernice","Veronica","Veronika","Veronike","Veronique","Vevay","Vi","Vicki","Vickie","Vicky","Victoria","Vida","Viki","Vikki","Vikky","Vilhelmina","Vilma","Vin","Vina","Vinita","Vinni","Vinnie","Vinny","Viola","Violante","Viole","Violet","Violetta","Violette","Virgie","Virgina","Virginia","Virginie","Vita","Vitia","Vitoria","Vittoria","Viv","Viva","Vivi","Vivia","Vivian","Viviana","Vivianna","Vivianne","Vivie","Vivien","Viviene","Vivienne","Viviyan","Vivyan","Vivyanne","Vonni","Vonnie","Vonny","Vyky","Wallie","Wallis","Walliw","Wally","Waly","Wanda","Wandie","Wandis","Waneta","Wanids","Wenda","Wendeline","Wendi","Wendie","Wendy","Wendye","Wenona","Wenonah","Whitney","Wileen","Wilhelmina","Wilhelmine","Wilie","Willa","Willabella","Willamina","Willetta","Willette","Willi","Willie","Willow","Willy","Willyt","Wilma","Wilmette","Wilona","Wilone","Wilow","Windy","Wini","Winifred","Winna","Winnah","Winne","Winni","Winnie","Winnifred","Winny","Winona","Winonah","Wren","Wrennie","Wylma","Wynn","Wynne","Wynnie","Wynny","Xaviera","Xena","Xenia","Xylia","Xylina","Yalonda","Yasmeen","Yasmin","Yelena","Yetta","Yettie","Yetty","Yevette","Ynes","Ynez","Yoko","Yolanda","Yolande","Yolane","Yolanthe","Yoshi","Yoshiko","Yovonnda","Ysabel","Yvette","Yvonne","Zabrina","Zahara","Zandra","Zaneta","Zara","Zarah","Zaria","Zarla","Zea","Zelda","Zelma","Zena","Zenia","Zia","Zilvia","Zita","Zitella","Zoe","Zola","Zonda","Zondra","Zonnya","Zora","Zorah","Zorana","Zorina","Zorine","Zsa","Zsa","Zsazsa","Zulema","Zuzana"]
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2182,7 +2310,7 @@ function names() {
 
 module.exports = names;
 
-},{"./../data/names.json":38}],40:[function(require,module,exports){
+},{"./../data/names.json":40}],42:[function(require,module,exports){
 (function (__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -2227,7 +2355,6 @@ var opts = {
 *
 * -   This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
 *
-*
 * @throws {Error} unable to read data
 * @returns {StringArray} female first names
 *
@@ -2249,7 +2376,7 @@ function names() {
 module.exports = names;
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/female-first-names-en/lib")
-},{"@stdlib/fs/read-json":50,"path":112}],41:[function(require,module,exports){
+},{"@stdlib/fs/read-json":52,"path":117}],43:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/datasets/female-first-names-en",
   "version": "0.0.0",
@@ -2327,7 +2454,7 @@ module.exports={
   ]
 }
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -2360,7 +2487,7 @@ var names = require( './../lib/browser.js' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof names, 'function', 'main export is a function' );
+	t.strictEqual( typeof names, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -2391,7 +2518,7 @@ tape( 'the function returns a copy', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/female-first-names-en/test/test.browser.js")
-},{"./../lib/browser.js":39,"@stdlib/assert/is-string-array":28,"tape":217}],43:[function(require,module,exports){
+},{"./../lib/browser.js":41,"@stdlib/assert/is-string-array":28,"tape":240}],45:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -2563,7 +2690,7 @@ tape( 'the command-line interface prints the list of names', opts, function test
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/female-first-names-en/test/test.cli.js","/lib/node_modules/@stdlib/datasets/female-first-names-en/test")
-},{"./../package.json":41,"@stdlib/assert/is-browser":17,"@stdlib/assert/is-windows":35,"@stdlib/fs/read-file":46,"@stdlib/process/exec-path":53,"child_process":109,"path":112,"tape":217}],44:[function(require,module,exports){
+},{"./../package.json":43,"@stdlib/assert/is-browser":17,"@stdlib/assert/is-windows":35,"@stdlib/fs/read-file":48,"@stdlib/process/exec-path":57,"child_process":114,"path":117,"tape":240}],46:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -2604,7 +2731,7 @@ var opts = {
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof names, 'function', 'main export is a function' );
+	t.strictEqual( typeof names, 'function', 'main export is a function' );
 	t.end();
 });
 
@@ -2635,7 +2762,7 @@ tape( 'the function returns a copy', opts, function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/female-first-names-en/test/test.js")
-},{"./../lib":39,"@stdlib/assert/is-browser":17,"@stdlib/assert/is-string-array":28,"tape":217}],45:[function(require,module,exports){
+},{"./../lib":41,"@stdlib/assert/is-browser":17,"@stdlib/assert/is-string-array":28,"tape":240}],47:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});/**
 * @license Apache-2.0
@@ -2687,7 +2814,7 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/datasets/female-first-names-en/test/test.main.js")
-},{"./../lib/main.js":40,"proxyquireify":209,"tape":217}],46:[function(require,module,exports){
+},{"./../lib/main.js":42,"proxyquireify":230,"tape":240}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2737,20 +2864,20 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var readFile = require( './main.js' );
+var main = require( './main.js' );
 var sync = require( './sync.js' );
 
 
 // MAIN //
 
-setReadOnly( readFile, 'sync', sync );
+setReadOnly( main, 'sync', sync );
 
 
 // EXPORTS //
 
-module.exports = readFile;
+module.exports = main;
 
-},{"./main.js":47,"./sync.js":48,"@stdlib/utils/define-nonenumerable-read-only-property":74}],47:[function(require,module,exports){
+},{"./main.js":49,"./sync.js":50,"@stdlib/utils/define-nonenumerable-read-only-property":80}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2811,7 +2938,7 @@ function readFile() {
 
 module.exports = readFile;
 
-},{"fs":109}],48:[function(require,module,exports){
+},{"fs":114}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2874,7 +3001,7 @@ function readFileSync( file, options ) {
 
 module.exports = readFileSync;
 
-},{"fs":109}],49:[function(require,module,exports){
+},{"fs":114}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2990,7 +3117,7 @@ function readJSON( file, options, clbk ) {
 
 module.exports = readJSON;
 
-},{"@stdlib/assert/instance-of":7,"@stdlib/assert/is-function":20,"@stdlib/assert/is-plain-object":26,"@stdlib/assert/is-string":29,"@stdlib/fs/read-file":46,"@stdlib/string/format":67,"@stdlib/string/remove-utf8-bom":70,"@stdlib/utils/parse-json":98}],50:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":7,"@stdlib/assert/is-function":20,"@stdlib/assert/is-plain-object":26,"@stdlib/assert/is-string":29,"@stdlib/fs/read-file":48,"@stdlib/string/format":71,"@stdlib/string/remove-utf8-bom":74,"@stdlib/utils/parse-json":103}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3057,7 +3184,7 @@ setReadOnly( readJSON, 'sync', sync );
 
 module.exports = readJSON;
 
-},{"./async.js":49,"./sync.js":51,"@stdlib/utils/define-nonenumerable-read-only-property":74}],51:[function(require,module,exports){
+},{"./async.js":51,"./sync.js":53,"@stdlib/utils/define-nonenumerable-read-only-property":80}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3148,7 +3275,123 @@ function readJSONSync( file, options ) {
 
 module.exports = readJSONSync;
 
-},{"@stdlib/assert/instance-of":7,"@stdlib/assert/is-plain-object":26,"@stdlib/assert/is-string":29,"@stdlib/fs/read-file":46,"@stdlib/string/format":67,"@stdlib/string/remove-utf8-bom":70,"@stdlib/utils/parse-json":98}],52:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":7,"@stdlib/assert/is-plain-object":26,"@stdlib/assert/is-string":29,"@stdlib/fs/read-file":48,"@stdlib/string/format":71,"@stdlib/string/remove-utf8-bom":74,"@stdlib/utils/parse-json":103}],54:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":55}],55:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3184,7 +3427,7 @@ var PLATFORM = '';
 
 module.exports = PLATFORM;
 
-},{}],53:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3209,7 +3452,7 @@ module.exports = PLATFORM;
 
 module.exports = null;
 
-},{}],54:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3259,20 +3502,20 @@ module.exports = null;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":55,"./regexp.js":56,"@stdlib/utils/define-nonenumerable-read-only-property":74}],55:[function(require,module,exports){
+},{"./main.js":59,"./regexp.js":60,"@stdlib/utils/define-nonenumerable-read-only-property":80}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3328,7 +3571,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],56:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3390,7 +3633,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":55}],57:[function(require,module,exports){
+},{"./main.js":59}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3476,7 +3719,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -3503,7 +3746,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":60}],58:[function(require,module,exports){
+},{"./is_number.js":64}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3620,7 +3863,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":60,"./zero_pad.js":64}],59:[function(require,module,exports){
+},{"./is_number.js":64,"./zero_pad.js":68}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3656,14 +3899,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":62}],60:[function(require,module,exports){
+},{"./main.js":66}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3711,7 +3954,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],61:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3755,7 +3998,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],62:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3788,11 +4031,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -3923,6 +4184,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -3931,9 +4193,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -3972,7 +4232,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":57,"./format_integer.js":58,"./is_string.js":61,"./space_pad.js":63,"./zero_pad.js":64}],63:[function(require,module,exports){
+},{"./format_double.js":61,"./format_integer.js":62,"./is_string.js":65,"./space_pad.js":67,"./zero_pad.js":68}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4039,7 +4299,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],64:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4125,7 +4385,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],65:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4161,14 +4421,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":66}],66:[function(require,module,exports){
+},{"./main.js":70}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4260,7 +4520,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],67:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4298,16 +4558,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":69}],68:[function(require,module,exports){
-arguments[4][61][0].apply(exports,arguments)
-},{"dup":61}],69:[function(require,module,exports){
+},{"./main.js":73}],72:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4355,18 +4615,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -4376,7 +4633,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":68,"@stdlib/string/base/format-interpolate":59,"@stdlib/string/base/format-tokenize":65}],70:[function(require,module,exports){
+},{"./is_string.js":72,"@stdlib/string/base/format-interpolate":63,"@stdlib/string/base/format-tokenize":69}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4411,14 +4668,14 @@ module.exports = format;
 
 // MODULES //
 
-var removeUTF8BOM = require( './remove_utf_8_bom.js' );
+var removeUTF8BOM = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = removeUTF8BOM;
 
-},{"./remove_utf_8_bom.js":71}],71:[function(require,module,exports){
+},{"./main.js":75}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4464,7 +4721,6 @@ var BOM = 65279;
 * [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
 * [2]: http://es5.github.io/#x4.3.16
 *
-*
 * @param {string} str - input string
 * @throws {TypeError} must provide a string primitive
 * @returns {string} string with BOM removed
@@ -4488,7 +4744,79 @@ function removeUTF8BOM( str ) {
 
 module.exports = removeUTF8BOM;
 
-},{"@stdlib/assert/is-string":29,"@stdlib/string/format":67}],72:[function(require,module,exports){
+},{"@stdlib/assert/is-string":29,"@stdlib/string/format":71}],76:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":77}],77:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4529,14 +4857,14 @@ module.exports = removeUTF8BOM;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":73}],73:[function(require,module,exports){
+},{"./main.js":79}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4618,7 +4946,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":18,"@stdlib/regexp/function-name":54,"@stdlib/utils/native-class":93}],74:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":18,"@stdlib/regexp/function-name":58,"@stdlib/utils/native-class":98}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4660,14 +4988,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":75}],75:[function(require,module,exports){
+},{"./main.js":81}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4727,7 +5055,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":79}],76:[function(require,module,exports){
+},{"@stdlib/utils/define-property":85}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4790,7 +5118,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],77:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4820,7 +5148,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],78:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4873,7 +5201,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":77}],79:[function(require,module,exports){
+},{"./define_property.js":83}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4933,7 +5261,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":76,"./has_define_property_support.js":78,"./polyfill.js":80}],80:[function(require,module,exports){
+},{"./builtin.js":82,"./has_define_property_support.js":84,"./polyfill.js":86}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5057,7 +5385,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":67}],81:[function(require,module,exports){
+},{"@stdlib/string/format":71}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5099,63 +5427,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":84,"./polyfill.js":85,"@stdlib/assert/is-function":20}],82:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var getProto = require( './detect.js' );
-
-
-// MAIN //
-
-/**
-* Returns the prototype of a provided object.
-*
-* @param {*} value - input value
-* @returns {(Object|null)} prototype
-*
-* @example
-* var proto = getPrototypeOf( {} );
-* // returns {}
-*/
-function getPrototypeOf( value ) {
-	if (
-		value === null ||
-		value === void 0
-	) {
-		return null;
-	}
-	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
-	value = Object( value );
-
-	return getProto( value );
-}
-
-
-// EXPORTS //
-
-module.exports = getPrototypeOf;
-
-},{"./detect.js":81}],83:[function(require,module,exports){
+},{"./native.js":90,"./polyfill.js":91,"@stdlib/assert/is-function":20}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5190,14 +5462,71 @@ module.exports = getPrototypeOf;
 
 // MODULES //
 
-var getPrototype = require( './get_prototype_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = getPrototype;
+module.exports = main;
 
-},{"./get_prototype_of.js":82}],84:[function(require,module,exports){
+},{"./main.js":89}],89:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":87,"@stdlib/object/ctor":54}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5227,7 +5556,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],85:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5284,7 +5613,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":86,"@stdlib/utils/native-class":93}],86:[function(require,module,exports){
+},{"./proto.js":92,"@stdlib/utils/native-class":98}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5322,7 +5651,88 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],87:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":94,"./global_this.js":95,"./self.js":96,"./window.js":97,"@stdlib/assert/is-boolean":11,"@stdlib/string/format":71}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5352,7 +5762,7 @@ module.exports = getProto;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -5360,12 +5770,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],88:[function(require,module,exports){
-(function (global){(function (){
+},{}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -5384,137 +5793,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],89:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":90}],90:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":87,"./global.js":88,"./self.js":91,"./window.js":92,"@stdlib/assert/is-boolean":11,"@stdlib/string/format":67}],91:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5544,7 +5830,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],92:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5574,7 +5860,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],93:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5619,25 +5905,25 @@ module.exports = obj;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":94,"./polyfill.js":95,"@stdlib/assert/has-tostringtag-support":5}],94:[function(require,module,exports){
+},{"./main.js":99,"./polyfill.js":100,"@stdlib/assert/has-tostringtag-support":5}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5695,7 +5981,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":96}],95:[function(require,module,exports){
+},{"./tostring.js":101}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5778,7 +6064,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":96,"./tostringtag.js":97,"@stdlib/assert/has-own-property":1}],96:[function(require,module,exports){
+},{"./tostring.js":101,"./tostringtag.js":102,"@stdlib/assert/has-own-property":1}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5808,7 +6094,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],97:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5829,6 +6115,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -5838,7 +6129,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],98:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":76}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5873,14 +6164,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var parseJSON = require( './parse_json.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = parseJSON;
+module.exports = main;
 
-},{"./parse_json.js":99}],99:[function(require,module,exports){
+},{"./main.js":104}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5944,7 +6235,7 @@ function parseJSON( str, reviver ) {
 
 module.exports = parseJSON;
 
-},{"@stdlib/assert/is-function":20,"@stdlib/assert/is-string":29,"@stdlib/string/format":67}],100:[function(require,module,exports){
+},{"@stdlib/assert/is-function":20,"@stdlib/assert/is-string":29,"@stdlib/string/format":71}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6001,7 +6292,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":101,"./fixtures/re.js":102,"./fixtures/typedarray.js":103}],101:[function(require,module,exports){
+},{"./fixtures/nodelist.js":106,"./fixtures/re.js":107,"./fixtures/typedarray.js":108}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6037,7 +6328,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":89}],102:[function(require,module,exports){
+},{"@stdlib/utils/global":93}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6065,7 +6356,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],103:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6093,7 +6384,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],104:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6132,63 +6423,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":100,"./polyfill.js":105,"./typeof.js":106}],105:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":72}],106:[function(require,module,exports){
+},{"./check.js":105,"./main.js":110,"./polyfill.js":111}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6266,7 +6514,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":72}],107:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":78}],111:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":78}],112:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -6418,11 +6709,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],108:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 
-},{}],109:[function(require,module,exports){
-arguments[4][108][0].apply(exports,arguments)
-},{"dup":108}],110:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
+arguments[4][113][0].apply(exports,arguments)
+},{"dup":113}],115:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -8203,7 +8494,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":107,"buffer":110,"ieee754":199}],111:[function(require,module,exports){
+},{"base64-js":112,"buffer":115,"ieee754":219}],116:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8702,7 +8993,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],112:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -9235,7 +9526,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208}],113:[function(require,module,exports){
+},{"_process":229}],118:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9366,7 +9657,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":111,"inherits":200,"readable-stream/lib/_stream_duplex.js":115,"readable-stream/lib/_stream_passthrough.js":116,"readable-stream/lib/_stream_readable.js":117,"readable-stream/lib/_stream_transform.js":118,"readable-stream/lib/_stream_writable.js":119,"readable-stream/lib/internal/streams/end-of-stream.js":123,"readable-stream/lib/internal/streams/pipeline.js":125}],114:[function(require,module,exports){
+},{"events":116,"inherits":220,"readable-stream/lib/_stream_duplex.js":120,"readable-stream/lib/_stream_passthrough.js":121,"readable-stream/lib/_stream_readable.js":122,"readable-stream/lib/_stream_transform.js":123,"readable-stream/lib/_stream_writable.js":124,"readable-stream/lib/internal/streams/end-of-stream.js":128,"readable-stream/lib/internal/streams/pipeline.js":130}],119:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -9495,7 +9786,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],115:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9637,7 +9928,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":117,"./_stream_writable":119,"_process":208,"inherits":200}],116:[function(require,module,exports){
+},{"./_stream_readable":122,"./_stream_writable":124,"_process":229,"inherits":220}],121:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9677,7 +9968,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":118,"inherits":200}],117:[function(require,module,exports){
+},{"./_stream_transform":123,"inherits":220}],122:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10804,7 +11095,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":114,"./_stream_duplex":115,"./internal/streams/async_iterator":120,"./internal/streams/buffer_list":121,"./internal/streams/destroy":122,"./internal/streams/from":124,"./internal/streams/state":126,"./internal/streams/stream":127,"_process":208,"buffer":110,"events":111,"inherits":200,"string_decoder/":216,"util":108}],118:[function(require,module,exports){
+},{"../errors":119,"./_stream_duplex":120,"./internal/streams/async_iterator":125,"./internal/streams/buffer_list":126,"./internal/streams/destroy":127,"./internal/streams/from":129,"./internal/streams/state":131,"./internal/streams/stream":132,"_process":229,"buffer":115,"events":116,"inherits":220,"string_decoder/":239,"util":113}],123:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11006,7 +11297,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":114,"./_stream_duplex":115,"inherits":200}],119:[function(require,module,exports){
+},{"../errors":119,"./_stream_duplex":120,"inherits":220}],124:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11706,7 +11997,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":114,"./_stream_duplex":115,"./internal/streams/destroy":122,"./internal/streams/state":126,"./internal/streams/stream":127,"_process":208,"buffer":110,"inherits":200,"util-deprecate":225}],120:[function(require,module,exports){
+},{"../errors":119,"./_stream_duplex":120,"./internal/streams/destroy":127,"./internal/streams/state":131,"./internal/streams/stream":132,"_process":229,"buffer":115,"inherits":220,"util-deprecate":248}],125:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -11916,7 +12207,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":123,"_process":208}],121:[function(require,module,exports){
+},{"./end-of-stream":128,"_process":229}],126:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -12127,7 +12418,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":110,"util":108}],122:[function(require,module,exports){
+},{"buffer":115,"util":113}],127:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -12235,7 +12526,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":208}],123:[function(require,module,exports){
+},{"_process":229}],128:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -12340,12 +12631,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":114}],124:[function(require,module,exports){
+},{"../../../errors":119}],129:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],125:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -12443,7 +12734,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":114,"./end-of-stream":123}],126:[function(require,module,exports){
+},{"../../../errors":119,"./end-of-stream":128}],131:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -12471,10 +12762,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":114}],127:[function(require,module,exports){
+},{"../../../errors":119}],132:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":111}],128:[function(require,module,exports){
+},{"events":116}],133:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -12491,43 +12782,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":129,"get-intrinsic":194}],129:[function(require,module,exports){
+},{"./":134,"get-intrinsic":210}],134:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -12540,7 +12819,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":193,"get-intrinsic":194}],130:[function(require,module,exports){
+},{"es-define-property":194,"es-errors/type":200,"function-bind":209,"get-intrinsic":210,"set-function-length":234}],135:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -12636,7 +12915,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":131,"./lib/keys.js":132}],131:[function(require,module,exports){
+},{"./lib/is_arguments.js":136,"./lib/keys.js":137}],136:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -12658,7 +12937,7 @@ function unsupported(object){
     false;
 };
 
-},{}],132:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -12669,7 +12948,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],133:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":194,"es-errors/syntax":199,"es-errors/type":200,"gopd":211}],139:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -12677,29 +13014,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -12718,14 +13055,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":195,"object-keys":206}],134:[function(require,module,exports){
+},{"define-data-property":138,"has-property-descriptors":212,"object-keys":227}],140:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],135:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -12764,13 +13101,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":165,"./ToPrimitive":167,"./Type":172}],136:[function(require,module,exports){
+},{"./ToNumber":172,"./ToPrimitive":174,"./Type":179}],142:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -12778,13 +13115,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -12796,7 +13132,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -12829,28 +13165,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":181,"../helpers/isNaN":183,"../helpers/isPrefixOf":184,"./ToNumber":165,"./ToPrimitive":167,"./Type":172,"get-intrinsic":194}],137:[function(require,module,exports){
+},{"../helpers/isFinite":187,"../helpers/isNaN":188,"../helpers/isPrefixOf":189,"./ToNumber":172,"./ToPrimitive":174,"es-errors/type":200,"get-intrinsic":210}],143:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":133,"es-errors/type":200}],144:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":194}],138:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":202}],145:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -12901,7 +13270,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":141,"./InLeapYear":145,"./MonthFromTime":155,"get-intrinsic":194}],139:[function(require,module,exports){
+},{"./DayWithinYear":148,"./InLeapYear":152,"./MonthFromTime":162,"es-errors/eval":195}],146:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -12914,7 +13283,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":188,"./floor":176}],140:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./floor":183}],147:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -12926,7 +13295,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":176}],141:[function(require,module,exports){
+},{"./floor":183}],148:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -12939,7 +13308,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":139,"./DayFromYear":140,"./YearFromTime":174}],142:[function(require,module,exports){
+},{"./Day":146,"./DayFromYear":147,"./YearFromTime":181}],149:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -12959,18 +13328,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":177}],143:[function(require,module,exports){
+},{"./modulo":184}],150:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -12979,7 +13345,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -13000,7 +13368,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":180,"./IsAccessorDescriptor":146,"./IsDataDescriptor":148,"./Type":172,"get-intrinsic":194}],144:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":191,"./IsAccessorDescriptor":153,"./IsDataDescriptor":155,"es-errors/type":200}],151:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13016,12 +13384,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":188,"./floor":176,"./modulo":177}],145:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./floor":183,"./modulo":184}],152:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -13039,14 +13405,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":142,"./YearFromTime":174,"get-intrinsic":194}],146:[function(require,module,exports){
+},{"./DaysInYear":149,"./YearFromTime":181,"es-errors/eval":195}],153:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -13055,30 +13421,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":180,"./Type":172,"has":198}],147:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":191,"es-errors/type":200,"hasown":218}],154:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":201}],148:[function(require,module,exports){
+},{"is-callable":221}],155:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -13087,23 +13455,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":180,"./Type":172,"has":198}],149:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":191,"es-errors/type":200,"hasown":218}],156:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -13112,7 +13483,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -13121,28 +13494,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":180,"./IsAccessorDescriptor":146,"./IsDataDescriptor":148,"./Type":172}],150:[function(require,module,exports){
+},{"./IsAccessorDescriptor":153,"./IsDataDescriptor":155,"./IsPropertyDescriptor":157,"es-errors/type":200}],157:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":185,"./IsAccessorDescriptor":146,"./IsDataDescriptor":148,"./Type":172}],151:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":191}],158:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -13157,7 +13522,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":181,"../helpers/timeConstants":188}],152:[function(require,module,exports){
+},{"../helpers/isFinite":187,"../helpers/timeConstants":193}],159:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13192,7 +13557,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":181,"./DateFromTime":138,"./Day":139,"./MonthFromTime":155,"./ToInteger":164,"./YearFromTime":174,"./floor":176,"./modulo":177,"get-intrinsic":194}],153:[function(require,module,exports){
+},{"../helpers/isFinite":187,"./DateFromTime":145,"./Day":146,"./MonthFromTime":162,"./ToInteger":171,"./YearFromTime":181,"./floor":183,"./modulo":184,"get-intrinsic":210}],160:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -13217,7 +13582,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":181,"../helpers/timeConstants":188,"./ToInteger":164}],154:[function(require,module,exports){
+},{"../helpers/isFinite":187,"../helpers/timeConstants":193,"./ToInteger":171}],161:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13233,7 +13598,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":188,"./floor":176,"./modulo":177}],155:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./floor":183,"./modulo":184}],162:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -13282,7 +13647,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":141,"./InLeapYear":145}],156:[function(require,module,exports){
+},{"./DayWithinYear":148,"./InLeapYear":152}],163:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -13297,7 +13662,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":183}],157:[function(require,module,exports){
+},{"../helpers/isNaN":188}],164:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -13313,7 +13678,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":188,"./floor":176,"./modulo":177}],158:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./floor":183,"./modulo":184}],165:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -13332,7 +13697,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":172}],159:[function(require,module,exports){
+},{"./Type":179}],166:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13355,7 +13720,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":181,"./ToNumber":165,"./abs":175,"get-intrinsic":194}],160:[function(require,module,exports){
+},{"../helpers/isFinite":187,"./ToNumber":172,"./abs":182,"get-intrinsic":210}],167:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -13368,7 +13733,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":188,"./DayFromYear":140}],161:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./DayFromYear":147}],168:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -13382,14 +13747,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":188,"./modulo":177}],162:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./modulo":184}],169:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],163:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -13400,7 +13765,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":165}],164:[function(require,module,exports){
+},{"./ToNumber":172}],171:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -13420,10 +13785,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":181,"../helpers/isNaN":183,"../helpers/sign":187,"./ToNumber":165,"./abs":175,"./floor":176}],165:[function(require,module,exports){
+},{"../helpers/isFinite":187,"../helpers/isNaN":188,"../helpers/sign":192,"./ToNumber":172,"./abs":182,"./floor":183}],172:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -13433,46 +13806,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":167}],166:[function(require,module,exports){
+},{"./ToPrimitive":174,"call-bind/callBound":133,"safe-regex-test":233}],173:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":137,"get-intrinsic":194}],167:[function(require,module,exports){
+},{"es-object-atoms/ToObject":203}],174:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":189}],168:[function(require,module,exports){
+},{"es-to-primitive/es5":205}],175:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -13486,26 +13852,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -13513,13 +13879,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":147,"./ToBoolean":162,"./Type":172,"get-intrinsic":194,"has":198}],169:[function(require,module,exports){
+},{"./IsCallable":154,"./ToBoolean":169,"./Type":179,"es-errors/type":200,"hasown":218}],176:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13533,7 +13899,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":194}],170:[function(require,module,exports){
+},{"get-intrinsic":210}],177:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -13554,7 +13920,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":181,"../helpers/isNaN":183,"../helpers/sign":187,"./ToNumber":165,"./abs":175,"./floor":176,"./modulo":177}],171:[function(require,module,exports){
+},{"../helpers/isFinite":187,"../helpers/isNaN":188,"../helpers/sign":192,"./ToNumber":172,"./abs":182,"./floor":183,"./modulo":184}],178:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -13565,7 +13931,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":165}],172:[function(require,module,exports){
+},{"./ToNumber":172}],179:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -13591,7 +13957,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],173:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -13603,7 +13969,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":139,"./modulo":177}],174:[function(require,module,exports){
+},{"./Day":146,"./modulo":184}],181:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13621,7 +13987,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":128,"get-intrinsic":194}],175:[function(require,module,exports){
+},{"call-bind/callBound":133,"get-intrinsic":210}],182:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -13634,7 +14000,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":194}],176:[function(require,module,exports){
+},{"get-intrinsic":210}],183:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -13647,7 +14013,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],177:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -13658,7 +14024,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":186}],178:[function(require,module,exports){
+},{"../helpers/mod":190}],185:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -13671,7 +14037,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":188,"./modulo":177}],179:[function(require,module,exports){
+},{"../helpers/timeConstants":193,"./modulo":184}],186:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -13682,6 +14048,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -13724,90 +14091,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":135,"./5/AbstractRelationalComparison":136,"./5/CheckObjectCoercible":137,"./5/DateFromTime":138,"./5/Day":139,"./5/DayFromYear":140,"./5/DayWithinYear":141,"./5/DaysInYear":142,"./5/FromPropertyDescriptor":143,"./5/HourFromTime":144,"./5/InLeapYear":145,"./5/IsAccessorDescriptor":146,"./5/IsCallable":147,"./5/IsDataDescriptor":148,"./5/IsGenericDescriptor":149,"./5/IsPropertyDescriptor":150,"./5/MakeDate":151,"./5/MakeDay":152,"./5/MakeTime":153,"./5/MinFromTime":154,"./5/MonthFromTime":155,"./5/SameValue":156,"./5/SecFromTime":157,"./5/StrictEqualityComparison":158,"./5/TimeClip":159,"./5/TimeFromYear":160,"./5/TimeWithinDay":161,"./5/ToBoolean":162,"./5/ToInt32":163,"./5/ToInteger":164,"./5/ToNumber":165,"./5/ToObject":166,"./5/ToPrimitive":167,"./5/ToPropertyDescriptor":168,"./5/ToString":169,"./5/ToUint16":170,"./5/ToUint32":171,"./5/Type":172,"./5/WeekDay":173,"./5/YearFromTime":174,"./5/abs":175,"./5/floor":176,"./5/modulo":177,"./5/msFromTime":178}],180:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":141,"./5/AbstractRelationalComparison":142,"./5/Canonicalize":143,"./5/CheckObjectCoercible":144,"./5/DateFromTime":145,"./5/Day":146,"./5/DayFromYear":147,"./5/DayWithinYear":148,"./5/DaysInYear":149,"./5/FromPropertyDescriptor":150,"./5/HourFromTime":151,"./5/InLeapYear":152,"./5/IsAccessorDescriptor":153,"./5/IsCallable":154,"./5/IsDataDescriptor":155,"./5/IsGenericDescriptor":156,"./5/IsPropertyDescriptor":157,"./5/MakeDate":158,"./5/MakeDay":159,"./5/MakeTime":160,"./5/MinFromTime":161,"./5/MonthFromTime":162,"./5/SameValue":163,"./5/SecFromTime":164,"./5/StrictEqualityComparison":165,"./5/TimeClip":166,"./5/TimeFromYear":167,"./5/TimeWithinDay":168,"./5/ToBoolean":169,"./5/ToInt32":170,"./5/ToInteger":171,"./5/ToNumber":172,"./5/ToObject":173,"./5/ToPrimitive":174,"./5/ToPropertyDescriptor":175,"./5/ToString":176,"./5/ToUint16":177,"./5/ToUint32":178,"./5/Type":179,"./5/WeekDay":180,"./5/YearFromTime":181,"./5/abs":182,"./5/floor":183,"./5/modulo":184,"./5/msFromTime":185}],187:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":182,"get-intrinsic":194,"has":198}],181:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],182:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":198}],183:[function(require,module,exports){
+},{"./isNaN":188}],188:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],184:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -13822,40 +14120,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":128}],185:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":194,"has":198}],186:[function(require,module,exports){
+},{"call-bind/callBound":133}],190:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -13865,14 +14130,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],187:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":200,"hasown":218}],192:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],188:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -13893,7 +14196,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],189:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":210}],195:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],196:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],197:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],198:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],199:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],200:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],201:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],202:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":200}],203:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":204,"./RequireObjectCoercible":202}],204:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],205:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -13940,14 +14334,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":190,"is-callable":201}],190:[function(require,module,exports){
+},{"./helpers/isPrimitive":206,"is-callable":221}],206:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],191:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -13985,49 +14379,81 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":202,"merge-descriptors":203}],192:[function(require,module,exports){
+},{"is-object":222,"merge-descriptors":224}],208:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -14039,21 +14465,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],193:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":192}],194:[function(require,module,exports){
+},{"./implementation":208}],210:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -14092,18 +14524,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -14111,6 +14549,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -14118,9 +14558,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -14131,10 +14571,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -14142,15 +14582,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -14160,11 +14600,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -14181,7 +14631,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -14192,6 +14642,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -14246,11 +14697,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -14306,6 +14758,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -14378,29 +14833,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":193,"has":198,"has-symbols":196}],195:[function(require,module,exports){
+},{"es-errors":196,"es-errors/eval":195,"es-errors/range":197,"es-errors/ref":198,"es-errors/syntax":199,"es-errors/type":200,"es-errors/uri":201,"function-bind":209,"has-proto":213,"has-symbols":214,"hasown":218}],211:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":210}],212:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -14413,7 +14875,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":194}],196:[function(require,module,exports){
+},{"es-define-property":194}],213:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],214:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -14428,7 +14907,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":197}],197:[function(require,module,exports){
+},{"./shams":215}],215:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -14472,14 +14951,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],198:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":215}],217:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":193}],199:[function(require,module,exports){
+},{"function-bind":209}],218:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":209}],219:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -14566,7 +15065,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],200:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -14595,7 +15094,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],201:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -14641,44 +15140,131 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],202:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 'use strict';
 
 module.exports = function isObject(x) {
 	return typeof x === 'object' && x !== null;
 };
 
-},{}],203:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":133,"has-tostringtag/shams":216}],224:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -14740,7 +15326,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],204:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -14749,7 +15335,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],205:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -14873,7 +15459,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":207}],206:[function(require,module,exports){
+},{"./isArguments":228}],227:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -14907,7 +15493,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":205,"./isArguments":207}],207:[function(require,module,exports){
+},{"./implementation":226,"./isArguments":228}],228:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -14926,7 +15512,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],208:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -15112,7 +15698,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],209:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -15207,7 +15793,7 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":191,"module-not-found-error":204}],210:[function(require,module,exports){
+},{"fill-keys":207,"module-not-found-error":225}],231:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -15240,7 +15826,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"through":223,"timers":224}],211:[function(require,module,exports){
+},{"_process":229,"through":246,"timers":247}],232:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -15307,7 +15893,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":110}],212:[function(require,module,exports){
+},{"buffer":115}],233:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":133,"es-errors/type":200,"is-regex":223}],234:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":138,"es-errors/type":200,"get-intrinsic":210,"gopd":211,"has-property-descriptors":212}],235:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -15322,7 +15970,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":179,"function-bind":193}],213:[function(require,module,exports){
+},{"es-abstract/es5":186,"function-bind":209}],236:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -15342,7 +15990,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":212,"./polyfill":214,"./shim":215,"define-properties":133,"function-bind":193}],214:[function(require,module,exports){
+},{"./implementation":235,"./polyfill":237,"./shim":238,"define-properties":139,"function-bind":209}],237:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -15356,7 +16004,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":212}],215:[function(require,module,exports){
+},{"./implementation":235}],238:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -15368,7 +16016,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":214,"define-properties":133}],216:[function(require,module,exports){
+},{"./polyfill":237,"define-properties":139}],239:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15665,7 +16313,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":211}],217:[function(require,module,exports){
+},{"safe-buffer":232}],240:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -15819,7 +16467,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":218,"./lib/results":220,"./lib/test":221,"_process":208,"defined":134,"through":223,"timers":224}],218:[function(require,module,exports){
+},{"./lib/default_stream":241,"./lib/results":243,"./lib/test":244,"_process":229,"defined":140,"through":246,"timers":247}],241:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -15854,7 +16502,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208,"fs":109,"through":223}],219:[function(require,module,exports){
+},{"_process":229,"fs":114,"through":246}],242:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -15862,7 +16510,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"timers":224}],220:[function(require,module,exports){
+},{"_process":229,"timers":247}],243:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -16053,7 +16701,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":208,"events":111,"function-bind":193,"has":198,"inherits":200,"object-inspect":222,"resumer":210,"through":223,"timers":224}],221:[function(require,module,exports){
+},{"_process":229,"events":116,"function-bind":209,"has":217,"inherits":220,"object-inspect":245,"resumer":231,"through":246,"timers":247}],244:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -16554,7 +17202,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":219,"deep-equal":130,"defined":134,"events":111,"has":198,"inherits":200,"path":112,"string.prototype.trim":213}],222:[function(require,module,exports){
+},{"./next_tick":242,"deep-equal":135,"defined":140,"events":116,"has":217,"inherits":220,"path":117,"string.prototype.trim":236}],245:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -16748,7 +17396,7 @@ function inspectString (str) {
     }
 }
 
-},{}],223:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -16860,7 +17508,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":208,"stream":113}],224:[function(require,module,exports){
+},{"_process":229,"stream":118}],247:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -16939,7 +17587,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":208,"timers":224}],225:[function(require,module,exports){
+},{"process/browser.js":229,"timers":247}],248:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -17010,4 +17658,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[42,43,44,45]);
+},{}]},{},[44,45,46,47]);

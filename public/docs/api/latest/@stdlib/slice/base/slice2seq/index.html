@@ -1,0 +1,56 @@
+<h1 id="slice2seq">slice2seq</h1><blockquote><p>Convert a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object to a subsequence string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> slice2seq = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/slice2seq'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="slice2seq-str-">slice2seq( str )</h4><p>Converts a <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> object to a subsequence string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+
+<span class="hljs-keyword">var</span> str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns '0:5:1'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Slice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> slice2seq = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/base/slice2seq'</span> );
+
+<span class="hljs-keyword">var</span> str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ) );
+<span class="hljs-comment">// returns ':'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice() );
+<span class="hljs-comment">// returns ':'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span> ) );
+<span class="hljs-comment">// returns ':'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns ':10'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns ':-1'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns '2:10'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">2</span>, <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns '-2:10'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">2</span>, -<span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns '-2:-10'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-literal">null</span> ) );
+<span class="hljs-comment">// returns '2:'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns ':10'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// returns '2:10:2'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns '-1::-1'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span>, -<span class="hljs-number">5</span>, -<span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns '-1:-5:-1'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( -<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns '-1:10:-1'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// returns '1:-1:2'</span>
+
+str = slice2seq( <span class="hljs-keyword">new</span> Slice( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, -<span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// returns '::-1'</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

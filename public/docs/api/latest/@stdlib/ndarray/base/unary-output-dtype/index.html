@@ -1,0 +1,41 @@
+<h1 id="unaryoutputdatatype">unaryOutputDataType</h1><blockquote><p>Resolve the output ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> for a unary function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unaryOutputDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary-output-dtype'</span> );
+</code></pre><h4 id="unaryoutputdatatype-dtype-policy-">unaryOutputDataType( dtype, policy )</h4><p>Resolves the output ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> for a unary function according to a <a href="/docs/api/latest/@stdlib/ndarray/output-dtype-policies">data type policy</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = unaryOutputDataType( <span class="hljs-string">'int32'</span>, <span class="hljs-string">'floating_point'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>If <code>policy</code> is a <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, the function always returns the <code>policy</code> value (i.e., the second argument).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = unaryOutputDataType( <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+
+dt = unaryOutputDataType( <span class="hljs-string">'int32'</span>, <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> map2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map2'</span> );
+<span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
+<span class="hljs-keyword">var</span> cartesianProduct = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/cartesian-product'</span> );
+<span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> logEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log-each'</span> );
+<span class="hljs-keyword">var</span> unaryOutputDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary-output-dtype'</span> );
+
+<span class="hljs-comment">// Get the list of real-valued data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes( <span class="hljs-string">'real'</span> );
+
+<span class="hljs-comment">// Define a list of output data type policies:</span>
+<span class="hljs-keyword">var</span> policies = [
+    <span class="hljs-string">'default'</span>,
+    <span class="hljs-string">'real'</span>,
+    <span class="hljs-string">'floating_point'</span>,
+    <span class="hljs-string">'complex_floating_point'</span>
+];
+
+<span class="hljs-comment">// Generate dtype-policy argument pairs:</span>
+<span class="hljs-keyword">var</span> args = cartesianProduct( dt, policies );
+
+<span class="hljs-comment">// Unzip the argument pair array:</span>
+args = unzip( args );
+
+<span class="hljs-comment">// Resolve output data types:</span>
+<span class="hljs-keyword">var</span> out = map2( args[ <span class="hljs-number">0</span> ], args[ <span class="hljs-number">1</span> ], naryFunction( unaryOutputDataType, <span class="hljs-number">2</span> ) );
+
+<span class="hljs-comment">// Print results:</span>
+logEach( <span class="hljs-string">'dtypes: (%10s, %10s). policy: %s.'</span>, args[ <span class="hljs-number">0</span> ], out, args[ <span class="hljs-number">1</span> ] );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,422 @@
+<h1 id="fancyarray">FancyArray</h1><blockquote><p>Fancy multidimensional array constructor.</p></blockquote><section class="intro"><p>A <strong>FancyArray</strong> is an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> which supports slicing via indexing expressions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> FancyArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/fancy'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, [ <span class="hljs-number">6</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+<span class="hljs-comment">// Select the first 3 elements:</span>
+<span class="hljs-keyword">var</span> y = x[ <span class="hljs-string">':3'</span> ];
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
+
+<span class="hljs-comment">// Select every other element, starting with the second element:</span>
+y = x[ <span class="hljs-string">'1::2'</span> ];
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ 2, 4, 6 ]</span>
+
+<span class="hljs-comment">// Reverse the array, starting with last element and skipping every other element:</span>
+y = x[ <span class="hljs-string">'::-2'</span> ];
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ 6, 4, 2 ]</span>
+</code></pre></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FancyArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/fancy'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="fancyarray-dtype-buffer-shape-strides-offset-order-options-">FancyArray( dtype, buffer, shape, strides, offset, order[, options] )</h4><p>Returns a <code>FancyArray</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+</code></pre><p>The constructor expects the following arguments:</p><ul><li><strong>dtype</strong>: underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li><li><strong>buffer</strong>: data buffer.</li><li><strong>shape</strong>: array shape (dimensions).</li><li><strong>strides</strong>: array strides which are index offsets specifying how to access along corresponding dimensions.</li><li><strong>offset</strong>: index offset specifying the location of the first indexed element in the data buffer.</li><li><strong>order</strong>: array order, which is either <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</li></ul><p>The constructor accepts the following <code>options</code>:</p><ul><li><strong>mode</strong>: specifies how to handle indices which exceed array dimensions. Default: <code>'throw'</code>.</li><li><strong>submode</strong>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions. If provided fewer modes than dimensions, the constructor recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</li><li><strong>readonly</strong>: boolean indicating whether an array should be <strong>read-only</strong>. Default: <code>false</code>.</li></ul><p>The constructor supports the following <code>modes</code>:</p><ul><li><strong>throw</strong>: specifies that a <code>FancyArray</code> instance should throw an error when an index exceeds array dimensions.</li><li><strong>normalize</strong>: specifies that a <code>FancyArray</code> instance should normalize negative indices and throw an error when an index exceeds array dimensions.</li><li><strong>wrap</strong>: specifies that a <code>FancyArray</code> instance should wrap around an index exceeding array dimensions using modulo arithmetic.</li><li><strong>clamp</strong>: specifies that a <code>FancyArray</code> instance should set an index exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index.</li></ul><p>By default, a <code>FancyArray</code> instance <strong>throws</strong> when provided an index which exceeds array dimensions. To support alternative indexing behavior, set the <code>mode</code> option, which will affect all public <strong>methods</strong> (but <strong>not</strong> slicing semantics) for getting and setting array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'clamp'</span>
+};
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order, opts );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+<span class="hljs-comment">// Attempt to access an out-of-bounds linear index (clamped):</span>
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><p>By default, the <code>mode</code> option is applied to subscripts which exceed array dimensions. To specify behavior for each dimension, set the <code>submode</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'submode'</span>: [ <span class="hljs-string">'wrap'</span>, <span class="hljs-string">'clamp'</span> ]
+};
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order, opts );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+<span class="hljs-comment">// Attempt to access out-of-bounds subscripts:</span>
+<span class="hljs-keyword">var</span> v = arr.get( -<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span> ); <span class="hljs-comment">// linear index: 3</span>
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><hr><h3 id="properties">Properties</h3><p><a name="static-prop-name"></a></p><h4 id="fancyarrayname">FancyArray.name</h4><p>String value of the constructor name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = FancyArray.name;
+<span class="hljs-comment">// returns 'ndarray'</span>
+</code></pre><p><a name="prop-byte-length"></a></p><h4 id="fancyarrayprototypebytelength">FancyArray.prototype.byteLength</h4><p>Size (in bytes) of the array (if known).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the byte length:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.byteLength;
+<span class="hljs-comment">// returns 32</span>
+</code></pre><p>If unable to determine the size of the array, the property value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the byte length:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.byteLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre><p><a name="prop-bytes-per-element"></a></p><h4 id="fancyarrayprototypebytes_per_element">FancyArray.prototype.BYTES_PER_ELEMENT</h4><p>Size (in bytes) of each array element (if known).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'float32'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of bytes per element:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p>If size of each array element is unknown, the property value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of bytes per element:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns null</span>
+</code></pre><p><a name="prop-data"></a></p><h4 id="fancyarrayprototypedata">FancyArray.prototype.data</h4><p>A reference to the underlying data buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'int8'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the buffer reference:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns &#x3C;Int8Array>[ 1, 2, 3, 4 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( d === buffer );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="prop-dtype"></a></p><h4 id="fancyarrayprototypedtype">FancyArray.prototype.dtype</h4><p>Underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'uint8'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the underlying data type:</span>
+<span class="hljs-keyword">var</span> dtype = arr.dtype;
+<span class="hljs-comment">// returns 'uint8'</span>
+</code></pre><p><a name="prop-flags"></a></p><h4 id="fancyarrayprototypeflags">FancyArray.prototype.flags</h4><p>Meta information, such as information regarding the memory layout of the array. The returned object has the following properties:</p><ul><li><strong>ROW_MAJOR_CONTIGUOUS</strong>: <code>boolean</code> indicating if an array is row-major contiguous.</li><li><strong>COLUMN_MAJOR_CONTIGUOUS</strong>: <code>boolean</code> indicating if an array is column-major contiguous.</li><li><strong>READONLY</strong>: <code>boolean</code> indicating whether an array is <strong>read-only</strong>.</li></ul><p>An array is contiguous if (1) an array is compatible with being stored in a single memory segment and (2) each array element is adjacent to the next array element. Note that an array can be both row-major contiguous and column-major contiguous at the same time (e.g., if an array is a 1-dimensional array with <code>strides = [1]</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'int32'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array flags:</span>
+<span class="hljs-keyword">var</span> flg = arr.flags;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p><a name="prop-length"></a></p><h4 id="fancyarrayprototypelength">FancyArray.prototype.length</h4><p>Number of array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">3</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'uint16'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array length:</span>
+<span class="hljs-keyword">var</span> len = arr.length;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p><a name="prop-ndims"></a></p><h4 id="fancyarrayprototypendims">FancyArray.prototype.ndims</h4><p>Number of dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">3</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'uint8c'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of dimensions:</span>
+<span class="hljs-keyword">var</span> ndims = arr.ndims;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p><a name="prop-offset"></a></p><h4 id="fancyarrayprototypeoffset">FancyArray.prototype.offset</h4><p>Index offset which specifies the <code>buffer</code> index at which to start iterating over array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'int16'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the index offset:</span>
+<span class="hljs-keyword">var</span> o = arr.offset;
+<span class="hljs-comment">// returns 10</span>
+</code></pre><p><a name="prop-order"></a></p><h4 id="fancyarrayprototypeorder">FancyArray.prototype.order</h4><p>Array order. The array order is either row-major (C-style) or column-major (Fortran-style).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'uint32'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array order:</span>
+<span class="hljs-keyword">var</span> ord = arr.order;
+<span class="hljs-comment">// returns 'row-major'</span>
+</code></pre><p><a name="prop-shape"></a></p><h4 id="fancyarrayprototypeshape">FancyArray.prototype.shape</h4><p>Returns a copy of the array shape.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array shape:</span>
+<span class="hljs-keyword">var</span> dims = arr.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+</code></pre><p><a name="prop-strides"></a></p><h4 id="fancyarrayprototypestrides">FancyArray.prototype.strides</h4><p>Returns a copy of the array strides which specify how to access data along corresponding array dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array strides:</span>
+<span class="hljs-keyword">var</span> s = arr.strides;
+<span class="hljs-comment">// returns [ -1, 2 ]</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p><a name="method-get"></a></p><h4 id="fancyarrayprototypeget-i-j-k--">FancyArray.prototype.get( i, j, k, ... )</h4><p>Returns an array element specified according to provided subscripts. The number of provided subscripts must <strong>equal</strong> the number of dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the element located at (1,1):</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p><a name="method-iget"></a></p><h4 id="fancyarrayprototypeiget-idx-">FancyArray.prototype.iget( idx )</h4><p>Returns an array element located at a specified linear index.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the element located at index 3:</span>
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre><p>For zero-dimensional arrays, the input argument is ignored and, for clarity, should <strong>not</strong> be provided.</p><p><a name="method-set"></a></p><h4 id="fancyarrayprototypeset-i-j-k--v-">FancyArray.prototype.set( i, j, k, ..., v )</h4><p>Sets an array element specified according to provided subscripts. The number of provided subscripts must <strong>equal</strong> the number of dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Set the element located at (1,1):</span>
+arr.set( <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">40.0</span> );
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 40.0</span>
+
+<span class="hljs-comment">// Get the underlying buffer:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns [ 1.0, 2.0, 3.0, 40.0 ]</span>
+</code></pre><p>The method returns the <code>FancyArray</code> instance. If an array is <strong>read-only</strong>, the method raises an exception.</p><p><a name="method-iset"></a></p><h4 id="fancyarrayprototypeiset-idx-v-">FancyArray.prototype.iset( idx, v )</h4><p>Sets an array element located at a specified linear index.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Set the element located at index 3:</span>
+arr.iset( <span class="hljs-number">3</span>, <span class="hljs-number">40.0</span> );
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 40.0</span>
+
+<span class="hljs-comment">// Get the underlying buffer:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns [ 1.0, 2.0, 3.0, 40.0 ]</span>
+</code></pre><p>For zero-dimensional arrays, the first, and <strong>only</strong>, argument should be the value <code>v</code> to set.</p><p>The method returns the <code>FancyArray</code> instance. If an array is <strong>read-only</strong>, the method raises an exception.</p><p><a name="method-to-string"></a></p><h4 id="fancyarrayprototypetostring">FancyArray.prototype.toString()</h4><p>Serializes a <code>FancyArray</code> as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Serialize to a string:</span>
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// returns "ndarray( 'generic', [ 3, 4, 5, 6, 7, 8 ], [ 3, 2 ], [ 2, 1 ], 0, 'row-major' )"</span>
+</code></pre><p>The method does <strong>not</strong> serialize data outside of the buffer region defined by the array configuration.</p><p><a name="method-to-json"></a></p><h4 id="fancyarrayprototypetojson">FancyArray.prototype.toJSON()</h4><p>Serializes a <code>FancyArray</code> as a <a href="http://www.json.org/">JSON</a> object. <code>JSON.stringify()</code> implicitly calls this method when stringifying a <code>FancyArray</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Serialize to JSON:</span>
+<span class="hljs-keyword">var</span> o = arr.toJSON();
+<span class="hljs-comment">// returns { 'type': 'ndarray', 'dtype': 'generic', 'flags': {...}, 'offset': 0, 'order': 'row-major', 'shape': [ 3, 2 ], 'strides': [ 2, 1 ], 'data': [ 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] }</span>
+</code></pre><p>The method does <strong>not</strong> serialize data outside of the buffer region defined by the array configuration.</p></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li><p>To create a zero-dimensional array, provide an empty <code>shape</code> and a single <code>strides</code> element equal to <code>0</code>. The <code>order</code> can be either <code>row-major</code> or <code>column-major</code> and has no effect on data storage or access.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> shape = [];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new zero-dimensional array:</span>
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, order );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+</code></pre></li><li><p>A <code>FancyArray</code> is an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance and supports all <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> options, attributes, and methods. A <code>FancyArray</code> can be consumed by any API which supports <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instances.</p></li><li><p>Indexing expressions provide a convenient and powerful means for creating and operating on <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> views; however, their use does entail a performance cost. Indexing expressions are best suited for interactive use (e.g., in the <a href="/docs/api/latest/@stdlib/repl">REPL</a>) and scripting. For performance critical applications, prefer equivalent functional APIs supporting <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instances.</p></li><li><p>In older JavaScript environments which do <strong>not</strong> support <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects, the use of indexing expressions is <strong>not</strong> supported.</p></li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> toArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> FancyArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/fancy'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [
+    <span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
+    <span class="hljs-number">3</span>, <span class="hljs-number">4</span>,  <span class="hljs-comment">// 0</span>
+    <span class="hljs-number">5</span>, <span class="hljs-number">6</span>,  <span class="hljs-comment">// 1</span>
+    <span class="hljs-number">7</span>, <span class="hljs-number">8</span>,  <span class="hljs-comment">// 2</span>
+    <span class="hljs-number">9</span>, <span class="hljs-number">10</span>
+];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> FancyArray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;FancyArray></span>
+
+<span class="hljs-comment">// Access an ndarray property:</span>
+<span class="hljs-keyword">var</span> ndims = x.ndims;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-comment">// Retrieve an ndarray element:</span>
+<span class="hljs-keyword">var</span> v = x.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 8</span>
+
+<span class="hljs-comment">// Set an ndarray element:</span>
+x.set( <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">20</span> );
+v = x.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 20</span>
+
+<span class="hljs-comment">// Create an alias for `undefined` for more concise slicing expressions:</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a multi-dimensional slice:</span>
+<span class="hljs-keyword">var</span> s = E( S(<span class="hljs-number">0</span>,_,<span class="hljs-number">2</span>), _ );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-comment">// Use the slice to create a view on the original ndarray:</span>
+<span class="hljs-keyword">var</span> y1 = x[ s ];
+<span class="hljs-built_in">console</span>.log( toArray( y1 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Use alternative syntax:</span>
+<span class="hljs-keyword">var</span> y2 = x[ [ S(<span class="hljs-number">0</span>,_,<span class="hljs-number">2</span>), _ ] ];
+<span class="hljs-built_in">console</span>.log( toArray( y2 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Use alternative syntax:</span>
+<span class="hljs-keyword">var</span> y3 = x[ <span class="hljs-string">'0::2,:'</span> ];
+<span class="hljs-built_in">console</span>.log( toArray( y3 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Flip dimensions:</span>
+<span class="hljs-keyword">var</span> y4 = x[ [ S(_,_,-<span class="hljs-number">2</span>), S(_,_,-<span class="hljs-number">1</span>) ] ];
+<span class="hljs-built_in">console</span>.log( toArray( y4 ) );
+<span class="hljs-comment">// => [ [ 20, 7 ], [ 4, 3 ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section><section class="links"></section>

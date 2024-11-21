@@ -1,8 +1,21 @@
 <h1 id="truncated-normal">Truncated Normal</h1><blockquote><p>Truncated normal distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncatedNormal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/truncated-normal'</span> );
 </code></pre><h4 id="truncatednormal">truncatedNormal</h4><p>Truncated normal distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = truncatedNormal;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/truncated-normal/pdf"><code>pdf( x, a, b, mu, sigma )</code></a></span><span class="delimiter">: </span><span class="description">truncated normal distribution probability density function (PDF).</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated normal</a> distribution object.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
-<span class="hljs-keyword">var</span> truncatedNormal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/truncated-normal'</span> );
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/truncated-normal/pdf"><code>pdf( x, a, b, mu, sigma )</code></a></span><span class="delimiter">: </span><span class="description">truncated normal distribution probability density function (PDF).</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Truncated_normal_distribution">truncated normal</a> distribution object.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncatedNormal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/truncated-normal'</span> );
 
-<span class="hljs-built_in">console</span>.log( objectKeys( truncatedNormal ) );
+<span class="hljs-comment">/*
+* Let's consider an example where we're modeling the heights of astronauts.
+* We'll use the truncated normal distribution to model this scenario, considering constraints on their minimum and maximum heights.
+* The distribution has parameters: a (minimum height), b (maximum height), mu (location parameter), and sigma (scale parameter).
+* In this example, we'll assume a = 150 (minimum height), b = 200 (maximum height), mu = 175 (location parameter), and sigma = 10 (scale parameter).
+*/</span>
+
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">150.0</span>;
+<span class="hljs-keyword">var</span> b = <span class="hljs-number">200.0</span>;
+<span class="hljs-keyword">var</span> mu = <span class="hljs-number">175.0</span>;
+<span class="hljs-keyword">var</span> sigma = <span class="hljs-number">10.0</span>;
+
+<span class="hljs-comment">// Calculate the probability density function (PDF) for a height of 180 cm:</span>
+<span class="hljs-built_in">console</span>.log( truncatedNormal.pdf( <span class="hljs-number">180</span>, a, b, mu, sigma ) );
+<span class="hljs-comment">// => ~0.036</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,83 @@
+<h1 id="foreach">forEach</h1><blockquote><p>Invoke a callback function once for each ndarray element.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/for-each'</span> );
+</code></pre><h4 id="foreach-arrays-fcn-thisarg-">forEach( arrays, fcn[, thisArg] )</h4><p>Invokes a callback function once for each ndarray element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log'</span> );
+
+<span class="hljs-comment">// Create data buffers:</span>
+<span class="hljs-keyword">var</span> xbuf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">12</span> );
+
+<span class="hljs-comment">// Define the shape of the array:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Define the array strides:</span>
+<span class="hljs-keyword">var</span> sx = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// Define the index offset:</span>
+<span class="hljs-keyword">var</span> ox = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Create an ndarray-like object:</span>
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'data'</span>: xbuf,
+    <span class="hljs-string">'shape'</span>: shape,
+    <span class="hljs-string">'strides'</span>: sx,
+    <span class="hljs-string">'offset'</span>: ox,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+<span class="hljs-comment">// Apply the callback function:</span>
+forEach( [ x ], naryFunction( log, <span class="hljs-number">1</span> ) );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing an ndarray.</li><li><strong>fcn</strong>: callback to apply.</li><li><strong>thisArg</strong>: callback execution context.</li></ul><p>The callback function is provided the following arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>indices</strong>: current array element indices.</li><li><strong>arr</strong>: the input ndarray.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The provided ndarray should be an <code>object</code> with the following properties:</p><ul><li><strong>dtype</strong>: data type.</li><li><strong>data</strong>: data buffer.</li><li><strong>shape</strong>: dimensions.</li><li><strong>strides</strong>: stride lengths.</li><li><strong>offset</strong>: index offset.</li><li><strong>order</strong>: specifies whether an ndarray is row-major (C-style) or column major (Fortran-style).</li></ul></li><li><p>For very high-dimensional ndarrays which are non-contiguous, one should consider copying the underlying data to contiguous memory before applying a callback function in order to achieve better performance.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log'</span> );
+<span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/for-each'</span> );
+
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: zeroTo( <span class="hljs-number">10</span> ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ],
+    <span class="hljs-string">'strides'</span>: [ -<span class="hljs-number">2</span>, <span class="hljs-number">1</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">8</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+forEach( [ x ], naryFunction( log, <span class="hljs-number">2</span> ) );
+
+x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: zeroTo( <span class="hljs-number">10</span> ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ],
+    <span class="hljs-string">'strides'</span>: [ <span class="hljs-number">1</span>, -<span class="hljs-number">5</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">5</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+};
+
+log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+forEach( [ x ], naryFunction( log, <span class="hljs-number">2</span> ) );
+
+x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: zeroTo( <span class="hljs-number">18</span> ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ],
+    <span class="hljs-string">'strides'</span>: [ <span class="hljs-number">9</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+forEach( [ x ], naryFunction( log, <span class="hljs-number">2</span> ) );
+
+x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: zeroTo( <span class="hljs-number">18</span> ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ],
+    <span class="hljs-string">'strides'</span>: [ -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">6</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">17</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+};
+
+log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+forEach( [ x ], naryFunction( log, <span class="hljs-number">2</span> ) );
+</code></pre></section><section class="related"></section><section class="links"></section>

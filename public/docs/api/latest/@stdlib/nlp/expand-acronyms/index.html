@@ -1,0 +1,18 @@
+<h1 id="expand-acronyms">Expand Acronyms</h1><blockquote><p>Expand acronyms.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> expandAcronyms = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/expand-acronyms'</span> );
+</code></pre><h4 id="expandacronyms-str-">expandAcronyms( str )</h4><p>Expands acronyms in a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'TLDR, the article is too long...'</span>;
+<span class="hljs-keyword">var</span> out = expandAcronyms( str );
+<span class="hljs-comment">// returns 'too long did not read, the article is too long...'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This expansion is done via a simple table look-up. Hence, it is not able to replace acronyms for which there are multiple possible expansions.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> expandAcronyms = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/expand-acronyms'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'LOL, this is fun. I am ROFL.'</span>;
+<span class="hljs-keyword">var</span> out = expandAcronyms( str );
+<span class="hljs-comment">// returns 'laughing out loud, this is fun. I am rolling on the floor laughing.'</span>
+
+str = <span class="hljs-string">'brb, I need to check my mail. thx!'</span>;
+out = expandAcronyms( str );
+<span class="hljs-comment">// returns 'be right back, I need to check my mail. thanks!'</span>
+
+str = <span class="hljs-string">'OTOH, there are some drawbacks to this approach imho.'</span>;
+out = expandAcronyms( str );
+<span class="hljs-comment">// returns 'on the other hand, there are some drawbacks to this approach in my humble opinion.'</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/nlp/expand-contractions"><code>@stdlib/nlp/expand-contractions</code></a></span><span class="delimiter">: </span><span class="description">expand contractions.</span></li></ul></section><section class="links"></section>

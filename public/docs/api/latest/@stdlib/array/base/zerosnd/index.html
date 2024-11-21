@@ -1,0 +1,20 @@
+<h1 id="zerosnd">zerosnd</h1><blockquote><p>Create a zero-filled n-dimensional nested array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zerosnd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zerosnd'</span> );
+</code></pre><h4 id="zerosnd-shape-">zerosnd( shape )</h4><p>Returns a zero-filled n-dimensional nested array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = zerosnd( [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ 0.0, 0.0, 0.0 ], [ 0.0, 0.0, 0.0 ] ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zerosnd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zerosnd'</span> );
+
+<span class="hljs-keyword">var</span> out = zerosnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ 0.0, 0.0, 0.0 ] ]</span>
+
+out = zerosnd( [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ 0.0 ], [ 0.0 ], [ 0.0 ] ]</span>
+
+out = zerosnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ 0.0, 0.0, 0.0 ] ] ]</span>
+
+out = zerosnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ [ 0.0 ], [ 0.0 ], [ 0.0 ] ] ]</span>
+
+out = zerosnd( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ [ [ 0.0, 0.0, 0.0 ] ] ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zeros"><code>@stdlib/array/base/zeros</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled generic array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/onesnd"><code>@stdlib/array/base/onesnd</code></a></span><span class="delimiter">: </span><span class="description">create an n-dimensional nested array filled with ones.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zeros2d"><code>@stdlib/array/base/zeros2d</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled two-dimensional nested array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zeros3d"><code>@stdlib/array/base/zeros3d</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled three-dimensional nested array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zeros4d"><code>@stdlib/array/base/zeros4d</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled four-dimensional nested array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/base/zeros5d"><code>@stdlib/array/base/zeros5d</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled five-dimensional nested array.</span></li></ul></section><section class="links"></section>

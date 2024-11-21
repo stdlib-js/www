@@ -1,0 +1,43 @@
+<h1 id="empty">empty</h1><blockquote><p>Create an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> having a specified shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty'</span> );
+</code></pre><h4 id="empty-shape-options-">empty( shape[, options] )</h4><p>Creates an uninitialized <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> having a specified shape and <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = empty( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = arr.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+<span class="hljs-keyword">var</span> dt = arr.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>The specified output <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> <code>shape</code> may be either an array-like object or an integer value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = empty( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = arr.shape;
+<span class="hljs-comment">// returns [ 2 ]</span>
+
+<span class="hljs-keyword">var</span> dt = arr.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>dtype</strong>: underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. Default: <code>'float64'</code>.</li><li><strong>order</strong>: specifies whether an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> is <code>'row-major'</code> (C-style) or <code>'column-major'</code> (Fortran-style). Default: <code>'row-major'</code>.</li><li><strong>mode</strong>: specifies how to handle indices which exceed array dimensions (see <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). Default: <code>'throw'</code>.</li><li><strong>submode</strong>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions (see <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). If provided fewer modes than dimensions, the constructor recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</li></ul><p>By default, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> having a <a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>float64</code></a> data type. To specify an alternative <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, provide a <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = empty( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = arr.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+<span class="hljs-keyword">var</span> dt = arr.dtype;
+<span class="hljs-comment">// returns 'float32'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the <code>dtype</code> option is <code>'generic'</code>, the function always returns a zero-filled ndarray.</li><li>For returned <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarrays</a> whose underlying memory is <strong>not</strong> initialized, memory contents are unknown and may contain <strong>sensitive</strong> data.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty'</span> );
+
+<span class="hljs-comment">// Get a list of data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate uninitialized arrays...</span>
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    arr = empty( [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], {
+        <span class="hljs-string">'dtype'</span>: dt[ i ]
+    });
+    <span class="hljs-built_in">console</span>.log( arr.data );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/empty-like"><code>@stdlib/ndarray/empty-like</code></a></span><span class="delimiter">: </span><span class="description">create an uninitialized ndarray having the same shape and data type as a provided ndarray.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/zeros"><code>@stdlib/ndarray/zeros</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled ndarray having a specified shape and data type.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,21 @@
+<h1 id="operation-sides">Operation Sides</h1><blockquote><p>BLAS operation sides.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> operationSides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/operation-sides'</span> );
+</code></pre><h4 id="operationsides">operationSides()</h4><p>Returns a list of BLAS operation sides.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = operationSides();
+<span class="hljs-comment">// e.g., returns [ 'left', 'right' ]</span>
+</code></pre><p>The output array contains the following types:</p><ul><li><code>left</code>: a triangular matrix is on the left side of a matrix-matrix operation (e.g., AX = B, where A is a triangular matrix).</li><li><code>right</code>: a triangular matrix is on the right side of a matrix-matrix operation (e.g., XA = B, where A is a triangular matrix).</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/contains'</span> ).factory;
+<span class="hljs-keyword">var</span> operationSides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/operation-sides'</span> );
+
+<span class="hljs-keyword">var</span> isOperationSide = contains( operationSides() );
+
+<span class="hljs-keyword">var</span> bool = isOperationSide( <span class="hljs-string">'right'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isOperationSide( <span class="hljs-string">'left'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isOperationSide( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/operation_sides.h"</span></span>
+</code></pre><h4 id="stdlib_blas_operation_side">STDLIB_BLAS_OPERATION_SIDE</h4><p>An enumeration of BLAS operation sides with the following fields:</p><ul><li><strong>STDLIB_BLAS_LEFT</strong>: a triangular matrix is on the left side of a matrix-matrix operation (e.g., <code>XA = B</code>, where <code>A</code> is a triangular matrix).</li><li><strong>STDLIB_BLAS_RIGHT</strong>: a triangular matrix is on the right side of a matrix-matrix operation (e.g., <code>XA = B</code>, where <code>A</code> is a triangular matrix).</li></ul><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/operation_sides.h"</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">STDLIB_BLAS_OPERATION_SIDE</span> <span class="hljs-title">v</span> =</span> STDLIB_BLAS_RIGHT;
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>Enumeration constants should be considered opaque values, and one should <strong>not</strong> rely on specific integer values.</li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

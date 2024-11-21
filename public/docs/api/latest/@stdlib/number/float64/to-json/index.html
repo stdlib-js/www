@@ -1,0 +1,12 @@
+<h1 id="number2json">number2json</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a number.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> number2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/to-json'</span> );
+</code></pre><h4 id="number2json-x-">number2json( x )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> json = number2json( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'float64',
+        'value': 'NaN'
+    }
+*/</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> number2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/to-json'</span> );
+
+<span class="hljs-built_in">console</span>.log( number2json( <span class="hljs-literal">NaN</span> ) );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

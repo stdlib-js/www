@@ -1,0 +1,61 @@
+<h1 id="slicefrom">sliceFrom</h1><blockquote><p>Return a shifted view of an input ndarray.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sliceFrom = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/slice-from'</span> );
+</code></pre><h4 id="slicefrom-x-start-strict-writable-">sliceFrom( x, start, strict, writable )</h4><p>Returns a shifted view of an input ndarray.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = x.shape;
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( x );
+<span class="hljs-comment">// returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+
+<span class="hljs-keyword">var</span> s = [ <span class="hljs-number">1</span>, <span class="hljs-literal">null</span> ];
+<span class="hljs-keyword">var</span> y = sliceFrom( x, s, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+arr = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input ndarray.</li><li><strong>start</strong>: an array of starting indices (inclusive). Each element must be either <code>null</code>, <code>undefined</code>, or an integer. A value of <code>null</code> or <code>undefined</code> indicates to include all elements along a corresponding dimension. A negative integer indicates to resolve a starting index relative to the last element along a corresponding dimension, with the last element having index <code>-1</code>.</li><li><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking.</li><li><strong>writable</strong>: boolean indicating whether a returned ndarray should be writable.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The <code>writable</code> parameter <strong>only</strong> applies to ndarray constructors supporting <strong>read-only</strong> instances.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> sliceFrom = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/slice-from'</span> );
+
+<span class="hljs-comment">// Create a linear ndarray buffer:</span>
+<span class="hljs-keyword">var</span> buf = zeroTo( <span class="hljs-number">27</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( buf, {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Get the last two rows of each matrix:</span>
+<span class="hljs-keyword">var</span> y1 = sliceFrom( x, [ <span class="hljs-literal">null</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">null</span> ], <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a1 = ndarray2array( y1 );
+<span class="hljs-comment">// returns [ [ [ 3, 4, 5 ], [ 6, 7, 8 ] ], [ [ 12, 13, 14 ], [ 15, 16, 17 ] ], [ [ 21, 22, 23 ], [ 24, 25, 26 ] ] ]</span>
+
+<span class="hljs-comment">// Get the last two rows and columns of each matrix:</span>
+<span class="hljs-keyword">var</span> y2 = sliceFrom( x, [ <span class="hljs-literal">null</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ], <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a2 = ndarray2array( y2 );
+<span class="hljs-comment">// returns [ [ [ 4, 5 ], [ 7, 8 ] ], [ [ 13, 14 ], [ 16, 17 ] ], [ [ 22, 23 ], [ 25, 26 ] ] ]</span>
+
+<span class="hljs-comment">// Get the last two 2x2 matrices:</span>
+<span class="hljs-keyword">var</span> y3 = sliceFrom( x, [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ], <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> a3 = ndarray2array( y3 );
+<span class="hljs-comment">// returns [ [ [ 13, 14 ], [ 16, 17 ] ], [ [ 22, 23 ], [ 25, 26 ] ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

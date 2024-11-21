@@ -1,0 +1,37 @@
+<h1 id="issamedateobject">isSameDateObject</h1><blockquote><p>Test if two values are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> objects corresponding to the same date and time.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameDateObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-date-object'</span> );
+</code></pre><h4 id="issamedateobject-d1-d2-">isSameDateObject( d1, d2 )</h4><p>Tests if two values are both Date objects corresponding to the same date and time.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span> );
+<span class="hljs-keyword">var</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span> );
+<span class="hljs-keyword">var</span> bool = isSameDateObject( d1, d2 );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameDateObject( d1, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2023</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">78</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameDateObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-date-object'</span> );
+
+<span class="hljs-keyword">var</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span> );
+<span class="hljs-keyword">var</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span> );
+
+<span class="hljs-keyword">var</span> bool = isSameDateObject( d1, d2 );
+<span class="hljs-comment">// returns true</span>
+
+d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span> );
+d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">78</span> );
+
+bool = isSameDateObject( d1, d2 );
+<span class="hljs-comment">// returns false</span>
+
+d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-string">'2024-12-31T23:59:59.999'</span> );
+
+bool = isSameDateObject( d1, d2 );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-keyword">var</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-number">2024</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span> );
+<span class="hljs-keyword">var</span> d4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>( <span class="hljs-string">'December 31, 2024 23:59:59:999'</span> );
+
+bool = isSameDateObject( d1, d3 );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSameDateObject( d2, d4 );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section>

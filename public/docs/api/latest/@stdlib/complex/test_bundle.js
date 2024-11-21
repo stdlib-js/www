@@ -102,16 +102,40 @@
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],2:[function(require,module,exports){
+},{"./main.js":2,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":8}],2:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -132,40 +156,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float32
-*
-* @example
-* var ctor = require( '@stdlib/array/float32' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float32Array>
-*/
-
-// MODULES //
-
-var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
-var builtin = require( './float32array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat32ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/assert/has-float32array-support":8}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -225,16 +225,40 @@ module.exports = polyfill;
 
 'use strict';
 
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
 // MAIN //
 
-var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{}],5:[function(require,module,exports){
+},{"./main.js":5,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":11}],5:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -255,40 +279,16 @@ module.exports = ctor;
 
 'use strict';
 
-/**
-* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
-*
-* @module @stdlib/array/float64
-*
-* @example
-* var ctor = require( '@stdlib/array/float64' );
-*
-* var arr = new ctor( 10 );
-* // returns <Float64Array>
-*/
-
-// MODULES //
-
-var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
-var builtin = require( './float64array.js' );
-var polyfill = require( './polyfill.js' );
-
-
 // MAIN //
 
-var ctor;
-if ( hasFloat64ArraySupport() ) {
-	ctor = builtin;
-} else {
-	ctor = polyfill;
-}
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
 
 module.exports = ctor;
 
-},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/assert/has-float64array-support":11}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -466,7 +466,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":7,"@stdlib/assert/is-float32array":39,"@stdlib/constants/float64/pinf":120}],10:[function(require,module,exports){
+},{"./float32array.js":7,"@stdlib/assert/is-float32array":39,"@stdlib/constants/float64/pinf":166}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -646,12 +646,12 @@ module.exports = hasFloat64ArraySupport;
 
 // MODULES //
 
-var hasOwnProp = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasOwnProp;
+module.exports = main;
 
 },{"./main.js":14}],14:[function(require,module,exports){
 /**
@@ -754,12 +754,12 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var hasSymbolSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasSymbolSupport;
+module.exports = main;
 
 },{"./main.js":16}],16:[function(require,module,exports){
 /**
@@ -840,12 +840,12 @@ module.exports = hasSymbolSupport;
 
 // MODULES //
 
-var hasToStringTagSupport = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = hasToStringTagSupport;
+module.exports = main;
 
 },{"./main.js":18}],18:[function(require,module,exports){
 /**
@@ -1072,7 +1072,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":184}],22:[function(require,module,exports){
+},{"@stdlib/utils/native-class":241}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1142,7 +1142,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":13,"@stdlib/assert/is-array":23,"@stdlib/assert/is-enumerable-property":36,"@stdlib/constants/uint32/max":121,"@stdlib/math/base/assert/is-integer":122}],23:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":13,"@stdlib/assert/is-array":23,"@stdlib/assert/is-enumerable-property":36,"@stdlib/constants/uint32/max":167,"@stdlib/math/base/assert/is-integer":168}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1180,12 +1180,12 @@ module.exports = isArguments;
 
 // MODULES //
 
-var isArray = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isArray;
+module.exports = main;
 
 },{"./main.js":24}],24:[function(require,module,exports){
 /**
@@ -1252,7 +1252,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":184}],25:[function(require,module,exports){
+},{"@stdlib/utils/native-class":241}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1279,6 +1279,7 @@ module.exports = f;
 * @module @stdlib/assert/is-boolean
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' );
 *
 * var bool = isBoolean( false );
@@ -1288,7 +1289,7 @@ module.exports = f;
 * // returns true
 *
 * @example
-* // Use interface to check for boolean primitives...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 *
 * var bool = isBoolean( false );
@@ -1298,7 +1299,7 @@ module.exports = f;
 * // returns false
 *
 * @example
-* // Use interface to check for boolean objects...
+* var Boolean = require( '@stdlib/boolean/ctor' );
 * var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
 *
 * var bool = isBoolean( true );
@@ -1311,22 +1312,22 @@ module.exports = f;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isBoolean = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
-setReadOnly( isBoolean, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isBoolean;
+module.exports = main;
 
-},{"./main.js":26,"./object.js":27,"./primitive.js":28,"@stdlib/utils/define-nonenumerable-read-only-property":151}],26:[function(require,module,exports){
+},{"./main.js":26,"./object.js":27,"./primitive.js":28,"@stdlib/utils/define-nonenumerable-read-only-property":209}],26:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1370,10 +1371,14 @@ var isObject = require( './object.js' );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
 */
@@ -1411,6 +1416,7 @@ module.exports = isBoolean;
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
 var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
 var test = require( './try2serialize.js' );
 
 
@@ -1432,6 +1438,8 @@ var FLG = hasToStringTag();
 * // returns false
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
 */
@@ -1453,7 +1461,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":30,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/utils/native-class":184}],28:[function(require,module,exports){
+},{"./try2serialize.js":30,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/boolean/ctor":74,"@stdlib/utils/native-class":241}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1489,6 +1497,8 @@ module.exports = isBoolean;
 * // returns true
 *
 * @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
 */
@@ -1617,12 +1627,12 @@ module.exports = test;
 
 // MODULES //
 
-var isBuffer = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isBuffer;
+module.exports = main;
 
 },{"./main.js":32}],32:[function(require,module,exports){
 /**
@@ -1696,7 +1706,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":58}],33:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":64}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1734,12 +1744,12 @@ module.exports = isBuffer;
 
 // MODULES //
 
-var isCollection = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isCollection;
+module.exports = main;
 
 },{"./main.js":34}],34:[function(require,module,exports){
 /**
@@ -1800,7 +1810,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":118,"@stdlib/math/base/assert/is-integer":122}],35:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":164,"@stdlib/math/base/assert/is-integer":168}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1895,12 +1905,12 @@ module.exports = bool;
 
 // MODULES //
 
-var isEnumerableProperty = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isEnumerableProperty;
+module.exports = main;
 
 },{"./main.js":37}],37:[function(require,module,exports){
 /**
@@ -1984,7 +1994,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":35,"./native.js":38,"@stdlib/assert/is-integer":43,"@stdlib/assert/is-nan":48,"@stdlib/assert/is-string":60}],38:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":35,"./native.js":38,"@stdlib/assert/is-integer":45,"@stdlib/assert/is-nan":50,"@stdlib/assert/is-string":66}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2144,7 +2154,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":184}],41:[function(require,module,exports){
+},{"@stdlib/utils/native-class":241}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2248,7 +2258,105 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":184}],43:[function(require,module,exports){
+},{"@stdlib/utils/native-class":241}],43:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a function.
+*
+* @module @stdlib/assert/is-function
+*
+* @example
+* var isFunction = require( '@stdlib/assert/is-function' );
+*
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":44}],44:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var typeOf = require( '@stdlib/utils/type-of' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a function.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a function
+*
+* @example
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+function isFunction( value ) {
+	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
+	return ( typeOf( value ) === 'function' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFunction;
+
+},{"@stdlib/utils/type-of":252}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2313,22 +2421,22 @@ module.exports = isFloat64Array;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isInteger = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./main.js":45,"./object.js":46,"./primitive.js":47,"@stdlib/utils/define-nonenumerable-read-only-property":151}],44:[function(require,module,exports){
+},{"./main.js":47,"./object.js":48,"./primitive.js":49,"@stdlib/utils/define-nonenumerable-read-only-property":209}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2378,7 +2486,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":119,"@stdlib/constants/float64/pinf":120,"@stdlib/math/base/assert/is-integer":122}],45:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":165,"@stdlib/constants/float64/pinf":166,"@stdlib/math/base/assert/is-integer":168}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2438,7 +2546,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":46,"./primitive.js":47}],46:[function(require,module,exports){
+},{"./object.js":48,"./primitive.js":49}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2493,7 +2601,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":44,"@stdlib/assert/is-number":52}],47:[function(require,module,exports){
+},{"./integer.js":46,"@stdlib/assert/is-number":58}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2548,7 +2656,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":44,"@stdlib/assert/is-number":52}],48:[function(require,module,exports){
+},{"./integer.js":46,"@stdlib/assert/is-number":58}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2614,22 +2722,22 @@ module.exports = isInteger;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isnan, 'isPrimitive', isPrimitive );
-setReadOnly( isnan, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":49,"./object.js":50,"./primitive.js":51,"@stdlib/utils/define-nonenumerable-read-only-property":151}],49:[function(require,module,exports){
+},{"./main.js":51,"./object.js":52,"./primitive.js":53,"@stdlib/utils/define-nonenumerable-read-only-property":209}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2689,7 +2797,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":50,"./primitive.js":51}],50:[function(require,module,exports){
+},{"./object.js":52,"./primitive.js":53}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2744,7 +2852,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":52,"@stdlib/math/base/assert/is-nan":124}],51:[function(require,module,exports){
+},{"@stdlib/assert/is-number":58,"@stdlib/math/base/assert/is-nan":170}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2803,7 +2911,260 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":52,"@stdlib/math/base/assert/is-nan":124}],52:[function(require,module,exports){
+},{"@stdlib/assert/is-number":58,"@stdlib/math/base/assert/is-nan":170}],54:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a nonnegative integer.
+*
+* @module @stdlib/assert/is-nonnegative-integer
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' );
+*
+* var bool = isNonNegativeInteger( 5.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( new Number( 5.0 ) );
+* // returns true
+*
+* bool = isNonNegativeInteger( -5.0 );
+* // returns false
+*
+* bool = isNonNegativeInteger( 3.14 );
+* // returns false
+*
+* bool = isNonNegativeInteger( null );
+* // returns false
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+*
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns false
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isObject;
+*
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns false
+*
+* bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":55,"./object.js":56,"./primitive.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":209}],55:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a nonnegative integer.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a nonnegative integer
+*
+* @example
+* var bool = isNonNegativeInteger( 5.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 5.0 ) );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( -5.0 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( null );
+* // returns false
+*/
+function isNonNegativeInteger( value ) {
+	return ( isPrimitive( value ) || isObject( value ) );
+}
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeInteger;
+
+},{"./object.js":56,"./primitive.js":57}],56:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
+
+
+// MAIN //
+
+/**
+* Tests if a value is a number object having a nonnegative integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having a nonnegative integer value
+*
+* @example
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns true
+*/
+function isNonNegativeInteger( value ) {
+	return (
+		isInteger( value ) &&
+		value.valueOf() >= 0
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeInteger;
+
+},{"@stdlib/assert/is-integer":45}],57:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Tests if a value is a number primitive having a nonnegative integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive having a nonnegative integer value
+*
+* @example
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns false
+*/
+function isNonNegativeInteger( value ) {
+	return (
+		isInteger( value ) &&
+		value >= 0
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeInteger;
+
+},{"@stdlib/assert/is-integer":45}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2869,22 +3230,22 @@ module.exports = isnan;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isNumber = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isNumber;
+module.exports = main;
 
-},{"./main.js":53,"./object.js":54,"./primitive.js":55,"@stdlib/utils/define-nonenumerable-read-only-property":151}],53:[function(require,module,exports){
+},{"./main.js":59,"./object.js":60,"./primitive.js":61,"@stdlib/utils/define-nonenumerable-read-only-property":209}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2944,7 +3305,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":54,"./primitive.js":55}],54:[function(require,module,exports){
+},{"./object.js":60,"./primitive.js":61}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3012,7 +3373,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":57,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/number/ctor":128,"@stdlib/utils/native-class":184}],55:[function(require,module,exports){
+},{"./try2serialize.js":63,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/number/ctor":174,"@stdlib/utils/native-class":241}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3060,7 +3421,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],56:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3096,9 +3457,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":128}],57:[function(require,module,exports){
+},{"@stdlib/number/ctor":174}],63:[function(require,module,exports){
 arguments[4][30][0].apply(exports,arguments)
-},{"./tostring.js":56,"dup":30}],58:[function(require,module,exports){
+},{"./tostring.js":62,"dup":30}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3150,19 +3511,24 @@ arguments[4][30][0].apply(exports,arguments)
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var arrayfun = require( '@stdlib/assert/tools/array-function' );
-var isObjectLike = require( './main.js' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
 
 
 // MAIN //
 
-setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 
 // EXPORTS //
 
-module.exports = isObjectLike;
+module.exports = main;
 
-},{"./main.js":59,"@stdlib/assert/tools/array-function":67,"@stdlib/utils/define-nonenumerable-read-only-property":151}],59:[function(require,module,exports){
+},{"./main.js":65,"@stdlib/assert/tools/array-function":72,"@stdlib/utils/define-nonenumerable-read-only-property":209}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3213,7 +3579,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],60:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3273,22 +3639,22 @@ module.exports = isObjectLike;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var isString = require( './main.js' );
+var main = require( './main.js' );
 var isPrimitive = require( './primitive.js' );
 var isObject = require( './object.js' );
 
 
 // MAIN //
 
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
 
 
 // EXPORTS //
 
-module.exports = isString;
+module.exports = main;
 
-},{"./main.js":61,"./object.js":62,"./primitive.js":63,"@stdlib/utils/define-nonenumerable-read-only-property":151}],61:[function(require,module,exports){
+},{"./main.js":67,"./object.js":68,"./primitive.js":69,"@stdlib/utils/define-nonenumerable-read-only-property":209}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3340,7 +3706,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":62,"./primitive.js":63}],62:[function(require,module,exports){
+},{"./object.js":68,"./primitive.js":69}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3407,7 +3773,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":64,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/utils/native-class":184}],63:[function(require,module,exports){
+},{"./try2valueof.js":70,"@stdlib/assert/has-tostringtag-support":17,"@stdlib/utils/native-class":241}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3451,7 +3817,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],64:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3500,7 +3866,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":65}],65:[function(require,module,exports){
+},{"./valueof.js":71}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3529,7 +3895,58 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],66:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":73}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3616,11 +4033,11 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":23,"@stdlib/string/format":146}],67:[function(require,module,exports){
+},{"@stdlib/assert/is-array":23,"@stdlib/string/format":202}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3638,40 +4055,43 @@ module.exports = arrayfcn;
 'use strict';
 
 /**
-* Return a function which tests if every element in an array passes a test condition.
+* Boolean constructor.
 *
-* @module @stdlib/assert/tools/array-function
+* @module @stdlib/boolean/ctor
 *
 * @example
-* var isOdd = require( '@stdlib/assert/is-odd' );
-* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+* var Boolean = require( '@stdlib/boolean/ctor' );
 *
-* var arr1 = [ 1, 3, 5, 7 ];
-* var arr2 = [ 3, 5, 8 ];
+* var b = Boolean( null );
+* // returns false
 *
-* var validate = arrayfcn( isOdd );
-*
-* var bool = validate( arr1 );
+* b = Boolean( [] );
 * // returns true
 *
-* bool = validate( arr2 );
-* // returns false
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
 
 // MODULES //
 
-var arrayfcn = require( './arrayfcn.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = arrayfcn;
+module.exports = main;
 
-},{"./arrayfcn.js":66}],68:[function(require,module,exports){
+},{"./main.js":75}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3688,49 +4108,313 @@ module.exports = arrayfcn;
 
 'use strict';
 
-// MODULES //
-
-var format = require( '@stdlib/string/format' );
-var CTORS = require( './ctors.js' );
-
-
 // MAIN //
 
 /**
-* Creates a complex number.
+* Returns a boolean.
 *
-* @param {number} real - real component
-* @param {number} imag - imaginary component
-* @param {string} [dtype="float64"] - data type
-* @throws {TypeError} must provide a recognized data type
-* @returns {Complex} complex number
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
 *
 * @example
-* var z = complex( 5.0, 3.0, 'float64' );
-* // returns <Complex128>
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
 */
-function complex( real, imag, dtype ) {
-	var ctor;
-	if ( arguments.length > 2 ) {
-		ctor = CTORS[ dtype ];
-		if ( ctor ) {
-			return new ctor( real, imag );
-		}
-		throw new TypeError( format( 'invalid argument. Must provide a recognized data type. Value: `%s`.', dtype ) );
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],76:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Wrap a function and casts a function's return value to a complex number.
+*
+* @module @stdlib/complex/base/cast-return
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var addf = require( '@stdlib/math/base/ops/addf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var castReturn = require( '@stdlib/complex/base/cast-return' );
+*
+* var f = castReturn( addf, 2, Complex64 );
+*
+* // ...
+*
+* var z = f( 3.0, 4.0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 7.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":77}],77:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable valid-typeof */
+
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var T = 'number';
+
+
+// FUNCTIONS //
+
+/**
+* Wraps a function and casts a function's return value to a complex number.
+*
+* ## Notes
+*
+* -   The returned function **assumes** that the wrapped function returns either a real or complex number.
+* -   The returned function **assumes** that, if a return value is non-numeric (i.e., not of type `number`), then the return value is a complex number. The returned function does **not** verify that non-numeric return values are, in fact, complex number objects. The returned function returns non-numeric return values from the wrapped function without modification.
+*
+* @param {Function} fcn - function to wrap
+* @param {NonNegativeInteger} nargs - number of arguments
+* @param {Function} ctor - complex number constructor
+* @throws {TypeError} first argument must be a function
+* @throws {TypeError} second argument must be a nonnegative integer
+* @throws {TypeError} third argument must be a constructor function
+* @returns {Function} wrapped function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var addf = require( '@stdlib/math/base/ops/addf' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var f = wrap( addf, 2, Complex64 );
+*
+* // ...
+*
+* var z = f( 3.0, 4.0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 7.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*/
+function wrap( fcn, nargs, ctor ) {
+	var fcns;
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
 	}
-	return new CTORS[ 'float64' ]( real, imag );
+	if ( !isNonNegativeInteger( nargs ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', nargs ) );
+	}
+	if ( !isFunction( ctor ) ) {
+		throw new TypeError( format( 'invalid argument. Third argument must be a constructor function. Value: `%s`.', ctor ) );
+	}
+	fcns = [ fcn0, fcn1, fcn2, fcn3, fcn4, fcn5 ];
+	return ( nargs <= 5 ) ? fcns[ nargs ] : fcnN;
+
+	/**
+	* Invokes a nullary function and returns a complex number.
+	*
+	* @private
+	* @returns {Complex} result
+	*/
+	function fcn0() {
+		var r = fcn();
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a unary function and returns a complex number.
+	*
+	* @private
+	* @param {*} x - input value
+	* @returns {Complex} result
+	*/
+	function fcn1( x ) {
+		var r = fcn( x );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a binary function and returns a complex number.
+	*
+	* @private
+	* @param {*} x - input value
+	* @param {*} y - input value
+	* @returns {Complex} result
+	*/
+	function fcn2( x, y ) {
+		var r = fcn( x, y );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a ternary function and returns a complex number.
+	*
+	* @private
+	* @param {*} x - input value
+	* @param {*} y - input value
+	* @param {*} z - input value
+	* @returns {Complex} result
+	*/
+	function fcn3( x, y, z ) {
+		var r = fcn( x, y, z );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a quaternary function and returns a complex number.
+	*
+	* @private
+	* @param {*} x - input value
+	* @param {*} y - input value
+	* @param {*} z - input value
+	* @param {*} w - input value
+	* @returns {Complex} result
+	*/
+	function fcn4( x, y, z, w ) {
+		var r = fcn( x, y, z, w );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a quinary function and returns a complex number.
+	*
+	* @private
+	* @param {*} x - input value
+	* @param {*} y - input value
+	* @param {*} z - input value
+	* @param {*} w - input value
+	* @param {*} v - input value
+	* @returns {Complex} result
+	*/
+	function fcn5( x, y, z, w, v ) {
+		var r = fcn( x, y, z, w, v );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
+
+	/**
+	* Invokes a function and returns a complex number.
+	*
+	* @private
+	* @param {...*} args - input values
+	* @returns {Complex} result
+	*/
+	function fcnN() {
+		var args;
+		var r;
+		var i;
+
+		args = [];
+		for ( i = 0; i < arguments.length; i++ ) {
+			args.push( arguments[ i ] );
+		}
+		r = fcn.apply( null, args );
+		if ( typeof r === T ) {
+			return new ctor( r, 0.0 );
+		}
+		return r;
+	}
 }
 
 
 // EXPORTS //
 
-module.exports = complex;
+module.exports = wrap;
 
-},{"./ctors.js":69,"@stdlib/string/format":146}],69:[function(require,module,exports){
+},{"@stdlib/assert/is-function":43,"@stdlib/assert/is-nonnegative-integer":54,"@stdlib/string/format":202}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -3747,25 +4431,339 @@ module.exports = complex;
 
 'use strict';
 
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
 // MODULES //
 
-var Complex128 = require( '@stdlib/complex/float64' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 
 
 // MAIN //
 
-var CTORS = {
-	'float64': Complex128,
-	'float32': Complex64
-};
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name cast
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/base/cast-return}
+*/
+setReadOnly( ns, 'cast', require( '@stdlib/complex/base/cast-return' ) );
+
+/**
+* @name wrap
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/base/wrap-function}
+*/
+setReadOnly( ns, 'wrap', require( '@stdlib/complex/base/wrap-function' ) );
 
 
 // EXPORTS //
 
-module.exports = CTORS;
+module.exports = ns;
 
-},{"@stdlib/complex/float32":86,"@stdlib/complex/float64":90}],70:[function(require,module,exports){
+},{"@stdlib/complex/base/cast-return":76,"@stdlib/complex/base/wrap-function":79,"@stdlib/utils/define-read-only-property":216}],79:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Wrap a function accepting complex number arguments to support providing both real and complex numbers.
+*
+* @module @stdlib/complex/base/wrap-function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var wrap = require( '@stdlib/complex/base/wrap-function' );
+*
+* var f = wrap( caddf, 2, Complex64 );
+*
+* // ...
+*
+* var z = f( 3.0, 4.0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 7.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":80}],80:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable valid-typeof */
+
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var T = 'number';
+
+
+// FUNCTIONS //
+
+/**
+* Wraps a function accepting complex number arguments to support providing both real and complex numbers.
+*
+* ## Notes
+*
+* -   The returned function **assumes** that the wrapped function accepts **only** complex number input arguments (i.e., every argument must be a complex number).
+* -   The returned function **assumes** that, if an input argument is non-numeric (i.e., not of type `number`), then the input argument is a complex number. The returned function does **not** verify that non-numeric input arguments are, in fact, complex number objects. The returned function passes non-numeric input arguments to the wrapped function without modification.
+*
+* @param {Function} fcn - function to wrap
+* @param {NonNegativeInteger} nargs - number of arguments
+* @param {Function} ctor - complex number constructor
+* @throws {TypeError} first argument must be a function
+* @throws {TypeError} second argument must be a nonnegative integer
+* @throws {TypeError} third argument must be a constructor function
+* @returns {Function} wrapped function
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var caddf = require( '@stdlib/complex/float32/base/add' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var f = wrap( caddf, 2, Complex64 );
+*
+* // ...
+*
+* var z = f( 3.0, 4.0 );
+* // returns <Complex64>
+*
+* var re = realf( z );
+* // returns 7.0
+*
+* var im = imagf( z );
+* // returns 0.0
+*/
+function wrap( fcn, nargs, ctor ) {
+	var fcns;
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	if ( !isNonNegativeInteger( nargs ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a nonnegative integer. Value: `%s`.', nargs ) );
+	}
+	if ( !isFunction( ctor ) ) {
+		throw new TypeError( format( 'invalid argument. Third argument must be a constructor function. Value: `%s`.', ctor ) );
+	}
+	fcns = [ fcn0, fcn1, fcn2, fcn3, fcn4, fcn5 ];
+	return ( nargs <= 5 ) ? fcns[ nargs ] : fcnN;
+
+	/**
+	* Invokes a nullary function.
+	*
+	* @private
+	* @returns {*} result
+	*/
+	function fcn0() {
+		return fcn();
+	}
+
+	/**
+	* Invokes a unary function accepting complex numbers.
+	*
+	* @private
+	* @param {(number|Complex)} x - input value
+	* @returns {*} result
+	*/
+	function fcn1( x ) {
+		if ( typeof x === T ) {
+			x = new ctor( x, 0.0 );
+		}
+		return fcn( x );
+	}
+
+	/**
+	* Invokes a binary function accepting complex numbers.
+	*
+	* @private
+	* @param {(number|Complex)} x - input value
+	* @param {(number|Complex)} y - input value
+	* @returns {*} result
+	*/
+	function fcn2( x, y ) {
+		if ( typeof x === T ) {
+			x = new ctor( x, 0.0 );
+		}
+		if ( typeof y === T ) {
+			y = new ctor( y, 0.0 );
+		}
+		return fcn( x, y );
+	}
+
+	/**
+	* Invokes a ternary function accepting complex numbers.
+	*
+	* @private
+	* @param {(number|Complex)} x - input value
+	* @param {(number|Complex)} y - input value
+	* @param {(number|Complex)} z - input value
+	* @returns {*} result
+	*/
+	function fcn3( x, y, z ) {
+		if ( typeof x === T ) {
+			x = new ctor( x, 0.0 );
+		}
+		if ( typeof y === T ) {
+			y = new ctor( y, 0.0 );
+		}
+		if ( typeof z === T ) {
+			z = new ctor( z, 0.0 );
+		}
+		return fcn( x, y, z );
+	}
+
+	/**
+	* Invokes a quaternary function accepting complex numbers.
+	*
+	* @private
+	* @param {(number|Complex)} x - input value
+	* @param {(number|Complex)} y - input value
+	* @param {(number|Complex)} z - input value
+	* @param {(number|Complex)} w - input value
+	* @returns {*} result
+	*/
+	function fcn4( x, y, z, w ) {
+		if ( typeof x === T ) {
+			x = new ctor( x, 0.0 );
+		}
+		if ( typeof y === T ) {
+			y = new ctor( y, 0.0 );
+		}
+		if ( typeof z === T ) {
+			z = new ctor( z, 0.0 );
+		}
+		if ( typeof w === T ) {
+			w = new ctor( w, 0.0 );
+		}
+		return fcn( x, y, z, w );
+	}
+
+	/**
+	* Invokes a quinary function accepting complex numbers.
+	*
+	* @private
+	* @param {(number|Complex)} x - input value
+	* @param {(number|Complex)} y - input value
+	* @param {(number|Complex)} z - input value
+	* @param {(number|Complex)} w - input value
+	* @param {(number|Complex)} v - input value
+	* @returns {*} result
+	*/
+	function fcn5( x, y, z, w, v ) {
+		if ( typeof x === T ) {
+			x = new ctor( x, 0.0 );
+		}
+		if ( typeof y === T ) {
+			y = new ctor( y, 0.0 );
+		}
+		if ( typeof z === T ) {
+			z = new ctor( z, 0.0 );
+		}
+		if ( typeof w === T ) {
+			w = new ctor( w, 0.0 );
+		}
+		if ( typeof v === T ) {
+			v = new ctor( v, 0.0 );
+		}
+		return fcn( x, y, z, w, v );
+	}
+
+	/**
+	* Invokes a function accepting an arbitrary number of complex number input arguments.
+	*
+	* @private
+	* @param {...(number|Complex)} args - input values
+	* @returns {*} result
+	*/
+	function fcnN() {
+		var args;
+		var v;
+		var i;
+
+		args = [];
+		for ( i = 0; i < arguments.length; i++ ) {
+			v = arguments[ i ];
+			if ( typeof v === T ) {
+				v = new ctor( v, 0.0 );
+			}
+			args.push( v );
+		}
+		return fcn.apply( null, args );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = wrap;
+
+},{"@stdlib/assert/is-function":43,"@stdlib/assert/is-nonnegative-integer":54,"@stdlib/string/format":202}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3800,224 +4798,82 @@ module.exports = CTORS;
 
 // MODULES //
 
-var complex = require( './complex.js' );
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":82}],82:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctors = require( '@stdlib/complex/ctors' );
+var format = require( '@stdlib/string/format' );
+
+
+// VARIABLES //
+
+var TABLE = {
+	'float64': 'complex128',
+	'float32': 'complex64'
+};
+var DEFAULT_CTOR = ctors( TABLE[ 'float64' ] );
+
+
+// MAIN //
+
+/**
+* Creates a complex number.
+*
+* @param {number} real - real component
+* @param {number} imag - imaginary component
+* @param {string} [dtype="float64"] - data type
+* @throws {TypeError} must provide a recognized data type
+* @returns {Complex} complex number
+*
+* @example
+* var z = complex( 5.0, 3.0, 'float64' );
+* // returns <Complex128>
+*/
+function complex( real, imag, dtype ) {
+	var ctor;
+	if ( arguments.length > 2 ) {
+		ctor = ctors( TABLE[ dtype ] );
+		if ( ctor ) {
+			return new ctor( real, imag );
+		}
+		throw new TypeError( format( 'invalid argument. Must provide a recognized data type. Value: `%s`.', dtype ) );
+	}
+	return new DEFAULT_CTOR( real, imag );
+}
 
 
 // EXPORTS //
 
 module.exports = complex;
 
-},{"./complex.js":68}],71:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the complex conjugate of a double-precision complex floating-point number.
-*
-* @module @stdlib/complex/conj
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
-* var conj = require( '@stdlib/complex/conj' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var v = conj( z );
-* // returns <Complex128>
-*
-* var re = real( v );
-* // returns 5.0
-*
-* var im = imag( v );
-* // returns -3.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":72}],72:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the complex conjugate of a double-precision complex floating-point number.
-*
-* @param {Complex128} z - complex number
-* @returns {Complex128} complex conjugate
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-* var imag = require( '@stdlib/complex/imag' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var v = conj( z );
-* // returns <Complex128>
-*
-* var re = real( v );
-* // returns 5.0
-*
-* var im = imag( v );
-* // returns -3.0
-*/
-function conj( z ) {
-	return new z.constructor( z.re, -z.im );
-}
-
-
-// EXPORTS //
-
-module.exports = conj;
-
-},{}],73:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the complex conjugate of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/conjf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
-* var conjf = require( '@stdlib/complex/conjf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var v = conjf( z );
-* // returns <Complex64>
-*
-* var re = realf( v );
-* // returns 5.0
-*
-* var im = imagf( v );
-* // returns -3.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":74}],74:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the complex conjugate of a single-precision complex floating-point number.
-*
-* @param {Complex64} z - complex number
-* @returns {Complex64} complex conjugate
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-* var imagf = require( '@stdlib/complex/imagf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var v = conjf( z );
-* // returns <Complex64>
-*
-* var re = realf( v );
-* // returns 5.0
-*
-* var im = imagf( v );
-* // returns -3.0
-*/
-function conjf( z ) {
-	return new z.constructor( z.re, -z.im );
-}
-
-
-// EXPORTS //
-
-module.exports = conjf;
-
-},{}],75:[function(require,module,exports){
+},{"@stdlib/complex/ctors":84,"@stdlib/string/format":202}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4040,8 +4896,8 @@ module.exports = conjf;
 
 // MODULES //
 
-var Complex64 = require( '@stdlib/complex/float32' );
-var Complex128 = require( '@stdlib/complex/float64' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
 
 
 // MAIN //
@@ -4057,7 +4913,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/complex/float32":86,"@stdlib/complex/float64":90}],76:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":110,"@stdlib/complex/float64/ctor":141}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4095,14 +4951,14 @@ module.exports = ctors;
 
 // MODULES //
 
-var ctors = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = ctors;
+module.exports = main;
 
-},{"./main.js":77}],77:[function(require,module,exports){
+},{"./main.js":85}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4153,7 +5009,7 @@ function ctors( dtype ) {
 
 module.exports = ctors;
 
-},{"./ctors.js":75}],78:[function(require,module,exports){
+},{"./ctors.js":83}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4187,7 +5043,7 @@ var ctor2dtypes = {
 
 module.exports = ctor2dtypes;
 
-},{}],79:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4210,24 +5066,24 @@ module.exports = ctor2dtypes;
 
 // MODULES //
 
-var Complex64 = require( '@stdlib/complex/float32' );
-var Complex128 = require( '@stdlib/complex/float64' );
+var ctors = require( '@stdlib/complex/ctors' );
+var DTYPES = require( './dtypes.js' );
 
 
 // MAIN //
 
-// Note: order should match `dtypes` order
-var CTORS = [
-	Complex64,
-	Complex128
-];
+var CTORS = [];
+var i;
+for ( i = 0; i < DTYPES.length; i++ ) {
+	CTORS.push( ctors( DTYPES[ i ] ) );
+}
 
 
 // EXPORTS //
 
 module.exports = CTORS;
 
-},{"@stdlib/complex/float32":86,"@stdlib/complex/float64":90}],80:[function(require,module,exports){
+},{"./dtypes.js":88,"@stdlib/complex/ctors":84}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4248,20 +5104,21 @@ module.exports = CTORS;
 
 'use strict';
 
+// MODULES //
+
+var dtypes = require( '@stdlib/complex/dtypes' );
+
+
 // MAIN //
 
-// Note: order should match `ctors` order
-var DTYPES = [
-	'complex64',
-	'complex128'
-];
+var DTYPES = dtypes();
 
 
 // EXPORTS //
 
 module.exports = DTYPES;
 
-},{}],81:[function(require,module,exports){
+},{"@stdlib/complex/dtypes":92}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4288,7 +5145,7 @@ module.exports = DTYPES;
 * @module @stdlib/complex/dtype
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 * var dtype = require( '@stdlib/complex/dtype' );
 *
 * var v = new Complex128( 1.0, 2.0 );
@@ -4312,7 +5169,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":82}],82:[function(require,module,exports){
+},{"./main.js":90}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4355,7 +5212,7 @@ var NTYPES = DTYPES.length;
 * @returns {(string|null)} data type
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var dt = dtype( new Complex128( 1.0, 2.0 ) );
 * // returns 'complex128'
@@ -4379,13 +5236,13 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":78,"./ctors.js":79,"./dtypes.js":80,"@stdlib/utils/constructor-name":149}],83:[function(require,module,exports){
+},{"./ctor2dtype.js":86,"./ctors.js":87,"./dtypes.js":88,"@stdlib/utils/constructor-name":207}],91:[function(require,module,exports){
 module.exports=[
 	"complex64",
   "complex128"
 ]
 
-},{}],84:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4420,14 +5277,14 @@ module.exports=[
 
 // MODULES //
 
-var dtypes = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = dtypes;
+module.exports = main;
 
-},{"./main.js":85}],85:[function(require,module,exports){
+},{"./main.js":93}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4473,7 +5330,943 @@ function dtypes() {
 
 module.exports = dtypes;
 
-},{"./dtypes.json":83}],86:[function(require,module,exports){
+},{"./dtypes.json":91}],94:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Add two single-precision complex floating-point numbers.
+*
+* @module @stdlib/complex/float32/base/add
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var add = require( '@stdlib/complex/float32/base/add' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+* // returns <Complex64>
+*
+* var out = add( z, z );
+* // returns <Complex64>
+*
+* var re = realf( out );
+* // returns 10.0
+*
+* var im = imagf( out );
+* // returns 6.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":95}],95:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
+
+
+// MAIN //
+
+/**
+* Adds two single-precision complex floating-point numbers.
+*
+* @param {Complex64} z1 - complex number
+* @param {Complex64} z2 - complex number
+* @returns {Complex64} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+* // returns <Complex64>
+*
+* var out = add( z, z );
+* // returns <Complex64>
+*
+* var re = realf( out );
+* // returns 10.0
+*
+* var im = imagf( out );
+* // returns 6.0
+*/
+function add( z1, z2 ) {
+	var re = float64ToFloat32( realf( z1 ) + realf( z2 ) );
+	var im = float64ToFloat32( imagf( z1 ) + imagf( z2 ) );
+	return new Complex64( re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = add;
+
+},{"@stdlib/complex/float32/ctor":110,"@stdlib/complex/float32/imag":114,"@stdlib/complex/float32/real":119,"@stdlib/number/float64/base/to-float32":184}],96:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two single-precision complex floating-point numbers are equal.
+*
+* @module @stdlib/complex/float32/base/assert/is-equal
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var isEqualf = require( '@stdlib/complex/float32/base/assert/is-equal' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isEqualf( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":97}],97:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var reimf = require( '@stdlib/complex/float32/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two single-precision complex floating-point numbers are equal.
+*
+* @param {Complex64} z1 - first complex number
+* @param {Complex64} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isEqualf( z1, z2 );
+* // returns true
+*/
+function isEqualf( z1, z2 ) {
+	var parts1 = reimf( z1 );
+	var parts2 = reimf( z2 );
+	return (
+		parts1[ 0 ] === parts2[ 0 ] &&
+		parts1[ 1 ] === parts2[ 1 ]
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isEqualf;
+
+},{"@stdlib/complex/float32/reim":121}],98:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two single-precision complex floating-point numbers are not equal.
+*
+* @module @stdlib/complex/float32/base/assert/is-not-equal
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var isNotEqualf = require( '@stdlib/complex/float32/base/assert/is-not-equal' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, -3.0 );
+*
+* var v = isNotEqualf( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":99}],99:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var reimf = require( '@stdlib/complex/float32/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two single-precision complex floating-point numbers are not equal.
+*
+* @param {Complex64} z1 - first complex number
+* @param {Complex64} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, -3.0 );
+*
+* var v = isNotEqualf( z1, z2 );
+* // returns true
+*/
+function isNotEqualf( z1, z2 ) {
+	var parts1 = reimf( z1 );
+	var parts2 = reimf( z2 );
+	return (
+		parts1[ 0 ] !== parts2[ 0 ] ||
+		parts1[ 1 ] !== parts2[ 1 ]
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isNotEqualf;
+
+},{"@stdlib/complex/float32/reim":121}],100:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two single-precision complex floating-point numbers are the same value.
+*
+* @module @stdlib/complex/float32/base/assert/is-same-value-zero
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var isSameValueZerof = require( '@stdlib/complex/float32/base/assert/is-same-value-zero' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isSameValueZerof( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":101}],101:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isSame = require( '@stdlib/number/float32/base/assert/is-same-value-zero' );
+var reimf = require( '@stdlib/complex/float32/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two single-precision complex floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the SameValueZero Algorithm used by `TypedArray` and `ArrayBuffer` constructors, `Map` and `Set` operations, `String.prototype.includes`, and `Array.prototype.includes` since ES2016.
+* -   In contrast to the strict equality operator `===`, `NaNs` are considered the same value.
+*
+* @param {Complex64} z1 - first complex number
+* @param {Complex64} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isSameValueZerof( z1, z2 );
+* // returns true
+*/
+function isSameValueZerof( z1, z2 ) {
+	var parts1 = reimf( z1 );
+	var parts2 = reimf( z2 );
+	return (
+		isSame( parts1[ 0 ], parts2[ 0 ] ) &&
+		isSame( parts1[ 1 ], parts2[ 1 ] )
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValueZerof;
+
+},{"@stdlib/complex/float32/reim":121,"@stdlib/number/float32/base/assert/is-same-value-zero":176}],102:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two single-precision complex floating-point numbers are the same value.
+*
+* @module @stdlib/complex/float32/base/assert/is-same-value
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var isSameValuef = require( '@stdlib/complex/float32/base/assert/is-same-value' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isSameValuef( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":103}],103:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isSame = require( '@stdlib/number/float32/base/assert/is-same-value' );
+var reimf = require( '@stdlib/complex/float32/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two single-precision complex floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the [SameValue Algorithm][ecma-262-same-value-algorithm], as specified in ECMAScript 5.
+* -   In contrast to the strict equality operator `===`, `-0` and `+0` are distinguishable and `NaNs` are the same.
+*
+* [ecma-262-same-value-algorithm]: http://ecma-international.org/ecma-262/5.1/#sec-9.12
+*
+* @param {Complex64} z1 - first complex number
+* @param {Complex64} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* var z2 = new Complex64( 5.0, 3.0 );
+*
+* var v = isSameValuef( z1, z2 );
+* // returns true
+*/
+function isSameValuef( z1, z2 ) {
+	var parts1 = reimf( z1 );
+	var parts2 = reimf( z2 );
+	return (
+		isSame( parts1[ 0 ], parts2[ 0 ] ) &&
+		isSame( parts1[ 1 ], parts2[ 1 ] )
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValuef;
+
+},{"@stdlib/complex/float32/reim":121,"@stdlib/number/float32/base/assert/is-same-value":178}],104:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name isEqual
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/assert/is-equal}
+*/
+setReadOnly( ns, 'isEqual', require( '@stdlib/complex/float32/base/assert/is-equal' ) );
+
+/**
+* @name isNotEqual
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/assert/is-not-equal}
+*/
+setReadOnly( ns, 'isNotEqual', require( '@stdlib/complex/float32/base/assert/is-not-equal' ) );
+
+/**
+* @name isSameValue
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/assert/is-same-value}
+*/
+setReadOnly( ns, 'isSameValue', require( '@stdlib/complex/float32/base/assert/is-same-value' ) );
+
+/**
+* @name isSameValueZero
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/assert/is-same-value-zero}
+*/
+setReadOnly( ns, 'isSameValueZero', require( '@stdlib/complex/float32/base/assert/is-same-value-zero' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float32/base/assert/is-equal":96,"@stdlib/complex/float32/base/assert/is-not-equal":98,"@stdlib/complex/float32/base/assert/is-same-value":102,"@stdlib/complex/float32/base/assert/is-same-value-zero":100,"@stdlib/utils/define-read-only-property":216}],105:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name add
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/add}
+*/
+setReadOnly( ns, 'add', require( '@stdlib/complex/float32/base/add' ) );
+
+/**
+* @name assert
+* @memberof ns
+* @readonly
+* @type {Namespace}
+* @see {@link module:@stdlib/complex/float32/base/assert}
+*/
+setReadOnly( ns, 'assert', require( '@stdlib/complex/float32/base/assert' ) );
+
+/**
+* @name mul
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/base/mul}
+*/
+setReadOnly( ns, 'mul', require( '@stdlib/complex/float32/base/mul' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float32/base/add":94,"@stdlib/complex/float32/base/assert":104,"@stdlib/complex/float32/base/mul":106,"@stdlib/utils/define-read-only-property":216}],106:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Multiply two single-precision complex floating-point numbers.
+*
+* @module @stdlib/complex/float32/base/mul
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var mul = require( '@stdlib/complex/float32/base/mul' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* // returns <Complex64>
+*
+* var z2 = new Complex64( -2.0, 1.0 );
+* // returns <Complex64>
+*
+* var out = mul( z1, z2 );
+* // returns <Complex64>
+*
+* var re = realf( out );
+* // returns -13.0
+*
+* var im = imagf( out );
+* // returns -1.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":107}],107:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
+var realf = require( '@stdlib/complex/float32/real' );
+var imagf = require( '@stdlib/complex/float32/imag' );
+
+
+// MAIN //
+
+/**
+* Multiplies two single-precision complex floating-point numbers.
+*
+* @param {Complex64} z1 - complex number
+* @param {Complex64} z2 - complex number
+* @returns {Complex64} result
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z1 = new Complex64( 5.0, 3.0 );
+* // returns <Complex64>
+*
+* var z2 = new Complex64( -2.0, 1.0 );
+* // returns <Complex64>
+*
+* var out = mul( z1, z2 );
+* // returns <Complex64>
+*
+* var re = realf( out );
+* // returns -13.0
+*
+* var im = imagf( out );
+* // returns -1.0
+*/
+function mul( z1, z2 ) {
+	var re1 = realf( z1 );
+	var re2 = realf( z2 );
+	var im1 = imagf( z1 );
+	var im2 = imagf( z2 );
+	var re = float64ToFloat32(re1*re2) - float64ToFloat32(im1*im2);
+	var im = float64ToFloat32(re1*im2) + float64ToFloat32(im1*re2);
+	return new Complex64( float64ToFloat32( re ), float64ToFloat32( im ) );
+}
+
+
+// EXPORTS //
+
+module.exports = mul;
+
+},{"@stdlib/complex/float32/ctor":110,"@stdlib/complex/float32/imag":114,"@stdlib/complex/float32/real":119,"@stdlib/number/float64/base/to-float32":184}],108:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the complex conjugate of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/conj
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+* var conj = require( '@stdlib/complex/float32/conj' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var v = conj( z );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 5.0
+*
+* var im = imagf( v );
+* // returns -3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":109}],109:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the complex conjugate of a single-precision complex floating-point number.
+*
+* @param {Complex64} z - complex number
+* @returns {Complex64} complex conjugate
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var v = conj( z );
+* // returns <Complex64>
+*
+* var re = realf( v );
+* // returns 5.0
+*
+* var im = imagf( v );
+* // returns -3.0
+*/
+function conj( z ) {
+	return new z.constructor( z.re, -z.im );
+}
+
+
+// EXPORTS //
+
+module.exports = conj;
+
+},{}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4497,10 +6290,10 @@ module.exports = dtypes;
 /**
 * 64-bit complex number constructor.
 *
-* @module @stdlib/complex/float32
+* @module @stdlib/complex/float32/ctor
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
 *
 * var z = new Complex64( 5.0, 3.0 );
 * // returns <Complex64>
@@ -4515,7 +6308,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":87}],87:[function(require,module,exports){
+},{"./main.js":111}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4658,7 +6451,6 @@ setReadOnly( Complex64.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex64` instance.
 *
-*
 * @name toJSON
 * @memberof Complex64.prototype
 * @type {Function}
@@ -4677,7 +6469,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":88,"./tostring.js":89,"@stdlib/assert/is-number":52,"@stdlib/number/float64/base/to-float32":130,"@stdlib/string/format":146,"@stdlib/utils/define-nonenumerable-read-only-property":151,"@stdlib/utils/define-property":156}],88:[function(require,module,exports){
+},{"./tojson.js":112,"./tostring.js":113,"@stdlib/assert/is-number":58,"@stdlib/number/float64/base/to-float32":184,"@stdlib/string/format":202,"@stdlib/utils/define-nonenumerable-read-only-property":209,"@stdlib/utils/define-property":214}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4718,7 +6510,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],89:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4762,7 +6554,1577 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],90:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the imaginary component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/imag
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var imag = require( '@stdlib/complex/float32/imag' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":115}],115:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the imaginary component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} imaginary component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var im = imag( z );
+* // returns 3.0
+*/
+function imag( z ) {
+	return z.im;
+}
+
+
+// EXPORTS //
+
+module.exports = imag;
+
+},{}],116:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name base
+* @memberof ns
+* @readonly
+* @type {Namespace}
+* @see {@link module:@stdlib/complex/float32/base}
+*/
+setReadOnly( ns, 'base', require( '@stdlib/complex/float32/base' ) );
+
+/**
+* @name conj
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/conj}
+*/
+setReadOnly( ns, 'conj', require( '@stdlib/complex/float32/conj' ) );
+
+/**
+* @name Complex64
+* @memberof ns
+* @readonly
+* @constructor
+* @see {@link module:@stdlib/complex/float32/ctor}
+*/
+setReadOnly( ns, 'Complex64', require( '@stdlib/complex/float32/ctor' ) );
+
+/**
+* @name imag
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/imag}
+*/
+setReadOnly( ns, 'imag', require( '@stdlib/complex/float32/imag' ) );
+
+/**
+* @name parseComplex64
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/parse}
+*/
+setReadOnly( ns, 'parseComplex64', require( '@stdlib/complex/float32/parse' ) );
+
+/**
+* @name real
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/real}
+*/
+setReadOnly( ns, 'real', require( '@stdlib/complex/float32/real' ) );
+
+/**
+* @name reim
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/reim}
+*/
+setReadOnly( ns, 'reim', require( '@stdlib/complex/float32/reim' ) );
+
+/**
+* @name reviveComplex64
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float32/reviver}
+*/
+setReadOnly( ns, 'reviveComplex64', require( '@stdlib/complex/float32/reviver' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float32/base":105,"@stdlib/complex/float32/conj":108,"@stdlib/complex/float32/ctor":110,"@stdlib/complex/float32/imag":114,"@stdlib/complex/float32/parse":117,"@stdlib/complex/float32/real":119,"@stdlib/complex/float32/reim":121,"@stdlib/complex/float32/reviver":123,"@stdlib/utils/define-read-only-property":216}],117:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Parse a string representation of a complex number and returns a Complex64 instance.
+*
+* @module @stdlib/complex/float32/parse
+*
+* @example
+* var parseComplex64 = require( '@stdlib/complex/float32/parse' );
+*
+* var str = '1 + 2i';
+*
+* var z = parseComplex64( str );
+* // returns <Complex64>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":118}],118:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
+var replace = require( '@stdlib/string/base/replace' );
+var format = require( '@stdlib/string/format' );
+
+
+// FUNCTIONS //
+
+/**
+* Matches a complex number string.
+*
+* @private
+* @returns {RegExp} regular expression
+*
+* @example
+* var re = regexp();
+* // returns /^([-+]?(\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i?)?([-+])?((\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i)?$/
+*/
+function regexp() {
+	return /^([-+]?(\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i?)?([-+])?((\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i)?$/;
+}
+
+
+// MAIN //
+
+/**
+* Parse a string representation of a complex number and returns a Complex64 instance.
+*
+* @param {string} str - string representation of a complex number
+* @throws {TypeError} must provide a string
+* @throws {Error} must provide a valid string representation of a complex number
+* @returns {Complex64} 64-bit complex number
+*
+* @example
+* var str = '1 + 2i';
+* var z = parseComplex64( str );
+* // returns <Complex64>
+*/
+function parseComplex64( str ) {
+	var match;
+	var re;
+	var im = 0;
+
+	if ( !isString( str ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
+	}
+
+	match = replace( str, /\s/g, '' ).match( regexp() );
+	if ( !match ) {
+		throw new Error( format( 'invalid argument. Unable to parse input string as a complex number. Value: `%s`.', str ) );
+	}
+
+	// Real part:
+	re = ( match[1] && !match[1].endsWith( 'i' ) ) ? parseFloat( match[1] ) : 0;
+
+	// Imaginary part:
+	if ( match[4] ) {
+		im = ( ( match[3] === '-' ) ? -1 : 1 ) * parseFloat( replace( match[4], /i$/, '' ) );
+	} else if ( match[1] && match[1].endsWith( 'i' ) ) {
+		im = parseFloat( replace( match[1], /i$/, '' ) );
+	}
+	return new Complex64( re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = parseComplex64;
+
+},{"@stdlib/assert/is-string":66,"@stdlib/complex/float32/ctor":110,"@stdlib/string/base/replace":200,"@stdlib/string/format":202}],119:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real component of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/real
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var real = require( '@stdlib/complex/float32/real' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":120}],120:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the real component of a single-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} real component
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+function real( z ) {
+	return z.re;
+}
+
+
+// EXPORTS //
+
+module.exports = real;
+
+},{}],121:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real and imaginary components of a single-precision complex floating-point number.
+*
+* @module @stdlib/complex/float32/reim
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var reim = require( '@stdlib/complex/float32/reim' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var out = reim( z );
+* // returns <Float32Array>[ 5.0, 3.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":122}],122:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Float32Array = require( '@stdlib/array/float32' );
+
+
+// MAIN //
+
+/**
+* Returns the real and imaginary components of a single-precision complex floating-point number.
+*
+* @param {Complex64} z - complex number
+* @returns {Float32Array} real and imaginary components
+*
+* @example
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+*
+* var z = new Complex64( 5.0, 3.0 );
+*
+* var out = reim( z );
+* // returns <Float32Array>[ 5.0, 3.0 ]
+*/
+function reim( z ) {
+	var out = new Float32Array( 2 );
+	out[ 0 ] = z.re;
+	out[ 1 ] = z.im;
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = reim;
+
+},{"@stdlib/array/float32":1}],123:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Revive a JSON-serialized 64-bit complex number.
+*
+* @module @stdlib/complex/float32/reviver
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+* var reviveComplex64 = require( '@stdlib/complex/float32/reviver' );
+*
+* var str = '{"type":"Complex64","re":5,"im":3}';
+*
+* var z = parseJSON( str, reviveComplex64 );
+* // returns <Complex64>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":124}],124:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
+
+
+// MAIN //
+
+/**
+* Revives a JSON-serialized 64-bit complex number.
+*
+* @param {string} key - key
+* @param {*} value - value
+* @returns {(*|Complex64)} value or 64-bit complex number
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+*
+* var str = '{"type":"Complex64","re":5,"im":3}';
+*
+* var z = parseJSON( str, reviveComplex64 );
+* // returns <Complex64>
+*/
+function reviveComplex64( key, value ) {
+	if (
+		value &&
+		value.type &&
+		value.type === 'Complex64' &&
+		isNumber( value.re ) &&
+		isNumber( value.im )
+	) {
+		return new Complex64( value.re, value.im );
+	}
+	return value;
+}
+
+
+// EXPORTS //
+
+module.exports = reviveComplex64;
+
+},{"@stdlib/assert/is-number":58,"@stdlib/complex/float32/ctor":110}],125:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Add two double-precision complex floating-point numbers.
+*
+* @module @stdlib/complex/float64/base/add
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var cadd = require( '@stdlib/complex/float64/base/add' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+* // returns <Complex128>
+*
+* var out = cadd( z, z );
+* // returns <Complex128>
+*
+* var re = real( out );
+* // returns 10.0
+*
+* var im = imag( out );
+* // returns 6.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":126}],126:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
+
+
+// MAIN //
+
+/**
+* Adds two double-precision complex floating-point numbers.
+*
+* @param {Complex128} z1 - complex number
+* @param {Complex128} z2 - complex number
+* @returns {Complex128} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+* // returns <Complex128>
+*
+* var out = cadd( z, z );
+* // returns <Complex128>
+*
+* var re = real( out );
+* // returns 10.0
+*
+* var im = imag( out );
+* // returns 6.0
+*/
+function cadd( z1, z2 ) {
+	var re = real( z1 ) + real( z2 );
+	var im = imag( z1 ) + imag( z2 );
+	return new Complex128( re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = cadd;
+
+},{"@stdlib/complex/float64/ctor":141,"@stdlib/complex/float64/imag":145,"@stdlib/complex/float64/real":150}],127:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two double-precision complex floating-point numbers are equal.
+*
+* @module @stdlib/complex/float64/base/assert/is-equal
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var isEqual = require( '@stdlib/complex/float64/base/assert/is-equal' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isEqual( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":128}],128:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var reim = require( '@stdlib/complex/float64/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two double-precision complex floating-point numbers are equal.
+*
+* @param {Complex128} z1 - first complex number
+* @param {Complex128} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isEqual( z1, z2 );
+* // returns true
+*/
+function isEqual( z1, z2 ) {
+	var parts1 = reim( z1 );
+	var parts2 = reim( z2 );
+	return (
+		parts1[ 0 ] === parts2[ 0 ] &&
+		parts1[ 1 ] === parts2[ 1 ]
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isEqual;
+
+},{"@stdlib/complex/float64/reim":152}],129:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two double-precision complex floating-point numbers are not equal.
+*
+* @module @stdlib/complex/float64/base/assert/is-not-equal
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var isNotEqual = require( '@stdlib/complex/float64/base/assert/is-not-equal' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, -3.0 );
+*
+* var v = isNotEqual( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":130}],130:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var reim = require( '@stdlib/complex/float64/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two double-precision complex floating-point numbers are not equal.
+*
+* @param {Complex128} z1 - first complex number
+* @param {Complex128} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, -3.0 );
+*
+* var v = isNotEqual( z1, z2 );
+* // returns true
+*/
+function isNotEqual( z1, z2 ) {
+	var parts1 = reim( z1 );
+	var parts2 = reim( z2 );
+	return (
+		parts1[ 0 ] !== parts2[ 0 ] ||
+		parts1[ 1 ] !== parts2[ 1 ]
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isNotEqual;
+
+},{"@stdlib/complex/float64/reim":152}],131:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two double-precision complex floating-point numbers are the same value.
+*
+* @module @stdlib/complex/float64/base/assert/is-same-value-zero
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var isSameValueZero = require( '@stdlib/complex/float64/base/assert/is-same-value-zero' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isSameValueZero( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":132}],132:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isSame = require( '@stdlib/number/float64/base/assert/is-same-value-zero' );
+var reim = require( '@stdlib/complex/float64/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two double-precision complex floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the SameValueZero Algorithm used by `TypedArray` and `ArrayBuffer` constructors, `Map` and `Set` operations, `String.prototype.includes`, and `Array.prototype.includes` since ES2016.
+* -   In contrast to the strict equality operator `===`, `NaNs` are considered the same value.
+*
+* @param {Complex128} z1 - first complex number
+* @param {Complex128} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isSameValueZero( z1, z2 );
+* // returns true
+*/
+function isSameValueZero( z1, z2 ) {
+	var parts1 = reim( z1 );
+	var parts2 = reim( z2 );
+	return (
+		isSame( parts1[ 0 ], parts2[ 0 ] ) &&
+		isSame( parts1[ 1 ], parts2[ 1 ] )
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValueZero;
+
+},{"@stdlib/complex/float64/reim":152,"@stdlib/number/float64/base/assert/is-same-value-zero":180}],133:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether two double-precision complex floating-point numbers are the same value.
+*
+* @module @stdlib/complex/float64/base/assert/is-same-value
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var isSameValue = require( '@stdlib/complex/float64/base/assert/is-same-value' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isSameValue( z1, z2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":134}],134:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isSame = require( '@stdlib/number/float64/base/assert/is-same-value' );
+var reim = require( '@stdlib/complex/float64/reim' );
+
+
+// MAIN //
+
+/**
+* Tests whether two double-precision complex floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the [SameValue Algorithm][ecma-262-same-value-algorithm], as specified in ECMAScript 5.
+* -   In contrast to the strict equality operator `===`, `-0` and `+0` are distinguishable and `NaNs` are the same.
+*
+* [ecma-262-same-value-algorithm]: http://ecma-international.org/ecma-262/5.1/#sec-9.12
+*
+* @param {Complex128} z1 - first complex number
+* @param {Complex128} z2 - second complex number
+* @returns {boolean} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* var z2 = new Complex128( 5.0, 3.0 );
+*
+* var v = isSameValue( z1, z2 );
+* // returns true
+*/
+function isSameValue( z1, z2 ) {
+	var parts1 = reim( z1 );
+	var parts2 = reim( z2 );
+	return (
+		isSame( parts1[ 0 ], parts2[ 0 ] ) &&
+		isSame( parts1[ 1 ], parts2[ 1 ] )
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValue;
+
+},{"@stdlib/complex/float64/reim":152,"@stdlib/number/float64/base/assert/is-same-value":182}],135:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name isEqual
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/assert/is-equal}
+*/
+setReadOnly( ns, 'isEqual', require( '@stdlib/complex/float64/base/assert/is-equal' ) );
+
+/**
+* @name isNotEqual
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/assert/is-not-equal}
+*/
+setReadOnly( ns, 'isNotEqual', require( '@stdlib/complex/float64/base/assert/is-not-equal' ) );
+
+/**
+* @name isSameValue
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/assert/is-same-value}
+*/
+setReadOnly( ns, 'isSameValue', require( '@stdlib/complex/float64/base/assert/is-same-value' ) );
+
+/**
+* @name isSameValueZero
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/assert/is-same-value-zero}
+*/
+setReadOnly( ns, 'isSameValueZero', require( '@stdlib/complex/float64/base/assert/is-same-value-zero' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float64/base/assert/is-equal":127,"@stdlib/complex/float64/base/assert/is-not-equal":129,"@stdlib/complex/float64/base/assert/is-same-value":133,"@stdlib/complex/float64/base/assert/is-same-value-zero":131,"@stdlib/utils/define-read-only-property":216}],136:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name add
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/add}
+*/
+setReadOnly( ns, 'add', require( '@stdlib/complex/float64/base/add' ) );
+
+/**
+* @name assert
+* @memberof ns
+* @readonly
+* @type {Namespace}
+* @see {@link module:@stdlib/complex/float64/base/assert}
+*/
+setReadOnly( ns, 'assert', require( '@stdlib/complex/float64/base/assert' ) );
+
+/**
+* @name mul
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/base/mul}
+*/
+setReadOnly( ns, 'mul', require( '@stdlib/complex/float64/base/mul' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float64/base/add":125,"@stdlib/complex/float64/base/assert":135,"@stdlib/complex/float64/base/mul":137,"@stdlib/utils/define-read-only-property":216}],137:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Multiply two double-precision complex floating-point numbers.
+*
+* @module @stdlib/complex/float64/base/mul
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var mul = require( '@stdlib/complex/float64/base/mul' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* // returns <Complex128>
+*
+* var z2 = new Complex128( -2.0, 1.0 );
+* // returns <Complex128>
+*
+* var out = mul( z1, z2 );
+* // returns <Complex128>
+*
+* var re = real( out );
+* // returns -13.0
+*
+* var im = imag( out );
+* // returns -1.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":138}],138:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var real = require( '@stdlib/complex/float64/real' );
+var imag = require( '@stdlib/complex/float64/imag' );
+
+
+// MAIN //
+
+/**
+* Multiplies two double-precision complex floating-point numbers.
+*
+* @param {Complex128} z1 - complex number
+* @param {Complex128} z2 - complex number
+* @returns {Complex128} result
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var z1 = new Complex128( 5.0, 3.0 );
+* // returns <Complex128>
+*
+* var z2 = new Complex128( -2.0, 1.0 );
+* // returns <Complex128>
+*
+* var out = mul( z1, z2 );
+* // returns <Complex128>
+*
+* var re = real( out );
+* // returns -13.0
+*
+* var im = imag( out );
+* // returns -1.0
+*/
+function mul( z1, z2 ) {
+	var re1 = real( z1 );
+	var re2 = real( z2 );
+	var im1 = imag( z1 );
+	var im2 = imag( z2 );
+	var re = (re1*re2) - (im1*im2);
+	var im = (re1*im2) + (im1*re2);
+	return new Complex128( re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = mul;
+
+},{"@stdlib/complex/float64/ctor":141,"@stdlib/complex/float64/imag":145,"@stdlib/complex/float64/real":150}],139:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the complex conjugate of a double-precision complex floating-point number.
+*
+* @module @stdlib/complex/float64/conj
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+* var conj = require( '@stdlib/complex/float64/conj' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+*
+* var v = conj( z );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 5.0
+*
+* var im = imag( v );
+* // returns -3.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":140}],140:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the complex conjugate of a double-precision complex floating-point number.
+*
+* @param {Complex128} z - complex number
+* @returns {Complex128} complex conjugate
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
+* var imag = require( '@stdlib/complex/float64/imag' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+*
+* var v = conj( z );
+* // returns <Complex128>
+*
+* var re = real( v );
+* // returns 5.0
+*
+* var im = imag( v );
+* // returns -3.0
+*/
+function conj( z ) {
+	return new z.constructor( z.re, -z.im );
+}
+
+
+// EXPORTS //
+
+module.exports = conj;
+
+},{}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4786,10 +8148,10 @@ module.exports = toString;
 /**
 * 128-bit complex number constructor.
 *
-* @module @stdlib/complex/float64
+* @module @stdlib/complex/float64/ctor
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 * // returns <Complex128>
@@ -4804,7 +8166,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":91}],91:[function(require,module,exports){
+},{"./main.js":142}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4946,7 +8308,6 @@ setReadOnly( Complex128.prototype, 'toString', toStr );
 *
 * -   `JSON.stringify()` implicitly calls this method when stringifying a `Complex128` instance.
 *
-*
 * @name toJSON
 * @memberof Complex128.prototype
 * @type {Function}
@@ -4965,7 +8326,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":92,"./tostring.js":93,"@stdlib/assert/is-number":52,"@stdlib/string/format":146,"@stdlib/utils/define-nonenumerable-read-only-property":151,"@stdlib/utils/define-property":156}],92:[function(require,module,exports){
+},{"./tojson.js":143,"./tostring.js":144,"@stdlib/assert/is-number":58,"@stdlib/string/format":202,"@stdlib/utils/define-nonenumerable-read-only-property":209,"@stdlib/utils/define-property":214}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5006,9 +8367,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],93:[function(require,module,exports){
-arguments[4][89][0].apply(exports,arguments)
-},{"dup":89}],94:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
+arguments[4][113][0].apply(exports,arguments)
+},{"dup":113}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5032,11 +8393,11 @@ arguments[4][89][0].apply(exports,arguments)
 /**
 * Return the imaginary component of a double-precision complex floating-point number.
 *
-* @module @stdlib/complex/imag
+* @module @stdlib/complex/float64/imag
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var imag = require( '@stdlib/complex/imag' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var imag = require( '@stdlib/complex/float64/imag' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -5053,7 +8414,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":95}],95:[function(require,module,exports){
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5081,7 +8442,7 @@ module.exports = main;
 * @returns {number} imaginary component
 *
 * @example
-* var Complex128 = require( '@stdlib/complex/float64' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
 *
 * var z = new Complex128( 5.0, 3.0 );
 *
@@ -5097,11 +8458,127 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],96:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/*
+* When adding modules to the namespace, ensure that they are added in alphabetical order according to module name.
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
+
+// MAIN //
+
+/**
+* Top-level namespace.
+*
+* @namespace ns
+*/
+var ns = {};
+
+/**
+* @name base
+* @memberof ns
+* @readonly
+* @type {Namespace}
+* @see {@link module:@stdlib/complex/float64/base}
+*/
+setReadOnly( ns, 'base', require( '@stdlib/complex/float64/base' ) );
+
+/**
+* @name conj
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/conj}
+*/
+setReadOnly( ns, 'conj', require( '@stdlib/complex/float64/conj' ) );
+
+/**
+* @name Complex128
+* @memberof ns
+* @readonly
+* @constructor
+* @see {@link module:@stdlib/complex/float64/ctor}
+*/
+setReadOnly( ns, 'Complex128', require( '@stdlib/complex/float64/ctor' ) );
+
+/**
+* @name imag
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/imag}
+*/
+setReadOnly( ns, 'imag', require( '@stdlib/complex/float64/imag' ) );
+
+/**
+* @name parseComplex128
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/parse}
+*/
+setReadOnly( ns, 'parseComplex128', require( '@stdlib/complex/float64/parse' ) );
+
+/**
+* @name real
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/real}
+*/
+setReadOnly( ns, 'real', require( '@stdlib/complex/float64/real' ) );
+
+/**
+* @name reim
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/reim}
+*/
+setReadOnly( ns, 'reim', require( '@stdlib/complex/float64/reim' ) );
+
+/**
+* @name reviveComplex128
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/complex/float64/reviver}
+*/
+setReadOnly( ns, 'reviveComplex128', require( '@stdlib/complex/float64/reviver' ) );
+
+
+// EXPORTS //
+
+module.exports = ns;
+
+},{"@stdlib/complex/float64/base":136,"@stdlib/complex/float64/conj":139,"@stdlib/complex/float64/ctor":141,"@stdlib/complex/float64/imag":145,"@stdlib/complex/float64/parse":148,"@stdlib/complex/float64/real":150,"@stdlib/complex/float64/reim":152,"@stdlib/complex/float64/reviver":154,"@stdlib/utils/define-read-only-property":216}],148:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -5119,18 +8596,17 @@ module.exports = imag;
 'use strict';
 
 /**
-* Return the imaginary component of a single-precision complex floating-point number.
+* Parse a string representation of a complex number and returns a Complex128 instance.
 *
-* @module @stdlib/complex/imagf
+* @module @stdlib/complex/float64/parse
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var imagf = require( '@stdlib/complex/imagf' );
+* var parseComplex128 = require( '@stdlib/complex/float64/parse' );
 *
-* var z = new Complex64( 5.0, 3.0 );
+* var str = '1 + 2i';
 *
-* var im = imagf( z );
-* // returns 3.0
+* var z = parseComplex128( str );
+* // returns <Complex128>
 */
 
 // MODULES //
@@ -5142,11 +8618,103 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":97}],97:[function(require,module,exports){
+},{"./main.js":149}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var replace = require( '@stdlib/string/base/replace' );
+var format = require( '@stdlib/string/format' );
+
+
+// FUNCTIONS //
+
+/**
+* Matches a complex number string.
+*
+* @private
+* @returns {RegExp} regular expression
+*
+* @example
+* var re = regexp();
+* // returns /^([-+]?(\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i?)?([-+])?((\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i)?$/
+*/
+function regexp() {
+	return /^([-+]?(\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i?)?([-+])?((\d*\.?\d*(?:[eE][-+]?\d+)?|Infinity|NaN)i)?$/;
+}
+
+
+// MAIN //
+
+/**
+* Parse a string representation of a complex number and returns a Complex128 instance.
+*
+* @param {string} str - string representation of a complex number
+* @throws {TypeError} must provide a string
+* @throws {Error} must provide a valid string representation of a complex number
+* @returns {Complex128} 128-bit complex number
+*
+* @example
+* var str = '1 + 2i';
+* var z = parseComplex128( str );
+* // returns <Complex128>
+*/
+function parseComplex128( str ) {
+	var match;
+	var re;
+	var im = 0;
+
+	if ( !isString( str ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
+	}
+
+	match = replace( str, /\s/g, '' ).match( regexp() );
+	if ( !match ) {
+		throw new Error( format( 'invalid argument. Unable to parse input string as a complex number. Value: `%s`.', str ) );
+	}
+
+	// Real part:
+	re = ( match[1] && !match[1].endsWith( 'i' ) ) ? parseFloat( match[1] ) : 0;
+
+	// Imaginary part:
+	if ( match[4] ) {
+		im = ( ( match[3] === '-' ) ? -1 : 1 ) * parseFloat( replace( match[4], /i$/, '' ) );
+	} else if ( match[1] && match[1].endsWith( 'i' ) ) {
+		im = parseFloat( replace( match[1], /i$/, '' ) );
+	}
+	return new Complex128( re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = parseComplex128;
+
+},{"@stdlib/assert/is-string":66,"@stdlib/complex/float64/ctor":141,"@stdlib/string/base/replace":200,"@stdlib/string/format":202}],150:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -5164,29 +8732,280 @@ module.exports = main;
 'use strict';
 
 /**
-* Returns the imaginary component of a single-precision complex floating-point number.
+* Return the real component of a double-precision complex floating-point number.
 *
-* @param {Complex} z - complex number
-* @returns {number} imaginary component
+* @module @stdlib/complex/float64/real
 *
 * @example
-* var Complex64 = require( '@stdlib/complex/float32' );
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var real = require( '@stdlib/complex/float64/real' );
 *
-* var z = new Complex64( 5.0, 3.0 );
+* var z = new Complex128( 5.0, 3.0 );
 *
-* var im = imagf( z );
-* // returns 3.0
+* var re = real( z );
+* // returns 5.0
 */
-function imagf( z ) {
-	return z.im;
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":151}],151:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the real component of a double-precision complex floating-point number.
+*
+* @param {Complex} z - complex number
+* @returns {number} real component
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+*
+* var re = real( z );
+* // returns 5.0
+*/
+function real( z ) {
+	return z.re;
 }
 
 
 // EXPORTS //
 
-module.exports = imagf;
+module.exports = real;
 
-},{}],98:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the real and imaginary components of a double-precision complex floating-point number.
+*
+* @module @stdlib/complex/float64/reim
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+* var reim = require( '@stdlib/complex/float64/reim' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+*
+* var out = reim( z );
+* // returns <Float64Array>[ 5.0, 3.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":153}],153:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Float64Array = require( '@stdlib/array/float64' );
+
+
+// MAIN //
+
+/**
+* Returns the real and imaginary components of a double-precision complex floating-point number.
+*
+* @param {Complex128} z - complex number
+* @returns {Float64Array} real and imaginary components
+*
+* @example
+* var Complex128 = require( '@stdlib/complex/float64/ctor' );
+*
+* var z = new Complex128( 5.0, 3.0 );
+*
+* var out = reim( z );
+* // returns <Float64Array>[ 5.0, 3.0 ]
+*/
+function reim( z ) {
+	var out = new Float64Array( 2 );
+	out[ 0 ] = z.re;
+	out[ 1 ] = z.im;
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = reim;
+
+},{"@stdlib/array/float64":4}],154:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Revive a JSON-serialized 128-bit complex number.
+*
+* @module @stdlib/complex/float64/reviver
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+* var reviveComplex128 = require( '@stdlib/complex/float64/reviver' );
+*
+* var str = '{"type":"Complex128","re":5,"im":3}';
+*
+* var z = parseJSON( str, reviveComplex128 );
+* // returns <Complex128>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":155}],155:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+
+
+// MAIN //
+
+/**
+* Revives a JSON-serialized 128-bit complex number.
+*
+* @param {string} key - key
+* @param {*} value - value
+* @returns {(*|Complex128)} value or 128-bit complex number
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+*
+* var str = '{"type":"Complex128","re":5,"im":3}';
+*
+* var z = parseJSON( str, reviveComplex128 );
+* // returns <Complex128>
+*/
+function reviveComplex128( key, value ) {
+	if (
+		value &&
+		value.type &&
+		value.type === 'Complex128' &&
+		isNumber( value.re ) &&
+		isNumber( value.im )
+	) {
+		return new Complex128( value.re, value.im );
+	}
+	return value;
+}
+
+
+// EXPORTS //
+
+module.exports = reviveComplex128;
+
+},{"@stdlib/assert/is-number":58,"@stdlib/complex/float64/ctor":141}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5226,6 +9045,15 @@ var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var ns = {};
 
 /**
+* @name base
+* @memberof ns
+* @readonly
+* @type {Namespace}
+* @see {@link module:@stdlib/complex/base}
+*/
+setReadOnly( ns, 'base', require( '@stdlib/complex/base' ) );
+
+/**
 * @name complex
 * @memberof ns
 * @readonly
@@ -5235,130 +9063,58 @@ var ns = {};
 setReadOnly( ns, 'complex', require( '@stdlib/complex/cmplx' ) );
 
 /**
-* @name conj
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/conj}
-*/
-setReadOnly( ns, 'conj', require( '@stdlib/complex/conj' ) );
-
-/**
-* @name conjf
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/conjf}
-*/
-setReadOnly( ns, 'conjf', require( '@stdlib/complex/conjf' ) );
-
-/**
-* @name complexCtors
+* @name ctors
 * @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/complex/ctors}
 */
-setReadOnly( ns, 'complexCtors', require( '@stdlib/complex/ctors' ) );
+setReadOnly( ns, 'ctors', require( '@stdlib/complex/ctors' ) );
 
 /**
-* @name complexDataType
+* @name dtype
 * @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/complex/dtype}
 */
-setReadOnly( ns, 'complexDataType', require( '@stdlib/complex/dtype' ) );
+setReadOnly( ns, 'dtype', require( '@stdlib/complex/dtype' ) );
 
 /**
-* @name complexDataTypes
+* @name dtypes
 * @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/complex/dtypes}
 */
-setReadOnly( ns, 'complexDataTypes', require( '@stdlib/complex/dtypes' ) );
+setReadOnly( ns, 'dtypes', require( '@stdlib/complex/dtypes' ) );
 
 /**
-* @name Complex64
+* @name float32
 * @memberof ns
 * @readonly
-* @constructor
+* @type {Namespace}
 * @see {@link module:@stdlib/complex/float32}
 */
-setReadOnly( ns, 'Complex64', require( '@stdlib/complex/float32' ) );
+setReadOnly( ns, 'float32', require( '@stdlib/complex/float32' ) );
 
 /**
-* @name Complex128
+* @name float64
 * @memberof ns
 * @readonly
-* @constructor
+* @type {Namespace}
 * @see {@link module:@stdlib/complex/float64}
 */
-setReadOnly( ns, 'Complex128', require( '@stdlib/complex/float64' ) );
+setReadOnly( ns, 'float64', require( '@stdlib/complex/float64' ) );
 
 /**
-* @name imag
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/imag}
-*/
-setReadOnly( ns, 'imag', require( '@stdlib/complex/imag' ) );
-
-/**
-* @name imagf
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/imagf}
-*/
-setReadOnly( ns, 'imagf', require( '@stdlib/complex/imagf' ) );
-
-/**
-* @name complexPromotionRules
+* @name promotionRules
 * @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/complex/promotion-rules}
 */
-setReadOnly( ns, 'complexPromotionRules', require( '@stdlib/complex/promotion-rules' ) );
-
-/**
-* @name real
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/real}
-*/
-setReadOnly( ns, 'real', require( '@stdlib/complex/real' ) );
-
-/**
-* @name realf
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/realf}
-*/
-setReadOnly( ns, 'realf', require( '@stdlib/complex/realf' ) );
-
-/**
-* @name reim
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/reim}
-*/
-setReadOnly( ns, 'reim', require( '@stdlib/complex/reim' ) );
-
-/**
-* @name reimf
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/reimf}
-*/
-setReadOnly( ns, 'reimf', require( '@stdlib/complex/reimf' ) );
+setReadOnly( ns, 'promotionRules', require( '@stdlib/complex/promotion-rules' ) );
 
 /**
 * @name reviveComplex
@@ -5369,30 +9125,12 @@ setReadOnly( ns, 'reimf', require( '@stdlib/complex/reimf' ) );
 */
 setReadOnly( ns, 'reviveComplex', require( '@stdlib/complex/reviver' ) );
 
-/**
-* @name reviveComplex64
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/reviver-float32}
-*/
-setReadOnly( ns, 'reviveComplex64', require( '@stdlib/complex/reviver-float32' ) );
-
-/**
-* @name reviveComplex128
-* @memberof ns
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/complex/reviver-float64}
-*/
-setReadOnly( ns, 'reviveComplex128', require( '@stdlib/complex/reviver-float64' ) );
-
 
 // EXPORTS //
 
 module.exports = ns;
 
-},{"@stdlib/complex/cmplx":70,"@stdlib/complex/conj":71,"@stdlib/complex/conjf":73,"@stdlib/complex/ctors":76,"@stdlib/complex/dtype":81,"@stdlib/complex/dtypes":84,"@stdlib/complex/float32":86,"@stdlib/complex/float64":90,"@stdlib/complex/imag":94,"@stdlib/complex/imagf":96,"@stdlib/complex/promotion-rules":99,"@stdlib/complex/real":102,"@stdlib/complex/realf":104,"@stdlib/complex/reim":106,"@stdlib/complex/reimf":108,"@stdlib/complex/reviver":115,"@stdlib/complex/reviver-float32":110,"@stdlib/complex/reviver-float64":112,"@stdlib/utils/define-read-only-property":158}],99:[function(require,module,exports){
+},{"@stdlib/complex/base":78,"@stdlib/complex/cmplx":81,"@stdlib/complex/ctors":84,"@stdlib/complex/dtype":89,"@stdlib/complex/dtypes":92,"@stdlib/complex/float32":116,"@stdlib/complex/float64":147,"@stdlib/complex/promotion-rules":157,"@stdlib/complex/reviver":161,"@stdlib/utils/define-read-only-property":216}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5440,7 +9178,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5544,7 +9282,7 @@ function promotionRules( dtype1, dtype2 ) {
 
 module.exports = promotionRules;
 
-},{"./promotion_rules.json":101,"@stdlib/assert/has-own-property":13,"@stdlib/utils/keys":177}],101:[function(require,module,exports){
+},{"./promotion_rules.json":159,"@stdlib/assert/has-own-property":13,"@stdlib/utils/keys":234}],159:[function(require,module,exports){
 module.exports={
 	"float64": {
 		"complex64": "complex128",
@@ -5610,230 +9348,7 @@ module.exports={
   }
 }
 
-},{}],102:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real component of a double-precision complex floating-point number.
-*
-* @module @stdlib/complex/real
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var real = require( '@stdlib/complex/real' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var re = real( z );
-* // returns 5.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":103}],103:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the real component of a double-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} real component
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var re = real( z );
-* // returns 5.0
-*/
-function real( z ) {
-	return z.re;
-}
-
-
-// EXPORTS //
-
-module.exports = real;
-
-},{}],104:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real component of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/realf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var realf = require( '@stdlib/complex/realf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":105}],105:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Returns the real component of a single-precision complex floating-point number.
-*
-* @param {Complex} z - complex number
-* @returns {number} real component
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var re = realf( z );
-* // returns 5.0
-*/
-function realf( z ) {
-	return z.re;
-}
-
-
-// EXPORTS //
-
-module.exports = realf;
-
-},{}],106:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real and imaginary components of a double-precision complex floating-point number.
-*
-* @module @stdlib/complex/reim
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-* var reim = require( '@stdlib/complex/reim' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var out = reim( z );
-* // returns <Float64Array>[ 5.0, 3.0 ]
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":107}],107:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5856,375 +9371,8 @@ module.exports = main;
 
 // MODULES //
 
-var Float64Array = require( '@stdlib/array/float64' );
-
-
-// MAIN //
-
-/**
-* Returns the real and imaginary components of a double-precision complex floating-point number.
-*
-* @param {Complex128} z - complex number
-* @returns {Float64Array} real and imaginary components
-*
-* @example
-* var Complex128 = require( '@stdlib/complex/float64' );
-*
-* var z = new Complex128( 5.0, 3.0 );
-*
-* var out = reim( z );
-* // returns <Float64Array>[ 5.0, 3.0 ]
-*/
-function reim( z ) {
-	var out = new Float64Array( 2 );
-	out[ 0 ] = z.re;
-	out[ 1 ] = z.im;
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = reim;
-
-},{"@stdlib/array/float64":5}],108:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the real and imaginary components of a single-precision complex floating-point number.
-*
-* @module @stdlib/complex/reimf
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-* var reimf = require( '@stdlib/complex/reimf' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var out = reimf( z );
-* // returns <Float32Array>[ 5.0, 3.0 ]
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":109}],109:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2021 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var Float32Array = require( '@stdlib/array/float32' );
-
-
-// MAIN //
-
-/**
-* Returns the real and imaginary components of a single-precision complex floating-point number.
-*
-* @param {Complex64} z - complex number
-* @returns {Float32Array} real and imaginary components
-*
-* @example
-* var Complex64 = require( '@stdlib/complex/float32' );
-*
-* var z = new Complex64( 5.0, 3.0 );
-*
-* var out = reimf( z );
-* // returns <Float32Array>[ 5.0, 3.0 ]
-*/
-function reimf( z ) {
-	var out = new Float32Array( 2 );
-	out[ 0 ] = z.re;
-	out[ 1 ] = z.im;
-	return out;
-}
-
-
-// EXPORTS //
-
-module.exports = reimf;
-
-},{"@stdlib/array/float32":2}],110:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Revive a JSON-serialized 64-bit complex number.
-*
-* @module @stdlib/complex/reviver-float32
-*
-* @example
-* var parseJSON = require( '@stdlib/utils/parse-json' );
-* var reviver = require( '@stdlib/complex/reviver-float32' );
-*
-* var str = '{"type":"Complex64","re":5,"im":3}';
-*
-* var z = parseJSON( str, reviver );
-* // returns <Complex64>
-*/
-
-// MODULES //
-
-var reviver = require( './reviver.js' );
-
-
-// EXPORTS //
-
-module.exports = reviver;
-
-},{"./reviver.js":111}],111:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-var Complex64 = require( '@stdlib/complex/float32' );
-
-
-// MAIN //
-
-/**
-* Revives a JSON-serialized 64-bit complex number.
-*
-* @param {string} key - key
-* @param {*} value - value
-* @returns {(*|Complex64)} value or 64-bit complex number
-*
-* @example
-* var parseJSON = require( '@stdlib/utils/parse-json' );
-*
-* var str = '{"type":"Complex64","re":5,"im":3}';
-*
-* var z = parseJSON( str, reviver );
-* // returns <Complex64>
-*/
-function reviver( key, value ) {
-	if (
-		value &&
-		value.type &&
-		value.type === 'Complex64' &&
-		isNumber( value.re ) &&
-		isNumber( value.im )
-	) {
-		return new Complex64( value.re, value.im );
-	}
-	return value;
-}
-
-
-// EXPORTS //
-
-module.exports = reviver;
-
-},{"@stdlib/assert/is-number":52,"@stdlib/complex/float32":86}],112:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Revive a JSON-serialized 128-bit complex number.
-*
-* @module @stdlib/complex/reviver-float64
-*
-* @example
-* var parseJSON = require( '@stdlib/utils/parse-json' );
-* var reviver = require( '@stdlib/complex/reviver-float64' );
-*
-* var str = '{"type":"Complex128","re":5,"im":3}';
-*
-* var z = parseJSON( str, reviver );
-* // returns <Complex128>
-*/
-
-// MODULES //
-
-var reviver = require( './reviver.js' );
-
-
-// EXPORTS //
-
-module.exports = reviver;
-
-},{"./reviver.js":113}],113:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-var Complex128 = require( '@stdlib/complex/float64' );
-
-
-// MAIN //
-
-/**
-* Revives a JSON-serialized 128-bit complex number.
-*
-* @param {string} key - key
-* @param {*} value - value
-* @returns {(*|Complex128)} value or 128-bit complex number
-*
-* @example
-* var parseJSON = require( '@stdlib/utils/parse-json' );
-*
-* var str = '{"type":"Complex128","re":5,"im":3}';
-*
-* var z = parseJSON( str, reviver );
-* // returns <Complex128>
-*/
-function reviver( key, value ) {
-	if (
-		value &&
-		value.type &&
-		value.type === 'Complex128' &&
-		isNumber( value.re ) &&
-		isNumber( value.im )
-	) {
-		return new Complex128( value.re, value.im );
-	}
-	return value;
-}
-
-
-// EXPORTS //
-
-module.exports = reviver;
-
-},{"@stdlib/assert/is-number":52,"@stdlib/complex/float64":90}],114:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var Complex128 = require( '@stdlib/complex/float64' );
-var Complex64 = require( '@stdlib/complex/float32' );
+var Complex128 = require( '@stdlib/complex/float64/ctor' );
+var Complex64 = require( '@stdlib/complex/float32/ctor' );
 
 
 // MAIN //
@@ -6239,7 +9387,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/complex/float32":86,"@stdlib/complex/float64":90}],115:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":110,"@stdlib/complex/float64/ctor":141}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6267,24 +9415,24 @@ module.exports = ctors;
 *
 * @example
 * var parseJSON = require( '@stdlib/utils/parse-json' );
-* var reviver = require( '@stdlib/complex/reviver' );
+* var reviveComplex = require( '@stdlib/complex/reviver' );
 *
 * var str = '{"type":"Complex128","re":5,"im":3}';
 *
-* var z = parseJSON( str, reviver );
+* var z = parseJSON( str, reviveComplex );
 * // returns <Complex128>
 */
 
 // MODULES //
 
-var reviver = require( './reviver.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = reviver;
+module.exports = main;
 
-},{"./reviver.js":116}],116:[function(require,module,exports){
+},{"./main.js":162}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6325,10 +9473,10 @@ var ctors = require( './ctors.js' );
 *
 * var str = '{"type":"Complex128","re":5,"im":3}';
 *
-* var z = parseJSON( str, reviver );
+* var z = parseJSON( str, reviveComplex );
 * // returns <Complex128>
 */
-function reviver( key, value ) {
+function reviveComplex( key, value ) {
 	var ctor;
 	if (
 		value &&
@@ -6347,9 +9495,9 @@ function reviver( key, value ) {
 
 // EXPORTS //
 
-module.exports = reviver;
+module.exports = reviveComplex;
 
-},{"./ctors.js":114,"@stdlib/assert/is-number":52}],117:[function(require,module,exports){
+},{"./ctors.js":160,"@stdlib/assert/is-number":58}],163:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -6382,7 +9530,7 @@ var ns = require( './../lib' );
 
 tape( 'main export is an object', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof ns, 'object', 'main export is an object' );
+	t.strictEqual( typeof ns, 'object', 'main export is an object' );
 	t.end();
 });
 
@@ -6393,7 +9541,7 @@ tape( 'the exported object contains key-value pairs', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/complex/test/test.js")
-},{"./../lib":98,"@stdlib/utils/keys":177,"tape":303}],118:[function(require,module,exports){
+},{"./../lib":156,"@stdlib/utils/keys":234,"tape":378}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6444,7 +9592,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],119:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6506,7 +9654,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":128}],120:[function(require,module,exports){
+},{"@stdlib/number/ctor":174}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6564,7 +9712,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],121:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6627,7 +9775,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],122:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6665,14 +9813,14 @@ module.exports = UINT32_MAX;
 
 // MODULES //
 
-var isInteger = require( './is_integer.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isInteger;
+module.exports = main;
 
-},{"./is_integer.js":123}],123:[function(require,module,exports){
+},{"./main.js":169}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6723,7 +9871,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":126}],124:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":172}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6761,14 +9909,14 @@ module.exports = isInteger;
 
 // MODULES //
 
-var isnan = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = isnan;
+module.exports = main;
 
-},{"./main.js":125}],125:[function(require,module,exports){
+},{"./main.js":171}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6814,7 +9962,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],126:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6858,14 +10006,14 @@ module.exports = isnan;
 
 // MODULES //
 
-var floor = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = main;
 
-},{"./main.js":127}],127:[function(require,module,exports){
+},{"./main.js":173}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6917,7 +10065,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],128:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6952,14 +10100,14 @@ module.exports = floor;
 
 // MODULES //
 
-var Number = require( './number.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = Number;
+module.exports = main;
 
-},{"./number.js":129}],129:[function(require,module,exports){
+},{"./main.js":175}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6984,7 +10132,469 @@ module.exports = Number;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],130:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if two single-precision floating-point numbers are the same value.
+*
+* @module @stdlib/number/float32/base/assert/is-same-value-zero
+*
+* @example
+* var toFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+* var isSameValueZerof = require( '@stdlib/number/float32/base/assert/is-same-value-zero' );
+*
+* var bool = isSameValueZerof( toFloat32( 3.14 ), toFloat32( 3.14 ) );
+* // returns true
+*
+* bool = isSameValueZerof( toFloat32( -0.0 ), toFloat32( -0.0 ) );
+* // returns true
+*
+* bool = isSameValueZerof( toFloat32( -0.0 ), toFloat32( 0.0 ) );
+* // returns true
+*
+* bool = isSameValueZerof( toFloat32( NaN ), toFloat32( NaN ) );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":177}],177:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if two single-precision floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the SameValueZero Algorithm used by `TypedArray` and `ArrayBuffer` constructors, `Map` and `Set` operations, `String.prototype.includes`, and `Array.prototype.includes` since ES2016.
+* -   In contrast to the strict equality operator `===`, `NaNs` are considered the same value.
+*
+* @param {number} a - first input value
+* @param {number} b - second input value
+* @returns {boolean} boolean indicating whether two single-precision floating-point numbers are the same value
+*
+* @example
+* var bool = isSameValueZerof( 3.14, 3.14 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZerof( -0.0, -0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZerof( -0.0, 0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZerof( NaN, NaN );
+* // returns true
+*/
+function isSameValueZerof( a, b ) {
+	return ( a === b ) || ( a !== a && b !== b ); // handles NaNs
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValueZerof;
+
+},{}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if two single-precision floating-point numbers are the same value.
+*
+* @module @stdlib/number/float32/base/assert/is-same-value
+*
+* @example
+* var toFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+* var isSameValuef = require( '@stdlib/number/float32/base/assert/is-same-value' );
+*
+* var bool = isSameValuef( toFloat32( 3.14 ), toFloat32( 3.14 ) );
+* // returns true
+*
+* bool = isSameValuef( toFloat32( -0.0 ), toFloat32( -0.0 ) );
+* // returns true
+*
+* bool = isSameValuef( toFloat32( -0.0 ), toFloat32( 0.0 ) );
+* // returns false
+*
+* bool = isSameValuef( toFloat32( NaN ), toFloat32( NaN ) );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":179}],179:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if two single-precision floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the [SameValue Algorithm][ecma-262-same-value-algorithm], as specified in ECMAScript 5.
+* -   In contrast to the strict equality operator `===`, `-0` and `+0` are distinguishable and `NaNs` are the same.
+*
+* [ecma-262-same-value-algorithm]: http://ecma-international.org/ecma-262/5.1/#sec-9.12
+*
+* @param {number} a - first input value
+* @param {number} b - second input value
+* @returns {boolean} boolean indicating whether two single-precision floating-point numbers are the same value
+*
+* @example
+* var bool = isSameValuef( 3.14, 3.14 );
+* // returns true
+*
+* @example
+* var bool = isSameValuef( -0.0, -0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValuef( -0.0, 0.0 );
+* // returns false
+*
+* @example
+* var bool = isSameValuef( NaN, NaN );
+* // returns true
+*/
+function isSameValuef( a, b ) {
+	if ( a === b ) {
+		if ( a === 0.0 ) {
+			return 1.0 / a === 1.0 / b; // handles +-0
+		}
+		return true;
+	}
+	return ( a !== a && b !== b ); // handles NaNs
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValuef;
+
+},{}],180:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if two double-precision floating-point numbers are the same value.
+*
+* @module @stdlib/number/float64/base/assert/is-same-value-zero
+*
+* @example
+* var isSameValueZero = require( '@stdlib/number/float64/base/assert/is-same-value-zero' );
+*
+* var bool = isSameValueZero( 3.14, 3.14 );
+* // returns true
+*
+* bool = isSameValueZero( -0.0, -0.0 );
+* // returns true
+*
+* bool = isSameValueZero( -0.0, 0.0 );
+* // returns true
+*
+* bool = isSameValueZero( NaN, NaN );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":181}],181:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if two double-precision floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the SameValueZero Algorithm used by `TypedArray` and `ArrayBuffer` constructors, `Map` and `Set` operations, `String.prototype.includes`, and `Array.prototype.includes` since ES2016.
+* -   In contrast to the strict equality operator `===`, `NaNs` are considered the same value.
+*
+* @param {number} a - first input value
+* @param {number} b - second input value
+* @returns {boolean} boolean indicating whether two double-precision floating-point numbers are the same value
+*
+* @example
+* var bool = isSameValueZero( 3.14, 3.14 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZero( -0.0, -0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZero( -0.0, 0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValueZero( NaN, NaN );
+* // returns true
+*/
+function isSameValueZero( a, b ) {
+	return ( a === b ) || ( a !== a && b !== b ); // handles NaNs
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValueZero;
+
+},{}],182:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if two double-precision floating-point numbers are the same value.
+*
+* @module @stdlib/number/float64/base/assert/is-same-value
+*
+* @example
+* var isSameValue = require( '@stdlib/number/float64/base/assert/is-same-value' );
+*
+* var bool = isSameValue( 3.14, 3.14 );
+* // returns true
+*
+* bool = isSameValue( -0.0, -0.0 );
+* // returns true
+*
+* bool = isSameValue( -0.0, 0.0 );
+* // returns false
+*
+* bool = isSameValue( NaN, NaN );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":183}],183:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests if two double-precision floating-point numbers are the same value.
+*
+* ## Notes
+*
+* -   The function implements the [SameValue Algorithm][ecma-262-same-value-algorithm], as specified in ECMAScript 5.
+* -   In contrast to the strict equality operator `===`, `-0` and `+0` are distinguishable and `NaNs` are the same.
+*
+* [ecma-262-same-value-algorithm]: http://ecma-international.org/ecma-262/5.1/#sec-9.12
+*
+* @param {number} a - first input value
+* @param {number} b - second input value
+* @returns {boolean} boolean indicating whether two double-precision floating-point numbers are the same value
+*
+* @example
+* var bool = isSameValue( 3.14, 3.14 );
+* // returns true
+*
+* @example
+* var bool = isSameValue( -0.0, -0.0 );
+* // returns true
+*
+* @example
+* var bool = isSameValue( -0.0, 0.0 );
+* // returns false
+*
+* @example
+* var bool = isSameValue( NaN, NaN );
+* // returns true
+*/
+function isSameValue( a, b ) {
+	if ( a === b ) {
+		if ( a === 0.0 ) {
+			return 1.0 / a === 1.0 / b; // handles +-0
+		}
+		return true;
+	}
+	return ( a !== a && b !== b ); // handles NaNs
+}
+
+
+// EXPORTS //
+
+module.exports = isSameValue;
+
+},{}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7019,13 +10629,16 @@ module.exports = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-var float64ToFloat32 = require( './main.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-if ( typeof float64ToFloat32 !== 'function' ) {
+var float64ToFloat32;
+if ( typeof builtin === 'function' ) {
+	float64ToFloat32 = builtin;
+} else {
 	float64ToFloat32 = polyfill;
 }
 
@@ -7034,7 +10647,7 @@ if ( typeof float64ToFloat32 !== 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":131,"./polyfill.js":132}],131:[function(require,module,exports){
+},{"./main.js":185,"./polyfill.js":186}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7064,7 +10677,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],132:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7117,7 +10730,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":2}],133:[function(require,module,exports){
+},{"@stdlib/array/float32":1}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7167,20 +10780,20 @@ module.exports = float64ToFloat32;
 // MODULES //
 
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var reFunctionName = require( './main.js' );
+var main = require( './main.js' );
 var REGEXP = require( './regexp.js' );
 
 
 // MAIN //
 
-setReadOnly( reFunctionName, 'REGEXP', REGEXP );
+setReadOnly( main, 'REGEXP', REGEXP );
 
 
 // EXPORTS //
 
-module.exports = reFunctionName;
+module.exports = main;
 
-},{"./main.js":134,"./regexp.js":135,"@stdlib/utils/define-nonenumerable-read-only-property":151}],134:[function(require,module,exports){
+},{"./main.js":188,"./regexp.js":189,"@stdlib/utils/define-nonenumerable-read-only-property":209}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7236,7 +10849,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],135:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7298,7 +10911,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":134}],136:[function(require,module,exports){
+},{"./main.js":188}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7384,7 +10997,7 @@ function formatDouble( token ) {
 		}
 		if ( !token.alternate ) {
 			out = replace.call( out, RE_ZERO_BEFORE_EXP, '$1e' );
-			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e');
+			out = replace.call( out, RE_PERIOD_ZERO_EXP, 'e' );
 			out = replace.call( out, RE_TRAILING_PERIOD_ZERO, '' );
 		}
 		break;
@@ -7411,7 +11024,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":139}],137:[function(require,module,exports){
+},{"./is_number.js":193}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7528,7 +11141,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":139,"./zero_pad.js":143}],138:[function(require,module,exports){
+},{"./is_number.js":193,"./zero_pad.js":197}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7564,14 +11177,14 @@ module.exports = formatInteger;
 
 // MODULES //
 
-var formatInterpolate = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatInterpolate;
+module.exports = main;
 
-},{"./main.js":141}],139:[function(require,module,exports){
+},{"./main.js":195}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7619,7 +11232,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],140:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7663,7 +11276,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],141:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7696,11 +11309,29 @@ var zeroPad = require( './zero_pad.js' );
 // VARIABLES //
 
 var fromCharCode = String.fromCharCode;
-var isnan = isNaN; // NOTE: We use the global `isNaN` function here instead of `@stdlib/math/base/assert/is-nan` to avoid circular dependencies.
 var isArray = Array.isArray; // NOTE: We use the global `Array.isArray` function here instead of `@stdlib/assert/is-array` to avoid circular dependencies.
 
 
 // FUNCTIONS //
+
+/**
+* Returns a boolean indicating whether a value is `NaN`.
+*
+* @private
+* @param {*} value - input value
+* @returns {boolean} boolean indicating whether a value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 4 );
+* // returns false
+*/
+function isnan( value ) { // explicitly define a function here instead of `@stdlib/math/base/assert/is-nan` in order to avoid circular dependencies
+	return ( value !== value );
+}
 
 /**
 * Initializes token object with properties of supplied format identifier object or default values if not present.
@@ -7831,6 +11462,7 @@ function formatInterpolate( tokens ) {
 			case 's':
 				// Case: %s (string)
 				token.maxWidth = ( hasPeriod ) ? token.precision : -1;
+				token.arg = String( token.arg );
 				break;
 			case 'c':
 				// Case: %c (character)
@@ -7839,9 +11471,7 @@ function formatInterpolate( tokens ) {
 					if ( num < 0 || num > 127 ) {
 						throw new Error( 'invalid character code. Value: ' + token.arg );
 					}
-					token.arg = ( isnan( num ) ) ?
-						String( token.arg ) :
-						fromCharCode( num );
+					token.arg = ( isnan( num ) ) ? String( token.arg ) : fromCharCode( num ); // eslint-disable-line max-len
 				}
 				break;
 			case 'e':
@@ -7880,7 +11510,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":136,"./format_integer.js":137,"./is_string.js":140,"./space_pad.js":142,"./zero_pad.js":143}],142:[function(require,module,exports){
+},{"./format_double.js":190,"./format_integer.js":191,"./is_string.js":194,"./space_pad.js":196,"./zero_pad.js":197}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7947,7 +11577,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],143:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8033,7 +11663,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],144:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8069,14 +11699,14 @@ module.exports = zeroPad;
 
 // MODULES //
 
-var formatTokenize = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = formatTokenize;
+module.exports = main;
 
-},{"./main.js":145}],145:[function(require,module,exports){
+},{"./main.js":199}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8168,7 +11798,107 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],146:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/base/replace
+*
+* @example
+* var replace = require( '@stdlib/string/base/replace' );
+*
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":201}],201:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Replaces search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {RegExp} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/base/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer );
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+function replace( str, search, newval ) {
+	return str.replace( search, newval );
+}
+
+
+// EXPORTS //
+
+module.exports = replace;
+
+},{}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8206,16 +11936,16 @@ module.exports = formatTokenize;
 
 // MODULES //
 
-var format = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = format;
+module.exports = main;
 
-},{"./main.js":148}],147:[function(require,module,exports){
-arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],148:[function(require,module,exports){
+},{"./main.js":204}],203:[function(require,module,exports){
+arguments[4][194][0].apply(exports,arguments)
+},{"dup":194}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8263,18 +11993,15 @@ var isString = require( './is_string.js' );
 * // returns 'Pi: ~3.14'
 */
 function format( str ) {
-	var tokens;
 	var args;
 	var i;
 
 	if ( !isString( str ) ) {
 		throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', str ) );
 	}
-	tokens = tokenize( str );
-	args = new Array( arguments.length );
-	args[ 0 ] = tokens;
-	for ( i = 1; i < args.length; i++ ) {
-		args[ i ] = arguments[ i ];
+	args = [ tokenize( str ) ];
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
 	}
 	return interpolate.apply( null, args );
 }
@@ -8284,7 +12011,79 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":147,"@stdlib/string/base/format-interpolate":138,"@stdlib/string/base/format-tokenize":144}],149:[function(require,module,exports){
+},{"./is_string.js":203,"@stdlib/string/base/format-interpolate":192,"@stdlib/string/base/format-tokenize":198}],205:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Symbol factory.
+*
+* @module @stdlib/symbol/ctor
+*
+* @example
+* var Symbol = require( '@stdlib/symbol/ctor' );
+*
+* var s = Symbol( 'beep' );
+* // returns <symbol>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":206}],206:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Sym;
+
+},{}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8325,14 +12124,14 @@ module.exports = format;
 
 // MODULES //
 
-var constructorName = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = constructorName;
+module.exports = main;
 
-},{"./main.js":150}],150:[function(require,module,exports){
+},{"./main.js":208}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8414,7 +12213,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":31,"@stdlib/regexp/function-name":133,"@stdlib/utils/native-class":184}],151:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":31,"@stdlib/regexp/function-name":187,"@stdlib/utils/native-class":241}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8456,14 +12255,14 @@ module.exports = constructorName;
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setNonEnumerableReadOnly;
+module.exports = main;
 
-},{"./main.js":152}],152:[function(require,module,exports){
+},{"./main.js":210}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8523,7 +12322,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":156}],153:[function(require,module,exports){
+},{"@stdlib/utils/define-property":214}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8586,7 +12385,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],154:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8616,7 +12415,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],155:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8669,7 +12468,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":154}],156:[function(require,module,exports){
+},{"./define_property.js":212}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8729,7 +12528,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":153,"./has_define_property_support.js":155,"./polyfill.js":157}],157:[function(require,module,exports){
+},{"./builtin.js":211,"./has_define_property_support.js":213,"./polyfill.js":215}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8853,7 +12652,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":146}],158:[function(require,module,exports){
+},{"@stdlib/string/format":202}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8895,14 +12694,14 @@ module.exports = defineProperty;
 
 // MODULES //
 
-var setReadOnly = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = setReadOnly;
+module.exports = main;
 
-},{"./main.js":159}],159:[function(require,module,exports){
+},{"./main.js":217}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8962,7 +12761,88 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":156}],160:[function(require,module,exports){
+},{"@stdlib/utils/define-property":214}],218:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":219,"./global_this.js":220,"./self.js":221,"./window.js":222,"@stdlib/assert/is-boolean":25,"@stdlib/string/format":202}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8992,7 +12872,7 @@ module.exports = setReadOnly;
 * @returns {Object} global object
 */
 function getGlobal() {
-	return new Function( 'return this;' )(); // eslint-disable-line no-new-func
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
 }
 
 
@@ -9000,12 +12880,11 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],161:[function(require,module,exports){
-(function (global){(function (){
+},{}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -9024,137 +12903,14 @@ module.exports = getGlobal;
 
 // MAIN //
 
-var obj = ( typeof global === 'object' ) ? global : null;
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
 
 
 // EXPORTS //
 
 module.exports = obj;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],162:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Return the global object.
-*
-* @module @stdlib/utils/global
-*
-* @example
-* var getGlobal = require( '@stdlib/utils/global' );
-*
-* var g = getGlobal();
-* // returns {...}
-*/
-
-// MODULES //
-
-var getGlobal = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./main.js":163}],163:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var getThis = require( './codegen.js' );
-var Self = require( './self.js' );
-var Win = require( './window.js' );
-var Global = require( './global.js' );
-
-
-// MAIN //
-
-/**
-* Returns the global object.
-*
-* ## Notes
-*
-* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
-*
-* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
-* @throws {TypeError} must provide a boolean
-* @throws {Error} unable to resolve global object
-* @returns {Object} global object
-*
-* @example
-* var g = getGlobal();
-* // returns {...}
-*/
-function getGlobal( codegen ) {
-	if ( arguments.length ) {
-		if ( !isBoolean( codegen ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
-		}
-		if ( codegen ) {
-			return getThis();
-		}
-		// Fall through...
-	}
-	// Case: browsers and web workers
-	if ( Self ) {
-		return Self;
-	}
-	// Case: browsers
-	if ( Win ) {
-		return Win;
-	}
-	// Case: Node.js
-	if ( Global ) {
-		return Global;
-	}
-	// Case: unknown
-	throw new Error( 'unexpected error. Unable to resolve global object.' );
-}
-
-
-// EXPORTS //
-
-module.exports = getGlobal;
-
-},{"./codegen.js":160,"./global.js":161,"./self.js":164,"./window.js":165,"@stdlib/assert/is-boolean":25,"@stdlib/string/format":146}],164:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9184,7 +12940,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],165:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9214,7 +12970,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],166:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9282,14 +13038,14 @@ module.exports = obj;
 
 // MODULES //
 
-var indexOf = require( './index_of.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = indexOf;
+module.exports = main;
 
-},{"./index_of.js":167}],167:[function(require,module,exports){
+},{"./main.js":224}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9424,7 +13180,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":33,"@stdlib/assert/is-integer":43,"@stdlib/assert/is-nan":48,"@stdlib/assert/is-string":60,"@stdlib/string/format":146}],168:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":33,"@stdlib/assert/is-integer":45,"@stdlib/assert/is-nan":50,"@stdlib/assert/is-string":66,"@stdlib/string/format":202}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9476,7 +13232,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],169:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9538,7 +13294,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":168,"@stdlib/assert/is-arguments":20}],170:[function(require,module,exports){
+},{"./builtin.js":225,"@stdlib/assert/is-arguments":20}],227:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -9562,7 +13318,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],171:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9622,7 +13378,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":168}],172:[function(require,module,exports){
+},{"./builtin.js":225}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9700,7 +13456,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":170,"./is_constructor_prototype.js":178,"./window.js":183,"@stdlib/assert/has-own-property":13,"@stdlib/utils/index-of":166,"@stdlib/utils/type-of":195}],173:[function(require,module,exports){
+},{"./excluded_keys.json":227,"./is_constructor_prototype.js":235,"./window.js":240,"@stdlib/assert/has-own-property":13,"@stdlib/utils/index-of":223,"@stdlib/utils/type-of":252}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9730,7 +13486,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],174:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9767,7 +13523,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":36,"@stdlib/utils/noop":189}],175:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":36,"@stdlib/utils/noop":246}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9810,7 +13566,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":36}],176:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":36}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9840,7 +13596,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],177:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9880,14 +13636,14 @@ module.exports = bool;
 
 // MODULES //
 
-var keys = require( './main.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = keys;
+module.exports = main;
 
-},{"./main.js":180}],178:[function(require,module,exports){
+},{"./main.js":237}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9926,7 +13682,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],179:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9979,7 +13735,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":172,"./has_window.js":176,"./is_constructor_prototype.js":178}],180:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":229,"./has_window.js":233,"./is_constructor_prototype.js":235}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10044,7 +13800,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":168,"./builtin_wrapper.js":169,"./has_arguments_bug.js":171,"./has_builtin.js":173,"./polyfill.js":182}],181:[function(require,module,exports){
+},{"./builtin.js":225,"./builtin_wrapper.js":226,"./has_arguments_bug.js":228,"./has_builtin.js":230,"./polyfill.js":239}],238:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -10055,7 +13811,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],182:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10159,7 +13915,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":174,"./has_non_enumerable_properties_bug.js":175,"./is_constructor_prototype_wrapper.js":179,"./non_enumerable.json":181,"@stdlib/assert/has-own-property":13,"@stdlib/assert/is-arguments":20,"@stdlib/assert/is-object-like":58}],183:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":231,"./has_non_enumerable_properties_bug.js":232,"./is_constructor_prototype_wrapper.js":236,"./non_enumerable.json":238,"@stdlib/assert/has-own-property":13,"@stdlib/assert/is-arguments":20,"@stdlib/assert/is-object-like":64}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10189,7 +13945,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],184:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10234,25 +13990,25 @@ module.exports = w;
 // MODULES //
 
 var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
-var builtin = require( './native_class.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var nativeClass;
+var main;
 if ( hasToStringTag() ) {
-	nativeClass = polyfill;
+	main = polyfill;
 } else {
-	nativeClass = builtin;
+	main = builtin;
 }
 
 
 // EXPORTS //
 
-module.exports = nativeClass;
+module.exports = main;
 
-},{"./native_class.js":185,"./polyfill.js":186,"@stdlib/assert/has-tostringtag-support":17}],185:[function(require,module,exports){
+},{"./main.js":242,"./polyfill.js":243,"@stdlib/assert/has-tostringtag-support":17}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10310,7 +14066,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":187}],186:[function(require,module,exports){
+},{"./tostring.js":244}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10393,7 +14149,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":187,"./tostringtag.js":188,"@stdlib/assert/has-own-property":13}],187:[function(require,module,exports){
+},{"./tostring.js":244,"./tostringtag.js":245,"@stdlib/assert/has-own-property":13}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10423,7 +14179,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],188:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10444,6 +14200,11 @@ module.exports = toStr;
 
 'use strict';
 
+// MODULES //
+
+var Symbol = require( '@stdlib/symbol/ctor' );
+
+
 // MAIN //
 
 var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
@@ -10453,7 +14214,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{}],189:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":205}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10488,14 +14249,14 @@ module.exports = toStrTag;
 
 // MODULES //
 
-var noop = require( './noop.js' );
+var main = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = noop;
+module.exports = main;
 
-},{"./noop.js":190}],190:[function(require,module,exports){
+},{"./main.js":247}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10532,7 +14293,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],191:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10589,7 +14350,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":192,"./fixtures/re.js":193,"./fixtures/typedarray.js":194}],192:[function(require,module,exports){
+},{"./fixtures/nodelist.js":249,"./fixtures/re.js":250,"./fixtures/typedarray.js":251}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10625,7 +14386,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":162}],193:[function(require,module,exports){
+},{"@stdlib/utils/global":218}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10653,7 +14414,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],194:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10681,7 +14442,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],195:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10720,63 +14481,20 @@ module.exports = typedarray;
 // MODULES //
 
 var usePolyfill = require( './check.js' );
-var typeOf = require( './typeof.js' );
+var builtin = require( './main.js' );
 var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
-var main = ( usePolyfill() ) ? polyfill : typeOf;
+var main = ( usePolyfill() ) ? polyfill : builtin;
 
 
 // EXPORTS //
 
 module.exports = main;
 
-},{"./check.js":191,"./polyfill.js":196,"./typeof.js":197}],196:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var ctorName = require( '@stdlib/utils/constructor-name' );
-
-
-// MAIN //
-
-/**
-* Determines a value's type.
-*
-* @param {*} v - input value
-* @returns {string} string indicating the value's type
-*/
-function typeOf( v ) {
-	return ctorName( v ).toLowerCase();
-}
-
-
-// EXPORTS //
-
-module.exports = typeOf;
-
-},{"@stdlib/utils/constructor-name":149}],197:[function(require,module,exports){
+},{"./check.js":248,"./main.js":253,"./polyfill.js":254}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10854,7 +14572,50 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":149}],198:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":207}],254:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":207}],255:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -11006,11 +14767,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],199:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 
-},{}],200:[function(require,module,exports){
-arguments[4][199][0].apply(exports,arguments)
-},{"dup":199}],201:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
+arguments[4][256][0].apply(exports,arguments)
+},{"dup":256}],258:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -12791,7 +16552,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":198,"buffer":201,"ieee754":289}],202:[function(require,module,exports){
+},{"base64-js":255,"buffer":258,"ieee754":361}],259:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13290,7 +17051,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],203:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -13823,7 +17584,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":295}],204:[function(require,module,exports){
+},{"_process":368}],261:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13954,7 +17715,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":202,"inherits":290,"readable-stream/lib/_stream_duplex.js":206,"readable-stream/lib/_stream_passthrough.js":207,"readable-stream/lib/_stream_readable.js":208,"readable-stream/lib/_stream_transform.js":209,"readable-stream/lib/_stream_writable.js":210,"readable-stream/lib/internal/streams/end-of-stream.js":214,"readable-stream/lib/internal/streams/pipeline.js":216}],205:[function(require,module,exports){
+},{"events":259,"inherits":362,"readable-stream/lib/_stream_duplex.js":263,"readable-stream/lib/_stream_passthrough.js":264,"readable-stream/lib/_stream_readable.js":265,"readable-stream/lib/_stream_transform.js":266,"readable-stream/lib/_stream_writable.js":267,"readable-stream/lib/internal/streams/end-of-stream.js":271,"readable-stream/lib/internal/streams/pipeline.js":273}],262:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -14083,7 +17844,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],206:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -14225,7 +17986,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":208,"./_stream_writable":210,"_process":295,"inherits":290}],207:[function(require,module,exports){
+},{"./_stream_readable":265,"./_stream_writable":267,"_process":368,"inherits":362}],264:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14265,7 +18026,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":209,"inherits":290}],208:[function(require,module,exports){
+},{"./_stream_transform":266,"inherits":362}],265:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15392,7 +19153,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":205,"./_stream_duplex":206,"./internal/streams/async_iterator":211,"./internal/streams/buffer_list":212,"./internal/streams/destroy":213,"./internal/streams/from":215,"./internal/streams/state":217,"./internal/streams/stream":218,"_process":295,"buffer":201,"events":202,"inherits":290,"string_decoder/":302,"util":199}],209:[function(require,module,exports){
+},{"../errors":262,"./_stream_duplex":263,"./internal/streams/async_iterator":268,"./internal/streams/buffer_list":269,"./internal/streams/destroy":270,"./internal/streams/from":272,"./internal/streams/state":274,"./internal/streams/stream":275,"_process":368,"buffer":258,"events":259,"inherits":362,"string_decoder/":377,"util":256}],266:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15594,7 +19355,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":205,"./_stream_duplex":206,"inherits":290}],210:[function(require,module,exports){
+},{"../errors":262,"./_stream_duplex":263,"inherits":362}],267:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -16294,7 +20055,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":205,"./_stream_duplex":206,"./internal/streams/destroy":213,"./internal/streams/state":217,"./internal/streams/stream":218,"_process":295,"buffer":201,"inherits":290,"util-deprecate":311}],211:[function(require,module,exports){
+},{"../errors":262,"./_stream_duplex":263,"./internal/streams/destroy":270,"./internal/streams/state":274,"./internal/streams/stream":275,"_process":368,"buffer":258,"inherits":362,"util-deprecate":386}],268:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -16504,7 +20265,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":214,"_process":295}],212:[function(require,module,exports){
+},{"./end-of-stream":271,"_process":368}],269:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -16715,7 +20476,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":201,"util":199}],213:[function(require,module,exports){
+},{"buffer":258,"util":256}],270:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -16823,7 +20584,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":295}],214:[function(require,module,exports){
+},{"_process":368}],271:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -16928,12 +20689,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":205}],215:[function(require,module,exports){
+},{"../../../errors":262}],272:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],216:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -17031,7 +20792,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":205,"./end-of-stream":214}],217:[function(require,module,exports){
+},{"../../../errors":262,"./end-of-stream":271}],274:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -17059,10 +20820,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":205}],218:[function(require,module,exports){
+},{"../../../errors":262}],275:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":202}],219:[function(require,module,exports){
+},{"events":259}],276:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17079,43 +20840,31 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":220,"get-intrinsic":284}],220:[function(require,module,exports){
+},{"./":277,"get-intrinsic":352}],277:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 var GetIntrinsic = require('get-intrinsic');
+var setFunctionLength = require('set-function-length');
 
+var $TypeError = require('es-errors/type');
 var $apply = GetIntrinsic('%Function.prototype.apply%');
 var $call = GetIntrinsic('%Function.prototype.call%');
 var $reflectApply = GetIntrinsic('%Reflect.apply%', true) || bind.call($call, $apply);
 
-var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $defineProperty = require('es-define-property');
 var $max = GetIntrinsic('%Math.max%');
 
-if ($defineProperty) {
-	try {
-		$defineProperty({}, 'a', { value: 1 });
-	} catch (e) {
-		// IE 8 has a broken defineProperty
-		$defineProperty = null;
-	}
-}
-
 module.exports = function callBind(originalFunction) {
-	var func = $reflectApply(bind, $call, arguments);
-	if ($gOPD && $defineProperty) {
-		var desc = $gOPD(func, 'length');
-		if (desc.configurable) {
-			// original length, plus the receiver, minus any additional arguments (after the receiver)
-			$defineProperty(
-				func,
-				'length',
-				{ value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) }
-			);
-		}
+	if (typeof originalFunction !== 'function') {
+		throw new $TypeError('a function is required');
 	}
-	return func;
+	var func = $reflectApply(bind, $call, arguments);
+	return setFunctionLength(
+		func,
+		1 + $max(0, originalFunction.length - (arguments.length - 1)),
+		true
+	);
 };
 
 var applyBind = function applyBind() {
@@ -17128,7 +20877,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":283,"get-intrinsic":284}],221:[function(require,module,exports){
+},{"es-define-property":337,"es-errors/type":343,"function-bind":351,"get-intrinsic":352,"set-function-length":372}],278:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -17224,7 +20973,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":222,"./lib/keys.js":223}],222:[function(require,module,exports){
+},{"./lib/is_arguments.js":279,"./lib/keys.js":280}],279:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -17246,7 +20995,7 @@ function unsupported(object){
     false;
 };
 
-},{}],223:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -17257,7 +21006,65 @@ function shim (obj) {
   return keys;
 }
 
-},{}],224:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
+
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+
+var gopd = require('gopd');
+
+/** @type {import('.')} */
+module.exports = function defineDataProperty(
+	obj,
+	property,
+	value
+) {
+	if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) {
+		throw new $TypeError('`obj` must be an object or a function`');
+	}
+	if (typeof property !== 'string' && typeof property !== 'symbol') {
+		throw new $TypeError('`property` must be a string or a symbol`');
+	}
+	if (arguments.length > 3 && typeof arguments[3] !== 'boolean' && arguments[3] !== null) {
+		throw new $TypeError('`nonEnumerable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 4 && typeof arguments[4] !== 'boolean' && arguments[4] !== null) {
+		throw new $TypeError('`nonWritable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 5 && typeof arguments[5] !== 'boolean' && arguments[5] !== null) {
+		throw new $TypeError('`nonConfigurable`, if provided, must be a boolean or null');
+	}
+	if (arguments.length > 6 && typeof arguments[6] !== 'boolean') {
+		throw new $TypeError('`loose`, if provided, must be a boolean');
+	}
+
+	var nonEnumerable = arguments.length > 3 ? arguments[3] : null;
+	var nonWritable = arguments.length > 4 ? arguments[4] : null;
+	var nonConfigurable = arguments.length > 5 ? arguments[5] : null;
+	var loose = arguments.length > 6 ? arguments[6] : false;
+
+	/* @type {false | TypedPropertyDescriptor<unknown>} */
+	var desc = !!gopd && gopd(obj, property);
+
+	if ($defineProperty) {
+		$defineProperty(obj, property, {
+			configurable: nonConfigurable === null && desc ? desc.configurable : !nonConfigurable,
+			enumerable: nonEnumerable === null && desc ? desc.enumerable : !nonEnumerable,
+			value: value,
+			writable: nonWritable === null && desc ? desc.writable : !nonWritable
+		});
+	} else if (loose || (!nonEnumerable && !nonWritable && !nonConfigurable)) {
+		// must fall back to [[Set]], and was not explicitly asked to make non-enumerable, non-writable, or non-configurable
+		obj[property] = value; // eslint-disable-line no-param-reassign
+	} else {
+		throw new $SyntaxError('This environment does not support defining a property as non-configurable, non-writable, or non-enumerable.');
+	}
+};
+
+},{"es-define-property":337,"es-errors/syntax":342,"es-errors/type":343,"gopd":353}],282:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -17265,29 +21072,29 @@ var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbo
 
 var toStr = Object.prototype.toString;
 var concat = Array.prototype.concat;
-var origDefineProperty = Object.defineProperty;
+var defineDataProperty = require('define-data-property');
 
 var isFunction = function (fn) {
 	return typeof fn === 'function' && toStr.call(fn) === '[object Function]';
 };
 
-var hasPropertyDescriptors = require('has-property-descriptors')();
-
-var supportsDescriptors = origDefineProperty && hasPropertyDescriptors;
+var supportsDescriptors = require('has-property-descriptors')();
 
 var defineProperty = function (object, name, value, predicate) {
-	if (name in object && (!isFunction(predicate) || !predicate())) {
-		return;
+	if (name in object) {
+		if (predicate === true) {
+			if (object[name] === value) {
+				return;
+			}
+		} else if (!isFunction(predicate) || !predicate()) {
+			return;
+		}
 	}
+
 	if (supportsDescriptors) {
-		origDefineProperty(object, name, {
-			configurable: true,
-			enumerable: false,
-			value: value,
-			writable: true
-		});
+		defineDataProperty(object, name, value, true);
 	} else {
-		object[name] = value; // eslint-disable-line no-param-reassign
+		defineDataProperty(object, name, value);
 	}
 };
 
@@ -17306,14 +21113,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"has-property-descriptors":285,"object-keys":293}],225:[function(require,module,exports){
+},{"define-data-property":281,"has-property-descriptors":354,"object-keys":366}],283:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],226:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17352,13 +21159,13 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":256,"./ToPrimitive":258,"./Type":263}],227:[function(require,module,exports){
+},{"./ToNumber":315,"./ToPrimitive":317,"./Type":322}],285:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
 var $Number = GetIntrinsic('%Number%');
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var $isNaN = require('../helpers/isNaN');
 var $isFinite = require('../helpers/isFinite');
@@ -17366,13 +21173,12 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var ToNumber = require('./ToNumber');
 var ToPrimitive = require('./ToPrimitive');
-var Type = require('./Type');
 
 // https://262.ecma-international.org/5.1/#sec-11.8.5
 
 // eslint-disable-next-line max-statements
 module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
-	if (Type(LeftFirst) !== 'Boolean') {
+	if (typeof LeftFirst !== 'boolean') {
 		throw new $TypeError('Assertion failed: LeftFirst argument must be a Boolean');
 	}
 	var px;
@@ -17384,7 +21190,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 		py = ToPrimitive(y, $Number);
 		px = ToPrimitive(x, $Number);
 	}
-	var bothStrings = Type(px) === 'String' && Type(py) === 'String';
+	var bothStrings = typeof px === 'string' && typeof py === 'string';
 	if (!bothStrings) {
 		var nx = ToNumber(px);
 		var ny = ToNumber(py);
@@ -17417,28 +21223,61 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":272,"../helpers/isNaN":274,"../helpers/isPrefixOf":275,"./ToNumber":256,"./ToPrimitive":258,"./Type":263,"get-intrinsic":284}],228:[function(require,module,exports){
+},{"../helpers/isFinite":330,"../helpers/isNaN":331,"../helpers/isPrefixOf":332,"./ToNumber":315,"./ToPrimitive":317,"es-errors/type":343,"get-intrinsic":352}],286:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
+var callBound = require('call-bind/callBound');
+
+var $charCodeAt = callBound('String.prototype.charCodeAt');
+var $toUpperCase = callBound('String.prototype.toUpperCase');
+
+// https://262.ecma-international.org/5.1/#sec-15.10.2.8
+
+module.exports = function Canonicalize(ch, IgnoreCase) {
+	if (typeof ch !== 'string' || ch.length !== 1) {
+		throw new $TypeError('Assertion failed: `ch` must be a character');
+	}
+
+	if (typeof IgnoreCase !== 'boolean') {
+		throw new $TypeError('Assertion failed: `IgnoreCase` must be a Boolean');
+	}
+
+	if (!IgnoreCase) {
+		return ch; // step 1
+	}
+
+	var u = $toUpperCase(ch); // step 2
+
+	if (u.length !== 1) {
+		return ch; // step 3
+	}
+
+	var cu = u; // step 4
+
+	if ($charCodeAt(ch, 0) >= 128 && $charCodeAt(cu, 0) < 128) {
+		return ch; // step 5
+	}
+
+	return cu;
+};
+
+},{"call-bind/callBound":276,"es-errors/type":343}],287:[function(require,module,exports){
+'use strict';
+
+var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.10
 
-module.exports = function CheckObjectCoercible(value, optMessage) {
-	if (value == null) {
-		throw new $TypeError(optMessage || ('Cannot call method on ' + value));
-	}
-	return value;
+module.exports = function CheckObjectCoercible(value) {
+	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"get-intrinsic":284}],229:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":345}],288:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DayWithinYear = require('./DayWithinYear');
 var InLeapYear = require('./InLeapYear');
@@ -17489,7 +21328,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":232,"./InLeapYear":236,"./MonthFromTime":246,"get-intrinsic":284}],230:[function(require,module,exports){
+},{"./DayWithinYear":291,"./InLeapYear":295,"./MonthFromTime":305,"es-errors/eval":338}],289:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17502,7 +21341,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":279,"./floor":267}],231:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./floor":326}],290:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17514,7 +21353,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":267}],232:[function(require,module,exports){
+},{"./floor":326}],291:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -17527,7 +21366,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":230,"./DayFromYear":231,"./YearFromTime":265}],233:[function(require,module,exports){
+},{"./Day":289,"./DayFromYear":290,"./YearFromTime":324}],292:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17547,18 +21386,15 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":268}],234:[function(require,module,exports){
+},{"./modulo":327}],293:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $TypeError = require('es-errors/type');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-
-var Type = require('./Type');
 var IsDataDescriptor = require('./IsDataDescriptor');
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.4
 
@@ -17567,7 +21403,9 @@ module.exports = function FromPropertyDescriptor(Desc) {
 		return Desc;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (IsDataDescriptor(Desc)) {
 		return {
@@ -17588,7 +21426,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/assertRecord":271,"./IsAccessorDescriptor":237,"./IsDataDescriptor":239,"./Type":263,"get-intrinsic":284}],235:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":334,"./IsAccessorDescriptor":296,"./IsDataDescriptor":298,"es-errors/type":343}],294:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17604,12 +21442,10 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":279,"./floor":267,"./modulo":268}],236:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./floor":326,"./modulo":327}],295:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $EvalError = GetIntrinsic('%EvalError%');
+var $EvalError = require('es-errors/eval');
 
 var DaysInYear = require('./DaysInYear');
 var YearFromTime = require('./YearFromTime');
@@ -17627,14 +21463,14 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":233,"./YearFromTime":265,"get-intrinsic":284}],237:[function(require,module,exports){
+},{"./DaysInYear":292,"./YearFromTime":324,"es-errors/eval":338}],296:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.1
 
@@ -17643,30 +21479,32 @@ module.exports = function IsAccessorDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+	if (!hasOwn(Desc, '[[Get]]') && !hasOwn(Desc, '[[Set]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":271,"./Type":263,"has":288}],238:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":334,"es-errors/type":343,"hasown":360}],297:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":291}],239:[function(require,module,exports){
+},{"is-callable":363}],298:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var $TypeError = require('es-errors/type');
 
-var Type = require('./Type');
+var hasOwn = require('hasown');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.2
 
@@ -17675,23 +21513,26 @@ module.exports = function IsDataDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
-	if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+	if (!hasOwn(Desc, '[[Value]]') && !hasOwn(Desc, '[[Writable]]')) {
 		return false;
 	}
 
 	return true;
 };
 
-},{"../helpers/assertRecord":271,"./Type":263,"has":288}],240:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":334,"es-errors/type":343,"hasown":360}],299:[function(require,module,exports){
 'use strict';
+
+var $TypeError = require('es-errors/type');
 
 var IsAccessorDescriptor = require('./IsAccessorDescriptor');
 var IsDataDescriptor = require('./IsDataDescriptor');
-var Type = require('./Type');
 
-var assertRecord = require('../helpers/assertRecord');
+var isPropertyDescriptor = require('./IsPropertyDescriptor');
 
 // https://262.ecma-international.org/5.1/#sec-8.10.3
 
@@ -17700,7 +21541,9 @@ module.exports = function IsGenericDescriptor(Desc) {
 		return false;
 	}
 
-	assertRecord(Type, 'Property Descriptor', 'Desc', Desc);
+	if (!isPropertyDescriptor(Desc)) {
+		throw new $TypeError('Assertion failed: `Desc` must be a Property Descriptor');
+	}
 
 	if (!IsAccessorDescriptor(Desc) && !IsDataDescriptor(Desc)) {
 		return true;
@@ -17709,28 +21552,20 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"../helpers/assertRecord":271,"./IsAccessorDescriptor":237,"./IsDataDescriptor":239,"./Type":263}],241:[function(require,module,exports){
+},{"./IsAccessorDescriptor":296,"./IsDataDescriptor":298,"./IsPropertyDescriptor":300,"es-errors/type":343}],300:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
 
-var isPropertyDescriptor = require('../helpers/isPropertyDescriptor');
-
-var Type = require('./Type');
-var IsDataDescriptor = require('./IsDataDescriptor');
-var IsAccessorDescriptor = require('./IsAccessorDescriptor');
+var isPropertyDescriptor = require('../helpers/records/property-descriptor');
 
 // https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
 
 module.exports = function IsPropertyDescriptor(Desc) {
-	return isPropertyDescriptor({
-		IsDataDescriptor: IsDataDescriptor,
-		IsAccessorDescriptor: IsAccessorDescriptor,
-		Type: Type
-	}, Desc);
+	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/isPropertyDescriptor":276,"./IsAccessorDescriptor":237,"./IsDataDescriptor":239,"./Type":263}],242:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":334}],301:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17745,7 +21580,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":272,"../helpers/timeConstants":279}],243:[function(require,module,exports){
+},{"../helpers/isFinite":330,"../helpers/timeConstants":336}],302:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17780,7 +21615,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":272,"./DateFromTime":229,"./Day":230,"./MonthFromTime":246,"./ToInteger":255,"./YearFromTime":265,"./floor":267,"./modulo":268,"get-intrinsic":284}],244:[function(require,module,exports){
+},{"../helpers/isFinite":330,"./DateFromTime":288,"./Day":289,"./MonthFromTime":305,"./ToInteger":314,"./YearFromTime":324,"./floor":326,"./modulo":327,"get-intrinsic":352}],303:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17805,7 +21640,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":272,"../helpers/timeConstants":279,"./ToInteger":255}],245:[function(require,module,exports){
+},{"../helpers/isFinite":330,"../helpers/timeConstants":336,"./ToInteger":314}],304:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17821,7 +21656,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":279,"./floor":267,"./modulo":268}],246:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./floor":326,"./modulo":327}],305:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -17870,7 +21705,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":232,"./InLeapYear":236}],247:[function(require,module,exports){
+},{"./DayWithinYear":291,"./InLeapYear":295}],306:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -17885,7 +21720,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":274}],248:[function(require,module,exports){
+},{"../helpers/isNaN":331}],307:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17901,7 +21736,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":279,"./floor":267,"./modulo":268}],249:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./floor":326,"./modulo":327}],308:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -17920,7 +21755,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":263}],250:[function(require,module,exports){
+},{"./Type":322}],309:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17943,7 +21778,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":272,"./ToNumber":256,"./abs":266,"get-intrinsic":284}],251:[function(require,module,exports){
+},{"../helpers/isFinite":330,"./ToNumber":315,"./abs":325,"get-intrinsic":352}],310:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -17956,7 +21791,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":279,"./DayFromYear":231}],252:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./DayFromYear":290}],311:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17970,14 +21805,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":279,"./modulo":268}],253:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./modulo":327}],312:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],254:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17988,7 +21823,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":256}],255:[function(require,module,exports){
+},{"./ToNumber":315}],314:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -18008,10 +21843,18 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":272,"../helpers/isNaN":274,"../helpers/sign":278,"./ToNumber":256,"./abs":266,"./floor":267}],256:[function(require,module,exports){
+},{"../helpers/isFinite":330,"../helpers/isNaN":331,"../helpers/sign":335,"./ToNumber":315,"./abs":325,"./floor":326}],315:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
+
+var callBound = require('call-bind/callBound');
+
+var $replace = callBound('String.prototype.replace');
+
+var safeRegexTester = require('safe-regex-test');
+
+var isNonDecimal = safeRegexTester(/^0[ob]|^[+-]0x/);
 
 // http://262.ecma-international.org/5.1/#sec-9.3
 
@@ -18021,46 +21864,39 @@ module.exports = function ToNumber(value) {
 		return +prim; // eslint-disable-line no-implicit-coercion
 	}
 
-	// eslint-disable-next-line no-control-regex
-	var trimmed = prim.replace(/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g, '');
-	if ((/^0[ob]|^[+-]0x/).test(trimmed)) {
+	var trimmed = $replace(
+		prim,
+		// eslint-disable-next-line no-control-regex
+		/^[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+|[ \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u0085]+$/g,
+		''
+	);
+	if (isNonDecimal(trimmed)) {
 		return NaN;
 	}
 
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":258}],257:[function(require,module,exports){
+},{"./ToPrimitive":317,"call-bind/callBound":276,"safe-regex-test":371}],316:[function(require,module,exports){
 'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var $Object = GetIntrinsic('%Object%');
-
-var CheckObjectCoercible = require('./CheckObjectCoercible');
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
-module.exports = function ToObject(value) {
-	CheckObjectCoercible(value);
-	return $Object(value);
-};
+module.exports = require('es-object-atoms/ToObject');
 
-},{"./CheckObjectCoercible":228,"get-intrinsic":284}],258:[function(require,module,exports){
+},{"es-object-atoms/ToObject":346}],317:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":280}],259:[function(require,module,exports){
+},{"es-to-primitive/es5":348}],318:[function(require,module,exports){
 'use strict';
 
-var has = require('has');
+var hasOwn = require('hasown');
 
-var GetIntrinsic = require('get-intrinsic');
-
-var $TypeError = GetIntrinsic('%TypeError%');
+var $TypeError = require('es-errors/type');
 
 var Type = require('./Type');
 var ToBoolean = require('./ToBoolean');
@@ -18074,26 +21910,26 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	}
 
 	var desc = {};
-	if (has(Obj, 'enumerable')) {
+	if (hasOwn(Obj, 'enumerable')) {
 		desc['[[Enumerable]]'] = ToBoolean(Obj.enumerable);
 	}
-	if (has(Obj, 'configurable')) {
+	if (hasOwn(Obj, 'configurable')) {
 		desc['[[Configurable]]'] = ToBoolean(Obj.configurable);
 	}
-	if (has(Obj, 'value')) {
+	if (hasOwn(Obj, 'value')) {
 		desc['[[Value]]'] = Obj.value;
 	}
-	if (has(Obj, 'writable')) {
+	if (hasOwn(Obj, 'writable')) {
 		desc['[[Writable]]'] = ToBoolean(Obj.writable);
 	}
-	if (has(Obj, 'get')) {
+	if (hasOwn(Obj, 'get')) {
 		var getter = Obj.get;
 		if (typeof getter !== 'undefined' && !IsCallable(getter)) {
 			throw new $TypeError('getter must be a function');
 		}
 		desc['[[Get]]'] = getter;
 	}
-	if (has(Obj, 'set')) {
+	if (hasOwn(Obj, 'set')) {
 		var setter = Obj.set;
 		if (typeof setter !== 'undefined' && !IsCallable(setter)) {
 			throw new $TypeError('setter must be a function');
@@ -18101,13 +21937,13 @@ module.exports = function ToPropertyDescriptor(Obj) {
 		desc['[[Set]]'] = setter;
 	}
 
-	if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+	if ((hasOwn(desc, '[[Get]]') || hasOwn(desc, '[[Set]]')) && (hasOwn(desc, '[[Value]]') || hasOwn(desc, '[[Writable]]'))) {
 		throw new $TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
 	}
 	return desc;
 };
 
-},{"./IsCallable":238,"./ToBoolean":253,"./Type":263,"get-intrinsic":284,"has":288}],260:[function(require,module,exports){
+},{"./IsCallable":297,"./ToBoolean":312,"./Type":322,"es-errors/type":343,"hasown":360}],319:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18121,7 +21957,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":284}],261:[function(require,module,exports){
+},{"get-intrinsic":352}],320:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -18142,7 +21978,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":272,"../helpers/isNaN":274,"../helpers/sign":278,"./ToNumber":256,"./abs":266,"./floor":267,"./modulo":268}],262:[function(require,module,exports){
+},{"../helpers/isFinite":330,"../helpers/isNaN":331,"../helpers/sign":335,"./ToNumber":315,"./abs":325,"./floor":326,"./modulo":327}],321:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -18153,7 +21989,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":256}],263:[function(require,module,exports){
+},{"./ToNumber":315}],322:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -18179,7 +22015,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],264:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -18191,7 +22027,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":230,"./modulo":268}],265:[function(require,module,exports){
+},{"./Day":289,"./modulo":327}],324:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18209,7 +22045,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":219,"get-intrinsic":284}],266:[function(require,module,exports){
+},{"call-bind/callBound":276,"get-intrinsic":352}],325:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18222,7 +22058,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":284}],267:[function(require,module,exports){
+},{"get-intrinsic":352}],326:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -18235,7 +22071,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],268:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -18246,7 +22082,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":277}],269:[function(require,module,exports){
+},{"../helpers/mod":333}],328:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -18259,7 +22095,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":279,"./modulo":268}],270:[function(require,module,exports){
+},{"../helpers/timeConstants":336,"./modulo":327}],329:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -18270,6 +22106,7 @@ module.exports = {
 	'Abstract Relational Comparison': require('./5/AbstractRelationalComparison'),
 	'Strict Equality Comparison': require('./5/StrictEqualityComparison'),
 	abs: require('./5/abs'),
+	Canonicalize: require('./5/Canonicalize'),
 	CheckObjectCoercible: require('./5/CheckObjectCoercible'),
 	DateFromTime: require('./5/DateFromTime'),
 	Day: require('./5/Day'),
@@ -18312,90 +22149,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":226,"./5/AbstractRelationalComparison":227,"./5/CheckObjectCoercible":228,"./5/DateFromTime":229,"./5/Day":230,"./5/DayFromYear":231,"./5/DayWithinYear":232,"./5/DaysInYear":233,"./5/FromPropertyDescriptor":234,"./5/HourFromTime":235,"./5/InLeapYear":236,"./5/IsAccessorDescriptor":237,"./5/IsCallable":238,"./5/IsDataDescriptor":239,"./5/IsGenericDescriptor":240,"./5/IsPropertyDescriptor":241,"./5/MakeDate":242,"./5/MakeDay":243,"./5/MakeTime":244,"./5/MinFromTime":245,"./5/MonthFromTime":246,"./5/SameValue":247,"./5/SecFromTime":248,"./5/StrictEqualityComparison":249,"./5/TimeClip":250,"./5/TimeFromYear":251,"./5/TimeWithinDay":252,"./5/ToBoolean":253,"./5/ToInt32":254,"./5/ToInteger":255,"./5/ToNumber":256,"./5/ToObject":257,"./5/ToPrimitive":258,"./5/ToPropertyDescriptor":259,"./5/ToString":260,"./5/ToUint16":261,"./5/ToUint32":262,"./5/Type":263,"./5/WeekDay":264,"./5/YearFromTime":265,"./5/abs":266,"./5/floor":267,"./5/modulo":268,"./5/msFromTime":269}],271:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":284,"./5/AbstractRelationalComparison":285,"./5/Canonicalize":286,"./5/CheckObjectCoercible":287,"./5/DateFromTime":288,"./5/Day":289,"./5/DayFromYear":290,"./5/DayWithinYear":291,"./5/DaysInYear":292,"./5/FromPropertyDescriptor":293,"./5/HourFromTime":294,"./5/InLeapYear":295,"./5/IsAccessorDescriptor":296,"./5/IsCallable":297,"./5/IsDataDescriptor":298,"./5/IsGenericDescriptor":299,"./5/IsPropertyDescriptor":300,"./5/MakeDate":301,"./5/MakeDay":302,"./5/MakeTime":303,"./5/MinFromTime":304,"./5/MonthFromTime":305,"./5/SameValue":306,"./5/SecFromTime":307,"./5/StrictEqualityComparison":308,"./5/TimeClip":309,"./5/TimeFromYear":310,"./5/TimeWithinDay":311,"./5/ToBoolean":312,"./5/ToInt32":313,"./5/ToInteger":314,"./5/ToNumber":315,"./5/ToObject":316,"./5/ToPrimitive":317,"./5/ToPropertyDescriptor":318,"./5/ToString":319,"./5/ToUint16":320,"./5/ToUint32":321,"./5/Type":322,"./5/WeekDay":323,"./5/YearFromTime":324,"./5/abs":325,"./5/floor":326,"./5/modulo":327,"./5/msFromTime":328}],330:[function(require,module,exports){
 'use strict';
 
-var GetIntrinsic = require('get-intrinsic');
+var $isNaN = require('./isNaN');
 
-var $TypeError = GetIntrinsic('%TypeError%');
-var $SyntaxError = GetIntrinsic('%SyntaxError%');
+module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-var has = require('has');
-
-var isMatchRecord = require('./isMatchRecord');
-
-var predicates = {
-	// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
-	'Property Descriptor': function isPropertyDescriptor(Desc) {
-		var allowed = {
-			'[[Configurable]]': true,
-			'[[Enumerable]]': true,
-			'[[Get]]': true,
-			'[[Set]]': true,
-			'[[Value]]': true,
-			'[[Writable]]': true
-		};
-
-		for (var key in Desc) { // eslint-disable-line
-			if (has(Desc, key) && !allowed[key]) {
-				return false;
-			}
-		}
-
-		var isData = has(Desc, '[[Value]]');
-		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
-		if (isData && IsAccessor) {
-			throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-		}
-		return true;
-	},
-	// https://262.ecma-international.org/13.0/#sec-match-records
-	'Match Record': isMatchRecord
-};
-
-module.exports = function assertRecord(Type, recordType, argumentName, value) {
-	var predicate = predicates[recordType];
-	if (typeof predicate !== 'function') {
-		throw new $SyntaxError('unknown record type: ' + recordType);
-	}
-	if (Type(value) !== 'Object' || !predicate(value)) {
-		throw new $TypeError(argumentName + ' must be a ' + recordType);
-	}
-};
-
-},{"./isMatchRecord":273,"get-intrinsic":284,"has":288}],272:[function(require,module,exports){
-'use strict';
-
-var $isNaN = Number.isNaN || function (a) { return a !== a; };
-
-module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
-
-},{}],273:[function(require,module,exports){
-'use strict';
-
-var has = require('has');
-
-// https://262.ecma-international.org/13.0/#sec-match-records
-
-module.exports = function isMatchRecord(record) {
-	return (
-		has(record, '[[StartIndex]]')
-        && has(record, '[[EndIndex]]')
-        && record['[[StartIndex]]'] >= 0
-        && record['[[EndIndex]]'] >= record['[[StartIndex]]']
-        && String(parseInt(record['[[StartIndex]]'], 10)) === String(record['[[StartIndex]]'])
-        && String(parseInt(record['[[EndIndex]]'], 10)) === String(record['[[EndIndex]]'])
-	);
-};
-
-},{"has":288}],274:[function(require,module,exports){
+},{"./isNaN":331}],331:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],275:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -18410,40 +22178,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":219}],276:[function(require,module,exports){
-'use strict';
-
-var GetIntrinsic = require('get-intrinsic');
-
-var has = require('has');
-var $TypeError = GetIntrinsic('%TypeError%');
-
-module.exports = function IsPropertyDescriptor(ES, Desc) {
-	if (ES.Type(Desc) !== 'Object') {
-		return false;
-	}
-	var allowed = {
-		'[[Configurable]]': true,
-		'[[Enumerable]]': true,
-		'[[Get]]': true,
-		'[[Set]]': true,
-		'[[Value]]': true,
-		'[[Writable]]': true
-	};
-
-	for (var key in Desc) { // eslint-disable-line no-restricted-syntax
-		if (has(Desc, key) && !allowed[key]) {
-			return false;
-		}
-	}
-
-	if (ES.IsDataDescriptor(Desc) && ES.IsAccessorDescriptor(Desc)) {
-		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
-	}
-	return true;
-};
-
-},{"get-intrinsic":284,"has":288}],277:[function(require,module,exports){
+},{"call-bind/callBound":276}],333:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -18453,14 +22188,52 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],278:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+var hasOwn = require('hasown');
+
+var allowed = {
+	__proto__: null,
+	'[[Configurable]]': true,
+	'[[Enumerable]]': true,
+	'[[Get]]': true,
+	'[[Set]]': true,
+	'[[Value]]': true,
+	'[[Writable]]': true
+};
+
+// https://262.ecma-international.org/6.0/#sec-property-descriptor-specification-type
+
+module.exports = function isPropertyDescriptor(Desc) {
+	if (!Desc || typeof Desc !== 'object') {
+		return false;
+	}
+
+	for (var key in Desc) { // eslint-disable-line
+		if (hasOwn(Desc, key) && !allowed[key]) {
+			return false;
+		}
+	}
+
+	var isData = hasOwn(Desc, '[[Value]]') || hasOwn(Desc, '[[Writable]]');
+	var IsAccessor = hasOwn(Desc, '[[Get]]') || hasOwn(Desc, '[[Set]]');
+	if (isData && IsAccessor) {
+		throw new $TypeError('Property Descriptors may not be both accessor and data descriptors');
+	}
+	return true;
+};
+
+},{"es-errors/type":343,"hasown":360}],335:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],279:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -18481,7 +22254,98 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],280:[function(require,module,exports){
+},{}],337:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+
+/** @type {import('.')} */
+var $defineProperty = GetIntrinsic('%Object.defineProperty%', true) || false;
+if ($defineProperty) {
+	try {
+		$defineProperty({}, 'a', { value: 1 });
+	} catch (e) {
+		// IE 8 has a broken defineProperty
+		$defineProperty = false;
+	}
+}
+
+module.exports = $defineProperty;
+
+},{"get-intrinsic":352}],338:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./eval')} */
+module.exports = EvalError;
+
+},{}],339:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Error;
+
+},{}],340:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./range')} */
+module.exports = RangeError;
+
+},{}],341:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./ref')} */
+module.exports = ReferenceError;
+
+},{}],342:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./syntax')} */
+module.exports = SyntaxError;
+
+},{}],343:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./type')} */
+module.exports = TypeError;
+
+},{}],344:[function(require,module,exports){
+'use strict';
+
+/** @type {import('./uri')} */
+module.exports = URIError;
+
+},{}],345:[function(require,module,exports){
+'use strict';
+
+var $TypeError = require('es-errors/type');
+
+/** @type {import('./RequireObjectCoercible')} */
+module.exports = function RequireObjectCoercible(value) {
+	if (value == null) {
+		throw new $TypeError((arguments.length > 0 && arguments[1]) || ('Cannot call method on ' + value));
+	}
+	return value;
+};
+
+},{"es-errors/type":343}],346:[function(require,module,exports){
+'use strict';
+
+var $Object = require('./');
+var RequireObjectCoercible = require('./RequireObjectCoercible');
+
+/** @type {import('./ToObject')} */
+module.exports = function ToObject(value) {
+	RequireObjectCoercible(value);
+	return $Object(value);
+};
+
+},{"./":347,"./RequireObjectCoercible":345}],347:[function(require,module,exports){
+'use strict';
+
+/** @type {import('.')} */
+module.exports = Object;
+
+},{}],348:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -18528,56 +22392,88 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":281,"is-callable":291}],281:[function(require,module,exports){
+},{"./helpers/isPrimitive":349,"is-callable":363}],349:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],282:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
 
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
+var max = Math.max;
 var funcType = '[object Function]';
+
+var concatty = function concatty(a, b) {
+    var arr = [];
+
+    for (var i = 0; i < a.length; i += 1) {
+        arr[i] = a[i];
+    }
+    for (var j = 0; j < b.length; j += 1) {
+        arr[j + a.length] = b[j];
+    }
+
+    return arr;
+};
+
+var slicy = function slicy(arrLike, offset) {
+    var arr = [];
+    for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+        arr[j] = arrLike[i];
+    }
+    return arr;
+};
+
+var joiny = function (arr, joiner) {
+    var str = '';
+    for (var i = 0; i < arr.length; i += 1) {
+        str += arr[i];
+        if (i + 1 < arr.length) {
+            str += joiner;
+        }
+    }
+    return str;
+};
 
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || toStr.call(target) !== funcType) {
+    if (typeof target !== 'function' || toStr.apply(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
     }
-    var args = slice.call(arguments, 1);
+    var args = slicy(arguments, 1);
 
     var bound;
     var binder = function () {
         if (this instanceof bound) {
             var result = target.apply(
                 this,
-                args.concat(slice.call(arguments))
+                concatty(args, arguments)
             );
             if (Object(result) === result) {
                 return result;
             }
             return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice.call(arguments))
-            );
         }
+        return target.apply(
+            that,
+            concatty(args, arguments)
+        );
+
     };
 
-    var boundLength = Math.max(0, target.length - args.length);
+    var boundLength = max(0, target.length - args.length);
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
+        boundArgs[i] = '$' + i;
     }
 
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+    bound = Function('binder', 'return function (' + joiny(boundArgs, ',') + '){ return binder.apply(this,arguments); }')(binder);
 
     if (target.prototype) {
         var Empty = function Empty() {};
@@ -18589,21 +22485,27 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],283:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":282}],284:[function(require,module,exports){
+},{"./implementation":350}],352:[function(require,module,exports){
 'use strict';
 
 var undefined;
 
-var $SyntaxError = SyntaxError;
+var $Error = require('es-errors');
+var $EvalError = require('es-errors/eval');
+var $RangeError = require('es-errors/range');
+var $ReferenceError = require('es-errors/ref');
+var $SyntaxError = require('es-errors/syntax');
+var $TypeError = require('es-errors/type');
+var $URIError = require('es-errors/uri');
+
 var $Function = Function;
-var $TypeError = TypeError;
 
 // eslint-disable-next-line consistent-return
 var getEvalledConstructor = function (expressionSyntax) {
@@ -18642,18 +22544,24 @@ var ThrowTypeError = $gOPD
 	: throwTypeError;
 
 var hasSymbols = require('has-symbols')();
+var hasProto = require('has-proto')();
 
-var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
+var getProto = Object.getPrototypeOf || (
+	hasProto
+		? function (x) { return x.__proto__; } // eslint-disable-line no-proto
+		: null
+);
 
 var needsEval = {};
 
-var TypedArray = typeof Uint8Array === 'undefined' ? undefined : getProto(Uint8Array);
+var TypedArray = typeof Uint8Array === 'undefined' || !getProto ? undefined : getProto(Uint8Array);
 
 var INTRINSICS = {
+	__proto__: null,
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols ? getProto([][Symbol.iterator]()) : undefined,
+	'%ArrayIteratorPrototype%': hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined,
 	'%AsyncFromSyncIteratorPrototype%': undefined,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -18661,6 +22569,8 @@ var INTRINSICS = {
 	'%AsyncIteratorPrototype%': needsEval,
 	'%Atomics%': typeof Atomics === 'undefined' ? undefined : Atomics,
 	'%BigInt%': typeof BigInt === 'undefined' ? undefined : BigInt,
+	'%BigInt64Array%': typeof BigInt64Array === 'undefined' ? undefined : BigInt64Array,
+	'%BigUint64Array%': typeof BigUint64Array === 'undefined' ? undefined : BigUint64Array,
 	'%Boolean%': Boolean,
 	'%DataView%': typeof DataView === 'undefined' ? undefined : DataView,
 	'%Date%': Date,
@@ -18668,9 +22578,9 @@ var INTRINSICS = {
 	'%decodeURIComponent%': decodeURIComponent,
 	'%encodeURI%': encodeURI,
 	'%encodeURIComponent%': encodeURIComponent,
-	'%Error%': Error,
+	'%Error%': $Error,
 	'%eval%': eval, // eslint-disable-line no-eval
-	'%EvalError%': EvalError,
+	'%EvalError%': $EvalError,
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
@@ -18681,10 +22591,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols ? getProto(getProto([][Symbol.iterator]())) : undefined,
+	'%IteratorPrototype%': hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined,
 	'%Map%': typeof Map === 'undefined' ? undefined : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols ? undefined : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -18692,15 +22602,15 @@ var INTRINSICS = {
 	'%parseInt%': parseInt,
 	'%Promise%': typeof Promise === 'undefined' ? undefined : Promise,
 	'%Proxy%': typeof Proxy === 'undefined' ? undefined : Proxy,
-	'%RangeError%': RangeError,
-	'%ReferenceError%': ReferenceError,
+	'%RangeError%': $RangeError,
+	'%ReferenceError%': $ReferenceError,
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols ? undefined : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols || !getProto ? undefined : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols ? getProto(''[Symbol.iterator]()) : undefined,
+	'%StringIteratorPrototype%': hasSymbols && getProto ? getProto(''[Symbol.iterator]()) : undefined,
 	'%Symbol%': hasSymbols ? Symbol : undefined,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
@@ -18710,11 +22620,21 @@ var INTRINSICS = {
 	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined : Uint8ClampedArray,
 	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined : Uint16Array,
 	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined : Uint32Array,
-	'%URIError%': URIError,
+	'%URIError%': $URIError,
 	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined : WeakMap,
 	'%WeakRef%': typeof WeakRef === 'undefined' ? undefined : WeakRef,
 	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined : WeakSet
 };
+
+if (getProto) {
+	try {
+		null.error; // eslint-disable-line no-unused-expressions
+	} catch (e) {
+		// https://github.com/tc39/proposal-shadowrealm/pull/384#issuecomment-1364264229
+		var errorProto = getProto(getProto(e));
+		INTRINSICS['%Error.prototype%'] = errorProto;
+	}
+}
 
 var doEval = function doEval(name) {
 	var value;
@@ -18731,7 +22651,7 @@ var doEval = function doEval(name) {
 		}
 	} else if (name === '%AsyncIteratorPrototype%') {
 		var gen = doEval('%AsyncGenerator%');
-		if (gen) {
+		if (gen && getProto) {
 			value = getProto(gen.prototype);
 		}
 	}
@@ -18742,6 +22662,7 @@ var doEval = function doEval(name) {
 };
 
 var LEGACY_ALIASES = {
+	__proto__: null,
 	'%ArrayBufferPrototype%': ['ArrayBuffer', 'prototype'],
 	'%ArrayPrototype%': ['Array', 'prototype'],
 	'%ArrayProto_entries%': ['Array', 'prototype', 'entries'],
@@ -18796,11 +22717,12 @@ var LEGACY_ALIASES = {
 };
 
 var bind = require('function-bind');
-var hasOwn = require('has');
+var hasOwn = require('hasown');
 var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -18856,6 +22778,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -18928,29 +22853,36 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":283,"has":288,"has-symbols":286}],285:[function(require,module,exports){
+},{"es-errors":339,"es-errors/eval":338,"es-errors/range":340,"es-errors/ref":341,"es-errors/syntax":342,"es-errors/type":343,"es-errors/uri":344,"function-bind":351,"has-proto":355,"has-symbols":356,"hasown":360}],353:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
 
-var $defineProperty = GetIntrinsic('%Object.defineProperty%', true);
+var $gOPD = GetIntrinsic('%Object.getOwnPropertyDescriptor%', true);
+
+if ($gOPD) {
+	try {
+		$gOPD([], 'length');
+	} catch (e) {
+		// IE 8 has a broken gOPD
+		$gOPD = null;
+	}
+}
+
+module.exports = $gOPD;
+
+},{"get-intrinsic":352}],354:[function(require,module,exports){
+'use strict';
+
+var $defineProperty = require('es-define-property');
 
 var hasPropertyDescriptors = function hasPropertyDescriptors() {
-	if ($defineProperty) {
-		try {
-			$defineProperty({}, 'a', { value: 1 });
-			return true;
-		} catch (e) {
-			// IE 8 has a broken defineProperty
-			return false;
-		}
-	}
-	return false;
+	return !!$defineProperty;
 };
 
 hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBug() {
 	// node v0.6 has a bug where array lengths can be Set but not Defined
-	if (!hasPropertyDescriptors()) {
+	if (!$defineProperty) {
 		return null;
 	}
 	try {
@@ -18963,7 +22895,24 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"get-intrinsic":284}],286:[function(require,module,exports){
+},{"es-define-property":337}],355:[function(require,module,exports){
+'use strict';
+
+var test = {
+	__proto__: null,
+	foo: {}
+};
+
+var $Object = Object;
+
+/** @type {import('.')} */
+module.exports = function hasProto() {
+	// @ts-expect-error: TS errors on an inherited property for some reason
+	return { __proto__: test }.foo === test.foo
+		&& !(test instanceof $Object);
+};
+
+},{}],356:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -18978,7 +22927,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":287}],287:[function(require,module,exports){
+},{"./shams":357}],357:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -19022,14 +22971,34 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],288:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
+'use strict';
+
+var hasSymbols = require('has-symbols/shams');
+
+/** @type {import('.')} */
+module.exports = function hasToStringTagShams() {
+	return hasSymbols() && !!Symbol.toStringTag;
+};
+
+},{"has-symbols/shams":357}],359:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":283}],289:[function(require,module,exports){
+},{"function-bind":351}],360:[function(require,module,exports){
+'use strict';
+
+var call = Function.prototype.call;
+var $hasOwn = Object.prototype.hasOwnProperty;
+var bind = require('function-bind');
+
+/** @type {import('.')} */
+module.exports = bind.call(call, $hasOwn);
+
+},{"function-bind":351}],361:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -19116,7 +23085,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],290:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -19145,7 +23114,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],291:[function(require,module,exports){
+},{}],363:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -19191,37 +23160,124 @@ var tryFunctionObject = function tryFunctionToStr(value) {
 	}
 };
 var toStr = Object.prototype.toString;
+var objectClass = '[object Object]';
 var fnClass = '[object Function]';
 var genClass = '[object GeneratorFunction]';
+var ddaClass = '[object HTMLAllCollection]'; // IE 11
+var ddaClass2 = '[object HTML document.all class]';
+var ddaClass3 = '[object HTMLCollection]'; // IE 9-10
 var hasToStringTag = typeof Symbol === 'function' && !!Symbol.toStringTag; // better: use `has-tostringtag`
-/* globals document: false */
-var documentDotAll = typeof document === 'object' && typeof document.all === 'undefined' && document.all !== undefined ? document.all : {};
+
+var isIE68 = !(0 in [,]); // eslint-disable-line no-sparse-arrays, comma-spacing
+
+var isDDA = function isDocumentDotAll() { return false; };
+if (typeof document === 'object') {
+	// Firefox 3 canonicalizes DDA to undefined when it's not accessed directly
+	var all = document.all;
+	if (toStr.call(all) === toStr.call(document.all)) {
+		isDDA = function isDocumentDotAll(value) {
+			/* globals document: false */
+			// in IE 6-8, typeof document.all is "object" and it's truthy
+			if ((isIE68 || !value) && (typeof value === 'undefined' || typeof value === 'object')) {
+				try {
+					var str = toStr.call(value);
+					return (
+						str === ddaClass
+						|| str === ddaClass2
+						|| str === ddaClass3 // opera 12.16
+						|| str === objectClass // IE 6-8
+					) && value('') == null; // eslint-disable-line eqeqeq
+				} catch (e) { /**/ }
+			}
+			return false;
+		};
+	}
+}
 
 module.exports = reflectApply
 	? function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		try {
 			reflectApply(value, null, badArrayLike);
 		} catch (e) {
 			if (e !== isCallableMarker) { return false; }
 		}
-		return !isES6ClassFn(value);
+		return !isES6ClassFn(value) && tryFunctionObject(value);
 	}
 	: function isCallable(value) {
-		if (value === documentDotAll) { return true; }
+		if (isDDA(value)) { return true; }
 		if (!value) { return false; }
 		if (typeof value !== 'function' && typeof value !== 'object') { return false; }
-		if (typeof value === 'function' && !value.prototype) { return true; }
 		if (hasToStringTag) { return tryFunctionObject(value); }
 		if (isES6ClassFn(value)) { return false; }
 		var strClass = toStr.call(value);
-		return strClass === fnClass || strClass === genClass;
+		if (strClass !== fnClass && strClass !== genClass && !(/^\[object HTML/).test(strClass)) { return false; }
+		return tryFunctionObject(value);
 	};
 
-},{}],292:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var hasToStringTag = require('has-tostringtag/shams')();
+var has;
+var $exec;
+var isRegexMarker;
+var badStringifier;
+
+if (hasToStringTag) {
+	has = callBound('Object.prototype.hasOwnProperty');
+	$exec = callBound('RegExp.prototype.exec');
+	isRegexMarker = {};
+
+	var throwRegexMarker = function () {
+		throw isRegexMarker;
+	};
+	badStringifier = {
+		toString: throwRegexMarker,
+		valueOf: throwRegexMarker
+	};
+
+	if (typeof Symbol.toPrimitive === 'symbol') {
+		badStringifier[Symbol.toPrimitive] = throwRegexMarker;
+	}
+}
+
+var $toString = callBound('Object.prototype.toString');
+var gOPD = Object.getOwnPropertyDescriptor;
+var regexClass = '[object RegExp]';
+
+module.exports = hasToStringTag
+	// eslint-disable-next-line consistent-return
+	? function isRegex(value) {
+		if (!value || typeof value !== 'object') {
+			return false;
+		}
+
+		var descriptor = gOPD(value, 'lastIndex');
+		var hasLastIndexDataProperty = descriptor && has(descriptor, 'value');
+		if (!hasLastIndexDataProperty) {
+			return false;
+		}
+
+		try {
+			$exec(value, badStringifier);
+		} catch (e) {
+			return e === isRegexMarker;
+		}
+	}
+	: function isRegex(value) {
+		// In older browsers, typeof regex incorrectly returns 'function'
+		if (!value || (typeof value !== 'object' && typeof value !== 'function')) {
+			return false;
+		}
+
+		return $toString(value) === regexClass;
+	};
+
+},{"call-bind/callBound":276,"has-tostringtag/shams":358}],365:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -19345,7 +23401,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":294}],293:[function(require,module,exports){
+},{"./isArguments":367}],366:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -19379,7 +23435,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":292,"./isArguments":294}],294:[function(require,module,exports){
+},{"./implementation":365,"./isArguments":367}],367:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -19398,7 +23454,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],295:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -19584,7 +23640,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],296:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -19617,7 +23673,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":295,"through":309,"timers":310}],297:[function(require,module,exports){
+},{"_process":368,"through":384,"timers":385}],370:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -19684,7 +23740,69 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":201}],298:[function(require,module,exports){
+},{"buffer":258}],371:[function(require,module,exports){
+'use strict';
+
+var callBound = require('call-bind/callBound');
+var isRegex = require('is-regex');
+
+var $exec = callBound('RegExp.prototype.exec');
+var $TypeError = require('es-errors/type');
+
+module.exports = function regexTester(regex) {
+	if (!isRegex(regex)) {
+		throw new $TypeError('`regex` must be a RegExp');
+	}
+	return function test(s) {
+		return $exec(regex, s) !== null;
+	};
+};
+
+},{"call-bind/callBound":276,"es-errors/type":343,"is-regex":364}],372:[function(require,module,exports){
+'use strict';
+
+var GetIntrinsic = require('get-intrinsic');
+var define = require('define-data-property');
+var hasDescriptors = require('has-property-descriptors')();
+var gOPD = require('gopd');
+
+var $TypeError = require('es-errors/type');
+var $floor = GetIntrinsic('%Math.floor%');
+
+/** @type {import('.')} */
+module.exports = function setFunctionLength(fn, length) {
+	if (typeof fn !== 'function') {
+		throw new $TypeError('`fn` is not a function');
+	}
+	if (typeof length !== 'number' || length < 0 || length > 0xFFFFFFFF || $floor(length) !== length) {
+		throw new $TypeError('`length` must be a positive 32-bit integer');
+	}
+
+	var loose = arguments.length > 2 && !!arguments[2];
+
+	var functionLengthIsConfigurable = true;
+	var functionLengthIsWritable = true;
+	if ('length' in fn && gOPD) {
+		var desc = gOPD(fn, 'length');
+		if (desc && !desc.configurable) {
+			functionLengthIsConfigurable = false;
+		}
+		if (desc && !desc.writable) {
+			functionLengthIsWritable = false;
+		}
+	}
+
+	if (functionLengthIsConfigurable || functionLengthIsWritable || !loose) {
+		if (hasDescriptors) {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length, true, true);
+		} else {
+			define(/** @type {Parameters<define>[0]} */ (fn), 'length', length);
+		}
+	}
+	return fn;
+};
+
+},{"define-data-property":281,"es-errors/type":343,"get-intrinsic":352,"gopd":353,"has-property-descriptors":354}],373:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19699,7 +23817,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":270,"function-bind":283}],299:[function(require,module,exports){
+},{"es-abstract/es5":329,"function-bind":351}],374:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19719,7 +23837,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":298,"./polyfill":300,"./shim":301,"define-properties":224,"function-bind":283}],300:[function(require,module,exports){
+},{"./implementation":373,"./polyfill":375,"./shim":376,"define-properties":282,"function-bind":351}],375:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -19733,7 +23851,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":298}],301:[function(require,module,exports){
+},{"./implementation":373}],376:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -19745,7 +23863,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":300,"define-properties":224}],302:[function(require,module,exports){
+},{"./polyfill":375,"define-properties":282}],377:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20042,7 +24160,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":297}],303:[function(require,module,exports){
+},{"safe-buffer":370}],378:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -20196,7 +24314,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":304,"./lib/results":306,"./lib/test":307,"_process":295,"defined":225,"through":309,"timers":310}],304:[function(require,module,exports){
+},{"./lib/default_stream":379,"./lib/results":381,"./lib/test":382,"_process":368,"defined":283,"through":384,"timers":385}],379:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -20231,7 +24349,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":295,"fs":200,"through":309}],305:[function(require,module,exports){
+},{"_process":368,"fs":257,"through":384}],380:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -20239,7 +24357,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":295,"timers":310}],306:[function(require,module,exports){
+},{"_process":368,"timers":385}],381:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -20430,7 +24548,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":295,"events":202,"function-bind":283,"has":288,"inherits":290,"object-inspect":308,"resumer":296,"through":309,"timers":310}],307:[function(require,module,exports){
+},{"_process":368,"events":259,"function-bind":351,"has":359,"inherits":362,"object-inspect":383,"resumer":369,"through":384,"timers":385}],382:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -20931,7 +25049,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":305,"deep-equal":221,"defined":225,"events":202,"has":288,"inherits":290,"path":203,"string.prototype.trim":299}],308:[function(require,module,exports){
+},{"./next_tick":380,"deep-equal":278,"defined":283,"events":259,"has":359,"inherits":362,"path":260,"string.prototype.trim":374}],383:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -21125,7 +25243,7 @@ function inspectString (str) {
     }
 }
 
-},{}],309:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -21237,7 +25355,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":295,"stream":204}],310:[function(require,module,exports){
+},{"_process":368,"stream":261}],385:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -21316,7 +25434,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":295,"timers":310}],311:[function(require,module,exports){
+},{"process/browser.js":368,"timers":385}],386:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -21387,4 +25505,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[117]);
+},{}]},{},[163]);
